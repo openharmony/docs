@@ -18,7 +18,7 @@ The table below describes the matching rules of explicit [Want](../reference/api
 | action | string | No| No| This field is not used for matching. It is passed to the target application component as a parameter.|
 | entities | Array&lt;string&gt; | No| No| This field is not used for matching. It is passed to the target application component as a parameter.|
 | flags | number | No| No| This field is not used for matching and is directly transferred to the system for processing. It is generally used to set runtime information, such as URI data authorization.|
-| parameters | {[key:&nbsp;string]:&nbsp;any} | No| No| This field is not used for matching. It is passed to the target application component as a parameter.|
+| parameters | {[key:&nbsp;string]:&nbsp;Object} | No| No| This field is not used for matching. It is passed to the target application component as a parameter.|
 
 ## Matching Rules for Implicit Want
 
@@ -35,7 +35,7 @@ The table below describes the matching rules of implicit [Want](../reference/api
 | action      | string                         | Yes    | No  |                                                              |
 | entities    | Array&lt;string&gt;            | Yes    | No  |                                                              |
 | flags       | number                         | No    | No  | This field is not used for matching and is directly transferred to the system for processing. It is generally used to set runtime information, such as URI data authorization.|
-| parameters  | {[key:&nbsp;string]:&nbsp;any} | No    | No  | This field is not used for matching. It is passed to the target application component as a parameter.        |
+| parameters  | {[key:&nbsp;string]:&nbsp;Object} | No    | No  | This field is not used for matching. It is passed to the target application component as a parameter.        |
 
 Get familiar with the following about implicit Want:
 

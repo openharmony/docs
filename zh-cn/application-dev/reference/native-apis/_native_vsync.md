@@ -19,7 +19,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [native_vsync.h](native__vsync_8h.md) | 定义获取和使用NativeVsync的相关函数<br/>引用文件：&lt;native_vsync/native_vsync.h&gt; |
+| [native_vsync.h](native__vsync_8h.md) | 定义获取和使用NativeVsync的相关函数<br/>**引用文件：** &lt;native_vsync/native_vsync.h&gt; <br/>**库：** libnative_vsync.so |
 
 
 ### 类型定义
@@ -37,7 +37,7 @@
 | [OH_NativeVSync_Create](#oh_nativevsync_create) (const char \*name, unsigned int length) | 创建一个OH_NativeVSync实例，每次调用都会产生一个新的实例 |
 | [OH_NativeVSync_Destroy](#oh_nativevsync_destroy) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync) | 销毁OH_NativeVSync实例 |
 | [OH_NativeVSync_RequestFrame](#oh_nativevsync_requestframe) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, [OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback) callback, void \*data) | 请求下一次vsync信号，当信号到来时，调用回调函数callback |
-
+| [OH_NativeVSync_GetPeriod](#oh_nativevsync_getperiod) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, long long \*period) |获取vsync周期。|
 
 ## 类型定义说明
 
@@ -76,6 +76,34 @@ VSync回调函数类型
 
 
 ## 函数说明
+
+### OH_NativeVSync_GetPeriod()
+
+
+```
+int OH_NativeVSync_GetPeriod (OH_NativeVSync * nativeVsync, long long * period )
+```
+
+**描述:**
+
+获取vsync周期。
+
+\@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| nativeVsync | 一个指向OH_NativeVSync实例的指针。|
+| period | 用于获取vsync周期的变量。 |
+
+**返回:**
+
+返回值为0表示执行成功。
+
+**起始版本：**
+
+10
 
 
 ### OH_NativeVSync_Create()

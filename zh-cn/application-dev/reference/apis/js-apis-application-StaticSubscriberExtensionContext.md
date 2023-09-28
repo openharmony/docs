@@ -21,9 +21,10 @@ import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriber
 
 ```ts
 import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
+import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext'
 
 export default class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
-    context = this.context;
+    context: StaticSubscriberExtensionContext = this.context;
 };
 ```
 
@@ -47,7 +48,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名   | 类型                                | 必填 | 说明                       |
 | -------- | ----------------------------------- | ---- | -------------------------- |
-| want     | [Want](js-apis-application-want.md) | 是   | 启动Ability的want信息。    |
+| want     | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability的want信息。    |
 | callback | AsyncCallback&lt;void&gt;           | 是   | callback形式返回启动结果。 |
 
 **错误码：**
@@ -73,13 +74,16 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
 
   try {
-    this.context.startAbility(want, (error) => {
+    this.context.startAbility(want, (error: BusinessError) => {
       if (error) {
         // 处理业务逻辑错误
         console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
@@ -91,8 +95,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+    ' error.message: ' + JSON.stringify(message));
   }
   ```
 
@@ -116,7 +122,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
 
 | 参数名 | 类型                                | 必填 | 说明                    |
 | ------ | ----------------------------------- | ---- | ----------------------- |
-| want   | [Want](js-apis-application-want.md) | 是   | 启动Ability的want信息。 |
+| want   | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability的want信息。 |
 
 **返回值：**
 
@@ -147,7 +153,10 @@ startAbility(want: Want): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
@@ -158,14 +167,16 @@ startAbility(want: Want): Promise&lt;void&gt;;
         // 执行正常业务
         console.log('startAbility succeed');
       })
-      .catch((error) => {
+      .catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
         ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+    ' error.message: ' + JSON.stringify(message));
   }
   ```

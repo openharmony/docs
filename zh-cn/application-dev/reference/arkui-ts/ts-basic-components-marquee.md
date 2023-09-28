@@ -1,6 +1,6 @@
 # Marquee
 
-跑马灯组件，用于滚动展示一段单行文本，仅当文本内容宽度超过跑马灯组件宽度时滚动。
+跑马灯组件，用于滚动展示一段单行文本。仅当文本内容宽度超过跑马灯组件宽度时滚动，不超过时不滚动。
 
 
 >  **说明：**
@@ -55,7 +55,7 @@ struct MarqueeExample {
   @State start: boolean = false
   private fromStart: boolean = true
   private step: number = 50
-  private loop: number = Infinity
+  private loop: number = Number.POSITIVE_INFINITY
   private src: string = "Running Marquee starts rolling"
 
   build() {

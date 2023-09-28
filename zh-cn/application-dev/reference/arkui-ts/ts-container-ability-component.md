@@ -4,6 +4,8 @@
 
 >  **说明：**
 >
+>  从API Version 10开始，该组件不再维护，推荐使用新组件[UIExtensionComponent](ts-container-ui-extension-component.md)。
+>
 >  该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  本组件为系统接口。

@@ -80,42 +80,42 @@
 
 6. 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅。
 
-```js
+```ts
 // 引入包名
 import connection from '@ohos.net.connection'
+import { BusinessError } from '@ohos.base';
 
-let netCap = {
-  // 假设当前默认网络是WiFi，需要创建蜂窝网络连接，可指定网络类型为蜂窝网
-  bearerTypes: [connection.NetBearType.BEARER_CELLULAR],
-  // 指定网络能力为Internet
-  networkCap: [connection.NetCap.NET_CAPABILITY_INTERNET],
-};
-let netSpec = {
-  netCapabilities: netCap,
+let netSpecifier: connection.NetSpecifier = {
+  netCapabilities: {
+    // 假设当前默认网络是WiFi，需要创建蜂窝网络连接，可指定网络类型为蜂窝网
+    bearerTypes: [connection.NetBearType.BEARER_CELLULAR],
+    // 指定网络能力为Internet
+    networkCap: [connection.NetCap.NET_CAPABILITY_INTERNET]
+  },
 };
 
 // 指定超时时间为10s(默认值为0)
 let timeout = 10 * 1000;
 
 // 创建NetConnection对象
-let conn = connection.createNetConnection(netSpec, timeout);
+let conn = connection.createNetConnection(netSpecifier, timeout);
 
 // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
-conn.on('netAvailable', (data => {
+conn.on('netAvailable', ((data: connection.NetHandle) => {
   console.log("net is available, netId is " + data.netId);
 }));
 
 // 订阅事件，如果当前指定网络不可用，通过on_netUnavailable通知用户
-conn.on('netUnavailable', (data => {
+conn.on('netUnavailable', ((data: void) => {
   console.log("net is unavailable, data is " + JSON.stringify(data));
 }));
 
 // 订阅指定网络状态变化的通知
-conn.register((err, data) => {
+conn.register((err: BusinessError, data: void) => {
 });
 
 // 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅
-conn.unregister((err, data) => {
+conn.unregister((err: BusinessError, data: void) => {
 });
 ```
 
@@ -127,16 +127,40 @@ conn.unregister((err, data) => {
 
 2. 调用getAllNets方法，获取所有处于连接状态的网络列表。
 
-```js
+```ts
 // 引入包名
 import connection from '@ohos.net.connection'
+import { BusinessError } from '@ohos.base'
+
+// 构造单例对象
+export class GlobalContext {
+  public netList: connection.NetHandle[] = [];
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+}
 
 // 获取所有处于连接状态的网络列表
-connection.getAllNets((err, data) => {
+connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
   if (data) {
-    this.netList = data;
+    GlobalContext.getContext().netList = data;
   }
 })
 ```
@@ -153,25 +177,51 @@ connection.getAllNets((err, data) => {
 
 4. 调用getConnectionProperties方法，获取NetHandle对应网络的连接信息。
 
-```js
-// 引入包名
+```ts
 import connection from '@ohos.net.connection'
+import { BusinessError } from '@ohos.base';
+
+// 构造单例对象
+export class GlobalContext {
+  public netList: connection.NetHandle[] = [];
+  public netHandle: connection.NetHandle|null = null;
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+}
 
 // 调用getDefaultNet方法，获取默认的数据网络(NetHandle)
-connection.getDefaultNet((err, data) => {
+connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
   if (data) {
-    this.netHandle = data;
+    GlobalContext.getContext().netHandle = data;
   }
 })
 
 // 获取netHandle对应网络的能力信息。能力信息包含了网络类型、网络具体能力等网络信息
-connection.getNetCapabilities(this.netHandle, (err, data) => {
+connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
   console.log(JSON.stringify(err));
 
   // 获取网络类型(bearerTypes)
-  for (let item of data.bearerTypes) {
+  let bearerTypes: Set<number> = new Set(data.bearerTypes);
+  let bearerTypesNum = Array.from(bearerTypes.values());
+  for (let item of bearerTypesNum) {
     if (item == 0) {
       // 蜂窝网
       console.log(JSON.stringify("BEARER_CELLULAR"));
@@ -183,9 +233,11 @@ connection.getNetCapabilities(this.netHandle, (err, data) => {
       console.log(JSON.stringify("BEARER_ETHERNET"));
     }
   }
-
+  
   // 获取网络具体能力(networkCap)
-  for (let item of data.networkCap) {
+  let itemNumber : Set<number> = new Set([0, 11, 12, 15, 16]);
+  let dataNumber = Array.from(itemNumber.values());
+  for (let item of dataNumber) {
     if (item == 0) {
       // 表示网络可以访问运营商的MMSC（Multimedia Message Service，多媒体短信服务）发送和接收彩信
       console.log(JSON.stringify("NET_CAPABILITY_MMS"));
@@ -206,29 +258,31 @@ connection.getNetCapabilities(this.netHandle, (err, data) => {
 })
 
 // 获取netHandle对应网络的连接信息。连接信息包含了链路信息、路由信息等
-connection.getConnectionProperties(this.netHandle, (err, data) => {
+connection.getConnectionProperties(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.ConnectionProperties) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
 })
 
 // 调用getAllNets,获取所有处于连接状态的网络列表(Array<NetHandle>)
-connection.getAllNets((err, data) => {
+connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
   if (data) {
-    this.netList = data;
+    GlobalContext.getContext().netList = data;
   }
 })
 
-for (let item of this.netList) {
+let itemNumber : Set<connection.NetHandle> = new Set(GlobalContext.getContext().netList);
+let dataNumber = Array.from(itemNumber.values());
+for (let item of dataNumber) {
   // 循环获取网络列表每个netHandle对应网络的能力信息
-  connection.getNetCapabilities(item, (err, data) => {
+  connection.getNetCapabilities(item, (err: BusinessError, data: connection.NetCapabilities) => {
     console.log(JSON.stringify(err));
     console.log(JSON.stringify(data));
   })
 
   // 循环获取网络列表每个netHandle对应的网络的连接信息
-  connection.getConnectionProperties(item, (err, data) => {
+  connection.getConnectionProperties(item, (err: BusinessError, data: connection.ConnectionProperties) => {
     console.log(JSON.stringify(err));
     console.log(JSON.stringify(data));
   })
@@ -243,12 +297,13 @@ for (let item of this.netList) {
 
 2. 调用getAddressesByName方法，使用默认网络解析主机名以获取所有IP地址。
 
-```js
+```ts
     // 引入包名
 import connection from '@ohos.net.connection'
+import { BusinessError } from '@ohos.base'
 
 // 使用默认网络解析主机名以获取所有IP地址
-connection.getAddressesByName(this.host, (err, data) => {
+connection.getAddressesByName(this.host, (err: BusinessError, data: connection.NetAddress[]) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
 })

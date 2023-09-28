@@ -1,6 +1,7 @@
 # USB Service Development
 
 
+
 ## When to Use
 
 In Host mode, you can obtain the list of connected USB devices, enable or disable the devices, manage device access permissions, and perform data transfer or control transfer.
@@ -39,11 +40,11 @@ You can set a USB device as a host to connect to a device for data transfer. The
 
 1. Obtain the USB device list.
 
-   ```js
+   ```ts
    // Import the USB API package.
    import usb from '@ohos.usbManager';
    // Obtain the USB device list.
-   let deviceList = usb.getDevices();
+   let deviceList : Array<USBDevice> = usb.getDevices();
    /*
    Example deviceList structure:
    [
@@ -99,22 +100,25 @@ You can set a USB device as a host to connect to a device for data transfer. The
 
 2. Obtain the device operation permissions.
 
-   ```js
-   let deviceName = deviceList[0].name;
+   ```ts
+   import usb from '@ohos.usbManager';
+   import { BusinessError } from '@ohos.base';
+
+   let deviceName : string = deviceList[0].name;
    // Request the permissions to operate a specified device.
-   usb.requestRight(deviceName).then(hasRight => {
+   usb.requestRight(deviceName).then((hasRight : boolean) => {
      console.info("usb device request right result: " + hasRight);
-   }).catch(error => {
+   }).catch((error : BusinessError)=> {
      console.info("usb device request right failed : " + error);
    });
    ```
 
 3. Open the device.
 
-   ```js
+   ```ts
    // Open the device, and obtain the USB device pipe for data transfer.
-   let pipe = usb.connectDevice(deviceList[0]);
-   let interface1 = deviceList[0].configs[0].interfaces[0];
+   let pipe : USBDevicePipe = usb.connectDevice(deviceList[0]);
+   let interface1 : number = deviceList[0].configs[0].interfaces[0];
    /*
     Claim the corresponding interface from **deviceList**.
    interface1 must be one present in the device configuration.
@@ -124,38 +128,41 @@ You can set a USB device as a host to connect to a device for data transfer. The
 
 4. Perform data transfer.
 
-   ```js
+   ```ts
+   import usb from '@ohos.usbManager';
+   import { BusinessError } from '@ohos.base';
    /*
     Read data. Select the corresponding RX endpoint from deviceList for data transfer.
    (endpoint.direction == 0x80); dataUint8Array indicates the data to read. The data type is Uint8Array.
    */
-   let inEndpoint = interface1.endpoints[2];
-   let outEndpoint = interface1.endpoints[1];
-   let dataUint8Array = new Uint8Array(1024);
-   usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then(dataLength => {
+   let inEndpoint : USBEndpoint = interface1.endpoints[2];
+   let outEndpoint : USBEndpoint = interface1.endpoints[1];
+   let dataUint8Array : Array<number> = new Uint8Array(1024);
+   usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
    if (dataLength >= 0) {
      console.info("usb readData result Length : " + dataLength);
    } else {
      console.info("usb readData failed : " + dataLength);
    }
-   }).catch(error => {
+   }).catch((error : BusinessError) => {
    console.info("usb readData error : " + JSON.stringify(error));
    });
    // Send data. Select the corresponding TX endpoint from deviceList for data transfer. (endpoint.direction == 0)
-   usb.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then(dataLength => {
+   usb.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
      if (dataLength >= 0) {
        console.info("usb writeData result write length : " + dataLength);
      } else {
        console.info("writeData failed");
      }
-   }).catch(error => {
+   }).catch((error : BusinessError) => {
      console.info("usb writeData error : " + JSON.stringify(error));
    });
    ```
 
 5. Release the USB interface, and close the USB device.
 
-   ```js
+   ```ts
    usb.releaseInterface(pipe, interface1);
    usb.closePipe(pipe);
    ```
+

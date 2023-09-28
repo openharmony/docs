@@ -8,7 +8,7 @@ The **sms** module provides basic SMS management functions. You can create and s
 
 ## Modules to Import
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 ```
 
@@ -42,11 +42,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-const specification = '3gpp';
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+const specification: string = '3gpp';
 // Display PDUs using numbers in an array, for example, [0x08, 0x91, ...].
-const pdu = [0x08, 0x91];
-sms.createMessage(pdu, specification, (err, data) => {
+const pdu: Array<number> = [0x08, 0x91];
+sms.createMessage(pdu, specification, (err: BusinessError, data: sms.ShortMessage) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -87,14 +90,16 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-const specification = '3gpp';
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+const specification: string = '3gpp';
 // Display PDUs using numbers in an array, for example, [0x08, 0x91, ...].
-const pdu = [0x08, 0x91];
-let promise = sms.createMessage(pdu, specification);
-promise.then(data => {
+const pdu: Array<number> = [0x08, 0x91];
+sms.createMessage(pdu, specification).then((data: sms.ShortMessage) => {
     console.log(`createMessage success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`createMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -117,7 +122,7 @@ Sends an SMS message.
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [SendMessageOptions](#sendmessageoptions) | Yes  | Options (including the callback) for sending an SMS message.|
+| options | [SendMessageOptions](#sendmessageoptions) | Yes  | Options (including the callback) for sending SMS messages. For details, see [SendMessageOptions](#sendmessageoptions).|
 
 **Error codes**
 
@@ -134,19 +139,26 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let sendCallback = function (err, data) {
+```ts
+import sms from '@ohos.telephony.sms';
+import { AsyncCallback } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
+let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
-let deliveryCallback = function (err, data) {
+let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
-let slotId = 0;
-let content ='SMS message content';
-let destinationHost = '+861xxxxxxxxxx';
-let serviceCenter = '+861xxxxxxxxxx';
-let destinationPort = 1000;
-let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+let options: sms.SendMessageOptions = {
+    slotId = 0;
+    content = 'SMS message content';
+    destinationHost = '+861xxxxxxxxxx';
+    serviceCenter = '+861xxxxxxxxxx';
+    destinationPort = 1000;
+    sendCallback = sendCallback;
+    deliveryCallback = deliveryCallback;
+};
 sms.sendMessage(options);
 ```
 
@@ -164,7 +176,7 @@ Sends an SMS message. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                       | Mandatory| Description                                    |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| options | [SendMessageOptions](#sendmessageoptions) | Yes  | Options (including the callback) for sending an SMS message.|
+| options | [SendMessageOptions](#sendmessageoptions) | Yes  | Options (including the callback) for sending SMS messages. For details, see [SendMessageOptions](#sendmessageoptions).|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -182,20 +194,27 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let sendCallback = function (err, data) {
+```ts
+import sms from '@ohos.telephony.sms';
+import { AsyncCallback } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
+let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
-let deliveryCallback = function (err, data) {
+let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
-let slotId = 0;
-let content ='SMS message content';
-let destinationHost = '+861xxxxxxxxxx';
-let serviceCenter = '+861xxxxxxxxxx';
-let destinationPort = 1000;
-let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
-sms.sendMessage(options, (err) => {
+let options: sms.SendMessageOptions = {
+    slotId = 0;
+    content = 'SMS message content';
+    destinationHost = '+861xxxxxxxxxx';
+    serviceCenter = '+861xxxxxxxxxx';
+    destinationPort = 1000;
+    sendCallback = sendCallback;
+    deliveryCallback = deliveryCallback;
+};
+sms.sendShortMessage(options, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -214,7 +233,7 @@ Sends an SMS message. This API uses a promise to return the result.
 
 | Name  | Type                       | Mandatory| Description                                    |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| options | [SendMessageOptions](#sendmessageoptions) | Yes  | Options (including the callback) for sending an SMS message.|
+| options | [SendMessageOptions](#sendmessageoptions) | Yes  | Options (including the callback) for sending SMS messages. For details, see [SendMessageOptions](#sendmessageoptions).|
 
 **Return value**
 
@@ -237,26 +256,480 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let sendCallback = function (err, data) {
+```ts
+import sms from '@ohos.telephony.sms';
+import { AsyncCallback } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
+let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
-let deliveryCallback = function (err, data) {
+let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
-let slotId = 0;
-let content ='SMS message content';
-let destinationHost = '+861xxxxxxxxxx';
-let serviceCenter = '+861xxxxxxxxxx';
-let destinationPort = 1000;
-let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+let options: sms.SendMessageOptions = {
+    slotId = 0;
+    content = 'SMS message content';
+    destinationHost = '+861xxxxxxxxxx';
+    serviceCenter = '+861xxxxxxxxxx';
+    destinationPort = 1000;
+    sendCallback = sendCallback;
+    deliveryCallback = deliveryCallback;
+};
 let promise = sms.sendShortMessage(options);
 promise.then(() => {
     console.log(`sendShortMessage success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`sendShortMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 
+```
+
+## sms.sendMms<sup>11+</sup>
+
+sendMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;void&gt;\): void
+
+Sends an MMS message. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.SEND_MESSAGES
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                    |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| mmsParams | [MmsParams](#mmsparams) | Yes  | Parameters (including the callback) for sending MMS messages. For details, see [MmsParams](#mmsparams).|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+FA model:
+
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+import type Context from './application/BaseContext';
+
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility';
+let context: Context = featureAbility.getContext();
+
+// Configure the path for storing the PDU of the MMS message.
+const sandBoxPath: string = '/data/storage/el2/base/files/';
+let filePath: string  = sandBoxPath + 'SendReq.mms';
+
+// Options for sending MMS messages (The MMSC is for reference only.)
+let mmsPars: sms.MmsParams = {
+  slotId : 0,
+  mmsc: 'http://mmsc.myuni.com.cn',
+  data: filePath,
+  mmsConfig: {
+   userAgent:'ua',
+   userAgentProfile: 'uaprof'
+  }
+};
+
+// Call the sendMms API.
+mms.sendMms(context, mmsPars, async(err: BusinessError) =>{
+  if (err) {
+    console.log(`sendMms fail, err : ${toString(err)}`);
+    return;
+  }
+  console.log(`sendMms Success`);
+}
+```
+
+Stage model:
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+// Configure the path for storing the PDU of the MMS message.
+const sandBoxPath = '/data/storage/el2/base/files/';
+let filePath  = sandBoxPath + 'SendReq.mms';
+
+// Configure the MMS user agent and profile. The default values are ua an uaprof, respectively. The configuration is subject to the carrier's requirements. 
+let mmsConf = {
+  userAgent:'ua',
+  userAgentProfile: 'uaprof'
+};
+
+// Options for sending MMS messages (The MMSC is for reference only.)
+let mmsPars = {
+  slotId : DEFAULT_SLOTID,
+  mmsc: 'http://mmsc.myuni.com.cn',
+  data: filePath,
+  mmsConfig: mmsConf
+};
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+    mms.sendMms(this.context, mmsPars, async(err) =>{
+        if (err) {
+            console.log(`sendMms fail, err : ${toString(err)}`);
+            return;
+        }
+        console.log(`sendMms Success`);
+        }
+    }
+}
+```
+
+## sms.sendMms<sup>11+</sup>
+
+sendMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
+
+Sends an MMS message. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.SEND_MESSAGES
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                    |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| mmsParams | [MmsParams](#mmsparams) | Yes  | Parameters (including the callback) for sending MMS messages. For details, see [MmsParams](#mmsparams).|
+
+**Return value**
+
+| Type           | Description                                                        |
+| --------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+FA model:
+
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+import type Context from './application/BaseContext';
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility';
+let context: Context = featureAbility.getContext();
+
+// Configure the path for storing the PDU of the MMS message.
+const sandBoxPath: string = '/data/storage/el2/base/files/';
+let filePath: string = sandBoxPath + 'SendReq.mms';
+
+// Options for sending MMS messages (The MMSC is for reference only.)
+let mmsPars: sms.MmsParams = {
+  slotId: 0,
+  mmsc: 'http://mmsc.myuni.com.cn',
+  data: filePath,
+  mmsConfig: {
+   userAgent:'ua',
+   userAgentProfile: 'uaprof'
+  }
+};
+
+// Call the sendMms API.
+let promise = sms.sendMms(context, mmsPars);
+promise.then(() => {
+    console.log(`sendMms success`);
+}).catch((err: BusinessError) => {
+    console.error(`sendMms failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+Stage model:
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+// Configure the path for storing the PDU of the MMS message.
+const sandBoxPath = '/data/storage/el2/base/files/';
+let filePath  = sandBoxPath + 'SendReq.mms';
+
+// Configure the MMS user agent and profile. The default values are ua an uaprof, respectively. The configuration is subject to the carrier's requirements. 
+let mmsConf = {
+  userAgent:'ua',
+  userAgentProfile: 'uaprof'
+};
+
+// Options for sending MMS messages (The MMSC is for reference only.)
+let mmsPars = {
+  slotId : DEFAULT_SLOTID,
+  mmsc: 'http://mmsc.myuni.com.cn',
+  data: filePath,
+  mmsConfig: mmsConf
+};
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+    let promise = sms.sendMms(this.context, mmsPars);
+    promise.then(() => {
+        console.log(`sendMms success`);
+    }).catch(err => {
+        console.error(`sendMms failed, promise: err->${JSON.stringify(err)}`);
+    });
+    }
+}
+```
+
+## sms.downloadMms<sup>11+</sup>
+
+downloadMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;void&gt;\): void
+
+Downloads an MMS message. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.RECEIVE_MMS
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                    |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| mmsParams | [MmsParams](#mmsparams) | Yes  | Parameters (including the callback) for downloading an MMS message. For details, see [MmsParams](#mmsparams).|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+FA model:
+
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+import type Context from './application/BaseContext';
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility';
+let context: Context = featureAbility.getContext();
+
+// Configure the path for storing the PDU of the MMS message.
+const sandBoxPath: string = '/data/storage/el2/base/files/';
+let filePath: string = sandBoxPath + 'RetrieveConf.mms';
+
+// Parse the MMS URL from the WAP Push message.
+let wapPushUrl: string = 'URL';
+
+// Configure the parameters (including the callback) for downloading an MMS message.
+let mmsPars: sms.MmsParams = {
+  slotId: 0,
+  mmsc: wapPushUrl,
+  data: filePath,
+  mmsConfig: {
+   userAgent:'ua',
+   userAgentProfile: 'uaprof'
+  }
+};
+
+// Call the downloadMms API.
+mms.downloadMms(context, mmsPars, async(err: BusinessError) =>{
+  if (err) {
+    console.log(`downloadMms fail, err : ${toString(err)}`);
+    return;
+  }
+  console.log(`downloadMms Success`);
+}
+```
+
+Stage model:
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+// Configure the path for storing the PDU of the MMS message.
+const sandBoxPath = '/data/storage/el2/base/files/';
+let filePath  = sandBoxPath + 'RetrieveConf.mms';
+
+// Parse the MMS URL from the WAP Push message.
+let wapPushUrl  = 'URL';
+
+// Configure the MMS user agent and profile. The default values are ua an uaprof, respectively. The configuration is subject to the carrier's requirements. 
+let mmsConf = {
+  userAgent:'ua',
+  userAgentProfile: 'uaprof'
+};
+
+// Configure the parameters (including the callback) for downloading an MMS message.
+let mmsPars = {
+  slotId : DEFAULT_SLOTID,
+  mmsc: wapPushUrl,
+  data: filePath,
+  mmsConfig: mmsConf
+};
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+    mms.downloadMms(this.context, mmsPars, async(err) =>{
+        if (err) {
+            console.log(`downloadMms fail, err : ${toString(err)}`);
+            return;
+        }
+        console.log(`downloadMms Success`);
+        }
+    }
+}
+```
+
+## sms.downloadMms<sup>11+</sup>
+
+downloadMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
+
+Sends an MMS message. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.RECEIVE_MMS
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                    |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| mmsParams | [MmsParams](#mmsparams) | Yes  | Parameters (including the callback) for sending MMS messages. For details, see [MmsParams](#mmsparams).|
+
+**Return value**
+
+| Type           | Description                                                        |
+| --------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+FA model:
+
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+import type Context from './application/BaseContext';
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility';
+let context: Context = featureAbility.getContext();
+
+// Configure the path for storing the PDU of the MMS message.
+const sandBoxPath: string = '/data/storage/el2/base/files/';
+let filePath: string = sandBoxPath + 'RetrieveConf.mms';
+
+// Parse the MMS URL from the WAP Push message.
+let wapPushUrl: string = 'URL';
+
+// Configure the parameters for downloading an MMS message.
+let mmsPars: sms.MmsParams = {
+  slotId: 0,
+  mmsc: wapPushUrl,
+  data: filePath,
+  mmsConfig: {
+   userAgent:'ua',
+   userAgentProfile: 'uaprof'
+  }
+};
+
+// Call the sendMms API.
+let promise = sms.downloadMms(context, mmsPars);
+promise.then(() => {
+    console.log(`downloadMms success`);
+}).catch((err: BusinessError) => {
+    console.error(`downloadMms failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+Stage model:
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+// Configure the path for storing the PDU of the MMS message.
+const sandBoxPath = '/data/storage/el2/base/files/';
+let filePath  = sandBoxPath + 'RetrieveConf.mms';
+
+// Parse the MMS URL from the WAP Push message.
+let wapPushUrl  = 'URL';
+
+// Configure the MMS user agent and profile. The default values are ua an uaprof, respectively. The configuration is subject to the carrier's requirements. 
+let mmsConf = {
+  userAgent:'ua',
+  userAgentProfile: 'uaprof'
+};
+
+// Configure the parameters for downloading an MMS message.
+let mmsPars = {
+  slotId : DEFAULT_SLOTID,
+  mmsc: wapPushUrl,
+  data: filePath,
+  mmsConfig: mmsConf
+};
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+    let promise = sms.downloadMms(this.context, mmsPars);
+    promise.then(() => {
+        console.log(`downloadMms success`);
+    }).catch(err => {
+        console.error(`downloadMms failed, promise: err->${JSON.stringify(err)}`);
+    });
+    }
+}
 ```
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup>
@@ -275,8 +748,11 @@ Obtains the default slot ID of the SIM card used to send SMS messages. This API 
 
 **Example**
 
-```js
-sms.getDefaultSmsSlotId((err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.getDefaultSmsSlotId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -298,11 +774,13 @@ Obtains the default slot ID of the SIM card used to send SMS messages. This API 
 
 **Example**
 
-```js
-let promise = sms.getDefaultSmsSlotId();
-promise.then(data => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.getDefaultSmsSlotId().then((data: number) => {
     console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -343,8 +821,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sms.setDefaultSmsSlotId(0, (err) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.setDefaultSmsSlotId(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}.`);
 });
 ```
@@ -391,11 +872,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sms.setDefaultSmsSlotId(0);
-promise.then(() => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.setDefaultSmsSlotId(0).then(() => {
     console.log(`setDefaultSmsSlotId success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -436,10 +919,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-let smscAddr = '+861xxxxxxxxxx';
-sms.setSmscAddr(slotId, smscAddr, (err) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let smscAddr: string = '+861xxxxxxxxxx';
+sms.setSmscAddr(slotId, smscAddr, (err: BusinessError) => {
       console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -486,13 +972,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-let smscAddr = '+861xxxxxxxxxx';
-let promise = sms.setSmscAddr(slotId, smscAddr);
-promise.then(() => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let smscAddr: string = '+861xxxxxxxxxx';
+sms.setSmscAddr(slotId, smscAddr).then(() => {
     console.log(`setSmscAddr success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setSmscAddr failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -533,9 +1021,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-sms.getSmscAddr(slotId, (err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+sms.getSmscAddr(slotId, (err: BusinessError, data: string) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -581,12 +1072,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-let promise = sms.getSmscAddr(slotId);
-promise.then(data => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+sms.getSmscAddr(slotId).then((data: string) => {
     console.log(`getSmscAddr success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getSmscAddr failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -605,7 +1098,9 @@ Checks whether the current device can send and receive SMS messages. This API wo
 | ------- | ------------------------------------------------------------ |
 | boolean | - **true**: The device can send and receive SMS messages.<br>- **false**: The device cannot send or receive SMS messages.|
 
-```js
+```ts
+import sms from '@ohos.telephony.sms';
+
 let result = sms.hasSmsCapability(); 
 console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 ```
@@ -645,9 +1140,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let content = "long message";
-sms.splitMessage(content, (err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let content: string = "long message";
+sms.splitMessage(content, (err: BusinessError, data: string) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -693,12 +1191,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let content = "long message";
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let content: string = "long message";
 let promise = sms.splitMessage(content);
-promise.then(data => {
+promise.then((data: string) => {
     console.log(`splitMessage success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`splitMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -738,14 +1239,17 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let simMessageOptions = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let simMessageOptions: sms.SimMessageOptions = {
     slotId: 0,
     smsc: "test",
     pdu: "xxxxxx",
     status: sms.SimMessageStatus.SIM_MESSAGE_STATUS_READ
 };
-sms.addSimMessage(simMessageOptions, (err) => {
+sms.addSimMessage(simMessageOptions, (err: BusinessError) => {
       console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -791,17 +1295,19 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let simMessageOptions = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let simMessageOptions: sms.SimMessageOptions = {
     slotId: 0,
     smsc: "test",
     pdu: "xxxxxx",
     status: sms.SimMessageStatus.SIM_MESSAGE_STATUS_READ
 };
-let promise = sms.addSimMessage(simMessageOptions);
-promise.then(() => {
+sms.addSimMessage(simMessageOptions).then(() => {
     console.log(`addSimMessage success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`addSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -842,10 +1348,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-let msgIndex = 1;
-sms.delSimMessage(slotId, msgIndex, (err) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let msgIndex: number = 1;
+sms.delSimMessage(slotId, msgIndex, (err: BusinessError) => {
       console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -892,13 +1401,16 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-let msgIndex = 1;
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let msgIndex: number = 1;
 let promise = sms.delSimMessage(slotId, msgIndex);
 promise.then(() => {
     console.log(`delSimMessage success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`delSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -938,15 +1450,18 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let updateSimMessageOptions = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let updateSimMessageOptions: sms.UpdateSimMessageOptions = {
     slotId: 0,
     msgIndex: 1,
     newStatus: sms.SimMessageStatus.SIM_MESSAGE_STATUS_FREE,
     pdu: "xxxxxxx",
     smsc: "test"
 };
-sms.updateSimMessage(updateSimMessageOptions, (err) => {
+sms.updateSimMessage(updateSimMessageOptions, (err: BusinessError) => {
       console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -992,8 +1507,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let updateSimMessageOptions = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let updateSimMessageOptions: sms.UpdateSimMessageOptions = {
     slotId: 0,
     msgIndex: 1,
     newStatus: sms.SimMessageStatus.SIM_MESSAGE_STATUS_FREE,
@@ -1003,7 +1521,7 @@ let updateSimMessageOptions = {
 let promise = sms.updateSimMessage(updateSimMessageOptions);
 promise.then(() => {
     console.log(`updateSimMessage success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`updateSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1043,9 +1561,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-sms.getAllSimMessages(slotId, (err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+sms.getAllSimMessages(slotId, (err: BusinessError, data: sms.SimShortMessage) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1091,12 +1612,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = sms.getAllSimMessages(slotId);
-promise.then(data => {
+promise.then((data: sim.SimShortMessage) => {
     console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getAllSimMessages failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1136,15 +1660,18 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let cbConfigOptions = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let cbConfigOptions: sms.CBConfigOptions = {
     slotId: 0,
     enable: true,
     startMessageId: 100,
     endMessageId: 200,
     ranType: sms.RanType.TYPE_GSM
 };
-sms.setCBConfig(cbConfigOptions, (err) => {
+sms.setCBConfig(cbConfigOptions, (err: BusinessError) => {
       console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1190,8 +1717,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let cbConfigOptions = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let cbConfigOptions: sms.CBConfigOptions = {
     slotId: 0,
     enable: true,
     startMessageId: 100,
@@ -1201,7 +1731,7 @@ let cbConfigOptions = {
 let promise = sms.setCBConfig(cbConfigOptions);
 promise.then(() => {
     console.log(`setCBConfig success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setCBConfig failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1240,9 +1770,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-sms.getSmsSegmentsInfo(slotId, "message", false, (err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+sms.getSmsSegmentsInfo(slotId, "message", false, (err: BusinessError, data: sms.SmsSegmentsInfo) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1287,12 +1820,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = sms.getSmsSegmentsInfo(slotId, "message", false);
-promise.then(data => {
+promise.then((data: sms.SmsSegmentsInfo) => {
     console.log(`getSmsSegmentsInfo success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getSmsSegmentsInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1329,9 +1865,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-sms.isImsSmsSupported(slotId, (err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+sms.isImsSmsSupported(slotId, (err: BusinessError, data: boolean) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1341,7 +1880,7 @@ sms.isImsSmsSupported(slotId, (err, data) => {
 
 isImsSmsSupported\(slotId: number\): Promise\<boolean\>
 
-This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
+Checks whether SMS is supported on IMS. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1374,12 +1913,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = sms.isImsSmsSupported(slotId);
-promise.then(data => {
+promise.then((data: boolean) => {
     console.log(`isImsSmsSupported success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`isImsSmsSupported failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1415,8 +1957,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sms.getImsShortMessageFormat((err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.getImsShortMessageFormat((err: BusinessError, data: string) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1451,11 +1996,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sms.getImsShortMessageFormat();
-promise.then(data => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.getImsShortMessageFormat().then((data: string) => {
     console.log(`getImsShortMessageFormat success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getImsShortMessageFormat failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1492,9 +2039,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let mmsFilePathName = "filename";
-sms.decodeMms(mmsFilePathName, (err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let mmsFilePathName: string = "filename";
+sms.decodeMms(mmsFilePathName, (err: BusinessError, data: sms.MmsInformation) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1537,12 +2087,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let mmsFilePathName = "filename";
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let mmsFilePathName: string = "filename";
 let promise = sms.decodeMms(mmsFilePathName);
-promise.then(data => {
+promise.then((data: sms.MmsInformation) => {
     console.log(`decodeMms success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`decodeMms failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1579,17 +2132,20 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let mmsAcknowledgeInd = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let mmsAcknowledgeInd: sms.MmsAcknowledgeInd = {
     transactionId: "100",
     version: sms.MmsVersionType.MMS_VERSION_1_0,
     reportAllowed: sms.ReportType.MMS_YES
 };
-let mmsInformation = {
+let mmsInformation: sms.MmsInformation = {
     messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
     mmsType: mmsAcknowledgeInd
 };
-sms.encodeMms(mmsInformation, (err, data) => {
+sms.encodeMms(mmsInformation, (err: BusinessError, data: number) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1632,20 +2188,22 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let mmsAcknowledgeInd = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let mmsAcknowledgeInd: sms.MmsAcknowledgeInd = {
     transactionId: "100",
     version: sms.MmsVersionType.MMS_VERSION_1_0,
     reportAllowed: sms.ReportType.MMS_YES
 };
-let mmsInformation = {
+let mmsInformation: sms.MmsInformation = {
     messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
     mmsType: mmsAcknowledgeInd
 };
-let promise = sms.encodeMms(mmsInformation);
-promise.then(data => {
+sms.encodeMms(mmsInformation).then((data: number) => {
     console.log(`encodeMms success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`encodeMms failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1680,8 +2238,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sms.getDefaultSmsSimId((err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.getDefaultSmsSimId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1716,11 +2277,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
 let promise = sms.getDefaultSmsSimId();
-promise.then(data => {
+promise.then((data: number) => {
     console.log(`getDefaultSmsSimId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getDefaultSmsSimId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1763,7 +2327,7 @@ Enumerates SMS message types.
 
 ## SendMessageOptions
 
-Provides the options (including callbacks) for sending an SMS message. For example, you can specify the SMS message type by the optional parameter **content**.
+Provides the options (including callbacks) for sending SMS messages. For example, you can specify the SMS message type by the optional parameter **content**.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1777,6 +2341,33 @@ Provides the options (including callbacks) for sending an SMS message. For examp
 | sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#isendshortmessagecallback)&gt; | No  | Callback used to return the SMS message sending result. For details, see [ISendShortMessageCallback](#isendshortmessagecallback).|
 | deliveryCallback | AsyncCallback&lt;[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)&gt; | No  | Callback used to return the SMS message delivery report. For details, see [IDeliveryShortMessageCallback](#ideliveryshortmessagecallback).|
 
+## MmsParams<sup>11+</sup>
+
+Defines the parameters for sending SMS messages.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+|       Name      | Type                                                        | Mandatory| Description                                                        |
+| ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| slotId<sup>11+</sup>           | number                                                       | Yes  | Slot ID of the SIM card used for sending SMS messages. <br>- **0**: card slot 1<br>- **1**: card slot 2     |
+| mmsc<sup>11+</sup>  | string                                                       | Yes  | MMSC address.                                            |
+| data<sup>11+</sup>          | string                               | Yes  | MMS PDU address.|
+| mmsConfig<sup>11+</sup>    | MmsConfig                                                       | No  | MMS configuration file. For details, see [MmsConfig](#mmsconfig).               |
+
+## MmsConfig<sup>11+</sup>
+
+MMS configuration file.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+|       Name      | Type                                                        | Mandatory| Description                                                        |
+| ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| userAgent<sup>11+</sup>  | string                                                       | Yes  | User agent.                                            |
+| userAgentProfile<sup>11+</sup>    | string                                                       | Yes  | User agent profile.               |
 
 ## ISendShortMessageCallback
 

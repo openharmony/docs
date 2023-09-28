@@ -105,3 +105,9 @@ Thread name:crasher <- 异常线程名
 
     范例中的崩溃故障是由赋值给一块不可写的区域导致的，代码行为dfx_crasher.c文件的57行，修改后可以避免发生此崩溃。\
     另外，使用addr2line后，如果得出的行号看起来不是很正确，可以考虑对地址进行微调(如减1)，或者考虑关闭一些编译优化，已知使用LTO的二进制可能无法正确获得行号。
+
+## 相关实例
+
+针对故障日志获取，有以下相关实力可供参考：
+
+- [故障日志获取（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/FaultLogger)

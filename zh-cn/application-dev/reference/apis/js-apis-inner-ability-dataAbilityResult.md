@@ -25,47 +25,42 @@ import ability from '@ohos.ability.ability';
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+import rdb from '@ohos.data.rdb';
 
 // 批量执行数据库操作
 function executeBatchOperation() {
     let dataAbilityUri = ('dataability:///com.example.myapplication.TestDataAbility');
     let DAHelper: ability.DataAbilityHelper;
-    try {
-        DAHelper = featureAbility.acquireDataAbilityHelper(dataAbilityUri);
-        if (DAHelper === null) {
-            console.error('DAHelper is null');
-        }
-    } catch (err) {
-        console.error('acquireDataAbilityHelper fail, error: ${JSON.stringify(err)}');
-    }
+    DAHelper = featureAbility.acquireDataAbilityHelper(dataAbilityUri);
 
-    let valueBucket = {
+    let valueBucket: rdb.ValuesBucket = {
         'name': 'DataAbilityHelperTest',
         'age': 24,
         'salary': 2024.20,
     };
-    let operations = [
-    {
-        uri: dataAbilityUri,
-        type: featureAbility.DataAbilityOperationType.TYPE_INSERT,
-        valuesBucket: valueBucket,
-        predicates: null,
-        expectedCount: 1,
-        PredicatesBackReferences: {},
-        interrupted: true,
-    },
-    {
-        uri: dataAbilityUri,
-        type: featureAbility.DataAbilityOperationType.TYPE_INSERT,
-        valuesBucket: valueBucket,
-        predicates: null,
-        expectedCount: 1,
-        PredicatesBackReferences: {},
-        interrupted: true,
-    }
-    ];
+    let predicateBackReferences = new Map<number, number>()
+    predicateBackReferences.set(1, 1)
 
+    let operations: Array<ability.DataAbilityOperation> = [
+        {
+            uri: dataAbilityUri,
+            type: featureAbility.DataAbilityOperationType.TYPE_INSERT,
+            valuesBucket: valueBucket,
+            expectedCount: 1,
+            predicatesBackReferences: predicateBackReferences,
+            interrupted: true,
+        },
+        {
+            uri: dataAbilityUri,
+            type: featureAbility.DataAbilityOperationType.TYPE_INSERT,
+            valuesBucket: valueBucket,
+            expectedCount: 1,
+            predicatesBackReferences: predicateBackReferences,
+            interrupted: true,
+        }
+    ];
     try {
         DAHelper.executeBatch(dataAbilityUri, operations).then((data) => {
             for (let i = 0; i < data.length; i++) {
@@ -73,11 +68,11 @@ function executeBatchOperation() {
                 console.log('dataAbilityResult.uri: ${dataAbilityResult.uri}');
                 console.log('dataAbilityResult.count: ${dataAbilityResult.count}');
             }
-        }).catch(err => {
-            console.error('executeBatch error: ${JSON.stringify(err)}');
+        }).catch((err: BusinessError) => {
+            console.error(`executeBatch error: ${JSON.stringify(err)}`);
         });
     } catch (err) {
-        console.error('executeBatch error: ${JSON.stringify(err)}');
+        console.error(`executeBatch error: ${JSON.stringify(err)}`);
     }
 }
 ```

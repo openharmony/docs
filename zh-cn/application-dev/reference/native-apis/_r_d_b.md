@@ -19,12 +19,12 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [oh_cursor.h](oh__cursor_8h.md) | 提供通过查询数据库生成的数据库结果集的访问方法。<br>引用文件：\<database/rdb/oh_cursor.h> |
-| [oh_predicates.h](oh__predicates_8h.md) | 表示关系型数据库（RDB）的谓词。<br>引用文件：\<database/rdb/oh_predicates.h> |
-| [oh_value_object.h](oh__value__object_8h.md) | 提供类型转换方法。<br>引用文件：\<database/rdb/oh_value_object.h> |
-| [oh_values_bucket.h](oh__values__bucket_8h.md) | 用于存储键值对的类型。<br>引用文件：\<database/rdb/oh_values_bucket.h> |
-| [relational_store.h](relational__store_8h.md) | 提供管理关系数据库（RDB）方法的接口。<br>引用文件：\<database/rdb/relational_store.h> |
-| [relational_store_error_code.h](relational__store__error__code_8h.md) | 声明关系型数据库（RDB）的错误码信息。<br>引用文件：\<database/rdb/relational_error_code.h> |
+| [oh_cursor.h](oh__cursor_8h.md) | 提供通过查询数据库生成的数据库结果集的访问方法。<br>引用文件：\<database/rdb/oh_cursor.h> <br> 库：native_rdb_ndk_header.so |
+| [oh_predicates.h](oh__predicates_8h.md) | 表示关系型数据库（RDB）的谓词。<br>引用文件：\<database/rdb/oh_predicates.h> <br> 库：native_rdb_ndk_header.so |
+| [oh_value_object.h](oh__value__object_8h.md) | 提供类型转换方法。<br>引用文件：\<database/rdb/oh_value_object.h> <br> 库：native_rdb_ndk_header.so |
+| [oh_values_bucket.h](oh__values__bucket_8h.md) | 用于存储键值对的类型。<br>引用文件：\<database/rdb/oh_values_bucket.h> <br> 库：native_rdb_ndk_header.so |
+| [relational_store.h](relational__store_8h.md) | 提供管理关系数据库（RDB）方法的接口。<br>引用文件：\<database/rdb/relational_store.h> <br> 库：native_rdb_ndk_header.so |
+| [relational_store_error_code.h](relational__store__error__code_8h.md) | 声明关系型数据库（RDB）的错误码信息。<br>引用文件：\<database/rdb/relational_error_code.h> <br> 库：native_rdb_ndk_header.so |
 
 
 ### 结构体
@@ -148,6 +148,7 @@
 | [OH_VBucket::destroy](#destroy-34) | 销毁[OH_VBucket](_o_h___v_bucket.md)对象，并回收该对象占用的内存。 |
 | [OH_Rdb_Config::selfSize](#selfsize) | 该结构体的大小。 |
 | [OH_Rdb_Config::dataBaseDir](#databasedir) | 数据库文件路径。 |
+| [OH_Rdb_Config::storeName](#storename) | 数据库名称。 |
 | [OH_Rdb_Config::bundleName](#bundlename) | 应用包名。 |
 | [OH_Rdb_Config::moduleName](#modulename) | 应用模块名。 |
 | [OH_Rdb_Config::isEncrypt](#isencrypt) | 指定数据库是否加密。 |
@@ -732,7 +733,7 @@ OH_Cursor* OH_Rdb_Query (OH_Rdb_Store * store, OH_Predicates * predicates, const
 | store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 |
 | predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针，指定查询条件。 |
 | columnNames | 表示要查询的列。如果值为空，则查询应用于所有列。 |
-| length | 表示columnNames数组的长度。 |
+| length | 表示columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
 
 **返回:**
 
@@ -932,6 +933,15 @@ OH_Predicates*(* OH_Predicates::between) (OH_Predicates *predicates, const char 
 
 [OH_Predicates](_o_h___predicates.md), [OH_VObject](_o_h___v_object.md).
 
+### storeName
+
+```
+const char* OH_Rdb_Config::storeName
+```
+
+**描述:**
+
+数据库名称。
 
 ### bundleName
 

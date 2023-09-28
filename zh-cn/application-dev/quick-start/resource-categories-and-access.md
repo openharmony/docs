@@ -4,7 +4,7 @@
 
 - 应用资源：借助资源文件能力，开发者在应用中自定义资源，自行管理这些资源在不同的设备或配置中的表现。
 
-- 系统资源：开发者直接使用系统预置的资源定义（即[分层参数](../key-features/multi-device-app-dev/visual-basics.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）。
+- 系统资源：开发者直接使用系统预置的资源定义（即[分层参数](../../design/ux-design/design-resources.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）。
 
 ## 资源分类
 
@@ -284,14 +284,14 @@ Image($rawfile('newDir/newTest.png'))       // rawfile$r引用rawfile目录下�
 
 开发者可以通过```“$r('sys.type.resource_id')”```的形式引用系统资源。sys代表是系统资源；type代表资源类型，可以取“color”、“float”、“string”、“media”；resource_id代表资源id。
 
-可以查看[应用UX设计中关于资源的介绍](../key-features/multi-device-app-dev/design-resources.md)，获取OpenHarmony支持的系统资源ID及其在不同配置下的取值。
+可以查看[应用UX设计中关于资源的介绍](../../design/ux-design/design-resources.md)，获取OpenHarmony支持的系统资源ID及其在不同配置下的取值。
 
 > **说明：**
 >
 > - 仅声明式开发范式支持使用系统资源，类Web开发范式不支持。
 >
 > - 可以查看[OpenHarmony/resources代码仓](https://gitee.com/openharmony/resources/tree/master/systemres/main/resources)了解系统预置资源的实现，这里的目录结构与工程中的resources目录类似，也是通过资源限定词匹配不同的设备或设备状态。
-> - 系统资源的使用场景、id、参数详细对照表详见[OpenHarmony_系统资源分层设计表_V1.0.xlsm](../key-features/multi-device-app-dev/OpenHarmony_系统资源分层设计表_V1.0.xlsm)
+> - 系统资源的使用场景、id、参数详细对照表详见[OpenHarmony_系统资源分层设计表_V1.0.xlsm](../../design/ux-design/design-resources.md)
 
 ```ts
 Text('Hello')
@@ -317,4 +317,4 @@ Image($r('sys.media.ohos_app_icon'))
 
 针对访问应用资源，有以下相关实例可供参考：
 
-- [`ResourceManager`：资源管理器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Resource/ResourceManager/README_zh.md)
+- [资源管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Resource/ResourceManager)

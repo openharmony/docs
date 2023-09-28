@@ -105,6 +105,7 @@ struct GridRowExample {
     .border({ color: '#880606', width: 2 })
   }
 }
+```
 
 API Version 9：上方示例中的GridRow设定width中的"80pv"会等同于width设定字符串"80"
 
@@ -125,3 +126,97 @@ API Version 10: loop属性设置非法值时使用true
 **变更影响**
 
 需要更快的速度才能满足翻页的条件
+
+## cl.arkui.6 Swiper的isShowBackground属性名称变更为showBackground
+
+**变更影响**
+
+Swiper组件中,是否显示底板的属性名称由isShowBackground变更为showBackground
+
+**示例：**
+
+```ts
+class MyDataSource implements IDataSource {
+  private list: number[] = []
+  private listener: DataChangeListener
+
+  constructor(list: number[]) {
+    this.list = list
+  }
+
+  totalCount(): number {
+    return this.list.length
+  }
+
+  getData(index: number): any {
+    return this.list[index]
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener
+  }
+
+  unregisterDataChangeListener() {
+  }
+}
+
+@Entry
+@Component
+struct SwiperExample {
+  private swiperController: SwiperController = new SwiperController()
+  private data: MyDataSource = new MyDataSource([])
+
+  aboutToAppear(): void {
+    let list = []
+    for (var i = 1; i <= 10; i++) {
+      list.push(i.toString());
+    }
+    this.data = new MyDataSource(list)
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Swiper(this.swiperController) {
+        LazyForEach(this.data, (item: string) => {
+          Text(item)
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, item => item)
+      }
+      .cachedCount(2)
+      .index(1)
+      .autoPlay(true)
+      .indicator(true)
+      .displayArrow({
+        showBackground: true,
+        isSidebarMiddle: true,
+        backgroundSize: 24,
+        backgroundColor: Color.White,
+        arrowSize: 18,
+        arrowColor: Color.Blue
+      }, false)
+
+      Row({ space: 12 }) {
+        Button('showNext')
+          .onClick(() => {
+            this.swiperController.showNext()
+          })
+        Button('showPrevious')
+          .onClick(() => {
+            this.swiperController.showPrevious()
+          })
+      }.margin(5)
+    }.width('100%')
+    .margin({ top: 5 })
+  }
+}
+```
+
+## cl.arkui.7 Navigation menus最右图标距离右边缘间距变更
+
+**变更影响**
+
+menus整体向右侧偏移12vp，最右图标距离右边缘的间距由原36vp变更为24vp。

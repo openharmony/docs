@@ -24,9 +24,9 @@
         },
         "colorMode": "auto",
         "isDefault": true,
-        "updateEnabled": true, // 使能刷新功能
+        "updateEnabled": true,
         "scheduledUpdateTime": "10:30",
-        "updateDuration": 2, // 设置卡片定时刷新的更新周期（单位为30分钟，取值为自然数）
+        "updateDuration": 2,
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"]
       }
@@ -55,8 +55,8 @@
         },
         "colorMode": "auto",
         "isDefault": true,
-        "updateEnabled": true, // 使能刷新功能
-        "scheduledUpdateTime": "10:30", // 设置卡片的定点刷新的时刻
+        "updateEnabled": true,
+        "scheduledUpdateTime": "10:30",
         "updateDuration": 0,
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"]
@@ -69,11 +69,12 @@
 
   ```ts
   import formProvider from '@ohos.app.form.formProvider';
+  import Base from '@ohos.base';
 
-  let formId = '123456789'; // 实际业务场景需要使用正确的formId
+  let formId: string = '123456789'; // 实际业务场景需要使用正确的formId
   try {
     // 设置过5分钟后更新卡片内容
-    formProvider.setFormNextRefreshTime(formId, 5, (err, data) => {
+    formProvider.setFormNextRefreshTime(formId, 5, (err: Base.BusinessError) => {
       if (err) {
         console.error(`Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -82,7 +83,7 @@
       }
     });
   } catch (err) {
-    console.error(`Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to setFormNextRefreshTime. Code: ${(err as Base.BusinessError).code}, message: ${(err as Base.BusinessError).message}`);
   }
   ```
 
@@ -95,5 +96,5 @@
 >
 > 2. 当前定时刷新使用同一个计时器进行计时，因此卡片定时刷新的第一次刷新会有最多30分钟的偏差。比如第一张卡片A（每隔半小时刷新一次）在3点20分添加成功，定时器启动并每隔半小时触发一次事件，第二张卡片B(每隔半小时刷新一次)在3点40分添加成功，在3点50分定时器事件触发时，卡片A触发定时刷新，卡片B会在下次事件（4点20分）中才会触发。
 >
-> 3. 定时刷新和定点刷新仅在屏幕亮屏情况下才会触发，在灭屏场景下仅会将记录刷新动作，待亮屏时统一进行刷新。
+> 3. 定时刷新和定点刷新仅在屏幕亮屏情况下才会触发，在灭屏场景下仅会记录刷新动作，待亮屏时统一进行刷新。
 > 4. 如果使能了[卡片代理刷新](./arkts-ui-widget-update-by-proxy.md)，定时刷新和下次刷新不生效。

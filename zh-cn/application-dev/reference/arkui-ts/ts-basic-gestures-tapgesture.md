@@ -16,7 +16,7 @@ TapGesture(value?: { count?: number, fingers?: number })
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | count | number | 否 | 识别的连续点击次数。当设置的值小于1或不设置时，会被转化为默认值。<br/>默认值：1<br/>**说明：**<br/>如配置多击，上一次抬起和下一次按下的超时时间为300毫秒。 |
-| fingers | number | 否 | 触发点击的手指数，最小为1指，&nbsp;最大为10指。当设置小于1的值或不设置时，会被转化为默认值。<br/>默认值：1<br/>**说明：**<br/>1. 当配置多指时，第一根手指按下后300毫秒内未有足够的手指数按下，手势识别失败。<br/>2. 实际点击手指数超过配置值，手势识别失败。 |
+| fingers | number | 否 | 触发点击的手指数，最小为1指，&nbsp;最大为10指。当设置小于1的值或不设置时，会被转化为默认值。<br/>默认值：1<br/>**说明：**<br/>1. 当配置多指时，第一根手指按下后300毫秒内未有足够的手指数按下，手势识别失败。<br/>2. 实际点击手指数超过配置值，手势识别成功。 |
 
 
 ## 事件
@@ -41,8 +41,10 @@ struct TapGestureExample {
       Text('Click twice').fontSize(28)
         .gesture(
         TapGesture({ count: 2 })
-          .onAction((event: GestureEvent) => {
-            this.value = JSON.stringify(event.fingerList[0])
+          .onAction((event?: GestureEvent) => {
+            if (event) {
+              this.value = JSON.stringify(event.fingerList[0])
+            }
           })
         )
       Text(this.value)

@@ -1,6 +1,10 @@
 # AbilityResult
 
-The **AbilityResult** module defines the result code and data returned when an ability is terminated after being started. You can use [startAbilityForResult](js-apis-ability-featureAbility.md#featureabilitystartabilityforresult7) to obtain the **AbilityResult** object returned after the started ability is terminated. The started ability returns the **AbilityResult** object by calling [terminateSelfWithResult](js-apis-ability-featureAbility.md#featureabilityterminateselfwithresult7).
+The **AbilityResult** module defines the result code and data returned when an ability is terminated after being started.
+
+In the stage model, you can use [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult) to obtain the **AbilityResult** object returned after the started ability is terminated by calling [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult).
+
+In the FA model, you can use [startAbilityForResult](js-apis-ability-featureAbility.md#featureabilitystartabilityforresult7) to obtain the **AbilityResult** object returned after the started ability is terminated by calling [terminateSelfWithResult](js-apis-ability-featureAbility.md#featureabilityterminateselfwithresult7).
 
 > **NOTE**
 >
@@ -8,6 +12,12 @@ The **AbilityResult** module defines the result code and data returned when an a
 
 ## Modules to Import
 
+Stage model:
+```ts
+import common from '@ohos.app.ability.common';
+```
+
+FA model:
 ```ts
 import ability from '@ohos.ability.ability';
 ```

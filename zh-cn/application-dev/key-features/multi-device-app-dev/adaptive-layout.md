@@ -63,7 +63,7 @@
 
 
 
-```
+```ts
 @Entry
 @Component
 struct FlexibleCapabilitySample1 {
@@ -114,7 +114,7 @@ struct FlexibleCapabilitySample1 {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct FlexibleCapabilitySample2 {
@@ -186,7 +186,7 @@ struct FlexibleCapabilitySample2 {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct EquipartitionCapabilitySample {
@@ -209,7 +209,7 @@ struct EquipartitionCapabilitySample {
       Column() {
         // 均匀分配父容器主轴方向的剩余空间
         Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
-          ForEach(this.list, (item) => {
+          ForEach(this.list, (item:number) => {
             Column() {
               Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
               Text('App name')
@@ -225,7 +225,7 @@ struct EquipartitionCapabilitySample {
         }
         // 均匀分配父容器主轴方向的剩余空间
         Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
-          ForEach(this.list, (item) => {
+          ForEach(this.list, (item:number) => {
             Column() {
               Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
               Text('App name')
@@ -297,7 +297,7 @@ layoutWeight存在使用限制，所以实际使用过程中大多通过将子�
 
 
 
-```
+```ts
 @Entry
 @Component
 struct ProportionCapabilitySample {
@@ -387,7 +387,7 @@ struct ProportionCapabilitySample {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct ScaleCapabilitySample {
@@ -419,8 +419,8 @@ struct ScaleCapabilitySample {
       Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
         Column() {
           Image($r("app.media.illustrator")).width('100%').height('100%')
-            .aspectRatio(1)                           // 固定宽高比
         }
+        .aspectRatio(1)                           // 固定宽高比
         .border({ width: 2, color: "#66F1CCB8"})  // 边框，仅用于展示效果
       }
       .backgroundColor("#FFFFFF")
@@ -474,7 +474,7 @@ struct ScaleCapabilitySample {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct ExtensionCapabilitySample1 {
@@ -498,7 +498,7 @@ struct ExtensionCapabilitySample1 {
       Row({ space: 10 }) {
         // 通过List组件实现隐藏能力
         List({ space: 10 }) {
-          ForEach(this.appList, (item) => {
+          ForEach(this.appList, (item:number) => {
             ListItem() {
               Column() {
                 Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
@@ -535,7 +535,7 @@ struct ExtensionCapabilitySample1 {
 
   （2）通过Scroll组件配合Row组件实现。
 
-```
+```ts
 @Entry
 @Component
 struct ExtensionCapabilitySample2 {
@@ -613,7 +613,7 @@ struct ExtensionCapabilitySample2 {
 ![zh-cn_image_0000001335485154](figures/zh-cn_image_0000001335485154.gif)
 
 
-```
+```ts
 @Entry
 @Component
 struct HiddenCapabilitySample {
@@ -704,7 +704,7 @@ struct HiddenCapabilitySample {
 ![zh-cn_image_0000001385645821](figures/zh-cn_image_0000001385645821.gif)
 
 
-```
+```ts
 @Entry
 @Component
 struct WrapCapabilitySample {
@@ -739,7 +739,7 @@ struct WrapCapabilitySample {
           justifyContent: FlexAlign.Center,
           wrap: FlexWrap.Wrap
         }) {
-          ForEach(this.imageList, (item) => {
+          ForEach(this.imageList, (item:Resource) => {
             Image(item).width(183).height(138).padding(10)
           })
         }

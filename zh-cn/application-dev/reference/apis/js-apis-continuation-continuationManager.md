@@ -30,20 +30,11 @@ register(callback: AsyncCallback\<number>): void;
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback\<number> | 是 | AsyncCallback形式返回流转管理服务连接后生成的token。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360207 | The number of registrations has reached the upper limit. |
-
 **示例：**
 
   ```ts
-  let token = -1;
+  import continuationManager from '@ohos.continuation.continuationManager'
+  let token: number = -1;
   continuationManager.register((err, data) => {
     if (err.code != 0) {
       console.error('register failed, cause: ' + JSON.stringify(err));
@@ -71,31 +62,22 @@ register(options: ContinuationExtraParams, callback: AsyncCallback\<number>): vo
   | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 是 | 过滤可选择设备列表的额外参数。 |
   | callback | AsyncCallback\<number> | 是 | AsyncCallback形式返回流转管理服务连接后生成的token。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360207 | The number of registrations has reached the upper limit. |
-| 29360216 | Invalid continuation mode. |
-
 **示例：**
 
   ```ts
-  let token = -1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
-  continuationManager.register(continuationExtraParams, (err, data) => {
-    if (err.code != 0) {
-      console.error('register failed, cause: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('register finished, ' + JSON.stringify(data));
-    token = data;
+  import continuationManager from '@ohos.continuation.continuationManager'
+  let token: number = -1;
+  continuationManager.register(
+    {
+      deviceType: ["00E"]
+    },
+    (err, data) => {
+      if (err.code != 0) {
+        console.error('register failed, cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('register finished, ' + JSON.stringify(data));
+      token = data;
   });
   ```
 
@@ -121,32 +103,19 @@ register(options?: ContinuationExtraParams): Promise\<number>;
 | ------------------------- | ------------------ |
 | Promise\<number> | Promise形式返回流转管理服务连接后生成的token。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object |
-| 7 | The object is null. |
-| 29360207 | The number of registrations has reached the upper limit. |
-| 29360216 | Invalid continuation mode. |
-
 **示例：**
 
   ```ts
-  let token = -1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
-  continuationManager.register(continuationExtraParams)
-    .then((data) => {
+  import continuationManager from '@ohos.continuation.continuationManager'
+  import { BusinessError } from '@ohos.base';
+  let token: number = -1;
+  continuationManager.register(
+    { deviceType: ["00E"] }).then((data) => {
       console.info('register finished, ' + JSON.stringify(data));
       token = data;
-    })
-    .catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('register failed, cause: ' + JSON.stringify(err));
-    });
+  });
   ```
 
 ## continuationManager.registerContinuation<sup>9+</sup>
@@ -177,7 +146,8 @@ registerContinuation(callback: AsyncCallback\<number>): void;
 **示例：**
 
   ```ts
-  let token = -1;
+  import continuationManager from '@ohos.continuation.continuationManager'
+  let token: number = -1;
   try {
     continuationManager.registerContinuation((err, data) => {
       if (err.code != 0) {
@@ -221,18 +191,20 @@ registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<
 **示例：**
 
   ```ts
-  let token = -1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = -1;
   try {
-    continuationManager.registerContinuation(continuationExtraParams, (err, data) => {
-      if (err.code != 0) {
-        console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('registerContinuation finished, ' + JSON.stringify(data));
-      token = data;
+    continuationManager.registerContinuation(
+      {
+        deviceType: ["00E"]
+      },
+      (err, data) => {
+        if (err.code != 0) {
+          console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('registerContinuation finished, ' + JSON.stringify(data));
+        token = data;
     });
   } catch (err) {
     console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
@@ -273,19 +245,19 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>;
 **示例：**
 
   ```ts
-  let token = -1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = -1;
   try {
-    continuationManager.register(continuationExtraParams)
-      .then((data) => {
+    continuationManager.register(
+      {
+        deviceType: ["00E"]
+      }).then((data) => {
         console.info('registerContinuation finished, ' + JSON.stringify(data));
         token = data;
-      })
-      .catch((err) => {
+      }).catch((err: BusinessError) => {
         console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
-      });
+    });
   } catch (err) {
     console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
   }
@@ -309,21 +281,10 @@ on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void;
   | type | string | 是 | 监听的事件类型，固定值"deviceConnect"。 |
   | callback | Callback\<[ContinuationResult](js-apis-continuation-continuationResult.md)> | 是 | 当用户从设备选择模块中选择设备时调用，返回设备ID、设备类型和设备名称供开发者使用。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object |
-| 7 | The object is null | 7 |
-| 29360208 | The token is not registered. |
-| 29360209 | The callback has been registered. |
-| 29360214 | The type of callback is not supported. |
-
 **示例：**
 
   ```ts
+  import continuationManager from '@ohos.continuation.continuationManager';
   continuationManager.on("deviceConnect", (data) => {
     console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
     console.info('onDeviceConnect deviceType: ' + JSON.stringify(data.type));
@@ -348,21 +309,10 @@ on(type: "deviceDisconnect", callback: Callback\<string>): void;
   | type | string | 是 | 监听的事件类型，固定值"deviceDisconnect"。 |
   | callback | Callback\<string> | 是 | 当用户从设备选择模块中断开设备时调用，返回设备ID供开发者使用。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360209 | The callback has been registered. |
-| 29360214 | The type of callback is not supported. |
-
 **示例：**
 
   ```ts
+  import continuationManager from '@ohos.continuation.continuationManager';
   continuationManager.on("deviceDisconnect", (data) => {
     console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
   });
@@ -385,21 +335,10 @@ off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void;
   | type | string | 是 | 取消监听的事件类型，固定值"deviceConnect"。 |
   | callback | Callback\<[ContinuationResult](js-apis-continuation-continuationResult.md)> | 否 | 当用户从设备选择模块中选择设备时调用，返回设备ID、设备类型和设备名称供开发者使用。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360214 | The type of callback is not supported. |
-
 **示例：**
 
   ```ts
+  import continuationManager from '@ohos.continuation.continuationManager';
   continuationManager.off("deviceConnect", (data) => {
     console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
     console.info('onDeviceConnect deviceType: ' + JSON.stringify(data.type));
@@ -424,21 +363,10 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void;
   | type | string | 是 | 取消监听的事件类型，固定值"deviceDisconnect"。 |
   | callback | Callback\<string> | 否 | 当用户从设备选择模块中断开设备时调用，返回设备ID供开发者使用。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360214 | The type of callback is not supported. |
-
 **示例：**
 
   ```ts
+  import continuationManager from '@ohos.continuation.continuationManager';
   continuationManager.off("deviceDisconnect", (data) => {
     console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
   });
@@ -475,7 +403,8 @@ on(type: "deviceSelected", token: number, callback: Callback\<Array\<Continuatio
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   try {
     continuationManager.on("deviceSelected", token, (data) => {
       console.info('onDeviceSelected len: ' + data.length);
@@ -521,7 +450,8 @@ on(type: "deviceUnselected", token: number, callback: Callback\<Array\<Continuat
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   try {
     continuationManager.on("deviceUnselected", token, (data) => {
       console.info('onDeviceUnselected len: ' + data.length);
@@ -567,7 +497,8 @@ off(type: "deviceSelected", token: number): void;
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   try {
     continuationManager.off("deviceSelected", token);
   } catch (err) {
@@ -605,7 +536,8 @@ off(type: "deviceUnselected", token: number): void;
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   try {
     continuationManager.off("deviceUnselected", token);
   } catch (err) {
@@ -630,23 +562,11 @@ startDeviceManager(token: number, callback: AsyncCallback\<void>): void;
   | token | number | 是 | 注册后的token。 |
   | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360216 | Invalid continuation mode. |
-
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   continuationManager.startDeviceManager(token, (err, data) => {
     if (err.code != 0) {
       console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
@@ -674,32 +594,22 @@ startDeviceManager(token: number, options: ContinuationExtraParams, callback: As
   | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 是 | 过滤可选择设备列表的额外参数。 |
   | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object |
-| 7 | The object is null |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360216 | Invalid continuation mode. |
-
 **示例：**
 
   ```ts
-  let token = 1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
-  continuationManager.startDeviceManager(token, continuationExtraParams, (err, data) => {
-    if (err.code != 0) {
-      console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('startDeviceManager finished, ' + JSON.stringify(data));
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
+  continuationManager.startDeviceManager(
+    token,
+    {
+      deviceType: ["00E"]
+    },
+    (err, data) => {
+      if (err.code != 0) {
+        console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('startDeviceManager finished, ' + JSON.stringify(data));
   });
   ```
 
@@ -726,33 +636,21 @@ startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<v
 | ------------------------- | ------------------ |
 | Promise\<void> | Promise形式返回接口调用结果。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object |
-| 7 | The object is null |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360216 | Invalid continuation mode. |
-
 **示例：**
 
   ```ts
-  let token = 1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
-  continuationManager.startDeviceManager(token, continuationExtraParams)
-    .then((data) => {
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = -1;
+  continuationManager.startDeviceManager(
+    token,
+    {
+      deviceType: ["00E"]
+    }).then((data) => {
       console.info('startDeviceManager finished, ' + JSON.stringify(data));
-    })
-    .catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
-    });
+  });
   ```
 
 ## continuationManager.startContinuationDeviceManager<sup>9+</sup>
@@ -784,7 +682,8 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = -1;
   try {
     continuationManager.startContinuationDeviceManager(token, (err, data) => {
       if (err.code != 0) {
@@ -828,17 +727,20 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
 **示例：**
 
   ```ts
-  let token = 1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = -1;
   try {
-    continuationManager.startContinuationDeviceManager(token, continuationExtraParams, (err, data) => {
-      if (err.code != 0) {
-        console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
+    continuationManager.startContinuationDeviceManager(
+      token,
+      {
+        deviceType: ["00E"]
+      },
+      (err, data) => {
+        if (err.code != 0) {
+          console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
     });
   } catch (err) {
     console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
@@ -880,16 +782,17 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
 **示例：**
 
   ```ts
-  let token = 1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = -1;
   try {
-    continuationManager.startContinuationDeviceManager(token, continuationExtraParams)
-      .then((data) => {
+    continuationManager.startContinuationDeviceManager(
+      token,
+      {
+        deviceType: ["00E"]
+      }).then((data) => {
         console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
-      })
-      .catch((err) => {
+      }).catch((err: BusinessError) => {
         console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
       });
   } catch (err) {
@@ -916,23 +819,11 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState,
   | status | [DeviceConnectState](#deviceconnectstate) | 是 | 设备连接状态。 |
   | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360215 | Invalid connection state. |
-
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = -1;
   let deviceId: string = "test deviceId";
   continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err, data) => {
     if (err.code != 0) {
@@ -967,31 +858,20 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState)
 | ------------------------- | ------------------ |
 | Promise\<void> | Promise形式返回接口调用结果。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360215 | Invalid connection state. |
-
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = 1;
   let deviceId: string = "test deviceId";
   continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED)
     .then((data) => {
       console.info('updateConnectStatus finished, ' + JSON.stringify(data));
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       console.error('updateConnectStatus failed, cause: ' + JSON.stringify(err));
-    });
+  });
   ```
 
 ## continuationManager.updateContinuationState<sup>9+</sup>
@@ -1025,7 +905,8 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   let deviceId: string = "test deviceId";
   try {
     continuationManager.updateContinuationState(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err, data) => {
@@ -1076,14 +957,16 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = 1;
   let deviceId: string = "test deviceId";
   try {
     continuationManager.updateContinuationState(token, deviceId, continuationManager.DeviceConnectState.CONNECTED)
       .then((data) => {
         console.info('updateContinuationState finished, ' + JSON.stringify(data));
       })
-      .catch((err) => {
+      .catch((err: BusinessError) => {
         console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
       });
   } catch (err) {
@@ -1109,20 +992,11 @@ unregister(token: number, callback: AsyncCallback\<void>): void;
   | token | number | 是 | 注册后的token。 |
   | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   continuationManager.unregister(token, (err, data) => {
     if (err.code != 0) {
       console.error('unregister failed, cause: ' + JSON.stringify(err));
@@ -1154,27 +1028,18 @@ unregister(token: number): Promise\<void>;
 | ------------------------- | ------------------ |
 | Promise\<void> | Promise形式返回接口调用结果。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = 1;
   continuationManager.unregister(token)
     .then((data) => {
       console.info('unregister finished, ' + JSON.stringify(data));
-    })
-    .catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('unregister failed, cause: ' + JSON.stringify(err));
-    });
+  });
   ```
 
 ## continuationManager.unregisterContinuation<sup>9+</sup>
@@ -1206,7 +1071,9 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = 1;
   try {
     continuationManager.unregisterContinuation(token, (err, data) => {
       if (err.code != 0) {
@@ -1254,15 +1121,15 @@ unregisterContinuation(token: number): Promise\<void>;
 **示例：**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = -1;
   try {
-    continuationManager.unregisterContinuation(token)
-      .then((data) => {
+    continuationManager.unregisterContinuation(token).then((data) => {
         console.info('unregisterContinuation finished, ' + JSON.stringify(data));
-      })
-      .catch((err) => {
+      }).catch((err: BusinessError) => {
         console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
-      });
+    });
   } catch (err) {
     console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
   }

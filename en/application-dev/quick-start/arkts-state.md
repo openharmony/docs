@@ -25,21 +25,21 @@ An @State decorated variable, like all other decorated variables in the declarat
 
 ## Rules of Use
 
-| \@State Decorator| Description                                      |
-| ------------ | ---------------------------------------- |
-| Decorator parameters       | None.                                       |
-| Synchronization type        | Does not synchronize with any type of variable in the parent component.                        |
-| Allowed variable types   | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested types, see [Observed Changes](#observed-changes).<br>The type must be specified.<br>**any** is not supported. A combination of simple and complex types is not supported. The **undefined** and **null** values are not allowed.<br>**NOTE**<br>Avoid using this decorator to decorate the Date type, as doing so may lead to unexpected behavior of the application.<br>The Length, ResourceStr, and ResourceColor types are a combination of simple and complex types and therefore not supported.|
-| Initial value for the decorated variable   | Mandatory.                                   |
+| \@State Decorator | Description                                                        |
+| ------------------ | ------------------------------------------------------------ |
+| Decorator parameters        | None.                                                          |
+| Synchronization type          | Does not synchronize with any type of variable in the parent component.                            |
+| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>The type must be specified.<br>**any** is not supported. A combination of simple and complex types is not supported. The **undefined** and **null** values are not allowed.<br>**NOTE**<br>The Length, ResourceStr, and ResourceColor types are a combination of simple and complex types and therefore not supported.|
+| Initial value for the decorated variable| Local initialization is required.                                              |
 
 
 ## Variable Transfer/Access Rules
 
-| Transfer/Access    | Description                                      |
-| --------- | ---------------------------------------- |
-| Initialization from the parent component  | Optional. Initialization from the parent component or local initialization can be used.<br>An \@State decorated variable can be initialized from a regular variable or an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in its parent component.|
-| Subnode initialization | Supported. An \@State decorated variable can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Access| Private, accessible only within the component.                           |
+| Transfer/Access         | Description                                                        |
+| ------------------ | ------------------------------------------------------------ |
+| Initialization from the parent component    | Optional. Initialization from the parent component or local initialization can be used. The initial value specified in the parent component will overwrite the one defined locally.<br>An @State decorated variable can be initialized from a regular variable (whose change does not trigger UI refresh) or an @State, @Link, @Prop, @Provide, @Consume, @ObjectLink, @StorageLink, @StorageProp, @LocalStorageLink, or @LocalStorageProp decorated variable in its parent component.|
+| Subnode initialization  | Supported. An \@State decorated variable can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
+| Access| Private, accessible only within the component.                                  |
 
   **Figure 1** Initialization rule 
 
@@ -153,6 +153,45 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
   this.title.push(new Model(12))
   ```
 
+- When the decorated variable is of the Date type, the overall value assignment of the Date object can be observed, and the following APIs can be called to update Date attributes: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
+
+  ```ts
+  @Entry
+  @Component
+  struct DatePickerExample {
+    @State selectedDate: Date = new Date('2021-08-08')
+  
+    build() {
+      Column() {
+        Button('set selectedDate to 2023-07-08')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate = new Date('2023-07-08')
+          })
+        Button('increase the year by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+          })
+        Button('increase the month by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setMonth(this.selectedDate.getMonth() + 1)
+          })
+        Button('increase the day by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setDate(this.selectedDate.getDate() + 1)
+          })
+        DatePicker({
+          start: new Date('1970-1-1'),
+          end: new Date('2100-1-1'),
+          selected: this.selectedDate
+        })
+      }.width('100%')
+    }
+  }
+  ```
 
 ### Framework Behavior
 
@@ -168,9 +207,9 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 
 ### Decorating Variables of Simple Types
 
-In this example, \@State is used to decorate the **count** variable of the simple type and turns it into a state variable. The change of **count** causes the update of the **\<Button>** component.
+In this example, \@State is used to decorate the **count** variable of the simple type, turning it into a state variable. The change of **count** causes the update of the **\<Button>** component.
 
-- When the state variable **count** changes, the framework searches for components that depend on this state variable, which include only the **\<Button>** component in this example.
+- When **count** changes, the framework searches for components bound to it, which include only the **\<Button>** component in this example.
 
 - The framework executes the update method of the **\<Button>** component to implement on-demand update.
 
@@ -257,5 +296,14 @@ From this example, we learn the initialization process of an \@State decorated v
 2. Apply the named parameter value, if one is provided.
 
    ```ts
-   MyComponent({ count: 1, increaseBy: 2 })
+   class C1 {
+      public count:number;
+      public increaseBy:number;
+      constructor(count: number, increaseBy:number) {
+      this.count = count;
+      this.increaseBy = increaseBy;
+     }
+   }
+   let obj = new C1(1, 2)
+   MyComponent(obj)
    ```

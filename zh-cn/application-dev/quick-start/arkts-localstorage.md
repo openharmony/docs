@@ -18,7 +18,7 @@ LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内“
 
 - 应用程序可以创建多个LocalStorage实例，LocalStorage实例可以在页面内共享，也可以通过GetShared接口，获取在UIAbility里创建的GetShared，实现跨页面、UIAbility内共享。
 
-- 组件树的根节点，即被\@Entry装饰的\@Component，可以被分配一个LocalStorage实例，此组件的所有子组件实例将自动获得对该LocalStorage实例的访问权限；
+- 组件树的根节点，即被\@Entry装饰的\@Component，可以被分配一个LocalStorage实例，此组件的所有子组件实例将自动获得对该LocalStorage实例的访问权限。
 
 - 被\@Component装饰的组件最多可以访问一个LocalStorage实例和[AppStorage](arkts-appstorage.md)，未被\@Entry装饰的组件不可被独立分配LocalStorage实例，只能接受父组件通过\@Entry传递来的LocalStorage实例。一个LocalStorage实例在组件树上可以被分配给多个组件。
 
@@ -36,7 +36,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 ## 限制条件
 
 - LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
-- LocalStorage是页面级存储，[GetShared](../reference/arkui-ts/ts-state-management.md#getshared10)接口仅能获取当前stage，通过[windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
+- LocalStorage是页面级存储，[GetShared](../reference/arkui-ts/ts-state-management.md#getshared10)接口仅能获取当前Stage通过[windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
 
 
 ## \@LocalStorageProp
@@ -44,7 +44,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 在上文中已经提到，如果要建立LocalStorage和自定义组件的联系，需要使用\@LocalStorageProp和\@LocalStorageLink装饰器。使用\@LocalStorageProp(key)/\@LocalStorageLink(key)装饰组件内的变量，key标识了LocalStorage的属性。
 
 
-当自定义组件初始化的时候，\@LocalStorageProp(key)/\@LocalStorageLink(key)装饰的变量会通过给定的key，绑定在LocalStorage对应的属性，完成初始化。本地初始化是必要的，因为无法保证LocalStorage一定存在给定的key（这取决于应用逻辑，是否在组件初始化之前在LocalStorage实例中存入对应的属性）。
+当自定义组件初始化的时候，\@LocalStorageProp(key)/\@LocalStorageLink(key)装饰的变量会通过给定的key，绑定LocalStorage对应的属性，完成初始化。本地初始化是必要的，因为无法保证LocalStorage一定存在给定的key（这取决于应用逻辑是否在组件初始化之前在LocalStorage实例中存入对应的属性）。
 
 
 > **说明：**
@@ -182,7 +182,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 除了应用程序逻辑使用LocalStorage，还可以借助LocalStorage相关的两个装饰器\@LocalStorageProp和\@LocalStorageLink，在UI组件内部获取到LocalStorage实例中存储的状态变量。
 
-本示例以\@LocalStorage为例，展示了：
+本示例以\@LocalStorageLink为例，展示了：
 
 - 使用构造函数创建LocalStorage实例storage；
 
@@ -196,12 +196,12 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   @Component
   struct Child {
-    // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
+    // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
     @LocalStorageLink('PropA') storLink2: number = 1;
 
     build() {
       Button(`Child from LocalStorage ${this.storLink2}`)
-        // 更改将同步至LocalStorage中的'ProA'以及Parent.storLink1
+        // 更改将同步至LocalStorage中的'PropA'以及Parent.storLink1
         .onClick(() => this.storLink2 += 1)
     }
   }
@@ -209,7 +209,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   @Entry(storage)
   @Component
   struct CompA {
-    // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
+    // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
     @LocalStorageLink('PropA') storLink1: number = 1;
 
     build() {
@@ -239,7 +239,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   @Entry(storage)
   @Component
   struct CompA {
-    // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
+    // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
     @LocalStorageProp('PropA') storProp1: number = 1;
 
     build() {
@@ -254,7 +254,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   @Component
   struct Child {
-    // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
+    // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
     @LocalStorageProp('PropA') storProp2: number = 2;
 
     build() {
@@ -269,13 +269,13 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 ### \@LocalStorageLink和LocalStorage双向同步的简单场景
 
-下面的示例展示了\@LocalStorageLink装饰的数据和LocalStorage双向同步的场景
+下面的示例展示了\@LocalStorageLink装饰的数据和LocalStorage双向同步的场景：
 
 
 ```ts
 // 构造LocalStorage实例
 let storage = new LocalStorage({ 'PropA': 47 });
-// 调用link9+接口构造'PropA'的双向同步数据，linkToPropA 是全部变量
+// 调用link9+接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
 let linkToPropA = storage.link('PropA');
 
 @Entry(storage)
@@ -288,7 +288,7 @@ struct CompA {
   build() {
     Column() {
       Text(`incr @LocalStorageLink variable`)
-        // 点击“incr @LocalStorageLink variable”，this.storLink加1，改变同步回storage，全局变量linkToPropA也会同步改变 
+        // 点击“incr @LocalStorageLink variable”，this.storLink加1，改变同步回storage，全局变量linkToPropA也会同步改变
 
         .onClick(() => this.storLink += 1)
 
@@ -300,9 +300,9 @@ struct CompA {
 ```
 
 
-### 兄弟节点之间同步状态变量
+### 兄弟组件之间同步状态变量
 
-下面的示例展示了通过\@LocalStorageLink双向同步兄弟节点之间的状态。
+下面的示例展示了通过\@LocalStorageLink双向同步兄弟组件之间的状态。
 
 先看Parent自定义组件中发生的变化：
 
@@ -310,7 +310,7 @@ struct CompA {
 
 2. 点击“countStorage ${this.playCount} incr by 1”，调用LocalStorage的set接口，更新LocalStorage中“countStorage”对应的属性，Child组件中的playCountLink绑定的组件会同步刷新；
 
-3. Text组件“playCount in LocalStorage for debug ${storage.get&lt;number&gt;('countStorage')}”没有同步刷新，原因是因为storage.get&lt;number&gt;('countStorage')返回的是常规变量，常规变量的更新并不会引起Text组件的重新渲染。
+3. Text组件“playCount in LocalStorage for debug ${storage.get&lt;number&gt;('countStorage')}”没有同步刷新，因为storage.get&lt;number&gt;('countStorage')返回的是常规变量，常规变量的更新并不会引起Text组件的重新渲染。
 
 Child自定义组件中的变化：
 
@@ -398,12 +398,12 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-在UI页面通过GetShared接口获取在通过loadContent共享的LocalStorage实例。
+在UI页面通过getShared接口获取在通过loadContent共享的LocalStorage实例。
 
 
 ```ts
-// 通过GetShared接口获取stage共享的Storage实例
-let storage = LocalStorage.GetShared()
+// 通过getShared接口获取stage共享的LocalStorage实例
+let storage = LocalStorage.getShared()
 
 @Entry(storage)
 @Component

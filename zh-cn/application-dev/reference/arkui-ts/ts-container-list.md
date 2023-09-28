@@ -41,7 +41,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 | 参数名          | 参数类型                                     | 必填   | 参数描述                                     |
 | ------------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| space        | number&nbsp;\|&nbsp;string               | 否    | 子组件主轴方向的间隔。<br/>默认值：0<br/>**说明：** <br/>设置为负数时，按默认值显示。<br/>space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。 |
+| space        | number&nbsp;\|&nbsp;string               | 否    | 子组件主轴方向的间隔。<br/>默认值：0<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按默认值显示。<br/>space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。 |
 | initialIndex | number                                   | 否    | 设置当前List初次加载时视口起始位置显示的item的索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
 | scroller     | [Scroller](ts-container-scroll.md#scroller) | 否    | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件绑定同一个滚动控制对象。 |
 
@@ -49,24 +49,24 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                                | 参数类型                                                     | 描述                                                         |
-| ----------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| listDirection                       | [Axis](ts-appendix-enums.md#axis)                            | 设置List组件排列方向。<br/>默认值：Axis.Vertical<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| divider                             | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;Length,<br/>endMargin?:&nbsp;Length<br/>}&nbsp;\|&nbsp;null | 设置ListItem分割线样式，默认无分割线。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>endMargin +startMargin 不能超过列宽度。 <br/>startMargin和endMargin不支持设置百分比。<br/>List的分割线画在主轴方向两个子组件之间，第一个子组件上方和最后一个子组件下方不会绘制分割线。<br/>多列模式下，ListItem与ListItem之间的分割线起始边距从每一列的交叉轴方向起始边开始计算，其他情况从List交叉轴方向起始边开始计算。 |
-| scrollBar                           | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
-| cachedCount                         | number                                   | 设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。具体使用可参考[减少应用白块说明](../../ui/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。<br/>多列模式下， 会在List显示的ListItem前后各缓存cachedCount*列数个ListItem。 |
-| editMode<sup>(deprecated)</sup>     | boolean                                  | 声明当前List组件是否处于可编辑模式。<br/>从API version9开始废弃。可参考[示例3](#示例3)实现删除选中的list项。<br/>默认值：false |
-| edgeEffect                          | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 设置组件的滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| chainAnimation                      | boolean                                  | 设置当前List是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：List内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>默认值：false<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>链式动效生效后，List的分割线不显示。<br>链式动效生效需要满足以下前提条件：<br> -&nbsp; List边缘效果为Spring类型<br> -&nbsp; List没有启用多列模式 |
-| chainAnimationOptions<sup>10+</sup> | [ChainAnimationOptions](#chainanimationoptions10对象说明) | 设置链式联动动效参数。<br>**系统API：** 此接口为系统接口。      |
-| multiSelectable<sup>8+</sup>        | boolean                                  | 是否开启鼠标框选。<br/>默认值：false<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| lanes<sup>9+</sup>                  | number \| [LengthConstrain](ts-types.md#lengthconstrain),<br/>gutter<sup>10+</sup>?:[Dimension](ts-types.md#dimension) | 以列模式为例（listDirection为Axis.Vertical）:<br/>lanes用于决定List组件在交叉轴方向按几列布局。<br/>默认值：1<br/>规则如下：<br/>-&nbsp;lanes为指定的数量时，根据指定的数量与List组件的交叉轴尺寸除以列数作为列的宽度。<br/>-&nbsp;lanes设置了{minLength，maxLength}时，根据List组件的宽度自适应决定lanes数量（即列数），保证缩放过程中lane的宽度符合{minLength，maxLength}的限制。其中，minLength条件会被优先满足，即优先保证符合ListItem的交叉轴尺寸符合最小限制。<br/>-&nbsp;lanes设置了{minLength，maxLength}，如果父组件交叉轴方向尺寸约束为无穷大时，固定按一列排列，列宽度按显示区域内最大的ListItem计算<br/>-&nbsp;ListItemGroup在多列模式下也是独占一行，ListItemGroup中的ListItem按照List组件的lanes属性设置值来布局。<br/>-&nbsp;lanes设置了{minLength，maxLength}时，计算列数会按照ListItemGroup的交叉轴尺寸计算。当ListItemGroup交叉轴尺寸与List交叉轴尺寸不一致时ListItemGroup中的列数与List中的列数可能不一样。<br/>gutter为列间距，当列数大于1时生效。<br />默认值为 0<br/>该接口支持在ArkTS卡片中使用。 |
-| alignListItem<sup>9+</sup>          | [ListItemAlign](#listitemalign9枚举说明)     | List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式，默认为首部对齐。<br/>默认值：ListItemAlign.Start<br/>该接口支持在ArkTS卡片中使用。 |
-| sticky<sup>9+</sup>                 | [StickyStyle](#stickystyle9枚举说明)         | 配合[ListItemGroup](ts-container-listitemgroup.md)组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。<br/>默认值：StickyStyle.None<br/>该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>sticky属性可以设置为 StickyStyle.Header \| StickyStyle.Footer 以同时支持header吸顶和footer吸底。 |
-| scrollSnapAlign<sup>10+</sup>       | [ScrollSnapAlign](#scrollsnapalign10枚举说明) | 设置列表项滚动结束对齐效果。<br/>默认值：ScrollSnapAlign.NONE<br/>**说明：**<br/>只支持ListItem等高情况下，设置列表项滚动结束对齐效果。 |
-| enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
-| nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明)         | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
-| friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9<br/>**说明：** <br/>设置为小于等于0的值时，按默认值处理 |
+| 名称                                    | 参数类型                                     | 描述                                       |
+| ------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| listDirection                         | [Axis](ts-appendix-enums.md#axis)        | 设置List组件排列方向。<br/>默认值：Axis.Vertical<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| divider                               | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;Length,<br/>endMargin?:&nbsp;Length<br/>}&nbsp;\|&nbsp;null | 设置ListItem分割线样式，默认无分割线。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>endMargin + startMargin 超过列宽度后startMargin和endMargin会置0。 <br/>strokeWidth, startMargin和endMargin不支持设置百分比。<br/>List的分割线画在主轴方向两个子组件之间，第一个子组件上方和最后一个子组件下方不会绘制分割线。<br/>多列模式下，ListItem与ListItem之间的分割线起始边距从每一列的交叉轴方向起始边开始计算，其他情况从List交叉轴方向起始边开始计算。 |
+| scrollBar                             | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
+| cachedCount                           | number                                   | 设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。具体使用可参考[减少应用白块说明](../../ui/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。<br/>多列模式下， 会在List显示的ListItem前后各缓存cachedCount*列数个ListItem。 |
+| editMode<sup>(deprecated)</sup>       | boolean                                  | 声明当前List组件是否处于可编辑模式。<br/>从API version9开始废弃。可参考[示例3](#示例3)实现删除选中的list项。<br/>默认值：false |
+| edgeEffect                            | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 设置组件的滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| chainAnimation                        | boolean                                  | 设置当前List是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：List内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>默认值：false<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>链式动效生效后，List的分割线不显示。<br>链式动效生效需要满足以下前提条件：<br> -&nbsp; List边缘效果为Spring类型<br> -&nbsp; List没有启用多列模式 |
+| chainAnimationOptions<sup>10+</sup>   | [ChainAnimationOptions](#chainanimationoptions10对象说明) | 设置链式联动动效参数。<br>**系统API：** 此接口为系统接口。      |
+| multiSelectable<sup>8+</sup>          | boolean                                  | 是否开启鼠标框选。<br/>默认值：false<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| lanes<sup>9+</sup>                    | number \| [LengthConstrain](ts-types.md#lengthconstrain),<br/>gutter<sup>10+</sup>?:[Dimension](ts-types.md#dimension) | 以列模式为例（listDirection为Axis.Vertical）:<br/>lanes用于决定List组件在交叉轴方向按几列布局。<br/>默认值：1<br/>规则如下：<br/>-&nbsp;lanes为指定的数量时，根据指定的数量与List组件的交叉轴尺寸除以列数作为列的宽度。<br/>-&nbsp;lanes设置了{minLength，maxLength}时，根据List组件的宽度自适应决定lanes数量（即列数），保证缩放过程中lane的宽度符合{minLength，maxLength}的限制。其中，minLength条件会被优先满足，即优先保证符合ListItem的交叉轴尺寸符合最小限制。<br/>-&nbsp;lanes设置了{minLength，maxLength}，如果父组件交叉轴方向尺寸约束为无穷大时，固定按一列排列，列宽度按显示区域内最大的ListItem计算<br/>-&nbsp;ListItemGroup在多列模式下也是独占一行，ListItemGroup中的ListItem按照List组件的lanes属性设置值来布局。<br/>-&nbsp;lanes设置了{minLength，maxLength}时，计算列数会按照ListItemGroup的交叉轴尺寸计算。当ListItemGroup交叉轴尺寸与List交叉轴尺寸不一致时ListItemGroup中的列数与List中的列数可能不一样。<br/>gutter为列间距，当列数大于1时生效。<br />默认值为 0<br/>该接口支持在ArkTS卡片中使用。 |
+| alignListItem<sup>9+</sup>            | [ListItemAlign](#listitemalign9枚举说明)     | List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式，默认为首部对齐。<br/>默认值：ListItemAlign.Start<br/>该接口支持在ArkTS卡片中使用。 |
+| sticky<sup>9+</sup>                   | [StickyStyle](#stickystyle9枚举说明)         | 配合[ListItemGroup](ts-container-listitemgroup.md)组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。<br/>默认值：StickyStyle.None<br/>该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>sticky属性可以设置为 StickyStyle.Header \| StickyStyle.Footer 以同时支持header吸顶和footer吸底。 |
+| scrollSnapAlign<sup>10+</sup>         | [ScrollSnapAlign](#scrollsnapalign10枚举说明) | 设置列表项滚动结束对齐效果。<br/>默认值：ScrollSnapAlign.NONE<br/>**说明：**<br/>只支持ListItem等高情况下，设置列表项滚动结束对齐效果。 |
+| enableScrollInteraction<sup>10+</sup> | boolean                                  | 设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true |
+| nestedScroll<sup>10+</sup>            | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明) | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。   |
+| friction<sup>10+</sup>                | number \| [Resource](ts-types.md#resource) | 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9<br/>**说明：** <br/>设置为小于等于0的值时，按默认值处理 |
 
 ## ListItemAlign<sup>9+</sup>枚举说明
 
@@ -127,9 +127,9 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 只支持item等高场景限位，不等高场景可能存在不准确的情况。
 
-| 名称   | 描述                                                         |
-| ------ | ------------------------------------------------------------ |
-| NONE   | 默认无项目滚动对齐效果。滚动结束列表项何时将无限制地停止。   |
+| 名称     | 描述                                       |
+| ------ | ---------------------------------------- |
+| NONE   | 默认无项目滚动对齐效果。滚动结束列表项何时将无限制地停止。            |
 | START  | 视图中的第一项将在列表的开头对齐。<br/>**说明：**<br/>当列表位移至末端，需要将末端的item完整显示，可能出现开头不对齐的情况。 |
 | CENTER | 视图中的中间项将在列表中心对齐。<br/>**说明：**<br/>顶端和末尾的item都可以在列表中心对齐，列表显示可能露出空白，第一个或最后一个item会对齐到中间位置。 |
 | END    | 视图中的最后一项将在列表末尾对齐。<br/>**说明：**<br/>当列表位移至顶端，需要将顶端的item完整显示，可能出现末尾不对齐的情况。 |
@@ -156,23 +156,23 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称     | 描述                             |
-| ------ | ------------------------------ |
+| 名称     | 描述                                       |
+| ------ | ---------------------------------------- |
 | Idle   | 空闲状态。使用控制器提供的方法控制滚动时触发，拖动滚动条滚动时触发。<br/>**说明：** <br/> 从API version 10开始，调整为滚动状态回归空闲时触发，控制器提供的无动画方法控制滚动时触发。 |
-| Scroll | 滚动状态。使用手指拖动List滚动时触发。<br/>**说明：** <br/> 从API version 10开始，拖动滚动条滚动和滚动鼠标滚轮时也会触发。        |
+| Scroll | 滚动状态。使用手指拖动List滚动时触发。<br/>**说明：** <br/> 从API version 10开始，拖动滚动条滚动和滚动鼠标滚轮时也会触发。 |
 | Fling  | 惯性滚动状态。快速划动松手后进行惯性滚动和划动到边缘回弹时触发。<br/>**说明：** <br/> 从API version 10开始，由动画控制的滚动都触发。包括快速划动松手后的惯性滚动，划动到边缘回弹的滚动，快速拖动内置滚动条松手后的惯性滚动，使用滚动控制器提供的带动画的方法控制的滚动。 |
 
 ScrollState枚举变更如下。
 
-| 场景     | API version 9及以下                         |API version 10开始                           |
-| ------ | ------------------------------ |------------------------------ |
-| 手指拖动滑动   | Scroll | Scroll |
-| 惯性滚动   | Fling | Fling |
-| 过界回弹   | Fling | Fling |
-| 鼠标滚轮滚动   | Idle | Scroll |
-| 拖动滚动条   | Idle | Scroll |
-| 滚动控制器滚动（带动画）   | Idle | Fling |
-| 滚动控制器滚动（不带动画）   | Idle | Idle |
+| 场景            | API version 9及以下 | API version 10开始 |
+| ------------- | ---------------- | ---------------- |
+| 手指拖动滑动        | Scroll           | Scroll           |
+| 惯性滚动          | Fling            | Fling            |
+| 过界回弹          | Fling            | Fling            |
+| 鼠标滚轮滚动        | Idle             | Scroll           |
+| 拖动滚动条         | Idle             | Scroll           |
+| 滚动控制器滚动（带动画）  | Idle             | Fling            |
+| 滚动控制器滚动（不带动画） | Idle             | Idle             |
 
 >  **说明：**
 >
@@ -204,13 +204,13 @@ struct ListExample {
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
               .width('100%').height(100).fontSize(16)
               .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
           }
-        }, item => item)
+        }, (item: string) => item)
       }
       .listDirection(Axis.Vertical) // 排列方向
       .scrollBar(BarState.Off)
@@ -251,7 +251,7 @@ struct ListLanesExample {
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item: string) => {
           ListItem() {
             Text('' + item)
               .width('100%')
@@ -262,7 +262,7 @@ struct ListLanesExample {
               .backgroundColor(0xFFFFFF)
           }
           .border({ width: 2, color: Color.Green })
-        }, item => item)
+        }, (item: string) => item)
       }
       .height(300)
       .width("90%")
@@ -286,7 +286,7 @@ struct ListLanesExample {
 }
 ```
 
-![list](figures/list1.gif)
+![list](figures/list-alignListItem.gif)
 
 
 ### 示例3
@@ -295,17 +295,17 @@ struct ListLanesExample {
 // xxx.ets
 @Entry
 @Component
-struct ListExample{
+struct ListExample {
   @State arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   @State editFlag: boolean = false
 
-  build(){
-    Stack({alignContent: Alignment.TopStart}) {
-      Column(){
-        List({space:20, initialIndex:0}) {
-          ForEach(this.arr, (item, index) => {
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Column() {
+        List({ space: 20, initialIndex: 0 }) {
+          ForEach(this.arr, (item: number, index?: number) => {
             ListItem() {
-              Flex({direction: FlexDirection.Row, alignItems: ItemAlign.Center}) {
+              Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
                 Text('' + item)
                   .width('100%')
                   .height(80)
@@ -319,15 +319,17 @@ struct ListExample{
                     Text("delete").fontSize(16)
                   }.width('30%').height(40)
                   .onClick(() => {
-                    console.info(this.arr[index] + 'Delete')
-                    this.arr.splice(index, 1)
-                    console.info(JSON.stringify(this.arr))
-                    this.editFlag = false
+                    if (index != undefined) {
+                      console.info(this.arr[index] + 'Delete')
+                      this.arr.splice(index, 1)
+                      console.info(JSON.stringify(this.arr))
+                      this.editFlag = false
+                    }
                   }).stateEffect(true)
                 }
               }
             }
-          }, item => item)
+          }, (item: string) => item)
         }.width('90%')
         .scrollBar(BarState.Off)
         .friction(0.6)
@@ -351,14 +353,19 @@ struct ListExample{
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = Array.apply(this, {length: 20}).map((item, i) => i)
+  private arr: number[] = []
   private scrollerForList: Scroller = new Scroller()
 
+  aboutToAppear() {
+    for (let i = 0; i < 20; i++) {
+      this.arr.push(i)
+    }
+  }
   build() {
     Column() {
       Row() {
-        List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-          ForEach(this.arr, (item) => {
+        List({ space: 20, initialIndex: 3, scroller: this.scrollerForList }) {
+          ForEach(this.arr, (item: number) => {
             ListItem() {
               Text('' + item)
                 .width('100%').height(100).fontSize(16)
@@ -367,8 +374,13 @@ struct ListExample {
             .borderRadius(10).backgroundColor(0xFFFFFF)
             .width('60%')
             .height('80%')
-          }, item => item)
+          }, (item: number) => JSON.stringify(item))
         }
+        .chainAnimationOptions({
+          minSpace: 20,
+          maxSpace: 60,
+          edgeEffect: ChainEdgeEffect.STRETCH
+        })
         .chainAnimation(true)
         .edgeEffect(EdgeEffect.Spring)
         .listDirection(Axis.Horizontal)
@@ -377,16 +389,16 @@ struct ListExample {
         .scrollSnapAlign(ScrollSnapAlign.CENTER)
         .borderRadius(10)
         .backgroundColor(0xDCDCDC)
-        .listDirection(Axis.Horizontal)
         .width('100%')
       }
       .width('100%')
       .height('100%')
       .backgroundColor(0xDCDCDC)
-      .padding({ top: 10})
+      .padding({ top: 10 })
     }
   }
 }
+
 ```
 
 ![list](figures/list4.gif)

@@ -9,7 +9,7 @@ The **nfcTag** module provides APIs for managing Near-Field Communication (NFC) 
 ## **Declaration**
 
 Before developing applications related to tag read and write, you must declare NFC-related attributes in the attribute configuration file of the applications. For example, declare the following attributes in the **module.json5** file:
-```js
+```json
 {
     "module": {
         // Attributes to declare.
@@ -23,20 +23,18 @@ Before developing applications related to tag read and write, you must declare N
 
                             // Add the nfc tag action.
                             "ohos.nfc.tag.action.TAG_FOUND"
+                        ],
+                        "uris": [
+                            {
+                                "type":"tag-tech/NfcA"
+                            },
+                            {
+                                "type":"tag-tech/IsoDep"
+                            }
+                            // Add other technology if neccessary,
+                            // such as NfcB, NfcF, NfcV, Ndef, MifareClassic, MifareUL, and NdefFormatable.
                         ]
                     }
-                ],
-                "metadata": [
-                    {
-                        "name": "tag-tech",
-                        "value": "NfcA"
-                    },
-                    {
-                        "name": "tag-tech",
-                        "value": "IsoDep"
-                    }
-                    // Add other technologies,
-                    // such as NfcB, NfcF, NfcV, Ndef, MifareClassic, MifareUL, and NdefFormatable.
                 ]
             }
         ],
@@ -49,13 +47,11 @@ Before developing applications related to tag read and write, you must declare N
     }
 }
 ```
-> **CAUTION**<br>
+> **CAUTION**
 >
 > - The **actions** field is mandatory. It must be **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
-> - The **name** field under **metadata** is mandatory. It must be **tag-tech** and cannot be changed.
-> - The **value** field under **metadata** is mandatory. It can be **NfcA**, **NfcB**, **NfcF**, **NfcV**, **IsoDep**, **Ndef**, **MifareClassic**, **MifareUL**, **NdefFormatable** or any of their combinations. Incorrect settings of this field will cause a parsing failure.
+> - The **type** field under **uris** must start with **tag-tech/**, followed by NfcA, NfcB, NfcF, NfcV, IsoDep, Ndef, MifareClassic, MifareUL, or NdefFormatable. If there are multiple types, enter them in different lines. Incorrect settings of this field will cause a parsing failure.
 > - The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
-
 ## **Modules to Import**
 
 ```js
@@ -68,60 +64,62 @@ Before a card with tags is read or written, **TagInfo** must be obtained to dete
 ```js
 import tag from '@ohos.nfc.tag';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want'
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want : Want, launchParam: AbilityConstant.LaunchParam) {
     // Add other code here.
 
-        // want is initialized by the NFC service and contains tagInfo.
-        var tagInfo;
-        try {
-            tagInfo = tag.getTagInfo(want);
-        } catch (error) {
-             console.log("tag.getTagInfo caught error: " + error);
-        }
-        if (tagInfo == null || tagInfo == undefined) {
-            console.log("no TagInfo to be created, ignore it.");
-            return;
-        }
-
-        // get the supported technologies for this found tag.
-        var isNfcATag =  false;
-        var isIsoDepTag =  false;
-        for (var i = 0; i < tagInfo.technology.length; i++) {
-            if (tagInfo.technology[i] == tag.NFC_A) {
-                isNfcATag = true;
-            }
-
-            if (tagInfo.technology[i] == tag.ISO_DEP) {
-                isIsoDepTag = true;
-            }
-        // Also check for technology tag.NFC_B, NFC_F, NFC_V, ISO_DEP, NDEF, MIFARE_CLASSIC, MIFARE_ULTRALIGHT, and NDEF_FORMATABLE.
-        }
-
-        // use NfcA APIs to access the found tag.
-        if (isNfcATag) {
-            var nfcA;
-            try {
-                nfcA = tag.getNfcATag(tagInfo);
-            } catch (error) {
-                console.log("tag.getNfcATag caught error: " + error);
-            }
-            // Other code to read or write this tag.
-        }
-
-        // use getIsoDep APIs to access the found tag.
-        if (isIsoDepTag) {
-            var isoDep;
-            try {
-                isoDep = tag.getIsoDep(tagInfo);
-            } catch (error) {
-                console.log("tag.getIsoDep caught error: " + error);
-            }
-            // Other code to read or write this tag.
-        }
-        // Use the same code to handle "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
+    // want is initialized by the NFC service and contains tagInfo.
+    let tagInfo : tag.TagInfo | null = null;
+    try {
+      tagInfo = tag.getTagInfo(want);
+    } catch (error) {
+      console.log("tag.getTagInfo caught error: " + error);
     }
+    if (tagInfo == null || tagInfo == undefined) {
+      console.log("no TagInfo to be created, ignore it.");
+      return;
+    }
+
+    // Get the supported technologies for this found tag.
+    let isNfcATag =  false;
+    let isIsoDepTag =  false;
+    for (let i = 0; i < tagInfo.technology.length; i++) {
+      if (tagInfo.technology[i] == tag.NFC_A) {
+        isNfcATag = true;
+      }
+
+      if (tagInfo.technology[i] == tag.ISO_DEP) {
+        isIsoDepTag = true;
+      }
+      // Also check for technology tag.NFC_B, NFC_F, NFC_V, ISO_DEP, NDEF, MIFARE_CLASSIC, MIFARE_ULTRALIGHT, and NDEF_FORMATABLE.
+    }
+
+    // Use NfcA APIs to access the found tag.
+    if (isNfcATag) {
+      let nfcA : tag.NfcATag | null = null;
+      try {
+        nfcA = tag.getNfcATag(tagInfo);
+      } catch (error) {
+        console.log("tag.getNfcATag caught error: " + error);
+      }
+      // Other code to read or write this tag.
+    }
+
+    // Use getIsoDep APIs to access the found tag.
+    if (isIsoDepTag) {
+      let isoDep : tag.IsoDepTag | null = null;
+      try {
+        isoDep = tag.getIsoDep(tagInfo);
+      } catch (error) {
+        console.log("tag.getIsoDep caught error: " + error);
+      }
+      // Other code to read or write this tag.
+    }
+    // Use the same code to handle "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
+  }
 }
 ```
 
@@ -523,22 +521,34 @@ Unregisters the listening for card reading events of an NFC tag foreground appli
 **Example**
 
 ```js
+import Want from '@ohos.app.ability.Want'
 import UIAbility from '@ohos.app.ability.UIAbility'
 import tag from '@ohos.nfc.tag';
+import { BusinessError } from '@ohos.base';
+import bundleManager from '@ohos.bundle.bundleManager';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
-let elementName = null;
-let discTech = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
-function foregroundCb(tagInfo: any) {
-    console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
+let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
+let elementName : bundleManager.ElementName;
+function foregroundCb(err : BusinessError, tagInfo : tag.TagInfo) {
+    if (err as BusinessError) {
+        if (!err) {
+            console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
+        } else {
+            console.log("foreground callback err: " + (err as BusinessError).message);
+            return;
+        }
+    }
+  // Other operations of taginfo.
 }
 
 export default class MainAbility extends UIAbility {
-    OnCreate(want, launchParam) {
+    OnCreate(want : Want, launchParam : AbilityConstant.LaunchParam) {
         console.log("OnCreate");
         elementName = {
-            bundleName: want.bundleName,
-            abilityName: want.abilityName,
-            moduleName: want.moduleName
+            bundleName: want.bundleName as string,
+            abilityName: want.abilityName as string,
+            moduleName: want.moduleName as string
         }
     }
 
@@ -547,7 +557,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.registerForegroundDispatch(elementName, discTech, foregroundCb);
         } catch (e) {
-            console.log("registerForegroundDispatch error: " + e.message);
+            console.log("registerForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -556,7 +566,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.log("registerForegroundDispatch error: " + e.message);
+            console.log("registerForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -565,11 +575,11 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.log("registerForegroundDispatch error: " + e.message);
+            console.log("registerForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
-    // override other lifecycle functions
+  // Override other lifecycle functions.
 }
 ```
 
@@ -763,19 +773,13 @@ Converts an NDEF message to bytes.
 import tag from '@ohos.nfc.tag';
 
 let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // MUST can be parsed as NDEF Record.
-let ndefMessage;
 try {
-    ndefMessage = tag.ndef.createNdefMessage(rawData);
+    let ndefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
-} catch (busiError) {
-    console.log("ndef createNdefMessage busiError: " + busiError);
-}
-
-try {
     let rawData2 = tag.ndef.messageToBytes(ndefMessage);
     console.log("ndefMessage messageToBytes rawData2: " + rawData2);
 } catch (busiError) {
-    console.log("ndefMessage messageToBytes caught busiError: " + busiError);
+    console.log("ndef createNdefMessage busiError: " + busiError);
 }
 ```
 ## tag.ndef.createNdefMessage<sup>9+</sup>
@@ -803,9 +807,8 @@ Creates an NDEF message from raw byte data. The data must comply with the NDEF r
 import tag from '@ohos.nfc.tag';
 
 let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43];  // MUST can be parsed as NDEF Record.
-let ndefMessage;
 try {
-    ndefMessage = tag.ndef.createNdefMessage(rawData);
+    let ndefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
 } catch (busiError) {
     console.log("ndef createNdefMessage busiError: " + busiError);
@@ -840,9 +843,8 @@ import tag from '@ohos.nfc.tag';
 let uriRecord = tag.ndef.makeUriRecord("https://gitee.com/openharmony");
 let textRecord = tag.ndef.makeTextRecord("Hello World", "en");
 let ndefRecords = [uriRecord, textRecord];
-let ndefMessage;
 try {
-    ndefMessage = tag.ndef.createNdefMessage(ndefRecords);
+    let ndefMessage = tag.ndef.createNdefMessage(ndefRecords);
     console.log("ndef createNdefMessage ndefMessage: " + ndefMessage);
 } catch (busiError) {
     console.log("ndef createNdefMessage busiError: " + busiError);
@@ -885,7 +887,7 @@ Enumerates the tag technology types.
 | **Name**                    | **Value**| **Description**                   |
 | ---------------------------- | ------ | --------------------------- |
 | NFC_A                        | 1      | NFC-A (ISO 14443-3A). |
-| NFC_B  | 2 | NFC-B (ISO 14443-3B).|
+| NFC_B                        | 2      | NFC-B (ISO 14443-3B). |
 | ISO_DEP                      | 3      | ISO-DEP (ISO 14443-4).|
 | NFC_F                        | 4      | NFC-F (JIS 6319-4).   |
 | NFC_V                        | 5      | NFC-V (ISO 15693).    |

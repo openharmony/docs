@@ -56,15 +56,44 @@ ArkTS卡片与JS卡片具备不同的实现原理及特征，在场景能力上�
 
 推荐在开发需求需要动态能力的卡片时使用ArkTS卡片，因为它拥有更加丰富的能力和适应更多的场景，能够提高效率并实现动态化。但如果只需要静态展示卡片，可以考虑使用JS卡片。
 
+## 动态卡片和静态卡片
+对于ArkTS卡片，为了降低不同业务场景下不必要的内存资源开销，又可分为动态卡片和静态卡片（通过[form_config.json](arkts-ui-widget-configuration.md)配置文件中`isDynamic`字段区分），两者主要区别如下。
+- 动态卡片：支持通用事件能力和自定义动效能力，适用于有复杂业务逻辑和交互的场景，功能丰富但内存开销较大。
+- 静态卡片：支持UI组件和布局能力，不支持通用事件和自定义动效能力，卡片内容以静态图显示，仅可以通过[FormLink](../reference/arkui-ts/ts-container-formlink.md)组件跳转到指定的UIAbility，适用于展示类卡片（UI相对固定），功能简单但可以有效控制内存开销。
+
+静态卡片与动态卡片的能力对比如下：
+| 卡片能力 | 静态卡片 | 动态卡片 |
+| -------- | -------- | -------- |
+| 组件能力 | 支持 | 支持 |
+| 布局能力 | 支持 | 支持 |
+| 事件能力 | 受限支持 | 支持 |
+| 自定义动效 | 不支持 | 支持 |
+| 自定义绘制 | 支持 | 支持 |
+| 逻辑代码执行（不包含import能力） | 支持 | 支持 |
+
+静态卡片使用上还存在如下约束：
+- 不推荐频繁刷新UI的场景使用。
+
+- 不推荐刷新时通过[FormLink](../reference/arkui-ts/ts-container-formlink.md)传递状态变量。
+
+- 不推荐需要处理复杂业务逻辑的场景使用。
+
+- 不推荐动效场景使用。
 ## 相关实例
+
+此文档中示例代码均有完整示例工程对应，具体对应关系如下：
+
+- [ArkTS卡片开发指导 - 开发卡片页面](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Form/ArkTSCardDocsSample)
 
 针对Stage模型卡片提供方的开发，有以下相关实例可供参考：
 
+- [ArkTS音乐卡片（ArkTS卡片）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/MusicControl)
 
-- [基于Stage模型的JS卡片（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility)
+- [Stage模型卡片（JS卡片）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility)
 
-- [基于Stage模型的JS卡片（成语接龙小游戏）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)
+- [Stage模型卡片JS与C++通信（JS卡片）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)
 
-- [基于Stage模型的ArkTS卡片（Canvas绘制实现的五子棋游戏卡片）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/CanvasGame)
+- [ArkTS卡片Canvas小游戏（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/CanvasGame)
 
-- [基于Stage模型的ArkTS卡片（逻辑代码执行实现的计算器卡片）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/Calculator)
+- [ArkTS卡片计算器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/Calculator)
+

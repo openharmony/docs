@@ -86,3 +86,7 @@ The following lists the permission groups supported currently. For details about
 ## Installed Bundle List
 
 - ohos.permission.GET_INSTALLED_BUNDLE_LIST
+
+## Bluetooth
+
+- ohos.permission.ACCESS_BLUETOOTH

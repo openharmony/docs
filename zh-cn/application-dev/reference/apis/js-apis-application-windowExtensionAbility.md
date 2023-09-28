@@ -36,17 +36,18 @@ onConnect(want: Want): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 当前ability的Want类型信息，包括ability名称、bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 当前ability的Want类型信息，包括ability名称、bundle名称等。 |
 
 **示例：**
 
 ```ts
-export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 
-  onConnect(want) {
+export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+  onConnect(want: Want) {
     console.info('WindowExtAbility onConnect, abilityName: ${want.abilityName}');
   }
-
 }
 ```
 
@@ -62,18 +63,19 @@ onDisconnect(want: Want): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 |
 
 
 **示例：**
 
 ```ts
-export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 
-  onDisconnect(want) {
+export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+  onDisconnect(want: Want) {
     console.info('WindowExtAbility onDisconnect, abilityName: ${want.abilityName}');
   }
-
 }
 ```
 
@@ -95,16 +97,17 @@ onWindowReady(window: window.Window): void
 **示例：**
 
 ```ts
-export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import window from '@ohos.window';
 
-  onWindowReady(window) {
+export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+  onWindowReady(window: window.Window) {
     window.loadContent('WindowExtAbility/pages/index1').then(() => {
-      window.getProperties().then((pro) => {
+      window.getProperties().then((pro: window.WindowProperties) => {
         console.log('WindowExtension pro: ${JSON.stringify(pro)}');
       });
       window.show();
     });
   }
-
 }
 ```

@@ -18,6 +18,20 @@ For details about the APIs, see [Vulkan](../reference/native-lib/third_party_vul
 
 The following steps illustrate how to create a **VkSurfaceKHR** instance.
 
+To use the extended APIs, define the macro **VK_USE_PLATFORM_OHOS** in the **CMakeLists.txt** file.
+```txt
+ADD_DEFINITIONS(-DVK_USE_PLATFORM_OHOS=1)
+```
+
+**Adding Dynamic Link Libraries**
+
+Add the following libraries to **CMakeLists.txt**:
+```txt
+libace_ndk.z.so
+libnative_window.so
+libvulkan.so
+```
+
 **Header File**
 ```c++
 #include <ace/xcomponent/native_interface_xcomponent.h>
@@ -51,7 +65,6 @@ The following steps illustrate how to create a **VkSurfaceKHR** instance.
     ```
 
 2. Obtain an **OHNativeWindow** instance.
-
     The **OHNativeWindow** instance is obtained from the **\<XComponent>**. For details about how to use the **\<XComponent>**, see [XComponent](../ui/arkts-common-components-xcomponent.md) and [XComponent Development](xcomponent-guidelines.md).
     1. Add an **\<XComponent>** to **ets/pages/Index.ets**.
     ```ts
@@ -72,7 +85,6 @@ The following steps illustrate how to create a **VkSurfaceKHR** instance.
         OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
     }
 
-    EXTERN_C_START
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
@@ -80,18 +92,20 @@ The following steps illustrate how to create a **VkSurfaceKHR** instance.
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
 
-        // Declare an XComponent callback.
-        OH_NativeXComponent_Callback callback;
-        // Register the OnSurfaceCreated callback function.
-        callback.OnSurfaceCreated = OnSurfaceCreatedCB;
-        
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
         napi_value exportInstance = nullptr;
         OH_NativeXComponent *nativeXComponent = nullptr;
         // Obtain a native XComponent.
         napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance);
         napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent));
+        // Obtain the XComponent ID.
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+        OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize);
+
+        // Declare an XComponent callback.
+        OH_NativeXComponent_Callback callback;
+        // Register the OnSurfaceCreated callback function.
+        callback.OnSurfaceCreated = OnSurfaceCreatedCB;
         // Register the callback function for the native XComponent.
         OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback);
         
@@ -107,7 +121,7 @@ The following steps illustrate how to create a **VkSurfaceKHR** instance.
     surfaceCreateInfo.window = nativeWindow; // nativeWindow is obtained from the OnSurfaceCreatedCB callback function in the previous step.
     int err = vkCreateSurfaceOHOS(instance, &surfaceCreateInfo, NULL, &surface);
     if (err != VK_SUCCESS) {
-        std::cout << "Could not create surface!" << std::endl;
+        // // Creating the surface failed.
     }
     ```
 For details about how to use Vulkan, visit the [Vulkan official website](https://www.vulkan.org/).

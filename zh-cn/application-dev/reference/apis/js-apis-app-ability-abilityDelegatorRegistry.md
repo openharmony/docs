@@ -45,16 +45,17 @@ getAbilityDelegator(): AbilityDelegator
 
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Want from '@ohos.app.ability.Want';
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-let want = {
+let want: Want = {
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
 };
 abilityDelegator.startAbility(want, (err) => {
     if (err) {
-        console.error('Failed start ability, error: ${JSON.stringify(err)}');
+        console.error(`Failed start ability, error: ${JSON.stringify(err)}`);
     } else {
         console.log('Success start ability.');
     }
@@ -81,8 +82,8 @@ getArguments(): AbilityDelegatorArgs
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 let args = AbilityDelegatorRegistry.getArguments();
-console.info('getArguments bundleName: ${args.bundleName}');
-console.info('getArguments parameters: ${JSON.stringify(args.parameters)}');
-console.info('getArguments testCaseNames: ${args.testCaseNames}');
-console.info('getArguments testRunnerClassName: ${args.testRunnerClassName}');
+console.info(`getArguments bundleName: ${args.bundleName}`);
+console.info(`getArguments parameters: ${JSON.stringify(args.parameters)}`);
+console.info(`getArguments testCaseNames: ${args.testCaseNames}`);
+console.info(`getArguments testRunnerClassName: ${args.testRunnerClassName}`);
 ```

@@ -1,7 +1,7 @@
 # 配置卡片的配置文件
 
 
-卡片相关的配置文件主要包含FormExtensionAbility的配置和卡片的配置两部分：
+卡片相关的配置文件主要包含FormExtensionAbility的配置和卡片的配置两部分。
 
 
 1. 卡片需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中的extensionAbilities标签下，配置FormExtensionAbility相关信息。FormExtensionAbility需要填写metadata元信息标签，其中键名称为固定字符串“ohos.extension.form”，资源为卡片的具体配置信息的索引。
@@ -52,9 +52,9 @@
    | updateDuration | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br/>当取值为0时，表示该参数不生效。<br/>当取值为正整数N时，表示刷新周期为30\*N分钟。<br/>&gt;&nbsp;**说明：**<br/>&gt;&nbsp;updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 数值 | 可缺省，缺省值为“0”。 |
    | formConfigAbility | 表示卡片的配置跳转链接，采用URI格式。 | 字符串 | 可缺省，缺省值为空。 |
    | formVisibleNotify | 标识是否允许卡片使用卡片可见性通知。 | 字符串 | 可缺省，缺省值为空。 |
-   | metadata | 表示卡片的自定义信息，包含customizeData数组标签。 | 对象 | 可缺省，缺省值为空。 |
+   | metadata | 表示卡片的自定义信息，包含[customizeData](../reference/apis/js-apis-bundle-CustomizeData.md)数组标签。 | 对象 | 可缺省，缺省值为空。 |
    | dataProxyEnabled | 表示卡片是否支持[卡片代理刷新](./arkts-ui-widget-update-by-proxy.md)，取值范围：<br/>-&nbsp;true：表示支持代理刷新。<br/>-&nbsp;false：表示不支持代理刷新。<br/>设置为true时，[定时刷新和下次刷新不生效，但不影响定点刷新](./arkts-ui-widget-update-by-time.md) | 布尔类型 | 可缺省，缺省值为false。 |
-   | isDynamic | 表示此卡片是否为动态卡片（仅针对ArkTS卡片生效）。<br/>-&nbsp;true：为动态卡片。<br/>-&nbsp;false：为静态卡片，当卡片添加成功后，将以静态图显示。 | 布尔类型 | 可缺省，缺省值为true。 |
+   | isDynamic | 表示此卡片是否为动态卡片（仅针对ArkTS卡片生效）。 <br/>-&nbsp;true：为动态卡片 。<br/>-&nbsp;false：为静态卡片。<br/>| 布尔类型 | 可缺省，缺省值为true。 |
 
    **表2** window对象的内部结构说明
 
@@ -86,7 +86,11 @@
          "defaultDimension": "2*2",
          "supportDimensions": [
            "2*2"
-         ]
+         ],
+         "formConfigAbility": "",
+         "formVisibleNotify": "",
+         "dataProxyEnabled": false,
+         "metadata": {}
        }
      ]
    }

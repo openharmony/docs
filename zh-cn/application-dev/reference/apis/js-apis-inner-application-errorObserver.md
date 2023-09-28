@@ -31,7 +31,7 @@ onUnhandledException(errMsg: string): void;
 ```ts
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
     console.error('onUnhandledException, errorMsg: ', errorMsg);
   }
@@ -63,7 +63,7 @@ onException?(errObject: Error): void;
 ```ts
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
     console.error('onUnhandledException, errorMsg: ', errorMsg);
   },

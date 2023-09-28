@@ -27,13 +27,15 @@ Data sources of the archived type can be classified into local resources, online
 
 - Local resources
 
-  To load local images, create an **ets** folder and place the local images in any position in the folder. Then, in the **\<Image>** component, set **src** to the local image path, with the root directory being the **ets** folder.
+  To load local images, create an **ets** folder and place the local images in any position in the folder.
+
+  Then, in the **\<Image>** component, set **src** to the local image path, with the root directory being the **ets** folder.
 
   ```ts
-Image('images/view.jpg')
+  Image('images/view.jpg')
   .width(200)
   ```
-  
+
 - Online resources
 
   To use online images, first apply for the **ohos.permission.INTERNET** permission. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md). Then, in the **\<Image>** component, set **src** to the URL of the online image.
@@ -46,9 +48,9 @@ Image('images/view.jpg')
 
   **Resource** objects can be used to import images across bundles and modules.
 
-  To load **Resource** objects, place images in the **resources** folder, which can then be read and converted to the **Resource** objects through **$r**.
+  To load **Resource** objects, place images in the **resources** folder, which can be read and converted to the **Resource** objects through **$r**.
 
-  **Figure 1** resources folder 
+  **Figure 1** resources folder
 
   ![image-resource](figures/image-resource.jpg)
 
@@ -75,33 +77,33 @@ Image('images/view.jpg')
   To load images from the media library, use a path string that starts with **file://**.
 
   1. Call the API to obtain the image URL in the media library.
-      ​    
       ```ts
       import picker from '@ohos.file.picker';
-
+      
       @Entry
       @Component
       struct Index {
         @State imgDatas: string[] = [];
         // Obtain the image URL set.
         getAllImg() {
-          let photoPicker = new picker.PhotoViewPicker();
           let result = new Array<string>();
           try {
-            let PhotoSelectOptions = new picker.PhotoSelectOptions();
+            let PhotoSelectOptions:picker.PhotoSelectOptions = new picker.PhotoSelectOptions();
             PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
             PhotoSelectOptions.maxSelectNumber = 5;
-            let photoPicker = new picker.PhotoViewPicker();
-            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult) => {
+            let photoPicker:picker.PhotoViewPicker = new picker.PhotoViewPicker();
+            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult:picker.PhotoSelectResult) => {
               this.imgDatas = PhotoSelectResult.photoUris;
               console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
-            }).catch((err) => {
+            }).catch((err:Error) => {
               console.error(`PhotoViewPicker.select failed with. Code: ${err.code}, message: ${err.message}`);
             });
           } catch (err) {
-            console.error(`PhotoViewPicker failed with. Code: ${err.code}, message: ${err.message}`);    }
+            let message:BusinessError = (err as BusinessError).message;
+            let code:BusinessError = (err as BusinessError).code;
+            console.error(`PhotoViewPicker failed with. Code: ${code}, message: ${message}`);    }
         }
-
+      
         // Call the preceding function in aboutToAppear to obtain the image URL set and store the URLs in imgDatas.
         async aboutToAppear() {
           this.getAllImg();
@@ -110,19 +112,19 @@ Image('images/view.jpg')
         build() {
           Column() {
             Grid() {
-              ForEach(this.imgDatas, item => {
+              ForEach(this.imgDatas, (item:string) => {
                 GridItem() {
                   Image(item)
                     .width(200)
                 }
-              }, item => JSON.stringify(item))
+              }, ((item:string):string => JSON.stringify(item)))
             }
           }.width('100%').height('100%')
         }
       }
       ```
+
   2. Check the format of the URL obtained from the media library:
-      ​    
       ```ts
       Image('file://media/Photos/5')
       .width(200)
@@ -150,17 +152,15 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
    Request an online image and implement transcoding to generate a pixel map.
 
    1. Reference the network and media library access permissions.
-       ​    
        ```ts
        import http from '@ohos.net.http';
        import ResponseCode from '@ohos.net.http';
        import image from '@ohos.multimedia.image';
        ```
    2. Enter the online image address.
-       ​    
        ```ts
        http.createHttp().request("https://www.example.com/xxx.png",
-         (error, data) => {
+         (error:Error) => {
            if (error){
              console.error(`http reqeust failed with. Code: ${error.code}, message: ${error.message}`);
            } else {
@@ -168,32 +168,52 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
          }
        )
        ```
-   3. Transcode the data returned by the online image address to a pixel map.
-       ​    
+   3. Transcode the data returned by the online image address to a pixel map.  
        ```ts
-       let code = data.responseCode;
-       if(ResponseCode.ResponseCode.OK === code) {
-         let imageSource = image.createImageSource(data.result);
-         let options = {
-           alphaType: 0,                     // Alpha type.
-           editable: false,                  // Whether the image is editable.
-           pixelFormat: 3,                   // Pixel format.
-           scaleMode: 1,                     // Scale mode.
-           size: {height: 100, width: 100}
-          }  // Image size.
-           imageSource.createPixelMap(options).then((pixelMap) => {
-           this.image = pixelMap
+       let code:object = data.responseCode;
+       if (ResponseCode.ResponseCode.OK === code) {
+         let imageSource:image = image.createImageSource(data.result);
+         class tmp{
+           height:number = 100
+           width:number = 100
+         }
+         let si:tmp = new tmp()
+         let options:Record<string,number|boolean|tmp> = {
+           'alphaType': 0, // Alpha type.
+           'editable': false, // Whether the image is editable.
+           'pixelFormat': 3, // Pixel format.
+           'scaleMode': 1, // Scale mode.
+           'size': { height: 100, width: 100 }
+         }  // Image size.
+         class imagetmp{
+           image:image
+           set(val:PixelMap){
+             this.image = val
+           }
+         }
+          imageSource.createPixelMap(options).then((pixelMap:PixelMap) => {
+          let im = new imagetmp()
+            im.set(pixelMap)
        })
+       }
        ```
    4. Display the image.
-       ​    
        ```ts
+       class htp{
+        httpRequest:Function|undefined = undefined
+        set(){
+          if(this.httpRequest){
+          this.httpRequest()
+          }
+        }
+      }
        Button ("Get Online Image")
          .onClick(() => {
-           this.httpRequest()
+           let sethtp = new htp()
+           sethtp.set()
          })
        Image(this.image).height(100).width(100)
-       ```
+      ```
 
 
 ## Displaying Vector Images
@@ -502,6 +522,14 @@ By binding the **onComplete** event to the **\<Image>** component, you can obtai
 
 
 ```ts
+class tmp{
+  width: number = 0
+  height: number = 0
+  componentWidth: number = 0
+  componentHeight: number = 0
+}
+
+let msg:tmp = new tmp()
 @Entry
 @Component
 struct MyComponent {
@@ -517,16 +545,13 @@ struct MyComponent {
           .width(200)
           .height(150)
           .margin(15)
-          .onComplete((msg: {
-            width: number,
-            height: number,
-            componentWidth: number,
-            componentHeight: number
-          }) => {
-            this.widthValue = msg.width
-            this.heightValue = msg.height
-            this.componentWidth = msg.componentWidth
-            this.componentHeight = msg.componentHeight
+          .onComplete(msg => {
+            if(msg){
+              this.widthValue = msg.width
+              this.heightValue = msg.height
+              this.componentWidth = msg.componentWidth
+              this.componentHeight = msg.componentHeight
+            }
           })
             // If the image fails to be obtained, print the result.
           .onError(() => {

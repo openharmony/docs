@@ -33,13 +33,15 @@ import Want from '@ohos.application.Want';
 - 基础用法(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)
 
   ```ts
-    let want = {
+    import Want from '@ohos.application.Want';
+    import { BusinessError } from '@ohos.base';
+
+    let want: Want = {
         'deviceId': '', // deviceId为空表示本设备
         'bundleName': 'com.example.myapplication',
         'abilityName': 'EntryAbility',
-        'moduleName': 'entry' // moduleName非必选
     };
-    this.context.startAbility(want, (error) => {
+    this.context.startAbility(want, (error: BusinessError) => {
         // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
         console.error('error.code = ${error.code}');
     });
@@ -49,7 +51,9 @@ import Want from '@ohos.application.Want';
 
     * 字符串（String）
         ```ts
-        let want = {
+        import Want from '@ohos.application.Want';
+
+        let want: Want = {
             bundleName: 'com.example.myapplication',
             abilityName: 'EntryAbility',
             parameters: {
@@ -59,7 +63,9 @@ import Want from '@ohos.application.Want';
         ```
     * 数字（Number）
         ```ts
-        let want = {
+        import Want from '@ohos.application.Want';
+
+        let want: Want = {
             bundleName: 'com.example.myapplication',
             abilityName: 'EntryAbility',
             parameters: {
@@ -70,7 +76,9 @@ import Want from '@ohos.application.Want';
         ```
     * 布尔（Boolean）
         ```ts
-        let want = {
+        import Want from '@ohos.application.Want';
+
+        let want: Want = {
             bundleName: 'com.example.myapplication',
             abilityName: 'EntryAbility',
             parameters: {
@@ -80,7 +88,9 @@ import Want from '@ohos.application.Want';
         ```
     * 对象（Object）
         ```ts
-        let want = {
+        import Want from '@ohos.application.Want';
+
+        let want: Want = {
             bundleName: 'com.example.myapplication',
             abilityName: 'EntryAbility',
             parameters: {
@@ -95,7 +105,9 @@ import Want from '@ohos.application.Want';
         ```
     * 数组（Array）
         ```ts
-        let want = {
+        import Want from '@ohos.application.Want';
+
+        let want: Want = {
             bundleName: 'com.example.myapplication',
             abilityName: 'EntryAbility',
             parameters: {
@@ -109,22 +121,24 @@ import Want from '@ohos.application.Want';
     * 文件描述符（FD）
         ```ts
             import fs from '@ohos.file.fs';
-            let fd;
+            import Want from '@ohos.application.Want';
+            import { BusinessError } from '@ohos.base';
+
+            let fd: number = 0;
             try {
                 fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
             } catch(e) {
-                console.error('openSync fail: ${JSON.stringify(e)}');
+                console.error(`openSync fail: ${JSON.stringify(e)}`);
             }
-            let want = {
-                'deviceId': '', // deviceId为空表示本设备
-                'bundleName': 'com.example.myapplication',
-                'abilityName': 'EntryAbility',
-                'moduleName': 'entry', // moduleName非必选
-                'parameters': {
+            let want: Want = {
+                deviceId: '', // deviceId为空表示本设备
+                bundleName: 'com.example.myapplication',
+                abilityName: 'EntryAbility',
+                parameters: {
                     'keyFd':{'type':'FD', 'value':fd}
                 }
             };
-            this.context.startAbility(want, (error) => {
+            this.context.startAbility(want, (error: BusinessError) => {
                 // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
                 console.error('error.code = ${error.code}');
             });

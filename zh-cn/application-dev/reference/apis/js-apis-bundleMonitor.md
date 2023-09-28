@@ -68,13 +68,16 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void;
 
 ```ts
 import bundleMonitor from '@ohos.bundle.bundleMonitor';
+import { BusinessError } from '@ohos.base';
 
 try {
     bundleMonitor.on('add', (bundleChangeInfo) => {
         console.info(`bundleName : ${bundleChangeInfo.bundleName} userId : ${bundleChangeInfo.userId}`);
 	})
 } catch (errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    let message = (errData as BusinessError).message;
+    let errCode = (errData as BusinessError).code;
+    console.log(`errData is errCode:${errCode}  message:${message}`);
 }
 ```
 
@@ -101,10 +104,13 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void;
 
 ```ts
 import bundleMonitor from '@ohos.bundle.bundleMonitor';
+import { BusinessError } from '@ohos.base';
 
 try {
     bundleMonitor.off('add');
 } catch (errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    let message = (errData as BusinessError).message;
+    let errCode = (errData as BusinessError).code;
+    console.log(`errData is errCode:${errCode}  message:${message}`);
 }
 ```

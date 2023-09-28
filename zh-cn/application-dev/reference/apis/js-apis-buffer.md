@@ -16,23 +16,23 @@ import buffer from '@ohos.buffer';
 
 ## BufferEncoding
 
-表示支持的编码格式字符串。
+表示支持的编码格式类型。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 编码格式    | 说明                 |
+| 类型    | 说明                 |
 | ------- | -------------------- |
-| 'ascii' | 表示ascii格式，不区分大小写。 |
-| 'utf8' | 表示utf8格式，不区分大小写。 |
-| 'utf-8' | 表示utf8格式，不区分大小写。 |
-| 'utf16le' | 表示utf16小端序格式，不区分大小写。 |
-| 'ucs2' | 表示utf16小端序格式，不区分大小写。 |
-| 'ucs-2' | 表示utf16小端序格式，不区分大小写。 |
-| 'base64' | 表示base64格式，不区分大小写。 |
-| 'base64url' | 表示base64格式，不区分大小写。 |
-| 'latin1' | 表示ascii格式，不区分大小写。 |
-| 'binary' | 表示二进制格式，不区分大小写。 |
-| 'hex' | 表示十六进制格式，不区分大小写。 |
+| 'ascii' | 表示ascii格式。 |
+| 'utf8' | 表示utf8格式。 |
+| 'utf-8' | 表示utf8格式。 |
+| 'utf16le' | 表示utf16小端序格式。 |
+| 'ucs2' | utf16le的别名。 |
+| 'ucs-2' | utf16le的别名。 |
+| 'base64' | 表示base64格式。 |
+| 'base64url' | 表示base64url格式。 |
+| 'latin1' | 表示ascii格式。 |
+| 'binary' | 表示二进制格式。 |
+| 'hex' | 表示十六进制格式。 |
 
 ## buffer.alloc
 
@@ -604,7 +604,7 @@ let buf1 = buffer.allocUninitializedFromPool(26);
 let buf2 = buffer.allocUninitializedFromPool(26).fill('!');
 
 for (let i = 0; i < 26; i++) {
-  buf1[i] = i + 97;
+  buf1.writeInt8(i + 97, i);
 }
 
 buf1.copy(buf2, 8, 16, 20);
@@ -633,8 +633,11 @@ entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
-for (let pair of buf.entries()) {
-  console.log(pair.toString());
+let pair = buf.entries()
+let next: IteratorResult<Object[]> = pair.next()
+while (!next.done) {
+  console.info("buffer: " + next.value)
+  next = pair.next()
 }
 ```
 
@@ -796,7 +799,8 @@ keys(): IterableIterator&lt;number&gt;
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
-for (const key of buf.keys()) {
+let numbers = Array.from(buf.values())
+for (const key of numbers) {
   console.log(key.toString());
 }
 ```
@@ -1766,7 +1770,7 @@ import buffer from '@ohos.buffer';
 let buf1 = buffer.allocUninitializedFromPool(26);
 
 for (let i = 0; i < 26; i++) {
-  buf1[i] = i + 97;
+  buf1.writeInt8(i + 97, i);
 }
 const buf2 = buf1.subarray(0, 3);
 console.log(buf2.toString('ascii', 0, buf2.length));
@@ -1932,7 +1936,7 @@ import buffer from '@ohos.buffer';
 
 let buf1 = buffer.allocUninitializedFromPool(26);
 for (let i = 0; i < 26; i++) {
-  buf1[i] = i + 97;
+  buf1.writeInt8(i + 97, i);
 }
 console.log(buf1.toString('utf-8'));
 // 打印: abcdefghijklmnopqrstuvwxyz
@@ -1958,8 +1962,11 @@ values(): IterableIterator&lt;number&gt;
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from('buffer');
-for (let value of buf1.values()) {
-  console.log(value.toString());
+let pair = buf1.values()
+let next:IteratorResult<number> = pair.next()
+while (!next.done) {
+  console.log(next.value.toString());
+  next = pair.next()
 }
 ```
 
@@ -2913,8 +2920,14 @@ Blob的构造函数。
 ```ts
 import buffer from '@ohos.buffer';
 
-let blob = new buffer.Blob(['a', 'b', 'c']);
-let blob1 = new buffer.Blob(['a', 'b', 'c'], {endings:'native', type: 'MIME'});
+let blob: buffer.Blob  = new buffer.Blob(['a', 'b', 'c']);
+
+class option {
+  endings: string = ""
+  type: string = ""
+}
+let o1: option = {endings:'native', type: 'MIME'}
+let blob1: buffer.Blob = new buffer.Blob(['a', 'b', 'c'], o1);
 ```
 
 ### arrayBuffer
@@ -2932,10 +2945,12 @@ arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 
 **示例：**
 ```ts
-let blob = new buffer.Blob(['a', 'b', 'c']);
+import buffer from '@ohos.buffer';
+
+let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.arrayBuffer();
-pro.then(val => {
-  let uintarr = new Uint8Array(val);
+pro.then((val: ArrayBuffer) => {
+  let uintarr: Uint8Array = new Uint8Array(val);
   console.log(uintarr.toString());
 });
 ```
@@ -2962,7 +2977,9 @@ slice(start?: number, end?: number, type?: string): Blob
 
 **示例：**
 ```ts
-let blob = new buffer.Blob(['a', 'b', 'c']);
+import buffer from '@ohos.buffer';
+
+let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let blob2 = blob.slice(0, 2);
 let blob3 = blob.slice(0, 2, "MIME");
 ```
@@ -2982,9 +2999,11 @@ text(): Promise&lt;string&gt;
 
 **示例：**
 ```ts
-let blob = new buffer.Blob(['a', 'b', 'c']);
+import buffer from '@ohos.buffer';
+
+let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.text();
-pro.then(val => {
-    console.log(val)
+pro.then((val: string) => {
+  console.log(val)
 });
 ```

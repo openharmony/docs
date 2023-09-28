@@ -30,12 +30,15 @@
 
 1. 查询设备列表。
 
-  ```js
-  var matchDevice;
+  ```ts
+  import deviceManager from '@ohos.driver.deviceManager';
+  import type { BusinessError } from '@ohos.base';
+
+  let matchDevice : deviceManager.USBDevice | null = null;
   try {
-    let devices = deviceManager.queryDevices(deviceManager.BusType.USB);
+    let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
     for (let item of devices) {
-      let device = item as deviceManager.USBDevice;
+      let device : deviceManager.USBDevice = item as deviceManager.USBDevice;
       // 通过productId和vendorId来匹配要使用的USB设备
       if (device.productId == 1234 && device.vendorId === 2345) {
         matchDevice = device;
@@ -43,63 +46,88 @@
       }
     }
   } catch (error) {
-    console.error('Failed to query device. Code is ${error.code}, message is ${error.message}');
+    let errCode = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`Failed to query device. Code is ${errCode}, message is ${message}`);
   }
   if (!matchDevice) {
     console.error('No match device');
-    return;
   }
   ```
 
 2. 绑定相应的设备。
 
-  ```js
-  var remoteObject;
+  ```ts
+  import deviceManager from '@ohos.driver.deviceManager';
+  import type { BusinessError } from '@ohos.base';
+  import type rpc from '@ohos.rpc'
+
+  let remoteObject : rpc.IRemoteObject;
   try {
-    deviceManager.bindDevice(matchDevice.deviceId, (error, data) => {
+    // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
+    deviceManager.bindDevice(12345678, (error : BusinessError, data) => {
       console.error('Device is disconnected');
-    }, (error, data) => {
+    }, (error : BusinessError, data) => {
       if (error) {
-        console.error('bindDevice async fail. Code is ${error.code}, message is ${error.message}');
+        console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
         return;
       }
-      console.info('bindDevice success');
-      remoteObject = data.remote;
-    });
+    console.info('bindDevice success');
+    remoteObject = data.remote;
+  });
   } catch (error) {
-    console.error('bindDevice fail. Code is ${error.code}, message is ${error.message}');
+    let errCode = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`bindDevice fail. Code is ${errCode}, message is ${message}`);
+  }
+  if (!remoteObject) {
+    console.error('Bind device failed');
   }
    ```
 
 3. 绑定成功后使用设备驱动能力。
 
-  ```js
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageSequence.create();
-  let repy = rpc.MessageSequence.create();
+  ```ts
+  import type { BusinessError } from '@ohos.base';
+  import rpc from '@ohos.rpc'
+
+  let option : rpc.MessageOption = new rpc.MessageOption();
+  let data : rpc.MessageSequence = rpc.MessageSequence.create();
+  let reply : rpc.MessageSequence = rpc.MessageSequence.create();
   data.writeString('hello');
   let code = 1;
+  // remoteObject应用可以通过绑定设备获取到
+  let remoteObject : rpc.IRemoteObject;
   // code和data内容取决于驱动提供的接口
   remoteObject.sendMessageRequest(code, data, reply, option)
-    .then(result => {
+    .then(() => {
       console.info('sendMessageRequest finish.');
-    }).catch(error => {
-      console.error('sendMessageRequest fail. code:' + error.code);
+    }).catch((error : BusinessError) => {
+      let errCode = (error as BusinessError).code;
+      console.error('sendMessageRequest fail. code:' + errCode);
     });
   ```
 
 4. 设备使用完成，解绑设备。
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.driver.deviceManager';
+  import type { BusinessError } from '@ohos.base';
+
   try {
-    deviceManager.unbindDevice(matchDevice.deviceId, (error, data) => {
+    // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
+    deviceManager.unbindDevice(12345678, (error : BusinessError, data) => {
       if (error) {
-        console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
+        let errCode = (error as BusinessError).code;
+        let message = (error as BusinessError).message;
+        console.error(`unbindDevice async fail. Code is ${errCode}, message is ${message}`);
         return;
       }
-      console.info('unbindDevice success');
-    });
+      console.info(`unbindDevice success`);
+  });
   } catch (error) {
-    console.error('unbindDevice fail. Code is ${error.code}, message is ${error.message}');
+    let errCode = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`unbindDevice fail. Code is ${errCode}, message is ${message}`);
   }
   ```

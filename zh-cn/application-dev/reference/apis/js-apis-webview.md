@@ -89,13 +89,14 @@ postMessageEvent(message: WebMessage): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[];
+  ports: web_webview.WebMessagePort[] = [];
 
   build() {
     Column() {
@@ -106,7 +107,8 @@ struct WebComponent {
             this.controller.postMessage('__init_port__', [this.ports[0]], '*');
             this.ports[1].postMessageEvent("post message from ets to html5");
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -141,13 +143,14 @@ onMessageEvent(callback: (result: WebMessage) => void): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[];
+  ports: web_webview.WebMessagePort[] = [];
 
   build() {
     Column() {
@@ -169,7 +172,8 @@ struct WebComponent {
               }
             })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -234,18 +238,20 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 // 应用与网页互发消息的示例：使用"init_web_messageport"的通道，通过端口0在应用侧接受网页发送的消息，通过端口1在网页侧接受应用发送的消息。
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[] = null;
-  nativePort: web_webview.WebMessagePort = null;
-  @State msg1:string = "";
-  @State msg2:string = "";
+  ports: web_webview.WebMessagePort[] = [];
+  nativePort: web_webview.WebMessagePort | null = null;
+  @State msg1: string = "";
+  @State msg2: string = "";
   message: web_webview.WebMessageExt = new web_webview.WebMessageExt();
+
   build() {
     Column() {
       Text(this.msg1).fontSize(16)
@@ -254,74 +260,76 @@ struct WebComponent {
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
-              console.log("In eTS side send true start");
-              if (this.nativePort) {
-                  this.message.setString("helloFromEts");
-                  this.nativePort.postMessageEventExt(this.message);
-              }
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setString("helloFromEts");
+              this.nativePort.postMessageEventExt(this.message);
+            }
           }
           catch (error) {
-              console.log("In eTS side send message catch error:" + error.code + ", msg:" + error.message);
+            let e: business_error.BusinessError = resError as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
           }
         })
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
-      .onPageEnd((e)=>{
-        console.log("In eTS side message onPageEnd init mesaage channel");
-        // 1. 创建消息端口
-        this.ports = this.controller.createWebMessagePorts(true);
-        // 2. 发送端口1到HTML5
-        this.controller.postMessage("init_web_messageport", [this.ports[1]], "*");
-        // 3. 保存端口0到本地
-        this.nativePort = this.ports[0];
-        // 4. 设置回调函数
-        this.nativePort.onMessageEventExt((result) => {
-            console.log("In eTS side got message");
+        .onPageEnd((e) => {
+          console.log("In ArkTS side message onPageEnd init mesaage channel");
+          // 1. 创建消息端口
+          this.ports = this.controller.createWebMessagePorts(true);
+          // 2. 发送端口1到HTML5
+          this.controller.postMessage("init_web_messageport", [this.ports[1]], "*");
+          // 3. 保存端口0到本地
+          this.nativePort = this.ports[0];
+          // 4. 设置回调函数
+          this.nativePort.onMessageEventExt((result) => {
+            console.log("In ArkTS side got message");
             try {
-                var type = result.getType();
-                console.log("In eTS side getType:" + type);
-                switch (type) {
-                    case web_webview.WebMessageType.STRING: {
-                        this.msg1 = "result type:" + typeof (result.getString());
-                        this.msg2 = "result getString:" + ((result.getString()));
-                        break;
-                    }
-                    case web_webview.WebMessageType.NUMBER: {
-                        this.msg1 = "result type:" + typeof (result.getNumber());
-                        this.msg2 = "result getNumber:" + ((result.getNumber()));
-                        break;
-                    }
-                    case web_webview.WebMessageType.BOOLEAN: {
-                        this.msg1 = "result type:" + typeof (result.getBoolean());
-                        this.msg2 = "result getBoolean:" + ((result.getBoolean()));
-                        break;
-                    }
-                    case web_webview.WebMessageType.ARRAY_BUFFER: {
-                        this.msg1 = "result type:" + typeof (result.getArrayBuffer());
-                        this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
-                        break;
-                    }
-                    case web_webview.WebMessageType.ARRAY: {
-                        this.msg1 = "result type:" + typeof (result.getArray());
-                        this.msg2 = "result getArray:" + result.getArray();
-                        break;
-                    }
-                    case web_webview.WebMessageType.ERROR: {
-                        this.msg1 = "result type:" + typeof (result.getError());
-                        this.msg2 = "result getError:" + result.getError();
-                        break;
-                    }
-                    default: {
-                        this.msg1 = "default break, type:" + type;
-                        break;
-                    }
+              let type = result.getType();
+              console.log("In ArkTS side getType:" + type);
+              switch (type) {
+                case web_webview.WebMessageType.STRING: {
+                  this.msg1 = "result type:" + typeof (result.getString());
+                  this.msg2 = "result getString:" + ((result.getString()));
+                  break;
                 }
+                case web_webview.WebMessageType.NUMBER: {
+                  this.msg1 = "result type:" + typeof (result.getNumber());
+                  this.msg2 = "result getNumber:" + ((result.getNumber()));
+                  break;
+                }
+                case web_webview.WebMessageType.BOOLEAN: {
+                  this.msg1 = "result type:" + typeof (result.getBoolean());
+                  this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                  break;
+                }
+                case web_webview.WebMessageType.ARRAY_BUFFER: {
+                  this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                  this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                  break;
+                }
+                case web_webview.WebMessageType.ARRAY: {
+                  this.msg1 = "result type:" + typeof (result.getArray());
+                  this.msg2 = "result getArray:" + result.getArray();
+                  break;
+                }
+                case web_webview.WebMessageType.ERROR: {
+                  this.msg1 = "result type:" + typeof (result.getError());
+                  this.msg2 = "result getError:" + result.getError();
+                  break;
+                }
+                default: {
+                  this.msg1 = "default break, type:" + type;
+                  break;
+                }
+              }
             }
             catch (resError) {
-                console.log(`log error code: ${resError.code}, Message: ${resError.message}`);
+              let e: business_error.BusinessError = resError as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
-        });
-      })
+          });
+        })
     }
   }
 }
@@ -424,13 +432,14 @@ close(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  msgPort: web_webview.WebMessagePort[] = null;
+  msgPort: web_webview.WebMessagePort[] = [];
 
   build() {
     Column() {
@@ -441,7 +450,8 @@ struct WebComponent {
             this.msgPort = this.controller.createWebMessagePorts();
             console.log("createWebMessagePorts size:" + this.msgPort.length)
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Button('close')
@@ -453,8 +463,9 @@ struct WebComponent {
               console.error("msgPort is null, Please initialize first");
             }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
-          }      
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -482,13 +493,15 @@ static initializeWebEngine(): void
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        console.log("EntryAbility onCreate")
-        web_webview.WebviewController.initializeWebEngine()
-        console.log("EntryAbility onCreate done")
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate")
+    web_webview.WebviewController.initializeWebEngine()
+    console.log("EntryAbility onCreate done")
+  }
 }
 ```
 
@@ -513,19 +526,23 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import business_error from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        console.log("EntryAbility onCreate")
-        try {
-            web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.Auto, "https://example1.test")
-        } catch(error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
-        }
-
-        globalThis.abilityWant = want
-        console.log("EntryAbility onCreate done")
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate")
+    try {
+      web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.AUTO, "https://example1.test")
+    } catch (error) {
+      let e: business_error.BusinessError = error as business_error.BusinessError;
+      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
     }
+
+    AppStorage.setOrCreate("abilityWant", want);
+    console.log("EntryAbility onCreate done")
+  }
 }
 ```
 
@@ -548,17 +565,19 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
 
-  aboutToAppear():void {
+  aboutToAppear(): void {
     try {
       web_webview.WebviewController.setWebDebuggingAccess(true);
-    } catch(error) {
-      console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+    } catch (error) {
+      let e: business_error.BusinessError = error as business_error.BusinessError;
+      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
     }
   }
 
@@ -599,7 +618,8 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -614,7 +634,8 @@ struct WebComponent {
             // 需要加载的URL是string类型。
             this.controller.loadUrl('www.example.com');
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -625,7 +646,8 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -638,9 +660,10 @@ struct WebComponent {
         .onClick(() => {
           try {
             // 带参数headers。
-            this.controller.loadUrl('www.example.com', [{headerKey: "headerKey", headerValue: "headerValue"}]);
+            this.controller.loadUrl('www.example.com', [{ headerKey: "headerKey", headerValue: "headerValue" }]);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -654,7 +677,8 @@ struct WebComponent {
 1.$rawfile方式。
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -669,7 +693,8 @@ struct WebComponent {
             // 通过$rawfile加载本地资源文件。
             this.controller.loadUrl($rawfile('index.html'));
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -681,7 +706,8 @@ struct WebComponent {
 2.resources协议。
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -696,7 +722,8 @@ struct WebComponent {
             // 通过resource协议加载本地资源文件。
             this.controller.loadUrl("resource://rawfile/index.html");
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -754,7 +781,8 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -772,7 +800,8 @@ struct WebComponent {
               "UTF-8"
             );
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -784,7 +813,8 @@ struct WebComponent {
 加载本地资源
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -799,7 +829,8 @@ struct WebComponent {
           try {
             this.controller.loadData(this.updataContent, "text/html", "UTF-8", " ", " ");
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -834,7 +865,8 @@ accessForward(): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -849,7 +881,8 @@ struct WebComponent {
             let result = this.controller.accessForward();
             console.log('result:' + result);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -878,7 +911,8 @@ forward(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -892,7 +926,8 @@ struct WebComponent {
           try {
             this.controller.forward();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -927,7 +962,8 @@ accessBackward(): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -942,7 +978,8 @@ struct WebComponent {
             let result = this.controller.accessBackward();
             console.log('result:' + result);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -971,7 +1008,8 @@ backward(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -985,7 +1023,8 @@ struct WebComponent {
           try {
             this.controller.backward();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1014,7 +1053,8 @@ onActive(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1028,7 +1068,8 @@ struct WebComponent {
           try {
             this.controller.onActive();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1057,7 +1098,8 @@ onInactive(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1071,7 +1113,8 @@ struct WebComponent {
           try {
             this.controller.onInactive();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1099,7 +1142,8 @@ refresh(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1113,7 +1157,8 @@ struct WebComponent {
           try {
             this.controller.refresh();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1154,7 +1199,8 @@ accessStep(step: number): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1170,7 +1216,8 @@ struct WebComponent {
             let result = this.controller.accessStep(this.steps);
             console.log('result:' + result);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1199,7 +1246,8 @@ clearHistory(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1213,7 +1261,8 @@ struct WebComponent {
           try {
             this.controller.clearHistory();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1248,7 +1297,8 @@ getHitTest(): WebHitTestType
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1263,7 +1313,8 @@ struct WebComponent {
             let hitTestType = this.controller.getHitTest();
             console.log("hitTestType: " + hitTestType);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1300,21 +1351,27 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+class testObj {
+  constructor() {
+  }
+
+  test(): string {
+    return "ArkUI Web Component";
+  }
+
+  toString(): void {
+    console.log('Web Component toString');
+  }
+}
 
 @Entry
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  testObj = {
-    test: (data) => {
-      return "ArkUI Web Component";
-    },
-    toString: () => {
-      console.log('Web Component toString');
-    }
-  }
-
+  @State testObjtest: testObj = new testObj();
   build() {
     Column() {
       Button('refresh')
@@ -1322,15 +1379,17 @@ struct Index {
           try {
             this.controller.refresh();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
-            this.controller.registerJavaScriptProxy(this.testObj, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -1386,7 +1445,8 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 **示例：**
 
 ```ts
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1413,9 +1473,12 @@ struct WebComponent {
                   console.info(`The test() return value is: ${result}`)
                 }
               });
-            console.info('url: ', e.url);
+            if (e) {
+              console.info('url: ', e.url);
+            }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
     }
@@ -1473,7 +1536,8 @@ runJavaScript(script: string): Promise\<string>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1487,15 +1551,18 @@ struct WebComponent {
         .onPageEnd(e => {
           try {
             this.controller.runJavaScript('test()')
-              .then(function (result) {
+              .then((result) => {
                 console.log('result: ' + result);
               })
-              .catch(function (error) {
+              .catch((error: business_error.BusinessError) => {
                 console.error("error: " + error);
               })
-            console.info('url: ', e.url);
+            if (e) {
+              console.info('url: ', e.url);
+            }
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
     }
@@ -1547,7 +1614,8 @@ runJavaScriptExt(script: string, callback : AsyncCallback\<JsMessageExt>): void
 **示例：**
 
 ```ts
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1573,47 +1641,51 @@ struct WebComponent {
                 }
                 if (result) {
                   try {
-                      var type = result.getType();
-                      switch (type) {
-                          case web_webview.JsMessageType.STRING: {
-                              this.msg1 = "result type:" + typeof (result.getString());
-                              this.msg2 = "result getString:" + ((result.getString()));
-                              break;
-                          }
-                          case web_webview.JsMessageType.NUMBER: {
-                              this.msg1 = "result type:" + typeof (result.getNumber());
-                              this.msg2 = "result getNumber:" + ((result.getNumber()));
-                              break;
-                          }
-                          case web_webview.JsMessageType.BOOLEAN: {
-                              this.msg1 = "result type:" + typeof (result.getBoolean());
-                              this.msg2 = "result getBoolean:" + ((result.getBoolean()));
-                              break;
-                          }
-                          case web_webview.JsMessageType.ARRAY_BUFFER: {
-                              this.msg1 = "result type:" + typeof (result.getArrayBuffer());
-                              this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
-                              break;
-                          }
-                          case web_webview.JsMessageType.ARRAY: {
-                              this.msg1 = "result type:" + typeof (result.getArray());
-                              this.msg2 = "result getArray:" + result.getArray();
-                              break;
-                          }
-                          default: {
-                              this.msg1 = "default break, type:" + type;
-                              break;
-                          }
+                    let type = result.getType();
+                    switch (type) {
+                      case web_webview.JsMessageType.STRING: {
+                        this.msg1 = "result type:" + typeof (result.getString());
+                        this.msg2 = "result getString:" + ((result.getString()));
+                        break;
                       }
+                      case web_webview.JsMessageType.NUMBER: {
+                        this.msg1 = "result type:" + typeof (result.getNumber());
+                        this.msg2 = "result getNumber:" + ((result.getNumber()));
+                        break;
+                      }
+                      case web_webview.JsMessageType.BOOLEAN: {
+                        this.msg1 = "result type:" + typeof (result.getBoolean());
+                        this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                        break;
+                      }
+                      case web_webview.JsMessageType.ARRAY_BUFFER: {
+                        this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                        this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                        break;
+                      }
+                      case web_webview.JsMessageType.ARRAY: {
+                        this.msg1 = "result type:" + typeof (result.getArray());
+                        this.msg2 = "result getArray:" + result.getArray();
+                        break;
+                      }
+                      default: {
+                        this.msg1 = "default break, type:" + type;
+                        break;
+                      }
+                    }
                   }
                   catch (resError) {
-                      console.log(`log error code: ${resError.code}, Message: ${resError.message}`);
+                    let e: business_error.BusinessError = resError as business_error.BusinessError;
+                    console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
                   }
                 }
               });
-            console.info('url: ', e.url);
+            if (e) {
+              console.info('url: ', e.url);
+            }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
     }
@@ -1669,7 +1741,8 @@ runJavaScriptExt(script: string): Promise\<JsMessageExt>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1687,49 +1760,50 @@ struct WebComponent {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
         .onPageEnd(e => {
-            this.controller.runJavaScriptExt('test()')
-              .then((result) => {
-                  try {
-                      var type = result.getType();
-                      switch (type) {
-                          case web_webview.JsMessageType.STRING: {
-                              this.msg1 = "result type:" + typeof (result.getString());
-                              this.msg2 = "result getString:" + ((result.getString()));
-                              break;
-                          }
-                          case web_webview.JsMessageType.NUMBER: {
-                              this.msg1 = "result type:" + typeof (result.getNumber());
-                              this.msg2 = "result getNumber:" + ((result.getNumber()));
-                              break;
-                          }
-                          case web_webview.JsMessageType.BOOLEAN: {
-                              this.msg1 = "result type:" + typeof (result.getBoolean());
-                              this.msg2 = "result getBoolean:" + ((result.getBoolean()));
-                              break;
-                          }
-                          case web_webview.JsMessageType.ARRAY_BUFFER: {
-                              this.msg1 = "result type:" + typeof (result.getArrayBuffer());
-                              this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
-                              break;
-                          }
-                          case web_webview.JsMessageType.ARRAY: {
-                              this.msg1 = "result type:" + typeof (result.getArray());
-                              this.msg2 = "result getArray:" + result.getArray();
-                              break;
-                          }
-                          default: {
-                              this.msg1 = "default break, type:" + type;
-                              break;
-                          }
-                      }
+          this.controller.runJavaScriptExt('test()')
+            .then((result) => {
+              try {
+                let type = result.getType();
+                switch (type) {
+                  case web_webview.JsMessageType.STRING: {
+                    this.msg1 = "result type:" + typeof (result.getString());
+                    this.msg2 = "result getString:" + ((result.getString()));
+                    break;
                   }
-                  catch (resError) {
-                      console.log(`log error code: ${resError.code}, Message: ${resError.message}`);
+                  case web_webview.JsMessageType.NUMBER: {
+                    this.msg1 = "result type:" + typeof (result.getNumber());
+                    this.msg2 = "result getNumber:" + ((result.getNumber()));
+                    break;
                   }
-              })
-              .catch(function (error) {
-                console.error("error: " + error);
-              })
+                  case web_webview.JsMessageType.BOOLEAN: {
+                    this.msg1 = "result type:" + typeof (result.getBoolean());
+                    this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                    break;
+                  }
+                  case web_webview.JsMessageType.ARRAY_BUFFER: {
+                    this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                    this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                    break;
+                  }
+                  case web_webview.JsMessageType.ARRAY: {
+                    this.msg1 = "result type:" + typeof (result.getArray());
+                    this.msg2 = "result getArray:" + result.getArray();
+                    break;
+                  }
+                  default: {
+                    this.msg1 = "default break, type:" + type;
+                    break;
+                  }
+                }
+              }
+              catch (resError) {
+                let e: business_error.BusinessError = resError as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              }
+            })
+            .catch((error: business_error.BusinessError) => {
+              console.error("error: " + error);
+            })
         })
     }
   }
@@ -1756,7 +1830,7 @@ function test() {
 
 deleteJavaScriptRegister(name: string): void
 
-删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后立即生效，无须调用[refresh](#refresh)接口。
+删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后，须调用[refresh](#refresh)接口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1779,28 +1853,82 @@ deleteJavaScriptRegister(name: string): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+class testObj {
+  constructor() {
+  }
+
+  test(): string {
+    return "ArkUI Web Component";
+  }
+
+  toString(): void {
+    console.log('Web Component toString');
+  }
+}
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State name: string = 'Object';
-
+  @State testObjtest: testObj = new testObj();
+  @State name: string = 'objName';
   build() {
     Column() {
+      Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('Register JavaScript To Window')
+        .onClick(() => {
+          try {
+            this.controller.registerJavaScriptProxy(this.testObjtest, this.name, ["test", "toString"]);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
       Button('deleteJavaScriptRegister')
         .onClick(() => {
           try {
             this.controller.deleteJavaScriptRegister(this.name);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
     }
   }
 }
+```
+
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+      let str=objName.test();
+      document.getElementById("demo").innerHTML=str;
+      console.log('objName.test result:'+ str)
+    }
+</script>
+</html>
 ```
 
 ### zoom
@@ -1830,7 +1958,8 @@ zoom(factor: number): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1845,7 +1974,8 @@ struct WebComponent {
           try {
             this.controller.zoom(this.factor);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1880,13 +2010,14 @@ searchAllAsync(searchString: string): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State searchString: string = "xxx";
+  @State searchString: string = "Hello World";
 
   build() {
     Column() {
@@ -1895,17 +2026,31 @@ struct WebComponent {
           try {
             this.controller.searchAllAsync(this.searchString);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .onSearchResultReceive(ret => {
-          console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
-          "[total]" + ret.numberOfMatches + "[isDone]" + ret.isDoneCounting);
+          if (ret) {
+            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+              "[total]" + ret.numberOfMatches + "[isDone]" + ret.isDoneCounting);
+          }
         })
     }
   }
 }
+```
+
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Hello World Highlight Hello World</p>
+  </body>
+</html>
 ```
 
 ### clearMatches
@@ -1928,7 +2073,8 @@ clearMatches(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1942,14 +2088,17 @@ struct WebComponent {
           try {
             this.controller.clearMatches();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
+
+加载的html文件，请参考[searchAllAsync](#searchallasync)接口下加载的html文件。
 
 ### searchNext
 
@@ -1977,7 +2126,8 @@ searchNext(forward: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1991,14 +2141,17 @@ struct WebComponent {
           try {
             this.controller.searchNext(true);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
+
+加载的html文件，请参考[searchAllAsync](#searchallasync)接口下加载的html文件。
 
 ### clearSslCache
 
@@ -2020,7 +2173,8 @@ clearSslCache(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2034,7 +2188,8 @@ struct WebComponent {
           try {
             this.controller.clearSslCache();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2063,7 +2218,8 @@ clearClientAuthenticationCache(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2077,7 +2233,8 @@ struct WebComponent {
           try {
             this.controller.clearClientAuthenticationCache();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2118,13 +2275,14 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
   ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[];
+  ports: web_webview.WebMessagePort[] = [];
 
   build() {
     Column() {
@@ -2134,7 +2292,8 @@ struct WebComponent {
             this.ports = this.controller.createWebMessagePorts();
             console.log("createWebMessagePorts size:" + this.ports.length)
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2172,12 +2331,13 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[];
+  ports: web_webview.WebMessagePort[] = [];
   @State sendFromEts: string = 'Send this message from ets to HTML';
   @State receivedFromHtml: string = 'Display received message send from HTML';
 
@@ -2186,10 +2346,10 @@ struct WebComponent {
       // 展示接收到的来自HTML的内容
       Text(this.receivedFromHtml)
       // 输入框的内容发送到html
-      TextInput({placeholder: 'Send this message from ets to HTML'})
+      TextInput({ placeholder: 'Send this message from ets to HTML' })
         .onChange((value: string) => {
           this.sendFromEts = value;
-      })
+        })
 
       Button('postMessage')
         .onClick(() => {
@@ -2217,7 +2377,8 @@ struct WebComponent {
             // 3、将另一个消息端口(如端口0)发送到HTML侧，由HTML侧保存并使用。
             this.controller.postMessage('__init_port__', [this.ports[0]], '*');
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
 
@@ -2231,7 +2392,8 @@ struct WebComponent {
               console.error(`ports is null, Please initialize first`);
             }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -2324,6 +2486,7 @@ requestFocus(): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2337,7 +2500,8 @@ struct WebComponent {
           try {
             this.controller.requestFocus();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         });
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2368,6 +2532,7 @@ zoomIn(): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2381,7 +2546,8 @@ struct WebComponent {
           try {
             this.controller.zoomIn();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2412,6 +2578,7 @@ zoomOut(): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2425,7 +2592,8 @@ struct WebComponent {
           try {
             this.controller.zoomOut();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2461,6 +2629,7 @@ getHitTestValue(): HitTestValue
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2476,7 +2645,8 @@ struct WebComponent {
             console.log("hitType: " + hitValue.type);
             console.log("extra: " + hitValue.extra);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2512,6 +2682,7 @@ getWebId(): number
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2526,7 +2697,8 @@ struct WebComponent {
             let id = this.controller.getWebId();
             console.log("id: " + id);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2562,12 +2734,13 @@ getUserAgent(): string
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-
+  
   build() {
     Column() {
       Button('getUserAgent')
@@ -2576,7 +2749,8 @@ struct WebComponent {
             let userAgent = this.controller.getUserAgent();
             console.log("userAgent: " + userAgent);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2589,6 +2763,7 @@ struct WebComponent {
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2602,7 +2777,8 @@ struct WebComponent {
         // 应用侧用法示例，定制UserAgent。
         this.ua = this.controller.getUserAgent() + 'xxx';
       } catch(error) {
-        console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+        let e:business_error.BusinessError = error as business_error.BusinessError;
+        console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
       }
     })
   }
@@ -2643,6 +2819,7 @@ getTitle(): string
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2657,7 +2834,8 @@ struct WebComponent {
             let title = this.controller.getTitle();
             console.log("title: " + title);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2693,6 +2871,7 @@ getPageHeight(): number
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2707,7 +2886,8 @@ struct WebComponent {
             let pageHeight = this.controller.getPageHeight();
             console.log("pageHeight : " + pageHeight);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2746,6 +2926,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -2767,7 +2948,8 @@ struct WebComponent {
               }
             });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2811,6 +2993,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -2828,11 +3011,12 @@ struct WebComponent {
                   console.info(`save web archive success: ${filename}`)
                 }
               })
-              .catch(error => {
+              .catch((error:business_error.BusinessError) => {
                 console.log('error: ' + JSON.stringify(error));
               })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2868,6 +3052,7 @@ getUrl(): string
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2882,7 +3067,8 @@ struct WebComponent {
             let url = this.controller.getUrl();
             console.log("url: " + url);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2912,6 +3098,7 @@ stop(): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2925,7 +3112,8 @@ struct WebComponent {
           try {
             this.controller.stop();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         });
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2963,6 +3151,7 @@ backOrForward(step: number): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2977,7 +3166,8 @@ struct WebComponent {
           try {
             this.controller.backOrForward(this.step);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3014,6 +3204,7 @@ scrollTo(x:number, y:number): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3027,7 +3218,8 @@ struct WebComponent {
           try {
             this.controller.scrollTo(50, 50);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3087,6 +3279,7 @@ scrollBy(deltaX:number, deltaY:number): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3100,7 +3293,8 @@ struct WebComponent {
           try {
             this.controller.scrollBy(50, 50);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3160,6 +3354,7 @@ slideScroll(vx:number, vy:number): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3173,7 +3368,8 @@ struct WebComponent {
           try {
             this.controller.slideScroll(500, 500);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`); 
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3232,6 +3428,7 @@ getOriginalUrl(): string
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3246,7 +3443,8 @@ struct WebComponent {
             let url = this.controller.getOriginalUrl();
             console.log("original url: " + url);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3282,12 +3480,14 @@ getFavicon(): image.PixelMap
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+import business_error from '@ohos.base';
+
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State pixelmap: image.PixelMap = undefined;
+  @State pixelmap: image.PixelMap | undefined = undefined;
 
   build() {
     Column() {
@@ -3296,7 +3496,8 @@ struct WebComponent {
           try {
             this.pixelmap = this.controller.getFavicon();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3310,6 +3511,8 @@ struct WebComponent {
 setNetworkAvailable(enable: boolean): void
 
 设置JavaScript中的window.navigator.onLine属性。
+
+**需要权限：** ohos.permission.GET_NETWORK_INFO
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3332,6 +3535,7 @@ setNetworkAvailable(enable: boolean): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3345,13 +3549,30 @@ struct WebComponent {
           try {
             this.controller.setNetworkAvailable(true);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
+```
+
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<body>
+<h1>online 属性</h1>
+<p id="demo"></p>
+<script>
+    let online = navigator.onLine;
+    document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+</script>
+</body>
+</html>
 ```
 
 ### hasImage
@@ -3381,6 +3602,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3400,7 +3622,8 @@ struct WebComponent {
               console.info("hasImage: " + data);
             });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3436,6 +3659,7 @@ hasImage(): Promise\<boolean>
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3450,11 +3674,12 @@ struct WebComponent {
             this.controller.hasImage().then((data) => {
               console.info('hasImage: ' + data);
             })
-            .catch(function (error) {
+            .catch((error:business_error.BusinessError) => {
               console.error("error: " + error);
             })
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3490,6 +3715,7 @@ removeCache(clearRom: boolean): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3503,7 +3729,8 @@ struct WebComponent {
           try {
             this.controller.removeCache(false);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3539,6 +3766,7 @@ pageUp(top:boolean): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3552,7 +3780,8 @@ struct WebComponent {
           try {
             this.controller.pageUp(false);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3588,6 +3817,7 @@ pageDown(bottom:boolean): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3601,7 +3831,8 @@ struct WebComponent {
           try {
             this.controller.pageDown(false);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3637,6 +3868,7 @@ getBackForwardEntries(): BackForwardList
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3650,7 +3882,8 @@ struct WebComponent {
           try {
             let list = this.controller.getBackForwardEntries()
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3688,6 +3921,7 @@ serializeWebState(): Uint8Array
 // xxx.ets
 import web_webview from '@ohos.web.webview';
 import fs from '@ohos.file.fs';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3700,15 +3934,17 @@ struct WebComponent {
         .onClick(() => {
           try {
             let state = this.controller.serializeWebState();
-            // globalThis.cacheDir从EntryAbility.ts中获取。
-            let path = globalThis.cacheDir;
-            path += '/WebState';
-            // 以同步方法打开文件。
-            let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-            fs.writeSync(file.fd, state.buffer);
-            fs.closeSync(file.fd);
+            let path:string | undefined = AppStorage.get("cacheDir");
+            if (path) {
+              path += '/WebState';
+              // 以同步方法打开文件。
+              let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+              fs.writeSync(file.fd, state.buffer);
+              fs.closeSync(file.fd);
+            }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3723,11 +3959,13 @@ struct WebComponent {
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        // 通过在globalThis对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
-        globalThis.cacheDir = this.context.cacheDir;
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        // 通过在AppStorage对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
+        AppStorage.setOrCreate("cacheDir", this.context.cacheDir);
     }
 }
 ```
@@ -3761,6 +3999,7 @@ restoreWebState(state: Uint8Array): void
 // xxx.ets
 import web_webview from '@ohos.web.webview';
 import fs from '@ohos.file.fs';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3772,25 +4011,27 @@ struct WebComponent {
       Button('RestoreWebState')
         .onClick(() => {
           try {
-            // globalThis.cacheDir从EntryAbility.ts中获取。
-            let path = globalThis.cacheDir;
-            path += '/WebState';
-            // 以同步方法打开文件。
-            let file = fs.openSync(path, fs.OpenMode.READ_WRITE);
-            let stat = fs.statSync(path);
-            let size = stat.size;
-            let buf = new ArrayBuffer(size);
-            fs.read(file.fd, buf, (err, readLen) => {
-              if (err) {
-                console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
-              } else {
-                console.info("read file data succeed");
-                this.controller.restoreWebState(new Uint8Array(buf.slice(0, readLen)));
-                fs.closeSync(file);
-              }
-            });
+            let path:string | undefined = AppStorage.get("cacheDir");
+            if (path) {
+              path += '/WebState';
+              // 以同步方法打开文件。
+              let file = fs.openSync(path, fs.OpenMode.READ_WRITE);
+              let stat = fs.statSync(path);
+              let size = stat.size;
+              let buf = new ArrayBuffer(size);
+              fs.read(file.fd, buf, (err, readLen) => {
+                if (err) {
+                  console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+                } else {
+                  console.info("read file data succeed");
+                  this.controller.restoreWebState(new Uint8Array(buf.slice(0, readLen)));
+                  fs.closeSync(file);
+                }
+              });
+            }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3805,11 +4046,13 @@ struct WebComponent {
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        // 通过在globalThis对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
-        globalThis.cacheDir = this.context.cacheDir;
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        // 通过在AppStorage对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
+        AppStorage.setOrCreate("cacheDir", this.context.cacheDir);
     }
 }
 ```
@@ -3833,6 +4076,7 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3847,7 +4091,8 @@ struct WebComponent {
     try {
       web_webview.WebviewController.customizeSchemes([this.scheme1, this.scheme2, this.scheme3])
     } catch(error) {
-      console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+      let e:business_error.BusinessError = error as business_error.BusinessError;
+      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
     }
   }
 
@@ -3855,7 +4100,9 @@ struct WebComponent {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
         .onInterceptRequest((event) => {
-          console.log('url:' + event.request.getRequestUrl())
+          if (event) {
+            console.log('url:' + event.request.getRequestUrl())
+          }
           return this.responseweb
         })
     }
@@ -3890,16 +4137,18 @@ getCertificate(): Promise<Array<cert.X509Cert>>
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+import cert from '@ohos.security.cert';
 
-function Uint8ArrayToString(dataArray) {
-  var dataString = ''
-  for (var i = 0; i < dataArray.length; i++) {
+function Uint8ArrayToString(dataArray:Uint8Array) {
+  let dataString = ''
+  for (let i = 0; i < dataArray.length; i++) {
     dataString += String.fromCharCode(dataArray[i])
   }
   return dataString
 }
 
-function ParseX509CertInfo(x509CertArray) {
+function ParseX509CertInfo(x509CertArray:Array<cert.X509Cert>) {
   let res: string = 'getCertificate success: len = ' + x509CertArray.length;
   for (let i = 0; i < x509CertArray.length; i++) {
     res += ', index = ' + i + ', issuer name = '
@@ -3959,11 +4208,12 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               try {
-                this.webviewCtl.getCertificate().then(x509CertArray => {
+                this.webviewCtl.getCertificate().then((x509CertArray:Array<cert.X509Cert>) => {
                   this.outputStr = ParseX509CertInfo(x509CertArray);
                 })
               } catch (error) {
-                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+                let e:business_error.BusinessError = error as business_error.BusinessError;
+                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
               }
             })
             .height(50)
@@ -3978,7 +4228,7 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               try {
-                this.webviewCtl.getCertificate((error, x509CertArray) => {
+                this.webviewCtl.getCertificate((error:business_error.BusinessError, x509CertArray:Array<cert.X509Cert>) => {
                   if (error) {
                     this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
                   } else {
@@ -3986,7 +4236,8 @@ struct Index {
                   }
                 })
               } catch (error) {
-                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+                let e:business_error.BusinessError = error as business_error.BusinessError;
+                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
               }
             })
             .height(50)
@@ -4005,7 +4256,9 @@ struct Index {
           .domStorageAccess(true)
           .onlineImageAccess(true)
           .onPageEnd((e) => {
-            this.outputStr = 'onPageEnd : url = ' + e.url
+            if(e) {
+              this.outputStr = 'onPageEnd : url = ' + e.url
+            }
           })
           .onSslErrorEventReceive((e) => {
             // 忽略ssl证书错误，便于测试一些证书过期的网站，如：https://expired.badssl.com
@@ -4047,16 +4300,18 @@ getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+import cert from '@ohos.security.cert';
 
-function Uint8ArrayToString(dataArray) {
-  var dataString = ''
-  for (var i = 0; i < dataArray.length; i++) {
+function Uint8ArrayToString(dataArray:Uint8Array) {
+  let dataString = ''
+  for (let i = 0; i < dataArray.length; i++) {
     dataString += String.fromCharCode(dataArray[i])
   }
   return dataString
 }
 
-function ParseX509CertInfo(x509CertArray) {
+function ParseX509CertInfo(x509CertArray:Array<cert.X509Cert>) {
   let res: string = 'getCertificate success: len = ' + x509CertArray.length;
   for (let i = 0; i < x509CertArray.length; i++) {
     res += ', index = ' + i + ', issuer name = '
@@ -4116,11 +4371,12 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               try {
-                this.webviewCtl.getCertificate().then(x509CertArray => {
+                this.webviewCtl.getCertificate().then((x509CertArray:Array<cert.X509Cert>) => {
                   this.outputStr = ParseX509CertInfo(x509CertArray);
                 })
               } catch (error) {
-                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+                let e:business_error.BusinessError = error as business_error.BusinessError;
+                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
               }
             })
             .height(50)
@@ -4135,7 +4391,7 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               try {
-                this.webviewCtl.getCertificate((error, x509CertArray) => {
+                this.webviewCtl.getCertificate((error:business_error.BusinessError, x509CertArray:Array<cert.X509Cert>) => {
                   if (error) {
                     this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
                   } else {
@@ -4143,7 +4399,8 @@ struct Index {
                   }
                 })
               } catch (error) {
-                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+                let e:business_error.BusinessError = error as business_error.BusinessError;
+                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
               }
             })
             .height(50)
@@ -4162,7 +4419,9 @@ struct Index {
           .domStorageAccess(true)
           .onlineImageAccess(true)
           .onPageEnd((e) => {
-            this.outputStr = 'onPageEnd : url = ' + e.url
+            if (e) {
+              this.outputStr = 'onPageEnd : url = ' + e.url
+            }
           })
           .onSslErrorEventReceive((e) => {
             // 忽略ssl证书错误，便于测试一些证书过期的网站，如：https://expired.badssl.com
@@ -4252,6 +4511,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4266,7 +4526,8 @@ struct WebComponent {
             // 预加载时，需要将'https://www.example.com'替换成一个真实的网站地址。
             this.controller.prefetchPage('https://www.example.com');
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       // 需要将'www.example1.com'替换成一个真实的网站地址。
@@ -4307,16 +4568,123 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log("EntryAbility onCreate")
         web_webview.WebviewController.initializeWebEngine()
         // 预连接时，需要將'https://www.example.com'替换成一个真实的网站地址。
         web_webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
-        globalThis.abilityWant = want
+        AppStorage.setOrCreate("abilityWant", want)
         console.log("EntryAbility onCreate done")
     }
+}
+```
+
+### setCustomUserAgent<sup>10+</sup>
+
+setCustomUserAgent(userAgent: string): void
+
+设置自定义用户代理。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| userAgent      | string  | 是   | 用户自定义代理信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State userAgent: string = 'test'
+
+  build() {
+    Column() {
+      Button('setCustomUserAgent')
+        .onClick(() => {
+          try {
+            this.controller.setCustomUserAgent(this.userAgent);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getCustomUserAgent<sup>10+</sup>
+
+getCustomUserAgent(): string
+
+获取自定义用户代理。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 用户自定义代理信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State userAgent: string = ''
+
+  build() {
+    Column() {
+      Button('getCustomUserAgent')
+        .onClick(() => {
+          try {
+            this.userAgent = this.controller.getCustomUserAgent();
+            console.log("userAgent: " + this.userAgent);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
 }
 ```
 
@@ -4361,6 +4729,7 @@ static getCookie(url: string): string
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4375,7 +4744,8 @@ struct WebComponent {
             let value = web_webview.WebCookieManager.getCookie('https://www.example.com');
             console.log("value: " + value);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4413,6 +4783,7 @@ static setCookie(url: string, value: string): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4426,7 +4797,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4454,6 +4826,7 @@ static saveCookieAsync(callback: AsyncCallback\<void>): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4471,7 +4844,8 @@ struct WebComponent {
               }
             })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4499,6 +4873,7 @@ static saveCookieAsync(): Promise\<void>
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4514,11 +4889,12 @@ struct WebComponent {
               .then(() => {
                 console.log("saveCookieAsyncCallback success!");
               })
-              .catch((error) => {
+              .catch((error:business_error.BusinessError) => {
                 console.error("error: " + error);
               });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4546,6 +4922,7 @@ static putAcceptCookieEnabled(accept: boolean): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4559,7 +4936,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.putAcceptCookieEnabled(false);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4625,6 +5003,7 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4638,7 +5017,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.putAcceptThirdPartyCookieEnabled(false);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4820,12 +5200,13 @@ static deleteOrigin(origin : string): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -4834,16 +5215,61 @@ struct WebComponent {
           try {
             web_webview.WebStorage.deleteOrigin(this.origin);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件。
+ ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script type="text/javascript">
+
+      var db = openDatabase('mydb','1.0','Test DB',2 * 1024 * 1024);
+      var msg;
+
+      db.transaction(function(tx){
+        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(1,"test1")');
+        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(2,"test2")');
+        msg = '<p>数据表已创建,且插入了两条数据。</p>';
+
+        document.querySelector('#status').innerHTML = msg;
+      });
+
+      db.transaction(function(tx){
+        tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
+          var len = results.rows.length,i;
+          msg = "<p>查询记录条数：" + len + "</p>";
+
+          document.querySelector('#status').innerHTML += msg;
+
+              for(i = 0; i < len; i++){
+                msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
+
+          document.querySelector('#status').innerHTML += msg;
+          }
+        },null);
+      });
+
+      </script>
+  </head>
+  <body>
+  <div id="status" name="status">状态信息</div>
+  </body>
+  </html>
+  ```
 
 ### getOrigins
 
@@ -4872,6 +5298,7 @@ static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -4895,16 +5322,19 @@ struct WebComponent {
               }
             })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下的html文件。
 
 ### getOrigins
 
@@ -4933,6 +5363,7 @@ static getOrigins() : Promise\<Array\<WebStorageOrigin>>
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -4952,20 +5383,23 @@ struct WebComponent {
                   console.log('quota: ' + origins[i].quota);
                 }
               })
-              .catch(e => {
+              .catch((e : business_error.BusinessError) => {
                 console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下的html文件。
 
 ### getOriginQuota
 
@@ -4995,12 +5429,13 @@ static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5015,16 +5450,19 @@ struct WebComponent {
               console.log('quota: ' + quota);
             })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下的html文件。
 
 ### getOriginQuota
 
@@ -5059,12 +5497,13 @@ static getOriginQuota(origin : string) : Promise\<number>
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5075,20 +5514,23 @@ struct WebComponent {
               .then(quota => {
                 console.log('quota: ' + quota);
               })
-              .catch(e => {
+              .catch((e : business_error.BusinessError) => {
                 console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下的html文件。
 
 ### getOriginUsage
 
@@ -5118,12 +5560,13 @@ static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5138,16 +5581,19 @@ struct WebComponent {
               console.log('usage: ' + usage);
             })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下的html文件。
 
 ### getOriginUsage
 
@@ -5182,12 +5628,13 @@ static getOriginUsage(origin : string) : Promise\<number>
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5198,20 +5645,23 @@ struct WebComponent {
               .then(usage => {
                 console.log('usage: ' + usage);
               })
-              .catch(e => {
+              .catch((e : business_error.BusinessError) => {
                 console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下的html文件。
 
 ### deleteAllData
 
@@ -5226,6 +5676,7 @@ static deleteAllData(): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5239,15 +5690,18 @@ struct WebComponent {
           try {
             web_webview.WebStorage.deleteAllData();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下加载的html文件。
 
 ## WebDataBase
 
@@ -5283,6 +5737,7 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string>
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5290,7 +5745,7 @@ struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   host: string = "www.spincast.org";
   realm: string = "protected example";
-  username_password: string[];
+  username_password: string[] = [];
 
   build() {
     Column() {
@@ -5300,7 +5755,8 @@ struct WebComponent {
             this.username_password = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
             console.log('num: ' + this.username_password.length);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5331,6 +5787,7 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5346,7 +5803,8 @@ struct WebComponent {
           try {
             web_webview.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5374,6 +5832,7 @@ static existHttpAuthCredentials(): boolean
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5387,7 +5846,8 @@ struct WebComponent {
           try {
             let result = web_webview.WebDataBase.existHttpAuthCredentials();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5409,6 +5869,7 @@ static deleteHttpAuthCredentials(): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5422,7 +5883,8 @@ struct WebComponent {
           try {
             web_webview.WebDataBase.deleteHttpAuthCredentials();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5470,6 +5932,7 @@ static allowGeolocation(origin: string): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5484,7 +5947,8 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.allowGeolocation(this.origin);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5520,6 +5984,7 @@ static deleteGeolocation(origin: string): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5534,7 +5999,8 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.deleteGeolocation(this.origin);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5571,6 +6037,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5591,7 +6058,8 @@ struct WebComponent {
               console.log('getAccessibleGeolocationAsync result: ' + result);
             });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5633,6 +6101,7 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean>
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5648,11 +6117,12 @@ struct WebComponent {
             web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin)
               .then(result => {
                 console.log('getAccessibleGeolocationPromise result: ' + result);
-              }).catch(error => {
+              }).catch((error : business_error.BusinessError) => {
               console.log('getAccessibleGeolocationPromise error: ' + JSON.stringify(error));
             });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5680,6 +6150,7 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string>>): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5700,7 +6171,8 @@ struct WebComponent {
               console.log('getStoredGeolocationAsync origins: ' + origins_str);
             });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5728,6 +6200,7 @@ static getStoredGeolocation(): Promise\<Array\<string>>
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5743,11 +6216,12 @@ struct WebComponent {
               .then(origins => {
                 let origins_str: string = origins.join();
                 console.log('getStoredGeolocationPromise origins: ' + origins_str);
-              }).catch(error => {
+              }).catch((error : business_error.BusinessError) => {
               console.log('getStoredGeolocationPromise error: ' + JSON.stringify(error));
             });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5769,6 +6243,7 @@ static deleteAllGeolocation(): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5782,7 +6257,8 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.deleteAllGeolocation();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5957,6 +6433,7 @@ getBoolean(): boolean
 getArrayBuffer(): ArrayBuffer
 
 获取数据对象的原始二进制数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -6332,13 +6809,14 @@ getItemAtIndex(index: number): HistoryItem
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State icon: image.PixelMap = undefined;
+  @State icon: image.PixelMap | undefined = undefined;
 
   build() {
     Column() {
@@ -6350,7 +6828,8 @@ struct WebComponent {
             console.log("HistoryItem: " + JSON.stringify(historyItem));
             this.icon = historyItem.icon;
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6392,9 +6871,6 @@ Web組件使用HTTPDNS的模式。
 
 | 名称          | 值 | 说明                                      |
 | ------------- | -- |----------------------------------------- |
-| Off<sup>(deprecated)</sup>           | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。<br>从API version 10开始不再维护，建议使用OFF代替。|
-| Auto<sup>(deprecated)</sup>          | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。<br>从API version 10开始不再维护，建议使用AUTO代替。|
-| SecureOnly<sup>(deprecated)</sup>    | 2 |强制使用设定的HTTPDNS服务器进行域名解析。<br>从API version 10开始不再维护，建议使用SECURE_ONLY代替。|
 | OFF                                  | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
 | AUTO                                 | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。|
 | SECURE_ONLY                          | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|

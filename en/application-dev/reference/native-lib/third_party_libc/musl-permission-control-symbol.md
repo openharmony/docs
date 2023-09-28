@@ -1,4 +1,4 @@
-# libc Symbols That May Fail to Call Due to Permission Control
+# Native API Symbols That May Fail to Call Due to Permission Control
 
 Before using the following interfaces, ensure that the application entity has the corresponding permission.
 

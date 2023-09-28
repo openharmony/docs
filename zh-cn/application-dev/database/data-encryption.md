@@ -17,12 +17,14 @@
 具体接口及功能，可见[分布式键值数据库](../reference/apis/js-apis-distributedKVStore.md)。
 
   
-```js
+```ts
 import distributedKVStore from '@ohos.data.distributedKVStore';
+import { BusinessError } from '@ohos.base';
 
-let kvManager;
+let kvManager: distributedKVStore.KVManager | undefined = undefined;
+let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
 let context = getContext(this);
-const kvManagerConfig = {
+const kvManagerConfig: distributedKVStore.KVManagerConfig = {
   context: context,
   bundleName: 'com.example.datamanagertest',
 }
@@ -30,29 +32,38 @@ try {
   kvManager = distributedKVStore.createKVManager(kvManagerConfig);
   console.info('Succeeded in creating KVManager.');
 } catch (e) {
-  console.error(`Failed to create KVManager. Code:${e.code},message:${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
 }
-let kvStore;
-try {
-  const options = {
-    createIfMissing: true,
-    // 设置数据库加密
-    encrypt: true,
-    backup: false,
-    autoSync: true,
-    kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S2
-  };
-  kvManager.getKVStore('storeId', options, (err, store) => {
-    if (err) {
-      console.error(`Fail to get KVStore. Code:${err.code},message:${err.message}`);
-      return;
-    }
-    console.info('Succeeded in getting KVStore.');
-    kvStore = store;
-  });
-} catch (e) {
-  console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+if (kvManager !== undefined) {
+  kvManager = kvManager as distributedKVStore.KVManager;
+  try {
+    const options: distributedKVStore.Options = {
+      createIfMissing: true,
+      // 设置数据库加密
+      encrypt: true,
+      backup: false,
+      autoSync: true,
+      kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+      securityLevel: distributedKVStore.SecurityLevel.S2
+    };
+    kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+      if (err) {
+        console.error(`Fail to get KVStore. Code:${err.code},message:${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting KVStore.');
+      kvStore = store;
+    });
+  } catch (e) {
+    let error = e as BusinessError;
+    console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+  }
+}
+if (kvStore !== undefined) {
+  kvStore = kvStore as distributedKVStore.SingleKVStore;
+    //进行后续操作
+    //...
 }
 ```
 
@@ -64,12 +75,12 @@ try {
 具体接口及功能，可见[关系型数据库](../reference/apis/js-apis-data-relationalStore.md)。
 
   
-```js
+```ts
 import relationalStore from '@ohos.data.relationalStore';
 
-let store;
+let store: relationalStore.RdbStore;
 let context = getContext(this);
-const STORE_CONFIG = {
+const STORE_CONFIG: relationalStore.StoreConfig = {
   name: 'RdbTest.db',
   securityLevel: relationalStore.SecurityLevel.S1,
   encrypt: true

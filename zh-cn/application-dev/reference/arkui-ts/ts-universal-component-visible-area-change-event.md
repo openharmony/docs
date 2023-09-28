@@ -81,7 +81,7 @@ struct ScrollExample {
             }
           })
 
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item:number) => {
             Text(item.toString())
               .width('90%')
               .height(150)
@@ -90,7 +90,7 @@ struct ScrollExample {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .margin({ top: 10 })
-          }, item => item)
+          }, (item:number) => (item.toString()))
 
         }.width('100%')
       }
@@ -105,7 +105,7 @@ struct ScrollExample {
       .onScrollEdge((side: Edge) => {
         console.info('To the edge')
       })
-      .onScrollEnd(() => {
+      .onScrollStop(() => {
         console.info('Scroll Stop')
       })
 

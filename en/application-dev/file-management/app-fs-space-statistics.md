@@ -18,9 +18,9 @@ For details about the APIs, see [ohos.file.statvfs](../reference/apis/js-apis-fi
 
 | BundleStats Attribute| Description| Directory for Statistics| 
 | -------- | -------- | -------- |
-| appSize | Size of the application installation files, in bytes.| Application installation file directory:<br>**/data/storage/el1/bundle **| 
-| cacheSize | Size of the application cache files, in bytes.| Application cache file directories:<br>**/data/storage/el1/base/cache**<br>**/data/storage/el1/base/haps/entry/cache**<br>**/data/storage/el2/base/cache**<br>**/data/storage/el2/base/haps/entry/cache **| 
-| dataSize | Size of the application files (excluding the application installation files and cache files), in bytes.| The application files include local files, distributed files, and database files.<br>- Local application file directories (parent directories of the **cache** directories):<br>**/data/storage/el1/base**<br>**/data/storage/el2/base**<br>- Distributed application directory:<br>/data/storage/el2/distributedfiles<br>- Database directories:<br>**/data/storage/el1/database**<br>**/data/storage/el2/database **| 
+| appSize | Size of the application installation files, in bytes.| /data/storage/el1/bundle |
+| cacheSize | Size of the application cache files, in bytes.| /data/storage/el1/base/cache<br>/data/storage/el1/base/haps/entry/cache<br>/data/storage/el2/base/cache<br>/data/storage/el2/base/haps/entry/cache |
+| dataSize | Size of the application files (excluding the application installation files and cache files), in bytes.| The application files include local files, distributed files, and database files.<br>- Local application file directories (parent directories of the **cache** directories):<br>**/data/storage/el1/base**<br>**/data/storage/el2/base**<br>- Distributed application directory: **/data/storage/el2/distributedfiles**<br>- Database directories:<br>**/data/storage/el1/database**<br>**/data/storage/el2/database** |
 
 ## Development Example
 
@@ -28,9 +28,10 @@ For details about the APIs, see [ohos.file.statvfs](../reference/apis/js-apis-fi
     
   ```ts
   import statvfs from '@ohos.file.statvfs';
+  import { BusinessError } from '@ohos.base';
   
   let path = "/data";
-  statvfs.getFreeSize(path, (err, number) => {
+  statvfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
       console.error(`Invoke getFreeSize failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -43,8 +44,9 @@ For details about the APIs, see [ohos.file.statvfs](../reference/apis/js-apis-fi
     
   ```ts
   import storageStatistics from "@ohos.file.storageStatistics";
+  import { BusinessError } from '@ohos.base';
   
-  storageStatistics.getCurrentBundleStats((err, bundleStats) => {
+  storageStatistics.getCurrentBundleStats((err: BusinessError, bundleStats: storageStatistics.BundleStats) => {
     if (err) {
       console.error(`Invoke getCurrentBundleStats failed, code is ${err.code}, message is ${err.message}`);
     } else {

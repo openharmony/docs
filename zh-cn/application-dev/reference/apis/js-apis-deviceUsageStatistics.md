@@ -45,15 +45,17 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例**：
 
-  ```js
-    bundleState.isIdleState("com.ohos.camera", (err, res) => {
-        if (err) {
-            console.log('BUNDLE_ACTIVE isIdleState callback failed, because: ' + err.code);
-        } else {
-            console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
-        }
-    });
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) => {
+  if (err) {
+    console.log('BUNDLE_ACTIVE isIdleState callback failed, because: ' + err.code);
+  } else {
+    console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
+  }
+});
+```
 
 ## bundleState.isIdleState
 
@@ -77,13 +79,15 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 **示例**：
 
-  ```js
-    bundleState.isIdleState("com.ohos.camera").then( res => {
-        console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
-    }).catch( err => {
-        console.log('BUNDLE_ACTIVE isIdleState promise failed, because: ' + err.code);
-    });
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.isIdleState("com.ohos.camera").then((res: boolean) => {
+  console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE isIdleState promise failed, because: ' + err.code);
+});
+```
 
 ## bundleState.queryAppUsagePriorityGroup
 
@@ -101,11 +105,13 @@ queryAppUsagePriorityGroup(): Promise&lt;number&gt;
 
 **示例**：
 
-```javascript
-bundleState.queryAppUsagePriorityGroup().then( res => {
-    console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
-}).catch( err => {
-    console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryAppUsagePriorityGroup().then((res: number) => {
+  console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
 });
 ```
 
@@ -125,13 +131,15 @@ queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
 **示例**：
 
-```javascript
-bundleState.queryAppUsagePriorityGroup((err, res) => {
-    if(err) {
-        console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
-    } else {
-        console.log('BUNDLE_ACTIVE QueryPackageGroup callback succeeded. result: ' + JSON.stringify(res));
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryAppUsagePriorityGroup((err: BusinessError, res: number) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
+  } else {
+    console.log('BUNDLE_ACTIVE QueryPackageGroup callback succeeded. result: ' + JSON.stringify(res));
+  }
 });
 ```
 
@@ -157,21 +165,19 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **示例**：
 
-  ```js
-    bundleState.queryBundleStateInfos(0, 20000000000000, (err, res) => {
-        if (err) {
-            console.log('BUNDLE_ACTIVE queryBundleStateInfos callback failed, because: ' + err.code);
-        } else {
-            console.log('BUNDLE_ACTIVE queryBundleStateInfos callback success.');
-            let i = 1;
-            for(let key in res){
-                console.log('BUNDLE_ACTIVE queryBundleStateInfos callback number : ' + i);
-                console.log('BUNDLE_ACTIVE queryBundleStateInfos callback result ' + JSON.stringify(res[key]));
-                i++;
-            }
-        }
-    });
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryBundleStateInfos(0, 20000000000000, (err: BusinessError ,
+  res: bundleState.BundleActiveInfoResponse ) => {
+  if (err) {
+    console.log('BUNDLE_ACTIVE queryBundleStateInfos callback failed, because: ' + err.code);
+  } else {
+    console.log('BUNDLE_ACTIVE queryBundleStateInfos callback success.');
+    console.log('BUNDLE_ACTIVE queryBundleStateInfos callback result ' + JSON.stringify(res));
+  }
+});
+```
 
 ## bundleState.queryBundleStateInfos
 
@@ -200,19 +206,16 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
 
 **示例**：
 
-  ```js
-    bundleState.queryBundleStateInfos(0, 20000000000000).then( res => {
-        console.log('BUNDLE_ACTIVE queryBundleStateInfos promise success.');
-        let i = 1;
-        for(let key in res){
-            console.log('BUNDLE_ACTIVE queryBundleStateInfos promise number : ' + i);
-            console.log('BUNDLE_ACTIVE queryBundleStateInfos promise result ' + JSON.stringify(res[key]));
-            i++;
-        }
-    }).catch( err => {
-        console.log('BUNDLE_ACTIVE queryBundleStateInfos promise failed, because: ' + err.code);
-    });
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryBundleStateInfos(0, 20000000000000).then((res: bundleState.BundleActiveInfoResponse) => {
+  console.log('BUNDLE_ACTIVE queryBundleStateInfos promise success.');
+  console.log('BUNDLE_ACTIVE queryBundleStateInfos promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryBundleStateInfos promise failed, because: ' + err.code);
+});
+```
 
 ## bundleState.queryBundleStateInfoByInterval
 
@@ -237,19 +240,21 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **示例**：
 
-  ```js
-    bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED, 0, 20000000000000, (err, res) => {
-        if (err) {
-            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
-        } else {
-            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback result ' + JSON.stringify(res[i]));
-            }
-        }
-    });
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED, 0, 20000000000000, (err: BusinessError, res: Array<bundleState.BundleStateInfo>) => {
+  if (err) {
+    console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
+  } else {
+    console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback success.');
+    for (let i = 0; i < res.length; i++) {
+      console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback number : ' + (i + 1));
+      console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback result ' + JSON.stringify(res[i]));
+    }
+  }
+});
+```
 
 ## bundleState.queryBundleStateInfoByInterval
 
@@ -279,17 +284,19 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **示例**：
 
-  ```js
-    bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED, 0, 20000000000000).then( res => {
-        console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise success.');
-        for (let i = 0; i < res.length; i++) {
-            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise number : ' + (i + 1));
-            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise result ' + JSON.stringify(res[i]));
-        }
-    }).catch( err => {
-        console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise failed, because: ' + err.code);
-    });
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED, 0, 20000000000000).then((res: Array<bundleState.BundleStateInfo>) => {
+  console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise success.');
+  for (let i = 0; i < res.length; i++) {
+    console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise number : ' + (i + 1));
+    console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise result ' + JSON.stringify(res[i]));
+  }
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise failed, because: ' + err.code);
+});
+```
 
 ## bundleState.queryBundleActiveStates
 
@@ -313,19 +320,21 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 
 **示例**：
 
-  ```js
-    bundleState.queryBundleActiveStates(0, 20000000000000, (err, res) => {
-        if (err) {
-            console.log('BUNDLE_ACTIVE queryBundleActiveStates callback failed, because: ' + err.code);
-        } else {
-            console.log('BUNDLE_ACTIVE queryBundleActiveStates callback success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryBundleActiveStates callback number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryBundleActiveStates callback result ' + JSON.stringify(res[i]));
-            }
-        }
-    });
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryBundleActiveStates(0, 20000000000000, (err: BusinessError, res: Array<bundleState.BundleActiveState>) => {
+  if (err) {
+    console.log('BUNDLE_ACTIVE queryBundleActiveStates callback failed, because: ' + err.code);
+  } else {
+    console.log('BUNDLE_ACTIVE queryBundleActiveStates callback success.');
+    for (let i = 0; i < res.length; i++) {
+      console.log('BUNDLE_ACTIVE queryBundleActiveStates callback number : ' + (i + 1));
+      console.log('BUNDLE_ACTIVE queryBundleActiveStates callback result ' + JSON.stringify(res[i]));
+    }
+  }
+});
+```
 
 ## bundleState.queryBundleActiveStates
 
@@ -354,17 +363,19 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
 
 **示例**：
 
-  ```js
-    bundleState.queryBundleActiveStates(0, 20000000000000).then( res => {
-        console.log('BUNDLE_ACTIVE queryBundleActiveStates promise success.');
-        for (let i = 0; i < res.length; i++) {
-            console.log('BUNDLE_ACTIVE queryBundleActiveStates promise number : ' + (i + 1));
-            console.log('BUNDLE_ACTIVE queryBundleActiveStates promise result ' + JSON.stringify(res[i]));
-        }
-    }).catch( err => {
-        console.log('BUNDLE_ACTIVE queryBundleActiveStates promise failed, because: ' + err.code);
-    });
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryBundleActiveStates(0, 20000000000000).then((res: Array<bundleState.BundleActiveState>) => {
+  console.log('BUNDLE_ACTIVE queryBundleActiveStates promise success.');
+  for (let i = 0; i < res.length; i++) {
+    console.log('BUNDLE_ACTIVE queryBundleActiveStates promise number : ' + (i + 1));
+    console.log('BUNDLE_ACTIVE queryBundleActiveStates promise result ' + JSON.stringify(res[i]));
+  }
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryBundleActiveStates promise failed, because: ' + err.code);
+});
+```
 
 ## bundleState.queryCurrentBundleActiveStates
 
@@ -384,19 +395,21 @@ queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallba
 
 **示例**：
 
-  ```js
-    bundleState.queryCurrentBundleActiveStates(0, 20000000000000, (err, res) => {
-        if (err) {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
-        } else {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback result ' + JSON.stringify(res[i]));
-            }
-        }
-    });
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryCurrentBundleActiveStates(0, 20000000000000, (err: BusinessError, res: Array<bundleState.BundleActiveState>) => {
+  if (err) {
+    console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
+  } else {
+    console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback success.');
+    for (let i = 0; i < res.length; i++) {
+      console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback number : ' + (i + 1));
+      console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback result ' + JSON.stringify(res[i]));
+    }
+  }
+});
+```
 
 ## bundleState.queryCurrentBundleActiveStates
 
@@ -421,17 +434,19 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 
 **示例**：
 
-  ```js
-    bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then( res => {
-        console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise success.');
-        for (let i = 0; i < res.length; i++) {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise number : ' + (i + 1));
-            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise result ' + JSON.stringify(res[i]));
-        }
-    }).catch( err => {
-        console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise failed, because: ' + err.code);
-    });
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then((res: Array<bundleState.BundleActiveState>) => {
+  console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise success.');
+  for (let i = 0; i < res.length; i++) {
+    console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise number : ' + (i + 1));
+    console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise result ' + JSON.stringify(res[i]));
+  }
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise failed, because: ' + err.code);
+});
+```
 
 ## BundleStateInfo
 

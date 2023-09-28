@@ -1,6 +1,6 @@
 # @ohos.inputMethodEngine (输入法服务)
 
-本模块面向输入法应用（包括系统输入法应用、三方输入法应用），为输入法应用提供能力，功能包括：创建软键盘窗口、插入/删除字符、选中文本、物理键盘按键事件监听等。
+本模块面向输入法应用（包括系统输入法应用、三方输入法应用），为输入法应用提供能力，包括：创建软键盘窗口、插入/删除字符、选中文本、监听物理键盘按键事件等。
 
 > **说明：**
 >
@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```ts
 import inputMethodEngine from '@ohos.inputMethodEngine';
 ```
 
@@ -56,9 +56,7 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 
 getInputMethodAbility(): InputMethodAbility
 
-为输入法应用获取输入法应用客户端实例[InputMethodAbility](#inputmethodability)。
-该接口仅限于输入法应用调用。
-输入法应用获取该实例可订阅软键盘显示/隐藏请求事件、创建/销毁输入法应用面板等。
+获取输入法应用客户端实例[InputMethodAbility](#inputmethodability)，仅支持输入法应用调用。<br/>输入法应用获取该实例后，可订阅软键盘显示/隐藏请求事件、创建/销毁输入法面板等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -70,7 +68,7 @@ getInputMethodAbility(): InputMethodAbility
 
 **示例：**
 
-```js
+```ts
 let InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 ```
 
@@ -78,7 +76,7 @@ let InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 
 getKeyboardDelegate(): KeyboardDelegate
 
-为输入法应用获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)。输入法应用获取该实例可订阅物理键盘按键事件、选中文本变化事件等。
+获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)。<br/>输入法应用获取该实例后，可订阅物理键盘按键事件、选中文本变化事件等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -90,7 +88,7 @@ getKeyboardDelegate(): KeyboardDelegate
 
 **示例：**
 
-```js
+```ts
 let KeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 ```
 
@@ -98,7 +96,7 @@ let KeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 
 getInputMethodEngine(): InputMethodEngine
 
-为输入法应用获取输入法应用客户端实例[InputMethodEngine](#inputmethodengine-1)。输入法应用获取该实例可订阅软键盘显示/隐藏请求事件等。
+获取输入法应用客户端实例[InputMethodEngine](#inputmethodengine)。<br/>输入法应用获取该实例后，可订阅软键盘显示/隐藏请求事件等。
 
 > **说明：**
 >
@@ -114,7 +112,7 @@ getInputMethodEngine(): InputMethodEngine
 
 **示例：**
 
-```js
+```ts
 let InputMethodEngine = inputMethodEngine.getInputMethodEngine();
 ```
 
@@ -122,7 +120,7 @@ let InputMethodEngine = inputMethodEngine.getInputMethodEngine();
 
 createKeyboardDelegate(): KeyboardDelegate
 
-为输入法应用获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)。输入法应用获取该实例可订阅物理键盘按键事件、选中文本变化事件等。
+获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)。输入法应用获取该实例后，可订阅物理键盘按键事件、选中文本变化事件等。
 
 > **说明：**
 >
@@ -138,13 +136,13 @@ createKeyboardDelegate(): KeyboardDelegate
 
 **示例：**
 
-```js
+```ts
 let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 ```
 
 ## InputMethodEngine
 
-下列API示例中都需使用[getInputMethodEngine](#inputmethodenginegetinputmethodenginedeprecated)回调获取到InputMethodEngine实例，再通过此实例调用对应方法。
+下列API均需使用[getInputMethodEngine](#inputmethodenginegetinputmethodenginedeprecated)获取到InputMethodEngine实例后，通过实例调用。
 
 ### on('inputStart')
 
@@ -158,15 +156,16 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                        | 是   | 设置监听类型。<br/>-&nbsp;type为‘inputStart’时表示订阅输入法绑定。 |
+| type     | string                        | 是   | 设置监听类型，固定取值为'inputStart'。 |
 | callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | 是 | 回调函数，返回订阅输入法的KeyboardController和TextInputClient实例。 |
 
 **示例：**
 
-```js
-inputMethodEngine.getInputMethodEngine().on('inputStart', (kbController, textClient) => {
-  let keyboardController = kbController;
-  let textInputClient = textClient;
+```ts
+inputMethodEngine.getInputMethodEngine()
+  .on('inputStart', (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
+    let keyboardController = kbController;
+    let textInputClient = textClient;
 });
 ```
 
@@ -182,14 +181,15 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| type | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | 否 | 回调函数，返回取消订阅的KeyboardController和TextInputClient实例。 |
+| type | string                                                       | 是   | 设置监听类型，固定取值为'inputStart'。 |
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | 否 | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
-```js
-inputMethodEngine.getInputMethodEngine().off('inputStart', (kbController, textInputClient) => {
-  console.log('delete inputStart notification.');
+```ts
+inputMethodEngine.getInputMethodEngine()
+  .off('inputStart', (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
+    console.log('delete inputStart notification.');
 });
 ```
 
@@ -197,7 +197,7 @@ inputMethodEngine.getInputMethodEngine().off('inputStart', (kbController, textIn
 
 on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
-订阅输入法事件。使用callback异步回调。
+订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -205,12 +205,12 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
+| type     | string | 是   | 设置监听类型。<br/>-'keyboardShow'表示显示输入法软键盘。<br/>-'keyboardHide'表示隐藏输入法软键盘。 |
 | callback | () => void   | 是   | 回调函数。                                                   |
 
 **示例：**
 
-```js
+```ts
 inputMethodEngine.getInputMethodEngine().on('keyboardShow', () => {
   console.log('inputMethodEngine keyboardShow.');
 });
@@ -223,7 +223,7 @@ inputMethodEngine.getInputMethodEngine().on('keyboardHide', () => {
 
 off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
-取消订阅输入法事件。使用callback异步回调。
+取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -231,19 +231,19 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | () => void   | 否   | 回调函数。 |
+| type     | string | 是   | 要取消监听的输入法软键盘类型。<br/>-'keyboardShow'表示显示输入法软键盘。<br/>-'keyboardHide'表示隐藏输入法软键盘。|
+| callback | () => void   | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
-```js
+```ts
 inputMethodEngine.getInputMethodEngine().off('keyboardShow');
 inputMethodEngine.getInputMethodEngine().off('keyboardHide');
 ```
 
 ## InputMethodAbility
 
-下列API示例中都需使用[getInputMethodAbility](#inputmethodenginegetinputmethodability9)回调获取到InputMethodAbility实例，再通过此实例调用对应方法。
+下列API均需使用[getInputMethodAbility](#inputmethodenginegetinputmethodability9)获取到InputMethodAbility实例后，通过实例调用。
 
 ### on('inputStart')<sup>9+</sup>
 
@@ -257,15 +257,16 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                        | 是   | 设置监听类型。<br/>-&nbsp;type为‘inputStart’时表示订阅输入法绑定。 |
+| type     | string                        | 是   | 设置监听类型，固定取值为'inputStart'。 |
 | callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | 是 | 回调函数，返回输入法操作相关实例。 |
 
 **示例：**
 
-```js
-inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, client) => {
-  let keyboardController = kbController;
-  let inputClient = client;
+```ts
+inputMethodEngine.getInputMethodAbility()
+  .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+    let keyboardController = kbController;
+    let inputClient = client;
 });
 ```
 
@@ -281,12 +282,12 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, inputClien
 
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| type | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | 否 | 回调函数，返回输入法操作相关实例。 |
+| type | string                                                       | 是   | 设置监听类型，固定取值为'inputStart'。 |
+| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | 否 | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
-```js
+```ts
 inputMethodEngine.getInputMethodAbility().off('inputStart');
 ```
 
@@ -302,12 +303,12 @@ on(type: 'inputStop', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为‘inputStop’时表示订阅停止输入法应用事件。 |
-| callback | () => void   | 是   | 回调函数。                                                   |
+| type     | string | 是   | 设置监听类型，固定取值为'inputStop'。 |
+| callback | () => void   | 是   | 回调函数。                        |
 
 **示例：**
 
-```js
+```ts
 inputMethodEngine.getInputMethodAbility().on('inputStop', () => {
   console.log('inputMethodAbility inputStop');
 });
@@ -325,12 +326,12 @@ off(type: 'inputStop', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为‘inputStop’时表示订阅停止输入法应用事件。 |
-| callback | () => void   | 是   | 回调函数。                                                   |
+| type     | string | 是   | 设置监听类型，固定取值为'inputStop'。 |
+| callback | () => void   | 是   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。        |
 
 **示例：**
 
-```js
+```ts
 inputMethodEngine.getInputMethodAbility().off('inputStop', () => {
   console.log('inputMethodAbility delete inputStop notification.');
 });
@@ -348,13 +349,13 @@ on(type: 'setCallingWindow', callback: (wid: number) => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | (wid: number) => void | 是   | 回调函数，返回调用方window id。                                            |
+| type     | string | 是   | 设置监听类型，固定取值为'setCallingWindow'。 |
+| callback | (wid: number) => void | 是   | 回调函数，返回调用方窗口的Id。                     |
 
 **示例：**
 
-```js
-inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (wid) => {
+```ts
+inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (wid: number) => {
   console.log('inputMethodAbility setCallingWindow');
 });
 ```
@@ -371,13 +372,13 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | (wid:number) => void | 是   | 回调函数，返回调用方window id。                                 |
+| type     | string | 是   | 设置监听类型，固定取值为'setCallingWindow'。|
+| callback | (wid:number) => void | 是   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
-```js
-inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid) => {
+```ts
+inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid: number) => {
   console.log('inputMethodAbility delete setCallingWindow notification.');
 });
 ```
@@ -386,7 +387,7 @@ inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid) => {
 
 on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
-订阅输入法事件。使用callback异步回调。
+订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -394,12 +395,12 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅显示键盘事件。<br/>-&nbsp;type为'keyboardHide'，表示订阅隐藏键盘事件。 |
+| type     | string | 是   | 设置监听类型。<br/>- 'keyboardShow'表示显示输入法软键盘。<br/>- 'keyboardHide'表示隐藏输入法软键盘。 |
 | callback | () => void   | 是   | 回调函数。                                                   |
 
 **示例：**
 
-```js
+```ts
 inputMethodEngine.getInputMethodAbility().on('keyboardShow', () => {
   console.log('InputMethodAbility keyboardShow.');
 });
@@ -420,12 +421,12 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示取消订阅显示键盘事件。<br/>-&nbsp;type为'keyboardHide'，表示取消订阅隐藏键盘事件。 |
-| callback | () => void   | 否   | 回调函数。     |
+| type     | string | 是   | 设置监听类型。<br/>- 'keyboardShow'表示显示键盘。<br/>- 'keyboardHide'表示隐藏键盘。 |
+| callback | () => void   | 否   | 回调函数。 |
 
 **示例：**
 
-```js
+```ts
 inputMethodEngine.getInputMethodAbility().off('keyboardShow', () => {
   console.log('InputMethodAbility delete keyboardShow notification.');
 });
@@ -446,13 +447,13 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 
 | 参数名    | 类型 | 必填  | 说明 |
 | -------- | --- | ---- | --- |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示订阅输入法子类型的设置事件。 |
-| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 是   | 回调函数，返回设置的输入法子类型。                           |
+| type     | string | 是   | 设置监听类型，固定取值为'setSubtype'。 |
+| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 是   | 回调函数，返回设置的输入法子类型。                         |
 
 **示例：**
 
-```js
-inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype) => {
+```ts
+inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
   console.log('InputMethodAbility setSubtype.');
 });
 ```
@@ -461,7 +462,7 @@ inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype) 
 
 off(type: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => void): void
 
-取消订阅输入法子类型事件。使用callback异步回调。
+取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -469,12 +470,12 @@ off(type: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => v
 
 | 参数名   | 类型  | 必填 | 说明   |
 | ------- | ----- | ---- | ---- |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示取消订阅输入法子类型的设置事件。 |
-| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 否   | 回调函数，返回设置的输入法子类型。  |
+| type     | string | 是   | 设置监听类型，固定取值为'setSubtype'。 |
+| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。  |
 
 **示例：**
 
-```js
+```ts
 inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
   console.log('InputMethodAbility delete setSubtype notification.');
 });
@@ -484,9 +485,7 @@ inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
 
 createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
 
-创建输入法应用面板。使用callback异步回调。
-
-仅支持输入法应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。
+创建输入法面板，仅支持输入法应用调用。使用callback异步回调。<br>单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和[状态栏类型](#paneltype10)的面板。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -495,7 +494,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
 | ctx     | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
-| info    | [PanelInfo](#panelinfo10)   | 是   | 输入法面板信息。 |
+| info    | [PanelInfo](#panelinfo10)   | 是   | 输入法应用信息。 |
 | callback | AsyncCallback\<[Panel](#panel10)> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
 **错误码：**
@@ -506,20 +505,21 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 **示例：**
 
-```js
+```ts
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
-  inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
-    if (err) {
-      console.error(`Failed to createPanel: ${JSON.stringify(err)}`);
-      return;
-    }
-    console.log('Succeed in creating panel.');
-  })
-} catch(err) {
+  inputMethodEngine.getInputMethodAbility()
+    .createPanel(this.context, panelInfo, (err: BusinessError, panel: inputMethodEngine.Panel) => {
+      if (err) {
+        console.error(`Failed to createPanel: ${JSON.stringify(err)}`);
+        return;
+      }
+      console.log('Succeed in creating panel.');
+    })
+} catch (err) {
   console.error(`Failed to createPanel: ${JSON.stringify(err)}`);
 }
 ```
@@ -528,9 +528,7 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
-创建输入法应用面板。使用promise异步回调。
-
-仅支持输入法应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。
+创建输入法面板，仅支持输入法应用调用。使用promise异步回调。<br>单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和[状态栏类型](#paneltype10)的面板。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -554,23 +552,24 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 **示例：**
 
-```js
+```ts
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
-inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).then((panel) => {
-  console.log('Succeed in creating panel.');
-}).catch((err) => {
-  console.error(`Failed to create panel: ${JSON.stringify(err)}`);
-})
+inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo)
+  .then((panel: inputMethodEngine.Panel) => {
+    console.log('Succeed in creating panel.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create panel: ${JSON.stringify(err)}`);
+  })
 ```
 
 ### destroyPanel<sup>10+</sup>
 
 destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
 
-销毁输入法应用面板。使用callback异步回调。
+销毁输入法面板。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -578,38 +577,41 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
-| panel     | [Panel](#panel10) | 是   | 要销毁的panel对象。 |
+| panel     | [Panel](#panel10) | 是   | 要销毁的面板对象。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
-```js
+```ts
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
+let inputPanel: inputMethodEngine.Panel | undefined = undefined;
 try {
-  inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
-    if (err) {
-      console.error(`Failed to create panel: ${JSON.stringify(err)}`);
-      return;
-    }
-	globalThis.inputMethodPanel = panel;
-    console.log('Succeed in creating panel.');
-  })
-} catch(err) {
+  inputMethodEngine.getInputMethodAbility()
+    .createPanel(this.context, panelInfo, (err: BusinessError, panel: inputMethodEngine.Panel) => {
+      if (err) {
+        console.error(`Failed to create panel: ${JSON.stringify(err)}`);
+        return;
+      }
+      inputPanel = panel;
+      console.log('Succeed in creating panel.');
+    })
+} catch (err) {
   console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 }
-
 try {
-  inputMethodEngine.getInputMethodAbility().destroyPanel(globalThis.inputMethodPanel, (err) => {
-    if(err !== undefined) {
-      console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
-      return;
-    }
-    console.log('Succeed in destroying panel.');
-  })
-} catch(err) {
+  if (inputPanel) {
+    inputMethodEngine.getInputMethodAbility().destroyPanel(inputPanel, (err: BusinessError) => {
+      if (err !== undefined) {
+        console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
+        return;
+      }
+      console.log('Succeed in destroying panel.');
+    })
+  }
+} catch (err) {
   console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
 }
 ```
@@ -618,7 +620,7 @@ try {
 
 destroyPanel(panel: Panel): Promise\<void>;
 
-销毁输入法应用面板。使用promise异步回调。
+销毁输入法面板。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -626,7 +628,7 @@ destroyPanel(panel: Panel): Promise\<void>;
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ---------| ----------- | ---- | ------------------------ |
-| panel    | [Panel](#panel10)       | 是   | 要销毁的panel对象。      |
+| panel    | [Panel](#panel10)       | 是   | 要销毁的面板对象。      |
 
 **返回值：**
 | 类型    | 说明                                                                 |
@@ -635,30 +637,34 @@ destroyPanel(panel: Panel): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
+let inputPanel: inputMethodEngine.Panel | undefined = undefined;
 try {
-  inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
-    if (err) {
-      console.error(`Failed to create panel: ${JSON.stringify(err)}`);
-      return;
-    }
-	globalThis.inputMethodPanel = panel;
-    console.log('Succeed in creating panel.');
-  })
-} catch(err) {
+  inputMethodEngine.getInputMethodAbility()
+    .createPanel(this.context, panelInfo, (err: BusinessError, panel: inputMethodEngine.Panel) => {
+      if (err) {
+        console.error(`Failed to create panel: ${JSON.stringify(err)}`);
+        return;
+      }
+      inputPanel = panel;
+      console.log('Succeed in creating panel.');
+    })
+} catch (err) {
   console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 }
 
 try {
-  inputMethodEngine.getInputMethodAbility().destroyPanel(globalThis.inputMethodPanel).then(() => {
-    console.log('Succeed in destroying panel.');
-  }).catch((err) => {
-    console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
-  });
+  if (inputPanel) {
+    inputMethodEngine.getInputMethodAbility().destroyPanel(inputPanel).then(() => {
+      console.log('Succeed in destroying panel.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
+    });
+  }
 } catch (err) {
   console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
 }
@@ -666,13 +672,13 @@ try {
 
 ## KeyboardDelegate
 
-下列API示例中都需使用[getKeyboardDelegate](#inputmethodenginegetkeyboarddelegate9)回调获取到KeyboardDelegate实例，再通过此实例调用对应方法。
+下列API均需使用[getKeyboardDelegate](#inputmethodenginegetkeyboarddelegate9)获取到KeyboardDelegate实例后，通过实例调用。
 
 ### on('keyDown'|'keyUp')
 
 on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
-订阅硬键盘（即物理键盘）事件。使用callback异步回调。
+订阅硬键盘（即物理键盘）上物理按键的按下或抬起事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -680,18 +686,18 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type   | string         | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下事件。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起事件。 |
+| type   | string         | 是   | 设置监听类型。<br/>- 'keyDown'表示键盘按下。<br/>- 'keyUp'表示键盘抬起。 |
 | callback | (event: [KeyEvent](#keyevent)) => boolean | 是 | 回调函数，返回按键信息。 |
 
 **示例：**
 
-```js
-inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent) => {
+```ts
+inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
   console.log('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
   console.log('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
   return true;
 });
-inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent) => {
+inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
   console.log('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
   console.log('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
   return true;
@@ -702,7 +708,7 @@ inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent) => {
 
 off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
-取消订阅硬键盘（即物理键盘）事件。使用callback异步回调。
+取消订阅硬键盘（即物理键盘）上物理按键的按下或抬起事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -710,17 +716,17 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 | 参数名    | 类型     | 必填  | 说明  |
 | -------- | ------- | ---- | ----- |
-| type     | string  | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示取消订阅硬键盘按下事件。<br/>-&nbsp;type为'keyUp'，表示取消订阅硬键盘抬起事件。 |
-| callback | (event: [KeyEvent](#keyevent)) => boolean | 否   | 回调函数，返回按键信息。  |
+| type     | string  | 是   | 设置监听类型。<br/>- 'keyDown'表示键盘按下。<br/>- 'keyUp'表示键盘抬起。 |
+| callback | (event: [KeyEvent](#keyevent)) => boolean | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。   |
 
 **示例：**
 
-```js
-inputMethodEngine.getKeyboardDelegate().off('keyUp', (keyEvent) => {
+```ts
+inputMethodEngine.getKeyboardDelegate().off('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
   console.log('delete keyUp notification.');
   return true;
 });
-inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent) => {
+inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
   console.log('delete keyDown notification.');
   return true;
 });
@@ -738,13 +744,13 @@ on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | 设置监听类型。<br/>-&nbsp;type为'keyEvent'，表示订阅硬键盘按键事件。 |
-| callback | function | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。 |
+| type     | string   | 是   | 设置监听类型，固定取值为'keyEvent'。 |
+| callback | function | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。|
 
 **示例：**
 
-```js
-inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent) => {
+```ts
+inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent: InputKeyEvent) => {
   console.log('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
   console.log('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
   console.log('inputMethodEngine keyEvent.ctrlKey:' + JSON.stringify(keyEvent.ctrlKey));
@@ -764,13 +770,13 @@ off(type: 'keyEvent', callback?: (event: InputKeyEvent) => boolean): void
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | 设置监听类型。<br/>-&nbsp;type为'keyEvent'，表示取消订阅硬键盘按键事件。 |
-| callback | function | 否   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。<br/>-&nbsp;可选参数，若填写表示不再回调此函数，若不填写则取消注册该事件所有回调函数。 |
+| type     | string   | 是   | 设置监听类型，固定取值为'keyEvent'。 |
+| callback | function | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
-```js
-inputMethodEngine.getKeyboardDelegate().off('keyEvent', (keyEvent) => {
+```ts
+inputMethodEngine.getKeyboardDelegate().off('keyEvent', (keyEvent: InputKeyEvent) => {
   console.log('This is a callback function which will be deregistered.');
   return true;
 });
@@ -789,13 +795,13 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 | 参数名    | 类型  | 必填  | 说明  |
 | -------- | ---- | ---- | ----- |
-| type     | string | 是   | 光标变化事件。<br/>-&nbsp;type为‘cursorContextChange’时，表示订阅光标变化事件。 |
-| callback | (x: number, y: number, height: number) => void | 是   | 回调函数，返回光标信息。<br/>-&nbsp;x为光标上端的的x坐标值。<br/>-&nbsp;y为光标上端的y坐标值。<br/>-&nbsp;height为光标的高度值。 |
+| type     | string | 是   | 光标变化事件，固定取值为'cursorContextChange'。 |
+| callback | (x: number, y: number, height: number) => void | 是   | 回调函数，返回光标信息。<br/>-x为光标上端的的x坐标值，y为光标上端的y坐标值，height为光标的高度值。 |
 
 **示例：**
 
-```js
-inputMethodEngine.getKeyboardDelegate().on('cursorContextChange', (x, y, height) => {
+```ts
+inputMethodEngine.getKeyboardDelegate().on('cursorContextChange', (x: number, y: number, height: number) => {
   console.log('inputMethodEngine cursorContextChange x:' + x);
   console.log('inputMethodEngine cursorContextChange y:' + y);
   console.log('inputMethodEngine cursorContextChange height:' + height);
@@ -814,14 +820,14 @@ off(type: 'cursorContextChange', callback?: (x: number, y: number, height: numbe
 
 | 参数名    | 类型  | 必填  | 说明   |
 | -------- | ---- | ---- | ------ |
-| type     | string  | 是   | 光标变化事件。<br/>-&nbsp;type为‘cursorContextChange’时，表示光标变化。 |
-| callback | (x: number, y:number, height:number) => void | 否   | 回调函数，返回光标信息。<br/>-&nbsp;x为光标上端的的x坐标值。<br/>-&nbsp;y为光标上端的y坐标值。<br/>-&nbsp;height为光标的高度值。<br/> |
+| type     | string  | 是   | 光标变化事件，固定取值为'cursorContextChange' |
+| callback | (x: number, y:number, height:number) => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 
   **示例：**
 
-```js
-inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x, y, height) => {
+```ts
+inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x: number, y: number, height: number) => {
   console.log('delete cursorContextChange notification.');
 });
 ```
@@ -829,7 +835,7 @@ inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x, y, height
 
 on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
-订阅文本选择变化事件。使用callback异步回调。
+订阅文本选择范围变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -837,25 +843,26 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 | 参数名    | 类型   | 必填 | 说明   |
 | -------- | ----- | ---- | ---- |
-| type     | string  | 是   | 文本选择变化事件。<br/>-&nbsp;type为‘selectionChange’时，表示选择文本变化。 |
-| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 是   | 回调函数，返回文本选择信息。<br/>-&nbsp;oldBegin为变化之前被选中文本的起始下标。<br/>-&nbsp;oldEnd为变化之前被选中文本的终止下标。<br/>-&nbsp;newBegin为变化之后被选中文本的起始下标。<br/>-&nbsp;newEnd为变化之后被选中文本的终止下标。 |
+| type     | string  | 是   | 文本选择变化事件，固定取值为'selectionChange'。 |
+| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 是   | 回调函数，返回文本选择信息。<br/>- oldBegin为变化前被选中文本的起始下标，oldEnd为变化前被选中文本的终止下标。<br/>- newBegin为变化后被选中文本的起始下标，newEnd为变化后被选中文本的终止下标。|
 
 **示例：**
 
-```js
-inputMethodEngine.getKeyboardDelegate().on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
-  console.log('inputMethodEngine beforeEach selectionChange oldBegin:' + oldBegin);
-  console.log('inputMethodEngine beforeEach selectionChange oldEnd:' + oldEnd);
-  console.log('inputMethodEngine beforeEach selectionChange newBegin:' + newBegin);
-  console.log('inputMethodEngine beforeEach selectionChange newEnd:' + newEnd);
-});
+```ts
+inputMethodEngine.getKeyboardDelegate()
+  .on('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => {
+    console.log('inputMethodEngine beforeEach selectionChange oldBegin:' + oldBegin);
+    console.log('inputMethodEngine beforeEach selectionChange oldEnd:' + oldEnd);
+    console.log('inputMethodEngine beforeEach selectionChange newBegin:' + newBegin);
+    console.log('inputMethodEngine beforeEach selectionChange newEnd:' + newEnd);
+  });
 ```
 
 ### off('selectionChange')
 
 off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
-取消订阅文本选择变化事件。使用callback异步回调。
+取消订阅文本选择范围变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -863,15 +870,16 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 | 参数名   | 类型  | 必填 | 说明     |
 | -------- | ------- | ---- | ------- |
-| type     | string  | 是   | 文本选择变化事件。<br/>-&nbsp;type为‘selectionChange’时，表示选择文本变化。 |
-| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 否   | 回调函数，返回文本选择信息。<br/>-&nbsp;oldBegin为变化之前被选中文本的起始下标。<br/>-&nbsp;oldEnd为变化之前被选中文本的终止下标。<br/>-&nbsp;newBegin为变化之后被选中文本的起始下标。<br/>-&nbsp;newEnd为变化之后被选中文本的终止下标。<br/> |
+| type     | string  | 是   | 文本选择变化事件，固定取值为'selectionChange'。 |
+| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
-```js
-inputMethodEngine.getKeyboardDelegate().off('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
-  console.log('delete selectionChange notification.');
-});
+```ts
+inputMethodEngine.getKeyboardDelegate()
+  .off('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number)  => {
+    console.log('delete selectionChange notification.');
+  });
 ```
 
 
@@ -879,7 +887,7 @@ inputMethodEngine.getKeyboardDelegate().off('selectionChange', (oldBegin, oldEnd
 
 on(type: 'textChange', callback: (text: string) => void): void
 
-订阅文本变化事件。使用callback异步回调。
+订阅文本内容变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -887,13 +895,13 @@ on(type: 'textChange', callback: (text: string) => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为‘textChange’时，表示订阅文本变化事件。 |
+| type     | string | 是   | 文本变化事件，固定取值为'textChange'。 |
 | callback | (text: string) => void | 是   | 回调函数，返回订阅的文本内容。|
 
 **示例：**
 
-```js
-inputMethodEngine.getKeyboardDelegate().on('textChange', (text) => {
+```ts
+inputMethodEngine.getKeyboardDelegate().on('textChange', (text: string) => {
   console.log('inputMethodEngine textChange. text:' + text);
 });
 ```
@@ -902,7 +910,7 @@ inputMethodEngine.getKeyboardDelegate().on('textChange', (text) => {
 
 off(type: 'textChange', callback?: (text: string) => void): void
 
-取消订阅文本变化事件。使用callback异步回调。
+取消订阅文本内容变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -910,13 +918,13 @@ off(type: 'textChange', callback?: (text: string) => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为‘textChange’时，表示取消订阅文本变化事件。 |
-| callback | (text: string) => void | 否   | 回调函数，返回取消订阅的文本内容。 |
+| type     | string | 是   | 文本变化事件，固定取值为'textChange'。 |
+| callback | (text: string) => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
-```js
-inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
+```ts
+inputMethodEngine.getKeyboardDelegate().off('textChange', (text: string) => {
   console.log('delete textChange notification. text:' + text);
 });
 ```
@@ -933,13 +941,13 @@ on(type: 'editorAttributeChanged', callback: (attr: EditorAttribute) => void): v
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为‘editorAttributeChanged’时，表示订阅编辑框属性变化事件。 |
-| callback | (attr: EditorAttribute) => void | 是   | 用于接受编辑框属性变化的回调函数。|
+| type     | string | 是   | 文本变化事件，固定取值为'editorAttributeChanged'。 |
+| callback | (attr: EditorAttribute) => void | 是   | 回调函数，返回变化的编辑框属性。|
 
 **示例：**
 
-```js
-inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr) => {
+```ts
+inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr: inputMethodEngine.EditorAttribute) => {
   console.log(`Succeeded in receiving attribute of editor, inputPattern = ${attr.inputPattern}, enterKeyType = ${attr.enterKeyType}`);
 });
 ```
@@ -948,7 +956,7 @@ inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr) => {
 
 off(type: 'editorAttributeChanged', callback?: (attr: EditorAttribute) => void): void
 
-取消订阅编辑框属性变化事件。
+取消订阅编辑框属性变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -956,24 +964,24 @@ off(type: 'editorAttributeChanged', callback?: (attr: EditorAttribute) => void):
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为‘editorAttributeChanged’时，表示取消订阅编辑框属性变化事件。 |
-| callback | (attr: EditorAttribute) => void | 否   | 所要取消订阅的回调处理函数，和on接口参数对应。 |
+| type     | string | 是   | 文本变化事件，固定取值为'editorAttributeChanged'。 |
+| callback | (attr: EditorAttribute) => void | 否   | 所要取消订阅的回调处理函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
-```js
+```ts
 inputMethodEngine.getKeyboardDelegate().off('editorAttributeChanged');
 ```
 
 ## Panel<sup>10+</sup>
 
-下列API示例中都需使用[createPanel](#createpanel10)回调获取到Panel实例，再通过此实例调用对应方法。
+下列API均需使用[createPanel](#createpanel10)获取到Panel实例后，通过实例调用。
 
 ### setUiContent<sup>10+</sup>
 
 setUiContent(path: string, callback: AsyncCallback\<void>): void
 
-为当前面板加载具体页面内容，使用callback异步回调。
+为当前的输入法面板加载具体页面内容，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -981,14 +989,14 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | 是   | 设置加载页面的路径。 |
+| path | string | 是   | 具体页面的路径。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
 
-```js
+```ts
 try {
-  panel.setUiContent('pages/page2/page2', (err) => {
+  panel.setUiContent('pages/page2/page2', (err: BusinessError) => {
     if (err) {
       console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
       return;
@@ -1004,7 +1012,7 @@ try {
 
 setUiContent(path: string): Promise\<void>
 
-为当前面板加载具体页面内容，使用Promise异步回调。
+为当前的输入法面板加载具体页面内容，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1012,7 +1020,7 @@ setUiContent(path: string): Promise\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | 是   | 设置加载页面的路径。 |
+| path | string | 是   |  具体页面的路径。 |
 
 **返回值：**
 
@@ -1022,12 +1030,11 @@ setUiContent(path: string): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 try {
-  let promise = panel.setUiContent('pages/page2/page2');
-  promise.then(() => {
+  panel.setUiContent('pages/page2/page2').then(() => {
     console.log('Succeeded in setting the content.');
-  }).catch((err) =>{
+  }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -1039,7 +1046,7 @@ try {
 
 setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>): void
 
-为当前面板加载与LocalStorage相关联的具体页面内容，使用callback异步回调。
+为当前的输入法面板加载与LocalStorage相关联的具体页面内容，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1047,17 +1054,17 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | 是   | 设置加载页面的路径。 |
-| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| path | string | 是   | LocalStorage相关联的具体页面的路径。 |
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变和不可变状态属性提供存储。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
 
-```js
+```ts
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
-  panel.setUiContent('pages/page2/page2', storage, (err) => {
+  panel.setUiContent('pages/page2/page2', storage, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
       return;
@@ -1092,14 +1099,13 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
-  let promise = panel.setUiContent('pages/page2/page2');
-  promise.then(() => {
+  panel.setUiContent('pages/page2/page2')then(() => {
     console.log('Succeeded in setting the content.');
-  }).catch((err) =>{
+  }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -1111,9 +1117,11 @@ try {
 
 resize(width: number, height: number, callback: AsyncCallback\<void>): void
 
-改变当前面板大小，使用callback异步回调。
+改变当前输入法面板的大小，使用callback异步回调。
 
-面板存在大小限制，面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的二分之一。
+> **说明**
+>
+> 面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的0.6倍。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1127,9 +1135,9 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 try {
-  panel.resize(500, 1000, (err) => {
+  panel.resize(500, 1000, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
       return;
@@ -1145,9 +1153,11 @@ try {
 
 resize(width: number, height: number): Promise\<void>;
 
-改变当前面板大小，使用Promise异步回调。
+改变当前输入法面板的大小，使用Promise异步回调。
 
-面板存在大小限制，面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的二分之一。
+> **说明**
+>
+> 面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的0.6倍。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1166,12 +1176,11 @@ resize(width: number, height: number): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 try {
-  let promise = panel.resize(500, 1000);
-  promise.then(() => {
+  panel.resize(500, 1000).then(() => {
     console.log('Succeeded in changing the panel size.');
-  }).catch((err) =>{
+  }).catch((err: BusinessError) => {
     console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -1183,9 +1192,7 @@ try {
 
 moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
-移动面板位置，使用callback异步回调。
-
-对FLG_FIXED状态的panel不产生实际移动效果。
+移动面板位置，使用callback异步回调。[面板状态](#panelflag10)为固定态时，不产生实际移动效果。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1193,15 +1200,15 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | 是   | 面板在x轴方向移动的值，值为正表示右移，单位为px。|
-| y | number | 是   | 面板在y轴方向移动的值，值为正表示下移，单位为px。|
+| x | number | 是   | x轴方向移动的值，值大于0表示右移，单位为px。|
+| y | number | 是   | y轴方向移动的值，值大于0表示下移，单位为px。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板位置移动成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
 
-```js
+```ts
 try {
-  panel.moveTo(300, 300, (err) =>{
+  panel.moveTo(300, 300, (err: BusinessError) =>{
     if (err) {
       console.error(`Failed to move panel: ${JSON.stringify(err)}`);
       return;
@@ -1217,9 +1224,7 @@ try {
 
 moveTo(x: number, y: number): Promise\<void>
 
-移动面板位置。使用promise异步回调。
-
-对FLG_FIXED状态的panel不产生实际移动效果。
+移动面板位置，使用promise异步回调。[面板状态](#panelflag10)为固定态时，不产生实际移动效果。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1227,8 +1232,8 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | 是   | 面板在x轴方向移动的值，值为正表示右移，单位为px。|
-| y | number | 是   | 面板在y轴方向移动的值，值为正表示下移，单位为px。|
+| x | number | 是   |x轴方向移动的值，值大于0表示右移，单位为px。|
+| y | number | 是   |y轴方向移动的值，值大于0表示下移，单位为px。|
 
 **返回值：**
 
@@ -1238,12 +1243,11 @@ moveTo(x: number, y: number): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 try {
-  let promise = panel.moveTo(300, 300);
-  promise.then(() => {
+  panel.moveTo(300, 300).then(() => {
     console.log('Succeeded in moving the panel.');
-  }).catch((err) =>{
+  }).catch((err: BusinessError) => {
     console.error(`Failed to move panel: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -1255,7 +1259,7 @@ try {
 
 show(callback: AsyncCallback\<void>): void
 
-显示当前面板，使用callback异步回调。
+显示当前输入法面板，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1267,8 +1271,8 @@ show(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-panel.show((err) => {
+```ts
+panel.show((err: BusinessError) => {
   if (err) {
     console.error(`Failed to show panel: ${JSON.stringify(err)}`);
     return;
@@ -1281,7 +1285,7 @@ panel.show((err) => {
 
 show(): Promise\<void>
 
-显示当前面板，使用promise异步回调。
+显示当前输入法面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1293,11 +1297,10 @@ show(): Promise\<void>
 
 **示例：**
 
-```js
-let promise = panel.show();
-promise.then(() => {
+```ts
+panel.show().then(() => {
   console.log('Succeeded in showing the panel.');
-}).catch((err) =>{
+}).catch((err: BusinessError) => {
   console.error(`Failed to show panel: ${JSON.stringify(err)}`);
 });
 ```
@@ -1306,7 +1309,7 @@ promise.then(() => {
 
 hide(callback: AsyncCallback\<void>): void
 
-隐藏当前面板，使用callback异步回调。
+隐藏当前输入法面板，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1318,8 +1321,8 @@ hide(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-panel.hide((err) => {
+```ts
+panel.hide((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hide panel: ${JSON.stringify(err)}`);
     return;
@@ -1332,7 +1335,7 @@ panel.hide((err) => {
 
 hide(): Promise\<void>
 
-隐藏当前面板，使用promise异步回调。
+隐藏当前输入法面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1344,11 +1347,10 @@ hide(): Promise\<void>
 
 **示例：**
 
-```js
-let promise = panel.hide();
-promise.then(() => {
+```ts
+panel.hide().then(() => {
   console.log('Succeeded in hiding the panel.');
-}).catch((err) =>{
+}).catch((err: BusinessError) => {
   console.error(`Failed to hide panel: ${JSON.stringify(err)}`);
 });
 ```
@@ -1365,12 +1367,12 @@ on(type: 'show', callback: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | 是 | 监听当前面板的状态类型。 <br/>- type为`show`表示显示状态。 |
+| type | string | 是 | 监听当前面板的状态类型，固定取值为'show'。 |
 | callback | () => void | 是   | 回调函数。 |
 
 **示例：**
 
-```js
+```ts
 panel.on('show', () => {
   console.log('Panel is showing.');
 });
@@ -1388,12 +1390,12 @@ on(type: 'hide', callback: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | 是 | 监听当前面板的状态类型。 <br/>- type为`hide`表示隐藏状态。 |
+| type | string | 是 | 监听当前面板的状态类型，固定取值为'hide'。 |
 | callback | () => void | 是   | 回调函数。 |
 
 **示例：**
 
-```js
+```ts
 panel.on('hide', () => {
   console.log('Panel is hiding.');
 });
@@ -1403,7 +1405,7 @@ panel.on('hide', () => {
 
 off(type: 'show', callback?: () => void): void
 
-取消监听当前面板显示状态，使用callback异步回调。
+取消监听当前输入法面板的隐藏状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1411,12 +1413,12 @@ off(type: 'show', callback?: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | 是 | 要取消监听的当前面板状态类型。 <br/>- type为`show`表示显示状态。 |
-| callback | () => void | 否   | 回调函数。 |
+| type | string | 是 | 取消监听当前面板的状态类型，固定取值为'show'。 |
+| callback | () => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
-```js
+```ts
 panel.off('show');
 ```
 
@@ -1432,12 +1434,12 @@ off(type: 'hide', callback?: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | 是 | 要取消监听的当前面板状态类型。 <br/>- type为`hide`表示隐藏状态。 |
-| callback | () => void | 否   | 回调函数。 |
+| type | string | 是 | 要取消监听的当前面板状态类型，固定取值为'hide'。 |
+| callback | () => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
-```js
+```ts
 panel.off('hide');
 ```
 
@@ -1445,7 +1447,7 @@ panel.off('hide');
 
 changeFlag(flag: PanelFlag): void
 
-改变面板状态为固定态或者悬浮态。仅对SOFT_KEYBOARD类型生效。
+将输入法应用的面板状态改变为固定态或者悬浮态，仅对[SOFT_KEYBOARD](#paneltype10)生效。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1453,18 +1455,18 @@ changeFlag(flag: PanelFlag): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| flag | [PanelFlag](#panelflag10) | 是 | 要切换到的面板状态类型。 |
+| flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。 |
 
 **示例：**
 
-```js
+```ts
 let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
 panel.changeFlag(panelFlag);
 ```
 
 ## KeyboardController
 
-下列API示例中都需使用[on('inputStart')](#oninputstart9)回调获取到KeyboardController实例，再通过此实例调用对应方法。
+下列API均需使用[on('inputStart')](#oninputstart9)获取到KeyboardController实例后，通过实例调用。
 
 ### hide<sup>9+</sup>
 
@@ -1490,8 +1492,8 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-keyboardController.hide((err) => {
+```ts
+keyboardController.hide((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hide: ${JSON.stringify(err)}`);
     return;
@@ -1524,10 +1526,10 @@ hide(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 keyboardController.hide().then(() => {
   console.log('Succeeded in hiding keyboard.');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.log(`Failed to hide: ${JSON.stringify(err)}`);
 });
 ```
@@ -1552,8 +1554,8 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-keyboardController.hideKeyboard((err) => {
+```ts
+keyboardController.hideKeyboard((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hideKeyboard: ${JSON.stringify(err)}`);
     return;
@@ -1582,17 +1584,17 @@ hideKeyboard(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 keyboardController.hideKeyboard().then(() => {
   console.log('Succeeded in hiding keyboard.');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.log(`Failed to hideKeyboard: ${JSON.stringify(err)}`);
 });
 ```
 
 ## ExtendAction<sup>10+</sup>
 
-对编辑框中文本的扩展编辑操作类型。
+编辑框中文本的扩展编辑操作类型，如剪切、复制等。
 
 **系统能力**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1605,7 +1607,7 @@ keyboardController.hideKeyboard().then(() => {
 
 ## Direction<sup>10+</sup>
 
-输入法光标移动方向。
+光标的移动方向。
 
 **系统能力**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1618,7 +1620,7 @@ keyboardController.hideKeyboard().then(() => {
 
 ## Range<sup>10+</sup>
 
-描述选中文本的范围。
+选中的文本范围。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1629,17 +1631,17 @@ keyboardController.hideKeyboard().then(() => {
 
 ## Movement<sup>10+</sup>
 
-描述进行选中文本动作时光标移动的方向。
+选中文本时，光标移动的方向
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| direction  | [Direction](#direction10) | 是 | 是 | 进行选中文本动作时光标移动的方向。|
+| direction  | [Direction](#direction10) | 是 | 是 | 选中文本时，光标的移动方向。|
 
 ## InputClient<sup>9+</sup>
 
-下列API示例中都需使用[on('inputStart')](#oninputstart9)回调获取到InputClient实例，再通过此实例调用对应方法。
+下列API均需使用[on('inputStart')](#oninputstart9)获取到InputClient实例后，通过实例调用。
 
 ### sendKeyFunction<sup>9+</sup>
 
@@ -1653,7 +1655,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| action | number | 是 | 功能键键值。<br/>- 当值为0时，表示无效按键；<br/>- 当值为1时，表示确认键（即回车键）。 |
+| action | number | 是 | 功能键键值。<br/>- 当值为0时，表示无效按键。<br/>- 当值为1时，表示确认键（即回车键）。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当功能键发送成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
@@ -1666,10 +1668,10 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
  **示例：**
 
-```js
+```ts
 let action = 1;
 try {
-  inputClient.sendKeyFunction(action, (err, result) => {
+  inputClient.sendKeyFunction(action, (err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
       return;
@@ -1715,16 +1717,16 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
 let action = 1;
 try {
-  inputClient.sendKeyFunction(action).then((result) => {
+  inputClient.sendKeyFunction(action).then((result: boolean) => {
     if (result) {
       console.log('Succeeded in sending key function.');
     } else {
       console.error('Failed to sendKeyFunction.');
     }
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -1758,10 +1760,10 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-```js
+```ts
 let length = 1;
 try {
-  inputClient.getForward(length, (err, text) => {
+  inputClient.getForward(length, (err: BusinessError, text: string) => {
     if (err) {
       console.error(`Failed to getForward: ${JSON.stringify(err)}`);
       return;
@@ -1804,16 +1806,57 @@ getForward(length:number): Promise&lt;string&gt;
 
 **示例：**
 
-```js
+```ts
 let length = 1;
 try {
-  inputClient.getForward(length).then((text) => {
+  inputClient.getForward(length).then((text: string) => {
     console.log('Succeeded in getting forward, text: ' + text);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to getForward: ${JSON.stringify(err)}`);
   });
 } catch (err) {
   console.error(`Failed to getForward: ${JSON.stringify(err)}`);
+}
+```
+
+### getForwardSync<sup>10+</sup>
+
+getForwardSync(length:number): string
+
+获取光标前固定长度的文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| length | number | 是   | 文本长度。 |
+
+**返回值：**
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| string | 返回光标前固定长度的文本。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800006 | input method controller error. |
+
+**示例：**
+
+```ts
+let length = 1;
+try {
+  let text: string = inputClient.getForwardSync(length);
+  console.log(`Succeeded in getting forward, text: ${text}`);
+} catch (err) {
+  console.error(`Failed to getForwardSync: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1843,10 +1886,10 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-```js
+```ts
 let length = 1;
 try {
-  inputClient.getBackward(length, (err, text) => {
+  inputClient.getBackward(length, (err: BusinessError, text: string) => {
     if (err) {
       console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
       return;
@@ -1889,16 +1932,57 @@ getBackward(length:number): Promise&lt;string&gt;
 
 **示例：**
 
-```js
+```ts
 let length = 1;
 try {
-  inputClient.getBackward(length).then((text) => {
+  inputClient.getBackward(length).then((text: string) => {
     console.log('Succeeded in getting backward, text: ' + text);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
   });
 } catch (err) {
   console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
+}
+```
+
+### getBackwardSync<sup>10+</sup>
+
+getBackwardSync(length:number): string
+
+获取光标后固定长度的文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| length | number | 是   | 文本长度。 |
+
+**返回值：**
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| string | 返回光标后固定长度的文本。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800006 | input method controller error. |
+
+**示例：**
+
+```ts
+let length = 1;
+try {
+  let text: string = inputClient.getBackwardSync(length);
+  console.log(`Succeeded in getting backward, text: ${text}`);
+} catch (err) {
+  console.error(`Failed to getBackwardSync: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1928,10 +2012,10 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 let length = 1;
 try {
-  inputClient.deleteForward(length, (err, result) => {
+  inputClient.deleteForward(length, (err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
       return;
@@ -1978,20 +2062,55 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
 let length = 1;
 try {
-  inputClient.deleteForward(length).then((result) => {
+  inputClient.deleteForward(length).then((result: boolean) => {
     if (result) {
       console.log('Succeeded in deleting forward.');
     } else {
       console.error('Failed to delete Forward.');
     }
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
   });
 } catch (err) {
   console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
+}
+```
+
+### deleteForwardSync<sup>10+</sup>
+
+deleteForwardSync(length:number): void
+
+删除光标前固定长度的文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| length | number | 是   | 文本长度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 12800002 | input method engine error. |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+let length = 1;
+try {
+  inputClient.deleteForwardSync(length);
+  console.log('Succeeded in deleting forward.');
+} catch (err) {
+  console.error('deleteForwardSync err: ' + JSON.stringify(err));
 }
 ```
 
@@ -2021,10 +2140,10 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 let length = 1;
 try {
-  inputClient.deleteBackward(length, (err, result) => {
+  inputClient.deleteBackward(length, (err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
       return;
@@ -2071,17 +2190,52 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
 let length = 1;
-inputClient.deleteBackward(length).then((result) => {
+inputClient.deleteBackward(length).then((result: boolean) => {
   if (result) {
     console.log('Succeeded in deleting backward.');
   } else {
     console.error('Failed to deleteBackward.');
   }
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
 });
+```
+
+### deleteBackwardSync<sup>10+</sup>
+
+deleteBackwardSync(length:number): void
+
+删除光标后固定长度的文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| length | number | 是   | 文本长度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 12800002 | input method engine error. |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+let length = 1;
+try {
+  inputClient.deleteBackwardSync(length);
+  console.log('Succeeded in deleting backward.');
+} catch (err) {
+  console.error('deleteBackwardSync err: ' + JSON.stringify(err));
+}
 ```
 
 ### insertText<sup>9+</sup>
@@ -2096,7 +2250,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| text | string | 是 | 文本。 |
+| text | string | 是 | 文本内容。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当文本插入成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
@@ -2110,8 +2264,8 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-inputClient.insertText('test', (err, result) => {
+```ts
+inputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
     return;
@@ -2155,19 +2309,53 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
 try {
-  inputClient.insertText('test').then((result) => {
+  inputClient.insertText('test').then((result: boolean) => {
     if (result) {
       console.log('Succeeded in inserting text.');
     } else {
       console.error('Failed to insertText.');
     }
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
   });
 } catch (err) {
   console.error(`Failed to insertText: ${JSON.stringify(err)}`);
+}
+```
+
+### insertTextSync<sup>10+</sup>
+
+insertTextSync(text: string): void
+
+插入文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| text   | string | 是   | 文本内容。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 12800002 | input method engine error. |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+try {
+  inputClient.insertTextSync('test');
+  console.log('Succeeded in inserting text.');
+} catch (err) {
+  console.error(`Failed to insertTextSync: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2195,8 +2383,8 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 **示例：**
 
-```js
-inputClient.getEditorAttribute((err, editorAttribute) => {
+```ts
+inputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
@@ -2230,13 +2418,46 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 **示例：**
 
-```js
-inputClient.getEditorAttribute().then((editorAttribute) => {
+```ts
+inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
   console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
   console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 });
+```
+
+### getEditorAttributeSync<sup>10+</sup>
+
+getEditorAttributeSync(): EditorAttribute
+
+获取编辑框属性值。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                                | 说明           |
+| ----------------------------------- | -------------- |
+| [EditorAttribute](#editorattribute) | 编辑框属性对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+try {
+  let editorAttribute: inputMethodEngine.EditorAttribute = inputClient.getEditorAttributeSync();
+  console.log(`Succeeded in getEditorAttributeSync, editorAttribute = ${JSON.stringify(editorAttribute)}`);
+} catch (err) {
+  console.error(`Failed to getEditorAttributeSync: ${JSON.stringify(err)}`);
+}
 ```
 
 ### moveCursor<sup>9+</sup>
@@ -2251,7 +2472,7 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名    | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------- |
-| direction | number                    | 是   | 光标移动方向。 |
+| direction | number                    | 是   | 光标移动方向。<br/>- 当值为1时，表示向上。<br/>- 当值为2时，表示向下。<br/>- 当值为3时，表示向左。<br/>- 当值为4时，表示向右。 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当光标移动成功，err为undefined，否则为错误对象。    |
 
 **错误码：**
@@ -2264,9 +2485,9 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
-  inputClient.moveCursor(inputMethodEngine.CURSOR_UP, (err) => {
+  inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
       return;
@@ -2288,9 +2509,9 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名    | 类型   | 必填 | 说明           |
-| --------- | ------ | ---- | -------------- |
-| direction | number | 是   | 光标移动方向。 |
+| 参数名    | 类型   | 必填 | 说明                                                         |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| direction | number | 是   | 光标移动方向。<br/>- 当值为1时，表示向上。<br/>- 当值为2时，表示向下。<br/>- 当值为3时，表示向左。<br/>- 当值为4时，表示向右。 |
 
 **返回值：**  
 
@@ -2308,15 +2529,48 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
-  inputClient.moveCursor(inputMethodEngine.CURSOR_UP).then(() => {
+  inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP).then(() => {
     console.log('Succeeded in moving cursor.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
   });
 } catch (err) {
   console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
+}
+```
+
+### moveCursorSync<sup>10+</sup>
+
+moveCursorSync(direction: number): void
+
+移动光标。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                                                         |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| direction | number | 是   | 光标移动方向。<br/>- 当值为1时，表示向上。<br/>- 当值为2时，表示向下。<br/>- 当值为3时，表示向左。<br/>- 当值为4时，表示向右。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+try {
+  inputClient.moveCursorSync(inputMethodEngine.Direction.CURSOR_UP);
+  console.log('Succeeded in moving cursor.');
+} catch (err) {
+  console.error(`Failed to moveCursorSync: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2346,9 +2600,10 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
-  inputClient.selectByRange({start: 0, end: 1}, (err) => {
+  let range: inputMethodEngine.Range = { start: 0, end: 1 };
+  inputClient.selectByRange(range, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
       return;
@@ -2391,15 +2646,51 @@ selectByRange(range: Range): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
-  inputClient.selectByRange({start: 0, end:1}).then(() => {
+  let range: inputMethodEngine.Range = { start: 0, end: 1 };
+  inputClient.selectByRange(range).then(() => {
     console.log('Succeeded in selecting by range.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
   });
 } catch (err) {
   console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
+}
+```
+
+### selectByRangeSync<sup>10+</sup>
+
+selectByRangeSync(range: Range): void
+
+根据索引范围选中文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明             |
+| ------ | ----------------- | ---- | ---------------- |
+| range  | [Range](#range10) | 是   | 选中文本的范围。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+try {
+  let range: inputMethodEngine.Range = { start: 0, end: 1 };
+  inputClient.selectByRangeSync(range);
+  console.log('Succeeded in selecting by range.');
+} catch (err) {
+  console.error(`Failed to selectByRangeSync: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2429,9 +2720,10 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
-  inputClient.selectByMovement({direction: 1}, (err) => {
+  let movement: inputMethodEngine.Movement = { direction: 1 };
+  inputClient.selectByMovement(movement, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
       return;
@@ -2474,13 +2766,49 @@ selectByMovement(movement: Movement): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
-  inputClient.selectByMovement({direction: 1}).then(() => {
+  let movement: inputMethodEngine.Movement = { direction: 1 };
+  inputClient.selectByMovement(movement).then(() => {
     console.log('Succeeded in selecting by movement.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
   });
+} catch (err) {
+  console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
+}
+```
+
+### selectByMovementSync<sup>10+</sup>
+
+selectByMovementSync(movement: Movement): void
+
+根据光标移动方向选中文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                   |
+| -------- | ----------------------- | ---- | ---------------------- |
+| movement | [Movement](#movement10) | 是   | 选中时光标移动的方向。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+try {
+  let movement: inputMethodEngine.Movement = { direction: 1 };  
+  inputClient.selectByMovementSync(movement);
+  console.log('Succeeded in selecting by movement.');
 } catch (err) {
   console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
 }
@@ -2511,8 +2839,8 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
-inputClient.getTextIndexAtCursor((err, index) => {
+```ts
+inputClient.getTextIndexAtCursor((err: BusinessError, index: number) => {
   if (err) {
     console.error(`Failed to getTextIndexAtCursor: ${JSON.stringify(err)}`);
     return;
@@ -2546,12 +2874,46 @@ getTextIndexAtCursor(): Promise&lt;number&gt;
 
 **示例：**
 
-```js
-inputClient.getTextIndexAtCursor().then((index) => {
+```ts
+inputClient.getTextIndexAtCursor().then((index: number) => {
   console.log('Succeeded in getTextIndexAtCursor: ' + index);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to getTextIndexAtCursor: ${JSON.stringify(err)}`);
 });
+```
+
+### getTextIndexAtCursorSync<sup>10+</sup>
+
+getTextIndexAtCursorSync(): number
+
+获取光标所在处的文本索引。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| number | 返回光标所在处的文本索引。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800006 | Input method controller error. |
+
+**示例：**
+
+```ts
+try{
+  let index: number = inputClient.getTextIndexAtCursorSync();
+  console.log(`Succeeded in getTextIndexAtCursorSync, index: ${index}`);
+} catch (err) {
+  console.error(`Failed to getTextIndexAtCursorSync: ${JSON.stringify(err)}`);
+}
 ```
 
 ### sendExtendAction<sup>10+</sup>
@@ -2560,7 +2922,9 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 
 发送扩展编辑操作。使用callback异步回调。
 
-输入法应用调用该接口向编辑控件（如：输入框）发送扩展编辑操作，编辑控件监听相应事件[on(handleExtendAction)](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
+> **说明**
+>
+> 输入法应用调用该接口向编辑框发送扩展编辑操作，编辑框监听相应事件[on('handleExtendAction')](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2582,9 +2946,9 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 
 **示例：**
 
-```js
+```ts
 try {
-  inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY, (err) => {
+  inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
       return;
@@ -2602,7 +2966,9 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
 发送扩展编辑操作。使用promise异步回调。
 
-输入法应用调用该接口向编辑控件（如：输入框）发送扩展编辑操作，编辑控件监听相应事件[on(handleExtendAction)](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
+>**说明**
+>
+> 输入法应用调用该接口向编辑框发送扩展编辑操作，编辑框监听相应事件[on('handleExtendAction')](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2629,11 +2995,11 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
   inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY).then(() => {
     console.log('Succeeded in sending extend action.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
   });
 } catch(err) {
@@ -2725,9 +3091,9 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-```js
+```ts
 let length = 1;
-textInputClient.getForward(length, (err, text) => {
+textInputClient.getForward(length, (err: BusinessError, text: string) => {
   if (err) {
     console.error(`Failed to getForward: ${JSON.stringify(err)}`);
     return;
@@ -2762,11 +3128,11 @@ getForward(length:number): Promise&lt;string&gt;
 
 **示例：**
 
-```js
+```ts
 let length = 1;
-textInputClient.getForward(length).then((text) => {
+textInputClient.getForward(length).then((text: string) => {
   console.log('Succeeded in getting forward, text: ' + text);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to getForward: ${JSON.stringify(err)}`);
 });
 ```
@@ -2792,9 +3158,9 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-```js
+```ts
 let length = 1;
-textInputClient.getBackward(length, (err, text) => {
+textInputClient.getBackward(length, (err: BusinessError, text: string) => {
   if (err) {
     console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
     return;
@@ -2829,11 +3195,11 @@ getBackward(length:number): Promise&lt;string&gt;
 
 **示例：**
 
-```js
+```ts
 let length = 1;
-textInputClient.getBackward(length).then((text) => {
+textInputClient.getBackward(length).then((text: string) => {
   console.log('Succeeded in getting backward: ' + JSON.stringify(text));
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
 });
 ```
@@ -2859,9 +3225,9 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 let length = 1;
-textInputClient.deleteForward(length, (err, result) => {
+textInputClient.deleteForward(length, (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
     return;
@@ -2900,15 +3266,15 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
 let length = 1;
-textInputClient.deleteForward(length).then((result) => {
+textInputClient.deleteForward(length).then((result: boolean) => {
   if (result) {
     console.log('Succeeded in deleting forward.');
   } else {
     console.error('Failed to delete forward.');
   }
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
 });
 ```
@@ -2934,9 +3300,9 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 let length = 1;
-textInputClient.deleteBackward(length, (err, result) => {
+textInputClient.deleteBackward(length, (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
     return;
@@ -2975,15 +3341,15 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
 let length = 1;
-textInputClient.deleteBackward(length).then((result) => {
+textInputClient.deleteBackward(length).then((result: boolean) => {
   if (result) {
     console.log('Succeeded in deleting backward.');
   } else {
     console.error('Failed to deleteBackward.');
   }
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
 });
 ```
@@ -3008,9 +3374,9 @@ sendKeyFunction(action: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 let action = 1;
-textInputClient.sendKeyFunction(action, (err, result) => {
+textInputClient.sendKeyFunction(action, (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
     return;
@@ -3049,15 +3415,15 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
 let action = 1;
-textInputClient.sendKeyFunction(action).then((result) => {
+textInputClient.sendKeyFunction(action).then((result: boolean) => {
   if (result) {
     console.log('Succeeded in sending key function.');
   } else {
     console.error('Failed to sendKeyFunction.');
   }
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
 });
 ```
@@ -3083,8 +3449,8 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-textInputClient.insertText('test', (err, result) => {
+```ts
+textInputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
     return;
@@ -3123,14 +3489,14 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
-textInputClient.insertText('test').then((result) => {
+```ts
+textInputClient.insertText('test').then((result: boolean) => {
   if (result) {
     console.log('Succeeded in inserting text.');
   } else {
     console.error('Failed to insertText.');
   }
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to insertText: ${JSON.stringify(err)}`);
 });
 ```
@@ -3155,8 +3521,8 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 **示例：**
 
-```js
-textInputClient.getEditorAttribute((err, editorAttribute) => {
+```ts
+textInputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
@@ -3186,11 +3552,11 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 **示例：**
 
-```js
-textInputClient.getEditorAttribute().then((editorAttribute) => {
+```ts
+textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
   console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
   console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 });
 ```

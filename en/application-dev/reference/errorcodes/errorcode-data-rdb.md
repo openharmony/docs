@@ -118,7 +118,7 @@ Data is added, deleted, and modified continuously without closing the read trans
 
 1. Check for unclosed result sets or transactions.
 
-2. Closes all result sets or transactions.
+2. Close all result sets or transactions.
 
 ## 14800050 Failed to Obtain the Subscription Service
 
@@ -142,7 +142,7 @@ Deploy the subscription service on the platform.
 
 **Error Message**
 
-Only supported in stage mode.
+ Only supported in stage mode.
 
 **Description**
 
@@ -173,3 +173,21 @@ The **dataGroupId** is not obtained from the AppGallery.
 **Solution**
 
 Obtain **dataGroupId** from the AppGallery and pass it to **storeConfig** correctly.
+
+## 14800051 Inconsistent Distributed Table Type
+
+**Error Message**
+
+The type of the distributed table does not match.
+
+**Description**
+
+Different distributed table types are set for the same database table.
+
+**Possible Causes**
+
+The database table is set with different [distributed table types](../apis/js-apis-data-relationalStore.md#distributedtype10).
+
+**Solution**
+
+A database table can be synchronized either between devices or between device and cloud.

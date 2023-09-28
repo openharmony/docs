@@ -11,6 +11,7 @@
     - [使用OpenSL ES开发音频播放功能](using-opensl-es-for-playback.md)
     - [使用TonePlayer开发音频播放功能（仅对系统应用开放）](using-toneplayer-for-playback.md)
     - [使用OHAudio开发音频播放功能](using-ohaudio-for-playback.md)
+    - [使用SoundPool开发音频播放功能](using-soundpool-for-playback.md)
     - [多音频播放的并发策略](audio-playback-concurrency.md)
     - [播放音量管理](volume-management.md)
     - [音效管理](audio-effect-management.md)
@@ -62,6 +63,8 @@
   - 相机最佳实践
     - [拍照实现方案](camera-shooting-case.md)
     - [录像实现方案](camera-recording-case.md)
+    - [使用人像模式拍照](camera-mode.md)
+    - [双路预览](camera-dual-channel-preview.md)
     - [性能提升方案（仅对系统应用开放）](camera-performance-improvement.md)
 - 图片
   - [图片开发概述](image-overview.md)
@@ -69,6 +72,7 @@
   - 图片处理
     - [图像变换(ArkTS)](image-transformation.md)
     - [图像变换(Native)](image-transformation-native.md)
+    - [PixelMap数据处理](image-pixelmap-operation-native.md)
     - [位图操作](image-pixelmap-operation.md)
   - [图片编码](image-encoding.md)
   - [图片工具](image-tool.md)

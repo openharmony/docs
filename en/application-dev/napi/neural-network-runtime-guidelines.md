@@ -19,8 +19,7 @@ The environment requirements for the Neural Network Runtime are as follows:
 - Development environment: Ubuntu 18.04 or later.
 - Access device: a standard device running OpenHarmony. The built-in hardware accelerator driver has been connected to the Neural Network Runtime through an HDI API.
 
-The Neural Network Runtime is opened to external systems through OpenHarmony Native APIs. Therefore, you need to use the Native development suite of the OpenHarmony to compile Neural Network Runtime applications. 
-
+The Neural Network Runtime is opened to external systems through Native APIs. Therefore, you need to use the Native development suite to build Neural Network Runtime applications.
 
 ### Environment Setup
 
@@ -33,7 +32,6 @@ unzip native-linux-{version number}.zip
 ```
 
 The directory structure after decompression is as follows. The content in the directory may vary depending on version iteration. Use the Native APIs of the latest version.
-
 ```text
 native/
 ─ ─ build // Cross-compilation toolchain

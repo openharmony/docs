@@ -33,7 +33,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | 设置placeholder文本颜色。<br />默认值：'#99182431'。   |
 | placeholderFont         | [Font](ts-types.md#font)                         | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                         |
 | textFont                | [Font](ts-types.md#font)                         | 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                           |
-| textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | 设置文本在搜索框中的对齐方式。<br/>默认值：TextAlign.Start    |
+| textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | 设置文本在搜索框中的对齐方式。目前支持的对齐方式有：Start、Center、End。<br/>默认值：TextAlign.Start    |
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br />默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前Search中的文字无法被复制或剪切，仅支持粘贴。 |
 | searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10对象说明)                                                  | 设置左侧搜索图标样式。                                       |
 | cancelButton<sup>10+</sup> | {<br/>style? : [CancelButtonStyle](#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。<br />默认值：<br />{<br />style：CancelButtonStyle.INPUT<br />} |
@@ -55,7 +55,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述 |
 | ------ | ------------------------------------------ | ---- | -------- |
-| width  | [Length](ts-types.md#length)               | 否   | 光标尺寸。 |
+| width  | [Length](ts-types.md#length)               | 否   | 光标尺寸，不支持百分比。 |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。 |
 
 ## SearchButtonOptions<sup>10+</sup>对象说明
@@ -258,7 +258,7 @@ struct SearchExample {
         this.controller.stopEditing()
       })
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {

@@ -2,12 +2,12 @@
 A device enters standby mode if it is unused for a long period of time or after the Power button is pressed. The standby mode prolongs the battery life without affecting the use of applications. The **deviceStandby** module provides APIs for you to check whether a device is in standby mode and request or cancel standby resource control for an application.
 
 >  **NOTE**
->   
+>
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```js
+```ts
 import deviceStandby from '@ohos.resourceschedule.deviceStandby';
 ```
 
@@ -44,9 +44,9 @@ For details about the error codes, see [Background Task Management Error Codes](
 
 **Example**
 
-```js
-try{
-deviceStandby.getExemptedApps(resourceTypes, (err, res) => {
+```ts
+let resourceTypes: deviceStandby.ResourceType  = deviceStandby.ResourceType.TIMER;
+deviceStandby.getExemptedApps(resourceTypes, (err: BusinessError, res: Array<ExemptedAppInfo>) => {
   if (err) {
     console.log('DEVICE_STANDBY getExemptedApps callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
@@ -56,9 +56,6 @@ deviceStandby.getExemptedApps(resourceTypes, (err, res) => {
     }
   }
 });
-} catch (error) {
-console.log('DEVICE_STANDBY getExemptedApps throw error, code is: ' + error.code + ',message is: ' + error.message);
-}
 ```
 
 ## deviceStandby.getExemptedApps
@@ -99,19 +96,16 @@ For details about the error codes, see [Background Task Management Error Codes](
 
 **Example**
 
-```js
-try{
-deviceStandby.getExemptedApps(resourceTypes).then( res => {
+```ts
+let resourceTypes: deviceStandby.ResourceType = deviceStandby.ResourceType.TIMER;
+deviceStandby.getExemptedApps(resourceTypes).then( (res: Array<ExemptedAppInfo>) => {
   console.log('DEVICE_STANDBY getExemptedApps promise success.');
   for (let i = 0; i < res.length; i++) {
     console.log('DEVICE_STANDBY getExemptedApps promise result ' + JSON.stringify(res[i]));
   }
-}).catch( err => {
+}).catch( (err: BusinessError) => {
   console.log('DEVICE_STANDBY getExemptedApps promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
-} catch (error) {
-console.log('DEVICE_STANDBY getExemptedApps throw error, code is: ' + error.code + ',message is: ' + error.message);
-}
 ```
 
 ## deviceStandby.requestExemptionResource
@@ -146,37 +140,15 @@ For details about the error codes, see [Background Task Management Error Codes](
 
 **Example**
 
-```js
-let resRequest = {
-  resourceTypes: 1,
+```ts
+let resRequest: deviceStandby.ResourceRequest = {
+  resourceTypes: deviceStandby.ResourceType.TIMER,
   uid:10003,
   name:"com.example.app",
   duration:10,
   reason:"apply",
 };
-// Promise mode
-try{
-deviceStandby.requestExemptionResource(resRequest).then( () => {
-  console.log('DEVICE_STANDBY requestExemptionResource promise succeeded.');
-}).catch( err => {
-  console.log('DEVICE_STANDBY requestExemptionResource promise failed. code is: ' + err.code + ',message is: ' + err.message);
-});
-} catch (error) {
-console.log('DEVICE_STANDBY requestExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
-}
-
-// Asynchronous callback mode
-try{
-deviceStandby.requestExemptionResource(resRequest, (err) => {
-   if (err) {
-      console.log('DEVICE_STANDBY requestExemptionResource callback failed. code is: ' + err.code + ',message is: ' + err.message);
-  } else {
-      console.log('DEVICE_STANDBY requestExemptionResource callback succeeded.');
-  }
-});
-} catch (error) {
-console.log('DEVICE_STANDBY requestExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
-}
+deviceStandby.requestExemptionResource(resRequest);
 ```
 
 ## deviceStandby.releaseExemptionResource
@@ -211,37 +183,15 @@ For details about the error codes, see [Background Task Management Error Codes](
 
 **Example**
 
-```js
-let resRequest = {
-  resourceTypes: 1,
+```ts
+let resRequest: deviceStandby.ResourceRequest = {
+  resourceTypes: deviceStandby.ResourceType.TIMER,
   uid:10003,
   name:"com.demo.app",
   duration:10,
   reason:"unapply",
 };
-// Promise mode
-try{
-deviceStandby.releaseExemptionResource(resRequest).then( () => {
-  console.log('DEVICE_STANDBY releaseExemptionResource promise succeeded.');
-}).catch( err => {
-  console.log('DEVICE_STANDBY releaseExemptionResource promise failed. code is: ' + err.code + ',message is: ' + err.message);
-});
-} catch (error) {
-console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
-}
-
-// Asynchronous callback mode
-try{
-deviceStandby.releaseExemptionResource(resRequest, (err) => {
-  if (err) {
-    console.log('DEVICE_STANDBY releaseExemptionResource callback failed. code is: ' + err.code + ',message is: ' + err.message);
-  } else {
-    console.log('DEVICE_STANDBY releaseExemptionResource callback succeeded.');
-  }
-});
-} catch (error) {
-console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
-}
+deviceStandby.releaseExemptionResource(resRequest);
 ```
 
 ## ResourceType
@@ -262,7 +212,7 @@ Enumerates the types of resources that can be used by exempted applications.
 |PUSH     |32   | Push kit resource.|
 |FREEZE       |64   | Freezing application resource.|
 
-## ExemptedAppInfo 
+## ExemptedAppInfo
 
 Defines the information about an exempted application.
 

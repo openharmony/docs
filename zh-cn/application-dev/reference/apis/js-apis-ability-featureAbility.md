@@ -59,9 +59,9 @@ featureAbility.startAbility(
     },
     (error, data) => {
         if (error && error.code !== 0) {
-            console.error('startAbility fail, error: ${JSON.stringify(error)}');
+            console.error(`startAbility fail, error: ${JSON.stringify(error)}`);
         } else {
-            console.log('startAbility success, data: ${JSON.stringify(data)}');
+            console.log(`startAbility success, data: ${JSON.stringify(data)}`);
         }
     }
 );
@@ -115,7 +115,7 @@ featureAbility.startAbility(
         },
     }
 ).then((data) => {
-    console.info('startAbility data: ${JSON.stringify(data)}');
+    console.info(`startAbility data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -127,7 +127,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 使用规则：
  - 跨应用访问dataAbility，对端应用需配置关联启动
- - 调用方应用位于后台时，使用该接口访问dataAbility需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 调用方应用位于后台时，使用该接口访问dataAbility需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限（基于API 8或更早版本SDK开发的应用在启动DataAbility组件时不受此限制的约束）
  - 跨应用场景下，目标dataAbility的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
@@ -199,9 +199,9 @@ featureAbility.startAbilityForResult(
     },
     (error, data) => {
         if (error && error.code !== 0) {
-            console.error('startAbilityForResult fail, error: ${JSON.stringify(error)}');
+            console.error(`startAbilityForResult fail, error: ${JSON.stringify(error)}`);
         } else {
-            console.log('startAbilityForResult success, data: ${JSON.stringify(data)}');
+            console.log(`startAbilityForResult success, data: ${JSON.stringify(data)}`);
         }
     }
 );
@@ -267,7 +267,7 @@ featureAbility.startAbilityForResult(
         },
     },
 ).then((data) => {
-    console.info('startAbilityForResult data: ${JSON.stringify(data)}');
+    console.info(`startAbilityForResult data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -318,7 +318,7 @@ featureAbility.terminateSelfWithResult(
         },
     },
     (error) => {
-        console.error('error: ${JSON.stringify(error)}');
+        console.error(`error: ${JSON.stringify(error)}`);
     }
 );
 ```
@@ -399,9 +399,9 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus((error, data) => {
     if (error && error.code !== 0) {
-        console.error('hasWindowFocus fail, error: ${JSON.stringify(error)}');
+        console.error(`hasWindowFocus fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('hasWindowFocus success, data: ${JSON.stringify(data)}');
+        console.log(`hasWindowFocus success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -425,7 +425,7 @@ hasWindowFocus(): Promise\<boolean>
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
-    console.info('hasWindowFocus data: ${JSON.stringify(data)}');
+    console.info(`hasWindowFocus data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -449,9 +449,9 @@ getWant(callback: AsyncCallback\<Want>): void
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant((error, data) => {
     if (error && error.code !== 0) {
-        console.error('getWant fail, error: ${JSON.stringify(error)}');
+        console.error(`getWant fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('getWant success, data: ${JSON.stringify(data)}');
+        console.log(`getWant success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -475,7 +475,7 @@ getWant(): Promise\<Want>
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant().then((data) => {
-    console.info('getWant data: ${JSON.stringify(data)}');
+    console.info(`getWant data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -500,9 +500,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 context.getBundleName((error, data) => {
     if (error && error.code !== 0) {
-        console.error('getBundleName fail, error: ${JSON.stringify(error)}');
+        console.error(`getBundleName fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('getBundleName success, data: ${JSON.stringify(data)}');
+        console.log(`getBundleName success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -527,7 +527,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf(
     (error) => {
-        console.error('error: ${JSON.stringify(error)}');
+        console.error(`error: ${JSON.stringify(error)}`);
     }
 )
 ```
@@ -563,7 +563,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 使用规则：
  - 跨应用连接serviceAbility，对端应用需配置关联启动
- - 调用方应用位于后台时，使用该接口连接serviceAbility需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 调用方应用位于后台时，使用该接口连接serviceAbility需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限（基于API 8或更早版本SDK开发的应用在启动ServiceAbility组件时不受此限制的约束）
  - 跨应用场景下，目标serviceAbility的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
@@ -587,15 +587,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 ```ts
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
-}
-function onFailedCallback(code){
-    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
-}
+
 let connectId = featureAbility.connectAbility(
     {
         deviceId: '',
@@ -603,9 +595,15 @@ let connectId = featureAbility.connectAbility(
         abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
+        onConnect: (element, remote) => {
+            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+        },
+        onDisconnect: (element) => {
+            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
+        },
+        onFailed: (code) => {
+            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
+        },
     },
 );
 ```
@@ -630,32 +628,30 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 ```ts
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
-}
-function onFailedCallback(code){
-    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
-}
+
 let connectId = featureAbility.connectAbility(
     {
         bundleName: 'com.ix.ServiceAbility',
         abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
+        onConnect: (element, remote) => {
+            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+        },
+        onDisconnect: (element) => {
+            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+        },
+        onFailed: (code) => {
+            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+        },
     },
 );
 
 featureAbility.disconnectAbility(connectId, (error) => {
     if (error && error.code !== 0) {
-        console.error('disconnectAbility fail, connectId: ${connectId}, error: ${JSON.stringify(error)}');
+        console.error(`disconnectAbility fail, connectId: ${connectId}, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('disconnectAbility success， connectId: ${connectId}');
+        console.log(`disconnectAbility success， connectId: ${connectId}`);
     }
 });
 ```
@@ -685,30 +681,29 @@ disconnectAbility(connection: number): Promise\<void>
 ```ts
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
-}
-function onFailedCallback(code){
-    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
-}
+import { BusinessError } from '@ohos.base';
+
 let connectId = featureAbility.connectAbility(
     {
         bundleName: 'com.ix.ServiceAbility',
         abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
+        onConnect: (element, remote) => {
+            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+        },
+        onDisconnect: (element) => {
+            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+        },
+        onFailed: (code) => {
+            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+        },
     },
 );
 
 featureAbility.disconnectAbility(connectId).then((data) => {
     console.log('data: ${data)}')
-}).catch((error)=>{
+}).catch((error: BusinessError)=>{
     console.error('featureAbilityTest result errCode : ${error.code}');
 });
 ```
@@ -731,11 +726,15 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 **示例：**
 
 ```ts
-featureAbility.getWindow((error, data) => {
+import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
+
+featureAbility.getWindow((error: BusinessError, data: window.Window) => {
     if (error && error.code !== 0) {
-        console.error('getWindow fail, error: ${JSON.stringify(error)}');
+        console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('getWindow success, data: ${JSON.stringify(data)}');
+        console.log(`getWindow success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -757,6 +756,8 @@ getWindow(): Promise\<window.Window>;
 **示例：**
 
 ```ts
+import featureAbility from '@ohos.ability.featureAbility';
+
 featureAbility.getWindow().then((data) => {
     console.info('getWindow data: ${typeof(data)}');
 });

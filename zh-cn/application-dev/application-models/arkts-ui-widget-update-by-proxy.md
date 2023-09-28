@@ -76,19 +76,22 @@
   > key可以是uri也可以是简单字符串，subscriberId默认值为当前formId，实际取值都依赖于数据发布方的定义。
   ```ts
   import formBindingData from '@ohos.app.form.formBindingData';
+  import Want from '@ohos.app.ability.Want';
+  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
-  let dataShareHelper;
-  onAddForm(want) {
-    let formData = {};
-    let proxies = [
-      {
-        "key": "detail",
-        "subscriberId": "11"
-      }
-    ]
-    let formBinding = formBindingData.createFormBindingData(formData);
-    formBinding["proxies"] = proxies;
-    return formBinding;
+  export default class EntryFormAbility extends FormExtensionAbility {
+    onAddForm(want: Want) {
+      let formData: Record<string, Object> = {};
+      let proxies: formBindingData.ProxyData[] = [
+        {
+          "key": "detail",
+          "subscriberId": "11"
+        }
+      ]
+      let formBinding = formBindingData.createFormBindingData(formData);
+      formBinding["proxies"] = proxies;
+      return formBinding;
+    }
   }
   ```
 
@@ -151,33 +154,38 @@
   ```ts
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import dataShare from '@ohos.data.dataShare'
+  import dataShare from '@ohos.data.dataShare';
+  import Want from '@ohos.app.ability.Want';
 
-  let dataShareHelper;
-  onAddForm(want) {
-    let template = {
-      predicates : {
-        "list" : "select type from TBL00 limit 0,1"
-      },
-      scheduler: ""
-    }
-    let subscriberId = "111";
-    dataShare.createDataShareHelper(this.context, "datashareproxy://com.example.myapplication", {isProxy : true}).then((data) => {
-      dataShareHelper = data;
-      dataShareHelper.addTemplate("datashareproxy://com.example.myapplication/test", subscriberId, template);
-    })
-
-    let formData = {};
-    let proxies = [
-      {
-        "key": "datashareproxy://com.example.myapplication/test",
-        "subscriberId": subscriberId
+  let dataShareHelper: dataShare.DataShareHelper;
+  export default class EntryFormAbility extends FormExtensionAbility {
+    onAddForm(want: Want) {
+      let template: dataShare.Template = {
+        predicates: {
+          "list": "select type from TBL00 limit 0,1"
+        },
+        scheduler: ""
       }
-    ]
-    let formBinding = formBindingData.createFormBindingData(formData);
-    formBinding["proxies"] = proxies;
+      let subscriberId: string = "111";
+      dataShare.createDataShareHelper(this.context, "datashareproxy://com.example.myapplication", {
+        isProxy: true
+      }).then((data: dataShare.DataShareHelper) => {
+        dataShareHelper = data;
+        dataShareHelper.addTemplate("datashareproxy://com.example.myapplication/test", subscriberId, template);
+      })
 
-    return formBinding;
+      let formData: Record<string, Object> = {};
+      let proxies: formBindingData.ProxyData[] = [
+        {
+          "key": "datashareproxy://com.example.myapplication/test",
+          "subscriberId": subscriberId
+        }
+      ]
+      let formBinding = formBindingData.createFormBindingData(formData);
+      formBinding["proxies"] = proxies;
+
+      return formBinding;
+    }
   }
   ```
 
@@ -192,7 +200,7 @@
     readonly MESSAGE: string = 'add detail';
     readonly FULL_WIDTH_PERCENT: string = '100%';
     readonly FULL_HEIGHT_PERCENT: string = '100%';
-    @LocalStorageProp('list') list: Array<object> = [{"type": "a"}];
+    @LocalStorageProp('list') list: Record<string, string>[] = [{"type": "a"}];
 
     build() {
       Row() {
@@ -219,3 +227,9 @@
 ## 数据提供方开发步骤
 
 参考[数据管理](../database/share-data-by-silent-access.md)开发指南。
+
+## 相关实例
+
+针对卡片代理开发，有以下相关实例可供参考：
+
+- [应用主动添加数据代理卡片到桌面（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/RequestAddForm)

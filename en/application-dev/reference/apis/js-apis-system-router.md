@@ -13,7 +13,7 @@ The **Router** module provides APIs to access pages through URIs.
 ## Modules to Import
 
 
-```js
+```ts
 import router from '@system.router';
 ```
 
@@ -33,9 +33,10 @@ Navigates to a specified page in the application.
 
 **Example**
 
-```js
+```ts
 // Current page
-export default {
+import router from '@system.router';
+class A{
   pushPage() {
     router.push({
       uri: 'pages/routerpage2/routerpage2',
@@ -48,27 +49,24 @@ export default {
     });
   }
 }
+export default new A()
 ```
 
 
-```js
+```ts
 // routerpage2 page
-export default {
-  data: {
-    data1: 'default',
-    data2: {
-      data3: [1, 2, 3]
-    }
-  },
+class B{
+  data:Record<string,string> = {'data1': 'default'}
+  data2:Record<string,number[]> = {'data3': [1, 2, 3]}
   onInit() {
-    console.info('showData1:' + this.data1);
+    console.info('showData1:' + this.data.data1);
     console.info('showData3:' + this.data2.data3);
   }
 }
+export default new B()
 ```
 
-> **NOTE**
->
+> **NOTE**<br>
 > The page routing stack supports a maximum of 32 pages.
 
 
@@ -88,9 +86,10 @@ Replaces the current page with another one in the application and destroys the c
 
 **Example**
 
-```js
+```ts
 // Current page
-export default {
+import router from '@system.router';
+class C{
   replacePage() {
     router.replace({
       uri: 'pages/detail/detail',
@@ -100,19 +99,19 @@ export default {
     });
   }
 }
+export default new C()
 ```
 
 
-```js
+```ts
 // detail page
-export default {
-  data: {
-    data1: 'default'
-  },
+class Area {
+  data:Record<string,string> = {'data1': 'default'}
   onInit() {
-    console.info('showData1:' + this.data1)
+    console.info('showData1:' + this.data)
   }
 }
+export default new Area()
 ```
 
 ## router.back
@@ -131,61 +130,70 @@ Returns to the previous page or a specified page.
 
 **Example**
 
-```js
+```ts
 // index page
-export default {    
-  indexPushPage() {        
-    router.push({            
-      uri: 'pages/detail/detail'     
-    });        
+import router from '@system.router';
+class D{
+  indexPushPage() {
+    router.push({
+      uri: 'pages/detail/detail'
+    });
   }
 }
+export default new D()
 ```
 
 
-```js
+```ts
 // detail page
-export default {    
-  detailPushPage() {        
-    router.push({            
+import router from '@system.router';
+class E{
+  detailPushPage() {
+    router.push({
       uri: 'pages/mall/mall'
-    });    
+    });
   }
 }
+export default new E()
 ```
 
 
-```js
+```ts
 // Navigate from the mall page to the detail page through router.back().
-export default {    
-  mallBackPage() {        
-    router.back();    
+import router from '@system.router';
+class F{
+  mallBackPage() {
+    router.back();
   }
 }
+export default new F()
 ```
 
 
-```js
+```ts
 // Navigate from the detail page to the index page through router.back().
-export default {    
-  defaultBack() {        
-    router.back();    
+import router from '@system.router';
+class G{
+  defaultBack() {
+    router.back();
   }
 }
+export default new G()
 ```
 
 
-```js
+```ts
 // Return to the detail page through router.back().
-export default {    
-  backToDetail() {        
-    router.back({uri:'pages/detail/detail'});    
+import router from '@system.router';
+class H{
+  backToDetail() {
+    router.back({uri:'pages/detail/detail'});
   }
 }
+export default new H()
 ```
 
-> **NOTE**
->
+> **NOTE**<br>
 > In the example, the **uri** field indicates the page route, which is specified by the **pages** list in the **config.json** file.
 
 ## router.getParams<sup>7+</sup>
@@ -212,12 +220,14 @@ Clears all historical pages in the stack and retains only the current page at th
 
 **Example**
 
-```js
-export default {    
-  clearPage() {        
-    router.clear();    
+```ts
+import router from '@system.router';
+class I{
+  clearPage() {
+    router.clear();
   }
 }
+export default new I()
 ```
 
 ## router.getLength
@@ -236,13 +246,15 @@ Obtains the number of pages in the current stack.
 
 **Example**
 
-```js
-export default {     
-  getLength() {        
-    let size = router.getLength();        
-    console.log('pages stack size = ' + size);    
+```ts
+import router from '@system.router';
+class J{
+  getLength() {
+    let size = router.getLength();
+    console.log('pages stack size = ' + size);
   }
 }
+export default new J()
 ```
 
 ## router.getState
@@ -261,15 +273,17 @@ Obtains state information about the current page.
 
 **Example**
 
-```js
-export default {     
-  getState() {        
+```ts
+import router from '@system.router';
+class K{
+  getState() {
     let page = router.getState();
     console.log('current index = ' + page.index);
     console.log('current name = ' + page.name);
     console.log('current path = ' + page.path);
   }
 }
+export default new K()
 ```
 
 ## router.enableAlertBeforeBackPage<sup>6+</sup>
@@ -288,20 +302,22 @@ Enables the display of a confirm dialog box before returning to the previous pag
 
 **Example**
 
-```js
-export default {    
-  enableAlertBeforeBackPage() {        
-    router.enableAlertBeforeBackPage({            
-      message: 'Message Info',            
-      success: function() {                
-        console.log('success');            
-      },            
-      cancel: function() {                
-        console.log('cancel');            
-      }     
-    });    
+```ts
+import router from '@system.router';
+class L{
+  enableAlertBeforeBackPage() {
+    router.enableAlertBeforeBackPage({
+      message: 'Message Info',
+      success: ()=> {
+        console.log('success');
+      },
+      cancel: ()=> {
+        console.log('cancel');
+      }
+    });
   }
 }
+export default new L()
 ```
 
 ## router.disableAlertBeforeBackPage<sup>6+</sup>
@@ -320,19 +336,21 @@ Disables the display of a confirm dialog box before returning to the previous pa
 
 **Example**
 
-```js
-export default {    
-  disableAlertBeforeBackPage() {        
-    router.disableAlertBeforeBackPage({            
-      success: function() {                
-        console.log('success');            
-      },            
-      cancel: function() {                
-        console.log('cancel');            
-      }       
-    });    
+```ts
+import router from '@system.router';
+class Z{
+  disableAlertBeforeBackPage() {
+    router.disableAlertBeforeBackPage({
+      success: ()=> {
+        console.log('success');
+      },
+      cancel: ()=> {
+        console.log('cancel');
+      }
+    });
   }
 }
+export default new Z()
 ```
 
 ## RouterOptions

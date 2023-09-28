@@ -17,7 +17,8 @@
   **图2** ArkTS卡片渲染服务运行原理  
 ![WidgetRender](figures/WidgetRender.png)
 
-与JS卡片相比，ArkTS卡片支持在卡片中运行逻辑代码，为确保ArkTS卡片发生问题后不影响卡片使用方应用的使用，ArkTS卡片新增了卡片渲染服务用于运行卡片页面代码widgets.abc，卡片渲染服务由卡片管理服务管理。卡片使用方的每个卡片组件都对应了卡片渲染服务里的一个渲染实例，同一应用提供方的渲染实例运行在同一个ArkTS虚拟机运行环境中，不同应用提供方的渲染实例运行在不同的ArkTS虚拟机运行环境中，通过ArkTS虚拟机运行环境隔离不同应用提供方卡片之间的资源与状态。开发过程中需要注意的是[globalThis](uiability-data-sync-with-ui.md#使用globalthis进行数据同步)对象的使用，相同应用提供方的卡片globalThis对象是同一个，不同应用提供方的卡片globalThis对象是不同的。
+&nbsp;&nbsp;&nbsp;&nbsp;与动态卡片相比，静态卡片整体的运行框架和渲染流程是一致的，主要区别在于，卡片渲染服务将卡片内容渲染完毕后，卡片使用方会使用最后一帧渲染的数据作为静态图片显示，其次卡片渲染服务中的卡片实例会释放该卡片的所有运行资源以节省内存。因此频繁的刷新会导致静态卡片运行时资源不断的创建和销毁，提升卡片功耗。<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;与JS卡片相比，ArkTS卡片支持在卡片中运行逻辑代码，为确保ArkTS卡片发生问题后不影响卡片使用方应用的使用，ArkTS卡片新增了卡片渲染服务用于运行卡片页面代码widgets.abc，卡片渲染服务由卡片管理服务管理。卡片使用方的每个卡片组件都对应了卡片渲染服务里的一个渲染实例，同一应用提供方的渲染实例运行在同一个ArkTS虚拟机运行环境中，不同应用提供方的渲染实例运行在不同的ArkTS虚拟机运行环境中，通过ArkTS虚拟机运行环境隔离不同应用提供方卡片之间的资源与状态。开发过程中需要注意的是globalThis对象的使用，相同应用提供方的卡片globalThis对象是同一个，不同应用提供方的卡片globalThis对象是不同的。
 
 
 ## ArkTS卡片的优势
@@ -35,7 +36,6 @@
   - 新增了动效的能力：ArkTS卡片开放了[属性动画](../reference/arkui-ts/ts-animatorproperty.md)和[显式动画](../reference/arkui-ts/ts-explicit-animation.md)的能力，使卡片的交互更加友好。
   - 新增了自定义绘制的能力：ArkTS卡片开放了[Canvas](../reference/arkui-ts/ts-components-canvas-canvas.md)画布组件，卡片可以使用自定义绘制的能力构建更多样的显示和交互效果。
   - 允许卡片中运行逻辑代码：开放逻辑代码运行后很多业务逻辑可以在卡片内部自闭环，拓宽了卡片的业务适用场景。
-
 
 ## ArkTS卡片的约束
 
@@ -60,3 +60,11 @@ ArkTS卡片相较于JS卡片具备了更加丰富的能力，但也增加了使�
 - 暂不支持Hot Reload热重载。
 
 - 暂不支持setTimeOut。
+
+## 相关实例
+
+针对ArkTS卡片开发，有以下相关实例可供参考：
+
+- [Stage模型卡片（ArkTS）(Full SDK)（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility)
+
+- [Stage模型卡片JS与C++通信（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)

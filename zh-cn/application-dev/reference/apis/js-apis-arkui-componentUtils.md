@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import componentUtils from '@ohos.arkui.componentUtils'
 ```
 ## componentUtils.getRectangleById
@@ -37,8 +37,9 @@ getRectangleById(id: string): ComponentInfo
 
 **示例：**
 
-```js
-let modePosition = componentUtils.getRectangleById("onClick");
+```ts
+import componentUtils from '@ohos.arkui.componentUtils';
+let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("onClick");
 ```
 
 ## ComponentInfo
@@ -62,8 +63,8 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 | 名称     | 类型 | 必填 | 说明                               |
 | -------- | ---- | ----------------------------------| ----------------------------------|
-| width    | number | 是 | 组件宽度。                         |
-| height   | number | 是 | 组件高度。                         |
+| width    | number | 是 | 组件宽度。<br />单位: px                      |
+| height   | number | 是 | 组件高度。<br />单位: px                      |
 
 ### Offset
 
@@ -71,8 +72,8 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 | 名称     | 类型 | 必填 | 说明                               |
 | --------| ---- | -----------------------------------| -----------------------------------|
-| x       | number | 是 | x点坐标。                           |
-| y       | number | 是 | y点坐标。                           |
+| x       | number | 是 | x点坐标。<br />单位: px                           |
+| y       | number | 是 | y点坐标。<br />单位: px                           |
 
 ### TranslateResult
 
@@ -80,9 +81,9 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 | 名称     | 类型 | 必填 | 说明                               |
 | --------| ---- | -----------------------------------| -----------------------------------|
-| x       | number | 是 | x轴平移距离。                       |
-| y       | number | 是 | y轴平移距离。                       |
-| z       | number | 是 | z轴平移距离。                       |
+| x       | number | 是 | x轴平移距离。<br />单位: px                       |
+| y       | number | 是 | y轴平移距离。<br />单位: px                       |
+| z       | number | 是 | z轴平移距离。<br />单位: px                       |
 
 ### ScaleResult
 
@@ -90,11 +91,11 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 | 名称     | 类型 | 必填 | 说明                               |
 | --------| ---- | -----------------------------------| -----------------------------------|
-| x       | number | 是 | x轴缩放倍数。                       |
-| y       | number | 是 | y轴缩放倍数。                       |
-| z       | number | 是 | z轴缩放倍数。                       |
-| centerX | number | 是 | 变换中心点x轴坐标。                  |
-| centerY | number | 是 | 变换中心点y轴坐标。。                |
+| x       | number | 是 | x轴缩放倍数。<br />单位: px                       |
+| y       | number | 是 | y轴缩放倍数。<br />单位: px                       |
+| z       | number | 是 | z轴缩放倍数。<br />单位: px                       |
+| centerX | number | 是 | 变换中心点x轴坐标。<br />单位: px                  |
+| centerY | number | 是 | 变换中心点y轴坐标。<br />单位: px                |
 
 ### RotateResult
 
@@ -102,12 +103,12 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 | 名称     | 类型 | 必填 | 说明                               |
 | --------| ---- | -----------------------------------| -----------------------------------|
-| x       | number | 是 | 旋转轴向量x坐标。                   |
-| y       | number | 是 | 旋转轴向量y坐标。                   |
-| z       | number | 是 | 旋转轴向量z坐标。                   |
-| angle   | number | 是 | 旋转角度。                          |
-| centerX | number | 是 | 变换中心点x轴坐标。                 |
-| centerY | number | 是 | 变换中心点y轴坐标。                 |
+| x       | number | 是 | 旋转轴向量x坐标。<br />单位: px                   |
+| y       | number | 是 | 旋转轴向量y坐标。<br />单位: px                   |
+| z       | number | 是 | 旋转轴向量z坐标。<br />单位: px                   |
+| angle   | number | 是 | 旋转角度。<br />单位: px                          |
+| centerX | number | 是 | 变换中心点x轴坐标。<br />单位: px                 |
+| centerY | number | 是 | 变换中心点y轴坐标。<br />单位: px                 |
 
 ### Matrix4Result
 
@@ -115,7 +116,7 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 | 取值范围   | 说明                               |
 | --------| -----------------------------------|
-| [number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number] | 取值范围为长度为16（4\*4）的number数组,&nbsp;详情见四阶矩阵说明。 |
+| [number,number,number,number,<br />number,number,number,number,<br />number,number,number,number,<br />number,number,number,number] | 取值范围为长度为16（4\*4）的number数组,&nbsp;详情见四阶矩阵说明,单位: px  |
 
 **四阶矩阵说明：**
 
@@ -140,14 +141,14 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 **示例：**
 
-  ```js
+  ```ts
 import matrix4 from '@ohos.matrix4';
 import componentUtils from '@ohos.arkui.componentUtils';
 
 @Entry
 @Component
 struct Utils{
-  private getComponentRect(key) {
+  private getComponentRect(key:string) {
     console.info("Mode Key: " + key);
     let modePosition = componentUtils.getRectangleById(key);
 

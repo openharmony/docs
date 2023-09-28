@@ -50,17 +50,19 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 ## How to Develop
 
-1. Obtain an **RdbStore** instance.<br> Example:
+1. Obtain an **RdbStore** instance.<br>Example:
 
    Stage model:
    
    ```js
    import relationalStore from '@ohos.data.relationalStore'; // Import the module.
    import UIAbility from '@ohos.app.ability.UIAbility';
+   import { BusinessError } from '@ohos.base';
+   import window from '@ohos.window';
 
    class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
-       const STORE_CONFIG = {
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       const STORE_CONFIG :relationalStore.StoreConfig= {
          name: 'RdbTest.db', // Database file name.
          securityLevel: relationalStore.SecurityLevel.S1 // Database security level.
        };
@@ -75,29 +77,33 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
          }
          console.info(`Succeeded in getting RdbStore.`);
 
-        // When the RDB store is created, the default version is 0.
-        if (store.version == 0) {
-          store.executeSql(SQL_CREATE_TABLE); // Create a data table.
-          // Set the RDB store version, which must be an integer greater than 0.
-          store.version = 3;
-        }
+         // When the RDB store is created, the default version is 0.
+         if (store.version == 0) {
+           store.executeSql(SQL_CREATE_TABLE); // Create a data table.
+           // Set the RDB store version, which must be an integer greater than 0.
+           store.version = 3;
+         }
 
-        // If the RDB store version is not 0 and does not match the current version, upgrade or downgrade the RDB store.
-        // For example, upgrade the RDB store from version 1 to version 2.
-        if (store.version != 3 && store.version == 1) {
-          // Upgrade the RDB store from version 1 to version 2, and change the table structure from EMPLOYEE (NAME, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS).
-          store.executeSql("ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER", null);
-          store.version = 2;
-        }
+         // If the RDB store version is not 0 and does not match the current version, upgrade or downgrade the RDB store.
+         // For example, upgrade the RDB store from version 1 to version 2.
+         if (store.version != 3 && store.version == 1) {
+           // Upgrade the RDB store from version 1 to version 2, and change the table structure from EMPLOYEE (NAME, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS).
+           if (store != undefined) {
+             (store as relationalStore.RdbStore).executeSql("ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER", );
+             store.version = 2;
+           }
+         }
 
-        // For example, upgrade the RDB store from version 2 to version 3.
-        if (store.version != 3 && store.version == 2) {
-          // Upgrade the RDB store from version 2 to version 3, and change the table structure from EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES).
-          store.executeSql("ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT", null);
-          store.version = 3;
-        }
+         // For example, upgrade the RDB store from version 2 to version 3.
+         if (store.version != 3 && store.version == 2) {
+           // Upgrade the RDB store from version 2 to version 3, and change the table structure from EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES).
+           if (store != undefined) {
+             (store as relationalStore.RdbStore).executeSql("ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT", );
+             store.version = 3;
+           }
+         }
 
-         // Perform operations such as adding, deleting, modifying, and querying data in the RDB store.
+         // Before performing data operations on the database, obtain an RdbStore instance.
 
        });
      }
@@ -107,14 +113,13 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
    FA model:
 
    
-   ```js
+   ```ts
    import relationalStore from '@ohos.data.relationalStore'; // Import the module.
    import featureAbility from '@ohos.ability.featureAbility';
    
-   // Obtain the context.
-   let context = featureAbility.getContext();
-   
-   const STORE_CONFIG = {
+   let context = getContext(this);
+
+   const STORE_CONFIG :relationalStore.StoreConfig = {
      name: 'RdbTest.db', // Database file name.
      securityLevel: relationalStore.SecurityLevel.S1 // Database security level.
    };
@@ -131,28 +136,28 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
      // When the RDB store is created, the default version is 0.
      if (store.version == 0) {
-        store.executeSql(SQL_CREATE_TABLE); // Create a data table.
-        // Set the RDB store version, which must be an integer greater than 0.
-        store.version = 3;
+       store.executeSql(SQL_CREATE_TABLE); // Create a data table.
+       // Set the RDB store version, which must be an integer greater than 0.
+       store.version = 3;
      }
 
      // If the RDB store version is not 0 and does not match the current version, upgrade or downgrade the RDB store.
      // For example, upgrade the RDB store from version 1 to version 2.
      if (store.version != 3 && store.version == 1) {
-        // Upgrade the RDB store from version 1 to version 2, and change the table structure from EMPLOYEE (NAME, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS).
-        store.executeSql("ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER", null);
-        store.version = 2;
+       // Upgrade the RDB store from version 1 to version 2, and change the table structure from EMPLOYEE (NAME, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS).
+       store.executeSql("ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER", );
+       store.version = 2;
      }
 
      // For example, upgrade the RDB store from version 2 to version 3.
      if (store.version != 3 && store.version == 2) {
-        // Upgrade the RDB store from version 2 to version 3, and change the table structure from EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES).
-        store.executeSql("ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT", null);
-        store.version = 3;
+       // Upgrade the RDB store from version 2 to version 3, and change the table structure from EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES).
+       store.executeSql("ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT", );
+       store.version = 3;
      }
-   
-     // Perform operations such as adding, deleting, modifying, and querying data in the RDB store.
-   
+
+     // Before performing data operations on the database, obtain an RdbStore instance.
+
    });
    ```
 
@@ -166,20 +171,35 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
    
    Example:
    
-   ```js
-   const valueBucket = {
-     'NAME': 'Lisa',
-     'AGE': 18,
-     'SALARY': 100.5,
-     'CODES': new Uint8Array([1, 2, 3, 4, 5])
+```ts
+   import { ValuesBucket } from '@ohos.data.ValuesBucket';
+   
+   let key1 = "NAME";
+   let key2 = "AGE";
+   let key3 = "SALARY";
+   let key4 = "CODES";
+   let value1 = "Lisa";
+   let value2 = 18;
+   let value3 = 100.5;
+   let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+   const valueBucket: ValuesBucket = {
+     key1: value1,
+     key2: value2,
+     key3: value3,
+  key4: value4,
    };
-   store.insert('EMPLOYEE', valueBucket, (err, rowId) => {
-     if (err) {
-       console.error(`Failed to insert data. Code:${err.code}, message:${err.message}`);
-       return;
-     }
-     console.info(`Succeeded in inserting data. rowId:${rowId}`);
-})
+
+   let store: relationalStore.RdbStore | undefined = undefined;
+   
+   if (store != undefined) {
+     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket, (err: BusinessError, rowId: number) => {
+       if (err) {
+         console.error(`Failed to insert data. Code:${err.code}, message:${err.message}`);
+         return;
+       }
+       console.info(`Succeeded in inserting data. rowId:${rowId}`);
+     })
+}
    ```
    
    > **NOTE**
@@ -192,34 +212,48 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
    Example:
 
-   ```js
+   ```ts
    // Modify data.
-   const valueBucket = {
-     'NAME': 'Rose',
-     'AGE': 22,
-     'SALARY': 200.5,
-     'CODES': new Uint8Array([1, 2, 3, 4, 5])
+   let key1 = "NAME";
+   let key2 = "AGE";
+   let key3 = "SALARY";
+   let key4 = "CODES";
+   let value1 = "Lisa";
+   let value2 = 22;
+   let value3 = 200.5;
+   let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+   const valueBucket: ValuesBucket = {
+     key1: value1,
+     key2: value2,
+     key3: value3,
+     key4: value4,
    };
+   
+   // Modify data.
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE'); // Create predicates for the table named EMPLOYEE.
    predicates.equalTo('NAME', 'Lisa'); // Modify the data of Lisa in the EMPLOYEE table to the specified data.
-   store.update(valueBucket, predicates, (err, rows) => {
-     if (err) {
-       console.error(`Failed to update data. Code:${err.code}, message:${err.message}`);
-       return;
-     }
-     console.info(`Succeeded in updating data. row count: ${rows}`);
-   })
+   if (store != undefined) {
+     (store as relationalStore.RdbStore).update(valueBucket, predicates, (err: BusinessError, rows: number) => {
+       if (err) {
+         console.error(`Failed to update data. Code:${err.code}, message:${err.message}`);
+        return;
+      }
+      console.info(`Succeeded in updating data. row count: ${rows}`);
+     })
+   }
    
    // Delete data.
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Lisa');
-   store.delete(predicates, (err, rows) => {
-     if (err) {
-       console.error(`Failed to delete data. Code:${err.code}, message:${err.message}`);
-       return;
-     }
-     console.info(`Delete rows: ${rows}`);
-   })
+   if (store != undefined) {
+     (store as relationalStore.RdbStore).delete(predicates, (err: BusinessError, rows: number) => {
+       if (err) {
+         console.error(`Failed to delete data. Code:${err.code}, message:${err.message}`);
+         return;
+       }
+       console.info(`Delete rows: ${rows}`);
+     })
+   }
    ```
 
 4. Query data based on the conditions specified by **Predicates**.
@@ -228,26 +262,28 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
    Example:
 
-   ```js
+   ```ts
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Rose');
-   store.query(predicates, ['ID', 'NAME', 'AGE', 'SALARY'], (err, resultSet) => {
-     if (err) {
-       console.error(`Failed to query data. Code:${err.code}, message:${err.message}`);
-       return;
-     }
-     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-     while (resultSet.goToNextRow()) {
-       const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-       const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-       const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-     }
-     // Release the data set memory.
-     resultSet.close();
-   })
+   if (store != undefined) {
+     (store as relationalStore.RdbStore).query(predicates, ['ID', 'NAME', 'AGE', 'SALARY'], (err: BusinessError, resultSet) => {
+       if (err) {
+         console.error(`Failed to query data. Code:${err.code}, message:${err.message}`);
+         return;
+       }
+       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+       // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+       while (resultSet.goToNextRow()) {
+         const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+         const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+         const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+         const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+         console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+       }
+       // Release the data set memory.
+       resultSet.close();
+     })
+   }
    ```
 
    > **NOTE**
@@ -256,7 +292,9 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 5. Delete the RDB store.
 
-   Use **deleteRdbStore()** to delete the RDB store and related database files.
+   Use **deleteRdbStore()** to delete the RDB store and related database files. 
+
+   Example:
 
    > **NOTE**
    >
@@ -265,17 +303,17 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
    Stage model:
 
 
-   ```js
+   ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
    
    class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
-       relationalStore.deleteRdbStore(this.context, 'RdbTest.db', (err) => {
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       relationalStore.deleteRdbStore(this.context, 'RdbTest.db', (err: BusinessError) => {
          if (err) {
            console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
            return;
          }
-         store = null;
+         store = undefined;
          console.info('Succeeded in deleting RdbStore.');
        });
      }
@@ -285,18 +323,17 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
    FA model:
 
 
-   ```js
+   ```ts
    import featureAbility from '@ohos.ability.featureAbility';
    
-   // Obtain the context.
    let context = featureAbility.getContext();
    
-   relationalStore.deleteRdbStore(context, 'RdbTest.db', (err) => {
+   relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {
      if (err) {
        console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
        return;
      }
-     store = null;
+     store = undefined;
      console.info('Succeeded in deleting RdbStore.');
    });
    ```

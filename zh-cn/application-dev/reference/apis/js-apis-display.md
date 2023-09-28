@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import display from '@ohos.display';
 ```
 
@@ -102,12 +102,12 @@ getDefaultDisplaySync(): Display
 
 **示例：**
 
-```js
-let displayClass = null;
+```ts
+let displayClass: display.Display | null = null;
 try {
-    displayClass = display.getDefaultDisplaySync();
+  displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -135,15 +135,18 @@ getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 **示例：**
 
-```js
-let displayClass = null;
-display.getAllDisplays((err, data) => {
-    displayClass = data;
-    if (err.code) {
-        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let displayClass: Array<display.Display> = [];
+display.getAllDisplays((err: BusinessError, data: AsyncCallback<Array<Display>>) => {
+  displayClass = data;
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -171,14 +174,16 @@ getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 
 **示例：**
 
-```js
-let displayClass = null;
-let promise = display.getAllDisplays();
-promise.then((data) => {
-    displayClass = data;
-    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let displayClass: Array<display.Display> =[];
+let promise: Promise<Array<Display>> = display.getAllDisplays();
+promise.then((data: Promise<Array<Display>>) => {
+  displayClass = data;
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
 });
 ```
 
@@ -214,27 +219,29 @@ hasPrivateWindow(displayId: number): boolean
 
 **示例：**
 
-```js
-let displayClass = null;
-try {
-    displayClass = display.getDefaultDisplaySync();
+```ts
+import { BusinessError } from '@ohos.base';
 
-    let ret = undefined;
-    try {
-        ret = display.hasPrivateWindow(displayClass.id);
-    } catch (exception) {
-        console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
-    }
-    if (ret == undefined) {
-        console.log("Failed to check has privateWindow or not.");
-    }
-    if (ret) {
-        console.log("There has privateWindow.");
-    } else if (!ret) {
-        console.log("There has no privateWindow.");
-    }
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+
+  let ret: boolean = true;
+  try {
+    ret = display.hasPrivateWindow(displayClass.id);
+  } catch (exception) {
+    console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
+  }
+  if (ret == undefined) {
+    console.log("Failed to check has privateWindow or not.");
+  }
+  if (ret) {
+    console.log("There has privateWindow.");
+  } else if (!ret) {
+    console.log("There has no privateWindow.");
+  }
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -255,14 +262,14 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 **示例：**
 
-```js
-let callback = (data) => {
-    console.info('Listening enabled. Data: ' + JSON.stringify(data));
+```ts
+let callback: Callback<number> = (data: Callback<number>) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
-    display.on("add", callback);
+  display.on("add", callback);
 } catch (exception) {
-    console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -283,11 +290,11 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
-    display.off("remove");
+  display.off("remove");
 } catch (exception) {
-    console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -310,14 +317,14 @@ on(type: 'privateModeChange', callback: Callback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-let callback = (data) => {
-    console.info('Listening enabled. Data: ' + JSON.stringify(data));
+```ts
+let callback: Callback<boolean> = (data: Callback<boolean>) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
-    display.on("privateModeChange", callback);
+  display.on("privateModeChange", callback);
 } catch (exception) {
-    console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -340,11 +347,11 @@ off(type: 'privateModeChange', callback?: Callback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
-    display.off("privateModeChange");
+  display.off("privateModeChange");
 } catch (exception) {
-    console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -368,15 +375,18 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
 **示例：**
 
-```js
-let displayClass = null;
-display.getDefaultDisplay((err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-    displayClass = data;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let displayClass: display.Display | null = null;
+display.getDefaultDisplay((err: BusinessError, data: AsyncCallback<Display>) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+  displayClass = data;
 });
 ```
 
@@ -400,14 +410,16 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
 **示例：**
 
-```js
-let displayClass = null;
-let promise = display.getDefaultDisplay();
-promise.then((data) => {
-    displayClass = data;
-    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let displayClass: display.Display | null = null;
+let promise: Promise<Display> = display.getDefaultDisplay();
+promise.then((data: Promise<Display>) => {
+  displayClass = data;
+  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
 });
 ```
 
@@ -431,13 +443,16 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 **示例：**
 
-```js
-display.getAllDisplay((err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+display.getAllDisplay((err: BusinessError, data: AsyncCallback<Array<Display>>) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -461,12 +476,14 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 **示例：**
 
-```js
-let promise = display.getAllDisplay();
-promise.then((data) => {
-    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let promise: Promise<Array<Display>> = display.getAllDisplay();
+promise.then((data: Promise<Array<Display>>) => {
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
 });
 ```
 
@@ -519,20 +536,23 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
 **示例：**
 
-```js
-let displayClass = null;
-try {
-    displayClass = display.getDefaultDisplaySync();
+```ts
+import { BusinessError } from '@ohos.base';
 
-    displayClass.getCutoutInfo((err, data) => {
-        if (err.code) {
-            console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
-    });
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+
+  displayClass.getCutoutInfo((err: BusinessError, data: AsyncCallback<CutoutInfo>) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
 ### getCutoutInfo<sup>9+</sup>
@@ -558,18 +578,20 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 
 **示例：**
 
-```js
-let displayClass = null;
-try {
-    displayClass = display.getDefaultDisplaySync();
+```ts
+import { BusinessError } from '@ohos.base';
 
-    let promise = displayClass.getCutoutInfo();
-    promise.then((data) => {
-        console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-    });
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+
+  let promise: Promise<CutoutInfo> = displayClass.getCutoutInfo();
+  promise.then((data: Promise<CutoutInfo>) => {
+    console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```

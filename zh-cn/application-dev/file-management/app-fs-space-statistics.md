@@ -28,9 +28,10 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis/js-apis-file-st
     
   ```ts
   import statvfs from '@ohos.file.statvfs';
+  import { BusinessError } from '@ohos.base';
   
   let path = "/data";
-  statvfs.getFreeSize(path, (err, number) => {
+  statvfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
       console.error(`Invoke getFreeSize failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -43,8 +44,9 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis/js-apis-file-st
     
   ```ts
   import storageStatistics from "@ohos.file.storageStatistics";
+  import { BusinessError } from '@ohos.base';
   
-  storageStatistics.getCurrentBundleStats((err, bundleStats) => {
+  storageStatistics.getCurrentBundleStats((err: BusinessError, bundleStats: storageStatistics.BundleStats) => {
     if (err) {
       console.error(`Invoke getCurrentBundleStats failed, code is ${err.code}, message is ${err.message}`);
     } else {

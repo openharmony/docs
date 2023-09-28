@@ -14,18 +14,18 @@
 
 ## 属性
 
-| 名称                    | 类型                         | 默认值      | 必填   | 描述                                       |
-| --------------------- | -------------------------- | -------- | ---- | ---------------------------------------- |
-| images                | Array&lt;ImageFrame&gt;    | -        | 是    | 设置图片帧信息集合。每一帧的帧信息包含图片路径、图片大小和图片位置信息。目前支持以下图片格式：png、jpg和bmp。ImageFrame的详细说明请见表1。<br/>**说明：**<br/>使用时需要使用数据绑定的方式，如images&nbsp;=&nbsp;{{images}}，js中声明相应变量：images:&nbsp;[{src:&nbsp;"/common/heart-rate01.png"},&nbsp;{src:&nbsp;"/common/heart-rate02.png"}]。 |
-| iteration             | number&nbsp;\|&nbsp;string | infinite | 否    | 设置帧动画播放次数。number表示固定次数，infinite枚举表示无限次数播放。 |
-| reverse               | boolean                    | false    | 否    | 设置播放顺序。false表示从第1张图片播放到最后1张图片；&nbsp;true表示从最后1张图片播放到第1张图片。 |
-| fixedsize             | boolean                    | true     | 否    | 设置图片大小是否固定为组件大小。&nbsp;true表示图片大小与组件大小一致，此时设置图片的width&nbsp;、height&nbsp;、top&nbsp;和left属性是无效的。false表示每一张图片的&nbsp;width&nbsp;、height&nbsp;、top和left属性都要单独设置。 |
-| duration              | string                     | -        | 是    | 设置单次播放时长。单位支持[s(秒)\|ms(毫秒)]，默认单位为ms。&nbsp;duration为0时，不播放图片。&nbsp;值改变只会在下一次循环开始时生效。 |
-| fillmode<sup>5+</sup> | string                     | forwards | 否    | 指定帧动画执行结束后的状态。可选项有：<br/>-&nbsp;none：恢复初始状态。<br/>-&nbsp;forwards：保持帧动画结束时的状态（在最后一个关键帧中定义）。 |
-| id                    | string                     | -        | 否    | 组件的唯一标识。                                 |
-| style                 | string                     | -        | 否    | 组件的样式声明。                                 |
-| class                 | string                     | -        | 否    | 组件的样式类，用于引用样式表。                          |
-| ref                   | string                     | -        | 否    | 用来指定指向子元素的引用信息，该引用将注册到父组件的$refs&nbsp;属性对象上。 |
+| 名称                  | 类型                       | 默认值   | 必填 | 描述                                                         |
+| --------------------- | -------------------------- | -------- | ---- | ------------------------------------------------------------ |
+| images                | Array&lt;ImageFrame&gt;    | -        | 是   | 设置图片帧信息集合。每一帧的帧信息包含图片路径、图片大小和图片位置信息。目前支持以下图片格式：png、jpg和bmp。ImageFrame的详细说明请见表1。<br/>**说明：**<br/>1.使用时需要使用数据绑定的方式，如images&nbsp;=&nbsp;{{images}}，js中声明相应变量：images:&nbsp;[{src:&nbsp;"/common/heart-rate01.png"},&nbsp;{src:&nbsp;"/common/heart-rate02.png"}]。<br/>2.部分轻量级设备不支持原图片格式的解析。所以，在应用编译阶段，图片会被直接编译为可解析的位图（总字节数约：图片长x宽x4），并打包在应用安装包里，这会增加安装包的大小。因此，在使用图片资源时，应尽量控制图片的分辨率，尺寸越大的图片对于空间的占用越明显。 |
+| iteration             | number&nbsp;\|&nbsp;string | infinite | 否   | 设置帧动画播放次数。number表示固定次数，infinite枚举表示无限次数播放。 |
+| reverse               | boolean                    | false    | 否   | 设置播放顺序。false表示从第1张图片播放到最后1张图片；&nbsp;true表示从最后1张图片播放到第1张图片。 |
+| fixedsize             | boolean                    | true     | 否   | 设置图片大小是否固定为组件大小。&nbsp;true表示图片大小与组件大小一致，此时设置图片的width&nbsp;、height&nbsp;、top&nbsp;和left属性是无效的。false表示每一张图片的&nbsp;width&nbsp;、height&nbsp;、top和left属性都要单独设置。 |
+| duration              | string                     | -        | 是   | 设置单次播放时长。单位支持[s(秒)\|ms(毫秒)]，默认单位为ms。&nbsp;duration为0时，不播放图片。&nbsp;值改变只会在下一次循环开始时生效。 |
+| fillmode<sup>5+</sup> | string                     | forwards | 否   | 指定帧动画执行结束后的状态。可选项有：<br/>-&nbsp;none：恢复初始状态。<br/>-&nbsp;forwards：保持帧动画结束时的状态（在最后一个关键帧中定义）。 |
+| id                    | string                     | -        | 否   | 组件的唯一标识。                                             |
+| style                 | string                     | -        | 否   | 组件的样式声明。                                             |
+| class                 | string                     | -        | 否   | 组件的样式类，用于引用样式表。                               |
+| ref                   | string                     | -        | 否   | 用来指定指向子元素的引用信息，该引用将注册到父组件的$refs&nbsp;属性对象上。 |
 
   **表1** ImageFrame说明
 

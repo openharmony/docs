@@ -31,10 +31,11 @@ onConfigurationUpdate(newConfig: Configuration): void;
   ```ts
 // Ability是顶层基类，不支持开发者直接继承。故以派生类UIAbility举例说明。
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { Configuration } from '@ohos.app.ability.Configuration';
 
 class MyUIAbility extends UIAbility {
-    onConfigurationUpdate(config) {
-        console.log('onConfigurationUpdate, config: ${JSON.stringify(config)}');
+    onConfigurationUpdate(config: Configuration) {
+        console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
     }
 }
   ```
@@ -58,10 +59,11 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
   ```ts
 // Ability是顶层基类，不支持开发者直接继承。故以派生类UIAbility举例说明。
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyUIAbility extends UIAbility {
-    onMemoryLevel(level) {
-        console.log('onMemoryLevel, level: ${JSON.stringify(level)}');
+    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
+        console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
     } 
 }
   ```

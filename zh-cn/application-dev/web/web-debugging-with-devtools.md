@@ -41,9 +41,18 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
 3. 将设备连接上电脑，在电脑端配置端口映射，配置方法如下：
 
    ```
-   // 添加映射 
-   hdc fport tcp:9222 tcp:9222 
+   //查找 devtools 远程调试所需的 domain socket 名称，该名称与进程号有关，重启调试应用后，需要重复此步骤，以完成端口转发
+   cat /proc/net/unix | grep devtools
+   // 添加映射 [pid] 替换成实际的进程id
+   hdc fport tcp:9222 localabstract:webview_devtools_remote_[pid]
    // 查看映射 
+   hdc fport ls
+   示例：
+   hdc shell
+   cat /proc/net/unix | grep devtools
+   //显示 webview_devtools_remote_3458
+   exit
+   hdc fport tcp:9222 localabstract:webview_devtools_remote_3458
    hdc fport ls
    ```
 

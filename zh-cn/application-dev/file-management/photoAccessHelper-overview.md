@@ -47,7 +47,7 @@ PhotoAccessHelper提供相册管理模块相关能力，包括创建相册以及
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-// 此处获取的phAccessHelper实例为全局对象，后续文档中使用到的地方默认为使用此处获取的对象，如未添加此段代码报未定义的错误请自行添加。
+// 此处获取的photoAccessHelper实例为全局对象，后续文档中使用到的地方默认为使用此处获取的对象，如未添加此段代码报未定义的错误请自行添加。
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
@@ -103,18 +103,17 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+  import window from '@ohos.window';
 
   export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage:window.WindowStage) {
       let list : Array<Permissions> = ['ohos.permission.READ_IMAGEVIDEO', 'ohos.permission.WRITE_IMAGEVIDEO'];
-      let permissionRequestResult;
-      let atManager = abilityAccessCtrl.createAtManager();
+      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
         if (err) {
           console.error('requestPermissionsFromUserError: ' + JSON.stringify(err));
         } else {
-          permissionRequestResult = result;
-          console.info('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
+          console.info('permissionRequestResult: ' + JSON.stringify(result));
         }
       });
     }

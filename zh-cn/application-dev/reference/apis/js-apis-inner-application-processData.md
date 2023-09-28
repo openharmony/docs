@@ -25,32 +25,31 @@ import appManager from '@ohos.application.appManager';
 | uid         | number   | 是   | 否   | 应用的uid。                  |
 | isContinuousTask<sup>9+</sup>         | boolean   | 是   | 否   | 是否为长时任务，true表示是，false表示不是                 |
 | isKeepAlive<sup>9+</sup>         | boolean   | 是   | 否   | 是否为常驻进程，true表示是，false表示不是                   |
-| state<sup>9+</sup>       | number   | 是   | 否   | 应用的状态，取值及对应的状态为：0(刚创建)，2(前台)，4(后台)，5(已终止)。     |
+| state<sup>9+</sup>       | number   | 是   | 否   | 应用的状态，取值及对应的状态为：<br>0 - 刚创建，<br>1 - 准备就绪，<br>2 - 前台，<br>4 - 后台，<br>5 - 已终止。     |
 
 **示例：**
 ```ts
 import appManager from '@ohos.application.appManager';
 
-let applicationStateObserver = {
+let observerCode = appManager.registerApplicationStateObserver({
     onForegroundApplicationChanged(appStateData) {
-        console.log('onForegroundApplicationChanged appStateData: ${JSON.stringify(appStateData)}');
+        console.log(`onForegroundApplicationChanged appStateData: ${JSON.stringify(appStateData)}`);
     },
     onAbilityStateChanged(abilityStateData) {
-        console.log('onAbilityStateChanged onAbilityStateChanged: ${JSON.stringify(abilityStateData)}');
+        console.log(`onAbilityStateChanged onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
     },
     onProcessCreated(processData) {
-        console.log('onProcessCreated onProcessCreated: ${JSON.stringify(processData)}');
+        console.log(`onProcessCreated onProcessCreated: ${JSON.stringify(processData)}`);
     },
     onProcessDied(processData) {
-        console.log('onProcessDied onProcessDied: ${JSON.stringify(processData)}');
+        console.log(`onProcessDied onProcessDied: ${JSON.stringify(processData)}`);
     },
     onProcessStateChanged(processData) {
-        console.log('onProcessStateChanged processData.pid : ${JSON.stringify(processData.pid)}');
-        console.log('onProcessStateChanged processData.bundleName : ${JSON.stringify(processData.bundleName)}');
-        console.log('onProcessStateChanged processData.uid : ${JSON.stringify(processData.uid)}');
-        console.log('onProcessStateChanged processData.isContinuousTask : ${JSON.stringify(processData.isContinuousTask)}');
-        console.log('onProcessStateChanged processData.isKeepAlive : ${JSON.stringify(processData.isKeepAlive)}');
+        console.log(`onProcessStateChanged processData.pid : ${JSON.stringify(processData.pid)}`);
+        console.log(`onProcessStateChanged processData.bundleName : ${JSON.stringify(processData.bundleName)}`);
+        console.log(`onProcessStateChanged processData.uid : ${JSON.stringify(processData.uid)}`);
+        console.log(`onProcessStateChanged processData.isContinuousTask : ${JSON.stringify(processData.isContinuousTask)}`);
+        console.log(`onProcessStateChanged processData.isKeepAlive : ${JSON.stringify(processData.isKeepAlive)}`);
     }
-};
-let observerCode = appManager.registerApplicationStateObserver(applicationStateObserver);
+});
 ```

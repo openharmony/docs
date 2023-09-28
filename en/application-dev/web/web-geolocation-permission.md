@@ -53,17 +53,23 @@ In the following example, when a user clicks the **Get Location** button on the 
               primaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.geolocation.invoke(event.origin, false, false); // Deny access to the device location.
+                  if (event) {
+                    event.geolocation.invoke(event.origin, false, false); // Deny access to the device location.
+                  }
                 }
               },
               secondaryButton: {
                 value: 'ok',
                 action: () => {
-                  event.geolocation.invoke(event.origin, true, false);    // Allow access to the device location.
+                  if (event) {
+                    event.geolocation.invoke(event.origin, true, false);    // Allow access to the device location.
+                  }
                 }
               },
               cancel: () => {
-                event.geolocation.invoke(event.origin, false, false); // Deny access to the device location.
+                if (event) {
+                  event.geolocation.invoke(event.origin, false, false); // Deny access to the device location.
+                }
               }
             })
           })

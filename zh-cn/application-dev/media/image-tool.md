@@ -13,21 +13,22 @@ OpenHarmony目前仅支持对部分EXIF信息的查看和修改，具体支持�
 EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../reference/apis/js-apis-image.md#getimageproperty7)。
 
 1. 获取图片，创建图片源ImageSource。
-     
-   ```ts
+
+```ts
    // 导入相关模块包
    import image from '@ohos.multimedia.image';
-   
+
    // 获取沙箱路径创建ImageSource
-   const fd = ...; // 获取需要被处理的图片的fd
-   const imageSource = image.createImageSource(fd);
+   const fd : number = ...; // 获取需要被处理的图片的fd
+   const imageSource : image.ImageSource = image.createImageSource(fd);
    ```
 
 2. 读取、编辑EXIF信息。
-     
-   ```ts
+
+```ts
+   import {BusinessError} from '@ohos.base';
    // 读取EXIF信息，BitsPerSample为每个像素比特数
-   imageSource.getImageProperty('BitsPerSample', (error, data) => {
+   imageSource.getImageProperty('BitsPerSample', (error : BusinessError, data : string) => {
      if (error) {
        console.error('Failed to get the value of the specified attribute key of the image.And the error is: ' + error);
      } else {
@@ -37,7 +38,8 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../refe
    
    // 编辑EXIF信息
    imageSource.modifyImageProperty('ImageWidth', '120').then(() => {
-     const width = imageSource.getImageProperty("ImageWidth");
-     console.info('The new imageWidth is ' + width);
+     imageSource.getImageProperty("ImageWidth").then((width : string) => {
+        console.info('The new imageWidth is ' + width);
+     })
    })
    ```

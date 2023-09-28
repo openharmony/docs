@@ -4,11 +4,10 @@ The **DataShareExtensionAbility** module provides data share services based on t
 
 >**NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs provided by this module are system APIs.
+> - The APIs provided by this module are system APIs and can be used only in the stage model.
 >
-> The APIs of this module can be used only in the stage model.
 
 
 ## Modules to Import
@@ -21,9 +20,9 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
 
-| Name| Type| Readable| Writable| Description| 
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context<sup>10+</sup> | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | Yes| No|DataShareExtensionAbility context, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md).|
+| context<sup>10+</sup> | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | Yes| No|Context of the DataShare ExtensionAbility.|
 
 ## onCreate
 
@@ -43,31 +42,32 @@ Called by the server to initialize service logic when the DataShare client conne
 **Example**
 
 ```ts
-import rdb from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore'
+import Want from '@ohos.app.ability.Want'
 
 let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
 let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
-    + TBL_NAME
-    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
-let rdbStore;
+  + TBL_NAME
+  + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
+let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    onCreate(want, callback) {
-        rdb.getRdbStore(this.context, {
-            name: DB_NAME,
-            securityLevel: rdb.SecurityLevel.S1
-        }, function (err, data) {
-            console.info(`getRdbStore done, data : ${data}`);
-            rdbStore = data;
-            rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
-                console.error(`executeSql done, error message : ${err}`);
-            });
-            if (callback) {
-                callback();
-            }
-        });
-    }
+  onCreate(want: Want, callback: Function) {
+    relationalStore.getRdbStore(this.context, {
+      name: DB_NAME,
+      securityLevel: relationalStore.SecurityLevel.S1
+    }, (err, data) => {
+      console.info(`getRdbStore done, data : ${data}`);
+      rdbStore = data;
+      rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
+        console.error(`executeSql done, error message : ${err}`);
+      });
+      if (callback) {
+        callback();
+      }
+    });
+  }
 };
 ```
 
@@ -90,28 +90,25 @@ Inserts data into the database. This API can be overridden as required.
 **Example**
 
 ```ts
-import rdb from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore'
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
 
-let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
-let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
-    + TBL_NAME
-    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
-let rdbStore;
+let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    insert(uri, valueBucket, callback) {
-        if (valueBucket === null) {
-            console.error('invalid valueBuckets');
-            return;
-        }
-        rdbStore.insert(TBL_NAME, valueBucket, function (err, ret) {
-            console.info(`callback ret: ${ret}`);
-            if (callback !== undefined) {
-                callback(err, ret);
-            }
-        });
+  insert(uri: string, valueBucket: ValuesBucket, callback: Function) {
+    if (valueBucket === null) {
+      console.error('invalid valueBuckets');
+      return;
     }
+    rdbStore.insert(TBL_NAME, valueBucket, (err, ret) => {
+      console.info(`callback ret: ${ret}`);
+      if (callback !== undefined) {
+        callback(err, ret);
+      }
+    });
+  }
 };
 ```
 
@@ -135,26 +132,24 @@ Updates data in the database. This API can be overridden as required.
 **Example**
 
 ```ts
-import rdb from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
 
-let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
-let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
-    + TBL_NAME
-    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
-let rdbStore;
+let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    update(uri, predicates, valueBucket, callback) {
-        if (predicates === null || predicates === undefined) {
-            return;
-        }
-        rdbStore.update(TBL_NAME, valueBucket, predicates, function (err, ret) {
-            if (callback !== undefined) {
-                callback(err, ret);
-            }
-        });
+  update(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueBucket: ValuesBucket, callback: Function) {
+    if (predicates === null || predicates === undefined) {
+      return;
     }
+    rdbStore.update(TBL_NAME, valueBucket, predicates, (err, ret) => {
+      if (callback !== undefined) {
+        callback(err, ret);
+      }
+    });
+  }
 };
 ```
 
@@ -177,26 +172,23 @@ Deletes data from the database. This API can be overridden as required.
 **Example**
 
 ```ts
-import rdb from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
-let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
-let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
-    + TBL_NAME
-    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
-let rdbStore;
+let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    delete(uri, predicates, callback) {
-        if (predicates === null || predicates === undefined) {
-            return;
-        }
-        rdbStore.delete(TBL_NAME, predicates, function (err, ret) {
-            if (callback !== undefined) {
-                callback(err, ret);
-            }
-        });
+  delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: Function) {
+    if (predicates === null || predicates === undefined) {
+      return;
     }
+    rdbStore.delete(TBL_NAME, predicates, (err, ret) => {
+      if (callback !== undefined) {
+        callback(err, ret);
+      }
+    });
+  }
 };
 ```
 
@@ -220,29 +212,26 @@ Queries data from the database. This API can be overridden as required.
 **Example**
 
 ```ts
-import rdb from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
-let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
-let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
-    + TBL_NAME
-    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
-let rdbStore;
+let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    query(uri, predicates, columns, callback) {
-        if (predicates === null || predicates === undefined) {
-            return;
-        }
-        rdbStore.query(TBL_NAME, predicates, columns, function (err, resultSet) {
-            if (resultSet !== undefined) {
-                console.info(`resultSet.rowCount: ${resultSet.rowCount}`);
-            }
-            if (callback !== undefined) {
-                callback(err, resultSet);
-            }
-        });
+  query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: Function) {
+    if (predicates === null || predicates === undefined) {
+      return;
     }
+    rdbStore.query(TBL_NAME, predicates, columns, (err, resultSet) => {
+      if (resultSet !== undefined) {
+        console.info(`resultSet.rowCount: ${resultSet.rowCount}`);
+      }
+      if (callback !== undefined) {
+        callback(err, resultSet);
+      }
+    });
+  }
 };
 ```
 
@@ -265,22 +254,19 @@ Batch inserts data into the database. This API is called by the server and can b
 **Example**
 
 ```ts
-import rdb from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
 
-let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
-let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
-    + TBL_NAME
-    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
-let rdbStore;
+let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-  batchInsert(uri, valueBuckets, callback) {
+  batchInsert(uri: string, valueBuckets: Array<ValuesBucket>, callback: Function) {
     if (valueBuckets === null || valueBuckets.length === undefined) {
       console.error('invalid valueBuckets');
       return;
     }
-    rdbStore.batchInsert(TBL_NAME, valueBuckets, function (err, ret) {
+    rdbStore.batchInsert(TBL_NAME, valueBuckets, (err, ret) => {
       if (callback !== undefined) {
         callback(err, ret);
       }
@@ -307,12 +293,20 @@ Normalizes a URI. This API can be overridden as required.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    normalizeUri(uri, callback) {
-        let err = {'code':0};
-        let ret = `normalize: ${uri}`;
-        callback(err, ret);
-    }
+  normalizeUri(uri: string, callback: Function) {
+    let key = 'code';
+    let value = 0;
+    let err: BusinessError = {
+      code: value,
+      name: key,
+      message: key
+    };
+    let ret: string = `normalize: ${uri}`;
+    callback(err, ret);
+  }
 };
 ```
 
@@ -334,11 +328,19 @@ Denormalizes a URI. This API can be overridden as required.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    denormalizeUri(uri, callback) {
-        let err = {'code':0};
-        let ret = `denormalize ${uri}`;
-        callback(err, ret);
-    }
+  denormalizeUri(uri: string, callback: Function) {
+    let key = 'code';
+    let value = 0;
+    let err: BusinessError = {
+      code: value,
+      name: key,
+      message: key
+    };
+      let ret = `denormalize ${uri}`;
+      callback(err, ret);
+  }
 };
 ```

@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import deviceManager from "@ohos.driver.deviceManager";
 ```
 
@@ -17,6 +17,8 @@ import deviceManager from "@ohos.driver.deviceManager";
 queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 获取接入主设备的外部设备列表。如果没有设备接入，那么将会返回一个空的列表。
+
+**需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 **系统能力：**  SystemCapability.Driver.ExternalDevice
 
@@ -41,14 +43,18 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 **示例：**
 
-```js
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+import type Device from '@system.device';
+
 try {
-  let devices = deviceManager.queryDevices(deviceManager.BusType.USB);
+  let devices : Array<Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
   for (let item of devices) {
-    console.info('Device id is ${item.deviceId}')
+    let device : deviceManager.USBDevice = item as deviceManager.USBDevice;
+    console.info(`Device id is ${device.deviceId}`)
   }
 } catch (error) {
-  console.error('Failed to query device. Code is ${error.code}, message is ${error.message}');
+  console.error(`Failed to query device. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
@@ -60,6 +66,8 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 根据queryDevices()返回的设备信息绑定设备。
 
 需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息以及device。
+
+**需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 **系统能力：**  SystemCapability.Driver.ExternalDevice
 
@@ -80,20 +88,23 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 **示例：**
 
-```js
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+import type { BusinessError } from '@ohos.base';
+
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.bindDevice(12345678, (error, data) => {
-    console.error('Device is disconnected');
+  deviceManager.bindDevice(12345678, (error : BusinessError, data) => {
+    console.error(`Device is disconnected`);
   }, (error, data) => {
     if (error) {
-      console.error('bindDevice async fail. Code is ${error.code}, message is ${error.message}');
+      console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
       return;
     }
-    console.info('bindDevice success');
+    console.info(`bindDevice success`);
   });
 } catch (error) {
-  console.error('bindDevice fail. Code is ${error.code}, message is ${error.message}');
+  console.error(`bindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
@@ -105,6 +116,8 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 根据queryDevices()返回的设备信息绑定设备。
 
 需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息以及device。
+
+**需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 **系统能力：**  SystemCapability.Driver.ExternalDevice
 
@@ -130,18 +143,21 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 **示例：**
 
-```js
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+import type { BusinessError } from '@ohos.base';
+
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.bindDevice(12345678, (error, data) => {
-    console.error('Device is disconnected');
+    console.error(`Device is disconnected`);
   }).then(data => {
-    console.info('bindDevice success');
-  }, error => {
-    console.error('bindDevice async fail. Code is ${error.code}, message is ${error.message}');
+    console.info(`bindDevice success`);
+  }, (error : BusinessError) => {
+    console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
   });
 } catch (error) {
-  console.error('bindDevice fail. Code is ${error.code}, message is ${error.message}');
+  console.error(`bindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
@@ -150,6 +166,8 @@ try {
 unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 
 解除设备绑定。
+
+**需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 **系统能力：**  SystemCapability.Driver.ExternalDevice
 
@@ -169,18 +187,20 @@ unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.unbindDevice(12345678, (error, data) => {
-  if (error) {
-    console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
-    return;
-  }
-  console.info('unbindDevice success');
+    if (error) {
+      console.error(`unbindDevice async fail. Code is ${error.code}, message is ${error.message}`);
+      return;
+    }
+    console.info(`unbindDevice success`);
   });
 } catch (error) {
-  console.error('unbindDevice fail. Code is ${error.code}, message is ${error.message}');
+  console.error(`unbindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 ## deviceManager.unbindDevice
@@ -188,6 +208,8 @@ try {
 unbindDevice(deviceId: number): Promise&lt;number&gt;
 
 解除设备绑定。
+
+**需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 **系统能力：**  SystemCapability.Driver.ExternalDevice
 
@@ -212,16 +234,19 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+import type { BusinessError } from '@ohos.base';
+
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.unbindDevice(12345678).then(data => {
-    console.info('unbindDevice success');
-  }, error => {
-    console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
+    console.info(`unbindDevice success`);
+  }, (error : BusinessError) => {
+    console.error(`unbindDevice async fail. Code is ${error.code}, message is ${error.message}`);
   });
 } catch (error) {
-  console.error('unbindDevice fail. Code is ${error.code}, message is ${error.message}');
+  console.error(`unbindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 

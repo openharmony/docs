@@ -37,6 +37,7 @@
    
    ```ts
    import notificationManager from '@ohos.notificationManager';
+   import Base from '@ohos.base';
    ```
 
 3. 构造NotificationRequest对象，并发布通知。
@@ -55,7 +56,7 @@
         }
       };
       
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -85,7 +86,7 @@
       };
       
       // 发布通知
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -114,7 +115,7 @@
       };
       
       // 发布通知
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -128,30 +129,46 @@
    - 图片类型通知继承了普通文本类型的字段，同时新增了图片内容、内容概要和通知展开时的标题，图片内容为[PixelMap](../reference/apis/js-apis-image.md#pixelmap7)类型对象，其大小不能超过2M。
      
       ```ts
-      let imagePixelMap: PixelMap = undefined; // 需要获取图片PixelMap信息
-      let notificationRequest: notificationManager.NotificationRequest = {
-        id: 1,
-        content: {
-          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
-          picture: {
-            title: 'test_title',
-            text: 'test_text',
-            additionalText: 'test_additionalText',
-            briefText: 'test_briefText',
-            expandedTitle: 'test_expandedTitle',
-            picture: imagePixelMap
-          }
+      import image from '@ohos.multimedia.image';
+
+      let imagePixelMap: image.PixelMap | undefined = undefined; // 需要获取图片PixelMap信息
+      let color = new ArrayBuffer(0);
+      image.createPixelMap(color, {
+        size: {
+          height: 0,
+          width: 0
         }
-      };
+      }).then((data: image.PixelMap) => {
+        imagePixelMap = data;
+      }).catch((err: Base.BusinessError) => {
+        console.log(`createPixelMap failed, error: ${err}`);
+      })
       
-      // 发布通知
-      notificationManager.publish(notificationRequest, (err) => {
-        if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in publishing notification.');
-      });
+      if (imagePixelMap !== undefined) {
+        let notificationRequest: notificationManager.NotificationRequest = {
+          id: 1,
+          content: {
+            contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
+            picture: {
+              title: 'test_title',
+              text: 'test_text',
+              additionalText: 'test_additionalText',
+              briefText: 'test_briefText',
+              expandedTitle: 'test_expandedTitle',
+              picture: imagePixelMap
+            }
+          }
+        };
+
+        // 发布通知
+        notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+          if (err) {
+            console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in publishing notification.');
+        });
+      }
       ```
    
       运行效果如下图所示。  

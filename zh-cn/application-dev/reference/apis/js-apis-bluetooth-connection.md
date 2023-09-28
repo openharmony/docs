@@ -12,6 +12,7 @@ connection模块提供了对蓝牙操作和管理的方法。
 
 ```js
 import connection from '@ohos.bluetooth.connection';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -49,7 +50,7 @@ try {
     // 实际的地址可由扫描流程获取
     connection.pairDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -93,7 +94,7 @@ try {
     // 实际的地址可由扫描流程获取
     connection.pairDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -132,15 +133,16 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: As
 
 ```js
 try {
-    connection.pairCredibleDevice('68:13:24:79:4C:8C', 1, err => {
+    connection.pairCredibleDevice('68:13:24:79:4C:8C', connection.BluetoothTransport
+        .TRANSPORT_BR_EDR, (err: BusinessError) => {
         if (err) {
-            console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+            console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
             return;
         }
         console.info('pairCredibleDevice, err: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -186,11 +188,11 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;
 try {
     connection.pairCredibleDevice('68:13:24:79:4C:8C', 0).then(() => {
         console.info('PairCredibleDevice');
-    }, err => {
+    }, (err: BusinessError) => {
         console.error('PairCredibleDevice:errCode' + err.code + ', errMessage: ' + err.message);
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -230,7 +232,7 @@ cancelPairedDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 try {
     connection.cancelPairedDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -275,7 +277,7 @@ cancelPairedDevice(deviceId: string): Promise&lt;void&gt;
 try {
     connection.cancelPairedDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -315,7 +317,7 @@ cancelPairingDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 try {
     connection.cancelPairingDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -360,7 +362,7 @@ cancelPairingDevice(deviceId: string): Promise&lt;void&gt;
 try {
     connection.cancelPairingDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -401,9 +403,9 @@ getRemoteDeviceName(deviceId: string): string
 
 ```js
 try {
-    let remoteDeviceName = connection.getRemoteDeviceName('XX:XX:XX:XX:XX:XX');
+    let remoteDeviceName: string = connection.getRemoteDeviceName('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -444,9 +446,9 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 
 ```js
 try {
-    let remoteDeviceClass = connection.getRemoteDeviceClass('XX:XX:XX:XX:XX:XX');
+    let remoteDeviceClass: connection.DeviceClass = connection.getRemoteDeviceClass('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -480,9 +482,9 @@ getLocalName(): string
 
 ```js
 try {
-    let localName = connection.getLocalName();
+    let localName: string = connection.getLocalName();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -517,9 +519,9 @@ getPairedDevices(): Array&lt;string&gt;
 
 ```js
 try {
-    let devices = connection.getPairedDevices();
+    let devices: Array<string> = connection.getPairedDevices();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -528,7 +530,7 @@ try {
 
 getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 
-依据ProfileId获取指定profile的连接状态。
+获取蓝牙Profile的连接状态，其中ProfileId为可选参数。如果携带ProfileId，则返回的是当前Profile的连接状态。如果未携带ProfileId，任一Profile已连接则返回[STATE_CONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate)，否则返回[STATE_DISCONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -562,9 +564,9 @@ getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 ```js
 import constant from '@ohos.bluetooth.constant';
 try {
-    let result = connection.getProfileConnectionState(constant.ProfileId.PROFILE_A2DP_SOURCE);
+    let result: connection.ProfileConnectionState = connection.getProfileConnectionState(constant.ProfileId.PROFILE_A2DP_SOURCE);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -599,16 +601,15 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 **示例：**
 
 ```js
-
+// 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认
+function onReceivePinRequiredEvent(data: connection.PinRequiredParam) { // data为配对请求的入参，配对请求参数
+    console.info('pin required  = '+ JSON.stringify(data));
+    connection.setDevicePairingConfirmation(data.deviceId, true);
+}
 try {
-    // 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认
-    function onReceivePinRequiredEvent(data) { // data为配对请求的入参，配对请求参数
-        console.info('pin required  = '+ JSON.stringify(data));
-        connection.setDevicePairingConfirmation(data.deviceId, true);
-    }
     connection.on('pinRequired', onReceivePinRequiredEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -646,11 +647,11 @@ setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void
 ```js
 //callback
 try {
-    connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err, data) => {
-        console.info('setDevicePinCode,device name err:' + JSON.stringify(err) + ',device name:' + JSON.stringify(data));
+    connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError) => {
+        console.info('setDevicePinCode,device name err:' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -695,12 +696,12 @@ setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345').then(() => {
         console.info('setDevicePinCode');
-    }, error => {
+    }, (error: BusinessError) => {
         console.info('setDevicePinCode: errCode:' + error.code + ',errMessage' + error.message);
     })
 
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -737,7 +738,7 @@ setLocalName(name: string): void
 try {
     connection.setLocalName('device_name');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -776,7 +777,7 @@ try {
     // 设置为可连接可发现才可被远端设备扫描到，可以连接。
     connection.setBluetoothScanMode(connection.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -811,9 +812,9 @@ getBluetoothScanMode(): ScanMode
 
 ```js
 try {
-    let scanMode = connection.getBluetoothScanMode();
+    let scanMode: connection.ScanMode = connection.getBluetoothScanMode();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -841,15 +842,14 @@ startBluetoothDiscovery(): void
 **示例：**
 
 ```js
-let deviceId;
-function onReceiveEvent(data) {
-    deviceId = data;
+function onReceiveEvent(data: Array<string>) {
+    console.log('data length' + data.length);
 }
 try {
     connection.on('bluetoothDeviceFind', onReceiveEvent);
     connection.startBluetoothDiscovery();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -880,7 +880,7 @@ stopBluetoothDiscovery(): void
 try {
     connection.stopBluetoothDiscovery();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -917,11 +917,11 @@ getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): 
 
 ```js
 try {
-    connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX', (err, data) => {
+    connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: Array<connection.ProfileUuids>) => {
         console.info('getLocalProfileUuids, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -960,11 +960,11 @@ getLocalProfileUuids(): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 try {
     connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX').then(() => {
         console.info('getLocalProfileUuids');
-    }, err => {
-        console.error('getLocalProfileUuids: errCode' + err.code + ', errMessage: ' + err.message);
+    }, (err: BusinessError) => {
+        console.error('getLocalProfileUuids: errCode' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1002,11 +1002,11 @@ getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;Prof
 
 ```js
 try {
-    connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX', (err, data) => {
+    connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: Array<connection.ProfileUuids>) => {
         console.info('getRemoteProfileUuids, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 
 ```
@@ -1052,11 +1052,11 @@ getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt
 try {
     connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX').then(() => {
         console.info('getRemoteProfileUuids');
-    }, err => {
-        console.error('getRemoteProfileUuids: errCode' + err.code + ', errMessage: ' + err.message);
+    }, (err: BusinessError) => {
+        console.error('getRemoteProfileUuids: errCode' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1089,13 +1089,13 @@ on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): 
 **示例：**
 
 ```js
-function onReceiveEvent(data) { // data为蓝牙设备地址集合
+function onReceiveEvent(data: Array<string>) { // data为蓝牙设备地址集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 try {
     connection.on('bluetoothDeviceFind', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1128,14 +1128,14 @@ off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;)
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: Array<string>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 try {
     connection.on('bluetoothDeviceFind', onReceiveEvent);
     connection.off('bluetoothDeviceFind', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1168,13 +1168,13 @@ on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) { // data为回调函数入参，表示配对的状态
+function onReceiveEvent(data: connection.BondStateParam) { // data为回调函数入参，表示配对的状态
     console.info('pair state = '+ JSON.stringify(data));
 }
 try {
     connection.on('bondStateChange', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1207,14 +1207,14 @@ off(type: 'bondStateChange', callback?: Callback&lt;BondStateParam&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: connection.BondStateParam) {
     console.info('bond state = '+ JSON.stringify(data));
 }
 try {
     connection.on('bondStateChange', onReceiveEvent);
     connection.off('bondStateChange', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1247,13 +1247,13 @@ on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) { // data为配对请求参数
+function onReceiveEvent(data: connection.PinRequiredParam) { // data为配对请求参数
     console.info('pin required = '+ JSON.stringify(data));
 }
 try {
     connection.on('pinRequired', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1286,14 +1286,14 @@ off(type: 'pinRequired', callback?: Callback&lt;PinRequiredParam&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: connection.PinRequiredParam) {
     console.info('pin required = '+ JSON.stringify(data));
 }
 try {
     connection.on('pinRequired', onReceiveEvent);
     connection.off('pinRequired', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 

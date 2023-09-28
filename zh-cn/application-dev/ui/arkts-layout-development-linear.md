@@ -76,7 +76,7 @@ Row({ space: 35 }) {
 
 在布局容器内，可以通过alignItems属性设置子元素在交叉轴（排列方向的垂直方向）上的对齐方式。且在各类尺寸屏幕中，表现一致。其中，交叉轴为垂直方向时，取值为[VerticalAlign类型](../reference/arkui-ts/ts-appendix-enums.md#verticalalign)，水平方向取值为[HorizontalAlign](../reference/arkui-ts/ts-appendix-enums.md#horizontalalign)。
 
-alignSelf属性用于控制单个子元素在容器主轴上的对齐方式，其优先级高于alignItems属性，如果设置了alignSelf属性，则在单个子元素上会覆盖alignItems属性。
+alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式，其优先级高于alignItems属性，如果设置了alignSelf属性，则在单个子元素上会覆盖alignItems属性。
 
 
 ### Column容器内子元素在水平方向上的排列
@@ -466,12 +466,12 @@ struct BlankExample {
           Column() {
             Text('layoutWeight(1)')
               .textAlign(TextAlign.Center)
-          }.layoutWeight(2).backgroundColor(0xF5DEB3).height('100%')
+          }.layoutWeight(1).backgroundColor(0xF5DEB3).height('100%')
 
           Column() {
             Text('layoutWeight(2)')
               .textAlign(TextAlign.Center)
-          }.layoutWeight(4).backgroundColor(0xD2B48C).height('100%')
+          }.layoutWeight(2).backgroundColor(0xD2B48C).height('100%')
 
           Column() {
             Text('layoutWeight(6)')
@@ -567,8 +567,9 @@ struct BlankExample {
     build() {
       Scroll(this.scroller) {
         Column() {
-          ForEach(this.arr, (item) => {
-            Text(item.toString())
+          ForEach(this.arr, (item?:number|undefined) => {
+            if(item){
+              Text(item.toString())
               .width('90%')
               .height(150)
               .backgroundColor(0xFFFFFF)
@@ -576,7 +577,8 @@ struct BlankExample {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .margin({ top: 10 })
-          }, item => item)
+            }
+          }, (item:number) => item.toString())
         }.width('100%')
       }
       .backgroundColor(0xDCDCDC)
@@ -604,8 +606,9 @@ struct BlankExample {
     build() {
       Scroll(this.scroller) {
         Row() {
-          ForEach(this.arr, (item) => {
-            Text(item.toString())
+          ForEach(this.arr, (item?:number|undefined) => {
+            if(item){
+              Text(item.toString())
               .height('90%')
               .width(150)
               .backgroundColor(0xFFFFFF)
@@ -613,6 +616,7 @@ struct BlankExample {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .margin({ left: 10 })
+            }
           })
         }.height('100%')
       }

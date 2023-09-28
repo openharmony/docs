@@ -21,7 +21,6 @@ struct WebComponent {
         .onClick(() => {
           if (this.webviewController.accessBackward()) {
             this.webviewController.backward();
-            return true;
           }
         })
       Web({ src: 'https://www.example.com/cn/', controller: this.webviewController})
@@ -36,7 +35,7 @@ If a previous record exists, [accessBackward()](../reference/apis/js-apis-webvie
 
 ## Page Redirection
 
-The **Web** component provides the [onUrlLoadIntercept()](../reference/arkui-ts/ts-basic-components-web.md#onurlloadintercept) API to redirect you from one page to another.
+The **Web** component provides the [onUrlLoadIntercept()](../reference/arkui-ts/ts-basic-components-web.md#onurlloadinterceptdeprecated) API to redirect you from one page to another.
 
 In the following example, the frontend page **route.html** is loaded on to the application home page **Index.ets**, and the user is redirected to the application page **ProfilePage.ets** when clicking the link on the **route.html** page.
 
@@ -55,11 +54,13 @@ In the following example, the frontend page **route.html** is loaded on to the a
       Column() {
         Web({ src: $rawfile('route.html'), controller: this.webviewController })
           .onUrlLoadIntercept((event) => {
-            let url: string = event.data as string;
-            if (url.indexOf('native://') === 0) {
-              // Redirect to another page.
-              router.pushUrl({ url:url.substring(9) })
-              return true;
+            if (event) {
+              let url: string = event.data as string;
+              if (url.indexOf('native://') === 0) {
+                // Redirect to another page.
+                router.pushUrl({ url:url.substring(9) })
+                return true;
+              }
             }
             return false;
           })
@@ -122,18 +123,20 @@ In the following example, when a user clicks the link on the frontend page **cal
       Column() {
         Web({ src: $rawfile('xxx.html'), controller: this.webviewController})
           .onUrlLoadIntercept((event) => {
-            let url: string = event.data as string;
-            // Check whether the link is redirecting to the dial screen of the phone app.
-            if (url.indexOf('tel://') === 0) {
-              // Redirect to the dial screen.
-              call.makeCall(url.substring(6), (err) => {
-                if (!err) {
-                  console.info('make call succeeded.');
-                } else {
-                  console.info('make call fail, err is:' + JSON.stringify(err));
-                }
-              });
-              return true;
+            if (event) {
+              let url: string = event.data as string;
+              // Check whether the link is redirecting to the dial screen of the phone app.
+              if (url.indexOf('tel://') === 0) {
+                // Redirect to the dial screen.
+                call.makeCall(url.substring(6), (err) => {
+                  if (!err) {
+                    console.info('make call succeeded.');
+                  } else {
+                    console.info('make call fail, err is:' + JSON.stringify(err));
+                  }
+                });
+                return true;
+              }
             }
             return false;
           })

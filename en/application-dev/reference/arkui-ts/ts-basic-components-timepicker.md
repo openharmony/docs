@@ -30,7 +30,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                            | Type                                                    | Description                                                        |
 | -------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| useMilitaryTime                  | boolean                                                      | Whether the display time is in 24-hour format.<br>Default value: **false**                  |
+| useMilitaryTime                  | boolean                                                      | Whether the display time is in 24-hour format.<br>Default value: **false**<br>**NOTE**<br>When in the 12-hour format, the AM/PM zone does not change depending on the hour portion.|
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width for the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
 | textStyle<sup>10+</sup>          | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 | selectedTextStyle<sup>10+</sup>  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
@@ -45,10 +45,12 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ## TimePickerResult
 
-| Name    | Type  | Description     |
-| ------ | ------ | ------- |
-| hour   | number | Hour portion of the selected time.|
-| minute | number | Minute portion of the selected time.|
+Describes a time in 24-hour format.
+
+| Name  | Type| Description                               |
+| ------ | -------- | ----------------------------------- |
+| hour   | number   | Hour portion of the selected time.<br>Value range: [0-23]|
+| minute | number   | Minute portion of the selected time.<br>Value range: [0-59]|
 
 
 ## Example
@@ -73,9 +75,14 @@ struct TimePickerExample {
       })
         .useMilitaryTime(this.isMilitaryTime)
         .onChange((value: TimePickerResult) => {
-          this.selectedTime.setHours(value.hour, value.minute)
-          console.info('select current date is: ' + JSON.stringify(value))
+          if(value.hour) {
+            this.selectedTime.setHours(value.hour, value.minute)
+            console.info('select current date is: ' + JSON.stringify(value))
+          }
         })
+        .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
+        .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
+        .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
     }.width('100%')
   }
 }

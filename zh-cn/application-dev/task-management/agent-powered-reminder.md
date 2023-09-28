@@ -42,16 +42,17 @@
 
 3. 导入模块。
    
-   ```js
+   ```ts
    import reminderAgentManager from '@ohos.reminderAgentManager';
    import notificationManager from '@ohos.notificationManager';
+   import { BusinessError } from '@ohos.base';
    ```
 
 4. 定义目标提醒代理。开发者根据实际需要，选择定义如下类型的提醒。
 
    - 定义倒计时实例。
      
-      ```js
+      ```ts
       let targetReminderAgent: reminderAgentManager.ReminderRequestTimer = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,   // 提醒类型为倒计时类型
         triggerTimeInSeconds: 10,
@@ -79,7 +80,7 @@
 
    - 定义日历实例。
      
-      ```js
+      ```ts
       let targetReminderAgent: reminderAgentManager.ReminderRequestCalendar = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_CALENDAR, // 提醒类型为日历类型
         dateTime: {   // 指明提醒的目标时间
@@ -124,7 +125,7 @@
 
    - 定义闹钟实例。
     
-      ```js
+      ```ts
       let targetReminderAgent: reminderAgentManager.ReminderRequestAlarm = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_ALARM, // 提醒类型为闹钟类型
         hour: 23, // 指明提醒的目标时刻
@@ -162,36 +163,33 @@
 
 5. 发布相应的提醒代理。代理发布后，应用即可使用后台代理提醒功能。
    
-   ```js
-   try {
-     reminderAgentManager.publishReminder(targetReminderAgent).then(res => {
-       console.info('Succeeded in publishing reminder. ');
-       let reminderId: number = res; // 发布的提醒ID
-     }).catch(err => {
-       console.error(`Failed to publish reminder. Code: ${err.code}, message: ${err.message}`);
-     })
-   } catch (err) {
-       console.error(`Failed to publish reminder. Code: ${err.code}, message: ${err.message}`);
-   }
-   ```
+  ```ts
+  reminderAgentManager.publishReminder(targetReminderAgent).then((res: number) => {
+    console.info('Succeeded in publishing reminder. ');
+    let reminderId: number = res; // 发布的提醒ID
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to publish reminder. Code: ${err.code}, message: ${err.message}`);
+  })
+  ```
 
 6. 根据需要删除提醒任务。
    
-   ```js
-   try {
-       // reminderId的值从发布提醒代理成功之后的回调中获得
-       reminderAgentManager.cancelReminder(reminderId).then(() => {
-           console.log('Succeeded in canceling reminder.');
-       }).catch(err => {
-           console.error(`Failed to cancel reminder. Code: ${err.code}, message: ${err.message}`);
-       });
-   } catch (err) {
-       console.error(`Failed to cancel reminder. Code: ${err.code}, message: ${err.message}`);
-   }
-   ```
+  ```ts
+  let reminderId: number = 1;
+  // reminderId的值从发布提醒代理成功之后的回调中获得
+  reminderAgentManager.cancelReminder(reminderId).then(() => {
+    console.log('Succeeded in canceling reminder.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to cancel reminder. Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
 
 ## 相关实例
 
 基于代理提醒，有以下相关实例可供参考：
+
+- [后台代理提醒（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ReminderAgentManager)
+
+- [翻页闹钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/FlipClock)
 
 - [闹钟（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/CommonEventAndNotification/AlarmClock)

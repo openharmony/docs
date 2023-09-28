@@ -12,6 +12,7 @@
 
 ```js
 import bluetooth from '@ohos.bluetooth';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -37,7 +38,7 @@ enableBluetooth(): boolean
 **示例：**
 
 ```js
-let enable = bluetooth.enableBluetooth();
+let enable : boolean = bluetooth.enableBluetooth();
 ```
 
 
@@ -63,7 +64,7 @@ disableBluetooth(): boolean
 **示例：**
 
 ```js
-let disable = bluetooth.disableBluetooth();
+let disable : boolean = bluetooth.disableBluetooth();
 ```
 
 
@@ -89,7 +90,7 @@ getLocalName(): string
 **示例：**
 
 ```js
-let localName = bluetooth.getLocalName();
+let localName : string = bluetooth.getLocalName();
 ```
 
 
@@ -115,7 +116,7 @@ getState(): BluetoothState
 **示例：**
 
 ```js
-let state = bluetooth.getState();
+let state : bluetooth.BluetoothState = bluetooth.getState();
 ```
 
 
@@ -141,7 +142,7 @@ getBtConnectionState(): ProfileConnectionState
 **示例：**
 
 ```js
-let connectionState = bluetooth.getBtConnectionState();
+let connectionState : bluetooth.ProfileConnectionState = bluetooth.getBtConnectionState();
 ```
 
 
@@ -173,7 +174,7 @@ setLocalName(name: string): boolean
 **示例：**
 
 ```js
-let ret = bluetooth.setLocalName('device_name');
+let ret : boolean = bluetooth.setLocalName('device_name');
 ```
 
 
@@ -206,7 +207,7 @@ pairDevice(deviceId: string): boolean
 
 ```js
 // 实际的地址可由扫描流程获取
-let result = bluetooth.pairDevice("XX:XX:XX:XX:XX:XX");
+let result : boolean = bluetooth.pairDevice("XX:XX:XX:XX:XX:XX");
 ```
 
 
@@ -238,7 +239,7 @@ getProfileConnState(profileId: ProfileId): ProfileConnectionState
 **示例：**
 
 ```js
-let result = bluetooth.getProfileConnState(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let result : bluetooth.ProfileConnectionState = bluetooth.getProfileConnState(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 ```
 
 
@@ -272,7 +273,7 @@ cancelPairedDevice(deviceId: string): boolean
 **示例：**
 
 ```js
-let result = bluetooth.cancelPairedDevice("XX:XX:XX:XX:XX:XX");
+let result : boolean = bluetooth.cancelPairedDevice("XX:XX:XX:XX:XX:XX");
 ```
 
 
@@ -304,7 +305,7 @@ getRemoteDeviceName(deviceId: string): string
 **示例：**
 
 ```js
-let remoteDeviceName = bluetooth.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
+let remoteDeviceName : string = bluetooth.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
 ```
 
 
@@ -336,7 +337,7 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 **示例：**
 
 ```js
-let remoteDeviceClass = bluetooth.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
+let remoteDeviceClass : bluetooth.DeviceClass = bluetooth.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
 ```
 
 
@@ -362,7 +363,7 @@ getPairedDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
-let devices = bluetooth.getPairedDevices();
+let devices : Array<string> = bluetooth.getPairedDevices();
 ```
 
 
@@ -396,7 +397,8 @@ setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 
 ```js
 // 设置为可连接可发现才可被远端设备扫描到，可以连接。
-let result = bluetooth.setBluetoothScanMode(bluetooth.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
+let result : boolean = bluetooth.setBluetoothScanMode(bluetooth.ScanMode
+    .SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
 ```
 
 
@@ -422,7 +424,7 @@ getBluetoothScanMode(): ScanMode
 **示例：**
 
 ```js
-let scanMode = bluetooth.getBluetoothScanMode();
+let scanMode : bluetooth.ScanMode = bluetooth.getBluetoothScanMode();
 ```
 
 
@@ -448,12 +450,12 @@ startBluetoothDiscovery(): boolean
 **示例：**
 
 ```js
-let deviceId;
-function onReceiveEvent(data) {
+let deviceId : Array<string>;
+function onReceiveEvent(data : Array<string>) {
     deviceId = data;
 }
 bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
-let result = bluetooth.startBluetoothDiscovery();
+let result : boolean = bluetooth.startBluetoothDiscovery();
 ```
 
 
@@ -479,7 +481,7 @@ stopBluetoothDiscovery(): boolean
 **示例：**
 
 ```js
-let result = bluetooth.stopBluetoothDiscovery();
+let result : boolean = bluetooth.stopBluetoothDiscovery();
 ```
 
 
@@ -513,7 +515,7 @@ setDevicePairingConfirmation(device: string, accept: boolean): boolean
 
 ```js
 // 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认
-function onReceivePinRequiredEvent(data) { // data为配对请求的入参，配对请求参数
+function onReceivePinRequiredEvent(data : bluetooth.PinRequiredParam) { // data为配对请求的入参，配对请求参数
     console.info('pin required  = '+ JSON.stringify(data));
     bluetooth.setDevicePairingConfirmation(data.deviceId, true);
 }
@@ -548,7 +550,7 @@ on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): 
 **示例：**
 
 ```js
-function onReceiveEvent(data) { // data为蓝牙设备地址集合
+function onReceiveEvent(data : Array<string>) { // data为蓝牙设备地址集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
@@ -582,7 +584,7 @@ off(type: "bluetoothDeviceFind", callback?: Callback&lt;Array&lt;string&gt;&gt;)
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : Array<string>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
@@ -617,7 +619,7 @@ on(type: "pinRequired", callback: Callback&lt;PinRequiredParam&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) { // data为配对请求参数
+function onReceiveEvent(data : bluetooth.PinRequiredParam) { // data为配对请求参数
     console.info('pin required = '+ JSON.stringify(data));
 }
 bluetooth.on('pinRequired', onReceiveEvent);
@@ -651,7 +653,7 @@ off(type: "pinRequired", callback?: Callback&lt;PinRequiredParam&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.PinRequiredParam) {
     console.info('pin required = '+ JSON.stringify(data));
 }
 bluetooth.on('pinRequired', onReceiveEvent);
@@ -686,7 +688,7 @@ on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) { // data为回调函数入参，表示配对的状态
+function onReceiveEvent(data : bluetooth.BondStateParam) { // data为回调函数入参，表示配对的状态
     console.info('pair state = '+ JSON.stringify(data));
 }
 bluetooth.on('bondStateChange', onReceiveEvent);
@@ -720,7 +722,7 @@ off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.BondStateParam) {
     console.info('bond state = '+ JSON.stringify(data));
 }
 bluetooth.on('bondStateChange', onReceiveEvent);
@@ -755,7 +757,7 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
 bluetooth.on('stateChange', onReceiveEvent);
@@ -789,7 +791,7 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
 bluetooth.on('stateChange', onReceiveEvent);
@@ -822,7 +824,7 @@ sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;
 
 ```js
 let serverNumber = -1;
-function serverSocket(code, number) {
+function serverSocket(code : BusinessError, number : number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth serverSocket Number: ' + number);
@@ -830,7 +832,7 @@ function serverSocket(code, number) {
   }
 }
 
-let sppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
+let sppOption : bluetooth.SppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 bluetooth.sppListen('server1', sppOption, serverSocket);
 ```
 
@@ -857,7 +859,7 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 let serverNumber = -1;
-function serverSocket(code, number) {
+function serverSocket(code : BusinessError, number : number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth serverSocket Number: ' + number);
@@ -865,7 +867,7 @@ function serverSocket(code, number) {
   }
 }
 let clientNumber = -1;
-function acceptClientSocket(code, number) {
+function acceptClientSocket(code : BusinessError, number : number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth clientSocket Number: ' + number);
@@ -903,7 +905,7 @@ sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&
 ```js
 
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code : BusinessError, number : number) {
   if (code.code != 0) {
     return;
   }
@@ -911,7 +913,7 @@ function clientSocket(code, number) {
   // 获取的clientNumber用作客户端后续读/写操作socket的id。
   clientNumber = number;
 }
-let sppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
+let sppOption : bluetooth.SppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 bluetooth.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
 ```
 
@@ -937,7 +939,7 @@ sppCloseServerSocket(socket: number): void
 
 ```js
 let serverNumber = -1;
-function serverSocket(code, number) {
+function serverSocket(code : BusinessError, number : number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth serverSocket Number: ' + number);
@@ -970,7 +972,7 @@ sppCloseClientSocket(socket: number): void
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code : BusinessError, number : number) {
   if (code.code != 0) {
     return;
   }
@@ -1010,7 +1012,7 @@ sppWrite(clientSocket: number, data: ArrayBuffer): boolean
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code : BusinessError, number : number) {
   if (code.code != 0) {
     return;
   }
@@ -1021,7 +1023,7 @@ function clientSocket(code, number) {
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 data[0] = 123;
-let ret = bluetooth.sppWrite(clientNumber, arrayBuffer);
+let ret : boolean = bluetooth.sppWrite(clientNumber, arrayBuffer);
 if (ret) {
   console.log('spp write successfully');
 } else {
@@ -1057,7 +1059,7 @@ on(type: "sppRead", clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code : BusinessError, number : number) {
   if (code.code != 0) {
     return;
   }
@@ -1065,7 +1067,7 @@ function clientSocket(code, number) {
   // 获取的clientNumber用作客户端后续读/写操作socket的id。
   clientNumber = number;
 }
-function dataRead(dataBuffer) {
+function dataRead(dataBuffer : ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.log('bluetooth data is: ' + data[0]);
 }
@@ -1100,7 +1102,7 @@ off(type: "sppRead", clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code : BusinessError, number : number) {
   if (code.code != 0) {
     return;
   }
@@ -1138,7 +1140,7 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 ```
 
 
@@ -1164,7 +1166,7 @@ createGattServer(): GattServer
 **示例：**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 ```
 
 
@@ -1194,7 +1196,7 @@ createGattClientDevice(deviceId: string): GattClientDevice
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 ```
 
 
@@ -1220,7 +1222,7 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
-let result = bluetooth.BLE.getConnectedBLEDevices();
+let result : Array<string> = bluetooth.BLE.getConnectedBLEDevices();
 ```
 
 
@@ -1251,21 +1253,23 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : Array<bluetooth.ScanResult>) {
     console.info('BLE scan device find result = '+ JSON.stringify(data));
 }
 bluetooth.BLE.on("BLEDeviceFind", onReceiveEvent);
+let scanOptions : bluetooth.ScanOptions = {
+    interval: 500,
+    dutyMode: bluetooth.ScanDuty.SCAN_MODE_LOW_POWER,
+    matchMode: bluetooth.MatchMode.MATCH_MODE_AGGRESSIVE,
+}
+
+let scanFilter : bluetooth.ScanFilter = {
+    deviceId:"XX:XX:XX:XX:XX:XX",
+    name:"test",
+    serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"
+}
 bluetooth.BLE.startBLEScan(
-    [{
-        deviceId:"XX:XX:XX:XX:XX:XX",
-        name:"test",
-        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"
-    }],
-    {
-        interval: 500,
-        dutyMode: bluetooth.ScanDuty.SCAN_MODE_LOW_POWER,
-        matchMode: bluetooth.MatchMode.MATCH_MODE_AGGRESSIVE,
-    }
+    [scanFilter], scanOptions
 );
 ```
 
@@ -1321,7 +1325,7 @@ on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : Array<bluetooth.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 bluetooth.BLE.on('BLEDeviceFind', onReceiveEvent);
@@ -1355,7 +1359,7 @@ off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : Array<bluetooth.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 bluetooth.BLE.on('BLEDeviceFind', onReceiveEvent);
@@ -1390,8 +1394,8 @@ getConnectionDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let retArray = a2dpSrc.getConnectionDevices();
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
+let retArray : Array<string> = a2dpSrc.getConnectionDevices();
 ```
 
 ### getDeviceState<sup>8+</sup><sup>(deprecated)</sup><a name="getDeviceState"></a>
@@ -1422,8 +1426,8 @@ getDeviceState(device: string): ProfileConnectionState
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
+let ret : bluetooth.ProfileConnectionState = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
 ```
 
 ## A2dpSourceProfile
@@ -1459,8 +1463,8 @@ connect(device: string): boolean
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let ret = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
+let ret : boolean = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
 ```
 
 
@@ -1492,8 +1496,8 @@ disconnect(device: string): boolean
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
+let ret : boolean = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
 
@@ -1522,10 +1526,10 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1555,10 +1559,10 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1590,8 +1594,8 @@ getPlayingState(device: string): PlayingState
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
+let state : bluetooth.PlayingState = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 ```
 
 
@@ -1628,9 +1632,9 @@ connect(device: string): boolean
 **示例：**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
-let ret = hfpAg.connect('XX:XX:XX:XX:XX:XX');
+let hfpAg : bluetooth.HandsFreeAudioGatewayProfile= bluetooth.getProfile(bluetooth.ProfileId
+    .PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let ret : boolean = hfpAg.connect('XX:XX:XX:XX:XX:XX');
 ```
 
 
@@ -1662,9 +1666,9 @@ disconnect(device: string): boolean
 **示例：**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
-let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
+let hfpAg : bluetooth.HandsFreeAudioGatewayProfile = bluetooth.getProfile(bluetooth.ProfileId
+    .PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let ret : boolean = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
 
@@ -1693,11 +1697,11 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.StateChangeParam) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
+let hfpAg : bluetooth.HandsFreeAudioGatewayProfile= bluetooth.getProfile(bluetooth.ProfileId
+    .PROFILE_HANDS_FREE_AUDIO_GATEWAY);
 hfpAg.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1727,11 +1731,11 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.StateChangeParam) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
+let hfpAg : bluetooth.HandsFreeAudioGatewayProfile= bluetooth.getProfile(bluetooth.ProfileId
+    .PROFILE_HANDS_FREE_AUDIO_GATEWAY);
 hfpAg.on('connectionStateChange', onReceiveEvent);
 hfpAg.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1783,32 +1787,35 @@ serviceValueBuffer[2] = 7;
 serviceValueBuffer[3] = 8;
 console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
 console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
-let gattServer = bluetooth.BLE.createGattServer();
-gattServer.startAdvertising({
-            interval:150,
-            txPower:60,
-            connectable:true,
-        },{
-            serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
-            manufactureData:[{
-                 manufactureId:4567,
-                 manufactureValue:manufactureValueBuffer.buffer
-            }],
-            serviceData:[{
-                 serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
-                 serviceValue:serviceValueBuffer.buffer
-            }],
-        },{
-            serviceUuids:["00001889-0000-1000-8000-00805f9b34fb"],
-            manufactureData:[{
-                 manufactureId:1789,
-                 manufactureValue:manufactureValueBuffer.buffer
-            }],
-            serviceData:[{
-                 serviceUuid:"00001889-0000-1000-8000-00805f9b34fb",
-                 serviceValue:serviceValueBuffer.buffer
-            }],
-});
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
+let setting : bluetooth.AdvertiseSetting = {
+    interval:150,
+    txPower:60,
+    connectable:true,
+}
+
+let manufactureData : bluetooth.ManufactureData = {
+    manufactureId:4567,
+    manufactureValue:manufactureValueBuffer.buffer
+}
+
+let serviceData : bluetooth.ServiceData = {
+    serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
+    serviceValue:serviceValueBuffer.buffer
+}
+
+let advData : bluetooth.AdvertiseData = {
+    serviceUuids:["00001889-0000-1000-8000-00805f9b34fb"],
+    manufactureData:[manufactureData],
+    serviceData:[serviceData],
+}
+
+let advResponse : bluetooth.AdvertiseData = {
+    serviceUuids:["00001889-0000-1000-8000-00805f9b34fb"],
+    manufactureData:[manufactureData],
+    serviceData:[serviceData],
+}
+gattServer.startAdvertising(setting, advData, advResponse);
 ```
 
 
@@ -1832,7 +1839,7 @@ stopAdvertising(): void
 **示例：**
 
 ```js
-let server = bluetooth.BLE.createGattServer();
+let server : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 server.stopAdvertising();
 ```
 
@@ -1866,31 +1873,31 @@ server端添加服务。
 
 ```js
 // 创建descriptors
-let descriptors = [];
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 
 // 创建characteristics
-let characteristics = [];
+let characteristics : Array<bluetooth.BLECharacteristic> = [];
 let arrayBufferC = new ArrayBuffer(8);
 let cccV = new Uint8Array(arrayBufferC);
 cccV[0] = 1;
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
-let characteristicN = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristicN : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 characteristics[0] = characteristic;
 
 // 创建gattService
-let gattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
+let gattService : bluetooth.GattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
 
-let gattServer = bluetooth.BLE.createGattServer();
-let ret = gattServer.addService(gattService);
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
+let ret : boolean = gattServer.addService(gattService);
 if (ret) {
    console.log("add service successfully");
 } else {
@@ -1927,7 +1934,7 @@ removeService(serviceUuid: string): boolean
 **示例：**
 
 ```js
-let server = bluetooth.BLE.createGattServer();
+let server : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 server.removeService('00001810-0000-1000-8000-00805F9B34FB');
 ```
 
@@ -1948,7 +1955,7 @@ close(): void
 **示例：**
 
 ```js
-let server = bluetooth.BLE.createGattServer();
+let server : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 server.close();
 ```
 
@@ -1983,20 +1990,20 @@ server端特征值发生变化时，主动通知已连接的client设备。
 
 ```js
 // 创建descriptors
-let descriptors = [];
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
-let notifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let notifyCharacteristic : bluetooth.NotifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: characteristic.characteristicValue, confirm: false};
-let server = bluetooth.BLE.createGattServer();
+let server : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 server.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacteristic);
 ```
 
@@ -2033,7 +2040,7 @@ server端回复client端的读写请求。
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
-let serverResponse = {
+let serverResponse : bluetooth.ServerResponse = {
     "deviceId": "XX:XX:XX:XX:XX:XX",
     "transId": 0,
     "status": 0,
@@ -2041,8 +2048,8 @@ let serverResponse = {
     "value": arrayBufferCCC,
 };
 
-let gattServer = bluetooth.BLE.createGattServer();
-let ret = gattServer.sendResponse(serverResponse);
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
+let ret : boolean = gattServer.sendResponse(serverResponse);
 if (ret) {
   console.log('bluetooth sendResponse successfully');
 } else {
@@ -2081,15 +2088,16 @@ server端订阅特征值读请求事件。
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
-function ReadCharacteristicReq(CharacteristicReadReq) {
-  let deviceId = CharacteristicReadReq.deviceId;
-  let transId = CharacteristicReadReq.transId;
-  let offset = CharacteristicReadReq.offset;
-  let characteristicUuid = CharacteristicReadReq.characteristicUuid;
+function ReadCharacteristicReq(CharacteristicReadReq : bluetooth.CharacteristicReadReq) {
+  let deviceId : string = CharacteristicReadReq.deviceId;
+  let transId : number = CharacteristicReadReq.transId;
+  let offset : number = CharacteristicReadReq.offset;
+  let characteristicUuid : string = CharacteristicReadReq.characteristicUuid;
 
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
+  let serverResponse : bluetooth.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, 
+  offset: offset, value:arrayBufferCCC};
 
-  let ret = gattServer.sendResponse(serverResponse);
+  let ret : boolean = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
   } else {
@@ -2097,7 +2105,7 @@ function ReadCharacteristicReq(CharacteristicReadReq) {
   }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.on("characteristicRead", ReadCharacteristicReq);
 ```
 
@@ -2129,7 +2137,7 @@ server端取消订阅特征值读请求事件。
 **示例：**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.off("characteristicRead");
 ```
 
@@ -2163,19 +2171,20 @@ server端订阅特征值写请求事件。
 ```js
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-function WriteCharacteristicReq(CharacteristicWriteReq) {
-  let deviceId = CharacteristicWriteReq.deviceId;
-  let transId = CharacteristicWriteReq.transId;
-  let offset = CharacteristicWriteReq.offset;
-  let isPrep = CharacteristicWriteReq.isPrep;
-  let needRsp = CharacteristicWriteReq.needRsp;
-  let value =  new Uint8Array(CharacteristicWriteReq.value);
-  let characteristicUuid = CharacteristicWriteReq.characteristicUuid;
+function WriteCharacteristicReq(CharacteristicWriteReq : bluetooth.CharacteristicWriteReq) {
+  let deviceId : string = CharacteristicWriteReq.deviceId;
+  let transId : number = CharacteristicWriteReq.transId;
+  let offset : number = CharacteristicWriteReq.offset;
+  let isPrep : boolean = CharacteristicWriteReq.isPrep;
+  let needRsp : boolean = CharacteristicWriteReq.needRsp;
+  let value =  new Uint8Array(arrayBufferCCC);
+  let characteristicUuid : string = CharacteristicWriteReq.characteristicUuid;
 
-  cccValue[0] = value[0];
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
+  cccValue.set(new Uint8Array(value));
+  let serverResponse : bluetooth.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, 
+  offset: offset, value:arrayBufferCCC};
 
-  let ret = gattServer.sendResponse(serverResponse);
+  let ret : boolean = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
   } else {
@@ -2183,7 +2192,7 @@ function WriteCharacteristicReq(CharacteristicWriteReq) {
   }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.on("characteristicWrite", WriteCharacteristicReq);
 ```
 
@@ -2215,7 +2224,7 @@ server端取消订阅特征值写请求事件。
 **示例：**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.off("characteristicWrite");
 ```
 
@@ -2250,15 +2259,16 @@ server端订阅描述符读请求事件。
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1101;
-function ReadDescriptorReq(DescriptorReadReq) {
-  let deviceId = DescriptorReadReq.deviceId;
-  let transId = DescriptorReadReq.transId;
-  let offset = DescriptorReadReq.offset;
-  let descriptorUuid = DescriptorReadReq.descriptorUuid;
+function ReadDescriptorReq(DescriptorReadReq : bluetooth.DescriptorReadReq) {
+  let deviceId : string = DescriptorReadReq.deviceId;
+  let transId : number = DescriptorReadReq.transId;
+  let offset : number = DescriptorReadReq.offset;
+  let descriptorUuid : string = DescriptorReadReq.descriptorUuid;
 
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
+  let serverResponse : bluetooth.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, 
+  offset: offset, value:arrayBufferDesc};
 
-  let ret = gattServer.sendResponse(serverResponse);
+  let ret : boolean = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
   } else {
@@ -2266,7 +2276,7 @@ function ReadDescriptorReq(DescriptorReadReq) {
   }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.on("descriptorRead", ReadDescriptorReq);
 ```
 
@@ -2298,7 +2308,7 @@ server端取消订阅描述符读请求事件。
 **示例：**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.off("descriptorRead");
 ```
 
@@ -2332,19 +2342,19 @@ server端订阅描述符写请求事件。
 ```js
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
-function WriteDescriptorReq(DescriptorWriteReq) {
-  let deviceId = DescriptorWriteReq.deviceId;
-  let transId = DescriptorWriteReq.transId;
-  let offset = DescriptorWriteReq.offset;
-  let isPrep = DescriptorWriteReq.isPrep;
-  let needRsp = DescriptorWriteReq.needRsp;
-  let value = new Uint8Array(DescriptorWriteReq.value);
-  let descriptorUuid = DescriptorWriteReq.descriptorUuid;
+function WriteDescriptorReq(DescriptorWriteReq : bluetooth.DescriptorWriteReq) {
+  let deviceId : string = DescriptorWriteReq.deviceId;
+  let transId : number = DescriptorWriteReq.transId;
+  let offset : number = DescriptorWriteReq.offset;
+  let isPrep : boolean = DescriptorWriteReq.isPrep;
+  let needRsp : boolean = DescriptorWriteReq.needRsp;
+  let value = new Uint8Array(arrayBufferDesc);
+  let descriptorUuid : string = DescriptorWriteReq.descriptorUuid;
 
-  descValue[0] = value[0];
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
+  descValue.set(new Uint8Array(value));
+  let serverResponse : bluetooth.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
 
-  let ret = gattServer.sendResponse(serverResponse);
+  let ret : boolean = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
   } else {
@@ -2352,8 +2362,8 @@ function WriteDescriptorReq(DescriptorWriteReq) {
   }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
-gattServer.on("descriptorRead", WriteDescriptorReq);
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
+gattServer.on("descriptorWrite", WriteDescriptorReq);
 ```
 
 
@@ -2384,7 +2394,7 @@ server端取消订阅描述符写请求事件。
 **示例：**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.off("descriptorWrite");
 ```
 
@@ -2416,12 +2426,12 @@ server端订阅BLE连接状态变化事件。
 **示例：**
 
 ```js
-function Connected(BLEConnectChangedState) {
-  let deviceId = BLEConnectChangedState.deviceId;
-  let status = BLEConnectChangedState.state;
+function Connected(BLEConnectChangedState : bluetooth.BLEConnectChangedState) {
+  let deviceId : string = BLEConnectChangedState.deviceId;
+  let status : bluetooth.ProfileConnectionState = BLEConnectChangedState.state;
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.on("connectStateChange", Connected);
 ```
 
@@ -2453,7 +2463,7 @@ server端取消订阅BLE连接状态变化事件。
 **示例：**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.off("connectStateChange");
 ```
 
@@ -2485,8 +2495,8 @@ client端发起连接远端蓝牙低功耗设备。
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let ret = device.connect();
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let ret : boolean = device.connect();
 ```
 
 
@@ -2512,8 +2522,8 @@ client端断开与远端蓝牙低功耗设备的连接。
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let ret = device.disconnect();
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let ret : boolean = device.disconnect();
 ```
 
 
@@ -2539,8 +2549,8 @@ close(): boolean
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let ret = device.close();
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let ret : boolean = device.close();
 ```
 
 
@@ -2573,9 +2583,9 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
 ```js
 // callkback 模式
-function getServices(code, gattServices) {
+function getServices(code : BusinessError, gattServices : Array<bluetooth.GattService>) {
   if (code.code == 0) {
-      let services = gattServices;
+      let services : Array<bluetooth.GattService> = gattServices;
       console.log('bluetooth code is ' + code.code);
       console.log("bluetooth services size is ", services.length);
 
@@ -2585,7 +2595,7 @@ function getServices(code, gattServices) {
   }
 }
 
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.connect();
 device.getServices(getServices);
 ```
@@ -2614,9 +2624,9 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 ```js
 // Promise 模式
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice= bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.connect();
-device.getServices().then(result => {
+device.getServices().then((result : Array<bluetooth.GattService>) => {
     console.info("getServices successfully:" + JSON.stringify(result));
 });
 ```
@@ -2649,7 +2659,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```js
-function readCcc(code, BLECharacteristic) {
+function readCcc(code : BusinessError, BLECharacteristic : bluetooth.BLECharacteristic) {
   if (code.code != 0) {
       return;
   }
@@ -2658,12 +2668,12 @@ function readCcc(code, BLECharacteristic) {
   console.log('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let descriptors = [];
-let bufferDesc = new ArrayBuffer(8);
-let descV = new Uint8Array(bufferDesc);
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
+let bufferDesc : ArrayBuffer = new ArrayBuffer(8);
+let descV : Uint8Array = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
@@ -2671,7 +2681,7 @@ descriptors[0] = descriptor;
 let bufferCCC = new ArrayBuffer(8);
 let cccV = new Uint8Array(bufferCCC);
 cccV[0] = 1;
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 characteristicValue: bufferCCC, descriptors:descriptors};
 
@@ -2707,12 +2717,12 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let descriptors = [];
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
@@ -2720,7 +2730,7 @@ descriptors[0] = descriptor;
 let bufferCCC = new ArrayBuffer(8);
 let cccV = new Uint8Array(bufferCCC);
 cccV[0] = 1;
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 characteristicValue: bufferCCC, descriptors:descriptors};
 
@@ -2755,7 +2765,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 **示例：**
 
 ```js
-function readDesc(code, BLEDescriptor) {
+function readDesc(code : BusinessError, BLEDescriptor : bluetooth.BLEDescriptor) {
   if (code.code != 0) {
       return;
   }
@@ -2764,11 +2774,11 @@ function readDesc(code, BLEDescriptor) {
   console.log('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 device.readDescriptorValue(descriptor, readDesc);
@@ -2803,11 +2813,11 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 device.readDescriptorValue(descriptor);
@@ -2842,12 +2852,12 @@ client端向低功耗蓝牙设备写入特定的特征值。
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let descriptors = [];
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
@@ -2855,10 +2865,10 @@ descriptors[0] = descriptor;
 let bufferCCC = new ArrayBuffer(8);
 let cccV = new Uint8Array(bufferCCC);
 cccV[0] = 1;
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   characteristicValue: bufferCCC, descriptors:descriptors};
-let retWriteCcc = device.writeCharacteristicValue(characteristic);
+let retWriteCcc : boolean = device.writeCharacteristicValue(characteristic);
 if (retWriteCcc) {
   console.log('write characteristic successfully');
 } else {
@@ -2895,14 +2905,14 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
-let retWriteDesc = device.writeDescriptorValue(descriptor);
+let retWriteDesc : boolean = device.writeDescriptorValue(descriptor);
 if (retWriteDesc) {
   console.log('bluetooth write descriptor successfully');
 } else {
@@ -2939,7 +2949,7 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.setBLEMtuSize(128);
 ```
 
@@ -2974,18 +2984,18 @@ setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolea
 
 ```js
 // 创建descriptors
-let descriptors = [];
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.setNotifyCharacteristicChanged(characteristic, false);
 ```
 
@@ -3017,12 +3027,12 @@ on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;)
 **示例：**
 
 ```js
-function CharacteristicChange(CharacteristicChangeReq) {
-  let serviceUuid = CharacteristicChangeReq.serviceUuid;
-  let characteristicUuid = CharacteristicChangeReq.characteristicUuid;
+function CharacteristicChange(CharacteristicChangeReq : bluetooth.BLECharacteristic) {
+  let serviceUuid : string = CharacteristicChangeReq.serviceUuid;
+  let characteristicUuid : string = CharacteristicChangeReq.characteristicUuid;
   let value = new Uint8Array(CharacteristicChangeReq.characteristicValue);
 }
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.on('BLECharacteristicChange', CharacteristicChange);
 ```
 
@@ -3054,7 +3064,7 @@ off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.off('BLECharacteristicChange');
 ```
 
@@ -3086,11 +3096,11 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 **示例：**
 
 ```js
-function ConnectStateChanged(state) {
+function ConnectStateChanged(state : bluetooth.BLEConnectChangedState) {
   console.log('bluetooth connect state changed');
-  let connectState = state.state;
+  let connectState : bluetooth.ProfileConnectionState = state.state;
 }
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.on('BLEConnectionStateChange', ConnectStateChanged);
 ```
 
@@ -3122,7 +3132,7 @@ off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedSt
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.off('BLEConnectionStateChange');
 ```
 
@@ -3154,8 +3164,8 @@ client获取远端蓝牙低功耗设备名。
 
 ```js
 // callback
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let deviceName = gattClient.getDeviceName((err, data)=> {
+let gattClient : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+let deviceName : void = gattClient.getDeviceName((err : BusinessError, data : string)=> {
     console.info('device name err ' + JSON.stringify(err));
     console.info('device name' + JSON.stringify(data));
 })
@@ -3185,9 +3195,8 @@ client获取远端蓝牙低功耗设备名。
 
 ```js
 // promise
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let ret = device.connect();
-let deviceName = gattClient.getDeviceName().then((data) => {
+let gattClient : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+gattClient.getDeviceName().then((data) => {
     console.info('device name' + JSON.stringify(data));
 })
 ```
@@ -3220,9 +3229,9 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 ```js
 // callback
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let ret = device.connect();
-let rssi = gattClient.getRssiValue((err, data)=> {
+let gattClient : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+let ret : boolean = gattClient.connect();
+gattClient.getRssiValue((err : BusinessError, data : number)=> {
     console.info('rssi err ' + JSON.stringify(err));
     console.info('rssi value' + JSON.stringify(data));
 })
@@ -3252,8 +3261,8 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 ```js
 // promise
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let rssi = gattClient.getRssiValue().then((data) => {
+let gattClient : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+gattClient.getRssiValue().then((data : number) => {
     console.info('rssi' + JSON.stringify(data));
 })
 ```

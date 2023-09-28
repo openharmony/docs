@@ -1,4 +1,4 @@
-# OHOS::Media::OhosImageRect
+# OhosImageRect
 
 
 ## 概述
@@ -33,7 +33,7 @@
 ### height
 
 ```
-int32_t OHOS::Media::OhosImageRect::height
+int32_t OhosImageRect::height
 ```
 
 **描述：**
@@ -44,7 +44,7 @@ int32_t OHOS::Media::OhosImageRect::height
 ### width
 
 ```
-int32_t OHOS::Media::OhosImageRect::width
+int32_t OhosImageRect::width
 ```
 
 **描述：**
@@ -55,7 +55,7 @@ int32_t OHOS::Media::OhosImageRect::width
 ### x
 
 ```
-int32_t OHOS::Media::OhosImageRect::x
+int32_t OhosImageRect::x
 ```
 
 **描述：**
@@ -66,7 +66,7 @@ int32_t OHOS::Media::OhosImageRect::x
 ### y
 
 ```
-int32_t OHOS::Media::OhosImageRect::y
+int32_t OhosImageRect::y
 ```
 
 **描述：**

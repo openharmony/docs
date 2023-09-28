@@ -1,11 +1,11 @@
 # User Authentication Development
 
-> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br>
-> This guide applies to the SDK for API version 9.
+> **NOTE**
+> This guide applies to the SDK for API version 10.
 
 ## When to Use
 
-User authentication supports facial recognition and fingerprint recognition and can be used in identity authentication scenarios such as device unlocking, application login, and payment.
+OpenHarmony supports PIN authentication, facial authentication, and fingerprint authentication, which can be used in identity authentication scenarios such as device unlocking, app login, and payment.
 
 ## Available APIs
 
@@ -18,29 +18,44 @@ Before authentication, you must specify the [authentication type](../reference/a
 | API   | Description               |
 | ---------- | ----------------------- |
 | getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): void | Checks whether the device supports the specified authentication type and level.|
-| getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel : AuthTrustLevel): AuthInstance | Obtains an **AuthInstance** instance for user authentication.|
-| on(name : AuthEventKey, callback : AuthEvent) : void | Subscribes to the user authentication events of the specified type.|
-| off(name : AuthEventKey) : void | Unsubscribes from the user authentication events of the specific type.|
-| start: void  | Starts user authentication.       |
-| cancel: void | Cancel this user authentication.   |
+| getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance | Obtains a **UserAuthInstance** instance for user authentication. The user authentication widget is supported.|
+| on(type: 'result', callback: IAuthCallback): void | Subscribes to the user authentication result.|
+| off(type: 'result', callback?: IAuthCallback): void | Unsubscribes from the user authentication result.|
+| start(): void | Starts user authentication.       |
+| cancel(): void | Cancels this user authentication.  |
+
+**Table 2** Authentication trust levels
+
+| Authentication Trust Level| Metrics                     | Description and Example                                                   | Typical Service Scenario                                |
+| -------------------------- | --------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------- |
+| ATL4                       | When FRR = 10%, FAR ≤ 0.003%, SAR ≤ 3%   | The authentication can accurately identify individual users and provides powerful liveness detection capabilities. For example, PIN authentication with a secure keyboard and fingerprint and 3D facial authentication with special security enhancement. | Small-amount payment                                            |
+| ATL3                       | When FRR = 10%, FAR ≤ 0.002%, SAR ≤ 7%    | The authentication can accurately identify individual users and provides strong liveness detection capabilities. For example, 2D facial authentication with special security enhancement. | Device unlocking                                            |
+| ATL2                       | When FRR = 10%, FAR ≤ 0.002%, 7% < SAR ≤ 20%| The authentication can accurately identify individual users and provides regular liveness detection capabilities. For example, using a watch based on common ranging as a trusted holder to unlock a device. | Logins to apps and keeping a device unlocked    |
+| ATL1                       | When FRR = 10%, FAR ≤ 1%, 7% < SAR ≤ 20%    | The authentication can identify individual users and provides limited liveness detection capabilities. For example, voiceprint authentication.          | Service risk control, query of general personal data, targeted recommendations, and personalized services|
+
+> **NOTE**
+>
+> - FRR: False Reject Rate
+> - FAR: False Acceptance Rate
+> - SAR: Spoof Acceptance Rate
 
 ## Checking Authentication Capabilities Supported by a Device
 
 ### How to Develop
 
-1. Apply for the permission.<br> Configure the **ohos.permission.ACCESS_BIOMETRIC** permission in **requestPermissions** in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
+1. Apply for the permission.<br>Configure the **ohos.permission.ACCESS_BIOMETRIC** permission in **requestPermissions** in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
 
 2. Specify the [authentication type](../reference/apis/js-apis-useriam-userauth.md#userauthtype8) and [authentication trust level](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8), and call [getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9) to check whether the current device supports the authentication capabilities.
 
     ```js
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
+    
     // Check whether the authentication capabilities are supported.
     try {
         userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
-        console.info("current auth trust level is supported");
+        console.info('current auth trust level is supported');
     } catch (error) {
-        console.info("current auth trust level is not supported, error = " + error);
+        console.info('current auth trust level is not supported, error = ' + error);
     }
     ```
 
@@ -48,127 +63,50 @@ Before authentication, you must specify the [authentication type](../reference/a
 
 ### How to Develop
 
-1. Apply for the permission.<br> Configure the **ohos.permission.ACCESS_BIOMETRIC** permission in **requestPermissions** in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
+1. Apply for the permission.<br>Configure the **ohos.permission.ACCESS_BIOMETRIC** permission in **requestPermissions** in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
 
 2. Specify the challenge, [authentication type](../reference/apis/js-apis-useriam-userauth.md#userauthtype8), and [authentication trust level](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8) to obtain an authentication object.
 
-3. Use [on](../reference/apis/js-apis-useriam-userauth.md#on9) to subscribe to the authentication result.
+3. Call [on](../reference/apis/js-apis-useriam-userauth.md#on10) to subscribe to the authentication result.
 
-4. Use [start](../reference/apis/js-apis-useriam-userauth.md#start9) to initiate an authentication and return the authentication result through [callback](../reference/apis/js-apis-useriam-userauth.md#callback9).
+4. Call [start](../reference/apis/js-apis-useriam-userauth.md#start10) to start authentication and return the authentication result through the [callback](../reference/apis/js-apis-useriam-userauth.md#callback10).
 
-5. Use [off](../reference/apis/js-apis-useriam-userauth.md#off9) to unsubscribe from the authentication result.
-
-    ```js
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-
-    // Obtain an authentication object.
-    let auth;
-    try {
-        auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        console.log("get auth instance success");
-    } catch (error) {
-        console.log("get auth instance failed" + error);
-    }
-
-    // Subscribe to the authentication result.
-    try {
-        auth.on("result", {
-            callback: (result: userIAM_userAuth.AuthResultInfo) => {
-                console.log("authV9 result " + result.result);
-                console.log("authV9 token " + result.token);
-                console.log("authV9 remainAttempts " + result.remainAttempts);
-                console.log("authV9 lockoutDuration " + result.lockoutDuration);
-            }
-        });
-        console.log("subscribe authentication event success");
-    } catch (error) {
-        console.log("subscribe authentication event failed " + error);
-    }
-
-    // Start user authentication.
-    try {
-        auth.start();
-        console.info("authV9 start auth success");
-    } catch (error) {
-        console.info("authV9 start auth failed, error = " + error);
-    }
-
-    // Unsubscribe from the authentication result.
-    try {
-        auth.off("result");
-        console.info("cancel subscribe authentication event success");
-    } catch (error) {
-        console.info("cancel subscribe authentication event failed, error = " + error);
-    }
-    ```
-
-## Performing Authentication and Subscribing to Authentication Tip Information
-
-### How to Develop
-
-1. Apply for the permission.<br> Configure the **ohos.permission.ACCESS_BIOMETRIC** permission in **requestPermissions** in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
-
-2. Specify the challenge, [authentication type](../reference/apis/js-apis-useriam-userauth.md#userauthtype8), and [authentication trust level](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8) to obtain an authentication object.
-
-3. Use [on](../reference/apis/js-apis-useriam-userauth.md#on9) to subscribe to the authentication tip information.
-
-4. Use [start](../reference/apis/js-apis-useriam-userauth.md#start9) to initiate an authentication and return the tip information through [callback](../reference/apis/js-apis-useriam-userauth.md#callback9).
-
-5. Use [off](../reference/apis/js-apis-useriam-userauth.md#off9) to unsubscribe from the authentication tip information.
+5. Call [off](../reference/apis/js-apis-useriam-userauth.md#off10) to unsubscribe from the authentication result.
 
     ```js
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-
-    // Obtain an authentication object.
-    let auth;
+    
+    const authParam : userIAM_userAuth.AuthParam = {
+      challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+      authType: [userIAM_userAuth.UserAuthType.PIN],
+      authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1,
+    };
+    const widgetParam : userIAM_userAuth.WidgetParam = {
+      title:'Enter password',
+      navigationButtonText: 'Back',
+    };
     try {
-        auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        console.log("get auth instance success");
+      // Obtain an authentication object.
+      let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+      console.log('get userAuth instance success');
+      // Subscribe to the authentication result.
+      userAuthInstance.on('result', {
+        onResult (result) {
+          console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+        }
+      });
+      console.log('auth on success');
+      userAuthInstance.start();
+      console.log('auth start success');
+      // Unsubscribe from the authentication result.
+      userAuthInstance.off('result', {
+        onResult (result) {
+          console.log('auth off result: ' + JSON.stringify(result));
+        }
+      });
+      console.log('auth off success');
     } catch (error) {
-        console.log("get auth instance failed" + error);
-    }
-
-    // Subscribe to authentication tip information.
-    try {
-        auth.on("tip", {
-            callback : (result : userIAM_userAuth.TipInfo) => {
-                switch (result.tip) {
-                    case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
-                    // Do something.
-                    case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
-                    // Do something.
-                    default:
-                    // Do others.
-                }
-            }
-        });
-        console.log("subscribe authentication event success");
-    } catch (error) {
-        console.log("subscribe authentication event failed " + error);
-    }
-
-    // Start user authentication.
-    try {
-        auth.start();
-        console.info("authV9 start auth success");
-    } catch (error) {
-        console.info("authV9 start auth failed, error = " + error);
-    }
-
-    // Unsubscribe from authentication tip information.
-    try {
-        auth.off("tip");
-        console.info("cancel subscribe tip information success");
-    } catch (error) {
-        console.info("cancel subscribe tip information failed, error = " + error);
+      console.log('auth catch error: ' + JSON.stringify(error));
     }
     ```
 
@@ -176,43 +114,37 @@ Before authentication, you must specify the [authentication type](../reference/a
 
 ### How to Develop
 
-1. Apply for the permission.<br> Configure the **ohos.permission.ACCESS_BIOMETRIC** permission in **requestPermissions** in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
+1. Apply for the permission.<br>Configure the **ohos.permission.ACCESS_BIOMETRIC** permission in **requestPermissions** in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
 
 2. Specify the challenge, [authentication type](../reference/apis/js-apis-useriam-userauth.md#userauthtype8), and [authentication trust level](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8) to obtain an authentication object.
 
-3. Use [start](../reference/apis/js-apis-useriam-userauth.md#start9) to initiate an authentication.
+3. Call [start](../reference/apis/js-apis-useriam-userauth.md#start10) to start authentication.
 
-4. Use [cancel](../reference/apis/js-apis-useriam-userauth.md#cancel9) to cancel this authentication.
+4. Call [cancel](../reference/apis/js-apis-useriam-userauth.md#cancel10) to cancel this authentication.
 
     ```js
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-
-    // Obtain an authentication object.
-    let auth;
+    
+    const authParam : userIAM_userAuth.AuthParam = {
+      challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+      authType: [userIAM_userAuth.UserAuthType.PIN],
+      authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1,
+    };
+    const widgetParam : userIAM_userAuth.WidgetParam = {
+      title:'Enter password',
+      navigationButtonText: 'Back',
+    };
     try {
-        auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        console.log("get auth instance success");
+      // Obtain an authentication object.
+      let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+      console.log('get userAuth instance success');
+      // Start user authentication.
+      userAuthInstance.start();
+      console.log('auth start success');
+      // Cancel the authentication.
+      userAuthInstance.cancel();
+      console.log('auth cancel success');
     } catch (error) {
-        console.log("get auth instance failed" + error);
-    }
-
-    // Start user authentication.
-    try {
-        auth.start();
-        console.info("authV9 start auth success");
-    } catch (error) {
-        console.info("authV9 start auth failed, error = " + error);
-    }
-
-    // Cancel the authentication.
-    try {
-        auth.cancel();
-        console.info("cancel auth success");
-    } catch (error) {
-        console.info("cancel auth failed, error = " + error);
+      console.log('auth catch error: ' + JSON.stringify(error));
     }
     ```

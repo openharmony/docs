@@ -1,7 +1,7 @@
 # Single Gesture
 
 
-## TapGesture
+## Tap Gesture
 
 
 ```ts
@@ -30,8 +30,10 @@ Triggers a tap gesture with one or more taps. This API has two optional paramete
           .gesture(
             // Bind a tap gesture whose count value is 2.
             TapGesture({ count: 2 })
-              .onAction((event: GestureEvent) => {
+              .onAction((event: GestureEvent|undefined) => {
+              if(event){
                 this.value = JSON.stringify(event.fingerList[0]);
+              }
               }))
         Text(this.value)
       }
@@ -47,7 +49,7 @@ Triggers a tap gesture with one or more taps. This API has two optional paramete
   ![tap](figures/tap.gif)
 
 
-## LongPressGesture
+## Long Press Gesture
 
 
 ```ts
@@ -82,9 +84,11 @@ struct Index {
         .gesture(
           // Bind the long press gesture that can be triggered repeatedly.
           LongPressGesture({ repeat: true })
-            .onAction((event: GestureEvent) => {
-              if (event.repeat) {
-                this.count++;
+           .onAction((event: GestureEvent|undefined) => {
+              if(event){
+                if (event.repeat) {
+                  this.count++;
+                }
               }
             })
             .onActionEnd(() => {
@@ -105,11 +109,17 @@ struct Index {
 ![longPress](figures/longPress.gif)
 
 
-## PanGesture
+## Pan Gesture
 
 
 ```ts
-PanGestureOptions(value?:{ fingers?:number; direction?:PanDirection; distance?:number})
+class pgotmp{
+  fingers?:number = 0
+  direction?:PanDirection|null = null
+  distance?:number = 0
+}
+let pgo:pgotmp = new pgotmp()
+new PanGestureOptions(value?:pgo)
 ```
 
 
@@ -150,13 +160,15 @@ struct Index {
         .gesture(
           // Bind the pan gesture to the component.
           PanGesture()
-            .onActionStart((event: GestureEvent) => {
+           .onActionStart((event: GestureEvent|undefined) => {
               console.info('Pan start');
             })
               // When the drag gesture is triggered, modify the layout and position information of the component based on the callback.
-            .onActionUpdate((event: GestureEvent) => {
-              this.offsetX = this.positionX + event.offsetX;
-              this.offsetY = this.positionY + event.offsetY;
+            .onActionUpdate((event: GestureEvent|undefined) => {
+              if(event){
+                this.offsetX = this.positionX + event.offsetX;
+                this.offsetY = this.positionY + event.offsetY;
+              }
             })
             .onActionEnd(() => {
               this.positionX = this.offsetX;
@@ -176,12 +188,12 @@ struct Index {
 
 >**NOTE**
 >
->Most slidable components, such as **\<List>**, **\<Grid>**, **\<Scroll>**, and **\<Tab>**, slide through the pan gesture. Therefore, binding the [pan gesture](#pangesture) or [swipe gesture](#swipegesture) to child components will cause gesture competition.
+>Most slidable components, such as **\<List>**, **\<Grid>**, **\<Scroll>**, and **\<Tab>**, slide through the pan gesture. Therefore, binding the [pan gesture](#pan-gesture) or [swipe gesture](#swipe-gesture) to child components will cause gesture competition.
 >
 >When a child component is bound to the pan gesture, sliding in the child component area triggers only the pan gesture of the child component. If the parent component needs to respond, you need to modify the gesture binding method or transfer messages from the child component to the parent component, or modify the **PanGesture** parameter distance of the parent and child components to make the panning more sensitive. When a child component is bound to the swipe gesture, you need to modify the parameters of **PanGesture** and **SwipeGesture** to achieve the required effect because the triggering conditions of **PanGesture** and **SwipeGesture** are different.
 
 
-## PinchGesture
+## Pinch Gesture
 
 
 ```ts
@@ -226,14 +238,16 @@ struct Index {
       .gesture(
         // Bind the pinch gesture triggered by three fingers to the widget.
         PinchGesture({ fingers: 3 })
-          .onActionStart((event: GestureEvent) => {
+          .onActionStart((event: GestureEvent|undefined) => {
             console.info('Pinch start');
           })
             // When the pinch gesture is triggered, the callback function can be used to obtain the zoom ratio to change the zoom ratio of the component.
-          .onActionUpdate((event: GestureEvent) => {
-            this.scaleValue = this.pinchValue * event.scale;
-            this.pinchX = event.pinchCenterX;
-            this.pinchY = event.pinchCenterY;
+          .onActionUpdate((event: GestureEvent|undefined) => {
+            if(event){
+              this.scaleValue = this.pinchValue * event.scale;
+              this.pinchX = event.pinchCenterX;
+              this.pinchY = event.pinchCenterY;
+            }
           })
           .onActionEnd(() => {
             this.pinchValue = this.scaleValue;
@@ -249,7 +263,7 @@ struct Index {
 ![pinch](figures/pinch.png)
 
 
-## RotationGesture
+## Rotation Gesture
 
 
 ```ts
@@ -284,12 +298,14 @@ struct Index {
         .rotate({ angle: this.angle })
         .gesture(
           RotationGesture()
-            .onActionStart((event: GestureEvent) => {
+           .onActionStart((event: GestureEvent|undefined) => {
               console.info('RotationGesture is onActionStart');
             })
               // When the rotation gesture takes effect, the rotation angle is obtained by using the callback function of the rotation gesture, so as to modify the rotation angle of the component.
-            .onActionUpdate((event: GestureEvent) => {
-              this.angle = this.rotateValue + event.angle;
+            .onActionUpdate((event: GestureEvent|undefined) => {
+              if(event){
+                this.angle = this.rotateValue + event.angle;
+              }
               console.info('RotationGesture is onActionEnd');
             })
               // Angle of the fixed component at the end of the rotation when the rotation ends and the handle is raised
@@ -312,7 +328,7 @@ struct Index {
 ![rotation](figures/rotation.png)
 
 
-## SwipeGesture
+## Swipe Gesture
 
 
 ```ts
@@ -358,9 +374,11 @@ struct Index {
         // Bind the sliding gesture and restrict it to be triggered only when the user slides in the vertical direction.
         SwipeGesture({ direction: SwipeDirection.Vertical })
           // When the swipe gesture is triggered, the swipe speed and angle are obtained, which can be used to modify the layout parameters.
-          .onAction((event: GestureEvent) => {
-            this.speed = event.speed;
-            this.rotateAngle = event.angle;
+          .onAction((event: GestureEvent|undefined) => {
+            if(event){
+              this.speed = event.speed;
+              this.rotateAngle = event.angle;
+            }
           })
       )
     }

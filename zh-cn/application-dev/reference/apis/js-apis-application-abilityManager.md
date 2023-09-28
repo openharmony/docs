@@ -49,7 +49,10 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
-let config = {
+import abilityManager from '@ohos.application.abilityManager';
+import { Configuration } from '@ohos.application.Configuration';
+
+let config: Configuration = {
   language: 'chinese' 
 };
 
@@ -83,13 +86,17 @@ updateConfiguration(config: Configuration): Promise\<void>
 **示例**：
 
 ```ts
-let config = {
+import abilityManager from '@ohos.application.abilityManager';
+import { Configuration } from '@ohos.application.Configuration';
+import { BusinessError } from '@ohos.base';
+
+let config: Configuration = {
   language: 'chinese' 
 };
 
 abilityManager.updateConfiguration(config).then(() => {
   console.log('updateConfiguration success');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error('updateConfiguration fail');
 });
 ```
@@ -113,8 +120,10 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 **示例**：
 
 ```ts
+import abilityManager from '@ohos.application.abilityManager';
+
 abilityManager.getAbilityRunningInfos((err,data) => { 
-    console.log('getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}');
+    console.log(`getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -137,9 +146,12 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 **示例**：
 
 ```ts
+import abilityManager from '@ohos.application.abilityManager';
+import { BusinessError } from '@ohos.base';
+
 abilityManager.getAbilityRunningInfos().then((data) => {
-    console.log('getAbilityRunningInfos  data: ${JSON.stringify(data)}');
-}).catch((err) => {
-  console.error('getAbilityRunningInfos err: ${JSON.stringify(err)}');
+    console.log(`getAbilityRunningInfos  data: ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`getAbilityRunningInfos err: ${JSON.stringify(err)}`);
 });
 ```

@@ -175,8 +175,7 @@ Verifies whether a specific PID and UID have the given permission. This API uses
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context: featureAbility.Context = featureAbility.getContext();
-let Permission = {pid:1};
-context.verifyPermission('com.context.permission',Permission).then((data) => {
+context.verifyPermission('com.context.permission', {pid:1}).then((data) => {
     console.info('verifyPermission data: ${JSON.stringify(data)}');
 });
 ```
@@ -495,7 +494,7 @@ Sets the display orientation for this ability. This API uses an asynchronous cal
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import bundle from '@ohos.bundle';
+import bundle from '@ohos.bundle.bundleManager';
 let context: featureAbility.Context = featureAbility.getContext();
 let orientation = bundle.DisplayOrientation.UNSPECIFIED;
 context.setDisplayOrientation(orientation, (error) => {
@@ -522,7 +521,7 @@ Sets the display orientation for this ability. This API uses a promise to return
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import bundle from '@ohos.bundle';
+import bundle from '@ohos.bundle.bundleManager';
 let context: featureAbility.Context = featureAbility.getContext();
 let orientation = bundle.DisplayOrientation.UNSPECIFIED;
 context.setDisplayOrientation(orientation).then((data) => {
@@ -709,7 +708,7 @@ context.getProcessInfo().then((data) => {
 
 getElementName(callback: AsyncCallback\<ElementName>): void
 
-Obtains the **ohos.bundle.ElementName** object of this ability. This API uses an asynchronous callback to return the result.
+Obtains the **ohos.bundleManager.ElementName** object of this ability. This API uses an asynchronous callback to return the result.
 
 This API is available only to Page abilities.
 
@@ -719,7 +718,7 @@ This API is available only to Page abilities.
 
 | Name      | Type                         | Mandatory  | Description                                    |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | Yes   | Callback used to return the **ohos.bundle.ElementName** object.|
+| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | Yes   | Callback used to return the **ohos.bundleManager.ElementName** object.|
 
 **Example**
 
@@ -741,7 +740,7 @@ context.getElementName((error, data) => {
 
 getElementName(): Promise\<ElementName>
 
-Obtains the **ohos.bundle.ElementName** object of this ability. This API uses a promise to return the result.
+Obtains the **ohos.bundleManager.ElementName** object of this ability. This API uses a promise to return the result.
 
 This API is available only to Page abilities.
 
@@ -751,7 +750,7 @@ This API is available only to Page abilities.
 
 | Type                   | Description                                  |
 | --------------------- | ------------------------------------ |
-| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | Promise used to return the **ohos.bundle.ElementName** object.|
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | Promise used to return the **ohos.bundleManager.ElementName** object.|
 
 **Example**
 

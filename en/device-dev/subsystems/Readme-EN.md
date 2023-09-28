@@ -24,8 +24,6 @@
         - [Using Cargo2gn](subsys-build-cargo2gn-guide.md)
       - [FAQs](subsys-build-FAQ.md)
 - [ArkCompiler Development](subsys-arkcompiler-guide.md)
-- Graphics
-  - [Graphics Overview](subsys-graphics-overview.md)
 - ArkUI
     - [Custom Window Title Bar Development](subsys-arkui-customize_titlebar.md)
 - Small-System Graphics

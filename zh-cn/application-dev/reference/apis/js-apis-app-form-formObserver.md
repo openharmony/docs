@@ -34,16 +34,16 @@ import formObserver from '@ohos.app.form.formObserver';
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
-let callback = function(data) {
-  console.log('a new form added, data: ${JSON.stringify(data)');
-}
+import formInfo from '@ohos.app.form.formInfo';
 
-formObserver.on('formAdd', callback);
+formObserver.on('formAdd', (data: formInfo.RunningFormInfo) => {
+  console.log(`a new form added, data: ${JSON.stringify(data)}`);
+});
 ```
 
 ## on('formAdd')
 
- on(type: 'formAdd', bundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+ on(type: 'formAdd', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
 订阅卡片新增事件。使用callback异步回调，返回指定卡片使用方应用新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
@@ -64,17 +64,18 @@ formObserver.on('formAdd', callback);
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('a new form added, data: ${JSON.stringify(data)');
-}
+import formInfo from '@ohos.app.form.formInfo';
 
-formObserver.on('formAdd', bundleName, callback);
+let bundleName: string = 'ohos.samples.FormApplication';
+
+formObserver.on('formAdd', bundleName, (data: formInfo.RunningFormInfo) => {
+  console.log(`a new form added, data: ${JSON.stringify(data)}`);
+});
 ```
 
 ## off('formAdd')
 
- off(type: "formAdd", bundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
+ off(type: "formAdd", hostBundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
 取消订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
@@ -95,13 +96,13 @@ formObserver.on('formAdd', bundleName, callback);
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('a new form added, data: ${JSON.stringify(data)');
-}
+import formInfo from '@ohos.app.form.formInfo';
 
-formObserver.off('formAdd', callback);
-formObserver.off('formAdd', bundleName, callback);
+let bundleName: string = 'ohos.samples.FormApplication';
+formObserver.off('formAdd', bundleName, (data: formInfo.RunningFormInfo) => {
+  console.log(`a new form added, data: ${JSON.stringify(data)}`);
+});
+
 ```
 > **说明：**
 > on('formAdd', callback)与off('formAdd', callback)相对应；
@@ -129,16 +130,16 @@ formObserver.off('formAdd', bundleName, callback);
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
-let callback = function(data) {
-  console.log('form deleted, data: ${JSON.stringify(data)');
-}
+import formInfo from '@ohos.app.form.formInfo';
 
-formObserver.on('formRemove', callback);
+formObserver.on('formRemove', (data: formInfo.RunningFormInfo) => {
+  console.log(`form deleted, data: ${JSON.stringify(data)}`);
+});
 ```
 
 ## on('formRemove')
 
- on(type: 'formRemove', bundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+ on(type: 'formRemove', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
 订阅卡片删除事件。使用callback异步回调，返回指定卡片使用方应用被删除卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
@@ -159,17 +160,17 @@ formObserver.on('formRemove', callback);
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('form deleted, data: ${JSON.stringify(data)');
-}
+import formInfo from '@ohos.app.form.formInfo';
 
-formObserver.on('formRemove', bundleName, callback);
+let bundleName: string = 'ohos.samples.FormApplication';
+formObserver.on('formRemove', bundleName, (data: formInfo.RunningFormInfo) => {
+  console.log(`form deleted, data: ${JSON.stringify(data)}`);
+});
 ```
 
 ## off('formRemove')
 
-off(type: "formRemove", bundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
+off(type: "formRemove", hostBundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
 取消订阅卡片删除事件。使用callback异步回调，返回当前删除卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
@@ -189,13 +190,12 @@ off(type: "formRemove", bundleName?: string, observerCallback?: Callback&lt;form
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('a new form added, data: ${JSON.stringify(data)');
-}
+import formInfo from '@ohos.app.form.formInfo';
 
-formObserver.off('formRemove', callback);
-formObserver.off('formRemove', bundleName, callback);
+let bundleName: string = 'ohos.samples.FormApplication';
+formObserver.off('formRemove', bundleName, (data: formInfo.RunningFormInfo) => {
+  console.log(`a new form added, data: ${JSON.stringify(data)}`);
+});
 ```
 > **说明：**
 > on('formRemove', callback)与off('formRemove', callback)相对应；
@@ -225,16 +225,17 @@ formObserver.off('formRemove', bundleName, callback);
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
-let callback = function(data) {
-  console.log('form change visibility, data: ${JSON.stringify(data)');
-}
+import formInfo from '@ohos.app.form.formInfo';
 
-formObserver.on('notifyVisible', callback);
+formObserver.on('notifyVisible', (data: formInfo.RunningFormInfo[]) => {
+  console.log(`form change visibility, data: ${JSON.stringify(data)}`);
+});
+
 ```
 
 ## on('notifyVisible')
 
- on(type: 'notifyVisible', bundleName: string, observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;): void
+ on(type: 'notifyVisible', hostBundleName: string, observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;): void
 
 订阅通知卡片可见的事件。
 
@@ -257,17 +258,17 @@ formObserver.on('notifyVisible', callback);
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('form change visibility, data: ${JSON.stringify(data)');
-}
+import formInfo from '@ohos.app.form.formInfo';
 
-formObserver.on('notifyVisible', bundleName, callback);
+let bundleName: string = 'ohos.samples.FormApplication';
+formObserver.on('notifyVisible', bundleName, (data: formInfo.RunningFormInfo[]) => {
+  console.log(`form change visibility, data: ${JSON.stringify(data)}`);
+});
 ```
 
 ## off('notifyVisible')
 
- off(type: "notifyVisible", bundleName?: string, observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;): void
+ off(type: "notifyVisible", hostBundleName?: string, observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;): void
 
 取消订阅通知卡片可见的事件。
 
@@ -288,13 +289,12 @@ formObserver.on('notifyVisible', bundleName, callback);
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('form change visibility, data: ${JSON.stringify(data)');
-}
+import formInfo from '@ohos.app.form.formInfo';
 
-formObserver.off('notifyVisible', callback);
-formObserver.off('notifyVisible', bundleName, callback);
+let bundleName: string = 'ohos.samples.FormApplication';
+formObserver.off('notifyVisible', bundleName, (data: formInfo.RunningFormInfo[]) => {
+  console.log(`form change visibility, data: ${JSON.stringify(data)}`);
+});
 ```
 
 > **说明：**
@@ -325,17 +325,17 @@ formObserver.off('notifyVisible', bundleName, callback);
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
-let callback = function(data) {
-  console.log('form change invisibility, data: ${JSON.stringify(data)');
-}
+import formInfo from '@ohos.app.form.formInfo';
 
-formObserver.on('notifyInvisible', callback);
+formObserver.on('notifyInvisible', (data: formInfo.RunningFormInfo[]) => {
+  console.log(`form change invisibility, data: ${JSON.stringify(data)}`);
+});
 ```
 
 
 ## on('notifyInvisible')
 
- on(type: 'notifyInvisible', bundleName: string, observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;>): void
+ on(type: 'notifyInvisible', hostBundleName: string, observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;>): void
 
 订阅通知卡片不可见的事件。
 
@@ -357,17 +357,17 @@ formObserver.on('notifyInvisible', callback);
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('form change invisibility, data: ${JSON.stringify(data)');
-}
+import formInfo from '@ohos.app.form.formInfo';
 
-formObserver.on('notifyInvisible', bundleName, callback);
+let bundleName: string = 'ohos.samples.FormApplication';
+formObserver.on('notifyInvisible', bundleName, (data: formInfo.RunningFormInfo[]) => {
+  console.log(`form change invisibility, data: ${JSON.stringify(data)}`);
+});
 ```
 
 ## off('notifyInvisible')
 
- off(type: "notifyInvisible", bundleName?: string, observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)>&gt;): void
+ off(type: "notifyInvisible", hostBundleName?: string, observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)>&gt;): void
 
 取消订阅通知卡片不可见事件。
 
@@ -387,13 +387,12 @@ formObserver.on('notifyInvisible', bundleName, callback);
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('form change invisibility, data: ${JSON.stringify(data)');
-}
+import formInfo from '@ohos.app.form.formInfo';
 
-formObserver.off('notifyInvisible', callback);
-formObserver.off('notifyInvisible', bundleName, callback);
+let bundleName: string = 'ohos.samples.FormApplication';
+formObserver.off('notifyInvisible', bundleName, (data: formInfo.RunningFormInfo[]) => {
+  console.log(`form change invisibility, data: ${JSON.stringify(data)}`);
+});
 ```
 
 > **说明：**
@@ -431,17 +430,19 @@ getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formObserver.getRunningFormInfos((error, data) => {
+  formObserver.getRunningFormInfos((error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formObserver getRunningFormInfos, data: ${JSON.stringify(data)}');
+      console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
     }
   }, 'com.example.ohos.formjsdemo');
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -479,15 +480,17 @@ getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.Runn
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formObserver.getRunningFormInfos('com.example.ohos.formjsdemo').then((data) => {
-    console.log('formObserver getRunningFormInfos, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  formObserver.getRunningFormInfos('com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
+    console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -496,6 +499,8 @@ try {
 getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
 根据提供方信息查询卡片已有的使用方列表信息。使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -529,21 +534,23 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Pr
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-let formInstanceFilter = {
+let formInstanceFilter: formInfo.FormProviderFilter = {
   bundleName: "com.example.formprovide",
   abilityName: "EntryFormAbility",
   formName: "widget",
   moduleName: "entry"
 }
 try {
-  formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(data1 => {
-    console.info('formObserver getRunningFormInfosByFilter return err :');
-  }).catch((error) => {
+  formObserver.getRunningFormInfosByFilter(formInstanceFilter).then((data: formInfo.RunningFormInfo[]) => {
+    console.info('formObserver getRunningFormInfosByFilter success, data:' + JSON.stringify(data));
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -552,6 +559,8 @@ try {
 getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;): void
 
 根据提供方信息查询卡片已有的使用方列表信息。使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -580,23 +589,25 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, cal
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-let formInstanceFilter = {
+let formInstanceFilter: formInfo.FormProviderFilter = {
   bundleName: "com.example.formprovide",
   abilityName: "EntryFormAbility",
   formName: "widget",
   moduleName: "entry"
 }
 try {
-  formObserver.getRunningFormInfosByFilter(formInstanceFilter,(error, data) => {
+  formObserver.getRunningFormInfosByFilter(formInstanceFilter,(error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formObserver getRunningFormInfosByFilter, data: ${JSON.stringify(data)}');
+      console.log(`formObserver getRunningFormInfosByFilter, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -606,6 +617,8 @@ getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 
 
 根据formId查询卡片已有的使用方列表信息。使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -639,15 +652,18 @@ getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
-let formId = '12400633174999288';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
+
+let formId: string = '12400633174999288';
 try {
-  formObserver.getRunningFormInfoById(formId).then(data1 => {
-    console.info('formObserver getRunningFormInfoById return err :');
-  }).catch((error) => {
+  formObserver.getRunningFormInfoById(formId).then((data: formInfo.RunningFormInfo) => {
+    console.info('formObserver getRunningFormInfoById success, data:' + JSON.stringify(data));
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -656,6 +672,8 @@ try {
 getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.RunningFormInfo&gt;): void
 
 根据提供方信息查询卡片已有的使用方列表信息。使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -683,17 +701,19 @@ getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.Runni
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 try {
-  formObserver.getRunningFormInfoById(formId,(error, data) => {
+  formObserver.getRunningFormInfoById(formId,(error: Base.BusinessError, data: formInfo.RunningFormInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formObserver getRunningFormInfoById, data: ${JSON.stringify(data)}');
+      console.log(`formObserver getRunningFormInfoById, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```

@@ -3,6 +3,8 @@
 
 [Swiper](../reference/arkui-ts/ts-container-swiper.md)组件提供滑动轮播显示的能力。Swiper本身是一个容器组件，当设置了多个子组件后，可以对这些子组件进行轮播显示。通常，在一些应用首页显示推荐的内容时，需要用到轮播显示的能力。
 
+针对复杂页面场景，可以使用 Swiper 组件的预加载机制，利用主线程的空闲时间来提前构建和布局绘制组件，优化滑动体验。详细指导见[Swiper高性能开发指导](../performance/swiper_optimization.md)。
+
 
 ## 布局与约束
 
@@ -19,7 +21,7 @@ Swiper作为一个容器组件，在自身尺寸属性未被设置时，会自�
 
 ```ts
 ...
-private swiperController: SwiperController = new SwiperController()
+export let swiperController: SwiperController = new SwiperController()
 ...
 Swiper(this.swiperController) {
   Text("0")
@@ -156,6 +158,7 @@ Swiper(this.swiperController) {
   自定义导航点样式（示例：导航点直径设为30VP，左边距为0，导航点颜色设为红色）：
 
 ```ts
+let swco:Record<string,number|Color> = {'size':30,'left':0,'color':Color.Red}
 Swiper(this.swiperController) {
   Text("0")
     .width('90%')
@@ -178,11 +181,7 @@ Swiper(this.swiperController) {
     .textAlign(TextAlign.Center)
     .fontSize(30)
 }
-.indicatorStyle({
-  size: 30,
-  left: 0,
-  color: Color.Red
-})
+.indicatorStyle(swco)
 ```
 
 ![ind](figures/ind.PNG)

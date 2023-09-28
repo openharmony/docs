@@ -26,7 +26,7 @@
   - 若目标组件exported字段配置为false，则需校验`ohos.permission.START_INVISIBLE_ABILITY`权限
   - [组件exported配置参考](../quick-start/module-configuration-file.md#abilities标签)
 
-- **位于后台的应用，启动组件需校验BACKGROUND权限**
+- **位于后台的UIAbility应用，启动组件需校验BACKGROUND权限**
   - 应用前后台判断标准：若应用进程获焦或所属的UIAbility位于前台则判定为前台应用，否则为后台应用
   - 需校验`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
 
@@ -46,7 +46,9 @@
 
   设备内启动组件，不同场景下的规则不同，可分为如下两种场景：
 
-- 启动或连接组件：UIAbility、ServiceExtensionAbility、DataShareExtensionAbility。
+- 启动UIAbility。
+
+- 启动ServiceExtensionAbility、DataShareExtensionAbility。
 
 - 通过startAbilityByCall接口启动UIAbility。
 
@@ -57,7 +59,9 @@
 
   跨设备启动组件，不同场景下的规则不同，可分为如下两种场景：
 
-- 启动或连接组件：UIAbility、ServiceExtensionAbility、DataShareExtensionAbility。
+- 启动UIAbility。
+
+- 启动ServiceExtensionAbility、DataShareExtensionAbility。
 
 - 通过startAbilityByCall接口启动UIAbility。
 

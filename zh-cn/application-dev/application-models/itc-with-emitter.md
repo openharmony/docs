@@ -13,12 +13,12 @@ Emitter的开发步骤如下：
    import emitter from "@ohos.events.emitter";
 
    // 定义一个eventId为1的事件
-   let event = {
+   let event: emitter.InnerEvent = {
      eventId: 1
    };
 
    // 收到eventId为1的事件后执行该回调
-   let callback = (eventData) => {
+   let callback = (eventData: emitter.EventData) => {
      console.info('event callback');
    };
 
@@ -32,18 +32,16 @@ Emitter的开发步骤如下：
    import emitter from "@ohos.events.emitter";
    
    // 定义一个eventId为1的事件，事件优先级为Low
-   let event = {
+   let event: emitter.InnerEvent = {
      eventId: 1,
      priority: emitter.EventPriority.LOW
    };
    
-   let eventData = {
-     data: {
-       "content": "c",
-       "id": 1,
-       "isEmpty": false,
-     }
-   };
+   let data = new Map<string, Object>();
+   data.set("content", "c");
+   data.set("id", 1);
+   data.set("isEmpty", false);
+   let eventData: emitter.EventData = {data};
    
    // 发送eventId为1的事件，事件内容为eventData
    emitter.emit(event, eventData);

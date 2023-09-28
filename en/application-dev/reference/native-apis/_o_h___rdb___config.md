@@ -21,6 +21,10 @@ Defines the RDB store configuration.
 
 | Name| Description|
 | -------- | -------- |
-| [path](_r_d_b.md#path) | Path of the database file.|
+| [selfSize](_r_d_b.md#selfsize) | Size of the struct.|
+| [dataBaseDir](_r_d_b.md#databasedir) | Path of the database file.|
+| [storeName](_r_d_b.md#storename) | Name of the RDB store.|
+| [bundleName](_r_d_b.md#bundlename) | Bundle name.|
+| [moduleName](_r_d_b.md#modulename) | Module name. |
 | [isEncrypt](_r_d_b.md#isencrypt) | Whether to encrypt the RDB store.|
-| [securityLevel](_r_d_b.md#securitylevel) | RDB store security level [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel).|
+| [securityLevel](_r_d_b.md#securitylevel) | Security level of the RDB store.|

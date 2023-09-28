@@ -76,7 +76,7 @@ Visibility verification fails.
 
 **Solution**
 
-Check whether the application meets the visibility restriction of the started application.
+Check whether **exported** under the **Ability** field in the **module.json5** file of the application is set to **true**. If this parameter is set to **true**, the ability can be invoked by other applications. If this parameter is set to **false**, the ability cannot be invoked by other applications.
 
 ## 16000006 Cross-User Operation Is Not Allowed
 

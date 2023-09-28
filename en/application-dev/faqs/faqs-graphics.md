@@ -21,42 +21,6 @@ try {
 }
 ```
 
-## How do I hide the status bar to get the immersive effect?
-
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9) 
-
-**Solution**
-
-1.  Use **onWindowStageCreate** to obtain a **windowClass** object.
-
-    ```
-    onWindowStageCreate(windowStage) {
-      // When the main window is created, set the main page for this ability.
-      console.log("[Demo] MainAbility onWindowStageCreate")
-      windowStage.getMainWindow((err, data) => {
-        if (err.code) {
-          console.error('Failed to obtain the main window.')
-          return;
-        }
-        // Obtain a windowClass object.
-        globalThis.windowClass = data; 
-      })
-    }
-    ```
-
-2.  Enable the full-screen mode for the window and hide the status bar.
-
-    ```
-     globalThis.windowClass.setFullScreen(isFullScreen, (err, data) => {
-      if (err.code) {
-        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
-        return;
-      }
-        console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
-      });
-    ```
-
-
 ## How do I obtain the window width and height?
 
 Applicable to: OpenHarmony 3.2 Beta5 (API version 9, stage model) 

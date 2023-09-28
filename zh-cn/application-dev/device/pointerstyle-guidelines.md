@@ -87,7 +87,7 @@ window.getLastWindow(this.context, (error, windowClass) => {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
   }
-  var windowId = windowClass.getWindowProperties().id;
+  let windowId = windowClass.getWindowProperties().id;
   if (windowId < 0) {
     console.log(`Invalid windowId`);
     return;
@@ -107,7 +107,7 @@ window.getLastWindow(this.context, (error, windowClass) => {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
   }
-  var windowId = windowClass.getWindowProperties().id;
+  let windowId = windowClass.getWindowProperties().id;
   if (windowId < 0) {
     console.log(`Invalid windowId`);
     return;

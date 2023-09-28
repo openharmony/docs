@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import appManager from '@ohos.application.appManager';
 ```
 
 ## 属性
@@ -29,11 +29,12 @@ import appManager from '@ohos.app.ability.appManager';
 
 **示例：**
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import appManager from '@ohos.application.appManager';
+import { BusinessError } from '@ohos.base';
 
 appManager.getProcessRunningInfos().then((data) => {
-    console.log('success: ${JSON.stringify(data)}');
-}).catch((error) => {
-    console.error('failed: ${JSON.stringify(error)}');
+    console.log(`success: ${JSON.stringify(data)}`);
+}).catch((error: BusinessError) => {
+    console.error(`failed: ${JSON.stringify(error)}`);
 });
 ```

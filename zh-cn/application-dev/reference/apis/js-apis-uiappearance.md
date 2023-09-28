@@ -40,16 +40,37 @@ setDarkMode(mode: DarkMode, callback: AsyncCallback\<void>): void
 **系统能力：** SystemCapability.ArkUI.UiAppearance
 
 **参数：** 
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | mode | [DarkMode](#darkmode) | 是 | 指定系统的深色模式配置 |
 | callback | AsyncCallback\<void>| 是 | 配置深色模式的异步回调 |
 
+**错误码：**
+
+错误码详细介绍请参考[errcode-uiappearance](../errorcodes/errorcode-uiappearance.md)。
+
+| 错误码ID | 错误信息 |
+| -- | -- |
+| 500001 | Internal error. |
+
 **示例：** 
+
   ```ts
-uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK, (err) => {
-  console.info(`${err}`);
-})
+import uiAppearance from '@ohos.uiAppearance'
+import { BusinessError } from '@ohos.base';
+try {
+    uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK, (error) => {
+      if (error) {
+        console.error('Set dark-mode failed, ' + error.message);
+      } else {
+        console.info('Set dark-mode successfully.');
+      }
+    })
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('Set dark-mode failed, ' + message);
+}
   ```
 
 
@@ -64,6 +85,7 @@ setDarkMode(mode: DarkMode): Promise\<void>;
 **系统能力：** SystemCapability.ArkUI.UiAppearance
 
 **参数：** 
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | mode | [DarkMode](#darkmode) | 是 | 指定系统深色模式配置 |
@@ -74,13 +96,29 @@ setDarkMode(mode: DarkMode): Promise\<void>;
 | ------ | ------------------------------ |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。|
 
+**错误码：**
+
+错误码详细介绍请参考[errcode-uiappearance](../errorcodes/errorcode-uiappearance.md)。
+
+| 错误码ID | 错误信息 |
+| -- | -- |
+| 500001 | Internal error. |
+
 **示例：** 
+
   ```ts
-uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK).then(() => {
-    console.log('Set dark-mode successfully.');
-}).catch((err) => {
-    console.log(`Set dark-mode failed, ${err}`);
-});
+import uiAppearance from '@ohos.uiAppearance'
+import { BusinessError } from '@ohos.base';
+try {
+    uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK).then(() => {
+      console.info('Set dark-mode successfully.');
+    }).catch((error:Error) => {
+      console.error('Set dark-mode failed, ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('Set dark-mode failed, ' + message);
+}
   ```
 
 
@@ -95,12 +133,29 @@ getDarkMode(): DarkMode;
 **系统能力：** SystemCapability.ArkUI.UiAppearance
 
 **返回值：** 
+
 | 类型 | 说明 |
 | -- | -- |
 |[DarkMode](#darkmode) | 系统当前的深色模式配置 |
 
+**错误码：**
+
+错误码详细介绍请参考[errcode-uiappearance](../errorcodes/errorcode-uiappearance.md)。
+
+| 错误码ID | 错误信息 |
+| -- | -- |
+| 500001 | Internal error. |
+
 **示例：** 
+
   ```ts
-let darkMode = uiAppearance.getDarkMode();
-console.log(`Get dark-mode ${darkMode}`);
+import uiAppearance from '@ohos.uiAppearance'
+import { BusinessError } from '@ohos.base';
+try {
+    let darkMode = uiAppearance.getDarkMode();
+    console.info('Get dark-mode ' + darkMode);
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('Get dark-mode failed, ' + message);
+}
   ```

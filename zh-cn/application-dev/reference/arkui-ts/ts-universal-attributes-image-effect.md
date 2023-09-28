@@ -10,23 +10,23 @@
 ## 属性
 
 
-| 名称                             | 参数类型                                                     | 默认值 | 描述                                                         |
-| -------------------------------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
-| blur                             | number                                                       | -      | 为当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| backdropBlur                     | number                                                       | -      | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| 名称                               | 参数类型                                     | 默认值    | 描述                                       |
+| -------------------------------- | ---------------------------------------- | ------ | ---------------------------------------- |
+| blur                             | number                                   | -      | 为当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| backdropBlur                     | number                                   | -      | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | shadow                           | [ShadowOptions](#shadowoptions对象说明) \| [ShadowStyle](#shadowstyle10枚举说明)<sup>10+</sup> | -      | 为当前组件添加阴影效果。<br/>入参类型为ShadowOptions时，可以指定模糊半径、阴影的颜色、X轴和Y轴的偏移量。<br/>入参类型为ShadowStyle时，可指定不同阴影样式。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](#shadowstyle10枚举说明)类型。 |
-| grayscale                        | number                                                       | 0.0    | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参则0.0图像无变化，入参在0.0和1.0之间时，效果呈线性变化。（百分比)<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置小于0的值时，按值为0处理，设置大于1的值时，按值为1处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| brightness                       | number                                                       | 1.0    | 为当前组件添加高光效果，入参为高光比例，值为1时没有效果，小于1时亮度变暗，0为全黑，大于1时亮度增加，数值越大亮度越大。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| saturate                         | number                                                       | 1.0    | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分(灰)的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。（百分比）<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| contrast                         | number                                                       | 1.0    | 为当前组件添加对比度效果，入参为对比度的值。值为1时，显示原图，大于1时，值越大对比度越高，图像越清晰醒目，小于1时，值越小对比度越低，当对比度为0时，图像变为全灰。（百分比）<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| invert                           | number                                                       | 0      | 反转输入的图像。入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。（百分比）<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| sepia                            | number                                                       | 0      | 将图像转换为深褐色。入参为图像反转的比例，值为1则完全是深褐色的，值为0图像无变化。&nbsp;（百分比）<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| hueRotate                        | number&nbsp;\|&nbsp;string                                   | '0deg' | 色相旋转效果，输入参数为旋转角度。<br/>取值范围：(-∞, +∞)<br/>**说明：** <br/>色调旋转360度会显示原始颜色。先将色调旋转180 度，然后再旋转-180度会显示原始颜色。数据类型为number时，值为90和'90deg'效果一致。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| grayscale                        | number                                   | 0.0    | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参则0.0图像无变化，入参在0.0和1.0之间时，效果呈线性变化。（百分比)<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置小于0的值时，按值为0处理，设置大于1的值时，按值为1处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| brightness                       | number                                   | 1.0    | 为当前组件添加高光效果，入参为高光比例，值为1时没有效果，小于1时亮度变暗，0为全黑，大于1时亮度增加，数值越大亮度越大。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| saturate                         | number                                   | 1.0    | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分(灰)的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。（百分比）<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| contrast                         | number                                   | 1.0    | 为当前组件添加对比度效果，入参为对比度的值。值为1时，显示原图，大于1时，值越大对比度越高，图像越清晰醒目，小于1时，值越小对比度越低，当对比度为0时，图像变为全灰。（百分比）<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| invert                           | number                                   | 0      | 反转输入的图像。入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。（百分比）<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| sepia                            | number                                   | 0      | 将图像转换为深褐色。入参为图像反转的比例，值为1则完全是深褐色的，值为0图像无变化。&nbsp;（百分比）<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| hueRotate                        | number&nbsp;\|&nbsp;string               | '0deg' | 色相旋转效果，输入参数为旋转角度。<br/>取值范围：(-∞, +∞)<br/>**说明：** <br/>色调旋转360度会显示原始颜色。先将色调旋转180 度，然后再旋转-180度会显示原始颜色。数据类型为number时，值为90和'90deg'效果一致。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | colorBlend&nbsp;<sup>8+</sup>    | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | -      | 为当前组件添加颜色叠加效果，入参为叠加的颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| sphericalEffect<sup>10+</sup>    | number                                                    | -      | 设置组件的图像球面化程度。<br/>取值范围：[0,1]。<br/>**说明：**<br/>1. 如果value等于0则图像保持原样，如果value等于1则图像为完全球面化效果。在0和1之间，数值越大，则球面化程度越高。<br/>`value < 0 `或者` value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。<br/> 2. 如果组件的图像使用异步加载，则不支持球面效果。例如Image组件默认使用异步加载，如果要使用球面效果，就要设置`syncLoad`为`true`，但是这种做法不推荐。`backgroundImage`也是使用异步加载，所以如果设置了`backgroundImage`，不支持球面效果。<br/>3. 如果组件设置了阴影，不支持球面效果。<br>此接口为系统接口。 |
-| lightUpEffect<sup>10+</sup>      | number                                                    | -      | 设置组件图像亮起程度。<br/>取值范围：[0,1]。<br/>如果value等于0则图像为全黑，如果value等于1则图像为全亮效果。0到1之间数值越大，表示图像亮度越高。`value < 0` 或者 `value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。 <br>此接口为系统接口。|
-| pixelStretchEffect<sup>10+</sup> | [PixelStretchEffectOptions](ts-types.md#pixelstretcheffectoptions10) | -      | 设置组件的图像边缘像素扩展距离。<br/>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br/>**说明：**<br/>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br/>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br/>内缩方式：<br/>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br/>图像用边缘像素扩展到原来大小。<br/>3. 对`options`的输入约束：<br/>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br/>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br/>所有异常情况下，显示为{0，0，0，0}效果，即跟原图保持一致。<br>此接口为系统接口。 |
-| linearGradientBlur<sup>10+</sup> | <br/>value: number,<br/>{<br/>fractionStops:Array<FractionStop>,<br/>direction:[GradientDirection](ts-appendix-enums.md#gradientdirection)<br/>} <br/>                                    | -      | 为当前组件添加内容线性渐变模糊效果，<br/>-value为模糊半径，模糊半径越大越模糊，为0时不模糊。取值范围：[0, 60]<br/>线性梯度模糊包含两个部分fractionStops和direction<br/>-fractionStops数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效  <br/> -direction为渐变模糊方向，默认值为[GradientDirection](ts-appendix-enums.md#gradientdirection).Bottom <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| sphericalEffect<sup>10+</sup>    | number                                   | -      | 设置组件的图像球面化程度。<br/>取值范围：[0,1]。<br/>**说明：**<br/>1. 如果value等于0则图像保持原样，如果value等于1则图像为完全球面化效果。在0和1之间，数值越大，则球面化程度越高。<br/>`value < 0 `或者` value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。<br/> 2. 如果组件的图像使用异步加载，则不支持球面效果。例如Image组件默认使用异步加载，如果要使用球面效果，就要设置`syncLoad`为`true`，但是这种做法不推荐。`backgroundImage`也是使用异步加载，所以如果设置了`backgroundImage`，不支持球面效果。<br/>3. 如果组件设置了阴影，不支持球面效果。<br>**系统接口：** 此接口为系统接口。 |
+| lightUpEffect<sup>10+</sup>      | number                                   | -      | 设置组件图像亮起程度。<br/>取值范围：[0,1]。<br/>如果value等于0则图像为全黑，如果value等于1则图像为全亮效果。0到1之间数值越大，表示图像亮度越高。`value < 0` 或者 `value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。 <br>**系统接口：** 此接口为系统接口。 |
+| pixelStretchEffect<sup>10+</sup> | [PixelStretchEffectOptions](ts-types.md#pixelstretcheffectoptions10) | -      | 设置组件的图像边缘像素扩展距离。<br/>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br/>**说明：**<br/>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br/>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br/>内缩方式：<br/>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br/>图像用边缘像素扩展到原来大小。<br/>3. 对`options`的输入约束：<br/>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br/>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br/>所有异常情况下，显示为{0，0，0，0}效果，即跟原图保持一致。<br>**系统接口：** 此接口为系统接口。 |
+| linearGradientBlur<sup>10+</sup> | <br/>value: number,<br/>{<br/>fractionStops:Array<FractionStop>,<br/>direction:[GradientDirection](ts-appendix-enums.md#gradientdirection)<br/>} <br/> | -      | 为当前组件添加内容线性渐变模糊效果，<br/>-value为模糊半径，模糊半径越大越模糊，为0时不模糊。取值范围：[0, 60]<br/>线性梯度模糊包含两个部分fractionStops和direction<br/>-fractionStops数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效  <br/> -direction为渐变模糊方向，默认值为[GradientDirection](ts-appendix-enums.md#gradientdirection).Bottom <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
 ## ShadowOptions对象说明
 
@@ -34,23 +34,23 @@
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称     | 类型     | 必填   | 说明              |
-| ------ | ------ | ---- | --------------- |
-| radius    | number \| [Resource](ts-types.md#resource)  | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。 |
-| color  | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)  | 否    | 阴影的颜色。<br/>默认为黑色。 |
-| offsetX | number \| [Resource](ts-types.md#resource)  | 否    | 阴影的X轴偏移量。<br/>默认为0。  |
-| offsetY   | number \| [Resource](ts-types.md#resource)  | 否    | 阴影的Y轴偏移量。<br/>默认为0。 |
+| 名称      | 类型                                       | 必填   | 说明                                       |
+| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| radius  | number \| [Resource](ts-types.md#resource) | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。 |
+| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource) | 否    | 阴影的颜色。<br/>默认为黑色。                        |
+| offsetX | number \| [Resource](ts-types.md#resource) | 否    | 阴影的X轴偏移量。<br/>默认为0。                      |
+| offsetY | number \| [Resource](ts-types.md#resource) | 否    | 阴影的Y轴偏移量。<br/>默认为0。                      |
 
 ## ShadowStyle<sup>10+</sup>枚举说明
 
-| 名称   | 描述                                   |
-| ------ | -------------------------------------- |
-| OUTER_DEFAULT_XS  | 超小阴影。 |
-| OUTER_DEFAULT_SM | 小阴影。 |
-| OUTER_DEFAULT_MD    | 中阴影。 |
-| OUTER_DEFAULT_LG    | 大阴影。 |
-| OUTER_FLOATING_SM    | 浮动小阴影。 |
-| OUTER_FLOATING_MD    | 浮动中阴影。 |
+| 名称                | 描述     |
+| ----------------- | ------ |
+| OUTER_DEFAULT_XS  | 超小阴影。  |
+| OUTER_DEFAULT_SM  | 小阴影。   |
+| OUTER_DEFAULT_MD  | 中阴影。   |
+| OUTER_DEFAULT_LG  | 大阴影。   |
+| OUTER_FLOATING_SM | 浮动小阴影。 |
+| OUTER_FLOATING_MD | 浮动中阴影。 |
 
 ## 示例
 
@@ -244,7 +244,7 @@ struct LightUpExample {
       })
         .lunar(this.isLunar)
         .onChange((value: DatePickerResult) => {
-          this.selectedDate.setFullYear(value.year, value.month, value.day)
+          this.selectedDate.setFullYear(value.year as number, value.month, value.day)
           console.info('select current date is: ' + JSON.stringify(value))
         })
         .lightUpEffect(0.6)

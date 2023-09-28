@@ -15,19 +15,18 @@ When a user-mode thread releases a lock, the lock status is first checked in use
 
 When thread scheduling is required to resolve lock contention or lock release in user space, the futex system call is invoked to pass the user-mode lock address to the kernel. The user-mode locks are distinguished by lock address in the futex of the kernel. The available virtual address space in user space is 1 GiB. To facilitate search and management of lock addresses, the kernel futex uses hash buckets to store the user-mode locks.
 
-There are 80 hash buckets used to store shared locks (hashed based on physical addresses). The private/shared attributes are determined by initialization of user-mode locks and the input parameters in the futex system call.
+There are 80 hash buckets. Buckets 0 to 63 store private locks (hashed with the virtual address), and buckets 64 to 79 store shared locks (hashed with the physical address). The private/shared attributes are determined by initialization of user-mode locks and the input parameters in the futex system call.
 
-##  Futex Design
+As shown in the following figure, each futex hash bucket stores the futex nodes with the same hash value linked in a futex_list. Each futex node corresponds to a suspended task. The key value of a node uniquely identifies a user-mode lock. The nodes with the same key value added to a queue_list indicate a queue of tasks blocked by the same lock.
 
-**Figure 1** Futex design
+  **Figure 1** Futex design
 
 ![](figures/futex-design.jpg "futex-design")
 
-As shown in the above figure, each futex hash bucket stores the futex nodes with the same hash value linked in a futex_list. Each futex node corresponds to a suspended task. The key value of a node uniquely identifies a user-mode lock. The nodes with the same key value added to a queue_list indicate a queue of tasks blocked by the same lock.
 
-## Available APIs
+## Futex Operations
 
-APIs of the futex module
+The Futex module supports the following operations.
 
 | Category      | API  | Description                                 |
 | -------------- | -------------- | ------------------------------------- |
@@ -35,5 +34,6 @@ APIs of the futex module
 | Waking up a thread| OsFutexWake    | Wakes up a thread that is blocked by a specified lock.           |
 | Modifying the lock address  | OsFutexRequeue | Adjusts the position of a specified lock in the futex list.          |
 
-> **NOTE**<br>
->  The futex system call and user-mode logic form a user-mode lock. Therefore, you are advised to use the locks via the user-mode POSIX APIs.
+> **NOTE**
+>
+> The futex system call and user-mode logic form a user-mode lock. Therefore, you are advised to use the locks via the user-mode POSIX APIs.

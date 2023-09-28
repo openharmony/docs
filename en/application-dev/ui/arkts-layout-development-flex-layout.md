@@ -159,13 +159,14 @@ Use the **justifyContent** parameter to set alignment of child components on the
 
 
   ```ts
+  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.Start }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)    
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding({ top: 10, bottom: 10 })
+  .padding(PTopBottom)
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -175,13 +176,14 @@ Use the **justifyContent** parameter to set alignment of child components on the
 
 
   ```ts
+  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.Center }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding({ top: 10, bottom: 10 })
+  .padding(PTopBottom)
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -191,13 +193,14 @@ Use the **justifyContent** parameter to set alignment of child components on the
 
 
   ```ts
+  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.End }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding({ top: 10, bottom: 10 })
+  .padding(PTopBottom)
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -207,13 +210,14 @@ Use the **justifyContent** parameter to set alignment of child components on the
 
 
   ```ts
+  let PTopBottom1:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.SpaceBetween }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding({ top: 10, bottom: 10 })
+  .padding(PTopBottom1)
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -223,13 +227,14 @@ Use the **justifyContent** parameter to set alignment of child components on the
 
 
   ```ts
+  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.SpaceAround }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding({ top: 10, bottom: 10 })
+  .padding(PTopBottom)
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -239,13 +244,14 @@ Use the **justifyContent** parameter to set alignment of child components on the
 
 
   ```ts
+  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.SpaceEvenly }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding({ top: 10, bottom: 10 })
+  .padding(PTopBottom)
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -266,12 +272,13 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 
   ```ts
+  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Auto }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size({ width: '90%', height: 80 })
+  .size(SWh)
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -282,12 +289,13 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 
   ```ts
+  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Start }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size({ width: '90%', height: 80 })
+  .size(SWh)
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -298,12 +306,13 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 
   ```ts
+  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Center }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size({ width: '90%', height: 80 })
+  .size(SWh)
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -314,12 +323,13 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 
   ```ts
+  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.End }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size({ width: '90%', height: 80 })
+  .size(SWh)
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -330,12 +340,13 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 
   ```ts
+  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Stretch }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size({ width: '90%', height: 80 })
+  .size(SWh)
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -346,12 +357,13 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 
   ```ts
+  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Baseline }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size({ width: '90%', height: 80 })
+  .size(SWh)
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -532,7 +544,7 @@ When the size of the container in the flex layout is not large enough, the follo
 
     Text('flexBasis(100)')
       .flexBasis(100)
-      .width(200) // When width is set to 200 and flexBasis 100, the width is 100 vp, which means that the settings of flexBasis take precedence.
+      .width(200) // When both width and flexBasis are set, flexBasis take precedence, and the width is 100 vp.
       .height(100)
       .backgroundColor(0xD2B48C)
   }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
@@ -546,7 +558,7 @@ When the size of the container in the flex layout is not large enough, the follo
   ```ts
   Flex() {
     Text('flexGrow(1)')
-      .flexGrow(2) 
+      .flexGrow(1) 
       .width(100)
       .height(100)
       .backgroundColor(0xF5DEB3)

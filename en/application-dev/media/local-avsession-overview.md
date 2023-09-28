@@ -35,11 +35,12 @@ import AVSessionManager from '@ohos.multimedia.avsession';
 All the APIs in the root namespace can be used as APIs of AVSessionManager.
 
 The code snippet below shows how the provider creates an **AVSession** object by using AVSessionManager:
-
+ 
 ```ts
 // Create an AVSession object.
-async createSession() {
-  let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(this.context, 'SESSION_NAME', 'audio');
+let context: Context = this.context;
+async function createSession() {
+  let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
   console.info(`session create done : sessionId : ${session.sessionId}`);
 }
 ```
@@ -48,9 +49,9 @@ The code snippet below shows how the controller creates an **AVSessionController
 
 ```ts
 // Create an AVSessionController object.
-async createController() {
+async function createController() {
   // Obtain the descriptors of all live AVSession objects.
-  let descriptorsArray: Array<Readonly<AVSessionManager.AVSessionDescriptor>> = await AVSessionManager.getAllSessionDescriptors();
+  let descriptorsArray: Array<AVSessionManager.AVSessionDescriptor> = await AVSessionManager.getAllSessionDescriptors();
   if (descriptorsArray.length > 0) {
     // For demonstration, the session ID of the first descriptor is used to create the AVSessionController object.
     let sessionId: string = descriptorsArray[0].sessionId;

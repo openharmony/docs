@@ -23,6 +23,7 @@
 | -------- | -------- |
 | [selfSize](_r_d_b.md#selfsize) | 该结构体的大小。 |
 | [dataBaseDir](_r_d_b.md#databasedir) | 数据库文件路径。 |
+| [storeName](_r_d_b.md#storename) | 数据库名称。 |
 | [bundleName](_r_d_b.md#bundlename) | 应用包名。 |
 | [moduleName](_r_d_b.md#modulename) | 应用模块名。 |
 | [isEncrypt](_r_d_b.md#isencrypt) | 指定数据库是否加密。 |

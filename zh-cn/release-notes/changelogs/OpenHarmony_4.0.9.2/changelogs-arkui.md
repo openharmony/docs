@@ -125,3 +125,20 @@ ColumnSplit裁剪区域由子组件区域的下侧改为子组件区域的上下
 **关键接口/组件变更**
 
 不涉及
+
+## cl.arkui.4 Search组件/TextInput组件/TextArea组件布局与行为变更
+
+1、Search/TextInput/TextArea中textRect中位置变更前仅相对padding偏移，变更后位置相对padding和border计算偏移。  
+2、Search中textfield宽度变更前为search宽度减去search icon的宽度和icon左右space宽度，变更后需要再减去padding和border的宽度；
+
+**变更影响**
+
+以上变更只影响API version 10及以后版本，API version 9及以前仍遵循变更前规则。
+
+**关键的接口/组件变更**
+
+不涉及
+
+**适配指导**
+
+不涉及

@@ -43,7 +43,10 @@ on(type: 'error', observer: ErrorObserver): number;
 **示例：**
     
 ```ts
-let observer = {
+import errorManager from '@ohos.app.ability.errorManager';
+import { BusinessError } from '@ohos.base';
+
+let observer: errorManager.ErrorObserver = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
     },
@@ -59,7 +62,9 @@ let observerId = -1;
 try {
     observerId = errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message}`);
 }
 ```
 
@@ -90,9 +95,12 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void;
 **示例：**
     
 ```ts
+import errorManager from '@ohos.app.ability.errorManager';
+import { BusinessError } from '@ohos.base';
+
 let observerId = 100;
 
-function unregisterErrorObserverCallback(err) {
+function unregisterErrorObserverCallback(err: BusinessError) {
     if (err) {
         console.error('------------ unregisterErrorObserverCallback ------------', err);
     }
@@ -100,7 +108,9 @@ function unregisterErrorObserverCallback(err) {
 try {
     errorManager.off('error', observerId, unregisterErrorObserverCallback);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message}`);
 }
 ```
 
@@ -136,17 +146,22 @@ off(type: 'error', observerId: number): Promise\<void>;
 **示例：**
     
 ```ts
+import errorManager from '@ohos.app.ability.errorManager';
+import { BusinessError } from '@ohos.base';
+
 let observerId = 100;
 try {
     errorManager.off('error', observerId)
         .then((data) => {
             console.log('----------- unregisterErrorObserver success ----------', data);
         })
-        .catch((err) => {
+        .catch((err: BusinessError) => {
             console.error('----------- unregisterErrorObserver fail ----------', err);
     });
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message}`);
 }
 
 ```

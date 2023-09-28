@@ -119,6 +119,9 @@
 - [CheckboxGroup](ts-basic-components-checkboxgroup.md)
 
     多选框群组，用于控制多选框全选或者不全选状态。
+- [CalendarPicker](ts-basic-components-calendarpicker.md)
+
+    提供下拉日历弹窗，可以让用户选择日期。
 - [DatePicker](ts-basic-components-datepicker.md)
 
     选择日期的滑动选择器组件。
@@ -324,3 +327,13 @@
 - [UIExtensionComponent](ts-container-ui-extension-component.md)
 
     在页面中嵌入显示带UI界面的Ability扩展的容器组件。
+
+- [LocationButton](ts-security-components-locationbutton.md)
+
+    安全控件的位置控件，用户通过点击该位置控件，可以临时获取精准定位权限，而不需要权限弹框授权确认。
+- [PasteButton](ts-security-components-pastebutton.md)
+
+    安全控件的粘贴控件，用户通过点击该粘贴控件，可以临时获取读取剪贴板权限，而不会触发toast提示。
+- [SaveButton](ts-security-components-savebutton.md)
+
+    安全控件的保存控件，用户通过点击该保存控件，可以临时获取存储权限，而不需要权限弹框授权确认。

@@ -1,10 +1,11 @@
 # 卡片事件能力说明
 
-ArkTS卡片中提供了postCardAction()接口用于卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件，仅在卡片中可以调用。  
+针对动态卡片，ArkTS卡片中提供了postCardAction()接口用于卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件，仅在卡片中可以调用。
+<br/>针对静态卡片，ArkTS卡片提供了[FormLink](../reference/arkui-ts/ts-container-formlink.md)用于卡片内部和提供方应用间的交互。
+
+## 动态卡片事件能力说明
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
-
-
-接口定义：postCardAction(component: Object, action: Object): void
+<br/>接口定义：postCardAction(component: Object, action: Object): void
 
 
 接口参数说明：
@@ -28,11 +29,12 @@ action参数说明：
 | "params" | Object | 当前action携带的额外参数，内容使用JSON格式的键值对形式。必填。 |
 
 >![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>
 >"action"为"call"&nbsp;类型时，"params"需填入参数'method'，且类型需为string类型，用于触发UIAbility中对应的方法。
 
 `postCardAction()`接口示例代码：
 
-```typescript
+```ts
 Button('跳转')
   .width('40%')
   .height('20%')
@@ -63,5 +65,5 @@ Button('拉至后台')
   })
 ```
 
-
-以下介绍通过卡片事件实现的典型开发场景。
+## 静态卡片事件能力说明
+请参见[FormLink](../reference/arkui-ts/ts-container-formlink.md)

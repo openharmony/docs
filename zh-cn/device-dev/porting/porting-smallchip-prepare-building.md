@@ -20,7 +20,8 @@ sudo apt-get install gcc-arm-linux-gnueabi
 了解编译框架和搭建完编译环境后，请参考如下步骤新建芯片解决方案：
 
 1. 新建目录
-   芯片解决方案的目录规则为：device/{芯片解决方案厂商}/{开发板}。以海思的hispark_taurus开发板为例，在代码根目录执行如下命令建立目录：
+
+   芯片解决方案的目录规则为：`device/{芯片解决方案厂商}/{开发板}`。以海思的hispark_taurus开发板为例，在代码根目录执行如下命令建立目录：
 
    
    ```
@@ -59,7 +60,8 @@ sudo apt-get install gcc-arm-linux-gnueabi
    目录树建立后开发板相关的源码放到hispark_taurus目录下。
 
 2. 配置开发板编译选项
-   步骤1中的config.gni可配置开发板相关的编译选项，编译构建框架将会遵照该配置文件中的参数编译所有用户态OS组件。其中关键的字段说明如下：
+
+   步骤1中的`config.gni`可配置开发板相关的编译选项，编译构建框架将会遵照该配置文件中的参数编译所有用户态OS组件。其中关键的字段说明如下：
 
    
    ```
@@ -75,7 +77,7 @@ sudo apt-get install gcc-arm-linux-gnueabi
    board_ld_flags：        开发板配置的链接选项。
    ```
 
-     还以海思的hispark_taurus开发板为例，对应的device/hisilicon/hispark_taurus/config.gni内容如下：
+     还以海思的hispark_taurus开发板为例，对应的`device/hisilicon/hispark_taurus/config.gni`内容如下：
    
    ```
    # Board CPU type, e.g. "cortex-a7", "riscv32".
@@ -121,9 +123,10 @@ sudo apt-get install gcc-arm-linux-gnueabi
    ```
 
 3. 编写开发板编译脚本
-   步骤1中的BUILD.gn为新增的开发板的编译入口，主要用于编译开发板相关的代码，主要为设备侧驱动、设备侧接口适配(媒体，图形等)和开发板的SDK等等。
 
-   海思的hispark_taurus开发板的device/hisilicon/hispark_taurus/BUILD.gn可写成：
+   步骤1中的`BUILD.gn`为新增的开发板的编译入口，主要用于编译开发板相关的代码，主要为设备侧驱动、设备侧接口适配(媒体，图形等)和开发板的SDK等等。
+
+   海思的hispark_taurus开发板的`device/hisilicon/hispark_taurus/BUILD.gn`可写成：
 
    
    ```
@@ -137,4 +140,5 @@ sudo apt-get install gcc-arm-linux-gnueabi
    ```
 
 4. 编译调试
-   在开发板目录下执行hb set和hb build即可启动芯片解决方案的编译，编译框架会以开发板下的BUILD.gn为入口启动编译。
+
+   在开发板目录下执行`hb set`和`hb build`即可启动芯片解决方案的编译，编译框架会以开发板下的`BUILD.gn`为入口启动编译。

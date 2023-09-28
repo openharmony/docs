@@ -14,7 +14,9 @@ Since API version 9, child components are supported when **type** is set to **"c
 
 ## APIs
 
-**API 1**: XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
+### XComponent
+
+XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
 **Parameters**
 
@@ -25,7 +27,9 @@ Since API version 9, child components are supported when **type** is set to **"c
 | libraryname | string                                        | No  | Name of the dynamic library generated after compilation at the application native layer. This parameter is valid only when **type** is **"surface"**.|
 | controller  | [XComponentcontroller](#xcomponentcontroller) | No  | Controller bound to the component, which can be used to invoke methods of the component. This parameter is valid only when the component type is **"surface"**.|
 
-**API 2**: XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})<sup>10+</sup>
+### XComponent<sup>10+</sup>
+
+XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
 
 **Parameters**
 
@@ -58,14 +62,14 @@ Since API version 9, child components are supported when **type** is set to **"c
 > The non-UI logic written internally needs to be encapsulated in one or more functions.
 
 ## Attributes
-- You can customize the content displayed in the **\<XComponent>**. Depending on the **type** settings, the support for the universal attributes [background](./ts-universal-attributes-background.md), [opacity](./ts-universal-attributes-opacity.md), and [image effects](./ts-universal-attributes-image-effect.md) varies:
-- When **type** is set to **SURFACE("surface")**, none of these attributes is supported. For configuration, you are advised to use the APIs provided by EGL/OpenGL ES instead.
-- When **type** is set to **COMPONENT("component")**, none of these attributes is supported. For configuration, you are advised to mount child components.
-- When **type** is set to **TEXTURE**, only [opacity](./ts-universal-attributes-opacity.md) and **backgroundColor** in [background](./ts-universal-attributes-background.md) are supported. For configuration of other attributes, you are advised to use the APIs provided by EGL/OpenGL ES instead.
+- You can customize the content displayed in the **\<XComponent>**. Depending on the **type** settings, the support for the universal attributes [background](ts-universal-attributes-background.md), [opacity](ts-universal-attributes-opacity.md), and [image effects](ts-universal-attributes-image-effect.md) varies.
+- When **type** is set to **SURFACE("surface")**, only the **shadow** attribute of [image effects](ts-universal-attributes-image-effect.md). For configuration of other attributes, you are advised to use the APIs provided by EGL/OpenGL ES instead.
+- When **type** is set to **COMPONENT("component")**, only the **shadow** attribute of [image effects](ts-universal-attributes-image-effect.md). For configuration of other attributes, you are advised to mount child components.
+- When **type** is set to **TEXTURE**, only the **backgroundColor** attribute of [background](ts-universal-attributes-background.md), the **shadow** attribute of [image effects](ts-universal-attributes-image-effect.md), and [opacity](ts-universal-attributes-opacity.md) are supported. For configuration of other attributes, you are advised to use the APIs provided by EGL/OpenGL ES instead.
 
 ## Events
 
-When **type** is set to **SURFACE("surface")** or **TEXTURE**, the following events are supported. The [universal events](ts-universal-events-click.md) and gestures (ts-gesture-settings.md) are not supported.
+When **type** is set to **SURFACE("surface")** or **TEXTURE**, the following events are supported. The [universal events](ts-universal-events-click.md) are not supported.
 
 ### onLoad
 

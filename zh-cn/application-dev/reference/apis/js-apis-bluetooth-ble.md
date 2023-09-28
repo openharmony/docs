@@ -12,6 +12,7 @@ ble模块提供了对蓝牙操作和管理的方法。
 
 ```js
 import ble from '@ohos.bluetooth.ble';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -32,7 +33,7 @@ createGattServer(): GattServer
 **示例：**
 
 ```js
-let gattServer = ble.createGattServer();
+let gattServer: ble.GattServer = ble.createGattServer();
 console.info('gatt success');
 ```
 
@@ -61,9 +62,9 @@ createGattClientDevice(deviceId: string): GattClientDevice
 
 ```js
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -98,9 +99,9 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 
 ```js
 try {
-    let result = ble.getConnectedBLEDevices();
+    let result: Array<string> = ble.getConnectedBLEDevices();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -135,25 +136,24 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('BLE scan device find result = '+ JSON.stringify(data));
 }
 try {
     ble.on("BLEDeviceFind", onReceiveEvent);
-    ble.startBLEScan(
-        [{
+    let scanFilter: ble.ScanFilter = {
             deviceId:"XX:XX:XX:XX:XX:XX",
             name:"test",
             serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"
-        }],
-        {
-            interval: 500,
-            dutyMode: ble.ScanDuty.SCAN_MODE_LOW_POWER,
-            matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE,
-        }
-    );
+        };
+    let scanOptions: ble.ScanOptions = {
+    interval: 500,
+    dutyMode: ble.ScanDuty.SCAN_MODE_LOW_POWER,
+    matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE,
+    }
+    ble.startBLEScan([scanFilter],scanOptions);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -184,7 +184,7 @@ stopBLEScan(): void
 try {
     ble.stopBLEScan();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -234,33 +234,32 @@ serviceValueBuffer[3] = 8;
 console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
 console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
 try {
-    ble.startAdvertising({
-            interval:150,
-            txPower:0,
-            connectable:true,
-        },{
-            serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
-            manufactureData:[{
-                 manufactureId:4567,
-                 manufactureValue:manufactureValueBuffer.buffer
-            }],
-            serviceData:[{
-                serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
-                serviceValue:serviceValueBuffer.buffer
-            }],
-        },{
-            serviceUuids:["00001889-0000-1000-8000-00805f9b34fb"],
-            manufactureData:[{
-                manufactureId:1789,
-                manufactureValue:manufactureValueBuffer.buffer
-            }],
-            serviceData:[{
-                serviceUuid:"00001889-0000-1000-8000-00805f9b34fb",
-                serviceValue:serviceValueBuffer.buffer
-            }],
-    });
+    let setting: ble.AdvertiseSetting = {
+        interval:150,
+        txPower:0,
+        connectable:true,
+    };
+    let manufactureDataUnit: ble.ManufactureData = {
+        manufactureId:4567,
+        manufactureValue:manufactureValueBuffer.buffer
+    };
+    let serviceDataUnit: ble.ServiceData = {
+        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
+        serviceValue:serviceValueBuffer.buffer
+    };
+    let advData: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advResponse: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    ble.startAdvertising(setting, advData ,advResponse);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -291,7 +290,7 @@ stopAdvertising(): void
 try {
     ble.stopAdvertising();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -324,13 +323,13 @@ on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 try {
     ble.on('BLEDeviceFind', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -363,14 +362,14 @@ off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 try {
     ble.on('BLEDeviceFind', onReceiveEvent);
     ble.off('BLEDeviceFind', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -410,33 +409,34 @@ server端添加服务。
 
 ```js
 // 创建descriptors
-let descriptors = [];
+let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 
 // 创建characteristics
-let characteristics = [];
+let characteristics: Array<ble.BLECharacteristic> = [];
 let arrayBufferC = new ArrayBuffer(8);
 let cccV = new Uint8Array(arrayBufferC);
 cccV[0] = 1;
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
-let characteristicN = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristicN: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 characteristics[0] = characteristic;
 
 // 创建gattService
-let gattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
+let gattService: ble.GattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
 
 try {
+    let gattServer: ble.GattServer = ble.createGattServer(); 
     gattServer.addService(gattService);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -471,11 +471,11 @@ removeService(serviceUuid: string): void
 **示例：**
 
 ```js
-let server = ble.createGattServer();
+let server: ble.GattServer = ble.createGattServer();
 try {
     server.removeService('00001810-0000-1000-8000-00805F9B34FB');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -503,11 +503,11 @@ close(): void
 **示例：**
 
 ```js
-let server = ble.createGattServer();
+let server: ble.GattServer = ble.createGattServer();
 try {
     server.close();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -544,14 +544,15 @@ server端特征值发生变化时，主动通知已连接的client设备。
 
 ```js
 let arrayBufferC = new ArrayBuffer(8);
-let notifyCharacter = {
-    "serviceUuid": '00001810-0000-1000-8000-00805F9B34FB',
-    "characteristicUuid": '00001820-0000-1000-8000-00805F9B34FB',
-    "characteristicValue": arrayBufferC,
-    "confirm": true,
+let notifyCharacter: ble.NotifyCharacteristic = {
+    serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+    characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+    characteristicValue: arrayBufferC,
+    confirm: true,
 };
 try {
-    gattServer.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacter, (err) => {
+    let gattServer: ble.GattServer = ble.createGattServer();
+    gattServer.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacter, (err: BusinessError) => {
         if (err) {
             console.info('notifyCharacteristicChanged callback failed');
         } else {
@@ -559,7 +560,7 @@ try {
         }
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -601,18 +602,19 @@ server端特征值发生变化时，主动通知已连接的client设备。
 
 ```js
 let arrayBufferC = new ArrayBuffer(8);
-let notifyCharacter = {
-    "serviceUuid": '00001810-0000-1000-8000-00805F9B34FB',
-    "characteristicUuid": '00001820-0000-1000-8000-00805F9B34FB',
-    "characteristicValue": arrayBufferC,
-    "confirm": true,
+let notifyCharacter: ble.NotifyCharacteristic = {
+    serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+    characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+    characteristicValue: arrayBufferC,
+    confirm: true,
 };
 try {
+    let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacter).then(() => {
         console.info('notifyCharacteristicChanged promise successfull');
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -650,17 +652,18 @@ server端回复client端的读写请求。
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
-let serverResponse = {
-    'deviceId': 'XX:XX:XX:XX:XX:XX',
-    'transId': 0,
-    'status': 0,
-    'offset': 0,
-    'value': arrayBufferCCC,
+let serverResponse: ble.ServerResponse = {
+    deviceId: 'XX:XX:XX:XX:XX:XX',
+    transId: 0,
+    status: 0,
+    offset: 0,
+    value: arrayBufferCCC,
 };
 try {
+    let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.sendResponse(serverResponse);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -688,18 +691,19 @@ server端订阅特征值读请求事件。
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
-function ReadCharacteristicReq(CharacteristicReadRequest) {
-    let deviceId = CharacteristicReadRequest.deviceId;
-    let transId = CharacteristicReadRequest.transId;
-    let offset = CharacteristicReadRequest.offset;
-    let characteristicUuid = CharacteristicReadRequest.characteristicUuid;
+let gattServer: ble.GattServer = ble.createGattServer();
+function ReadCharacteristicReq(characteristicReadRequest: ble.CharacteristicReadRequest) {
+    let deviceId: string = characteristicReadRequest.deviceId;
+    let transId: number = characteristicReadRequest.transId;
+    let offset: number = characteristicReadRequest.offset;
+    let characteristicUuid: string = characteristicReadRequest.characteristicUuid;
 
-    let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
+    let serverResponse: ble.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
 
     try {
         gattServer.sendResponse(serverResponse);
     } catch (err) {
-        console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
 }
 gattServer.on('characteristicRead', ReadCharacteristicReq);
@@ -726,6 +730,7 @@ server端取消订阅特征值读请求事件。
 **示例：**
 
 ```js
+let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('characteristicRead');
 ```
 
@@ -752,22 +757,23 @@ server端订阅特征值写请求事件。
 ```js
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-function WriteCharacteristicReq(CharacteristicWriteRequest) {
-    let deviceId = CharacteristicWriteRequest.deviceId;
-    let transId = CharacteristicWriteRequest.transId;
-    let offset = CharacteristicWriteRequest.offset;
-    let isPrepared = CharacteristicWriteRequest.isPrepared;
-    let needRsp = CharacteristicWriteRequest.needRsp;
-    let value =  new Uint8Array(CharacteristicWriteRequest.value);
-    let characteristicUuid = CharacteristicWriteRequest.characteristicUuid;
+let gattServer: ble.GattServer = ble.createGattServer();
+function WriteCharacteristicReq(characteristicWriteRequest: ble.CharacteristicWriteRequest) {
+    let deviceId: string = characteristicWriteRequest.deviceId;
+    let transId: number = characteristicWriteRequest.transId;
+    let offset: number = characteristicWriteRequest.offset;
+    let isPrepared: boolean = characteristicWriteRequest.isPrepared;
+    let needRsp: boolean = characteristicWriteRequest.needRsp;
+    let value: Uint8Array =  new Uint8Array(characteristicWriteRequest.value);
+    let characteristicUuid: string = characteristicWriteRequest.characteristicUuid;
 
     cccValue[0] = value[0];
-    let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
+    let serverResponse: ble.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
 
     try {
         gattServer.sendResponse(serverResponse);
     } catch (err) {
-        console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
 }
 gattServer.on('characteristicWrite', WriteCharacteristicReq);
@@ -794,6 +800,7 @@ server端取消订阅特征值写请求事件。
 **示例：**
 
 ```js
+let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('characteristicWrite');
 ```
 
@@ -821,18 +828,19 @@ server端订阅描述符读请求事件。
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1101;
-function ReadDescriptorReq(DescriptorReadRequest) {
-    let deviceId = DescriptorReadRequest.deviceId;
-    let transId = DescriptorReadRequest.transId;
-    let offset = DescriptorReadRequest.offset;
-    let descriptorUuid = DescriptorReadRequest.descriptorUuid;
+let gattServer: ble.GattServer = ble.createGattServer();
+function ReadDescriptorReq(descriptorReadRequest: ble.DescriptorReadRequest) {
+    let deviceId: string = descriptorReadRequest.deviceId;
+    let transId: number = descriptorReadRequest.transId;
+    let offset: number = descriptorReadRequest.offset;
+    let descriptorUuid: string = descriptorReadRequest.descriptorUuid;
 
-    let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
+    let serverResponse: ble.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
 
     try {
         gattServer.sendResponse(serverResponse);
     } catch (err) {
-        console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
 }
 gattServer.on('descriptorRead', ReadDescriptorReq);
@@ -859,6 +867,7 @@ server端取消订阅描述符读请求事件。
 **示例：**
 
 ```js
+let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('descriptorRead');
 ```
 
@@ -885,25 +894,26 @@ server端订阅描述符写请求事件。
 ```js
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
-function WriteDescriptorReq(DescriptorWriteRequest) {
-    let deviceId = DescriptorWriteRequest.deviceId;
-    let transId = DescriptorWriteRequest.transId;
-    let offset = DescriptorWriteRequest.offset;
-    let isPrepared = DescriptorWriteRequest.isPrepared;
-    let needRsp = DescriptorWriteRequest.needRsp;
-    let value = new Uint8Array(DescriptorWriteRequest.value);
-    let descriptorUuid = DescriptorWriteRequest.descriptorUuid;
+let gattServer: ble.GattServer = ble.createGattServer();
+function WriteDescriptorReq(descriptorWriteRequest: ble.DescriptorWriteRequest) {
+    let deviceId: string = descriptorWriteRequest.deviceId;
+    let transId: number = descriptorWriteRequest.transId;
+    let offset: number = descriptorWriteRequest.offset;
+    let isPrepared: boolean = descriptorWriteRequest.isPrepared;
+    let needRsp: boolean = descriptorWriteRequest.needRsp;
+    let value: Uint8Array = new Uint8Array(descriptorWriteRequest.value);
+    let descriptorUuid: string = descriptorWriteRequest.descriptorUuid;
 
     descValue[0] = value[0];
-    let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
+    let serverResponse: ble.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
 
     try {
         gattServer.sendResponse(serverResponse);
     } catch (err) {
-        console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
 }
-gattServer.on('descriptorRead', WriteDescriptorReq);
+gattServer.on('descriptorWrite', WriteDescriptorReq);
 ```
 
 
@@ -927,6 +937,7 @@ server端取消订阅描述符写请求事件。
 **示例：**
 
 ```js
+let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('descriptorWrite');
 ```
 
@@ -951,10 +962,12 @@ server端订阅BLE连接状态变化事件。
 **示例：**
 
 ```js
-function Connected(BLEConnectionChangeState) {
-  let deviceId = BLEConnectionChangeState.deviceId;
-  let status = BLEConnectionChangeState.state;
+import constant from '@ohos.bluetooth.constant';
+function Connected(bleConnectionChangeState: ble.BLEConnectionChangeState) {
+  let deviceId: string = bleConnectionChangeState.deviceId;
+  let status: constant.ProfileConnectionState = bleConnectionChangeState.state;
 }
+let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.on('connectionStateChange', Connected);
 ```
 
@@ -979,7 +992,68 @@ server端取消订阅BLE连接状态变化事件。
 **示例：**
 
 ```js
+let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('connectionStateChange');
+```
+
+
+### on('BLEMtuChange')
+
+on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void
+
+server端订阅MTU状态变化事件。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
+| callback | Callback&lt;number&gt; | 是    | 返回MTU字节数的值，通过注册回调函数获取。 |
+
+**示例：**
+
+```js
+try {
+    let gattServer: ble.GattServer = ble.createGattServer();
+    gattServer.on('BLEMtuChange', (mtu: number) => {
+      console.info('BLEMtuChange, mtu: ' + mtu);
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+### off('BLEMtuChange')
+
+off(type: 'BLEMtuChange', callback?: Callback&lt;number&gt;): void
+
+server端取消订阅MTU状态变化事件。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
+| callback | Callback&lt;number&gt; | 否    | 返回MTU字节数的值，通过注册回调函数获取。不填该参数则取消订阅该type对应的所有回调。 |
+
+**示例：**
+
+```js
+try {
+    let gattServer: ble.GattServer = ble.createGattServer();
+    gattServer.off('BLEMtuChange');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
 ```
 
 
@@ -1012,10 +1086,10 @@ client端发起连接远端蓝牙低功耗设备。
 
 ```js
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1044,10 +1118,10 @@ client端断开与远端蓝牙低功耗设备的连接。
 
 ```js
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.disconnect();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1076,10 +1150,10 @@ close(): void
 
 ```js
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.close();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1114,14 +1188,14 @@ client获取远端蓝牙低功耗设备名。
 ```js
 // callback
 try {
-    let gattClient = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+    let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
     gattClient.connect();
-    let deviceName = gattClient.getDeviceName((err, data)=> {
+    gattClient.getDeviceName((err: BusinessError, data: string)=> {
         console.info('device name err ' + JSON.stringify(err));
         console.info('device name' + JSON.stringify(data));
     })
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1156,13 +1230,13 @@ client获取远端蓝牙低功耗设备名。
 ```js
 // promise
 try {
-    let gattClient = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+    let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
     gattClient.connect();
-    let deviceName = gattClient.getDeviceName().then((data) => {
+    gattClient.getDeviceName().then((data: string) => {
         console.info('device name' + JSON.stringify(data));
     })
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1196,9 +1270,9 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
 ```js
 // callkback 模式
-function getServices(code, gattServices) {
+function getServices(code: BusinessError, gattServices: Array<ble.GattService>) {
   if (code.code == 0) {
-      let services = gattServices;
+      let services: Array<ble.GattService> = gattServices;
       console.log('bluetooth code is ' + code.code);
       console.log('bluetooth services size is ', services.length);
 
@@ -1209,11 +1283,11 @@ function getServices(code, gattServices) {
 }
 
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
     device.getServices(getServices);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1248,13 +1322,13 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 ```js
 // Promise 模式
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
-    device.getServices().then(result => {
+    device.getServices().then((result: Array<ble.GattService>) => {
         console.info('getServices successfully:' + JSON.stringify(result));
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1289,7 +1363,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```js
-function readCcc(code, BLECharacteristic) {
+function readCcc(code: BusinessError, BLECharacteristic: ble.BLECharacteristic) {
   if (code.code != 0) {
       return;
   }
@@ -1298,11 +1372,11 @@ function readCcc(code, BLECharacteristic) {
   console.log('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let descriptors = [];
+let descriptors: Array<ble.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
@@ -1310,15 +1384,15 @@ descriptors[0] = descriptor;
 let bufferCCC = new ArrayBuffer(8);
 let cccV = new Uint8Array(bufferCCC);
 cccV[0] = 1;
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 characteristicValue: bufferCCC, descriptors:descriptors};
 
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.readCharacteristicValue(characteristic, readCcc);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1358,11 +1432,11 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```js
-let descriptors = [];
+let descriptors: Array<ble.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
@@ -1370,15 +1444,15 @@ descriptors[0] = descriptor;
 let bufferCCC = new ArrayBuffer(8);
 let cccV = new Uint8Array(bufferCCC);
 cccV[0] = 1;
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 characteristicValue: bufferCCC, descriptors:descriptors};
 
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.readCharacteristicValue(characteristic);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1413,7 +1487,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 **示例：**
 
 ```js
-function readDesc(code, BLEDescriptor) {
+function readDesc(code: BusinessError, BLEDescriptor: ble.BLEDescriptor) {
     if (code.code != 0) {
         return;
     }
@@ -1425,17 +1499,17 @@ function readDesc(code, BLEDescriptor) {
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {
+let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
     descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.readDescriptorValue(descriptor, readDesc);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1478,17 +1552,17 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {
+let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
     descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.readDescriptorValue(descriptor);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1524,11 +1598,11 @@ client端向低功耗蓝牙设备写入特定的特征值。
 **示例：**
 
 ```js
-let descriptors = [];
+let descriptors: Array<ble.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
@@ -1536,14 +1610,20 @@ descriptors[0] = descriptor;
 let bufferCCC = new ArrayBuffer(8);
 let cccV = new Uint8Array(bufferCCC);
 cccV[0] = 1;
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   characteristicValue: bufferCCC, descriptors:descriptors};
+function writeCharacteristicValueCallBack(code: BusinessError) {
+    if (code.code != 0) {
+        return;
+    }
+    console.log('bluetooth writeCharacteristicValue success');
+}
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.writeCharacteristicValue(characteristic);
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.writeCharacteristicValue(characteristic, ble.GattWriteType.WRITE, writeCharacteristicValueCallBack);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1584,11 +1664,11 @@ client端向低功耗蓝牙设备写入特定的特征值。
 **示例：**
 
 ```js
-let descriptors = [];
+let descriptors: Array<ble.BLEDescriptor>  = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
@@ -1596,14 +1676,14 @@ descriptors[0] = descriptor;
 let bufferCCC = new ArrayBuffer(8);
 let cccV = new Uint8Array(bufferCCC);
 cccV[0] = 1;
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   characteristicValue: bufferCCC, descriptors:descriptors};
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.writeCharacteristicValue(characteristic);
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.writeCharacteristicValue(characteristic, ble.GattWriteType.WRITE);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1641,17 +1721,17 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
-let descriptor = {
+let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
     descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.writeDescriptorValue(descriptor);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1694,17 +1774,17 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
-let descriptor = {
+let descriptor: ble.BLEDescriptor = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
     descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
     descriptorValue: bufferDesc
 };
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.writeDescriptorValue(descriptor);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1738,14 +1818,14 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 ```js
 // callback
 try {
-    let gattClient = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+    let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
     gattClient.connect();
-    let rssi = gattClient.getRssiValue((err, data)=> {
+    let rssi = gattClient.getRssiValue((err: BusinessError, data: number)=> {
         console.info('rssi err ' + JSON.stringify(err));
         console.info('rssi value' + JSON.stringify(data));
     })
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1779,12 +1859,12 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 ```js
 // promise
 try {
-    let gattClient = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-    let rssi = gattClient.getRssiValue().then((data) => {
+    let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+    gattClient.getRssiValue().then((data: number) => {
         console.info('rssi' + JSON.stringify(data));
     })
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1818,10 +1898,10 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 
 ```js
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setBLEMtuSize(128);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1857,22 +1937,22 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 
 ```js
 // 创建descriptors
-let descriptors = [];
+let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setCharacteristicChangeNotification(characteristic, false);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 
 ```
@@ -1914,22 +1994,22 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 
 ```js
 // 创建descriptors
-let descriptors = [];
+let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setCharacteristicChangeNotification(characteristic, false);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 
 ```
@@ -1972,22 +2052,22 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 
 ```js
 // 创建descriptors
-let descriptors = [];
+let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setCharacteristicChangeIndication(characteristic, false);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 
 ```
@@ -2029,22 +2109,22 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 
 ```js
 // 创建descriptors
-let descriptors = [];
+let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setCharacteristicChangeIndication(characteristic, false);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 
 ```
@@ -2070,16 +2150,16 @@ on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;)
 **示例：**
 
 ```js
-function CharacteristicChange(CharacteristicChangeReq) {
-    let serviceUuid = CharacteristicChangeReq.serviceUuid;
-    let characteristicUuid = CharacteristicChangeReq.characteristicUuid;
-    let value = new Uint8Array(CharacteristicChangeReq.characteristicValue);
+function CharacteristicChange(characteristicChangeReq: ble.BLECharacteristic) {
+    let serviceUuid: string = characteristicChangeReq.serviceUuid;
+    let characteristicUuid: string = characteristicChangeReq.characteristicUuid;
+    let value: Uint8Array = new Uint8Array(characteristicChangeReq.characteristicValue);
 }
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.on('BLECharacteristicChange', CharacteristicChange);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -2105,10 +2185,10 @@ off(type: 'BLECharacteristicChange', callback?: Callback&lt;BLECharacteristic&gt
 
 ```js
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLECharacteristicChange');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -2133,15 +2213,15 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 **示例：**
 
 ```js
-function ConnectStateChanged(state) {
+function ConnectStateChanged(state: ble.BLEConnectionChangeState) {
   console.log('bluetooth connect state changed');
-  let connectState = state.state;
+  let connectState: ble.ProfileConnectionState = state.state;
 }
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.on('BLEConnectionStateChange', ConnectStateChanged);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -2167,10 +2247,10 @@ off(type: 'BLEConnectionStateChange', callback?: Callback&lt;BLEConnectionChange
 
 ```js
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEConnectionStateChange');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -2179,7 +2259,7 @@ try {
 
 on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void
 
-订阅Mtu状态变化事件。
+client端订阅MTU状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2189,19 +2269,19 @@ on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"BLEMtuChange"字符串，表示Mtu状态变化事件。 |
-| callback | Callback&lt;number&gt; | 是    | 表示Mtu状态，已连接或是断开。 |
+| type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
+| callback | Callback&lt;number&gt; | 是    | 返回MTU字节数的值，通过注册回调函数获取。 |
 
 **示例：**
 
 ```js
 try {
-    let gattClient = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    gattClient.on('BLEMtuChange', (mtu) => {
+    let gattClient: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    gattClient.on('BLEMtuChange', (mtu: number) => {
       console.info('BLEMtuChange, mtu: ' + mtu);
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -2210,7 +2290,7 @@ try {
 
 off(type: 'BLEMtuChange', callback?: Callback&lt;number&gt;): void
 
-取消订阅Mtu状态变化事件。
+client端取消订阅MTU状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2220,17 +2300,17 @@ off(type: 'BLEMtuChange', callback?: Callback&lt;number&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"BLEMtuChange"字符串，表示Mtu状态变化事件。 |
-| callback | Callback&lt;number&gt; | 否    | 表示取消订阅Mtu状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
+| type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
+| callback | Callback&lt;number&gt; | 否    | 返回MTU字节数的值，通过注册回调函数获取。不填该参数则取消订阅该type对应的所有回调。 |
 
 **示例：**
 
 ```js
 try {
-    let device = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEMtuChange');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 

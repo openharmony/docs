@@ -20,7 +20,7 @@
 | 大设备 | [840,&nbsp;+∞) | 
 
 > **说明：**
-> - vp是virtual pixel（虚拟像素）的缩写，是OpenHarmony中常用的长度单位，详见本文[视觉基础](visual-basics.md)小节中的介绍。
+> - vp是virtual pixel（虚拟像素）的缩写，是OpenHarmony中常用的长度单位，详见[视觉基础](../../../design/ux-design/visual-basis.md)小节中的介绍。
 > 
 > - 此处基于设备屏幕宽度划分不同设备是为了读者方便理解。通常智能设备上的应用都是以全屏的形式运行，但随着移动技术的发展，当前部分智能设备支持应用以自由窗口模式运行（即用户可以通过拖拽等操作自由调整应用运行窗口的尺寸），故以应用窗口尺寸为基准进行划分更为合适，本文后续的响应式布局章节中将详细介绍相关内容。
 > 
@@ -50,7 +50,7 @@
 
 如此，既在各设备上体现了UX的一致性，也在各设备上体现了UX的差异性，从而既可以保障各设备上应用界面的体验，也可以最大程度复用界面代码。
 
-在本文[应用UX设计章节](design-principles.md)中，将详细介绍应用的UX设计规则。
+在[应用UX设计章节](../../../zh-ch/design/ux-design/app-ux-design.md)中，将详细介绍应用的UX设计规则。
 
 
 ## 工程管理及调试
@@ -115,7 +115,7 @@
 延伸能力是指容器组件内的子组件，按照其在列表中的先后顺序，随容器组件尺寸变化显示或隐藏。随着可用显示区域的增加，用户可以看到的“每小时天气”信息也不断增加，故“每小时天气”可以通过延伸能力实现，其核心代码如下所示。
 
 
-```
+```ts
 @Component
 export default struct HoursWeather {
   ...
@@ -153,7 +153,7 @@ export default struct HoursWeather {
 > 为提升用户体验，大设备侧边栏隐藏状态下，每日天气与空气质量的相对顺序发生了改变。可以调整通过GridCol栅格子组件的order属性，实现目标效果。
 
 
-```
+```ts
 @Component
 export default struct HomeContent {
   ...
@@ -216,7 +216,7 @@ export default struct HomeContent {
 - 大设备中用户通过点击侧边栏中的城市列表即可高效的切换不同城市，此时需要关闭Swiper组件的导航点。
 
   
-```
+```ts
 @Entry
 @Component
 struct Home {

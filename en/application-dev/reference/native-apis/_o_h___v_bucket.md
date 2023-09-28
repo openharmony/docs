@@ -29,4 +29,4 @@ Defines the types of the key and value in a KV pair.
 | [putBlob](_r_d_b.md#putblob) | Puts a const uint8_t value into the **OH_VBucket** object in the given column.|
 | [putNull](_r_d_b.md#putnull) | Puts a null value into the **OH_VBucket** object in the given column.|
 | [clear](_r_d_b.md#clear-22) | Clears an **OH_VBucket** object.|
-| [destroyValuesBucket](_r_d_b.md#destroyvaluesbucket) | Destroys an **OH_VBucket** object and reclaims the memory occupied.|
+| [destroy](_r_d_b.md#destroy-34) | Destroys an **OH_VBucket** object and reclaims the memory occupied.|

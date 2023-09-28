@@ -1,25 +1,29 @@
-# Accessing Files Across Devices
+# Access Files Across Devices
 
-The distributed file system provides cross-device file access capabilities for applications. For the same application installed on multiple devices, you can implement read and write of the files in the application's distributed directory (**/data/storage/el2/distributedfiles/**) across devices by using [ohos.file.fs](app-file-access.md). For example, device A and device B are installed with the same application. After device A and device B are connected to form a Virtual Device, the application on device A can access the files of the same application on Device B. What you need to do is place the files to the distributed directory.
+The distributed file system provides cross-device file access capabilities for applications. For the same application installed on multiple devices that form a Super Device, you can use [ohos.file.fs](app-file-access.md) APIs to implement read and write of the files in the application's distributed directory (**/data/storage/el2/distributedfiles/**).
+
+For example, device A and device B are installed with the same application. After device A and device B are connected to form a Super Device, the application on device A can access the files in the distributed directory of the same application on Device B.
 
 ## How to Develop
 
-1. Complete distributed networking for the devices.
+1. Connect the devices to form a Super Device.<br>
    Connect the devices to a LAN, and complete authentication of the devices. The devices must have the same account number.
 
-2. Implement cross-device access to the files of the same application.
+2. Implement cross-device access to the files of the same application.<br>
    Place the files in the **distributedfiles/** directory of the application sandbox to implement access from difference devices.
 
-   For example, create a test file in the **distributedfiles/** directory on device A and write data to the file. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+   For example, create a file in the **distributedfiles/** directory on device A and write data to the file. For details about how to obtain the application context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
    ```ts
    import fs from '@ohos.file.fs';
-   
-   let context =...; // Obtain the UIAbilityContext information of device A.
-   let pathDir = context.distributedFilesDir;
+   import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
+
+   let context = getContext(this) as common.UIAbilityContext; // Obtain the UIAbilityContext of device A.
+   let pathDir: string = context.distributedFilesDir;
    // Obtain the file path of the distributed directory.
-   let filePath = pathDir + '/test.txt';
-   
+   let filePath: string = pathDir + '/test.txt';
+
    try {
      // Create a file in the distributed directory.
      let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -28,7 +32,8 @@ The distributed file system provides cross-device file access capabilities for a
      fs.writeSync(file.fd, 'content');
      // Close the file.
      fs.closeSync(file.fd);
-   } catch (err) {
+   } catch (error) {
+     let err: BusinessError = error as BusinessError;
      console.error(`Failed to openSync / writeSync / closeSync. Code: ${err.code}, message: ${err.message}`);
    }
    ```
@@ -37,24 +42,33 @@ The distributed file system provides cross-device file access capabilities for a
 
    ```ts
    import fs from '@ohos.file.fs';
-   
-   let context =...; // Obtain the UIAbilityContext information of device B.
-   let pathDir = context.distributedFilesDir;
+   import common from '@ohos.app.ability.common';
+   import buffer from '@ohos.buffer';
+   import { BusinessError } from '@ohos.base';
+
+   let context = getContext(this) as common.UIAbilityContext; // Obtain the UIAbilityContext of device B.
+   let pathDir: string = context.distributedFilesDir;
    // Obtain the file path of the distributed directory.
-   let filePath = pathDir + '/test.txt';
-   
+   let filePath: string = pathDir + '/test.txt';
+
    try {
      // Open the file in the distributed directory.
      let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
      // Set the buffer for receiving the read data.
-     let buffer = new ArrayBuffer(4096);
+     let arrayBuffer = new ArrayBuffer(4096);
      // Read the file. The return value is the number of read bytes.
-     let num = fs.readSync(file.fd, buffer, {
-       offset: 0
-     });
+     class Option {
+        public offset: number = 0;
+        public length: number = 0;
+     }
+     let option = new Option();
+     option.length = arrayBuffer.byteLength;
+     let num = fs.readSync(file.fd, arrayBuffer, option);
      // Print the read data.
-     console.info('read result: ' + String.fromCharCode.apply(null, new Uint8Array(buffer.slice(0, num))));
-   } catch (err) {
+     let buf = buffer.from(arrayBuffer, 0, num);
+     console.info('read result: ' + buf.toString());
+   } catch (error) {
+     let err: BusinessError = error as BusinessError;
      console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);
    }
    ```

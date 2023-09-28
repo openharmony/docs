@@ -22,6 +22,6 @@ import InputEvent from '@ohos.multimodalInput.inputEvent';
 | ---------- | ------ | ---- | ---- | -------------- |
 | id         | number | 是    | 否    | 事件id |
 | deviceId   | number | 是    | 否    | 上报输入事件的设备id    |
-| actionTime | number | 是    | 否    | 输入事件的上报时间      |
+| actionTime | number | 是    | 否    | 上报输入事件的时间      |
 | screenId   | number | 是    | 否    | 目标屏幕id         |
 | windowId   | number | 是    | 否    | 目标窗口id         |

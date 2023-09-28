@@ -5,7 +5,8 @@
 
 >  **说明：**
 >
-> - 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 本组件为系统接口。
 
 ## 子组件
 
@@ -64,15 +65,22 @@ PluginComponent(value: { template: PluginComponentTemplate, data: KVObject})
 
 ```ts
 //PluginUserExample.ets
-import plugin from "./plugin_component.js"
-
+import plugin from "./plugin_component"
+class source2BundleName {
+  source: string = ""
+  bundleName: string = ""
+}
+interface Info{
+  errcode:number,
+  msg:string
+}
 @Entry
 @Component
 struct PluginUserExample {
   @StorageLink("plugincount") plugincount: Object[] = [
-    { source: 'plugincomponent1', bundleName: 'com.example.plugin' },
-    { source: 'plugintemplate', bundleName: 'com.example.myapplication' },
-    { source: 'plugintemplate', bundleName: 'com.example.myapplication' }]
+    { source: 'plugincomponent1', bundleName: 'com.example.plugin' } as source2BundleName,
+    { source: 'plugintemplate', bundleName: 'com.example.myapplication' } as source2BundleName,
+    { source: 'plugintemplate', bundleName: 'com.example.myapplication' } as source2BundleName]
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -97,7 +105,7 @@ struct PluginUserExample {
           plugin.Request()
           console.log("Button('Request')")
         })
-      ForEach(this.plugincount, item => {
+      ForEach(this.plugincount, (item: source2BundleName) => {
         PluginComponent({
           template: { source: 'PluginProviderExample', bundleName: 'com.example.plugin' },
           data: { 'countDownStartValue': 'new countDownStartValue' }
@@ -105,8 +113,8 @@ struct PluginUserExample {
           .onComplete(() => {
             console.log("onComplete")
           })
-          .onError(({errcode, msg}) => {
-            console.log("onComplete" + errcode + ":" + msg)
+          .onError((info:Info) => {
+            console.log("onComplete" + info.errcode + ":" + info.msg)
           })
       })
     }
@@ -120,7 +128,7 @@ struct PluginUserExample {
 
 ```ts
 //PluginProviderExample.ets
-import plugin from "./plugin_component.js"
+import plugin from "./plugin_component"
 
 @Entry
 @Component
@@ -162,6 +170,7 @@ struct PluginProviderExample {
 
 #### FA模型
 ```js
+//当前示例代码仅适用于js源文件
 //plugin_component.js
 import pluginComponentManager from '@ohos.pluginComponent'
 
@@ -250,6 +259,7 @@ export default {
 
 #### Stage模型
 ```js
+//当前示例代码仅适用于js源文件
 //plugin_component.js
 import pluginComponentManager from '@ohos.pluginComponent'
 

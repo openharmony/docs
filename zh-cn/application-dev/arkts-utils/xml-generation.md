@@ -23,28 +23,28 @@ XML模块提供XmlSerializer类来生成XML文件，输入为固定长度的Arra
 XML模块的API接口可以参考[@ohos.xml](../reference/apis/js-apis-xml.md)的详细描述，按需求调用对应函数可以生成一份完整的XML文件。
 
 1. 引入模块。
-   
-   ```js
-   import xml from '@ohos.xml'; 
+
+   ```ts
+   import xml from '@ohos.xml';
    import util from '@ohos.util';
    ```
 
 2. 创建缓冲区，构造XmlSerializer对象（可以基于Arraybuffer构造XmlSerializer对象， 也可以基于DataView构造XmlSerializer对象）。
-   
-   ```js
+
+   ```ts
    // 1.基于Arraybuffer构造XmlSerializer对象
-   let arrayBuffer = new ArrayBuffer(2048); // 创建一个2048字节的缓冲区
-   let thatSer = new xml.XmlSerializer(arrayBuffer); // 基于Arraybuffer构造XmlSerializer对象
-   
+   let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // 创建一个2048字节的缓冲区
+   let thatSer: xml.XmlSerializer = new xml.XmlSerializer(arrayBuffer); // 基于Arraybuffer构造XmlSerializer对象
+
    // 2.基于DataView构造XmlSerializer对象
-   let arrayBuffer = new ArrayBuffer(2048); // 创建一个2048字节的缓冲区
-   let dataView = new DataView(arrayBuffer); // 使用DataView对象操作ArrayBuffer对象
-   let thatSer = new xml.XmlSerializer(dataView); // 基于DataView构造XmlSerializer对象
+   let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // 创建一个2048字节的缓冲区
+   let dataView: DataView = new DataView(arrayBuffer); // 使用DataView对象操作ArrayBuffer对象
+   let thatSer: xml.XmlSerializer = new xml.XmlSerializer(dataView); // 基于DataView构造XmlSerializer对象
    ```
 
 3. 调用XML元素生成函数。
-   
-   ```js
+
+   ```ts
    thatSer.setDeclaration(); // 写入xml的声明
    thatSer.startElement('bookstore'); // 写入元素开始标记
    thatSer.startElement('book'); // 嵌套元素开始标记
@@ -64,17 +64,16 @@ XML模块的API接口可以参考[@ohos.xml](../reference/apis/js-apis-xml.md)�
    ```
 
 4. 使用Uint8Array操作Arraybuffer，调用TextDecoder对Uint8Array解码后输出。
-   
-   ```js
-   let view = new Uint8Array(arrayBuffer); // 使用Uint8Array读取arrayBuffer的数据
-   let textDecoder = util.TextDecoder.create(); // 调用util模块的TextDecoder类
-   let res = textDecoder.decodeWithStream(view); // 对view解码
+
+   ```ts
+   let view: Uint8Array = new Uint8Array(arrayBuffer); // 使用Uint8Array读取arrayBuffer的数据
+   let textDecoder: util.TextDecoder = util.TextDecoder.create(); // 调用util模块的TextDecoder类
+   let res: string = textDecoder.decodeWithStream(view); // 对view解码
    console.info(res);
    ```
 
    输出结果如下：
 
-   
-   ```js
+   ```
    <?xml version=\"1.0\" encoding=\"utf-8\"?><bookstore>\r\n  <book category=\"COOKING\">\r\n    <title lang=\"en\">Everyday</title>\r\n    <author>Giada</author>\r\n    <year>2005</year>\r\n  </book>\r\n</bookstore>
    ```

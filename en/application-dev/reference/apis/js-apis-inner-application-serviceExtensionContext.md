@@ -21,12 +21,12 @@ Before using the **ServiceExtensionContext** module, you must define a child cla
 
 ```ts
   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+  import rpc from '@ohos.rpc';
 
-  let context;
-  let commRemote; // Release the instance when the connection is disconnected.
+  let commRemote: rpc.IRemoteObject; // Release the instance when the connection is disconnected.
   class EntryAbility extends ServiceExtensionAbility {
     onCreate() {
-      context = this.context; // Obtain a ServiceExtensionContext instance.
+        let context = this.context; // Obtain a ServiceExtensionContext instance.
     }
   }
 ```
@@ -73,13 +73,16 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     bundleName: 'com.example.myapp',
     abilityName: 'MyAbility'
   };
 
   try {
-    this.context.startAbility(want, (error) => {
+    this.context.startAbility(want, (error: BusinessError) => {
       if (error.code) {
         // Process service logic errors.
         console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
@@ -142,21 +145,25 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     bundleName: 'com.example.myapp',
     abilityName: 'MyAbility'
   };
-  let options = {
+  let options: StartOptions = {
   	windowMode: 0,
   };
 
   try {
     this.context.startAbility(want, options)
-      .then((data) => {
+      .then((data: void) => {
         // Carry out normal service processing.
         console.log('startAbility succeed');
       })
-      .catch((error) => {
+      .catch((error: BusinessError) => {
         // Process service logic errors.
         console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
       });
@@ -209,17 +216,21 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     deviceId: '',
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
   };
-  let options = {
+  let options: StartOptions = {
     windowMode: 0
   };
 
   try {
-    this.context.startAbility(want, options, (error) => {
+    this.context.startAbility(want, options, (error: BusinessError) => {
       if (error.code) {
         // Process service logic errors.
         console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
@@ -284,7 +295,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     deviceId: '',
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
@@ -292,7 +306,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   let accountId = 100;
 
   try {
-    this.context.startAbilityWithAccount(want, accountId, (error) => {
+    this.context.startAbilityWithAccount(want, accountId, (error: BusinessError) => {
       if (error.code) {
         // Process service logic errors.
         console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
@@ -358,18 +372,22 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     deviceId: '',
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
   };
   let accountId = 100;
-  let options = {
+  let options: StartOptions = {
     windowMode: 0
   };
 
   try {
-    this.context.startAbilityWithAccount(want, accountId, options, (error) => {
+    this.context.startAbilityWithAccount(want, accountId, options, (error: BusinessError) => {
       if (error.code) {
         // Process service logic errors.
         console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
@@ -441,23 +459,27 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     deviceId: '',
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
   };
   let accountId = 100;
-  let options = {
+  let options: StartOptions = {
     windowMode: 0
   };
 
   try {
     this.context.startAbilityWithAccount(want, accountId, options)
-      .then((data) => {
+      .then((data: void) => {
         // Carry out normal service processing.
         console.log('startAbilityWithAccount succeed');
       })
-      .catch((error) => {
+      .catch((error: BusinessError) => {
         // Process service logic errors.
         console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
       });
@@ -505,14 +527,17 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     deviceId: '',
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
   };
 
   try {
-    this.context.startServiceExtensionAbility(want, (error) => {
+    this.context.startServiceExtensionAbility(want, (error: BusinessError) => {
       if (error.code) {
         // Process service logic errors.
         console.error('startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
@@ -570,7 +595,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     deviceId: '',
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
@@ -578,11 +606,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
   try {
     this.context.startServiceExtensionAbility(want)
-      .then((data) => {
+      .then((data: void) => {
         // Carry out normal service processing.
         console.log('startServiceExtensionAbility succeed');
       })
-      .catch((error) => {
+      .catch((error: BusinessError) => {
         // Process service logic errors.
         console.error('startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
       });
@@ -638,7 +666,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     deviceId: '',
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
@@ -646,7 +677,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   let accountId = 100;
 
   try {
-    this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
+    this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error: BusinessError) => {
       if (error.code) {
         // Process service logic errors.
         console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
@@ -711,7 +742,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     deviceId: '',
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
@@ -720,11 +754,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId)
-      .then((data) => {
+      .then((data: void) => {
         // Carry out normal service processing.
         console.log('startServiceExtensionAbilityWithAccount succeed');
       })
-      .catch((error) => {
+      .catch((error: BusinessError) => {
         // Process service logic errors.
         console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
       });
@@ -733,6 +767,235 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
+
+## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
+
+startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
+
+Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+
+export default class EntryAbility extends extension {
+  onCreate(want: Want) {
+    // want contains the information about the caller who starts the application.
+    let localWant: Want = want;
+    localWant.bundleName = 'com.example.demo';
+    localWant.moduleName = 'entry';
+    localWant.abilityName = 'TestAbility';
+
+    // Start a new ability using the caller information.
+    this.context.startAbilityAsCaller(localWant, (err) => {
+      if (err && err.code != 0) {
+        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+      } else {
+        console.log('startAbilityAsCaller success.');
+      }
+    })
+  }
+}
+
+```
+
+## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
+
+startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
+
+Starts an ability with the caller information and start options specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+
+export default class EntryAbility extends extension {
+  onCreate(want: Want) {
+    // want contains the information about the caller who starts the application.
+    let localWant: Want = want;
+    localWant.bundleName = 'com.example.demo';
+    localWant.moduleName = 'entry';
+    localWant.abilityName = 'TestAbility';
+
+    let option: StartOptions = {
+      displayId: 0
+    }
+
+    // Start a new ability using the caller information.
+    this.context.startAbilityAsCaller(localWant, option, (err) => {
+      if (err && err.code != 0) {
+        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+      } else {
+        console.log('startAbilityAsCaller success.');
+      }
+    })
+  }
+}
+
+```
+
+## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
+
+startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
+
+Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses a promise to return the result.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends extension {
+  onCreate(want: Want) {
+    // want contains the information about the caller who starts the application.
+    let localWant: Want = want;
+    localWant.bundleName = 'com.example.demo';
+    localWant.moduleName = 'entry';
+    localWant.abilityName = 'TestAbility';
+
+    let option: StartOptions = {
+      displayId: 0
+    }
+
+    // Start a new ability using the caller information.
+    this.context.startAbilityAsCaller(localWant, option)
+      .then(() => {
+        console.log('startAbilityAsCaller success.');
+      })
+      .catch((err: BusinessError) => {
+        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+      })
+  }
+}
+
+```
 
 ## ServiceExtensionContext.stopServiceExtensionAbility
 
@@ -769,14 +1032,17 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     deviceId: '',
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
   };
 
   try {
-    this.context.stopServiceExtensionAbility(want, (error) => {
+    this.context.stopServiceExtensionAbility(want, (error: BusinessError) => {
       if (error.code) {
         // Process service logic errors.
         console.error('stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
@@ -831,7 +1097,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     deviceId: '',
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
@@ -839,11 +1108,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
   try {
     this.context.stopServiceExtensionAbility(want)
-      .then((data) => {
+      .then(() => {
         // Carry out normal service processing.
         console.log('stopServiceExtensionAbility succeed');
       })
-      .catch((error) => {
+      .catch((error: BusinessError) => {
         // Process service logic errors.
         console.error('stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
       });
@@ -895,7 +1164,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     deviceId: '',
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
@@ -903,7 +1175,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   let accountId = 100;
 
   try {
-    this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
+    this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error: BusinessError) => {
       if (error.code) {
         // Process service logic errors.
         console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code, error.message: ${error.message}');
@@ -965,7 +1237,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     deviceId: '',
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
@@ -974,11 +1249,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
-      .then((data) => {
+      .then(() => {
         // Carry out normal service processing.
         console.log('stopServiceExtensionAbilityWithAccount succeed');
       })
-      .catch((error) => {
+      .catch((error: BusinessError) => {
         // Process service logic errors.
         console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
       });
@@ -1020,7 +1295,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  this.context.terminateSelf((error) => {
+  import { BusinessError } from '@ohos.base';
+
+  this.context.terminateSelf((error: BusinessError) => {
     if (error.code) {
       // Process service logic errors.
       console.error('terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}');
@@ -1063,10 +1340,12 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  this.context.terminateSelf().then((data) => {
+  import { BusinessError } from '@ohos.base';
+
+  this.context.terminateSelf().then(() => {
     // Carry out normal service processing.
     console.log('terminateSelf succeed');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     // Process service logic errors.
     console.error('terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}');
   });
@@ -1115,20 +1394,24 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+  import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     bundleName: 'com.example.myapp',
     abilityName: 'MyAbility'
   };
-  let options = {
-    onConnect(elementName, remote) { 
+  let options: common.ConnectOptions = {
+    onConnect(elementName, remote) {
       commRemote = remote;
-      console.log('----------- onConnect -----------'); 
+      console.log('----------- onConnect -----------');
     },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.error('----------- onFailed -----------') }
   };
-
-  let connection = null;
+  let connection: number;
   try {
     connection = this.context.connectServiceExtensionAbility(want, options);
   } catch (paramError) {
@@ -1183,13 +1466,18 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+  import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     deviceId: '',
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
   };
   let accountId = 100;
-  let options = {
+  let options: common.ConnectOptions = {
     onConnect(elementName, remote) { 
       commRemote = remote;
       console.log('----------- onConnect -----------');
@@ -1197,8 +1485,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------'); },
     onFailed(code) { console.log('----------- onFailed -----------'); }
   };
-
-  let connection = null;
+  let connection: number;
   try {
     connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
   } catch (paramError) {
@@ -1236,11 +1523,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   // connection is the return value of connectServiceExtensionAbility.
   let connection = 1;
 
   try {
-    this.context.disconnectServiceExtensionAbility(connection, (error) => {
+    this.context.disconnectServiceExtensionAbility(connection, (error: BusinessError) => {
       commRemote = null;
       if (error.code) {
         // Process service logic errors.
@@ -1291,17 +1580,19 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   // connection is the return value of connectServiceExtensionAbility.
   let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection)
-      .then((data) => {
+      .then(() => {
         commRemote = null;
         // Carry out normal service processing.
         console.log('disconnectServiceExtensionAbility succeed');
       })
-      .catch((error) => {
+      .catch((error: BusinessError) => {
         commRemote = null;
         // Process service logic errors.
         console.error('disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
@@ -1324,7 +1615,7 @@ Observe the following when using this API:
  - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - The rules for using this API in the same-device and cross-device scenarios are different. For details, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+**Required permissions**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1363,10 +1654,14 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   Start an ability in the background.
 
   ```ts
-  let caller;
+  import { Caller } from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let caller: Caller;
 
   // Start an ability in the background by not passing parameters.
-  let wantBackground = {
+  let wantBackground: Want = {
       bundleName: 'com.example.myservice',
       moduleName: 'entry',
       abilityName: 'EntryAbility',
@@ -1375,11 +1670,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
   try {
     this.context.startAbilityByCall(wantBackground)
-      .then((obj) => {
+      .then((obj: Caller) => {
         // Carry out normal service processing.
         caller = obj;
         console.log('startAbilityByCall succeed');
-      }).catch((error) => {
+      }).catch((error: BusinessError) => {
         // Process service logic errors.
         console.error('startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}');
       });
@@ -1392,10 +1687,14 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   Start an ability in the foreground.
 
   ```ts
-  let caller;
+  import { Caller } from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let caller: Caller;
 
   // Start an ability in the foreground with 'ohos.aafwk.param.callAbilityToForeground' in parameters set to true.
-  let wantForeground = {
+  let wantForeground: Want = {
       bundleName: 'com.example.myservice',
       moduleName: 'entry',
       abilityName: 'EntryAbility',
@@ -1407,11 +1706,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
   try {
     this.context.startAbilityByCall(wantForeground)
-      .then((obj) => {
+      .then((obj: Caller) => {
         // Carry out normal service processing.
         caller = obj;
         console.log('startAbilityByCall succeed');
-      }).catch((error) => {
+      }).catch((error: BusinessError) => {
         // Process service logic errors.
         console.error('startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}');
       });
@@ -1465,13 +1764,16 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
 
 try {
-  this.context.startRecentAbility(want, (err) => {
+  this.context.startRecentAbility(want, (err: BusinessError) => {
     if (err.code) {
       // Process service logic errors.
       console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -1482,7 +1784,9 @@ try {
   });
 } catch (err) {
   // Process input parameter errors.
-  console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 ## ServiceExtensionContext.startRecentAbility
@@ -1532,17 +1836,21 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
-let options = {
+let options: StartOptions = {
   windowMode: 0
 };
 
 try {
-  this.context.startRecentAbility(want, options, (err) => {
+  this.context.startRecentAbility(want, options, (err: BusinessError) => {
     if (err.code) {
       // Process service logic errors.
       console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -1553,7 +1861,9 @@ try {
   });
 } catch (err) {
   // Process input parameter errors.
-  console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 ## ServiceExtensionContext.startRecentAbility
@@ -1602,11 +1912,15 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
-let options = {
+let options: StartOptions = {
   windowMode: 0,
 };
 
@@ -1616,13 +1930,15 @@ try {
       // Carry out normal service processing.
       console.info('startRecentAbility succeed');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // Process service logic errors.
       console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
     });
 } catch (err) {
   // Process input parameter errors.
-  console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1638,7 +1954,7 @@ Observe the following when using this API:
  - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - The rules for using this API in the same-device and cross-device scenarios are different. For details, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1678,13 +1994,16 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let caller;
+  import { Caller } from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import { BusinessError } from '@ohos.base';
 
+  let caller: Caller;
   // ID of a system account. The value -1 indicates the current user.
   let accountId = -1;
-
   // Specify the ability to start.
-  let want = {
+  let want: Want = {
       bundleName: 'com.acts.actscalleeabilityrely',
       moduleName: 'entry',
       abilityName: 'EntryAbility',
@@ -1697,11 +2016,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
   try {
     this.context.startAbilityByCallWithAccount(want, accountId)
-      .then((obj) => {
+      .then((obj: Caller) => {
         // Carry out normal service processing.
         caller = obj;
         console.log('startAbilityByCallWithAccount succeed');
-      }).catch((error) => {
+      }).catch((error: BusinessError) => {
         // Process service logic errors.
         console.error('startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
       });

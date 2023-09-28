@@ -1,13 +1,14 @@
 # @ohos.wifiManager (WLAN)
-The **WLAN** module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with other devices over WLAN.
+The **WLAN** module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with devices over WLAN.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```js
+```ts
 import wifiManager from '@ohos.wifiManager';
 ```
 
@@ -15,7 +16,7 @@ import wifiManager from '@ohos.wifiManager';
 
 enableWifi(): void
 
-Enables WLAN.
+Enables WLAN. This API is an asynchronous interface. The **wifiStateChange** callback must be registered and listened for.
 
 **System API**: This is a system API.
 
@@ -28,12 +29,13 @@ Enables WLAN.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
+| 2501003  | Failed to disable Wi-Fi.|
 
 **Example**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -47,7 +49,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 disableWifi(): void
 
-Disables WLAN.
+Disables WLAN. This API is an asynchronous interface. The **wifiStateChange** callback must be registered and listened for.
 
 **System API**: This is a system API.
 
@@ -60,12 +62,13 @@ Disables WLAN.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
+| 2501004  | Failed to enable Wi-Fi.|
 
 **Example**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -87,21 +90,21 @@ Checks whether WLAN is enabled.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -118,7 +121,11 @@ scan(): void
 
 Starts a scan for WLAN.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**:
+
+API version 9: ohos.permission.SET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later: ohos.permission.SET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -127,12 +134,12 @@ Starts a scan for WLAN.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -159,12 +166,12 @@ Starts a scan for WLAN.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -173,7 +180,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
-## wifiManager.getScanResults<sup>10+</sup>
+## wifiManager.getScanResults<sup>9+</sup>
 
 getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 
@@ -187,7 +194,7 @@ Obtains the scan result. This API uses a promise to return the result.
 
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the Returns the hotspots detected.|
+| Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the hotspots detected.|
 
 **Error codes**
 
@@ -197,7 +204,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 | -------- | -------- |
 | 2501000  | Operation failed.|
 
-## wifiManager.getScanResults<sup>10+</sup>
+## wifiManager.getScanResults<sup>9+</sup>
 
 getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
@@ -211,7 +218,7 @@ Obtains the scan result. This API uses an asynchronous callback to return the re
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the detected hotspots. Otherwise, **err** is a non-zero value and **data** is empty.|
-  | Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | Returns the hotspots detected.|
+| Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | Hotspots detected.|
 
 **Error codes**
 
@@ -222,7 +229,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
   wifiManager.getScanResults((err, result) => {
@@ -231,9 +238,9 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
           return;
       }
   
-      var len = Object.keys(result).length;
+      let len = result.length;
       console.log("wifi received scan info: " + len);
-      for (var i = 0; i < len; ++i) {
+      for (let i = 0; i < len; ++i) {
           console.info("ssid: " + result[i].ssid);
           console.info("bssid: " + result[i].bssid);
           console.info("capabilities: " + result[i].capabilities);
@@ -247,9 +254,9 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
   });
   
   wifiManager.getScanResults().then(result => {
-      var len = Object.keys(result).length;
+      let len = result.length;
       console.log("wifi received scan info: " + len);
-      for (var i = 0; i < len; ++i) {
+      for (let i = 0; i < len; ++i) {
           console.info("ssid: " + result[i].ssid);
           console.info("bssid: " + result[i].bssid);
           console.info("capabilities: " + result[i].capabilities);
@@ -263,7 +270,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
   });
 ```
 
-## wifiManager.getScanResultsSync<sup>10+</sup>
+## wifiManager.getScanResultsSync<sup>9+</sup>
 
 getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
 
@@ -284,21 +291,21 @@ Obtains the scan result. This API returns the result synchronously.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
 		let scanInfoList = wifiManager.getScanResultsSync();
 		console.info("scanInfoList:" + JSON.stringify(scanInfoList));
-		let len = Object.keys(scanInfoList).length;
+		let len = scanInfoList.length;
         console.log("wifi received scan info: " + len);
 		if(len > 0){
-			for (var i = 0; i < len; ++i) {
+			for (let i = 0; i < len; ++i) {
 				console.info("ssid: " + scanInfoList[i].ssid);
 				console.info("bssid: " + scanInfoList[i].bssid);
 				console.info("capabilities: " + scanInfoList[i].capabilities);
@@ -328,30 +335,30 @@ Obtains the scanning result.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | Returns the hotspots detected.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | Hotspots detected. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **bssid** in the return value is a real device address; otherwise, **bssid** is a random device address.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
 		let scanInfoList = wifiManager.getScanInfoList();
 		console.info("scanInfoList:" + JSON.stringify(scanInfoList));
-		let len = Object.keys(scanInfoList).length;
+		let len = scanInfoList.length;
         console.log("wifi received scan info: " + len);
 		if(len > 0){
-			for (var i = 0; i < len; ++i) {
+			for (let i = 0; i < len; ++i) {
 				console.info("ssid: " + scanInfoList[i].ssid);
 				console.info("bssid: " + scanInfoList[i].bssid);
 				console.info("capabilities: " + scanInfoList[i].capabilities);
@@ -507,16 +514,15 @@ Sets whether scan is always allowed.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
 		let isScanAlwaysAllowed = true;
 		wifiManager.setScanAlwaysAllowed(isScanAlwaysAllowed);
-		});	
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -530,7 +536,7 @@ Obtains whether scan is always allowed.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -545,17 +551,17 @@ Obtains whether scan is always allowed.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
 		let isScanAlwaysAllowed = wifiManager.getScanAlwaysAllowed();
-		console.info("isScanAlwaysAllowed:" + ret);
+		console.info("isScanAlwaysAllowed:" + isScanAlwaysAllowed);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -575,14 +581,14 @@ Adds network configuration. This API uses a promise to return the result.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
+| **Type**| **Description**|
+| -------- | -------- |
 | Promise&lt;number&gt; | Promise used to return the ID of the added network configuration. If **-1** is returned, the network configuration fails to be added.|
 
 **Error codes**
@@ -590,16 +596,16 @@ Adds network configuration. This API uses a promise to return the result.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 0
@@ -630,10 +636,10 @@ Represents the WLAN configuration.
 | creatorUid | number | Yes| No| ID of the creator.<br>**System API**: This is a system API.|
 | disableReason | number | Yes| No| Reason for disabling WLAN.<br>**System API**: This is a system API.|
 | netId | number | Yes| No| Network ID.<br>**System API**: This is a system API.|
-| randomMacType | number | Yes| No| Random MAC type.<br>**System API**: This is a system API.|
-| randomMacAddr | string | Yes| No| Random MAC address.<br>**System API**: This is a system API.|
+| randomMacType | number | Yes| No| Type of the MAC address. <br>The value **0** indicates random MAC address, and **1** indicates device MAC address.<br>**System API**: This is a system API.|
+| randomMacAddr | string | Yes| No| MAC address.<br>**System API**: This is a system API.|
 | ipType | [IpType](#iptype9) | Yes| No| IP address type.<br>**System API**: This is a system API.|
-| staticIp | [IpConfig](#ipconfig9) | Yes| No| Static IP address configuration.<br>**System API**: This is a system API.|
+| staticIp | [IpConfig](#ipconfig9) | Yes| No| Static IP address information.<br>**System API**: This is a system API.|
 | eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | Yes| No| EAP configuration.|
 | proxyConfig<sup>10+</sup> | WifiProxyConfig | Yes| No| Proxy configuration.<br>**System API**: This is a system API.|
 
@@ -683,9 +689,9 @@ Represents EAP configuration information.
 | identity | string | Yes| No| Identity Information.|
 | anonymousIdentity | string | Yes| No| Anonymous identity.|
 | password | string | Yes| No| Password.|
-| caCertAliases | string | Yes| No| CA certificate alias.|
+| caCertAlias | string | Yes| No| CA certificate alias.|
 | caPath | string | Yes| No| CA certificate path.|
-| clientCertAliases | string | Yes| No| Client certificate alias.|
+| clientCertAlias | string | Yes| No| Client certificate alias.|
 | certEntry | Uint8Array | Yes| Yes| CA certificate content.|
 | certPassword | string | Yes| Yes| CA certificate password.|
 | altSubjectMatch | string | Yes| No| A string to match the alternate subject.|
@@ -776,26 +782,26 @@ Adds network configuration. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 0
@@ -820,30 +826,30 @@ Adds the configuration of a candidate network. This API uses a promise to return
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the network configuration ID.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the network configuration ID.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-`````js
+`````ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 0
@@ -868,25 +874,25 @@ Adds the configuration of a candidate network. This API uses an asynchronous cal
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-`````js
+`````ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 0
@@ -911,27 +917,27 @@ Removes the configuration of a candidate network. This API uses a promise to ret
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | networkId | number | Yes| ID of the network configuration to remove.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| networkId | number | Yes| ID of the network configuration to remove.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -956,21 +962,21 @@ Removes the configuration of a candidate network. This API uses an asynchronous 
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | networkId | number | Yes| ID of the network configuration to remove.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, the value of **err** is **0**. If **err** is not **0**, an error has occurred.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| networkId | number | Yes| ID of the network configuration to remove.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0**. If **err** is not **0**, an error has occurred.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -989,36 +995,40 @@ getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 
 Obtains candidate network configuration.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Candidate network configuration obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Candidate network configuration obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
-| 2501000  | Operation failed.| 
+| -------- | -------- |
+| 2501000  | Operation failed.|
 
 **Example**
 
-`````js
+`````ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
 		let configs = wifiManager.getCandidateConfigs();
 		console.info("configs:" + JSON.stringify(configs));
-		let len = Object.keys(configs).length;
+		let len = configs.length;
         console.log("result len: " + len);
 		if(len > 0){
-			for (var i = 0; i < len; ++i) {
+			for (let i = 0; i < len; ++i) {
 				console.info("ssid: " + configs[i].ssid);
 				console.info("bssid: " + configs[i].bssid);
 			}
@@ -1041,21 +1051,21 @@ Connects to a candidate network added by the application. If the device is alrea
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | networkId | number | Yes| ID of the candidate network configuration.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| networkId | number | Yes| ID of the candidate network configuration.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1082,22 +1092,22 @@ Connects to the specified network. If the device is already connected to a hotsp
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | networkId | number | Yes| Network configuration ID.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| networkId | number | Yes| Network configuration ID.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
 **Example**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1123,25 +1133,25 @@ Connects to the specified network. If the device is already connected to a hotsp
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| Configuration of the WLAN to connect. |
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| Configuration of the WLAN to connect. The default **bssidType** is random device address.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 3
@@ -1171,11 +1181,11 @@ Disconnects the network.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1197,27 +1207,27 @@ Obtains the WLAN signal level.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | rssi | number | Yes| RSSI of the hotspot, in dBm.|
-  | band | number | Yes| Frequency band of the WLAN AP.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| rssi | number | Yes| RSSI of the hotspot, in dBm.|
+| band | number | Yes| Frequency band of the WLAN AP.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | number | Signal level obtained. The value range is [0, 4].|
+| **Type**| **Description**|
+| -------- | -------- |
+| number | Signal level obtained. The value range is [0, 4].|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1237,14 +1247,14 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
 Obtains WLAN connection information. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_LOCAL_MAC (if **macAddress** needs to be obtained; otherwise, **macAddress** is an empty string.)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
+| Type| Description|
+| -------- | -------- |
 | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise used to return the WLAN connection information obtained.|
 
 **Error codes**
@@ -1252,7 +1262,7 @@ Obtains WLAN connection information. This API uses a promise to return the resul
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
@@ -1262,27 +1272,27 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 Obtains WLAN connection information. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_LOCAL_MAC (if **macAddress** needs to be obtained; otherwise, **macAddress** is an empty string.)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the WLAN connection information obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the WLAN connection information obtained. If **err** is not **0**, an error has occurred.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
   wifiManager.getLinkedInfo((err, data) => {
@@ -1295,7 +1305,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
   
   wifiManager.getLinkedInfo().then(data => {
       console.info("get wifi linked info: " + JSON.stringify(data));
-  }).catch(error => {
+  }).catch((error:number) => {
       console.info("get linked info error");
   });
 ```
@@ -1323,7 +1333,7 @@ Represents the WLAN connection information.
 | isRestricted | boolean | Yes| No| Whether to restrict data volume at the WLAN AP.|
 | chload | number | Yes| No| Channel load. A larger value indicates a higher load.<br>**System API**: This is a system API.|
 | snr | number | Yes| No| Signal-to-noise ratio (SNR).<br>**System API**: This is a system API.|
-| macType | number | Yes| No| MAC address type.|
+| macType | number | Yes| No| MAC address type. <br>The value **0** indicates random MAC address, and **1** indicates device MAC address.|
 | macAddress | string | Yes| No| MAC address of the device.|
 | ipAddress | number | Yes| No| IP address of the device that sets up the WLAN connection.|
 | suppState | [SuppState](#suppstate) | Yes| No| Supplicant state.<br>**System API**: This is a system API.|
@@ -1384,20 +1394,20 @@ Checks whether the WLAN is connected.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the WLAN is connected; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the WLAN is connected; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1423,9 +1433,9 @@ Obtains the features supported by this device.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | number | Feature value. |
+| **Type**| **Description**|
+| -------- | -------- |
+| number | Feature value. |
 
 **Feature IDs**
 
@@ -1447,11 +1457,11 @@ Obtains the features supported by this device.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2401000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1476,26 +1486,26 @@ Checks whether the device supports the specified WLAN feature.
 **Parameters**
 
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | featureId | number | Yes| Feature ID.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| featureId | number | Yes| Feature ID.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2401000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1522,20 +1532,21 @@ Obtains the device MAC address.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | string[] | MAC address obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| string[] | MAC address obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
+| 2501001  | wifi is closed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1559,20 +1570,20 @@ Obtains IP information.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | [IpInfo](#ipinfo9) | IP information obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| [IpInfo](#ipinfo9) | IP information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1621,11 +1632,11 @@ Obtains IP information.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1664,20 +1675,20 @@ Obtains the country code.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | string | Country code obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| string | Country code obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2401000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1705,12 +1716,12 @@ Re-associates with the network.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1737,12 +1748,12 @@ Reconnects to the network.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1760,26 +1771,30 @@ Obtains network configuration.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, ohos.permission.APPROXIMATELY_LOCATION, and ohos.permission.GET_WIFI_CONFIG
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, ohos.permission.APPROXIMATELY_LOCATION, and ohos.permission.GET_WIFI_CONFIG
+
+API version 10 and later: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Array of network configuration obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Array of network configuration obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1804,36 +1819,36 @@ Updates network configuration.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| New WLAN configuration.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
+| **Type**| **Description**|
+| -------- | -------- |
+| number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 3
 		}
 		let ret = wifiManager.updateNetwork(config);
-		console.error("ret:" + ret);		
+		console.info("ret:" + ret);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -1841,7 +1856,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 ## wifiManager.disableNetwork<sup>9+</sup>
 
-disableNetwork(networkId: number): void
+disableNetwork(netId: number): void
 
 Disables network configuration.
 
@@ -1853,8 +1868,8 @@ Disables network configuration.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
 | netId | number | Yes| ID of the network configuration to disable.|
 
 **Error codes**
@@ -1862,11 +1877,11 @@ Disables network configuration.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1894,11 +1909,11 @@ Removes the configuration of all networks.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1910,7 +1925,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 ## wifiManager.removeDevice<sup>9+</sup>
 
-removeDevice(networkId: number): void
+removeDevice(id: number): void
 
 Removes the specified network configuration.
 
@@ -1922,20 +1937,20 @@ Removes the specified network configuration.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | networkId | number | Yes| ID of the network configuration to remove.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| id | number | Yes| ID of the network configuration to remove.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1958,26 +1973,26 @@ Checks whether the current frequency band is supported.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | bandType | WifiBandType | Yes| Wi-Fi band type.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| bandType | WifiBandType | Yes| Wi-Fi band type.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2003,20 +2018,20 @@ Obtains the list of 5 GHz channels supported by this device.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | &nbsp;Array&lt;number&gt; | List of 5 GHz channels supported by the device.|
+| **Type**| **Description**|
+| -------- | -------- |
+| &nbsp;Array&lt;number&gt; | List of 5 GHz channels supported by the device.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2043,8 +2058,8 @@ Obtains the reason of the latest disconnection.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 2501000  | Operation failed.|
 
 **Return value**
 
@@ -2053,7 +2068,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 | DisconnectedReason | Returns the reason of the latest disconnection obtained.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2082,7 +2097,7 @@ Enumerates the Wi-Fi disconnection reasons.
 
 enableHotspot(): void
 
-Enables this hotspot.
+Enables this hotspot. This API is an asynchronous interface. The **hotspotStateChange** callback must be registered and listened for.
 
 **System API**: This is a system API.
 
@@ -2095,11 +2110,11 @@ Enables this hotspot.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2601000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2113,7 +2128,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 disableHotspot(): void
 
-Disables this hotspot.
+Disables this hotspot. This API is an asynchronous interface. The **hotspotStateChange** callback must be registered and listened for.
 
 **System API**: This is a system API.
 
@@ -2126,11 +2141,11 @@ Disables this hotspot.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2601000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2154,20 +2169,20 @@ Checks whether the hotspot supports dual band.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the hotspot supports dual band; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the hotspot supports dual band; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2601000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2192,20 +2207,20 @@ Checks whether this hotspot is active.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2601000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2230,24 +2245,24 @@ Sets hotspot configuration.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [HotspotConfig](#hotspotconfig9) | Yes| Hotspot configuration to set.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [HotspotConfig](#hotspotconfig9) | Yes| Hotspot configuration to set.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2601000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.HotspotConfig = {
 			ssid: "****",
 			securityType: 3,
 			band: 0,
@@ -2255,7 +2270,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 			preSharedKey: "****",
 			maxConn: 0
 		}
-		let ret = wifiManager.setHotspotConfig();
+		let ret = wifiManager.setHotspotConfig(config);
 		console.info("result:" + ret);		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -2293,20 +2308,20 @@ Obtains hotspot configuration.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | [HotspotConfig](#hotspotconfig9) | Hotspot configuration obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| [HotspotConfig](#hotspotconfig9) | Hotspot configuration obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2601000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2325,26 +2340,30 @@ Obtains information about the connected stations.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION,  ohos.permission.APPROXIMATELY_LOCATION, and ohos.permission.MANAGE_WIFI_HOTSPOT (available only to system applications)
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, ohos.permission.APPROXIMATELY_LOCATION, and ohos.permission.MANAGE_WIFI_HOTSPOT (for system applications only)
+
+API version 10 and later: ohos.permission.GET_WIFI_INFO and ohos.permission.MANAGE_WIFI_HOTSPOT (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt; | Connected stations obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt; | Connected stations obtained. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **macAddress** in the return value is a real MAC address; otherwise, **macAddress** is a random MAC address.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2601000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2383,8 +2402,8 @@ Obtains P2P link information. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
+| Type| Description|
+| -------- | -------- |
 | Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Promise used to return the P2P link information obtained.|
 
 **Error codes**
@@ -2392,11 +2411,11 @@ Obtains P2P link information. This API uses a promise to return the result.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	wifiManager.getP2pLinkedInfo((err, data) => {
@@ -2450,64 +2469,72 @@ Obtains P2P link information. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the P2P link information. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the P2P link information. If **err** is not **0**, an error has occurred.|
 
 
-## wifiManager.getCurrentP2pGroup<sup>9+</sup>
+## wifiManager.getCurrentGroup<sup>9+</sup>
 
-getCurrentP2pGroup(): Promise&lt;WifiP2pGroupInfo&gt;
+getCurrentGroup(): Promise&lt;WifiP2pGroupInfo&gt;
 
 Obtains the current P2P group information. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-| Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Promise used to return the P2P group information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Promise used to return the P2P group information obtained. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
-## wifiManager.getCurrentP2pGroup<sup>9+</sup>
+## wifiManager.getCurrentGroup<sup>9+</sup>
 
-getCurrentP2pGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
+getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 
 Obtains the current P2P group information. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
-	wifiManager.getCurrentP2pGroup((err, data) => {
+	wifiManager.getCurrentGroup((err, data) => {
     if (err) {
         console.error("get current P2P group error");
         return;
@@ -2515,7 +2542,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 		console.info("get current P2P group: " + JSON.stringify(data));
 	});
 
-	wifiManager.getCurrentP2pGroup().then(data => {
+	wifiManager.getCurrentGroup().then(data => {
 		console.info("get current P2P group: " + JSON.stringify(data));
 	});
 ```
@@ -2526,22 +2553,26 @@ getP2pPeerDevices(): Promise&lt;WifiP2pDevice[]&gt;
 
 Obtains the peer device list in the P2P connection. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Promise used to return the peer device list.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Promise used to return the peer device list. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 ## wifiManager.getP2pPeerDevices<sup>9+</sup>
@@ -2550,26 +2581,30 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 
 Obtains the peer device list in the P2P connection. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If **err** is not **0**, an error has occurred. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	wifiManager.getP2pPeerDevices((err, data) => {
@@ -2628,16 +2663,16 @@ Obtains the local device information in the P2P connection. This API uses a prom
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | Promise used to return the local device information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | Promise used to return the local device information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 ## wifiManager.getP2pLocalDevice<sup>9+</sup>
@@ -2652,18 +2687,18 @@ Obtains the local device information in the P2P connection. This API uses an asy
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the local device information obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the local device information obtained. If **err** is not **0**, an error has occurred.|
 
 **Error codes**
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	wifiManager.getP2pLocalDevice((err, data) => {
@@ -2691,31 +2726,31 @@ Creates a P2P group.
 
 **Parameters**
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiP2PConfig](#wifip2pconfig9) | Yes| Group configuration.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiP2PConfig](#wifip2pconfig9) | Yes| Group configuration. The default **DeviceAddressType** is random device address.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiP2PConfig = {
 			deviceAddress: "****",
 			netId: 0,
 			passphrase: "*****",
 			groupName: "****",
 			goBand: 0
 		}
-		wifiManager.createGroup(config);	
+		wifiManager.createP2pGroup(config);	
 		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -2766,11 +2801,11 @@ Removes this P2P group.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2786,29 +2821,33 @@ p2pConnect(config: WifiP2PConfig): void
 
 Sets up a P2P connection.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiP2PConfig](#wifip2pconfig9) | Yes| P2P group configuration.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiP2PConfig](#wifip2pconfig9) | Yes| P2P group configuration. The default **DeviceAddressType** is random device address.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pConnectionChangeFunc = result => {
+  let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("p2p connection change receive event: " + JSON.stringify(result));
       wifiManager.getP2pLinkedInfo((err, data) => {
           if (err) {
@@ -2820,12 +2859,12 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
   }
   wifiManager.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
   
-  var recvP2pDeviceChangeFunc = result => {
+  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("p2p device change receive event: " + JSON.stringify(result));
   }
   wifiManager.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
   
-  var recvP2pPeerDeviceChangeFunc = result => {
+  let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("p2p peer device change receive event: " + JSON.stringify(result));
       wifiManager.getP2pPeerDevices((err, data) => {
           if (err) {
@@ -2833,16 +2872,16 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
               return;
           }
           console.info("get peer devices: " + JSON.stringify(data));
-          var len = Object.keys(data).length;
-          for (var i = 0; i < len; ++i) {
+          let len = data.length;
+          for (let i = 0; i < len; ++i) {
               if (data[i].deviceName === "my_test_device") {
                   console.info("p2p connect to test device: " + data[i].deviceAddress);
-                  var config = {
-                      "deviceAddress":data[i].deviceAddress,
-                      "netId":-2,
-                      "passphrase":"",
-                      "groupName":"",
-                      "goBand":0,
+                  let config:wifiManager.WifiP2PConfig = {
+                      deviceAddress:data[i].deviceAddress,
+                      netId:-2,
+                      passphrase:"",
+                      groupName:"",
+                      goBand:0,
                   }
                   wifiManager.p2pConnect(config);
               }
@@ -2851,10 +2890,10 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
   }
   wifiManager.on("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
   
-  var recvP2pPersistentGroupChangeFunc = () => {
+  let recvP2pPersistentGroupChangeFunc = () => {
       console.info("p2p persistent group change receive event");
   
-      wifiManager.getCurrentP2pGroup((err, data) => {
+      wifiManager.getCurrentGroup((err, data) => {
           if (err) {
               console.error('failed to get current group: ' + JSON.stringify(err));
               return;
@@ -2864,11 +2903,11 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
   }
   wifiManager.on("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
   
-  setTimeout(function() {wifiManager.off("p2pConnectionChange", recvP2pConnectionChangeFunc);}, 125 * 1000);
-  setTimeout(function() {wifiManager.off("p2pDeviceChange", recvP2pDeviceChangeFunc);}, 125 * 1000);
-  setTimeout(function() {wifiManager.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);}, 125 * 1000);
-  setTimeout(function() {wifiManager.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);}, 125 * 1000);
-  console.info("start discover devices -> " + wifiManager.startDiscoverP2pDevices());
+  setTimeout(() => {wifiManager.off("p2pConnectionChange", recvP2pConnectionChangeFunc);}, 125 * 1000);
+  setTimeout(() =>  {wifiManager.off("p2pDeviceChange", recvP2pDeviceChangeFunc);}, 125 * 1000);
+  setTimeout(() =>  {wifiManager.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);}, 125 * 1000);
+  setTimeout(() =>  {wifiManager.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);}, 125 * 1000);
+  console.info("start discover devices -> " + wifiManager.startDiscoverDevices());
 ```
 
 ## wifiManager.p2pCancelConnect<sup>9+</sup>
@@ -2886,11 +2925,11 @@ Cancels this P2P connection.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2899,14 +2938,13 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
-
 ## wifiManager.startDiscoverDevices<sup>10+</sup>
 
 startDiscoverDevices(): void
 
 Starts to discover devices.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
@@ -2915,11 +2953,33 @@ Starts to discover devices.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
+| 2801000  | Operation failed.|
+
+## wifiManager.startDiscoverDevices<sup>9+</sup>
+
+startDiscoverDevices(): void
+
+Starts to discover devices.
+
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later : ohos.permission.GET_WIFI_INFO
+
+**System capability**: SystemCapability.Communication.WiFi.P2P
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2929,7 +2989,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 	}
 ```
 
-## wifiManager.stopDiscoverDevices<sup>10+</sup>
+## wifiManager.stopDiscoverDevices<sup>9+</sup>
 
 stopDiscoverDevices(): void
 
@@ -2944,11 +3004,11 @@ Stops discovering devices.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2973,20 +3033,20 @@ Deletes a persistent group.
 **Parameters**
 
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | netId | number | Yes| ID of the group to delete.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| netId | number | Yes| ID of the group to delete.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -3005,26 +3065,30 @@ Obtains information about all P2P groups. This API uses a promise to return the 
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&nbsp;&gt; | Promise used to return the group information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&nbsp;&gt; | Promise used to return the group information obtained. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	wifiManager.getP2pGroups((err, data) => {
@@ -3068,22 +3132,26 @@ Obtains information about all P2P groups. This API uses an asynchronous callback
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 ## wifiManager.setDeviceName<sup>9+</sup>
@@ -3100,20 +3168,20 @@ Sets the device name.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | devName | string | Yes| Device name to set.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| devName | string | Yes| Device name to set.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -3128,7 +3196,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
 
-Registers the WLAN state change events.
+Subscribes to WLAN state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3136,17 +3204,17 @@ Registers the WLAN state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN state.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **WLAN states** 
@@ -3163,7 +3231,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 
-Unregisters the WLAN state change events.
+Unsubscribes from WLAN state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3171,9 +3239,9 @@ Unregisters the WLAN state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiStateChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiStateChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the WLAN state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Error codes**
@@ -3181,14 +3249,14 @@ Unregisters the WLAN state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvPowerNotifyFunc = result => {
+  let recvPowerNotifyFunc = (result:number) => {
       console.info("Receive power state change event: " + result);
   }
   
@@ -3204,7 +3272,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 
-Registers the WLAN connection state change events.
+Subscribes to WLAN connection state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3212,10 +3280,10 @@ Registers the WLAN connection state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN connection state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiConnectionChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN connection state.|
 
 **WLAN connection states**
 
@@ -3229,14 +3297,14 @@ Registers the WLAN connection state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('wifiConnectionChange')<sup>9+</sup>
 
 off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 
-Unregisters the WLAN connection state change events.
+Unsubscribes from WLAN connection state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3244,9 +3312,9 @@ Unregisters the WLAN connection state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiConnectionChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the WLAN connection state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Error codes**
@@ -3254,14 +3322,14 @@ Unregisters the WLAN connection state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvWifiConnectionChangeFunc = result => {
+  let recvWifiConnectionChangeFunc = (result:number) => {
       console.info("Receive wifi connection change event: " + result);
   }
   
@@ -3276,7 +3344,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
 
-Registers the WLAN scan state change events.
+Subscribes to WLAN scan state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3284,10 +3352,10 @@ Registers the WLAN scan state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiScanStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN scan state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiScanStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN scan state.|
 
 **WLAN scan states**
 
@@ -3301,14 +3369,14 @@ Registers the WLAN scan state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('wifiScanStateChange')<sup>9+</sup>
 
 off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 
-Unregisters the WLAN scan state change events.
+Unsubscribes from WLAN scan state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3318,7 +3386,7 @@ Unregisters the WLAN scan state change events.
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **wifiScanStateChange**.|
+| type | string | Yes| Event type, which has a fixed value of **wifiScanStateChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the WLAN scan state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Error codes**
@@ -3326,14 +3394,14 @@ Unregisters the WLAN scan state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvWifiScanStateChangeFunc = result => {
+  let recvWifiScanStateChangeFunc = (result:number) => {
       console.info("Receive Wifi scan state change event: " + result);
   }
   
@@ -3348,7 +3416,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
 
-Registers the RSSI change events.
+Subscribes to RSSI changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3356,24 +3424,24 @@ Registers the RSSI change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiRssiChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the RSSI, in dBm.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiRssiChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the RSSI, in dBm.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('wifiRssiChange')<sup>9+</sup>
 
 off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 
-Unregisters the RSSI change events.
+Unsubscribes from RSSI changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3381,9 +3449,9 @@ Unregisters the RSSI change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiRssiChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiRssiChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the RSSI change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Error codes**
@@ -3391,14 +3459,14 @@ Unregisters the RSSI change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2501000  | Operation failed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvWifiRssiChangeFunc = result => {
+  let recvWifiRssiChangeFunc = (result:number) => {
       console.info("Receive wifi rssi change event: " + result);
   }
   
@@ -3408,12 +3476,146 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
   // Unregister an event.
   wifiManager.off("wifiRssiChange", recvWifiRssiChangeFunc);
 ```
+ ## wifiManager.on('streamChange')<sup>9+</sup>
+
+on(type: "streamChange", callback: Callback&lt;number&gt;): void
+
+Subscribes to Wi-Fi stream changes. This API is not supported in the current version, and error code 801 will be thrown.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **streamChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the stream change, which can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 2501000  | Operation failed.|
+
+## wifiManager.off('streamChange')<sup>9+</sup>
+
+off(type: "streamChange", callback?: Callback&lt;number&gt;): void
+
+Unsubscribes from Wi-Fi stream changes. This API is not supported in the current version, and error code 801 will be thrown.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **streamChange**.|
+| callback | Callback&lt;number&gt; | No| Callback for the stream change, which can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 2501000  | Operation failed.|
+
+**Example**
+```ts
+import wifi from '@ohos.wifi';
+
+let recvStreamChangeFunc = (result:number) => {
+    console.info("Receive stream change event: " + result);
+}
+
+// Register an event.
+wifi.on("streamChange", recvStreamChangeFunc);
+
+// Unregister an event.
+wifi.off("streamChange", recvStreamChangeFunc);
+
+```
+## wifiManager.on('deviceConfigChange')<sup>9+</sup>
+
+on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
+
+Subscribes to Wi-Fi device configuration changes.
+
+**Required permissions**: ohos.permission.GET_WIFI_INFO
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **deviceConfigChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the device configuration change, which can be any of the following values:<br>- **0**: device configuration added.<br>- **1**: device configuration changed.<br>- **2**: device configuration deleted.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 2501000  | Operation failed.|
+
+## wifiManager.off('deviceConfigChange')<sup>9+</sup>
+
+off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
+
+Unsubscribes from Wi-Fi device configuration changes.
+
+**Required permissions**: ohos.permission.GET_WIFI_INFO
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **deviceConfigChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback for the device configuration change, which can be any of the following values:<br>- **0**: device configuration added.<br>- **1**: device configuration changed.<br>- **2**: device configuration deleted.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 2501000  | Operation failed.|
+
+**Example**
+```ts
+import wifi from '@ohos.wifi';
+
+let recvDeviceConfigChangeFunc = (result:number) => {
+    console.info("Receive device config change event: " + result);
+}
+
+// Register an event.
+wifi.on("deviceConfigChange", recvDeviceConfigChangeFunc);
+
+// Unregister an event.
+wifi.off("deviceConfigChange", recvDeviceConfigChangeFunc);
+
+```
 
 ## wifiManager.on('hotspotStateChange')<sup>9+</sup>
 
 on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 
-Registers the hotspot state change events.
+Subscribes to hotspot state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3421,10 +3623,10 @@ Registers the hotspot state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **hotspotStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the hotspot state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **hotspotStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the hotspot state.|
 
 **Hotspot states**
 
@@ -3440,14 +3642,14 @@ Registers the hotspot state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2601000  | Operation failed.|
 
 ## wifiManager.off('hotspotStateChange')<sup>9+</sup>
 
 off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 
-Unregisters the hotspot state change events.
+Unsubscribes from hotspot state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3455,9 +3657,9 @@ Unregisters the hotspot state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **hotspotStateChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **hotspotStateChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the hotspot state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Error codes**
@@ -3465,14 +3667,14 @@ Unregisters the hotspot state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2601000  | Operation failed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvHotspotStateChangeFunc = result => {
+  let recvHotspotStateChangeFunc = (result:number) => {
       console.info("Receive hotspot state change event: " + result);
   }
   
@@ -3483,11 +3685,151 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
   wifiManager.off("hotspotStateChange", recvHotspotStateChangeFunc);
 ```
 
+## wifiManager.on('hotspotStaJoin')<sup>9+</sup>
+
+on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
+
+Subscribes to the connection of an STA to a Wi-Fi hotspot.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **hotspotStaJoin**.|
+| callback | Callback&lt;StationInfo&gt; | Yes| Callback invoked immediately after an STA is connected to a Wi-Fi hotspot.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 2501000  | Operation failed.|
+
+## wifiManager.off('hotspotStaJoin')<sup>9+</sup>
+
+off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
+
+Unsubscribes from the connection of an STA to a Wi-Fi hotspot.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **hotspotStaJoin**.|
+| callback | Callback&lt;StationInfo&gt; | No| Callback for the connection of an STA to a Wi-Fi hotspot.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 2501000  | Operation failed.|
+
+**Example**
+```ts
+import wifi from '@ohos.wifi';
+
+let recvHotspotStaJoinFunc = (result:number) => {
+    console.info("Receive hotspot sta join event: " + result);
+}
+
+// Register an event.
+wifi.on("hotspotStaJoin", recvHotspotStaJoinFunc);
+
+// Unregister an event.
+wifi.off("hotspotStaJoin", recvHotspotStaJoinFunc);
+
+```
+
+## wifiManager.on('hotspotStaLeave')<sup>9+</sup>
+
+on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
+
+Subscribes to the disconnection of an STA from a Wi-Fi hotspot.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
+  | callback | Callback&lt;StationInf]&gt; | Yes| Callback invoked immediately after an STA is disconnected from a Wi-Fi hotspot.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 2501000  | Operation failed.|
+
+## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
+
+off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
+
+Unsubscribes from the disconnection of an STA from a Wi-Fi hotspot.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
+| callback | Callback&lt;StationInf]&gt; | Yes| Callback for the disconnection of an STA from a Wi-Fi hotspot.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 2501000  | Operation failed.|
+
+**Example**
+```ts
+import wifi from '@ohos.wifi';
+
+let recvHotspotStaLeaveFunc = (result:number) => {
+    console.info("Receive hotspot sta leave event: " + result);
+}
+
+// Register an event.
+wifi.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
+
+// Unregister an event.
+wifi.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
+
+```
+
 ## wifiManager.on('p2pStateChange')<sup>9+</sup>
 
 on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
 
-Registers the P2P state change events.
+Subscribes to P2P state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3495,10 +3837,10 @@ Registers the P2P state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P state change.|
 
 **P2P states**
 
@@ -3515,14 +3857,14 @@ Registers the P2P state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 ## wifiManager.off('p2pStateChange')<sup>9+</sup>
 
 off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 
-Unregisters the P2P state change events.
+Unsubscribes from P2P state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3530,9 +3872,9 @@ Unregisters the P2P state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pStateChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pStateChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the P2P state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Error codes**
@@ -3540,14 +3882,14 @@ Unregisters the P2P state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pStateChangeFunc = result => {
+  let recvP2pStateChangeFunc = (result:number) => {
       console.info("Receive p2p state change event: " + result);
   }
   
@@ -3562,7 +3904,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
-Registers the P2P connection state change events.
+Subscribes to P2P connection state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3570,24 +3912,24 @@ Registers the P2P connection state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
-| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Yes| Callback invoked to return the P2P connection state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pConnectionChange**.|
+| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Yes| Callback invoked to return the P2P connection state change.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 ## wifiManager.off('p2pConnectionChange')<sup>9+</sup>
 
 off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
-Unregisters the P2P connection state change events.
+Unsubscribes from P2P connection state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3595,9 +3937,9 @@ Unregisters the P2P connection state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pConnectionChange**.|
 | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | No| Callback for the P2P connection state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Error codes**
@@ -3605,14 +3947,14 @@ Unregisters the P2P connection state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pConnectionChangeFunc = result => {
+  let recvP2pConnectionChangeFunc = (result:number) => {
       console.info("Receive p2p connection change event: " + result);
   }
   
@@ -3627,42 +3969,50 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
 
-Registers the P2P device state change events.
+Subscribes to P2P device state changes.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
-| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the P2P device state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pDeviceChange**.|
+| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the device state change.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 ## wifiManager.off('p2pDeviceChange')<sup>9+</sup>
 
 off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
 
-Unregisters the P2P device state change events.
+Unsubscribes from P2P device state changes.
 
-**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**:
+
+API version 9: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later: No permission is required.
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pDeviceChange**.|
 | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | No| Callback for the P2P device state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Error codes**
@@ -3670,14 +4020,14 @@ Unregisters the P2P device state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pDeviceChangeFunc = result => {
+  let recvP2pDeviceChangeFunc = (result:number) => {
       console.info("Receive p2p device change event: " + result);
   }
   
@@ -3692,57 +4042,65 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
-Registers the P2P peer device state change events.
+Subscribes to P2P peer device state changes.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
-| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the P2P peer device state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pPeerDeviceChange**.|
+| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the P2P peer device state change. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 ## wifiManager.off('p2pPeerDeviceChange')<sup>9+</sup>
 
 off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): void
 
-Unregisters the P2P peer device state change events.
+Unsubscribes from P2P peer device state changes.
 
-**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**:
+
+API version 9: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later: No permission is required.
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
-| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | No| Callback for the P2P peer device state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pPeerDeviceChange**.|
+| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | No| Callback for the P2P peer device state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pPeerDeviceChangeFunc = result => {
+  let recvP2pPeerDeviceChangeFunc = (result:number) => {
       console.info("Receive p2p peer device change event: " + result);
   }
   
@@ -3757,7 +4115,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 
-Registers the P2P persistent group state change events.
+Subscribes to P2P persistent group state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3765,24 +4123,24 @@ Registers the P2P persistent group state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
-| callback | Callback&lt;void&gt; | Yes| Callback invoked to return the P2P persistent group state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pPersistentGroupChange**.|
+| callback | Callback&lt;void&gt; | Yes| Callback invoked to return the P2P persistent group state change.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 ## wifiManager.off('p2pPersistentGroupChange')<sup>9</sup>
 
 off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 
-Unregisters the P2P persistent group state change events.
+Unsubscribes from P2P persistent group state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3790,9 +4148,9 @@ Unregisters the P2P persistent group state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pPersistentGroupChange**.|
 | callback | Callback&lt;void&gt; | No| Callback for the P2P persistent group state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Error codes**
@@ -3800,14 +4158,14 @@ Unregisters the P2P persistent group state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pPersistentGroupChangeFunc = result => {
+  let recvP2pPersistentGroupChangeFunc = (result:number) => {
       console.info("Receive p2p persistent group change event: " + result);
   }
   
@@ -3822,7 +4180,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
 
-Registers the P2P device discovery state change events.
+Subscribes to P2P device discovery state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3830,10 +4188,10 @@ Registers the P2P device discovery state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P device discovery state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pDiscoveryChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P device discovery state change.|
 
 **P2P discovered device states**
 
@@ -3847,14 +4205,14 @@ Registers the P2P device discovery state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 ## wifiManager.off('p2pDiscoveryChange')<sup>9+</sup>
 
 off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 
-Unregisters the P2P device discovery state change events.
+Unsubscribes from P2P device discovery state changes.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -3862,9 +4220,9 @@ Unregisters the P2P device discovery state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pDiscoveryChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the P2P device discovery state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Error codes**
@@ -3872,14 +4230,14 @@ Unregisters the P2P device discovery state change events.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2801000  | Operation failed.|
 
 **Example**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pDiscoveryChangeFunc = result => {
+  let recvP2pDiscoveryChangeFunc = (result:number) => {
       console.info("Receive p2p discovery change event: " + result);
   }
   

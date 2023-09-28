@@ -12,6 +12,7 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+
   @Entry
   @Component
   struct WebComponent {
@@ -25,7 +26,9 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
              let fileList: Array<string> = [
                 'xxx/test.png',
              ]
-             event.result.handleFileList(fileList)
+             if (event) {
+                event.result.handleFileList(fileList)
+             }
              return true;
           })
       }

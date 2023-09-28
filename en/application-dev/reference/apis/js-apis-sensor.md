@@ -43,13 +43,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
-try {
-  sensor.on(sensor.SensorId.COLOR, function (data) {
-    console.info('Succeeded in getting the intensity of light: ' + data.lightIntensity);
-    console.info('Succeeded in getting the color temporature: ' + data.colorTemperature);
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+try{
+  sensor.on(sensor.SensorId.COLOR, (data: sensor.ColorResponse) => {
+    console.log('Succeeded in getting the intensity of light: ' + data.lightIntensity);
+    console.log('Succeeded in getting the color temperature: ' + data.colorTemperature);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -82,12 +86,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.SAR, function (data) {
+  sensor.on(sensor.SensorId.SAR, (data: sensor.SarResponse) => {
     console.info('Succeeded in getting specific absorption rate : ' + data.absorptionRatio);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -120,14 +128,18 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.ACCELEROMETER, function (data) {
+  sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -160,8 +172,11 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, function (data) {
+  sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
@@ -170,7 +185,8 @@ try {
     console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -201,12 +217,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.AMBIENT_LIGHT, function (data) {
+  sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data: sensor.LightResponse) => {
     console.info('Succeeded in getting the ambient light intensity: ' + data.intensity);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -237,12 +257,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, function (data) {
+  sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
     console.info('Succeeded in invoking on. Temperature: ' + data.temperature);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -273,12 +297,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.BAROMETER, function (data) {
+  sensor.on(sensor.SensorId.BAROMETER, (data: sensor.BarometerResponse) => {
     console.info('Succeeded in invoking on. Atmospheric pressure: ' + data.pressure);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -309,14 +337,18 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.GRAVITY, function (data) {
+  sensor.on(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -349,14 +381,18 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.GYROSCOPE, function (data) {
+  sensor.on(sensor.SensorId.GYROSCOPE, (data: sensor.GyroscopeResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -390,8 +426,11 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, function (data) {
+  sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
@@ -400,8 +439,10 @@ try {
     console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
+
 ```
 
 ###  HALL<sup>9+</sup>
@@ -431,13 +472,18 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.HALL, function (data) {
+  sensor.on(sensor.SensorId.HALL, (data: sensor.HallResponse) => {
     console.info('Succeeded in invoking on. Hall status: ' + data.status);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
+
 ```
 
 ###   HEART_RATE<sup>9+</sup>
@@ -469,12 +515,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.HEART_RATE, function (data) {
+  sensor.on(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
     console.info('Succeeded in invoking on. Heart rate: ' + data.heartRate);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -505,12 +555,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.HUMIDITY, function (data) {
+  sensor.on(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
     console.info('Succeeded in invoking on. Humidity: ' + data.humidity);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -544,14 +598,18 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, function (data) {
+  sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, (data: sensor.LinearAccelerometerResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -582,14 +640,18 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.MAGNETIC_FIELD, function (data) {
+  sensor.on(sensor.SensorId.MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -620,8 +682,11 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, function (data) {
+  sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
@@ -630,7 +695,8 @@ try {
     console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -661,14 +727,18 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.ORIENTATION, function (data) {
+  sensor.on(sensor.SensorId.ORIENTATION, (data: sensor.OrientationResponse) => {
     console.info('Succeeded in the device rotating at an angle around the Z axis: ' + data.alpha);
     console.info('Succeeded in the device rotating at an angle around the X axis: ' + data.beta);
     console.info('Succeeded in the device rotating at an angle around the Y axis: ' + data.gamma);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -701,12 +771,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.PEDOMETER, function (data) {
+  sensor.on(sensor.SensorId.PEDOMETER, (data: sensor.PedometerResponse) => {
     console.info('Succeeded in invoking on. Step count: ' + data.steps);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -740,12 +814,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.PEDOMETER_DETECTION, function (data) {
+  sensor.on(sensor.SensorId.PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
     console.info('Succeeded in invoking on. Pedometer scalar: ' + data.scalar);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -776,12 +854,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.PROXIMITY, function (data) {
+  sensor.on(sensor.SensorId.PROXIMITY, (data: sensor.ProximityResponse) => {
     console.info('Succeeded in invoking on. Distance: ' + data.distance);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -813,15 +895,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.ROTATION_VECTOR, function (data) {
+  sensor.on(sensor.SensorId.ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
     console.info('Succeeded in invoking on. Scalar quantity: ' + data.w);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -853,12 +939,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, function (data) {
+  sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
     console.info('Succeeded in invoking on. Scalar data: ' + data.scalar);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -890,12 +980,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.on(sensor.SensorId.WEAR_DETECTION, function (data) {
+  sensor.on(sensor.SensorId.WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
     console.info('Succeeded in invoking on. Wear status: ' + data.value);
   }, { interval: 100000000 });
 } catch (error) {
-  console.error(`Failed to invoke on. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -929,14 +1023,18 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.ACCELEROMETER, function (data) {
+  sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -968,8 +1066,11 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, function (data) {
+  sensor.once(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
@@ -978,7 +1079,8 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1008,12 +1110,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.AMBIENT_LIGHT, function (data) {
+  sensor.once(sensor.SensorId.AMBIENT_LIGHT, (data: sensor.LightResponse) => {
     console.info('Succeeded in invoking once. the ambient light intensity: ' + data.intensity);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1043,12 +1149,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.AMBIENT_TEMPERATURE, function (data) {
+  sensor.once(sensor.SensorId.AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
     console.info('Succeeded in invoking once. Temperature: ' + data.temperature);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1078,12 +1188,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.BAROMETER, function (data) {
+  sensor.once(sensor.SensorId.BAROMETER, (data: sensor.BarometerResponse) => {
     console.info('Succeeded in invoking once. Atmospheric pressure: ' + data.pressure);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1113,14 +1227,18 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.GRAVITY, function (data) {
+  sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1153,15 +1271,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 ```ts
 import sensor from '@ohos.sensor';
+import BusinessError from "@ohos.base"
 
 try {
-  sensor.once(sensor.SensorId.GYROSCOPE, function (data) {
+  sensor.once(sensor.SensorId.GYROSCOPE, (data: sensor.GyroscopeResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1193,8 +1313,11 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.GYROSCOPE_UNCALIBRATED, function (data) {
+  sensor.once(sensor.SensorId.GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
@@ -1203,7 +1326,8 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1233,12 +1357,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.HALL, function (data) {
+  sensor.once(sensor.SensorId.HALL, (data: sensor.HallResponse) => {
     console.info('Succeeded in invoking once. Status: ' + data.status);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1270,12 +1398,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.HEART_RATE, function (data) {
+  sensor.once(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
     console.info('Succeeded in invoking once. Heart rate: ' + data.heartRate);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1305,12 +1437,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.HUMIDITY, function (data) {
-    console.info('Succeeded in invoking once. Humidity: ' + data.humidity);
+  sensor.once(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
+    console.info('Succeeded in invoking once. Heart rate: ' + data.heartRate);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1342,14 +1478,18 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.LINEAR_ACCELEROMETER, function (data) {
+  sensor.once(sensor.SensorId.LINEAR_ACCELEROMETER, (data: sensor.LinearAccelerometerResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1379,14 +1519,18 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.MAGNETIC_FIELD, function (data) {
+  sensor.once(sensor.SensorId.MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1416,8 +1560,11 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, function (data) {
+  sensor.once(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
@@ -1426,7 +1573,8 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1447,7 +1595,7 @@ Obtains data of the orientation sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).AMBIENT_LIGHT
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -1456,14 +1604,18 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.ORIENTATION, function (data) {
+  sensor.once(sensor.SensorId.ORIENTATION, (data: sensor.OrientationResponse) => {
     console.info('Succeeded in the device rotating at an angle around the X axis: ' + data.beta);
     console.info('Succeeded in the device rotating at an angle around the Y axis: ' + data.gamma);
     console.info('Succeeded in the device rotating at an angle around the Z axis: ' + data.alpha);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1495,12 +1647,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.PEDOMETER, function (data) {
+  sensor.once(sensor.SensorId.PEDOMETER, (data: sensor.PedometerResponse) => {
     console.info('Succeeded in invoking once. Step count: ' + data.steps);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1532,12 +1688,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.PEDOMETER_DETECTION, function (data) {
+  sensor.once(sensor.SensorId.PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
     console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1567,12 +1727,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.PROXIMITY, function (data) {
+  sensor.once(sensor.SensorId.PROXIMITY, (data: sensor.ProximityResponse) => {
     console.info('Succeeded in invoking once. Distance: ' + data.distance);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1602,15 +1766,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.ROTATION_VECTOR, function (data) {
+  sensor.once(sensor.SensorId.ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
     console.info('Succeeded in invoking once. Scalar quantity: ' + data.w);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1640,12 +1808,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.SIGNIFICANT_MOTION, function (data) {
+  sensor.once(sensor.SensorId.SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
     console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1675,12 +1847,16 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.once(sensor.SensorId.WEAR_DETECTION, function (data) {
+  sensor.once(sensor.SensorId.WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
     console.info('Succeeded in invoking once. Wear status: ' + data.value);
   });
 } catch (error) {
-  console.error(`Failed to invoke once. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1706,11 +1882,14 @@ Unsubscribes from data of the color sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -1722,7 +1901,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.COLOR type.
   sensor.off(sensor.SensorId.COLOR);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1746,11 +1926,14 @@ Unsubscribes from data of the SAR sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -1762,7 +1945,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.SAR type.
   sensor.off(sensor.SensorId.SAR);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1786,11 +1970,14 @@ Unsubscribes from data of the acceleration sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -1802,7 +1989,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.ACCELEROMETER type.
   sensor.off(sensor.SensorId.ACCELEROMETER);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1826,11 +2014,14 @@ Unsubscribes from data of the uncalibrated acceleration sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -1842,7 +2033,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.ACCELEROMETER_UNCALIBRATED type.
   sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1864,11 +2056,14 @@ Unsubscribes from data of the ambient light sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -1880,7 +2075,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.AMBIENT_LIGHT type.
   sensor.off(sensor.SensorId.AMBIENT_LIGHT);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1902,11 +2098,14 @@ Unsubscribes from data of the ambient temperature sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -1918,7 +2117,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.AMBIENT_TEMPERATURE type.
   sensor.off(sensor.SensorId.AMBIENT_TEMPERATURE);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1940,11 +2140,14 @@ Unsubscribes from data of the barometer sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
     console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
     console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -1956,7 +2159,8 @@ try {
     // Unsubscribe from all callbacks of the SensorId.BAROMETER type.
     sensor.off(sensor.SensorId.BAROMETER);
 } catch (error) {
-    console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+    let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+    console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1978,11 +2182,14 @@ Unsubscribes from data of the gravity sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -1994,8 +2201,10 @@ try {
   // Unsubscribe from all callbacks of the SensorId.GRAVITY type.
   sensor.off(sensor.SensorId.GRAVITY);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
+
 ```
 
 ### GYROSCOPE<sup>9+</sup> 
@@ -2018,11 +2227,14 @@ Unsubscribes from data of the gyroscope sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2034,7 +2246,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.GYROSCOPE type.
   sensor.off(sensor.SensorId.GYROSCOPE);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2058,11 +2271,14 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2074,7 +2290,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.GYROSCOPE_UNCALIBRATED type.
   sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2096,11 +2313,14 @@ Unsubscribes from data of the Hall effect sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2112,7 +2332,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.HALL type.
   sensor.off(sensor.SensorId.HALL);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2136,11 +2357,14 @@ Unsubscribes from data of the heart rate sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2152,7 +2376,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.HEART_RATE type.
   sensor.off(sensor.SensorId.HEART_RATE);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2174,11 +2399,14 @@ Unsubscribes from data of the humidity sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2190,7 +2418,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.HUMIDITY type.
   sensor.off(sensor.SensorId.HUMIDITY);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2214,11 +2443,14 @@ Unsubscribes from data of the linear acceleration sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2230,7 +2462,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.LINEAR_ACCELEROMETER type.
   sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2252,11 +2485,14 @@ Unsubscribes from data of the magnetic field sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2268,7 +2504,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.MAGNETIC_FIELD type.
   sensor.off(sensor.SensorId.MAGNETIC_FIELD);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2290,11 +2527,14 @@ Unsubscribes from data of the uncalibrated magnetic field sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2306,7 +2546,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.MAGNETIC_FIELD_UNCALIBRATED type.
   sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2328,11 +2569,14 @@ Unsubscribes from data of the orientation sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2344,7 +2588,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.ORIENTATION type.
   sensor.off(sensor.SensorId.ORIENTATION);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2368,11 +2613,14 @@ Unsubscribes from data of the pedometer sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2381,10 +2629,11 @@ try {
   sensor.on(sensor.SensorId.PEDOMETER, callback2);
   // Unsubscribe from callback1.
   sensor.off(sensor.SensorId.PEDOMETER, callback1);
-  // Unsubscribe from all callbacks of the SensorId.PEDOMETER type.
+  // Unsubscribe from all callbacks of the SensorId.ORIENTATION type.
   sensor.off(sensor.SensorId.PEDOMETER);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2408,11 +2657,14 @@ Unsubscribes from data of the pedometer detection sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2424,7 +2676,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.PEDOMETER_DETECTION type.
   sensor.off(sensor.SensorId.PEDOMETER_DETECTION);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`); 
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2446,11 +2699,14 @@ Unsubscribes from data of the proximity sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2462,7 +2718,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.PROXIMITY type.
   sensor.off(sensor.SensorId.PROXIMITY);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2484,11 +2741,14 @@ Unsubscribes from data of the rotation vector sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2500,7 +2760,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.ROTATION_VECTOR type.
   sensor.off(sensor.SensorId.ROTATION_VECTOR);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2522,11 +2783,14 @@ Unsubscribes from data of the significant motion sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2538,7 +2802,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.SIGNIFICANT_MOTION type.
   sensor.off(sensor.SensorId.SIGNIFICANT_MOTION);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2560,11 +2825,14 @@ Unsubscribes from data of the wear detection sensor.
 **Example**
 
 ```ts
-function callback1(data) {
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
 
-function callback2(data) {
+function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
@@ -2576,7 +2844,8 @@ try {
   // Unsubscribe from all callbacks of the SensorId.WEAR_DETECTION type.
   sensor.off(sensor.SensorId.WEAR_DETECTION);
 } catch (error) {
-  console.error(`Failed to invoke off. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2607,8 +2876,12 @@ For details about the following error codes, see [Error Codes of sensor.getGeoma
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-  sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000, function (err, data) {
+  sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000,
+      (err: BusinessError.BusinessError, data: sensor.GeomagneticResponse) => {
     if (err) {
       console.error(`Failed to get geomagneticInfo. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2622,7 +2895,8 @@ try {
     console.info("Succeeded in getting geomagneticInfo totalIntensity" + data.totalIntensity);
   });
 } catch (error) {
-  console.error(`Failed to get geomagneticInfo. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get geomagneticInfo. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2658,9 +2932,12 @@ For details about the following error codes, see [Error Codes of sensor.getGeoma
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
   const promise = sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000);
-  promise.then((data) => {
+  promise.then((data: sensor.GeomagneticResponse) => {
     console.info("Succeeded in getting geomagneticInfo x" + data.x);
     console.info("Succeeded in getting geomagneticInfo y" + data.y);
     console.info("Succeeded in getting geomagneticInfo z" + data.z);
@@ -2668,11 +2945,12 @@ try {
     console.info("Succeeded in getting geomagneticInfo deflectionAngle" + data.deflectionAngle);
     console.info("Succeeded in getting geomagneticInfo levelIntensity" + data.levelIntensity);
     console.info("Succeeded in getting geomagneticInfo totalIntensity" + data.totalIntensity);
-  }, (err) => {
+  }, (err: BusinessError.BusinessError) => {
     console.error(`Failed to get geomagneticInfo. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to get geomagneticInfo. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get geomagneticInfo. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2703,10 +2981,13 @@ For details about the following error codes, see [Error Codes of sensor.getDevic
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
   let seaPressure = 1013.2;
   let currentPressure = 1500.0;
-  sensor.getDeviceAltitude(seaPressure, currentPressure, function (err, data) {
+  sensor.getDeviceAltitude(seaPressure, currentPressure, (err: BusinessError.BusinessError, data: number) => {
     if (err) {
       console.error(`Failed to get altitude. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2714,7 +2995,8 @@ try {
     console.info('Succeeded in getting altitude: ' + data);
   });
 } catch (error) {
-  console.error(`Failed to get altitude. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get altitude. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2750,17 +3032,21 @@ For details about the following error codes, see [Error Codes of sensor.getDevic
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
   let seaPressure = 1013.2;
   let currentPressure = 1500.0;
   const promise = sensor.getDeviceAltitude(seaPressure, currentPressure);
-  promise.then((data) => {
+  promise.then((data: number) => {
     console.info('Succeeded in getting sensor_getDeviceAltitude_Promise', data);
-  }, (err) => {
+  }, (err: BusinessError.BusinessError) => {
     console.error(`Failed to get altitude. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to get altitude. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get altitude. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2790,6 +3076,9 @@ For details about the following error codes, see [Error Codes of sensor.getIncli
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
   // inclinationMatrix can be 3*3 or 4*4.
   let inclinationMatrix = [
@@ -2797,7 +3086,7 @@ try {
     0, 1, 0,
     0, 0, 1
   ]
-  sensor.getInclination(inclinationMatrix, function (err, data) {
+  sensor.getInclination(inclinationMatrix, (err: BusinessError.BusinessError, data: number) => {
     if (err) {
       console.error(`Failed to get inclination. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2805,7 +3094,8 @@ try {
     console.info('Succeeded in getting inclination: ' + data);
   })
 } catch (error) {
-  console.error(`Failed to get inclination. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get inclination. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2840,6 +3130,9 @@ For details about the following error codes, see [Error Codes of sensor.getIncli
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
   // inclinationMatrix can be 3*3 or 4*4.
   let inclinationMatrix = [
@@ -2848,13 +3141,14 @@ try {
     0, 0, 1
   ]
   const promise = sensor.getInclination(inclinationMatrix);
-  promise.then((data) => {
+  promise.then((data: number) => {
     console.info('Succeeded in getting inclination: ' + data);
-  }, (err) => {
+  }, (err: BusinessError.BusinessError) => {
     console.error(`Failed to get inclination. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to get inclination. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get inclination. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2886,6 +3180,9 @@ For details about the following error codes, see [Error Codes of sensor.getAngle
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
   // The rotation matrix can be 3*3 or 4*4.
   let currentRotationMatrix = [
@@ -2898,7 +3195,7 @@ try {
     0, 0.87, -0.50,
     0, 0.50, 0.87
   ];
-  sensor.getAngleVariation(currentRotationMatrix, preRotationMatrix, function (err, data) {
+  sensor.getAngleVariation(currentRotationMatrix, preRotationMatrix, (err: BusinessError.BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to get angle variation. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2911,7 +3208,8 @@ try {
     console.info("Y  : " + data[2]);
   })
 } catch (error) {
-  console.error(`Failed to get angle variation. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get angle variation. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2947,6 +3245,9 @@ For details about the following error codes, see [Error Codes of sensor.getAngle
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
   // The rotation matrix can be 3*3 or 4*4.
   let currentRotationMatrix = [
@@ -2960,18 +3261,19 @@ try {
     0, 0.50, 0.87
   ];
   const promise = sensor.getAngleVariation(currentRotationMatrix, preRotationMatrix);
-  promise.then((data) => {
+  promise.then((data: Array<number>) => {
     if (data.length < 3) {
       console.error("Failed to get angle variation, length" + data.length);
     }
     console.info("Z: " + data[0]);
     console.info("X: " + data[1]);
     console.info("Y  : " + data[2]);
-  }, (err) => {
+  }, (err: BusinessError.BusinessError) => {
     console.error(`Failed to get angle variation. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to get angle variation. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get angle variation. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3001,19 +3303,23 @@ For details about the following error codes, see [Error Codes of sensor.getRotat
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
   let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
-  sensor.getRotationMatrix(rotationVector, function (err, data) {
+  sensor.getRotationMatrix(rotationVector, (err: BusinessError.BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
   })
 } catch (error) {
-  console.error(`Failed to get rotationMatrix. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3048,18 +3354,22 @@ For details about the following error codes, see [Error Codes of sensor.getRotat
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
   let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
   const promise = sensor.getRotationMatrix(rotationVector);
-  promise.then((data) => {
-    for (var i = 0; i < data.length; i++) {
+  promise.then((data: Array<number>) => {
+    for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
-  }, (err) => {
+  }, (err: BusinessError.BusinessError) => {
     console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to get rotationMatrix. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3091,23 +3401,27 @@ For details about the following error codes, see [Error Codes of sensor.transfor
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
   let rotationMatrix = [
     1, 0, 0,
     0, 0.87, -0.50,
     0, 0.50, 0.87
   ];
-  sensor.transformRotationMatrix(rotationMatrix, { x: 1, y: 3 }, function (err, data) {
+  sensor.transformRotationMatrix(rotationMatrix, { x: 1, y: 3 }, (err: BusinessError.BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to transform rotationMatrix. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + '] = ' + data[i]);
     }
   })
 } catch (error) {
-  console.error(`Failed to transform rotationMatrix. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to transform rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3143,6 +3457,9 @@ For details about the following error codes, see [Error Codes of sensor.transfor
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
   let rotationMatrix = [
     1, 0, 0,
@@ -3150,15 +3467,16 @@ try {
     0, 0.50, 0.87
   ];
   const promise = sensor.transformRotationMatrix(rotationMatrix, { x: 1, y: 3 });
-  promise.then((data) => {
-    for (var i = 0; i < data.length; i++) {
+  promise.then((data: Array<number>) => {
+    for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
-  }, (err) => {
+  }, (err: BusinessError.BusinessError) => {
     console.error(`Failed to transform rotationMatrix. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to transform rotationMatrix. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to transform rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3188,19 +3506,23 @@ For details about the following error codes, see [Error Codes of sensor.getQuate
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
   let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
-  sensor.getQuaternion(rotationVector, function (err, data) {
+  sensor.getQuaternion(rotationVector, (err: BusinessError.BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to get quaternion. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
   })
 } catch (error) {
-  console.error(`Failed to get quaternion. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get quaternion. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3235,18 +3557,22 @@ For details about the following error codes, see [Error Codes of sensor.getQuate
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
     let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
     const promise = sensor.getQuaternion(rotationVector);
-    promise.then((data) => {
-        for (var i = 0; i < data.length; i++) {
+    promise.then((data: Array<number>) => {
+        for (let i = 0; i < data.length; i++) {
             console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
         }
-    }, (err) => {
+    }, (err: BusinessError.BusinessError) => {
         console.error(`Failed to get quaternion. Code: ${err.code}, message: ${err.message}`);
     });
 } catch (error) {
-    console.error(`Failed to get quaternion. Code: ${error.code}, message: ${error.message}`);
+    let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+    console.error(`Failed to get quaternion. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3276,13 +3602,16 @@ For details about the following error codes, see [Error Codes of sensor.getOrien
 **Example**
 
 ```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
   let preRotationMatrix = [
     1, 0, 0,
     0, 0.87, -0.50,
     0, 0.50, 0.87
   ];
-  sensor.getOrientation(preRotationMatrix, function (err, data) {
+  sensor.getOrientation(preRotationMatrix, (err: BusinessError.BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to get orientation. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3295,7 +3624,8 @@ try {
     console.info("Succeeded in getting data. Y: " + data[2]);
   })
 } catch (error) {
-  console.error(`Failed to get orientation. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get orientation. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3330,6 +3660,9 @@ For details about the following error codes, see [Error Codes of sensor.getOrien
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
   let preRotationMatrix = [
     1, 0, 0,
@@ -3337,15 +3670,16 @@ try {
     0, 0.50, 0.87
   ];
   const promise = sensor.getOrientation(preRotationMatrix);
-  promise.then((data) => {
-    for (var i = 0; i < data.length; i++) {
+  promise.then((data: Array<number>) => {
+    for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
-  }, (err) => {
+  }, (err: BusinessError.BusinessError) => {
     console.error(`Failed to getOrientatin. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to getOrientatin Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to getOrientatin Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3376,10 +3710,13 @@ For details about the following error codes, see [Error Codes of sensor.getRotat
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
   let gravity = [-0.27775216, 0.5351276, 9.788099];
   let geomagnetic = [210.87253, -78.6096, -111.44444];
-  sensor.getRotationMatrix(gravity, geomagnetic, function (err, data) {
+  sensor.getRotationMatrix(gravity, geomagnetic, (err: BusinessError.BusinessError, data: sensor.RotationMatrixResponse) => {
     if (err) {
       console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3387,7 +3724,8 @@ try {
     console.info('Succeeded in getting rotationMatrix' + JSON.stringify(data));
   })
 } catch (error) {
-  console.error(`Failed to get rotationMatrix. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3423,17 +3761,21 @@ For details about the following error codes, see [Error Codes of sensor.getRotat
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
   let gravity = [-0.27775216, 0.5351276, 9.788099];
   let geomagnetic = [210.87253, -78.6096, -111.44444];
   const promise = sensor.getRotationMatrix(gravity, geomagnetic);
-  promise.then((data) => {
+  promise.then((data: sensor.RotationMatrixResponse) => {
     console.info('Succeeded in getting rotationMatrix' + JSON.stringify(data));
-  }, (err) => {
+  }, (err: BusinessError.BusinessError) => {
     console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to get rotationMatrix. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3462,18 +3804,22 @@ For details about the following error codes, see [Error Codes of sensor.getSenso
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
-  sensor.getSensorList((err, data) => {
+  sensor.getSensorList((err: BusinessError.BusinessError, data: Array<sensor.Sensor>) => {
     if (err) {
       console.error(`Failed to get sensorList. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + JSON.stringify(data[i]));
     }
   });
 } catch (error) {
-  console.error(`Failed to get sensorList. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3502,16 +3848,20 @@ For details about the following error codes, see [Error Codes of sensor.getSenso
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
-  sensor.getSensorList().then((data) => {
-    for (var i = 0; i < data.length; i++) {
+  sensor.getSensorList().then((data: Array<sensor.Sensor>) => {
+    for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + JSON.stringify(data[i]));
     }
-  }, (err) => {
+  }, (err: BusinessError.BusinessError) => {
     console.error(`Failed to get sensorList. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to get sensorList. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3541,8 +3891,11 @@ For details about the following error codes, see [Error Codes of sensor.getSingl
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
-  sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER, (err, data) => {
+  sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER, (err: BusinessError.BusinessError, data: sensor.Sensor) => {
     if (err) {
       console.error(`Failed to get singleSensor. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3550,7 +3903,8 @@ try {
     console.info('Succeeded in getting sensor: ' + JSON.stringify(data));
   });
 } catch (error) {
-  console.error(`Failed to get singleSensor. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get singleSensor. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3585,14 +3939,18 @@ For details about the following error codes, see [Error Codes of sensor.getSingl
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
-  sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER).then((data) => {
+  sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER).then((data: sensor.Sensor) => {
     console.info('Succeeded in getting sensor: ' + JSON.stringify(data));
-  }, (err) => {
+  }, (err: BusinessError.BusinessError) => {
     console.error(`Failed to get singleSensor . Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to get singleSensor . Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3677,16 +4035,16 @@ Describes the sensor information.
 
 | Name           | Type| Readable| Writable| Description                  |
 | --------------- | -------- | ---------------------- | ---------------------- | ---------------------- |
-| sensorName      | string   | Yes | Yes | Sensor name.          |
-| vendorName      | string   | Yes | Yes | Vendor of the sensor.        |
-| firmwareVersion | string   | Yes | Yes | Firmware version of the sensor.      |
-| hardwareVersion | string   | Yes | Yes | Hardware version of the sensor.      |
-| sensorId        | number   | Yes | Yes | Sensor type ID.        |
-| maxRange        | number   | Yes | Yes | Maximum measurement range of the sensor.|
-| minSamplePeriod | number   | Yes | Yes | Minimum sampling period.  |
-| maxSamplePeriod | number   | Yes | Yes | Maximum sampling period.  |
-| precision       | number   | Yes | Yes | Precision of the sensor.          |
-| power           | number   | Yes | Yes | Power of the sensor.          |
+| sensorName      | string   | Yes | No | Sensor name.           |
+| vendorName      | string   | Yes | No | Vendor of the sensor.        |
+| firmwareVersion | string   | Yes | No | Firmware version of the sensor.      |
+| hardwareVersion | string   | Yes | No | Hardware version of the sensor.      |
+| sensorId        | number   | Yes | No | Sensor type ID.        |
+| maxRange        | number   | Yes | No | Maximum measurement range of the sensor.|
+| minSamplePeriod | number   | Yes | No | Minimum sampling period.  |
+| maxSamplePeriod | number   | Yes | No | Maximum sampling period.  |
+| precision       | number   | Yes | No | Precision of the sensor.          |
+| power           | number   | Yes | No | Estimated sensor power, in mA. |
 
 ## ColorResponse<sup>10+</sup>
 
@@ -4084,7 +4442,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AC
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
@@ -4136,7 +4496,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AC
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
@@ -4146,6 +4508,7 @@ sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, function 
 },
   { interval: 100000000 }
 );
+
 ```
 
 ### GRAVITY<sup>(deprecated)</sup>
@@ -4169,7 +4532,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GR
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, (data: sensor.GravityResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
@@ -4201,7 +4566,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GY
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, (data: sensor.GyroscopeResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
@@ -4233,7 +4600,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GY
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
@@ -4266,7 +4635,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.SI
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
   console.info('Succeeded in invoking on. Scalar data: ' + data.scalar);
 },
   { interval: 100000000 }
@@ -4296,7 +4667,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.PE
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
   console.info('Succeeded in invoking on. Scalar data: ' + data.scalar);
 },
   { interval: 100000000 }
@@ -4326,7 +4699,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.PE
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, (data: sensor.PedometerResponse) => {
   console.info('Succeeded in invoking on. Steps: ' + data.steps);
 },
   { interval: 100000000 }
@@ -4354,7 +4729,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AM
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
   console.info('Succeeded in invoking on. Temperature: ' + data.temperature);
 },
   { interval: 100000000 }
@@ -4382,7 +4759,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.MA
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
@@ -4412,7 +4791,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.MA
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
@@ -4445,7 +4826,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.PR
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, (data: sensor.ProximityResponse) => {
   console.info('Succeeded in invoking on. Distance: ' + data.distance);
 },
   { interval: 100000000 }
@@ -4473,7 +4856,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.HU
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, (data: sensor.HumidityResponse) => {
   console.info('Succeeded in invoking on. Humidity: ' + data.humidity);
 },
   { interval: 100000000 }
@@ -4501,7 +4886,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.BA
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, (data: sensor.BarometerResponse) => {
   console.info('Succeeded in invoking on. Atmospheric pressure: ' + data.pressure);
 },
   { interval: 100000000 }
@@ -4529,7 +4916,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.HA
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, (data: sensor.HallResponse) => {
   console.info('Succeeded in invoking on. Status: ' + data.status);
 },
   { interval: 100000000 }
@@ -4557,7 +4946,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AM
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, (data: sensor.LightResponse) => {
   console.info('Succeeded in invoking on. Illumination: ' + data.intensity);
 },
   { interval: 100000000 }
@@ -4585,7 +4976,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.OR
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, (data: sensor.OrientationResponse) => {
   console.info('Succeeded in the device rotating at an angle around the X axis: ' + data.beta);
   console.info('Succeeded in the device rotating at an angle around the Y axis: ' + data.gamma);
   console.info('Succeeded in the device rotating at an angle around the Z axis: ' + data.alpha);
@@ -4635,7 +5028,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.RO
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
@@ -4666,7 +5061,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.WE
 **Example**
 
 ```ts
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
   console.info('Succeeded in invoking on. Wear status: ' + data.value);
 },
   { interval: 100000000 }
@@ -4697,7 +5094,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
@@ -4745,7 +5144,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
@@ -4775,7 +5176,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, (data: sensor.GravityResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
@@ -4804,7 +5207,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, (data: sensor.GyroscopeResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
@@ -4832,7 +5237,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Example**
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, function(data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
     console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
@@ -4862,7 +5269,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
   console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
 });
 ```
@@ -4889,7 +5298,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
   console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
 });
 ```
@@ -4916,7 +5327,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, (data: sensor.PedometerResponse) => {
   console.info('Succeeded in invoking once. Steps: ' + data.steps);
 });
 ```
@@ -4941,7 +5354,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
   console.info('Succeeded in invoking once. Temperature: ' + data.temperature);
 });
 ```
@@ -4966,7 +5381,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
@@ -4993,7 +5410,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
@@ -5023,7 +5442,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, (data: sensor.ProximityResponse) => {
   console.info('Succeeded in invoking once. Distance: ' + data.distance);
 }
 );
@@ -5049,7 +5470,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, (data: sensor.HumidityResponse) => {
   console.info('Succeeded in invoking once. Humidity: ' + data.humidity);
 });
 ```
@@ -5074,7 +5497,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, (data: sensor.BarometerResponse) => {
   console.info('Succeeded in invoking once. Atmospheric pressure: ' + data.pressure);
 });
 ```
@@ -5099,7 +5524,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, (data: sensor.HallResponse) => {
   console.info('Succeeded in invoking once. Status: ' + data.status);
 });
 ```
@@ -5124,7 +5551,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, (data: sensor.LightResponse) => {
   console.info('Succeeded in invoking once. invoking once. Illumination: ' + data.intensity);
 });
 ```
@@ -5149,7 +5578,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, (data: sensor.OrientationResponse) => {
   console.info('Succeeded in invoking the device rotateing at an angle around the X axis: ' + data.beta);
   console.info('Succeeded in invoking the device rotateing at an angle around the Y axis: ' + data.gamma);
   console.info('Succeeded in invoking the device rotateing at an angle around the Z axis: ' + data.alpha);
@@ -5176,7 +5607,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 **Example**
 
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
@@ -5222,7 +5655,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Example**
 ```ts
-sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, function (data) {
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
   console.info("Succeeded in invoking once. Wear status: " + data.value);
 });
 ```
@@ -5251,7 +5686,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.A
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.AccelerometerResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
@@ -5282,7 +5719,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.A
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.AccelerometerUncalibratedResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
@@ -5314,7 +5753,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.A
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.LightResponse) {
   console.info('Succeeded in invoking off. Illumination: ' + data.intensity);
 }
 
@@ -5341,7 +5782,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.A
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.AmbientTemperatureResponse) {
   console.info('Succeeded in invoking off. Temperature: ' + data.temperature);
 }
 
@@ -5368,7 +5811,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.B
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.BarometerResponse) {
   console.info('Succeeded in invoking off. Atmospheric pressure: ' + data.pressure);
 }
 
@@ -5395,7 +5840,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.G
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.GravityResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
@@ -5426,7 +5873,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.G
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.GyroscopeResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
@@ -5457,7 +5906,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.G
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.GyroscopeUncalibratedResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
@@ -5486,7 +5937,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.H
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.HallResponse) {
   console.info('Succeeded in invoking off. Status: ' + data.status);
 }
 
@@ -5532,7 +5985,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.H
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.HumidityResponse) {
   console.info('Succeeded in invoking off. Humidity: ' + data.humidity);
 }
 
@@ -5578,7 +6033,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.M
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.MagneticFieldResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
@@ -5607,7 +6064,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.M
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.MagneticFieldUncalibratedResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
@@ -5639,7 +6098,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.O
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.OrientationResponse) {
   console.info('Succeeded in invoking off. The device rotates at an angle around the X axis: ' + data.beta);
   console.info('Succeeded in invoking off. The device rotates at an angle around the Y axis: ' + data.gamma);
   console.info('Succeeded in invoking off. The device rotates at an angle around the Z axis: ' + data.alpha);
@@ -5670,7 +6131,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.P
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.PedometerResponse) {
   console.info('Succeeded in invoking off. Steps: ' + data.steps);
 }
 
@@ -5699,7 +6162,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.P
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.PedometerDetectionResponse) {
   console.info('Succeeded in invoking off. Scalar data: ' + data.scalar);
 }
 
@@ -5726,7 +6191,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.P
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.ProximityResponse) {
   console.info('Succeeded in invoking off. Distance: ' + data.distance);
 }
 
@@ -5753,7 +6220,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.R
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.RotationVectorResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
   console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
   console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
@@ -5783,7 +6252,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.S
 **Example**
 
 ```ts
-function callback(data) {
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.SignificantMotionResponse) {
   console.info('Succeeded in invoking off. Scalar data: ' + data.scalar);
 }
 
@@ -5810,7 +6281,9 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.W
 **Example**
 
 ```ts
-function accCallback(data) {
+import sensor from '@ohos.sensor';
+
+function accCallback(data: sensor.WearDetectionResponse) {
   console.info('Succeeded in invoking off. Wear status: ' + data.value);
 }
 
@@ -5838,13 +6311,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.trans
 **Example**
 
 ```ts
-sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], { x: 2, y: 3 }, function (err, data) {
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], { x: 2, y: 3 }, 
+                                 (err: BusinessError.BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to operate. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info("Succeeded in starting Operation. Data obtained: " + data);
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     console.info("Succeeded in getting transformCoordinateSystem data[ " + i + "] = " + data[i]);
   }
 })
@@ -5875,13 +6352,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.trans
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], { x: 2, y: 3 });
-promise.then((data) => {
+promise.then((data: Array<number>) => {
   console.info("Succeeded in starting Operation");
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     console.info("Succeeded in getting transformCoordinateSystem data[ " + i + "] = " + data[i]);
   }
-}).catch((err) => {
+}).catch((err: BusinessError.BusinessError) => {
   console.error(`Failed to operate.`);
 })
 ```
@@ -5907,7 +6387,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.getGe
 **Example**
 
 ```ts
-sensor.getGeomagneticField({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000, function (err, data) {
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+sensor.getGeomagneticField({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000, 
+                           (err: BusinessError.BusinessError, data: sensor.GeomagneticResponse) => {
   if (err) {
     console.error(`Failed to operate. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -5942,12 +6426,15 @@ This API is deprecated since API version 9. You are advised to use [sensor.getGe
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 const promise = sensor.getGeomagneticField({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000);
-promise.then((data) => {
+promise.then((data: sensor.GeomagneticResponse) => {
   console.info('Succeeded in getting sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
   data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
   ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
-}).catch((reason) => {
+}).catch((reason: BusinessError.BusinessError) => {
   console.error(`Failed to operate.`);
 })
 ```
@@ -5973,7 +6460,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.getDe
 **Example**
 
 ```ts
-sensor.getAltitude(0, 200, function (err, data) {
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+sensor.getAltitude(0, 200, (err: BusinessError.BusinessError, data: number) => {
   if (err) {
     console.error(`Failed to operate. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6008,10 +6498,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.getDe
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 const promise = sensor.getAltitude(0, 200);
-promise.then((data) => {
+promise.then((data: number) => {
   console.info('Succeeded in getting sensor_getAltitude_Promise success', data);
-}).catch((err) => {
+}).catch((err: BusinessError.BusinessError) => {
   console.error(`Failed to operate.`);
 })
 ```
@@ -6037,7 +6530,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
 **Example**
 
 ```ts
-sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], function (err, data) {
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError.BusinessError, data: number) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6071,10 +6567,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
-promise.then((data) => {
+promise.then((data: number) => {
   console.info('Succeeded in get GeomagneticDip_promise', data);
-}).catch((err) => {
+}).catch((err: BusinessError.BusinessError) => {
   console.error(`Failed to operate.`);
 })
 ```
@@ -6100,12 +6599,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.getAn
 **Example**
 
 ```ts
-sensor.getAngleModify([1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87], function (err, data) {
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+sensor.getAngleModify([1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87],
+                      (err: BusinessError.BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     console.info("data[" + i + "]: " + data[i]);
   }
 })
@@ -6137,14 +6640,18 @@ This API is deprecated since API version 9. You are advised to use [sensor.getAn
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 const promise = sensor.getAngleModify([1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87]);
-promise.then((data) => {
+promise.then((data: Array<number>) => {
   console.info('Succeeded in getting AngleModify_promise.');
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     console.info("Succeeded in getting data[" + i + "]: " + data[i]);
   }
-}).catch((reason) => {
-  console.info("Succeeded in getting promise::catch", reason);
+}).catch((reason: BusinessError.BusinessError) => {
+  let e: BusinessError.BusinessError = reason as BusinessError.BusinessError;
+  console.info("Succeeded in getting promise::catch", e);
 })
 ```
 
@@ -6168,12 +6675,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 **Example**
 
 ```ts
-sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877], function (err, data) {
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877],
+                            (err: BusinessError.BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     console.info("Succeeded in getting data[" + i + "]: " + data[i]);
   }
 })
@@ -6204,13 +6715,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 **Example**
 
  ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 const promise = sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
-promise.then((data) => {
+promise.then((data: Array<number>) => {
   console.info('Succeeded in getting createRotationMatrix_promise');
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     console.info("data[" + i + "]: " + data[i]);
   }
-}).catch((reason) => {
+}).catch((reason: BusinessError.BusinessError) => {
   console.info("Succeeded in getting promise::catch", reason);
 })
  ```
@@ -6235,12 +6749,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.getQu
 **Example**
 
 ```ts
-sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877], function (err, data) {
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877],
+                        (err: BusinessError.BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     console.info("Succeeded in getting data[" + i + "]: " + data[i]);
   }
 })
@@ -6271,13 +6789,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.getQu
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
-promise.then((data) => {
+promise.then((data: Array<number>) => {
   console.info('Succeeded in getting createQuaternion_promise');
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     console.info("data[" + i + "]: " + data[i]);
   }
-}).catch((err) => {
+}).catch((err: BusinessError.BusinessError) => {
   console.info(`Failed to get promise.`);
 })
 ```
@@ -6302,13 +6823,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.getOr
 **Example**
 
 ```ts
-sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], function (err, data) {
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError.BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info("Succeeded in getting getDirection interface get data: " + data);
-  for (var i = 1; i < data.length; i++) {
+  for (let i = 1; i < data.length; i++) {
     console.info("Succeeded in getting sensor_getDirection_callback" + data[i]);
   }
 })
@@ -6339,13 +6863,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.getOr
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 const promise = sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1]);
-promise.then((data) => {
+promise.then((data: Array<number>) => {
   console.info('Succeeded in getting sensor_getAltitude_Promise', data);
-  for (var i = 1; i < data.length; i++) {
+  for (let i = 1; i < data.length; i++) {
     console.info("Succeeded in getting sensor_getDirection_promise" + data[i]);
   }
-}).catch((err) => {
+}).catch((err: BusinessError.BusinessError) => {
   console.info(`Failed to get promise.`);
 })
 ```
@@ -6371,7 +6898,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 **Example**
 
 ```ts
-sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function (err, data) {
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], 
+                            (err: BusinessError.BusinessError, data: sensor.RotationMatrixResponse) => {
   if (err) {
     console.error(`Failed to get create rotationMatrix. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6406,10 +6937,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 **Example**
 
 ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
-promise.then((data) => {
+promise.then((data: sensor.RotationMatrixResponse) => {
   console.info(JSON.stringify(data));
-}).catch((err) => {
+}).catch((err: BusinessError.BusinessError) => {
   console.info(`Failed to get promise.`);
 })
 ```

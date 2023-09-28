@@ -21,7 +21,7 @@ import common from '@ohos.app.ability.common';
 
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| currentHapModuleInfo | [HapModuleInfo](js-apis-bundle-HapModuleInfo.md) | Yes| No| Information about the HAP file<br>(See **api\bundle\hapModuleInfo.d.ts** in the **SDK** directory.) |
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundle-HapModuleInfo.md) | Yes| No| Information about the HAP file.<br>(See **api\bundle\hapModuleInfo.d.ts** in the **SDK** directory.) |
 | config   | [Configuration](js-apis-app-ability-configuration.md) | Yes| No| Module configuration information.<br>(See **api\@ohos.app.ability.Configuration.d.ts** in the **SDK** directory.)|
 | extensionAbilityInfo | [ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md) | Yes| No| Extension ability information.<br>(See **api\bundle\extensionAbilityInfo.d.ts** in the **SDK** directory.)|
 
@@ -29,7 +29,7 @@ import common from '@ohos.app.ability.common';
 **ExtensionContext** provides information about an Extension ability, module, and HAP file. You can use the information based on service requirements. The following uses **ServiceExtension** as an example to describe a use case of **ExtensionContext**.
 
 **Scenario description**
-To adapt to devices with different performance, an application provides three modules: highPerformance, midPerformance, and lowPerformance. Each of them provides a Service Extension ability for the entry. During application installation, the application market installs the HAP file of the entry and the HAP file of the module that matches the device performance. During application running, the entry parses **ServiceExtensionContext.HapModuleInfo** to obtain the HAP file information and executes service logic based on this file.
+To adapt to devices with different performance, an application provides three modules: highPerformance, midPerformance, and lowPerformance. Each of them provides a ServiceExtensionAbility for the entry. During application installation, the application market installs the HAP file of the entry and the HAP file of the module that matches the device performance. During application running, the entry parses **ServiceExtensionContext.HapModuleInfo** to obtain the HAP file information and executes service logic based on this file.
 
 ![Example](figures/en_us_image_ExtensionContext_Example.png)
 
@@ -37,26 +37,52 @@ To adapt to devices with different performance, an application provides three mo
 
 Define a **ServiceExtension** with the same name for the three modules.
 ```ts
-import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+// Singleton object GlobalContext.ts
+export class GlobalContext {
+    private constructor() {}
+    private static instance: GlobalContext;
+    private _objects = new Map<string, Object>();
 
-export default class TheServiceExtension extends ServiceExtension {
-    onCreate(want:Want) {
-        console.log('ServiceAbility onCreate, want: ${want.abilityName}');
-        // Pass ExtensionContext to entry via globalThis.
-        globalThis.ExtensionContext = this.context;
+    public static getContext(): GlobalContext {
+        if (!GlobalContext.instance) {
+            GlobalContext.instance = new GlobalContext();
+        }
+        return GlobalContext.instance;
     }
 
-    onRequest(want, startId) {
+    getObject(value: string): Object | undefined {
+        return this._objects.get(value);
+    }
+
+    setObject(key: string, objectClass: Object): void {
+        this._objects.set(key, objectClass);
+    }
+}
+```
+
+```ts
+import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import rpc from '@ohos.rpc';
+import { GlobalContext } from '../GlobalContext'
+
+export default class TheServiceExtension extends ServiceExtension {
+    onCreate(want: Want) {
+        console.log('ServiceAbility onCreate, want: ${want.abilityName}');
+        GlobalContext.getContext().setObject("ExtensionContext", this.context);
+    }
+
+    onRequest(want: Want, startId: number) {
         console.log('ServiceAbility onRequest, want: ${want.abilityName}, startId: ${startId}');
     }
 
-    onConnect(want) {
+    onConnect(want: Want) {
         console.log('ServiceAbility onConnect, want: ${want.abilityName}');
-        return null;
+        let remoteObject = new rpc.RemoteObject("test");
+        return remoteObject;
     }
 
-    onDisconnect(want) {
+    onDisconnect(want: Want) {
         console.log('ServiceAbility onDisconnect, want: ${want.abilityName}');
     }
 
@@ -69,11 +95,13 @@ export default class TheServiceExtension extends ServiceExtension {
 Start **ServiceExtension** within the **onCreate** callback of the main ability of the entry.
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log('[Demo] EntryAbility onCreate');
-        let wantExt = {
+        let wantExt: Want = {
             deviceId: '',
             bundleName: 'com.example.TheServiceExtension',
             abilityName: 'TheServiceExtension',
@@ -85,19 +113,22 @@ export default class EntryAbility extends UIAbility {
 
 Create a **ServiceModule.ts** file in the entry to execute service logic.
 ```ts
+import common from '@ohos.app.ability.common';
+import { GlobalContext } from '../GlobalContext';
+
 export default class ServiceModel {
-    moduleName: string;
+    moduleName: string = '';
 
     constructor() {}
 
     executeTask() {
-        if (globalThis.ExtensionContext === undefined) {
+        if (GlobalContext.getContext().getObject('ExtensionContext') === undefined) {
             console.log('ERROR, ServiceExtension does not exist');
             return;
         }
 
-        let moduleInfo = globalThis.ExtensionContext.currentHapModuleInfo;
-        this.moduleName = moduleInfo.name;
+        let extensionContext = GlobalContext.getContext().getObject('ExtensionContext') as common.ServiceExtensionContext;
+        this.moduleName = extensionContext.currentHapModuleInfo.name;
         // Execute service logic based on the module name, which differentiates devices with different performance.
         switch (this.moduleName) {
             case 'highPerformance':

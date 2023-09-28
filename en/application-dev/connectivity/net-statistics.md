@@ -1,6 +1,6 @@
 # Traffic Management
 
-## Introduction
+## Overview
 
 The traffic management module allows you to query real-time or historical data traffic by the specified network interface card (NIC) or user ID (UID).
 
@@ -11,6 +11,7 @@ Its functions include:
 - Subscribing to traffic change events by NIC or UID
 
 > **NOTE**
+> 
 > To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [Traffic Management](../reference/apis/js-apis-net-statistics.md).
 
 The following describes the development procedure specific to each application scenario.

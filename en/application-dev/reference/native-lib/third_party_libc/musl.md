@@ -11,17 +11,19 @@ For details about the differences between musl and glibc, see [Functional differ
 
 C11 is implemented by [libc, libm, and libdl](https://en.cppreference.com/w/c/header). 
 
-libc: provides thread-related interfaces and a majority of standard interfaces.
+- libc: provides thread-related interfaces and a majority of standard interfaces.
 
-libm: provides mathematical library interfaces. Currently, OpenHarmony provides a link to libm, and the interfaces are defined in libc.
 
-libdl: provides dynamic linker interfaces such as dlopen. Currently, OpenHarmony provides a link to libdl, and the interfaces are defined in libc.
+- libm: provides mathematical library interfaces. Currently, OpenHarmony provides a link to libm, and the interfaces are defined in libc.
+
+- libdl: provides dynamic linker interfaces such as dlopen. Currently, OpenHarmony provides a link to libdl, and the interfaces are defined in libc.
+
 
 ## musl Version
 
 1.2.0
 
-From OpenHarmony 4.0, musl 1.2.3 is supported.
+OpenHarmony 4.0 supports musl 1.2.3.
 
 ## Supported Capabilities
 OpenHarmony provides header files and library interfaces that are compatible (not fully compatible) with C99, C11, and POSIX, and supports Armv7-A, Arm64, and x86_64 architectures.
@@ -35,32 +37,36 @@ To better adapt to the basic features of OpenHarmony devices, such as high perfo
 4. **dlopen()** can directly load uncompressed files in a .zip package.
 
 ### Debugging Capabilities
-The libc provides dynamic settings of the basic log functions (disabled by default) for developers to view internal exceptions of the libc. You can set the **param** to enable or disable the log functions, without recompiling the libc. However, you are advised not to use the log functions in official release versions because they affect the running performance.
+The libc provides dynamic enabling of debug logging (disabled by default). The debug logs help you learn about exceptions of the libc. With this function, you only need to set **param**, which eliminates the need for rebuilding the libc. However, you are advised not to enable debug logging in official versions because it affects the running performance.
 
 #### 1. musl.log
-Set **musl.log.enable** to **true** to enable the **musl.log** function. To print other logs, you need to enable this function first.
+Set **musl.log.enable** to **true** to enable printing of musl debug logs. You need to enable musl.log before printing other logs.
 ```
-setparam musl.log.enable true
+param set musl.log.enable true
 ```
 
-#### 2. Loader log function
-The loader starts applications and invokes dlopen() and dlclose() in libc. To view exceptions in the dynamic loading process, enable the loader log function.
-* Enable the loader log of all applications (exercise caution when using this function).
+#### 2. Loader logging
+The loader starts applications and invokes **dlopen** and **dlclose** in the libc. To view exceptions during the loading process, you need to enable the loader logging function. The following describes common operations.
+* Enable the loader logging for all applications. Exercise caution when enabling this function because a large number of logs will be generated.
 ```
 param set musl.log.ld.app true
 ```
-* Enable the loader log of the specified application. {app_name} specifies the target application.
+* Enable the loader logging for an application specified by {app_name}.
 ```
 param set musl.log.ld.all false
 param set musl.log.ld.app.{app_name} true
 ```
-* Enable the loader log of all applications except the specified application.
+* Enable the loader logging for all applications except the specified application.
 ```
 param set musl.log.ld.all true
 param set musl.log.ld.app.{app_name} false
 ```
 
 ## Interfaces Not Supported by musl
-[libc Symbols Not Exported](musl-peculiar-symbol.md)
-[libc Symbols That May Fail to Call Due to Permission Control](musl-permission-control-symbol.md)
+
+[Native API Symbols Not Exported](musl-peculiar-symbol.md)
+
+[Native API Symbols That May Fail to Call Due to Permission Control](musl-permission-control-symbol.md)
+
+
 

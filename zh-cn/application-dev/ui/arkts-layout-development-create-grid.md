@@ -170,7 +170,7 @@ Grid() {
   }
 }
 .rowsTemplate('1fr 1fr')
-.rowsTemplate('1fr 1fr')
+.columnsTemplate('1fr 1fr')
 ```
 
 对于内容结构相似的多个GridItem，通常更推荐使用ForEach语句中嵌套GridItem的形式，来减少重复代码。
@@ -180,23 +180,19 @@ Grid() {
 @Component
 struct OfficeService {
   @State services: Array<string> = ['会议', '投票', '签到', '打印']
-  ...
 
   build() {
     Column() {
       Grid() {
-        ForEach(this.services, service => {
+        ForEach(this.services, (service:string) => {
           GridItem() {
             Text(service)
-              ...
           }
-        }, service => service)
+        }, (service:string):string => service)
       }
-      .rowsTemplate('1fr 1fr')
-      .rowsTemplate('1fr 1fr')
-      ...
+      .rowsTemplate(('1fr 1fr') as string)
+      .columnsTemplate(('1fr 1fr') as string)
     }
-    ...
   }
 }
 ```
@@ -238,24 +234,20 @@ Grid() {
 ```ts
 @Component
 struct Shopping {
-  @State services: Array<string> = ['直播', '进口', ...]
-  ...
+  @State services: Array<string> = ['直播', '进口']
 
   build() {
     Column({ space: 5 }) {
       Grid() {
         ForEach(this.services, (service: string, index) => {
           GridItem() {
-            ...
           }
           .width('25%')
-        }, service => service)
+        }, (service:string):string => service)
       }
       .rowsTemplate('1fr 1fr') // 只设置rowsTemplate属性，当内容超出Grid区域时，可水平滚动。
       .rowsGap(15)
-      ...
     }
-    ...
   }
 }
 ```
@@ -273,13 +265,19 @@ Grid组件初始化时，可以绑定一个[Scroller](../reference/arkui-ts/ts-c
 
 
 ```ts
-private scroller: Scroller = new Scroller()
+export let scroller: Scroller = new Scroller()
 ```
 
 在日历页面中，用户在点击“下一页”按钮时，应用响应点击事件，通过指定scrollPage方法的参数next为true，滚动到下一页。
 
 
 ```ts
+class Tmp{
+  scroller: Scroller = new Scroller()
+  set(boo:boolean){
+    this.scroller.scrollPage({next:boo})
+  }
+}
 Column({ space: 5 }) {
   Grid(this.scroller) {
     ...
@@ -290,16 +288,14 @@ Column({ space: 5 }) {
  Row({space: 20}) {
    Button('上一页')
      .onClick(() => {
-       this.scroller.scrollPage({
-         next: false
-       })
+       let ClickN = new Tmp()
+       ClickN.set(false)
      })
 
    Button('下一页')
      .onClick(() => {
-       this.scroller.scrollPage({
-         next: true
-       })
+       let ClickN = new Tmp()
+       ClickN.set(true)
      })
  }
 }
@@ -319,9 +315,8 @@ Column({ space: 5 }) {
 
 ```ts
 Grid() {
-  LazyForEach(this.dataSource, item => {
+  LazyForEach(this.dataSource, () => {
     GridItem() {
-      ...
     }
   })
 }
@@ -334,6 +329,8 @@ Grid() {
 
 ## 相关实例
 
-如需详细了解网格布局的实现，请参考以下示例：
+针对网格开发，有以下相关实例可供参考：
+
+- [游戏2048（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Game2048)
 
 - [分布式计算器](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)

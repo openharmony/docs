@@ -17,7 +17,7 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 触发长按的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1 |
 | repeat | boolean | 否 | 是否连续触发事件回调。<br/>默认值：false |
-| duration | number | 否 | 触发长按的最短时间，单位为毫秒（ms）。<br/>默认值：500 |
+| duration | number | 否 | 触发长按的最短时间，单位为毫秒（ms）。<br/>默认值：500 <br/>**说明：** <br/>设置小于等于0时，按照默认值500处理。|
 
 
 ## 事件
@@ -45,8 +45,8 @@ struct LongPressGestureExample {
         .gesture(
         LongPressGesture({ repeat: true })
           // 由于repeat设置为true，长按动作存在时会连续触发，触发间隔为duration（默认值500ms）
-          .onAction((event: GestureEvent) => {
-            if (event.repeat) {
+          .onAction((event?: GestureEvent) => {
+            if (event && event.repeat) {
               this.count++
             }
           })

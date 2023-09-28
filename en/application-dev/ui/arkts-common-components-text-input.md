@@ -125,8 +125,6 @@ TextInput()
 
 In this example, the text box is used to submit forms on the user login or registration page.
 
-
-
 ```ts
 @Entry
 @Component
@@ -148,4 +146,4 @@ struct TextInputSample {
 ```
 
 
-![en-us_image_0000001563060653](figures/en-us_image_0000001563060653.png)
+![TextInputGIF](figures/TextInputGIF.gif)

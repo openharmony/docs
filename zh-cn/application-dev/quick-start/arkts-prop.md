@@ -24,7 +24,8 @@
 | ----------- | ---------------------------------------- |
 | 装饰器参数       | 无                                        |
 | 同步类型        | 单向同步：对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop变量的修改不会同步到父组件的状态变量上。嵌套类型的场景请参考[观察变化](#观察变化)。 |
-| 允许装饰的变量类型   | Objec、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>必须指定类型。<br/>**说明** ：<br/>不支持Length、ResourceStr、ResourceColor类型，Length，ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。<br/>在父组件中，传递给\@Prop装饰的值不能为undefined或者null，反例如下所示。<br/>CompA&nbsp;({&nbsp;aProp:&nbsp;undefined&nbsp;})<br/>CompA&nbsp;({&nbsp;aProp:&nbsp;null&nbsp;})<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
+| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>必须指定类型。<br/>**说明** ：<br/>不支持Length、ResourceStr、ResourceColor类型，Length，ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。<br/>在父组件中，传递给\@Prop装饰的值不能为undefined或者null，反例如下所示。<br/>CompA&nbsp;({&nbsp;aProp:&nbsp;undefined&nbsp;})<br/>CompA&nbsp;({&nbsp;aProp:&nbsp;null&nbsp;})<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
+| 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。如果子组件的数据不想同步回父组件，建议采用@Reusable中的aboutToReuse，实现父组件向子组件传递数据，具体用例请参考[组件复用场景](arkts-state-management-best-practices.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。                                 |
 
 
@@ -32,7 +33,7 @@
 
 | 传递/访问     | 说明                                       |
 | --------- | ---------------------------------------- |
-| 从父组件初始化   | 如果本地有初始化，则是可选的。没有的话，则必选，支持父组件中的常规变量、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp去初始化子组件中的\@Prop变量。 |
+| 从父组件初始化   | 如果本地有初始化，则是可选的。没有的话，则必选，支持父组件中的常规变量（常规变量对@Prop赋值，只是数值的初始化，常规变量的变化不会触发UI刷新。只有状态变量才能触发UI刷新）、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp去初始化子组件中的\@Prop变量。 |
 | 用于初始化子组件  | \@Prop支持去初始化子组件中的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问 | \@Prop装饰的变量是私有的，只能在组件内访问。                |
 
@@ -50,7 +51,7 @@
 
 \@Prop装饰的数据可以观察到以下变化。
 
-- 当装饰的类型是允许的类型，即Object、class、string、number、boolean、enum类型都可以观察到的赋值变化。
+- 当装饰的类型是允许的类型，即Object、class、string、number、boolean、enum类型都可以观察到赋值的变化。
 
   ```ts
   // 简单类型
@@ -88,29 +89,7 @@ this.title.value = 'Hi'
 this.title.a.value = 'ArkUi' 
 ```
 
-对于嵌套场景，如果装饰的class是被\@Observed装饰的，可以观察到class属性的变化。
-
-```
-@Observed
-class ClassA {
-  public value: string;
-  constructor(value: string) {
-    this.value = value;
-  }
-}
-class Model {
-  public value: string;
-  public a: ClassA;
-  constructor(value: string, a: ClassA) {
-    this.value = value;
-    this.a = a;
-  }
-}
-@Prop title: Model;
-// 可以观察到第一层的变化
-this.title.value = 'Hi'
-// 可以观察到ClassA属性的变化，因为ClassA被@Observed装饰this.title.a.value = 'ArkUi'
-```
+对于嵌套场景，如果class是被\@Observed装饰的，可以观察到class属性的变化，示例请参考[@Prop嵌套场景](#@Prop嵌套场景)。
 
 当装饰的类型是数组的时候，可以观察到数组本身的赋值、添加、删除和更新。
 
@@ -139,7 +118,7 @@ this.title.push('3')
 ```ts
 @Component
 struct DateComponent {
-  @Prop selectedDate: Date;
+  @Prop selectedDate: Date = new Date('');
 
   build() {
     Column() {
@@ -209,7 +188,7 @@ struct ParentComponent {
 ### 父组件\@State到子组件\@Prop简单数据类型同步
 
 
-以下示例是\@State到子组件\@Prop简单数据同步，父组件ParentComponent的状态变量countDownStartValue初始化子组件CountDownComponent中\@Prop装饰的count，点击“Try again”，count的修改仅保留在CountDownComponent 不会同步给父组件CountDownComponent。
+以下示例是\@State到子组件\@Prop简单数据同步，父组件ParentComponent的状态变量countDownStartValue初始化子组件CountDownComponent中\@Prop装饰的count，点击“Try again”，count的修改仅保留在CountDownComponent 不会同步给父组件ParentComponent。
 
 
 ParentComponent的状态变量countDownStartValue的变化将重置CountDownComponent的count。
@@ -219,7 +198,7 @@ ParentComponent的状态变量countDownStartValue的变化将重置CountDownComp
 ```ts
 @Component
 struct CountDownComponent {
-  @Prop count: number;
+  @Prop count: number = 0;
   costOfOneAttempt: number = 1;
 
   build() {
@@ -285,7 +264,7 @@ struct ParentComponent {
 ```ts
 @Component
 struct Child {
-  @Prop value: number;
+  @Prop value: number = 0;
 
   build() {
     Text(`${this.value}`)
@@ -309,10 +288,10 @@ struct Index {
         Divider().height(5)
 
         ForEach(this.arr, 
-          item => {
+          (item: void) => {
             Child({value: item})
           }, 
-          item => item.toString()
+          (item: string) => item.toString()
         )
         Text('replace entire arr')
         .fontSize(50)
@@ -391,7 +370,7 @@ class Book {
 
 @Component
 struct ReaderComp {
-  @Prop book: Book;
+  @Prop book: Book = new Book("", 0);
 
   build() {
     Row() {
@@ -421,7 +400,7 @@ struct Library {
 
 在下面的示例中，更改了\@State 修饰的allBooks数组中Book对象上的属性，但点击“Mark read for everyone”无反应。这是因为该属性是第二层的嵌套属性，\@State装饰器只能观察到第一层属性，不会观察到此属性更改，所以框架不会更新ReaderComp。
 
-```
+```ts
 let nextId: number = 1;
 
 // @Observed
@@ -440,7 +419,7 @@ class Book {
 
 @Component
 struct ReaderComp {
-  @Prop book: Book;
+  @Prop book: Book = new Book("", 1);
 
   build() {
     Row() {
@@ -463,10 +442,10 @@ struct Library {
       ReaderComp({ book: this.allBooks[2] })
       Divider()
       Text('Books on loaan to a reader')
-      ForEach(this.allBooks, book => {
+      ForEach(this.allBooks, (book: Book) => {
         ReaderComp({ book: book })
       },
-        book => book.id)
+        (book: Book) => book.id.toString())
       Button('Add new')
         .onClick(() => {
           this.allBooks.push(new Book("The C++ Standard Library", 512));
@@ -486,7 +465,7 @@ struct Library {
 
  需要使用\@Observed装饰class Book，Book的属性将被观察。 需要注意的是，\@Prop在子组件装饰的状态变量和父组件的数据源是单向同步关系，即ReaderComp中的\@Prop book的修改不会同步给父组件Library。而父组件只会在数值有更新的时候（和上一次状态的对比），才会触发UI的重新渲染。
 
-```
+```ts
 @Observed
 class Book {
   public id: number;
@@ -518,7 +497,7 @@ class Book {
 ```ts
 @Component
 struct MyComponent {
-  @Prop customCounter: number;
+  @Prop customCounter: number = 0;
   @Prop customCounter2: number = 5;
 
   build() {
@@ -528,11 +507,11 @@ struct MyComponent {
       }
 
       Row() {
-        Button('Click to change locally !').width(480).height(60).margin({ top: 10 })
+        Button('Click to change locally !').width(180).height(60).margin({ top: 10 })
           .onClick(() => {
             this.customCounter2++
           })
-      }.height(100).width(480)
+      }.height(100).width(180)
 
       Row() {
         Text(`Custom Local: ${this.customCounter2}`).width(90).height(40).fontColor('#FF0010')
@@ -558,14 +537,98 @@ struct MainProgram {
       }
 
       Row() {
-        Column()
-        // customCounter必须从父组件初始化，因为MyComponent的customCounter成员变量缺少本地初始化；此处，customCounter2可以不做初始化。
-        MyComponent({ customCounter: this.mainCounter })
-        // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
-        MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
-      }.width('40%')
+        Column() {
+          // customCounter必须从父组件初始化，因为MyComponent的customCounter成员变量缺少本地初始化；此处，customCounter2可以不做初始化。
+          MyComponent({ customCounter: this.mainCounter })
+          // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
+          MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
+        }
+      }
     }
   }
 }
 ```
+
+### \@Prop嵌套场景
+
+在嵌套场景下，每一层都要用@Observed装饰，且每一层都要被@Prop接收，这样才能观察到嵌套场景。
+
+```ts
+// 以下是嵌套类对象的数据结构。
+@Observed
+class ClassA {
+  public title: string;
+
+  constructor(title: string) {
+    this.title = title;
+  }
+}
+
+@Observed
+class ClassB {
+  public name: string;
+  public a: ClassA;
+
+  constructor(name: string, a: ClassA) {
+    this.name = name;
+    this.a = a;
+  }
+}
+```
+
+以下组件层次结构呈现的是@Prop嵌套场景的数据结构。
+
+```ts
+@Entry
+@Component
+struct Parent {
+  @State votes: ClassB = new ClassB('Hello', new ClassA('world'))
+
+  build() {
+    Column() {
+      Button('change')
+        .onClick(() => {
+          this.votes.name = "aaaaa"
+          this.votes.a.title = "wwwww"
+        })
+      Child({ vote: this.votes })
+    }
+
+  }
+}
+
+@Component
+struct Child {
+  @Prop vote: ClassB = new ClassB('', new ClassA(''));
+  build() {
+    Column() {
+
+      Text(this.vote.name).fontSize(36).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          this.vote.name = 'Bye'
+        })
+      Text(this.vote.a.title).fontSize(36).fontColor(Color.Blue)
+        .onClick(() => {
+          this.vote.a.title = "openHarmony"
+        })
+      Child1({vote1:this.vote.a})
+
+    }
+  }
+}
+
+@Component
+struct Child1 {
+  @Prop vote1: ClassA = new ClassA('');
+  build() {
+    Column() {
+      Text(this.vote1.title).fontSize(36).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          this.vote1.title = 'Bye Bye'
+        })
+    }
+  }
+}
+```
+
 <!--no_check-->

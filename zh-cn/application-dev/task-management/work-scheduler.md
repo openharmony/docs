@@ -121,6 +121,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    
    ```ts
    import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
+   import workScheduler from '@ohos.resourceschedule.workScheduler';
    ```
 
 3. 实现WorkSchedulerExtension生命周期接口。
@@ -128,12 +129,12 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    ```ts
    export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
      // 延迟任务开始回调
-     onWorkStart(workInfo) {
+     onWorkStart(workInfo: workScheduler.WorkInfo) {
        console.info(`onWorkStart, workInfo = ${JSON.stringify(workInfo)}`);
      }
    
      // 延迟任务结束回调
-     onWorkStop(workInfo) {
+     onWorkStop(workInfo: workScheduler.WorkInfo) {
        console.info(`onWorkStop, workInfo is ${JSON.stringify(workInfo)}`);
      }
    }
@@ -151,7 +152,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
          "extensionAbilities": [
            {
              "name": "MyWorkSchedulerExtensionAbility",
-             "srcEntry": "./ets/WorkSchedulerExtension/WorkSchedulerExtension.ts",
+             "srcEntry": "./ets/WorkSchedulerExtension/WorkSchedulerExtension.ets",
              "label": "$string:WorkSchedulerExtensionAbility_label",
              "description": "$string:WorkSchedulerExtensionAbility_desc",
              "type": "workScheduler"
@@ -168,12 +169,13 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    
    ```ts
    import workScheduler from '@ohos.resourceschedule.workScheduler';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 申请延迟任务。
    
    ```ts
-   private workInfo = {
+   private workInfo: workScheduler.WorkInfo = {
      workId: 1,
      networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
      bundleName: 'com.example.application',
@@ -184,14 +186,14 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
      workScheduler.startWork(this.workInfo);
      console.info(`startWork success`);
    } catch (error) {
-     console.error(`startWork failed. code is ${error.code} message is ${error.message}`);
+     console.error(`startWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
    }
    ```
 
 3. 取消延迟任务。
    
    ```ts
-   private workInfo = {
+   private workInfo: workScheduler.workInfo = {
      workId: 1,
      networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
      bundleName: 'com.example.application', 
@@ -202,7 +204,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
      workScheduler.stopWork(this.workInfo);
      console.info(`stopWork success`);
    } catch (error) {
-     console.error(`stopWork failed. code is ${error.code} message is ${error.message}`);
+     console.error(`stopWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
    }
    ```
 
@@ -210,4 +212,4 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 针对延迟任务调度的开发，有以下相关示例可供参考：
 
-- [WorkScheduler的创建与使用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler)
+- [延迟任务调度（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler)

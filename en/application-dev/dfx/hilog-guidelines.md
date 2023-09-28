@@ -1,6 +1,6 @@
 # HiLog Development (Native)
  
-## Introduction
+## Overview
 
 HiLog is the log system of OpenHarmony that provides logging for the system framework, services, and applications to record information on user operations and system running status.
 

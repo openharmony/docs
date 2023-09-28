@@ -32,23 +32,25 @@ onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecall
 
 **示例：**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onConsumeCallback(data) {
-    console.info('===> onConsume in test');
-    let req = data.request;
-    console.info('===> onConsume callback req.id:' + req.id);
+let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
+  console.info('===> onConsume in test');
+  let req = data.request;
+  console.info('===> onConsume callback req.id:' + req.id);
 };
 
-let subscriber = {
-    onConsume: onConsumeCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConsume: onConsumeCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -72,23 +74,25 @@ onCancel?:(data: [SubscribeCallbackData](js-apis-notification.md#subscribecallba
 
 **示例：**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onCancelCallback(data) {
-    console.info('===> onCancel in test');
-    let req = data.request;
-    console.info('===> onCancel callback req.id:' + req.id);
+function onCancelCallback(data: notificationSubscribe.SubscribeCallbackData) {
+  console.info('===> onCancel in test');
+  let req = data.request;
+  console.info('===> onCancel callback req.id:' + req.id);
 }
 
-let subscriber = {
-    onCancel: onCancelCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onCancel: onCancelCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -112,21 +116,21 @@ onUpdate?:(data: [NotificationSortingMap](js-apis-notification.md#notificationso
 
 **示例：**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onUpdateCallback(map) {
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onUpdate: (map) => {
     console.info('===> onUpdateCallback map:' + JSON.stringify(map));
-}
-
-let subscriber = {
-    onUpdate: onUpdateCallback
+  }
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -144,21 +148,23 @@ onConnect?:() => void
 
 **示例：**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onConnectCallback() {
-    console.info('===> onConnect in test');
+let onConnectCallback = () => {
+  console.info('===> onConnect in test');
 }
 
-let subscriber = {
-    onConnect: onConnectCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConnect: onConnectCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -176,32 +182,34 @@ onDisconnect?:() => void
 
 **示例：**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
-function unsubscribeCallback(err) {
-    if (err.code) {
-        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("unsubscribeCallback");
-    }
+let unsubscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("unsubscribeCallback");
+  }
 };
 
-function onConnectCallback() {
-    console.info('===> onConnect in test');
+let onConnectCallback = () => {
+  console.info('===> onConnect in test');
 }
-function onDisconnectCallback() {
-    console.info('===> onDisconnect in test');
+let onDisconnectCallback = () => {
+  console.info('===> onDisconnect in test');
 }
 
-let subscriber = {
-    onConnect: onConnectCallback,
-    onDisconnect: onDisconnectCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConnect: onConnectCallback,
+  onDisconnect: onDisconnectCallback
 };
 
 // 订阅通知后会收到onConnect回调
@@ -222,21 +230,23 @@ onDestroy?:() => void
 
 **示例：**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onDestroyCallback() {
-    console.info('===> onDestroy in test');
+let onDestroyCallback = () => {
+  console.info('===> onDestroy in test');
 }
 
-let subscriber = {
-    onDestroy: onDestroyCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onDestroy: onDestroyCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -260,21 +270,24 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 
 **示例：**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onDoNotDisturbDateChangeCallback(mode) {
-    console.info('===> onDoNotDisturbDateChange:' + mode);
+let onDoNotDisturbDateChangeCallback = (mode: NotificationManager.DoNotDisturbDate) => {
+  console.info('===> onDoNotDisturbDateChange:' + mode);
 }
 
-let subscriber = {
-    onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -299,23 +312,25 @@ onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](j
 
 **示例：**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onEnabledNotificationChangedCallback(callbackData) {
-    console.info("bundle: ", callbackData.bundle);
-    console.info("uid: ", callbackData.uid);
-    console.info("enable: ", callbackData.enable);
+let onEnabledNotificationChangedCallback = (callbackData: notificationSubscribe.EnabledNotificationCallbackData) => {
+  console.info("bundle: ", callbackData.bundle);
+  console.info("uid: ", callbackData.uid);
+  console.info("enable: ", callbackData.enable);
 };
 
-let subscriber = {
-    onEnabledNotificationChanged: onEnabledNotificationChangedCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onEnabledNotificationChanged: onEnabledNotificationChangedCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -339,23 +354,23 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **示例：**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onBadgeChangedCallback(data) {
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onBadgeChanged: (data) => {
     console.info("bundle: ", data.bundle);
     console.info("uid: ", data.uid);
     console.info("badgeNumber: ", data.badgeNumber);
-};
-
-let subscriber = {
-    onBadgeChanged: onBadgeChangedCallback
+  }
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);

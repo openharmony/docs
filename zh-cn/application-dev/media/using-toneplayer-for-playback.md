@@ -44,39 +44,48 @@ TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，�
 
 1. 创建DTMF播放器 ，获取tonePlayer实例。
      
-   ```ts
-   import audio from '@ohos.multimedia.audio';
-   let audioRendererInfo = {
-     content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
-     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-     rendererFlags : 0
-   };
-   tonePlayerPromise = audio.createTonePlayer(audioRendererInfo);
-   ```
+```ts
+import audio from '@ohos.multimedia.audio';
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage : audio.StreamUsage.STREAM_USAGE_DTMF,
+  rendererFlags : 0
+};
+async function createTonePlayer() {
+  let tonePlayerPromise = await audio.createTonePlayer(audioRendererInfo);
+}
+```
 
 2. 加载指定类型DTMF音调配置。
      
-   ```ts
-   tonePlayerPromise.load(audio.ToneType.TONE_TYPE_DIAL_0);
-   ```
+```ts
+async function load() {
+    await tonePlayerPromise.load(audio.ToneType.TONE_TYPE_DIAL_0);
+}
+```
 
 3. 启动DTMF音调播放。
      
-   ```ts
-   tonePlayerPromise.start();
-   ```
+```ts
+async function start() {
+    await tonePlayerPromise.start();
+}
+```
 
 4. 停止当前正在播放的音调。
      
-   ```ts
-   tonePlayerPromise.stop();
-   ```
+```ts
+async function stop() {
+    await tonePlayerPromise.stop();
+}
+```
 
 5. 释放与此TonePlayer对象关联的资源。
      
-   ```ts
-   tonePlayerPromise.release();
-   ```
+```ts
+async function release() {
+    await tonePlayerPromise.release();
+}
+```
 
 在接口未按此正常调用时序调用时，接口会返回错误码6800301 NAPI_ERR_SYSTEM。
 
@@ -90,51 +99,52 @@ TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，�
   
 ```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 
-export class TonelayerDemo {
-  private timer : number;
-  private timerPro : number;
-  // promise调用方式
-  async testTonePlayerPromise(type) {
-    console.info('testTonePlayerPromise start');
-    if (this.timerPro) clearTimeout(this.timerPro);
-    let tonePlayerPromise;
-    let audioRendererInfo = {
-      content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
-      usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-      rendererFlags : 0
-    };
-    this.timerPro = setTimeout(async () => {
-      try {
-        console.info('testTonePlayerPromise: createTonePlayer');
-        // 创建DTMF播放器      
-        tonePlayerPromise = await audio.createTonePlayer(audioRendererInfo);
-        console.info('testTonePlayerPromise: createTonePlayer-success');
-        console.info(`testTonePlayerPromise: load type: ${type}`);
-        // 加载type类型音调
-        await tonePlayerPromise.load(type);
-        console.info('testTonePlayerPromise: load-success');
-        console.info(`testTonePlayerPromise: start type: ${type}`);
-        // 启动DTMF音调播放
-        await tonePlayerPromise.start();
-        console.info('testTonePlayerPromise: start-success');
-        console.info(`testTonePlayerPromise: stop type: ${type}`);
-        setTimeout(async()=>{
-          // 停止当前正在播放的音调
-          await tonePlayerPromise.stop();
-          console.info('testTonePlayerPromise: stop-success');
-          console.info(`testTonePlayerPromise: release type: ${type}`);
-          // 释放与此TonePlayer对象关联的资源
-          await tonePlayerPromise.release();
-          console.info('testTonePlayerPromise: release-success');
-        }, 30)
-      } catch(err) {
-        console.error(`testTonePlayerPromise err : ${err}`);
-      }
-    }, 200)
+
+let timerPro : number;
+// promise调用方式
+async function testTonePlayerPromise(type: audio.ToneType) {
+  console.info('testTonePlayerPromise start');
+  if (timerPro) clearTimeout(timerPro);
+  let tonePlayerPromise: audio.TonePlayer;
+  let audioRendererInfo: audio.AudioRendererInfo = {
+    usage : audio.StreamUsage.STREAM_USAGE_DTMF,
+    rendererFlags : 0
   };
-  async testTonePlayer() {
-    this.testTonePlayerPromise(audio.ToneType.TONE_TYPE_DIAL_0);
-  }
+  timerPro = setTimeout(async () => {
+    try {
+      console.info('testTonePlayerPromise: createTonePlayer');
+      // 创建DTMF播放器      
+      tonePlayerPromise = await audio.createTonePlayer(audioRendererInfo);
+      console.info('testTonePlayerPromise: createTonePlayer-success');
+      console.info(`testTonePlayerPromise: load type: ${type}`);
+      // 加载type类型音调
+      await tonePlayerPromise.load(type);
+      console.info('testTonePlayerPromise: load-success');
+      console.info(`testTonePlayerPromise: start type: ${type}`);
+      // 启动DTMF音调播放
+      await tonePlayerPromise.start();
+      console.info('testTonePlayerPromise: start-success');
+      console.info(`testTonePlayerPromise: stop type: ${type}`);
+      setTimeout(async()=>{
+        // 停止当前正在播放的音调
+        await tonePlayerPromise.stop();
+        console.info('testTonePlayerPromise: stop-success');
+        console.info(`testTonePlayerPromise: release type: ${type}`);
+        // 释放与此TonePlayer对象关联的资源
+        await tonePlayerPromise.release();
+        console.info('testTonePlayerPromise: release-success');
+      }, 30)
+    } catch(err) {
+      let error = err as BusinessError;
+      console.error(`testTonePlayerPromise err : ${error}`);
+    }
+  }, 200)
+};
+
+async function testTonePlayer() {
+   testTonePlayerPromise(audio.ToneType.TONE_TYPE_DIAL_0);
 }
+
 ```

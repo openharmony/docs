@@ -1,8 +1,7 @@
 # @ohos.systemParameterEnhance (系统参数)
 
 系统参数（SystemParameter）是为各系统服务提供的简单易用的键值对访问接口，各个系统服务可以定义系统参数来描述该服务的状态信息，或者通过系统参数来改变系统服务的行为。其基本操作原语为get和set，通过get可以查询系统参数的值，通过set可以修改系统参数的值。
-详细的系统参数设计原理及定义可参考
-[系统参数](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
+详细的系统参数设计原理及定义可参考[系统参数](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
 
 > **说明：**
 >
@@ -13,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import systemparameter from '@ohos.systemParameterEnhance'
+import systemparameter from '@ohos.systemParameterEnhance';
 ```
 
 ## systemparameter.getSync
@@ -37,11 +36,21 @@ getSync(key: string, def?: string): string
 | -------- | -------- |
 | string | 系统参数值 <br> 若key存在,返回设定的值。 <br> 若key不存在且def有效，返回def；若未指定def或def无效(如undefined)，抛异常。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 14700101 | if key is not found                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
+
+以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+
 **示例：**
 
 ```ts
 try {
-    var info = systemparameter.getSync("const.ohos.apiversion");
+    let info: string = systemparameter.getSync("const.ohos.apiversion");
     console.log(JSON.stringify(info));
 } catch(e) {
     console.log("getSync unexpected error: " + e);
@@ -63,11 +72,23 @@ get(key: string, callback: AsyncCallback&lt;string&gt;): void
 | key | string | 是 | 待查询的系统参数Key。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 14700101 | if key is not found                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
+
+以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    systemparameter.get("const.ohos.apiversion", function (err, data) {
+    systemparameter.get("const.ohos.apiversion", (err: BusinessError, data: string) => {
     if (err == undefined) {
         console.log("get test.parameter.key value success:" + data)
     } else {
@@ -94,11 +115,23 @@ get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 | def | string | 是 | 默认值。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 14700101 | if key is not found                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
+
+以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    systemparameter.get("const.ohos.apiversion", "default", function (err, data) {
+    systemparameter.get("const.ohos.apiversion", "default", (err: BusinessError, data: string) => {
         if (err == undefined) {
             console.log("get test.parameter.key value success:" + data)
         } else {
@@ -131,14 +164,26 @@ get(key: string, def?: string): Promise&lt;string&gt;
 | -------- | -------- |
 | Promise&lt;string&gt; | Promise示例，用于异步获取结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 14700101 | if key is not found                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
+
+以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    var p = systemparameter.get("const.ohos.apiversion");
-    p.then(function (value) {
+    let p: Promise<string> = systemparameter.get("const.ohos.apiversion");
+    p.then((value: string) => {
         console.log("get test.parameter.key success: " + value);
-    }).catch(function (err) {
+    }).catch((err: BusinessError) => {
         console.log("get test.parameter.key error: " + err.code);
     });
 } catch(e) {
@@ -161,9 +206,21 @@ setSync(key: string, value: string): void
 | key | string | 是 | 待设置的系统参数Key。 |
 | value | string | 是 | 待设置的系统参数值。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 14700102 | if value is invalid                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
+
+以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     systemparameter.setSync("test.parameter.key", "default");
 } catch(e) {
@@ -187,11 +244,23 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 | value | string | 是 | 待设置的系统参数值。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 14700102 | if value is invalid                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
+
+以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    systemparameter.set("test.parameter.key", "testValue", function (err, data) {
+    systemparameter.set("test.parameter.key", "testValue", (err: BusinessError, data: void) => {
     if (err == undefined) {
         console.log("set test.parameter.key value success :" + data)
     } else {
@@ -223,14 +292,26 @@ set(key: string, value: string): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise示例，用于异步获取结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 14700102 | if value is invalid                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
+
+以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    var p = systemparameter.set("test.parameter.key", "testValue");
-    p.then(function (value) {
+    let p: Promise<void>  = systemparameter.set("test.parameter.key", "testValue");
+    p.then((value: void) => {
         console.log("set test.parameter.key success: " + value);
-    }).catch(function (err) {
+    }).catch((err: BusinessError) => {
         console.log(" set test.parameter.key error: " + err.code);
     });
 } catch(e) {

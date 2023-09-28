@@ -5,13 +5,11 @@
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本新增接口，采用上角标单独标记接口的起始版本。
->
-> 本模块接口在FA模型及Stage模型下均可使用。
 
 ## 导入模块
 
-```javascript
-import emitter from '@ohos.events.emitter'
+```ts
+import emitter from '@ohos.events.emitter';
 ```
 
 ## 权限列表
@@ -35,16 +33,15 @@ on(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)
 
 **示例：**
 
-```javascript
-let innerEvent = {
-    eventId: 1
+```ts
+let innerEvent: emitter.InnerEvent = {
+  eventId: 1
 };
 
-// 收到eventId为1的事件后执行该回调函数
-function emitterCallback() {
-    console.info('callback');
-}
-emitter.on(innerEvent, emitterCallback);
+// 收到eventId为1的事件后执行回调函数
+emitter.on(innerEvent, () => {
+  console.info('callback');
+});
 ```
 
 ## emitter.once
@@ -64,16 +61,15 @@ once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdat
 
 **示例：**
 
-```javascript
-let innerEvent = {
+```ts
+let innerEvent: emitter.InnerEvent = {
     eventId: 1
 };
 
 // 收到eventId为1的事件后执行该回调函数
-function emitterCallback() {
+emitter.once(innerEvent, () => {
     console.info('once callback');
-};
-emitter.once(innerEvent, emitterCallback);
+});
 ```
 
 ## emitter.off
@@ -92,14 +88,14 @@ off(eventId: number): void
 
 **示例：**
 
-```javascript
+```ts
 // 取消eventID为1的所有事件回调处理函数
 emitter.off(1);
 ```
 
 ## emitter.off<sup>10+<sup>
 
-off(eventId: number，callback: Callback\<[EventData](#eventdata)\>): void
+off(eventId: number, callback: Callback\<[EventData](#eventdata)\>): void
 
 取消针对该事件ID的订阅，传入可选参数callback，并且该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
 
@@ -114,13 +110,12 @@ off(eventId: number，callback: Callback\<[EventData](#eventdata)\>): void
 
 **示例：**
 
-```javascript
+```ts
 // 取消eventID为1的事件回调处理函数 emitterCallback
 // 如果该回调处理函数没有被订阅，则不做任何处理
-function emitterCallback() {
-    console.info('callback');
-}
-emitter.off(1, emitterCallback);
+emitter.off(1, () => {
+  console.info('callback');
+});
 ```
 
 ## emitter.emit
@@ -140,15 +135,15 @@ emit(event: [InnerEvent](#innerevent), data?: [EventData](#eventdata)): void
 
 **示例：**
 
-```javascript
-let eventData = {
+```ts
+let eventData: emitter.EventData = {
     data: {
         "content": "c",
         "id": 1,
     }
 };
 
-let innerEvent = {
+let innerEvent: emitter.InnerEvent = {
     eventId: 1,
     priority: emitter.EventPriority.HIGH
 };

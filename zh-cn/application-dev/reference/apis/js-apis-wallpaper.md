@@ -10,7 +10,7 @@
 ## 导入模块
 
 
-```js
+```ts
 import wallpaper from '@ohos.wallpaper';
 ```
 ## WallpaperResourceType<sup>10+</sup>
@@ -81,10 +81,12 @@ setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&l
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
 try {
-    wallpaper.setVideo(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
+    wallpaper.setVideo(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError) => {
         if (error) {
             console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
             return;
@@ -124,12 +126,14 @@ setVideo(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
 try {
     wallpaper.setVideo(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
         console.log(`success to setVideo.`);
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
         console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
     });
 } catch (error) {
@@ -159,10 +163,12 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType, callback: Async
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
 try {
-    wallpaper.setCustomWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
+    wallpaper.setCustomWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError) => {
         if (error) {
             console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
             return;
@@ -202,12 +208,14 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType): Promise&lt;voi
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
 try {
     wallpaper.setCustomWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
         console.log(`success to setCustomWallpaper.`);
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
         console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
     });
 } catch (error) {
@@ -234,9 +242,9 @@ on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceTyp
 
 **示例：**
 
-```js
+```ts
 try {
-    let listener = (wallpaperType, resourceType) => {
+    let listener = (wallpaperType: wallpaper.WallpaperType, resourceType: wallpaper.WallpaperResourceType): void => {
         console.log(`wallpaper color changed.`);
     };
     wallpaper.on('wallpaperChange', listener);
@@ -264,8 +272,8 @@ off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceT
 
 **示例：**
 
-```js
-let listener = (wallpaperType, resourceType) => {
+```ts
+let listener = (wallpaperType: wallpaper.WallpaperType, resourceType: wallpaper.WallpaperResourceType): void => {
     console.log(`wallpaper color changed.`);
 };
 try {
@@ -313,7 +321,7 @@ getColorsSync(wallpaperType: WallpaperType): Array&lt;RgbaColor&gt;
 
 **示例**：
 
-```js
+```ts
 try {
     let colors = wallpaper.getColorsSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
     console.log(`success to getColorsSync: ${JSON.stringify(colors)}`);
@@ -340,7 +348,7 @@ getMinHeightSync(): number
 
 **示例：**
 
-```js
+```ts
 let minHeight = wallpaper.getMinHeightSync();
 ```
 
@@ -362,7 +370,7 @@ getMinWidthSync(): number
 
 **示例：**
 
-```js
+```ts
 let minWidth = wallpaper.getMinWidthSync();
 ```
 
@@ -387,8 +395,10 @@ restore(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError) => {
     if (error) {
         console.error(`failed to restore because: ${JSON.stringify(error)}`);
         return;
@@ -423,10 +433,12 @@ restore(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 **示例：**
 
-```js 
+```ts
+import { BusinessError } from '@ohos.base';
+ 
 wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to restore.`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error(`failed to restore because: ${JSON.stringify(error)}`);
 });
 ```
@@ -453,10 +465,13 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
-wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
+wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError) => {
     if (error) {
         console.error(`failed to setImage because: ${JSON.stringify(error)}`);
         return;
@@ -465,23 +480,22 @@ wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (err
 });
   
 // source类型为image.PixelMap
-import image from '@ohos.multimedia.image';
 let imageSource = image.createImageSource("file://" + wallpaperPath);
-let opts = {
-    "desiredSize": {
-        "height": 3648,
-        "width": 2736
+let opts: image.DecodingOptions = {
+    desiredSize: {
+        height: 3648,
+        width: 2736
     }
 };
-imageSource.createPixelMap(opts).then((pixelMap) => {
-    wallpaper.setImage(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
+imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
+    wallpaper.setImage(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError) => {
         if (error) {
             console.error(`failed to setImage because: ${JSON.stringify(error)}`);
             return;
         }
         console.log(`success to setImage.`);
     });
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`failed to createPixelMap because: ${JSON.stringify(error)}`);
 });
 ```
@@ -513,31 +527,33 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to setImage.`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`failed to setImage because: ${JSON.stringify(error)}`);
 });
 
 // source类型为image.PixelMap
-import image from '@ohos.multimedia.image';
 let imageSource = image.createImageSource("file://" + wallpaperPath);
-let opts = {
-    "desiredSize": {
-        "height": 3648,
-        "width": 2736
+let opts: image.DecodingOptions = {
+    desiredSize: {
+        height: 3648,
+        width: 2736
     }
 };
-imageSource.createPixelMap(opts).then((pixelMap) => {
+imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
     wallpaper.setImage(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
         console.log(`success to setImage.`);
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
         console.error(`failed to setImage because: ${JSON.stringify(error)}`);
     });
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`failed to createPixelMap because: ${JSON.stringify(error)}`);
 });
 ```
@@ -563,8 +579,10 @@ getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap
 
 **示例：**
 
-```js
-wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM, function (error, data) {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: image.PixelMap) => {
     if (error) {
         console.error(`failed to getImage because: ${JSON.stringify(error)}`);
         return;
@@ -600,10 +618,12 @@ getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 **示例：**
 
-```js
-wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
     console.log(`success to getImage: ${JSON.stringify(data)}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error(`failed to getImage because: ${JSON.stringify(error)}`);
 });
 ```
@@ -629,9 +649,9 @@ on(type: 'colorChange', callback: (colors: Array&lt;RgbaColor&gt;, wallpaperType
 
 **示例：**
 
-```js
+```ts
 try {
-    let listener = (colors, wallpaperType) => {
+    let listener = (colors: Array<wallpaper.RgbaColor>, wallpaperType: wallpaper.WallpaperType): void => {
         console.log(`wallpaper color changed.`);
     };
     wallpaper.on('colorChange', listener);
@@ -661,8 +681,8 @@ off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperTy
 
 **示例：**
 
-```js
-let listener = (colors, wallpaperType) => {
+```ts
+let listener = (colors: Array<wallpaper.RgbaColor>, wallpaperType: wallpaper.WallpaperType): void => {
     console.log(`wallpaper color changed.`);
 };
 try {
@@ -707,8 +727,10 @@ getColors(wallpaperType: WallpaperType, callback: AsyncCallback&lt;Array&lt;Rgba
 
 **示例：**
 
-```js
-wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: Array<wallpaper.RgbaColor>) => {
     if (error) {
         console.error(`failed to getColors because: ${JSON.stringify(error)}`);
         return;
@@ -743,10 +765,12 @@ getColors(wallpaperType: WallpaperType): Promise&lt;Array&lt;RgbaColor&gt;&gt;
 
 **示例：**
 
-```js
-wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: Array<wallpaper.RgbaColor>) => {
     console.log(`success to getColors: ${JSON.stringify(data)}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error(`failed to getColors because: ${JSON.stringify(error)}`);
 });
 ```
@@ -772,8 +796,10 @@ getId(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
-wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: Number) => {
     if (error) {
         console.error(`failed to getId because: ${JSON.stringify(error)}`);
         return;
@@ -808,10 +834,12 @@ getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 **示例：**
 
-```js
-wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: Number) => {
     console.log(`success to getId: ${JSON.stringify(data)}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error(`failed to getId because: ${JSON.stringify(error)}`);
 });
 ```
@@ -836,8 +864,10 @@ getMinHeight(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
-wallpaper.getMinHeight((error, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getMinHeight((error: BusinessError, data: Number) => {
     if (error) {
         console.error(`failed to getMinHeight because: ${JSON.stringify(error)}`);
         return;
@@ -866,10 +896,12 @@ getMinHeight(): Promise&lt;number&gt;
 
 **示例：**
 
-```js
-wallpaper.getMinHeight().then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getMinHeight().then((data: Number) => {
     console.log(`success to getMinHeight: ${JSON.stringify(data)}`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`failed to getMinHeight because: ${JSON.stringify(error)}`);
 });
 ```
@@ -894,8 +926,10 @@ getMinWidth(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
-wallpaper.getMinWidth((error, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getMinWidth((error: BusinessError, data: Number) => {
     if (error) {
         console.error(`failed to getMinWidth because: ${JSON.stringify(error)}`);
         return;
@@ -924,10 +958,12 @@ getMinWidth(): Promise&lt;number&gt;
 
 **示例：**
 
-```js
-wallpaper.getMinWidth().then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getMinWidth().then((data: Number) => {
     console.log(`success to getMinWidth: ${JSON.stringify(data)}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error(`failed to getMinWidth because: ${JSON.stringify(error)}`);
 });
 ```
@@ -952,8 +988,10 @@ isChangePermitted(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-wallpaper.isChangePermitted((error, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.isChangePermitted((error: BusinessError, data: Boolean) => {
     if (error) {
         console.error(`failed to isChangePermitted because: ${JSON.stringify(error)}`);
         return;
@@ -982,10 +1020,12 @@ isChangePermitted(): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
-wallpaper.isChangePermitted().then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.isChangePermitted().then((data: Boolean) => {
     console.log(`success to isChangePermitted: ${JSON.stringify(data)}`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`failed to isChangePermitted because: ${JSON.stringify(error)}`);
 });
 ```
@@ -1010,8 +1050,10 @@ isOperationAllowed(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-wallpaper.isOperationAllowed((error, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.isOperationAllowed((error: BusinessError, data: Boolean) => {
     if (error) {
         console.error(`failed to isOperationAllowed because: ${JSON.stringify(error)}`);
         return;
@@ -1040,10 +1082,12 @@ isOperationAllowed(): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
-wallpaper.isOperationAllowed().then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.isOperationAllowed().then((data: Boolean) => {
     console.log(`success to isOperationAllowed: ${JSON.stringify(data)}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error(`failed to isOperationAllowed because: ${JSON.stringify(error)}`);
 });
 ```
@@ -1071,8 +1115,10 @@ reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError) => {
     if (error) {
         console.error(`failed to reset because: ${JSON.stringify(error)}`);
         return;
@@ -1109,10 +1155,12 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to reset.`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`failed to reset because: ${JSON.stringify(error)}`);
 });
 ```
@@ -1141,10 +1189,13 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
-wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
+wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError) => {
     if (error) {
         console.error(`failed to setWallpaper because: ${JSON.stringify(error)}`);
        return;
@@ -1153,23 +1204,22 @@ wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, 
 });
 
 // source类型为image.PixelMap
-import image from '@ohos.multimedia.image';
 let imageSource = image.createImageSource("file://" + wallpaperPath);
-let opts = {
-    "desiredSize": {
-        "height": 3648,
-        "width": 2736
+let opts: image.DecodingOptions = {
+    desiredSize: {
+        height: 3648,
+        width: 2736
     }
 };
-imageSource.createPixelMap(opts).then((pixelMap) => {
-    wallpaper.setWallpaper(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
+imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
+    wallpaper.setWallpaper(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError) => {
         if (error) {
             console.error(`failed to setWallpaper because: ${JSON.stringify(error)}`);
             return;
         }
         console.log(`success to setWallpaper.`);
     });
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`failed to createPixelMap because: ${JSON.stringify(error)}`);
 });
 ```
@@ -1203,31 +1253,33 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to setWallpaper.`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error(`failed to setWallpaper because: ${JSON.stringify(error)}`);
 });
   
 // source类型为image.PixelMap
-import image from '@ohos.multimedia.image';
 let imageSource = image.createImageSource("file://" + wallpaperPath);
-let opts = {
-    "desiredSize": {
-        "height": 3648,
-        "width": 2736
+let opts: image.DecodingOptions = {
+    desiredSize: {
+        height: 3648,
+        width: 2736
     }
 };
-imageSource.createPixelMap(opts).then((pixelMap) => {
+imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
     wallpaper.setWallpaper(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
         console.log(`success to setWallpaper.`);
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
         console.error(`failed to setWallpaper because: ${JSON.stringify(error)}`);
     });
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error(`failed to createPixelMap because: ${JSON.stringify(error)}`);
 });
 ```
@@ -1256,8 +1308,10 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
 
 **示例：**
 
-```js
-wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: number) => {
     if (error) {
         console.error(`failed to getFile because: ${JSON.stringify(error)}`);
         return;
@@ -1294,10 +1348,12 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 **示例：**
 
-```js
-wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: number) => {
     console.log(`success to getFile: ${JSON.stringify(data)}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error(`failed to getFile because: ${JSON.stringify(error)}`);
 });
 ```
@@ -1327,8 +1383,10 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 
 **示例：**
 
-```js
-wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM, function (error, data) {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: image.PixelMap) => {
     if (error) {
         console.error(`failed to getPixelMap because: ${JSON.stringify(error)}`);
         return;
@@ -1367,10 +1425,12 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 **示例：**
 
-```js
-wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
     console.log(`success to getPixelMap : ${JSON.stringify(data)}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error(`failed to getPixelMap because: ${JSON.stringify(error)}`);
 });
 ```

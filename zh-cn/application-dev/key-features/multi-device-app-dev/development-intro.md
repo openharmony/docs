@@ -24,9 +24,9 @@
 
 对于厂商自定义设备，需要开发者自行从厂商处获取该设备的要求能力集并导入到IDE中。
 
-在工程目录右键后选择“Import Product Compatibility ID”即可选择及导入设备要求能力集，导入后的设备要求能力集会被写入工程的syscap.json文件中。
+在IDE中点击File->New->Import...后选择“Import Product Compatibility ID”即可选择及导入设备要求能力集，导入后的设备要求能力集会被写入工程的syscap.json文件中。
 
-![20220329-103626](../../reference/figures/20220329-103626.gif)
+![20230920-103626](figures/20230920-103626.gif)
 ### 多设备应用开发
 开发多设备应用时，工程中默认的要求能力集是多个设备支持能力集的交集，默认的联想能力集是多个设备支持能力集的并集。
 
@@ -40,20 +40,20 @@
 
 - 方法1：OpenHarmony定义了API canIUse帮助开发者来判断该设备是否支持某个特定的syscap。
 
-  ```typescript
+  ```ts
   if (canIUse("SystemCapability.Communication.NFC.Core")) {
-  	   console.log("该设备支持SystemCapability.Communication.NFC.Core");
+     console.log("该设备支持SystemCapability.Communication.NFC.Core");
   } else {
-      console.log("该设备不支持SystemCapability.Communication.NFC.Core");
+     console.log("该设备不支持SystemCapability.Communication.NFC.Core");
   }
   ```
 
 
 - 方法2：开发者可通过import的方式将模块导入，若当前设备不支持该模块，import的结果为undefined，开发者在使用其API时，需要判断其是否存在。 
 
-  ```typescript
+  ```ts
   import controller from '@ohos.nfc.controller';
-     try {
+  try {
       controller.enableNfc();
       console.log("controller enableNfc success");
   } catch (busiError) {

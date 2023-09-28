@@ -1,19 +1,17 @@
 # @ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)
 
-The **WorkSchedulerExtensionAbility** module provides callbacks for deferred task scheduling.
-
-When developing an application, you can override the APIs of this module and add your own task logic to the APIs.
+The **WorkSchedulerExtensionAbility** module provides callbacks for deferred task scheduling. You can override the APIs provided by this module. When a deferred task is triggered, the system calls back the application through the APIs and processes the task logic in the callback.
 
 >  **NOTE**
 >
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 >  - The APIs of this module can be used only in the stage model.
-
 
 ## Modules to Import
 
 ```ts
-import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
+import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 ```
 
 ## Attributes
@@ -36,16 +34,18 @@ Called when the system starts scheduling the deferred task.
 
 | Name | Type                                      | Mandatory  | Description            |
 | ---- | ---------------------------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Target task.|
+| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Deferred task that starts.|
 
 **Example**
 
   ```ts
-    export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
-        onWorkStart(workInfo) {
-            console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
-        }
+  import workScheduler from '@ohos.resourceschedule.workScheduler';
+
+  export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
+    onWorkStart(workInfo: workScheduler.WorkInfo) {
+        console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
     }
+  }
   ```
 
 ## WorkSchedulerExtensionAbility.onWorkStop
@@ -60,15 +60,17 @@ Called when the system stops scheduling the deferred task.
 
 | Name | Type                                      | Mandatory  | Description            |
 | ---- | ---------------------------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Target task.|
+| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Deferred task that stops.|
 
 
 **Example**
 
   ```ts
-    export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
-        onWorkStop(workInfo) {
-            console.log('MyWorkSchedulerExtensionAbility onWorkStop' + JSON.stringify(workInfo));
-        }
+  import workScheduler from '@ohos.resourceschedule.workScheduler';
+
+  export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
+    onWorkStop(workInfo: workScheduler.WorkInfo) {
+        console.log('MyWorkSchedulerExtensionAbility onWorkStop' + JSON.stringify(workInfo));
     }
+  }
   ```

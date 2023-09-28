@@ -1,4 +1,4 @@
-# @ohos.data.distributedKVStore (分布式键值数据库)
+ # @ohos.data.distributedKVStore (分布式键值数据库)
 
 分布式键值数据库为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式键值数据库各个接口，应用程序可将数据保存到分布式键值数据库中，并可对分布式键值数据库中的数据进行增加、删除、修改、查询、同步等操作。
 
@@ -13,11 +13,10 @@
 > **说明：** 
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> <br>本模块中所有需要获取deviceId的接口，都仅系统应用可用。
 
 ## 导入模块
 
-```js
+```ts
 import distributedKVStore from '@ohos.data.distributedKVStore';
 ```
 
@@ -226,23 +225,23 @@ appendChild(child: FieldNode): boolean
 
 **示例：**
 
-```js
+```ts
 
 try {
-    let node = new distributedKVStore.FieldNode("root");
-    let child1 = new distributedKVStore.FieldNode("child1");
-    let child2 = new distributedKVStore.FieldNode("child2");
-    let child3 = new distributedKVStore.FieldNode("child3");
-    node.appendChild(child1);
-    node.appendChild(child2);
-    node.appendChild(child3);
-    console.info("appendNode " + JSON.stringify(node));
-    child1 = null;
-    child2 = null;
-    child3 = null;
-    node = null;
+  let node: distributedKVStore.FieldNode | null = new distributedKVStore.FieldNode("root");
+  let child1: distributedKVStore.FieldNode | null = new distributedKVStore.FieldNode("child1");
+  let child2: distributedKVStore.FieldNode | null = new distributedKVStore.FieldNode("child2");
+  let child3: distributedKVStore.FieldNode | null = new distributedKVStore.FieldNode("child3");
+  node.appendChild(child1);
+  node.appendChild(child2);
+  node.appendChild(child3);
+  console.info("appendNode " + JSON.stringify(node));
+  child1 = null;
+  child2 = null;
+  child3 = null;
+  node = null;
 } catch (e) {
-    console.error("AppendChild " + e);
+  console.error("AppendChild " + e);
 }
 ```
 
@@ -270,43 +269,49 @@ createKVManager(config: KVManagerConfig): KVManager
 
 Stage模型下的示例：
 
-```js
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-let kvManager;
+let kvManager: distributedKVStore.KVManager;
+
 export default class EntryAbility extends UIAbility {
-    onCreate() {
-        console.info("MyAbilityStage onCreate")
-        let context = this.context
-        const kvManagerConfig = {
-            context: context,
-            bundleName: 'com.example.datamanagertest',
-        }
-        try {
-            kvManager = distributedKVStore.createKVManager(kvManagerConfig);
-            console.info("Succeeded in creating KVManager");
-        } catch (e) {
-            console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
-        }
+  onCreate() {
+    console.info("MyAbilityStage onCreate")
+    let context = this.context
+    const kvManagerConfig: distributedKVStore.KVManagerConfig = {
+      context: context,
+      bundleName: 'com.example.datamanagertest',
     }
+    try {
+      kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+      console.info("Succeeded in creating KVManager");
+    } catch (e) {
+      let error = e as BusinessError;
+      console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
+    }
+  }
 }
 ```
 
 FA模型下的示例：
 
-```js
+```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let kvManager;
+import { BusinessError } from '@ohos.base';
+
+let kvManager: distributedKVStore.KVManager;
 let context = featureAbility.getContext()
-const kvManagerConfig = {
-    context: context,
-    bundleName: 'com.example.datamanagertest',
+const kvManagerConfig: distributedKVStore.KVManagerConfig = {
+  context: context,
+  bundleName: 'com.example.datamanagertest',
 }
 try {
-    kvManager = distributedKVStore.createKVManager(kvManagerConfig);
-    console.info("Succeeded in creating KVManager");
+  kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+  console.info("Succeeded in creating KVManager");
 } catch (e) {
-    console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -341,27 +346,31 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 
 **示例：**
 
-```js
-let kvStore;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvManager: distributedKVStore.KVManager = xxx;
+let kvStore: distributedKVStore.SingleKVStore | null;
 try {
-    const options = {
-        createIfMissing: true,
-        encrypt: false,
-        backup: false,
-        autoSync: true,
-        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-        securityLevel: distributedKVStore.SecurityLevel.S2,
-    };
-    kvManager.getKVStore('storeId', options, function (err, store) {
-        if (err) {
-            console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info("Succeeded in getting KVStore");
-        kvStore = store;
-    });
+  const options: distributedKVStore.Options = {
+    createIfMissing: true,
+    encrypt: false,
+    backup: false,
+    autoSync: true,
+    kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+    securityLevel: distributedKVStore.SecurityLevel.S2,
+  };
+  kvManager.getKVStore('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+    if (err) {
+      console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info("Succeeded in getting KVStore");
+    kvStore = store;
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -397,25 +406,29 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
 **示例：**
 
-```js
-let kvStore;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvManager: distributedKVStore.KVManager = xxx;
+let kvStore: distributedKVStore.SingleKVStore | null;
 try {
-    const options = {
-        createIfMissing: true,
-        encrypt: false,
-        backup: false,
-        autoSync: true,
-        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-        securityLevel: distributedKVStore.SecurityLevel.S2,
-    };
-    kvManager.getKVStore('storeId', options).then((store) => {
-        console.info("Succeeded in getting KVStore");
-        kvStore = store;
-    }).catch((err) => {
-        console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
-    });
+  const options: distributedKVStore.Options = {
+    createIfMissing: true,
+    encrypt: false,
+    backup: false,
+    autoSync: true,
+    kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+    securityLevel: distributedKVStore.SecurityLevel.S2,
+  };
+  kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then((store: distributedKVStore.SingleKVStore) => {
+    console.info("Succeeded in getting KVStore");
+    kvStore = store;
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -437,36 +450,41 @@ closeKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;
 
 **示例：**
 
-```js
-const options = {
-    createIfMissing: true,
-    encrypt: false,
-    backup: false,
-    autoSync: true,
-    kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    schema: undefined,
-    securityLevel: distributedKVStore.SecurityLevel.S2,
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvManager: distributedKVStore.KVManager = xxx;
+let kvStore: distributedKVStore.SingleKVStore | null;
+const options: distributedKVStore.Options = {
+  createIfMissing: true,
+  encrypt: false,
+  backup: false,
+  autoSync: true,
+  kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+  schema: undefined,
+  securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
-    kvManager.getKVStore('storeId', options, async function (err, store) {
-        if (err != undefined) {
-            console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in getting KVStore');
-        kvStore = store;
-        kvStore = null;
-        store = null;
-        kvManager.closeKVStore('appId', 'storeId', function (err) {
-            if (err != undefined) {
-                console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in closing KVStore');
-        });
+  kvManager.getKVStore('storeId', options, async (err, store: distributedKVStore.SingleKVStore | null) => {
+    if (err != undefined) {
+      console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting KVStore');
+    kvStore = store;
+    kvStore = null;
+    store = null;
+    kvManager.closeKVStore('appId', 'storeId', (err)=> {
+      if (err != undefined) {
+        console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in closing KVStore');
     });
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -493,32 +511,38 @@ closeKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-const options = {
-    createIfMissing: true,
-    encrypt: false,
-    backup: false,
-    autoSync: true,
-    kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    schema: undefined,
-    securityLevel: distributedKVStore.SecurityLevel.S2,
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvManager: distributedKVStore.KVManager = xxx;
+let kvStore: distributedKVStore.SingleKVStore | null;
+
+const options: distributedKVStore.Options = {
+  createIfMissing: true,
+  encrypt: false,
+  backup: false,
+  autoSync: true,
+  kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+  schema: undefined,
+  securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
-    kvManager.getKVStore('storeId', options).then(async (store) => {
-        console.info('Succeeded in getting KVStore');
-        kvStore = store;
-        kvStore = null;
-        store = null;
-        kvManager.closeKVStore('appId', 'storeId').then(() => {
-            console.info('Succeeded in closing KVStore');
-        }).catch((err) => {
-            console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
+  kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
+    console.info('Succeeded in getting KVStore');
+    kvStore = store;
+    kvStore = null;
+    store = null;
+    kvManager.closeKVStore('appId', 'storeId').then(() => {
+      console.info('Succeeded in closing KVStore');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
     });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`Failed to close KVStore.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to close KVStore.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -548,36 +572,42 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 
 **示例：**
 
-```js
-const options = {
-    createIfMissing: true,
-    encrypt: false,
-    backup: false,
-    autoSync: true,
-    kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    schema: undefined,
-    securityLevel: distributedKVStore.SecurityLevel.S2,
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvManager: distributedKVStore.KVManager = xxx;
+let kvStore: distributedKVStore.SingleKVStore | null;
+
+const options: distributedKVStore.Options = {
+  createIfMissing: true,
+  encrypt: false,
+  backup: false,
+  autoSync: true,
+  kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+  schema: undefined,
+  securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
-    kvManager.getKVStore('store', options, async function (err, store) {
-        if (err != undefined) {
-            console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in getting KVStore');
-        kvStore = store;
-        kvStore = null;
-        store = null;
-        kvManager.deleteKVStore('appId', 'storeId', function (err) {
-            if (err != undefined) {
-                console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info(`Succeeded in deleting KVStore`);
-        });
+  kvManager.getKVStore('store', options, async (err, store: distributedKVStore.SingleKVStore | null) => {
+    if (err != undefined) {
+      console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting KVStore');
+    kvStore = store;
+    kvStore = null;
+    store = null;
+    kvManager.deleteKVStore('appId', 'storeId', (err) => {
+      if (err != undefined) {
+        console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info(`Succeeded in deleting KVStore`);
     });
+  });
 } catch (e) {
-    console.error(`Failed to delete KVStore.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to delete KVStore.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -612,32 +642,38 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-const options = {
-    createIfMissing: true,
-    encrypt: false,
-    backup: false,
-    autoSync: true,
-    kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    schema: undefined,
-    securityLevel: distributedKVStore.SecurityLevel.S2,
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvManager: distributedKVStore.KVManager = xxx;
+let kvStore: distributedKVStore.SingleKVStore | null;
+
+const options: distributedKVStore.Options = {
+  createIfMissing: true,
+  encrypt: false,
+  backup: false,
+  autoSync: true,
+  kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+  schema: undefined,
+  securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
-    kvManager.getKVStore('storeId', options).then(async (store) => {
-        console.info('Succeeded in getting KVStore');
-        kvStore = store;
-        kvStore = null;
-        store = null;
-        kvManager.deleteKVStore('appId', 'storeId').then(() => {
-            console.info('Succeeded in deleting KVStore');
-        }).catch((err) => {
-            console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
+  kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
+    console.info('Succeeded in getting KVStore');
+    kvStore = store;
+    kvStore = null;
+    store = null;
+    kvManager.deleteKVStore('appId', 'storeId').then(() => {
+      console.info('Succeeded in deleting KVStore');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
     });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`Failed to delete KVStore.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to delete KVStore.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -658,18 +694,23 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvManager: distributedKVStore.KVManager = xxx;
+
 try {
-    kvManager.getAllKVStoreId('appId', function (err, data) {
-        if (err != undefined) {
-            console.error(`Failed to get AllKVStoreId.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in getting AllKVStoreId');
-        console.info(`GetAllKVStoreId size = ${data.length}`);
-    });
+  kvManager.getAllKVStoreId('appId', (err, data) => {
+    if (err != undefined) {
+      console.error(`Failed to get AllKVStoreId.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting AllKVStoreId');
+    console.info(`GetAllKVStoreId size = ${data.length}`);
+  });
 } catch (e) {
-    console.error(`Failed to get AllKVStoreId.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get AllKVStoreId.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -695,17 +736,22 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvManager: distributedKVStore.KVManager = xxx;
+
 try {
-    console.info('GetAllKVStoreId');
-    kvManager.getAllKVStoreId('appId').then((data) => {
-        console.info('Succeeded in getting AllKVStoreId');
-        console.info(`GetAllKVStoreId size = ${data.length}`);
-    }).catch((err) => {
-        console.error(`Failed to get AllKVStoreId.code is ${err.code},message is ${err.message}`);
-    });
+  console.info('GetAllKVStoreId');
+  kvManager.getAllKVStoreId('appId').then((data: string[]) => {
+    console.info('Succeeded in getting AllKVStoreId');
+    console.info(`GetAllKVStoreId size = ${data.length}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get AllKVStoreId.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`Failed to get AllKVStoreId.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get AllKVStoreId.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -726,15 +772,20 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvManager: distributedKVStore.KVManager = xxx;
+
 try {
-    console.info('KVManagerOn');
-    const deathCallback = function () {
-        console.info('death callback call');
-    }
-    kvManager.on('distributedDataServiceDie', deathCallback);
+  console.info('KVManagerOn');
+  const deathCallback = () => {
+    console.info('death callback call');
+  }
+  kvManager.on('distributedDataServiceDie', deathCallback);
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -755,15 +806,20 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvManager: distributedKVStore.KVManager = xxx;
+
 try {
-    console.info('KVManagerOff');
-    const deathCallback = function () {
-        console.info('death callback call');
-    }
-    kvManager.off('distributedDataServiceDie', deathCallback);
+  console.info('KVManagerOff');
+  const deathCallback = () => {
+    console.info('death callback call');
+  }
+  kvManager.off('distributedDataServiceDie', deathCallback);
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -789,20 +845,23 @@ getCount(): number
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let resultSet;
-    let count;
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('getResultSet succeed.');
-        resultSet = result;
-        count = resultSet.getCount();
-        console.info("getCount succeed:" + count);
-    }).catch((err) => {
-        console.error('getResultSet failed: ' + err);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let count: number;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('getResultSet succeed.');
+    resultSet = result;
+    count = resultSet.getCount();
+    console.info("getCount succeed:" + count);
+  }).catch((err: BusinessError) => {
+    console.error('getResultSet failed: ' + err);
+  });
 } catch (e) {
-    console.error("getCount failed: " + e);
+  console.error("getCount failed: " + e);
 }
 ```
 
@@ -822,20 +881,23 @@ getPosition(): number
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let resultSet;
-    let position;
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('getResultSet succeeded.');
-        resultSet = result;
-        position = resultSet.getPosition();
-        console.info("getPosition succeed:" + position);
-    }).catch((err) => {
-        console.error('getResultSet failed: ' + err);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let position: number;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('getResultSet succeeded.');
+    resultSet = result;
+    position = resultSet.getPosition();
+    console.info("getPosition succeed:" + position);
+  }).catch((err: BusinessError) => {
+    console.error('getResultSet failed: ' + err);
+  });
 } catch (e) {
-    console.error("getPosition failed: " + e);
+  console.error("getPosition failed: " + e);
 }
 ```
 
@@ -855,20 +917,23 @@ moveToFirst(): boolean
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let resultSet;
-    let moved;
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('getResultSet succeed.');
-        resultSet = result;
-        moved = resultSet.moveToFirst();
-        console.info("moveToFirst succeed: " + moved);
-    }).catch((err) => {
-        console.error('getResultSet failed: ' + err);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let moved: boolean;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('getResultSet succeed.');
+    resultSet = result;
+    moved = resultSet.moveToFirst();
+    console.info("moveToFirst succeed: " + moved);
+  }).catch((err: BusinessError) => {
+    console.error('getResultSet failed: ' + err);
+  });
 } catch (e) {
-    console.error("moveToFirst failed " + e);
+  console.error("moveToFirst failed " + e);
 }
 ```
 
@@ -888,20 +953,23 @@ moveToLast(): boolean
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let resultSet;
-    let moved;
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('getResultSet succeed.');
-        resultSet = result;
-        moved = resultSet.moveToLast();
-        console.info("moveToLast succeed:" + moved);
-    }).catch((err) => {
-        console.error('getResultSet failed: ' + err);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let moved: boolean;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('getResultSet succeed.');
+    resultSet = result;
+    moved = resultSet.moveToLast();
+    console.info("moveToLast succeed:" + moved);
+  }).catch((err: BusinessError) => {
+    console.error('getResultSet failed: ' + err);
+  });
 } catch (e) {
-    console.error("moveToLast failed: " + e);
+  console.error("moveToLast failed: " + e);
 }
 ```
 
@@ -921,23 +989,26 @@ moveToNext(): boolean
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let resultSet;
-    let moved;
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('getResultSet succeed.');
-        resultSet = result;
-        do {
-          moved = resultSet.moveToNext();
-          const entry  = resultSet.getEntry();
-          console.info("moveToNext succeed: " + moved);
-        } while (moved)
-    }).catch((err) => {
-        console.error('getResultSet failed: ' + err);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let moved: boolean;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('getResultSet succeed.');
+    resultSet = result;
+    do {
+      moved = resultSet.moveToNext();
+      const entry = resultSet.getEntry();
+      console.info("moveToNext succeed: " + moved);
+    } while (moved)
+  }).catch((err: BusinessError) => {
+    console.error('getResultSet failed: ' + err);
+  });
 } catch (e) {
-    console.error("moveToNext failed: " + e);
+  console.error("moveToNext failed: " + e);
 }
 ```
 
@@ -957,21 +1028,24 @@ moveToPrevious(): boolean
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let resultSet;
-    let moved;
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('getResultSet succeed.');
-        resultSet = result;
-        moved = resultSet.moveToLast();
-        moved = resultSet.moveToPrevious();
-        console.info("moveToPrevious succeed:" + moved);
-    }).catch((err) => {
-        console.error('getResultSet failed: ' + err);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let moved: boolean;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('getResultSet succeed.');
+    resultSet = result;
+    moved = resultSet.moveToLast();
+    moved = resultSet.moveToPrevious();
+    console.info("moveToPrevious succeed:" + moved);
+  }).catch((err: BusinessError) => {
+    console.error('getResultSet failed: ' + err);
+  });
 } catch (e) {
-    console.error("moveToPrevious failed: " + e);
+  console.error("moveToPrevious failed: " + e);
 }
 ```
 
@@ -997,20 +1071,24 @@ move(offset: number): boolean
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let resultSet;
-    let moved;
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('Succeeded in getting resultSet');
-        resultSet = result;
-        moved = resultSet.move(2); //若当前位置为0，将读取位置从绝对位置为0的位置移动2行，即移动到绝对位置为2，行数为3的位置
-        console.info(`Succeeded in moving.moved = ${moved}`);
-    }).catch((err) => {
-        console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let moved: boolean;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('Succeeded in getting resultSet');
+    resultSet = result;
+    moved = resultSet.move(2); //若当前位置为0，将读取位置从绝对位置为0的位置移动2行，即移动到绝对位置为2，行数为3的位置
+    console.info(`Succeeded in moving.moved = ${moved}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`Failed to move.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to move.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1036,20 +1114,24 @@ moveToPosition(position: number): boolean
 
 **示例**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let resultSet;
-    let moved;
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('Succeeded in getting resultSet');
-        resultSet = result;
-        moved = resultSet.moveToPosition(1);
-        console.info(`Succeeded in moving to position.moved=${moved}`);
-    }).catch((err) => {
-        console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let moved: boolean;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('Succeeded in getting resultSet');
+    resultSet = result;
+    moved = resultSet.moveToPosition(1);
+    console.info(`Succeeded in moving to position.moved=${moved}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`Failed to move to position.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to move to position.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1069,20 +1151,23 @@ isFirst(): boolean
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let resultSet;
-    let isfirst;
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('getResultSet succeed.');
-        resultSet = result;
-        isfirst = resultSet.isFirst();
-        console.info("Check isFirst succeed:" + isfirst);
-    }).catch((err) => {
-        console.error('getResultSet failed: ' + err);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let isfirst: boolean;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('getResultSet succeed.');
+    resultSet = result;
+    isfirst = resultSet.isFirst();
+    console.info("Check isFirst succeed:" + isfirst);
+  }).catch((err: BusinessError) => {
+    console.error('getResultSet failed: ' + err);
+  });
 } catch (e) {
-    console.error("Check isFirst failed: " + e);
+  console.error("Check isFirst failed: " + e);
 }
 ```
 
@@ -1102,20 +1187,23 @@ isLast(): boolean
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let resultSet;
-    let islast;
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('getResultSet succeed.');
-        resultSet = result;
-        islast = resultSet.isLast();
-        console.info("Check isLast succeed: " + islast);
-    }).catch((err) => {
-        console.error('getResultSet failed: ' + err);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let islast: boolean;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('getResultSet succeed.');
+    resultSet = result;
+    islast = resultSet.isLast();
+    console.info("Check isLast succeed: " + islast);
+  }).catch((err: BusinessError) => {
+    console.error('getResultSet failed: ' + err);
+  });
 } catch (e) {
-    console.error("Check isLast failed: " + e);
+  console.error("Check isLast failed: " + e);
 }
 ```
 
@@ -1135,19 +1223,22 @@ isBeforeFirst(): boolean
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let resultSet;
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('getResultSet succeed.');
-        resultSet = result;
-        const isbeforefirst = resultSet.isBeforeFirst();
-        console.info("Check isBeforeFirst succeed: " + isbeforefirst);
-    }).catch((err) => {
-        console.error('getResultSet failed: ' + err);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('getResultSet succeed.');
+    resultSet = result;
+    const isbeforefirst = resultSet.isBeforeFirst();
+    console.info("Check isBeforeFirst succeed: " + isbeforefirst);
+  }).catch((err: BusinessError) => {
+    console.error('getResultSet failed: ' + err);
+  });
 } catch (e) {
-    console.error("Check isBeforeFirst failed: " + e);
+  console.error("Check isBeforeFirst failed: " + e);
 }
 ```
 
@@ -1167,19 +1258,22 @@ isAfterLast(): boolean
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let resultSet;
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('getResultSet succeed.');
-        resultSet = result;
-        const isafterlast = resultSet.isAfterLast();
-        console.info("Check isAfterLast succeed:" + isafterlast);
-    }).catch((err) => {
-        console.error('getResultSet failed: ' + err);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('getResultSet succeed.');
+    resultSet = result;
+    const isafterlast = resultSet.isAfterLast();
+    console.info("Check isAfterLast succeed:" + isafterlast);
+  }).catch((err: BusinessError) => {
+    console.error('getResultSet failed: ' + err);
+  });
 } catch (e) {
-    console.error("Check isAfterLast failed: " + e);
+  console.error("Check isAfterLast failed: " + e);
 }
 ```
 
@@ -1199,19 +1293,22 @@ getEntry(): Entry
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let resultSet;
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('getResultSet succeed.');
-        resultSet = result;
-        const entry  = resultSet.getEntry();
-        console.info("getEntry succeed:" + JSON.stringify(entry));
-    }).catch((err) => {
-        console.error('getResultSet failed: ' + err);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('getResultSet succeed.');
+    resultSet = result;
+    const entry = resultSet.getEntry();
+    console.info("getEntry succeed:" + JSON.stringify(entry));
+  }).catch((err: BusinessError) => {
+    console.error('getResultSet failed: ' + err);
+  });
 } catch (e) {
-    console.error("getEntry failed: " + e);
+  console.error("getEntry failed: " + e);
 }
 ```
 
@@ -1245,16 +1342,18 @@ reset(): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
-    query.equalTo("key", "value");
-    console.info("query is " + query.getSqlLike());
-    query.reset();
-    console.info("query is " + query.getSqlLike());
-    query = null;
+  let query: distributedKVStore.Query | null = new distributedKVStore.Query();
+  query.equalTo("key", "value");
+  console.info("query is " + query.getSqlLike());
+  query.reset();
+  console.info("query is " + query.getSqlLike());
+  query = null;
 } catch (e) {
-    console.error("simply calls should be ok :" + e);
+  console.error("simply calls should be ok :" + e);
 }
 ```
 
@@ -1281,14 +1380,17 @@ equalTo(field: string, value: number|string|boolean): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
-    query.equalTo("field", "value");
-    console.info(`query is ${query.getSqlLike()}`);
-    query = null;
+  let query: distributedKVStore.Query | null = new distributedKVStore.Query();
+  query.equalTo("field", "value");
+  console.info(`query is ${query.getSqlLike()}`);
+  query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1315,14 +1417,17 @@ notEqualTo(field: string, value: number|string|boolean): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
-    query.notEqualTo("field", "value");
-    console.info(`query is ${query.getSqlLike()}`);
-    query = null;
+  let query: distributedKVStore.Query | null = new distributedKVStore.Query();
+  query.notEqualTo("field", "value");
+  console.info(`query is ${query.getSqlLike()}`);
+  query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1348,14 +1453,17 @@ greaterThan(field: string, value: number|string|boolean): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.greaterThan("field", "value");
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1383,14 +1491,17 @@ lessThan(field: string, value: number|string): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.lessThan("field", "value");
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1418,14 +1529,17 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.greaterThanOrEqualTo("field", "value");
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1453,14 +1567,17 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.lessThanOrEqualTo("field", "value");
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1486,14 +1603,17 @@ isNull(field: string): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.isNull("field");
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1520,14 +1640,17 @@ inNumber(field: string, valueList: number[]): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.inNumber("field", [0, 1]);
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1554,14 +1677,17 @@ inString(field: string, valueList: string[]): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.inString("field", ['test1', 'test2']);
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1588,14 +1714,17 @@ notInNumber(field: string, valueList: number[]): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.notInNumber("field", [0, 1]);
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1622,14 +1751,17 @@ notInString(field: string, valueList: string[]): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.notInString("field", ['test1', 'test2']);
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1656,14 +1788,17 @@ like(field: string, value: string): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.like("field", "value");
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1690,14 +1825,17 @@ unlike(field: string, value: string): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.unlike("field", "value");
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1717,9 +1855,11 @@ and(): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.notEqualTo("field", "value1");
     query.and();
     query.notEqualTo("field", "value2");
@@ -1746,9 +1886,11 @@ or(): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.notEqualTo("field", "value1");
     query.or();
     query.notEqualTo("field", "value2");
@@ -1781,15 +1923,18 @@ orderByAsc(field: string): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.notEqualTo("field", "value");
     query.orderByAsc("field");
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1815,15 +1960,18 @@ orderByDesc(field: string): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.notEqualTo("field", "value");
     query.orderByDesc("field");
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1850,17 +1998,20 @@ limit(total: number, offset: number): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let total = 10;
 let offset = 1;
 try {
-    let query = new distributedKVStore.Query();
-    query.notEqualTo("field", "value");
-    query.limit(total, offset);
-    console.info(`query is ${query.getSqlLike()}`);
-    query = null;
+  let query: distributedKVStore.Query | null = new distributedKVStore.Query();
+  query.notEqualTo("field", "value");
+  query.limit(total, offset);
+  console.info(`query is ${query.getSqlLike()}`);
+  query = null;
 } catch (e) {
-     console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1886,14 +2037,17 @@ isNotNull(field: string): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
-    query.isNotNull("field");
-    console.info(`query is ${query.getSqlLike()}`);
-    query = null;
+  let query: distributedKVStore.Query | null = new distributedKVStore.Query();
+  query.isNotNull("field");
+  console.info(`query is ${query.getSqlLike()}`);
+  query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -1913,9 +2067,11 @@ beginGroup(): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.beginGroup();
     query.isNotNull("field");
     query.endGroup();
@@ -1942,9 +2098,11 @@ endGroup(): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.beginGroup();
     query.isNotNull("field");
     query.endGroup();
@@ -1977,15 +2135,18 @@ prefixKey(prefix: string): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.prefixKey("$.name");
     query.prefixKey("0");
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -2011,15 +2172,18 @@ setSuggestIndex(index: string): Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.setSuggestIndex("$.name");
     query.setSuggestIndex("0");
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -2030,7 +2194,7 @@ deviceId(deviceId:string):Query
 添加设备ID作为key的前缀。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
@@ -2049,13 +2213,16 @@ deviceId(deviceId:string):Query
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.deviceId("deviceId");
     console.info(`query is ${query.getSqlLike()}`);
 } catch (e) {
-    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
+    let error = e as BusinessError;
+    console.error(`duplicated calls should be ok.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -2075,9 +2242,11 @@ getSqlLike():string
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let query = new distributedKVStore.Query();
+    let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     let sql1 = query.getSqlLike();
     console.info(`GetSqlLike sql= ${sql1}`);
 } catch (e) {
@@ -2124,19 +2293,23 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info("Succeeded in putting");
-    });
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info("Succeeded in putting");
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -2178,17 +2351,21 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
-        console.info(`Succeeded in putting data`);
-    }).catch((err) => {
-        console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
-    });
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
+    console.info(`Succeeded in putting data`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -2224,38 +2401,43 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries, async function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in putting Batch');
-        kvStore.getEntries('batch_test_string_key', function (err, entries) {
-            if (err != undefined) {
-                console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-            }
-            console.info('Succeeded in getting Entries');
-            console.info(`entries.length: ${entries.length}`);
-            console.info(`entries[0]: ${entries[0]}`);
-        });
+    entries.push(entry);
+  }
+  console.info(`entries: ${entries}`);
+  kvStore.putBatch(entries, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting Batch');
+    kvStore.getEntries('batch_test_string_key', (err, entries) => {
+      if (err != undefined) {
+        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+      }
+      console.info('Succeeded in getting Entries');
+      console.info(`entries.length: ${entries.length}`);
+      console.info(`entries[0]: ${entries[0]}`);
     });
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message} `);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message} `);
 }
 ```
 
@@ -2296,42 +2478,50 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting Batch');
-        kvStore.getEntries('batch_test_string_key').then((entries) => {
-            console.info('Succeeded in getting Entries');
-            console.info(`PutBatch ${entries}`);
-        }).catch((err) => {
-            console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
+    entries.push(entry);
+  }
+  console.info(`entries: ${entries}`);
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting Batch');
+    kvStore.getEntries('batch_test_string_key').then((entries) => {
+      console.info('Succeeded in getting Entries');
+      console.info(`PutBatch ${entries}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
     });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message} `);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message} `);
 }
 ```
 
 ### putBatch
 
+
 putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 将值写入SingleKVStore数据库，使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -2361,26 +2551,31 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 
 **示例：**
 
-```js
-try {
-    let v8Arr = [];
-    let arr = new Uint8Array([4, 5, 6, 7]);
-    let vb1 = { key: "name_1", value: 32 }
-    let vb2 = { key: "name_2", value: arr };
-    let vb3 = { key: "name_3", value: "lisi" };
+```ts
+import { BusinessError } from '@ohos.base';
 
-    v8Arr.push(vb1);
-    v8Arr.push(vb2);
-    v8Arr.push(vb3);
-    kvStore.putBatch(v8Arr, async function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in putting batch');
-    })
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
+try {
+  let v8Arr: distributedKVStore.Entry[] = [];
+  let arr = new Uint8Array([4, 5, 6, 7]);
+  let vb1: distributedKVStore.Entry = { key: "name_1", value: 32 }
+  let vb2: distributedKVStore.Entry = { key: "name_2", value: arr };
+  let vb3: distributedKVStore.Entry = { key: "name_3", value: "lisi" };
+
+  v8Arr.push(vb1);
+  v8Arr.push(vb2);
+  v8Arr.push(vb3);
+  kvStore.putBatch(v8Arr, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting batch');
+  })
 } catch (e) {
-    console.error(`Failed to put batch.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to put batch.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -2389,6 +2584,8 @@ try {
 putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
 将valuesbucket类型的值写入SingleKVStore数据库，使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -2423,24 +2620,29 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-try {
-    let v8Arr = [];
-    let arr = new Uint8Array([4, 5, 6, 7]);
-    let vb1 = { key: "name_1", value: 32 }
-    let vb2 = { key: "name_2", value: arr };
-    let vb3 = { key: "name_3", value: "lisi" };
+```ts
+import { BusinessError } from '@ohos.base';
 
-    v8Arr.push(vb1);
-    v8Arr.push(vb2);
-    v8Arr.push(vb3);
-    kvStore.putBatch(v8Arr).then(async () => {
-        console.info(`Succeeded in putting patch`);
-    }).catch((err) => {
-        console.error(`putBatch fail.code is ${err.code},message is ${err.message}`);
-    });
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
+try {
+  let v8Arr: distributedKVStore.Entry[] = [];
+  let arr = new Uint8Array([4, 5, 6, 7]);
+  let vb1: distributedKVStore.Entry = { key: "name_1", value: 32 }
+  let vb2: distributedKVStore.Entry = { key: "name_2", value: arr };
+  let vb3: distributedKVStore.Entry = { key: "name_3", value: "lisi" };
+
+  v8Arr.push(vb1);
+  v8Arr.push(vb2);
+  v8Arr.push(vb3);
+  kvStore.putBatch(v8Arr).then(async () => {
+    console.info(`Succeeded in putting patch`);
+  }).catch((err: BusinessError) => {
+    console.error(`putBatch fail.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`putBatch fail.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`putBatch fail.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -2476,26 +2678,31 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in putting');
-        kvStore.delete(KEY_TEST_STRING_ELEMENT, function (err) {
-            if (err != undefined) {
-                console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in deleting');
-        });
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting');
+    kvStore.delete(KEY_TEST_STRING_ELEMENT, (err) => {
+      if (err != undefined) {
+        console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in deleting');
     });
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -2536,22 +2743,27 @@ delete(key: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
-        console.info(`Succeeded in putting data`);
-        kvStore.delete(KEY_TEST_STRING_ELEMENT).then(() => {
-            console.info('Succeeded in deleting');
-        }).catch((err) => {
-            console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
+    console.info(`Succeeded in putting data`);
+    kvStore.delete(KEY_TEST_STRING_ELEMENT).then(() => {
+      console.info('Succeeded in deleting');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
     });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -2560,6 +2772,8 @@ try {
 delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;)
 
 从数据库中删除符合predicates条件的键值对，使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -2589,28 +2803,32 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 
 **示例：**
 
-```js
+```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let arr = ["name"];
-    predicates.inKeys(arr);
-    kvStore.put("name", "bob", function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info("Succeeded in putting");
-        kvStore.delete(predicates, function (err) {
-            if (err == undefined) {
-                console.info('Succeeded in deleting');
-            } else {
-                console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
-            }
-        });
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  let arr = ["name"];
+  predicates.inKeys(arr);
+  kvStore.put("name", "bob", (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info("Succeeded in putting");
+    kvStore.delete(predicates, (err) => {
+      if (err == undefined) {
+        console.info('Succeeded in deleting');
+      } else {
+        console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
+      }
     });
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -2619,6 +2837,8 @@ try {
 delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
 从数据库中删除符合predicates条件的键值对，使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -2653,25 +2873,28 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let arr = ["name"];
-    predicates.inKeys(arr);
-    kvStore.put("name", "bob").then(() => {
-        console.info(`Succeeded in putting data`);
-        kvStore.delete(predicates).then(() => {
-            console.info('Succeeded in deleting');
-        }).catch((err) => {
-            console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  let arr = ["name"];
+  predicates.inKeys(arr);
+  kvStore.put("name", "bob").then(() => {
+    console.info(`Succeeded in putting data`);
+    kvStore.delete(predicates).then(() => {
+      console.info('Succeeded in deleting');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
     });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -2707,39 +2930,43 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let entries = [];
-    let keys = [];
-    for (var i = 0; i < 5; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
-        keys.push(key + i);
+  let entries: distributedKVStore.Entry[] = [];
+  let keys: string[] = [];
+  for (let i = 0; i < 5; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries, async function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in putting Batch');
-        kvStore.deleteBatch(keys, async function (err) {
-            if (err != undefined) {
-                console.error(`Failed to delete Batch.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in deleting Batch');
-        });
+    entries.push(entry);
+    keys.push(key + i);
+  }
+  console.info(`entries: ${entries}`);
+  kvStore.putBatch(entries, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting Batch');
+    kvStore.deleteBatch(keys, async (err) => {
+      if (err != undefined) {
+        console.error(`Failed to delete Batch.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in deleting Batch');
     });
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -2780,35 +3007,39 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
-    let entries = [];
-    let keys = [];
-    for (var i = 0; i < 5; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
-        keys.push(key + i);
+  let entries: distributedKVStore.Entry[] = [];
+  let keys: string[] = [];
+  for (let i = 0; i < 5; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting Batch');
-        kvStore.deleteBatch(keys).then(() => {
-            console.info('Succeeded in deleting Batch');
-        }).catch((err) => {
-            console.error(`Failed to delete Batch.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
+    entries.push(entry);
+    keys.push(key + i);
+  }
+  console.info(`entries: ${entries}`);
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting Batch');
+    kvStore.deleteBatch(keys).then(() => {
+      console.info('Succeeded in deleting Batch');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to delete Batch.code is ${err.code},message is ${err.message}`);
     });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -2819,7 +3050,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 删除指定设备的数据，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -2841,26 +3072,30 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err) {
-        console.info('Succeeded in putting data');
-        const deviceid = 'no_exist_device_id';
-        kvStore.removeDeviceData(deviceid, async function (err) {
-            if (err == undefined) {
-                console.info('succeeded in removing device data');
-            } else {
-                console.error(`Failed to remove device data.code is ${err.code},message is ${err.message} `);
-                kvStore.get(KEY_TEST_STRING_ELEMENT, async function (err, data) {
-                    console.info('Succeeded in getting data');
-                });
-            }
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err) => {
+    console.info('Succeeded in putting data');
+    const deviceid = 'no_exist_device_id';
+    kvStore.removeDeviceData(deviceid, async (err) => {
+      if (err == undefined) {
+        console.info('succeeded in removing device data');
+      } else {
+        console.error(`Failed to remove device data.code is ${err.code},message is ${err.message} `);
+        kvStore.get(KEY_TEST_STRING_ELEMENT, async (err, data) => {
+          console.info('Succeeded in getting data');
         });
+      }
     });
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`)
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`)
 }
 ```
 
@@ -2871,7 +3106,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 删除指定设备的数据，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -2898,28 +3133,32 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
-        console.info('Succeeded in putting data');
-    }).catch((err) => {
-        console.error(`Failed to put data.code is ${err.code},message is ${err.message} `);
-    });
-    const deviceid = 'no_exist_device_id';
-    kvStore.removeDeviceData(deviceid).then(() => {
-        console.info('succeeded in removing device data');
-    }).catch((err) => {
-        console.error(`Failed to remove device data.code is ${err.code},message is ${err.message} `);
-    });
-    kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
-        console.info('Succeeded in getting data');
-    }).catch((err) => {
-        console.error(`Failed to get data.code is ${err.code},message is ${err.message} `);
-    });
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
+    console.info('Succeeded in putting data');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put data.code is ${err.code},message is ${err.message} `);
+  });
+  const deviceid = 'no_exist_device_id';
+  kvStore.removeDeviceData(deviceid).then(() => {
+    console.info('succeeded in removing device data');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to remove device data.code is ${err.code},message is ${err.message} `);
+  });
+  kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+    console.info('Succeeded in getting data');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get data.code is ${err.code},message is ${err.message} `);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`)
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`)
 }
 ```
 
@@ -2950,26 +3189,31 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info("Succeeded in putting");
-        kvStore.get(KEY_TEST_STRING_ELEMENT, function (err, data) {
-            if (err != undefined) {
-                console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info(`Succeeded in getting data.data=${data}`);
-        });
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info("Succeeded in putting");
+    kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
+      if (err != undefined) {
+        console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info(`Succeeded in getting data.data=${data}`);
     });
+  });
 } catch (e) {
-    console.error(`Failed to get.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -3005,22 +3249,27 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
-        console.info(`Succeeded in putting data`);
-        kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
-            console.info(`Succeeded in getting data.data=${data}`);
-        }).catch((err) => {
-            console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
+    console.info(`Succeeded in putting data`);
+    kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+      console.info(`Succeeded in getting data.data=${data}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
     });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`Failed to get.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -3050,39 +3299,44 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries, async function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in putting Batch');
-        kvStore.getEntries('batch_test_string_key', function (err, entries) {
-            if (err != undefined) {
-                console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting Entries');
-            console.info(`entries.length: ${entries.length}`);
-            console.info(`entries[0]: ${entries[0]}`);
-        });
+    entries.push(entry);
+  }
+  console.info(`entries: ${entries}`);
+  kvStore.putBatch(entries, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting Batch');
+    kvStore.getEntries('batch_test_string_key', (err, entries) => {
+      if (err != undefined) {
+        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting Entries');
+      console.info(`entries.length: ${entries.length}`);
+      console.info(`entries[0]: ${entries[0]}`);
     });
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message} `);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message} `);
 }
 ```
 
@@ -3117,34 +3371,39 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting Batch');
-        kvStore.getEntries('batch_test_string_key').then((entries) => {
-            console.info('Succeeded in getting Entries');
-            console.info(`PutBatch ${entries}`);
-        }).catch((err) => {
-            console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
+    entries.push(entry);
+  }
+  console.info(`entries: ${entries}`);
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting Batch');
+    kvStore.getEntries('batch_test_string_key').then((entries) => {
+      console.info('Succeeded in getting Entries');
+      console.info(`PutBatch ${entries}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
     });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message} `);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message} `);
 }
 ```
 
@@ -3174,38 +3433,43 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    var arr = new Uint8Array([21, 31]);
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_bool_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.BYTE_ARRAY,
-                value: arr
-            }
-        }
-        entries.push(entry);
+  let arr = new Uint8Array([21, 31]);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_bool_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.BYTE_ARRAY,
+        value: arr
+      }
     }
-    console.info(`entries: {entries}`);
-    kvStore.putBatch(entries, async function (err) {
-        console.info('Succeeded in putting Batch');
-        const query = new distributedKVStore.Query();
-        query.prefixKey("batch_test");
-        kvStore.getEntries(query, function (err, entries) {
-            if (err != undefined) {
-                console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting Entries');
-            console.info(`entries.length: ${entries.length}`);
-            console.info(`entries[0]: ${entries[0]}`);
-        });
+    entries.push(entry);
+  }
+  console.info(`entries: {entries}`);
+  kvStore.putBatch(entries, async (err) => {
+    console.info('Succeeded in putting Batch');
+    const query = new distributedKVStore.Query();
+    query.prefixKey("batch_test");
+    kvStore.getEntries(query, (err, entries) => {
+      if (err != undefined) {
+        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting Entries');
+      console.info(`entries.length: ${entries.length}`);
+      console.info(`entries[0]: ${entries[0]}`);
     });
+  });
 } catch (e) {
-    console.error(`Failed to get Entries.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get Entries.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -3240,37 +3504,42 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    var arr = new Uint8Array([21, 31]);
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_bool_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.BYTE_ARRAY,
-                value: arr
-            }
-        }
-        entries.push(entry);
+  let arr = new Uint8Array([21, 31]);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_bool_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.BYTE_ARRAY,
+        value: arr
+      }
     }
-    console.info(`entries: {entries}`);
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting Batch');
-        const query = new distributedKVStore.Query();
-        query.prefixKey("batch_test");
-        kvStore.getEntries(query).then((entries) => {
-            console.info('Succeeded in getting Entries');
-        }).catch((err) => {
-            console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`)
+    entries.push(entry);
+  }
+  console.info(`entries: {entries}`);
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting Batch');
+    const query = new distributedKVStore.Query();
+    query.prefixKey("batch_test");
+    kvStore.getEntries(query).then((entries) => {
+      console.info('Succeeded in getting Entries');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
     });
-    console.info('Succeeded in getting Entries');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`)
+  });
+  console.info('Succeeded in getting Entries');
 } catch (e) {
-    console.error(`Failed to get Entries.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get Entries.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -3302,46 +3571,51 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    let resultSet;
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries, async function (err) {
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting batch');
+    kvStore.getResultSet('batch_test_string_key', async (err, result) => {
+      if (err != undefined) {
+        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting result set');
+      resultSet = result;
+      kvStore.closeResultSet(resultSet, (err) => {
         if (err != undefined) {
-            console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-            return;
+          console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+          return;
         }
-        console.info('Succeeded in putting batch');
-        kvStore.getResultSet('batch_test_string_key', async function (err, result) {
-            if (err != undefined) {
-                console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting result set');
-            resultSet = result;
-            kvStore.closeResultSet(resultSet, function (err) {
-                if (err != undefined) {
-                    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-                    return;
-                }
-                console.info('Succeeded in closing result set');
-            })
-        });
+        console.info('Succeeded in closing result set');
+      })
     });
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
-}
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
+} 
 ```
 
 ### getResultSet
@@ -3376,39 +3650,44 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    let resultSet;
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting batch');
-    }).catch((err) => {
-        console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-    });
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('Succeeded in getting result set');
-        resultSet = result;
-    }).catch((err) => {
-        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-    });
-    kvStore.closeResultSet(resultSet).then(() => {
-        console.info('Succeeded in closing result set');
-    }).catch((err) => {
-        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-    });
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting batch');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+  });
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+  });
+  kvStore.closeResultSet(resultSet).then(() => {
+    console.info('Succeeded in closing result set');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -3439,39 +3718,44 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): voi
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    let resultSet;
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries, async function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in putting batch');
-        const query = new distributedKVStore.Query();
-        query.prefixKey("batch_test");
-        kvStore.getResultSet(query, async function (err, result) {
-            if (err != undefined) {
-                console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting result set');
-        });
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting batch');
+    const query = new distributedKVStore.Query();
+    query.prefixKey("batch_test");
+    kvStore.getResultSet(query, async (err, result) => {
+      if (err != undefined) {
+        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting result set');
     });
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -3507,37 +3791,42 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    let resultSet;
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting batch');
-    }).catch((err) => {
-        console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-    });
-    const query = new distributedKVStore.Query();
-    query.prefixKey("batch_test");
-    kvStore.getResultSet(query).then((result) => {
-        console.info('Succeeded in getting result set');
-        resultSet = result;
-    }).catch((err) => {
-        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-    });
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting batch');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+  });
+  const query = new distributedKVStore.Query();
+  query.prefixKey("batch_test");
+  kvStore.getResultSet(query).then((result) => {
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
-}    
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+}
 ```
 
 ### getResultSet
@@ -3545,6 +3834,8 @@ try {
 getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 获取与指定Predicate对象匹配的KVStoreResultSet对象，使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -3569,30 +3860,34 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 **示例：**
 
-```js
+```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 try {
-    let resultSet;
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.prefixKey("batch_test_string_key");
-    kvStore.getResultSet(predicates, async function (err, result) {
-        if (err != undefined) {
-            console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in getting result set');
-        resultSet = result;
-        kvStore.closeResultSet(resultSet, function (err) {
-            if (err != undefined) {
-                console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in closing result set');
-        })
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.prefixKey("batch_test_string_key");
+  kvStore.getResultSet(predicates, async (err, result) => {
+    if (err != undefined) {
+      console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+    kvStore.closeResultSet(resultSet, (err) => {
+      if (err != undefined) {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in closing result set');
+    })
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -3601,6 +3896,8 @@ try {
 getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
 
 获取与指定Predicate对象匹配的KVStoreResultSet对象，使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -3630,26 +3927,30 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 
 **示例：**
 
-```js
+```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 try {
-    let resultSet;
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.prefixKey("batch_test_string_key");
-    kvStore.getResultSet(predicates).then((result) => {
-        console.info('Succeeded in getting result set');
-        resultSet = result;
-    }).catch((err) => {
-        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-    });
-    kvStore.closeResultSet(resultSet).then(() => {
-        console.info('Succeeded in closing result set');
-    }).catch((err) => {
-        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.prefixKey("batch_test_string_key");
+  kvStore.getResultSet(predicates).then((result) => {
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+  });
+  kvStore.closeResultSet(resultSet).then(() => {
+    console.info('Succeeded in closing result set');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -3670,18 +3971,23 @@ closeResultSet(resultSet: KVStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    let resultSet = null;
-    kvStore.closeResultSet(resultSet, function (err) {
-        if (err == undefined) {
-            console.info('Succeeded in closing result set');
-        } else {
-            console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-        }
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  kvStore.closeResultSet(resultSet, (err) => {
+    if (err == undefined) {
+      console.info('Succeeded in closing result set');
+    } else {
+      console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+    }
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -3707,16 +4013,21 @@ closeResultSet(resultSet: KVStoreResultSet): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    let resultSet = null;
-    kvStore.closeResultSet(resultSet).then(() => {
-        console.info('Succeeded in closing result set');
-    }).catch((err) => {
-        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  kvStore.closeResultSet(resultSet).then(() => {
+    console.info('Succeeded in closing result set');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -3746,34 +4057,39 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries, async function (err) {
-        console.info('Succeeded in putting batch');
-        const query = new distributedKVStore.Query();
-        query.prefixKey("batch_test");
-        kvStore.getResultSize(query, async function (err, resultSize) {
-            if (err != undefined) {
-                console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting result set size');
-        });
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries, async (err) => {
+    console.info('Succeeded in putting batch');
+    const query = new distributedKVStore.Query();
+    query.prefixKey("batch_test");
+    kvStore.getResultSize(query, async (err, resultSize) => {
+      if (err != undefined) {
+        console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting result set size');
     });
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -3808,34 +4124,39 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting batch');
-    }).catch((err) => {
-        console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-    });
-    const query = new distributedKVStore.Query();
-    query.prefixKey("batch_test");
-    kvStore.getResultSize(query).then((resultSize) => {
-        console.info('Succeeded in getting result set size');
-    }).catch((err) => {
-        console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
-    });
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting batch');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+  });
+  const query = new distributedKVStore.Query();
+  query.prefixKey("batch_test");
+  kvStore.getResultSize(query).then((resultSize) => {
+    console.info('Succeeded in getting result set size');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -3864,18 +4185,23 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 let file = "BK001";
 try {
-    kvStore.backup(file, (err) => {
-        if (err) {
-            console.error(`Failed to backup.code is ${err.code},message is ${err.message} `);
-        } else {
-            console.info(`Succeeded in backupping data`);
-        }
-    });
+  kvStore.backup(file, (err) => {
+    if (err) {
+      console.error(`Failed to backup.code is ${err.code},message is ${err.message} `);
+    } else {
+      console.info(`Succeeded in backupping data`);
+    }
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -3909,16 +4235,21 @@ backup(file:string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 let file = "BK001";
 try {
-    kvStore.backup(file).then(() => {
-        console.info(`Succeeded in backupping data`);
-    }).catch((err) => {
-        console.error(`Failed to backup.code is ${err.code},message is ${err.message}`);
-    });
+  kvStore.backup(file).then(() => {
+    console.info(`Succeeded in backupping data`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to backup.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -3947,18 +4278,23 @@ restore(file:string, callback: AsyncCallback&lt;void&gt;):void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 let file = "BK001";
 try {
-    kvStore.restore(file, (err) => {
-        if (err) {
-            console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
-        } else {
-            console.info(`Succeeded in restoring data`);
-        }
-    });
+  kvStore.restore(file, (err) => {
+    if (err) {
+      console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
+    } else {
+      console.info(`Succeeded in restoring data`);
+    }
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -3992,16 +4328,21 @@ restore(file:string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 let file = "BK001";
 try {
-    kvStore.restore(file).then(() => {
-        console.info(`Succeeded in restoring data`);
-    }).catch((err) => {
-        console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
-    });
+  kvStore.restore(file).then(() => {
+    console.info(`Succeeded in restoring data`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4022,18 +4363,23 @@ deleteBackup(files:Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;[str
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 let files = ["BK001", "BK002"];
 try {
-    kvStore.deleteBackup(files, (err, data) => {
-        if (err) {
-            console.error(`Failed to delete Backup.code is ${err.code},message is ${err.message}`);
-        } else {
-            console.info(`Succeed in deleting Backup.data=${data}`);
-        }
-    });
+  kvStore.deleteBackup(files, (err, data) => {
+    if (err) {
+      console.error(`Failed to delete Backup.code is ${err.code},message is ${err.message}`);
+    } else {
+      console.info(`Succeed in deleting Backup.data=${data}`);
+    }
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4059,16 +4405,21 @@ deleteBackup(files:Array&lt;string&gt;): Promise&lt;Array&lt;[string, number]&gt
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 let files = ["BK001", "BK002"];
 try {
-    kvStore.deleteBackup(files).then((data) => {
-        console.info(`Succeed in deleting Backup.data=${data}`);
-    }).catch((err) => {
-        console.error(`Failed to delete Backup.code is ${err.code},message is ${err.message}`);
-    })
+  kvStore.deleteBackup(files).then((data) => {
+    console.info(`Succeed in deleting Backup.data=${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to delete Backup.code is ${err.code},message is ${err.message}`);
+  })
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4102,46 +4453,51 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-function putBatchString(len, prefix) {
-    let entries = [];
-    for (var i = 0; i < len; i++) {
-        var entry = {
-            key: prefix + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
+function putBatchString(len: number, prefix: string) {
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < len; i++) {
+    let entry: distributedKVStore.Entry = {
+      key: prefix + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    return entries;
+    entries.push(entry);
+  }
+  return entries;
 }
 
 try {
-    var count = 0;
-    kvStore.on('dataChange', 0, function (data) {
-        console.info(`startTransaction 0 ${data}`);
-        count++;
+  let count = 0;
+  kvStore.on('dataChange', 0, (data) => {
+    console.info(`startTransaction 0 ${data}`);
+    count++;
+  });
+  kvStore.startTransaction(async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to start Transaction.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in starting Transaction');
+    let entries = putBatchString(10, 'batch_test_string_key');
+    console.info(`entries: ${entries}`);
+    kvStore.putBatch(entries, async (err) => {
+      if (err != undefined) {
+        console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in putting Batch');
     });
-    kvStore.startTransaction(async function (err) {
-        if (err != undefined) {
-            console.error(`Failed to start Transaction.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in starting Transaction');
-        let entries = putBatchString(10, 'batch_test_string_key');
-        console.info(`entries: ${entries}`);
-        kvStore.putBatch(entries, async function (err) {
-            if (err != undefined) {
-                console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in putting Batch');
-        });
-    });
+  });
 } catch (e) {
-    console.error(`Failed to start Transaction.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to start Transaction.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4175,20 +4531,25 @@ startTransaction(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    var count = 0;
-    kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
-        console.info(`startTransaction 0 ${data}`);
-        count++;
-    });
-    kvStore.startTransaction().then(async () => {
-        console.info('Succeeded in starting Transaction');
-    }).catch((err) => {
-        console.error(`Failed to start Transaction.code is ${err.code},message is ${err.message}`);
-    });
+  let count = 0;
+  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data) => {
+    console.info(`startTransaction 0 ${data}`);
+    count++;
+  });
+  kvStore.startTransaction().then(async () => {
+    console.info('Succeeded in starting Transaction');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to start Transaction.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`Failed to start Transaction.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to start Transaction.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4216,17 +4577,22 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    kvStore.commit(function (err) {
-        if (err == undefined) {
-            console.info('Succeeded in committing');
-        } else {
-            console.error(`Failed to commit.code is ${err.code},message is ${err.message}`);
-        }
-    });
+  kvStore.commit((err) => {
+    if (err == undefined) {
+      console.info('Succeeded in committing');
+    } else {
+      console.error(`Failed to commit.code is ${err.code},message is ${err.message}`);
+    }
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4254,15 +4620,20 @@ commit(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    kvStore.commit().then(async () => {
-        console.info('Succeeded in committing');
-    }).catch((err) => {
-        console.error(`Failed to commit.code is ${err.code},message is ${err.message}`);
-    });
+  kvStore.commit().then(async () => {
+    console.info('Succeeded in committing');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to commit.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4290,17 +4661,22 @@ rollback(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    kvStore.rollback(function (err) {
-        if (err == undefined) {
-            console.info('Succeeded in rolling back');
-        } else {
-            console.error(`Failed to rollback.code is ${err.code},message is ${err.message}`);
-        }
-    });
-}catch(e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  kvStore.rollback((err) => {
+    if (err == undefined) {
+      console.info('Succeeded in rolling back');
+    } else {
+      console.error(`Failed to rollback.code is ${err.code},message is ${err.message}`);
+    }
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4328,15 +4704,20 @@ rollback(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    kvStore.rollback().then(async () => {
-        console.info('Succeeded in rolling back');
-    }).catch((err) => {
-        console.error(`Failed to rollback.code is ${err.code},message is ${err.message}`);
-    });
+  kvStore.rollback().then(async () => {
+    console.info('Succeeded in rolling back');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to rollback.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4357,17 +4738,22 @@ enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    kvStore.enableSync(true, function (err) {
-        if (err == undefined) {
-            console.info('Succeeded in enabling sync');
-        } else {
-            console.error(`Failed to enable sync.code is ${err.code},message is ${err.message}`);
-        }
-    });
+  kvStore.enableSync(true, (err) => {
+    if (err == undefined) {
+      console.info('Succeeded in enabling sync');
+    } else {
+      console.error(`Failed to enable sync.code is ${err.code},message is ${err.message}`);
+    }
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4393,15 +4779,20 @@ enableSync(enabled: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    kvStore.enableSync(true).then(() => {
-        console.info('Succeeded in enabling sync');
-    }).catch((err) => {
-        console.error(`Failed to enable sync.code is ${err.code},message is ${err.message}`);
-    });
+  kvStore.enableSync(true).then(() => {
+    console.info('Succeeded in enabling sync');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to enable sync.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4423,19 +4814,24 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: Asy
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    const localLabels = ['A', 'B'];
-    const remoteSupportLabels = ['C', 'D'];
-    kvStore.setSyncRange(localLabels, remoteSupportLabels, function (err) {
-        if (err != undefined) {
-            console.error(`Failed to set syncRange.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in setting syncRange');
-    });
+  const localLabels = ['A', 'B'];
+  const remoteSupportLabels = ['C', 'D'];
+  kvStore.setSyncRange(localLabels, remoteSupportLabels, (err) => {
+    if (err != undefined) {
+      console.error(`Failed to set syncRange.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in setting syncRange');
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4462,17 +4858,22 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;v
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    const localLabels = ['A', 'B'];
-    const remoteSupportLabels = ['C', 'D'];
-    kvStore.setSyncRange(localLabels, remoteSupportLabels).then(() => {
-        console.info('Succeeded in setting syncRange');
-    }).catch((err) => {
-        console.error(`Failed to set syncRange.code is ${err.code},message is ${err.message}`);
-    });
+  const localLabels = ['A', 'B'];
+  const remoteSupportLabels = ['C', 'D'];
+  kvStore.setSyncRange(localLabels, remoteSupportLabels).then(() => {
+    console.info('Succeeded in setting syncRange');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set syncRange.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4493,18 +4894,23 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    const defaultAllowedDelayMs = 500;
-    kvStore.setSyncParam(defaultAllowedDelayMs, function (err) {
-        if (err != undefined) {
-            console.error(`Failed to set syncParam.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in setting syncParam');
-    });
+  const defaultAllowedDelayMs = 500;
+  kvStore.setSyncParam(defaultAllowedDelayMs, (err) => {
+    if (err != undefined) {
+      console.error(`Failed to set syncParam.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in setting syncParam');
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4530,16 +4936,21 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    const defaultAllowedDelayMs = 500;
-    kvStore.setSyncParam(defaultAllowedDelayMs).then(() => {
-        console.info('Succeeded in setting syncParam');
-    }).catch((err) => {
-        console.error(`Failed to set syncParam.code is ${err.code},message is ${err.message}`);
-    });
+  const defaultAllowedDelayMs = 500;
+  kvStore.setSyncParam(defaultAllowedDelayMs).then(() => {
+    console.info('Succeeded in setting syncParam');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set syncParam.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4550,7 +4961,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 在手动同步方式下，触发数据库同步。关于键值型数据库的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
 > **说明：** 
 >
-> 其中deviceIds为[DeviceInfo](js-apis-device-manager.md#deviceinfo)中的networkId, 通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceIds为[DeviceBasicInfo](js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId, 通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -4575,41 +4986,47 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 **示例：**
 
-```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+```ts
+import deviceManager from '@ohos.distributedDeviceManager';
+import { BusinessError } from '@ohos.base';
 
-let devManager;
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
+let devManager: deviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
-deviceManager.createDeviceManager('bundleName', (err, value) => {
-  if (!err) {
-    devManager = value;
-    let deviceIds = [];
-    if (devManager != null) {
-      var devices = devManager.getTrustedDeviceListSync();
-      for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].networkId;
-      }
-    }
-    try {
-      kvStore.on('syncComplete', function (data) {
-        console.info('Sync dataChange');
-      });
-      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err) {
-        if (err != undefined) {
-          console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in putting data');
-        const mode = distributedKVStore.SyncMode.PULL_ONLY;
-        kvStore.sync(deviceIds, mode, 1000);
-      });
-    } catch (e) {
-      console.error(`Failed to sync.code is ${e.code},message is ${e.message}`);
+try {
+  devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+  let deviceIds: string[] = [];
+  if (devManager != null) {
+    let devices = devManager.getAvailableDeviceListSync();
+    for (let i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId as string;
     }
   }
-});
+  try {
+    kvStore.on('syncComplete', (data) => {
+      console.info('Sync dataChange');
+    });
+    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+      if (err != undefined) {
+        console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in putting data');
+      const mode = distributedKVStore.SyncMode.PULL_ONLY;
+      kvStore.sync(deviceIds, mode, 1000);
+    });
+  } catch (e) {
+    let error = e as BusinessError;
+    console.error(`Failed to sync.code is ${error.code},message is ${error.message}`);
+  }
+
+} catch (err) {
+  let error = err as BusinessError;
+  console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
+}
 ```
 
 ### sync
@@ -4619,7 +5036,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 在手动同步方式下，触发数据库同步，此方法为同步方法。关于键值型数据库的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
 > **说明：** 
 >
-> 其中deviceIds为[DeviceInfo](js-apis-device-manager.md#deviceinfo)中的networkId, 通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceIds为[DeviceBasicInfo](js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId, 通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -4645,44 +5062,50 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
 **示例：**
 
-```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+```ts
+import deviceManager from '@ohos.distributedDeviceManager';
+import { BusinessError } from '@ohos.base';
 
-let devManager;
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
+let devManager: deviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
-deviceManager.createDeviceManager('bundleName', (err, value) => {
-  if (!err) {
-    devManager = value;
-    let deviceIds = [];
-    if (devManager != null) {
-      var devices = devManager.getTrustedDeviceListSync();
-      for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].networkId;
-      }
-    }
-    try {
-      kvStore.on('syncComplete', function (data) {
-        console.info('Sync dataChange');
-      });
-      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err) {
-        if (err != undefined) {
-          console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in putting data');
-        const mode = distributedKVStore.SyncMode.PULL_ONLY;
-        const query = new distributedKVStore.Query();
-        query.prefixKey("batch_test");
-        query.deviceId('localDeviceId');
-        kvStore.sync(deviceIds, query, mode, 1000);
-      });
-    } catch (e) {
-      console.error(`Failed to sync.code is ${e.code},message is ${e.message}`);
+try {
+  let devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+  let deviceIds: string[] = [];
+  if (devManager != null) {
+    let devices = devManager.getAvailableDeviceListSync();
+    for (let i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId as string;
     }
   }
-});
+  try {
+    kvStore.on('syncComplete', (data) => {
+      console.info('Sync dataChange');
+    });
+    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+      if (err != undefined) {
+        console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in putting data');
+      const mode = distributedKVStore.SyncMode.PULL_ONLY;
+      const query = new distributedKVStore.Query();
+      query.prefixKey("batch_test");
+      query.deviceId(devManager.getLocalDeviceNetworkId());
+      kvStore.sync(deviceIds, query, mode, 1000);
+    });
+  } catch (e) {
+    let error = e as BusinessError;
+    console.error(`Failed to sync.code is ${error.code},message is ${error.message}`);
+  }
+
+} catch (err) {
+  let error = err as BusinessError;
+  console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
+}
 ```
 
 ### on('dataChange')
@@ -4712,13 +5135,18 @@ on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotific
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
-        console.info(`dataChange callback call data: ${data}`);
-    });
+  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL, (data) => {
+    console.info(`dataChange callback call data: ${data}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4739,20 +5167,25 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
 const VALUE_TEST_FLOAT_ELEMENT = 321.12;
 try {
-    kvStore.on('syncComplete', function (data) {
-        console.info(`syncComplete ${data}`);
-    });
-    kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then(() => {
-        console.info('succeeded in putting');
-    }).catch((err) => {
-        console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
-    });
+  kvStore.on('syncComplete', (data) => {
+    console.info(`syncComplete ${data}`);
+  });
+  kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then(() => {
+    console.info('succeeded in putting');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`Failed to subscribe syncComplete.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to subscribe syncComplete.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4781,31 +5214,37 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 class KvstoreModel {
-    call(data) {
-        console.info(`dataChange : ${data}`);
-    }
+  call(data: string) {
+    console.info(`dataChange : ${data}`);
+  }
 
-    subscribeDataChange() {
-        try {
-            if (kvStore != null) {
-                kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
-            }
-        } catch (err) {
-            console.error(`Failed to subscribeDataChange.code is ${err.code},message is ${err.message}`);
-        }
+  subscribeDataChange() {
+    try {
+      if (kvStore != null) {
+        kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+      }
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error(`Failed to subscribeDataChange.code is ${error.code},message is ${error.message}`);
     }
+  }
 
-    unsubscribeDataChange() {
-        try {
-            if (kvStore != null) {
-                kvStore.off('dataChange', this.call);
-            }
-        } catch (err) {
-            console.error(`Failed to unsubscribeDataChange.code is ${err.code},message is ${err.message}`);
-        }
+  unsubscribeDataChange() {
+    try {
+      if (kvStore != null) {
+        kvStore.off('dataChange', this.call);
+      }
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error(`Failed to unsubscribeDataChange.code is ${error.code},message is ${error.message}`);
     }
+  }
 }
 ```
 
@@ -4826,31 +5265,37 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 class KvstoreModel {
-    call(data) {
-        console.info(`syncComplete : ${data}`);
-    }
+  call(data: string) {
+    console.info(`syncComplete : ${data}`);
+  }
 
-    subscribeDataChange() {
-        try {
-            if (kvStore != null) {
-                kvStore.on('syncComplete', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
-            }
-        } catch (err) {
-            console.error(`Failed to subscribeDataChange.code is ${err.code},message is ${err.message}`);
-        }
+  subscribeDataChange() {
+    try {
+      if (kvStore != null) {
+        kvStore.on('syncComplete', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+      }
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error(`Failed to subscribeDataChange.code is ${error.code},message is ${error.message}`);
     }
+  }
 
-    unsubscribeDataChange() {
-        try {
-            if (kvStore != null) {
-                kvStore.off('dsyncComplete', this.call);
-            }
-        } catch (err) {
-            console.error(`Failed to unsubscribeDataChange.code is ${err.code},message is ${err.message}`);
-        }
+  unsubscribeDataChange() {
+    try {
+      if (kvStore != null) {
+        kvStore.off('dsyncComplete', this.call);
+      }
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error(`Failed to unsubscribeDataChange.code is ${error.code},message is ${error.message}`);
     }
+  }
 }
 ```
 
@@ -4878,17 +5323,22 @@ getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    kvStore.getSecurityLevel(function (err, data) {
-        if (err != undefined) {
-            console.error(`Failed to get SecurityLevel.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in getting securityLevel');
-    });
+  kvStore.getSecurityLevel((err, data) => {
+    if (err != undefined) {
+      console.error(`Failed to get SecurityLevel.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting securityLevel');
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4916,15 +5366,20 @@ getSecurityLevel(): Promise&lt;SecurityLevel&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.SingleKVStore = xxx;
+
 try {
-    kvStore.getSecurityLevel().then((data) => {
-        console.info('Succeeded in getting securityLevel');
-    }).catch((err) => {
-        console.error(`Failed to get SecurityLevel.code is ${err.code},message is ${err.message}`);
-    });
+  kvStore.getSecurityLevel().then((data) => {
+    console.info('Succeeded in getting securityLevel');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get SecurityLevel.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -4965,26 +5420,31 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
+
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info("Succeeded in putting");
-        kvStore.get(KEY_TEST_STRING_ELEMENT, function (err, data) {
-            if (err != undefined) {
-                console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info(`Succeeded in getting data.data=${data}`);
-        });
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info("Succeeded in putting");
+    kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
+      if (err != undefined) {
+        console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info(`Succeeded in getting data.data=${data}`);
     });
+  });
 } catch (e) {
-    console.error(`Failed to get.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -5020,22 +5480,27 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
+
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
-        console.info(`Succeeded in putting data`);
-        kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
-            console.info(`Succeeded in getting data.data=${data}`);
-        }).catch((err) => {
-            console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
+    console.info(`Succeeded in putting data`);
+    kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+      console.info(`Succeeded in getting data.data=${data}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
     });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`Failed to get.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -5046,7 +5511,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 获取与指定设备ID和key匹配的string值，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5071,26 +5536,31 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
+
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in putting');
-        kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, function (err, data) {
-            if (err != undefined) {
-                console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting');
-        });
-    })
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting');
+    kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, (err, data) => {
+      if (err != undefined) {
+        console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting');
+    });
+  })
 } catch (e) {
-    console.error(`Failed to get.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -5101,7 +5571,7 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 获取与指定设备ID和key匹配的string值，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5131,22 +5601,27 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
+
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async () => {
-        console.info('Succeeded in putting');
-        kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
-            console.info('Succeeded in getting');
-        }).catch((err) => {
-            console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((error) => {
-        console.error(`Failed to put.code is ${error.code},message is ${error.message}`);
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async () => {
+    console.info('Succeeded in putting');
+    kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
+      console.info('Succeeded in getting');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
     });
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to put.code is ${error.code},message is ${error.message}`);
+  });
 } catch (e) {
-    console.error(`Failed to get.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -5176,39 +5651,44 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
+
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries, async function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in putting Batch');
-        kvStore.getEntries('batch_test_string_key', function (err, entries) {
-            if (err != undefined) {
-                console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting Entries');
-            console.info(`entries.length: ${entries.length}`);
-            console.info(`entries[0]: ${entries[0]}`);
-        });
+    entries.push(entry);
+  }
+  console.info(`entries: ${entries}`);
+  kvStore.putBatch(entries, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting Batch');
+    kvStore.getEntries('batch_test_string_key', (err, entries) => {
+      if (err != undefined) {
+        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting Entries');
+      console.info(`entries.length: ${entries.length}`);
+      console.info(`entries[0]: ${entries[0]}`);
     });
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message} `);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message} `);
 }
 ```
 
@@ -5243,34 +5723,39 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
+
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting Batch');
-        kvStore.getEntries('batch_test_string_key').then((entries) => {
-            console.info('Succeeded in getting Entries');
-            console.info(`PutBatch ${entries}`);
-        }).catch((err) => {
-            console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
+    entries.push(entry);
+  }
+  console.info(`entries: ${entries}`);
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting Batch');
+    kvStore.getEntries('batch_test_string_key').then((entries) => {
+      console.info('Succeeded in getting Entries');
+      console.info(`PutBatch ${entries}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
     });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message} `);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message} `);
 }
 ```
 
@@ -5281,7 +5766,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 获取与指定设备ID和key前缀匹配的所有键值对，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5305,39 +5790,44 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
+
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    console.info(`entries : ${entries}`);
-    kvStore.putBatch(entries, async function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in putting batch');
-        kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err, entries) {
-            if (err != undefined) {
-                console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting entries');
-            console.info(`entries.length: ${entries.length}`);
-            console.info(`entries[0]: ${entries[0]}`);
-        });
+    entries.push(entry);
+  }
+  console.info(`entries : ${entries}`);
+  kvStore.putBatch(entries, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting batch');
+    kvStore.getEntries('localDeviceId', 'batch_test_string_key', (err, entries) => {
+      if (err != undefined) {
+        console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting entries');
+      console.info(`entries.length: ${entries.length}`);
+      console.info(`entries[0]: ${entries[0]}`);
     });
+  });
 } catch (e) {
-    console.error(`Failed to put batch.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to put batch.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -5348,7 +5838,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 获取与指定设备ID和key前缀匹配的所有键值对，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5377,38 +5867,43 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
+
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting batch');
-        kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
-            console.info('Succeeded in getting entries');
-            console.info(`entries.length: ${entries.length}`);
-            console.info(`entries[0]: ${entries[0]}`);
-            console.info(`entries[0].value: ${entries[0].value}`);
-            console.info(`entries[0].value.value: ${entries[0].value.value}`);
-        }).catch((err) => {
-            console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+    entries.push(entry);
+  }
+  console.info(`entries: ${entries}`);
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting batch');
+    kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
+      console.info('Succeeded in getting entries');
+      console.info(`entries.length: ${entries.length}`);
+      console.info(`entries[0]: ${entries[0]}`);
+      console.info(`entries[0].value: ${entries[0].value}`);
+      console.info(`entries[0].value.value: ${entries[0].value.value}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
     });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`Failed to put batch.code is ${e.code},message is ${e.message}`);
-}    
+  let error = e as BusinessError;
+  console.error(`Failed to put batch.code is ${error.code},message is ${error.message}`);
+}
 ```
 
 ### getEntries
@@ -5437,38 +5932,43 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
+
 try {
-    var arr = new Uint8Array([21, 31]);
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_bool_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.BYTE_ARRAY,
-                value: arr
-            }
-        }
-        entries.push(entry);
+  let arr = new Uint8Array([21, 31]);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_bool_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.BYTE_ARRAY,
+        value: arr
+      }
     }
-    console.info(`entries: {entries}`);
-    kvStore.putBatch(entries, async function (err) {
-        console.info('Succeeded in putting Batch');
-        const query = new distributedKVStore.Query();
-        query.prefixKey("batch_test");
-        kvStore.getEntries(query, function (err, entries) {
-            if (err != undefined) {
-                console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting Entries');
-            console.info(`entries.length: ${entries.length}`);
-            console.info(`entries[0]: ${entries[0]}`);
-        });
+    entries.push(entry);
+  }
+  console.info(`entries: {entries}`);
+  kvStore.putBatch(entries, async (err) => {
+    console.info('Succeeded in putting Batch');
+    const query = new distributedKVStore.Query();
+    query.prefixKey("batch_test");
+    kvStore.getEntries(query, (err, entries) => {
+      if (err != undefined) {
+        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting Entries');
+      console.info(`entries.length: ${entries.length}`);
+      console.info(`entries[0]: ${entries[0]}`);
     });
+  });
 } catch (e) {
-    console.error(`Failed to get Entries.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get Entries.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -5503,37 +6003,42 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
+
 try {
-    var arr = new Uint8Array([21, 31]);
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_bool_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.BYTE_ARRAY,
-                value: arr
-            }
-        }
-        entries.push(entry);
+  let arr = new Uint8Array([21, 31]);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_bool_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.BYTE_ARRAY,
+        value: arr
+      }
     }
-    console.info(`entries: {entries}`);
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting Batch');
-        const query = new distributedKVStore.Query();
-        query.prefixKey("batch_test");
-        kvStore.getEntries(query).then((entries) => {
-            console.info('Succeeded in getting Entries');
-        }).catch((err) => {
-            console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`)
+    entries.push(entry);
+  }
+  console.info(`entries: {entries}`);
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting Batch');
+    const query = new distributedKVStore.Query();
+    query.prefixKey("batch_test");
+    kvStore.getEntries(query).then((entries) => {
+      console.info('Succeeded in getting Entries');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
     });
-    console.info('Succeeded in getting Entries');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`)
+  });
+  console.info('Succeeded in getting Entries');
 } catch (e) {
-    console.error(`Failed to get Entries.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get Entries.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -5544,7 +6049,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 获取与指定设备ID和Query对象匹配的键值对列表，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5568,44 +6073,48 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    var arr = new Uint8Array([21, 31]);
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_bool_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.BYTE_ARRAY,
-                value: arr
-            }
-        }
-        entries.push(entry);
+  let arr = new Uint8Array([21, 31]);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_bool_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.BYTE_ARRAY,
+        value: arr
+      }
     }
-    console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries, async function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in putting batch');
-        var query = new distributedKVStore.Query();
-        query.deviceId('localDeviceId');
-        query.prefixKey("batch_test");
-        kvStore.getEntries('localDeviceId', query, function (err, entries) {
-            if (err != undefined) {
-                console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting entries');
-            console.info(`entries.length: ${entries.length}`);
-            console.info(`entries[0]: ${entries[0]}`);
-        })
-    });
-    console.info('Succeeded in getting entries');
+    entries.push(entry);
+  }
+  console.info(`entries: ${entries}`);
+  kvStore.putBatch(entries, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting batch');
+    let query = new distributedKVStore.Query();
+    query.deviceId('localDeviceId');
+    query.prefixKey("batch_test");
+    kvStore.getEntries('localDeviceId', query, (err, entries) => {
+      if (err != undefined) {
+        console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting entries');
+      console.info(`entries.length: ${entries.length}`);
+      console.info(`entries[0]: ${entries[0]}`);
+    })
+  });
+  console.info('Succeeded in getting entries');
 } catch (e) {
-    console.error(`Failed to get entries.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get entries.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -5616,7 +6125,7 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 获取与指定设备ID和Query对象匹配的键值对列表，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5645,38 +6154,42 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    var arr = new Uint8Array([21, 31]);
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_bool_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.BYTE_ARRAY,
-                value: arr
-            }
-        }
-        entries.push(entry);
+  let arr = new Uint8Array([21, 31]);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_bool_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.BYTE_ARRAY,
+        value: arr
+      }
     }
-    console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting batch');
-        var query = new distributedKVStore.Query();
-        query.deviceId('localDeviceId');
-        query.prefixKey("batch_test");
-        kvStore.getEntries('localDeviceId', query).then((entries) => {
-            console.info('Succeeded in getting entries');
-        }).catch((err) => {
-            console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+    entries.push(entry);
+  }
+  console.info(`entries: ${entries}`);
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting batch');
+    let query = new distributedKVStore.Query();
+    query.deviceId('localDeviceId');
+    query.prefixKey("batch_test");
+    kvStore.getEntries('localDeviceId', query).then((entries) => {
+      console.info('Succeeded in getting entries');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
     });
-    console.info('Succeeded in getting entries');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+  });
+  console.info('Succeeded in getting entries');
 } catch (e) {
-    console.error(`Failed to get entries.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get entries.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -5707,45 +6220,49 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let resultSet;
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries, async function (err) {
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting batch');
+    kvStore.getResultSet('batch_test_string_key', async (err, result) => {
+      if (err != undefined) {
+        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting result set');
+      resultSet = result;
+      kvStore.closeResultSet(resultSet, (err) => {
         if (err != undefined) {
-            console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-            return;
+          console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+          return;
         }
-        console.info('Succeeded in putting batch');
-        kvStore.getResultSet('batch_test_string_key', async function (err, result) {
-            if (err != undefined) {
-                console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting result set');
-            resultSet = result;
-            kvStore.closeResultSet(resultSet, function (err) {
-                if (err != undefined) {
-                    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-                    return;
-                }
-                console.info('Succeeded in closing result set');
-            })
-        });
+        console.info('Succeeded in closing result set');
+      })
     });
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -5781,39 +6298,43 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let resultSet;
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting batch');
-    }).catch((err) => {
-        console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-    });
-    kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.info('Succeeded in getting result set');
-        resultSet = result;
-    }).catch((err) => {
-        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-    });
-    kvStore.closeResultSet(resultSet).then(() => {
-        console.info('Succeeded in closing result set');
-    }).catch((err) => {
-        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-    });
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting batch');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+  });
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+  });
+  kvStore.closeResultSet(resultSet).then(() => {
+    console.info('Succeeded in closing result set');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -5824,7 +6345,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 获取与指定设备ID和key前缀匹配的KVStoreResultSet对象，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5849,26 +6370,30 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let resultSet;
-    kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async function (err, result) {
-        if (err != undefined) {
-            console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in getting resultSet');
-        resultSet = result;
-        kvStore.closeResultSet(resultSet, function (err) {
-            if (err != undefined) {
-                console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in closing resultSet');
-        })
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async (err, result) => {
+    if (err != undefined) {
+      console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting resultSet');
+    resultSet = result;
+    kvStore.closeResultSet(resultSet, (err) => {
+      if (err != undefined) {
+        console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in closing resultSet');
+    })
+  });
 } catch (e) {
-    console.error(`Failed to get resultSet.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get resultSet.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -5879,7 +6404,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 获取与指定设备ID和key前缀匹配的KVStoreResultSet对象，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5909,22 +6434,26 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let resultSet;
-    kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
-        console.info('Succeeded in getting resultSet');
-        resultSet = result;
-    }).catch((err) => {
-        console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
-    });
-    kvStore.closeResultSet(resultSet).then(() => {
-        console.info('Succeeded in closing resultSet');
-    }).catch((err) => {
-        console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
+    console.info('Succeeded in getting resultSet');
+    resultSet = result;
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
+  });
+  kvStore.closeResultSet(resultSet).then(() => {
+    console.info('Succeeded in closing resultSet');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`Failed to get resultSet.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get resultSet.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -5935,7 +6464,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 获取与指定设备ID和Query对象匹配的KVStoreResultSet对象，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5960,47 +6489,51 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let resultSet;
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries, async function (err) {
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting batch');
+    const query = new distributedKVStore.Query();
+    query.prefixKey("batch_test");
+    kvStore.getResultSet('localDeviceId', query, async (err, result) => {
+      if (err != undefined) {
+        console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting resultSet');
+      resultSet = result;
+      kvStore.closeResultSet(resultSet, (err) => {
         if (err != undefined) {
-            console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-            return;
+          console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
+          return;
         }
-        console.info('Succeeded in putting batch');
-        const query = new distributedKVStore.Query();
-        query.prefixKey("batch_test");
-        kvStore.getResultSet('localDeviceId', query, async function (err, result) {
-            if (err != undefined) {
-                console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting resultSet');
-            resultSet = result;
-            kvStore.closeResultSet(resultSet, function (err) {
-                if (err != undefined) {
-                    console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
-                    return;
-                }
-                console.info('Succeeded in closing resultSet');
-            })
-        });
+        console.info('Succeeded in closing resultSet');
+      })
     });
+  });
 } catch (e) {
-    console.error(`Failed to get resultSet.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get resultSet.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -6011,7 +6544,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 获取与指定设备ID和Query对象匹配的KVStoreResultSet对象，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -6041,44 +6574,48 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let resultSet;
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting batch');
-    }).catch((err) => {
-        console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-    });
-    const query = new distributedKVStore.Query();
-    query.prefixKey("batch_test");
-    kvStore.getResultSet('localDeviceId', query).then((result) => {
-        console.info('Succeeded in getting resultSet');
-        resultSet = result;
-    }).catch((err) => {
-        console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
-    });
-    query.deviceId('localDeviceId');
-    console.info("GetResultSet " + query.getSqlLike());
-    kvStore.closeResultSet(resultSet).then(() => {
-        console.info('Succeeded in closing resultSet');
-    }).catch((err) => {
-        console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
-    });
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting batch');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+  });
+  const query = new distributedKVStore.Query();
+  query.prefixKey("batch_test");
+  kvStore.getResultSet('localDeviceId', query).then((result) => {
+    console.info('Succeeded in getting resultSet');
+    resultSet = result;
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
+  });
+  query.deviceId('localDeviceId');
+  console.info("GetResultSet " + query.getSqlLike());
+  kvStore.closeResultSet(resultSet).then(() => {
+    console.info('Succeeded in closing resultSet');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
+  });
 
 } catch (e) {
-    console.error(`Failed to get resultSet.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get resultSet.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -6114,37 +6651,41 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let resultSet;
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting batch');
-    }).catch((err) => {
-        console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-    });
-    const query = new distributedKVStore.Query();
-    query.prefixKey("batch_test");
-    kvStore.getResultSet(query).then((result) => {
-        console.info('Succeeded in getting result set');
-        resultSet = result;
-    }).catch((err) => {
-        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-    });
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting batch');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+  });
+  const query = new distributedKVStore.Query();
+  query.prefixKey("batch_test");
+  kvStore.getResultSet(query).then((result) => {
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
-}    
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+}
 ```
 
 ### getResultSet
@@ -6154,7 +6695,7 @@ getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 获取与本设备指定Query对象匹配的KVStoreResultSet对象，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
@@ -6179,47 +6720,51 @@ getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let resultSet;
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries, async function (err) {
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting batch');
+    const query = new distributedKVStore.Query();
+    query.prefixKey("batch_test");
+    kvStore.getResultSet(query, async (err, result) => {
+      if (err != undefined) {
+        console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting resultSet');
+      resultSet = result;
+      kvStore.closeResultSet(resultSet, (err) => {
         if (err != undefined) {
-            console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-            return;
+          console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
+          return;
         }
-        console.info('Succeeded in putting batch');
-        const query = new distributedKVStore.Query();
-        query.prefixKey("batch_test");
-        kvStore.getResultSet(query, async function (err, result) {
-            if (err != undefined) {
-                console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting resultSet');
-            resultSet = result;
-            kvStore.closeResultSet(resultSet, function (err) {
-                if (err != undefined) {
-                    console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
-                    return;
-                }
-                console.info('Succeeded in closing resultSet');
-            })
-        });
+        console.info('Succeeded in closing resultSet');
+      })
     });
+  });
 } catch (e) {
-    console.error(`Failed to get resultSet.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get resultSet.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -6228,6 +6773,8 @@ try {
 getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 获取与本设备指定Predicate对象匹配的KVStoreResultSet对象，使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -6252,30 +6799,33 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 **示例：**
 
-```js
+```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let resultSet;
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.prefixKey("batch_test_string_key");
-    kvStore.getResultSet(predicates, async function (err, result) {
-        if (err != undefined) {
-            console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in getting result set');
-        resultSet = result;
-        kvStore.closeResultSet(resultSet, function (err) {
-            if (err != undefined) {
-                console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in closing result set');
-        })
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.prefixKey("batch_test_string_key");
+  kvStore.getResultSet(predicates, async (err, result) => {
+    if (err != undefined) {
+      console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+    kvStore.closeResultSet(resultSet, (err) => {
+      if (err != undefined) {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in closing result set');
+    })
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -6284,6 +6834,8 @@ try {
 getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
 
 获取与本设备指定Predicate对象匹配的KVStoreResultSet对象，使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -6313,26 +6865,29 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 
 **示例：**
 
-```js
+```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let resultSet;
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.prefixKey("batch_test_string_key");
-    kvStore.getResultSet(predicates).then((result) => {
-        console.info('Succeeded in getting result set');
-        resultSet = result;
-    }).catch((err) => {
-        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-    });
-    kvStore.closeResultSet(resultSet).then(() => {
-        console.info('Succeeded in closing result set');
-    }).catch((err) => {
-        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.prefixKey("batch_test_string_key");
+  kvStore.getResultSet(predicates).then((result) => {
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+  });
+  kvStore.closeResultSet(resultSet).then(() => {
+    console.info('Succeeded in closing result set');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -6343,8 +6898,10 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 获取与指定Predicate对象匹配的KVStoreResultSet对象，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -6370,30 +6927,33 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 
 **示例：**
 
-```js
+```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let resultSet;
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.prefixKey("batch_test_string_key");
-    kvStore.getResultSet('localDeviceId', predicates, async function (err, result) {
-        if (err != undefined) {
-            console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in getting result set');
-        resultSet = result;
-        kvStore.closeResultSet(resultSet, function (err) {
-            if (err != undefined) {
-                console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in closing result set');
-        })
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.prefixKey("batch_test_string_key");
+  kvStore.getResultSet('localDeviceId', predicates, async (err, result) => {
+    if (err != undefined) {
+      console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+    kvStore.closeResultSet(resultSet, (err) => {
+      if (err != undefined) {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in closing result set');
+    })
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -6404,8 +6964,10 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 获取与指定Predicate对象匹配的KVStoreResultSet对象，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -6436,26 +6998,29 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 
 **示例：**
 
-```js
+```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let resultSet;
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.prefixKey("batch_test_string_key");
-    kvStore.getResultSet('localDeviceId', predicates).then((result) => {
-        console.info('Succeeded in getting result set');
-        resultSet = result;
-    }).catch((err) => {
-        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-    });
-    kvStore.closeResultSet(resultSet).then(() => {
-        console.info('Succeeded in closing result set');
-    }).catch((err) => {
-        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-    });
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.prefixKey("batch_test_string_key");
+  kvStore.getResultSet('localDeviceId', predicates).then((result) => {
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+  });
+  kvStore.closeResultSet(resultSet).then(() => {
+    console.info('Succeeded in closing result set');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -6485,34 +7050,38 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries, async function (err) {
-        console.info('Succeeded in putting batch');
-        const query = new distributedKVStore.Query();
-        query.prefixKey("batch_test");
-        kvStore.getResultSize(query, async function (err, resultSize) {
-            if (err != undefined) {
-                console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting result set size');
-        });
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries, async (err) => {
+    console.info('Succeeded in putting batch');
+    const query = new distributedKVStore.Query();
+    query.prefixKey("batch_test");
+    kvStore.getResultSize(query, async (err, resultSize) => {
+      if (err != undefined) {
+        console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting result set size');
     });
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -6547,34 +7116,38 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting batch');
-    }).catch((err) => {
-        console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-    });
-    const query = new distributedKVStore.Query();
-    query.prefixKey("batch_test");
-    kvStore.getResultSize(query).then((resultSize) => {
-        console.info('Succeeded in getting result set size');
-    }).catch((err) => {
-        console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
-    });
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting batch');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+  });
+  const query = new distributedKVStore.Query();
+  query.prefixKey("batch_test");
+  kvStore.getResultSize(query).then((resultSize) => {
+    console.info('Succeeded in getting result set size');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
 
@@ -6585,7 +7158,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 获取与指定设备ID和Query对象匹配的结果数，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -6609,38 +7182,42 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries, async function (err) {
-        if (err != undefined) {
-            console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info('Succeeded in putting batch');
-        const query = new distributedKVStore.Query();
-        query.prefixKey("batch_test");
-        kvStore.getResultSize('localDeviceId', query, async function (err, resultSize) {
-            if (err != undefined) {
-                console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in getting resultSize');
-        });
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting batch');
+    const query = new distributedKVStore.Query();
+    query.prefixKey("batch_test");
+    kvStore.getResultSize('localDeviceId', query, async (err, resultSize) => {
+      if (err != undefined) {
+        console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting resultSize');
     });
+  });
 } catch (e) {
-    console.error(`Failed to get resultSize.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get resultSize.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -6651,7 +7228,7 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 获取与指定设备ID和Query对象匹配的结果数，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -6680,33 +7257,37 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
+  let entries: distributedKVStore.Entry[] = [];
+  for (let i = 0; i < 10; i++) {
+    let key = 'batch_test_string_key';
+    let entry: distributedKVStore.Entry = {
+      key: key + i,
+      value: {
+        type: distributedKVStore.ValueType.STRING,
+        value: 'batch_test_string_value'
+      }
     }
-    kvStore.putBatch(entries).then(async () => {
-        console.info('Succeeded in putting batch');
-    }).catch((err) => {
-        console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-    });
-    var query = new distributedKVStore.Query();
-    query.prefixKey("batch_test");
-    kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
-        console.info('Succeeded in getting resultSize');
-    }).catch((err) => {
-        console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
-    });
+    entries.push(entry);
+  }
+  kvStore.putBatch(entries).then(async () => {
+    console.info('Succeeded in putting batch');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+  });
+  let query = new distributedKVStore.Query();
+  query.prefixKey("batch_test");
+  kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
+    console.info('Succeeded in getting resultSize');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
+  });
 } catch (e) {
-    console.error(`Failed to get resultSize.code is ${e.code},message is ${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to get resultSize.code is ${error.code},message is ${error.message}`);
 }
 ```

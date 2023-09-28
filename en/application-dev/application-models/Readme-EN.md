@@ -61,8 +61,8 @@
     - [Component Startup Rules (Stage Model)](component-startup-rules.md)
     - Inter-Device Application Component Interaction (Continuation)
       - [Continuation Overview](inter-device-interaction-hop-overview.md)
-      - [Cross-Device Migration (for System Applications Only)](hop-cross-device-migration.md)
-      - [Multi-device Collaboration (for System Applications Only)](hop-multi-device-collaboration.md)
+      - [Cross-Device Migration](hop-cross-device-migration.md)
+      - [Multi-device Collaboration](hop-multi-device-collaboration.md)
     - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
   - Process Model
     - [Process Model Overview](process-model-stage.md)

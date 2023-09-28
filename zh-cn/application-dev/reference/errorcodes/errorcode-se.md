@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Illegal service state exception.
+IllegalStateError, an attempt is made to use an SE session that has been closed.
 
 **错误描述**
 
@@ -28,7 +28,7 @@ SE服务状态异常。
 
 **错误信息**
 
-No such element exception.
+NoSuchElementError, the AID on the SE is not available or cannot be selected.
 
 **错误描述**
 
@@ -48,7 +48,7 @@ No such element exception.
 
 **错误信息**
 
-Illegal access rule exception.
+SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.
 
 **错误描述**
 
@@ -67,7 +67,7 @@ Illegal access rule exception.
 
 **错误信息**
 
-Secure element IO exception.
+IOError, there is a communication problem to the reader or the SE.
 
 **错误描述**
 

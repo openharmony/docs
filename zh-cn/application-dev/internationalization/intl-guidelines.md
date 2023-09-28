@@ -24,7 +24,7 @@
 
    未正确导入包可能会产生不明确的接口行为。
    
-   ```js
+   ```ts
    import Intl from '@ohos.intl';
    ```
 
@@ -47,9 +47,9 @@
       | kf | 表示字符串排序、比较时是否考虑大小写 |
 
    
-   ```js
+   ```ts
    let locale = "zh-CN";
-   let options = {caseFirst: "false", calendar: "chinese", collation: "pinyin"};
+   let options: Intl.LocaleOptions = {caseFirst: "false", calendar: "chinese", collation: "pinyin"};
    let localeObj = new Intl.Locale(locale, options);
    ```
 
@@ -57,7 +57,7 @@
 
      调用toString方法来获取Locale对象的字符串表示，其中包括了语言、区域及其他选项信息。
      
-   ```js
+   ```ts
    let localeStr = localeObj.toString(); // localeStr = "zh-CN-u-ca-chinese-co-pinyin-kf-false
    ```
 
@@ -65,7 +65,7 @@
 
      调用maximize方法来最大化区域信息，即当缺少脚本与地区信息时，对其进行补全。
      
-   ```js
+   ```ts
    let maximizedLocale = localeObj.maximize();
    let maximizedLocaleStr = maximizedLocale.toString(); // localeStr = "zh-Hans-CN-u-ca-chinese-co-pinyin-kf-false
    ```
@@ -74,7 +74,7 @@
 
      调用minimize方法来最小化区域信息，即当存在脚本与地区信息时，对其进行删除。
      
-   ```js
+   ```ts
    let minimizedLocale = localeObj.minimize();
    let minimizedLocaleStr = minimizedLocale.toString(); // zh-u-ca-chinese-co-pinyin-kf-false
    ```
@@ -99,7 +99,7 @@
 
    未正确导入包可能会产生不明确的接口行为。
    
-   ```js
+   ```ts
    import Intl from '@ohos.intl';
    ```
 
@@ -107,14 +107,14 @@
 
    一种方法是使用DateTimeFormat提供的默认构造函数，通过访问系统语言和地区设置，获取系统默认Locale，并将其作为DateTimeFormat对象内部的Locale。
 
-   ```js
+   ```ts
    let dateTimeFormat = new Intl.DateTimeFormat();
    ```
 
      另一种方法是使用开发者提供的Locale和格式化参数来创建日期时间格式化对象。其中，格式化参数是可选的，完整的格式化参数列表见[DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions6)。
    
-   ```js
-   let options = {dateStyle: "full", timeStyle: "full"};
+   ```ts
+   let options: Intl.DateTimeOptions = {dateStyle: "full", timeStyle: "full"};
    let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
    ```
 
@@ -122,8 +122,8 @@
 
      使用DateTimeFormat的format方法对一个Date对象进行格式化，该方法会返回一个字符串作为格式化的结果。
      
-   ```js
-   let options = {dateStyle: "full", timeStyle: "full"};
+   ```ts
+   let options: Intl.DateTimeOptions = {dateStyle: "full", timeStyle: "full"};
    let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
    let date = new Date(2022, 12, 12, 12, 12, 12);
    let formatResult = dateTimeFormat.format(date); // formatResult = "2023年1月12日星期四 中国标准时间 下午12:12:12"
@@ -133,7 +133,7 @@
 
      使用DateTimeFormat的formatRange方法对一个时间段进行格式化。该方法需要传入两个Date对象，分别表示时间段的起止日期，返回一个字符串作为格式化的结果。
      
-   ```js
+   ```ts
    let startDate = new Date(2021, 11, 17, 3, 24, 0);
    let endDate = new Date(2021, 11, 18, 3, 24, 0);
    let datefmt = new Intl.DateTimeFormat("en-GB");
@@ -144,8 +144,8 @@
 
      DateTimeFormat的resolvedOptions方法会返回一个对象，该对象包含了DateTimeFormat对象的所有相关属性及其值。
      
-   ```js
-   let options = {dateStyle: "full", timeStyle: "full"};
+   ```ts
+   let options: Intl.DateTimeOptions = {dateStyle: "full", timeStyle: "full"};
    let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
    let resolvedOptions = dateTimeFormat.resolvedOptions(); // resolvedOptions = {"locale": "zh-CN", "calendar": "gregorian", "dateStyle":"full", "timeStyle":"full", "timeZone": "CST"}
    ```
@@ -169,7 +169,7 @@
 
    未正确导入包可能会产生不明确的接口行为。
    
-   ```js
+   ```ts
    import Intl from '@ohos.intl';
    ```
 
@@ -177,14 +177,14 @@
 
    一种方法是使用NumberFormat提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（intl为导入的模块名）。
 
-   ```js
+   ```ts
    let numberFormat = new Intl.NumberFormat();
    ```
 
      另一种方法是使用开发者提供的Locale和格式化参数来创建数字格式化对象。其中，格式化参数是可选的，完整的格式化参数列表参见[NumberOptions](../reference/apis/js-apis-intl.md##numberoptions6)。
    
-   ```js
-   let options = {compactDisplay: "short", notation: "compact"};
+   ```ts
+   let options: Intl.NumberOptions = {compactDisplay: "short", notation: "compact"};
    let numberFormat = new Intl.NumberFormat("zh-CN", options);
    ```
 
@@ -192,8 +192,8 @@
 
      使用NumberFormat的format方法对传入的数字进行格式化。该方法返回一个字符串作为格式化的结果。
      
-   ```js
-   let options = {compactDisplay: "short", notation: "compact"};
+   ```ts
+   let options: Intl.NumberOptions = {compactDisplay: "short", notation: "compact"};
    let numberFormat = new Intl.NumberFormat("zh-CN", options);
    let number = 1234.5678;
    let formatResult = numberFormat.format(number); // formatResult = "1235"
@@ -203,8 +203,8 @@
 
      NumberFormat的resolvedOptions方法会返回一个对象，该对象包含了NumberFormat对象的所有相关属性及其值。
      
-   ```js
-   let options = {compactDisplay: "short", notation: "compact"};
+   ```ts
+   let options: Intl.NumberOptions = {compactDisplay: "short", notation: "compact"};
    let numberFormat = new Intl.NumberFormat("zh-CN", options);
    let resolvedOptions = numberFormat.resolvedOptions();  // resolvedOptions = {"locale": "zh-CN", "compactDisplay": "short", "notation": "compact", "numberingSystem": "Latn"}
    ```
@@ -228,7 +228,7 @@
 
    未正确导入包可能会产生不明确的接口行为。
    
-   ```js
+   ```ts
    import Intl from '@ohos.intl';
    ```
 
@@ -236,14 +236,14 @@
 
    一种方法是使用Collator提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（intl为导入的模块名）。
 
-   ```js
+   ```ts
    let collator = new Intl.Collator();
    ```
 
      另一种方法是使用开发者提供的Locale和其他相关参数来创建Collator对象，完整的参数列表参见[CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions8)。
      其中，sensitivity参数用于控制哪些级别的差异会被用于比较两个字符串。取值"base"表示，仅比较字符本身，不考虑重音符号、大小写差异。例如，'a' != 'b'，'a' == 'á'，'a' == 'A'。取值"accent"表示考虑重音符号，不考虑大小写的差异。例如，'a' != 'b'，'a' != 'á'，'a' == 'A'。取值"case"表示考虑大小写的差异，不考虑重音符号的差异。例如，'a' != 'b'，'a' == 'á'，'a' != 'A'。取值"variant"表示考虑重音符号、大小写等方面差异。例如'a' != 'b'，'a' != 'á'，'a' != 'A'。
    
-   ```js
+   ```ts
    let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort", sensitivity: "case"});
    ```
 
@@ -251,7 +251,7 @@
 
      使用Collator的compare方法对传入的两个字符串进行比较。该方法返回一个数值作为比较的结果，返回-1表示第一个字符串小于第二个字符串，返回1表示第一个字符大于第二个字符串，返回0表示两个字符串相同。基于两个字符串的比较结果，开发者可以字符串集合进行排序。
      
-   ```js
+   ```ts
    let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort", sensitivity: "case"});
    let str1 = "first string";
    let str2 = "second string";
@@ -265,7 +265,7 @@
 
      Collator的resolvedOptions方法会返回一个对象，该对象包含了Collator对象的所有相关属性及其值。
      
-   ```js
+   ```ts
    let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
    let options = collator.resolvedOptions(); // options = {"localeMatcher": "best fit", "locale": "zh-CN", "usage": "sort", "sensitivity": "variant", "ignorePunctuation": "false", "numeric": false, "caseFirst": "false", "collation": "default"}
    ```
@@ -289,7 +289,7 @@
 
    未正确导入包可能会产生不明确的接口行为。
    
-   ```js
+   ```ts
    import Intl from '@ohos.intl';
    ```
 
@@ -297,13 +297,13 @@
 
    一种方法是使用PluralRules提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（intl为导入的模块名）。
 
-   ```js
+   ```ts
    let pluralRules = new Intl.PluralRules();
    ```
 
      另一种方法是使用开发者提供的Locale和其他相关参数来创建单复数对象。完整的参数列表参见[PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions8)。
    
-   ```js
+   ```ts
    let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
    ```
 
@@ -311,7 +311,7 @@
 
      使用PluralRules的select方法计算传入数字的单复数类别。该方法返回一个字符串作为传入数字的类别，包括："zero", "one", "two", "few", "many", "other"六个类别。
      
-   ```js
+   ```ts
    let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
    let number = 1234.5678;
    let categoryResult = pluralRules.select(number); // categoryResult = "other"
@@ -337,7 +337,7 @@
 
    未正确导入包可能会产生不明确的接口行为。
    
-   ```js
+   ```ts
    import Intl from '@ohos.intl';
    ```
 
@@ -345,13 +345,13 @@
 
    一种方法是使用RelativeTimeFormat提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（intl为导入的模块名）。
    
-   ```js
+   ```ts
    let relativeTimeFormat = new Intl.RelativeTimeFormat();
    ```
 
      另一种方法是使用开发者提供的Locale和格式化参数来创建相对时间格式化对象。其中，格式化参数是可选的，完整的参数列表参见[RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions8)。
    
-   ```js
+   ```ts
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    ```
 
@@ -359,7 +359,7 @@
 
      使用RelativeTimeFormat的format方法对相对时间进行格式化。方法接收一个表示相对时间长度的数值和表示单位的字符串，其中单位包括："year", "quarter", "month", "week", "day", "hour", "minute", "second"。方法返回一个字符串作为格式化的结果。
      
-   ```js
+   ```ts
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let number = 2;
    let unit = "year";
@@ -370,7 +370,7 @@
 
      获取相对时间格式化结果的各个部分，从而自定义格式化结果。
      
-   ```js
+   ```ts
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let number = 2;
    let unit = "year";
@@ -381,7 +381,7 @@
 
      RelativeTimeFormat的resolvedOptions方法会返回一个对象，该对象包含了RelativeTimeFormat对象的所有相关属性及其值，完整的属性列表参见[ RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md#relativetimeformatresolvedoptions8)。
      
-   ```js
+   ```ts
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let options = relativeTimeFormat.resolvedOptions(); // options = {"locale": "zh-CN", "style": "long", "numeric": "always", "numberingSystem": "latn"}
    ```

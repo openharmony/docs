@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import configPolicy from '@ohos.configPolicy';
 ```
 
@@ -31,8 +31,10 @@ getOneCfgFile(relPath: string, callback: AsyncCallback&lt;string&gt;)
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回最高优先级配置文件的路径 |
 
 **示例：** 
-  ```js
-  configPolicy.getOneCfgFile('etc/config.xml', (error, value) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  configPolicy.getOneCfgFile('etc/config.xml', (error: BusinessError, value: string) => {
       if (error == null) {
           console.log("value is " + value);
       } else {
@@ -63,10 +65,12 @@ getOneCfgFile(relPath: string): Promise&lt;string&gt;
 | Promise&lt;string&gt; | 最高优先级配置文件的路径 |
 
 **示例：** 
-  ```js
-  configPolicy.getOneCfgFile('etc/config.xml').then(value => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  configPolicy.getOneCfgFile('etc/config.xml').then((value: string) => {
       console.log("value is " + value);
-  }).catch(error => {
+  }).catch((error: BusinessError) => {
       console.log("getOneCfgFile promise " + error);
   });
   ```
@@ -89,8 +93,10 @@ getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回文件列表 |
 
 **示例：** 
-  ```js
-  configPolicy.getCfgFiles('etc/config.xml', (error, value) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  configPolicy.getCfgFiles('etc/config.xml', (error: BusinessError, value: Array<string>) => {
       if (error == null) {
           console.log("value is " + value);
       } else {
@@ -121,10 +127,12 @@ getCfgFiles(relPath: string): Promise&lt;Array&lt;string&gt;&gt;
 | Promise&lt;Array&lt;string&gt;&gt; | 文件列表 |
 
 **示例：** 
-  ```js
-  configPolicy.getCfgFiles('etc/config.xml').then(value => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  configPolicy.getCfgFiles('etc/config.xml').then((value: Array<string>) => {
       console.log("value is " + value);
-  }).catch(error => {
+  }).catch((error: BusinessError) => {
       console.log("getCfgFiles promise " + error);
   });
   ```
@@ -145,8 +153,10 @@ getCfgDirList(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回配置层级目录列表 |
 
 **示例：** 
-  ```js
-  configPolicy.getCfgDirList((error, value) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  configPolicy.getCfgDirList((error: BusinessError, value: Array<string>) => {
       if (error == null) {
           console.log("value is " + value);
       } else {
@@ -171,10 +181,12 @@ getCfgDirList(): Promise&lt;Array&lt;string&gt;&gt;
 | Promise&lt;Array&lt;string&gt;&gt; | 配置层级目录列表 |
 
 **示例：** 
-  ```js
-  configPolicy.getCfgDirList().then(value => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  configPolicy.getCfgDirList().then((value: Array<string>) => {
       console.log("value is " + value);
-  }).catch(error => {
+  }).catch((error: BusinessError) => {
       console.log("getCfgDirList promise " + error);
   });
   ```

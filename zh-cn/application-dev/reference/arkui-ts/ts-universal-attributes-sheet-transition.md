@@ -7,6 +7,8 @@
 >  从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  不支持横竖屏切换。
+>
+>  不支持路由跳转。
 
 ## 属性
 
@@ -25,6 +27,7 @@
 | height          | [SheetSize](#sheetsize)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。 |
 | dragBar         | boolean                                  | 否    | 是否显示控制条，默认显示。   |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否    | 半模态页面的背板颜色。     |
+| maskColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 半模态页面的背景蒙层颜色。 |
 | onAppear        | () => void                               | 否    | 半模态页面显示回调函数。    |
 | onDisappear     | () => void                               | 否    | 半模态页面回退回调函数。    |
 
@@ -60,7 +63,7 @@ struct SheetTransitionExample {
         .margin(10)
         .fontSize(20)
         .onClick(()=>{
-          this.sheetHeight = null;
+          this.sheetHeight = 300;
         })
 
       Button("close dragBar")

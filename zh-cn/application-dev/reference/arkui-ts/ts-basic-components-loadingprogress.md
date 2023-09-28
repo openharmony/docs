@@ -45,6 +45,7 @@ struct LoadingProgressExample {
       Text('Orbital LoadingProgress ').fontSize(9).fontColor(0xCCCCCC).width('90%')
       LoadingProgress()
         .color(Color.Blue)
+        .layoutWeight(1)
     }.width('100%').margin({ top: 5 })
   }
 }

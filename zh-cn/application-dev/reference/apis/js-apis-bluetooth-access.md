@@ -11,6 +11,7 @@ access模块提供了打开和关闭蓝牙、获取蓝牙状态的方法。
 
 ```js
 import access from '@ohos.bluetooth.access';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -39,7 +40,7 @@ enableBluetooth(): void
 try {
     access.enableBluetooth();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -69,7 +70,7 @@ disableBluetooth(): void
 try {
     access.disableBluetooth();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -105,7 +106,7 @@ getState(): BluetoothState
 try {
     let state = access.getState();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -138,13 +139,13 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: access.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
 try {
     access.on('stateChange', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -177,14 +178,14 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: access.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
 try {
     access.on('stateChange', onReceiveEvent);
     access.off('stateChange', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 

@@ -766,7 +766,7 @@ class Point {
     x: number = 0
     y: number = 0
 }
-let p: Point = {42 ,42}
+let p: Point = {x: 42, y: 42}
 ```
 
 ### 字段
@@ -868,11 +868,11 @@ class Rectangle {
 }
 ```
 
-实例方法需要在类的实例上调用：
+必须通过类的实例调用实例方法：
 
 ```typescript
-let r = new Rectangle(10, 10)
-console.log(square.calculateArea()) // output: 100
+let square = new Rectangle(10, 10)
+console.log(square.calculateArea()) // 输出：100
 ```
 
 #### 静态方法
@@ -883,7 +883,7 @@ console.log(square.calculateArea()) // output: 100
 
 所有实例都可以访问静态方法。
 
-要调用静态方法，需要使用类名：
+必须通过类名调用静态方法：
 
 ```typescript
 class Cl {
@@ -1077,7 +1077,7 @@ let c2 = new C("abc") // OK，使用第二个签名
 
 类的方法和属性都可以使用可见性修饰符。
 
-可见性修饰符包括：`private`、`protected`、`public`和`internal`。默认可见性为`public`。`internal`意味着只在当前包中可见。
+可见性修饰符包括：`private`、`protected`和`public`。默认可见性为`public`。
 
 #### Public（公有）
 
@@ -1309,7 +1309,7 @@ class Stack<Element> {
     public pop(): Element {
         // ...
     }
-    public push(e: Element) {
+    public push(e: Element):void {
         // ...
     }
 }
@@ -1402,7 +1402,7 @@ foo<number>()
 
 ## 空安全
 
-默认情况下，ArkTS中的所有类型都是不可为空的，因此类型的值不能为空。这类似于TypeScript的严格空值检查模式（`strictNullChecks`），但规则更严格，而且ArkTS中没有`undefined`类型。
+默认情况下，ArkTS中的所有类型都是不可为空的，因此类型的值不能为空。这类似于TypeScript的严格空值检查模式（`strictNullChecks`），但规则更严格。
 
 在下面的示例中，所有行都会导致编译时错误：
 
@@ -1454,28 +1454,47 @@ class Person {
 
 ### 可选链
 
-可选链运算符`?.` 可以在编写代码时遇到求值为null的表达式就停止运行。
+在访问对象属性时，如果该属性是`undefined`或者`null`，可选链运算符会返回`undefined`。
 
 ```typescript
 class Person {
-    // ...
-    spouse: Person | null = null
-    nick: string | null = null
-    getSpouseNick(): string | null {
+    nick    : string | null = null
+    spouse ?: Person
+
+    setSpouse(spouse: Person) : void {
+        this.spouse = spouse
+    }
+
+    getSpouseNick(): string | null | undefined {
         return this.spouse?.nick
+    }
+
+    constructor(nick: string) {
+        this.nick = nick
+        this.spouse = undefined
     }
 }
 ```
 
-**说明**：`getSpouseNick`的返回类型必须为`string | null`，因为该方法可能返回null。
+**说明**：`getSpouseNick`的返回类型必须为`string | null | undefined`，因为该方法可能返回`null`或者`undefined`。
 
-可选链可以是任何长度的，可包含任意数量的 `?.` 运算符。
+可选链可以任意长，可以包含任意数量的`?.`运算符。
 
-在以下示例中，如果某人有配偶，且配偶有昵称，则输出是该人的配偶昵称。否则，输出为空：
+在以下示例中，如果一个`Person`的实例有不为空的`spouse`属性，且`spouse`有不为空的`nickname`属性，则输出`spouse.nick`。否则，输出`undefined`：
 
 ```typescript
-let p: Person = ...
-console.log(p?.spouse?.nick)
+class Person {
+    nick    : string | null = null
+    spouse ?: Person
+
+    constructor(nick: string) {
+        this.nick = nick
+        this.spouse = undefined
+    }
+}
+
+let p: Person = new Person("Alice")
+console.log(p.spouse?.nick) // 打印undefined
 ```
 
 ## 模块

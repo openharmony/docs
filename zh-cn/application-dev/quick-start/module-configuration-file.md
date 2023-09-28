@@ -97,6 +97,7 @@ module.json5配置文件包含以下标签。
 | isolationMode | 标识当前Module的多进程配置项。类型有4种，分别：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。 |字符串|该标签可缺省, 缺省值为nonisolationFirst。|
 | generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的versionCode保持不变时，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。**<br/>注：该字段仅对预置应用生效。**|布尔值|该标签可缺省, 缺省值为false。|
 | compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储，HAP在安装时无需解压libs，运行时会直接从HAP内加载libs库。 | 布尔值 | 可缺省，缺省值为true。 |
+| libIsolation | 用于区分同应用不同hap下的so文件，以防止so冲突。<br/>-&nbsp;true：当前hap的so会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前hap的so会直接储存在libs目录中。 | 布尔值 | 该标签可缺省, 缺省值为false。 |
 
 ## deviceTypes标签
 
@@ -240,7 +241,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | label | 标识当前UIAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。<br/>如果UIAbility被配置为MainElement，该标签必须配置。 |
 | permissions | 标识当前UIAbility组件自定义的权限信息。当其他应用访问该UIAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前UIAbility组件的元信息。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| exported | 标识当前UIAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| exported | 标识当前UIAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | continuable | 标识当前UIAbility组件是否可以[迁移](../application-models/hop-cross-device-migration.md)。<br/>-&nbsp;true：表示可以被迁移。<br/>-&nbsp;false：表示不可以被迁移。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | [skills](#skills标签) | 标识当前UIAbility组件或ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征集，为数组格式。<br/>配置规则：<br/>-&nbsp;对于Entry类型的HAP，OpenHarmony应用可以配置多个具有入口能力的skills标签（即配置了ohos.want.action.home和entity.system.home）。<br/>-&nbsp;对于Feature类型的HAP，只有OpenHarmony应用可以配置具有入口能力的skills标签，OpenHarmony服务不允许配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | backgroundModes | 标识当前UIAbility组件的长时任务集合。指定用于满足特定类型的长时任务。<br/>长时任务类型有如下：<br/>-&nbsp;dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等业务。<br/>-&nbsp;audioPlayback：音频输出业务。<br/>-&nbsp;audioRecording：音频输入业务。<br/>-&nbsp;location：定位、导航业务。<br/>-&nbsp;bluetoothInteraction：蓝牙扫描、连接、传输业务（穿戴）。<br/>-&nbsp;multiDeviceConnection：多设备互联业务。<br/>-&nbsp;wifiInteraction：Wi-Fi扫描、连接、传输业务（克隆多屏）。<br/>-&nbsp;voip：音视频电话，VoIP业务。<br/>-&nbsp;taskKeeping：计算业务。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
@@ -376,12 +377,12 @@ skills示例：
 | description | 标识当前ExtensionAbility组件的描述，标签值最大长度为255字节，标签也可以是描述内容的资源索引，用于支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识当前ExtensionAbility组件的图标，标签值为资源文件的索引。如果ExtensionAbility组件被配置为MainElement，该标签必须配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | label | 标识当前ExtensionAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。<br/>**说明：**<br/>如果ExtensionAbility被配置当前Module的mainElement时，该标签必须配置，且应用内唯一。 | 字符串 | 该标签不可缺省。 |
-| type | 标识当前ExtensionAbility组件的类型，取值为：<br/>-&nbsp;form：卡片的ExtensionAbility。<br/>-&nbsp;workScheduler：延时任务的ExtensionAbility。<br/>-&nbsp;inputMethod：输入法的ExtensionAbility。<br/>-&nbsp;service：后台运行的service组件。<br/>-&nbsp;accessibility：辅助能力的ExtensionAbility。<br/>-&nbsp;dataShare：数据共享的ExtensionAbility。<br/>-&nbsp;fileShare：文件共享的ExtensionAbility。<br/>-&nbsp;staticSubscriber：静态广播的ExtensionAbility。<br/>-&nbsp;wallpaper：壁纸的ExtensionAbility。<br/>-&nbsp;backup：数据备份的ExtensionAbility。<br/>-&nbsp;window：该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过abilityComponent控件组合到其他应用的窗口中。<br/>-&nbsp;thumbnail：获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略。<br/>-&nbsp;preview：该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>-&nbsp;print：打印框架的ExtensionAbility。<br/>-&nbsp;push：推送的ExtensionAbility。<br/>-&nbsp;driver：驱动框架的ExtensionAbility。<br/>**说明：**<br/>其中service和dataShare类型，仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 该标签不可缺省。 |
+| type | 标识当前ExtensionAbility组件的类型，取值为：<br/>-&nbsp;form：卡片的ExtensionAbility。<br/>-&nbsp;workScheduler：延时任务的ExtensionAbility。<br/>-&nbsp;inputMethod：输入法的ExtensionAbility。<br/>-&nbsp;service：后台运行的service组件。<br/>-&nbsp;accessibility：辅助能力的ExtensionAbility。<br/>-&nbsp;dataShare：数据共享的ExtensionAbility。<br/>-&nbsp;fileShare：文件共享的ExtensionAbility。<br/>-&nbsp;staticSubscriber：静态广播的ExtensionAbility。<br/>-&nbsp;wallpaper：壁纸的ExtensionAbility。<br/>-&nbsp;backup：数据备份的ExtensionAbility。<br/>-&nbsp;window：该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过abilityComponent控件组合到其他应用的窗口中。<br/>-&nbsp;thumbnail：获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略。<br/>-&nbsp;preview：该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>-&nbsp;print：打印框架的ExtensionAbility。<br/>-&nbsp;push：推送的ExtensionAbility。<br/>-&nbsp;driver：驱动框架的ExtensionAbility。<br/>-&nbsp;remoteNotification：远程通知的ExtensionAbility。<br/>-&nbsp;remoteLocation：远程定位的ExtensionAbility。<br/>-&nbsp;voip：网络音视频通话的ExtensionAbility。<br/>**说明：**<br/>其中service和dataShare类型，仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 该标签不可缺省。 |
 | permissions | 标识当前ExtensionAbility组件自定义的权限信息。当其他应用访问该ExtensionAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为[系统预定义的权限](../security/permission-list.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | uri | 标识当前ExtensionAbility组件提供的数据URI，为字符数组类型（最大长度255），用反向域名的格式表示。<br/>**说明：**<br/>该标签在type为dataShare类型的ExtensionAbility时，不可缺省。 | 字符串 | 该标签可缺省，缺省值为空。 |
 |skills | 标识当前ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征集，为数组格式。<br/>配置规则：entry包可以配置多个具有入口能力的skills标签（配置了ohos.want.action.home和entity.system.home）的ExtensionAbility，其中第一个配置了skills标签的ExtensionAbility中的label和icon作为OpenHarmony服务或应用的label和icon。<br/>**说明：**<br/>OpenHarmony服务的Feature包不能配置具有入口能力的skills标签。<br/>OpenHarmony应用的Feature包可以配置具有入口能力的skills标签。 | 数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前ExtensionAbility组件的元信息。 | 对象 | 该标签可缺省，缺省值为空。 |
-| exported | 标识当前ExtensionAbility组件是否可以被其他应用调用，为布尔类型。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| exported | 标识当前ExtensionAbility组件是否可以被其他应用调用，为布尔类型。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 
 extensionAbilities示例：
 

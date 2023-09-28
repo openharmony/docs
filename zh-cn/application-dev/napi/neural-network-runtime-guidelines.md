@@ -19,7 +19,7 @@ Neural Network Runtime部件的环境要求如下：
 - 开发环境：Ubuntu 18.04及以上。
 - 接入设备：OpenHarmony定义的标准设备，并且系统中内置的硬件加速器驱动，已通过HDI接口对接Neural Network Runtime。
 
-由于Neural Network Runtime通过OpenHarmony Native API对外开放，需要通过OpenHarmony的Native开发套件编译Neural Network Runtime应用。
+由于Neural Network Runtime通过Native API对外开放，需要通过Native开发套件编译Neural Network Runtime应用。
 
 ### 环境搭建
 

@@ -119,6 +119,9 @@
 - [CheckboxGroup](ts-basic-components-checkboxgroup.md)
 
     A component that is used to select or deselect all check boxes in a group.
+- [CalendarPicker](ts-basic-components-calendarpicker.md)
+
+    A component that provides a drop-down calendar for users to select a date.
 - [DatePicker](ts-basic-components-datepicker.md)
 
     A component that allows users to select a date from the given range.
@@ -272,36 +275,55 @@
 - [ScrollBar](ts-basic-components-scrollbar.md)
 
     A component that is used together with scrollable components, such as **\<List>**, **\<Grid>**, and **\<Scroll>**.
+
 - [Badge](ts-container-badge.md)
 
     A container that can be attached to another component for tagging.
+
 - [AlphabetIndexer](ts-container-alphabet-indexer.md)
 
     A component that can create a logically indexed array of items in a container for instant location.
+
 - [Panel](ts-container-panel.md)
 
     A container that presents lightweight content with flexible sizes.
+
 - [Refresh](ts-container-refresh.md)
 
     A container that provides the pull-to-refresh feature.
+
 - [AbilityComponent](ts-container-ability-component.md)
 
     A container that is used for independently displaying an ability.
+
 - [RemoteWindow](ts-basic-components-remotewindow.md)
 
     A component that is used to control the application window, providing the component animator and application window linkage animator during application startup and exit.
+
 - [FormComponent](ts-basic-components-formcomponent.md)
 
     A component that is used to display widgets.
+
 - [FormLink](ts-container-formlink.md)
 
     A component that provides interactions with static widgets.
+
+- [Hyperlink](ts-container-hyperlink.md)
+
+    A component that implements a link from a location in the component to another location.
+
 - [Menu](ts-basic-components-menu.md)
 
     A component that is used to present a vertical list of items to the user.
+
 - [MenuItem](ts-basic-components-menuitem.md)
 
     A component that is used to represent an item in a menu.
+
 - [MenuItemGroup](ts-basic-components-menuitemgroup.md)
 
     A component that is used to represent a group of menu items.
+
+- [UIExtensionComponent](ts-container-ui-extension-component.md)
+
+    A component that is used to embed UIs provided by other applications in the local application UI. 

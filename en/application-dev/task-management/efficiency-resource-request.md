@@ -40,6 +40,7 @@ The table below lists the main APIs used for efficient resources. For details ab
 | reason | string | Yes| Reason for requesting the resource.|
 
 **Table 3** Efficiency resource types
+
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | CPU | 1 | CPU resource. Such type of resource prevents an application from being suspended.|
@@ -49,23 +50,22 @@ The table below lists the main APIs used for efficient resources. For details ab
 | BLUETOOTH | 16 | Bluetooth resource. Such type of resource ensures that an application in the suspended state can be woken up by Bluetooth-related events.|
 | GPS | 32 | GPS resource. Such type of resource ensures that an application in the suspended state can be woken up by GPS-related events.|
 | AUDIO | 64 | Audio resource. Such type of resource prevents an application from being suspended when the application has an audio being played.|
-
+| RUNNING_LOCK<sup>10+</sup> | 128 | RUNNING_LOCK resource. Such type of resources prevents locks running in the background from being temporarily released when the application is suspended.|
+| SENSOR<sup>10+</sup> | 256 | Sensor resource. Such type of resources prevents sensor callbacks from being intercepted.|
 
 ## How to Develop
 
 1. Import the module.
-   
-   ```js
-   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+
+   ```ts
+   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
    ```
 
 2. Request efficiency resources.
-   
-   ```js
-   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-   
+
+   ```ts
    // The application needs to remain active in the background.
-   let request = {
+   let request: backgroundTaskManager.EfficiencyResourcesRequest = {
      resourceTypes: backgroundTaskManager.ResourceType.CPU, // The resource type is CPU, which prevents the application process from being suspended.
      isApply: true, // The request is used to apply for the resources.
      timeOut: 0, // Timeout interval. Resources are automatically released when the timeout interval expires.
@@ -73,25 +73,17 @@ The table below lists the main APIs used for efficient resources. For details ab
      isPersist: true, // The resources are permanently held.
      isProcess: false, // The request is initiated by an application.
    };
-   try {
-     backgroundTaskManager.applyEfficiencyResources(request);
-     console.info("Succeeded in invoking applyEfficiencyResources.");
-   } catch (error) {
-     console.error(`Failed to invoke applyEfficiencyResources. Code is ${error.code} message is ${error.message}`);
-   }
+   backgroundTaskManager.applyEfficiencyResources(request);
+   console.info("Succeeded in invoking applyEfficiencyResources.");
    ```
 
 3. Release the efficiency resources. After completing work in the background, the application should release the resources in a timer manner. It can release some or all resources.
-   
-   ```js
+
+   ```ts
    // The application releases all the efficiency resources.
-   try {
-     backgroundTaskManager.resetAllEfficiencyResources();
-   } catch (error) {
-     console.error(`Failed to invoke resetAllEfficiencyResources. Code is ${error.code} message is ${error.message}`);
-   }
+   backgroundTaskManager.resetAllEfficiencyResources();
    // The application releases some efficiency resources.
-   let request = {
+   let request: backgroundTaskManager.EfficiencyResourcesRequest = {
      resourceTypes: backgroundTaskManager.ResourceType.CPU,
      isApply: false, // The request is used to release resources.
      timeOut: 0,
@@ -99,12 +91,8 @@ The table below lists the main APIs used for efficient resources. For details ab
      isPersist: true,
      isProcess: false, // The request is initiated by an application.
    };
-   try {
-     backgroundTaskManager.applyEfficiencyResources(request);
-     console.info("Succeeded in invoking applyEfficiencyResources.");
-   } catch (error) {
-     console.error(`Failed to invoke applyEfficiencyResources. Code is ${error.code} message is ${error.message}`);
-   }
+   backgroundTaskManager.applyEfficiencyResources(request);
+   console.info("Succeeded in invoking applyEfficiencyResources.");
    ```
 
    > **NOTE**

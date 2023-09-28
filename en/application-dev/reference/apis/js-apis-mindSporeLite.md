@@ -408,7 +408,7 @@ syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
   const modelInputs = mindSporeLiteModel.getInputs();
   modelInputs[0].setData(inputBuffer.buffer);
-  result.predict(modelInputs, (result) => {
+  mindSporeLiteModel.predict(modelInputs, (result) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
       console.log(output[i].toString());
@@ -448,7 +448,7 @@ syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
   const modelInputs = mindSporeLiteModel.getInputs();
   modelInputs[0].setData(inputBuffer.buffer);
-  result.predict(modelInputs).then((result) => {
+  mindSporeLiteModel.predict(modelInputs).then((result) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
       console.log(output[i].toString());
@@ -549,7 +549,7 @@ syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
   const modelInputs = mindSporeLiteModel.getInputs();
   modelInputs[0].setData(inputBuffer.buffer);
-  result.predict(modelInputs).then((result) => {
+  mindSporeLiteModel.predict(modelInputs).then((result) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
       console.log(output[i].toString());
@@ -579,7 +579,7 @@ import resourceManager from '@ohos.resourceManager'
 let inputName = 'input_data.bin';
 let syscontext = globalThis.context;
 syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
-  inputBuffer = buffer;
+  let inputBuffer = buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
   const modelInputs = mindSporeLiteModel.getInputs();

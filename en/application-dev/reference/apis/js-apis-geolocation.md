@@ -60,7 +60,7 @@ Registers a listener for location changes with a location request initiated.
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationChange** indicates a location change event.|
   | request |  [LocationRequest](#locationrequestdeprecated) | Yes| Location request.|
-  | callback | Callback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to return the location change event.|
+  | callback | Callback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to receive the location change event.|
 
 
 
@@ -68,8 +68,8 @@ Registers a listener for location changes with a location request initiated.
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  let locationChange = (location) => {
+  let requestInfo:geolocation.LocationRequest = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location:geolocation.Location):void => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
   geolocation.on('locationChange', requestInfo, locationChange);
@@ -101,8 +101,8 @@ Unregisters the listener for location changes with the corresponding location re
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  let locationChange = (location) => {
+  let requestInfo:geolocation.LocationRequest = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location:geolocation.Location):void => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
   geolocation.on('locationChange', requestInfo, locationChange);
@@ -128,14 +128,14 @@ Registers a listener for location service status change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationServiceState** indicates a location service status change event.|
-  | callback | Callback&lt;boolean&gt; | Yes| Callback used to return the location service status change event.|
+  | callback | Callback&lt;boolean&gt; | Yes| Callback used to receive the location service status change event.|
 
 
 **Example**
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let locationServiceState = (state) => {
+  let locationServiceState = (state:boolean):void => {
       console.log('locationServiceState: ' + JSON.stringify(state));
   }
   geolocation.on('locationServiceState', locationServiceState);
@@ -167,7 +167,7 @@ Unregisters the listener for location service status change events.
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let locationServiceState = (state) => {
+  let locationServiceState = (state:boolean):void => {
       console.log('locationServiceState: state: ' + JSON.stringify(state));
   }
   geolocation.on('locationServiceState', locationServiceState);
@@ -195,17 +195,17 @@ Registers a listener for cached GNSS location reports.
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **cachedGnssLocationsReporting** indicates reporting of cached GNSS locations.|
   | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequestdeprecated) | Yes| Request for reporting cached GNSS location.|
-  | callback | Callback&lt;Array&lt;[Location](#locationdeprecated)&gt;&gt; | Yes| Callback used to return cached GNSS locations.|
+  | callback | Callback&lt;Array&lt;[Location](#locationdeprecated)&gt;&gt; | Yes| Callback used to receive the cached GNSS locations.|
 
 
 **Example**
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let cachedLocationsCb = (locations) => {
+  let cachedLocationsCb = (locations:Array<geolocation.Location>):void => {
       console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
-  let requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
+  let requestInfo:geolocation.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   geolocation.on('cachedGnssLocationsReporting', requestInfo, cachedLocationsCb);
   ```
 
@@ -236,10 +236,10 @@ Unregisters the listener for cached GNSS location reports.
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let cachedLocationsCb = (locations) => {
+  let cachedLocationsCb = (locations:Array<geolocation.Location>):void => {
       console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
-  let requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
+  let requestInfo:geolocation.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   geolocation.on('cachedGnssLocationsReporting', requestInfo, cachedLocationsCb);
   geolocation.off('cachedGnssLocationsReporting');
   ```
@@ -264,14 +264,14 @@ Registers a listener for GNSS satellite status change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **gnssStatusChange** indicates a GNSS satellite status change.|
-  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfodeprecated)&gt; | Yes| Callback used to return GNSS satellite status changes.|
+  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfodeprecated)&gt; | Yes| Callback used to receive GNSS satellite status changes.|
 
 
 **Example**
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let gnssStatusCb = (satelliteStatusInfo) => {
+  let gnssStatusCb = (satelliteStatusInfo:geolocation.SatelliteStatusInfo):void => {
       console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   geolocation.on('gnssStatusChange', gnssStatusCb);
@@ -303,7 +303,7 @@ Unregisters the listener for GNSS satellite status change events.
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let gnssStatusCb = (satelliteStatusInfo) => {
+  let gnssStatusCb = (satelliteStatusInfo:geolocation.SatelliteStatusInfo) => {
       console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   geolocation.on('gnssStatusChange', gnssStatusCb);
@@ -330,14 +330,14 @@ Registers a listener for GNSS NMEA message change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **nmeaMessageChange** indicates a GNSS NMEA message change.|
-  | callback | Callback&lt;string&gt; | Yes| Callback used to return GNSS NMEA message changes.|
+  | callback | Callback&lt;string&gt; | Yes| Callback used to receive GNSS NMEA message changes.|
 
 
 **Example**
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let nmeaCb = (str) => {
+  let nmeaCb = (str:string):void => {
       console.log('nmeaMessageChange: ' + JSON.stringify(str));
   }
   geolocation.on('nmeaMessageChange', nmeaCb );
@@ -370,7 +370,7 @@ Unregisters the listener for GNSS NMEA message change events.
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let nmeaCb = (str) => {
+  let nmeaCb = (str:string):void => {
       console.log('nmeaMessageChange: ' + JSON.stringify(str));
   }
   geolocation.on('nmeaMessageChange', nmeaCb);
@@ -398,7 +398,7 @@ Registers a listener for status change events of the specified geofence.
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **fenceStatusChange** indicates a geofence status change.|
   | request |  [GeofenceRequest](#geofencerequestdeprecated) | Yes| Geofencing request.|
-  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to return geofence (entrance or exit) events.|
+  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to receive geofence (entrance or exit) events.|
 
 **Example**
 
@@ -406,7 +406,7 @@ Registers a listener for status change events of the specified geofence.
   import geolocation from '@ohos.geolocation';
   import wantAgent from '@ohos.app.ability.wantAgent';
   
-  let wantAgentInfo = {
+  let wantAgentInfo:wantAgent.WantAgentInfo = {
       wants: [
           {
               bundleName: "com.example.myapplication",
@@ -420,7 +420,7 @@ Registers a listener for status change events of the specified geofence.
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
   });
   ```
@@ -446,7 +446,7 @@ Unregisters the listener for status change events of the specified geofence.
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **fenceStatusChange** indicates a geofence status change.|
   | request | [GeofenceRequest](#geofencerequestdeprecated) | Yes| Geofencing request.|
-  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to return geofence (entrance or exit) events.|
+  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to receive geofence (entrance or exit) events.|
 
 **Example**
 
@@ -454,7 +454,7 @@ Unregisters the listener for status change events of the specified geofence.
   import geolocation from '@ohos.geolocation';
   import wantAgent from '@ohos.app.ability.wantAgent';
   
-  let wantAgentInfo = {
+  let wantAgentInfo:wantAgent.WantAgentInfo = {
       wants: [
           {
               bundleName: "com.example.myapplication",
@@ -468,7 +468,7 @@ Unregisters the listener for status change events of the specified geofence.
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
     geolocation.off('fenceStatusChange', requestInfo, wantAgentObj);
   });
@@ -493,14 +493,15 @@ Obtains the current location. This API uses an asynchronous callback to return t
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [CurrentLocationRequest](#currentlocationrequestdeprecated) | Yes| Location request.|
-  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to return the current location.|
+  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to receive the current location.|
 
 **Example**
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
-  let locationChange = (err, location) => {
+  import BusinessError from "@ohos.base"
+  let requestInfo:geolocation.CurrentLocationRequest = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  let locationChange = (err:BusinessError.BusinessError, location:geolocation.Location) => {
       if (err) {
           console.log('locationChanger: err=' + JSON.stringify(err));
       }
@@ -530,13 +531,14 @@ Obtains the current location. This API uses an asynchronous callback to return t
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to return the current location.|
+  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to receive the current location.|
 
 **Example**
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let locationChange = (err, location) => {
+  import BusinessError from "@ohos.base"
+  let locationChange = (err:BusinessError.BusinessError, location:geolocation.Location):void => {
       if (err) {
           console.log('locationChanger: err=' + JSON.stringify(err));
       }
@@ -578,7 +580,7 @@ Obtains the current location. This API uses a promise to return the result.
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  let requestInfo:geolocation.CurrentLocationRequest = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
   geolocation.getCurrentLocation(requestInfo).then((result) => {
       console.log('current location: ' + JSON.stringify(result));
   });
@@ -602,7 +604,7 @@ Obtains the previous location. This API uses an asynchronous callback to return 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to return the previous location.|
+  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to receive the previous location.|
 
 
 **Example**
@@ -667,7 +669,7 @@ Checks whether the location service is enabled. This API uses an asynchronous ca
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to receive the location service status.|
 
 **Example**
 
@@ -730,7 +732,7 @@ Requests to enable the location service. This API uses an asynchronous callback 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to receive the location service status.|
 
 **Example**
 
@@ -793,7 +795,7 @@ Checks whether the (reverse) geocoding service is available. This API uses an as
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the (reverse) geocoding service status.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to receive the (reverse) geocoding service status.|
 
 **Example**
 
@@ -857,13 +859,13 @@ Converts coordinates into geographic descriptions through reverse geocoding. Thi
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [ReverseGeoCodeRequest](#reversegeocoderequestdeprecated) | Yes| Reverse geocoding request.|
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Yes| Callback used to return the reverse geocoding result.|
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Yes| Callback used to receive the reverse geocoding result.|
 
 **Example**
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+  let reverseGeocodeRequest:geolocation.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
       if (err) {
           console.log('getAddressesFromLocation: err=' + JSON.stringify(err));
@@ -904,7 +906,7 @@ Converts coordinates into geographic descriptions through reverse geocoding. Thi
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+  let reverseGeocodeRequest:geolocation.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
       console.log('getAddressesFromLocation: ' + JSON.stringify(data));
   });
@@ -929,13 +931,13 @@ Converts geographic descriptions into coordinates through geocoding. This API us
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [GeoCodeRequest](#geocoderequestdeprecated) | Yes| Geocoding request.|
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Yes| Callback used to return the geocoding result.|
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Yes| Callback used to receive the geocoding result.|
 
 **Example**
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let geocodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
+  let geocodeRequest:geolocation.GeoCodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest, (err, data) => {
       if (err) {
           console.log('getAddressesFromLocationName: err=' + JSON.stringify(err));
@@ -970,13 +972,13 @@ Converts geographic descriptions into coordinates through geocoding. This API us
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|NA|Promise used to return the geocoding result.|
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|NA|Promise used to receive the geocoding result.|
 
 **Example**
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let geocodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
+  let geocodeRequest:geolocation.GeoCodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest).then((result) => {
       console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
   });
@@ -1001,7 +1003,7 @@ Obtains the number of cached GNSS locations.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of cached GNSS locations. |
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to receive the number of cached GNSS locations. |
 
 **Example**
 
@@ -1066,7 +1068,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the operation result.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to receive the operation result.|
 
 **Example**
 
@@ -1101,7 +1103,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | Promise&lt;boolean&gt; |boolean|NA| Promise used to return the operation result.|
+  | Promise&lt;boolean&gt; |boolean|NA| Promise used to indicate whether the cached GNSS locations are cleared successfully.|
 
 **Example**
 
@@ -1132,13 +1134,13 @@ Sends an extended command to the location subsystem.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | command |  [LocationCommand](#locationcommanddeprecated) | Yes| Extended command (string) to be sent.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the operation result.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to receive the operation result.|
 
 **Example**
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let requestInfo = {'scenario': 0x301, 'command': "command_1"};
+  let requestInfo:geolocation.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo, (err, result) => {
       if (err) {
           console.log('sendCommand: err=' + JSON.stringify(err));
@@ -1180,7 +1182,7 @@ Sends an extended command to the location subsystem.
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let requestInfo = {'scenario': 0x301, 'command': "command_1"};
+  let requestInfo:geolocation.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo).then((result) => {
       console.log('promise, sendCommand: ' + JSON.stringify(result));
   });

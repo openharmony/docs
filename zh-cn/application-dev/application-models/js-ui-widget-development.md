@@ -103,58 +103,57 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
    import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
    import dataPreferences from '@ohos.data.preferences';
+   import Want from '@ohos.app.ability.Want';
+   import Base from '@ohos.base';
    ```
 
 2. 在EntryFormAbility.ets中，实现FormExtension生命周期接口。
 
    
    ```ts
-   export default class EntryFormAbility extends FormExtensionAbility {
-       onAddForm(want) {
-           console.info('[EntryFormAbility] onAddForm');
-           // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
-           let obj = {
-               "title": "titleOnCreate",
-               "detail": "detailOnCreate"
-           };
-           let formData = formBindingData.createFormBindingData(obj);
-           return formData;
-       }
-       onCastToNormalForm(formId) {
-           // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
-           console.info('[EntryFormAbility] onCastToNormalForm');
-       }
-       onUpdateForm(formId) {
-           // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
-           console.info('[EntryFormAbility] onUpdateForm');
-           let obj = {
-               "title": "titleOnUpdate",
-               "detail": "detailOnUpdate"
-           };
-           let formData = formBindingData.createFormBindingData(obj);
-           formProvider.updateForm(formId, formData).catch((error) => {
-               console.info('[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
-           });
-       }
-       onChangeFormVisibility(newStatus) {
-           // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
-           console.info('[EntryFormAbility] onChangeFormVisibility');
-       }
-       onFormEvent(formId, message) {
-           // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
-           console.info('[EntryFormAbility] onFormEvent');
-       }
-       onRemoveForm(formId) {
-           // 删除卡片实例数据
-           console.info('[EntryFormAbility] onRemoveForm');
-       }
-       onConfigurationUpdate(config) {
-           console.info('[EntryFormAbility] nConfigurationUpdate, config:' + JSON.stringify(config));
-       }
-       onAcquireFormState(want) {
-           return formInfo.FormState.READY;
-       }
-   }
+    export default class EntryFormAbility extends FormExtensionAbility {
+      onAddForm(want: Want) {
+        console.info('[EntryFormAbility] onAddForm');
+        // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
+        let obj: Record<string, string> = {
+          "title": "titleOnCreate",
+          "detail": "detailOnCreate"
+        };
+        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+        return formData;
+      }
+      onCastToNormalForm(formId: string) {
+        // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+        console.info('[EntryFormAbility] onCastToNormalForm');
+      }
+      onUpdateForm(formId: string) {
+        // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
+        console.info('[EntryFormAbility] onUpdateForm');
+        let obj: Record<string, string> = {
+          "title": "titleOnUpdate",
+          "detail": "detailOnUpdate"
+        };
+        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+        formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
+          console.info('[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
+        });
+      }
+      onChangeFormVisibility(newStatus: Record<string, number>) {
+        // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
+        console.info('[EntryFormAbility] onChangeFormVisibility');
+      }
+      onFormEvent(formId: string, message: string) {
+        // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
+        console.info('[EntryFormAbility] onFormEvent');
+      }
+      onRemoveForm(formId: string) {
+        // 删除卡片实例数据
+        console.info('[EntryFormAbility] onRemoveForm');
+      }
+      onAcquireFormState(want: Want) {
+        return formInfo.FormState.READY;
+      }
+    }
    ```
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -246,44 +245,53 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
 
 
 ```ts
-const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
-async function storeFormInfo(formId: string, formName: string, tempFlag: boolean) {
-    // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
-    let formInfo = {
-        "formName": formName,
-        "tempFlag": tempFlag,
-        "updateCount": 0
-    };
-    try {
-        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
-        // put form info
-        await storage.put(formId, JSON.stringify(formInfo));
-        console.info(`[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
-        await storage.flush();
-    } catch (err) {
-        console.error(`[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err)}`);
-    }
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import formBindingData from '@ohos.app.form.formBindingData';
+import dataPreferences from '@ohos.data.preferences';
+import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
+import common from '@ohos.app.ability.common'
+
+
+const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
+let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
+  // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
+  let formInfo: Record<string, string | boolean | number> = {
+    "formName": formName,
+    "tempFlag": tempFlag,
+    "updateCount": 0
+  };
+  try {
+    const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    // put form info
+    await storage.put(formId, JSON.stringify(formInfo));
+    console.info(`[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    console.error(`[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err as Base.BusinessError)}`);
+  }
 }
 
-export default class EntryFormAbility extends FormExtension {
-    ...
-    onAddForm(want) {
-        console.info('[EntryFormAbility] onAddForm');
+export default class EntryFormAbility extends FormExtensionAbility {
+  onAddForm(want: Want) {
+    console.info('[EntryFormAbility] onAddForm');
 
-        let formId = want.parameters["ohos.extra.param.key.form_identity"];
-        let formName = want.parameters["ohos.extra.param.key.form_name"];
-        let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"];
-        // 将创建的卡片信息持久化，以便在下次获取/更新该卡片实例时进行使用
-        // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
-        storeFormInfo(formId, formName, tempFlag);
-
-        let obj = {
-            "title": "titleOnCreate",
-            "detail": "detailOnCreate"
-        };
-        let formData = formBindingData.createFormBindingData(obj);
-        return formData;
+    if (want.parameters) {
+      let formId = JSON.stringify(want.parameters["ohos.extra.param.key.form_identity"]);
+      let formName = JSON.stringify(want.parameters["ohos.extra.param.key.form_name"]);
+      let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"] as boolean;
+      // 将创建的卡片信息持久化，以便在下次获取/更新该卡片实例时进行使用
+      // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
+      storeFormInfo(formId, formName, tempFlag, this.context);
     }
+
+    let obj: Record<string, string> = {
+      "title": "titleOnCreate",
+      "detail": "detailOnCreate"
+    };
+    let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+    return formData;
+  }
 }
 ```
 
@@ -291,29 +299,31 @@ export default class EntryFormAbility extends FormExtension {
 
 
 ```ts
-const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
-async function deleteFormInfo(formId: string) {
-    try {
-        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
-        // del form info
-        await storage.delete(formId);
-        console.info(`[EntryFormAbility] deleteFormInfo, del form info successfully, formId: ${formId}`);
-        await storage.flush();
-    } catch (err) {
-        console.error(`[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
-    }
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import dataPreferences from '@ohos.data.preferences';
+import Base from '@ohos.base';
+import common from '@ohos.app.ability.common'
+
+const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
+let deleteFormInfo = async (formId: string, context: common.FormExtensionContext): Promise<void> => {
+  try {
+    const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    // del form info
+    await storage.delete(formId);
+    console.info(`[EntryFormAbility] deleteFormInfo, del form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    console.error(`[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err as Base.BusinessError)}`);
+  }
 }
 
-...
-
-export default class EntryFormAbility extends FormExtension {
-    ...
-    onRemoveForm(formId) {
-        console.info('[EntryFormAbility] onRemoveForm');
-        // 删除之前持久化的卡片实例数据
-        // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
-        deleteFormInfo(formId);
-    }
+export default class EntryFormAbility extends FormExtensionAbility {
+  onRemoveForm(formId: string) {
+    console.info('[EntryFormAbility] onRemoveForm');
+    // 删除之前持久化的卡片实例数据
+    // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
+    deleteFormInfo(formId, this.context);
+  }
 }
 ```
 
@@ -334,18 +344,25 @@ export default class EntryFormAbility extends FormExtension {
 
 
 ```ts
-onUpdateForm(formId) {
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import formBindingData from '@ohos.app.form.formBindingData';
+import formProvider from '@ohos.app.form.formProvider';
+import Base from '@ohos.base';
+
+export default class EntryFormAbility extends FormExtensionAbility {
+  onUpdateForm(formId: string) {
     // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
     console.info('[EntryFormAbility] onUpdateForm');
-    let obj = {
-        "title": "titleOnUpdate",
-        "detail": "detailOnUpdate"
+    let obj: Record<string, string> = {
+      "title": "titleOnUpdate",
+      "detail": "detailOnUpdate"
     };
-    let formData = formBindingData.createFormBindingData(obj);
+    let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     // 调用updateForm接口去更新对应的卡片，仅更新入参中携带的数据信息，其他信息保持不变
-    formProvider.updateForm(formId, formData).catch((error) => {
-        console.info('[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
+    formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
+      console.info('[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
     });
+  }
 }
 ```
 
@@ -572,23 +589,26 @@ onUpdateForm(formId) {
 
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility'
-  
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
+
   export default class EntryAbility extends UIAbility {
-      onCreate(want, launchParam) {
-          let params = JSON.parse(want.parameters.params);
-          // 获取router事件中传递的info参数
-          if (params.info === "router info") {
-              // do something
-              // console.info("router info:" + params.info)
-          }
-          // 获取router事件中传递的message参数
-          if (params.message === "router message") {
-              // do something
-              // console.info("router message:" + params.message)
-          }
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+      if (want.parameters) {
+        let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
+        // 获取router事件中传递的info参数
+        if (params.info === "router info") {
+          // do something
+          // console.info("router info:" + params.info)
+        }
+        // 获取router事件中传递的message参数
+        if (params.message === "router message") {
+          // do something
+          // console.info("router message:" + params.message)
+        }
       }
-      ...
+    }
   };
   ```
 
@@ -597,24 +617,24 @@ onUpdateForm(formId) {
   
   ```ts
   import FormExtension from '@ohos.app.form.FormExtensionAbility';
-  
+
   export default class FormAbility extends FormExtension {
-      ...
-      onFormEvent(formId, message) {
-          // 获取message事件中传递的detail参数
-          let msg = JSON.parse(message)
-          if (msg.detail === "message detail") {
-              // do something
-              // console.info("message info:" + msg.detail)
-          }
+    onFormEvent(formId: string, message: string) {
+      // 获取message事件中传递的detail参数
+      let msg: Record<string, string> = JSON.parse(message)
+      if (msg.detail === "message detail") {
+        // do something
+        // console.info("message info:" + msg.detail)
       }
-      ...
+    }
   };
   ```
 
 ## 相关实例
 
 针对卡片开发，有以下相关实例可供参考：
+
+- [JS多设备自适应服务卡片（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/AdaptiveServiceWidget)
 
 - [电影卡片（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Card/MovieCard)
 

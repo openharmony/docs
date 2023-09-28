@@ -5,11 +5,12 @@
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 @Entry()
 @Component
 struct WidgetCard {
-  formId = ...; // 卡片ID
+  formId: string = 'formId'; // 卡片ID
 
   build() {
     Button(`刷新卡片`)
@@ -21,7 +22,9 @@ struct WidgetCard {
         // formId需要为实际需要刷新的卡片ID
         formHost.requestForm(this.formId.toString()).then(() => {
           console.info('Succeeded in requestForming.');
-        });
+        }).catch((error: Base.BusinessError) => {
+          console.error('requestForm fail, error: ' + JSON.stringify(error));
+        })
       })
 
     ...

@@ -18,7 +18,7 @@ Vector和[ArrayList](js-apis-arraylist.md)相似，都是基于数组实现，�
 ## 导入模块
 
 ```ts
-import Vector from '@ohos.util.Vector';  
+import Vector from '@ohos.util.Vector';
 ```
 
 
@@ -44,7 +44,7 @@ Vector的构造函数。
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<string | number | Array<number>> = new Vector();
 ```
 
 
@@ -71,12 +71,16 @@ add(element: T): boolean
 **示例：**
 
 ```ts
-let vector = new Vector();
+class C1 {
+  name: string = ""
+  age: string = ""
+}
+let vector : Vector<string | number | C1 | Array<number>> = new Vector();
 let result = vector.add("a");
 let result1 = vector.add(1);
 let b = [1, 2, 3];
 let result2 = vector.add(b);
-let c = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Dylon", age : "13"};
 let result3 = vector.add(c);
 ```
 
@@ -98,7 +102,7 @@ insert(element: T, index: number): void
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<string | number | Object | Array<number>> = new Vector();
 vector.insert("A", 0);
 vector.insert(0, 1);
 vector.insert(true, 2);
@@ -127,7 +131,7 @@ has(element: T): boolean
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<string> = new Vector();
 let result = vector.has("squirrel");
 vector.add("squirrel");
 let result1 = vector.has("squirrel");
@@ -156,7 +160,7 @@ getIndexOf(element: T): number
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -190,7 +194,7 @@ getLastIndexOf(element: T): number
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -224,7 +228,7 @@ removeByIndex(index: number): T
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -256,7 +260,7 @@ remove(element: T): boolean
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -282,7 +286,7 @@ removeByRange(fromIndex: number, toIndex: number): void
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -317,14 +321,14 @@ callbackfn的参数说明：
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.replaceAllElements((value) => {
-    // 用户操作逻辑根据实际场景进行添加。
-    return value;
+vector.replaceAllElements((value : number) : number => {
+  // 用户操作逻辑根据实际场景进行添加。
+  return value;
 });
 ```
 
@@ -355,15 +359,14 @@ callbackfn的参数说明：
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.forEach((value, index) => {
-    console.log("value:" + value, "index:" + index);
+vector.forEach((value : number, index ?: number) : void => {
+  console.log("value:" + value, "index:" + index);
 });
-
 ```
 
 ### sort
@@ -390,7 +393,7 @@ comparator的参数说明：
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -424,7 +427,7 @@ subVector(fromIndex: number, toIndex: number): Vector&lt;T&gt;
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -447,7 +450,7 @@ clear(): void
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -472,7 +475,7 @@ clone(): Vector&lt;T&gt;
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -497,7 +500,7 @@ getCapacity(): number
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -522,7 +525,7 @@ convertToArray(): Array&lt;T&gt;
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -547,7 +550,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -572,7 +575,7 @@ increaseCapacityTo(newCapacity: number): void
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -592,7 +595,7 @@ trimToCurrentLength(): void
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -617,7 +620,7 @@ toString(): string
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -656,7 +659,7 @@ getFirstElement(): T
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -681,7 +684,7 @@ getLastElement(): T
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -713,7 +716,7 @@ getLastIndexFrom(element: T, index: number): number
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -746,7 +749,7 @@ getIndexFrom(element: T, index: number): number
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -772,7 +775,7 @@ setLength(newSize: number): void
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -803,14 +806,14 @@ get(index: number): T
 
 **示例：**
 
-  ```ts
-  let vector = new Vector();
-  vector.add(2);
-  vector.add(4);
-  vector.add(5);
-  vector.add(4);
-  let result = vector.get(2);
-  ```
+```ts
+let vector : Vector<number> = new Vector();
+vector.add(2);
+vector.add(4);
+vector.add(5);
+vector.add(4);
+let result = vector.get(2);
+```
 ### set
 
 set(index: number, element: T): T
@@ -848,20 +851,20 @@ set(index: number, element: T): T
 **示例：**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-
 // 使用方法一：
-for (let item of vector) { 
-  console.log("value:" + item); 
-} 
+let nums: Array<number> =  vector.convertToArray()
+for (let item of nums) {
+  console.log("value:" + item);
+}
 
 // 使用方法二：
 let iter = vector[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;

@@ -26,4 +26,4 @@ Defines the allowed data field types.
 | [putDouble](_r_d_b.md#putdouble) | Converts a single parameter or an array of the int64 type into a value of the OH_VObject type.|
 | [putText](_r_d_b.md#puttext-22) | Converts a character array of the char type to a value of the OH_VObject type.|
 | [putTexts](_r_d_b.md#puttexts) | Converts a string array of the char type to a value of the OH_VObject type.|
-| [destroyValueObject](_r_d_b.md#destroyvalueobject) | Destroys an OH_VObject object and reclaims the memory occupied.|
+| [destroy](_r_d_b.md#destroy-44) | Destroys an OH_VObject object and reclaims the memory occupied.|

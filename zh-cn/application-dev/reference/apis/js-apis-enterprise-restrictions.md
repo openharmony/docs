@@ -12,8 +12,8 @@
 
 ## 导入模块
 
-```js
-import restrictions from '@ohos.enterprise.restrictions'
+```ts
+import restrictions from '@ohos.enterprise.restrictions';
 ```
 
 ## restrictions.setPrinterDisabled
@@ -47,8 +47,9 @@ setPrinterDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -98,15 +99,17 @@ setPrinterDisabled(admin: Want, disabled: boolean): Promise\<void>
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 
 restrictions.setPrinterDisabled(wantTemp, true).then(() => {
   console.info('Succeeded in setting printer disabled');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set printer disabled. Code is ${err.code}, message is ${err.message}`);
 })
 ```
@@ -141,8 +144,9 @@ isPrinterDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -191,15 +195,17 @@ isPrinterDisabled(admin: Want): Promise\<boolean>
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 
 restrictions.isPrinterDisabled(wantTemp).then((result) => {
   console.info(`Succeeded in querying is the printing function disabled : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to query is the printing function disabled or not. Code is ${err.code}, message is ${err.message}`);
 })
 ```
@@ -235,8 +241,9 @@ setHdcDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): 
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -286,15 +293,17 @@ setHdcDisabled(admin: Want, disabled: boolean): Promise\<void>
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 
 restrictions.setHdcDisabled(wantTemp, true).then(() => {
   console.info('Succeeded in setting hdc disabled');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set hdc disabled. Code is ${err.code}, message is ${err.message}`);
 })
 ```
@@ -329,8 +338,9 @@ isHdcDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -379,15 +389,17 @@ isHdcDisabled(admin: Want): Promise\<boolean>
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 
 restrictions.isHdcDisabled(wantTemp).then((result) => {
   console.info(`Succeeded in querying is hdc disabled : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to query is hdc disabled or not. Code is ${err.code}, message is ${err.message}`);
 })
 ```

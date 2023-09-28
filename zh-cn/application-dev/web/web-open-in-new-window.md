@@ -16,8 +16,6 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
 
 - 应用侧代码。
 
-  创建新窗口的方法可参考[Web开发相关例子](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)。
-
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
@@ -31,7 +29,7 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
         .multiWindowAccess(true)
         .onWindowNew((event) => {
           console.info("onWindowNew...");
-          var popController: web_webview.WebviewController = new web_webview.WebviewController();
+          let popController: web_webview.WebviewController = new web_webview.WebviewController();
           // 开发者需要在此处新建窗口,跟popController关联，并且将popController返回给Web组件。如果不需要打开新窗口请将返回值设置为event.handler.setWebController(null);
           event.handler.setWebController(popController);
         })
@@ -67,3 +65,8 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
   </body>
   </html>
   ```
+## 相关实例
+
+针对创建新窗口，有以下相关实例可供参考：
+
+- [浏览器（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)

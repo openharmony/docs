@@ -1,7 +1,10 @@
 # Widget Event Capability Overview
 
-The ArkTS widget provides the **postCardAction()** API for interaction between the widget internal and the widget provider. Currently, this API supports the router, message, and call events and can be called only in the widget.
+For dynamic ATS widgets, the **postCardAction()** API is provided for interaction between the widget internal and the provider application. Currently, this API supports the router, message, and call events and can be called only in the widget.
 
+For static ATS widgets, the [FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md) component is provided for interaction between the widget internal and the provider application.
+
+## Dynamic Widget Event Capability
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
 
 **Definition**: postCardAction(component: Object, action: Object): void
@@ -23,8 +26,11 @@ The ArkTS widget provides the **postCardAction()** API for interaction between t
 | "bundleName" | string | Name of the target bundle when **action** is **"router"** or **"call"**. This parameter is optional.|
 | "moduleName" | string | Name of the target module when **action** is **"router"** or **"call"**. This parameter is optional.|
 | "abilityName" | string | Name of the target UIAbility when **action** is **"router"** or **"call"**. This parameter is mandatory.|
-| "params" | Object | Additional parameters carried in the current action. The value is a key-value pair in JSON format. For the **"call"** action type, the **method** parameter (mandatory) must be set and its value type must be string.|
+| "params" | Object | Additional parameters carried in the current action. The value is a key-value pair in JSON format. This parameter is mandatory.|
 
+>**NOTE**
+>
+>When **action** is **"router"** or **"call"**, **'method'** of the string type must be passed to **params** to trigger the corresponding method in the UIAbility.
 
 Sample code of the **postCardAction()** API:
 
@@ -59,5 +65,5 @@ Button ('Start in Background')
   })
 ```
 
-
-Read on to learn the typical widget development scenarios that can be implemented through widget events.
+## Static Widget Event Capability
+See [FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md).

@@ -11,33 +11,39 @@ Page redirection is an important part of the development process. When using an 
   **Figure 1** Page redirection 
 ![router-jump-to-detail](figures/router-jump-to-detail.gif)
 
-The **Router** module provides two redirection modes: [router.pushUrl()](../reference/apis/js-apis-router.md#routerpushurl9) and [router.replaceUrl()](../reference/apis/js-apis-router.md#routerreplaceurl9). The two modes determine whether the target page will replace the current page.
+The **Router** module provides two redirection modes: [router.pushUrl()](../reference/apis/js-apis-router.md#routerpushurl9) and [router.replaceUrl()](../reference/apis/js-apis-router.md#routerreplaceurl9). Whether the target page will replace the current page depends on the mode used.
 
-- **router.pushUrl()**: The target page does not replace the current page. Instead, it is pushed into the [page stack](../application-models/page-mission-stack.md). In this way, the state of the current page can be retained, and users can return to the current page by pressing the back button or calling the [router.back()](../reference/apis/js-apis-router.md#routerback) API.
+- **router.pushUrl()**: The target page is pushed into the [page stack](../application-models/page-mission-stack.md) and does not replace the current page. In this mode, the state of the current page is retained, and users can return to the current page by pressing the back button or calling the [router.back()](../reference/apis/js-apis-router.md#routerback) API.
 
-- **router.replaceUrl()**: The target page replaces the current page and destroys the current page. In this way, the resources of the current page can be released, and users cannot return to the current page.
+- **router.replaceUrl()**: The target page replaces and destroys the current page. In this mode, the resources of the current page can be released, and users cannot return to the current page.
 
 >**NOTE**
 >
->The maximum capacity of a page stack is 32 pages. If this limit is exceeded, the [router.clear()](../reference/apis/js-apis-router.md#routerclear) API can be called to clear the historical page stack and free the memory.
+>- When creating a page, configure the route to this page by following instructions in [Building the Second Page](../quick-start/start-with-ets-stage.md).
+>
+>
+>- The maximum capacity of a page stack is 32 pages. If this limit is exceeded, the [router.clear()](../reference/apis/js-apis-router.md#routerclear) API can be called to clear the historical page stack and free the memory.
 
-The **Router** module also provides two instance modes: **Standard** and **Single**. The two modes determine whether the target URL corresponds to multiple instances.
+The **Router** module also provides two instance modes: **Standard** and **Single**. Depending on the mode, the target URL is mapped to one or more instances.
 
-- **Standard**: standard instance mode, which is the default instance mode. Each time this API is called, a target page is created and pushed to the top of the stack.
+- **Standard**: multi-instance mode. It is the default instance mode. In this mode, the target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.
 
-- **Single**: singleton mode. If the URL of the target page already exists in the page stack, the page with the same URL closest to the top of the stack is moved to the top of the stack and reloaded. If the URL of the target page does not exist in the page stack, the page is redirected in standard mode.
+- **Single**: singleton mode. In this mode, if the URL of the target page already exists in the page stack, the page closest to the top of the stack with the same URL is moved to the top of the stack and becomes the new page. If the URL of the target page does not exist in the page stack, the page is redirected in standard mode.
 
-Before using the **Router** module, you need to import it to the code.
+Before using the **Router** module, import it first.
 
 
 ```ts
 import router from '@ohos.router';
+import { BusinessError } from '@ohos.base';
+import promptAction from '@ohos.promptAction';
 ```
 
 - Scenario 1: There is a home page (**Home**) and a details page (**Detail**). You want to click an offering on the home page to go to the details page. In addition, the home page needs to be retained in the page stack so that the status can be restored when the page is returned. In this scenario, you can use the **pushUrl()** API and use the **Standard** instance mode (which can also be omitted).
 
 
   ```ts
+  import router from '@ohos.router';
   // On the Home page
   function onJumpClick(): void {
     router.pushUrl({
@@ -54,12 +60,13 @@ import router from '@ohos.router';
 
   >**NOTE**
   >
-  >In **Standard** instance mode, the **router.RouterMode.Standard** parameter can be omitted.
+  >In standard (multi-instance) mode, the **router.RouterMode.Standard** parameter can be omitted.
 
 - Scenario 2: There is a login page (**Login**) and a personal center page (**Profile**). After a user successfully logs in from the **Login** page, the **Profile** page is displayed. At the same time, the **Login** page is destroyed, and the application exits when the back button is pressed. In this scenario, you can use the **replaceUrl()** API and use the Standard instance mode (which can also be omitted).
 
 
   ```ts
+  import router from '@ohos.router';
   // On the Login page
   function onJumpClick(): void {
     router.replaceUrl({
@@ -76,12 +83,13 @@ import router from '@ohos.router';
 
   >**NOTE**
   >
-  >In **Standard** instance mode, the **router.RouterMode.Standard** parameter can be omitted.
+  >In standard (multi-instance) mode, the **router.RouterMode.Standard** parameter can be omitted.
 
 - Scenario 3: There is a setting page (**Setting**) and a theme switching page (**Theme**). You want to click a theme option on the **Setting** page to go to the **Theme** page. In addition, you want to ensure that only one **Theme** page exists in the page stack at a time. When the back button is clicked on the **Theme** page, the **Setting** page is displayed. In this scenario, you can use the **pushUrl()** API and use the **Single** instance mode.
 
 
   ```ts
+  import router from '@ohos.router';
   // On the Setting page
   function onJumpClick(): void {
     router.pushUrl({
@@ -100,6 +108,7 @@ import router from '@ohos.router';
 
 
   ```ts
+  import router from '@ohos.router';
   // On the SearchResult page
   function onJumpClick(): void {
     router.replaceUrl({
@@ -115,17 +124,18 @@ import router from '@ohos.router';
 
 The preceding scenarios do not involve parameter transfer.
 
-If you need to transfer some data to the target page during redirection, you can add a **params** attribute and specify an object as a parameter when invoking an API of the **Router** module. Example:
+If you need to transfer data to the target page during redirection, you can add a **params** attribute and specify an object as a parameter when invoking an API of the **Router** module. Example:
 
 
 ```ts
+import router from '@ohos.router';
 class DataModelInfo {
-  age: number;
+  age: number = 0;
 }
 
 class DataModel {
-  id: number;
-  info: DataModelInfo;
+  id: number = 0;
+  info: DataModelInfo|null = null;
 }
 
 function onJumpClick(): void {
@@ -150,25 +160,26 @@ function onJumpClick(): void {
 }
 ```
 
-On the target page, you can call the [getParams()](../reference/apis/js-apis-router.md#routergetparams) API of the **Router** module to obtain the transferred parameters. Example:
+On the target page, you can call the [getParams()](../reference/apis/js-apis-router.md#routergetparams) API of the **Router** module to obtain the passed parameters. Example:
 
 
 ```ts
-const params = router.getParams(); // Obtain the transferred parameter object.
-const id = params['id']; // Obtain the value of the id attribute.
-const age = params['info'].age; // Obtain the value of the age attribute.
+import router from '@ohos.router';
+const params:Record<string,Object> = {'':router.getParams()}; // Obtain the passed parameter object.
+const id:Object = params['id']; // Obtain the value of the id attribute.
+const age:Object = params['info'].age; // Obtain the value of the age attribute.
 ```
 
 
 ## Page Return
 
-After a user completes an operation on a page, the user usually needs to return to the previous page or a specified page. In this case, the page return function is required. During the return process, the data may need to be transferred to the target page, which requires the data transfer function.
+Implement the page return feature so that users can return to the previous page or a specified page. You can pass parameters to the target page during the return process.
 
   **Figure 2** Page return 
 
 ![router-back-to-home](figures/router-back-to-home.gif)
 
-Before using the **Router** module, you need to import it to the code.
+Before using the **Router** module, import it first.
 
 
 ```ts
@@ -181,6 +192,7 @@ You can use any of the following methods to return to a page:
 
 
   ```ts
+  import router from '@ohos.router';
   router.back();
   ```
 
@@ -190,34 +202,37 @@ You can use any of the following methods to return to a page:
 
 
   ```ts
+  import router from '@ohos.router';
   router.back({
     url: 'pages/Home'
   });
   ```
 
-  This method allows you to return to a specified page. You need to specify the path of the target page. For this method to work, the target page must it exist in the page stack.
+  This method allows uesrs to return to a page with the specified path. For this method to work, the target page must exist in the page stack.
 
 - Method 3: Return to the specified page and transfer custom parameter information.
 
 
   ```ts
+  import router from '@ohos.router';
   router.back({
     url: 'pages/Home',
     params: {
-      info:'From Home Page'
+      info: 'From Home Page'
     }
   });
   ```
 
-  This method not only allows you to return to the specified page, but also transfer custom parameter information when returning. The parameter information can be obtained and parsed by invoking the **router.getParams()** API on the target page.
+  This method not only allows you to return to the specified page, but also pass in custom parameter information during the return process. The parameter information can be obtained and parsed by invoking the **router.getParams()** API on the target page.
 
 On the target page, call the **router.getParams()** API at the position where parameters need to be obtained, for example, in the **onPageShow()** lifecycle callback:
 
 
 ```ts
+import router from '@ohos.router';
 onPageShow() {
-  const params = router.getParams(); // Obtain the transferred parameter object.
-  const info = params['info']; // Obtain the value of the info attribute.
+  const params:Record<string,Object> = {'':router.getParams()}; // Obtain the passed parameter object.
+  const info:Object = params['']; // Obtain the value of the info attribute.
 }
 ```
 
@@ -243,7 +258,7 @@ Such a dialog box can be in the [default style](#default-confirmation-dialog-box
 
 To implement this function, you can use the [router.showAlertBeforeBackPage()](../reference/apis/js-apis-router.md#routershowalertbeforebackpage9) and [router.back()](../reference/apis/js-apis-router.md#routerback) APIs provided by the **Router** module.
 
-Before using the **Router** module, you need to import it to the code.
+Before using the **Router** module, import it first.
 
 
 ```ts
@@ -254,6 +269,9 @@ To enable the confirmation dialog box for page return, call the [router.showAler
 
 
 ```ts
+import router from '@ohos.router';
+import { BusinessError } from '@ohos.base';
+
 // Define a click event processing function for the back button.
 function onBackClick(): void {
   // Invoke the router.showAlertBeforeBackPage() API to set the information about the confirmation dialog box.
@@ -262,7 +280,9 @@ function onBackClick(): void {
       message: 'Payment not completed yet. Are you sure you want to return?' // Set the content of the confirmation dialog box.
     });
   } catch (err) {
-    console.error(`Invoke showAlertBeforeBackPage failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message
+    let code = (err as BusinessError).code
+    console.error(`Invoke showAlertBeforeBackPage failed, code is ${code}, message is ${message}`);
   }
 
   // Invoke the router.back() API to return to the previous page.
@@ -272,17 +292,16 @@ function onBackClick(): void {
 
 The **router.showAlertBeforeBackPage()** API receives an object as a parameter. The object contains the following attributes:
 
-- **message**: content of the dialog box. The value is of the string type.
-  If the API is successfully called, the confirmation dialog box is displayed on the target page. Otherwise, an exception is thrown and the error code and error information is obtained through **err.code** and **err.message**.
+**message**: content of the dialog box. The value is of the string type.
+If the API is called successfully, the confirmation dialog box is displayed on the target page. Otherwise, an exception is thrown and the error code and error information is obtained through **err.code** and **err.message**.
 
-  When the user clicks the back button, a confirmation dialog box is displayed, prompting the user to confirm their operation. If the user selects Cancel, the application stays on the current page. If the user selects OK, the **router.back()** API is triggered and the redirection is performed based on the parameters.
-
+When the user clicks the back button, a confirmation dialog box is displayed, prompting the user to confirm their operation. If the user selects Cancel, the application stays on the current page. If the user selects OK, the **router.back()** API is triggered and the redirection is performed based on the parameters.
 
 ### Custom Confirmation Dialog Box
 
 To implement a custom confirmation dialog box, use APIs in the [PromptAction](../reference/apis/js-apis-promptAction.md#promptactionshowdialog) module or customize a popup window.  This topic uses the APIs in the **PromptAction** module an example to describe how to implement a custom confirmation dialog box.
 
-Before using the **Router** module, you need to import it to the code.
+Before using the **Router** module, import it first.
 
 
 ```ts
@@ -293,6 +312,9 @@ In the event callback, call the [promptAction.showDialog()](../reference/apis/js
 
 
 ```ts
+import router from '@ohos.router';
+import promptAction from '@ohos.promptAction';
+
 function onBackClick() {
   // Display a custom confirmation dialog box.
   promptAction.showDialog({
@@ -307,7 +329,7 @@ function onBackClick() {
         color: '#0099FF'
       }
     ]
-  }).then((result) => {
+  }).then((result:promptAction.ShowDialogSuccessResponse) => {
     if (result.index === 0) {
       // The user selects Cancel.
       console.info('User canceled the operation.');
@@ -317,10 +339,73 @@ function onBackClick() {
       // Invoke the router.back() API to return to the previous page.
       router.back();
     }
-  }).catch((err) => {
+  }).catch((err:Error) => {
     console.error(`Invoke showDialog failed, code is ${err.code}, message is ${err.message}`);
   })
 }
 ```
 
 When the user clicks the back button, the custom confirmation dialog box is displayed, prompting the user to confirm their operation. If the user selects Cancel, the application stays on the current page. If the user selects OK, the **router.back()** API is triggered and the redirection is performed based on the parameters.
+
+## Named Route
+
+To redirect to a [page in a shared package](../quick-start/shared-guide.md), you can use [router.pushNamedRoute()](../reference/apis/js-apis-router.md#routerpushnamedroute10).
+
+Before using the **Router** module, import it first.
+
+
+```ts
+import router from '@ohos.router';
+```
+
+In the target page in the [shared package](../quick-start/shared-guide.md), name the [@Entry decorated custom component](../quick-start/arkts-create-custom-components.md#entryoptions10).
+
+```ts
+// library/src/main/ets/pages/Index.ets
+// library is the custom name of the new shared package.
+@Entry({ routeName : 'myPage' })
+@Component
+struct MyComponent {
+}
+```
+
+When the configuration is successful, import the named route page to the page from which you want to redirect.
+
+```ts
+// entry/src/main/ets/pages/Index.ets
+import router from '@ohos.router';
+import * from 'library/src/main/ets/Index.ets' // Import the named route page from the shared package library.
+import { BusinessError } from '@ohos.base';
+@Entry
+@Component
+struct Index {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Text('Hello World')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .margin({ top: 20 })
+        .backgroundColor('#ccc')
+        .onClick(() => { // Click to go to a page in another shared package.
+          try {
+            router.pushNamedRoute({
+              name: 'myPage',
+              params: {
+                data1: 'message',
+                data2: {
+                  data3: [123, 456, 789]
+                }
+              }
+            })
+          } catch (err) {
+            let message = (err as BusinessError).message
+            let code = (err as BusinessError).code
+            console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```

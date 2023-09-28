@@ -17,22 +17,22 @@ To ensure successful XML parsing and conversion, the input XML data must comply 
 The following steps walk you through on how to convert an XML file into a JavaScript object to obtain the tag values.
 
 1. Import the **convertxml** module.
-   
-   ```js
+
+   ```ts
    import convertxml from '@ohos.convertxml';
    ```
 
 2. Pass in an XML file to be converted and set conversion options.
-   
-   ```js
-   let xml =
-     '<?xml version="1.0" encoding="utf-8"?>' +
-       '<note importance="high" logged="true">' +
-       '    <title>Happy</title>' +
-       '    <todo>Work</todo>' +
-       '    <todo>Play</todo>' +
-       '</note>';
-   let options = {
+
+   ```ts
+   let xml: string =
+    '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
+   let options: convertxml.ConvertOptions = {
      // trim: false, indicating that spaces before and after the text are not deleted after conversion.
      // declarationKey: "_declaration", indicating that _declaration is used to identify the file declaration after conversion.
      // instructionKey: "_instruction", indicating that _instruction is used to identify instructions after conversion.
@@ -51,7 +51,7 @@ The following steps walk you through on how to convert an XML file into a JavaSc
      attributesKey: "_attributes",
      textKey: "_text",
      cdataKey: "_cdata",
-     docTypeKey: "_doctype",
+     doctypeKey: "_doctype",
      commentKey: "_comment",
      parentKey: "_parent",
      typeKey: "_type",
@@ -61,32 +61,21 @@ The following steps walk you through on how to convert an XML file into a JavaSc
    ```
 
 3. Call the conversion function and print the result.
-   
-   ```js
-   let conv = new convertxml.ConvertXML();
-   let result = conv.convertToJSObject(xml, options);
-   let strRes = JSON.stringify(result); // Convert the JavaScript object into a JSON string for explicit output.
+
+   ```ts
+   let conv: convertxml.ConvertXML = new convertxml.ConvertXML();
+   let result: object = conv.convertToJSObject(xml, options);
+   let strRes: string = JSON.stringify(result); // Convert the JavaScript object into a JSON string for explicit output.
    console.info(strRes);
-   // Alternatively, directly process the JavaScript object to obtain the tag values.
-   let title = result['_elements'][0]['_elements'][0]['_elements'][0]['_text']; // Parse the value of the <title> tag.
-   let todo = result['_elements'][0]['_elements'][1]['_elements'][0]['_text']; // Parse the value of the <todo> tag.
-   let todo2 = result['_elements'][0]['_elements'][2]['_elements'][0]['_text']; // Parse the value of the <todo> tag.
-   console.info(title); // Happy
-   console.info(todo); // Work
-   console.info(todo2); // Play
    ```
 
    The output is as follows:
 
-   
-   ```js
+   ```json
    strRes:
    {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note",
     "_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title",
     "_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo",
     "_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo",
     "_elements":[{"_type":"text","_text":"Play"}]}]}]}
-   title:Happy
-   todo:Work
-   todo2:Play
    ```

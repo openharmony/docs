@@ -16,7 +16,7 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 触发捏合的最少手指数,&nbsp;最小为2指，最大为5指。<br/>默认值：2 |
-| distance | number | 否 | 最小识别距离，单位为vp。<br/>默认值：3 |
+| distance | number | 否 | 最小识别距离，单位为vp。<br/>默认值：3 <br/>**说明：** <br/> 当识别距离的值小于等于0时，会被转化为默认值。|
 
 
 ## 事件
@@ -56,13 +56,15 @@ struct PinchGestureExample {
       // 三指捏合触发该手势事件
       .gesture(
       PinchGesture({ fingers: 3 })
-        .onActionStart((event: GestureEvent) => {
+        .onActionStart((event?: GestureEvent) => {
           console.info('Pinch start')
         })
-        .onActionUpdate((event: GestureEvent) => {
-          this.scaleValue = this.pinchValue * event.scale
-          this.pinchX = event.pinchCenterX
-          this.pinchY = event.pinchCenterY
+        .onActionUpdate((event?: GestureEvent) => {
+          if (event) {
+            this.scaleValue = this.pinchValue * event.scale
+            this.pinchX = event.pinchCenterX
+            this.pinchY = event.pinchCenterY
+          }
         })
         .onActionEnd(() => {
           this.pinchValue = this.scaleValue

@@ -47,7 +47,7 @@
 
 1. 导入`@ohos.data.preferences`模块。
      
-   ```js
+   ```ts
    import dataPreferences from '@ohos.data.preferences';
    ```
 
@@ -56,13 +56,15 @@
    Stage模型示例：
 
      
-   ```js
+   ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
+   import { BusinessError } from '@ohos.base';
+   import window from '@ohos.window';
    
    class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
+     onWindowStageCreate(windowStage: window.WindowStage) {
        try {
-         dataPreferences.getPreferences(this.context, 'mystore', (err, preferences) => {
+         dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
            if (err) {
              console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
              return;
@@ -71,7 +73,9 @@
            // 请确保获取到Preferences实例后，再进行相关数据操作
          })
        } catch (err) {
-         console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to get preferences. Code:${code},message:${message}`);
        }
      }
    }
@@ -80,14 +84,15 @@
    FA模型示例：
 
      
-   ```js
+   ```ts
    import featureAbility from '@ohos.ability.featureAbility';
+   import { BusinessError } from '@ohos.base';
    
    // 获取context
    let context = featureAbility.getContext();
    
    try {
-     dataPreferences.getPreferences(context, 'mystore', (err, preferences) => {
+     dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
        if (err) {
          console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
          return;
@@ -96,7 +101,9 @@
        // 请确保获取到Preferences实例后，再进行相关数据操作
      })
    } catch (err) {
-     console.error(`Failed to get preferences. Code is ${err.code},message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to get preferences. Code is ${code},message:${message}`);
    }
    ```
 
@@ -111,7 +118,7 @@
    示例代码如下所示：
 
      
-   ```js
+   ```ts
    try {
      if (preferences.hasSync('startup')) {
        console.info("The key 'startup' is contained.");
@@ -121,7 +128,9 @@
        preferences.putSync('startup', 'auto');
      }
    } catch (err) {
-     console.error(`Failed to check the key 'startup'. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to check the key 'startup'. Code:${code}, message:${message}`);
    }
    ```
 
@@ -129,12 +138,14 @@
 
      使用getSync()方法获取数据，即指定键对应的值。如果值为null或者非默认值类型，则返回默认数据。示例代码如下所示：
      
-   ```js
+   ```ts
    try {
      let val = preferences.getSync('startup', 'default');
      console.info(`Succeeded in getting value of 'startup'. val: ${val}.`);
    } catch (err) {
-     console.error(`Failed to get value of 'startup'. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to get value of 'startup'. Code:${code}, message:${message}`);
    }
    ```
 
@@ -143,11 +154,13 @@
    使用deleteSync()方法删除指定键值对，示例代码如下所示：
 
      
-   ```js
+   ```ts
    try {
      preferences.deleteSync('startup');
    } catch (err) {
-     console.error(`Failed to delete the key 'startup'. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to delete the key 'startup'. Code:${code}, message:${message}`);
    }
    ```
 
@@ -155,9 +168,9 @@
 
      应用存入数据到Preferences实例后，可以使用flush()方法实现数据持久化。示例代码如下所示：
      
-   ```js
+   ```ts
    try {
-     preferences.flush((err) => {
+     preferences.flush((err: BusinessError) => {
        if (err) {
          console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
          return;
@@ -165,7 +178,9 @@
        console.info('Succeeded in flushing.');
      })
    } catch (err) {
-     console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to flush. Code:${code}, message:${message}`);
    }
    ```
 
@@ -173,19 +188,21 @@
 
      应用订阅数据变更需要指定observer作为回调方法。订阅的Key值发生变更后，当执行flush()方法时，observer被触发回调。示例代码如下所示：
      
-   ```js
-   let observer = function (key) {
-     console.info('The key' + key + 'changed.');
+   ```ts
+   interface observer {
+      key: string
    }
-   preferences.on('change', observer);
+   preferences.on('change', (key: observer) => {
+     console.info('The key' + key + 'changed.');
+   });
    // 数据产生变更，由'auto'变为'manual'
-   preferences.put('startup', 'manual', (err) => {
+   preferences.put('startup', 'manual', (err: BusinessError) => {
      if (err) {
        console.error(`Failed to put the value of 'startup'. Code:${err.code},message:${err.message}`);
        return;
      }
      console.info("Succeeded in putting the value of 'startup'.");
-     preferences.flush((err) => {
+     preferences.flush((err: BusinessError) => {
        if (err) {
          console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
          return;
@@ -208,9 +225,9 @@
    示例代码如下所示：
 
      
-   ```js
+   ```ts
    try {
-     dataPreferences.deletePreferences(this.context, 'mystore', (err, val) => {
+     dataPreferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
        if (err) {
          console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
          return;
@@ -218,7 +235,9 @@
        console.info('Succeeded in deleting preferences.');
      })
    } catch (err) {
-     console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to delete preferences. Code:${code}, message:${message}`);
    }
    ```
 
@@ -226,7 +245,11 @@
 
 针对用户首选项开发，有以下相关实例可供参考：
 
-- [`Preferences`：首选项（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/Preferences)
+- [游戏2048（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Game2048)
+
+- [图案密码锁（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/PatternLock)
+
+- [首选项（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/Preferences)
 
 - [首选项（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/Preferences)
 

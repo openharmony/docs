@@ -17,11 +17,11 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     windowStage.loadContent('pages/Index', (err, data) => {
-      ...
+      // ...
     });
   }
 
-  ...
+  // ...
 }
 ```
 
@@ -37,9 +37,11 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
   
   export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       // 获取UIAbility实例的上下文
       let context = this.context;
       ...
@@ -51,6 +53,7 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
   
   ```ts
   import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
   
   @Entry
   @Component
@@ -58,7 +61,7 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
     private context = getContext(this) as common.UIAbilityContext;
   
     startAbilityTest() {
-      let want = {
+      let want: Want = {
         // Want参数信息
       };
       this.context.startAbility(want);
@@ -76,6 +79,7 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
   
   ```ts
   import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
   
   @Entry
   @Component
@@ -83,7 +87,7 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
   
     startAbilityTest() {
       let context = getContext(this) as common.UIAbilityContext;
-      let want = {
+      let want: Want = {
         // Want参数信息
       };
       context.startAbility(want);

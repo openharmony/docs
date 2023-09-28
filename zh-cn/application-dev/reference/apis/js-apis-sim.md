@@ -9,7 +9,7 @@ SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡�
 
 ## 导入模块
 
-```js
+```ts
 import sim from '@ohos.telephony.sim';
 ```
 
@@ -26,12 +26,15 @@ isSimActive\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回指定卡槽是否激活，如果激活返回true。                             |
 
 **示例：**
 
-```js
-sim.isSimActive(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.isSimActive(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -59,13 +62,45 @@ isSimActive\(slotId: number\): Promise\<boolean\>
 
 **示例：**
 
-```js
-let promise = sim.isSimActive(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.isSimActive(0).then((data: boolean) => {
     console.log(`isSimActive success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`isSimActive failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.isSimActiveSync<sup>10+</sup>
+
+isSimActiveSync\(slotId: number\): boolean
+
+获取指定卡槽SIM卡是否激活。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| boolean | 返回指定卡槽是否激活，如果激活返回true。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let isSimActive: boolean = sim.isSimActiveSync(0);
+console.log(`the sim is active:` + isSimActive);
 ```
 
 
@@ -81,16 +116,18 @@ getDefaultVoiceSlotId\(callback: AsyncCallback\<number\>\): void
 
 | 参数名   | 类型                        | 必填 | 说明       |
 | -------- | --------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br />- 0：卡槽1<br />- 1：卡槽2<br />- -1：未设置或服务不可用 |
 
 **示例：**
 
-```js
-sim.getDefaultVoiceSlotId((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getDefaultVoiceSlotId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
-
 
 ## sim.getDefaultVoiceSlotId<sup>7+</sup>
 
@@ -104,15 +141,17 @@ getDefaultVoiceSlotId\(\): Promise\<number\>
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<number\> | 以Promise形式返回默认语音业务的卡槽ID。 |
+| Promise\<number\> | 以Promise形式返回默认语音业务的卡槽ID。<br />- 0：卡槽1<br />- 1：卡槽2<br />- -1：未设置或服务不可用 |
 
 **示例：**
 
-```js
-let promise = sim.getDefaultVoiceSlotId();
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getDefaultVoiceSlotId().then((data: number) => {
     console.log(`getDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -130,7 +169,7 @@ hasOperatorPrivileges\(slotId: number, callback: AsyncCallback\<boolean\>\): voi
 | 参数名   | 类型                     | 必填 | 说明                                     |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
 | slotId   | number                   | 是   | 卡槽ID。<br />- 0：卡槽1<br />- 1：卡槽2 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。                               |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。 返回检查应用（调用者）是否已被授予运营商权限。                              |
 
 **错误码：**
 
@@ -146,8 +185,11 @@ hasOperatorPrivileges\(slotId: number, callback: AsyncCallback\<boolean\>\): voi
 
 **示例：**
 
-```js
-sim.hasOperatorPrivileges(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.hasOperatorPrivileges(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -186,11 +228,13 @@ hasOperatorPrivileges\(slotId: number\): Promise\<boolean\>
 
 **示例：**
 
-```js
-let promise = sim.hasOperatorPrivileges(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.hasOperatorPrivileges(0).then((data: boolean) => {
     console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`hasOperatorPrivileges failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -225,8 +269,11 @@ getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback\<string\>\): vo
 
 **示例：**
 
-```js
-sim.getISOCountryCodeForSim(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getISOCountryCodeForSim(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -267,13 +314,46 @@ getISOCountryCodeForSim\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let promise = sim.getISOCountryCodeForSim(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getISOCountryCodeForSim(0).then((data: string) => {
     console.log(`getISOCountryCodeForSim success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getISOCountryCodeForSim failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.getISOCountryCodeForSimSync<sup>10+</sup>
+
+getISOCountryCodeForSimSync\(slotId: number\): string
+
+获取指定卡槽SIM卡的ISO国家码。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| string | 返回获取指定卡槽SIM卡的ISO国家码，例如：CN（中国）。 |
+
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let countryCode: string = sim.getISOCountryCodeForSimSync(0);
+console.log(`the country ISO is:` + countryCode);
 ```
 
 
@@ -290,7 +370,7 @@ getSimOperatorNumeric\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回指定卡槽SIM卡的归属PLMN号。                          |
 
 **错误码：**
 
@@ -307,8 +387,11 @@ getSimOperatorNumeric\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-sim.getSimOperatorNumeric(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimOperatorNumeric(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -349,13 +432,46 @@ getSimOperatorNumeric\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let promise = sim.getSimOperatorNumeric(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimOperatorNumeric(0).then((data: string) => {
     console.log(`getSimOperatorNumeric success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimOperatorNumeric failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.getSimOperatorNumericSync<sup>10+</sup>
+
+getSimOperatorNumericSync\(slotId: number\): string
+
+获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                             |
+| ----------------- | ------------------------------------------------ |
+| string | 返回获取指定卡槽SIM卡的归属PLMN号。 |
+
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let numeric: string = sim.getSimOperatorNumericSync(0);
+console.log(`the sim operator numeric is:` + numeric);
 ```
 
 
@@ -372,7 +488,7 @@ getSimSpn\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回指定卡槽SIM卡的SPN。                             |
 
 **错误码：**
 
@@ -389,8 +505,11 @@ getSimSpn\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-sim.getSimSpn(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimSpn(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -431,13 +550,46 @@ getSimSpn\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let promise = sim.getSimSpn(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimSpn(0).then((data: string) => {
     console.log(`getSimSpn success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimSpn failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.getSimSpnSync<sup>10+</sup>
+
+getSimSpnSync\(slotId: number\): string
+
+获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN）。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                      |
+| ----------------- | ----------------------------------------- |
+| string | 返回获取指定卡槽SIM卡的SPN。 |
+
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let spn: string = sim.getSimSpnSync(0);
+console.log(`the sim card spn is:` + spn);
 ```
 
 
@@ -470,8 +622,11 @@ getSimState\(slotId: number, callback: AsyncCallback\<SimState\>\): void
 
 **示例：**
 
-```js
-sim.getSimState(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimState(0, (err: BusinessError, data: sim.SimState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -511,13 +666,46 @@ getSimState\(slotId: number\): Promise\<SimState\>
 
 **示例：**
 
-```js
-let promise = sim.getSimState(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimState(0).then((data: sim.simstate) => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimState failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.getSimStateSync<sup>10+</sup>
+
+getSimStateSync\(slotId: number\): SimState
+
+获取指定卡槽的SIM卡状态。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                         | 说明                                       |
+| ---------------------------- | ------------------------------------------ |
+| [SimState](#simstate) | 返回获取指定卡槽的SIM卡状态。 |
+
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let simState: sim.SimState = sim.getSimStateSync(0);
+console.log(`The sim state is:` + simState);
 ```
 
 ## sim.getCardType<sup>7+</sup>
@@ -550,8 +738,11 @@ getCardType\(slotId: number, callback: AsyncCallback\<CardType\>\): void
 
 **示例：**
 
-```js
-sim.getCardType(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getCardType(0, (err: BusinessError, data: sim.CardType) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -592,13 +783,46 @@ getCardType\(slotId: number\): Promise\<CardType\>
 
 **示例：**
 
-```js
-let promise = sim.getCardType(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getCardType(0).then((data: sim.CardType) => {
     console.log(`getCardType success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getCardType failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.getCardTypeSync<sup>10+</sup>
+
+getCardTypeSync\(slotId: number\): CardType
+
+获取指定卡槽SIM卡的卡类型。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| [CardType](#cardtype7) | 返回指定卡槽SIM卡的卡类型。 |
+
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let cardType: sim.CardType = sim.getCardTypeSync(0);
+console.log(`the card type is:` + cardType);
 ```
 
 
@@ -631,8 +855,11 @@ hasSimCard\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
 **示例：**
 
-```js
-sim.hasSimCard(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.hasSimCard(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -672,13 +899,45 @@ hasSimCard\(slotId: number\): Promise\<boolean\>
 
 **示例：**
 
-```js
-let promise = sim.hasSimCard(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.hasSimCard(0).then((data: boolean) => {
     console.log(`hasSimCard success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`hasSimCard failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.hasSimCardSync<sup>10+</sup>
+
+hasSimCardSync\(slotId: number\): boolean
+
+获取指定卡槽SIM卡是否插卡。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| boolean | 返回指定卡槽是否插卡，如果插卡返回true。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let hasSimCard: boolean = sim.hasSimCardSync(0);
+console.log(`has sim card: ` + hasSimCard);
 ```
 
 ## sim.getSimAccountInfo<sup>10+</sup>
@@ -700,7 +959,7 @@ getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): 
 | 参数名   | 类型                                                | 必填 | 说明                                   |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                              | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo7)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo10)\> | 是   | 回调函数。返回指定卡槽SIM卡的帐户信息。                             |
 
 **错误码：**
 
@@ -718,8 +977,11 @@ getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): 
 
 **示例：**
 
-```js
-sim.getSimAccountInfo(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimAccountInfo(0, (err:BusinessError , data: sim.IccAccountInfo) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -749,7 +1011,7 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 | 类型                                         | 说明                                       |
 | -------------------------------------------- | ------------------------------------------ |
-| Promise<[IccAccountInfo](#iccaccountinfo7)\> | 以Promise形式返回指定卡槽SIM卡的帐户信息。 |
+| Promise<[IccAccountInfo](#iccaccountinfo10)\> | 以Promise形式返回指定卡槽SIM卡的帐户信息。 |
 
 **错误码：**
 
@@ -767,11 +1029,13 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 **示例：**
 
-```js
-let promise = sim.getSimAccountInfo(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimAccountInfo(0).then((data: sim.IccAccountInfo) => {
     console.log(`getSimAccountInfo success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimAccountInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -780,7 +1044,7 @@ promise.then(data => {
 
 getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\): void
 
-获取活跃SIM卡帐户信息列表。使用callback异步回调。
+获取激活SIM卡帐户信息列表。使用callback异步回调。
 
 >**说明：**
 >
@@ -794,7 +1058,7 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 | 参数名   | 类型                                                        | 必填 | 说明       |
 | -------- | ----------------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | 是   | 回调函数。返回激活SIM卡帐户信息列表。 |
 
 **错误码：**
 
@@ -810,8 +1074,11 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 **示例：**
 
-```js
-sim.getActiveSimAccountInfoList((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountInfo>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -821,7 +1088,7 @@ sim.getActiveSimAccountInfoList((err, data) => {
 
 getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
-获取活跃SIM卡帐户信息列表。使用Promise异步回调。
+获取激活SIM卡帐户信息列表。使用Promise异步回调。
 
 >**说明：**
 >
@@ -835,7 +1102,7 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
 | 类型                                                 | 说明                                           |
 | ---------------------------------------------------- | ---------------------------------------------- |
-| Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | 以Promise形式返回活跃卡槽SIM卡的帐户信息列表。 |
+| Promise<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | 以Promise形式返回激活卡槽SIM卡的帐户信息列表。 |
 
 **错误码：**
 
@@ -850,11 +1117,13 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
 **示例：**
 
-```js
-let promise = sim.getActiveSimAccountInfoList();
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getActiveSimAccountInfoList().then((data: Array<sim.IccAccountInfo>) => {
     console.log(`getActiveSimAccountInfoList success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getActiveSimAccountInfoList failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -896,8 +1165,11 @@ setDefaultVoiceSlotId\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-sim.setDefaultVoiceSlotId(0, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.setDefaultVoiceSlotId(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -945,11 +1217,13 @@ setDefaultVoiceSlotId\(slotId: number\): Promise\<void\>
 
 **示例：**
 
-```js
-let promise = sim.setDefaultVoiceSlotId(0);
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.setDefaultVoiceSlotId(0).then(() => {
     console.log(`setDefaultVoiceSlotId success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`setDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -991,9 +1265,12 @@ setShowName\(slotId: number, name: string, callback: AsyncCallback\<void\>\): vo
 
 **示例：**
 
-```js
-let name = "ShowName";
-sim.setShowName(0, name, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let name: string = "ShowName";
+sim.setShowName(0, name, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1040,12 +1317,14 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 
 **示例：**
 
-```js
-let name = "ShowName";
-let promise = sim.setShowName(0, name);
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let name: string = "ShowName";
+sim.setShowName(0, name).then(() => {
     console.log(`setShowName success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`setShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1067,7 +1346,7 @@ getShowName\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。返回指定卡槽SIM卡的名称。                             |
 
 **错误码：**
 
@@ -1086,8 +1365,11 @@ getShowName\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-sim.getShowName(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getShowName(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1134,11 +1416,13 @@ getShowName\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let promise = sim.getShowName(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getShowName(0).then((data: string) => {
     console.log(`getShowName success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1180,9 +1464,12 @@ setShowNumber\(slotId: number, number: string, callback: AsyncCallback\<void\>\)
 
 **示例：**
 
-```js
-let number = '+861xxxxxxxxxx';
-sim.setShowNumber(0, number, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let number: string = '+861xxxxxxxxxx';
+sim.setShowNumber(0, number, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1230,12 +1517,14 @@ setShowNumber\(slotId: number, number: string\): Promise\<void\>
 
 **示例：**
 
-```js
-let number = '+861xxxxxxxxxx';
-let promise = sim.setShowNumber(0, number);
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let number: string = '+861xxxxxxxxxx';
+sim.setShowNumber(0, number).then(() => {
     console.log(`setShowNumber success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`setShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1257,7 +1546,7 @@ getShowNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。返回指定卡槽的号码。                             |
 
 **错误码：**
 
@@ -1276,8 +1565,11 @@ getShowNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 
 **示例：**
 
-```js
-sim.getShowNumber(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getShowNumber(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1324,11 +1616,13 @@ getShowNumber\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let promise = sim.getShowNumber(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getShowNumber(0).then((data: string) => {
     console.log(`getShowNumber success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1369,8 +1663,11 @@ activateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-sim.activateSim(0, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.activateSim(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1417,11 +1714,13 @@ activateSim\(slotId: number\): Promise\<void\>
 
 **示例：**
 
-```js
-let promise = sim.activateSim(0);
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.activateSim(0).then(() => {
     console.log(`activateSim success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`activateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1462,8 +1761,11 @@ deactivateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-sim.deactivateSim(0, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.deactivateSim(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1510,11 +1812,13 @@ deactivateSim\(slotId: number\): Promise\<void\>
 
 **示例：**
 
-```js
-let promise = sim.deactivateSim(0);
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.deactivateSim(0).then(() => {
     console.log(`deactivateSim success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`deactivateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1557,13 +1861,16 @@ setLockState\(slotId: number, options: LockInfo, callback: AsyncCallback\<LockSt
 
 **示例：**
 
-```js
-let lockInfo = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let lockInfo: sim.LockInfo = {
     lockType: sim.LockType.PIN_LOCK,
     password: "1234",
     state: sim.LockState.LOCK_OFF
 };
-sim.setLockState(0, lockInfo, (err, data) => {
+sim.setLockState(0, lockInfo, (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1612,16 +1919,18 @@ setLockState\(slotId: number, options: LockInfo\): Promise\<LockStatusResponse\>
 
 **示例：**
 
-```js
-let lockInfo = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let lockInfo: sim.LockInfo = {
     lockType: sim.LockType.PIN_LOCK,
     password: "1234",
     state: sim.LockState.LOCK_OFF
 };
-let promise = sim.setLockState(0, lockInfo);
-promise.then(data => {
+sim.setLockState(0, lockInfo).then((data: sim.LockStatusResponse) => {
     console.log(`setLockState success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`setLockState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1664,8 +1973,11 @@ getLockState\(slotId: number, lockType: LockType, callback: AsyncCallback\<LockS
 
 **示例：**
 
-```js
-sim.getLockState(0, 1, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getLockState(0, 1, (err: BusinessError, data: sim.LockState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1714,11 +2026,13 @@ getLockState\(slotId: number, lockType: LockType\): Promise\<LockState\>
 
 **示例：**
 
-```js
-let promise = sim.getLockState(0, 1);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getLockState(0, 1).then((data: sim.LockState) => {
     console.log(`getLockState success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getLockState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1762,8 +2076,11 @@ alterPin\(slotId: number, newPin: string, oldPin: string, callback: AsyncCallbac
 
 **示例：**
 
-```js
-sim.alterPin(0, "1234", "0000", (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.alterPin(0, "1234", "0000", (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1813,11 +2130,13 @@ alterPin\(slotId: number, newPin: string, oldPin: string\): Promise\<LockStatusR
 
 **示例：**
 
-```js
-let promise = sim.alterPin(0, "1234", "0000");
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.alterPin(0, "1234", "0000").then((data: sim.LockStatusResponse) => {
     console.log(`alterPin success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`alterPin failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1861,8 +2180,11 @@ alterPin2\(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCall
 
 **示例：**
 
-```js
-sim.alterPin2(0, "1234", "0000", (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.alterPin2(0, "1234", "0000", (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1912,11 +2234,13 @@ alterPin2\(slotId: number, newPin2: string, oldPin2: string\): Promise\<LockStat
 
 **示例：**
 
-```js
-let promise = sim.alterPin2(0, "1234", "0000");
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.alterPin2(0, "1234", "0000").then((data: sim.LockStatusResponse) => {
     console.log(`alterPin2 success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`alterPin2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1959,9 +2283,12 @@ unlockPin\(slotId: number, pin: string, callback: AsyncCallback\<LockStatusRespo
 
 **示例：**
 
-```js
-let pin = '1234';
-sim.unlockPin(0, pin, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let pin: string = '1234';
+sim.unlockPin(0, pin, (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2010,12 +2337,14 @@ unlockPin\(slotId: number, pin: string\): Promise\<LockStatusResponse\>
 
 **示例：**
 
-```js
-let pin = '1234';
-let promise = sim.unlockPin(0, pin);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let pin: string = '1234';
+sim.unlockPin(0, pin).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPin success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`unlockPin failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2059,10 +2388,13 @@ unlockPuk\(slotId: number, newPin: string, puk: string, callback: AsyncCallback\
 
 **示例：**
 
-```js
-let puk = '1xxxxxxx';
-let newPin = '1235';
-sim.unlockPuk(0, newPin, puk, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let puk: string = '1xxxxxxx';
+let newPin: string = '1235';
+sim.unlockPuk(0, newPin, puk, (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2112,13 +2444,15 @@ unlockPuk\(slotId: number, newPin: string, puk: string\): Promise\<LockStatusRes
 
 **示例：**
 
-```js
-let puk = '1xxxxxxx';
-let newPin = '1235';
-let promise = sim.unlockPuk(0, newPin, puk);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let puk: string = '1xxxxxxx';
+let newPin: string = '1235';
+sim.unlockPuk(0, newPin, puk).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPuk success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`unlockPuk failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2161,9 +2495,12 @@ unlockPin2\(slotId: number, pin2: string, callback: AsyncCallback\<LockStatusRes
 
 **示例：**
 
-```js
-let pin2 = '1234';
-sim.unlockPin2(0, pin2, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let pin2: string = '1234';
+sim.unlockPin2(0, pin2, (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2212,12 +2549,14 @@ unlockPin2\(slotId: number, pin2: string\): Promise\<LockStatusResponse\>
 
 **示例：**
 
-```js
-let pin2='1234';
-let promise = sim.unlockPin2(0, pin2);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let pin2: string = '1234';
+sim.unlockPin2(0, pin2).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPin2 success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`unlockPin2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2261,10 +2600,13 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string, callback: AsyncCallba
 
 **示例：**
 
-```js
-let puk2 = '1xxxxxxx';
-let newPin2 = '1235';
-sim.unlockPuk2(0, newPin2, puk2, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let puk2: string = '1xxxxxxx';
+let newPin2: string = '1235';
+sim.unlockPuk2(0, newPin2, puk2, (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2314,13 +2656,15 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string\): Promise\<LockStatus
 
 **示例：**
 
-```js
-let puk2 = '1xxxxxxx';
-let newPin2 = '1235';
-let promise = sim.unlockPuk2(0, newPin2, puk2);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let puk2: string = '1xxxxxxx';
+let newPin2: string = '1235';
+sim.unlockPuk2(0, newPin2, puk2).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPuk2 success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`unlockPuk2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2341,8 +2685,10 @@ getMaxSimCount\(\): number
 
 **示例：**
 
-```js
-console.log("Result: "+ sim.getMaxSimCount())
+```ts
+import sim from '@ohos.telephony.sim';
+
+console.log("Result: "+ sim.getMaxSimCount());
 ```
 
 ## sim.getSimIccId<sup>7+</sup>
@@ -2381,8 +2727,11 @@ getSimIccId\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-sim.getSimIccId(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimIccId(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2429,11 +2778,13 @@ getSimIccId\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let promise = sim.getSimIccId(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimIccId(0).then((data:string) => {
     console.log(`getSimIccId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimIccId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2474,8 +2825,11 @@ getVoiceMailIdentifier\(slotId: number, callback: AsyncCallback\<string\>\): voi
 
 **示例：**
 
-```js
-sim.getVoiceMailIdentifier(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getVoiceMailIdentifier(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2522,11 +2876,13 @@ getVoiceMailIdentifier\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let promise = sim.getVoiceMailIdentifier(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getVoiceMailIdentifier(0).then((data: string) => {
     console.log(`getVoiceMailIdentifier success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getVoiceMailIdentifier failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2567,8 +2923,11 @@ getVoiceMailNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 
 **示例：**
 
-```js
-sim.getVoiceMailNumber(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getVoiceMailNumber(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2615,11 +2974,13 @@ getVoiceMailNumber\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let promise = sim.getVoiceMailNumber(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getVoiceMailNumber(0).then((data: string) => {
     console.log(`getVoiceMailNumber success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getVoiceMailNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2664,8 +3025,11 @@ setVoiceMailInfo\(slotId: number, mailName: string, mailNumber: string, callback
 
 **示例：**
 
-```js
-sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2715,11 +3079,13 @@ setVoiceMailInfo\(slotId: number, mailName: string, mailNumber: string\): Promis
 
 **示例：**
 
-```js
-let promise = sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com");
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com").then(() => {
     console.log(`setVoiceMailInfo success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`setVoiceMailInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2760,8 +3126,11 @@ getSimTelephoneNumber\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-sim.getSimTelephoneNumber(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimTelephoneNumber(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2808,11 +3177,13 @@ getSimTelephoneNumber\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let promise = sim.getSimTelephoneNumber(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimTelephoneNumber(0).then((data: string) => {
     console.log(`getSimTelephoneNumber success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimTelephoneNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2853,8 +3224,11 @@ getSimGid1\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-sim.getSimGid1(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimGid1(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2901,11 +3275,13 @@ getSimGid1\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let promise = sim.getSimGid1(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimGid1(0).then((data: string) => {
     console.log(`getSimGid1 success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimGid1 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2946,8 +3322,11 @@ getIMSI\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-sim.getIMSI(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getIMSI(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2994,11 +3373,13 @@ getIMSI\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let promise = sim.getIMSI(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getIMSI(0).then((data: string) => {
     console.log(`getIMSI success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getIMSI failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3038,8 +3419,11 @@ getOperatorConfigs\(slotId: number, callback: AsyncCallback\<Array\<OperatorConf
 
 **示例：**
 
-```js
-sim.getOperatorConfigs(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getOperatorConfigs(0, (err: BusinessError, data: Array<sim.OperatorConfig>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3085,11 +3469,13 @@ getOperatorConfigs\(slotId: number\): Promise\<Array\<OperatorConfig\>\>
 
 **示例：**
 
-```js
-let promise = sim.getOperatorConfigs(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getOperatorConfigs(0).then((data: Array<sim.OperatorConfig>) => {
     console.log(`getOperatorConfigs success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getOperatorConfigs failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3132,8 +3518,11 @@ queryIccDiallingNumbers\(slotId: number, type: ContactType, callback: AsyncCallb
 
 **示例：**
 
-```js
-sim.queryIccDiallingNumbers(0, 1, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.queryIccDiallingNumbers(0, 1, (err: BusinessError, data: Array<sim.DiallingNumbersInfo>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3182,11 +3571,13 @@ queryIccDiallingNumbers\(slotId: number, type: ContactType\): Promise\<Array\<Di
 
 **示例：**
 
-```js
-let promise = sim.queryIccDiallingNumbers(0, 1);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.queryIccDiallingNumbers(0, 1).then((data:  Array<sim.DiallingNumbersInfo>) => {
     console.log(`queryIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`queryIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3230,13 +3621,16 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 
 **示例：**
 
-```js
-let diallingNumbersInof = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
     pin2: "1234"
 };
-sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3286,15 +3680,17 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 
 **示例：**
 
-```js
-let diallingNumbersInof = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx"
 };
-let promise = sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
-promise.then(() => {
+sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
     console.log(`addIccDiallingNumbers success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`addIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3338,14 +3734,17 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 
 **示例：**
 
-```js
-let diallingNumbersInof = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
     recordNumber: 123,
     pin2: "1234"
 };
-sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3395,22 +3794,24 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 
 **示例：**
 
-```js
-let diallingNumbersInof = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx"
 };
-let promise = sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
-promise.then(() => {
+sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
     console.log(`delIccDiallingNumbers success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`delIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
 ## sim.updateIccDiallingNumbers<sup>8+</sup>
 
-updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback\<void\>\): void
+updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback\<void\>\): void 
 
 更新SIM卡联系人号码。使用callback异步回调。
 
@@ -3447,14 +3848,17 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 
 **示例：**
 
-```js
-let diallingNumbersInof = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
     recordNumber: 123,
     pin2: "1234"
 };
-sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3504,16 +3908,18 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 
 **示例：**
 
-```js
-let diallingNumbersInof = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
     recordNumber: 123
 };
-let promise = sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
-promise.then(() => {
+sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
     console.log(`updateIccDiallingNumbers success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`updateIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3555,8 +3961,11 @@ sendEnvelopeCmd\(slotId: number, cmd: string, callback: AsyncCallback\<void\>\):
 
 **示例：**
 
-```js
-sim.sendEnvelopeCmd(0, "ls", (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.sendEnvelopeCmd(0, "ls", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3604,11 +4013,13 @@ sendEnvelopeCmd\(slotId: number, cmd: string\): Promise\<void\>
 
 **示例：**
 
-```js
-let promise = sim.sendEnvelopeCmd(0, "ls");
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.sendEnvelopeCmd(0, "ls").then(() => {
     console.log(`sendEnvelopeCmd success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`sendEnvelopeCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3650,8 +4061,11 @@ sendTerminalResponseCmd\(slotId: number, cmd: string, callback: AsyncCallback\<v
 
 **示例：**
 
-```js
-sim.sendTerminalResponseCmd(0, "ls", (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.sendTerminalResponseCmd(0, "ls", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3699,11 +4113,13 @@ sendTerminalResponseCmd\(slotId: number, cmd: string\): Promise\<void\>
 
 **示例：**
 
-```js
-let promise = sim.sendTerminalResponseCmd(0, "ls");
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.sendTerminalResponseCmd(0, "ls").then(() => {
     console.log(`sendTerminalResponseCmd success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`sendTerminalResponseCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3747,12 +4163,15 @@ unlockSimLock\(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback\
 
 **示例：**
 
-```js
-let persoLockInfo = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let persoLockInfo: sim.PersoLockInfo = {
     lockType: sim.PersoLockType.PN_PIN_LOCK,
     password: "1234"
 };
-sim.unlockSimLock(0, persoLockInfo, (err, data) => {
+sim.unlockSimLock(0, persoLockInfo, (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3801,15 +4220,17 @@ unlockSimLock\(slotId: number, lockInfo: PersoLockInfo\): Promise\<LockStatusRes
 
 **示例：**
 
-```js
-let persoLockInfo = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let persoLockInfo: sim.PersoLockInfo = {
     lockType: sim.PersoLockType.PN_PIN_LOCK,
     password: "1234"
 };
-let promise = sim.unlockSimLock(0, persoLockInfo);
-promise.then(data => {
+sim.unlockSimLock(0, persoLockInfo).then((data: sim.LockStatusResponse) => {
     console.log(`unlockSimLock success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`unlockSimLock failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3844,9 +4265,12 @@ getOpKey\(slotId: number, callback: AsyncCallback\<string\>): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
 try {
-    sim.getOpKey(0, (err, data) => {
+    sim.getOpKey(0, (err: BusinessError, data: string) => {
     if (err) {
       console.log("getOpKey failed, err: " + JSON.stringify(err));
     } else {
@@ -3894,13 +4318,46 @@ getOpKey\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
 try {
-    let data = sim.getOpKey(0);
+    let data: Promise<string> = sim.getOpKey(0);
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
 } catch (error) {
     console.log(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
 }
+```
+
+## sim.getOpKeySync<sup>10+</sup>
+
+getOpKeySync\(slotId: number\): string
+
+获取指定卡槽中SIM卡的opkey。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                      |
+| ---------------- | ----------------------------------------- |
+| string | 返回指定卡槽中SIM卡的opkey。 |
+
+
+**示例：**
+
+```ts
+import sim from '@ohos.telephony.sim';
+
+let data: string = sim.getOpKeySync(0);
+console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
 ```
 
 ## sim.getOpName<sup>9+</sup>
@@ -3933,9 +4390,12 @@ getOpName\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
 try {
-    sim.getOpName(0, (err, data) => {
+    sim.getOpName(0, (err: BusinessError, data: string) => {
     if (err) {
       console.log("getOpName failed, err: " + JSON.stringify(err));
     } else {
@@ -3983,13 +4443,46 @@ getOpName\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
 try {
-    let data = sim.getOpName(0);
+    let data: Promise<string> = sim.getOpName(0);
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
 } catch (error) {
     console.log(`getOpName failed, promise: err->${JSON.stringify(error)}`);
 }
+```
+
+## sim.getOpNameSync<sup>10+</sup>
+
+getOpNameSync\(slotId: number\): string
+
+获取指定卡槽中SIM卡的OpName。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                       |
+| ---------------- | ------------------------------------------ |
+| string | 返回指定卡槽中SIM卡的OpName。 |
+
+
+**示例：**
+
+```ts
+import sim from '@ohos.telephony.sim';
+
+let data: string = sim.getOpNameSync(0);
+console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
 ```
 
 ## sim.getDefaultVoiceSimId<sup>10+</sup>
@@ -4022,8 +4515,11 @@ getDefaultVoiceSimId\(callback: AsyncCallback\<number\>\): void
 
 **示例：**
 
-```js
-sim.getDefaultVoiceSimId((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getDefaultVoiceSimId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -4057,11 +4553,14 @@ getDefaultVoiceSimId\(\): Promise\<number\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
 let promise = sim.getDefaultVoiceSimId();
-promise.then(data => {
+promise.then((data: number) => {
     console.log(`getDefaultVoiceSimId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getDefaultVoiceSimId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4187,11 +4686,9 @@ SIM卡状态。
 | lockType | [PersoLockType](#persolocktype8) |  是  | 定制锁的类型。|
 | password | string                           |  是  | 密码。        |
 
-## IccAccountInfo<sup>7+</sup>
+## IccAccountInfo<sup>10+</sup>
 
 Icc帐户信息。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 

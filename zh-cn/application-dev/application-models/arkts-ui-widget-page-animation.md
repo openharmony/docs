@@ -13,6 +13,10 @@ ArkTS卡片开放了使用动画效果的能力，支持[显式动画](../refere
 | delay | 动画延迟执行的时长 | 卡片中禁止设置此参数，使用默认值0。 |
 | iterations | 动画播放次数 | 卡片中禁止设置此参数，使用默认值1。 |
 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>
+>静态卡片不支持使用动效能力。
+
 以下示例代码实现了按钮旋转的动画效果：  
 ![WidgetAnimation](figures/WidgetAnimation.gif)
 
@@ -21,22 +25,24 @@ ArkTS卡片开放了使用动画效果的能力，支持[显式动画](../refere
 ```ts
 @Entry
 @Component
-struct AttrAnimationExample {
+struct AnimationCard {
   @State rotateAngle: number = 0;
 
   build() {
-    Column() {
+    Row() {
       Button('change rotate angle')
+        .height('20%')
+        .width('90%')
+        .margin('5%')
         .onClick(() => {
-          this.rotateAngle = 90;
+          this.rotateAngle = (this.rotateAngle === 0 ? 90 : 0);
         })
-        .margin(50)
         .rotate({ angle: this.rotateAngle })
         .animation({
           curve: Curve.EaseOut,
-          playMode: PlayMode.AlternateReverse
+          playMode: PlayMode.Normal,
         })
-    }.width('100%').margin({ top: 20 })
+    }.height('100%').alignItems(VerticalAlign.Center)
   }
 }
 ```

@@ -13,12 +13,12 @@ Applications can call the APIs to:
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```js
+```ts
 import deviceManager from '@ohos.distributedDeviceManager';
 ```
 
@@ -39,17 +39,21 @@ Creates a **DeviceManager** instance. The **DeviceManager** instance is the entr
 
 **Return value**
 
-  | Name                                       | Description       |
-  | ------------------------------------------- | --------- |
-  | [DeviceManager](#devicemanager) | **DeviceManager** instance created.|
+| Name                                       | Description       |
+| ------------------------------------------- | --------- |
+| [DeviceManager](#devicemanager) | **DeviceManager** instance created.|
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
   try {
     let dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
   } catch(err) {
-    console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("createDeviceManager errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -79,11 +83,14 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     deviceManager.releaseDeviceManager(dmInstance);
   } catch (err) {
-    console.error("release device manager errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("release device manager errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -97,7 +104,7 @@ Represents the basic information about a distributed device.
 | ---------------------- | ------------------------- | ---- | -------- |
 | deviceId               | string                    | Yes   | Unique ID of the device. The value is the udid-hash (hash value of the UDID) and appid encrypted using SHA-256.|
 | deviceName             | string                    | Yes   | Device name.   |
-| deviceType             | number                    | Yes   | Device type.   |
+| deviceType             | string                    | Yes   | Device type.   |
 | networkId              | string                    | No   | Network ID of the device. |
 
 ## DeviceStateChange
@@ -129,9 +136,9 @@ Obtains all trusted devices synchronously.
 
 **Return value**
 
-  | Name                                       | Description       |
-  | ------------------------------------------- | --------- |
-  | Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt; | List of trusted devices obtained.|
+| Name                                       | Description       |
+| ------------------------------------------- | --------- |
+| Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt; | List of trusted devices obtained.|
 
 **Error codes**
 
@@ -143,11 +150,15 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceInfoList = dmInstance.getAvailableDeviceListSync();
+    let deviceInfoList: Array<deviceManager.eviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   } catch (err) {
-    console.error("getAvailableDeviceListSync errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getAvailableDeviceListSync errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -163,9 +174,9 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                   |
-  | -------- | ---------------------------------------- | ---- | --------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Yes   | Callback invoked to return the list of trusted devices.|
+| Name      | Type                                    | Mandatory  | Description                   |
+| -------- | ---------------------------------------- | ---- | --------------------- |
+| callback | AsyncCallback&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Yes   | Callback invoked to return the list of trusted devices.|
 
 **Error codes**
 
@@ -177,9 +188,12 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
   try {
-    dmInstance.getAvailableDeviceList((err, data) => {
+    dmInstance.getAvailableDeviceList((err: BusinessError, data: Array<deviceManager.DeviceBasicInfo>) => {
       if (err) {
         console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
         return;
@@ -187,7 +201,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
       console.log('get available device info: ' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getAvailableDeviceList errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -203,9 +218,9 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                                                      | Description                              |
-  | ---------------------------------------------------------- | ---------------------------------- |
-  | Promise&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Promise used to return the result.|
+| Type                                                      | Description                              |
+| ---------------------------------------------------------- | ---------------------------------- |
+| Promise&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -217,10 +232,13 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
-  dmInstance.getAvailableDeviceList().then((data) => {
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  dmInstance.getAvailableDeviceList().then((data: Array<deviceManager.DeviceBasicInfo>) => {
     console.log('get available device info: ' + JSON.stringify(data));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
   });
   ```
@@ -237,9 +255,9 @@ Obtains the network ID of the local device.
 
 **Return value**
 
-  | Name                     | Description             |
-  | ------------------------- | ---------------- |
-  | string | Network ID of the local device obtained.|
+| Name                     | Description             |
+| ------------------------- | ---------------- |
+| string | Network ID of the local device obtained.|
 
 **Error codes**
 
@@ -251,12 +269,15 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceNetworkId = dmInstance.getLocalDeviceNetworkId();
+    let deviceNetworkId: string = dmInstance.getLocalDeviceNetworkId();
     console.log('local device networkId: ' + JSON.stringify(deviceNetworkId));
   } catch (err) {
-    console.error("getLocalDeviceNetworkId errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getLocalDeviceNetworkId errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -272,9 +293,9 @@ Obtains the local device name.
 
 **Return value**
 
-  | Name                     | Description             |
-  | ------------------------- | ---------------- |
-  | string                    | Name of the local device obtained.|
+| Name                     | Description             |
+| ------------------------- | ---------------- |
+| string                    | Name of the local device obtained.|
 
 **Error codes**
 
@@ -286,12 +307,15 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceName = dmInstance.getLocalDeviceName();
+    let deviceName: string = dmInstance.getLocalDeviceName();
     console.log('local device name: ' + JSON.stringify(deviceName));
   } catch (err) {
-    console.error("getLocalDeviceName errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getLocalDeviceName errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -307,9 +331,9 @@ Obtains the local device type.
 
 **Return value**
 
-  | Name                     | Description             |
-  | ------------------------- | ---------------- |
-  | number                    | Local device type obtained.|
+| Name                     | Description             |
+| ------------------------- | ---------------- |
+| number                    | Local device type obtained.|
 
 **Error codes**
 
@@ -321,12 +345,15 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceType = dmInstance.getLocalDeviceType();
+    let deviceType: number = dmInstance.getLocalDeviceType();
     console.log('local device type: ' + JSON.stringify(deviceType));
   } catch (err) {
-    console.error("getLocalDeviceType errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getLocalDeviceType errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -342,9 +369,9 @@ Obtains the local device ID.
 
 **Return value**
 
-  | Name                     | Description             |
-  | ------------------------- | ---------------- |
-  | string                    | Local device ID obtained.|
+| Name                     | Description             |
+| ------------------------- | ---------------- |
+| string                    | Local device ID obtained.|
 
 **Error codes**
 
@@ -356,12 +383,15 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceId = dmInstance.getLocalDeviceId();
+    let deviceId: string = dmInstance.getLocalDeviceId();
     console.log('local device id: ' + JSON.stringify(deviceId));
   } catch (err) {
-    console.error("getLocalDeviceId errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getLocalDeviceId errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -377,15 +407,15 @@ Obtains the device name based on the network ID of the specified device.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description       |
-  | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device.|
+| Name      | Type                                    | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| networkId| string                                   | Yes  | Network ID of the device.|
 
 **Return value**
 
-  | Name                     | Description             |
-  | ------------------------- | ---------------- |
-  | string                    | Device name obtained.|
+| Name                     | Description             |
+| ------------------------- | ---------------- |
+| string                    | Device name obtained.|
 
 **Error codes**
 
@@ -397,14 +427,17 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     // Network ID of the device, which can be obtained from the trusted device list.
     let networkId = "xxxxxxx"
-    var deviceName = dmInstance.getDeviceName(networkId);
+    let deviceName: string = dmInstance.getDeviceName(networkId);
     console.log('device name: ' + JSON.stringify(deviceName)); 
   } catch (err) {
-    console.error("getDeviceName errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getDeviceName errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -420,15 +453,15 @@ Obtains the device type based on the network ID of the specified device.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description       |
-  | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device.|
+| Name      | Type                                    | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| networkId| string                                   | Yes  | Network ID of the device.|
 
 **Return value**
 
-  | Name                     | Description             |
-  | ------------------------- | ---------------- |
-  | number                    | Device type obtained.|
+| Name                     | Description             |
+| ------------------------- | ---------------- |
+| number                    | Device type obtained.|
 
 **Error codes**
 
@@ -440,14 +473,17 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     // Network ID of the device, which can be obtained from the trusted device list.
     let networkId = "xxxxxxx"
-    var deviceType = dmInstance.getDeviceType(networkId);
+    let deviceType: number = dmInstance.getDeviceType(networkId);
     console.log('device type: ' + JSON.stringify(deviceType)); 
   } catch (err) {
-    console.error("getDeviceType errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getDeviceType errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -463,10 +499,10 @@ Starts to discover devices nearby. The discovery process automatically stops whe
 
 **Parameters**
 
-  | Name           | Type                       | Mandatory  | Description   |
-  | ------------- | ------------------------------- | ---- | -----  |
-  | discoverParam  | {[key:&nbsp;string]:&nbsp;Object}      | Yes  | Identifier of the device to discover. It specifies the type of the target to discover.<br>**discoverTargetType**: The default discovery target is device. The value is **1**.|
-  | filterOptions | {[key:&nbsp;string]:&nbsp;Object}          | No  | Options for filtering discovered devices. The default value is **undefined**, which means to discover offline devices. The following **key** values are carried:<br>**availableStatus(0-1)**: Discover trusted devices only. The value **0** indicates that the device is untrusted.<br>- **0**: The device is offline. The client needs to call **bindTarget** to bind the device.<br>- **1**: The device is online and can be connected.<br>**discoverDistance(0-100)**: Discover devices within a certain distance (in cm) from the local device.<br>**authenticationStatus(0-1)**: Discover devices based on the authentication status.<br>- **0**: The device is not authenticated.<br>- **1**: The device has been authenticated.<br>**authorizationType(0-2)**: Discover devices based on the authorization type.<br>- **0**: device authenticated by a temporarily agreed session key.<br>- **1**: device authenticated by a key of the same account.<br>- **2**: devices authenticated by a credential key of different accounts.|
+| Name           | Type                       | Mandatory  | Description   |
+| ------------- | ------------------------------- | ---- | -----  |
+| discoverParam  | {[key:&nbsp;string]:&nbsp;Object}      | Yes  | Identifier of the device to discover. It specifies the type of the target to discover.<br>**discoverTargetType**: The default discovery target is device. The value is **1**.|
+| filterOptions | {[key:&nbsp;string]:&nbsp;Object}          | No  | Options for filtering discovered devices. The default value is **undefined**, which means to discover offline devices. The following **key** values are carried:<br>**availableStatus(0-1)**: Discover trusted devices only. The value **0** indicates that the device is untrusted.<br>- **0**: The device is offline. The client needs to call **bindTarget** to bind the device.<br>- **1**: The device is online and can be connected.<br>**discoverDistance(0-100)**: Discover devices within a certain distance (in cm) from the local device.<br>**authenticationStatus(0-1)**: Discover devices based on the authentication status.<br>- **0**: The device is not authenticated.<br>- **1**: The device has been authenticated.<br>**authorizationType(0-2)**: Discover devices based on the authorization type.<br>- **0**: device authenticated by a temporarily agreed session key.<br>- **1**: device authenticated by a key of the same account.<br>- **2**: devices authenticated by a credential key of different accounts.|
 
 **Error codes**
 
@@ -479,20 +515,36 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
-  var discoverParam = {
-    'discoverTargetType': 1
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  interface DiscoverParam {
+    discoverTargetType: number
+  }
+
+  interface FilterOptions {
+    availableStatus: number,
+    discoverDistance: number,
+    authenticationStatus: number,
+    authorizationType: number
+  }
+
+  let discoverParam: DiscoverParam = {
+    discoverTargetType: 1
   };
-  var filterOptions = {
-    'availableStatus': 1,
-    'discoverDistance': 50,
-    'authenticationStatus': 0,
-    'authorizationType': 0
+
+  let filterOptions: FilterOptions = {
+    availableStatus: 1,
+    discoverDistance: 50,
+    authenticationStatus: 0,
+    authorizationType: 0
   };
+
   try {
     dmInstance.startDiscovering(discoverParam, filterOptions); // When devices are discovered, discoverSuccess is called to notify the application.
   } catch (err) {
-    console.error("startDiscovering errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("startDiscovering errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -517,11 +569,14 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     dmInstance.stopDiscovering();
   } catch (err) {
-    console.error("stopDiscovering errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("stopDiscovering errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -537,11 +592,11 @@ Binds a device.
 
 **Parameters**
 
-  | Name    | Type                                               | Mandatory | Description        |
-  | ---------- | --------------------------------------------------- | ----- | ------------ |
-  | deviceId   | string                                              | Yes   | Device ID.  |
-  | bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following **key** values are carried:<br>**bindType**: binding type.<br>- **1**: PIN.<br>- **2**: QR code.<br>- 3: NFC.<br>- 4: No interaction.<br>**targetPkgName**: bundle name of the target to bind.<br>**appName**: application that attempts to bind the target.<br>**appOperation**: reason for the application to bind the target.<br>**customDescription**: detailed description of the operation.  |
-  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;}&gt; | Yes   | Callback invoked to return the authentication result.|
+| Name    | Type                                               | Mandatory | Description        |
+| ---------- | --------------------------------------------------- | ----- | ------------ |
+| deviceId   | string                                              | Yes   | Device ID.  |
+| bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following **key** values are carried:<br>**bindType**: binding type.<br>- **1**: PIN.<br>- **2**: QR code.<br>- 3: NFC.<br>- 4: No interaction.<br>**targetPkgName**: bundle name of the target to bind.<br>**appName**: application that attempts to bind the target.<br>**appOperation**: reason for the application to bind the target.<br>**customDescription**: detailed description of the operation.  |
+| callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;}&gt; | Yes   | Callback invoked to return the authentication result.|
 
 **Error codes**
 
@@ -554,18 +609,32 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    deviceId: string = ""
+  }
+
+  interface BindParam {
+    bindType: number, // Authentication type. The value 1 means PIN authentication.
+    targetPkgName: string,
+    appName: string,
+    appOperation: string,
+    customDescription: string
+  }
+
   // Information about the device to authenticate. The information can be obtained from the device discovery result.
-  var deviceId ="XXXXXXXX";
-  let bindParam = {
-          'authType': 1, // Authentication type. The value 1 means PIN authentication without the account.
-          'targetPkgName': 'xxxx',
-          'appName': 'xxxx',
-          'appOperation': 'xxxx',
-          'customDescription': 'xxxx'
+  let deviceId = "XXXXXXXX";
+  let bindParam: BindParam = {
+    'authType': 1, // Authentication type. The value 1 means PIN authentication.
+    targetPkgName: 'xxxx',
+    appName: 'xxxx',
+    appOperation: 'xxxx',
+    customDescription: 'xxxx'
   }
   try {
-    dmInstance.bindTarget(deviceId, bindParam, (err, data) => {
+    dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
       if (err) {
           console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
           return;
@@ -573,7 +642,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
       console.info("bindTarget result:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("bindTarget errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -589,9 +659,9 @@ Unbinds a device.
 
 **Parameters**
 
-  | Name  | Type                     | Mandatory| Description      |
-  | -------- | ------------------------- | ---- | ---------- |
-  | deviceId | string                    | Yes  | Device ID.|
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| deviceId | string                    | Yes  | Device ID.|
 
 **Error codes**
 
@@ -603,12 +673,15 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceId ="XXXXXXXX";
+    let deviceId = "XXXXXXXX";
     dmInstance.unbindTarget(deviceId);
   } catch (err) {
-    console.error("unbindTarget errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("unbindTarget errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -626,14 +699,16 @@ Replies to the user's UI operation. This API can be used only by the PIN HAP of 
 
 **Parameters**
 
-  | Name      | Type           | Mandatory | Description               |
-  | ------------- | --------------- | ---- | ------------------- |
-  | action        | number          | Yes   | User operation.      |
-  | actionResult        | string          | Yes   | Operation result.|
+| Name      | Type           | Mandatory | Description               |
+| ------------- | --------------- | ---- | ------------------- |
+| action        | number          | Yes   | User operation.      |
+| actionResult        | string          | Yes   | Operation result.|
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
  try {
     /*
       action = 0 - Grant the permission.
@@ -646,7 +721,8 @@ Replies to the user's UI operation. This API can be used only by the PIN HAP of 
     let operation = 0;
     dmInstance.replyUiAction(operation, "extra")
     } catch (err) {
-      console.error("replyUiAction errCode:" + err.code + ",errMessage:" + err.message);
+      let e: BusinessError = err as BusinessError;
+      console.error("replyUiAction errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -664,23 +740,34 @@ Subscribes to the UI operation reply result.
 
 **Parameters**
 
-  | Name     | Type                            | Mandatory| Description                           |
-  | -------- | ------------------------------------ | ---- | ------------------------------ |
-  | type     | string                                | Yes | Event type to subscribe to. The value **replyResult** indicates the reply result of the UI operation.|
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status.       |
+| Name     | Type                            | Mandatory| Description                           |
+| -------- | ------------------------------------ | ---- | ------------------------------ |
+| type     | string                                | Yes | Event type to subscribe to. The value **replyResult** indicates the reply result of the UI operation.|
+| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status.       |
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    param: string = ""
+  }
+
+  interface TmpStr {
+    verifyFailed: boolean
+  }
+
   try {
-    dmInstance.on('replyResult', (data) => {
+    dmInstance.on('replyResult', (data: Data) => {
     console.log("replyResult executed, dialog closed" + JSON.stringify(data))
-    var tmpStr = JSON.parse(data.param)
-    var isShow = tmpStr.verifyFailed
+    let tmpStr: TmpStr = JSON.parse(data.param)
+    let isShow = tmpStr.verifyFailed
     console.log("replyResult executed, dialog closed" + isShow)
   });
   } catch (err) {
-    console.error("replyResult errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("replyResult errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -698,18 +785,21 @@ Unsubscribes from the UI operation reply result.
 
 **Parameters**
 
-  | Name     | Type                             | Mandatory| Description                           |
-  | -------- | ------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                | Yes  | Event type to unsubscribe from. The value **replyResult** indicates the reply result of the UI operation.|
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback for the UI status.|
+| Name     | Type                             | Mandatory| Description                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| type     | string                                | Yes  | Event type to unsubscribe from. The value **replyResult** indicates the reply result of the UI operation.|
+| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback for the UI status.|
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     dmInstance.off('replyResult');
   } catch (err) {
-    console.error("replyResult errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("replyResult errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -725,20 +815,34 @@ Subscribes to changes in the device state.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                            |
-  | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.|
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the device information and state.     |
+| Name      | Type                                    | Mandatory  | Description                            |
+| -------- | ---------------------------------------- | ---- | ------------------------------ |
+| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.|
+| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the device information and state.     |
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    action: deviceManager.DeviceStateChange = 0
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
+  }
+
   try {
-    dmInstance.on('deviceStateChange', (data) => {
+    dmInstance.on('deviceStateChange', (data: Data) => {
       console.info("deviceStateChange on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceStateChange errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("deviceStateChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -754,20 +858,34 @@ Unsubscribes from changes in the device state.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                         |
-  | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.       |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | No   | Callback for the device information and state.|
+| Name      | Type                                    | Mandatory  | Description                         |
+| -------- | ---------------------------------------- | ---- | --------------------------- |
+| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.       |
+| callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | No   | Callback for the device information and state.|
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    action: deviceManager.DeviceStateChange = 0
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
+  }
+
   try {
-    dmInstance.off('deviceStatusChange', (data) => {
+    dmInstance.off('deviceStatusChange', (data: Data) => {
       console.info('deviceStatusChange' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceStatusChange errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("deviceStatusChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -783,20 +901,33 @@ Subscribes to device discovery events.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                        |
-  | -------- | ---------------------------------------- | ---- | -------------------------- |
-  | type     | string                                   | Yes   | Event type. The value **'discoverSuccess'** indicates an event of successful device discovery.|
-  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | Yes   | Callback invoked to return a device discovery event.              |
+| Name      | Type                                    | Mandatory  | Description                        |
+| -------- | ---------------------------------------- | ---- | -------------------------- |
+| type     | string                                   | Yes   | Event type. The value **'discoverSuccess'** indicates an event of successful device discovery.|
+| callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | Yes   | Callback invoked to return a device discovery event.              |
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
+  }
+  
   try {
-    dmInstance.on('discoverSuccess', (data) => {
+    dmInstance.on('discoverSuccess', (data: Data) => {
       console.info("discoverSuccess:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverSuccess errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("discoverSuccess errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -812,20 +943,33 @@ Unsubscribes from device discovery events.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                         |
-  | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | Yes   | Event type. The value **'discoverSuccess'** indicates a device discovery event.                |
-  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | No   | Callback for the device discovery event.|
+| Name      | Type                                    | Mandatory  | Description                         |
+| -------- | ---------------------------------------- | ---- | --------------------------- |
+| type     | string                                   | Yes   | Event type. The value **'discoverSuccess'** indicates a device discovery event.                |
+| callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | No   | Callback for the device discovery event.|
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
+  }
+
   try {
-    dmInstance.off('discoverSuccess', (data) => {
+    dmInstance.off('discoverSuccess', (data: Data) => {
       console.info('discoverSuccess' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverSuccess errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("discoverSuccess errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -841,20 +985,27 @@ Subscribes to device name changes.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                            |
-  | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type. The value **'deviceNameChange'** indicates a device name change event.|
-  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | Yes   | Callback invoked to return the device name change.                |
+| Name      | Type                                    | Mandatory  | Description                            |
+| -------- | ---------------------------------------- | ---- | ------------------------------ |
+| type     | string                                   | Yes   | Event type. The value **'deviceNameChange'** indicates a device name change event.|
+| callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | Yes   | Callback invoked to return the device name change.                |
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    deviceName: string = ""
+  }
+
   try {
-    dmInstance.on('deviceNameChange', (data) => {
+    dmInstance.on('deviceNameChange', (data: Data) => {
         console.info("deviceNameChange on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceNameChange errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("deviceNameChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -870,20 +1021,27 @@ Unsubscribes from device name changes.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                            |
-  | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type. The value **'deviceNameChange'** indicates a device name change event.|
-  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | No   | Callback for the device name change.                |
+| Name      | Type                                    | Mandatory  | Description                            |
+| -------- | ---------------------------------------- | ---- | ------------------------------ |
+| type     | string                                   | Yes   | Event type. The value **'deviceNameChange'** indicates a device name change event.|
+| callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | No   | Callback for the device name change.                |
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    deviceName: string = ""
+  }
+
   try {
-    dmInstance.off('deviceNameChange', (data) => {
+    dmInstance.off('deviceNameChange', (data: Data) => {
       console.info('deviceNameChange' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceNameChange errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("deviceNameChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -899,20 +1057,27 @@ Subscribes to device discovery failures.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                            |
-  | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type. The value **'discoverFailure'** indicates an event reported when device discovery fails.|
-  | callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked to return a device discovery failure.                |
+| Name      | Type                                    | Mandatory  | Description                            |
+| -------- | ---------------------------------------- | ---- | ------------------------------ |
+| type     | string                                   | Yes   | Event type. The value **'discoverFailure'** indicates an event reported when device discovery fails.|
+| callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked to return a device discovery failure.                |
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    reason: number = 0
+  }
+
   try {
-    dmInstance.on('discoverFailure', (data) => {
+    dmInstance.on('discoverFailure', (data: Data) => {
         console.info("discoverFailure on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverFailure errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("discoverFailure errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -928,20 +1093,27 @@ Unsubscribes from device discovery failures.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description               |
-  | -------- | ---------------------------------------- | ---- | ----------------- |
-  | type     | string                                   | Yes   | Event type. The value **'discoverFailure'** indicates an event reported when device discovery fails.    |
-  | callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback for the device discovery failure.|
+| Name      | Type                                    | Mandatory  | Description               |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| type     | string                                   | Yes   | Event type. The value **'discoverFailure'** indicates an event reported when device discovery fails.    |
+| callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback for the device discovery failure.|
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    reason: number = 0
+  }
+
   try {
-    dmInstance.off('discoverFailure', (data) => {
+    dmInstance.off('discoverFailure', (data: Data) => {
       console.info('discoverFailure' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverFailure errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("discoverFailure errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -957,20 +1129,23 @@ Subscribes to dead events of the **DeviceManager** service.
 
 **Parameters**
 
-  | Name      | Type                   | Mandatory  | Description                                      |
-  | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-  | callback | Callback&lt;{}&gt; | No   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
+| Name      | Type                   | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
+| callback | Callback&lt;{}&gt; | No   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     dmInstance.on("serviceDie", () => {
       console.info("serviceDie on");
     });
   } catch (err) {
-    console.error("serviceDie errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("serviceDie errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -986,20 +1161,22 @@ Unsubscribes from dead events of the **DeviceManager** service.
 
 **Parameters**
 
-  | Name      | Type                   | Mandatory  | Description                                      |
-  | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-  | callback | Callback&lt;{}&gt; | No   | Callback for the dead event of the **DeviceManager** service.                    |
+| Name      | Type                   | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
+| callback | Callback&lt;{}&gt; | No   | Callback for the dead event of the **DeviceManager** service.                    |
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     dmInstance.off("serviceDie", () => {
       console.info("serviceDie off");
     });
   } catch (err) {
-    console.error("serviceDie errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("serviceDie errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
-  

@@ -15,7 +15,9 @@
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**方法1：** ListItem(value?: ListItemOptions)<sup>10+</sup>
+### ListItem<sup>10+</sup>
+
+ListItem(value?: ListItemOptions)
 
 **参数：**
 
@@ -23,15 +25,17 @@
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ListItemOptions](#listitemoptions10对象说明) | 否   | 为ListItem提供可选参数, 该对象内含有ListItemStyle枚举类型的style参数。 |
 
-**方法2：** ListItem(value?: string)<sup>(deprecated)</sup>
+### ListItem<sup>(deprecated)</sup>
 
-从API version 10开始, 该接口不再维护，推荐使用方法1。
+ListItem(value?: string)
+
+从API version 10开始, 该接口不再维护，推荐使用[ListItem<sup>10+</sup>](#listitem10)。
 
 **参数：**
 
 | 参数名 | 参数类型                      | 必填 | 参数描述 |
 | ------ | ----------------------------- | ---- | -------- |
-| value  | string<sup>(deprecated)</sup> | 否   | 无       |
+| value  | string | 否   | 无       |
 
 ## 属性
 
@@ -111,13 +115,17 @@ struct ListItemExample {
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
           }
-        }, item => item)
+        }, (item: string) => item)
       }.width('90%')
       .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
@@ -150,7 +158,7 @@ struct ListItemExample2 {
   build() {
     Column() {
       List({ space: 10 }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item: number) => {
           ListItem() {
             Text("item" + item)
               .width('100%')
@@ -163,14 +171,14 @@ struct ListItemExample2 {
           .transition({ type: TransitionType.Delete, opacity: 0 })
           .swipeAction({
             end: {
-              builder: this.itemEnd.bind(this, item),
+              builder: () => { this.itemEnd() },
               onAction: () => {
                 animateTo({ duration: 1000 }, () => {
                   let index = this.arr.indexOf(item)
                   this.arr.splice(index, 1)
                 })
               },
-              actionAreaDistance: 80,
+              actionAreaDistance: 56,
               onEnterActionArea: () => {
                 this.enterEndDeleteAreaString = "enterEndDeleteArea"
                 this.exitEndDeleteAreaString = "not exitEndDeleteArea"
@@ -181,7 +189,7 @@ struct ListItemExample2 {
               }
             }
           })
-        }, item => item)
+        }, (item: string) => item)
       }
       Text(this.enterEndDeleteAreaString).fontSize(20)
       Text(this.exitEndDeleteAreaString).fontSize(20)
@@ -202,35 +210,33 @@ struct ListItemExample2 {
 @Entry
 @Component
 struct ListItemExample3 {
- private arr: any = [ListItemStyle.CARD, ListItemStyle.CARD,ListItemStyle.NONE]
- build() {
-  Column() {
-   List({ space: "4vp", initialIndex: 0 }) {
-    ListItemGroup({style:ListItemGroupStyle.CARD}){
-     ForEach(this.arr, (itemStyle,index) => {
-      ListItem({style:itemStyle}) {
-       Text(""+index)
-        .width("100%")
-        .textAlign(TextAlign.Center)
+  build() {
+    Column() {
+      List({ space: "4vp", initialIndex: 0 }) {
+        ListItemGroup({ style: ListItemGroupStyle.CARD }) {
+          ForEach([ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE], (itemStyle: number, index?: number) => {
+            ListItem({ style: itemStyle }) {
+              Text("" + index)
+                .width("100%")
+                .textAlign(TextAlign.Center)
+            }
+          })
+        }
+        ForEach([ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE], (itemStyle: number, index?: number) => {
+          ListItem({ style: itemStyle }) {
+            Text("" + index)
+              .width("100%")
+              .textAlign(TextAlign.Center)
+          }
+        })
       }
-     })
+      .width('100%')
+      .multiSelectable(true)
+      .backgroundColor(0xDCDCDC) // 浅蓝色的List
     }
-    ForEach(this.arr, (itemStyle,index) => {
-     ListItem({style:itemStyle}) {
-      Text(""+index)
-       .width("100%")
-       .textAlign(TextAlign.Center)
-     }
-    })
-   }
-   .width('100%')
-   .multiSelectable(true)
-   .backgroundColor(0xDCDCDC) // 浅蓝色的List
+    .width('100%')
+    .padding({ top: 5 })
   }
-  .width('100%')
-  .padding({ top: 5 })
- }
 }
-
 ```
 ![ListItemStyle](figures/listItem3.jpeg)

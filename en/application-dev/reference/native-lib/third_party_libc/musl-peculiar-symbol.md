@@ -1,4 +1,4 @@
-# libc Symbols Not Exported
+# Native API Symbols Not Exported
 
 |Type|Symbol|Remarks|
 | --- | --- | --- |

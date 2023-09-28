@@ -3,7 +3,7 @@
 
 ## 如何查询设备类型
 
-设备类型分为default（默认设备）、tablet、tv、wearable等，有多种查询设备类型的方式。
+设备类型分为default（默认设备）、tablet、tv、wearable、2in1等，有多种查询设备类型的方式。
 
 1. 通过命令行的方式查询设备类型。
    通过命令行查询指定系统参数（const.product.devicetype）进而确定设备类型，详见[系统参数介绍](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
@@ -17,36 +17,9 @@
    ```
 
 2. 在应用开发过程中查询设备类型。
-   - 通过js接口查询指定系统参数（const.product.devicetype）进而确定设备类型，详见[系统属性](../../reference/apis/js-apis-system-parameter.md)。
-     
-      ```typescript
-      import parameter from '@ohos.systemparameter'
-      
-      @Entry
-      @Component
-      struct GetDeviceTypeSample {
-        @State deviceType: string = 'unknown'
-      
-        aboutToAppear() {
-          try {
-            this.deviceType = parameter.getSync("const.product.devicetype")
-          } catch(e) {
-            console.log("getSync unexpected error: " + e)
-          }
-        }
-      
-        build() {
-          Column() {
-            Text(this.deviceType).fontSize(24)
-          }
-          .width('100%')
-          .height('100%')
-        }
-      }
-      ```
    - 通过deviceInfo查询设备类型，deviceInfo中各个字段的含义请参考[设备信息](../../reference/apis/js-apis-device-info.md)。
      
-      ```typescript
+      ```ts
        import deviceInfo from'@ohos.deviceInfo'
       
        @Entry
@@ -92,10 +65,11 @@ launchType字段配置为specified时，系统会根据AbilityStage的onAcceptWa
 - 平板设备，将设备类型与毫秒级时间戳叠加作为key，保证每次启动的key不同，即以多实例模式运行。
 
   
-```typescript
+```ts
 // MyAbilityStage.ts
 import AbilityStage from "@ohos.app.ability.AbilityStage"
 import deviceInfo from'@ohos.deviceInfo'
+import Want from '@ohos.app.ability.Want'
 
 export default class MyAbilityStage extends AbilityStage {
     ...
@@ -107,7 +81,7 @@ export default class MyAbilityStage extends AbilityStage {
         // 如果不是平板，直接以设备类型作为key，每次启动的key相同
         return deviceInfo.deviceType
     }
-    onAcceptWant(want) {
+    onAcceptWant(want: Want) : string{
         return this.generateKey()
     }
 }
@@ -161,7 +135,7 @@ hdc shell reboot
 如下所示，通过配置文件分别限制自由窗口的最大和最小尺寸。
 
 
-```
+```json5
 {
   "module": {
     ...
@@ -190,7 +164,7 @@ hdc shell reboot
 
 ![](figures/onAreaChange.gif)
 
-```
+```ts
 @Entry
 @Component
 struct OnAreaChangeSample {

@@ -40,31 +40,31 @@ The major APIs for notification subscription are described as follows. For detai
    
    ```ts
    import notificationSubscribe from '@ohos.notificationSubscribe';
+   import Base from '@ohos.base';
    ```
 
 3. Create a **subscriber** object.
    
    ```ts
-   let subscriber = {
-     onConsume: function (data) {
+   let subscriber:notificationSubscribe.NotificationSubscriber = {
+     onConsume: (data:notificationSubscribe.SubscribeCallbackData) => {
        let req = data.request;
        console.info(`onConsume callback. req.id: ${req.id}`);
      },
-     onCancel: function (data) {
+     onCancel: (data:notificationSubscribe.SubscribeCallbackData) => {
        let req = data.request;
        console.info(`onCancel callback. req.id: ${req.id}`);
      },
-     onUpdate: function (data) {
-       let req = data.request;
-       console.info(`onUpdate callback. req.id: ${req.id}`);
+     onUpdate: (data) => {
+       console.info(`onUpdate callback. req.id: ${data.sortedHashCode}`);
      },
-     onConnect: function () {
+     onConnect: () => {
        console.info(`onConnect callback.}`);
      },
-     onDisconnect: function () {
+     onDisconnect: () => {
        console.info(`onDisconnect callback.}`);
      },
-     onDestroy: function () {
+     onDestroy: () => {
        console.info(`onDestroy callback.}`);
      },
    };
@@ -73,11 +73,10 @@ The major APIs for notification subscription are described as follows. For detai
 4. Initiate notification subscription.
    
    ```ts
-   notificationSubscribe.subscribe(subscriber, (err, data) => { // This API uses an asynchronous callback to return the result.
+   notificationSubscribe.subscribe(subscriber, (err:Base.BusinessError) => { // This API uses an asynchronous callback to return the result.
      if (err) {
        console.error(`Failed to subscribe notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`Succeeded in subscribing to notification. Data: ${data}`);
    });
    ```

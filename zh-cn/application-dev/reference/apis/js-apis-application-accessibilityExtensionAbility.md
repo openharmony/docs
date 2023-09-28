@@ -92,11 +92,13 @@ onConnect(): void;
 **示例：**
 
 ```ts
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
-    onConnect() {
+    onConnect(): void {
         console.log('AxExtensionAbility onConnect');
     }
-};
+}
 ```
 
 ## AccessibilityExtensionAbility.onDisconnect
@@ -110,11 +112,13 @@ onDisconnect(): void;
 **示例：**
 
 ```ts
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
-    onDisconnect() {
+    onDisconnect(): void {
         console.log('AxExtensionAbility onDisconnect');
     }
-};
+}
 ```
 
 ## AccessibilityExtensionAbility.onAccessibilityEvent
@@ -134,14 +138,16 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 **示例：**
 
 ```ts
+import AccessibilityExtensionAbility , { AccessibilityEvent } from '@ohos.application.AccessibilityExtensionAbility';
+
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
-    onAccessibilityEvent(event) {
+    onAccessibilityEvent(event: AccessibilityEvent): void {
         console.log('AxExtensionAbility onAccessibilityEvent');
         if (event.eventType === 'click') {
             console.log('AxExtensionAbility onAccessibilityEvent: click');
         }
     }
-};
+}
 ```
 
 ## AccessibilityExtensionAbility.onKeyEvent
@@ -161,14 +167,17 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 **示例：**
 
 ```ts
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import { KeyEvent } from '@ohos.multimodalInput.keyEvent';
+
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
-    onKeyEvent(keyEvent) {
+    onKeyEvent(keyEvent: KeyEvent): boolean {
         console.log('AxExtensionAbility onKeyEvent');
-        if (keyEvent.keyCode === 22) {
-            console.log('AxExtensionAbility onKeyEvent: intercept 22');
+        if (keyEvent.key.code === 16) {
+            console.log('AxExtensionAbility onKeyEvent: intercept 16');
             return true;
         }
         return false;
     }
-};
+}
 ```

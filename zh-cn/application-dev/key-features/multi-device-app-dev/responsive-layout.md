@@ -48,19 +48,20 @@
 
 通过窗口对象监听断点变化的核心是获取窗口对象及注册窗口尺寸变化的回调函数。
 
-1. 在Ability的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，通过[窗口](../../reference/apis/js-apis-window.md)对象获取启动时的应用窗口宽度并注册回调函数监听窗口尺寸变化。将窗口尺寸的长度单位[由px换算为vp](../../key-features/multi-device-app-dev/visual-basics.md#视觉基础)后，即可基于前文中介绍的规则得到当前断点值，此时可以使用[状态变量](../../quick-start/arkts-state.md)记录当前的断点值方便后续使用。
+1. 在UIAbility的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，通过[窗口](../../reference/apis/js-apis-window.md)对象获取启动时的应用窗口宽度并注册回调函数监听窗口尺寸变化。将窗口尺寸的长度单位[由px换算为vp](../../../design/ux-design/visual-basis.md#视觉基础)后，即可基于前文中介绍的规则得到当前断点值，此时可以使用[状态变量](../../quick-start/arkts-state.md)记录当前的断点值方便后续使用。
 
    ```ts
    // MainAbility.ts
    import window from '@ohos.window'
    import display from '@ohos.display'
+   import UIAbility from '@ohos.app.ability.UIAbility'
    
-   export default class MainAbility extends Ability {
-     private windowObj: window.Window
-     private curBp: string
-     ...
+   export default class MainAbility extends UIAbility {
+     private windowObj?: window.Window
+     private curBp: string = ''
+     //...
      // 根据当前窗口尺寸更新断点
-     private updateBreakpoint(windowWidth) {
+     private updateBreakpoint(windowWidth: number) :void{
        // 将长度的单位由px换算为vp
        let windowWidthVp = windowWidth / (display.getDefaultDisplaySync().densityDPI / 160)
        let newBp: string = ''
@@ -80,7 +81,7 @@
        }
      }
 
-     onWindowStageCreate(windowStage: window.WindowStage) {
+     onWindowStageCreate(windowStage: window.WindowStage) :void{
        windowStage.getMainWindow().then((windowObj) => {
          this.windowObj = windowObj
          // 获取应用启动时的窗口尺寸
@@ -90,16 +91,16 @@
            this.updateBreakpoint(windowSize.width)
          })
        });
-       ...
+      // ...
      }
        
      // 窗口销毁时，取消窗口尺寸变化监听
-     onWindowStageDestroy() {
+     onWindowStageDestroy() :void{
        if (this.windowObj) {
          this.windowObj.off('windowSizeChange')
        }
      }
-     ...
+     //...
    }
    ```
 
@@ -154,92 +155,96 @@
 1.对通过媒体查询监听断点的功能做简单的封装，方便后续使用
 ```ts
 // common/breakpointsystem.ets
-import mediaquery from '@ohos.mediaquery';
+import mediaQuery from '@ohos.mediaquery'
 
-export class BreakpointType<T> {
-  sm: T
-  md: T
-  lg: T
-  constructor(sm: T, md: T, lg: T) {
-    this.sm = sm
-    this.md = md
-    this.lg = lg
+declare interface BreakPointTypeOption<T> {
+  xs?: T
+  sm?: T
+  md?: T
+  lg?: T
+  xl?: T
+  xxl?: T
+}
+
+export class BreakPointType<T> {
+  options: BreakPointTypeOption<T>
+
+  constructor(option: BreakPointTypeOption<T>) {
+    this.options = option
   }
-  GetValue(currentBreakpoint: string) {
-    if (currentBreakpoint === 'sm') {
-      return this.sm
+
+  getValue(currentBreakPoint: string) {
+    if (currentBreakPoint === 'xs') {
+      return this.options.xs
+    } else if (currentBreakPoint === 'sm') {
+      return this.options.sm
+    } else if (currentBreakPoint === 'md') {
+      return this.options.md
+    } else if (currentBreakPoint === 'lg') {
+      return this.options.lg
+    } else if (currentBreakPoint === 'xl') {
+      return this.options.xl
+    } else if (currentBreakPoint === 'xxl') {
+      return this.options.xxl
+    } else {
+      return undefined
     }
-    if (currentBreakpoint === 'md') {
-      return this.md
-    }
-    if (currentBreakpoint === 'lg') {
-      return this.lg
-    }
-    return undefined
   }
+}
+
+interface Breakpoint {
+  name: string
+  size: number
+  mediaQueryListener?: mediaQuery.MediaQueryListener
 }
 
 export class BreakpointSystem {
   private currentBreakpoint: string = 'md'
-  private smListener: mediaquery.MediaQueryListener
-  private mdListener: mediaquery.MediaQueryListener
-  private lgListener: mediaquery.MediaQueryListener
+  private breakpoints: Breakpoint[] = [
+    { name: 'xs', size: 0 }, { name: 'sm', size: 320 },
+    { name: 'md', size: 600 }, { name: 'lg', size: 840 }
+  ]
 
   private updateCurrentBreakpoint(breakpoint: string) {
     if (this.currentBreakpoint !== breakpoint) {
       this.currentBreakpoint = breakpoint
       AppStorage.Set<string>('currentBreakpoint', this.currentBreakpoint)
-    }
-  }
-  private isBreakpointSM = (mediaQueryResult) => {
-    if (mediaQueryResult.matches) {
-      this.updateCurrentBreakpoint('sm')
-    }
-  }
-  private isBreakpointMD = (mediaQueryResult) => {
-    if (mediaQueryResult.matches) {
-      this.updateCurrentBreakpoint('md')
-    }
-  }
-  private isBreakpointLG = (mediaQueryResult) => {
-    if (mediaQueryResult.matches) {
-      this.updateCurrentBreakpoint('lg')
+      console.log('on current breakpoint: ' + this.currentBreakpoint)
     }
   }
 
   public register() {
-    this.smListener = mediaquery.matchMediaSync("(320vp<width<600vp)")
-    //初始化
-    if (this.smListener.matches){
-      this.updateCurrentBreakpoint('sm')
-    }
-    this.smListener.on("change", this.isBreakpointSM)
-    this.mdListener = mediaquery.matchMediaSync("(600vp<width<840vp)")
-   //初始化
-    if (this.mdListener.matches){
-      this.updateCurrentBreakpoint('md')
-    }
-    this.mdListener.on("change", this.isBreakpointMD)
-    this.lgListener = mediaquery.matchMediaSync("(840vp<width)")
-   //初始化
-    if (this.lgListener.matches){
-      this.updateCurrentBreakpoint('lg')
-    }
-    this.lgListener.on("change", this.isBreakpointLG)
+    this.breakpoints.forEach((breakpoint: Breakpoint, index) => {
+      let condition:string
+      if (index === this.breakpoints.length - 1) {
+        condition = '(' + breakpoint.size + 'vp<=width' + ')'
+      } else {
+        condition = '(' + breakpoint.size + 'vp<=width<' + this.breakpoints[index + 1].size + 'vp)'
+      }
+      console.log(condition)
+      breakpoint.mediaQueryListener = mediaQuery.matchMediaSync(condition)
+      breakpoint.mediaQueryListener.on('change', (mediaQueryResult) => {
+        if (mediaQueryResult.matches) {
+          this.updateCurrentBreakpoint(breakpoint.name)
+        }
+      })
+    })
   }
 
   public unregister() {
-    this.smListener.off("change", this.isBreakpointSM)
-    this.mdListener.off("change", this.isBreakpointMD)
-    this.lgListener.off("change", this.isBreakpointLG)
+    this.breakpoints.forEach((breakpoint: Breakpoint) => {
+      if(breakpoint.mediaQueryListener){
+        breakpoint.mediaQueryListener.off('change')
+      }
+    })
   }
 }
 
 ```
 2.在页面中，通过媒体查询，监听应用窗口宽度变化，获取当前应用所处的断点值
-```
+```ts
 // MediaQuerySample.ets
-import { BreakpointSystem, BreakpointType } from '../common/breakpointsystem'
+import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
 @Entry
 @Component
@@ -257,7 +262,7 @@ struct MediaQuerySample {
   }
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Image(new BreakpointType($r('app.media.sm'), $r('app.media.md'), $r('app.media.lg')).GetValue(this.currentBreakpoint))
+      Image(new BreakPointType({sm:$r('app.media.sm'), md:$r('app.media.md'), lg:$r('app.media.lg')}).getValue(this.currentBreakpoint)!)
         .height(100)
         .width(100)
         .objectFit(ImageFit.Contain)
@@ -441,7 +446,7 @@ struct GridRowSample3 {
     // 配置不同断点下columns和gutter的取值
     GridRow({columns: {sm: 4, md: 8, lg: 12},
       gutter: {x: {sm: 8, md: 16, lg: 24}, y: {sm: 8, md: 16, lg: 24}}}) {
-      ForEach(this.bgColors, (bgColor)=>{
+      ForEach(this.bgColors, (bgColor:ResourceColor)=>{
         GridCol({span: {sm: 2, md: 2, lg: 2}}) {
           Row().backgroundColor(bgColor).height(30).width('100%')
         }
@@ -538,21 +543,25 @@ struct GridRowSample4 {
 
 
 ```ts
+class Obj {
+  public index: number = 1;
+  public color: Resource = $r('sys.color.ohos_id_color_palette_aux1')
+}
 @Entry
 @Component
 struct GridRowSample5 {
-  private elements: Object[] = [
-    {'index': 1, 'color': $r('sys.color.ohos_id_color_palette_aux1')},
-    {'index': 2, 'color': $r('sys.color.ohos_id_color_palette_aux2')},
-    {'index': 3, 'color': $r('sys.color.ohos_id_color_palette_aux3')},
-    {'index': 4, 'color': $r('sys.color.ohos_id_color_palette_aux4')},
-    {'index': 5, 'color': $r('sys.color.ohos_id_color_palette_aux5')},
-    {'index': 6, 'color': $r('sys.color.ohos_id_color_palette_aux6')},
+  private elements: Obj[] = [
+    {index: 1, color: $r('sys.color.ohos_id_color_palette_aux1')},
+    {index: 2, color: $r('sys.color.ohos_id_color_palette_aux2')},
+    {index: 3, color: $r('sys.color.ohos_id_color_palette_aux3')},
+    {index: 4, color: $r('sys.color.ohos_id_color_palette_aux4')},
+    {index: 5, color: $r('sys.color.ohos_id_color_palette_aux5')},
+    {index: 6, color: $r('sys.color.ohos_id_color_palette_aux6')},
   ]
 
   build() {
     GridRow() {
-      ForEach(this.elements, (item)=>{
+      ForEach(this.elements, (item:Obj)=>{
         GridCol({span: {sm: 6, md: (item.index % 3 === 0) ? 0 : 4, lg: 3}}) {
           Row() {
             Text('' + item.index).fontSize(24)
@@ -580,21 +589,25 @@ struct GridRowSample5 {
 
 
 ```ts
+class Obj {
+  public index: number = 1;
+  public color: Resource = $r('sys.color.ohos_id_color_palette_aux1')
+}
 @Entry
 @Component
 struct GridRowSample6 {
-  private elements: Object[] = [
-    {'index': 1, 'color': $r('sys.color.ohos_id_color_palette_aux1')},
-    {'index': 2, 'color': $r('sys.color.ohos_id_color_palette_aux2')},
-    {'index': 3, 'color': $r('sys.color.ohos_id_color_palette_aux3')},
-    {'index': 4, 'color': $r('sys.color.ohos_id_color_palette_aux4')},
-    {'index': 5, 'color': $r('sys.color.ohos_id_color_palette_aux5')},
-    {'index': 6, 'color': $r('sys.color.ohos_id_color_palette_aux6')},
+  private elements: Obj[] = [
+    {index: 1, color: $r('sys.color.ohos_id_color_palette_aux1')},
+    {index: 2, color: $r('sys.color.ohos_id_color_palette_aux2')},
+    {index: 3, color: $r('sys.color.ohos_id_color_palette_aux3')},
+    {index: 4, color: $r('sys.color.ohos_id_color_palette_aux4')},
+    {index: 5, color: $r('sys.color.ohos_id_color_palette_aux5')},
+    {index: 6, color: $r('sys.color.ohos_id_color_palette_aux6')},
   ]
 
   build() {
     GridRow() {
-      ForEach(this.elements, (item)=>{
+      ForEach(this.elements, (item:Obj)=>{
         GridCol({span: {sm: 6, md: 4, lg: 3}, offset: {sm: 0, md: 2, lg: 1} }) {
           Row() {
             Text('' + item.index).fontSize(24)
@@ -622,21 +635,25 @@ struct GridRowSample6 {
 
 
 ```ts
+class Obj {
+  public index: number = 1;
+  public color: Resource = $r('sys.color.ohos_id_color_palette_aux1')
+}
 @Entry
 @Component
 struct GridRowSample7 {
-  private elements: Object[] = [
-    {'index': 1, 'color': $r('sys.color.ohos_id_color_palette_aux1')},
-    {'index': 2, 'color': $r('sys.color.ohos_id_color_palette_aux2')},
-    {'index': 3, 'color': $r('sys.color.ohos_id_color_palette_aux3')},
-    {'index': 4, 'color': $r('sys.color.ohos_id_color_palette_aux4')},
-    {'index': 5, 'color': $r('sys.color.ohos_id_color_palette_aux5')},
-    {'index': 6, 'color': $r('sys.color.ohos_id_color_palette_aux6')},
+  private elements: Obj[] = [
+    {index: 1, color: $r('sys.color.ohos_id_color_palette_aux1')},
+    {index: 2, color: $r('sys.color.ohos_id_color_palette_aux2')},
+    {index: 3, color: $r('sys.color.ohos_id_color_palette_aux3')},
+    {index: 4, color: $r('sys.color.ohos_id_color_palette_aux4')},
+    {index: 5, color: $r('sys.color.ohos_id_color_palette_aux5')},
+    {index: 6, color: $r('sys.color.ohos_id_color_palette_aux6')},
   ]
 
   build() {
     GridRow() {
-      ForEach(this.elements, (item)=>{
+      ForEach(this.elements, (item:Obj)=>{
         GridCol({span: {sm: 6, md: 4, lg: 3}, order: {lg: (6-item.index)}}) {
           Row() {
             Text('' + item.index).fontSize(24)
@@ -664,21 +681,24 @@ struct GridRowSample7 {
 
 
 ```ts
+class Obj {
+  public index: number = 1;
+  public color: Resource = $r('sys.color.ohos_id_color_palette_aux1')
+}
 @Entry
 @Component
 struct GridRowSample8 {
-  private elements: Object[] = [
-    {'index': 1, 'color': $r('sys.color.ohos_id_color_palette_aux1')},
-    {'index': 2, 'color': $r('sys.color.ohos_id_color_palette_aux2')},
-    {'index': 3, 'color': $r('sys.color.ohos_id_color_palette_aux3')},
-    {'index': 4, 'color': $r('sys.color.ohos_id_color_palette_aux4')},
-    {'index': 5, 'color': $r('sys.color.ohos_id_color_palette_aux5')},
-    {'index': 6, 'color': $r('sys.color.ohos_id_color_palette_aux6')},
+  private elements: Obj[] = [
+    {index: 1, color: $r('sys.color.ohos_id_color_palette_aux1')},
+    {index: 2, color: $r('sys.color.ohos_id_color_palette_aux2')},
+    {index: 3, color: $r('sys.color.ohos_id_color_palette_aux3')},
+    {index: 4, color: $r('sys.color.ohos_id_color_palette_aux4')},
+    {index: 5, color: $r('sys.color.ohos_id_color_palette_aux5')},
+    {index: 6, color: $r('sys.color.ohos_id_color_palette_aux6')},
   ]
-
   build() {
     GridRow() {
-      ForEach(this.elements, (item)=>{
+      ForEach(this.elements, (item:Obj)=>{
         // 不配置md断点下三个参数的值，则其取值与sm断点相同
         GridCol({span: {sm:4, lg: 3}, offset: {sm: 2, lg: 1},
           order: {sm: (6-item.index), lg: item.index}}) {
@@ -707,23 +727,26 @@ struct GridRowSample8 {
 
 
 ```ts
+class Obj {
+  public index: number = 1;
+  public color: Resource = $r('sys.color.ohos_id_color_palette_aux1')
+}
 @Entry
 @Component
 struct GridRowSample9 {
-  private elements: Object[] = [
-    {'index': 1, 'color': $r('sys.color.ohos_id_color_palette_aux1')},
-    {'index': 2, 'color': $r('sys.color.ohos_id_color_palette_aux2')},
-    {'index': 3, 'color': $r('sys.color.ohos_id_color_palette_aux3')},
-    {'index': 4, 'color': $r('sys.color.ohos_id_color_palette_aux4')},
-    {'index': 5, 'color': $r('sys.color.ohos_id_color_palette_aux5')},
-    {'index': 6, 'color': $r('sys.color.ohos_id_color_palette_aux6')},
+  private elements: Obj[] = [
+    {index: 1, color: $r('sys.color.ohos_id_color_palette_aux1')},
+    {index: 2, color: $r('sys.color.ohos_id_color_palette_aux2')},
+    {index: 3, color: $r('sys.color.ohos_id_color_palette_aux3')},
+    {index: 4, color: $r('sys.color.ohos_id_color_palette_aux4')},
+    {index: 5, color: $r('sys.color.ohos_id_color_palette_aux5')},
+    {index: 6, color: $r('sys.color.ohos_id_color_palette_aux6')},
   ]
-
   build() {
     GridRow() {
       GridCol({span: {sm: 12, md: 10, lg: 8}, offset: {sm: 0, md: 1, lg: 2}}) {
         GridRow() {
-          ForEach(this.elements, (item)=>{
+          ForEach(this.elements, (item:Obj)=>{
             GridCol({span: {sm: 6, md: 4, lg: 3}}) {
               Row() {
                 Text('' + item.index).fontSize(24)

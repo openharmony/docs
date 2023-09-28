@@ -368,7 +368,7 @@ let pres = process.getEnvironmentVar("PATH")
 ```
 
 
-## ProcessManager<sup>9+</sup>	
+## ProcessManager<sup>9+</sup>
 
 提供用于新增进程的抛异常接口。
 

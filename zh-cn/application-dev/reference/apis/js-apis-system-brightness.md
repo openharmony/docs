@@ -12,7 +12,7 @@
 
 
 ```js
-import brightness from '@system.brightness';
+import brightness, { BrightnessModeResponse, BrightnessResponse } from '@system.brightness';
 ```
 
 
@@ -34,11 +34,11 @@ getValue(options?: GetBrightnessOptions): void
 
   ```js
   brightness.getValue({
-      success: function(data) {
-          console.log('success get brightness value:' + data.value);
+      success: (data: BrightnessResponse) => {
+        console.log('success get brightness value:' + data.value);
       },
-      fail: function(data, code) {
-          console.error('get brightness fail, code: ' + code + ', data: ' + data);
+      fail: (data: string, code: number) => {
+        console.error('get brightness fail, code: ' + code + ', data: ' + data);
       }
   });
   ```
@@ -63,11 +63,11 @@ setValue(options?: SetBrightnessOptions): void
   ```js
   brightness.setValue({
       value: 100,
-      success: function() {
-          console.log('handling set brightness success.');
+      success: () => {
+        console.log('handling set brightness success.');
       },
-      fail: function(data, code) {
-          console.error('handling set brightness value fail, code:' + code + ', data: ' + data);
+      fail: (data: string, code: number) => {
+        console.error('handling set brightness value fail, code:' + code + ', data: ' + data);
       }
   });
   ```
@@ -91,11 +91,11 @@ getMode(options?: GetBrightnessModeOptions): void
 
   ```js
   brightness.getMode({
-      success: function(data) {
-          console.log('success get mode:' + data.mode);
+      success: (data: BrightnessModeResponse) => {
+        console.log('success get mode:' + data.mode);
       },
-      fail: function(data, code){
-          console.error('handling get mode fail, code:' + code + ', data: ' + data);
+      fail: (data: string, code: number) => {
+        console.error('handling get mode fail, code:' + code + ', data: ' + data);
       }
   });
   ```
@@ -119,11 +119,11 @@ setMode(options?: SetBrightnessModeOptions): void
   ```js
   brightness.setMode({
       mode: 1,
-      success: function() {
-          console.log('handling set mode success.');
+      success: () => {
+        console.log('handling set mode success.');
       },
-      fail: function(data, code) {
-          console.error('handling set mode fail, code:' + code + ', data: ' + data);
+      fail: (data: string, code: number) => {
+        console.error('handling set mode fail, code:' + code + ', data: ' + data);
       }
   });
   ```
@@ -150,11 +150,11 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
   ```js
   brightness.setKeepScreenOn({
       keepScreenOn: true,
-      success: function () {
-          console.log('handling set keep screen on success.');
+      success: () => {
+        console.log('handling set keep screen on success.');
       },
-      fail: function (data, code) {
-          console.error('handling set keep screen on fail, code:' + code + ', data: ' + data);
+      fail: (data: string, code: number) => {
+        console.error('handling set keep screen on fail, code:' + code + ', data: ' + data);
       }
   });
   ```

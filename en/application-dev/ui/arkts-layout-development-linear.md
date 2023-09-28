@@ -76,7 +76,7 @@ Row({ space: 35 }) {
 
 In the layout container, use the **alignItems** attribute to set the alignment mode of child elements along the cross axis. The alignment performance is consistent across screens of various sizes. The value is of the [VerticalAlign Type](../reference/arkui-ts/ts-appendix-enums.md#verticalalign) type when the cross axis is in the vertical direction and the [HorizontalAlign](../reference/arkui-ts/ts-appendix-enums.md#horizontalalign) type when the cross axis is in the horizontal direction.
 
-The layout container also provides the **alignSelf** attribute to control the alignment mode of a single child element along the main axis. This attribute has a higher priority than the **alignItems** attribute. This means that, if **alignSelf** is set, it will overwrite the **alignItems** setting on the corresponding child element.
+The layout container also provides the **alignSelf** attribute to control the alignment mode of a single child element along the cross axis. This attribute has a higher priority than the **alignItems** attribute. This means that, if **alignSelf** is set, it will overwrite the **alignItems** setting on the corresponding child element.
 
 
 ### Horizontal Alignment of Layout Child Elements in \<Column> Container
@@ -466,17 +466,17 @@ Adaptive scaling means that the size of a child component is automatically adjus
           Column() {
             Text('layoutWeight(1)')
               .textAlign(TextAlign.Center)
-          }.layoutWeight(2).backgroundColor(0xF5DEB3).height('100%')
+          }.layoutWeight(1).backgroundColor(0xF5DEB3).height('100%')
 
           Column() {
             Text('layoutWeight(2)')
               .textAlign(TextAlign.Center)
-          }.layoutWeight(4).backgroundColor(0xD2B48C).height('100%')
+          }.layoutWeight(2).backgroundColor(0xD2B48C).height('100%')
 
           Column() {
-            Text('layoutWeight(6)')
+            Text('layoutWeight(3)')
               .textAlign(TextAlign.Center)
-          }.layoutWeight(6).backgroundColor(0xF5DEB3).height('100%')
+          }.layoutWeight(3).backgroundColor(0xF5DEB3).height('100%')
 
         }.backgroundColor(0xffd306).height('30%')
 
@@ -567,8 +567,9 @@ Adaptive extension allows users to drag the scrollbar to display the page conten
     build() {
       Scroll(this.scroller) {
         Column() {
-          ForEach(this.arr, (item) => {
-            Text(item.toString())
+          ForEach(this.arr, (item?:number|undefined) => {
+            if(item){
+              Text(item.toString())
               .width('90%')
               .height(150)
               .backgroundColor(0xFFFFFF)
@@ -576,7 +577,8 @@ Adaptive extension allows users to drag the scrollbar to display the page conten
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .margin({ top: 10 })
-          }, item => item)
+            }
+          }, (item:number) => item.toString())
         }.width('100%')
       }
       .backgroundColor(0xDCDCDC)
@@ -604,8 +606,9 @@ Adaptive extension allows users to drag the scrollbar to display the page conten
     build() {
       Scroll(this.scroller) {
         Row() {
-          ForEach(this.arr, (item) => {
-            Text(item.toString())
+          ForEach(this.arr, (item?:number|undefined) => {
+            if(item){
+              Text(item.toString())
               .height('90%')
               .width(150)
               .backgroundColor(0xFFFFFF)
@@ -613,6 +616,7 @@ Adaptive extension allows users to drag the scrollbar to display the page conten
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .margin({ left: 10 })
+            }
           })
         }.height('100%')
       }

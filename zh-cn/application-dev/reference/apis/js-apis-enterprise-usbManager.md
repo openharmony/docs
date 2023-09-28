@@ -12,8 +12,8 @@
 
 ## 导入模块
 
-```js
-import usbManager from '@ohos.enterprise.usbManager'
+```ts
+import usbManager from '@ohos.enterprise.usbManager';
 ```
 
 ## usbManager.setUsbPolicy
@@ -47,12 +47,13 @@ setUsbPolicy(admin: Want, usbPolicy: UsbPolicy, callback: AsyncCallback\<void>):
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let policy = usbManager.UsbPolicy.READ_WRITE
+let policy: usbManager.UsbPolicy = usbManager.UsbPolicy.READ_WRITE
 
 usbManager.setUsbPolicy(wantTemp, policy, (err) => {
   if (err) {
@@ -99,16 +100,18 @@ setUsbPolicy(admin: Want, usbPolicy: UsbPolicy): Promise\<void>
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let policy = usbManager.UsbPolicy.READ_WRITE
+let policy: usbManager.UsbPolicy = usbManager.UsbPolicy.READ_WRITE
 
 usbManager.setUsbPolicy(wantTemp, policy).then(() => {
   console.info('Succeeded in setting usb policy');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
 })
 ```

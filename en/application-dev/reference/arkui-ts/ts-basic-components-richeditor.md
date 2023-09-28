@@ -27,6 +27,16 @@ RichEditor(value: RichEditorOptions)
 
 The [universal attributes](ts-universal-attributes-size.md) are supported.
 
+>  **NOTE**
+>
+> The default value of the **clip** attribute is **true**.
+> The **align** attribute supports only the start, center, and end options.
+
+| Name                     | Type                                                    | Description                                                        |
+| ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus.| 
+| bindSelectionMenu | {<br>spantype: [RichEditorSpanType](#richeditorspantype),<br>content: [CustomBuilder](ts-types.md#custombuilder8),<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8),<br>options?: [SelectionMenuOptions](#selectionmenuoptions)<br>} | Custom selection menu.<br> Default value: {<br>  spanType: RichEditorSpanType:TEXT<br>responseType: ResponseType.LongPress<br>Other: null<br>}<br>**NOTE**<br>Currently, the **spanType** parameter setting does not take effect, regardless of the value.|
+| copyOption | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>**NOTE**<br>If **copyOptions** is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, long pressing content in the component will display a shortcut menu, after which you can adjust the content selection scope and perform the desired operation, such as copy and select all.<br>If **copyOptions** is set to **CopyOptions.None**, copy and paste is not allowed. |
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
@@ -91,6 +101,16 @@ Provides the span position information.
 | spanIndex | number  | Yes| Span index.|
 | spanRange | [number, number]  | Yes| Start and end positions of the span content in the **\<RichEditor>** component.|
 
+## RichEditorSpanType
+
+Provides the span type information.
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| TEXT | number  | Yes| Text span.|
+| IMAGE | number  | Yes| Image span.|
+| MIXED | number  | Yes| Mixed span, which contains both text and imagery.|
+
 
 ## RichEditorTextStyleResult
 
@@ -114,7 +134,7 @@ Provides the image span style information returned by the backend.
 | ------ | -------- | ---- | -------------------------------------- |
 | size | [number, number] | Yes| Width and height of the image.|
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | Yes | Vertical alignment mode of the image.|
-| objectFit  | [ImageFit](ts-basic-components-imagespan.md#imagefit) | Yes| Scale mode of the image.|
+| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | Yes| Scale mode of the image.|
 
 
 ## RichEditorOptions
@@ -209,7 +229,7 @@ Adds an image span.
 
 updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions): void
 
-Updates the text or image span style.
+Updates the text or image span style. <br>If only part of a span is updated, the span is split into multiple spans based on the updated part and the unupdated part.
 
 **Parameters**
 
@@ -248,6 +268,11 @@ Deletes the text and image spans in a specified range.
 | ------ | -------- | ---- | -------------------------------------- |
 | value | [RichEditorRange](#richeditorrange) | No| Range of the target spans. If this parameter is omitted, all text and image spans will be deleted.|
 
+### closeSelectionMenu
+
+closeSelectionMenu(): void
+
+Closes the custom or default selection menu.
 
 ## RichEditorSelection
 
@@ -299,8 +324,8 @@ Provides the text style information.
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color.<br> Default value: **Color.Black**|
 | fontSize | [Length](ts-types.md#length) \| number   | No| Font size.<br>Default value: **16fp**|
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | No| Font style.<br>Default value: **FontStyle.Normal**|
-| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight.<br>Default value: **FontWeight.Normal**|
-| fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | No| Font family. Default value: **'HarmonyOS Sans'**.<br>Currently, only the default font is supported.<br>Default font: **'HarmonyOS Sans'**|
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
+| fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | No| Font family. The HarmonyOS Sans font and [register custom fonts](../apis/js-apis-font.md) are supported.<br>Default font: **'HarmonyOS Sans'**|
 | decoration  | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | No| Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>}|
 
 
@@ -332,8 +357,19 @@ Provides the span range information.
 | start | number   | No| Start position. If this parameter is omitted or set to a negative value, the value **0** will be used.|
 | end | number | No| End position of the image span whose style needs to be updated. If this parameter is omitted or set to a value beyond the text range, it indicates the very end.|
 
+## SelectionMenuOptions
+
+Provides the span range information.
+
+| Name| Type| Mandatory| Description                              |
+| ------ | -------- | ---- | -------------------------------------- |
+| onAppear | ?(() => void) | No| Callback invoked when the custom selection menu is displayed.|
+| onDisappear | ?(() => void) | No| Callback invoked when the custom selection menu is closed.|
+
 
 ## Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -381,11 +417,11 @@ struct Index {
             start: this.start,
             end: this.end
           }).forEach(item => {
-            if ("imageStyle" in item) {
-              this.content += item.valueResourceStr;
+            if(typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'){
+              this.content += (item as RichEditorImageSpanResult).valueResourceStr;
               this.content += "\n"
             } else {
-              this.content += item.value;
+              this.content += (item as RichEditorTextSpanResult).value;
               this.content += "\n"
             }
           })
@@ -433,7 +469,8 @@ struct Index {
               })
           })
           .onSelect((value: RichEditorSelection) => {
-            [this.start, this.end] = value.selection;
+            this.start = value.selection[0];
+            this.end = value.selection[1];
             this.message = "[" + this.start + ", " + this.end + "]"
           })
           .aboutToIMEInput((value: RichEditorInsertValue) => {
@@ -459,10 +496,10 @@ struct Index {
               console.log("spanIndex:" + item.spanPosition.spanIndex)
               console.log("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]")
               console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]")
-              if ("imageStyle" in item) {
-                console.log("image:" + item.valueResourceStr)
+              if (typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
+                console.log("image:" + (item as RichEditorImageSpanResult).valueResourceStr)
               } else {
-                console.log("text:" + item.value)
+                console.log("text:" + (item as RichEditorTextSpanResult).value)
               }
             })
             return true;
@@ -484,3 +521,409 @@ struct Index {
 }
 ```
 ![richeditor](figures/richeditor.gif)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RichEditorExample {
+  controller: RichEditorController = new RichEditorController()
+
+  // Create a custom keyboard component.
+  @Builder CustomKeyboardBuilder() {
+    Column() {
+      Grid() {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
+          GridItem() {
+            Button(item + "")
+              .width(110).onClick(() => {
+              this.controller.addTextSpan(item + '', {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30
+                }
+              })
+            })
+          }
+        })
+      }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
+    }.backgroundColor(Color.Gray)
+  }
+
+  build() {
+    Column() {
+      RichEditor({ controller: this.controller })
+        // Bind the custom keyboard.
+        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
+        .height(200)
+    }
+  }
+}
+```
+
+![customKeyboard](figures/richEditorCustomKeyboard.png)
+
+### Example 3
+
+```ts
+// xxx.ets
+import pasteboard from '@ohos.pasteboard'
+import { BusinessError } from '@ohos.base';
+class info{
+  imageSrc: Resource=$r('sys.media.ohos_ic_public_cut')
+  id: string=''
+  label: string=''
+}
+@Entry
+@Component
+struct SelectionMenu {
+  @State message: string = 'Hello World'
+  @State textSize: number = 40
+  @State sliderShow: boolean = false
+  @State start: number = -1
+  @State end: number = -1
+  @State colorTransparent: Color = Color.Transparent
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller }
+  private iconArr: Array<Resource> =
+    [$r('app.media.icon'), $r("app.media.icon"), $r('app.media.icon'),
+    $r("app.media.icon"), $r('app.media.icon')]
+  private listArr: Array<Object> =
+    [{ imageSrc: $r('sys.media.ohos_ic_public_cut'), id: 'Cut', label: "Ctrl+X" } as info,
+      { imageSrc: $r('sys.media.ohos_ic_public_copy'), id: 'Copy', label: "Ctrl+C" } as info,
+      { imageSrc: $r('sys.media.ohos_ic_public_paste'), id: 'Paste', label: "Ctrl+V" } as info,
+      { imageSrc: $r('sys.media.ohos_ic_public_select_all'), id: 'Select all', label: "Ctrl+A" } as info,
+      { imageSrc: $r('sys.media.ohos_ic_public_share'), id: 'Share', label: "" } as info,
+      { imageSrc: $r('sys.media.ohos_ic_public_translate_c2e'), id: 'Translate', label: "" } as info,
+      { imageSrc: $r('sys.media.ohos_ic_public_search_filled'), id: 'Search', label: "" } as info]
+  @State iconBgColor: ResourceColor[] = new Array(this.iconArr.length).fill(this.colorTransparent)
+  @State listBgColor: ResourceColor[] = new Array(this.listArr.length).fill(this.colorTransparent)
+  @State iconIsFocus: boolean[] = new Array(this.iconArr.length).fill(false)
+  @State listIsFocus: boolean[] = new Array(this.iconArr.length).fill(false)
+  @State clickWeightNum: number = 0
+  @State clickNum: number[] = [0, 0, 0]
+
+  build() {
+    Column() {
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan(this.message, { style: { fontColor: Color.Orange, fontSize: 30 } })
+          })
+          .onSelect((value: RichEditorSelection) => {
+            this.start = value.selection[0]
+            this.end = value.selection[1]
+          })
+          .bindSelectionMenu(RichEditorSpanType.TEXT, this.panel(), ResponseType.LongPress, { onDisappear: () => {
+            this.sliderShow = false
+          }})
+          .borderWidth(1)
+          .borderColor(Color.Red)
+          .width(200)
+          .height(200)
+          .position({ x: 150, y: 100 })
+      }.width('100').backgroundColor(Color.White)
+    }.height('100')
+  }
+
+  @Builder
+  panel() {
+    Column() {
+      Menu() {
+        MenuItem({ builder: this.iconPanel() })
+      }.shadow(ShadowStyle.OUTER_DEFAULT_MD).margin({ bottom: 8 }).height(56).width(256)
+
+      Menu() {
+        if (!this.sliderShow) {
+          MenuItem({ builder: this.listPanel() })
+        } else {
+          MenuItem({ builder: this.sliderPanel() })
+        }
+      }.width(256).shadow(ShadowStyle.OUTER_DEFAULT_MD)
+    }.width(256).backgroundColor(Color.Transparent)
+  }
+
+  @Builder iconPanel() {
+    Column() {
+      Row({ space: 2 }) {
+        ForEach(this.iconArr, (item:Resource, index ?: number) => {
+          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+            Image(item).fillColor($r('sys.color.ohos_id_color_primary')).width(24).height(24).focusable(true)
+          }
+          .border({ width: this.iconIsFocus[index as number] ? 2 : 0, color: $r('sys.color.ohos_id_color_focused_outline') })
+          .borderRadius($r('sys.float.ohos_id_corner_radius_default_m'))
+          .width(48)
+          .height(48)
+          .focusable(true)
+          .focusOnTouch(true)
+          .onClick(() => {
+            if (index as number == 0) {
+              this.clickNum[0]++
+              this.sliderShow = false
+              this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: {
+                fontWeight: this.clickNum[0] % 2 !== 0 ? FontWeight.Bolder : FontWeight.Normal
+              } })
+            } else if (index as number == 1) {
+              this.clickNum[1]++
+              this.sliderShow = false
+              this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: {
+                fontStyle: this.clickNum[1] % 2 !== 0 ? FontStyle.Italic : FontStyle.Normal
+              } })
+            } else if (index as number == 2) {
+              this.clickNum[2]++
+              this.sliderShow = false
+              this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: {
+                decoration: {
+                  type: this.clickNum[2] % 2 !== 0 ? TextDecorationType.Underline : TextDecorationType.None
+                } } })
+            } else if (index as number == 3) {
+              this.sliderShow = !this.sliderShow
+            } else if (index as number == 4) {
+              this.sliderShow = false
+            }
+          })
+          .onTouch((event?: TouchEvent | undefined) => {
+            if(event != undefined){
+              if (event.type === TouchType.Down) {
+                this.iconBgColor[index as number] = $r('sys.color.ohos_id_color_click_effect')
+              }
+              if (event.type === TouchType.Up) {
+                this.iconBgColor[index as number] = this.colorTransparent
+              }
+            }
+          })
+          .onHover((isHover?: boolean, event?: HoverEvent) => {
+            this.iconBgColor.forEach((icon:ResourceColor, index1) => {
+              this.iconBgColor[index1] = this.colorTransparent
+            })
+            if(isHover != undefined) {
+              this.iconBgColor[index as number] = $r('sys.color.ohos_id_color_hover')
+            }else{
+                this.listBgColor[index as number] = this.colorTransparent
+            }
+          })
+          .onFocus(() => {
+            this.iconIsFocus[index as number] = true
+          })
+          .onBlur(() => {
+            this.iconIsFocus[index as number] = false
+          })
+          .backgroundColor(this.iconBgColor[index as number])
+        })
+      }
+    }
+    .backgroundColor(this.colorTransparent)
+    .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+    .width(248)
+    .height(48)
+  }
+
+  @Builder listPanel() {
+    Column() {
+      List({ space: 0, initialIndex: 0 }) {
+        ForEach(this.listArr, (item:info, index:number | undefined) => {
+          ListItem() {
+            listChild({
+              item,
+              index,
+              listBgColor: $listBgColor,
+              colorTransparent: $colorTransparent
+            })
+              .onClick(() => {
+                let sysBoard = pasteboard.getSystemPasteboard()
+                this.controller.closeSelectionMenu()
+                let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, '')
+                this.controller.getSpans({ start: this.start, end: this.end })
+                  .forEach((item, i) => {
+                    if(typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'){
+                      let style = (item as RichEditorImageSpanResult).imageStyle
+                      if((item as RichEditorImageSpanResult).valuePixelMap != undefined) {
+                        let data = pasteboard.createRecord(pasteboard.MIMETYPE_PIXELMAP, ((item as RichEditorImageSpanResult).valuePixelMap as PixelMap));
+                        let prop = pasteData.getProperty()
+                        let temp:Record<string, Object> = { 'width': style.size[0], 'height': style.size[1], 'fit': style.objectFit }
+                        prop.additions[i] = temp;
+                        pasteData.addRecord(data)
+                        pasteData.setProperty(prop)
+                      }
+                    } else {
+                      let style = (item as RichEditorTextSpanResult).textStyle
+                      let data = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_PLAIN, (item as RichEditorTextSpanResult).value)
+                      let prop = pasteData.getProperty()
+                      let temp:Record<string, Object> = { 'color': style.fontColor, 'size': style.fontSize, 'style': style.fontStyle,
+                        'weight': style.fontWeight }
+                      prop.additions[i] = temp;
+                      pasteData.addRecord(data)
+                      pasteData.setProperty(prop)
+                    }
+                  })
+                if(index == undefined){ return }
+                switch (index) {
+                  case 0:
+                    this.controller.deleteSpans({ start: this.start, end: this.end })
+                  case 1:
+                    sysBoard.clearData()
+                    sysBoard.setData(pasteData).then(() => {
+                      console.info('Succeeded in setting PasteData.');
+                    }).catch((err: BusinessError) => {
+                      console.error('Failed to set PasteData. Cause: ' + err.message);
+                    })
+                    break
+                  case 2:
+                    sysBoard.getData((err, data) => {
+                      if (err) {
+                        return
+                      }
+                      let count = data.getRecordCount()
+                      for (let m = 0; m < count; m++) {
+                        const element = data.getRecord(m);
+                        let tex: RichEditorTextStyle = {
+                          fontSize: 30,
+                          fontColor: Color.Orange,
+                          fontWeight: FontWeight.Normal
+                        }
+                        let im: RichEditorImageSpanStyle = { objectFit: ImageFit.Contain, size: [50, 50] }
+                        if(im.size == undefined){ break }
+                        if (data.getProperty().additions[m]) {
+                          const tmp = data.getProperty().additions[m] as Record<string, Object | undefined>;
+                          if (tmp['width'] != undefined) {
+                            im.size[0] = tmp['width'] as Dimension;
+                          }
+                          if (tmp['height'] != undefined){
+                            im.size[1] = tmp['height'] as Dimension;
+                          }
+                          if (tmp['fit'] != undefined){
+                            im.objectFit = tmp['fit'] as ImageFit;
+                          }
+                          if (tmp['color'] != undefined){
+                            tex.fontColor = tmp['color'] as ResourceColor;
+                          }
+                          if (tmp['size'] != undefined){
+                            tex.fontSize = tmp['size'] as number;
+                          }
+                          if (tmp['style'] != undefined){
+                            tex.fontStyle = tmp['style'] as FontStyle;
+                          }
+                          if (tmp['weight'] != undefined){
+                            tex.fontWeight = tmp['weight'] as number;
+                          }
+                        }
+
+                        if (element.mimeType == pasteboard.MIMETYPE_TEXT_PLAIN) {
+                          this.controller.addTextSpan(element.plainText,
+                            {
+                              style: tex,
+                              offset: this.controller.getCaretOffset()
+                            })
+                        }
+                        if (element.mimeType == pasteboard.MIMETYPE_PIXELMAP) {
+                          this.controller.addImageSpan(element.pixelMap,
+                            {
+                              imageStyle: im,
+                              offset: this.controller.getCaretOffset()
+                            })
+                        }
+                      }
+                    })
+                    break
+                }
+              })
+          }
+          .height(48)
+          .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+          .focusable(true)
+          .focusOnTouch(true)
+          .border({ width: this.listIsFocus[index as number] ? 2 : 0, color: $r('sys.color.ohos_id_color_focused_outline') })
+          .onFocus(() => {
+            this.listIsFocus[index as number] = true
+          })
+          .onBlur(() => {
+            this.listIsFocus[index as number] = false
+          })
+        }, (item:number) => item.toString())
+      }
+    }
+    .focusable(true)
+    .width(248)
+    .backgroundColor(this.colorTransparent)
+    .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+  }
+
+  @Builder sliderPanel() {
+    Column() {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Text('A').fontSize(15)
+        Slider({ value: this.textSize, step: 10, style: SliderStyle.InSet })
+          .width(210)
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.textSize = value
+            this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: { fontSize: this.textSize }
+            })
+          })
+        Text('A').fontSize(20).fontWeight(FontWeight.Medium)
+      }.borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+    }
+    .backgroundColor(this.colorTransparent)
+    .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+    .padding(15)
+    .width(248)
+    .height(48)
+  }
+}
+
+@Component
+struct listChild {
+  item:info = new info()
+  index: number = 0
+  @Link listBgColor: (Resource | Color)[]
+  @Link colorTransparent: Resource
+
+  build() {
+    Column() {
+      Flex({
+        direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center
+      }) {
+        Row() {
+          Image(this.item.imageSrc)
+            .width(20)
+            .height(20)
+            .margin({ right: 8 })
+            .fillColor($r('sys.color.ohos_id_color_primary'))
+            .focusable(true)
+          Text('' + this.item.id)
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .focusable(true)
+            .fontColor($r('sys.color.ohos_id_color_primary'))
+            .fontSize($r('sys.float.ohos_id_text_size_body1'))
+        }
+
+        Row() {
+          Text('' + this.item.label)
+            .fontColor($r('sys.color.ohos_id_color_text_secondary')).fontSize($r('sys.float.ohos_id_text_size_body1'))
+        }
+      }
+      .onTouch((event?: TouchEvent) => {
+        if (event != undefined && event.type === TouchType.Down) {
+          this.listBgColor[this.index] = $r('sys.color.ohos_id_color_click_effect')
+        }
+        if (event != undefined && event.type === TouchType.Up) {
+          this.listBgColor[this.index] = this.colorTransparent
+        }
+      })
+      .onHover((isHover?: boolean) => {
+        this.listBgColor[this.index] = isHover ? $r('sys.color.ohos_id_color_hover') : this.colorTransparent
+      })
+      .backgroundColor(this.listBgColor[this.index])
+      .padding({ right: 12, left: 12 })
+      .height('48')
+      .focusable(true)
+      .borderRadius($r('sys.float.ohos_id_corner_radius_default_m'))
+    }
+  }
+}
+```
+
+![selectionMenu](figures/richEditorSelectionMenu.png)

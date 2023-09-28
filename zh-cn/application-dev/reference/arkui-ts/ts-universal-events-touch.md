@@ -22,7 +22,7 @@
 | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
 | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
 | stopPropagation      | () => void | 阻塞事件冒泡。 |
-| timestamp<sup>8+</sup> | number | 事件时间戳。触发事件时距离系统启动的时间间隔，单位毫秒。 |
+| timestamp<sup>8+</sup> | number | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 |
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。 |
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。 |
 | getHistoricalPoints<sup>10+</sup> | Array&lt;[HistoricalPoint](#historicalpoint10对象说明)&gt;| 获取当前帧所有的历史点（不同设备每帧的触摸事件频率不同，当前帧所有的触摸事件被称为历史点）。 |
@@ -64,36 +64,40 @@ struct TouchExample {
   build() {
     Column() {
       Button('Touch').height(40).width(100)
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
-            this.eventType = 'Down'
+        .onTouch((event?: TouchEvent) => {
+          if(event){
+            if (event.type === TouchType.Down) {
+              this.eventType = 'Down'
+            }
+            if (event.type === TouchType.Up) {
+              this.eventType = 'Up'
+            }
+            if (event.type === TouchType.Move) {
+              this.eventType = 'Move'
+            }
+            this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
+            + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
+            + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
+            + event.target.area.width + '\nheight:' + event.target.area.height
           }
-          if (event.type === TouchType.Up) {
-            this.eventType = 'Up'
-          }
-          if (event.type === TouchType.Move) {
-            this.eventType = 'Move'
-          }
-          this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
-          + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
-          + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-          + event.target.area.width + '\nheight:' + event.target.area.height
         })
       Button('Touch').height(50).width(200).margin(20)
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
-            this.eventType = 'Down'
+        .onTouch((event?: TouchEvent) => {
+          if(event){
+            if (event.type === TouchType.Down) {
+              this.eventType = 'Down'
+            }
+            if (event.type === TouchType.Up) {
+              this.eventType = 'Up'
+            }
+            if (event.type === TouchType.Move) {
+              this.eventType = 'Move'
+            }
+            this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
+            + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
+            + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
+            + event.target.area.width + '\nheight:' + event.target.area.height
           }
-          if (event.type === TouchType.Up) {
-            this.eventType = 'Up'
-          }
-          if (event.type === TouchType.Move) {
-            this.eventType = 'Move'
-          }
-          this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
-          + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
-          + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-          + event.target.area.width + '\nheight:' + event.target.area.height
         })
       Text(this.text)
     }.width('100%').padding(30)

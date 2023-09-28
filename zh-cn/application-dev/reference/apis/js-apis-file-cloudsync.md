@@ -9,8 +9,8 @@
 
 ## 导入模块
 
-```js
-import cloudSync from '@ohos.file.cloudSync'
+```ts
+import cloudSync from '@ohos.file.cloudSync';
 ```
 
 ## SyncState
@@ -79,7 +79,7 @@ constructor()
 
 **示例：**
 
-  ```js
+  ```ts
   let gallerySync = new cloudSync.GallerySync()
   ```
 
@@ -113,12 +113,54 @@ on(evt: 'progress', callback: (pg: SyncProgress) => void): void
 
 **示例：**
 
-  ```js
+  ```ts
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
     console.info("syncState：" + pg.state);
   });
+  ```
+
+### off
+
+off(evt: 'progress', callback: (pg: SyncProgress) => void): void
+
+移除同步过程事件监听。
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncprogress), 返回值为void|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**示例：**
+
+  ```ts
+  let gallerySync = new cloudSync.GallerySync();
+
+  let callback = (pg: cloudSync.SyncProgress) => {
+    console.info("gallery sync state：" + pg.state + "error type:" + pg.error);
+  }
+
+  gallerySync.on('progress', callback);
+
+  gallerySync.off('progress', callback);
   ```
 
 ### off
@@ -150,7 +192,7 @@ off(evt: 'progress'): void
 
 **示例：**
 
-  ```js
+  ```ts
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
@@ -191,16 +233,17 @@ start(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
 	  console.info("syncState：" + pg.state);
   });
 
-  gallerySync.start().then(function() {
+  gallerySync.start().then(() => {
 	  console.info("start sync successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
 	  console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -236,10 +279,11 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let gallerySync = new cloudSync.GallerySync();
 
-  gallerySync.start((err) => {
+  gallerySync.start((err: BusinessError) => {
     if (err) {
       console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -280,12 +324,13 @@ stop(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let gallerySync = new cloudSync.GallerySync();
 
-  gallerySync.stop().then(function() {
+  gallerySync.stop().then(() => {
 	  console.info("stop sync successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
 	  console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -322,10 +367,11 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let gallerySync = new cloudSync.GallerySync();
 
-  gallerySync.stop((err) => {
+  gallerySync.stop((err: BusinessError) => {
     if (err) {
       console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -374,7 +420,7 @@ constructor()
 
 **示例：**
 
-  ```js
+  ```ts
   let download = new cloudSync.Download()
   ```
 
@@ -408,12 +454,54 @@ on(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 
 **示例：**
 
-  ```js
+  ```ts
   let download = new cloudSync.Download();
 
   download.on('progress', (pg: cloudSync.DownloadProgress) => {
     console.info("download state：" + pg.state);
   });
+  ```
+
+### off
+
+off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
+
+移除云文件下载过程事件监听。
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
+| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](#downloadprogress), 返回值为void|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**示例：**
+
+  ```ts
+  let download = new cloudSync.Download();
+
+  let callback = (pg: cloudSync.DownloadProgress) => {
+    console.info("download state：" + pg.state + "error type:" + pg.error);
+  }
+
+  download.on('progress', callback);
+
+  download.off('progress', callback);
   ```
 
 ### off
@@ -445,7 +533,7 @@ off(evt: 'progress'): void
 
 **示例：**
 
-  ```js
+  ```ts
   let download = new cloudSync.Download();
 
   download.on('progress', (pg: cloudSync.DownloadProgress) => {
@@ -479,7 +567,8 @@ start(uri: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -487,9 +576,9 @@ start(uri: string): Promise&lt;void&gt;
 	  console.info("download state:" + pg.state);
   });
 
-  download.start(uri).then(function() {
+  download.start(uri).then(() => {
 	  console.info("start download successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
 	  console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -537,11 +626,12 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
-  download.start(uri, (err) => {
+  download.start(uri, (err: BusinessError) => {
     if (err) {
       console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -588,13 +678,14 @@ stop(uri: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
-  download.stop(uri).then(function() {
+  download.stop(uri).then(() => {
 	  console.info("stop download successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
 	  console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -632,11 +723,12 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
-  download.stop(uri, (err) => {
+  download.stop(uri, (err: BusinessError) => {
     if (err) {
       console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
     } else {

@@ -31,28 +31,34 @@
 3. 调用selectOutputDevice，将当前设备播放的所有音频投放到指定的远端设备播放。
 
 ```ts
-let outputAudioDeviceDescriptor = [{
-  deviceRole: audio.DeviceRole.OUTPUT_DEVICE,
-  deviceType: audio.DeviceType.SPEAKER,
-  id: 1,
-  name: "",
-  address: "",
-  sampleRates: [44100],
-  channelCounts: [2],
-  channelMasks: [0],
-  networkId: audio.LOCAL_NETWORK_ID,
-  interruptGroupId: 1,
-  volumeGroupId: 1,
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
+let audioManager = audio.getAudioManager();
+let audioRoutingManager = audioManager.getRoutingManager();
+let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+    deviceRole: audio.DeviceRole.OUTPUT_DEVICE,
+    deviceType: audio.DeviceType.SPEAKER,
+    id: 1,
+    name: "",
+    address: "",
+    sampleRates: [44100],
+    channelCounts: [2],
+    channelMasks: [0],
+    networkId: audio.LOCAL_NETWORK_ID,
+    interruptGroupId: 1,
+    volumeGroupId: 1,
+    displayName: ""
 }];
 
-async function selectOutputDevice() {
-  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
-    if (err) {
-      console.error(`Invoke selectOutputDevice failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-      console.info('Invoke selectOutputDevice succeeded.');
-    }
-  });
+async function selectOutputDevice(): Promise<void> {
+    audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err: BusinessError) => {
+        if (err) {
+            console.error(`Invoke selectOutputDevice failed, code is ${err.code}, message is ${err.message}`);
+        } else {
+            console.info('Invoke selectOutputDevice succeeded.');
+        }
+    });
 }
 ```
 
@@ -67,35 +73,40 @@ async function selectOutputDevice() {
 4. 调用selectOutputDeviceByFilter，将当前设备播放的指定音频流投放到指定的远端设备播放。
  
 ```ts
-let outputAudioRendererFilter = {
-  uid: 20010041,
-  rendererInfo: {
-    content: audio.ContentType.CONTENT_TYPE_MUSIC,
-    usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags: 0 },
-  rendererId: 0 };
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 
-let outputAudioDeviceDescriptor = [{
-  deviceRole: audio.DeviceRole.OUTPUT_DEVICE,
-  deviceType: audio.DeviceType.SPEAKER,
-  id: 1,
-  name: "",
-  address: "",
-  sampleRates: [44100],
-  channelCounts: [2],
-  channelMasks: [0],
-  networkId: audio.LOCAL_NETWORK_ID,
-  interruptGroupId: 1,
-  volumeGroupId: 1,
+let audioManager = audio.getAudioManager();
+let audioRoutingManager = audioManager.getRoutingManager();
+let outputAudioRendererFilter: audio.AudioRendererFilter  = {
+    uid: 20010041,
+    rendererInfo: {
+        content: audio.ContentType.CONTENT_TYPE_MUSIC,
+        usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+        rendererFlags: 0 } as audio.AudioRendererInfo,
+    rendererId: 0 };
+
+let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+    deviceRole: audio.DeviceRole.OUTPUT_DEVICE,
+    deviceType: audio.DeviceType.SPEAKER,
+    id: 1,
+    name: "",
+    address: "",
+    sampleRates: [44100],
+    channelCounts: [2],
+    channelMasks: [0],
+    networkId: audio.LOCAL_NETWORK_ID,
+    interruptGroupId: 1,
+    volumeGroupId: 1,
+    displayName: ""
 }];
-
-async function selectOutputDeviceByFilter() {
-  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
-    if (err) {
-      console.error(`Invoke selectOutputDeviceByFilter failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-      console.info('Invoke selectOutputDeviceByFilter succeeded.');
-    }
-  });
+async function selectOutputDeviceByFilter(): Promise<void> {
+    audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err: BusinessError) => {
+        if (err) {
+            console.error(`Invoke selectOutputDeviceByFilter failed, code is ${err.code}, message is ${err.message}`);
+        } else {
+            console.info('Invoke selectOutputDeviceByFilter succeeded.');
+        }
+    });
 }
 ```

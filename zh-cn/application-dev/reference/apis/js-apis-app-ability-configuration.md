@@ -31,10 +31,13 @@ import Configuration from '@ohos.app.ability.Configuration';
 
   ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let envCallback = {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        let envCallback: EnvironmentCallback = {
             onConfigurationUpdated(config) {
                 console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
                 let language = config.language;
@@ -50,7 +53,7 @@ export default class EntryAbility extends UIAbility {
             let callbackId = applicationContext.on('environment', envCallback);
             console.log('callbackId: ${callbackId}');
         } catch (paramError) {
-            console.error('error: ${paramError.code}, ${paramError.message}');
+            console.error(`error: ${paramError.code}, ${paramError.message}`);
         }
     }
 }

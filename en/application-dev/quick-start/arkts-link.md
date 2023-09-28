@@ -227,10 +227,10 @@ struct Parent {
     Column() {
       Child({ items: $arr })
       ForEach(this.arr,
-        item => {
+        (item: void) => {
           Text(`${item}`)
         },
-        item => item.toString()
+        (item: ForEachInterface) => item.toString()
       )
     }
   }

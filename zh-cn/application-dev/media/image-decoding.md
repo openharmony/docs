@@ -17,8 +17,8 @@
         
       ```ts
       // Stage模型参考如下代码
-      const context = getContext(this);
-      const filePath = context.cacheDir + '/test.jpg';
+      const context : Context = getContext(this);
+      const filePath : string = context.cacheDir + '/test.jpg';
       ```
 
       ```ts
@@ -41,8 +41,8 @@
       // Stage模型参考如下代码
       const context = getContext(this);
       const filePath = context.cacheDir + '/test.jpg';
-      const file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-      const fd = file?.fd;
+      const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
+      const fd : number = file?.fd;
       ```
 
       ```ts
@@ -51,16 +51,16 @@
       
       const context = featureAbility.getContext();
       const filePath = context.getCacheDir() + "/test.jpg";
-      const file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-      const fd = file?.fd;
+      const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
+      const fd : number = file?.fd;
       ```
    - 方法三：通过资源管理器获取资源文件的ArrayBuffer。具体请参考[ResourceManager API参考文档](../reference/apis/js-apis-resource-manager.md#getrawfilecontent9-1)。
         
       ```ts
       // Stage模型
-      const context = getContext(this);
+      const context : Context = getContext(this);
       // 获取resourceManager资源管理器
-      const resourceMgr = context.resourceManager;
+      const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
       ```
 
       ```ts
@@ -73,7 +73,7 @@
       不同模型获取资源管理器的方式不同，获取资源管理器后，再调用resourceMgr.getRawFileContent()获取资源文件的ArrayBuffer。
 
       ```ts
-      const fileData = await resourceMgr.getRawFileContent('test.jpg');
+      const fileData : Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
       // 获取图片的ArrayBuffer
       const buffer = fileData.buffer;
       ```
@@ -83,29 +83,29 @@
         
       ```ts
       // path为已获得的沙箱路径
-      const imageSource = image.createImageSource(filePath);
+      const imageSource : image.ImageSource = image.createImageSource(filePath);
       ```
    - 方法二：通过文件描述符fd创建ImageSource。文件描述符可以通过步骤2的方法二获取。
         
       ```ts
       // fd为已获得的文件描述符
-      const imageSource = image.createImageSource(fd);
+      const imageSource : image.ImageSource = image.createImageSource(fd);
       ```
    - 方法三：通过缓冲区数组创建ImageSource。缓冲区数组可以通过步骤2的方法三获取。
         
       ```ts
-      const imageSource = image.createImageSource(buffer);
+      const imageSource : image.ImageSource = image.createImageSource(buffer);
       ```
 
 4. 设置解码参数DecodingOptions，解码获取PixelMap图片对象。
      
    ```ts
-   let decodingOptions = {
+   let decodingOptions : image.DecodingOptions = {
        editable: true,
        desiredPixelFormat: 3,
    }
    // 创建pixelMap并进行简单的旋转和缩放 
-   const pixelMap = await imageSource.createPixelMap(decodingOptions);
+   const pixelMap : image.PixelMap = await imageSource.createPixelMap(decodingOptions);
    ```
 
    解码完成，获取到PixelMap对象后，可以进行后续[图片处理](image-transformation.md)。
@@ -120,15 +120,15 @@
 1. 获取resourceManager资源管理。
      
    ```ts
-   const context = getContext(this);
+   const context : Context = getContext(this);
    // 获取resourceManager资源管理
-   const resourceMgr = context.resourceManager;
+   const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
    ```
 
 2. 获取rawfile文件夹下test.jpg的ArrayBuffer。
      
    ```ts
-   const fileData = await resourceMgr.getRawFileContent('test.jpg');
+   const fileData : Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
    // 获取图片的ArrayBuffer
    const buffer = fileData.buffer;
    ```
@@ -136,13 +136,13 @@
 3. 创建imageSource。
      
    ```ts
-   const imageSource = image.createImageSource(buffer);
+   const imageSource : image.ImageSource = image.createImageSource(buffer);
    ```
 
 4. 创建PixelMap。
      
    ```ts
-   const pixelMap = await imageSource.createPixelMap();
+   const pixelMap : image.PixelMap = await imageSource.createPixelMap();
    ```
 
 5. 释放pixelMap。

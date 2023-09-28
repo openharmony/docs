@@ -16,25 +16,28 @@
 
 ```ts
 import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
 let bundleName = 'com.ohos.demo';
-let installParam = {
+let installParam: installer.InstallParam = {
     userId: 100
 };
 
 try {
-    installer.getBundleInstaller().then(data => {
-        data.uninstall(bundleName, installParam, err => {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.uninstall(bundleName, installParam, (err: BusinessError) => {
             if (err) {
                 console.error('uninstall failed:' + err.message);
             } else {
                 console.info('uninstall successfully.');
             }
         });
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 

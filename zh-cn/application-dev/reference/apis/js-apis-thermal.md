@@ -38,7 +38,7 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 
 ```js
 try {
-    thermal.registerThermalLevelCallback(level => {
+    thermal.registerThermalLevelCallback((level: thermal.ThermalLevel) => {
         console.info('thermal level is: ' + level);
     });
     console.info('register thermal level callback success.');
@@ -108,7 +108,7 @@ getLevel(): ThermalLevel
 
 ```js
 try {
-    var level = thermal.getLevel();
+    let level = thermal.getLevel();
     console.info('thermal level is: ' + level);
 } catch(err) {
     console.error('get thermal level failed, err: ' + err);
@@ -129,12 +129,12 @@ subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
 
 | 参数名   | 类型                              | 必填 | 说明                                                         |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;ThermalLevel&gt; | 是   | 回调函数。AsyncCallback只返回一个参数，为热档位信息，此时可能会产生告警，可通过`// @ts-ignore`进行抑制。 |
+| callback | AsyncCallback&lt;ThermalLevel&gt; | 是   | 回调函数。AsyncCallback只返回一个参数，为热档位信息。|
 
 **示例：**
 
 ```js
-thermal.subscribeThermalLevel((level) => {
+thermal.subscribeThermalLevel((err: Error, level: thermal.ThermalLevel) => {
     console.info('thermal level is: ' + level);
 });
 ```
@@ -182,7 +182,7 @@ getThermalLevel(): ThermalLevel
 **示例：**
 
 ```js
-var level = thermal.getThermalLevel();
+let level = thermal.getThermalLevel();
 console.info('thermal level is: ' + level);
 ```
 

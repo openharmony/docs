@@ -1,6 +1,6 @@
 # @ohos.arkui.UIContext (UIContext)
 
-In the stage model, a window stage or window can use the **loadContent** API to load pages, create a UI instance, and render page content to the associated window. Naturally, UI instances and windows are associated on a one-by-one basis. Some global UI APIs are executed in the context of certain UI instances. When calling these APIs, you must identify the UI context, and consequently UI instance, by tracing the call chain. If these APIs are called on a non-UI page or in some asynchronous callback, the current UI context may fail to be identified, resulting in failure in API execution.
+In the stage model, a window stage or window can use the **loadContent** API to load pages, create a UI instance, and render page content to the associated window. Naturally, UI instances and windows are associated on a one-by-one basis. Some global UI APIs are executed in the context of certain UI instances. When calling these APIs, you must identify the UI context, and consequently UI instance, by tracing the call chain. If these APIs are called on a non-UI page or in some asynchronous callback, the current UI context may fail to be identified, resulting in API execution errors.
 
 **@ohos.window** adds the [getUIContext](./js-apis-window.md#getuicontext10) API in API version 10 for obtaining the **UIContext** object of a UI instance. The API provided by the **UIContext** object can be directly applied to the corresponding UI instance.
 
@@ -24,8 +24,8 @@ Obtains a **Font** object.
 
 **Return value**
 
-| Type | Description         |
-| ----- | ----------------- |
+| Type           | Description         |
+| ------------- | ----------- |
 | [Font](#font) | **Font** object.|
 
 **Example**
@@ -43,8 +43,8 @@ Obtains the **ComponentUtils** object.
 
 **Return value**
 
-| Type | Description         |
-| ----- | ----------------- |
+| Type                               | Description                   |
+| --------------------------------- | --------------------- |
 | [ComponentUtils](#componentutils) | **ComponentUtils** object.|
 
 **Example**
@@ -63,9 +63,9 @@ Obtains the **UIInspector** object.
 
 **Return value**
 
-| Type | Description         |
-| ----- | ----------------- |
-| [UInspector](#uiinspector) | **UIInspector** object.|
+| Type                         | Description                |
+| --------------------------- | ------------------ |
+| [UIInspector](#uiinspector) | **UIInspector** object.|
 
 **Example**
 
@@ -83,8 +83,8 @@ Obtains a **MediaQuery** object.
 
 **Return value**
 
-| Type | Description         |
-| ----- | ----------------- |
+| Type                       | Description               |
+| ------------------------- | ----------------- |
 | [MediaQuery](#mediaquery) | **MediaQuery** object.|
 
 **Example**
@@ -103,8 +103,8 @@ Obtains a **Router** object.
 
 **Return value**
 
-| Type | Description         |
-| ----- | ----------------- |
+| Type               | Description           |
+| ----------------- | ------------- |
 | [Router](#router) | **Router** object.|
 
 **Example**
@@ -123,8 +123,8 @@ Obtains a **PromptAction** object.
 
 **Return value**
 
-| Type | Description         |
-| ----- | ----------------- |
+| Type                           | Description                 |
+| ----------------------------- | ------------------- |
 | [PromptAction](#promptaction) | **PromptAction** object.|
 
 **Example**
@@ -145,10 +145,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name           | Type       |       Mandatory    |        Description       |
-| ---------------- | ------------ | -------------------- | -------------------- |
-| value | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam) | Yes| Animation settings.|
-| event | () => void | Yes| Closure function that displays the dynamic effect. The system automatically inserts the transition animation if the status changes in the closure function.|
+| Name  | Type                                      | Mandatory  | Description                                   |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| value | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam) | Yes   | Animation settings.                          |
+| event | () => void                               | Yes   | Closure function that displays the dynamic effect. The system automatically inserts the transition animation if the status changes in the closure function.|
 
 **Example**
 
@@ -214,7 +214,7 @@ struct AnimateToExample {
 
 ### showAlertDialog
 
-showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButtons): void
+showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions): void
 
 Shows an alert dialog box.
 
@@ -222,9 +222,10 @@ Shows an alert dialog box.
 
 **Parameters**
 
-| Name   | Type | Mandatory| Description|
-| ---- | --------------- | -------- | -------- |
-| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons)  | Yes| Defines and displays the **\<AlertDialog>** component.|
+| Name    | Type                                      | Mandatory  | Description                 |
+| ------- | ---------------------------------------- | ---- | ------------------- |
+| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons) \| [AlertDialogParamWithOptions](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithoptions10) | Yes   | Defines and displays the **\<AlertDialog>** component.|
+
 
 **Example**
 
@@ -260,24 +261,24 @@ Defines and shows the action sheet.
 
 **ActionSheetOptions parameters**
 
-| Name       | Type                   | Mandatory | Description                       |
-| ---------- | -------------------------- | ------- | ----------------------------- |
-| title      | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes    |  Title of the dialog box.|
-| message    | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes    | Content of the dialog box. |
-| autoCancel | boolean                           | No    | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**|
-| confirm    | {<br>value: [ResourceStr](../arkui-ts/ts-types.md#resourcestr),<br>action: () =&gt; void<br>} | No | Text content of the confirm button and callback upon button clicking.<br>Default value:<br>**value**: button text.<br>**action**: callback upon button clicking.|
-| cancel     | () =&gt; void           | No    | Callback invoked when the dialog box is closed after the overlay is clicked.  |
-| alignment  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No    |  Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**|
-| offset     | {<br>dx: [Length](../arkui-ts/ts-types.md#length),<br>dy: [Length](../arkui-ts/ts-types.md#length)<br>} | No     | Offset of the dialog box relative to the alignment position.{<br>dx: 0,<br>dy: 0<br>} |
-| sheets     | Array&lt;SheetInfo&gt; | Yes      | Options in the dialog box. Each option supports the image, text, and callback.|
+| Name       | Type                                      | Mandatory  | Description                                      |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| title      | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes   | Title of the dialog box.                                   |
+| message    | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes   | Content of the dialog box.                                   |
+| autoCancel | boolean                                  | No   | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**              |
+| confirm    | {<br>value: [ResourceStr](../arkui-ts/ts-types.md#resourcestr),<br>action: () =&gt; void<br>} | No   | Text content of the confirm button and callback upon button clicking.<br>Default value:<br>**value**: button text.<br>**action**: callback upon button clicking.|
+| cancel     | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the overlay is clicked.                      |
+| alignment  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**|
+| offset     | {<br>dx: [Length](../arkui-ts/ts-types.md#length),<br>dy: [Length](../arkui-ts/ts-types.md#length)<br>} | No   | Offset of the dialog box relative to the alignment position.{<br>dx: 0,<br>dy: 0<br>} |
+| sheets     | Array&lt;SheetInfo&gt;                   | Yes   | Options in the dialog box. Each option supports the image, text, and callback.            |
 
 **SheetInfo parameters**
 
-| Name| Type                                                    | Mandatory| Description       |
-| ------ | ------------------------------------------------------------ | ---- | ----------------- |
-| title  | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | Yes  | Text of the option.      |
-| icon   | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | No  | Sheet icon. By default, no icon is displayed.    |
-| action | ()=&gt;void                                          | Yes  | Callback when the sheet is selected.|
+| Name   | Type                                      | Mandatory  | Description            |
+| ------ | ---------------------------------------- | ---- | -------------- |
+| title  | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | Yes   | Text of the option.      |
+| icon   | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | No   | Sheet icon. By default, no icon is displayed.|
+| action | ()=&gt;void                              | Yes   | Callback when the sheet is selected.      |
 
 **Example**
 
@@ -330,20 +331,20 @@ Shows a date picker dialog box.
 
 **DatePickerDialogOptions parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| start | Date | No| Start date of the picker.<br>Default value: **Date('1970-1-1')**|
-| end | Date | No| End date of the picker.<br>Default value: **Date('2100-12-31')**|
-| selected | Date | No| Selected date.<br>Default value: current system date|
-| lunar | boolean | No| Whether to display the lunar calendar.<br>Default value: **false**|
-| showTime | boolean | No| Whether to display the time item.<br>Default value: **false**|
-| useMilitaryTime | boolean | No| Whether to display time in 24-hour format.<br>Default value: **false**|
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.|
-| textStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.|
-| selectedTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.|
-| onAccept | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No| Callback invoked when the OK button in the dialog box is clicked.|
-| onCancel | () => void | No| Callback invoked when the Cancel button in the dialog box is clicked.|
-| onChange | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No| Callback invoked when the selected item in the picker changes.|
+| Name               | Type                                      | Mandatory  | Description                                    |
+| ------------------ | ---------------------------------------- | ---- | -------------------------------------- |
+| start              | Date                                     | No   | Start date of the picker.<br>Default value: **Date('1970-1-1')**  |
+| end                | Date                                     | No   | End date of the picker.<br>Default value: **Date('2100-12-31')**|
+| selected           | Date                                     | No   | Selected date.<br>Default value: current system date             |
+| lunar              | boolean                                  | No   | Whether to display the lunar calendar.<br>Default value: **false**              |
+| showTime           | boolean                                  | No   | Whether to display the time item.<br>Default value: **false**                |
+| useMilitaryTime    | boolean                                  | No   | Whether to display time in 24-hour format.<br>Default value: **false**           |
+| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width for the top and bottom items.        |
+| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of all items except the top, bottom, and selected items.    |
+| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of the selected item.                   |
+| onAccept           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No   | Callback invoked when the OK button in the dialog box is clicked.                   |
+| onCancel           | () => void                               | No   | Callback invoked when the Cancel button in the dialog box is clicked.                   |
+| onChange           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No   | Callback invoked when the selected item in the picker changes.            |
 
 **Example**
 
@@ -355,7 +356,7 @@ uiContext.showDatePickerDialog({
   selected: selectedDate,
   onAccept: (value: DatePickerResult) => {
     // Use the setFullYear method to set the date when the OK button is touched. In this way, when the date picker dialog box is displayed again, the selected date is the date last confirmed.
-    selectedDate.setFullYear(value.year, value.month, value.day)
+    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day))
     console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
   },
   onCancel: () => {
@@ -377,26 +378,34 @@ Shows a time picker dialog box.
 
 **TimePickerDialogOptions parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| selected | Date | No| Selected time.<br>Default value: current system time|
-| useMilitaryTime | boolean | No| Whether to display time in 24-hour format. The 12-hour format is used by default.<br>Default value: **false**|
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.|
-| textStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.|
-| selectedTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.|
-| onAccept | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult)) => void | No| Callback invoked when the OK button in the dialog box is clicked.|
-| onCancel | () => void | No| Callback invoked when the Cancel button in the dialog box is clicked.|
-| onChange | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult)) => void | No| Callback invoked when the selected time changes.|
+| Name               | Type                                      | Mandatory  | Description                                  |
+| ------------------ | ---------------------------------------- | ---- | ------------------------------------ |
+| selected           | Date                                     | No   | Selected time.<br>Default value: current system time           |
+| useMilitaryTime    | boolean                                  | No   | Whether to display time in 24-hour format. The 12-hour format is used by default.<br>Default value: **false**|
+| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width for the top and bottom items.      |
+| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of all items except the top, bottom, and selected items.  |
+| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of the selected item.                 |
+| onAccept           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult)) => void | No   | Callback invoked when the OK button in the dialog box is clicked.                 |
+| onCancel           | () => void                               | No   | Callback invoked when the Cancel button in the dialog box is clicked.                 |
+| onChange           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult)) => void | No   | Callback invoked when the selected time changes.           |
 
 **Example**
 
 ```ts
-let selectTime: Date = new Date('2020-12-25T08:30:00')
+class sethours{
+  selectTime: Date = new Date('2020-12-25T08:30:00')
+  hours(h:number,m:number){
+    this.selectTime.setHours(h,m)
+  }
+}
 uiContext.showTimePickerDialog({
   selected: this.selectTime,
   onAccept: (value: TimePickerResult) => {
     // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
-    this.selectTime.setHours(value.hour, value.minute)
+    let time = new sethours()
+    if(value.hour&&value.minute){
+      time.hours(value.hour, value.minute)
+    }
     console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
   },
   onCancel: () => {
@@ -418,30 +427,45 @@ Shows a text picker in the given settings.
 
 **TextPickerDialogOptions parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- |  -------- |
-| range | string[] \| [Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10)[] | Yes|  Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed.|
-| selected | number | No|  Index of the selected item.<br>Default value: **0**|
-| value       | string           | No   | Text of the selected item. This parameter does not take effect when the **selected** parameter is set. If the value is not within the range, the first item in the range is used instead.|
-| defaultPickerItemHeight | number \| string | No| Height of the picker item.|
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.|
-| textStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.|
-| selectedTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.|
-| onAccept | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult)) => void | No|  Callback invoked when the OK button in the dialog box is clicked.|
-| onCancel | () => void | No| Callback invoked when the Cancel button in the dialog box is clicked.|
-| onChange | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult)) => void | No|  Callback invoked when the selected item changes.|
+| Name                    | Type                                      | Mandatory  | Description                                      |
+| ----------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| range                   | string[] \| [Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10)[] | Yes   | Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed.   |
+| selected                | number                                   | No   | Index of the selected item.<br>Default value: **0**                     |
+| value                   | string                                   | No   | Text of the selected item. This parameter does not take effect when the **selected** parameter is set. If the value is not within the range, the first item in the range is used instead.|
+| defaultPickerItemHeight | number \| string                         | No   | Height of the picker item.                            |
+| disappearTextStyle      | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width for the top and bottom items.          |
+| textStyle               | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of all items except the top, bottom, and selected items.      |
+| selectedTextStyle       | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of the selected item.                     |
+| onAccept                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult)) => void | No   | Callback invoked when the OK button in the dialog box is clicked.                     |
+| onCancel                | () => void                               | No   | Callback invoked when the Cancel button in the dialog box is clicked.                     |
+| onChange                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult)) => void | No   | Callback invoked when the selected item changes.                |
 
 **Example**
 
 ```ts
-let select: number = 2
+{ class setvalue{
+  select: number = 2
+  set(val:number){
+    this.select = val
+  }
+}
+class setvaluearr{
+  select: number[] = []
+  set(val:number[]){
+    this.select = val
+  }
+}
 let fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
 uiContext.showTextPickerDialog({
   range: this.fruits,
   selected: this.select,
   onAccept: (value: TextPickerResult) => {
     // Set select to the index of the item selected when the OK button is touched. In this way, when the text picker dialog box is displayed again, the selected item is the one last confirmed.
-    this.select = value.index
+    let setv = new setvalue()
+    let setvarr = new setvaluearr()
+    if(value.index){
+      value.index instanceof Array?setvarr.set(value.index) : setv.set(value.index)
+    }
     console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
   },
   onCancel: () => {
@@ -463,20 +487,21 @@ Creates an **Animator** object.
 
 **Parameters**
 
-| Name    | Type                                 | Mandatory  | Description     |
-| ------- | ----------------------------------- | ---- | ------- |
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
 | options | [AnimatorOptions](./js-apis-animator.md#animatoroptions) | Yes   | Animator options.|
 
 **Return value**
 
-| Type                               | Description           |
-| --------------------------------- | ------------- |
+| Type                                      | Description           |
+| ---------------------------------------- | ------------- |
 | [AnimatorResult](./js-apis-animator.md#animatorresult) | Animator result.|
 
 **Example**
 
 ```ts
-let options = {
+import { AnimatorOptions } from '@ohos.animator';
+let options:AnimatorOptions = {
   duration: 1500,
   easing: "friction",
   delay: 0,
@@ -499,9 +524,9 @@ Executes the specified callback in this UI context.
 
 **Parameters**
 
-| Name    | Type                                 | Mandatory  | Description     |
-| ------- | ----------------------------------- | ---- | ------- |
-| callback | () => void            | Yes   | Callback used to return the result.|
+| Name     | Type        | Mandatory  | Description  |
+| -------- | ---------- | ---- | ---- |
+| callback | () => void | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -527,14 +552,15 @@ Registers a custom font with the font manager.
 
 **Parameters**
 
-| Name | Type                                           | Mandatory| Description                  |
-| ------- | ----------------------------------------------- | ---- | ---------------------- |
-| options | [font.FontOptions](js-apis-font.md#fontoptions) | Yes  | Information about the custom font to register.|
+| Name    | Type                                      | Mandatory  | Description         |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| options | [font.FontOptions](js-apis-font.md#fontoptions) | Yes   | Information about the custom font to register.|
 
 **Example**
 
 ```ts
-let font = uiContext.getFont();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let font:Font = uiContext.getFont();
 font.registerFont({
   familyName: 'medium',
   familySrc: '/font/medium.ttf'
@@ -550,15 +576,18 @@ Obtains the list of supported fonts.
 
 **Return value**
 
-| Type          | Description              |
-| -------------- | ------------------ |
+| Type            | Description       |
+| -------------- | --------- |
 | Array\<string> | List of supported fonts.|
 
 **Example**
 
 ```ts
-let font = uiContext.getFont();
-font.getSystemFontList()
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let font:Font|undefined = uiContext.getFont();
+if(font){
+  font.getSystemFontList()
+}
 ```
 
 ### getFontByName
@@ -571,21 +600,24 @@ Obtains information about a system font based on the font name.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description          |
-| -------- | ------ | ---- | -------------- |
-| fontName | string | Yes  | System font name.|
+| Name     | Type    | Mandatory  | Description     |
+| -------- | ------ | ---- | ------- |
+| fontName | string | Yes   | System font name.|
 
 **Return value**
 
-| Type                                | Description          |
-| ------------------------------------ | -------------- |
-| [FontInfo](js-apis-font.md#fontinfo) | Information about the system font.|
+| Type                                  | Description     |
+| ------------------------------------ | ------- |
+| [FontInfo](js-apis-font.md#fontinfo10) | Information about the system font.|
 
 **Example**
 
 ```ts
-let font = uiContext.getFont();
-font.getFontByName('Sans Italic')
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let font:Font|undefined = uiContext.getFont();
+if(font){
+  font.getFontByName('Sans Italic')
+}
 ```
 
 ## ComponentUtils
@@ -602,20 +634,21 @@ Obtains the size, position, translation, scaling, rotation, and affine matrix in
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| id     | string | Yes  | Unique component ID.|
+| Name | Type    | Mandatory  | Description       |
+| ---- | ------ | ---- | --------- |
+| id   | string | Yes   | Unique component ID.|
 
 **Return value**
 
-| Type          | Description                                                  |
-| ------------- | ------------------------------------------------------------ |
-| ComponentInfo | Size, position, translation, scaling, rotation, and affine matrix information of the component. |
+| Type                                      | Description                      |
+| ---------------------------------------- | ------------------------ |
+| [ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | Size, position, translation, scaling, rotation, and affine matrix information of the component.|
 
 **Example**
 
 ```ts
-let componentUtils = uiContext.getComponentUtils();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let componentUtils:ComponentUtils = uiContext.getComponentUtils();
 let modePosition = componentUtils.getRectangleById("onClick");
 let localOffsetWidth = modePosition.size.width;
 let localOffsetHeight = modePosition.size.height;
@@ -635,20 +668,21 @@ Creates an observer for the specified component.
 
 **Parameters**
 
-| Name    | Type                         | Mandatory  | Description         |
-| ------- | --------------------------- | ---- | ----------- |
-| id | string | Yes   | Component ID.|
+| Name | Type    | Mandatory  | Description     |
+| ---- | ------ | ---- | ------- |
+| id   | string | Yes   | Component ID.|
 
 **Return value**
 
-| Type                                                        | Description                                              |
-| ------------------------------------------------------------ | -------------------------------------------------- |
+| Type                                      | Description                       |
+| ---------------------------------------- | ------------------------- |
 | [ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | Component observer, which is used to register and unregister listeners for completion of component layout or drawing.|
 
 **Example**
 
 ```ts
-let inspector = uiContext.getUIInspector();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let inspector:UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
 ```
 
@@ -679,7 +713,8 @@ Sets the media query criteria and returns the corresponding listening handle.
 **Example**
 
 ```ts
-let mediaquery = uiContext.getMediaQuery();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let mediaquery: MediaQuery = uiContext.getMediaQuery();
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
 ```
 
@@ -697,30 +732,32 @@ Navigates to a specified page in the application.
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description              |
-| ------- | ------------------------------------------------------- | ---- | ------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Page routing parameters.|
+| Name    | Type                                      | Mandatory  | Description       |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100002 | if the uri is not exist.           |
+| 100003 | if the pages are pushed too much.  |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
@@ -732,7 +769,9 @@ try {
     }
   })
 } catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`pushUrl failed, code is ${code}, message is ${message}`);
 }
 ```
 
@@ -746,25 +785,27 @@ Navigates to a specified page in the application.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description       |
-| ------- | ------------------------------- | ---- | --------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100002 | if the uri is not exist.           |
+| 100003 | if the pages are pushed too much.  |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.pushUrl({
   url: 'pages/routerpage2',
   params: {
@@ -773,9 +814,11 @@ router.pushUrl({
       data3: [123, 456, 789]
     }
   }
-}, (err) => {
+}, (err: Error) => {
   if (err) {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushUrl success');
@@ -792,33 +835,40 @@ Navigates to a specified page in the application.
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description                |
-| ------- | ------------------------------------------------------- | ---- | -------------------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Page routing parameters.  |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9)      | Yes  | Routing mode.|
+| Name    | Type                                      | Mandatory  | Description        |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100002 | if the uri is not exist.           |
+| 100003 | if the pages are pushed too much.  |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
 try {
-  router.pushUrl({
+  routerF.pushUrl({
     url: 'pages/routerpage2',
     params: {
       data1: 'message',
@@ -826,9 +876,11 @@ try {
         data3: [123, 456, 789]
       }
     }
-  }, router.RouterMode.Standard)
+  }, rtm.Standard)
 } catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`pushUrl failed, code is ${code}, message is ${message}`);
 }
 ```
 
@@ -842,27 +894,34 @@ Navigates to a specified page in the application.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters. |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description        |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters. |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.   |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100002 | if the uri is not exist.           |
+| 100003 | if the pages are pushed too much.  |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.pushUrl({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.pushUrl({
   url: 'pages/routerpage2',
   params: {
     data1: 'message',
@@ -870,9 +929,11 @@ router.pushUrl({
       data3: [123, 456, 789]
     }
   }
-}, router.RouterMode.Standard, (err) => {
+}, rtm.Standard, (err) => {
   if (err) {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushUrl success');
@@ -889,29 +950,31 @@ Replaces the current page with another one in the application and destroys the c
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description              |
-| ------- | ------------------------------------------------------- | ---- | ------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Description of the new page.|
+| Name    | Type                                      | Mandatory  | Description       |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 200002 | if the uri is not exist.                 |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 try {
   router.replaceUrl({
     url: 'pages/detail',
@@ -920,7 +983,9 @@ try {
     }
   })
 } catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
 }
 ```
 
@@ -934,32 +999,36 @@ Replaces the current page with another one in the application and destroys the c
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description              |
-| ------- | ------------------------------- | ---- | ------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Description of the new page.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 200002 | if the uri is not exist.                 |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.replaceUrl({
   url: 'pages/detail',
   params: {
     data1: 'message'
   }
-}, (err) => {
+}, (err: Error) => {
   if (err) {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceUrl success');
@@ -976,39 +1045,48 @@ Replaces the current page with another one in the application and destroys the c
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description                |
-| ------- | ------------------------------------------------------- | ---- | -------------------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Description of the new page.  |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9)      | Yes  | Routing mode.|
+| Name    | Type                                      | Mandatory  | Description        |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if can not get the delegate, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if can not get the delegate, only throw in standard system. |
+| 200002 | if the uri is not exist.                 |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
 try {
-  router.replaceUrl({
+  routerF.replaceUrl({
     url: 'pages/detail',
     params: {
       data1: 'message'
     }
-  }, router.RouterMode.Standard)
+  }, rtm.Standard)
 } catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
 }
 ```
 
@@ -1022,33 +1100,42 @@ Replaces the current page with another one in the application and destroys the c
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page. |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description        |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page. |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.   |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 200002 | if the uri is not exist.                 |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.replaceUrl({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector,  MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.replaceUrl({
   url: 'pages/detail',
   params: {
     data1: 'message'
   }
-}, router.RouterMode.Standard, (err) => {
+}, rtm.Standard, (err: Error) => {
   if (err) {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceUrl success');
@@ -1065,30 +1152,32 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description              |
-| ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Page routing parameters.|
+| Name    | Type                                      | Mandatory  | Description       |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100003 | if the pages are pushed too much.  |
+| 100004 | if the named route is not exist.   |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 try {
   router.pushNamedRoute({
     name: 'myPage',
@@ -1100,7 +1189,9 @@ try {
     }
   })
 } catch (err) {
-  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
 }
 ```
 
@@ -1114,25 +1205,27 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description       |
-| ------- | ------------------------------- | ---- | --------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100003 | if the pages are pushed too much.  |
+| 100004 | if the named route is not exist.   |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.pushNamedRoute({
   name: 'myPage',
   params: {
@@ -1141,9 +1234,11 @@ router.pushNamedRoute({
       data3: [123, 456, 789]
     }
   }
-}, (err) => {
+}, (err: Error) => {
   if (err) {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushNamedRoute success');
@@ -1159,33 +1254,40 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description                |
-| ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Page routing parameters.  |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9)           | Yes  | Routing mode.|
+| Name    | Type                                      | Mandatory  | Description        |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100003 | if the pages are pushed too much.  |
+| 100004 | if the named route is not exist.   |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
 try {
-  router.pushNamedRoute({
+  routerF.pushNamedRoute({
     name: 'myPage',
     params: {
       data1: 'message',
@@ -1193,15 +1295,17 @@ try {
         data3: [123, 456, 789]
       }
     }
-  }, router.RouterMode.Standard)
+  }, rtm.Standard)
 } catch (err) {
-  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
 }
 ```
 
 ### pushNamedRoute
 
-pushNamedRoute(options: router.NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 Navigates to a page using the named route. This API uses a promise to return the result.
 
@@ -1209,27 +1313,34 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters. |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description        |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters. |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.   |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100003 | if the pages are pushed too much.  |
+| 100004 | if the named route is not exist.   |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.pushNamedRoute({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.pushNamedRoute({
   name: 'myPage',
   params: {
     data1: 'message',
@@ -1237,9 +1348,11 @@ router.pushNamedRoute({
       data3: [123, 456, 789]
     }
   }
-}, router.RouterMode.Standard, (err) => {
+}, rtm.Standard, (err: Error) => {
   if (err) {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushNamedRoute success');
@@ -1256,29 +1369,31 @@ Replaces the current page with another one using the named route and destroys th
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description              |
-| ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Description of the new page.|
+| Name    | Type                                      | Mandatory  | Description       |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 100004 | if the named route is not exist.         |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 try {
   router.replaceNamedRoute({
     name: 'myPage',
@@ -1287,7 +1402,9 @@ try {
     }
   })
 } catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
 }
 ```
 
@@ -1301,32 +1418,36 @@ Replaces the current page with another one using the named route and destroys th
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description              |
-| ------- | ------------------------------- | ---- | ------------------ |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Description of the new page.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 100004 | if the named route is not exist.         |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.replaceNamedRoute({
   name: 'myPage',
   params: {
     data1: 'message'
   }
-}, (err) => {
+}, (err: Error) => {
   if (err) {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceNamedRoute success');
@@ -1343,40 +1464,49 @@ Replaces the current page with another one using the named route and destroys th
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description                |
-| ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Description of the new page.  |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9)           | Yes  | Routing mode.|
+| Name    | Type                                      | Mandatory  | Description        |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if can not get the delegate, only throw in standard system. |
+| 100004 | if the named route is not exist.         |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
 try {
-  router.replaceNamedRoute({
+  routerF.replaceNamedRoute({
     name: 'myPage',
     params: {
       data1: 'message'
     }
-  }, router.RouterMode.Standard)
+  }, rtm.Standard)
 } catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
 }
 ```
 
@@ -1390,33 +1520,42 @@ Replaces the current page with another one using the named route and destroys th
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page. |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description        |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page. |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.   |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 100004 | if the named route is not exist.         |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.replaceNamedRoute({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.replaceNamedRoute({
   name: 'myPage',
   params: {
     data1: 'message'
   }
-}, router.RouterMode.Standard, (err) => {
+}, rtm.Standard, (err: Error) => {
   if (err) {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceNamedRoute success');
@@ -1425,7 +1564,7 @@ router.replaceNamedRoute({
 
 ### back
 
-back(options: router.RouterOptions ): void
+back(options?: router.RouterOptions ): void
 
 Returns to the previous page or a specified page.
 
@@ -1433,14 +1572,16 @@ Returns to the previous page or a specified page.
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description                                                        |
-| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
+| Name    | Type                                      | Mandatory  | Description                                      |
+| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | No   | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
 
@@ -1455,7 +1596,9 @@ Clears all historical pages in the stack and retains only the current page at th
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
 router.clear();    
 ```
 
@@ -1476,7 +1619,9 @@ Obtains the number of pages in the current stack.
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
 let size = router.getLength();        
 console.log('pages stack size = ' + size);    
 ```
@@ -1491,14 +1636,16 @@ Obtains state information about the current page.
 
 **Return value**
 
-| Type                         | Description     |
-| --------------------------- | ------- |
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
 | [RouterState](js-apis-router.md#routerstate) | Page routing state.|
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
 let page = router.getState();
 console.log('current index = ' + page.index);
 console.log('current name = ' + page.name);
@@ -1515,28 +1662,32 @@ Enables the display of a confirm dialog box before returning to the previous pag
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description              |
-| ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [router.EnableAlertOptions](js-apis-router.md#enablealertoptions) | Yes  | Description of the dialog box.|
+| Name    | Type                                      | Mandatory  | Description       |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.EnableAlertOptions](js-apis-router.md#enablealertoptions) | Yes   | Description of the dialog box.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
 try {
   router.showAlertBeforeBackPage({            
     message: 'Message Info'        
   });
 } catch(error) {
-  console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showAlertBeforeBackPage failed, code is ${code}, message is ${message}`);
 }
 ```
 
@@ -1551,7 +1702,9 @@ Disables the display of a confirm dialog box before returning to the previous pa
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
 router.hideAlertBeforeBackPage();    
 ```
 
@@ -1565,14 +1718,16 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 
 **Return value**
 
-| Type  | Description                              |
-| ------ | ---------------------------------- |
+| Type    | Description               |
+| ------ | ----------------- |
 | object | Parameters passed from the page that initiates redirection to the current page.|
 
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
 router.getParams();
 ```
 
@@ -1590,35 +1745,39 @@ Shows a toast.
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description          |
-| ------- | ------------------------------------------------------------ | ---- | -------------- |
-| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | Yes  | Toast options.|
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
+| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | Yes   | Toast options.|
 
 **Error codes**
 
 For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **Example**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showToast({            
     message: 'Message Info',
     duration: 2000 
   });
 } catch (error) {
-  console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showToast args error code is ${code}, message is ${message}`);
 };
 ```
 
 ### showDialog
 
-showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;promptAction.ShowDialogSuccessResponse&lt;): void
+showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;promptAction.ShowDialogSuccessResponse&gt;): void
 
 Shows a dialog box. This API uses an asynchronous callback to return the result.
 
@@ -1626,23 +1785,29 @@ Shows a dialog box. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                    |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
-| options  | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes  | Dialog box options.|
-| callback | AsyncCallback&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Yes  | Callback used to return the dialog box response result.    |
+| Name     | Type                                      | Mandatory  | Description          |
+| -------- | ---------------------------------------- | ---- | ------------ |
+| options  | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes   | Dialog box options.|
+| callback | AsyncCallback&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Yes   | Callback used to return the dialog box response result.  |
 
 **Error codes**
 
 For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **Example**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+class buttonsMoabl {
+  text: string = ""
+  color: string = ""
+}
+let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -1651,11 +1816,11 @@ try {
       {
         text: 'button1',
         color: '#000000'
-      },
+      } as buttonsMoabl,
       {
         text: 'button2',
         color: '#000000'
-      }
+      } as buttonsMoabl
     ]
   }, (err, data) => {
     if (err) {
@@ -1665,7 +1830,9 @@ try {
     console.info('showDialog success callback, click button: ' + data.index);
   });
 } catch (error) {
-  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -1679,28 +1846,30 @@ Shows a dialog box. This API uses a promise to return the result synchronously.
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description        |
-| ------- | ------------------------------------------------------------ | ---- | ------------ |
-| options | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes  | Dialog box options.|
+| Name    | Type                                      | Mandatory  | Description    |
+| ------- | ---------------------------------------- | ---- | ------ |
+| options | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes   | Dialog box options.|
 
 **Return value**
 
-| Type                                                        | Description            |
-| ------------------------------------------------------------ | ---------------- |
+| Type                                      | Description      |
+| ---------------------------------------- | -------- |
 | Promise&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Promise used to return the dialog box response result.|
 
 **Error codes**
 
 For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **Example**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showDialog({
     title: 'Title Info',
@@ -1719,11 +1888,13 @@ try {
     .then(data => {
       console.info('showDialog success, click button: ' + data.index);
     })
-    .catch(err => {
+    .catch((err:Error) => {
       console.info('showDialog error: ' + err);
     })
 } catch (error) {
-  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -1737,45 +1908,60 @@ Shows an action menu. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description              |
-| -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes  | Action menu options.    |
-| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | Yes  | Callback used to return the action menu response result.|
+| Name     | Type                                      | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes   | Action menu options.  |
+| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | Yes   | Callback used to return the action menu response result.|
 
 **Error codes**
 
 For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **Example**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+class buttonsMoabl {
+  text: string = ""
+  color: string = ""
+}
+class dataR{
+  err:Error = new Error;
+  data:promptAction.ActionMenuSuccessResponse | undefined = undefined;
+}
+let dataAMSR:dataR = new dataR()
+let promptActionF: PromptAction = uiContext.getPromptAction();
 try {
-  promptAction.showActionMenu({
-    title: 'Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      },
-    ]
-  }, (err, data) => {
-    if (err) {
-      console.info('showActionMenu err: ' + err);
-      return;
+  if(dataAMSR.data){
+    promptActionF.showActionMenu({
+      title: 'Title Info',
+      buttons: [
+        {
+          text: 'item1',
+          color: '#666666'
+        } as buttonsMoabl,
+        {
+          text: 'item2',
+          color: '#000000'
+        } as buttonsMoabl
+      ]
+    }, (dataAMSR.data))
+    if (dataAMSR.err) {
+      console.info('showActionMenu err: ' + dataAMSR.err);
+    }else{
+      console.info('showActionMenu success callback, click button: ' + dataAMSR.data.index);
     }
-    console.info('showActionMenu success callback, click button: ' + data.index);
-  })
+  }
 } catch (error) {
-  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -1789,28 +1975,30 @@ Shows an action menu. This API uses a promise to return the result synchronously
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description          |
-| ------- | ------------------------------------------------------------ | ---- | -------------- |
-| options | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes  | Action menu options.|
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
+| options | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes   | Action menu options.|
 
 **Return value**
 
-| Type                                                        | Description          |
-| ------------------------------------------------------------ | -------------- |
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
 | Promise&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Promise used to return the action menu response result.|
 
 **Error codes**
 
 For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **Example**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showActionMenu({
     title: 'showActionMenu Title Info',
@@ -1828,10 +2016,12 @@ try {
     .then(data => {
       console.info('showActionMenu success, click button: ' + data.index);
     })
-    .catch(err => {
+    .catch((err:Error) => {
       console.info('showActionMenu error: ' + err);
     })
 } catch (error) {
-  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```

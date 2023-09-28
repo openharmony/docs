@@ -62,7 +62,7 @@ sequenceable a.b..C.D
 The preceding statement is parsed into the following code in the C++ header file:
 
 ```cpp
-#include  "a/b/d.h"
+#include "a/b/d.h"
 using C::D;
 ```
 
@@ -157,7 +157,7 @@ On DevEco Studio, choose **Tools > SDK Manager** to view the local installation 
 Go to the local installation path, choose **toolchains > 3.x.x.x** (the folder named after the version number), and check whether the executable file of IDL exists.
 
 > **NOTE**
->
+> 
 > Use the SDK of the latest version. The use of an earlier version may cause errors in some statements.
 
 If the executable file does not exist, download the SDK package from the mirror as instructed in the [Release Notes](../../release-notes). The following uses [3.2 Beta3](../../release-notes/OpenHarmony-v3.2-beta3.md) as an example.
@@ -219,53 +219,47 @@ export default class IdlTestServiceStub extends rpc.RemoteObject implements IIdl
         super(des);
     }
     
-    async onRemoteMessageRequest(code: number, data, reply, option): Promise<boolean> {
+    async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence,
+        option: rpc.MessageOption): Promise<boolean> {
         console.log("onRemoteMessageRequest called, code = " + code);
-        switch(code) {
-            case IdlTestServiceStub.COMMAND_TEST_INT_TRANSACTION: {
-                let _data = data.readInt();
-                this.testIntTransaction(_data, (errCode, returnValue) => {
-                    reply.writeInt(errCode);
-                    if (errCode == 0) {
-                        reply.writeInt(returnValue);
-                    }
-                });
-                return true;
-            }
-            case IdlTestServiceStub.COMMAND_TEST_STRING_TRANSACTION: {
-                let _data = data.readString();
-                this.testStringTransaction(_data, (errCode) => {
-                    reply.writeInt(errCode);
-                });
-                return true;
-            }
-            case IdlTestServiceStub.COMMAND_TEST_MAP_TRANSACTION: {
-                let _data = new Map();
-                let _dataSize = data.readInt();
-                for (let i = 0; i < _dataSize; ++i) {
-                    let key = data.readInt();
-                    let value = data.readInt();
-                    _data.set(key, value);
+        if (code == IdlTestServiceStub.COMMAND_TEST_INT_TRANSACTION) {
+            let _data = data.readInt();
+            this.testIntTransaction(_data, (errCode: number, returnValue: number) => {
+                reply.writeInt(errCode);
+                if (errCode == 0) {
+                    reply.writeInt(returnValue);
                 }
-                this.testMapTransaction(_data, (errCode) => {
-                    reply.writeInt(errCode);
-                });
-                return true;
+            });
+            return true;
+        } else if (code == IdlTestServiceStub.COMMAND_TEST_STRING_TRANSACTION) {
+            let _data = data.readString();
+            this.testStringTransaction(_data, (errCode: number) => {
+                reply.writeInt(errCode);
+            });
+            return true;
+        } else if (code == IdlTestServiceStub.COMMAND_TEST_MAP_TRANSACTION) {
+            let _data: Map<number, number> = new Map();
+            let _dataSize = data.readInt();
+            for (let i = 0; i < _dataSize; ++i) {
+                let key = data.readInt();
+                let value = data.readInt();
+                _data.set(key, value);
             }
-            case IdlTestServiceStub.COMMAND_TEST_ARRAY_TRANSACTION: {
-                let _data = data.readStringArray();
-                this.testArrayTransaction(_data, (errCode, returnValue) => {
-                    reply.writeInt(errCode);
-                    if (errCode == 0) {
-                        reply.writeInt(returnValue);
-                    }
-                });
-                return true;
-            }
-            default: {
-                console.log("invalid request code" + code);
-                break;
-            }
+            this.testMapTransaction(_data, (errCode: number) => {
+                reply.writeInt(errCode);
+            });
+            return true;
+        } else if (code == IdlTestServiceStub.COMMAND_TEST_ARRAY_TRANSACTION) {
+            let _data = data.readStringArray();
+            this.testArrayTransaction(_data, (errCode: number, returnValue: number) => {
+                reply.writeInt(errCode);
+                if (errCode == 0) {
+                    reply.writeInt(returnValue);
+                }
+            });
+            return true;
+        } else {
+            console.log("invalid request code" + code);
         }
         return false;
     }
@@ -316,42 +310,48 @@ class IdlTestImp extends IdlTestServiceStub {
 After the service implements the interface, the interface needs to be exposed to the client for connection. If your service needs to expose this interface, extend **Ability** and implement **onConnect()** to return **IRemoteObject** so that the client can interact with the service process. The following code snippet shows how to expose the **IRemoteAbility** interface to the client:
 
 ```ts
-export default {
-    onStart() {
-        console.info('ServiceAbility onStart');
-    },
-    onStop() {
-        console.info('ServiceAbility onStop');
-    },
-    onCommand(want, startId) {
-        console.info('ServiceAbility onCommand');
-    },
-    onConnect(want) {
-        console.info('ServiceAbility onConnect');
-        try {
-            console.log('ServiceAbility want:' + typeof(want));
-            console.log('ServiceAbility want:' + JSON.stringify(want));
-            console.log('ServiceAbility want name:' + want.bundleName)
-        } catch(err) {
-            console.log('ServiceAbility error:' + err)
-        }
-        console.info('ServiceAbility onConnect end');
-        return new IdlTestImp('connect');
-    },
-    onDisconnect(want) {
-        console.info('ServiceAbility onDisconnect');
-        console.info('ServiceAbility want:' + JSON.stringify(want));
+import Want from '@ohos.app.ability.Want';
+import rpc from "@ohos.rpc";
+
+class ServiceAbility {
+  onStart() {
+    console.info('ServiceAbility onStart');
+  }
+  onStop() {
+    console.info('ServiceAbility onStop');
+  }
+  onCommand(want: Want, startId: number) {
+    console.info('ServiceAbility onCommand');
+  }
+  onConnect(want: Want) {
+    console.info('ServiceAbility onConnect');
+    try {
+      console.log('ServiceAbility want:' + typeof(want));
+      console.log('ServiceAbility want:' + JSON.stringify(want));
+      console.log('ServiceAbility want name:' + want.bundleName)
+    } catch(err) {
+      console.log('ServiceAbility error:' + err)
     }
-};
+    console.info('ServiceAbility onConnect end');
+    return new IdlTestImp('connect') as rpc.RemoteObject;
+  }
+  onDisconnect(want: Want) {
+    console.info('ServiceAbility onDisconnect');
+    console.info('ServiceAbility want:' + JSON.stringify(want));
+  }
+}
+
+export default new ServiceAbility()
 ```
 
 #### Calling Methods from the Client for IPC
 
-When the client calls **connectAbility()** to connect to a Service ability, the **onConnect** callback in **onAbilityConnectDone** of the client receives the **IRemoteObject** instance returned by the **onConnect()** method of the Service ability. The client and Service ability are in different applications. Therefore, the directory of the client application must contain a copy of the .idl file (the SDK automatically generates the proxy class). The **onConnect** callback then uses the **IRemoteObject** instance to create the **testProxy** instance of the **IdlTestServiceProxy** class and calls the related IPC method. The sample code is as follows:
+When the client calls **connectServiceExtensionAbility()** to connect to a Service ability, the **onConnect** callback in **onAbilityConnectDone** of the client receives the **IRemoteObject** instance returned by the **onConnect()** method of the Service ability. The client and Service ability are in different applications. Therefore, the directory of the client application must contain a copy of the .idl file (the SDK automatically generates the proxy class). The **onConnect** callback then uses the **IRemoteObject** instance to create the **testProxy** instance of the **IdlTestServiceProxy** class and calls the related IPC method. The sample code is as follows:
 
 ```ts
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 import IdlTestServiceProxy from './idl_test_service_proxy'
-import featureAbility from '@ohos.ability.featureAbility';
 
 function callbackTestIntTransaction(result: number, ret: number): void {
   if (result == 0 && ret == 124) {
@@ -377,10 +377,10 @@ function callbackTestArrayTransaction(result: number, ret: number): void {
   }
 }
 
-var onAbilityConnectDone = {
-  onConnect:function (elementName, proxy) {
-    let testProxy = new IdlTestServiceProxy(proxy);
-    let testMap = new Map();
+let onAbilityConnectDone: common.ConnectOptions = {
+  onConnect: (elementName, proxy) => {
+    let testProxy: IdlTestServiceProxy = new IdlTestServiceProxy(proxy);
+    let testMap: Map<number, number> = new Map();
     testMap.set(1, 1);
     testMap.set(1, 2);
     testProxy.testIntTransaction(123, callbackTestIntTransaction);
@@ -388,21 +388,23 @@ var onAbilityConnectDone = {
     testProxy.testMapTransaction(testMap, callbackTestMapTransaction);
     testProxy.testArrayTransaction(['1','2'], callbackTestMapTransaction);
   },
-  onDisconnect:function (elementName) {
+  onDisconnect: (elementName) => {
     console.log('onDisconnectService onDisconnect');
   },
-  onFailed:function (code) {
+  onFailed: (code) => {
     console.log('onDisconnectService onFailed');
   }
 };
 
-function connectAbility: void {
-    let want = {
+let context: common.UIAbilityContext = this.context;
+
+function connectAbility(): void {
+    let want: Want = {
         bundleName: 'com.example.myapplicationidl',
         abilityName: 'com.example.myapplicationidl.ServiceAbility'
     };
     let connectionId = -1;
-    connectionId = featureAbility.connectAbility(want, onAbilityConnectDone);
+    connectionId = context.connectServiceExtensionAbility(want, onAbilityConnectDone);
 }
 
 
@@ -432,17 +434,17 @@ export default class MySequenceable {
     getString() : string {
         return this.str;
     }
-    marshalling(messageParcel) {
+    marshalling(messageParcel: rpc.MessageSequence) {
         messageParcel.writeInt(this.num);
         messageParcel.writeString(this.str);
         return true;
     }
-    unmarshalling(messageParcel) {
+    unmarshalling(messageParcel: rpc.MessageSequence) {
         this.num = messageParcel.readInt();
         this.str = messageParcel.readString();
         return true;
     }
-    private num;
-    private str;
+    private num: number;
+    private str: string;
 }
 ```

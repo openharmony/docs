@@ -16,7 +16,7 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 触发旋转的最少手指数,&nbsp;最小为2指，最大为5指。<br/>默认值：2 |
-| angle | number | 否 | 触发旋转手势的最小改变度数，单位为deg。<br/>默认值：1 |
+| angle | number | 否 | 触发旋转手势的最小改变度数，单位为deg。<br/>默认值：1 <br/>**说明：** <br/>当改变度数的值小于等于0时，会被转化为默认值。|
 
 
 ## 事件
@@ -53,11 +53,13 @@ struct RotationGestureExample {
       // 双指旋转触发该手势事件
       .gesture(
       RotationGesture()
-        .onActionStart((event: GestureEvent) => {
+        .onActionStart((event?: GestureEvent) => {
           console.info('Rotation start')
         })
-        .onActionUpdate((event: GestureEvent) => {
-          this.angle = this.rotateValue + event.angle
+        .onActionUpdate((event?: GestureEvent) => {
+          if (event) {
+            this.angle = this.rotateValue + event.angle
+          }
         })
         .onActionEnd(() => {
           this.rotateValue = this.angle

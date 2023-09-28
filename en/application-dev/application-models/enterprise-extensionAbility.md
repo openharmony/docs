@@ -32,76 +32,82 @@ EnterpriseAdminExtensionAbility is applicable only to enterprise administrator a
 
 ### How to Develop
 
-To implement EnterpriseAdminExtensionAbility, you need to activate the device administrator application and create **ExtensionAbility** in the code directory of the device administrator application. The procedure is as follows:
-
 1. In the **ets** directory of the target module, right-click and choose **New > Directory** to create a directory named **EnterpriseExtAbility**.
 2. Right-click the **EnterpriseExtAbility** directory and choose **New > TypeScript File** to create a file named **EnterpriseExtAbility.ts**.
 3. Open the **EnterpriseExtAbility.ts** file and import the **EnterpriseAdminExtensionAbility** module. Customize a class that inherits from **EnterpriseAdminExtensionAbility** and add the required callbacks, such as **onAdminEnabled()** and **onAdminDisabled()**, When the device administrator application is activated or deactivated, the device administrator can receive notifications.
 
-   ```ts
-   import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExtensionAbility';
+```ts
+import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExtensionAbility';
 
-   export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAdminEnabled() {
+    console.info("onAdminEnabled");
+  }
 
-       onAdminEnabled() {
-           console.info("onAdminEnabled");
-       }
+  onAdminDisabled() {
+    console.info("onAdminDisabled");
+  }
+  
+  onBundleAdded(bundleName: string) {
+    console.info("EnterpriseAdminAbility onBundleAdded bundleName:" + bundleName);
+  }
 
-       onAdminDisabled() {
-           console.info("onAdminDisabled");
-       }
-       
-       onBundleAdded(bundleName: string) {
-           console.info("EnterpriseAdminAbility onBundleAdded bundleName:" + bundleName)
-       }
-
-       onBundleRemoved(bundleName: string) {
-           console.info("EnterpriseAdminAbility onBundleRemoved bundleName" + bundleName)
-       }
-   };
-   ```
+  onBundleRemoved(bundleName: string) {
+    console.info("EnterpriseAdminAbility onBundleRemoved bundleName" + bundleName);
+  }
+};
+```
 
 4. Register **ServiceExtensionAbility** in the [**module.json5**](../quick-start/module-configuration-file.md) file corresponding to the project module. Set **type** to **enterpriseAdmin** and **srcEntry** to the path of the ExtensionAbility code.
 
-   ```ts
-   "extensionAbilities": [
-         {
-           "name": "ohos.samples.enterprise_admin_ext_ability",
-           "type": "enterpriseAdmin",
-           "exported": true,
-           "srcEntry": "./ets/enterpriseextability/EnterpriseAdminAbility.ts"
-         }
-       ]
-   ```
+```json
+"extensionAbilities": [
+      {
+        "name": "ohos.samples.enterprise_admin_ext_ability",
+        "type": "enterpriseAdmin",
+        "exported": true,
+        "srcEntry": "./ets/enterpriseextability/EnterpriseAdminAbility.ts"
+      }
+    ]
+```
 
 ## Example
 
 Use **subscribeManagedEvent** in the **@ohos.enterprise.adminManager** module to subscribe to application installation and removal events. When an application is installed or removed, the MDM application is notified of the event. Then, the MDM application reports the event in the callback to notify the enterprise administrator. To unsubscribe from events, use **unsubscribeManagedEvent**.
 
 ```ts
-  @State subscribeManagedEventMsg: string = ""
-  @State unsubscribeManagedEventMsg: string = ""
+import adminManager from '@ohos.enterprise.adminManager';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  async subscribeManagedEventCallback() {
-    await adminManager.subscribeManagedEvent(this.admin,
-      [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
-      adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED], (error) => {
-        if (error) {
-          this.subscribeManagedEventMsg = 'subscribeManagedEvent Callback::errorCode: ' + error.code + ' errorMessage: ' + error.message
-        } else {
-          this.subscribeManagedEventMsg = 'subscribeManagedEvent Callback::success'
-        }
-      })
+async function subscribeManagedEventCallback() {
+  let admin: Want = {
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
   }
-
-  async unsubscribeManagedEventPromise() {
-    await adminManager.unsubscribeManagedEvent(this.admin,
-      [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
-      adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED]).then(() => {
-      this.unsubscribeManagedEventMsg = 'unsubscribeManagedEvent Promise::success'
-    }).catch((error) => {
-      this.unsubscribeManagedEventMsg = 'unsubscribeManagedEvent Promise::errorCode: ' + error.code + ' errorMessage: ' + error.message
+  adminManager.subscribeManagedEvent(admin,
+    [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
+    adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED], (error) => {
+      if (error) {
+        console.error(`Failed to subscribe managed event. Code: ${error.code}, message: ${error.message}`);
+      } else {
+        console.log('Succeeded in subscribing managed event');
+      }
     })
+}
+
+async function unsubscribeManagedEventPromise() {
+  let admin: Want = {
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
   }
+  await adminManager.unsubscribeManagedEvent(admin,
+    [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
+    adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED]).then(() => {
+    console.log('Succeeded in subscribing managed event');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to subscribe managed event. Code: ${error.code}, message: ${error.message}`);
+  })
+}
 ```
 

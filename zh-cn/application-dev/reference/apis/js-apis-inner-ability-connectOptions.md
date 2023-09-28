@@ -25,7 +25,10 @@ import common from '@ohos.app.ability.common';
 **示例：**
 
   ```ts
-  let want = {
+  import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
+
+  let want: Want = {
     bundleName: 'com.example.myapp',
     abilityName: 'MyAbility'
   };
@@ -42,5 +45,5 @@ import common from '@ohos.app.ability.common';
     }
   };
 
-  let connection = this.context.connectAbility(want, connectOptions);
+  let connection: number = this.context.connectAbility(want, connectOptions);
   ```

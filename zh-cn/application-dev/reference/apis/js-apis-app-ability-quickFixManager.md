@@ -78,6 +78,8 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+
   try {
     let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
@@ -130,15 +132,18 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 **示例：**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { BusinessError } from '@ohos.base';
+
   let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
   try {
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
       console.info('applyQuickFix success');
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       console.error(`applyQuickFix err: ${error}`);
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
 ```
 
@@ -173,6 +178,8 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 **示例：**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+
   try {
     let bundleName = 'bundleName';
     quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
@@ -183,7 +190,7 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
       }
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
 ```
 
@@ -223,15 +230,18 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 **示例：**
 
   ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { BusinessError } from '@ohos.base';
+
   try {
     let bundleName = 'bundleName';
     quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
       console.info(`getApplicationQuickFixInfo success: ${data}`);
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       console.error(`getApplicationQuickFixInfo err: ${error}`);
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
   ```
 
@@ -268,6 +278,8 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+
   let bundleName = "com.example.myapplication";
   quickFixManager.revokeQuickFix(bundleName, (err) => {
     console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
@@ -309,19 +321,16 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 
 在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。这部分错误码及错误信息如下：
 
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 18500004 | Switch hqf failed. |
-| 18500005 | Delete hqf failed. |
-| 18500007 | Unload patch failed. |
-
 **示例：**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { BusinessError } from '@ohos.base';
+
   let bundleName = "com.example.myapplication";
   quickFixManager.revokeQuickFix(bundleName).then(() => {
     console.info("revokeQuickFix " + bundleName +" ok");
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
   });
 ```

@@ -8,14 +8,19 @@
     - [@ohos.app.ability.AbilityConstant (AbilityConstant)](js-apis-app-ability-abilityConstant.md)
     - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-app-ability-abilityLifecycleCallback.md)
     - [@ohos.app.ability.AbilityStage (AbilityStage)](js-apis-app-ability-abilityStage.md)
+    - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](js-apis-app-ability-actionExtensionAbility.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](js-apis-app-ability-applicationStateChangeCallback.md)
     - [@ohos.app.ability.common (应用上下文Context)](js-apis-app-ability-common.md)
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](js-apis-app-ability-environmentCallback.md)
     - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](js-apis-app-ability-extensionAbility.md)
+    - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](js-apis-app-ability-printExtensionAbility.md)
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-app-ability-serviceExtensionAbility.md)
+    - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](js-apis-app-ability-shareExtensionAbility.md)
     - [@ohos.app.ability.StartOptions (StartOptions)](js-apis-app-ability-startOptions.md)
     - [@ohos.app.ability.UIAbility (UIAbility)](js-apis-app-ability-uiAbility.md)
+    - [@ohos.app.ability.UIExtensionAbility (带界面扩展能力基类)](js-apis-app-ability-uiExtensionAbility.md)
+    - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)](js-apis-app-ability-uiExtensionContentSession.md)
     - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
     - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
@@ -39,11 +44,13 @@
     - [@ohos.app.ability.wantAgent (WantAgent模块)](js-apis-app-ability-wantAgent.md)
     - [@ohos.app.ability.wantConstant (wantConstant)](js-apis-app-ability-wantConstant.md)
     - [@ohos.app.businessAbilityRouter (业务路由模块)](js-apis-businessAbilityRouter.md)
+    - [@ohos.app.form.formAgent (FormAgent)](js-apis-app-form-formAgent.md)
     - [@ohos.app.form.formBindingData (卡片数据绑定类)](js-apis-app-form-formBindingData.md)
     - [@ohos.app.form.formHost (FormHost)](js-apis-app-form-formHost.md)
     - [@ohos.app.form.formInfo (FormInfo)](js-apis-app-form-formInfo.md)
+    - [@ohos.app.form.formObserver (formObserver)](js-apis-app-form-formObserver.md)
     - [@ohos.app.form.formProvider (FormProvider)](js-apis-app-form-formProvider.md)
-    - [@ohos.application.uriPermissionManager(URI权限管理)](js-apis-uripermissionmanager.md)
+    - [@ohos.application.uriPermissionManager (URI权限管理)](js-apis-uripermissionmanager.md)
   - 通用能力的接口(待停用)
     - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-ability-dataUriUtils.md)
     - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorCode.md)
@@ -106,6 +113,7 @@
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
       - [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
+      - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
       - [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)
     - wantAgent
@@ -202,9 +210,8 @@
   - [@ohos.arkui.dragController (DragController)](js-apis-arkui-dragController.md)
   - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.arkui.inspector (布局回调)](js-apis-arkui-inspector.md)
-  - [ @ohos.arkui.performanceMonitor (性能监测)](js-apis-arkui-performancemonitor.md)
+  - [@ohos.arkui.performanceMonitor (性能监测)](js-apis-arkui-performancemonitor.md)
   - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
-  - [@ohos.arkui.componentUtils (componentUtils)](js-apis-arkui-componentUtils.md)
   - [@ohos.curves (插值计算)](js-apis-curve.md)
   - [@ohos.font (注册自定义字体)](js-apis-font.md)
   - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
@@ -224,9 +231,6 @@
   - [@ohos.screen (屏幕)](js-apis-screen.md)
   - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
   - [@ohos.window (窗口)](js-apis-window.md)
-  - webgl
-    - [webgl (WebGL)](js-apis-webgl.md)
-    - [webgl2 (WebGL2)](js-apis-webgl2.md)
 
 - 媒体
   - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)](js-apis-app-ability-MediaControlExtensionAbility.md)
@@ -240,6 +244,7 @@
     - [MediaControlExtensionContext (播控扩展能力上下文)](js-apis-inner-application-MediaControlExtensionContext.md)
   - multimedia
     - [ringtonePlayer (铃声播放器)](js-apis-inner-multimedia-ringtonePlayer.md)
+    - [soundPool (音频池)](js-apis-inner-multimedia-soundPool.md)
 
 - 资源管理
   - [@ohos.i18n (国际化-I18n)](js-apis-i18n.md)
@@ -258,6 +263,7 @@
 
 - 安全
   - [@ohos.abilityAccessCtrl (程序访问控制管理)](js-apis-abilityAccessCtrl.md)
+  - [@ohos.dlpPermission (数据防泄漏)](js-apis-dlppermission.md)
   - [@ohos.privacyManager (隐私管理)](js-apis-privacyManager.md)
   - [@ohos.security.cert (证书模块)](js-apis-cert.md)
   - [@ohos.security.cryptoFramework (加解密算法库框架)](js-apis-cryptoFramework.md)
@@ -277,10 +283,12 @@
   - [@ohos.data.distributedKVStore (分布式键值数据库)](js-apis-distributedKVStore.md)
   - [@ohos.data.preferences (用户首选项)](js-apis-data-preferences.md)
   - [@ohos.data.relationalStore (关系型数据库)](js-apis-data-relationalStore.md)
-  - [@ohos.data.UDMF (统一数据管理框架)](js-apis-data-udmf.md)
+  - [@ohos.data.unifiedDataChannel (标准化数据通路)](js-apis-data-unifiedDataChannel.md)
+  - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](js-apis-data-uniformTypeDescriptor.md)
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
 
 - 文件管理
+  - [@ohos.application.BackupExtensionAbility (BackupExtensionAbility)](js-apis-application-backupExtensionAbility.md)
   - [@ohos.file.backup (备份恢复)](js-apis-file-backup.md)
   - [@ohos.file.cloudSync (端云同步能力)](js-apis-file-cloudsync.md)
   - [@ohos.file.cloudSyncManager (端云同步管理)](js-apis-file-cloudsyncmanager.md)
@@ -292,15 +300,18 @@
   - [@ohos.file.hash (文件哈希处理)](js-apis-file-hash.md)
   - [@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)
   - [@ohos.file.picker (选择器)](js-apis-file-picker.md)
+  - [@ohos.file.recent(最近访问列表)](js-apis-file-recent.md)
   - [@ohos.file.securityLabel (数据标签)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (文件系统空间统计)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
+  - [@ohos.file.trash (回收站)](js-apis-file-trash.md)
   - [@ohos.file.volumeManager (卷管理)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (用户数据管理)](js-apis-userFileManager.md)
   - [@ohos.fileshare (文件分享)](js-apis-fileShare.md)
 
 - AI
   - [@ohos.ai.mindSporeLite (推理能力)](js-apis-mindSporeLite.md)
+  - [@ohos.ai.intelligentVoice (智能语音)](js-apis-intelligentVoice.md)
 
 - 电话服务
   - [@ohos.contact (联系人)](js-apis-contact.md)
@@ -373,6 +384,7 @@
   - [@ohos.InputMethodSubtype (输入法子类型)](js-apis-inputmethod-subtype.md)
   - [@ohos.logLibrary (维测日志获取)](js-apis-loglibrary.md)
   - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
+  - [@ohos.print (打印)](js-apis-print.md)
   - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)
   - [@ohos.systemDateTime (系统时间、时区)](js-apis-system-date-time.md)
   - [@ohos.systemTimer (系统定时器)](js-apis-system-timer.md)
@@ -394,7 +406,7 @@
   - [@ohos.charger (充电类型)](js-apis-charger.md)
   - [@ohos.cooperate (键鼠穿越)](js-apis-devicestatus-cooperate.md)
   - [@ohos.deviceAttest (设备证明)](js-apis-deviceAttest.md)
-  - [@ohos. deviceStatus.dragInteraction (拖拽)](js-apis-devicestatus-draginteraction.md)
+  - [@ohos.deviceStatus.dragInteraction（拖拽）](js-apis-devicestatus-draginteraction.md)
   - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
   - [@ohos.distributedDeviceManager (设备管理)](js-apis-distributedDeviceManager.md)
   - [@ohos.distributedHardware.deviceManager (设备管理)](js-apis-device-manager.md)
@@ -433,7 +445,7 @@
   - [@ohos.account.appAccount (应用帐号管理)](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount (分布式帐号管理)](js-apis-distributed-account.md)
   - [@ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)
-  
+
 - 定制管理
   - [@ohos.configPolicy (配置策略)](js-apis-configPolicy.md)
 

@@ -32,25 +32,36 @@ upload(options: UploadRequestOptions): void
 **示例：**
 
   ```js
-  let uploadRequestOptions = {
+  import request, { UploadRequestOptions } from '@system.request';
+
+  let uploadRequestOptions: UploadRequestOptions = {
     url: 'http://www.path.com',
     method: 'POST',
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
-    data: [{ name: "name123", value: "123" }],
-    success: function(data) {
+    files: [{
+      filename: "test",
+      name: "test",
+      uri: "internal://cache/test.jpg",
+      type: "jpg"
+    }],
+    data: [{
+      name: "name123",
+      value: "123"
+    }],
+    success: (data: object) => {
       console.info(' upload success, code:' + JSON.stringify(data));
     },
-    fail: function(data, code) {
+    fail: (data:string, code:number) => {
       console.info(' upload fail data: ' + data + 'code: ' + code);
     },
-    complete: function (){
+    complete: () => {
       console.info(' upload complete');
     }
   }
+
   try {
     request.upload(uploadRequestOptions);
     console.info('upload start ');
-  } catch(err) {
+  } catch (err) {
     console.info(' upload err:' + err);
   }
   ```
@@ -136,21 +147,24 @@ download(options: DownloadRequestOptions): void
 **示例：**
 
   ```js
-  let downloadRequestOptions = {
+  import request, { DownloadRequestOptions } from '@system.request';
+
+  let downloadRequestOptions: DownloadRequestOptions = {
     url: 'http://www.path.com',
     filename: 'requestSystenTest',
-    header: '',
+    header: "",
     description: 'this is requeSystem download response',
-    success: function(data) {
+    success: (data:object) => {
       console.info(' download success, code:' + JSON.stringify(data));
     },
-    fail: function(data, code) {
+    fail: (data:string, code:number) => {
       console.info(' download fail data: ' + data + 'code: ' + code);
     },
-    complete: function (){
+    complete: () => {
       console.info(' download complete');
     }
   }
+
   try {
     request.download(downloadRequestOptions);
     console.info('download start ');
@@ -211,18 +225,21 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
 **示例：**
 
   ```js
-  let onDownloadCompleteOptions = {
+  import request, { OnDownloadCompleteOptions } from '@system.request';
+
+  let onDownloadCompleteOptions: OnDownloadCompleteOptions = {
     token: 'token-index',
-    success: function(data) {
+    success: (data:object) => {
       console.info(' download success, code:' + JSON.stringify(data));
     },
-    fail: function(data, code) {
+    fail: (data:string, code:number) => {
       console.info(' download fail data: ' + data + 'code: ' + code);
     },
-    complete: function (){
+    complete: () => {
       console.info(' download complete');
     }
   }
+
   request.onDownloadComplete(onDownloadCompleteOptions);
   ```
 

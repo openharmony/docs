@@ -103,10 +103,9 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
 **示例：**
 
-  ```js
-  let uploadTask;
-  let context;
-  let uploadConfig = {
+  ```ts
+  let uploadTask: request.UploadTask;
+  let uploadConfig: request.UploadConfig = {
     url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
@@ -114,13 +113,13 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
     data: [{ name: "name123", value: "123" }],
   };
   try {
-    request.uploadFile(context, uploadConfig).then((data) => {
+    request.uploadFile(this.context, uploadConfig).then((data: request.UploadTask) => {
       uploadTask = data;
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
     });
   } catch (err) {
-    console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to request the upload. err: ${JSON.stringify(err)}`);
   }
   ```
 
@@ -157,10 +156,9 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
 **示例：**
 
-  ```js
-  let uploadTask;
-  let context;
-  let uploadConfig = {
+  ```ts
+  let uploadTask: request.UploadTask;
+  let uploadConfig: request.UploadConfig = {
     url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
@@ -168,7 +166,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
     data: [{ name: "name123", value: "123" }],
   };
   try {
-    request.uploadFile(context, uploadConfig, (err, data) => {
+    request.uploadFile(this.context, uploadConfig, (err: BusinessError, data: request.UploadTask) => {
       if (err) {
         console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -176,7 +174,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
       uploadTask = data;
     });
   } catch (err) {
-    console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to request the upload. err: ${JSON.stringify(err)}`);
   }
   ```
 
@@ -306,8 +304,8 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 **示例：**
 
-  ```js
-  let upProgressCallback = (uploadedSize, totalSize) => {
+  ```ts
+  let upProgressCallback = (uploadedSize: number, totalSize: number) => {
     console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
   };
   uploadTask.on('progress', upProgressCallback);
@@ -339,8 +337,8 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 **示例：**
 
-  ```js
-  let headerCallback = (headers) => {
+  ```ts
+  let headerCallback = (headers: object) => {
     console.info("upOnHeader headers:" + JSON.stringify(headers));
   };
   uploadTask.on('headerReceive', headerCallback);
@@ -372,16 +370,16 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 **示例：**
 
-  ```js
-  let upCompleteCallback = (taskStates) => {
-    for (let i = 0; i < taskStates.length; i++ ) {
+  ```ts
+  let upCompleteCallback = (taskStates: Array<request.TaskState>) => {
+    for (let i = 0; i < taskStates.length; i++) {
       console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
     }
   };
   uploadTask.on('complete', upCompleteCallback);
 
-  let upFailCallback = (taskStates) => {
-    for (let i = 0; i < taskStates.length; i++ ) {
+  let upFailCallback = (taskStates: Array<request.TaskState>) => {
+    for (let i = 0; i < taskStates.length; i++) {
       console.info("upOnFail taskState:" + JSON.stringify(taskStates[i]));
     }
   };
@@ -408,8 +406,8 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 **示例：**
 
-  ```js
-  let upProgressCallback = (uploadedSize, totalSize) => {
+  ```ts
+  let upProgressCallback = (uploadedSize: number, totalSize: number) => {
     console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
   };
   uploadTask.off('progress', upProgressCallback);
@@ -435,8 +433,8 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 **示例：**
 
-  ```js
-  let headerCallback = (header) => {
+  ```ts
+  let headerCallback = (header: object) => {
     console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
   };
   uploadTask.off('headerReceive', headerCallback);
@@ -461,18 +459,18 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 **示例：**
 
-  ```js
-  let upCompleteCallback = (taskStates) => {
+  ```ts
+  let upCompleteCallback = (taskStates: Array<request.TaskState>) => {
     console.info('Upload delete complete notification.');
-    for (let i = 0; i < taskStates.length; i++ ) {
+    for (let i = 0; i < taskStates.length; i++) {
       console.info('taskState:' + JSON.stringify(taskStates[i]));
     }
   };
   uploadTask.off('complete', upCompleteCallback);
 
-  let upFailCallback = (taskStates) => {
+  let upFailCallback = (taskStates: Array<request.TaskState>) => {
     console.info('Upload delete fail notification.');
-    for (let i = 0; i < taskStates.length; i++ ) {
+    for (let i = 0; i < taskStates.length; i++) {
       console.info('taskState:' + JSON.stringify(taskStates[i]));
     }
   };
@@ -496,10 +494,10 @@ delete(): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
-  uploadTask.delete().then((result) => {
+  ```ts
+  uploadTask.delete().then((result: boolean) => {
     console.info('Succeeded in deleting the upload task.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -523,8 +521,8 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```js
-  uploadTask.delete((err, result) => {
+  ```ts
+  uploadTask.delete((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -622,7 +620,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | path | string | 是 | 文件路径 |
-| responseCode | number | 是 | 上传任务返回值 |
+| responseCode | number | 是 | 上传任务返回值，0表示任务成功，其它返回码为失败，具体请查看message上传任务结果描述信息 |
 | message | string | 是 | 上传任务结果描述信息 |
 
 ## File
@@ -688,17 +686,16 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
 **示例：**
 
-  ```js
-  let downloadTask;
-  let context;
+  ```ts
+  let downloadTask: request.DownloadTask;
   try {
-    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
+    request.downloadFile(this.context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
       downloadTask = data;
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
     })
   } catch (err) {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
   }
   ```
 
@@ -738,12 +735,13 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
 **示例：**
 
-  ```js
-  let downloadTask;
-  let context;
+  ```ts
+  let downloadTask: request.DownloadTask;
   try {
-    request.downloadFile(context, { url: 'https://xxxx/xxxxx.hap', 
-    filePath: 'xxx/xxxxx.hap'}, (err, data) => {
+    request.downloadFile(this.context, {
+      url: 'https://xxxx/xxxxx.hap',
+      filePath: 'xxx/xxxxx.hap'
+    }, (err: BusinessError, data: request.DownloadTask) => {
       if (err) {
         console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -751,7 +749,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
       downloadTask = data;
     });
   } catch (err) {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
   }
   ```
 
@@ -867,8 +865,8 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
 **示例：**
 
-  ```js
-  let progresCallback = (receivedSize, totalSize) => {
+  ```ts
+  let progresCallback = (receivedSize: number, totalSize: number) => {
     console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   };
   downloadTask.on('progress', progresCallback);
@@ -894,8 +892,8 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
 **示例：**
 
-  ```js
-  let progresCallback = (receivedSize, totalSize) => {
+  ```ts
+  let progresCallback = (receivedSize: number, totalSize: number) => {
     console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
   };
   downloadTask.off('progress', progresCallback);
@@ -921,7 +919,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
 **示例：**
 
-  ```js
+  ```ts
   let completeCallback = () => {
     console.info('Download task completed.');
   };
@@ -958,7 +956,7 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
 **示例：**
 
-  ```js
+  ```ts
   let completeCallback = () => {
     console.info('Download delete complete notification.');
   };
@@ -1001,8 +999,8 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 **示例：**
 
-  ```js
-  let failCallback = (err) => {
+  ```ts
+  let failCallback = (err: BusinessError) => {
     console.error(`Failed to download the task. Code: ${err.code}, message: ${err.message}`);
   };
   downloadTask.on('fail', failCallback);
@@ -1028,8 +1026,8 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 
 **示例：**
 
-  ```js
-  let failCallback = (err) => {
+  ```ts
+  let failCallback = (err: BusinessError) => {
     console.error(`Failed to download the task. Code: ${err.code}, message: ${err.message}`);
   };
   downloadTask.off('fail', failCallback);
@@ -1053,10 +1051,10 @@ delete(): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
-  downloadTask.delete().then((result) => {
+  ```ts
+  downloadTask.delete().then((result: boolean) => {
     console.info('Succeeded in removing the download task.');
-  }).catch ((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -1080,12 +1078,12 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```js
-  downloadTask.delete((err, result)=>{
-    if(err) {
+  ```ts
+  downloadTask.delete((err: BusinessError, result: boolean) => {
+    if (err) {
       console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
       return;
-    } 
+    }
     console.info('Succeeded in removing the download task.');
   });
   ```
@@ -1109,10 +1107,10 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 
 **示例：**
 
-  ```js
-  downloadTask.getTaskInfo().then((downloadInfo) => {    
+  ```ts
+  downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
     console.info('Succeeded in querying the download task')
-  }) .catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -1136,9 +1134,9 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 **示例：**
 
-  ```js
-  downloadTask.getTaskInfo((err, downloadInfo)=>{
-    if(err) {
+  ```ts
+  downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
+    if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('Succeeded in querying the download mimeType');
@@ -1165,10 +1163,10 @@ getTaskMimeType(): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
-  downloadTask.getTaskMimeType().then((data) => {    
+  ```ts
+  downloadTask.getTaskMimeType().then((data: string) => {
     console.info('Succeeded in querying the download MimeType');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -1192,9 +1190,9 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 **示例：**
 
-  ```js
-  downloadTask.getTaskMimeType((err, data)=>{
-    if(err) {
+  ```ts
+  downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
+    if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('Succeeded in querying the download mimeType');
@@ -1221,10 +1219,10 @@ suspend(): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
-  downloadTask.suspend().then((result) => {    
+  ```ts
+  downloadTask.suspend().then((result: boolean) => {
     console.info('Succeeded in pausing the download task.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -1248,9 +1246,9 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```js
-  downloadTask.suspend((err, result)=>{
-    if(err) {
+  ```ts
+  downloadTask.suspend((err: BusinessError, result: boolean) => {
+    if (err) {
       console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
       return;
     }
@@ -1277,10 +1275,10 @@ restore(): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
-  downloadTask.restore().then((result) => {
+  ```ts
+  downloadTask.restore().then((result: boolean) => {
     console.info('Succeeded in resuming the download task.')
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -1304,12 +1302,12 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```js
-  downloadTask.restore((err, result)=>{
+  ```ts
+  downloadTask.restore((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
       return;
-    } 
+    }
     console.info('Succeeded in resuming the download task.');
   });
   ```
@@ -1697,8 +1695,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| path | string | 是 | 文件路径，包括如下两种：<br/>- 位于调用方的缓存文件夹下的相对路径。<br/>- 具备访问uri路径权限的应用可使用的uri路径。 |
-| mimeType | string | 否 | 文件的mimetype，默认值包括如下两种：<br/>- 上传时，通过文件名或uri的后缀获得。<br/>- 下载时，响应时为"Content-Type"，不响应为"octet-stream"。 |
+| path | string | 是 | 文件路径位于调用方的缓存文件夹下的相对路径。 |
+| mimeType | string | 否 | 文件的mimetype通过文件名获取。 |
 | filename | string | 否 | 文件名，默认值通过路径获取。 |
 | extras | Object | 否 | 文件信息的附加内容。 |
 
@@ -1728,7 +1726,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | mode | [Mode](#mode10) | 否 | 任务模式,默认为后台任务。<br/>-对于前端任务，有回调通知。<br/>-对于后台任务，有系统通知、检测网络连接、恢复、自动重试功能。 |
 | overwrite | boolean | 否 | 下载过程中路径已存在时的解决方案选择，默认为false。<br/>- true，覆盖已存在的文件。<br/>- false，下载失败。 |
 | method | string | 否 | 上传或下载的HTTP标准方法，包括GET、POST和PUT，不区分大小写。<br/>-上传时，使用PUT或POST，默认值为PUT。<br/>-下载时，使用GET或POST，默认值为GET。 |
-| headers | object | 否 | 添加要包含在任务中的HTTPS标志头。<br/>-对于上传请求，默认的Content-Type为"multipart/form-data"。<br/>-对于下载请求，默认的Content-Type为"application/json"。 |
+| headers | object | 否 | 添加要包含在任务中的HTTP协议标志头。<br/>-对于上传请求，默认的Content-Type为"multipart/form-data"。<br/>-对于下载请求，默认的Content-Type为"application/json"。 |
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | -下载时，data为字符串类型，通常使用json(object将被转换为json文本)，默认为空。<br/>-上传时，data是表单项数组Array&lt;[FormItem](#formitem10)&gt;，默认为空。 |
 | saveas | string | 否 | 保存下载文件的路径，包括如下两种：<br/>-相对路径，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"，位于调用方的缓存路径下。<br/>-uri路径，如"datashare://bundle/xxx/yyy/zzz.html"，仅对具有访问url路径权限的应用开放。该功能暂不支持。<br/>默认为相对路径，即下载至应用当前缓存路径下。 |
 | network | [Network](#network10) | 否 | 网络选项，当前支持无线网络WIFI和蜂窝数据网络CELLULAR，默认为ANY（WIFI或CELLULAR）。 |
@@ -1853,7 +1851,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
-订阅任务进度的监听。
+订阅前端任务进度的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -1874,22 +1872,21 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
 **示例：**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOnTest",
-                       value: {
-                         filename: "taskOnTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOnTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -1906,13 +1903,13 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
     precise: false,
     token: "it is a secret"
   };
-  let createOnCallback = (progress) => {
-    console.info('upload task completed.');
+  let createOnCallback = (progress: request.agent.Progress) => {
+    console.info('upload task progress.');
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('progress', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -1925,7 +1922,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
 on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
-订阅任务完成的监听。
+订阅前端任务完成的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -1946,22 +1943,21 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
 **示例：**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOnTest",
-                       value: {
-                         filename: "taskOnTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOnTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -1978,13 +1974,13 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
     precise: false,
     token: "it is a secret"
   };
-  let createOnCallback = (progress) => {
+  let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('completed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -1997,7 +1993,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
 on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
-订阅任务失败的监听。
+订阅前端任务失败的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2018,22 +2014,21 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
 **示例：**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOnTest",
-                       value: {
-                         filename: "taskOnTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOnTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2050,13 +2045,13 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
     precise: false,
     token: "it is a secret"
   };
-  let createOnCallback = (progress) => {
-    console.info('upload task completed.');
+  let createOnCallback = (progress: request.agent.Progress) => {
+    console.info('upload task failed.');
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('failed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2070,7 +2065,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
 off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务进度的监听。
+取消订阅前端任务进度的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2091,22 +2086,21 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 **示例：**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOffTest",
-                       value: {
-                         filename: "taskOffTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOffTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2123,14 +2117,14 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
     precise: false,
     token: "it is a secret"
   };
-  let createOffCallback = (progress) => {
-    console.info('upload task completed.');
+  let createOffCallback = (progress: request.agent.Progress) => {
+    console.info('upload task progress.');
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('progress', createOffCallback);
     task.off('progress', createOffCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2143,7 +2137,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务完成的监听。
+取消订阅前端任务完成的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2164,22 +2158,21 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 **示例：**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOffTest",
-                       value: {
-                         filename: "taskOffTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOffTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2196,14 +2189,14 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
     precise: false,
     token: "it is a secret"
   };
-  let createOffCallback = (progress) => {
+  let createOffCallback = (progress: request.agent.Progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('completed', createOffCallback);
     task.off('completed', createOffCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2216,7 +2209,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务失败的监听。
+取消订阅前端任务失败的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2237,22 +2230,21 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
 **示例：**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOffTest",
-                       value: {
-                         filename: "taskOffTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOffTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2269,14 +2261,14 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
     precise: false,
     token: "it is a secret"
   };
-  let createOffCallback = (progress) => {
-    console.info('upload task completed.');
+  let createOffCallback = (progress: request.agent.Progress) => {
+    console.info('upload task failed.');
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('failed', createOffCallback);
     task.off('failed', createOffCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2312,9 +2304,8 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStartTest',
@@ -2336,8 +2327,8 @@ start(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
-    task.start((err) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
+    task.start((err: BusinessError) => {
       if (err) {
         console.error(`Failed to start the download task, Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2345,7 +2336,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
       console.info(`Succeeded in starting a download task.`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2381,9 +2372,8 @@ start(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStartTest',
@@ -2405,14 +2395,14 @@ start(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.start().then(() => {
       console.info(`Succeeded in starting a download task.`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to start the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2447,9 +2437,8 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskPauseTest',
@@ -2471,8 +2460,8 @@ pause(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
-    task.pause((err) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
+    task.pause((err: BusinessError) => {
       if (err) {
         console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2480,7 +2469,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
       console.info(`Succeeded in pausing a download task. `);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2512,9 +2501,8 @@ pause(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskPauseTest',
@@ -2536,14 +2524,14 @@ pause(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to pause the upload task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2577,9 +2565,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskResumeTest',
@@ -2601,8 +2588,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
-    task.resume((err) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
+    task.resume((err: BusinessError) => {
       if (err) {
         console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2610,7 +2597,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
       console.info(`Succeeded in resuming a download task. `);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2644,9 +2631,8 @@ resume(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskResumeTest',
@@ -2668,14 +2654,14 @@ resume(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.resume().then(() => {
       console.info(`Succeeded in resuming a download task. `);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2706,9 +2692,8 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStopTest',
@@ -2730,8 +2715,8 @@ stop(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
-    task.stop((err) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
+    task.stop((err: BusinessError) => {
       if (err) {
         console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2739,7 +2724,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
       console.info(`Succeeded in stopping a download task. `);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2770,9 +2755,8 @@ stop(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStopTest',
@@ -2794,14 +2778,14 @@ stop(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.stop().then(() => {
       console.info(`Succeeded in stopping a download task. `);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2810,7 +2794,7 @@ stop(): Promise&lt;void&gt;
 
 create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
 
-创建要上传或下载的任务，并将其排入队列，应用最多支持创建10个任务，服务承载的任务数最多为300个。使用callback异步回调。
+创建要上传或下载的任务，并将其排入队列，每个应用最多支持创建10个未完成的任务。使用callback异步回调。
 
 
 **需要权限**：ohos.permission.INTERNET
@@ -2838,17 +2822,16 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
 **示例：**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "reeateTest",
-                       value: {
-                         filename: "reeateTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./reeateTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "reeateTest",
+    value: {
+      filename: "reeateTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./reeateTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'reeateTest',
@@ -2870,7 +2853,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config, (err, task) => {
+  request.agent.create(this.context, config, (err: BusinessError, task: request.agent.Task) => {
     if (err) {
       console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2887,7 +2870,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
 create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
-创建要上传或下载的任务，并将其排入队列，应用最多支持创建10个任务，服务承载的任务数最多为300个。使用Promise异步回调。
+创建要上传或下载的任务，并将其排入队列，每个应用最多支持创建10个未完成的任务。使用Promise异步回调。
 
 
 **需要权限**：ohos.permission.INTERNET
@@ -2920,17 +2903,16 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
 **示例：**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "reeateTest",
-                       value: {
-                         filename: "reeateTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./reeateTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "reeateTest",
+    value: {
+      filename: "reeateTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./reeateTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'reeateTest',
@@ -2952,7 +2934,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
   }).catch((err) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
@@ -2989,8 +2971,8 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
-  request.agent.remove("id", (err) => {
+  ```ts
+  request.agent.remove("id", (err: BusinessError) => {
     if (err) {
       console.error(`Failed to removing a download task, Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3031,10 +3013,10 @@ remove(id: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   request.agent.remove("id").then(() => {
     console.info(`Succeeded in removing a download task. `);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to remove a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -3053,7 +3035,7 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | id | string | 是 | 任务id。 |
-  | callback | AsyncCallback&lt;TaskInfo&gt; | 是 | 回调函数，返回任务详细信息。 |
+  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
@@ -3065,13 +3047,13 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
 **示例：**
 
-  ```js
-  request.agent.show("123456", (err, TaskInfo) => {
+  ```ts
+  request.agent.show("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
-      console.error(`Failed to show a unload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in showing a unload task.`);
+    console.info(`Succeeded in showing a upload task.`);
   });
   ```
 
@@ -3094,7 +3076,7 @@ show(id: string): Promise&lt;TaskInfo&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;TaskInfo&gt; | Promise对象。返回任务详细信息的Promise对象。 |
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
@@ -3106,11 +3088,11 @@ show(id: string): Promise&lt;TaskInfo&gt;
 
 **示例：**
 
-  ```js
-  request.agent.show("123456").then((TaskInfo) => {
-    console.info(`Succeeded in showing a unload task.`);
-  }).catch((err) => {
-    console.error(`Failed to show a unload task, Code: ${err.code}, message: ${err.message}`);
+  ```ts
+  request.agent.show("123456").then((taskInfo: request.agent.TaskInfo) => {
+    console.info(`Succeeded in showing a upload task.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3129,7 +3111,7 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | -------- | -------- | -------- | -------- |
   | id | string | 是 | 任务id。 |
   | token | string | 是 | 任务查询token。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回任务详细信息。 |
+  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
@@ -3141,13 +3123,13 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
 **示例：**
 
-  ```js
-  request.agent.touch("123456", "token", (err, TaskInfo) => {
+  ```ts
+  request.agent.touch("123456", "token", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
-      console.error(`Failed to touch a unload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in touching a unload task.`);
+    console.info(`Succeeded in touching a upload task.`);
   });
   ```
 
@@ -3171,7 +3153,7 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;TaskInfo&gt; | Promise对象。返回任务详细信息的Promise对象。 |
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
@@ -3183,14 +3165,46 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 
 **示例：**
 
-  ```js
-  request.agent.touch("123456", "token").then((TaskInfo) => {
-    console.info(`Succeeded in touching a unload task. `);
-  }).catch((err) => {
-    console.error(`Failed to touch a unload task, Code: ${err.code}, message: ${err.message}`);
+  ```ts
+  request.agent.touch("123456", "token").then((taskInfo: request.agent.TaskInfo) => {
+    console.info(`Succeeded in touching a upload task. `);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
+## request.agent.search<sup>10+</sup>
+
+search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+
+根据默认[Filter](#filter10)过滤条件查找任务id。使用callback异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数，返回满足条件任务id。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+
+**示例：**
+
+  ```ts
+  request.agent.search((err: BusinessError, data: Array<string>) => {
+    if (err) {
+      console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in searching a upload task. `);
+  });
+  ```
 
 ## request.agent.search<sup>10+</sup>
 
@@ -3216,25 +3230,25 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 **示例：**
 
-  ```js
-  let filter ={
-    bundle:"com.example.myapplication",
+  ```ts
+  let filter: request.agent.Filter = {
+    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
-    mode:request.agent.Mode.BACKGROUND
+    mode: request.agent.Mode.BACKGROUND
   }
-  request.agent.search(filter, (err, data) => {
+  request.agent.search(filter, (err: BusinessError, data: Array<string>) => {
     if (err) {
-      console.error(`Failed to search a unload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in searching a unload task. `);
+    console.info(`Succeeded in searching a upload task. `);
   });
   ```
 
 
 ## request.agent.search<sup>10+</sup>
 
-search(filter: Filter): Promise&lt;Array&lt;string&gt;&gt;
+search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 
 根据[Filter](#filter10)过滤条件查找任务id。使用Promise异步回调。
 
@@ -3244,7 +3258,7 @@ search(filter: Filter): Promise&lt;Array&lt;string&gt;&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | filter | [Filter](#filter10) | 是 | 过滤条件。 |
+  | filter | [Filter](#filter10) | 否 | 过滤条件。 |
 
 **返回值：** 
 
@@ -3261,16 +3275,16 @@ search(filter: Filter): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：**
 
-  ```js
-  let filter ={
-    bundle:"com.example.myapplication",
+  ```ts
+  let filter: request.agent.Filter = {
+    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }
-  request.agent.search(filter).then((data) => {
-    console.info(`Succeeded in searching a unload task. `);
-  }).catch((err) => {
-    console.error(`Failed to search a unload task, Code: ${err.code}, message: ${err.message}`);
+  request.agent.search(filter).then((data: Array<string>) => {
+    console.info(`Succeeded in searching a upload task. `);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3292,7 +3306,7 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | id | string | 是 | 任务id。 |
-  | callback | AsyncCallback&lt;TaskInfo&gt; | 是 | 回调函数，返回任务详细信息。 |
+  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
@@ -3304,13 +3318,13 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
 **示例：**
 
-  ```js
-  request.agent.query("123456", (err, TaskInfo) => {
+  ```ts
+  request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
-      console.error(`Failed to query a unload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in querying a unload task. result: ${TaskInfo.uid}`);
+    console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
   });
   ```
 
@@ -3337,7 +3351,7 @@ query(id: string): Promise&lt;TaskInfo&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;TaskInfo&gt; | Promise对象。返回任务详细信息的Promise对象。 |
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
@@ -3349,11 +3363,11 @@ query(id: string): Promise&lt;TaskInfo&gt;
 
 **示例：**
 
-  ```js
-  request.agent.query("123456",).then((TaskInfo) => {
-    console.info(`Succeeded in querying a unload task. result: ${TaskInfo.uid}`);
-  }).catch((err) => {
-    console.error(`Failed to query a unload task, Code: ${err.code}, message: ${err.message}`);
+  ```ts
+  request.agent.query("123456",).then((taskInfo: request.agent.TaskInfo) => {
+    console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 

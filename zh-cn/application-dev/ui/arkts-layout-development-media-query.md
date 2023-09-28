@@ -25,15 +25,15 @@ import mediaquery from '@ohos.mediaquery';
 
 
 ```ts
-let listener = mediaquery.matchMediaSync('(orientation: landscape)');
+let listener:mediaquery = mediaquery.matchMediaSync('(orientation: landscape)');
 ```
 
 给条件监听句柄listener绑定回调函数onPortrait，当listener检测设备状态变化时执行回调函数。在回调函数内，根据不同设备状态更改页面布局或者实现业务逻辑。
 
 
 ```ts
-onPortrait(mediaQueryResult) {
-  if (mediaQueryResult.matches) {
+onPortrait(mediaQueryResult:mediaquery) {
+  if (mediaQueryResult.matches as boolean) {
     // do something here
   } else {
     // do something here
@@ -64,7 +64,7 @@ listener.on('change', onPortrait);
 
 - (max-height: 800) ：表示当高度小于等于800时条件成立。
 
-- (height &lt;= 800) ：表示当高度小于等于800时条件成立。
+- (height &lt;= 800) ：表示当高度小于等于800时条件成立。（媒体特性不确定具体值时推荐使用媒体逻辑范围操作符）
 
 - screen and (device-type: tv) or (resolution &lt; 2) ：表示包含多个媒体特征的多条件复杂语句查询，当设备类型为tv或设备分辨率小于2时条件成立。
 
@@ -143,19 +143,18 @@ import mediaquery from '@ohos.mediaquery';
 import window from '@ohos.window';
 import common from '@ohos.app.ability.common';
 
-let portraitFunc = null;
-
 @Entry
 @Component
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
+  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
   // 当设备横屏时条件成立
-  listener = mediaquery.matchMediaSync('(orientation: landscape)');
+  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)');
 
   // 当满足媒体查询条件时，触发回调
-  onPortrait(mediaQueryResult) {
-    if (mediaQueryResult.matches) { // 若设备为横屏状态，更改相应的页面布局
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
+    if (mediaQueryResult.matches as boolean) { // 若设备为横屏状态，更改相应的页面布局
       this.color = '#FFD700';
       this.text = 'Landscape';
     } else {
@@ -166,15 +165,14 @@ struct MediaQueryExample {
 
   aboutToAppear() {
     // 绑定当前应用实例
-    portraitFunc = this.onPortrait.bind(this);
     // 绑定回调函数
-    this.listener.on('change', portraitFunc);
+    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) });
   }
 
   // 改变设备横竖屏状态函数
   private changeOrientation(isLandscape: boolean) {
     // 获取UIAbility实例的上下文信息
-    let context = getContext(this) as common.UIAbilityContext;
+    let context:common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
     // 调用该接口手动改变设备横竖屏状态
     window.getLastWindow(context).then((lastWindow) => {
       lastWindow.setPreferredOrientation(isLandscape ? window.Orientation.LANDSCAPE : window.Orientation.PORTRAIT)
@@ -205,17 +203,16 @@ FA模型下的示例：
 import mediaquery from '@ohos.mediaquery';
 import featureAbility from '@ohos.ability.featureAbility';
 
-let portraitFunc = null;
-
 @Entry
 @Component
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
-  listener = mediaquery.matchMediaSync('(orientation: landscape)'); // 当设备横屏时条件成立
+  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
+  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // 当设备横屏时条件成立
 
-  onPortrait(mediaQueryResult) { // 当满足媒体查询条件时，触发回调
-    if (mediaQueryResult.matches) { // 若设备为横屏状态，更改相应的页面布局
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) { // 当满足媒体查询条件时，触发回调
+    if (mediaQueryResult.matches as boolean) { // 若设备为横屏状态，更改相应的页面布局
       this.color = '#FFD700';
       this.text = 'Landscape';
     } else {
@@ -225,8 +222,8 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    portraitFunc = this.onPortrait.bind(this); // 绑定当前应用实例
-    this.listener.on('change', portraitFunc); //绑定回调函数
+    // 绑定当前应用实例
+    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) }); //绑定回调函数
   }
 
   build() {
@@ -258,6 +255,6 @@ struct MediaQueryExample {
 
 ## 相关实例
 
-基于媒体查询，可参考以下实例：
+针对媒体查询开发，有以下相关实例可供参考：
 
-[媒体查询](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/MediaQuery)：使用媒体查询，完成在不同设备上显示不同的界面效果。
+- [横竖屏切换（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/MediaQuery)

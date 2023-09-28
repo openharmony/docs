@@ -113,8 +113,10 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility：文件缩略图扩展能力，用于为文件提供图标缩略图的能力。预留能力，当前暂未支持。 |
 | PREVIEW          | 14  | PreviewExtensionAbility：文件预览扩展能力，提供文件预览的能力，其他应用可以直接在应用中嵌入显示。预留能力，当前暂未支持。 |
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility：文件打印扩展能力，提供应用打印照片、文档等办公场景。当前支持图片打印，文档类型暂未支持。 |
+| SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md)：提供分享业务能力，为开发者提供基于UIExtension的分享业务模板。 |
 | PUSH<sup>10+</sup> | 17 | PushExtensionAbility：推送扩展能力，提供推送场景化消息能力。预留能力，当前暂未支持。 |
 | DRIVER<sup>10+</sup> | 18 | DriverExtensionAbility：驱动扩展能力，提供外设驱动扩展能力，当前暂未支持。 |
+| ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md)：自定义服务扩展能力，为开发者提供基于UIExtension的自定义操作业务模板。 |
 | UNSPECIFIED      | 255 | 不指定类型，配合queryExtensionAbilityInfo接口可以查询所有类型的ExtensionAbility。 |
 
 
@@ -248,16 +250,18 @@ getBundleInfoForSelf(bundleFlags: [number](#bundleflag)): Promise\<[BundleInfo](
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 try {
     bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', message);
 }
 ```
 
@@ -280,6 +284,7 @@ getBundleInfoForSelf(bundleFlags: [number](#bundleflag), callback: AsyncCallback
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 
@@ -292,7 +297,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', message);
 }
 ```
 
@@ -334,6 +340,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 ```ts
 // 额外获取AbilityInfo
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY;
@@ -348,13 +355,15 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfo failed: %{public}s', message);
 }
 ```
 
 ```ts
 // 额外获取ApplicationInfo中的metadata
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
@@ -369,7 +378,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfo failed: %{public}s', message);
 }
 ```
 
@@ -409,6 +419,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 ```ts
 // 额外获取extensionAbility
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY;
@@ -422,7 +433,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfo failed: %{public}s', message);
 }
 ```
 
@@ -469,6 +481,7 @@ getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: n
 ```ts
 // 额外获取ApplicationInfo和SignatureInfo
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
@@ -477,16 +490,18 @@ let userId = 100;
 try {
     bundleManager.getBundleInfo(bundleName, bundleFlags, userId).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s', message);
 }
 ```
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
@@ -494,11 +509,12 @@ let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 try {
     bundleManager.getBundleInfo(bundleName, bundleFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s', message);
 }
 
 ```
@@ -540,6 +556,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
@@ -554,7 +571,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getApplicationInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getApplicationInfo failed: %{public}s', message);
 }
 ```
 
@@ -593,6 +611,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), cal
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
@@ -606,7 +625,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getApplicationInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getApplicationInfo failed: %{public}s', message);
 }
 ```
 
@@ -652,6 +672,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
@@ -660,11 +681,12 @@ let userId = 100;
 try {
     bundleManager.getApplicationInfo(bundleName, appFlags, userId).then((data) => {
         hilog.info(0x0000, 'testTag', 'getApplicationInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getApplicationInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getApplicationInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getApplicationInfo failed. Cause: %{public}s', message);
 }
 ```
 
@@ -700,6 +722,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId: number, callback: A
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 let userId = 100;
@@ -713,7 +736,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAllBundleInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllBundleInfo failed: %{public}s', message);
 }
 ```
 
@@ -740,6 +764,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), callback: AsyncCallback<Arr
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 
@@ -752,7 +777,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAllBundleInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllBundleInfo failed: %{public}s', message);
 }
 ```
 
@@ -793,17 +819,19 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<A
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 
 try {
     bundleManager.getAllBundleInfo(bundleFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getAllBundleInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAllBundleInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAllBundleInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllBundleInfo failed. Cause: %{public}s', message);
 }
 ```
 
@@ -839,6 +867,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, call
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
 let userId = 100;
@@ -852,7 +881,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAllApplicationInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllApplicationInfo failed: %{public}s', message);
 }
 ```
 
@@ -879,6 +909,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallb
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
 
@@ -891,7 +922,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAllApplicationInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllApplicationInfo failed: %{public}s', message);
 }
 ```
 
@@ -932,17 +964,19 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Pr
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
 
 try {
     bundleManager.getAllApplicationInfo(appFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getAllApplicationInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAllApplicationInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAllApplicationInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllApplicationInfo failed. Cause: %{public}s', message);
 }
 
 ```
@@ -984,10 +1018,12 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId: numbe
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1001,7 +1037,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed: %{public}s', message);
 }
 ```
 
@@ -1040,9 +1077,11 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: Asy
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1056,7 +1095,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed: %{public}s', message);
 }
 ```
 
@@ -1102,10 +1142,12 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1113,19 +1155,22 @@ let want = {
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((data) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', message);
 }
 ```
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1133,11 +1178,94 @@ let want = {
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
     })
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.queryAbilityInfoSync<sup>10+</sup>
+
+queryAbilityInfoSync(want: Want, abilityFlags: [number](#abilityflag), userId?: number): Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>;
+
+以同步方法根据给定的want、abilityFlags和userId获取一个或多个AbilityInfo。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                                                  |
+| ------------ | ------ | ---- | ------------------------------------------------------- |
+| want         | Want   | 是   | 表示包含要查询的应用Bundle名称的Want。                 |
+| abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息。 |
+| userId       | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                       |
+
+**返回值：**
+
+| 类型                                                         | 说明                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | Array\<AbilityInfo>信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | ------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700003 | The specified ability is not found.    |
+| 17700004 | The specified userId is invalid.       |
+| 17700026 | The specified bundle is disabled.      |
+| 17700029 | The specified ability is disabled.     |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
+let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
+let userId = 100;
+let want: Want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    
+    let infos = bundleManager.queryAbilityInfoSync(want, abilityFlags, userId);
+    hilog.info(0x0000, 'testTag', 'queryAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(infos));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfoSync failed. Cause: %{public}s', message);
+}
+```
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
+let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
+let want: Want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    let infos = bundleManager.queryAbilityInfoSync(want, abilityFlags);
+    hilog.info(0x0000, 'testTag', 'queryAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(infos));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfoSync failed. Cause: %{public}s', message);
 }
 ```
 
@@ -1178,11 +1306,13 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1196,7 +1326,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed: %{public}s', message);
 }
 ```
 
@@ -1235,10 +1366,12 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1252,7 +1385,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed: %{public}s', message);
 }
 ```
 
@@ -1298,12 +1432,14 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1311,20 +1447,23 @@ let want = {
 try {
     bundleManager.queryExtensionAbilityInfo(want, extensionAbilityType, extensionFlags, userId).then((data) => {
         hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed. Cause: %{public}s', message);
 }
 ```
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1332,11 +1471,96 @@ let want = {
 try {
     bundleManager.queryExtensionAbilityInfo(want, extensionAbilityType, extensionFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed. Cause: %{public}s', err.message);
     })
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.queryExtensionAbilityInfoSync<sup>10+</sup>
+
+queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: [ExtensionAbilityType](#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
+
+以同步方法根据给定的want、extensionAbilityType、extensionAbilityFlags和userId获取ExtensionAbilityInfo。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名                | 类型                                          | 必填 | 说明                                                      |
+| --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
+| want                  | Want                                          | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
+| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
+| extensionAbilityFlags | [number](#extensionabilityflag)               | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。 |
+| userId                | number                                        | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                                              |
+
+**返回值：**
+
+| 类型                                                         | 说明                                          |
+| ------------------------------------------------------------ | --------------------------------------------- |
+| Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | Array\<ExtensionAbilityInfo>信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | --------------------------------------|
+| 17700001 | The specified bundleName is not found. |
+| 17700003 | The specified extensionAbility is not found.    |
+| 17700004 | The specified userId is invalid.       |
+| 17700026 | The specified bundle is disabled.      |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
+
+let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
+let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
+let userId = 100;
+let want: Want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    let extenInfos = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags, userId);
+    hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(extenInfos));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed. Cause: %{public}s', message);
+}
+```
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
+let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
+let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
+let want: Want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    let extenInfos = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags);
+    hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(extenInfos));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed. Cause: %{public}s', message);
 }
 ```
 
@@ -1371,6 +1595,7 @@ getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void;
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let uid = 20010005;
 try {
@@ -1382,7 +1607,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleNameByUid failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleNameByUid failed: %{public}s', message);
 }
 ```
 
@@ -1422,16 +1648,66 @@ getBundleNameByUid(uid: number): Promise\<string>;
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let uid = 20010005;
 try {
     bundleManager.getBundleNameByUid(uid).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleNameByUid successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getBundleNameByUid failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleNameByUid failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleNameByUid failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.getBundleNameByUidSync<sup>10+</sup>
+
+getBundleNameByUidSync(uid: number): string;
+
+以同步方法根据给定的uid获取对应的bundleName。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                |
+| ---- | ------ | ---- | ------------------ |
+| uid  | number | 是   | 表示应用程序的UID。 |
+
+**返回值：**
+
+| 类型             | 说明                        |
+| ---------------- | --------------------------- |
+| string | 返回获取到的bundleName。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息            |
+| -------- | ---------------------|
+| 17700021 | The uid is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let uid = 20010005;
+try {
+    let data = bundleManager.getBundleNameByUidSync(uid);
+    hilog.info(0x0000, 'testTag', 'getBundleNameByUidSync successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleNameByUidSync failed. Cause: %{public}s', message);
 }
 ```
 
@@ -1467,6 +1743,7 @@ getBundleArchiveInfo(hapFilePath: string, bundleFlags: [number](#bundleflag), ca
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let hapFilePath = "/data/xxx/test.hap";
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
@@ -1480,7 +1757,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleArchiveInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleArchiveInfo failed. Cause: %{public}s', message);
 }
 ```
 
@@ -1521,6 +1799,7 @@ getBundleArchiveInfo(hapFilePath: string,  bundleFlags: [number](#bundleflag)): 
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let hapFilePath = "/data/xxx/test.hap";
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
@@ -1528,11 +1807,63 @@ let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 try {
     bundleManager.getBundleArchiveInfo(hapFilePath, bundleFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleArchiveInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getBundleArchiveInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleArchiveInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleArchiveInfo failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.getBundleArchiveInfoSync<sup>10+</sup>
+
+getBundleArchiveInfoSync(hapFilePath: string, bundleFlags: number): BundleInfo;
+
+以同步方法根据给定的hapFilePath和bundleFlags获取BundleInfo对象。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名       | 类型   | 必填 | 说明                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| hapFilePath | string | 是   | 表示存储HAP的路径，路径应该是当前应用程序数据目录的相对路径。 |
+| bundleFlags | [number](#bundleflag) | 是   | 表示用于指定要返回的BundleInfo对象中包含的信息的标志。       |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | 返回BundleInfo对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 17700022 | The hapFilePath is invalid. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let hapFilePath = "/data/xxx/test.hap";
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+
+try {
+    let data = bundleManager.getBundleArchiveInfoSync(hapFilePath, bundleFlags)
+    hilog.info(0x0000, 'testTag', 'getBundleArchiveInfoSync successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleArchiveInfoSync failed. Cause: %{public}s', message);
 }
 ```
 
@@ -1568,6 +1899,7 @@ cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void;
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.ohos.myapplication";
 
@@ -1580,7 +1912,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'cleanBundleCacheFiles failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'cleanBundleCacheFiles failed: %{public}s', message);
 }
 ```
 
@@ -1621,17 +1954,19 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>;
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.ohos.myapplication";
 
 try {
     bundleManager.cleanBundleCacheFiles(bundleName).then(() => {
         hilog.info(0x0000, 'testTag', 'cleanBundleCacheFiles successfully.');
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'cleanBundleCacheFiles failed: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'cleanBundleCacheFiles failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'cleanBundleCacheFiles failed: %{public}s', message);
 }
 ```
 
@@ -1667,6 +2002,7 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCal
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.ohos.myapplication";
 
@@ -1679,7 +2015,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'setApplicationEnabled failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'setApplicationEnabled failed: %{public}s', message);
 }
 ```
 
@@ -1720,17 +2057,63 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean): Promise\<void>;
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.ohos.myapplication";
 
 try {
     bundleManager.setApplicationEnabled(bundleName, false).then(() => {
         hilog.info(0x0000, "testTag", "setApplicationEnabled successfully.");
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'setApplicationEnabled failed: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'setApplicationEnabled failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'setApplicationEnabled failed: %{public}s', message);
+}
+```
+
+### bundleManager.setApplicationEnabledSync<sup>10+</sup>
+
+setApplicationEnabledSync(bundleName: string, isEnabled: boolean): void;
+
+以同步方法设置指定应用的禁用或使能状态。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.CHANGE_ABILITY_ENABLED_STATE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名      | 类型    | 必填 | 说明                                  |
+| ---------- | ------- | ---- | ------------------------------------- |
+| bundleName | string  | 是   | 指定应用的bundleName。                |
+| isEnabled  | boolean | 是   | 值为true表示使能，值为false表示禁用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName = "com.ohos.myapplication";
+
+try {
+    bundleManager.setApplicationEnabledSync(bundleName, false);
+    hilog.info(0x0000, 'testTag', 'setApplicationEnabledSync successfully.');
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'setApplicationEnabledSync failed: %{public}s', message);
 }
 ```
 
@@ -1767,32 +2150,34 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
-let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
-        info = abilitiesInfo[0];
+        let info = abilitiesInfo[0];
 
         bundleManager.setAbilityEnabled(info, false, err => {
             if (err) {
                 hilog.error(0x0000, 'testTag', 'setAbilityEnabled failed: %{public}s', err.message);
             } else {
-                hilog.info(0x0001, "testTag", "setAbilityEnabled successfully.");
+                hilog.info(0x0000, "testTag", "setAbilityEnabled successfully.");
             }
         });
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', message);
 }
 ```
 
@@ -1834,30 +2219,95 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
-let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
-        info = abilitiesInfo[0];
+        let info = abilitiesInfo[0];
 
         bundleManager.setAbilityEnabled(info, false).then(() => {
             hilog.info(0x0000, "testTag", "setAbilityEnabled successfully.");
-        }).catch(err => {
+        }).catch((err: BusinessError) => {
             hilog.error(0x0000, 'testTag', 'setAbilityEnabled failed: %{public}s', err.message);
         });
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.setAbilityEnabledSync<sup>10+</sup>
+
+setAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean): void;
+
+以同步方法设置指定组件的禁用或使能状态。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.CHANGE_ABILITY_ENABLED_STATE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名    | 类型        | 必填 | 说明                                  |
+| -------- | ----------- | ---- | ------------------------------------- |
+| info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 需要被设置的组件。              |
+| isEnabled| boolean     | 是   | 值为true表示使能，值为false表示禁用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ---------------------------------------|
+| 17700001 | The specified bundleName is not found.  |
+| 17700003 | The specified abilityInfo is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
+let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
+let userId = 100;
+let want: Want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
+        hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
+        let info = abilitiesInfo[0];
+
+        try {
+            bundleManager.setAbilityEnabledSync(info, false);
+            hilog.info(0x0000, "testTag", "setAbilityEnabledSync successfully.");
+        } catch (err) {
+            let message = (err as BusinessError).message;
+            hilog.error(0x0000, 'testTag', 'setAbilityEnabledSync failed: %{public}s', message);
+        }
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', message);
 }
 ```
 
@@ -1890,6 +2340,7 @@ isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): voi
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 
@@ -1902,7 +2353,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'isApplicationEnabled failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'isApplicationEnabled failed: %{public}s', message);
 }
 ```
 
@@ -1940,17 +2392,66 @@ isApplicationEnabled(bundleName: string): Promise\<boolean>;
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 
 try {
     bundleManager.isApplicationEnabled(bundleName).then((data) => {
         hilog.info(0x0000, 'testTag', 'isApplicationEnabled successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'isApplicationEnabled failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'isApplicationEnabled failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'isApplicationEnabled failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.isApplicationEnabledSync<sup>10+</sup>
+
+isApplicationEnabledSync(bundleName: string): boolean;
+
+以同步方法获取指定应用的禁用或使能状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                       |
+| ---------- | ------ | ---- | -------------------------- |
+| bundleName | string | 是   | 表示应用程序的bundleName。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示当前应用为使能状态，返回false表示当前应用为禁用状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName = 'com.example.myapplication';
+
+try {
+    let data = bundleManager.isApplicationEnabledSync(bundleName);
+    hilog.info(0x0000, 'testTag', 'isApplicationEnabledSync successfully: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'isApplicationEnabledSync failed: %{public}s', message);
 }
 ```
 
@@ -1984,19 +2485,20 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), call
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
-let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
-        info = abilitiesInfo[0];
+        let info = abilitiesInfo[0];
 
         bundleManager.isAbilityEnabled(info, (err, data) => {
             if (err) {
@@ -2005,11 +2507,12 @@ try {
                 hilog.info(0x0000, 'testTag', 'isAbilityEnabled successfully: %{public}s', JSON.stringify(data));
             }
         });
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', message);
 }
 ```
 
@@ -2048,30 +2551,98 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): Pro
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
-let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
-        info = abilitiesInfo[0];
+        let info = abilitiesInfo[0];
 
         bundleManager.isAbilityEnabled(info).then((data) => {
             hilog.info(0x0000, 'testTag', 'isAbilityEnabled successfully. Data: %{public}s', JSON.stringify(data));
-        }).catch(err => {
+        }).catch((err: BusinessError) => {
             hilog.error(0x0000, 'testTag', 'isAbilityEnabled failed. Cause: %{public}s', err.message);
         });
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.isAbilityEnabledSync<sup>10+</sup>
+
+isAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): boolean;
+
+以同步方法获取指定组件的禁用或使能状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                        |
+| ---- | ----------- | ---- | --------------------------- |
+| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 表示关于检查ability的信息。 |
+
+**返回值：**
+
+| 类型    | 说明                                                                 |
+| ------- | ------------------------------------------------------------------- |
+| boolean | 返回true表示当前应用组件为使能状态，返回false表示当前应用组件为禁用状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | --------------------------------------- |
+| 17700001 | The specified bundleName is not found.  |
+| 17700003 | The specified abilityName is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
+let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
+let userId = 100;
+let want: Want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
+        hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
+        let info = abilitiesInfo[0];
+
+        try {
+            let data = bundleManager.isAbilityEnabledSync(info);
+            hilog.info(0x0000, 'testTag', 'isAbilityEnabledSync successfully: %{public}s', JSON.stringify(data));
+        } catch (err) {
+            let message = (err as BusinessError).message;
+            hilog.error(0x0000, 'testTag', 'isAbilityEnabledSync failed: %{public}s', message);
+        }
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', message);
 }
 ```
 
@@ -2109,6 +2680,7 @@ getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallba
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let userId = 100;
@@ -2122,7 +2694,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getLaunchWantForBundle failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getLaunchWantForBundle failed: %{public}s', message);
 }
 ```
 
@@ -2158,6 +2731,7 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 
@@ -2170,7 +2744,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getLaunchWantForBundle failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getLaunchWantForBundle failed: %{public}s', message);
 }
 ```
 
@@ -2213,6 +2788,7 @@ getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>;
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let userId = 100;
@@ -2220,11 +2796,84 @@ let userId = 100;
 try {
     bundleManager.getLaunchWantForBundle(bundleName, userId).then((data) => {
         hilog.info(0x0000, 'testTag', 'getLaunchWantForBundle successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getLaunchWantForBundle failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getLaunchWantForBundle failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getLaunchWantForBundle failed. Cause: %{public}s', message);
+}
+```
+
+
+### bundleManager.getLaunchWantForBundleSync<sup>10+</sup>
+
+getLaunchWantForBundleSync(bundleName: string, userId?: number): Want;
+
+以同步方法根据给定的bundleName和userId获取用于启动应用程序的Want参数。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ---------- | ------ | ---- | ------------------------- |
+| bundleName | string | 是   | 表示应用程序的bundleName。 |
+| userId     | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Want | Want对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | --------------------------------------|
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found.     |
+| 17700026 | The specified bundle is disabled.      |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
+let bundleName = 'com.example.myapplication';
+let userId = 100;
+
+try {
+    let want: Want = bundleManager.getLaunchWantForBundleSync(bundleName, userId);
+    hilog.info(0x0000, 'testTag', 'getLaunchWantForBundleSync successfully. Data: %{public}s', JSON.stringify(want));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getLaunchWantForBundleSync failed. Cause: %{public}s', message);
+}
+```
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
+let bundleName = 'com.example.myapplication';
+let userId = 100;
+
+try {
+    let want: Want = bundleManager.getLaunchWantForBundleSync(bundleName);
+    hilog.info(0x0000, 'testTag', 'getLaunchWantForBundleSync successfully. Data: %{public}s', JSON.stringify(want));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getLaunchWantForBundleSync failed. Cause: %{public}s', message);
 }
 ```
 
@@ -2261,6 +2910,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
@@ -2275,7 +2925,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', message);
 }
 ```
 
@@ -2317,6 +2968,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
@@ -2324,16 +2976,18 @@ let abilityName = 'EntryAbility';
 try {
     bundleManager.getProfileByAbility(moduleName, abilityName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', message);
 }
 ```
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
@@ -2341,11 +2995,80 @@ let metadataName = 'com.example.myapplication.metadata';
 try {
     bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.getProfileByAbilitySync<sup>10+</sup>
+
+getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: string): Array\<string\>;
+
+以同步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，返回对象为string数组。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名       | 类型   | 必填 | 说明                       |
+| ------------ | ------ | ---- | -------------------------- |
+| moduleName   | string | 是   | 表示应用程序的moduleName。   |
+| abilityName  | string | 是   | 表示应用程序的abilityName。  |
+| metadataName | string | 否   | 表示应用程序的metadataName，默认值为空。 |
+
+**返回值：**
+
+| 类型                    | 说明                            |
+| ----------------------- | ------------------------------- |
+| Array\<string> | 数组对象，返回Array\<string>。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700002 | The specified moduleName is not existed.                      |
+| 17700003 | The specified abilityName is not existed.                     |
+| 17700024 | Failed to get the profile because there is no profile in the HAP. |
+| 17700026 | The specified bundle is disabled.                             |
+| 17700029 | The specified ability is disabled.                            |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let moduleName = 'entry';
+let abilityName = 'EntryAbility';
+
+try {
+    let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName);
+    hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getProfileByAbilitySync failed. Cause: %{public}s', message);
+}
+```
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let moduleName: string = 'entry';
+let abilityName: string = 'EntryAbility';
+let metadataName: string = 'com.example.myapplication.metadata';
+try {
+    let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName, metadataName);
+    hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getProfileByAbilitySync failed. Cause: %{public}s', message);
 }
 ```
 
@@ -2381,6 +3104,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
@@ -2395,7 +3119,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed: %{public}s', message);
 }
 ```
 
@@ -2436,6 +3161,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
@@ -2444,21 +3170,83 @@ let metadataName = 'com.example.myapplication.metadata';
 try {
     bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbility successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', message);
 }
 
 try {
     bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbility successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.getProfileByExtensionAbilitySync<sup>10+</sup>
+
+getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: string, metadataName?: string): Array\<string\>;
+
+以同步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，返回对象为string数组。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名                 | 类型   | 必填 | 说明                               |
+| -------------------- | ------ | ---- | ---------------------------------- |
+| moduleName           | string | 是   | 表示应用程序的moduleName。           |
+| extensionAbilityName | string | 是   | 表示应用程序的extensionAbilityName。 |
+| metadataName         | string | 否   | 表示应用程序的metadataName，默认值为空。         |
+
+**返回值：**
+
+| 类型                    | 说明                                |
+| ----------------------- | ----------------------------------- |
+| Array\<string> | 返回Array\<string>对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700002 | The specified moduleName is not existed.                      |
+| 17700003 | The specified extensionAbilityName not existed.            |
+| 17700024 | Failed to get the profile because there is no profile in the HAP. |
+| 17700026 | The specified bundle is disabled.                             |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let moduleName = 'entry';
+let extensionAbilityName = 'com.example.myapplication.extension';
+let metadataName = 'com.example.myapplication.metadata';
+
+try {
+    let data = bundleManager.getProfileByExtensionAbilitySync(moduleName, extensionAbilityName);
+    hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbilitySync failed. Cause: %{public}s', message);
+}
+
+try {
+    let data = bundleManager.getProfileByExtensionAbilitySync(moduleName, extensionAbilityName, metadataName);
+    hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbilitySync failed. Cause: %{public}s', message);
 }
 ```
 
@@ -2493,6 +3281,7 @@ getPermissionDef(permissionName: string, callback: AsyncCallback\<[PermissionDef
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let permission = "ohos.permission.GET_BUNDLE_INFO";
 try {
@@ -2504,7 +3293,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getPermissionDef failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getPermissionDef failed: %{public}s', message);
 }
 ```
 
@@ -2544,16 +3334,66 @@ getPermissionDef(permissionName: string): Promise\<[PermissionDef](js-apis-bundl
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let permissionName = "ohos.permission.GET_BUNDLE_INFO";
 try {
     bundleManager.getPermissionDef(permissionName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getPermissionDef successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getPermissionDef failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getPermissionDef failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getPermissionDef failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.getPermissionDefSync<sup>10+</sup>
+
+getPermissionDefSync(permissionName: string): [PermissionDef](js-apis-bundleManager-permissionDef.md);
+
+以同步方法根据给定的permissionName获取权限定义结构体PermissionDef信息。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名           | 类型   | 必填 | 说明           |
+| -------------- | ------ | ---- | -------------- |
+| permissionName | string | 是   | 表示权限参数名。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                       |
+| ------------------------------------------------------------ | ------------------------------------------ |
+|[PermissionDef](js-apis-bundleManager-permissionDef.md) | PermissionDef对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17700006 | The specified permission is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let permissionName = "ohos.permission.GET_BUNDLE_INFO";
+try {
+    let PermissionDef = bundleManager.getPermissionDefSync(permission);
+    hilog.info(0x0000, 'testTag', 'getPermissionDefSync successfully. Data: %{public}s', JSON.stringify(PermissionDef));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getPermissionDefSync failed. Cause: %{public}s', message);
 }
 ```
 
@@ -2594,6 +3434,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, cal
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
@@ -2608,7 +3449,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAbilityLabel failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAbilityLabel failed: %{public}s', message);
 }
 ```
 
@@ -2654,6 +3496,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Pr
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
@@ -2662,14 +3505,71 @@ let abilityName = 'EntryAbility';
 try {
     bundleManager.getAbilityLabel(bundleName, moduleName, abilityName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getAbilityLabel successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAbilityLabel failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAbilityLabel failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAbilityLabel failed. Cause: %{public}s', message);
 }
 ```
 
+### bundleManager.getAbilityLabelSync<sup>10+</sup>
+
+getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string): string;
+
+以同步的方法获取指定bundleName、moduleName和abilityName的label。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                      |
+| ----------- | ------ | ---- | ------------------------- |
+| bundleName  | string | 是   | 表示应用程序的bundleName。  |
+| moduleName  | string | 是   | 表示应用程序的moduleName。  |
+| abilityName | string | 是   | 表示应用程序的abilityName。 |
+
+**返回值：**
+
+| 类型             | 说明                                |
+| ---------------- | ----------------------------------- |
+| string | 指定组件的Lablel值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | --------------------------------------- |
+| 17700001 | The specified bundleName is not found.  |
+| 17700002 | The specified moduleName is not found.  |
+| 17700003 | The specified abilityName is not found. |
+| 17700026 | The specified bundle is disabled.       |
+| 17700029 | The specified ability is disabled.      |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName = 'com.example.myapplication';
+let moduleName = 'entry';
+let abilityName = 'EntryAbility';
+
+try {
+    let abilityLabel = bundleManager.getAbilityLabelSync(bundleName, moduleName, abilityName);
+    hilog.info(0x0000, 'testTag', 'getAbilityLabelSync successfully. Data: %{public}s', abilityLabel);
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAbilityLabelSync failed. Cause: %{public}s', message);
+}
+```
 
 ### bundleManager.getApplicationInfoSync
 
@@ -2711,6 +3611,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let applicationFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
@@ -2720,7 +3621,8 @@ try {
     let data = bundleManager.getApplicationInfoSync(bundleName, applicationFlags, userId);
     hilog.info(0x0000, 'testTag', 'getApplicationInfoSync successfully: %{public}s', JSON.stringify(data));
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getApplicationInfoSync failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getApplicationInfoSync failed: %{public}s', message);
 }
 ```
 
@@ -2762,6 +3664,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number) : [Applicat
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let applicationFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
@@ -2770,7 +3673,8 @@ try {
     let data = bundleManager.getApplicationInfoSync(bundleName, applicationFlags);
     hilog.info(0x0000, 'testTag', 'getApplicationInfoSync successfully: %{public}s', JSON.stringify(data));
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getApplicationInfoSync failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getApplicationInfoSync failed: %{public}s', message);
 }
 ```
 
@@ -2814,6 +3718,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
@@ -2823,7 +3728,8 @@ try {
     let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
     hilog.info(0x0000, 'testTag', 'getBundleInfoSync successfully: %{public}s', JSON.stringify(data));
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleInfoSync failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfoSync failed: %{public}s', message);
 }
 ```
 
@@ -2865,6 +3771,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [Bund
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
@@ -2872,7 +3779,8 @@ try {
     let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags);
     hilog.info(0x0000, 'testTag', 'getBundleInfoSync successfully: %{public}s', JSON.stringify(data));
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleInfoSync failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfoSync failed: %{public}s', message);
 }
 ```
 
@@ -2909,6 +3817,7 @@ getSharedBundleInfo(bundleName: string,  moduleName: string, callback: AsyncCall
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'library';
@@ -2922,7 +3831,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getSharedBundleInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getSharedBundleInfo failed: %{public}s', message);
 }
 ```
 
@@ -2964,6 +3874,7 @@ getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<Sha
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'library';
@@ -2971,11 +3882,12 @@ let moduleName = 'library';
 try {
     bundleManager.getSharedBundleInfo(bundleName, moduleName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getSharedBundleInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getSharedBundleInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getSharedBundleInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getSharedBundleInfo failed. Cause: %{public}s', message);
 }
 ```
 
@@ -3001,6 +3913,7 @@ getAllSharedBundleInfo(callback: AsyncCallback\<Array\<SharedBundleInfo\>\>): vo
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 try {
@@ -3012,7 +3925,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAllSharedBundleInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllSharedBundleInfo failed: %{public}s', message);
 }
 ```
 
@@ -3038,16 +3952,18 @@ getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>;
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 try {
     bundleManager.getAllSharedBundleInfo().then((data) => {
         hilog.info(0x0000, 'testTag', 'getAllSharedBundleInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAllSharedBundleInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAllSharedBundleInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllSharedBundleInfo failed. Cause: %{public}s', message);
 }
 ```
 
@@ -3082,6 +3998,7 @@ getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<[AppProvisionIn
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.ohos.myapplication";
 
@@ -3094,7 +4011,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', message);
 }
 ```
 
@@ -3132,6 +4050,7 @@ getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.ohos.myapplication";
 let userId = 100;
@@ -3145,7 +4064,8 @@ try {
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', message);
 }
 ```
 
@@ -3188,6 +4108,7 @@ getAppProvisionInfo(bundleName: string, userId?: number): Promise\<[AppProvision
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.ohos.myapplication";
 let userId = 100;
@@ -3195,21 +4116,84 @@ let userId = 100;
 try {
     bundleManager.getAppProvisionInfo(bundleName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', message);
 }
 
 try {
     bundleManager.getAppProvisionInfo(bundleName, userId).then((data) => {
         hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.getAppProvisionInfoSync<sup>10+</sup>
+
+getAppProvisionInfoSync(bundleName: string, userId?: number): AppProvisionInfo;
+
+以同步方法根据bundleName和userId获取应用的provision配置文件信息并返回结果。
+
+**系统接口：** 此接口为系统接口
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名   | 类型         | 必填 | 说明          |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName | string | 是 | 指定的bundleName。 |
+| userId | number | 否 | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0，可以通过接口[getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9)获取当前设备上的用户ID。 |
+
+
+**返回值：**
+
+| 类型                                                         | 说明                                |
+| ------------------------------------------------------------ | ----------------------------------- |
+| [AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md) | AppProvisionInfo对象，返回应用的provision配置文件信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName = "com.ohos.myapplication";
+let userId = 100;
+
+try {
+    let data = bundleManager.getAppProvisionInfoSync(bundleName);
+    hilog.info(0x0000, 'testTag', 'getAppProvisionInfoSync successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfoSync failed. Cause: %{public}s', message);
+}
+
+try {
+    let data = bundleManager.getAppProvisionInfoSync(bundleName, userId);
+    hilog.info(0x0000, 'testTag', 'getAppProvisionInfoSync successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfoSync failed. Cause: %{public}s', message);
 }
 ```
 
@@ -3247,13 +4231,15 @@ getSpecifiedDistributionType(bundleName: string): string;
 **示例：**
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 let bundleName = "com.example.myapplication";
 
 try {
     let type = bundleManager.getSpecifiedDistributionType(bundleName);
     console.info('getSpecifiedDistributionType successfully, type:' + type);
 } catch (error) {
-    console.error('getSpecifiedDistributionType failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getSpecifiedDistributionType failed. Cause: ' + message);
 }
 ```
 
@@ -3294,13 +4280,15 @@ getAdditionalInfo(bundleName: string): string;
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 let bundleName = "com.example.myapplication";
 
 try {
     let info = bundleManager.getAdditionalInfo(bundleName);
     console.info('getAdditionalInfo successfully, additionInfo:' + info);
 } catch (error) {
-    console.error('getAdditionalInfo failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getAdditionalInfo failed. Cause: ' + message);
 }
 ```
 
@@ -3328,12 +4316,14 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo;
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 try {
     let data = bundleManager.getBundleInfoForSelfSync(bundleFlags);
     hilog.info(0x0000, 'testTag', 'getBundleInfoForSelfSync successfully: %{public}s', JSON.stringify(data));
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed: %{public}s', err.message);
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed: %{public}s', message);
 }
 ```

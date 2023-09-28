@@ -17,7 +17,7 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 触发滑动的最少手指数，默认为1，最小为1指，最大为10指。<br/>默认值：1 |
 | direction | [SwipeDirection](#swipedirection枚举说明) | 否 | 触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All |
-| speed | number | 否 | 识别滑动的最小速度（默认为100VP/秒）。<br/>默认值：100 |
+| speed | number | 否 | 识别滑动的最小速度（默认为100VP/秒）。<br/>默认值：100 <br/>**说明：** <br/>当滑动速度的值小于等于0时，会被转化为默认值。 |
 
 ## SwipeDirection枚举说明
 
@@ -59,9 +59,11 @@ struct SwipeGestureExample {
       // 单指竖直方向滑动时触发该事件
       .gesture(
       SwipeGesture({ direction: SwipeDirection.Vertical })
-        .onAction((event: GestureEvent) => {
-          this.speed = event.speed
-          this.rotateAngle = event.angle
+        .onAction((event?: GestureEvent) => {
+          if (event) {
+            this.speed = event.speed
+            this.rotateAngle = event.angle
+          }
         })
       )
     }.width('100%')

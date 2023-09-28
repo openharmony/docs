@@ -174,9 +174,11 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 **示例：**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.on('enableChange', (data) => {
+    captionsManager.on('enableChange', (data: boolean) => {
         console.info('subscribe caption manager enable state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -202,10 +204,12 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 **示例：**
 
 ```ts
-let captionStyle;
+import accessibility from '@ohos.accessibility';
+
+let captionStyle: accessibility.CaptionsStyle;
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.on('styleChange', (data) => {
+    captionsManager.on('styleChange', (data: accessibility.CaptionsStyle) => {
         captionStyle = data;
         console.info('subscribe caption manager style state change, result: ' + JSON.stringify(data));
     });
@@ -224,17 +228,19 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 **参数：**
 
-| 参数名      | 类型                      | 必填   | 说明                                       |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 是    | 取消监听的事件名，固定为‘enableChange’，即字幕配置启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | 是   | 取消监听的事件名，固定为‘enableChange’，即字幕配置启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 否   | 回调函数，取消指定callback对象的事件响应。需与on('enableChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **示例：**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.off('enableChange', (data) => {
+    captionsManager.off('enableChange', (data: boolean) => {
         console.info('Unsubscribe caption manager enable state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -252,18 +258,20 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明                                   |
-| -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| type     | string                                   | 是    | 取消监听的事件名，固定为‘styleChange’，即字幕风格变化事件。 |
-| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 否    | 回调函数，回调函数，取消指定callback对象的事件响应。              |
+| 参数名   | 类型                                             | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                           | 是   | 取消监听的事件名，固定为‘styleChange’，即字幕风格变化事件。  |
+| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 否   | 回调函数，取消指定callback对象的事件响应。需与on('styleChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **示例：**
 
 ```ts
-let captionStyle;
+import accessibility from '@ohos.accessibility';
+
+let captionStyle: accessibility.CaptionsStyle;
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.off('styleChange', (data) => {
+    captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
         captionStyle = data;
         console.info('Unsubscribe caption manager style state change, result: ' + JSON.stringify(data));
     });
@@ -314,10 +322,12 @@ constructor(jsonObject)
 **示例：**
 
   ```ts
-  let eventInfo = new accessibility.EventInfo({
-    'type':'click',
-    'bundleName':'com.example.MyApplication',
-    'triggerAction':'click'
+  import accessibility from '@ohos.accessibility';
+
+  let eventInfo: accessibility.EventInfo = ({
+    type: 'click',
+    bundleName: 'com.example.MyApplication',
+    triggerAction: 'click'
   });
   ```
 
@@ -398,24 +408,28 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState): Promise&lt;A
 **示例：**
 
 ```ts
-let abilityType = 'spoken';
-let abilityState = 'enable';
-let abilityList: accessibility.AccessibilityInfo[];
+import accessibility from '@ohos.accessibility';
+
+let abilityType : accessibility.AbilityType = 'spoken';
+let abilityState : accessibility.AbilityState = 'enable';
+let abilityList: accessibility.AccessibilityAbilityInfo[];
 try {
-    accessibility.getAbilityLists(abilityType, abilityState).then((data) => {
-        for (let item of data) {
-            console.info(item.id);
-            console.info(item.name);
-            console.info(item.description);
-            console.info(item.bundleName);
-            extensionList.push(item);
-        }
-        console.info('get accessibility extension list success');
-    }).catch((err) => {
-        console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
+  accessibility.getAbilityLists(abilityType, abilityState)
+    .then((data: accessibility.AccessibilityAbilityInfo[]) => {
+      for (let item of data) {
+        console.info(item.id);
+        console.info(item.name);
+        console.info(item.description);
+        console.info(item.bundleName);
+        abilityList.push(item);
+      }
+      console.info('get accessibility extension list success');
+    })
+    .catch((err: object) => {
+      console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
     });
 } catch (exception) {
-    console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
+  console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
 }
 ```
 
@@ -443,11 +457,15 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: Asyn
 **示例：**
 
 ```ts
-let abilityType = 'spoken';
-let abilityState = 'enable';
-let abilityList: accessibility.AccessibilityInfo[];
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+let abilityType : accessibility.AbilityType = 'spoken';
+let abilityState : accessibility.AbilityState = 'enable';
+let abilityList: accessibility.AccessibilityAbilityInfo[];
 try {
-    accessibility.getAbilityLists(abilityType, abilityState, (err, data) => {
+    accessibility.getAbilityLists(abilityType, abilityState, 
+    (err: BusinessError<void>, data: accessibility.AccessibilityAbilityInfo[]) => {
         if (err) {
             console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
             return;
@@ -460,9 +478,7 @@ try {
             abilityList.push(item);
         }
         console.info('get accessibility extension list success');
-    }).catch((err) => {
-        console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
-    });
+    })
 } catch (exception) {
     console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
 }
@@ -492,11 +508,14 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState)
 **示例：**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 let abilityType : accessibility.AbilityType = 'spoken';
 let abilityState : accessibility.AbilityState = 'enable';
 let extensionList: accessibility.AccessibilityAbilityInfo[] = [];
 try {
-    accessibility.getAccessibilityExtensionList(abilityType, abilityState).then((data) => {
+    accessibility.getAccessibilityExtensionList(abilityType, abilityState)
+    .then((data: accessibility.AccessibilityAbilityInfo[]) => {
         for (let item of data) {
             console.info(item.id);
             console.info(item.name);
@@ -505,7 +524,8 @@ try {
             extensionList.push(item);
         }
         console.info('get accessibility extension list success');
-    }).catch((err) => {
+    })
+    .catch((err: object) => {
         console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
     });
 } catch (exception) {
@@ -532,11 +552,15 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState,
 **示例：**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
 let abilityType : accessibility.AbilityType = 'spoken';
 let abilityState : accessibility.AbilityState = 'enable';
 let extensionList: accessibility.AccessibilityAbilityInfo[] = [];
 try {
-    accessibility.getAccessibilityExtensionList(abilityType, abilityState, (err, data) => {
+    accessibility.getAccessibilityExtensionList(abilityType, abilityState, 
+    (err: BusinessError<void>, data: accessibility.AccessibilityAbilityInfo[]) => {
         if (err) {
             console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
             return;
@@ -572,6 +596,8 @@ getCaptionsManager(): CaptionsManager
 **示例：**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 let captionsManager = accessibility.getCaptionsManager();
 ```
 
@@ -585,16 +611,18 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名      | 类型                      | 必填   | 说明                                       |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 是    | 监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 是    | 回调函数，在辅助应用启用状态变化时将状态通过此函数进行通知。           |
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | 是   | 监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数，在辅助应用启用状态变化时将状态通过此函数进行通知。此状态为全局辅助应用启用状态。 |
 
 **示例：**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 try {
-    accessibility.on('accessibilityStateChange', (data) => {
+    accessibility.on('accessibilityStateChange', (data: boolean) => {
         console.info('subscribe accessibility state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -620,8 +648,10 @@ on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 try {
-    accessibility.on('touchGuideStateChange', (data) => {
+    accessibility.on('touchGuideStateChange', (data: boolean) => {
         console.info('subscribe touch guide state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -639,16 +669,18 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名      | 类型                      | 必填   | 说明                                       |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 是    | 取消监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | 是   | 取消监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 否   | 回调函数，取消指定callback对象的事件响应。需与accessibility.on('accessibilityStateChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **示例：**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 try {
-    accessibility.off('accessibilityStateChange', (data) => {
+    accessibility.off('accessibilityStateChange', (data: boolean) => {
         console.info('Unsubscribe accessibility state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -666,16 +698,18 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名      | 类型                      | 必填   | 说明                                       |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 是    | 取消监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | 是   | 取消监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 否   | 回调函数，取消指定callback对象的事件响应。需与accessibility.on('touchGuideStateChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **示例：**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 try {
-    accessibility.off('touchGuideStateChange', (data) => {
+    accessibility.off('touchGuideStateChange', (data: boolean) => {
         console.info('Unsubscribe touch guide state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -683,7 +717,7 @@ try {
 }
 ```
 
-## accessibility.isOpenAccessibility
+## accessibility.isOpenAccessibility<sup>(deprecated)</sup>
 
 isOpenAccessibility(): Promise&lt;boolean&gt;
 
@@ -700,14 +734,16 @@ isOpenAccessibility(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-accessibility.isOpenAccessibility().then((data) => {
+import accessibility from '@ohos.accessibility';
+
+accessibility.isOpenAccessibility().then((data: boolean) => {
     console.info('success data:isOpenAccessibility : ' + JSON.stringify(data))
-}).catch((err) => {
+}).catch((err: object) => {
     console.error('failed to  isOpenAccessibility because ' + JSON.stringify(err));
 });
 ```
 
-## accessibility.isOpenAccessibility
+## accessibility.isOpenAccessibility<sup>(deprecated)</sup>
 
 isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -724,7 +760,10 @@ isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-accessibility.isOpenAccessibility((err, data) => {
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+accessibility.isOpenAccessibility((err: BusinessError<void>, data: boolean) => {
     if (err) {
         console.error('failed to isOpenAccessibility because ' + JSON.stringify(err));
         return;
@@ -733,7 +772,34 @@ accessibility.isOpenAccessibility((err, data) => {
 });
 ```
 
-## accessibility.isOpenTouchGuide
+## accessibility.isOpenAccessibilitySync<sup>10+</sup>
+
+isOpenAccessibilitySync(): boolean
+
+是否启用了辅助功能。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**返回值：**
+
+| 类型        | 说明                                  |
+| ----------- | ------------------------------------- |
+| boolean&gt; | 启用辅助功能返回true，否则返回false。 |
+
+**示例：**
+
+```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let status: boolean = accessibility.isOpenAccessibilitySync();
+} catch (exception) {
+    console.error('failed to isOpenAccessibilitySync because ' + JSON.stringify(exception));
+}
+```
+
+## accessibility.isOpenTouchGuide<sup>(deprecated)</sup>
 
 isOpenTouchGuide(): Promise&lt;boolean&gt;
 
@@ -750,14 +816,16 @@ isOpenTouchGuide(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-accessibility.isOpenTouchGuide().then((data) => {
+import accessibility from '@ohos.accessibility';
+
+accessibility.isOpenTouchGuide().then((data: boolean) => {
     console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
-}).catch((err) => {
+}).catch((err: object) => {
     console.error('failed to  isOpenTouchGuide because ' + JSON.stringify(err));
 });
 ```
 
-## accessibility.isOpenTouchGuide
+## accessibility.isOpenTouchGuide<sup>(deprecated)</sup>
 
 isOpenTouchGuide(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -774,13 +842,43 @@ isOpenTouchGuide(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-accessibility.isOpenTouchGuide((err, data) => {
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+accessibility.isOpenTouchGuide((err: BusinessError<void>, data: boolean) => {
     if (err) {
         console.error('failed to isOpenTouchGuide because ' + JSON.stringify(err));
         return;
     }
     console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
 });
+```
+
+## accessibility.isOpenTouchGuideSync<sup>10+</sup>
+
+isOpenTouchGuideSync(): boolean
+
+是否开启了触摸浏览模式。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
+
+**返回值：**
+
+| 类型    | 说明                                  |
+| ------- | ------------------------------------- |
+| boolean | 启用辅助功能返回true，否则返回false。 |
+
+**示例：**
+
+```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let status: boolean = accessibility.isOpenTouchGuideSync();
+} catch (exception) {
+    console.error('failed to isOpenTouchGuideSync because ' + JSON.stringify(exception));
+}
 ```
 
 ## accessibility.sendEvent<sup>(deprecated)</sup>
@@ -811,14 +909,16 @@ sendEvent(event: EventInfo): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let eventInfo = new accessibility.EventInfo({
-  'type':'click',
-  'bundleName':'com.example.MyApplication',
-  'triggerAction':'click'
+import accessibility from '@ohos.accessibility';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'click',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'click'
 });
 accessibility.sendEvent(eventInfo).then(() => {
     console.info('send event success');
-}).catch((err) => {
+}).catch((err: object) => {
     console.error('failed to sendEvent because ' + JSON.stringify(err));
 });
 ```
@@ -846,12 +946,15 @@ sendEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-let eventInfo = new accessibility.EventInfo({
-  'type':'click',
-  'bundleName':'com.example.MyApplication',
-  'triggerAction':'click'
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'click',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'click'
 });
-accessibility.sendEvent(eventInfo, (err, data) => {
+accessibility.sendEvent(eventInfo, (err: BusinessError<void>) => {
     if (err) {
         console.error('failed to sendEvent because ' + JSON.stringify(err));
         return;
@@ -883,15 +986,17 @@ sendAccessibilityEvent(event: EventInfo): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let eventInfo = new accessibility.EventInfo({
-    'type':'click',
-    'bundleName':'com.example.MyApplication',
-    'triggerAction':'click'
+import accessibility from '@ohos.accessibility';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'click',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'click'
 });
 try {
     accessibility.sendAccessibilityEvent(eventInfo).then(() => {
         console.info('send event success');
-    }).catch((err) => {
+    }).catch((err: object) => {
         console.error('failed to send event because ' + JSON.stringify(err));
     });
 } catch (exception) {
@@ -917,13 +1022,16 @@ sendAccessibilityEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```ts
-let eventInfo = new accessibility.EventInfo({
-    'type':'click',
-    'bundleName':'com.example.MyApplication',
-    'triggerAction':'click'
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'click',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'click'
 });
 try {
-    accessibility.sendEvent(eventInfo, (err, data) => {
+    accessibility.sendEvent(eventInfo, (err: BusinessError<void>) => {
         if (err) {
             console.error('failed to send event because ' + JSON.stringify(err));
             return;

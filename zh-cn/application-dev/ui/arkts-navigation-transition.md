@@ -44,7 +44,7 @@ struct NavigationDemo {
 
           // 通过List定义导航的一级界面
           List({ space: 12, initialIndex: 0 }) {
-            ForEach(this.listArray, (item) => {
+            ForEach(this.listArray, (item:number) => {
               ListItem() {
                 // 通过NavRouter定义导航转场，通过NavDestination定义导航目标界面，界面之间通过组件间的状态变量或者普通变量传递参数
                 // NavRouter必须包含两个子组件，第一个组件是导航一级界面，第二个子组件必须为NavDestination为导航目标界面
@@ -108,7 +108,7 @@ struct NavigationDemo {
                 }
               }
               .width('100%')
-            }, item => item)
+            }, (item:string):string => item)
           }
           .listDirection(Axis.Vertical)
           .edgeEffect(EdgeEffect.Spring)

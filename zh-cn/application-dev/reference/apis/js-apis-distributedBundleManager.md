@@ -59,21 +59,26 @@ getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAb
 **示例：**
 
 ```ts
+import distributedBundle from '@ohos.bundle.distributedBundleManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     distributedBundle.getRemoteAbilityInfo(
         {
             deviceId: '1',
             bundleName: 'com.example.application',
             abilityName: 'EntryAbility'
-        }, (err, data) => {
-          if (err) {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
-          } else {
-            console.info('Operation succeed:' + JSON.stringify(data));
-          }
+        }, (err: BusinessError, data: distributedBundle.RemoteAbilityInfo) => {
+            if (err) {
+                console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            } else {
+                console.info('Operation succeed:' + JSON.stringify(data));
+            }
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -115,19 +120,24 @@ getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>;
 **示例：**
 
 ```ts
+import distributedBundle from '@ohos.bundle.distributedBundleManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     distributedBundle.getRemoteAbilityInfo(
         {
             deviceId: '1',
             bundleName: 'com.example.application',
             abilityName: 'EntryAbility'
-        }).then(data => {
+        }).then((data: distributedBundle.RemoteAbilityInfo) => {
             console.info('Operation succeed:' + JSON.stringify(data));
-        }).catch(err => {
+        }).catch((err: BusinessError) => {
             console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -164,6 +174,9 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\
 **示例：**
 
 ```ts
+import distributedBundle from '@ohos.bundle.distributedBundleManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     distributedBundle.getRemoteAbilityInfo(
         [
@@ -177,7 +190,7 @@ try {
                 bundleName: 'com.example.application2',
                 abilityName: 'EntryAbility'
             }
-        ], (err, data) => {
+        ], (err: BusinessError, data: distributedBundle.RemoteAbilityInfo[]) => {
           if (err) {
             console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
@@ -185,7 +198,9 @@ try {
           }
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -227,6 +242,9 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteA
 **示例：**
 
 ```ts
+import distributedBundle from '@ohos.bundle.distributedBundleManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     distributedBundle.getRemoteAbilityInfo(
         [
@@ -240,13 +258,15 @@ try {
                 bundleName: 'com.example.application2',
                 abilityName: 'EntryAbility'
             }
-        ]).then(data => {
+        ]).then((data: distributedBundle.RemoteAbilityInfo[]) => {
             console.info('Operation succeed:' + JSON.stringify(data));
-        }).catch(err => {
+        }).catch((err: BusinessError) => {
             console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -284,13 +304,16 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCa
 **示例：**
 
 ```ts
+import distributedBundle from '@ohos.bundle.distributedBundleManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     distributedBundle.getRemoteAbilityInfo(
         {
             deviceId: '1',
             bundleName: 'com.example.application',
             abilityName: 'EntryAbility'
-        }, 'zh-Hans-CN', (err, data) => {
+        }, 'zh-Hans-CN', (err: BusinessError, data: distributedBundle.RemoteAbilityInfo) => {
           if (err) {
             console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
@@ -298,7 +321,9 @@ try {
           }
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -341,19 +366,24 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteA
 **示例：**
 
 ```ts
+import distributedBundle from '@ohos.bundle.distributedBundleManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     distributedBundle.getRemoteAbilityInfo(
         {
             deviceId: '1',
             bundleName: 'com.example.application',
             abilityName: 'EntryAbility'
-        }, 'zh-Hans-CN').then(data => {
+        }, 'zh-Hans-CN').then((data: distributedBundle.RemoteAbilityInfo) => {
             console.info('Operation succeed:' + JSON.stringify(data));
-        }).catch(err => {
+        }).catch((err: BusinessError) => {
             console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -391,6 +421,9 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback
 **示例：**
 
 ```ts
+import distributedBundle from '@ohos.bundle.distributedBundleManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     distributedBundle.getRemoteAbilityInfo(
         [
@@ -404,7 +437,7 @@ try {
                 bundleName: 'com.example.application2',
                 abilityName: 'EntryAbility'
             }
-        ], 'zh-Hans-CN', (err, data) => {
+        ], 'zh-Hans-CN', (err: BusinessError, data: distributedBundle.RemoteAbilityInfo[]) => {
           if (err) {
            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
@@ -412,7 +445,9 @@ try {
           }
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -455,6 +490,9 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise
 **示例：**
 
 ```ts
+import distributedBundle from '@ohos.bundle.distributedBundleManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     distributedBundle.getRemoteAbilityInfo(
         [
@@ -468,12 +506,14 @@ try {
                 bundleName: 'com.example.application2',
                 abilityName: 'EntryAbility'
             }
-        ], 'zh-Hans-CN').then(data => {
+        ], 'zh-Hans-CN').then((data: distributedBundle.RemoteAbilityInfo[]) => {
             console.info('Operation succeed:' + JSON.stringify(data));
-        }).catch(err => {
+        }).catch((err: BusinessError) => {
             console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```

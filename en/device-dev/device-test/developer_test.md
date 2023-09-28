@@ -95,7 +95,7 @@ Click [here](https://gitee.com/openharmony/docs/blob/master/en/device-dev/get-co
 
 6. Install the NFS server if the device outputs results only through the serial port.
 
-	> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+	> **NOTE** 
 	> 
 	> This operation applies to small-system or mini-system devices, not standard-system devices.
 
@@ -260,7 +260,7 @@ The test framework supports multiple types of tests and provides different test 
     	{
     	    // Set a teardown function, which will be called after all test cases.
     	}
-    	 ```
+    	```
 
     5. Add implementation of the test cases, including test case comments and logic.
 	    ```
@@ -279,11 +279,11 @@ The test framework supports multiple types of tests and provides different test 
     	    EXPECT_EQ(4, actual);
     	}
     	```
-		> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE**
-	>
-    	> The value of **@tc.require** must start with AR/SR or issue, for example, **issueI56WJ7**.
+		> **NOTE**
+		>
+        > The value of **@tc.require** must start with AR/SR or issue, for example, **issueI56WJ7**.
     
-- The following uses base_object_test.cpp as an example to describe how to compile a multi-thread test case:
+- The following uses **base_object_test.cpp** as an example to describe how to compile a multi-thread test case:
     ```
     // The test case file header comment and test case comment are the same as those in the single-thread test case example.
     
@@ -345,16 +345,17 @@ The test framework supports multiple types of tests and provides different test 
     The procedure is as follows:
     1. Add comment information to the test case file header.
 
-		> **NOTE**<br>The standard is the same as that of the single-thread test case.
+	 > **NOTE**
+     >
+     > The standard is the same as that of the single-thread test case.
 
-    2. Add the test framework header file and namespace.
 	    ```
     	#include <gtest/gtest.h>
     	#include <gtest/hwext/gtest-multithread.h>
 		#include <unistd.h>
     	using namespace testing::ext;
-         		using namespace testing::mt;
-        ```
+   		using namespace testing::mt;
+    	```
     3. Add the header file of the test class.
 	    ```
     	#include "base_object.h"
@@ -364,9 +365,11 @@ The test framework supports multiple types of tests and provides different test 
     	class AAFwkBaseObjectTest : public testing::Test {......}
 
     	```
-	    > **NOTE**<br>The standard is the same as that of the single-thread test case.
+	  
 
-    5. Add implementation of the test cases, including test case comments and logic.
+	      > **NOTE**
+	      >
+	      > The standard is the same as that of the single-thread test case.
 
 	    ```
 		// Step 1 Set the function to be tested to return the factorial result.
@@ -379,7 +382,7 @@ The test framework supports multiple types of tests and provides different test 
 			printf("Factorial Function Result : %d! = %d\n", n, result);
 			return result;
 		} 
-	
+		
 		// Step 2 Use an assertion to compare the obtained result with the expected result.
 		void factorial_test()
 		{
@@ -388,13 +391,13 @@ The test framework supports multiple types of tests and provides different test 
 			std::ostringstream oss;
 			oss << this_id;
 			std::string this_id_str = oss.str();
-			long int thread_id = atol(this_id_str.c_str());
-			printf("running thread...: %ld\n", thread_id); // Output the ID of the running thread.
+		long int thread_id = atol(this_id_str.c_str());
+		printf("running thread...: %ld\n", thread_id); // Output the ID of the running thread.
 			EXPECT_EQ(ret, 6);
 		}
 
 		// GTEST_RUN_TASK(TestFunction) is a multi-thread startup function. The parameter is a custom function.
-		// If SET_THREAD_NUM() is not called, the default value 10 will be used.	
+		// If SET_THREAD_NUM() is not called, the default value 10 will be used.
     	HWTEST_F(AAFwkBaseObjectTest, Factorial_test_001, TestSize.Level1)
     	{
 			SET_THREAD_NUM(4); // Set the number of threads. It can be dynamically set in the same test suite.
@@ -404,7 +407,7 @@ The test framework supports multiple types of tests and provides different test 
     	}
 
 		// HWMTEST_F(TEST_SUITE, TEST_TC, TEST_LEVEL, THREAD_NUM)
-		// THREAD_NUM can be used to set the number of threads for executing a test case.
+	    	// THREAD_NUM can be used to set the number of threads for executing a test case.
 		// HWMTEST_F creates a specified number of threads and executes the tested function.
     	HWMTEST_F(AAFwkBaseObjectTest, Factorial_test_002, TestSize.Level1, 6)
     	{
@@ -412,12 +415,14 @@ The test framework supports multiple types of tests and provides different test 
 			factorial_test();
 			printf("Factorial_test_002 END\n");
     	}
-		// Add the multi-thread API MTEST_ADD_TASK(THREAD_ID,ThreadTestFunc). Multiple threads are registered but are not executed in this test case. Instead, they are executed later in a unified manner. This API is applicable to the multi-thread test in the scenario where multiple test cases are combined.
-		// THREAD_ID is used to distinguish threads and starts from 0. You can also use a random thread ID by passing in RANDOM_THREAD_ID. In this scenario, each thread ID is unique.
-		// Add the multi-thread API MTEST_POST_RUN() to execute the previously registered threads in a unified manner.
+      	       // Add the multi-thread API MTEST_ADD_TASK(THREAD_ID,ThreadTestFunc). Multiple threads are registered but are not executed in this test case. Instead, they are executed later in a unified manner. This API is applicable to the multi-thread test in the scenario where multiple test cases are combined.
+              // THREAD_ID is used to distinguish threads and starts from 0. You can also use a random thread ID by passing in RANDOM_THREAD_ID. In this scenario, each thread ID is unique.
+              // Add the multi-thread API MTEST_POST_RUN() to execute the previously registered threads in a unified manner.
     	```
-		> **NOTE**<br>The comments for multi-thread test cases are the same as those of single-thread test cases.
-
+    	> **NOTE**
+    	>
+    	> The comments for multi-thread test cases are the same as those of single-thread test cases.
+  
 - About C++ test case templates:
 		
 	The following test case templates are provided for your reference.
@@ -590,7 +595,7 @@ The test framework supports multiple types of tests and provides different test 
 			expect(info != null).assertEqual(true)
 		})
 		```
-		> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE**
+		> **NOTE**
 		>
 		> The value of **@tc.require** must start with AR/SR or issue, for example, **issueI56WJ7**.
 
@@ -660,7 +665,7 @@ The following provides templates for different languages for your reference.
 		```
 		module_output_path = "developertest/calculator"
 		```
-		> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE**
+		> **NOTE**
 		> 
 		> The output path is the *Part name*/*Module name*.
 
@@ -673,7 +678,7 @@ The following provides templates for different languages for your reference.
 		include_dirs = [ "../../../include" ]
 		}
 		```
-		> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+		> **NOTE** 
 		>  
 		> Generally, the dependency directories are configured here and directly referenced in the build script of the test case.
 
@@ -698,7 +703,7 @@ The following provides templates for different languages for your reference.
 		}
 		```
 
-		> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+		> **NOTE** 
 		> 
 		> Set the test type based on actual requirements. The following test types are available:
 		> - **ohos_unittest**: unit test
@@ -719,7 +724,7 @@ The following provides templates for different languages for your reference.
 		deps = [":CalculatorSubTest"]
 		}
 		```
-		> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+		> **NOTE** 
 		>  
 		> Grouping test cases by test type allows you to execute a specific type of test cases when required.
 
@@ -764,7 +769,7 @@ The following provides templates for different languages for your reference.
 		```
 		module_output_path = "developertest/app_info"
 		```
-		> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+		> **NOTE** 
 		> 
 		> The output path is the *Part name*/*Module name*.
 
@@ -774,7 +779,7 @@ The following provides templates for different languages for your reference.
 		ohos_js_unittest("GetAppInfoJsTest") {
 		}
 		```
-		> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+		> **NOTE** 
 		> 
 		> - Use the **ohos_js_unittest** template to define the JavaScript test suite. Pay attention to the difference between JavaScript and C++.
 		> - The file generated for the JavaScript test suite must be in .hap format and named after the test suite name defined here. The test suite name must end with **JsTest**.
@@ -861,7 +866,7 @@ The following provides templates for different languages for your reference.
 		deps = [ ":GetAppInfoJsTest" ]
 		}
 		```
-		> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+		> **NOTE** 
 		> 
 		> Grouping test cases by test type allows you to execute a specific type of test cases when required.
 
@@ -924,7 +929,7 @@ The following provides templates for different languages for your reference.
 		```
 		want_output_path = "developertest/stage_test"
 		```
-		> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+		> **NOTE** 
 		> 
 		> The output path is the *Part name*/*Module name*.
 
@@ -934,7 +939,7 @@ The following provides templates for different languages for your reference.
 		ohos_js_stage_unittest("ActsBundleMgrStageEtsTest") {
 		}
 		```
-		> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+		>  **NOTE** 
 		> 
 		> Use the **ohos_js_stage_unittest** template to define the ArkTS test suite for the stage model.
 
@@ -979,7 +984,7 @@ The following provides templates for different languages for your reference.
        deps = [ ":GetAppInfoJsTest" ]
        }
        ```
-		> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+		> **NOTE** 
 		> 
 		> Grouping test cases by test type allows you to execute a specific type of test cases when required.
 
@@ -1010,7 +1015,7 @@ Configure the part build file to associate with specific test cases.
       "//test/testfwk/developer_test/examples/calculator/test:fuzztest"
  }
 ```
-> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+> **NOTE** 
 > 
 > **test_list** contains the test cases of the corresponding module.
 
@@ -1043,7 +1048,7 @@ Perform the following steps:
 	resource_config_file = "//system/subsystem/partA/test/resource/calculator/ohos_test.xml"
 	}
 	```
-	> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+	> **NOTE** 
 	> 
 	>- **target_name** indicates the test suite name defined in the **BUILD.gn** file in the **test** directory. **preparer** indicates the action to perform before the test suite is executed.
 	>- **src="res"** indicates that the test resources are in the **resource** directory under the **test** directory. **src="out"** indicates that the test resources are in the **out/release/$(*part*)** directory.
@@ -1103,7 +1108,7 @@ Before executing test cases, you need to modify the configuration in **developer
   </NFS>
 </user_config>
 ```
-> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+> **NOTE** 
 > 
 > If HDC is connected to the device before the test cases are executed, you only need to configure the device IP address and port number, and retain the default settings for other parameters.
 
@@ -1115,7 +1120,7 @@ Test cases cannot be built on Windows. You need to run the following command to 
 ./build.sh --product-name {product_name} --build-target make_test
 ```
 
-> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+> **NOTE** 
 > 
 >- **product-name**: specifies the name of the product to be compiled.
 >- **build-target**: specifies the test case to build. **make_test** indicates all test cases. You can specify the test cases based on requirements.
@@ -1127,7 +1132,7 @@ When the build is complete, the test cases are automatically saved in **out/ohos
 
 2. Copy **developertest** and **xdevice** from the Linux environment to the **Test** directory on Windows, and copy the test cases to the **testcase** directory.
 	
-	> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+	> **NOTE** 
 	>  
 	> Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
 	
@@ -1142,7 +1147,7 @@ When the build is complete, the test cases are automatically saved in **out/ohos
 	  <dir>D:\Test\testcase\tests</dir>
 	</test_cases>
 	```
-	> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+	> **NOTE** 
 	>  
 	> **\<testcase>** indicates whether to build test cases. **\<dir>** indicates the path for searching for test cases.
 
@@ -1206,7 +1211,7 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 	hdc_std kill
 	hdc_std -m -s 0.0.0.0:8710
 	```
-	> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+	> **NOTE** 
 	> 
 	> The IP address and port number are default values.
 
@@ -1214,7 +1219,7 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 	```
 	hdc_std -s xx.xx.xx.xx:8710 list targets
 	```
-	> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+	> **NOTE** 
 	> 
 	> Enter the IP address of the device to test.
 
@@ -1347,7 +1352,7 @@ You can obtain the test result in the following directory:
 ```
 test/developertest/reports/xxxx_xx_xx_xx_xx_xx
 ```
-> ![icon-note.gif](/en/device-dev/driver/public_sys-resources/icon-note.gif) **NOTE** 
+> **NOTE** 
 >  
 > The test report folder is automatically generated.
 
@@ -1355,9 +1360,9 @@ The folder contains the following files:
 | Type                                | Description              |
 | ------------------------------------ | ------------------ |
 | result/                              | Test cases in standard format.|
-| log/plan_log_xxxx_xx_xx_xx_xx_xx.log | Test case logs.      |
-| summary_report.html                  | Test report summary.      |
-| details_report.html                  | Detailed test report.      |
+| log/plan_log_xxxx_xx_xx_xx_xx_xx.log | Test case logs.               |
+| summary_report.html                  | Test report summary.          |
+| details_report.html                  | Detailed test report.         |
 
 
 
@@ -1372,6 +1377,7 @@ When GCDA data is available, you can execute the test cases as follows for subsy
 
        run -tp partname
        run -tp partname1 partname2
+   
 2. Before compiling the version, modify the compilation options. Add **-- coverage** to the **cflags**, **cflags_cc**, and **ldflags** options in the **build.gn** file of the involved subsystem.
        
        ldflags = [ "--coverage" ]
@@ -1379,6 +1385,7 @@ When GCDA data is available, you can execute the test cases as follows for subsy
        C++: cflags_cc = [ "--coverage" ]
    
    **Recommended**: You can also refer to the mode for the window subsystem. For details, see the files in this [pull request](https://gitee.com/openharmony/window_window_manager/pulls/1274/files).
+   
 3. To execute coverage test cases, perform the following to install the dependencies:
    
        1. Run the **sudo apt install lcov** command to install lcov.
@@ -1403,7 +1410,9 @@ When GCDA data is available, you can execute the test cases as follows for subsy
        run -t UT -ss *Subsystem name* -tp **Part name** -cov coverage
        run -t UT MST ST -tp *Part name* -cov coverage
 
-   Note: The **-cov coverage** parameter must be added to the preceding commands.
+   > **NOTE**
+   >
+   > The **-cov coverage** parameter must be added to the preceding commands.
 
 6. Obtain the coverage report from the following paths:
 

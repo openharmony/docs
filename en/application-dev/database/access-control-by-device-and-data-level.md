@@ -57,41 +57,44 @@ For details about the APIs, see [Distributed KV Store](../reference/apis/js-apis
 
 
   
-```js
+```ts
 import distributedKVStore from '@ohos.data.distributedKVStore';
+import { BusinessError } from '@ohos.base';
 
-let kvManager;
+let kvManager: distributedKVStore.KVManager;
+let kvStore: distributedKVStore.SingleKVStore;
 let context = getContext(this);
-const kvManagerConfig = {
+const kvManagerConfig: distributedKVStore.KVManagerConfig = {
   context: context,
   bundleName: 'com.example.datamanagertest'
 }
 try {
   kvManager = distributedKVStore.createKVManager(kvManagerConfig);
   console.info('Succeeded in creating KVManager.');
+  try {
+    const options: distributedKVStore.Options = {
+      createIfMissing: true,
+      encrypt: true,
+      backup: false,
+      autoSync: true,
+      kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+      securityLevel: distributedKVStore.SecurityLevel.S1
+    };
+    kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+      if (err) {
+        console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
+        return;
+      }
+      console.info('Succeeded in getting KVStore.');
+      kvStore = store;
+    });
+  } catch (e) {
+    let error = e as BusinessError;
+    console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+  }
 } catch (e) {
-  console.error(`Failed to create KVManager. Code:${e.code},message:${e.message}`);
-}
-let kvStore;
-try {
-  const options = {
-    createIfMissing: true,
-    encrypt: true,
-    backup: false,
-    autoSync: true,
-    kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S1
-  };
-  kvManager.getKVStore('storeId', options, (err, store) => {
-    if (err) {
-      console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
-      return;
-    }
-    console.info('Succeeded in getting KVStore.');
-    kvStore = store;
-  });
-} catch (e) {
-  console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+  let error = e as BusinessError;
+  console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
 }
 ```
 
@@ -104,11 +107,12 @@ For details about the APIs, see [RDB Store](../reference/apis/js-apis-data-relat
 
 
   
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 import relationalStore from '@ohos.data.relationalStore';
 
-let store;
-const STORE_CONFIG = {
+let store: relationalStore.RdbStore;
+const STORE_CONFIG: relationalStore.StoreConfig = {
   name: 'RdbTest.db',
   securityLevel: relationalStore.SecurityLevel.S1
 };
@@ -116,7 +120,7 @@ let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
   store = rdbStore;
   console.info('Succeeded in getting RdbStore.')
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
 })
 ```

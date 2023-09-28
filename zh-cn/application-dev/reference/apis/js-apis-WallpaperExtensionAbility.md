@@ -1,18 +1,18 @@
 # @ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)
 
-通过本模块接口，开发者可自行开发壁纸应用，并管理壁纸应用生命周期。
+WallpaperExtensionAbility为壁纸拓展模块，提供应用生命周期回调和监听壁纸变化的能力。
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口仅可在FA模型下使用。
+> 本模块接口仅可在Stage模型下使用。
 >
 > 本模块接口均为系统接口。
 
 ## 导入模块
 
-```js
+```ts
 import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
 ```
 
@@ -32,11 +32,12 @@ onCreate(want: object): void
 
 **示例：**
 
-```js
+```ts
 import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 
 class WallpaperExt extends WallpaperExtensionAbility {
-    onCreate(want) {
+    onCreate(want: Want): void {
         console.log('onCreate, want:' + want.abilityName);
     }
 }
@@ -58,11 +59,12 @@ onWallpaperChange(wallpaperType: number): void
 
 **示例：**
 
-```js
+```ts
 import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
+import wallpaper from '@ohos.wallpaper';
 
 class WallpaperExt extends WallpaperExtensionAbility {
-    onWallpaperChange(wallpaperType) {
+    onWallpaperChange(wallpaperType: wallpaper.WallpaperType): void {
         console.log('onWallpaperChange, wallpaperType:' + wallpaperType);
     }
 }
@@ -78,11 +80,11 @@ onDestroy(): void
 
 **示例：**
 
-```js
+```ts
 import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
 
 class WallpaperExt extends WallpaperExtensionAbility {
-    onDestroy() {
+    onDestroy(): void {
         console.log('onDestroy');
     }
 }

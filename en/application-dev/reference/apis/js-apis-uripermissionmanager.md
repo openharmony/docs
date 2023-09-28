@@ -10,7 +10,7 @@ The **uriPermissionManager** module provides APIs for granting permissions on a 
 ## Modules to Import
 
   
-```js
+```ts
 import uriPermissionManager from '@ohos.application.uriPermissionManager';
 ```
 
@@ -33,7 +33,7 @@ By default, an application can authorize its own URIs to another application. If
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.| 
-  | flag | [wantConstant.Flags](js-apis-ability-wantConstant.md#wantconstantflags) | Yes| Read or write permission on the file to grant.| 
+  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | Yes| Read or write permission on the file to grant.| 
   | targetBundleName | string | Yes| Bundle name of the application, to which the permission is granted.| 
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
 
@@ -50,15 +50,15 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
     
-  ```js
+  ```ts
   import uriPermissionManager from '@ohos.application.uriPermissionManager';
-  import WantConstant from '@ohos.ability.wantConstant';
-  import fileio from '@ohos.fileio';
+  import WantConstant from '@ohos.app.ability.wantConstant';
+  import fs from '@ohos.file.fs';
   import fileUri from '@ohos.file.fileuri';
 
   let targetBundleName = 'com.example.test_case1'
   let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
-  fileio.mkdir(path, function (err) {
+  fs.mkdir(path, (err) => {
     if (err) {
       console.log("mkdir error"+err.message)
     } else {
@@ -90,7 +90,7 @@ By default, an application can authorize its own URIs to another application. If
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.| 
-  | flag | [wantConstant.Flags](js-apis-ability-wantConstant.md#wantconstantflags) | Yes| Read or write permission on the file to grant.| 
+  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | Yes| Read or write permission on the file to grant.| 
   | targetBundleName | string | Yes| Bundle name of the application, to which the permission is granted.|  
 
 **Return value**
@@ -112,16 +112,17 @@ By default, an application can authorize its own URIs to another application. If
 
 **Example**
     
-  ```js
+  ```ts
   import uriPermissionManager from '@ohos.application.uriPermissionManager';
-  import WantConstant from '@ohos.ability.wantConstant';
-  import fileio from '@ohos.fileio';
+  import WantConstant from '@ohos.app.ability.wantConstant';
+  import fs from '@ohos.file.fs';
   import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@ohos.base';
 
   let targetBundleName = 'com.example.test_case1'
   let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
 
-  fileio.mkdir(path, function (err) {
+  fs.mkdir(path, (err) => {
     if (err) {
       console.log("mkdir error"+err.message)
     } else {
@@ -132,7 +133,7 @@ By default, an application can authorize its own URIs to another application. If
   uriPermissionManager.grantUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
     .then((data) => {
       console.log('Verification succeeded.' + data)
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
     console.log('Verification failed.');
   })
   ```
@@ -168,10 +169,9 @@ By default, only the URIs obtained by the application itself or the URIs authori
 
 **Example**
     
-  ```js
+  ```ts
   import uriPermissionManager from '@ohos.application.uriPermissionManager';
-  import WantConstant from '@ohos.ability.wantConstant';
-  
+
   let targetBundleName = 'com.example.test_case2'
   let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir"
   uriPermissionManager.revokeUriPermission(uri, targetBundleName, (result) => {
@@ -219,16 +219,16 @@ By default, only the URIs obtained by the application itself or the URIs authori
 
 **Example**
     
-  ```js
+  ```ts
   import uriPermissionManager from '@ohos.application.uriPermissionManager';
-  import WantConstant from '@ohos.ability.wantConstant';
+  import { BusinessError } from '@ohos.base';
 
   let targetBundleName = 'com.example.test_case2'
   let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir"
   uriPermissionManager.revokeUriPermission(uri, targetBundleName)
   .then((data) => {
       console.log('Verification succeeded.' + data)
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
       console.log('Verification failed.');
   })
   ```

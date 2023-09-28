@@ -2,7 +2,8 @@
 
 The **mouseEvent** module provides mouse events reported by an input device.
 
-> **NOTE**<br>
+>  **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -13,7 +14,7 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 ## Action
 
-Defines a mouse action.
+Enumerates mouse event types.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -26,11 +27,12 @@ Defines a mouse action.
 | AXIS_BEGIN  | 4   | Beginning of the axis event associated with the mouse.|
 | AXIS_UPDATE | 5   | Updating of the axis event associated with the mouse.|
 | AXIS_END    | 6   | Ending of the axis event associated with the mouse.|
-
+| ACTION_DOWN<sup>11+</sup> | 7   | Finger pressing on the touchpad.|
+| ACTION_UP<sup>11+</sup> | 8   | Finger lift from the touchpad.|
 
 ## Button
 
-Enumerates mouse actions.
+Enumerates mouse buttons.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -60,7 +62,7 @@ Enumerates mouse axis types.
 
 ## AxisValue
 
-Defines a mouse axis type and value.
+Defines the mouse axis type and axis value.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -69,31 +71,45 @@ Defines a mouse axis type and value.
 | axis  | Axis   | Yes   | No   | Axis type. |
 | value | number | Yes   | No   | Axis value. |
 
+## ToolType<sup>11+</sup>
+
+Enumerates tool types.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+| Name     | Value | Description   |
+| ------- | ------| ----- |
+| UNKNOWN<sup>11+</sup> | 0 | Unknown. |
+| MOUSE<sup>11+</sup>  | 1 | Mouse.|
+| TOUCHSCREEN<sup>11+</sup> | 2 | Touchscreen.|
+| TOUCHPAD<sup>11+</sup> | 3 | Touchpad.|
+| JOYSTICK<sup>11+</sup> | 4 | Joystick.|
 
 ## MouseEvent
 
-Defines a mouse event.
+Defines the mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name            | Type       | Readable  | Writable  | Description                                      |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| action         | Action      | Yes   | No   | Mouse event action.                                  |
+| action         | [Action](#action)      | Yes   | No   | Mouse event action.                                  |
 | screenX        | number      | Yes   | No   | Horizontal coordinate of the mouse pointer on the screen.                            |
 | screenY        | number      | Yes   | No   | Vertical coordinate of the mouse pointer on the screen.                            |
 | windowX        | number      | Yes   | No   | Horizontal coordinate of the mouse pointer in the window.                              |
 | windowY        | number      | Yes   | No   | Vertical coordinate of the mouse pointer in the window.                              |
 | rawDeltaX      | number      | Yes   | No   | Horizontal coordinate offset relative to the previous reported mouse pointer position.|
 | rawDeltaY      | number      | Yes   | No   | Vertical coordinate offset relative to the previous reported mouse pointer position.                         |
-| button         | Button      | Yes   | No   | Mouse button                              
+| button         | [Button](#button)      | Yes   | No   | Mouse button                              
 | pressedButtons | Button[]    | Yes   | No   | Button being pressed.                             |
 | axes           | AxisValue[] | Yes   | No   | All axis data contained in the event.                              |
 | pressedKeys    | KeyCode[]   | Yes   | No   | List of pressed keys.                           |
-| ctrlKey        | boolean     | Yes   | No   | Whether ctrlKey is being pressed.                       |
+| ctrlKey        | boolean     | Yes   | No   | Whether ctrlKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.   |
 | altKey         | boolean     | Yes   | No   | Whether altKey is being pressed.                        |
 | shiftKey       | boolean     | Yes   | No   | Whether shiftKey is being pressed.                      |
 | logoKey        | boolean     | Yes   | No   | Whether logoKey is being pressed.                       |
 | fnKey          | boolean     | Yes   | No   | Whether fnKey is being pressed.                         |
-| capsLock       | boolean     | Yes   | No   | Whether capsLock is active.                      |
+| capsLock       | boolean     | Yes   | No   | Whether capsLock is active.<br>The value **true** indicates that capsLock is active, and the value **false** indicates the opposite. |
 | numLock        | boolean     | Yes   | No   | Whether numLock is active.                       |
 | scrollLock     | boolean     | Yes   | No   | Whether scrollLock is active.                    |
+| toolType<sup>11+</sup> | [ToolType](#tooltype11) | Yes   | No   | Tool type.                    |

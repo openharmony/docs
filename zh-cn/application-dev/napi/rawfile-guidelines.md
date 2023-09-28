@@ -380,5 +380,7 @@
     ```
 
 ## 相关实例
-- [`NdkRawfile`：获取Rawfile资源](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkRawfile)
 
+针对资源管理Rawfile开发，有以下相关实例可供参考：
+
+- [获取Rawfile资源（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkRawfile)

@@ -1,10 +1,10 @@
 # Development of Performance Tracing (Native)
 
-## Introduction
+## Overview
 
 hiTraceMeter provides APIs for system performance tracing. You can call the APIs provided by the hiTraceMeter module in your own service logic to effectively track service processes and check the system performance.
-> **NOTE**
 
+> **NOTE**
 > - This development guide is applicable only when you use Native APIs for application development. For details about APIs, see [API Reference](../reference/native-apis/_hitrace.md).
 > - For details about how to use ArkTS APIs for application development, see [Development Guidelines](hitracemeter-guidelines.md) and [API Reference](../reference/apis/js-apis-hitracemeter.md).
 

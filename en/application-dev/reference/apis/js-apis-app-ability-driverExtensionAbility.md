@@ -21,7 +21,6 @@ None.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -36,8 +35,6 @@ Called when a DriverExtensionAbility is created to initialize the service logic.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -48,7 +45,7 @@ Called when a DriverExtensionAbility is created to initialize the service logic.
 
   ```ts
   class DriverExt extends DriverExtension {
-    onInit(want) {
+    onInit(want : Want) {
       console.log('onInit, want: ${want.abilityName}');
     }
   }
@@ -62,8 +59,6 @@ onRelease(): void;
 Called when this DriverExtensionAbility is destroyed to clear resources.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Example**
 
@@ -84,8 +79,6 @@ Called following **onCreate()** when a DriverExtensionAbility is started by call
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -103,14 +96,14 @@ Called following **onCreate()** when a DriverExtensionAbility is started by call
   ```ts
   import rpc from '@ohos.rpc';
   class StubTest extends rpc.RemoteObject{
-      constructor(des) {
+      constructor(des : string) {
           super(des);
       }
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, option : MessageOption) {
       }
   }
   class DriverExt extends DriverExtension {
-    onConnect(want) {
+    onConnect(want : Want) {
       console.log('onConnect , want: ${want.abilityName}');
       return new StubTest('test');
     }
@@ -122,10 +115,10 @@ If the returned **RemoteObject** object depends on an asynchronous API, you can 
   ```ts
 import rpc from '@ohos.rpc';
 class StubTest extends rpc.RemoteObject{
-    constructor(des) {
+    constructor(des : string) {
         super(des);
     }
-    onRemoteRequest(code, data, reply, option) {
+    onRemoteMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, option : MessageOption) {
     }
 }
 async function getDescriptor() {
@@ -133,7 +126,7 @@ async function getDescriptor() {
     return "asyncTest"
 }
 class DriverExt extends DriverExtension {
-  async onConnect(want) {
+  async onConnect(want : Want) {
     console.log(`onConnect , want: ${want.abilityName}`);
     let descriptor = await getDescriptor();
     return new StubTest(descriptor);
@@ -149,8 +142,6 @@ Called when a client is disconnected from this DriverExtensionAbility.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -161,7 +152,7 @@ Called when a client is disconnected from this DriverExtensionAbility.
 
   ```ts
   class DriverExt extends DriverExtension {
-    onDisconnect(want) {
+    onDisconnect(want : Want) {
       console.log('onDisconnect, want: ${want.abilityName}');
     }
   }
@@ -171,7 +162,7 @@ After the **onDisconnect** lifecycle callback is executed, the application may e
 
   ```ts
 class DriverExt extends DriverExtension {
-  async onDisconnect(want) {
+  async onDisconnect(want : Want) {
     console.log('onDisconnect, want: ${want.abilityName}');
     // Call the asynchronous function.
   }
@@ -187,8 +178,6 @@ Dumps client information.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -199,7 +188,7 @@ Dumps client information.
     
   ```ts
   class DriverExt extends DriverExtension {
-      onDump(params) {
+      onDump(params : Array<string>) {
           console.log('dump, params: ${JSON.stringify(params)}');
           return ['params'];
       }

@@ -100,6 +100,18 @@ Allows an application to read telephony information.
 
 **Start version**: 8
 
+## ohos.permission.GET_PHONE_NUMBERS
+
+Allows an application to obtain the phone numbers of the device.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 10
+
 ## ohos.permission.REQUIRE_FORM
 
 Allows an application to obtain the Ability Form.
@@ -776,7 +788,7 @@ Allows an application to listen for input events. Only the system signed applica
 
 ## ohos.permission.MANAGE_MISSIONS
 
-Allows an application to manage ability mission stacks.
+Allows an application to manage missions in the system.
 
 **Permission level**: system_core
 
@@ -860,7 +872,7 @@ Allows an SA to call the network management, Wi-Fi, network adapter listening, a
 
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
-Allows an application to set the start and stop of an ability.
+Allows an application to intercept the startup of the Ability component. This permission is used for testing, such as the stability test.
 
 **Permission level**: system_basic
 
@@ -956,7 +968,7 @@ Allows an application to clear application data.
 
 ## ohos.permission.RUNNING_STATE_OBSERVER
 
-Allows an application to observe the application status.
+Allows an application to listen for its status.
 
 **Permission level**: system_basic
 
@@ -1004,7 +1016,7 @@ Allows a system application to obtain Wi-Fi parameters.
 
 ## ohos.permission.SET_WIFI_INFO
 
-Allows an application to set Wi-Fi devices.
+Allows an application to set a Wi-Fi device.
 
 **Permission level**: normal
 
@@ -1280,7 +1292,7 @@ Allows a device administrator application to set the screen-off time.
 
 ## ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
-Allows a device administrator application to install and uninstall bundles.
+Allows a device administrator application to install and uninstall applications.
 
 **Permission level**: system_core
 
@@ -1656,7 +1668,7 @@ Allows an application to access geographical locations in the user's media file.
 
 ## ohos.permission.CAMERA
 
-Allows an application to use the camera to take photos and record videos.
+Allows an application to use the camera.
 
 **Permission level**: normal
 
@@ -2508,7 +2520,7 @@ Allows an application to manage the upload sessions.
 
 ## ohos.permission.PREPARE_APP_TERMINATE
 
-Allows an application to perform customized pre-termination actions before being terminated.
+Allows an application to perform customized actions before being terminated.
 
 **Permission level**: normal
 
@@ -2636,6 +2648,8 @@ Allows an application to access the intelligent voice service interfaces.
 
 **Enable via ACL**: TRUE
 
+**Start version**: 10
+
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
 Allows an enterprise MDM bundle to be installed on enterprise devices.
@@ -2683,3 +2697,157 @@ Allows an application to listen for the card running status.
 **Enable via ACL**: TRUE
 
 **Start version**: 10
+
+## ohos.permission.MANAGE_DEVICE_AUTH_CRED
+
+Allows an application to call interfaces of the DeviceAuthCredMgr application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
+
+**Start version**: 10
+
+## ohos.permission.UNINSTALL_BUNDLE
+
+Allows an application to uninstall applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 10
+
+## ohos.permission.RECOVER_BUNDLE
+
+Allows an application to restore pre-installed applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 10
+
+## ohos.permission.GET_DOMAIN_ACCOUNTS
+
+Allows an application to obtain domain account information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 10
+
+## ohos.permission.SET_UNREMOVABLE_NOTIFICATION
+
+Allows an application to publish unremovable notifications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.QUERY_ACCESSIBILITY_ELEMENT
+
+Allows an application to query accessibility elements in batches.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.ACTIVATE_THEME_PACKAGE
+
+Allows a system application to set themes, including wallpapers, icons, skins, Always On Display (AOD), and fonts.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.ATTEST_KEY
+
+Allows an application to obtain the certificate chain that attests the key validity.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.WAKEUP_VOICE
+
+Allows an application to access the AI Voice wakeup component.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.AGENT_REQUIRE_FORM
+
+Allows the application agent to request widgets.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.WAKEUP_VISION
+
+Allows an application to access the AI Voice vision component.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+## ohos.permission.ENABLE_DISTRIBUTED_HARDWARE
+
+Allows a system ability to enable distributed hardware resources.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
+
+**Start version**: 11
+## ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
+
+Allows a system ability or system application to access distributed hardware resources.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11

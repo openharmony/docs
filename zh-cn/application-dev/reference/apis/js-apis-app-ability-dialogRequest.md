@@ -10,7 +10,7 @@ dialogRequest模块用于处理模态弹框的能力，包括获取RequestInfo�
 
 ## 导入模块
 
-```js
+```ts
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 ```
 
@@ -26,7 +26,7 @@ getRequestInfo(want: Want): RequestInfo
 
 | 参数名 | 类型   | 必填 | 说明                        |
 | ---- | ------ | ---- | --------------------------- |
-| want  | [Want](js-apis-application-want.md) | 是   | 表示发起方请求弹框时传入的want信息。 |
+| want  | [Want](js-apis-app-ability-want.md) | 是   | 表示发起方请求弹框时传入的want信息。 |
 
 **返回值：**
 
@@ -38,27 +38,24 @@ getRequestInfo(want: Want): RequestInfo
 
 ```ts
    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+   import Want from '@ohos.app.ability.Want';
    import rpc from '@ohos.rpc';
    import dialogRequest from '@ohos.app.ability.dialogRequest';
 
     const REQUEST_VALUE = 1;
 
     class StubTest extends rpc.RemoteObject {
-      constructor(des) {
+      constructor(des: string) {
         super(des);
       }
 
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
         if (code === REQUEST_VALUE) {
           let optFir = data.readInt();
           let optSec = data.readInt();
           reply.writeInt(optFir + optSec);
         }
         return true;
-      }
-
-      queryLocallInterface(descriptor) {
-        return null;
       }
 
       getInterfaceDescriptor() {
@@ -73,32 +70,32 @@ getRequestInfo(want: Want): RequestInfo
         return REQUEST_VALUE;
       }
 
-      attachLocalInterface(localInterface, descriptor) {
+      attachLocalInterface(localInterface: rpc.IRemoteBroker, descriptor: string) {
       }
     }
 
     let TAG = "getRequestInfoTest";
 
     export default class ServiceExtAbility extends ServiceExtensionAbility {
-      onCreate(want) {
+      onCreate(want: Want) {
         console.info(TAG, `onCreate, want: ${want.abilityName}`);
       }
 
-      onRequest(want, startId) {
+      onRequest(want: Want, startId: number) {
         console.info(TAG, `onRequest, want: ${want.abilityName}`);
         try {
-          var requestInfo = dialogRequest.getRequestInfo(want);
+          let requestInfo = dialogRequest.getRequestInfo(want);
         } catch (err) {
-          console.error('getRequestInfo err= ${JSON.stringify(err)}');
+          console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
         }
       }
 
-      onConnect(want) {
+      onConnect(want: Want) {
         console.info(TAG, `onConnect, want: ${want.abilityName}`);
         return new StubTest("test");
       }
 
-      onDisconnect(want) {
+      onDisconnect(want: Want) {
         console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
       }
 
@@ -120,7 +117,7 @@ getRequestCallback(want: Want): RequestCallback
 
 | 参数名 | 类型   | 必填 | 说明                        |
 | ---- | ------ | ---- | --------------------------- |
-| want  | [Want](js-apis-application-want.md) | 是   | 表示发起方请求弹框时传入的want信息。 |
+| want  | [Want](js-apis-app-ability-want.md) | 是   | 表示发起方请求弹框时传入的want信息。 |
 
 **返回值：**
 
@@ -132,6 +129,7 @@ getRequestCallback(want: Want): RequestCallback
 
 ```ts
    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+   import Want from '@ohos.app.ability.Want';
    import rpc from '@ohos.rpc';
    import dialogRequest from '@ohos.app.ability.dialogRequest';
    
@@ -140,21 +138,17 @@ getRequestCallback(want: Want): RequestCallback
    const REQUEST_VALUE = 1;
 
     class StubTest extends rpc.RemoteObject {
-      constructor(des) {
+      constructor(des: string) {
         super(des);
       }
 
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
         if (code === REQUEST_VALUE) {
           let optFir = data.readInt();
           let optSec = data.readInt();
           reply.writeInt(optFir + optSec);
         }
         return true;
-      }
-
-      queryLocallInterface(descriptor) {
-        return null;
       }
 
       getInterfaceDescriptor() {
@@ -169,30 +163,30 @@ getRequestCallback(want: Want): RequestCallback
         return REQUEST_VALUE;
       }
 
-      attachLocalInterface(localInterface, descriptor) {
+      attachLocalInterface(localInterface: rpc.IRemoteBroker, descriptor: string) {
       }
     }
 
    export default class ServiceExtAbility extends ServiceExtensionAbility {
-     onCreate(want) {
+     onCreate(want: Want) {
        console.info(TAG, `onCreate, want: ${want.abilityName}`);
      }
 
-     onRequest(want, startId) {
+     onRequest(want: Want, startId: number) {
        console.info(TAG, `onRequest, want: ${want.abilityName}`);
        try {
-            var requestCallback = dialogRequest.getRequestCallback(want);
+            let requestCallback = dialogRequest.getRequestCallback(want);
         } catch(err) {
-            console.error('getRequestInfo err= ${JSON.stringify(err)}');
+            console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
         }
      }
 
-     onConnect(want) {
+     onConnect(want: Want) {
        console.info(TAG, `onConnect, want: ${want.abilityName}`);
        return new StubTest("test");
      }
 
-     onDisconnect(want) {
+     onDisconnect(want: Want) {
        console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
      }
 
@@ -202,15 +196,39 @@ getRequestCallback(want: Want): RequestCallback
    }
    ```
 
+## WindowRect<sup>10+</sup>
+
+表示模态弹框的属性。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 类型   | 必填 | 说明                        |
+| ---- | ------ | ---- | --------------------------- |
+| left  | number | 否   | 弹框边框的左上角的X坐标。 |
+| top  | number | 否   | 弹框边框的左上角的Y坐标。 |
+| width  | number | 否   | 弹框的宽度。 |
+| height  | number | 否   | 弹框的高度。 |
+
 ## RequestInfo
 
 表示发起方请求信息，作为窗口绑定模态弹框的入参。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称      | 类型       | 必填   | 说明     |
+| ------------ | ------------------| ------ | ---------------------- |
+| windowRect<sup>10+</sup>            | windowRect    | 否   | 表示模态弹框的位置属性。          |
 
 **示例：**
 
 ```ts
    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
    import rpc from '@ohos.rpc';
    import dialogRequest from '@ohos.app.ability.dialogRequest';
    import window from '@ohos.window';
@@ -220,21 +238,17 @@ getRequestCallback(want: Want): RequestCallback
    const REQUEST_VALUE = 1;
 
     class StubTest extends rpc.RemoteObject {
-      constructor(des) {
+      constructor(des: string) {
         super(des);
       }
 
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
         if (code === REQUEST_VALUE) {
           let optFir = data.readInt();
           let optSec = data.readInt();
           reply.writeInt(optFir + optSec);
         }
         return true;
-      }
-
-      queryLocallInterface(descriptor) {
-        return null;
       }
 
       getInterfaceDescriptor() {
@@ -249,41 +263,48 @@ getRequestCallback(want: Want): RequestCallback
         return REQUEST_VALUE;
       }
 
-      attachLocalInterface(localInterface, descriptor) {
+      attachLocalInterface(localInterface: rpc.IRemoteBroker, descriptor: string) {
       }
     }
 
    export default class ServiceExtAbility extends ServiceExtensionAbility {
-     onCreate(want) {
+     onCreate(want: Want) {
        console.info(TAG, `onCreate, want: ${want.abilityName}`);
      }
 
-     onRequest(want, startId) {
+     onRequest(want: Want, startId: number) {
        console.info(TAG, `onRequest, want: ${want.abilityName}`);
+       let windowClass: window.Window | undefined = undefined;
+       let config: window.Configuration = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
        try {
-            var requestInfo = dialogRequest.getRequestInfo(want);
-            let windowClass = null;
-            windowClass.bindDialogTarget(requestInfo, () => {
+            let requestInfo = dialogRequest.getRequestInfo(want);
+            window.createWindow(config, (err, data) => {
+              if (err.code) {
+                  console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+                  return;
+              }
+              windowClass = data;
+              windowClass.bindDialogTarget(requestInfo, () => {
                 console.info('Dialog Window Need Destroy.');
-            }, (err) => {
-                if (err.code) {
-                    console.error('Failed to bind dialog target. Cause: ${JSON.stringify(err)}');
-                    return;
-                }
-                console.info('Succeeded in binding dialog target.');
+              }, (err: BusinessError) => {
+                  if (err.code) {
+                      console.error(`Failed to bind dialog target. Cause: ${JSON.stringify(err)}`);
+                      return;
+                  }
+                  console.info('Succeeded in binding dialog target.');
+              });
             });
         } catch(err) {
-            console.error('getRequestInfo err= ${JSON.stringify(err)}');
+            console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
         }
      }
 
-     onConnect(want) {
+     onConnect(want: Want) {
        console.info(TAG, `onConnect, want: ${want.abilityName}`);
-        return new StubTest("test");
-
+       return new StubTest("test");
      }
 
-     onDisconnect(want) {
+     onDisconnect(want: Want) {
        console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
      }
 
@@ -309,21 +330,28 @@ getRequestCallback(want: Want): RequestCallback
 
 ## 属性
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | result | [ResultCode](#resultcode) | 是 | 是 | 表示结果码。 |
+| want<sup>10+</sup> | [ResultWant](js-apis-app-ability-want.md)  | 是 | 是 | 表示Want类型信息，如ability名称，包名等。 |
 
 ## RequestCallback
 
 用于设置模态弹框请求结果的callback接口。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 ### RequestCallback.setRequestResult
 
 setRequestResult(result: RequestResult): void;
 
 设置请求结果
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -345,6 +373,7 @@ setRequestResult(result: RequestResult): void;
 
 ```ts
    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+   import Want from '@ohos.app.ability.Want';
    import rpc from '@ohos.rpc';
    import dialogRequest from '@ohos.app.ability.dialogRequest';
    
@@ -353,21 +382,17 @@ setRequestResult(result: RequestResult): void;
       const REQUEST_VALUE = 1;
 
     class StubTest extends rpc.RemoteObject {
-      constructor(des) {
+      constructor(des: string) {
         super(des);
       }
 
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
         if (code === REQUEST_VALUE) {
           let optFir = data.readInt();
           let optSec = data.readInt();
           reply.writeInt(optFir + optSec);
         }
         return true;
-      }
-
-      queryLocallInterface(descriptor) {
-        return null;
       }
 
       getInterfaceDescriptor() {
@@ -382,34 +407,34 @@ setRequestResult(result: RequestResult): void;
         return REQUEST_VALUE;
       }
 
-      attachLocalInterface(localInterface, descriptor) {
+      attachLocalInterface(localInterface: rpc.IRemoteBroker, descriptor: string) {
       }
     }
 
    export default class ServiceExtAbility extends ServiceExtensionAbility {
-     onCreate(want) {
+     onCreate(want: Want) {
        console.info(TAG, `onCreate, want: ${want.abilityName}`);
      }
 
-     onRequest(want, startId) {
+     onRequest(want: Want, startId: number) {
        console.info(TAG, `onRequest, want: ${want.abilityName}`);
        try {
-            var requestCallback = dialogRequest.getRequestCallback(want);
-            let myResult = {
+            let requestCallback = dialogRequest.getRequestCallback(want);
+            let myResult: dialogRequest.RequestResult = {
                 result : dialogRequest.ResultCode.RESULT_CANCEL,
             };
             requestCallback.setRequestResult(myResult);
         } catch(err) {
-            console.error('getRequestInfo err= ${JSON.stringify(err)}');
+            console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
         }
      }
 
-     onConnect(want) {
+     onConnect(want: Want) {
        console.info(TAG, `onConnect, want: ${want.abilityName}`);
-        return new StubTest("test");
+       return new StubTest("test");
      }
 
-     onDisconnect(want) {
+     onDisconnect(want: Want) {
        console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
      }
 

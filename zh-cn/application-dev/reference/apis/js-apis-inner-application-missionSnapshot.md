@@ -28,31 +28,31 @@ import missionManager from '@ohos.app.ability.missionManager';
 
 **示例：**
 ```ts
-  import ElementName from '@ohos.bundle';
+  import ElementName from '@ohos.bundle.bundleManager';
   import image from '@ohos.multimedia.image';
   import missionManager from '@ohos.app.ability.missionManager';
 
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error) {
-          console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error(`getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
           return;
       }
-      console.log('size = ${missions.length}');
-      console.log('missions = ${JSON.stringify(missions)}');
+      console.log(`size = ${missions.length}`);
+      console.log(`missions = ${JSON.stringify(missions)}`);
       let id = missions[0].missionId;
 
       missionManager.getMissionSnapShot('', id, (err, snapshot) => {
         if (err) {
-          console.error('getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}');
+          console.error(`getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}`);
           return;
         }
 
         // 执行正常业务
-        console.log('bundleName = ${snapshot.ability.bundleName}');
+        console.log(`bundleName = ${snapshot.ability.bundleName}`);
       });
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
 ```

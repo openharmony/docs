@@ -58,6 +58,8 @@ createBundleContext(bundleName: string): Context;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let bundleContext: common.Context;
 try {
     bundleContext = this.context.createBundleContext('com.example.test');
@@ -89,6 +91,8 @@ createModuleContext(moduleName: string): Context;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('entry');
@@ -96,6 +100,8 @@ try {
     console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
 }
 ```
+
+> 说明：仅支持获取本应用中其他Module的Context和[应用内HSP](../../../application-dev/quick-start/in-app-hsp.md)的Context，不支持获取其他应用的Context。
 
 ## Context.createModuleContext
 
@@ -123,6 +129,8 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('com.example.test', 'entry');
@@ -148,6 +156,8 @@ getApplicationContext(): ApplicationContext;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let applicationContext: common.Context;
 try {
     applicationContext = this.context.getApplicationContext();
@@ -187,8 +197,10 @@ getGroupDir(dataGroupID: string): Promise\<string>;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let groupId = "1";
-let getGroupDirContext: common.Context;
+let getGroupDirContext: common.Context = this.context;
 try {
   getGroupDirContext.getGroupDir(groupId).then(data => {
     console.log("getGroupDir result:" + data);
@@ -200,7 +212,7 @@ try {
 
 ## Context.getGroupDir<sup>10+</sup>
 
-getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>);
+getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void;
 
 通过使用元服务应用中的Group ID获取对应的共享目录，使用callback异步回调。
 
@@ -224,13 +236,15 @@ getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>);
 **示例：**
 
 ```ts
-let getGroupDirContext: common.Context;
+import common from '@ohos.app.ability.common';
+
+let getGroupDirContext: common.Context = this.context;
 
 getGroupDirContext.getGroupDir("1", (err, data) => {
   if (err) {
-    console.error('getGroupDir faile, err: ${JSON.stringify(err)}');
+    console.error(`getGroupDir faile, err: ${JSON.stringify(err)}`);
   } else {
-    console.log('getGroupDir result is: ${JSON.stringify(data)}');
+    console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
   }
 });
 ```

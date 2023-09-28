@@ -89,9 +89,11 @@ Specifies whether background applications are allowed to access the network. Thi
 **Example**
 
 ```js
-policy.setBackgroundAllowed(true).then(function (error) {
-  console.log(JSON.stringify(error))
-})
+policy.setBackgroundAllowed(true).then(() => {
+  console.log("setBackgroundAllowed success");
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.isBackgroundAllowed<sup>10+</sup>
@@ -164,10 +166,11 @@ Checks whether the current application is allowed to access the network when run
 **Example**
 
 ```js
-policy.isBackgroundAllowed().then(function (error, data) {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
-})
+policy.isBackgroundAllowed().then((data) => {
+  console.log(JSON.stringify(data));
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.setPolicyByUid<sup>10+</sup>
@@ -248,9 +251,11 @@ Sets the metered network access policy for the application specified by a given 
 **Example**
 
 ```js
-policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE).then(function (error) {
-  console.log(JSON.stringify(error))
-})
+policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE).then(() => {
+  console.log("setPolicyByUid success");
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.getPolicyByUid<sup>10+</sup>
@@ -329,10 +334,11 @@ Obtains the network access policy for the application specified by a given UID. 
 **Example**
 
 ```js
-policy.getPolicyByUid(11111).then(function (error, data) {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
-})
+policy.getPolicyByUid(11111).then((data) => {
+  console.log(JSON.stringify(data));
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.getUidsByPolicy<sup>10+</sup>
@@ -412,10 +418,11 @@ Obtains all UIDs that match the specified network policy. This API uses a promis
 **Example**
 
 ```js
-policy.getUidsByPolicy(11111).then(function (error, data) {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
-})
+policy.getUidsByPolicy(11111).then((data) => {
+  console.log(JSON.stringify(data));
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.getNetQuotaPolicies<sup>10+</sup>
@@ -487,11 +494,11 @@ Obtains the network quota policies. This API uses a promise to return the result
 **Example**
 
 ```js
-policy.getNetQuotaPolicies().then(function (error, data) {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
-})
-
+policy.getNetQuotaPolicies().then((data) => {
+  console.log(JSON.stringify(data));
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.setNetQuotaPolicies<sup>10+</sup>
@@ -608,9 +615,11 @@ let netquotapolicy = {
 
 netQuotaPolicyList.push(netquotapolicy);
 
-policy.setNetQuotaPolicies(netQuotaPolicyList).then(function (error) {
-  console.log(JSON.stringify(error))
-})
+policy.setNetQuotaPolicies(netQuotaPolicyList).then(() => {
+  console.log("setNetQuotaPolicies success");
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.isUidNetAllowed<sup>10+</sup>
@@ -692,10 +701,11 @@ Checks whether the application specified by a given UID is allowed to access a m
 **Example**
 
 ```js
-policy.isUidNetAllowed(11111, true).then(function (error, data) {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
-})
+policy.isUidNetAllowed(11111, true).then((data) => {
+  console.log(JSON.stringify(data));
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.isUidNetAllowed<sup>10+</sup>
@@ -777,10 +787,11 @@ Checks whether the application specified by a given UID is allowed to access the
 **Example**
 
 ```js
-policy.isUidNetAllowed(11111, 'wlan0').then(function (error, data) {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
-})
+policy.isUidNetAllowed(11111, 'wlan0').then((data) => {
+  console.log(JSON.stringify(data));
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.setDeviceIdleTrustlist<sup>10+</sup>
@@ -861,9 +872,11 @@ Adds applications specified by given UIDs to the device idle allowlist. This API
 **Example**
 
 ```js
-policy.setDeviceIdleTrustlist([11111,22222], true).then(function (error) {
-  console.log(JSON.stringify(error))
-})
+policy.setDeviceIdleTrustlist([11111,22222], true).then(() => {
+  console.log("setDeviceIdleTrustlist success");
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.getDeviceIdleTrustlist<sup>10+</sup>
@@ -934,10 +947,11 @@ Obtains the UIDs of applications that are on the device idle allowlist. This API
 **Example**
 
 ```js
-policy.getDeviceIdleTrustlist().then(function (error, data) {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
-})
+policy.getDeviceIdleTrustlist().then((data) => {
+  console.log(JSON.stringify(data));
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.getBackgroundPolicyByUid<sup>10+</sup>
@@ -1017,10 +1031,11 @@ Obtains the background network policy for the application specified by a given U
 **Example**
 
 ```js
-policy.getBackgroundPolicyByUid(11111).then(function (error, data) {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
-})
+policy.getBackgroundPolicyByUid(11111).then((data) => {
+  console.log(JSON.stringify(data));
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.resetPolicies<sup>10+</sup>
@@ -1099,9 +1114,11 @@ Restores all the policies (cellular network, background network, firewall, and a
 **Example**
 
 ```js
-policy.resetPolicies('1').then(function (error) {
-  console.log(JSON.stringify(error))
-})
+policy.resetPolicies('1').then(() => {
+  console.log("resetPolicies success");
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.updateRemindPolicy<sup>10+</sup>
@@ -1186,9 +1203,11 @@ Updates a reminder policy. This API uses a promise to return the result.
 
 ```js
 import connection from '@ohos.net.connection';
-policy.updateRemindPolicy(connection.NetBearType.BEARER_CELLULAR, '1', policy.RemindType.REMIND_TYPE_WARNING).then(function (error) {
-  console.log(JSON.stringify(error))
-})
+policy.updateRemindPolicy(connection.NetBearType.BEARER_CELLULAR, '1', policy.RemindType.REMIND_TYPE_WARNING).then(() => {
+  console.log("updateRemindPolicy success");
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.setPowerSaveTrustlist<sup>10+</sup>
@@ -1269,9 +1288,11 @@ Sets whether to add the application specified by a given UID to the power-saving
 **Example**
 
 ```js
-policy.setPowerSaveTrustlist([11111,22222], true).then(function (error) {
-  console.log(JSON.stringify(error))
-})
+policy.setPowerSaveTrustlist([11111,22222], true).then(() => {
+  console.log("setPowerSaveTrustlist success");
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.getPowerSaveTrustlist<sup>10+</sup>
@@ -1343,10 +1364,11 @@ Obtains the UID array of applications that are on the device idle allowlist. Thi
 **Example**
 
 ```js
-policy.getPowerSaveTrustlist().then(function (error, data) {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
-})
+policy.getPowerSaveTrustlist().then((data) => {
+  console.log(JSON.stringify(data));
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.on

@@ -8,20 +8,20 @@ AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，�
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口仅可在Stage模型下使用。
 
 ## 使用说明
 
 在使用AccessibilityExtensionContext的功能前，需要通过AccessibilityExtensionAbility子类实例获取AccessibilityExtensionContex的实例。
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
-let axContext;
+import AccessibilityExtensionAbility, {
+  AccessibilityExtensionContext,
+} from '@ohos.application.AccessibilityExtensionAbility';
+
+let axContext: AccessibilityExtensionContext;
+
 class EntryAbility extends AccessibilityExtensionAbility {
-    onConnect(): void {
-        console.log('AxExtensionAbility onConnect');
-        axContext = this.context;
-    }
+  axContext = this.context;
 }
 ```
 
@@ -99,15 +99,16 @@ setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 
 ```ts
 let targetNames = ['com.ohos.xyz'];
+
 try {
-    axContext.setTargetBundleName(targetNames).then(() => {
-        console.info('set target bundle names success');
-    }).catch((err) => {
-        console.error('failed to set target bundle names, because ${JSON.stringify(err)}');
-    });
+  axContext.setTargetBundleName(targetNames).then(() => {
+    console.info('set target bundle names success');
+  }).catch((err: object) => {
+    console.error(`failed to set target bundle names, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to set target bundle names, because ${JSON.stringify(exception)}');
-};
+  console.error(`failed to set target bundle names, because ${JSON.stringify(exception)}`);
+}
 ```
 
 ## AccessibilityExtensionContext.setTargetBundleName
@@ -128,18 +129,20 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let targetNames = ['com.ohos.xyz'];
 try {
-    axContext.setTargetBundleName(targetNames, (err, data) => {
-        if (err && err.code) {
-            console.error('failed to set target bundle names, because ${JSON.stringify(err)}');
-            return;
-        }
-        console.info('set target bundle names success');
-    });
+  axContext.setTargetBundleName(targetNames, (err: BusinessError<void>) => {
+    if (err) {
+      console.error(`failed to set target bundle names, because ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info('set target bundle names success');
+  });
 } catch (exception) {
-    console.error('failed to set target bundle names, because ${JSON.stringify(exception)}');
-};
+  console.error(`failed to set target bundle names, because ${JSON.stringify(exception)}`);
+}
 ```
 
 ## AccessibilityExtensionContext.getFocusElement
@@ -173,16 +176,18 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 **示例：**
 
 ```ts
-let focusElement;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+
+let focusElement: AccessibilityElement;
 try {
-    axContext.getFocusElement().then((data) => {
-        focusElement = data;
-        console.log('get focus element success');
-    }).catch((err) => {
-        console.error('failed to get focus element, because ${JSON.stringify(err)}');
-    });
+  axContext.getFocusElement().then((data: AccessibilityElement) => {
+    focusElement = data;
+    console.log('get focus element success');
+  }).catch((err: object) => {
+    console.error(`failed to get focus element, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to get focus element, because ${JSON.stringify(exception)}');
+  console.error(`failed to get focus element, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -211,18 +216,21 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 **示例：**
 
 ```ts
-let focusElement;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let focusElement: AccessibilityElement;
 try {
-    axContext.getFocusElement((err, data) => {
-        if (err && err.code) {
-            console.error('failed to get focus element, because ${JSON.stringify(err)}');
-            return;
-        }
-        focusElement = data;
-        console.info('get focus element success');
-    });
+  axContext.getFocusElement((err: BusinessError<void>, data: AccessibilityElement) => {
+    if (err) {
+      console.error(`failed to get focus element, because ${JSON.stringify(err)}`);
+      return;
+    }
+    focusElement = data;
+    console.info('get focus element success');
+  });
 } catch (exception) {
-    console.error('failed to get focus element, because ${JSON.stringify(exception)}');
+  console.error(`failed to get focus element, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -252,19 +260,23 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 **示例：**
 
 ```ts
-let focusElement;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let focusElement: AccessibilityElement;
 let isAccessibilityFocus = true;
+
 try {
-    axContext.getFocusElement(isAccessibilityFocus, (err, data) => {
-    if (err && err.code) {
-        console.error('failed to get focus element, because ${JSON.stringify(err)}');
-        return;
+  axContext.getFocusElement(isAccessibilityFocus, (err: BusinessError<void>, data: AccessibilityElement) => {
+    if (err) {
+      console.error(`failed to get focus element, because ${JSON.stringify(err)}`);
+      return;
     }
     focusElement = data;
     console.info('get focus element success');
-});
+  });
 } catch (exception) {
-    console.error('failed to get focus element, because ${JSON.stringify(exception)}');
+  console.error(`failed to get focus element, because ${JSON.stringify(exception)}`);
 }
 ```
 ## AccessibilityExtensionContext.getWindowRootElement
@@ -285,7 +297,7 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 | 类型                                  | 说明                     |
 | ----------------------------------- | ---------------------- |
-| Promise&lt;AccessibilityElement&gt; | Promise对象，返回指定屏幕的所有窗口。 |
+| Promise&lt;AccessibilityElement&gt; | Promise对象，返回指定窗口的根节点元素。 |
 
 **错误码：**
 
@@ -298,16 +310,18 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 **示例：**
 
 ```ts
-let rootElement;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+
+let rootElement: AccessibilityElement;
 try {
-    axContext.getWindowRootElement().then((data) => {
-        rootElement = data;
-        console.log('get root element of the window success');
-    }).catch((err) => {
-        console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
-    });
+  axContext.getWindowRootElement().then((data: AccessibilityElement) => {
+    rootElement = data;
+    console.log('get root element of the window success');
+  }).catch((err: object) => {
+    console.error(`failed to get root element of the window, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to get root element of the window, ${JSON.stringify(exception)}');
+  console.error(`failed to get root element of the window, ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -336,18 +350,22 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 **示例：**
 
 ```ts
-let rootElement;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let rootElement: AccessibilityElement;
 try {
-    axContext.getWindowRootElement((err, data) => {
-    if (err && err.code) {
-        console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
-        return;
+  axContext.getWindowRootElement((err: BusinessError<void>
+                                  , data: AccessibilityElement) => {
+    if (err) {
+      console.error(`failed to get root element of the window, because ${JSON.stringify(err)}`);
+      return;
     }
     rootElement = data;
     console.info('get root element of the window success');
-});
+  });
 } catch (exception) {
-    console.error('failed to get root element of the window, because ${JSON.stringify(exception)}');
+  console.error(`failed to get root element of the window, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -355,7 +373,7 @@ try {
 
 getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityElement>): void;
 
-获取指定屏幕中的所有窗口, 使用callback异步回调。
+获取指定窗口的根节点元素, 使用callback异步回调。
 
 **系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
 
@@ -377,19 +395,23 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 **示例：**
 
 ```ts
-let rootElement;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let rootElement: AccessibilityElement;
 let windowId = 10;
+
 try {
-    axContext.getWindowRootElement(windowId, (err, data) => {
-    if (err && err.code) {
-        console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
-        return;
+  axContext.getWindowRootElement(windowId, (err: BusinessError<void>, data: AccessibilityElement) => {
+    if (err) {
+      console.error(`failed to get root element of the window, because ${JSON.stringify(err)}`);
+      return;
     }
     rootElement = data;
     console.info('get root element of the window success');
-});
+  });
 } catch (exception) {
-    console.error('failed to get root element of the window, because ${JSON.stringify(exception)}');
+  console.error(`failed to get root element of the window, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -424,16 +446,18 @@ getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 **示例：**
 
 ```ts
-let windows;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+
+let windows: AccessibilityElement[];
 try {
-    axContext.getWindows().then((data) => {
-        windows = data;
-        console.log('get windows success');
-    }).catch((err) => {
-        console.error('failed to get windows, because ${JSON.stringify(err)}');
-    });
+  axContext.getWindows().then((data: AccessibilityElement[]) => {
+    windows = data;
+    console.log('get windows success');
+  }).catch((err: object) => {
+    console.error(`failed to get windows, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to get windows, because ${JSON.stringify(exception)}');
+  console.error(`failed to get windows, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -462,18 +486,21 @@ getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 **示例：**
 
 ```ts
-let windows;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let windows: AccessibilityElement[];
 try {
-    axContext.getWindows((err, data) => {
-        if (err && err.code) {
-            console.error('failed to get windows, because ${JSON.stringify(err)}');
-            return;
-        }
-        windows = data;
-        console.info('get windows success');
-    });
+  axContext.getWindows((err: BusinessError<void>, data: AccessibilityElement[]) => {
+    if (err) {
+      console.error(`failed to get windows, because ${JSON.stringify(err)}`);
+      return;
+    }
+    windows = data;
+    console.info('get windows success');
+  });
 } catch (exception) {
-    console.error('failed to get windows, because ${JSON.stringify(exception)}');
+  console.error(`failed to get windows, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -503,23 +530,26 @@ getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityEleme
 **示例：**
 
 ```ts
-let windows;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let windows: AccessibilityElement[];
 let displayId = 10;
 try {
-    axContext.getWindows(displayId, (err, data) => {
-        if (err && err.code) {
-            console.error('failed to get windows, because ${JSON.stringify(err)}');
-            return;
-        }
-        windows = data;
-        console.info('get windows success');
-    });
+  axContext.getWindows(displayId, (err: BusinessError<void>, data: AccessibilityElement[]) => {
+    if (err) {
+      console.error(`failed to get windows, because ${JSON.stringify(err)}`);
+      return;
+    }
+    windows = data;
+    console.info('get windows success');
+  });
 } catch (exception) {
-    console.error('failed to get windows, because ${JSON.stringify(exception)}');
+  console.error(`failed to get windows, because ${JSON.stringify(exception)}`);
 }
 ```
 
-## AccessibilityExtensionContext.injectGesture
+## AccessibilityExtensionContext.injectGesture<sup>(deprecated)</sup>
 
 injectGesture(gesturePath: GesturePath): Promise\<void>;
 
@@ -552,22 +582,23 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 ```ts
 import GesturePath from '@ohos.accessibility.GesturePath';
 import GesturePoint from '@ohos.accessibility.GesturePoint';
-let gesturePath = new GesturePath.GesturePath(100);
+
+let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
 try {
-    for (let i = 0; i < 10; i++) {
-        let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
-        gesturePath.points.push(gesturePoint);
-    }
-    axContext.injectGesture(gesturePath).then(() => {
-        console.info('inject gesture success');
-    }).catch((err) => {
-        console.error('failed to inject gesture, because ${JSON.stringify(err)}');
-    });
+  for (let i = 0; i < 10; i++) {
+    let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+    gesturePath.points.push(gesturePoint);
+  }
+  axContext.injectGesture(gesturePath).then(() => {
+    console.info('inject gesture success');
+  }).catch((err: object) => {
+    console.error(`failed to inject gesture, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to inject gesture, because ${JSON.stringify(exception)}');
+  console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
 }
 ```
-## AccessibilityExtensionContext.injectGesture
+## AccessibilityExtensionContext.injectGesture<sup>(deprecated)</sup>
 
 injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
@@ -595,23 +626,64 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 ```ts
 import GesturePath from '@ohos.accessibility.GesturePath';
 import GesturePoint from '@ohos.accessibility.GesturePoint';
-let gesturePath = new GesturePath.GesturePath(100);
+
+let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
 try {
-    for (let i = 0; i < 10; i++) {
-        let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
-        gesturePath.points.push(gesturePoint);
+  for (let i = 0; i < 10; i++) {
+    let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+    gesturePath.points.push(gesturePoint);
+  }
+  axContext.injectGesture(gesturePath, (err) => {
+    if (err) {
+      console.error(`failed to inject gesture, because ${JSON.stringify(err)}`);
+      return;
     }
-    axContext.injectGesture(gesturePath, (err, data) => {
-        if (err && err.code) {
-            console.error('failed to inject gesture, because ${JSON.stringify(err)}');
-            return;
-        }
-        console.info('inject gesture success');
-    });
+    console.info('inject gesture success');
+  });
 } catch (exception) {
-    console.error('failed to inject gesture, because ${JSON.stringify(exception)}');
+  console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
 }
 ```
+## AccessibilityExtensionContext.injectGestureSync<sup>10+</sup>
+
+injectGestureSync(gesturePath: GesturePath): void
+
+注入手势。
+
+**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名      | 类型                                                         | 必填 | 说明                 |
+| ----------- | ------------------------------------------------------------ | ---- | -------------------- |
+| gesturePath | [GesturePath](js-apis-accessibility-GesturePath.md#gesturepath) | 是   | 表示手势的路径信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息                                            |
+| -------- | --------------------------------------------------- |
+| 9300003  | Do not have accessibility right for this operation. |
+
+**示例：**
+
+```ts
+import GesturePath from '@ohos.accessibility.GesturePath';
+import GesturePoint from '@ohos.accessibility.GesturePoint';
+
+let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
+try {
+  for (let i = 0; i < 10; i++) {
+    let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+    gesturePath.points.push(gesturePoint);
+  }
+  axContext.injectGestureSync(gesturePath);
+} catch (exception) {
+  console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
+}
+```
+
 ## AccessibilityElement<sup>9+</sup>
 
 无障碍节点元素, 在调用AccessibilityElement的方法前，需要先通过[AccessibilityExtensionContext.getFocusElement()](#accessibilityextensioncontextgetfocuselement)或者[AccessibilityExtensionContext.getWindowRootElement()](#accessibilityextensioncontextgetwindowrootelement)获取AccessibilityElement实例。
@@ -635,13 +707,14 @@ attributeNames\<T extends keyof ElementAttributeValues>(): Promise\<Array\<T>>;
 **示例：**
 
 ```ts
-let rootElement;
-let attributeNames;
-rootElement.attributeNames().then((data) => {
-    console.log('get attribute names success');
-    attributeNames = data;
-}).catch((err) => {
-    console.log('failed to get attribute names, because ${JSON.stringify(err)}');
+import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+
+let attributeNames: ElementAttributeKeys;
+rootElement.attributeNames().then((data: ElementAttributeKeys) => {
+  console.log('get attribute names success');
+  attributeNames = data;
+}).catch((err: object) => {
+  console.log(`failed to get attribute names, because ${JSON.stringify(err)}`);
 });
 ```
 ### attributeNames
@@ -661,15 +734,17 @@ attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\
 **示例：**
 
 ```ts
-let rootElement;
-let attributeNames;
-rootElement.attributeNames((err, data) => {
-    if (err) {
-        console.error('failed to get attribute names, because ${JSON.stringify(err)}');
-        return;
-    }
-    attributeNames = data;
-    console.info('get attribute names success');
+import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let attributeNames: ElementAttributeKeys[];
+rootElement.attributeNames((err: BusinessError<void>, data: ElementAttributeKeys[]) => {
+  if (err) {
+    console.error(`failed to get attribute names, because ${JSON.stringify(err)}`);
+    return;
+  }
+  attributeNames = data;
+  console.info('get attribute names success');
 });
 ```
 ### attributeValue
@@ -684,7 +759,7 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 
 | 参数名           | 类型   | 必填   | 说明       |
 | ------------- | ---- | ---- | -------- |
-| attributeName | T    | 是    | 表示属性的名称。 |
+| attributeName | ElementAttributeKeys  | 是    | 表示属性的名称。 |
 
 **返回值：**
 
@@ -703,18 +778,19 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 **示例：**
 
 ```ts
-let attributeName = 'name';
-let attributeValue;
-let rootElement;
+import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+
+let attributeName: ElementAttributeKeys = 'bundleName';
+let attributeValue: string;
 try {
-    rootElement.attributeValue(attributeName).then((data) => {
-        console.log('get attribute value by name success');
-        attributeValue = data;
-    }).catch((err) => {
-        console.error('failed to get attribute value, because ${JSON.stringify(err)}');
-    });
+  rootElement.attributeValue(attributeName).then((data: string) => {
+    console.log('get attribute value by name success');
+    attributeValue = data;
+  }).catch((err: object) => {
+    console.error(`failed to get attribute value, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to get attribute value, because ${JSON.stringify(exception)}');
+  console.error(`failed to get attribute value, because ${JSON.stringify(exception)}`);
 }
 ```
 ### attributeValue
@@ -730,7 +806,7 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T,
 
 | 参数名           | 类型                                       | 必填   | 说明                     |
 | ------------- | ---------------------------------------- | ---- | ---------------------- |
-| attributeName | T                                        | 是    | 表示属性的名称。               |
+| attributeName | ElementAttributeKeys                         | 是    | 表示属性的名称。               |
 | callback      | AsyncCallback&lt;ElementAttributeValues[T]&gt; | 是    | 回调函数，返回根据节点属性名称获取的属性值。 |
 
 **错误码：**
@@ -744,20 +820,22 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T,
 **示例：**
 
 ```ts
-let rootElement;
-let attributeValue;
-let attributeName = 'name';
+import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let attributeName: ElementAttributeKeys = 'bundleName';
+let attributeValue: string;
 try {
-    rootElement.attributeValue(attributeName, (err, data) => {
-        if (err) {
-            console.error('failed to get attribute value, because ${JSON.stringify(err)}');
-            return;
-        }
-        attributeValue = data;
-        console.info('get attribute value success');
-    });
+  rootElement.attributeValue(attributeName, (err: BusinessError<void>, data: string) => {
+    if (err) {
+      console.error(`failed to get attribute value, because ${JSON.stringify(err)}`);
+      return;
+    }
+    attributeValue = data;
+    console.info('get attribute value success');
+  });
 } catch (exception) {
-    console.error('failed to get attribute value, because ${JSON.stringify(exception)}');
+  console.error(`failed to get attribute value, because ${JSON.stringify(exception)}`);
 }
 ```
 ### actionNames
@@ -777,14 +855,13 @@ actionNames(): Promise\<Array\<string>>;
 **示例：**
 
 ```ts
-let rootElement;
-let actionNames;
-rootElement.actionNames().then((data) => {
-    console.log('get action names success');
-    actionNames = data;
-}).catch((err) => {
-    console.error('failed to get action names because ${JSON.stringify(err)}');
-});
+let actionNames: string[];
+rootElement.actionNames().then((data: string[]) => {
+  console.log('get action names success');
+  actionNames = data;
+}).catch((err: object) => {
+  console.error(`failed to get action names because ${JSON.stringify(err)}`);
+})
 ```
 ### actionNames
 
@@ -803,16 +880,15 @@ actionNames(callback: AsyncCallback\<Array\<string>>): void;
 **示例：**
 
 ```ts
-let rootElement;
-let actionNames;
-rootElement.actionNames((err, data) => {
-    if (err) {
-        console.error('failed to get action names, because ${JSON.stringify(err)}');
-        return;
-    }
-    actionNames = data;
-    console.info('get action names success');
-});
+let actionNames: string[];
+rootElement.actionNames((err: BusinessError<void>, data: string[]) => {
+  if (err) {
+    console.error(`failed to get action names, because ${JSON.stringify(err)}`);
+    return;
+  }
+  actionNames = data;
+  console.info('get action names success');
+})
 ```
 ### performAction
 
@@ -846,15 +922,15 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 **示例：**
 
 ```ts
-let rootElement;
+let actionName = 'action';
 try {
-    rootElement.performAction('action').then((data) => {
-        console.info('perform action success');
-    }).catch((err) => {
-        console.error('failed to perform action, because ${JSON.stringify(err)}');
-    });
+  rootElement.performAction(actionName).then(() => {
+    console.info('perform action success');
+  }).catch((err: object) => {
+    console.error(`failed to perform action, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to perform action, because ${JSON.stringify(exception)}');
+  console.error(`failed to perform action, because ${JSON.stringify(exception)}`);
 }
 ```
 ### performAction
@@ -883,17 +959,19 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-let rootElement;
+import { BusinessError } from '@ohos.base';
+
+let actionName = 'action';
 try {
-    rootElement.performAction('action', (err, data) => {
-        if (err) {
-            console.error('failed to perform action, because ${JSON.stringify(err)}');
-            return;
-        }
-        console.info('perform action success');
-    });
+  rootElement.performAction(actionName, (err:BusinessError) => {
+    if (err) {
+      console.error(`failed to perform action, because ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info('perform action success');
+  });
 } catch (exception) {
-    console.error('failed to perform action, because ${JSON.stringify(exception)}');
+  console.error(`failed to perform action, because ${JSON.stringify(exception)}`);
 }
 ```
 ### performAction
@@ -923,21 +1001,20 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-let rootElement;
+import { BusinessError } from '@ohos.base';
+
 let actionName = 'action';
-let parameters = {
-    'setText': 'test text'
-};
+let parameters: object = [];
 try {
-    rootElement.performAction(actionName, parameters, (err, data) => {
-        if (err) {
-            console.error('failed to perform action, because ${JSON.stringify(err)}');
-            return;
-        }
-        console.info('perform action success');
-    });
+  rootElement.performAction(actionName, parameters, (err: BusinessError<void>) => {
+    if (err) {
+      console.error(`failed to perform action, because ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info('perform action success');
+  });
 } catch (exception) {
-    console.error('failed to perform action, because ${JSON.stringify(exception)}');
+  console.error(`failed to perform action, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('content')
@@ -964,19 +1041,17 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 **示例：**
 
 ```ts
-let rootElement;
-let type = 'content';
 let condition = 'keyword';
-let elements;
+let elements: AccessibilityElement[];
 try {
-    rootElement.findElement(type, condition).then((data) => {
-        elements = data;
-        console.log('find element success');
-    }).catch((err) => {
-        console.error('failed to find element, because ${JSON.stringify(err)}');
-    });
+  rootElement.findElement('content', condition).then((data: AccessibilityElement[]) => {
+    elements = data;
+    console.log('find element success');
+  }).catch((err: object) => {
+    console.error(`failed to find element, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('content')
@@ -998,21 +1073,21 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 **示例：**
 
 ```ts
-let rootElement;
-let type = 'content';
+import { BusinessError } from '@ohos.base';
+
 let condition = 'keyword';
-let elements;
+let elements: AccessibilityElement[];
 try {
-    rootElement.findElement(type, condition, (err, data) => {
-        if (err) {
-            console.error('failed to find element, because ${JSON.stringify(err)}');
-            return;
-        }
-        elements = data;
-        console.info('find element success');
-    });
+  rootElement.findElement('content', condition, (err: BusinessError<void>, data: AccessibilityElement[]) => {
+    if (err) {
+      console.error(`failed to find element, because ${JSON.stringify(err)}`);
+      return;
+    }
+    elements = data;
+    console.info('find element success');
+  });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('focusType')
@@ -1039,19 +1114,19 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 **示例：**
 
 ```ts
-let rootElement;
-let type = 'focusType';
-let condition = 'normal';
-let element;
+import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
+
+let condition: FocusType = 'normal';
+let element: AccessibilityElement;
 try {
-    rootElement.findElement(type, condition).then((data) => {
-        element = data;
-        console.log('find element success');
-    }).catch((err) => {
-        console.error('failed to find element, because ${JSON.stringify(err)}');
-    });
+  rootElement.findElement('focusType', condition).then((data: AccessibilityElement) => {
+    element = data;
+    console.log('find element success');
+  }).catch((err: object) => {
+    console.error(`failed to find element, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('focusType')
@@ -1073,21 +1148,22 @@ findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<Ac
 **示例：**
 
 ```ts
-let rootElement;
-let type = 'focusType';
-let condition = 'normal';
-let element;
+import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let condition: FocusType = 'normal';
+let element: AccessibilityElement;
 try {
-    rootElement.findElement(type, condition, (err, data) => {
-        if (err) {
-            console.error('failed to find element, because ${JSON.stringify(err)}');
-            return;
-        }
-        element = data;
-        console.info('find element success');
-    });
+  rootElement.findElement('focusType', condition, (err: BusinessError<void>, data: AccessibilityElement) => {
+    if (err) {
+      console.error(`failed to find element, because ${JSON.stringify(err)}`);
+      return;
+    }
+    element = data;
+    console.info('find element success');
+  });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('focusDirection')
@@ -1114,19 +1190,19 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 **示例：**
 
 ```ts
-let rootElement;
-let type = 'focusDirection';
-let condition = 'up';
-let element;
+import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
+
+let condition: FocusDirection = 'up';
+let element: AccessibilityElement;
 try {
-    rootElement.findElement(type, condition).then((data) => {
-        element = data;
-        console.log('find element success');
-    }).catch((err) => {
-        console.error('failed to find element, because ${JSON.stringify(err)}');
-    });
+  rootElement.findElement('focusDirection', condition).then((data: AccessibilityElement) => {
+    element = data;
+    console.log('find element success');
+  }).catch((err: object) => {
+    console.error(`failed to find element, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('focusDirection')
@@ -1148,20 +1224,21 @@ findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCa
 **示例：**
 
 ```ts
-let rootElement;
-let type = 'focusDirection';
-let condition = 'up';
-let elements;
+import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let condition: FocusDirection = 'up';
+let elements: AccessibilityElement;
 try {
-    rootElement.findElement(type, condition, (err, data) => {
-        if (err) {
-            console.error('failed to find element, because ${JSON.stringify(err)}');
-            return;
-        }
-        elements = data;
-        console.info('find element success');
-    });
+  rootElement.findElement('focusDirection', condition, (err: BusinessError<void>, data: AccessibilityElement) => {
+    if (err) {
+      console.error(`failed to find element, because ${JSON.stringify(err)}`);
+      return;
+    }
+    elements = data;
+    console.info('find element success');
+  });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```

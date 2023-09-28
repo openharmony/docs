@@ -23,7 +23,7 @@
 
 - View(UI)：UI渲染，一般指自定义组件的build方法和\@Builder装饰的方法内的UI描述。
 
-- State：状态，一般指的是装饰器装饰的数据。用户通过触发组件的事件方法，改变状态数据。状态数据的改变，引起UI的重新渲染。
+- State：状态，一般指装饰器装饰的数据。用户通过触发组件的事件方法，改变状态数据。状态数据的改变，引起UI的重新渲染。
 
 
 ## 基本概念
@@ -59,7 +59,7 @@
   }
   ```
 
-- 初始化子节点：组件中状态变量可以传递给子组件，初始化子组件对应的状态变量。示例同上。
+- 初始化子组件：组件中状态变量可以传递给子组件，初始化子组件对应的状态变量。示例同上。
 
 - 本地初始化：变量声明的时候赋值，作为初始化的默认值。示例：\@State count: number = 0。
 
@@ -131,5 +131,7 @@ $$运算符：给内置组件提供TS变量的引用，使得TS变量和内置�
 ## 相关实例
 
 针对页面状态管理，有以下相关实例可供参考：
+
+- [状态管理（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/StateManagement)
 
 - [目标管理（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TargetManagement)

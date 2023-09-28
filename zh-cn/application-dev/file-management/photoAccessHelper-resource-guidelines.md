@@ -27,31 +27,27 @@
 
 下面以查询文件名为'test.jpg'的图片资源为例。
 
-**开发步骤：**
-
-创建FetchOptions对象指定检索条件为检索文件名为'test.jpg'的图片。
-
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, 'test.jpg');
-let fetchOptions = {
-  fetchColumns: [],
-  predicates: predicates
-};
-```
-
-调用PhotoAccessHelper.getAssets接口获取图片资源。
-
-```ts
-try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
-  console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
-  fetchResult.close();
-} catch (err) {
-  console.error('getAssets failed with err: ' + err);
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, 'test.jpg');
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
+    fetchResult.close();
+  } catch (err) {
+    console.error('getAssets failed with err: ' + err);
+  }
 }
 ```
 
@@ -61,28 +57,28 @@ try {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-predicates.equalTo(photoAccessHelper.PhotoKeys.URI, 'file://media/Photo/1');
-let fetchOptions = {
-  fetchColumns: [],
-  predicates: predicates
-};
-```
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo(photoAccessHelper.PhotoKeys.URI, 'file://media/Photo/1');
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
 
-调用PhotoAccessHelper.getAssets接口获取图片资源。
-
-```ts
-try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
-  console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
-  fetchResult.close();
-} catch (err) {
-  console.error('getAssets failed with err: ' + err);
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
+    fetchResult.close();
+  } catch (err) {
+    console.error('getAssets failed with err: ' + err);
+  }
 }
 ```
-
 
 ### 指定文件添加的时间获取图片或视频资源
 
@@ -90,30 +86,30 @@ try {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-let startTime = Date.parse(new Date('2022-06-01').toString()) / 1000; // 查询起始时间距1970年1月1日的秒数值。
-let endTime = Date.parse(new Date('2023-06-01').toString()) / 1000; // 查询结束时间距1970年1月1日的秒数值。
-let date_added = photoAccessHelper.PhotoKeys.DATE_ADDED;
-predicates.between(date_added, startTime, endTime);
-predicates.orderByDesc(date_added); // 查询结果按照降序排序。
-let fetchOptions = {
-  fetchColumns: [date_added], // date_added属性不属于默认查询列，需要自行添加。
-  predicates: predicates
-};
-```
-
-调用PhotoAccessHelper.getAssets接口获取图片资源。
-
-```ts
-try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  console.info('getAssets count: ' + fetchResult.getCount());
-  let fileAsset = await fetchResult.getFirstObject();
-  console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
-  fetchResult.close();
-} catch (err) {
-  console.error('getAssets failed with err: ' + err);
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let startTime = Date.parse(new Date('2022-06-01').toString()) / 1000; // 查询起始时间距1970年1月1日的秒数值。
+  let endTime = Date.parse(new Date('2023-06-01').toString()) / 1000;  // 查询结束时间距1970年1月1日的秒数值。
+  let date_added: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.DATE_ADDED;
+  predicates.between(date_added, startTime, endTime);
+  predicates.orderByDesc(date_added); // 查询结果按照降序排序。
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [date_added], // date_added属性不属于默认查询列，需要自行添加。
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    console.info('getAssets count: ' + fetchResult.getCount());
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
+    fetchResult.close();
+  } catch (err) {
+    console.error('getAssets failed with err: ' + err);
+  }
 }
 ```
 
@@ -142,30 +138,36 @@ try {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import image from '@ohos.multimedia.image';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions = {
-  fetchColumns: [],
-  predicates: predicates
-};
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
 
-try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
-  console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
-  let size = { width: 720, height: 720 };
-  let pixelMap =  await fileAsset.getThumbnail(size);
-  let imageInfo = await pixelMap.getImageInfo()
-  console.info('getThumbnail successful, pixelMap ImageInfo size: ' + JSON.stringify(imageInfo.size));
-  fetchResult.close();
-} catch (err) {
-  console.error('getThumbnail failed with err: ' + err);
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
+    let size: image.Size = { width: 720, height: 720 };
+    let pixelMap: image.PixelMap =  await fileAsset.getThumbnail(size);
+    let imageInfo: image.ImageInfo = await pixelMap.getImageInfo()
+    console.info('getThumbnail successful, pixelMap ImageInfo size: ' + JSON.stringify(imageInfo.size));
+    fetchResult.close();
+  } catch (err) {
+    console.error('getThumbnail failed with err: ' + err);
+  }
 }
 ```
 
 ## 创建媒体资源
 
-通过接口[createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset)创建媒体资源。
+通过接口[createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset-3)创建媒体资源。
 
 **前提条件：**
 
@@ -182,16 +184,77 @@ try {
 2. 调用createAsset接口创建图片资源。
 
 ```ts
-try {
-  let displayName = 'testPhoto' + Date.now() + '.jpg';
-  let createOption = {
-    subType: photoAccessHelper.PhotoSubtype.DEFAULT
-  };
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-  let fileAsset = await phAccessHelper.createAsset(displayName, createOption);
-  console.info('createAsset successfully, file displayName: ' + fileAsset.displayName);
-} catch (err) {
-  console.error('createAsset failed, message = ', err);
+async function example() {
+  try {
+    let displayName: string = 'testPhoto' + Date.now() + '.jpg';
+    let createOption: photoAccessHelper.PhotoCreateOptions = {
+      subtype: photoAccessHelper.PhotoSubtype.DEFAULT
+    };
+
+    let fileAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(displayName, createOption);
+    console.info('createAsset successfully, file displayName: ' + fileAsset.displayName);
+  } catch (err) {
+    console.error('createAsset failed, message = ', err);
+  }
+}
+```
+
+## 使用安全控件创建媒体资源
+
+下面以使用安全控件创建一张图片资源为例。使用安全控件创建媒体资源无需在应用中申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'，详情请参考[安全控件的保存控件](../reference/arkui-ts/ts-security-components-savebutton.md)。
+
+**开发步骤：**
+
+1. 设置安全控件按钮属性。
+2. 创建安全控件按钮。
+3. 调用[createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset-5)接口创建图片资源
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import fs from '@ohos.file.fs';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+  @State saveButtonOptions: SaveButtonOptions = {
+    icon: SaveIconStyle.FULL_FILLED,
+    text: SaveDescription.SAVE_IMAGE,
+    buttonType: ButtonType.Capsule
+  } // 设置安全控件按钮属性
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        SaveButton(this.saveButtonOptions) // 创建安全控件按钮
+          .onClick(async (event, result: SaveButtonOnClickResult) => {
+             if (result == SaveButtonOnClickResult.SUCCESS) {
+               try {
+                 let context = getContext();
+                 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+                 let uri = await phAccessHelper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg'); // 创建媒体文件
+                 console.info('createAsset successfully, uri: ' + uri);
+                 let file = await fs.open(uri, fs.OpenMode.READ_WRITE);
+                 await fs.close(file);
+               } catch (err) {
+                 console.error('createAsset failed, message = ', err);
+               }
+             } else {
+               console.error('SaveButtonOnClickResult createAsset failed');
+             }
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
 }
 ```
 
@@ -220,25 +283,30 @@ try {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions = {
-  fetchColumns: ['title'],
-  predicates: predicates
-};
-let newTitle = 'newTestPhoto';
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: ['title'],
+    predicates: predicates
+  };
+  let newTitle = 'newTestPhoto';
 
-try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
-  let title = photoAccessHelper.PhotoKeys.TITLE;
-  let fileAssetTitle = fileAsset.get(title);
-  console.info('getAssets fileAsset.title : ' + fileAssetTitle);
-  fileAsset.set(title, newTitle);
-  await fileAsset.commitModify();
-  fetchResult.close();
-} catch (err) {
-  console.error('commitModify failed with err: ' + err);
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let title: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.TITLE;
+    let fileAssetTitle: photoAccessHelper.MemberType = fileAsset.get(title);
+    console.info('getAssets fileAsset.title : ' + fileAssetTitle);
+    fileAsset.set(title, newTitle);
+    await fileAsset.commitModify();
+    fetchResult.close();
+  } catch (err) {
+    console.error('commitModify failed with err: ' + err);
+  }
 }
 ```
 
@@ -264,20 +332,97 @@ try {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions = {
-  fetchColumns: [],
-  predicates: predicates
-};
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
 
-try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
-  console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
-  await phAccessHelper.deleteAssets([fileAsset.uri]);
-  fetchResult.close();
-} catch (err) {
-  console.error('deleteAssets failed with err: ' + err);
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
+    await phAccessHelper.deleteAssets([fileAsset.uri]);
+    fetchResult.close();
+  } catch (err) {
+    console.error('deleteAssets failed with err: ' + err);
+  }
 }
 ```
+# 应用如何选择媒体库资源
+
+用户有时需要分享图片、视频等用户文件，开发者可以通过特定接口拉起系统图库，用户自行选择待分享的资源，然后最终分享出去。此接口本身无需申请权限，目前适用于界面UIAbility，使用窗口组件触发。具体使用方式如下：
+
+## 选择图片或视频类文件
+
+1. 导入选择器模块和文件管理模块。
+
+   ```ts
+   import photoAccessHelper from '@ohos.file.photoAccessHelper';
+   import fs from '@ohos.file.fs';
+   import { BusinessError } from '@ohos.base';
+   ```
+
+2. 创建图片-音频类型文件选择选项实例。
+
+   ```ts
+   import photoAccessHelper from '@ohos.file.photoAccessHelper';
+   
+   const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+   ```
+
+3. 选择媒体文件类型和选择媒体文件的最大数目。
+   以下示例以图片选择为例，媒体文件类型请参见[PhotoViewMIMETypes](../reference/apis/js-apis-photoAccessHelper.md#photoviewmimetypes)。
+
+   ```ts
+   import photoAccessHelper from '@ohos.file.photoAccessHelper';
+   
+   photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE; // 过滤选择媒体文件类型为IMAGE
+   photoSelectOptions.maxSelectNumber = 5; // 选择媒体文件的最大数目
+   ```
+
+4. 创建图库选择器实例，调用[select()](../reference/apis/js-apis-photoAccessHelper.md#select)接口拉起图库界面进行文件选择。文件选择成功后，返回[PhotoSelectResult](../reference/apis/js-apis-photoAccessHelper.md#photoselectresult)结果集。
+   
+   select返回的uri权限是只读权限，可以根据结果集中uri进行读取文件数据操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
+
+   如有获取元数据需求，可以通过[文件管理接口](../reference/apis/js-apis-file-fs.md)和[文件URI](../reference/apis/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
+
+   ```ts
+   import photoAccessHelper from '@ohos.file.photoAccessHelper';
+   import { BusinessError } from '@ohos.base';
+   
+   let uris: Array<string> = [];
+   const photoViewPicker = new photoAccessHelper.PhotoViewPicker();
+   photoViewPicker.select(photoSelectOptions).then((photoSelectResult: picker.PhotoSelectResult) => {
+     uris = photoSelectResult.photoUris;
+     console.info('photoViewPicker.select to file succeed and uris are:' + uris);
+   }).catch((err: BusinessError) => {
+     console.error(`Invoke photoViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
+   })
+   ```
+
+5. 待界面从图库返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
+
+   ```ts
+   import fs from '@ohos.file.fs';
+   
+   let uri: string = '';
+   let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
+   console.info('file fd: ' + file.fd);
+   ```
+
+6. 通过fd使用[fs.readSync](../reference/apis/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
+
+   ```ts
+   import fs from '@ohos.file.fs';
+   
+   let buffer = new ArrayBuffer(4096);
+   let readLen = fs.readSync(file.fd, buffer);
+   console.info('readSync data to file succeed and buffer size is:' + readLen);
+   fs.closeSync(file);
+   ```

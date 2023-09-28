@@ -42,15 +42,23 @@ HelloComponent可以在其他自定义组件中的build()函数中多次创建�
 
 
 ```ts
+class HelloComponentParam {
+  message: string = ""
+}
+
 @Entry
 @Component
 struct ParentComponent {
+  param: HelloComponentParam = {
+    message: 'Hello, World!'
+  }
+
   build() {
     Column() {
       Text('ArkUI message')
-      HelloComponent({ message: 'Hello, World!' });
+      HelloComponent(param);
       Divider()
-      HelloComponent({ message: '你好!' });
+      HelloComponent(param);
     }
   }
 }
@@ -131,14 +139,14 @@ struct ParentComponent {
   ```
 
 
-- \@Recycle：\@Recycle装饰的自定义组件具备可复用能力
+- \@Reusable：\@Reusable装饰的自定义组件具备可复用能力
 
   > **说明：**
   >
   > 从API version 10开始，该装饰器支持在ArkTS卡片中使用。
 
   ```ts
-  @Recycle
+  @Reusable
   @Component
   struct MyComponent {
   }
@@ -281,7 +289,7 @@ struct ParentComponent {
   }
   ```
 
-- 不允许switch语法，如果需要使用条件判断，请使用if。反例如下。
+- 不允许使用switch语法，如果需要使用条件判断，请使用if。反例如下。
 
   ```ts
   build() {

@@ -48,11 +48,11 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.deleteForm(formId, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.deleteForm(formId, (error: Base.BusinessError) => {
   if (error) {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   } else {
@@ -60,7 +60,7 @@ try {
   }
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -105,17 +105,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Parameters**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
+  let formId: string = '12400633174999288';
   formHost.deleteForm(formId).then(() => {
     console.log('formHost deleteForm success');
-  }).catch((error) => {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  }).catch((error: Base.BusinessError) => {
+    console.error(`formHost deleteForm, error: ${JSON.stringify(error)}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -154,17 +154,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.releaseForm(formId, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.releaseForm(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -204,17 +204,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.releaseForm(formId, true, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.releaseForm(formId, true, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -259,17 +259,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
+  let formId: string = '12400633174999288';
   formHost.releaseForm(formId, true).then(() => {
     console.log('formHost releaseForm success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -308,17 +308,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.requestForm(formId, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.requestForm(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -362,17 +362,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
+  let formId: string = '12400633174999288';
   formHost.requestForm(formId).then(() => {
     console.log('formHost requestForm success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 
 ```
@@ -412,17 +412,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.castToNormalForm(formId, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.castToNormalForm(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -466,17 +466,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
+  let formId: string = '12400633174999288';
   formHost.castToNormalForm(formId).then(() => {
     console.log('formHost castTempForm success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -513,17 +513,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
-  formHost.notifyVisibleForms(formId, (error) => {
+  let formId: string[] = ['12400633174999288'];
+  formHost.notifyVisibleForms(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -565,17 +565,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
+  let formId: string[] = ['12400633174999288'];
   formHost.notifyVisibleForms(formId).then(() => {
     console.log('formHost notifyVisibleForms success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -612,17 +612,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
-  formHost.notifyInvisibleForms(formId, (error) => {
+  let formId: string[] = ['12400633174999288'];
+  formHost.notifyInvisibleForms(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -664,17 +664,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
+  let formId: string[] = ['12400633174999288'];
   formHost.notifyInvisibleForms(formId).then(() => {
     console.log('formHost notifyInvisibleForms success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -712,17 +712,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
-  formHost.enableFormsUpdate(formId, (error) => {
+  let formId: string[] = ['12400633174999288'];
+  formHost.enableFormsUpdate(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -765,17 +765,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
+  let formId: string[] = ['12400633174999288'];
   formHost.enableFormsUpdate(formId).then(() => {
     console.log('formHost enableFormsUpdate success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -814,17 +814,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
-  formHost.disableFormsUpdate(formId, (error) => {
+  let formId: string[] = ['12400633174999288'];
+  formHost.disableFormsUpdate(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -868,17 +868,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
+  let formId: string[] = ['12400633174999288'];
   formHost.disableFormsUpdate(formId).then(() => {
     console.log('formHost disableFormsUpdate success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -908,16 +908,16 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  formHost.isSystemReady((error, data) => {
+  formHost.isSystemReady((error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -946,16 +946,16 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   formHost.isSystemReady().then(() => {
     console.log('formHost isSystemReady success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -991,18 +991,19 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getAllFormsInfo((error, data) => {
+  formHost.getAllFormsInfo((error: Base.BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost getAllFormsInfo, data: ${JSON.stringify(data)}');
+      console.log(`formHost getAllFormsInfo, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1037,16 +1038,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getAllFormsInfo().then((data) => {
-    console.log('formHost getAllFormsInfo data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  formHost.getAllFormsInfo().then((data: formInfo.FormInfo[]) => {
+    console.log(`formHost getAllFormsInfo data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1084,18 +1086,19 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', (error, data) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
+      console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1134,10 +1137,11 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error, data) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1145,7 +1149,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1189,107 +1193,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data) => {
-    console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data: formInfo.FormInfo[]) => {
+    console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
-}
-```
-
-## getRunningFormInfos<sup>10+</sup>
-
-getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;, hostBundleName?: string): void
-
-Obtains information about all non-temporary widgets running on the device. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained.|
-| hostBundleName | string | No|  Name of the bundle that functions as the widget host. If this parameter is specified, only the information about the non-temporary widgets that are running under the widget host is returned.<br>By default, information about all running non-temporary widgets on the device is returned.|
-
-**Error codes**
-
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
-
-| Error Code ID| Error Message|
-| -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
-
-**Example**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-
-try {
-  formHost.getRunningFormInfos((error, data) => {
-    if (error) {
-      console.error(`error, code: ${error.code}, message: ${error.message}`);
-    } else {
-      console.log('formHost getRunningFormInfos, data: ${JSON.stringify(data)}');
-    }
-  }, 'com.example.ohos.formjsdemo');
-} catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
-}
-```
-
-## getRunningFormInfos<sup>10+</sup>
-
-getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
-
-Obtains information about all non-temporary widgets running on the device. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| hostBundleName | string | No|  Name of the bundle that functions as the widget host. If this parameter is specified, only the information about the non-temporary widgets that are running under the widget host is returned.<br>By default, information about all running non-temporary widgets on the device is returned.|
-
-**Return value**
-
-| Type                                                        | Description                               |
-| :----------------------------------------------------------- | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
-
-**Error codes**
-
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
-
-| Error Code ID| Error Message|
-| -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
-
-**Example**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-
-try {
-  formHost.getRunningFormInfos('com.example.ohos.formjsdemo').then((data) => {
-    console.log('formHost getRunningFormInfos, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
-  });
-} catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1326,19 +1240,19 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formIds = new Array('12400633174999288', '12400633174999289');
-  formHost.deleteInvalidForms(formIds, (error, data) => {
+  let formIds: string[] = new Array('12400633174999288', '12400633174999289');
+  formHost.deleteInvalidForms(formIds, (error: Base.BusinessError, data: number) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
+      console.log(`formHost deleteInvalidForms, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1380,17 +1294,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formIds = new Array('12400633174999288', '12400633174999289');
-  formHost.deleteInvalidForms(formIds).then((data) => {
-    console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  let formIds: string[] = new Array('12400633174999288', '12400633174999289');
+  formHost.deleteInvalidForms(formIds).then((data: number) => {
+    console.log(`formHost deleteInvalidForms, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1428,9 +1342,11 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Want from '@ohos.app.ability.Want';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-let want = {
+let want: Want = {
   'deviceId': '',
   'bundleName': 'ohos.samples.FormApplication',
   'abilityName': 'FormAbility',
@@ -1441,15 +1357,15 @@ let want = {
   }
 };
 try {
-  formHost.acquireFormState(want, (error, data) => {
+  formHost.acquireFormState(want, (error:Base.BusinessError, data: formInfo.FormStateInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
+      console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1492,9 +1408,11 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Want from '@ohos.app.ability.Want';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-let want = {
+let want: Want = {
   'deviceId': '',
   'bundleName': 'ohos.samples.FormApplication',
   'abilityName': 'FormAbility',
@@ -1505,13 +1423,13 @@ let want = {
   }
 };
 try {
-  formHost.acquireFormState(want).then((data) => {
-    console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  formHost.acquireFormState(want).then((data: formInfo.FormStateInfo) => {
+    console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1542,12 +1460,11 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let callback = function(formId) {
-  console.log('formHost on formUninstall, formId: ${formId}');
-}
-formHost.on('formUninstall', callback);
+formHost.on('formUninstall', (formId: string) => {
+  console.log(`formHost on formUninstall, formId: ${formId}`);
+});
 ```
 
 ## off('formUninstall')
@@ -1563,7 +1480,7 @@ Unsubscribes from widget uninstall events. This API uses an asynchronous callbac
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstall event.|
-| callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formUninstall')**.|
+| callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formUninstall')**.|
 
 **Error codes**
 
@@ -1577,147 +1494,12 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let callback = function(formId) {
-  console.log('formHost on formUninstall, formId: ${formId}');
-}
-formHost.off('formUninstall', callback);
+formHost.off('formUninstall', (formId: string) => {
+  console.log(`formHost on formUninstall, formId: ${formId}`);
+});
 ```
-
-## on('formAdd')<sup>10+</sup>
-
- on(type: 'formAdd', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
-
-Subscribes to widget addition events. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| type | string | Yes  | Event type. The value **'formAdd'** indicates a widget addition event.|
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | Yes| Callback used to return **RunningFormInfo** of the new widget.|
-| bundleName | string | No| Name of the bundle that functions as the widget host. By default, widget addition events of all widget hosts are subscribed to.|
-
-**Example**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('a new form added, data: ${JSON.stringify(data)');
-}
-
-formHost.on('formAdd', callback);
-formHost.on('formAdd', callback, bundleName);
-```
-
-## off('formAdd')<sup>10+</sup>
-
- off(type: "formAdd", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
-
-Unsubscribes from widget addition events. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| type | string | Yes  | Event type. The value **'formAdd'** indicates a widget addition event.|
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | No| Callback used to return **RunningFormInfo**. By default, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formAdd')**.|
-| bundleName | string | No| Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formAdd')**.<br>By default, the subscriptions for all the widget hosts are canceled.|
-
-**Example**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('a new form added, data: ${JSON.stringify(data)');
-}
-
-formHost.off('formAdd', callback);
-formHost.off('formAdd', callback, bundleName);
-```
-> **NOTE**
->
-> - **on('formAdd', callback)** and **off('formAdd', callback)** must be used in pairs.
-> - **on('formAdd', callback, bundleName)** and **off('formAdd', callback, bundleName)** must be used in pairs.
-> - To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
-
-## on('formRemove')<sup>10+</sup>
-
- on(type: 'formRemove', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
-
-Subscribes to widget removal events. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| type | string | Yes  | Event type. The value **'formRemove'** indicates a widget removal event.|
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | Yes| Callback used to return **RunningFormInfo** of the removed widget.|
-| bundleName | string | No| Name of the bundle that functions as the widget host. By default, widget removal events of all widget hosts are subscribed to.|
-
-**Example**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('a new form added, data: ${JSON.stringify(data)');
-}
-
-formHost.on('formRemove', callback);
-formHost.on('formRemove', callback, bundleName);
-```
-
-## off('formRemove')<sup>10+</sup>
-
-off(type: "formRemove", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
-
-Unsubscribes from widget removal events. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| type | string | Yes  | Event type. The value **'formRemove'** indicates a widget removal event.|
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | No| Callback used to return **RunningFormInfo**. By default, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formRemove')**.|
-| bundleName | string | No| Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formRemove')**.<br>By default, the subscriptions for all the widget hosts are canceled.|
-
-**Example**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('a new form added, data: ${JSON.stringify(data)');
-}
-
-formHost.off('formRemove', callback);
-formHost.off('formRemove', callback, bundleName);
-```
-> **NOTE**
->
-> - **on('formRemove', callback)** and **off('formRemove', callback)** must be used in pairs.
-> - **on('formRemove', callback, bundleName)** and **off('formRemove', callback, bundleName)** must be used in pairs.
-> - To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
 
 ## notifyFormsVisible
 
@@ -1754,17 +1536,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsVisible(formIds, true, (error) => {
+  formHost.notifyFormsVisible(formIds, true, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1808,17 +1590,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsVisible(formIds, true).then(() => {
     console.log('formHost notifyFormsVisible success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1857,17 +1639,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsEnableUpdate(formIds, true, (error) => {
+  formHost.notifyFormsEnableUpdate(formIds, true, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1911,17 +1693,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
     console.log('formHost notifyFormsEnableUpdate success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 ## shareForm
@@ -1959,18 +1741,18 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-let deviceId = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
+let formId: string = '12400633174999288';
+let deviceId: string = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
-  formHost.shareForm(formId, deviceId, (error) => {
+  formHost.shareForm(formId, deviceId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2014,18 +1796,18 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-let deviceId = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
+let formId: string = '12400633174999288';
+let deviceId: string = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
   formHost.shareForm(formId, deviceId).then(() => {
     console.log('formHost shareForm success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2063,17 +1845,17 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsPrivacyProtected(formIds, true, (error) => {
+  formHost.notifyFormsPrivacyProtected(formIds, true, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2114,17 +1896,17 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
     console.log('formHost notifyFormsPrivacyProtected success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2160,19 +1942,19 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 try {
   formHost.acquireFormData(formId, (error, data) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost acquireFormData, data: ${JSON.stringify(data)}');
+      console.log(`formHost acquireFormData, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2212,365 +1994,16 @@ Requests data from the widget provider. This API uses a promise to return the re
 For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 try {
   formHost.acquireFormData(formId).then((data) => {
     console.log('formHost acquireFormData success' + data);
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
-
-## getRunningFormInfosByFilter<sup>10+</sup>
-
-getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
-
-Obtains the information about widget hosts based on the widget provider information. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name     | Type           | Mandatory| Description                            |
-| ----------- | --------------- | ---- | -------------------------------- |
-| formProviderFilter     | [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | Yes  | Information about the widget provider.|
-
-**Return value**
-
-| Type               | Description                     |
-| ------------------- | ------------------------- |
-| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#RunningFormInfo)&gt;&gt; | Promise used to return the widget host information obtained.|
-
-**Error codes**
-
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
-
-| Error Code ID| Error Message|
-| -------- | -------- |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500100 | Failed to obtain the configuration information. |
-| 16501000  | An internal functional error occurred. |
-
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formInstanceFilter = {
-  bundleName: "com.example.formprovide",
-  abilityName: "EntryFormAbility",
-  formName: "widget",
-  moduleName: "entry"
-}
-try {
-  formHost.getRunningFormInfosByFilter(formInstanceFilter).then(data1 => {
-    console.info('formHost getRunningFormInfosByFilter return err :');
-  }).catch((error) => {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
-  });
-} catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
-}
-```
-
-## getRunningFormInfosByFilter<sup>10+</sup>
-
-getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;): void
-
-Obtains the information about widget hosts based on the widget provider information. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name     | Type           | Mandatory| Description                            |
-| ----------- | --------------- | ---- | -------------------------------- |
-| formProviderFilter     | [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | Yes  | Information about the widget provider.|
-| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget host information is obtained, **error** is **undefined** and **data** is the information obtained; otherwise, **error** is an error object.|
-
-**Error codes**
-
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
-
-| Error Code ID| Error Message|
-| -------- | -------- |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500100 | Failed to obtain the configuration information. |
-| 16501000  | An internal functional error occurred. |
-
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formInstanceFilter = {
-  bundleName: "com.example.formprovide",
-  abilityName: "EntryFormAbility",
-  formName: "widget",
-  moduleName: "entry"
-}
-try {
-  formHost.getRunningFormInfosByFilter(formInstanceFilter,(error, data) => {
-    if (error) {
-      console.error(`error, code: ${error.code}, message: ${error.message}`);
-    } else {
-      console.log('formHost getRunningFormInfosByFilter, data: ${JSON.stringify(data)}');
-    }
-  });
-} catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
-}
-```
-
-## getRunningFormInfoById<sup>10+</sup>
-
-getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
-
-
-Obtains the information about widget hosts based on the widget ID. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name     | Type           | Mandatory| Description                            |
-| ----------- | --------------- | ---- | -------------------------------- |
-| formId     | string | Yes  | Widget ID.|
-
-**Return value**
-
-| Type               | Description                     |
-| ------------------- | ------------------------- |
-| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt; | Promise used to return the widget host information obtained.|
-
-**Error codes**
-
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
-
-| Error Code ID| Error Message|
-| -------- | -------- |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500100 | Failed to obtain the configuration information. |
-| 16501000  | An internal functional error occurred. |
-
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let formId = '12400633174999288';
-try {
-  formHost.getRunningFormInfoById(formId).then(data1 => {
-    console.info('formHost getRunningFormInfoById return err :');
-  }).catch((error) => {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
-  });
-} catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
-}
-```
-
-## getRunningFormInfoById<sup>10+</sup>
-
-getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.RunningFormInfo&gt;): void
-
-Obtains the information about widget hosts based on the widget ID. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name     | Type           | Mandatory| Description                            |
-| ----------- | --------------- | ---- | -------------------------------- |
-| formId     | string | Yes  | Widget ID.|
-| callback | AsyncCallback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt; | Yes| Callback used to return the result. If the widget host information is obtained, **error** is **undefined** and **data** is the information obtained; otherwise, **error** is an error object.|
-
-**Error codes**
-
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
-
-| Error Code ID| Error Message|
-| -------- | -------- |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500100 | Failed to obtain the configuration information. |
-| 16501000  | An internal functional error occurred. |
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formId = '12400633174999288';
-try {
-  formHost.getRunningFormInfoById(formId,(error, data) => {
-    if (error) {
-      console.error(`error, code: ${error.code}, message: ${error.message}`);
-    } else {
-      console.log('formHost getRunningFormInfoById, data: ${JSON.stringify(data)}');
-    }
-  });
-} catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
-}
-```
-
-## on('notifyVisible')<sup>10+</sup>
-
- on(type: 'notifyVisible', observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;, bundleName?: string): void
-
-Subscribes to events indicating that a widget becomes visible.
-
-This event is triggered when **notifyVisibleForms** is called to make a widget visible.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name    | Type                                                        | Mandatory| Description                                                        |
-| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type       | string                                                       | Yes  | Event type. This value **'notifyVisible'** indicates a widget visibility event.     |
-| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes  | Callback used to return **RunningFormInfo** of the widget.           |
-| bundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.|
-
-**Example**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('form change visibility, data: ${JSON.stringify(data)');
-}
-
-formHost.on('notifyVisible', callback);
-formHost.on('notifyVisible', callback, bundleName);
-```
-
-## off('notifyVisible')<sup>10+</sup>
-
- off(type: "notifyVisible", observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;, bundleName?: string): void
-
-Unsubscribes from events indicating that a widget becomes visible.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name    | Type                                                        | Mandatory| Description                                                        |
-| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type       | string                                                       | Yes  | Event type. This value **'notifyVisible'** indicates a widget visibility event.|
-| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | No  | Callback registered during the subscription. By default, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('notifyVisible')**.|
-| bundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('notifyVisible')**.|
-
-**Example**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('form change visibility, data: ${JSON.stringify(data)');
-}
-
-formHost.off('notifyVisible', callback);
-formHost.off('notifyVisible', callback, bundleName);
-```
-
-> **NOTE**
->
-> - **on('notifyVisible', callback)** and **off('notifyVisible', callback)** must be used in pairs.
-> - **on('notifyVisible', callback, bundleName)** and **off('notifyVisible', callback, bundleName)** must be used in pairs.
-> - To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
-
-
-
-## on('notifyInvisible')<sup>10+</sup>
-
- on(type: 'notifyInvisible', observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;>, bundleName?: string): void
-
-Subscribes to events indicating that a widget becomes invisible.
-
-This event is triggered when **notifyInvisibleForms** is called to make a widget invisible.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name    | Type                                                        | Mandatory| Description                                                        |
-| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type       | string                                                       | Yes  | Event type. This value **'notifyInvisible'** indicates a widget invisibility event.     |
-| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes  | Callback used to return **RunningFormInfo** of the widget.         |
-| bundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.|
-
-**Example**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('form change invisibility, data: ${JSON.stringify(data)');
-}
-
-formHost.on('notifyInvisible', callback);
-formHost.on('notifyInvisible', callback, bundleName);
-```
-
-## off('notifyInvisible')<sup>10+</sup>
-
- off(type: "notifyInvisible", observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)>&gt;, bundleName?: string): void
-
-Unsubscribes from events indicating that a widget becomes invisible.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name    | Type                                                        | Mandatory| Description                                                        |
-| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type       | string                                                       | Yes  | Event type. This value **'notifyInvisible'** indicates a widget invisibility event.   |
-| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | No  | Callback registered during the subscription. By default, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('notifyInvisible')**.|
-| bundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('notifyInvisible')**. |
-
-**Example**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('form change invisibility, data: ${JSON.stringify(data)');
-}
-
-formHost.off('notifyInvisible', callback);
-formHost.off('notifyInvisible', callback, bundleName);
-```
-
-> **NOTE**
->
-> - **on('notifyInvisible', callback)** and **off('notifyInvisible', callback)** must be used in pairs.
-> - **on('notifyInvisible', callback, bundleName)** and **off('notifyInvisible', callback, bundleName)** must be used in pairs.
-> - To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.

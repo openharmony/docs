@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
 ```
 
@@ -53,14 +53,15 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 
 **示例：**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
     privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0).then(() => {
         console.log('addPermissionUsedRecord success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -103,12 +104,13 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 
 **示例：**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0, (err, data) => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
@@ -156,10 +158,11 @@ getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUs
 
 **示例：**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let request = {
+let request: privacyManager.PermissionUsedRequest = {
     'tokenId': 1,
     'isRemote': false,
     'deviceId': 'device',
@@ -172,7 +175,7 @@ let request = {
 try {
     privacyManager.getPermissionUsedRecord(request).then((data) => {
         console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -211,10 +214,11 @@ getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&
 
 **示例：**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let request = {
+let request: privacyManager.PermissionUsedRequest = {
     'tokenId': 1,
     'isRemote': false,
     'deviceId': 'device',
@@ -225,7 +229,7 @@ let request = {
     'flag':privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
-    privacyManager.getPermissionUsedRecord(request, (err, data) => {
+    privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: privacyManager.PermissionUsedResponse) => {
         if (err) {
             console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
@@ -275,14 +279,15 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 
 **示例：**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
     privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
         console.log('startUsingPermission success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -323,12 +328,13 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 
 **示例：**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err, data) => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -378,14 +384,15 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 
 **示例：**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
     privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
         console.log('stopUsingPermission success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -426,12 +433,13 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 
 **示例：**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err, data) => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -448,6 +456,10 @@ try {
 on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;ActiveChangeResponse&gt;): void
 
 订阅指定权限列表的权限使用状态变更事件。
+
+允许相同permissionList订阅多个callback。
+
+不允许存在交集的permissionList订阅相同callback。
 
 **需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
 
@@ -475,12 +487,13 @@ on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback
 
 **示例：**
 
-```js
-import privacyManager from '@ohos.privacyManager';
+```ts
+import privacyManager, { Permissions } from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let permissionList = [];
+let permissionList: Array<Permissions> = [];
 try {
-    privacyManager.on('activeStateChange', permissionList, (data) => {
+    privacyManager.on('activeStateChange', permissionList, (data: privacyManager.ActiveChangeResponse) => {
         console.debug('receive permission state change, data:' + JSON.stringify(data));
     });
 } catch(err) {
@@ -493,6 +506,8 @@ try {
 off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
 
 取消订阅指定权限列表的权限使用状态变更事件。
+
+取消订阅不传callback时，批量删除permissionList下面的所有callback。
 
 **需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
 
@@ -519,10 +534,10 @@ off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callbac
 
 **示例：**
 
-```js
-import privacyManager from '@ohos.privacyManager';
+```ts
+import privacyManager, { Permissions } from '@ohos.privacyManager';
 
-let permissionList = [];
+let permissionList: Array<Permissions> = [];
 try {
     privacyManager.off('activeStateChange', permissionList);
 }catch(err) {
@@ -598,8 +613,8 @@ try {
 | lastAccessTime | number         | 是    | 最后一次访问时间，单位：ms。 |
 | lastRejectTime | number         | 是    | 最后一次拒绝时间，单位：ms。 |
 | lastAccessDuration | number         | 是    | 最后一次访问时长，单位：ms。 |
-| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 是    | 访问记录集合，当flag为FLAG_PERMISSION_USAGE_SUMMARY时生效，默认查询10条。                                 |
-| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 是    | 拒绝记录集合，当flag为FLAG_PERMISSION_USAGE_SUMMARY时生效，默认查询10条。                                 |
+| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 是    | 访问记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
+| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 是    | 拒绝记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
 
 ## UsedRecordDetail
 

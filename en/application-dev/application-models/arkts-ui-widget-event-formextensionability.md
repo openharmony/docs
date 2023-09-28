@@ -1,22 +1,31 @@
 # Updating Widget Content Through the message Event
 
-
 On the widget page, the **postCardAction** API can be used to trigger a message event to start a FormExtensionAbility, which then updates the widget content. The following is an example of this widget update mode.
 
+> **NOTE**
+>
+> This topic describes development for dynamic widgets. For static widgets, see [FormLink](../reference/arkui-ts/ts-container-formlink.md).
 
-- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the event to the FormExtensionAbility.
+- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the message event to start the FormExtensionAbility. Use [LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop) to decorate the widget data to be updated.
   
   ```ts
   let storage = new LocalStorage();
   @Entry(storage)
   @Component
   struct WidgetCard {
-    @LocalStorageProp('title') title: string = 'init';
-    @LocalStorageProp('detail') detail: string = 'init';
+    @LocalStorageProp('title') title: string = 'Title default';
+    @LocalStorageProp('detail') detail: string = 'Description default';
   
     build() {
       Column() {
-        Button ('Update')
+        Column() {
+          Text(`${this.title}`)
+            .margin(5).fontWeight(FontWeight.Medium).fontSize('14fp')
+          Text(`${this.detail}`)
+            .margin(5).fontColor(Color.Gray).fontSize('12fp').height('25%')
+        }.width('100%').alignItems(HorizontalAlign.Start)
+        Button('UPDATE')
+          .margin(15).width('90%')
           .onClick(() => {
             postCardAction(this, {
               'action': 'message',
@@ -25,11 +34,7 @@ On the widget page, the **postCardAction** API can be used to trigger a message 
               }
             });
           })
-        Text(`${this.title}`)
-        Text(`${this.detail}`)
-      }
-      .width('100%')
-      .height('100%')
+      }.width('90%').height('90%').margin('5%')
     }
   }
   ```
@@ -42,25 +47,24 @@ On the widget page, the **postCardAction** API can be used to trigger a message 
   import formProvider from '@ohos.app.form.formProvider';
   
   export default class EntryFormAbility extends FormExtensionAbility {
-    onFormEvent(formId, message) {
+    onFormEvent(formId: string, message: string) {
       // Called when a specified message event defined by the form provider is triggered.
       console.info(`FormAbility onEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
-      let formData = {
-        'title':'Title Update Success.', // Matches the widget layout.
-        'detail':'Detail Update Success.', // Matches the widget layout.
-      };
-      let formInfo = formBindingData.createFormBindingData(formData)
-      formProvider.updateForm(formId, formInfo).then((data) => {
-        console.info('FormAbility updateForm success.' + JSON.stringify(data));
-      }).catch((error) => {
-        console.error('FormAbility updateForm failed: ' + JSON.stringify(error));
-      })
+      let formData = new Map<Object, string>();
+      formData.set('title', 'Title Update.'); // It matches the widget layout.
+      formData.set('detail', 'Description update success.'); // It matches the widget layout.
+      let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
+      formProvider.updateForm(formId, formInfo).then(() => {
+        console.info('FormAbility updateForm success.');
+      });
     }
-  
+
     ...
   }
   ```
 
   The figure below shows the effect.
   
-  ![WidgetUpdatePage](figures/WidgetUpdatePage.png)
+  | Initial State                                               | After Clicking                                             |
+  | ------------------------------------------------------- | ----------------------------------------------------- |
+  | ![WidgetUpdateBefore](figures/widget-update-before.PNG) | ![WidgetUpdateAfter](figures/widget-update-after.PNG) |

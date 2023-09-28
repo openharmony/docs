@@ -1,7 +1,6 @@
 # DFX
 
 - [Development of Application Event Logging](hiappevent-guidelines.md)
-- [Development of Performance Tracing](hitracemeter-guidelines.md)
 - [Development of Distributed Call Chain Tracing](hitracechain-guidelines.md)
 - [HiLog Development (Native)](hilog-guidelines.md)
 - Performance Tracing

@@ -50,14 +50,14 @@ Navigator(value?: {target: string, type?: NavigationType})
 @Component
 struct NavigatorExample {
   @State active: boolean = false
-  @State Text: object = {name: 'news'}
+  @State name: NameObject = { name: 'news' }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
       Navigator({ target: 'pages/container/navigator/Detail', type: NavigationType.Push }) {
-        Text('Go to ' + this.Text['name'] + ' page')
+        Text('Go to ' + this.name.name + ' page')
           .width('100%').textAlign(TextAlign.Center)
-      }.params({ text: this.Text }) // 传参数到Detail页面
+      }.params(new TextObject(this.name)) // 传参数到Detail页面
 
       Navigator() {
         Text('Back to previous page').width('100%').textAlign(TextAlign.Center)
@@ -66,6 +66,18 @@ struct NavigatorExample {
         this.active = true
       })
     }.height(150).width(350).padding(35)
+  }
+}
+
+interface NameObject {
+  name: string;
+}
+
+class TextObject {
+  text: NameObject;
+
+  constructor(text: NameObject) {
+    this.text = text;
   }
 }
 ```
@@ -78,7 +90,8 @@ import router from '@ohos.router'
 @Component
 struct DetailExample {
   // 接收Navigator.ets的传参
-  @State text: any = router.getParams()['text']
+  params: Record<string, NameObject> = router.getParams() as Record<string, NameObject>
+  @State name: NameObject = this.params.text
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
@@ -86,13 +99,16 @@ struct DetailExample {
         Text('Go to back page').width('100%').height(20)
       }
 
-      Text('This is ' + this.text['name'] + ' page')
+      Text('This is ' + this.name.name + ' page')
         .width('100%').textAlign(TextAlign.Center)
     }
     .width('100%').height(200).padding({ left: 35, right: 35, top: 35 })
   }
 }
 
+interface NameObject {
+  name: string;
+}
 ```
 
 ```ts

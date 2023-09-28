@@ -4,7 +4,7 @@ The **photoAccessHelper** module provides APIs for album management, including c
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -87,8 +87,8 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getAssets');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
@@ -96,7 +96,7 @@ async function example() {
   phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
     if (fetchResult != undefined) {
       console.info('fetchResult success');
-      let photoAsset = await fetchResult.getFirstObject();
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
       if (photoAsset != undefined) {
         console.info('photoAsset.displayName : ' + photoAsset.displayName);
       }
@@ -144,16 +144,16 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getAssets');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
   try {
-    let fetchResult = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     if (fetchResult != undefined) {
       console.info('fetchResult success');
-      let photoAsset = await fetchResult.getFirstObject();
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
       if (photoAsset != undefined) {
         console.info('photoAsset.displayName :' + photoAsset.displayName);
       }
@@ -198,7 +198,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 ```ts
 async function example() {
   console.info('createAssetDemo');
-  let testFileName = 'testFile' + Date.now() + '.jpg';
+  let testFileName: string = 'testFile' + Date.now() + '.jpg';
   phAccessHelper.createAsset(testFileName, (err, photoAsset) => {
     if (photoAsset != undefined) {
       console.info('createAsset file displayName' + photoAsset.displayName);
@@ -250,8 +250,8 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 async function example() {
   console.info('createAssetDemo');
   try {
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    let photoAsset = await phAccessHelper.createAsset(testFileName);
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
     console.info('createAsset file displayName' + photoAsset.displayName);
     console.info('createAsset successfully');
   } catch (err) {
@@ -295,8 +295,8 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 ```ts
 async function example() {
   console.info('createAssetDemo');
-  let testFileName = 'testFile' + Date.now() + '.jpg';
-  let createOption = {
+  let testFileName: string = 'testFile' + Date.now() + '.jpg';
+  let createOption: photoAccessHelper.PhotoCreateOptions = {
     subtype: photoAccessHelper.PhotoSubtype.DEFAULT
   }
   phAccessHelper.createAsset(testFileName, createOption, (err, photoAsset) => {
@@ -341,7 +341,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |  
+| 202   | Called by non-system application.         |
 | 401   | if type displayName is not string.         |
 | 14000001   | if type of displayName is invalid.         |
 
@@ -351,11 +351,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 async function example() {
   console.info('createAssetDemo');
   try {
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    let createOption = {
+    let testFileName:string = 'testFile' + Date.now() + '.jpg';
+    let createOption: photoAccessHelper.PhotoCreateOptions = {
       subtype: photoAccessHelper.PhotoSubtype.DEFAULT
     }
-    let photoAsset = await phAccessHelper.createAsset(testFileName, createOption);
+    let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName, createOption);
     console.info('createAsset file displayName' + photoAsset.displayName);
     console.info('createAsset successfully');
   } catch (err) {
@@ -396,14 +396,14 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 ```ts
 async function example() {
   console.info('createAssetDemo');
-  let photoType = photoAccessHelper.PhotoType.IMAGE;
-  let extension = 'jpg';
-  let options = {
+  let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+  let extension:string = 'jpg';
+  let options: photoAccessHelper.CreateOptions = {
     title: 'testPhoto'
   }
-  phAccessHelper.createAsset(photoType, extension, options, (err, photoAsset) => {
-    if (photoAsset != undefined) {
-      console.info('createAsset file displayName' + photoAsset.displayName);
+  phAccessHelper.createAsset(photoType, extension, options, (err, uri) => {
+    if (uri != undefined) {
+      console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
       console.error('createAsset failed, message = ', err);
@@ -443,11 +443,11 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 ```ts
 async function example() {
   console.info('createAssetDemo');
-  let photoType = photoAccessHelper.PhotoType.IMAGE;
-  let extension = 'jpg';
-  phAccessHelper.createAsset(photoType, extension, (err, photoAsset) => {
-    if (photoAsset != undefined) {
-      console.info('createAsset file displayName' + photoAsset.displayName);
+  let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+  let extension: string = 'jpg';
+  phAccessHelper.createAsset(photoType, extension, (err, uri) => {
+    if (uri != undefined) {
+      console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
       console.error('createAsset failed, message = ', err);
@@ -494,13 +494,13 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 async function example() {
   console.info('createAssetDemo');
   try {
-    let photoType = photoAccessHelper.PhotoType.IMAGE;
-    let extension = 'jpg';
-    let options = {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let options: photoAccessHelper.CreateOptions = {
       title: 'testPhoto'
     }
-    let photoAsset = await phAccessHelper.createAsset(photoType,extension, options);
-    console.info('createAsset file displayName' + photoAsset.displayName);
+    let uri: string = await phAccessHelper.createAsset(photoType, extension, options);
+    console.info('createAsset uri' + uri);
     console.info('createAsset successfully');
   } catch (err) {
     console.error('createAsset failed, message = ', err);
@@ -547,7 +547,7 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 ```ts
 async function example() {
   console.info('createAlbumDemo');
-  let albumName = 'newAlbumName' + new Date().getTime();
+  let albumName: string = 'newAlbumName' + new Date().getTime();
   phAccessHelper.createAlbum(albumName, (err, album) => {
     if (err) {
       console.error('createAlbumCallback failed with err: ' + err);
@@ -600,12 +600,14 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   console.info('createAlbumDemo');
-  let albumName = 'newAlbumName' + new Date().getTime();
+  let albumName: string = 'newAlbumName' + new Date().getTime();
   phAccessHelper.createAlbum(albumName).then((album) => {
     console.info('createAlbumPromise successfully, album: ' + album.albumName + ' album uri: ' + album.albumUri);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('createAlbumPromise failed with err: ' + err);
   });
 }
@@ -649,14 +651,14 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   // Delete the album named newAlbumName.
   console.info('deleteAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
-  let fetchOptions = {
+  let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
-  let album = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+  let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
   phAccessHelper.deleteAlbums([album], (err) => {
     if (err) {
       console.error('deletePhotoAlbumsCallback failed with err: ' + err);
@@ -707,21 +709,22 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   // Delete the album named newAlbumName.
   console.info('deleteAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
-  let fetchOptions = {
+  let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
-  let album = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+  let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
   phAccessHelper.deleteAlbums([album]).then(() => {
     console.info('deletePhotoAlbumsPromise successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('deletePhotoAlbumsPromise failed with err: ' + err);
   });
   fetchResult.close();
@@ -765,9 +768,9 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   // Obtain the album named newAlbumName.
   console.info('getAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
-  let fetchOptions = {
+  let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
@@ -830,7 +833,7 @@ async function example() {
       console.error('getAlbumsCallback fetchResult is undefined');
       return;
     }
-    let album = await fetchResult.getFirstObject();
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
     console.info('getAlbumsCallback successfully, albumUri: ' + album.albumUri);
     fetchResult.close();
   });
@@ -875,13 +878,14 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   // Obtain the album named newAlbumName.
   console.info('getAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
-  let fetchOptions = {
+  let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
@@ -890,10 +894,10 @@ async function example() {
       console.error('getAlbumsPromise fetchResult is undefined');
       return;
     }
-    let album = await fetchResult.getFirstObject();
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
     console.info('getAlbumsPromise successfully, albumName: ' + album.albumName);
     fetchResult.close();
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('getAlbumsPromise failed with err: ' + err);
   });
 }
@@ -934,29 +938,28 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('deleteAssetDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
   try {
-    const fetchResult = await phAccessHelper.getAssets(fetchOptions);
-    var asset = await fetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    if (asset == undefined) {
+      console.error('asset not exist');
+      return;
+    }
+    phAccessHelper.deleteAssets([asset.uri], (err) => {
+      if (err == undefined) {
+        console.info('deleteAssets successfully');
+      } else {
+        console.error('deleteAssets failed with error: ' + err);
+      }
+    });
   } catch (err) {
     console.info('fetch failed, message =', err);
   }
-
-  if (asset == undefined) {
-    console.error('asset not exist');
-    return;
-  }
-  phAccessHelper.deleteAssets([asset.uri], (err) => {
-    if (err == undefined) {
-      console.info('deleteAssets successfully');
-    } else {
-      console.error('deleteAssets failed with error: ' + err);
-    }
-  });
 }
 ```
 
@@ -1000,23 +1003,18 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('deleteDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
   try {
-    const fetchResult = await phAccessHelper.getAssets(fetchOptions);
-    var asset = await fetchResult.getFirstObject();
-  } catch (err) {
-    console.info('fetch failed, message =', err);
-  }
-
-  if (asset == undefined) {
-    console.error('asset not exist');
-    return;
-  }
-  try {
+    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    if (asset == undefined) {
+      console.error('asset not exist');
+      return;
+    }
     await phAccessHelper.deleteAssets([asset.uri]);
     console.info('deleteAssets successfully');
   } catch (err) {
@@ -1058,34 +1056,34 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('registerChangeDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let photoAsset = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   if (photoAsset != undefined) {
     console.info('photoAsset.displayName : ' + photoAsset.displayName);
   }
-  let onCallback1 = (changeData) => {
+  let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
       console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
     //file had changed, do something
   }
-  let onCallback2 = (changeData) => {
+  let onCallback2 = (changeData: photoAccessHelper.ChangeData) => {
       console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
     //file had changed, do something
   }
   // Register onCallback1.
-  phAccessHelper.registerChange(photoAsset.uri, false, onCallback1); 
+  phAccessHelper.registerChange(photoAsset.uri, false, onCallback1);
   // Register onCallback2.
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
 
-  photoAsset.favorite(true, (err) => {
+  photoAsset.setFavorite(true, (err) => {
     if (err == undefined) {
-      console.info('favorite successfully');
+      console.info('setFavorite successfully');
     } else {
-      console.error('favorite failed with error:' + err);
+      console.error('setFavorite failed with error:' + err);
     }
   });
 }
@@ -1123,20 +1121,20 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('offDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let photoAsset = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   if (photoAsset != undefined) {
     console.info('photoAsset.displayName : ' + photoAsset.displayName);
   }
-  let onCallback1 = (changeData) => {
+  let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
     console.info('onCallback1 on');
   }
-  let onCallback2 = (changeData) => {
+  let onCallback2 = (changeData: photoAccessHelper.ChangeData) => {
     console.info('onCallback2 on');
   }
   // Register onCallback1.
@@ -1145,11 +1143,11 @@ async function example() {
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
   // Unregister the listening of onCallback1.
   phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
-  photoAsset.favorite(true, (err) => {
+  photoAsset.setFavorite(true, (err) => {
     if (err == undefined) {
-      console.info('favorite successfully');
+      console.info('setFavorite successfully');
     } else {
-      console.error('favorite failed with error:' + err);
+      console.error('setFavorite failed with error:' + err);
     }
   });
 }
@@ -1159,7 +1157,7 @@ async function example() {
 
 createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-Creates a dialog box for deleting photos. This API uses an asynchronous callback to return the result. The deleted photos are moved to the trash.
+Creates a dialog box for deleting media files. This API uses an asynchronous callback to return the result. The deleted media files are moved to the trash.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
@@ -1169,7 +1167,7 @@ Creates a dialog box for deleting photos. This API uses an asynchronous callback
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete.|
+| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete. A maximum of 300 media files can be deleted.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Error codes**
@@ -1187,29 +1185,28 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('createDeleteRequestDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
   try {
-    const fetchResult = await phAccessHelper.getAssets(fetchOptions);
-    var asset = await fetchResult.getFirstObject();
+    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    if (asset == undefined) {
+      console.error('asset not exist');
+      return;
+    }
+    phAccessHelper.createDeleteRequest([asset.uri], (err) => {
+      if (err == undefined) {
+        console.info('createDeleteRequest successfully');
+      } else {
+        console.error('createDeleteRequest failed with error: ' + err);
+      }
+    });
   } catch (err) {
     console.info('fetch failed, message =', err);
   }
-
-  if (asset == undefined) {
-    console.error('asset not exist');
-    return;
-  }
-  phAccessHelper.createDeleteRequest([asset.uri], (err) => {
-    if (err == undefined) {
-      console.info('createDeleteRequest successfully');
-    } else {
-      console.error('createDeleteRequest failed with error: ' + err);
-    }
-  });
 }
 ```
 
@@ -1217,7 +1214,7 @@ async function example() {
 
 createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;;
 
-Creates a dialog box for deleting photos. This API uses a promise to return the result. The deleted photos are moved to the trash.
+Creates a dialog box for deleting media files. This API uses a promise to return the result. The deleted media files are moved to the trash.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
@@ -1227,7 +1224,7 @@ Creates a dialog box for deleting photos. This API uses a promise to return the 
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete.|
+| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete. A maximum of 300 media files can be deleted.|
 
 **Return value**
 
@@ -1250,27 +1247,168 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('createDeleteRequestDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
   try {
-    const fetchResult = await phAccessHelper.getAssets(fetchOptions);
-    var asset = await fetchResult.getFirstObject();
-  } catch (err) {
-    console.info('fetch failed, message =', err);
-  }
-
-  if (asset == undefined) {
-    console.error('asset not exist');
-    return;
-  }
-  try {
+    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    if (asset == undefined) {
+      console.error('asset not exist');
+      return;
+    }
     await phAccessHelper.createDeleteRequest([asset.uri]);
     console.info('createDeleteRequest successfully');
   } catch (err) {
     console.error('createDeleteRequest failed with error: ' + err);
+  }
+}
+```
+
+### getPhotoIndex
+
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the index of an image or video in an album. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
+| albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| AsyncCallback&lt;number&gt;| Promise used to return the index obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getPhotoIndexDemo');
+    let predicatesForGetAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOp: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicatesForGetAsset
+    };
+    // Obtain the uri of the album
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.orderByAsc(photoAccessHelper.PhotoKeys.DATE_MODIFIED);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [photoAccessHelper.PhotoKeys.DATE_MODIFIED],
+      predicates: predicates
+    };
+    let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let expectIndex = 1;
+    // Obtain the uri of the second file
+    let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
+
+    phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
+      if (err == undefined) {
+        console.info(`getPhotoIndex successfully and index is : ${index}`);
+      } else {
+        console.info(`getPhotoIndex failed;`);
+      }
+    });
+  } catch (error) {
+    console.info(`getPhotoIndex failed; error: ${error}`);
+  }
+}
+```
+
+### getPhotoIndex
+
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise&lt;number&gt;
+
+Obtains the index of an image or video in an album. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
+| albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt;| Promise used to return the index obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  try {
+    console.info('getPhotoIndexDemo');
+    let predicatesForGetAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOp: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicatesForGetAsset
+    };
+    // Obtain the uri of the album
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.orderByAsc(photoAccessHelper.PhotoKeys.DATE_MODIFIED);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [photoAccessHelper.PhotoKeys.DATE_MODIFIED],
+      predicates: predicates
+    };
+    let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let expectIndex = 1;
+    // Obtain the uri of the second file
+    let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
+    phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
+      console.info(`getPhotoIndex successfully and index is : ${index}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getPhotoIndex failed; error: ${err}`);
+    });
+  } catch (error) {
+    console.info(`getPhotoIndex failed; error: ${error}`);
   }
 }
 ```
@@ -1360,7 +1498,7 @@ Provides APIs for encapsulating file asset attributes.
 
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | Yes  | No  | File asset URI, for example, **file://media/image/2**.        |
+| uri                       | string                   | Yes  | No  | File asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**.        |
 | photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
 | displayName               | string                   | Yes  | No  | File name, including the file name extension, to display.                                |
 
@@ -1400,15 +1538,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   console.info('photoAssetGetDemo');
   try {
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: ['title'],
       predicates: predicates
     };
-    let fetchResult = await phAccessHelper.getAssets(fetchOption);
-    let photoAsset = await fetchResult.getFirstObject();
-    let title = photoAccessHelper.PhotoKeys.TITLE;
-    let photoAssetTitle = photoAsset.get(title.toString());
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let title: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.TITLE;
+    let photoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title.toString());
     console.info('photoAsset Get photoAssetTitle = ', photoAssetTitle);
   } catch (err) {
     console.error('release failed. message = ', err);
@@ -1447,14 +1585,14 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   console.info('photoAssetSetDemo');
   try {
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: ['title'],
       predicates: predicates
     };
-    let fetchResult = await phAccessHelper.getAssets(fetchOption);
-    let photoAsset = await fetchResult.getFirstObject();
-    let title = photoAccessHelper.PhotoKeys.TITLE.toString();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let title: string = photoAccessHelper.PhotoKeys.TITLE.toString();
     photoAsset.set(title, 'newTitle');
   } catch (err) {
     console.error('release failed. message = ', err);
@@ -1493,20 +1631,20 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('commitModifyDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: ['title'],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
-  let photoAsset = await fetchResult.getFirstObject();
-  let title = photoAccessHelper.PhotoKeys.TITLE.toString();
-  let photoAssetTitle = photoAsset.get(title);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let title: string = photoAccessHelper.PhotoKeys.TITLE.toString();
+  let photoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
   console.info('photoAsset get photoAssetTitle = ', photoAssetTitle);
   photoAsset.set(title, 'newTitle2');
   photoAsset.commitModify((err) => {
     if (err == undefined) {
-      let newPhotoAssetTitle = photoAsset.get(title);
+      let newPhotoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
       console.info('photoAsset get newPhotoAssetTitle = ', newPhotoAssetTitle);
     } else {
       console.error('commitModify failed, message =', err);
@@ -1539,27 +1677,27 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 | -------- | ---------------------------------------- |
 | 401    | if values to commit is invalid.         |
 
-**Example** 
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('commitModifyDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: ['title'],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
-  let photoAsset = await fetchResult.getFirstObject();
-  let title = photoAccessHelper.PhotoKeys.TITLE.toString();
-  let photoAssetTitle = photoAsset.get(title);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let title: string = photoAccessHelper.PhotoKeys.TITLE.toString();
+  let photoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
   console.info('photoAsset get photoAssetTitle = ', photoAssetTitle);
   photoAsset.set(title, 'newTitle3');
   try {
     await photoAsset.commitModify();
-    let newPhotoAssetTitle = photoAsset.get(title);
+    let newPhotoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
     console.info('photoAsset get newPhotoAssetTitle = ', newPhotoAssetTitle);
   } catch (err) {
     console.error('release failed. message = ', err);
@@ -1602,8 +1740,8 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 ```ts
 async function example() {
   console.info('openDemo');
-   let testFileName = 'testFile' + Date.now() + '.jpg';
-  const photoAsset = await phAccessHelper.createAsset(testFileName);
+   let testFileName: string = 'testFile' + Date.now() + '.jpg';
+  const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
   photoAsset.open('rw', (err, fd) => {
     if (fd != undefined) {
       console.info('File fd' + fd);
@@ -1656,9 +1794,9 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 async function example() {
   console.info('openDemo');
   try {
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    const photoAsset = await phAccessHelper.createAsset(testFileName);
-    let fd = await photoAsset.open('rw');
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+    let fd: number = await photoAsset.open('rw');
     if (fd != undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
@@ -1702,8 +1840,8 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 ```ts
 async function example() {
   console.info('getReadOnlyFdDemo');
-   let testFileName = 'testFile' + Date.now() + '.jpg';
-  const photoAsset = await phAccessHelper.createAsset(testFileName);
+   let testFileName: string = 'testFile' + Date.now() + '.jpg';
+  const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
   photoAsset.getReadOnlyFd((err, fd) => {
     if (fd != undefined) {
       console.info('File fd' + fd);
@@ -1747,9 +1885,9 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 async function example() {
   console.info('getReadOnlyFdDemo');
   try {
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    const photoAsset = await phAccessHelper.createAsset(testFileName);
-    let fd = await photoAsset.getReadOnlyFd();
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+    let fd: number = await photoAsset.getReadOnlyFd();
     if (fd != undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
@@ -1793,14 +1931,14 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   console.info('closeDemo');
   try {
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let fetchResult = await phAccessHelper.getAssets(fetchOption);
-    const photoAsset = await fetchResult.getFirstObject();
-    let fd = await photoAsset.open('rw');
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+    const photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let fd: number = await photoAsset.open('rw');
     console.info('file fd', fd);
     photoAsset.close(fd, (err) => {
       if (err == undefined) {
@@ -1851,13 +1989,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   console.info('closeDemo');
   try {
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let fetchResult = await phAccessHelper.getAssets(fetchOption);
-    const asset = await fetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+    const asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let fd = await asset.open('rw');
     console.info('file fd', fd);
     await asset.close(fd);
@@ -1899,13 +2037,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getThumbnailDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  const asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail((err, pixelMap) => {
     if (err == undefined) {
@@ -1946,16 +2084,17 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import image from '@ohos.multimedia.image'
 
 async function example() {
   console.info('getThumbnailDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let size = { width: 720, height: 720 };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
+  let size: image.Size = { width: 720, height: 720 };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   const asset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail(size, (err, pixelMap) => {
@@ -2002,21 +2141,23 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import image from '@ohos.multimedia.image'
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('getThumbnailDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let size = { width: 720, height: 720 };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
+  let size: image.Size = { width: 720, height: 720 };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   const asset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail(size).then((pixelMap) => {
     console.info('getThumbnail successful ' + pixelMap);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('getThumbnail fail' + err);
   });
 }
@@ -2057,12 +2198,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('setFavoriteDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   const asset = await fetchResult.getFirstObject();
   asset.setFavorite(true, (err) => {
     if (err == undefined) {
@@ -2111,19 +2252,20 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('setFavoriteDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   const asset = await fetchResult.getFirstObject();
-  asset.setFavorite(true).then(function () {
+  asset.setFavorite(true).then(() => {
     console.info('setFavorite successfully');
-  }).catch(function (err) {
+  }).catch((err: BusinessError) => {
     console.error('setFavorite failed with error:' + err);
   });
 }
@@ -2166,12 +2308,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('setHiddenDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   const asset = await fetchResult.getFirstObject();
   asset.setHidden(true, (err) => {
     if (err == undefined) {
@@ -2222,24 +2364,306 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   // Restore a file from a hidden album. Before the operation, ensure that the file exists in the hidden album.
   console.info('setHiddenDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.HIDDEN);
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.HIDDEN);
   const album = await albumList.getFirstObject();
-  let fetchResult = await album.getAssets(fetchOption);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
   const asset = await fetchResult.getFirstObject();
   asset.setHidden(false).then(() => {
     console.info('setHidden successfully');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('setHidden failed with error:' + err);
   });
+}
+```
+
+### getExif<sup>10+</sup>
+
+getExif(): Promise&lt;string&gt;
+
+Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses a promise to return the result.
+
+**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **PhotoKeys.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;string&gt; | Callback invoked to return the JSON string obtained.|
+
+**Supported EXIF tags**
+
+For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
+
+| Key Value                                   | Description             |
+| --------------------------------------- | ----------------- |
+| BitsPerSample | Number of bits per pixel.|
+| Orientation | Image orientation.|
+| ImageLength | Image length.|
+| ImageWidth | Image width.|
+| GPSLatitude | GPS latitude of the image.|
+| GPSLongitude | GPS longitude of the image.|
+| GPSLatitudeRef | Longitude reference, for example, W or E.|
+| GPSLongitudeRef | Latitude reference, for example, N or S.|
+| DateTimeOriginal | Shooting time.|
+| ExposureTime | Exposure time.|
+| SceneType | Shooting scene type.|
+| ISOSpeedRatings | ISO sensitivity or speed.|
+| FNumber | f-number.|
+| DateTime | Date and time when the image was last modified.|
+| GPSTimeStamp | GPS timestamp.|
+| GPSDateStamp | GPS date stamp.|
+| ImageDescription | Image description.|
+| Make | Camera vendor.|
+| MakeNote | Camera vendor.|
+| Model | Model.|
+| PhotoMode | Photo mode.|
+| SensitivityType | Sensitivity type.|
+| StandardOutputSensitivity | Standard output sensitivity.|
+| RecommendedExposureIndex | Recommended exposure index.|
+| ApertureValue | Aperture value.|
+| MeteringMode | Metering mode.|
+| LightSource | Light source.|
+| Flash | Flash status.|
+| FocalLength | Focal length.|
+| UserComment | User comment.|
+| PixelXDimension | Pixel X dimension.|
+| PixelYDimension | Pixel Y dimension.|
+| WhiteBalance | White balance.|
+| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
+| ExposureBiasValue | Exposure compensation.|
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getExifDemo');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [ 'all_exif',  photoAccessHelper.PhotoKeys.USER_COMMENT],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let exifMessage = await fileAsset.getExif();
+    let userCommentKey = 'UserComment';
+    let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+    fetchResult.close();
+  } catch (err) {
+    console.error('getExifDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### getExif<sup>10+</sup>
+
+getExif(callback: AsyncCallback&lt;string&gt;): void
+
+Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses an asynchronous callback to return the result.
+
+**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **PhotoKeys.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the JSON string obtained.|
+
+**Supported EXIF tags**
+
+For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
+
+| Key Value                                   | Description             |
+| --------------------------------------- | ----------------- |
+| BitsPerSample | Number of bits per pixel.|
+| Orientation | Image orientation.|
+| ImageLength | Image length.|
+| ImageWidth | Image width.|
+| GPSLatitude | GPS latitude of the image.|
+| GPSLongitude | GPS longitude of the image.|
+| GPSLatitudeRef | Longitude reference, for example, W or E.|
+| GPSLongitudeRef | Latitude reference, for example, N or S.|
+| DateTimeOriginal | Shooting time.|
+| ExposureTime | Exposure time.|
+| SceneType | Shooting scene type.|
+| ISOSpeedRatings | ISO sensitivity or speed.|
+| FNumber | f-number.|
+| DateTime | Date and time when the image was last modified.|
+| GPSTimeStamp | GPS timestamp.|
+| GPSDateStamp | GPS date stamp.|
+| ImageDescription | Image description.|
+| Make | Camera vendor.|
+| MakeNote | Camera vendor.|
+| Model | Model.|
+| PhotoMode | Photo mode.|
+| SensitivityType | Sensitivity type.|
+| StandardOutputSensitivity | Standard output sensitivity.|
+| RecommendedExposureIndex | Recommended exposure index.|
+| ApertureValue | Aperture value.|
+| MeteringMode | Metering mode.|
+| LightSource | Light source.|
+| Flash | Flash status.|
+| FocalLength | Focal length.|
+| UserComment | User comment.|
+| PixelXDimension | Pixel X dimension.|
+| PixelYDimension | Pixel Y dimension.|
+| WhiteBalance | White balance.|
+| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
+| ExposureBiasValue | Exposure compensation.|
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getExifDemo');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.isNotNull('all_exif')
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: ['all_exif', photoAccessHelper.PhotoKeys.USER_COMMENT],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getExifDemo fileAsset displayName: ' + JSON.stringify(fileAsset.displayName));
+    let userCommentKey = 'UserComment';
+    fileAsset.getExif((err, exifMessage) => {
+      if (exifMessage != undefined) {
+        let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+        console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
+      } else {
+        console.error('getExif failed, message = ', err);
+      }
+    });
+    fetchResult.close();
+  } catch (err) {
+    console.error('getExifDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setUserComment<sup>10+</sup>
+
+setUserComment(userComment: string): Promise&lt;void&gt;
+
+Sets user comment information of an image or video. This API uses a promise to return the result.
+
+**NOTE**<br>This API can be used to modify the comment information of only images or videos.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| userComment | string | Yes  | User comment information to set, which cannot exceed 140 characters.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+|Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setUserCommentDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let userComment = 'test_set_user_comment';
+    await fileAsset.setUserComment(userComment);
+  } catch (err) {
+    console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setUserComment<sup>10+</sup>
+
+setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
+
+Sets user comment information of an image or video. This API uses an asynchronous callback to return the result.
+
+**NOTE**<br>This API can be used to modify the comment information of only images or videos.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| userComment | string | Yes  | User comment information to set, which cannot exceed 140 characters.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setUserCommentDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let userComment = 'test_set_user_comment';
+    fileAsset.setUserComment(userComment, (err) => {
+      if (err === undefined) {
+        console.info('setUserComment successfully');
+      } else {
+        console.error('setUserComment failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
 }
 ```
 
@@ -2276,12 +2700,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getCountDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   const fetchCount = fetchResult.getCount();
   console.info('fetchCount = ', fetchCount);
 }
@@ -2315,15 +2739,15 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   const fetchCount = fetchResult.getCount();
   console.info('count:' + fetchCount);
-  let photoAsset = await fetchResult.getLastObject();
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
   if (fetchResult.isAfterLast()) {
     console.info('photoAsset isAfterLast displayName = ', photoAsset.displayName);
   } else {
@@ -2355,13 +2779,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('fetchResultCloseDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
   try {
-    let fetchResult = await phAccessHelper.getAssets(fetchOption);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
     fetchResult.close();
     console.info('close succeed.');
   } catch (err) {
@@ -2399,12 +2823,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getFirstObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getFirstObject((err, photoAsset) => {
     if (photoAsset != undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
@@ -2444,13 +2868,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getFirstObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
-  let photoAsset = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('photoAsset displayName: ', photoAsset.displayName);
 }
 ```
@@ -2484,12 +2908,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getNextObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   await fetchResult.getFirstObject();
   if (fetchResult.isAfterLast()) {
     fetchResult.getNextObject((err, photoAsset) => {
@@ -2532,15 +2956,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getNextObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   await fetchResult.getFirstObject();
   if (fetchResult.isAfterLast()) {
-    let photoAsset = await fetchResult.getNextObject();
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
     console.info('photoAsset displayName: ', photoAsset.displayName);
   }
 }
@@ -2575,12 +2999,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getLastObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getLastObject((err, photoAsset) => {
     if (photoAsset != undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
@@ -2620,13 +3044,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getLastObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
-  let photoAsset = await fetchResult.getLastObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
   console.info('photoAsset displayName: ', photoAsset.displayName);
 }
 ```
@@ -2661,12 +3085,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getObjectByPositionDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getObjectByPosition(0, (err, photoAsset) => {
     if (photoAsset != undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
@@ -2712,13 +3136,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getObjectByPositionDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
-  let photoAsset = await fetchResult.getObjectByPosition(0);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getObjectByPosition(0);
   console.info('photoAsset displayName: ', photoAsset.displayName);
 }
 ```
@@ -2752,12 +3176,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getAllObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getAllObjects((err, photoAssetList) => {
     if (photoAssetList != undefined) {
       console.info('photoAssetList length: ', photoAssetList.length);
@@ -2797,13 +3221,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getAllObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await phAccessHelper.getAssets(fetchOption);
-  let photoAssetList = await fetchResult.getAllObjects();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
   console.info('photoAssetList length: ', photoAssetList.length);
 }
 ```
@@ -2839,7 +3263,7 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the album files.|
+| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the albums.|
 | callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Yes  | Callback invoked to return the image and video assets obtained.|
 
 **Error codes**
@@ -2856,18 +3280,18 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  console.info('albumGetPhotoAssetsDemoCallback');
-
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
-    predicates: predicates
-  };
-  let fetchOption = {
+  console.info('albumGetAssetsDemoCallback');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
-  const album = await albumList.getFirstObject();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  const album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.getAssets(fetchOption, (err, albumFetchResult) => {
     if (albumFetchResult != undefined) {
       console.info('album getAssets successfully, getCount: ' + albumFetchResult.getCount());
@@ -2912,23 +3336,25 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
-  console.info('albumGetPhotoAssetsDemoPromise');
+  console.info('albumGetAssetsDemoPromise');
 
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
-    predicates: predicates
-  };
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
-  const album = await albumList.getFirstObject();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  const album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.getAssets(fetchOption).then((albumFetchResult) => {
     console.info('album getPhotoAssets successfully, getCount: ' + albumFetchResult.getCount());
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('album getPhotoAssets failed with error: ' + err);
   });
 }
@@ -2965,12 +3391,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('albumCommitModifyDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
-  const album = await albumList.getFirstObject();
+  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  const album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify((err) => {
     if (err != undefined) {
@@ -3010,19 +3437,21 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('albumCommitModifyDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
-  const album = await albumList.getFirstObject();
+  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  const album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify().then(() => {
     console.info('commitModify successfully');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('commitModify failed with error: ' + err);
   });
 }
@@ -3061,15 +3490,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   try {
     console.info('addAssetsDemoCallback');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await phAccessHelper.getAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     album.addAssets([asset], (err) => {
       if (err === undefined) {
         console.info('album addAssets successfully');
@@ -3117,22 +3546,23 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   try {
     console.info('addAssetsDemoPromise');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await phAccessHelper.getAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     album.addAssets([asset]).then(() => {
       console.info('album addAssets successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('album addAssets failed with error: ' + err);
     });
   } catch (err) {
@@ -3174,15 +3604,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   try {
     console.info('removeAssetsDemoCallback');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await album.getAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     album.removeAssets([asset], (err) => {
       if (err === undefined) {
         console.info('album removeAssets successfully');
@@ -3230,22 +3660,23 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   try {
     console.info('removeAssetsDemoPromise');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await album.getAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     album.removeAssets([asset]).then(() => {
       console.info('album removeAssets successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('album removeAssets failed with error: ' + err);
     });
   } catch (err) {
@@ -3290,15 +3721,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   try {
     console.info('recoverAssetsDemoCallback');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await album.getAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     album.recoverAssets([asset], (err) => {
       if (err === undefined) {
         console.info('album recoverAssets successfully');
@@ -3349,22 +3780,23 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   try {
     console.info('recoverAssetsDemoPromise');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await album.getAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     album.recoverAssets([asset]).then(() => {
       console.info('album recoverAssets successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('album recoverAssets failed with error: ' + err);
     });
   } catch (err) {
@@ -3411,15 +3843,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   try {
     console.info('deleteAssetsDemoCallback');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await album.getAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     album.deleteAssets([asset], (err) => {
       if (err === undefined) {
         console.info('album deleteAssets successfully');
@@ -3472,26 +3904,152 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   try {
     console.info('deleteAssetsDemoPromise');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await album.getAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     album.deleteAssets([asset]).then(() => {
       console.info('album deleteAssets successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('album deleteAssets failed with error: ' + err);
     });
   } catch (err) {
     console.error('deleteAssetsDemoPromise failed with error: ' + err);
+  }
+}
+```
+
+### setCoverUri
+
+setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+
+Sets the album cover. This API uses an asynchronous callback to return the result.
+
+**NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| uri | string | Yes  | URI of the file to be set as the album cover.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401   | if parameter is invalid.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setCoverUriDemoCallback');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    album.setCoverUri(asset.uri, (err) => {
+      if (err === undefined) {
+        console.info('album setCoverUri successfully');
+      } else {
+        console.error('album setCoverUri failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setCoverUriDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setCoverUri
+
+setCoverUri(uri: string): Promise&lt;void&gt;;
+
+Sets the album cover. This API uses a promise to return the result.
+
+**NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| uri | string | Yes  | URI of the file to be set as the album cover.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+|Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401   | if parameter is invalid.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setCoverUriDemoCallback');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    album.setCoverUri(asset.uri, (err) => {
+      if (err === undefined) {
+        console.info('album setCoverUri successfully');
+      } else {
+        console.error('album setCoverUri failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setCoverUriDemoCallback failed with error: ' + err);
   }
 }
 ```
@@ -3597,6 +4155,8 @@ Defines the key information about an image or video file.
 | POSITION  | 'position'            | File location type. **System API**: This is a system API.                              |
 | DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds between the time when the file is deleted and January 1, 1970. **System API**: This is a system API.                |
 | HIDDEN  | 'hidden'            | Whether the file is hidden. **System API**: This is a system API.                              |
+| CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br/>**System API**: This is a system API. |
+| USER_COMMENT<sup>10+</sup>  | 'user_comment'            | User comment information. **System API**: This is a system API.          |
 
 ## AlbumKeys
 
@@ -3618,6 +4178,7 @@ Defines the options for creating an image or video asset.
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subtype           | [PhotoSubtype](#photosubtype) | No | Subtype of the image or video. **System API**: This is a system API. |
+| cameraShotKey           | string | No | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br/>**System API**: This is a system API. |
 
 ## CreateOptions
 

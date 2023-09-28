@@ -9,36 +9,47 @@
 
 ## 导入模块
 
-```js
+```ts
 import http from '@ohos.net.http';
 ```
 
 ## 完整示例
 
-```js
+```ts
 // 引入包名
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
 // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息
 // 从API 8开始，使用on('headersReceive', Callback)替代on('headerReceive', AsyncCallback)。 8+
-httpRequest.on('headersReceive', (header) => {
+httpRequest.on('headersReceive', (header:Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
+class ExtraData {
+  public data: string;
+
+  constructor(data: string) {
+    this.data = data;
+  }
+}
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
 httpRequest.request(
   // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
   "EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
     // 开发者根据自身业务需要添加header字段
-    header: {
-      'Content-Type': 'application/json'
-    },
+    header: new Header('application/json'),
     // 当使用POST请求时此字段用于传递内容
-    extraData: {
-      "data": "data to send",
-    },
+    extraData: new ExtraData('data to send'),
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
@@ -47,7 +58,8 @@ httpRequest.request(
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
     usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
     caPath: "", // 可选，默认使用系统预设CA证书，自API 10开始支持该属性
-  }, (err, data) => {
+  },
+  (err: BusinessError, data: http.HttpResponse ) => {
     if (!err) {
       // data.result为HTTP响应内容，可根据业务需要进行解析
       console.info('Result:' + JSON.stringify(data.result));
@@ -55,13 +67,13 @@ httpRequest.request(
       // data.header为HTTP响应头，可根据业务需要进行解析
       console.info('header:' + JSON.stringify(data.header));
       console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-      // 当该请求使用完毕时，调用destroy方法主动销毁
+      // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
       httpRequest.destroy();
     } else {
       console.info('error:' + JSON.stringify(err));
       // 取消订阅HTTP响应头事件
       httpRequest.off('headersReceive');
-      // 当该请求使用完毕时，调用destroy方法主动销毁。
+      // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
       httpRequest.destroy();
     }
   }
@@ -90,7 +102,7 @@ createHttp(): HttpRequest
 
 **示例：**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
 let httpRequest = http.createHttp();
@@ -162,8 +174,11 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 
 **示例：**
 
-```js
-httpRequest.request("EXAMPLE_URL", (err, data) => {
+```ts
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
+httpRequest.request("EXAMPLE_URL", (err: Error, data: http.HttpResponse) => {
   if (!err) {
     console.info('Result:' + data.result);
     console.info('code:' + data.responseCode);
@@ -238,27 +253,36 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 
 **示例：**
 
-```js
-httpRequest.request("EXAMPLE_URL",
-  {
-    method: http.RequestMethod.GET,
-    header: {
-      'Content-Type': 'application/json'
-    },
-    readTimeout: 60000,
-    connectTimeout: 60000
-  }, (err, data) => {
-    if (!err) {
-      console.info('Result:' + data.result);
-      console.info('code:' + data.responseCode);
-      console.info('header:' + JSON.stringify(data.header));
-      console.info('cookies:' + data.cookies); // 8+
-      console.info('header.Content-Type:' + data.header['Content-Type']);
-      console.info('header.Status-Line:' + data.header['Status-Line']);
-    } else {
-      console.info('error:' + JSON.stringify(err));
-    }
-  });
+```ts
+import http from '@ohos.net.http';
+
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
+let httpRequest = http.createHttp();
+let promise = httpRequest.request("EXAMPLE_URL", {
+  method: http.RequestMethod.GET,
+  connectTimeout: 60000,
+  readTimeout: 60000,
+  header: new Header('application/json')
+});
+
+promise.then((data:http.HttpResponse) => {
+  console.info('Result:' + data.result);
+  console.info('code:' + data.responseCode);
+  console.info('header:' + JSON.stringify(data.header));
+  console.info('cookies:' + data.cookies); // 8+
+  console.info('header.Content-Type:' + data.header);
+  console.info('header.Status-Line:' + data.header);
+
+}).catch((err:Error) => {
+  console.info('error:' + JSON.stringify(err));
+});
 ```
 
 ### request<sup>6+</sup>
@@ -329,23 +353,32 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
 **示例：**
 
-```js
+```ts
+import http from '@ohos.net.http';
+
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
+let httpRequest = http.createHttp();
 let promise = httpRequest.request("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
-  header: {
-    'Content-Type': 'application/json'
-  }
+  header: new Header('application/json')
 });
-promise.then((data) => {
+promise.then((data:http.HttpResponse) => {
   console.info('Result:' + data.result);
   console.info('code:' + data.responseCode);
   console.info('header:' + JSON.stringify(data.header));
   console.info('cookies:' + data.cookies); // 8+
-  console.info('header.Content-Type:' + data.header['Content-Type']);
-  console.info('header.Status-Line:' + data.header['Status-Line']);
-}).catch((err) => {
+  console.info('header.Content-Type:' + data.header);
+  console.info('header.Status-Line:' + data.header);
+}).catch((err:Error) => {
   console.info('error:' + JSON.stringify(err));
 });
 ```
@@ -360,7 +393,10 @@ destroy(): void
 
 **示例：**
 
-```js
+```ts
+import http from '@ohos.net.http';
+let httpRequest = http.createHttp();
+
 httpRequest.destroy();
 ```
 
@@ -423,8 +459,12 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 
 **示例：**
 
-```js
-httpRequest.requestInStream("EXAMPLE_URL", (err, data) => {
+```ts
+import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
+
+let httpRequest = http.createHttp();
+httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError, data: number) => {
   if (!err) {
     console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
@@ -493,22 +533,26 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 
 **示例：**
 
-```js
-httpRequest.requestInStream("EXAMPLE_URL",
-  {
-    method: http.RequestMethod.GET,
-    header: {
-      'Content-Type': 'application/json'
-    },
-    readTimeout: 60000,
-    connectTimeout: 60000
-  }, (err, data) => {
-    if (!err) {
-      console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
-    } else {
-      console.info("requestInStream ERROR : err = " + JSON.stringify(err));
-    }
-  })
+```ts
+import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
+
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
+let httpRequest = http.createHttp();
+httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError<void> , data: number) => {
+  if (!err) {
+    console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
+  } else {
+    console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+  }
+})
 ```
 
 ### requestInStream<sup>10+</sup>
@@ -576,18 +620,27 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 
 **示例：**
 
-```js
-let promise = httpRequest.requestInStream("EXAMPLE_URL", {
+```ts
+import http from '@ohos.net.http';
+
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
+let httpRequest = http.createHttp();
+let promise = httpRequest.request("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
-  header: {
-    'Content-Type': 'application/json'
-  }
+  header: new Header('application/json')
 });
-promise.then((data) => {
+promise.then((data: http.HttpResponse) => {
   console.info("requestInStream OK!" + JSON.stringify(data));
-}).catch((err) => {
+}).catch((err: Error) => {
   console.info("requestInStream ERROR : err = " + JSON.stringify(err));
 });
 ```
@@ -612,8 +665,12 @@ on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 
 **示例：**
 
-```js
-httpRequest.on('headerReceive', (data) => {
+```ts
+import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
+
+let httpRequest = http.createHttp();
+httpRequest.on('headerReceive', (data: BusinessError) => {
   console.info('error:' + JSON.stringify(data));
 });
 ```
@@ -641,7 +698,10 @@ off(type: 'headerReceive', callback?: AsyncCallback\<Object\>): void
 
 **示例：**
 
-```js
+```ts
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
 httpRequest.off('headerReceive');
 ```
 
@@ -662,8 +722,11 @@ on(type: 'headersReceive', callback: Callback\<Object\>): void
 
 **示例：**
 
-```js
-httpRequest.on('headersReceive', (header) => {
+```ts
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
+httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 ```
@@ -688,7 +751,10 @@ off(type: 'headersReceive', callback?: Callback\<Object\>): void
 
 **示例：**
 
-```js
+```ts
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
 httpRequest.off('headersReceive');
 ```
 
@@ -709,8 +775,11 @@ once(type: 'headersReceive', callback: Callback\<Object\>): void
 
 **示例：**
 
-```js
-httpRequest.once('headersReceive', (header) => {
+```ts
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
+httpRequest.once('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 ```
@@ -735,8 +804,11 @@ on(type: 'dataReceive', callback: Callback\<ArrayBuffer\>): void
 
 **示例：**
 
-```js
-httpRequest.on('dataReceive', (data) => {
+```ts
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
+httpRequest.on('dataReceive', (data: ArrayBuffer) => {
   console.info('dataReceive length: ' + JSON.stringify(data.byteLength));
 });
 ```
@@ -761,7 +833,10 @@ off(type: 'dataReceive', callback?: Callback\<ArrayBuffer\>): void
 
 **示例：**
 
-```js
+```ts
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
 httpRequest.off('dataReceive');
 ```
 
@@ -785,7 +860,10 @@ on(type: 'dataEnd', callback: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
 httpRequest.on('dataEnd', () => {
   console.info('Receive dataEnd !');
 });
@@ -811,7 +889,10 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
 httpRequest.off('dataEnd');
 ```
 
@@ -835,8 +916,16 @@ on(type: 'dataReceiveProgress', callback: Callback\<{ receiveSize: number, total
 
 **示例：**
 
-```js
-httpRequest.on('dataReceiveProgress', (data) => {
+```ts
+import http from '@ohos.net.http';
+
+class RequestData{
+  receiveSize: number = 2000 
+  totalSize: number = 2000 
+}
+
+let httpRequest = http.createHttp();
+httpRequest.on('dataReceiveProgress', (data: RequestData) => {
   console.info('dataReceiveProgress:' + JSON.stringify(data));
 });
 ```
@@ -861,7 +950,10 @@ off(type: 'dataReceiveProgress', callback?: Callback\<{ receiveSize: number, tot
 
 **示例：**
 
-```js
+```ts
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
 httpRequest.off('dataReceiveProgress');
 ```
 
@@ -874,7 +966,10 @@ httpRequest.off('dataReceiveProgress');
 | 名称         | 类型                                          | 必填 | 说明                                                         |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。                                                   |
-| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | 否   | 发送请求的额外数据，默认无此字段。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'Content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据应在key和value进行URL转码后按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码。- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。|
+| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | 否   | 发送请求的额外数据，默认无此字段。<br />-
+当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'Content-Type'为'application/x-www-form-urlencoded'时，
+请求提交的信息主体数据应在key和value进行URL转码后按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String；
+当'Content-Type'为'text/xml'时，该字段对应的类型通常为String；当'Content-Type'为'application/json'时，该字段对应的类型通常为Object；当'Content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer；当'Content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。以上信息仅供参考，并可能根据具体情况有所不同。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。|
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |
 | usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true。   |
 | priority<sup>9+</sup>        | number                          | 否   | 优先级，范围[1,1000]，默认是1。                           |
@@ -883,7 +978,7 @@ httpRequest.off('dataReceiveProgress');
 | connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。                             |
 | usingProxy<sup>10+</sup>     | boolean \| Object               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为object类型时，使用指定网络代理。 
-| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，否则将使用系统预设CA证书。                             |
+| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持后缀名为.pem的文本格式证书。                             |
 
 ## RequestMethod<sup>6+</sup>
 
@@ -982,7 +1077,7 @@ createHttpResponseCache(cacheSize?: number): HttpResponseCache
 
 **示例：**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
 let httpResponseCache = http.createHttpResponseCache();
@@ -996,7 +1091,7 @@ let httpResponseCache = http.createHttpResponseCache();
 
 flush(callback: AsyncCallback\<void\>): void
 
-将缓存中的数据写入文件系统，以便在下一个HTTP请求中访问所有缓存数据，使用callback方式作为异步方法。
+将缓存中的数据写入文件系统，以便在下一个HTTP请求中访问所有缓存数据，使用callback方式作为异步方法。缓存数据包括：响应头（header）、响应体（result）、cookies、请求时间（requestTime）和响应时间（responseTime）。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1008,8 +1103,12 @@ flush(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
-httpResponseCache.flush(err => {
+```ts
+import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
+
+let httpResponseCache = http.createHttpResponseCache();
+httpResponseCache.flush((err: BusinessError) => {
   if (err) {
     console.info('flush fail');
     return;
@@ -1034,10 +1133,14 @@ flush(): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
+
+let httpResponseCache = http.createHttpResponseCache();
 httpResponseCache.flush().then(() => {
   console.info('flush success');
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.info('flush fail');
 });
 ```
@@ -1058,8 +1161,12 @@ delete(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
-httpResponseCache.delete(err => {
+```ts
+import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
+
+let httpResponseCache = http.createHttpResponseCache();
+httpResponseCache.delete((err: BusinessError) => {
   if (err) {
     console.info('delete fail');
     return;
@@ -1084,10 +1191,14 @@ delete(): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
+
+let httpResponseCache = http.createHttpResponseCache();
 httpResponseCache.delete().then(() => {
   console.info('delete success');
-}).catch(err => {
+}).catch((err: Error) => {
   console.info('delete fail');
 });
 ```

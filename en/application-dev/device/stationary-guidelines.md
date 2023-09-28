@@ -45,40 +45,46 @@ The device must support the acceleration sensor.
 
 1. Subscribe to the event indicating entering the absolute still state, and the event is reported every 1 second.
 
-   ```js
+   ```ts
    import stationary from '@ohos.stationary';
-   var reportLatencyNs = 1000000000;
+   import { BusinessError } from '@ohos.base';
+   let reportLatencyNs = 1000000000;
    try {
       stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
          console.log('data='+ JSON.stringify(data));
       })
-   } catch (err) {
-      console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+   } catch (error) {
+      let message = (error as BusinessError).message;
+      console.error('stationary on failed:' + message);
    }
    ```
 
 2. Obtain the event indicating entering the absolute still state.
 
-   ```js
+   ```ts
    import stationary from '@ohos.stationary';
+   import { BusinessError } from '@ohos.base';
    try {
       stationary.once('still', (data) => {
          console.log('data='+ JSON.stringify(data));
       })
-   } catch (err) {
-      console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+   } catch (error) {
+      let message = (error as BusinessError).message;
+      console.error('stationary once failed:' + message);
    }
    ```
 
 3. Unsubscribe from the event indicating entering the absolute still state.
 
-   ```js
+   ```ts
    import stationary from '@ohos.stationary';
+   import { BusinessError } from '@ohos.base';
    try {
       stationary.off('still', stationary.ActivityEvent.ENTER, (data) => {
          console.log('data='+ JSON.stringify(data));
       })
-   } catch (err) {
-      console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+   } catch (error) {
+      let message = (error as BusinessError).message;
+      console.error('stationary off failed:' + message);
    }
    ```

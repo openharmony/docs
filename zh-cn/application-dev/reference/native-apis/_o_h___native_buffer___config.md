@@ -21,9 +21,72 @@ OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查�
 
 ### 成员变量
 
-| 成员变量名称 | 描述 |
+| 名称 | 描述 |
 | -------- | -------- |
-| width | 宽度（像素）。 |
-| height | 高度（像素）。 |
-| format | 像素格式。 |
-| usage | buffer的用途说明。 |
+| [width](#width) | 宽度（像素）。 |
+| [height](#height) | 高度（像素）。 |
+| [format](#format) | 像素格式。 |
+| [usage](#usage) | buffer的用途说明。 |
+| [stride](#stride) | 本地窗口缓冲区步幅。 |
+
+
+## 结构体成员变量说明
+
+
+### format
+
+```
+int32_t OH_NativeBuffer_Config::format
+```
+
+**描述:**
+
+像素格式
+
+
+### height
+
+```
+int32_t OH_NativeBuffer_Config::height
+```
+
+**描述:**
+
+高度（像素）。
+
+
+### stride
+
+```
+int32_t OH_NativeBuffer_Config::stride
+```
+
+**描述:**
+
+本地窗口缓冲区步幅。
+
+**起始版本：**
+
+10
+
+
+### usage
+
+```
+int32_t OH_NativeBuffer_Config::usage
+```
+
+**描述:**
+
+buffer的用途说明。
+
+
+### width
+
+```
+int32_t OH_NativeBuffer_Config::width
+```
+
+**描述:**
+
+宽度（像素）。

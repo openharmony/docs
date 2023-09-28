@@ -12,6 +12,7 @@ hfp模块提供了访问蓝牙呼叫接口的方法。
 
 ```js
 import hfp from '@ohos.bluetooth.hfp';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -36,7 +37,7 @@ try {
     let hfpAgProfile = hfp.createHfpAgProfile();
     console.info('hfpAg success');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -82,7 +83,7 @@ try {
     let hfpAg = hfp.createHfpAgProfile();
     hfpAg.connect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -123,6 +124,6 @@ try {
     let hfpAg = hfp.createHfpAgProfile();
     hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```

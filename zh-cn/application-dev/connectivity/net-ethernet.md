@@ -43,12 +43,13 @@
 4. 用户态通过isIfaceActive方法，来判断网口“eth0”是否已激活。
 5. 用户态通过getIfaceConfig方法，来获取指定网口“eth0”的网络属性，未设置过的以太网络默认为DHCP模式，获取自动分配的网络属性。
 
-```js
+```ts
 // 从@ohos.net.ethernet中导入ethernet命名空间
 import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base';
 
 // getAllActiveIfaces获取所有活动的网络设备名称
-ethernet.getAllActiveIfaces((error, data) => {
+ethernet.getAllActiveIfaces((error: BusinessError, data: string[]) => {
   if (error) {
     console.log("getAllActiveIfaces callback error = " + error);
   } else {
@@ -60,7 +61,7 @@ ethernet.getAllActiveIfaces((error, data) => {
 });
 
 // isIfaceActive判断指定网口是否已激活
-ethernet.isIfaceActive("eth0", (error, data) => {
+ethernet.isIfaceActive("eth0", (error: BusinessError, data: number) => {
   if (error) {
     console.log("isIfaceActive callback error = " + error);
   } else {
@@ -69,7 +70,7 @@ ethernet.isIfaceActive("eth0", (error, data) => {
 });
 
 // getIfaceConfig获取指定以太网的网络属性
-ethernet.getIfaceConfig("eth0", (error, data) => {
+ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceConfiguration) => {
   if (error) {
     console.log("getIfaceConfig  callback error = " + error);
   } else {
@@ -95,12 +96,13 @@ ethernet.getIfaceConfig("eth0", (error, data) => {
 5. 用户态调用setIfaceConfig方法，来设置指定网口"eth0"为静态模式，手动IP地址，子网掩码，Gateway，DNS等网络属性。
 6. 用户态通过getIfaceConfig方法，来获取指定网口“eth0”的静态网络属性。
 
-```js
+```ts
 // 从@ohos.net.ethernet中导入ethernet命名空间
 import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base';
 
 // getAllActiveIfaces获取所有活动的网络设备名称
-ethernet.getAllActiveIfaces((error, data) => {
+ethernet.getAllActiveIfaces((error: BusinessError, data: string[]) => {
   if (error) {
     console.log("getAllActiveIfaces callback error = " + error);
   } else {
@@ -112,7 +114,7 @@ ethernet.getAllActiveIfaces((error, data) => {
 });
 
 // isIfaceActive判断指定网口是否已激活
-ethernet.isIfaceActive("eth0", (error, data) => {
+ethernet.isIfaceActive("eth0", (error: BusinessError, data: number) => {
   if (error) {
     console.log("isIfaceActive callback error = " + error);
   } else {
@@ -120,11 +122,18 @@ ethernet.isIfaceActive("eth0", (error, data) => {
   }
 });
 
+let ethernetParam: ethernet.InterfaceConfiguration = {
+  mode: ethernet.IPSetMode.STATIC,
+  ipAddr: "192.168.xx.xx",
+  routeAddr: "192.168.xx.xx",
+  gateAddr: "192.168.xx.xx",
+  maskAddr: "255.255.xx.xx",
+  dnsAddr0: "1.1.xx.xx",
+  dnsAddr1: "2.2.xx.xx"
+}
+
 // setIfaceConfig配置指定以太网的网络属性
-ethernet.setIfaceConfig("eth0", {
-  mode: ethernet.STATIC, ipAddr: "192.168.xx.xx", routeAddr: "192.168.xx.xx",
-  gateAddr: "192.168.xx.xx", maskAddr: "255.255.xx.xx", dnsAddr0: "1.1.xx.xx", dnsAddr1: "2.2.xx.xx"
-}, (error) => {
+ethernet.setIfaceConfig("eth0", ethernetParam, (error: BusinessError) => {
   if (error) {
     console.log("setIfaceConfig callback error = " + error);
   } else {
@@ -133,7 +142,7 @@ ethernet.setIfaceConfig("eth0", {
 });
 
 // getIfaceConfig获取指定以太网的网络属性
-ethernet.getIfaceConfig("eth0", (error, data) => {
+ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceConfiguration) => {
   if (error) {
     console.log("getIfaceConfig  callback error = " + error);
   } else {
@@ -157,12 +166,17 @@ ethernet.getIfaceConfig("eth0", (error, data) => {
 3. 订阅interfaceStateChange事件后，回调函数会在网卡设备的接口状态发生变化时触发。
 4. 调用该对象的off()方法，取消订阅interfaceStateChange事件。
 
-```js
+```ts
 // 从@ohos.net.ethernet中导入ethernet命名空间
 import ethernet from '@ohos.net.ethernet'
 
 // 订阅interfaceStateChange事件
-ethernet.on('interfaceStateChange', (data) => {
+class EthernetData{
+  iface: string = ""
+  active: boolean = false
+}
+
+ethernet.on('interfaceStateChange', (data: EthernetData) => {
   console.log(JSON.stringify(data));
 });
 

@@ -60,9 +60,10 @@ onAcceptWant(want: Want): string;
     
 ```ts
 import AbilityStage from '@ohos.app.ability.AbilityStage';
+import Want from '@ohos.app.ability.Want';
 
 class MyAbilityStage extends AbilityStage {
-    onAcceptWant(want) {
+    onAcceptWant(want: Want) {
         console.log('MyAbilityStage.onAcceptWant called');
         return 'com.example.test';
     }
@@ -88,9 +89,10 @@ onConfigurationUpdate(newConfig: Configuration): void;
     
 ```ts
 import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { Configuration } from '@ohos.app.ability.Configuration';
 
 class MyAbilityStage extends AbilityStage {
-    onConfigurationUpdate(config) {
+    onConfigurationUpdate(config: Configuration) {
         console.log('onConfigurationUpdate, language: ${config.language}');
     }
 }
@@ -114,10 +116,11 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
     
 ```ts
 import AbilityStage from '@ohos.app.ability.AbilityStage';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbilityStage extends AbilityStage {
-    onMemoryLevel(level) {
-        console.log('onMemoryLevel, level: ${JSON.stringify(level)}');
+    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
+        console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
     } 
 }
 ```

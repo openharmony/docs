@@ -15,13 +15,14 @@ You can use the APIs of this module to configure the concerned information, obta
 Before using the **AccessibilityExtensionContext** module, you must define a child class that inherits from **AccessibilityExtensionAbility**.
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
-let axContext;
+import AccessibilityExtensionAbility, {
+  AccessibilityExtensionContext,
+} from '@ohos.application.AccessibilityExtensionAbility';
+
+let axContext: AccessibilityExtensionContext;
+
 class EntryAbility extends AccessibilityExtensionAbility {
-    onConnect(): void {
-        console.log('AxExtensionAbility onConnect');
-        axContext = this.context;
-    }
+  axContext = this.context;
 }
 ```
 
@@ -99,15 +100,16 @@ Sets the concerned target bundle. This API uses a promise to return the result.
 
 ```ts
 let targetNames = ['com.ohos.xyz'];
+
 try {
-    axContext.setTargetBundleName(targetNames).then(() => {
-        console.info('set target bundle names success');
-    }).catch((err) => {
-        console.error('failed to set target bundle names, because ${JSON.stringify(err)}');
-    });
+  axContext.setTargetBundleName(targetNames).then(() => {
+    console.info('set target bundle names success');
+  }).catch((err: object) => {
+    console.error(`failed to set target bundle names, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to set target bundle names, because ${JSON.stringify(exception)}');
-};
+  console.error(`failed to set target bundle names, because ${JSON.stringify(exception)}`);
+}
 ```
 
 ## AccessibilityExtensionContext.setTargetBundleName
@@ -128,18 +130,20 @@ Sets the concerned target bundle. This API uses an asynchronous callback to retu
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let targetNames = ['com.ohos.xyz'];
 try {
-    axContext.setTargetBundleName(targetNames, (err, data) => {
-        if (err && err.code) {
-            console.error('failed to set target bundle names, because ${JSON.stringify(err)}');
-            return;
-        }
-        console.info('set target bundle names success');
-    });
+  axContext.setTargetBundleName(targetNames, (err: BusinessError<void>) => {
+    if (err) {
+      console.error(`failed to set target bundle names, because ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info('set target bundle names success');
+  });
 } catch (exception) {
-    console.error('failed to set target bundle names, because ${JSON.stringify(exception)}');
-};
+  console.error(`failed to set target bundle names, because ${JSON.stringify(exception)}`);
+}
 ```
 
 ## AccessibilityExtensionContext.getFocusElement
@@ -173,16 +177,18 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let focusElement;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+
+let focusElement: AccessibilityElement;
 try {
-    axContext.getFocusElement().then((data) => {
-        focusElement = data;
-        console.log('get focus element success');
-    }).catch((err) => {
-        console.error('failed to get focus element, because ${JSON.stringify(err)}');
-    });
+  axContext.getFocusElement().then((data: AccessibilityElement) => {
+    focusElement = data;
+    console.log('get focus element success');
+  }).catch((err: object) => {
+    console.error(`failed to get focus element, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to get focus element, because ${JSON.stringify(exception)}');
+  console.error(`failed to get focus element, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -211,18 +217,21 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let focusElement;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let focusElement: AccessibilityElement;
 try {
-    axContext.getFocusElement((err, data) => {
-        if (err && err.code) {
-            console.error('failed to get focus element, because ${JSON.stringify(err)}');
-            return;
-        }
-        focusElement = data;
-        console.info('get focus element success');
-    });
+  axContext.getFocusElement((err: BusinessError<void>, data: AccessibilityElement) => {
+    if (err) {
+      console.error(`failed to get focus element, because ${JSON.stringify(err)}`);
+      return;
+    }
+    focusElement = data;
+    console.info('get focus element success');
+  });
 } catch (exception) {
-    console.error('failed to get focus element, because ${JSON.stringify(exception)}');
+  console.error(`failed to get focus element, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -252,19 +261,23 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let focusElement;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let focusElement: AccessibilityElement;
 let isAccessibilityFocus = true;
+
 try {
-    axContext.getFocusElement(isAccessibilityFocus, (err, data) => {
-    if (err && err.code) {
-        console.error('failed to get focus element, because ${JSON.stringify(err)}');
-        return;
+  axContext.getFocusElement(isAccessibilityFocus, (err: BusinessError<void>, data: AccessibilityElement) => {
+    if (err) {
+      console.error(`failed to get focus element, because ${JSON.stringify(err)}`);
+      return;
     }
     focusElement = data;
     console.info('get focus element success');
-});
+  });
 } catch (exception) {
-    console.error('failed to get focus element, because ${JSON.stringify(exception)}');
+  console.error(`failed to get focus element, because ${JSON.stringify(exception)}`);
 }
 ```
 ## AccessibilityExtensionContext.getWindowRootElement
@@ -285,7 +298,7 @@ Obtains the root element of a window. This API uses a promise to return the resu
 
 | Type                                 | Description                    |
 | ----------------------------------- | ---------------------- |
-| Promise&lt;AccessibilityElement&gt; | Promise used to return the root element.|
+| Promise&lt;AccessibilityElement&gt; | Promise used to return the root element of the specified window.|
 
 **Error codes**
 
@@ -298,16 +311,18 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let rootElement;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+
+let rootElement: AccessibilityElement;
 try {
-    axContext.getWindowRootElement().then((data) => {
-        rootElement = data;
-        console.log('get root element of the window success');
-    }).catch((err) => {
-        console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
-    });
+  axContext.getWindowRootElement().then((data: AccessibilityElement) => {
+    rootElement = data;
+    console.log('get root element of the window success');
+  }).catch((err: object) => {
+    console.error(`failed to get root element of the window, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to get root element of the window, ${JSON.stringify(exception)}');
+  console.error(`failed to get root element of the window, ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -336,18 +351,22 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let rootElement;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let rootElement: AccessibilityElement;
 try {
-    axContext.getWindowRootElement((err, data) => {
-    if (err && err.code) {
-        console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
-        return;
+  axContext.getWindowRootElement((err: BusinessError<void>
+                                  , data: AccessibilityElement) => {
+    if (err) {
+      console.error(`failed to get root element of the window, because ${JSON.stringify(err)}`);
+      return;
     }
     rootElement = data;
     console.info('get root element of the window success');
-});
+  });
 } catch (exception) {
-    console.error('failed to get root element of the window, because ${JSON.stringify(exception)}');
+  console.error(`failed to get root element of the window, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -377,19 +396,23 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let rootElement;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let rootElement: AccessibilityElement;
 let windowId = 10;
+
 try {
-    axContext.getWindowRootElement(windowId, (err, data) => {
-    if (err && err.code) {
-        console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
-        return;
+  axContext.getWindowRootElement(windowId, (err: BusinessError<void>, data: AccessibilityElement) => {
+    if (err) {
+      console.error(`failed to get root element of the window, because ${JSON.stringify(err)}`);
+      return;
     }
     rootElement = data;
     console.info('get root element of the window success');
-});
+  });
 } catch (exception) {
-    console.error('failed to get root element of the window, because ${JSON.stringify(exception)}');
+  console.error(`failed to get root element of the window, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -424,16 +447,18 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let windows;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+
+let windows: AccessibilityElement[];
 try {
-    axContext.getWindows().then((data) => {
-        windows = data;
-        console.log('get windows success');
-    }).catch((err) => {
-        console.error('failed to get windows, because ${JSON.stringify(err)}');
-    });
+  axContext.getWindows().then((data: AccessibilityElement[]) => {
+    windows = data;
+    console.log('get windows success');
+  }).catch((err: object) => {
+    console.error(`failed to get windows, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to get windows, because ${JSON.stringify(exception)}');
+  console.error(`failed to get windows, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -462,18 +487,21 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let windows;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let windows: AccessibilityElement[];
 try {
-    axContext.getWindows((err, data) => {
-        if (err && err.code) {
-            console.error('failed to get windows, because ${JSON.stringify(err)}');
-            return;
-        }
-        windows = data;
-        console.info('get windows success');
-    });
+  axContext.getWindows((err: BusinessError<void>, data: AccessibilityElement[]) => {
+    if (err) {
+      console.error(`failed to get windows, because ${JSON.stringify(err)}`);
+      return;
+    }
+    windows = data;
+    console.info('get windows success');
+  });
 } catch (exception) {
-    console.error('failed to get windows, because ${JSON.stringify(exception)}');
+  console.error(`failed to get windows, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -503,19 +531,22 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let windows;
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let windows: AccessibilityElement[];
 let displayId = 10;
 try {
-    axContext.getWindows(displayId, (err, data) => {
-        if (err && err.code) {
-            console.error('failed to get windows, because ${JSON.stringify(err)}');
-            return;
-        }
-        windows = data;
-        console.info('get windows success');
-    });
+  axContext.getWindows(displayId, (err: BusinessError<void>, data: AccessibilityElement[]) => {
+    if (err) {
+      console.error(`failed to get windows, because ${JSON.stringify(err)}`);
+      return;
+    }
+    windows = data;
+    console.info('get windows success');
+  });
 } catch (exception) {
-    console.error('failed to get windows, because ${JSON.stringify(exception)}');
+  console.error(`failed to get windows, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -552,19 +583,20 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 ```ts
 import GesturePath from '@ohos.accessibility.GesturePath';
 import GesturePoint from '@ohos.accessibility.GesturePoint';
-let gesturePath = new GesturePath.GesturePath(100);
+
+let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
 try {
-    for (let i = 0; i < 10; i++) {
-        let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
-        gesturePath.points.push(gesturePoint);
-    }
-    axContext.injectGesture(gesturePath).then(() => {
-        console.info('inject gesture success');
-    }).catch((err) => {
-        console.error('failed to inject gesture, because ${JSON.stringify(err)}');
-    });
+  for (let i = 0; i < 10; i++) {
+    let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+    gesturePath.points.push(gesturePoint);
+  }
+  axContext.injectGesture(gesturePath).then(() => {
+    console.info('inject gesture success');
+  }).catch((err: object) => {
+    console.error(`failed to inject gesture, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to inject gesture, because ${JSON.stringify(exception)}');
+  console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
 }
 ```
 ## AccessibilityExtensionContext.injectGesture
@@ -595,21 +627,22 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 ```ts
 import GesturePath from '@ohos.accessibility.GesturePath';
 import GesturePoint from '@ohos.accessibility.GesturePoint';
-let gesturePath = new GesturePath.GesturePath(100);
+
+let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
 try {
-    for (let i = 0; i < 10; i++) {
-        let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
-        gesturePath.points.push(gesturePoint);
+  for (let i = 0; i < 10; i++) {
+    let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+    gesturePath.points.push(gesturePoint);
+  }
+  axContext.injectGesture(gesturePath, (err) => {
+    if (err) {
+      console.error(`failed to inject gesture, because ${JSON.stringify(err)}`);
+      return;
     }
-    axContext.injectGesture(gesturePath, (err, data) => {
-        if (err && err.code) {
-            console.error('failed to inject gesture, because ${JSON.stringify(err)}');
-            return;
-        }
-        console.info('inject gesture success');
-    });
+    console.info('inject gesture success');
+  });
 } catch (exception) {
-    console.error('failed to inject gesture, because ${JSON.stringify(exception)}');
+  console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
 }
 ```
 ## AccessibilityElement<sup>9+</sup>
@@ -635,13 +668,14 @@ Obtains all attribute names of this element. This API uses a promise to return t
 **Example**
 
 ```ts
-let rootElement;
-let attributeNames;
-rootElement.attributeNames().then((data) => {
-    console.log('get attribute names success');
-    attributeNames = data;
-}).catch((err) => {
-    console.log('failed to get attribute names, because ${JSON.stringify(err)}');
+import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+
+let attributeNames: ElementAttributeKeys;
+rootElement.attributeNames().then((data: ElementAttributeKeys) => {
+  console.log('get attribute names success');
+  attributeNames = data;
+}).catch((err: object) => {
+  console.log(`failed to get attribute names, because ${JSON.stringify(err)}`);
 });
 ```
 ### attributeNames
@@ -661,15 +695,17 @@ Obtains all attribute names of this element. This API uses an asynchronous callb
 **Example**
 
 ```ts
-let rootElement;
-let attributeNames;
-rootElement.attributeNames((err, data) => {
-    if (err) {
-        console.error('failed to get attribute names, because ${JSON.stringify(err)}');
-        return;
-    }
-    attributeNames = data;
-    console.info('get attribute names success');
+import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let attributeNames: ElementAttributeKeys[];
+rootElement.attributeNames((err: BusinessError<void>, data: ElementAttributeKeys[]) => {
+  if (err) {
+    console.error(`failed to get attribute names, because ${JSON.stringify(err)}`);
+    return;
+  }
+  attributeNames = data;
+  console.info('get attribute names success');
 });
 ```
 ### attributeValue
@@ -684,7 +720,7 @@ Obtains the attribute value based on an attribute name. This API uses a promise 
 
 | Name          | Type  | Mandatory  | Description      |
 | ------------- | ---- | ---- | -------- |
-| attributeName | T    | Yes   | Attribute name.|
+| attributeName | ElementAttributeKeys  | Yes   | Attribute name.|
 
 **Return value**
 
@@ -703,18 +739,19 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let attributeName = 'name';
-let attributeValue;
-let rootElement;
+import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+
+let attributeName: ElementAttributeKeys = 'bundleName';
+let attributeValue: string;
 try {
-    rootElement.attributeValue(attributeName).then((data) => {
-        console.log('get attribute value by name success');
-        attributeValue = data;
-    }).catch((err) => {
-        console.error('failed to get attribute value, because ${JSON.stringify(err)}');
-    });
+  rootElement.attributeValue(attributeName).then((data: string) => {
+    console.log('get attribute value by name success');
+    attributeValue = data;
+  }).catch((err: object) => {
+    console.error(`failed to get attribute value, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to get attribute value, because ${JSON.stringify(exception)}');
+  console.error(`failed to get attribute value, because ${JSON.stringify(exception)}`);
 }
 ```
 ### attributeValue
@@ -730,7 +767,7 @@ Obtains the attribute value based on an attribute name. This API uses an asynchr
 
 | Name          | Type                                      | Mandatory  | Description                    |
 | ------------- | ---------------------------------------- | ---- | ---------------------- |
-| attributeName | T                                        | Yes   | Attribute name.              |
+| attributeName | ElementAttributeKeys                         | Yes   | Attribute name.              |
 | callback      | AsyncCallback&lt;ElementAttributeValues[T]&gt; | Yes   | Callback used to return the attribute value.|
 
 **Error codes**
@@ -744,20 +781,22 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let rootElement;
-let attributeValue;
-let attributeName = 'name';
+import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let attributeName: ElementAttributeKeys = 'bundleName';
+let attributeValue: string;
 try {
-    rootElement.attributeValue(attributeName, (err, data) => {
-        if (err) {
-            console.error('failed to get attribute value, because ${JSON.stringify(err)}');
-            return;
-        }
-        attributeValue = data;
-        console.info('get attribute value success');
-    });
+  rootElement.attributeValue(attributeName, (err: BusinessError<void>, data: string) => {
+    if (err) {
+      console.error(`failed to get attribute value, because ${JSON.stringify(err)}`);
+      return;
+    }
+    attributeValue = data;
+    console.info('get attribute value success');
+  });
 } catch (exception) {
-    console.error('failed to get attribute value, because ${JSON.stringify(exception)}');
+  console.error(`failed to get attribute value, because ${JSON.stringify(exception)}`);
 }
 ```
 ### actionNames
@@ -777,14 +816,13 @@ Obtains the names of all actions supported by this element. This API uses a prom
 **Example**
 
 ```ts
-let rootElement;
-let actionNames;
-rootElement.actionNames().then((data) => {
-    console.log('get action names success');
-    actionNames = data;
-}).catch((err) => {
-    console.error('failed to get action names because ${JSON.stringify(err)}');
-});
+let actionNames: string[];
+rootElement.actionNames().then((data: string[]) => {
+  console.log('get action names success');
+  actionNames = data;
+}).catch((err: object) => {
+  console.error(`failed to get action names because ${JSON.stringify(err)}`);
+})
 ```
 ### actionNames
 
@@ -803,16 +841,15 @@ Obtains the names of all actions supported by this element. This API uses an asy
 **Example**
 
 ```ts
-let rootElement;
-let actionNames;
-rootElement.actionNames((err, data) => {
-    if (err) {
-        console.error('failed to get action names, because ${JSON.stringify(err)}');
-        return;
-    }
-    actionNames = data;
-    console.info('get action names success');
-});
+let actionNames: string[];
+rootElement.actionNames((err: BusinessError<void>, data: string[]) => {
+  if (err) {
+    console.error(`failed to get action names, because ${JSON.stringify(err)}`);
+    return;
+  }
+  actionNames = data;
+  console.info('get action names success');
+})
 ```
 ### performAction
 
@@ -846,15 +883,15 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let rootElement;
+let actionName = 'action';
 try {
-    rootElement.performAction('action').then((data) => {
-        console.info('perform action success');
-    }).catch((err) => {
-        console.error('failed to perform action, because ${JSON.stringify(err)}');
-    });
+  rootElement.performAction(actionName).then(() => {
+    console.info('perform action success');
+  }).catch((err: object) => {
+    console.error(`failed to perform action, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to perform action, because ${JSON.stringify(exception)}');
+  console.error(`failed to perform action, because ${JSON.stringify(exception)}`);
 }
 ```
 ### performAction
@@ -883,17 +920,19 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let rootElement;
+import { BusinessError } from '@ohos.base';
+
+let actionName = 'action';
 try {
-    rootElement.performAction('action', (err, data) => {
-        if (err) {
-            console.error('failed to perform action, because ${JSON.stringify(err)}');
-            return;
-        }
-        console.info('perform action success');
-    });
+  rootElement.performAction(actionName, (err:BusinessError) => {
+    if (err) {
+      console.error(`failed to perform action, because ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info('perform action success');
+  });
 } catch (exception) {
-    console.error('failed to perform action, because ${JSON.stringify(exception)}');
+  console.error(`failed to perform action, because ${JSON.stringify(exception)}`);
 }
 ```
 ### performAction
@@ -923,21 +962,20 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let rootElement;
+import { BusinessError } from '@ohos.base';
+
 let actionName = 'action';
-let parameters = {
-    'setText': 'test text'
-};
+let parameters: object = [];
 try {
-    rootElement.performAction(actionName, parameters, (err, data) => {
-        if (err) {
-            console.error('failed to perform action, because ${JSON.stringify(err)}');
-            return;
-        }
-        console.info('perform action success');
-    });
+  rootElement.performAction(actionName, parameters, (err: BusinessError<void>) => {
+    if (err) {
+      console.error(`failed to perform action, because ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info('perform action success');
+  });
 } catch (exception) {
-    console.error('failed to perform action, because ${JSON.stringify(exception)}');
+  console.error(`failed to perform action, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('content')
@@ -964,19 +1002,17 @@ Queries the element information of the **content** type. This API uses a promise
 **Example**
 
 ```ts
-let rootElement;
-let type = 'content';
 let condition = 'keyword';
-let elements;
+let elements: AccessibilityElement[];
 try {
-    rootElement.findElement(type, condition).then((data) => {
-        elements = data;
-        console.log('find element success');
-    }).catch((err) => {
-        console.error('failed to find element, because ${JSON.stringify(err)}');
-    });
+  rootElement.findElement('content', condition).then((data: AccessibilityElement[]) => {
+    elements = data;
+    console.log('find element success');
+  }).catch((err: object) => {
+    console.error(`failed to find element, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('content')
@@ -998,21 +1034,21 @@ Queries the element information of the **content** type. This API uses an asynch
 **Example**
 
 ```ts
-let rootElement;
-let type = 'content';
+import { BusinessError } from '@ohos.base';
+
 let condition = 'keyword';
-let elements;
+let elements: AccessibilityElement[];
 try {
-    rootElement.findElement(type, condition, (err, data) => {
-        if (err) {
-            console.error('failed to find element, because ${JSON.stringify(err)}');
-            return;
-        }
-        elements = data;
-        console.info('find element success');
-    });
+  rootElement.findElement('content', condition, (err: BusinessError<void>, data: AccessibilityElement[]) => {
+    if (err) {
+      console.error(`failed to find element, because ${JSON.stringify(err)}`);
+      return;
+    }
+    elements = data;
+    console.info('find element success');
+  });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('focusType')
@@ -1039,19 +1075,19 @@ Queries the element information of the **focusType** type. This API uses a promi
 **Example**
 
 ```ts
-let rootElement;
-let type = 'focusType';
-let condition = 'normal';
-let element;
+import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
+
+let condition: FocusType = 'normal';
+let element: AccessibilityElement;
 try {
-    rootElement.findElement(type, condition).then((data) => {
-        element = data;
-        console.log('find element success');
-    }).catch((err) => {
-        console.error('failed to find element, because ${JSON.stringify(err)}');
-    });
+  rootElement.findElement('focusType', condition).then((data: AccessibilityElement) => {
+    element = data;
+    console.log('find element success');
+  }).catch((err: object) => {
+    console.error(`failed to find element, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('focusType')
@@ -1073,21 +1109,22 @@ Queries the element information of the **focusType** type. This API uses an asyn
 **Example**
 
 ```ts
-let rootElement;
-let type = 'focusType';
-let condition = 'normal';
-let element;
+import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let condition: FocusType = 'normal';
+let element: AccessibilityElement;
 try {
-    rootElement.findElement(type, condition, (err, data) => {
-        if (err) {
-            console.error('failed to find element, because ${JSON.stringify(err)}');
-            return;
-        }
-        element = data;
-        console.info('find element success');
-    });
+  rootElement.findElement('focusType', condition, (err: BusinessError<void>, data: AccessibilityElement) => {
+    if (err) {
+      console.error(`failed to find element, because ${JSON.stringify(err)}`);
+      return;
+    }
+    element = data;
+    console.info('find element success');
+  });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('focusDirection')
@@ -1114,19 +1151,19 @@ Queries the element information of the **focusDirection** type. This API uses a 
 **Example**
 
 ```ts
-let rootElement;
-let type = 'focusDirection';
-let condition = 'up';
-let element;
+import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
+
+let condition: FocusDirection = 'up';
+let element: AccessibilityElement;
 try {
-    rootElement.findElement(type, condition).then((data) => {
-        element = data;
-        console.log('find element success');
-    }).catch((err) => {
-        console.error('failed to find element, because ${JSON.stringify(err)}');
-    });
+  rootElement.findElement('focusDirection', condition).then((data: AccessibilityElement) => {
+    element = data;
+    console.log('find element success');
+  }).catch((err: object) => {
+    console.error(`failed to find element, because ${JSON.stringify(err)}`);
+  });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('focusDirection')
@@ -1148,20 +1185,21 @@ Queries the element information of the **focusDirection** type. This API uses an
 **Example**
 
 ```ts
-let rootElement;
-let type = 'focusDirection';
-let condition = 'up';
-let elements;
+import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+let condition: FocusDirection = 'up';
+let elements: AccessibilityElement;
 try {
-    rootElement.findElement(type, condition, (err, data) => {
-        if (err) {
-            console.error('failed to find element, because ${JSON.stringify(err)}');
-            return;
-        }
-        elements = data;
-        console.info('find element success');
-    });
+  rootElement.findElement('focusDirection', condition, (err: BusinessError<void>, data: AccessibilityElement) => {
+    if (err) {
+      console.error(`failed to find element, because ${JSON.stringify(err)}`);
+      return;
+    }
+    elements = data;
+    console.info('find element success');
+  });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```

@@ -149,7 +149,7 @@
    以导航场景为例，实例化方式如下：
 
    ```ts
-   let requestInfo = {'scenario': geoLocationManager.LocationRequestScenario.NAVIGATION, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   let requestInfo:geoLocationManager.LocationRequest = {'scenario': geoLocationManager.LocationRequestScenario.NAVIGATION, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
    **方式二：**
@@ -179,14 +179,14 @@
    以定位精度优先策略为例，实例化方式如下：
 
    ```ts
-   let requestInfo = {'priority': geoLocationManager.LocationRequestPriority.ACCURACY, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.ACCURACY, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
 4. 实例化Callback对象，用于向系统提供位置上报的途径。
      应用需要自行实现系统定义好的回调接口，并将其实例化。系统在定位成功确定设备的实时位置结果时，会通过该接口上报给应用。应用程序可以在接口的实现中完成自己的业务逻辑。
      
    ```ts
-   let locationChange = (location) => {
+   let locationChange = (location:geoLocationManager.Location):void => {
        console.log('locationChanger: data: ' + JSON.stringify(location));
    };
    ```
@@ -209,10 +209,11 @@
 
    ```ts
    import geoLocationManager from '@ohos.geoLocationManager';
+   import BusinessError from "@ohos.base";
    try {
        let location = geoLocationManager.getLastLocation();
    } catch (err) {
-       console.error("errCode:" + err.code + ",errMessage:" + err.message);
+       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
    }
    ```
 
@@ -259,10 +260,11 @@
      
       ```ts
       import geoLocationManager from '@ohos.geoLocationManager';
+      import BusinessError from "@ohos.base";
       try {
           let isAvailable = geoLocationManager.isGeocoderAvailable();
       } catch (err) {
-          console.error("errCode:" + err.code + ",errMessage:" + err.message);
+          console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
       }
       ```
 
@@ -270,7 +272,7 @@
    - 调用getAddressesFromLocation，坐标转化地理位置信息。
      
       ```ts
-      let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+      let reverseGeocodeRequest:geoLocationManager.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
       try {
           geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
               if (err) {
@@ -280,7 +282,7 @@
               }
           });
       } catch (err) {
-          console.error("errCode:" + err.code + ",errMessage:" + err.message);
+          console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
       }
       ```
 
@@ -288,7 +290,7 @@
    - 调用getAddressesFromLocationName位置描述转化坐标。
      
       ```ts
-      let geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
+      let geocodeRequest:geoLocationManager.GeoCodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
       try {
           geoLocationManager.getAddressesFromLocationName(geocodeRequest, (err, data) => {
               if (err) {
@@ -298,7 +300,7 @@
               }
           });
       } catch (err) {
-          console.error("errCode:" + err.code + ",errMessage:" + err.message);
+          console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
       }
       ```
 
@@ -332,11 +334,12 @@
 
 1. 使用地理围栏功能，需要有权限ohos.permission.APPROXIMATELY_LOCATION，位置权限申请的方法和步骤见[申请位置权限开发指导](#申请位置权限开发指导)。
 
-2. 导入[geoLocationManager](../reference/apis/js-apis-geoLocationManager.md)模块和[wantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)模块。
+2. 导入[geoLocationManager](../reference/apis/js-apis-geoLocationManager.md)模块、[wantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)模块和[BusinessError](../reference/apis/js-apis-base.md)模块。
    
    ```ts
    import geoLocationManager from '@ohos.geoLocationManager';
-   import wantAgent from '@ohos.app.ability.wantAgent';
+   import wantAgent, {WantAgent as _wantAgent} from '@ohos.app.ability.wantAgent';
+   import BusinessError from "@ohos.base";
    ```
 
 3. 创建[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
@@ -344,10 +347,10 @@
    场景一：创建拉起Ability的WantAgentInfo信息。
 
    ```ts
-   let wantAgentObj = null; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
+   let wantAgentObj:_wantAgent|null = null; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
    
    // 通过WantAgentInfo的operationType设置动作类型
-   let wantAgentInfo = {
+   let wantAgentInfo:wantAgent.WantAgentInfo = {
        wants: [
            {
                deviceId: '',
@@ -368,10 +371,10 @@
    场景二：创建发布[公共事件](../application-models/common-event-overview.md)的WantAgentInfo信息。
 
    ```ts
-   let wantAgentObj = null; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
+   let wantAgentObj:_wantAgent|null = null; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
    
    // 通过WantAgentInfo的operationType设置动作类型
-   let wantAgentInfo = {
+   let wantAgentInfo:wantAgent.WantAgentInfo = {
        wants: [
            {
                action: 'event_name', // 设置事件名
@@ -397,13 +400,19 @@
        }
        console.info('getWantAgent success');
        wantAgentObj = data;
-       let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+       let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
        try {
            geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
        } catch (err) {
-           console.error("errCode:" + err.code + ",errMessage:" + err.message);
+           console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
        }
    });
    ```
 
 5. 当设备进入或者退出该围栏时，系统会自动触发WantAgent的动作。
+
+## 相关实例
+
+针对位置开发，有以下相关实例可供参考：
+
+- [位置服务（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Location)

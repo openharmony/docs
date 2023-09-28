@@ -16,7 +16,12 @@ Vulkan是一套用来做2D和3D渲染的图形应用程序接口，其中创建V
 
 ## 开发步骤
 
-以下步骤说明了如何在OpenHarmony平台创建一个VkSurfaceKHR对象。
+以下步骤说明了如何创建一个VkSurfaceKHR对象。
+
+首先，使用平台扩展的接口，需要定义一个宏`VK_USE_PLATFORM_OHOS`，我们在CMakeLists.txt定义这个宏。
+```txt
+ADD_DEFINITIONS(-DVK_USE_PLATFORM_OHOS=1)
+```
 
 **添加动态链接库**
 
@@ -51,7 +56,7 @@ libvulkan.so
 
     std::vector<const char*> instanceExtensions = {
         VK_KHR_SURFACE_EXTENSION_NAME,
-        VK_OHOS_SURFACE_EXTENSION_NAME // OpenHarmony平台的Surface扩展
+        VK_OHOS_SURFACE_EXTENSION_NAME // Surface扩展
     };
     instanceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(instanceExtensions.size());
     instanceCreateInfo.ppEnabledExtensionNames = instanceExtensions.data();
@@ -80,7 +85,6 @@ libvulkan.so
         OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
     }
 
-    EXTERN_C_START
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
@@ -88,18 +92,20 @@ libvulkan.so
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
 
-        // 声明一个XComponent的Callback
-        OH_NativeXComponent_Callback callback;
-        // 注册OnSurfaceCreated回调函数
-        callback.OnSurfaceCreated = OnSurfaceCreatedCB;
-        
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
         napi_value exportInstance = nullptr;
         OH_NativeXComponent *nativeXComponent = nullptr;
         // 获取nativeXComponent
         napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance);
         napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent));
+        // 获取XComponentId
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+        OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize);
+
+        // 声明一个XComponent的Callback
+        OH_NativeXComponent_Callback callback;
+        // 注册OnSurfaceCreated回调函数
+        callback.OnSurfaceCreated = OnSurfaceCreatedCB;
         // 将callback注册给nativeXComponent
         OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback);
         
@@ -115,7 +121,7 @@ libvulkan.so
     surfaceCreateInfo.window = nativeWindow; // 这里的nativeWindow就是从上一步骤OnSurfaceCreatedCB回调函数中拿到的
     int err = vkCreateSurfaceOHOS(instance, &surfaceCreateInfo, NULL, &surface);
     if (err != VK_SUCCESS) {
-        std::cout << "Could not create surface!" << std::endl;
+        // Create Surface Failed.
     }
     ```
 后续更多vulkan的用法请参考[Vulkan官方网站](https://www.vulkan.org/)。

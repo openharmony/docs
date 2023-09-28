@@ -56,13 +56,16 @@ You can use either of the following methods to listen for the audio interruption
   To deliver an optimal user experience, the application needs to perform processing based on the event content. The following uses the AudioRenderer as an example to describe the recommended application processing. (The recommended processing is similar if the AVPlayer is used to develop audio playback.) You can customize the code to implement your own audio playback functionality or application processing based on service requirements.
   
 ```ts
-let isPlay; // An identifier specifying whether the audio stream is being played. In actual development, this parameter corresponds to the module related to the audio playback state.
-let isDucked; // An identifier specifying whether to duck the volume down. In actual development, this parameter corresponds to the module related to the audio volume.
-let started; // An identifier specifying whether the start operation is successful.
+import audio from '@ohos.multimedia.audio'; // Import the audio module.
+import { BusinessError } from '@ohos.base'; // Import BusinessError.
 
-async function onAudioInterrupt(){
+let isPlay: boolean; // An identifier specifying whether the audio stream is being played. In actual development, this parameter corresponds to the module related to the audio playback state.
+let isDucked: boolean; // An identifier specifying whether to duck the volume down. In actual development, this parameter corresponds to the module related to the audio volume.
+let started: boolean; // An identifier specifying whether the start operation is successful.
+
+async function onAudioInterrupt(): Promise<void> {
   // The AudioRenderer is used as an example to describe how to develop audio playback. The audioRenderer variable is the AudioRenderer instance created for playback.
-  audioRenderer.on('audioInterrupt', async(interruptEvent) => {
+  audioRenderer.on('audioInterrupt', async(interruptEvent: audio.InterruptEvent) => {
     // When an audio interruption event occurs, the audioRenderer receives the interruptEvent callback and performs processing based on the content in the callback.
     // The audioRenderer reads the value of interruptEvent.forceType to see whether the system has forcibly performed the operation.
     // The audioRenderer then reads the value of interruptEvent.hintType and performs corresponding processing.
@@ -98,9 +101,9 @@ async function onAudioInterrupt(){
           // The paused audio stream can be played. It is recommended that the application continue to play the audio stream and switch to the audio playing state.
           // If the application does not want to continue the playback, it can ignore the event.
           // To continue the playback, the application needs to call start(), and use the identifier variable started to record the execution result of start().
-          await audioRenderer.start().then(async function () {
+          await audioRenderer.start().then(() => {
             started = true; // Calling start() is successful.
-          }).catch((err) => {
+          }).catch((err: BusinessError) => {
             started = false; // Calling start() fails.
           });
           // If calling start() is successful, the application needs to switch to the audio playing state.

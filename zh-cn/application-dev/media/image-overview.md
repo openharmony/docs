@@ -36,3 +36,13 @@
 5. [图片编码](image-encoding.md)：使用图片打包器类ImagePacker，将PixelMap或ImageSource进行压缩编码，生成一张新的图片。
 
 除上述基本图片开发能力外，OpenHarmony还提供常用[图片工具](image-tool.md)，供开发者选择使用。
+
+## 相关实例
+
+针对图片开发，有以下相关实例可供参考：
+
+- [图片显示及处理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Image)
+
+- [图片显示（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/ImageShow)
+
+- [图片裁剪与分割（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/GamePuzzle)

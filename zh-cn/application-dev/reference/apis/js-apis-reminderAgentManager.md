@@ -1,8 +1,6 @@
 # @ohos.reminderAgentManager (后台代理提醒)
 
-本模块提供后台代理提醒的能力。
-
-开发应用时，开发者可以调用相关接口创建定时提醒，包括倒计时、日历、闹钟这三类提醒类型。使用后台代理提醒能力后，应用被冻结或退出后，计时和弹出提醒的功能将被后台系统服务代理。
+本模块提供后台代理提醒的能力，即当应用被冻结或应用退出时，计时和提醒的功能将被系统服务代理。在开发过程中，开发者可以调用本模块接口创建定时提醒，提醒类型支持倒计时、日历、闹钟三种。
 
 > **说明：**
 >
@@ -15,12 +13,15 @@
 import reminderAgentManager from'@ohos.reminderAgentManager';
 ```
 
-
 ## reminderAgentManager.publishReminder
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>): void
 
-发布一个后台代理提醒，使用回调的方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
+发布后台代理提醒。使用callback异步回调。
+
+> **说明：**
+>
+> 该接口需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后调用。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -30,12 +31,12 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的提醒实例。 |
-  | callback | AsyncCallback\<number> | 是 | 异步回调，返回当前发布的提醒的id。 |
+  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的代理提醒实例。 |
+  | callback | AsyncCallback\<number> | 是 | 回调函数，返回当前发布提醒的id。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -44,30 +45,31 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 **示例**：
 ```ts
-let timer = {
-    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
-    triggerTimeInSeconds: 10
+import { BusinessError } from '@ohos.base';
+
+let timer: reminderAgentManager.ReminderRequestTimer = {
+  reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
+  triggerTimeInSeconds: 10
 }
 
-try {
-    reminderAgentManager.publishReminder(timer, (err, reminderId) => {
-        if (err) {
-            console.log("callback err code:" + err.code + " message:" + err.message);
-        } else {
-            console.log("callback, reminderId = " + reminderId);
-        }
-    });
-} catch (error) {
-    console.log("publishReminder code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.publishReminder(timer, (err: BusinessError, reminderId: number) => {
+  if (err) {
+    console.log("callback err code:" + err.code + " message:" + err.message);
+  } else {
+    console.log("callback, reminderId = " + reminderId);
+  }
+});
 ```
-
 
 ## reminderAgentManager.publishReminder
 
 publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
-发布一个后台代理提醒，使用`Promise`的方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
+发布后台代理提醒。使用promise异步回调。
+
+> **说明：**
+>
+> 该接口需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后调用。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -76,16 +78,16 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的提醒实例。 |
+  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的代理提醒实例。 |
 
 **返回值**：
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise\<number> | 返回提醒的id。 |
+  | Promise\<number> | Promise对象，返回提醒的id。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -94,20 +96,18 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 **示例**：
 ```ts
-let timer = {
-    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
-    triggerTimeInSeconds: 10
+import { BusinessError } from '@ohos.base';
+
+let timer: reminderAgentManager.ReminderRequestTimer = {
+  reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
+  triggerTimeInSeconds: 10
 }
 
-try {
-    reminderAgentManager.publishReminder(timer).then((reminderId) => {
-        console.log("promise, reminderId = " + reminderId);
-    }).catch(err => {
-        console.log("promise err code:" + err.code + " message:" + err.message);
-    });
-} catch (error) {
-    console.log("publishReminder code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.publishReminder(timer).then((reminderId: number) => {
+  console.log("promise, reminderId = " + reminderId);
+}).catch((err: BusinessError) => {
+  console.log("promise err code:" + err.code + " message:" + err.message);
+});
 ```
 
 
@@ -115,7 +115,7 @@ try {
 
 cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
-取消指定id的提醒，使用回调的方式实现异步调用。
+取消指定Id的代理提醒。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -123,12 +123,12 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标提醒的id号。 |
-| callback | AsyncCallback\<void> | 是 | 异步回调。 |
+| reminderId | number | 是 | 需要取消的代理提醒的Id。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，取消代理提醒成功，err为undefined，否则返回err信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -138,25 +138,23 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
-try {
-    reminderAgentManager.cancelReminder(1, (err, data) => {
-        if (err) {
-            console.log("callback err code:" + err.code + " message:" + err.message);
-        } else {
-            console.log("cancelReminder callback");
-        }
-    });
-} catch (error) {
-    console.log("cancelReminder code:" + error.code + " message:" + error.message);
-};
-```
+import { BusinessError } from '@ohos.base';
 
+let reminderId: number = 1;
+reminderAgentManager.cancelReminder(reminderId, (err: BusinessError, data: void) => {
+  if (err) {
+    console.log("callback err code:" + err.code + " message:" + err.message);
+  } else {
+    console.log("cancelReminder callback");
+  }
+});
+```
 
 ## reminderAgentManager.cancelReminder
 
 cancelReminder(reminderId: number): Promise\<void>
 
-取消指定id的提醒，使用Promise方式实现异步调用。
+取消指定Id的代理提醒。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -164,17 +162,17 @@ cancelReminder(reminderId: number): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标提醒的id号。 |
+| reminderId | number | 是 | 需要取消的代理提醒的Id。 |
 
 **返回值**：
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void>	 | Promise类型异步回调。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -184,23 +182,21 @@ cancelReminder(reminderId: number): Promise\<void>
 **示例**：
 
 ```ts
-try {
-    reminderAgentManager.cancelReminder(1).then(() => {
-        console.log("cancelReminder promise");
-    }).catch(err => {
-        console.log("promise err code:" + err.code + " message:" + err.message);
-    });
-} catch (error) {
-    console.log("cancelReminder code:" + error.code + " message:" + error.message);
-};
+import { BusinessError } from '@ohos.base';
+
+let reminderId: number = 1;
+reminderAgentManager.cancelReminder(reminderId).then(() => {
+  console.log("cancelReminder promise");
+}).catch((err: BusinessError) => {
+  console.log("promise err code:" + err.code + " message:" + err.message);
+});
 ```
 
 ## reminderAgentManager.getValidReminders
 
 getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
-
-获取当前应用已设置的所有有效（未过期）的提醒，使用回调方式实现异步调用。
+获取当前应用设置的所有有效（未过期）的代理提醒。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -208,11 +204,11 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | 是 | 异步回调，返回当前应用已设置的所有有效（未过期）的提醒。 |
+| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | 是 | 回调函数，返回当前应用设置的所有有效的代理提醒。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -221,45 +217,43 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 **示例**：
 
 ```ts
-try {
-    reminderAgentManager.getValidReminders((err, reminders) => {
-        if (err) {
-            console.log("callback err code:" + err.code + " message:" + err.message);
-        } else {
-            console.log("callback, getValidReminders length = " + reminders.length);
-            for (let i = 0; i < reminders.length; i++) {
-                console.log("getValidReminders = " + reminders[i]);
-                console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-                for (let j = 0; j < reminders[i].actionButton.length; j++) {
-                    console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-                    console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
-                }
-                console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-                console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-                console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-                console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
-                console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-                console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-                console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-                console.log("getValidReminders, title = " + reminders[i].title);
-                console.log("getValidReminders, content = " + reminders[i].content);
-                console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-                console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-                console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
-                console.log("getValidReminders, slotType = " + reminders[i].slotType);
-            }
-        }
-    })
-} catch (error) {
-    console.log("getValidReminders code:" + error.code + " message:" + error.message);
-};
+import { BusinessError } from '@ohos.base';
+
+reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<reminderAgentManager.ReminderRequest>) => {
+  if (err) {
+    console.log("callback err code:" + err.code + " message:" + err.message);
+  } else {
+    console.log("callback, getValidReminders length = " + reminders.length);
+    for (let i = 0; i < reminders.length; i++) {
+      console.log("getValidReminders = " + reminders[i]);
+      console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
+      for (let j = 0; j < reminders[i].actionButton!.length; j++) {
+        console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton![j]!.title);
+        console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton![j]!.type);
+      }
+      console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent!.pkgName);
+      console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent!.abilityName);
+      console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent!.pkgName);
+      console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent!.abilityName);
+      console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+      console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+      console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+      console.log("getValidReminders, title = " + reminders[i].title);
+      console.log("getValidReminders, content = " + reminders[i].content);
+      console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+      console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+      console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
+      console.log("getValidReminders, slotType = " + reminders[i].slotType);
+    }
+  }
+});
 ```
 
 ## reminderAgentManager.getValidReminders
 
 getValidReminders(): Promise\<Array\<ReminderRequest>>
 
-获取当前应用已设置的所有有效（未过期）的提醒，使用Promise方式实现异步调用。
+获取当前应用设置的所有有效（未过期）的代理提醒。使用promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -267,11 +261,11 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | 返回当前应用已设置的所有有效（未过期）的提醒。 |
+| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | Promise对象，返回当前应用设置的所有有效的代理提醒。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -280,44 +274,41 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 **示例**：
 
 ```ts
-try {
-    reminderAgentManager.getValidReminders().then((reminders) => {
-        console.log("promise, getValidReminders length = " + reminders.length);
-        for (let i = 0; i < reminders.length; i++) {
-            console.log("getValidReminders = " + reminders[i]);
-            console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-            for (let j = 0; j < reminders[i].actionButton.length; j++) {
-                console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-                console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
-            }
-            console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-            console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-            console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-            console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
-            console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-            console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-            console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-            console.log("getValidReminders, title = " + reminders[i].title);
-            console.log("getValidReminders, content = " + reminders[i].content);
-            console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-            console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-            console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
-            console.log("getValidReminders, slotType = " + reminders[i].slotType);
-        }
-    }).catch(err => {
-        console.log("promise err code:" + err.code + " message:" + err.message);
-    });
-} catch (error) {
-    console.log("getValidReminders code:" + error.code + " message:" + error.message);
-};
-```
+import { BusinessError } from '@ohos.base';
 
+reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentManager.ReminderRequest>) => {
+  console.log("promise, getValidReminders length = " + reminders.length);
+  for (let i = 0; i < reminders.length; i++) {
+    console.log("getValidReminders = " + reminders[i]);
+    console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
+    for (let j = 0; j < reminders[i].actionButton!.length; j++) {
+      console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton![j]!.title);
+      console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton![j]!.type);
+    }
+    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent!.pkgName);
+    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent!.abilityName);
+    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent!.pkgName);
+    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent!.abilityName);
+    console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+    console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+    console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+    console.log("getValidReminders, title = " + reminders[i].title);
+    console.log("getValidReminders, content = " + reminders[i].content);
+    console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+    console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+    console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
+    console.log("getValidReminders, slotType = " + reminders[i].slotType);
+  }
+}).catch((err: BusinessError) => {
+  console.log("promise err code:" + err.code + " message:" + err.message);
+});
+```
 
 ## reminderAgentManager.cancelAllReminders
 
 cancelAllReminders(callback: AsyncCallback\<void>): void
 
-取消当前应用所有的提醒，使用回调的方式实现异步调用。
+取消当前应用设置的所有代理提醒。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -325,11 +316,11 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<void> | 是 | 异步回调。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，取消代理提醒成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -338,25 +329,22 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
-try {
-    reminderAgentManager.cancelAllReminders((err, data) =>{
-        if (err) {
-            console.log("callback err code:" + err.code + " message:" + err.message);
-        } else {
-            console.log("cancelAllReminders callback")
-        }
-    })
-} catch (error) {
-    console.log("cancelAllReminders code:" + error.code + " message:" + error.message);
-};
-```
+import { BusinessError } from '@ohos.base';
 
+reminderAgentManager.cancelAllReminders((err: BusinessError, data: void) =>{
+  if (err) {
+    console.log("callback err code:" + err.code + " message:" + err.message);
+  } else {
+    console.log("cancelAllReminders callback")
+  }
+});
+```
 
 ## reminderAgentManager.cancelAllReminders
 
 cancelAllReminders(): Promise\<void>
 
-取消当前应用所有的提醒，使用Promise方式实现异步调用。
+取消当前应用设置的所有代理提醒。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -364,11 +352,11 @@ cancelAllReminders(): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | Promise类型异步回调。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -377,15 +365,13 @@ cancelAllReminders(): Promise\<void>
 **示例**：
 
 ```ts
-try {
-    reminderAgentManager.cancelAllReminders().then(() => {
-        console.log("cancelAllReminders promise")
-    }).catch(err => {
-        console.log("promise err code:" + err.code + " message:" + err.message);
-    });
-} catch (error) {
-    console.log("cancelAllReminders code:" + error.code + " message:" + error.message);
-};
+import { BusinessError } from '@ohos.base';
+
+reminderAgentManager.cancelAllReminders().then(() => {
+  console.log("cancelAllReminders promise")
+}).catch((err: BusinessError) => {
+  console.log("promise err code:" + err.code + " message:" + err.message);
+});
 ```
 
 
@@ -393,7 +379,7 @@ try {
 
 addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): void
 
-添加一个NotificationSlot，使用回调的方式实现异步调用。
+添加NotificationSlot（通知槽）。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -402,27 +388,25 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): voi
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification\.slot实例，仅支持设置其type属性。 |
-| callback | AsyncCallback\<void> | 是 | 异步回调。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，添加NotificationSlot成功时，err为undefined，否则err为错误对象。 |
 
 **示例**：
 
 ```ts
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
+import { BusinessError } from '@ohos.base';
 
-let mySlot = {
-    type: notification.SlotType.SOCIAL_COMMUNICATION
+let mySlot: notification.NotificationSlot = {
+  type: notification.SlotType.SOCIAL_COMMUNICATION
 }
-try {
-    reminderAgentManager.addNotificationSlot(mySlot, (err, data) => {
-        if (err) {
-            console.log("callback err code:" + err.code + " message:" + err.message);
-        } else {
-            console.log("addNotificationSlot callback");
-        }
-    });
-} catch (error) {
-    console.log("addNotificationSlot code:" + error.code + " message:" + error.message);
-};
+
+reminderAgentManager.addNotificationSlot(mySlot, (err: BusinessError, data: void) => {
+  if (err) {
+    console.log("callback err code:" + err.code + " message:" + err.message);
+  } else {
+    console.log("addNotificationSlot callback");
+  }
+});
 ```
 
 
@@ -430,7 +414,7 @@ try {
 
 addNotificationSlot(slot: NotificationSlot): Promise\<void>
 
-添加一个NotificationSlot，使用Promise方式实现异步调用。
+添加NotificationSlot（通知槽）。使用promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -444,25 +428,22 @@ addNotificationSlot(slot: NotificationSlot): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | Promise类型异步回调。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **示例**：
 
 ```ts
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
+import { BusinessError } from '@ohos.base';
 
-let mySlot = {
-    type: notification.SlotType.SOCIAL_COMMUNICATION
+let mySlot: notification.NotificationSlot = {
+  type: notification.SlotType.SOCIAL_COMMUNICATION
 }
-try {
-    reminderAgentManager.addNotificationSlot(mySlot).then(() => {
-        console.log("addNotificationSlot promise");
-    }).catch(err => {
-        console.log("promise err code:" + err.code + " message:" + err.message);
-    });
-} catch (error) {
-    console.log("addNotificationSlot code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.addNotificationSlot(mySlot).then(() => {
+  console.log("addNotificationSlot promise");
+}).catch((err: BusinessError) => {
+  console.log("promise err code:" + err.code + " message:" + err.message);
+});
 ```
 
 
@@ -470,7 +451,7 @@ try {
 
 removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\<void>): void
 
-删除目标NotificationSlot，使用回调的方式实现异步调用。
+删除目标NotificationSlot（通知槽），使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -479,24 +460,22 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | slotType | [notification.SlotType](js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
-| callback | AsyncCallback\<void> | 是 | 异步回调。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，当删除成功时，err为undefined，否则为错误对象。 |
 
 **示例**：
 
 ```ts
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
+import { BusinessError } from '@ohos.base';
 
-try {
-    reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
-        if (err) {
-            console.log("callback err code:" + err.code + " message:" + err.message);
-        } else {
-            console.log("removeNotificationSlot callback");
-        }
-    });
-} catch (error) {
-    console.log("removeNotificationSlot code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION,
+  (err: BusinessError, data: void) => {
+  if (err) {
+    console.log("callback err code:" + err.code + " message:" + err.message);
+  } else {
+    console.log("removeNotificationSlot callback");
+  }
+});
 ```
 
 
@@ -504,7 +483,7 @@ try {
 
 removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
-删除目标NotificationSlot，使用Promise方式实现异步调用。
+删除目标NotificationSlot（通知槽）。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -518,22 +497,19 @@ removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | Promise类型异步回调。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **示例**：
 
 ```ts
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
+import { BusinessError } from '@ohos.base';
 
-try {
-    reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
-        console.log("removeNotificationSlot promise");
-    }).catch(err => {
-        console.log("promise err code:" + err.code + " message:" + err.message);
-    });
-} catch (error) {
-    console.log("removeNotificationSlot code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
+  console.log("removeNotificationSlot promise");
+}).catch((err: BusinessError) => {
+  console.log("promise err code:" + err.code + " message:" + err.message);
+});
 ```
 
 ## ActionButtonType
@@ -564,8 +540,7 @@ try {
 
 ## ActionButton
 
-用于设置弹出的提醒通知信息上显示的按钮类型和标题。
-
+弹出的提醒通知中按钮的类型和标题。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -585,14 +560,14 @@ try {
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pkgName | string | 是 | 指明跳转的目标包名。 |
-| abilityName | string | 是 | 指明跳转的目标ability名称。 |
+| pkgName | string | 是 | 指明跳转目标的包名。 |
+| abilityName | string | 是 | 指明跳转目标的ability名称。 |
 | uri<sup>10+</sup> | string | 否 | 指明跳转目标的uri信息。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 
 
 ## MaxScreenWantAgent
 
-全屏显示提醒到达时自动拉起的目标ability信息，该接口预留。
+提醒到达时，全屏显示自动拉起目标的ability信息。该接口为预留接口，暂不支持使用。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -604,16 +579,16 @@ try {
 
 ## ReminderRequest
 
-提醒实例对象，用于设置提醒类型、响铃时长等具体信息。
+代理提醒对象，用于设置提醒类型、响铃时长等具体信息。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderType | [ReminderType](#remindertype) | 是 | 指明提醒类型。 |
+| reminderType | [ReminderType](#remindertype) | 是 | 指明代理提醒类型。 |
 | actionButton<sup></sup> | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
-| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知框。 <br> 说明：该接口为预留接口，暂不支持使用。|
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
 | snoozeTimes | number | 否 | 指明延迟提醒次数，默认0次。 |
 | timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），最少5分钟。 |
@@ -623,8 +598,8 @@ try {
 | snoozeContent | string | 否 | 指明延迟提醒时需要显示的内容。 |
 | notificationId | number | 否 | 指明提醒使用的通知的id号，相同id号的提醒会覆盖。 |
 | slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。 |
-| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，同[NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
-| autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，同[NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
+| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，具体请参考[NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest)。  |
+| autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，具体请参考[NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
 
 
 ## ReminderRequestCalendar
