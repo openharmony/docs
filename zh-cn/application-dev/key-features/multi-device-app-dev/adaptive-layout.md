@@ -219,7 +219,7 @@ struct EquipartitionCapabilitySample {
       Column() {
         // 均匀分配父容器主轴方向的剩余空间
         Row() {
-          ForEach(this.list, (item) => {
+          ForEach(this.list, (item:number) => {
             Column() {
               Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
               Text('App name')
@@ -341,7 +341,7 @@ struct ProportionCapabilitySample {
     Column() {
       Column() {
         Row() {
-          Row() {
+          Column() {
             Image($r("app.media.down"))
               .width(48)
               .height(48)
@@ -351,7 +351,7 @@ struct ProportionCapabilitySample {
           .justifyContent(FlexAlign.Center)
           .alignItems(HorizontalAlign.Center)
 
-          Row() {
+          Column() {
             Image($r("app.media.pause"))
               .width(48)
               .height(48)
@@ -362,7 +362,7 @@ struct ProportionCapabilitySample {
           .justifyContent(FlexAlign.Center)
           .alignItems(HorizontalAlign.Center)
 
-          Row() {
+          Column() {
             Image($r("app.media.next"))
               .width(48)
               .height(48)
@@ -533,7 +533,7 @@ struct ExtensionCapabilitySample1 {
       Row({ space: 10 }) {
         // 通过List组件实现隐藏能力
         List({ space: 10 }) {
-          ForEach(this.appList, (item) => {
+          ForEach(this.appList, (item:number) => {
             ListItem() {
               Column() {
                 Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
