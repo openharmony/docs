@@ -59,7 +59,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 | hh:mm（时:分） | 5:00 |
 | mm:ss（分:秒） | 00:04 |
 | mm:ss.SS（分:秒:厘秒） | 00:04.91 |
-| mm:ss.SS（分:秒.毫秒） | 00:04.536 |
+| mm:ss.SSS（分:秒.毫秒） | 00:04.536 |
 | hh:mm:ss aa | 5:00:04 上午 |
 | HH | 17 |
 
