@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import usb from "@ohos.usbManager";
 ```
 
@@ -28,11 +28,11 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 **示例：**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 console.log(`devicesList = ${devicesList}`);
-//devicesList  返回的数据结构
-//此处提供一个简单的示例，如下
+/*
+devicesList 返回的数据结构,此处提供一个简单的示例，如下
 [
   {
     name: "1-1",
@@ -81,6 +81,7 @@ console.log(`devicesList = ${devicesList}`);
     ],
   },
 ]
+*/
 ```
 
 ## usb.connectDevice
@@ -115,15 +116,15 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 **示例：**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device = devicesList[0];
+let device: USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe = usb.connectDevice(device);
+let devicepipe: USBDevicePipe = usb.connectDevice(device);
 console.log(`devicepipe = ${devicepipe}`);
 ```
 
@@ -151,10 +152,10 @@ hasRight(deviceName: string): boolean
 
 **示例：**
 
-```js
-let devicesName = "1-1";
-let bool = usb.hasRight(devicesName);
-console.log(`${bool}`);
+```ts
+let devicesName: string = "1-1";
+let right: boolean = usb.hasRight(devicesName);
+console.log(`${right}`);
 ```
 
 ## usb.requestRight
@@ -179,9 +180,9 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
-let devicesName = "1-1";
-usb.requestRight(devicesName).then((ret) => {
+```ts
+let devicesName: string = "1-1";
+usb.requestRight(devicesName:).then((ret: number) => {
   console.log(`requestRight = ${ret}`);
 });
 ```
@@ -208,8 +209,8 @@ removeRight(deviceName: string): boolean
 
 **示例：**
 
-```js
-let devicesName = "1-1";
+```ts
+let devicesName: string = "1-1";
 if (usb.removeRight(devicesName)) {
   console.log(`Succeed in removing right`);
 }
@@ -242,9 +243,9 @@ addRight(bundleName: string, deviceName: string): boolean
 
 **示例：**
 
-```js
-let devicesName = "1-1";
-let bundleName = "com.example.hello";
+```ts
+let devicesName: string = "1-1";
+let bundleName: string = "com.example.hello";
 if (usb.addRight(bundleName, devicesName)) {
   console.log(`Succeed in adding right`);
 }
@@ -276,17 +277,17 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 **示例：**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device = devicesList[0];
+let device: USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe = usb.connectDevice(device);
-let interfaces = device.configs[0].interfaces[0];
-let ret = usb.claimInterface(devicepipe, interfaces);
+let devicepipe: USBDevicePipe = usb.connectDevice(device);
+let interfaces: USBInterface = device.configs[0].interfaces[0];
+let ret: number= usb.claimInterface(devicepipe, interfaces);
 console.log(`claimInterface = ${ret}`);
 ```
 
@@ -315,17 +316,17 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 **示例：**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device = devicesList[0];
+let device: USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe = usb.connectDevice(device);
-let interfaces = device.configs[0].interfaces[0];
-let ret = usb.claimInterface(devicepipe, interfaces);
+let devicepipe: USBDevicePipe = usb.connectDevice(device);
+let interfaces: USBInterface = device.configs[0].interfaces[0];
+let ret: number = usb.claimInterface(devicepipe, interfaces);
 ret = usb.releaseInterface(devicepipe, interfaces);
 console.log(`releaseInterface = ${ret}`);
 ```
@@ -355,17 +356,17 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 **示例：**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device = devicesList[0];
+let device: USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe = usb.connectDevice(device);
-let config = device.configs[0];
-let ret = usb.setConfiguration(devicepipe, config);
+let devicepipe: USBDevicePipe = usb.connectDevice(device);
+let config: USBConfiguration = device.configs[0];
+let ret: number= usb.setConfiguration(devicepipe, config);
 console.log(`setConfiguration = ${ret}`);
 ```
 
@@ -394,17 +395,17 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 **示例：**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device = devicesList[0];
+let device: USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe = usb.connectDevice(device);
-let interfaces = device.configs[0].interfaces[0];
-let ret = usb.claimInterface(devicepipe, interfaces);
+let devicepipe: USBDevicePipe = usb.connectDevice(device);
+let interfaces: USBInterface = device.configs[0].interfaces[0];
+let ret: number = usb.claimInterface(devicepipe, interfaces);
 ret = usb.setInterface(devicepipe, interfaces);
 console.log(`setInterface = ${ret}`);
 ```
@@ -433,15 +434,15 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 **示例：**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
 usb.requestRight(devicesList[0].name);
-let devicepipe = usb.connectDevice(devicesList[0]);
-let ret = usb.getRawDescriptor(devicepipe);
+let devicepipe: USBDevicePipe = usb.connectDevice(devicesList[0]);
+let ret: number = usb.getRawDescriptor(devicepipe);
 ```
 
 ## usb.getFileDescriptor
@@ -468,15 +469,15 @@ getFileDescriptor(pipe: USBDevicePipe): number
 
 **示例：**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
 usb.requestRight(devicesList[0].name);
-let devicepipe = usb.connectDevice(devicesList[0]);
-let ret = usb.getFileDescriptor(devicepipe);
+let devicepipe: USBDevicePipe = usb.connectDevice(devicesList[0]);
+let ret: number = usb.getFileDescriptor(devicepipe);
 ```
 
 ## usb.controlTransfer
@@ -505,26 +506,35 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 
 **示例：**
 
-```js
-let param = {
+```ts
+class PARA {
+  request: number = 0
+  reqType: USBControlRequestType = 0
+  target: USBRequestTargetType = 0
+  value: number = 0
+  index: number = 0
+  data: Uint8Array = 0
+}
+
+let param: PARA = {
   request: 0,
   reqType: 0,
   target:0,
   value: 0,
   index: 0,
-  data: null
+  data: 0
 };
 
-let devicesList = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
 usb.requestRight(devicesList[0].name);
-let devicepipe = usb.connectDevice(devicesList[0]);
-usb.controlTransfer(devicepipe, param).then((ret) => {
+let devicepipe: USBDevicePipe = usb.connectDevice(devicesList[0]);
+usb.controlTransfer(devicepipe, param).then((ret: number) => {
  console.log(`controlTransfer = ${ret}`);
-});
+})
 ```
 
 ## usb.bulkTransfer
@@ -543,7 +553,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
 | endpoint | [USBEndpoint](#usbendpoint) | 是 | 用于确定传输的端口。 |
-| buffer | Uint8Array | 是 | 用于写入或读取的缓冲区。 |
+| buffer | Uint8Array | 是 | 用于写入或读取数据的缓冲区。 |
 | timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。|
 
 **返回值：**
@@ -554,24 +564,24 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 **示例：**
 
-```js
+```ts
 //usb.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
 //把获取到的设备对象作为参数传入usb.connectDevice;当usb.connectDevice接口成功返回之后；
 //才可以调用第三个接口usb.claimInterface.当usb.claimInterface 调用成功以后,再调用该接口。
-let devicesList = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device = devicesList[0];
+let device: USBDevice = devicesList[0];
 usb.requestRight(device.name);
 
-let devicepipe = usb.connectDevice(device);
-let interfaces = device.configs[0].interfaces[0];
-let endpoint = device.configs[0].interfaces[0].endpoints[0];
-let ret = usb.claimInterface(devicepipe, interfaces);
+let devicepipe: USBDevicePipe = usb.connectDevice(device);
+let interfaces: USBInterface = device.configs[0].interfaces[0];
+let endpoint: USBEndpoint = device.configs[0].interfaces[0].endpoints[0];
+let ret: number = usb.claimInterface(devicepipe, interfaces);
 let buffer =  new Uint8Array(128);
-usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret) => {
+usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret: number) => {
   console.log(`bulkTransfer = ${ret}`);
 });
 ```
@@ -600,15 +610,15 @@ closePipe(pipe: USBDevicePipe): number
 
 **示例：**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
 usb.requestRight(devicesList[0].name);
-let devicepipe = usb.connectDevice(devicesList[0]);
-let ret = usb.closePipe(devicepipe);
+let devicepipe: USBDevicePipe = usb.connectDevice(devicesList[0]);
+let ret: number = usb.closePipe(devicepipe);
 console.log(`closePipe = ${ret}`);
 ```
 
@@ -636,9 +646,9 @@ usbFunctionsFromString(funcs: string): number
 
 **示例：**
 
-```js
-let funcs = "acm";
-let ret = usb.usbFunctionsFromString(funcs);
+```ts
+let funcs: string = "acm";
+let ret: number = usb.usbFunctionsFromString(funcs);
 ```
 
 ## usb.usbFunctionsToString
@@ -665,9 +675,9 @@ usbFunctionsToString(funcs: FunctionType): string
 
 **示例：**
 
-```js
-let funcs = usb.FunctionType.ACM | usb.FunctionType.ECM;
-let ret = usb.usbFunctionsToString(funcs);
+```ts
+let funcs: string = usb.FunctionType.ACM | usb.FunctionType.ECM;
+let ret: number = usb.usbFunctionsToString(funcs);
 ```
 
 ## usb.setCurrentFunctions
@@ -686,6 +696,14 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 | ------ | ------------------------------ | ---- | ----------------- |
 | funcs  | [FunctionType](#functiontype) | 是   | USB功能数字掩码。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[USB错误码](../errorcodes/errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                           |
+| -------- | ---------------------------------------------------- |
+| 14400002 | Permission denied.The HDC is disabled by the system. |
+
 **返回值：**
 
 | 类型            | 说明          |
@@ -694,11 +712,12 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 **示例：**
 
-```js
-let funcs = usb.FunctionType.HDC;
+```ts
+import {BusinessError} from '@ohos.base';
+let funcs: string = usb.FunctionType.HDC;
 usb.setCurrentFunctions(funcs).then(() => {
     console.info('usb setCurrentFunctions successfully.');
-}).catch(err => {
+}).catch(err: BusinessError => {
     console.error('usb setCurrentFunctions failed: ' + err.code + ' message: ' + err.message);
 });
 ```
@@ -721,8 +740,8 @@ getCurrentFunctions(): FunctionType
 
 **示例：**
 
-```js
-let ret = usb.getCurrentFunctions();
+```ts
+let ret: number = usb.getCurrentFunctions();
 ```
 
 ## usb.getPorts
@@ -743,8 +762,8 @@ getPorts(): Array\<USBPort\>
 
 **示例：**
 
-```js
-let ret = usb.getPorts();
+```ts
+let ret: number = usb.getPorts();
 ```
 
 ## usb.getSupportedModes
@@ -771,8 +790,8 @@ getSupportedModes(portId: number): PortModeType
 
 **示例：**
 
-```js
-let ret = usb.getSupportedModes(0);
+```ts
+let ret: number = usb.getSupportedModes(0);
 ```
 
 ## usb.setPortRoles
@@ -801,11 +820,12 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 
 **示例：**
 
-```js
-let portId = 1;
+```ts
+import {BusinessError} from '@ohos.base';
+let portId: number = 1;
 usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
     console.info('usb setPortRoles successfully.');
-}).catch(err => {
+}).catch(err: BusinessError => {
     console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);
 });
 ```
