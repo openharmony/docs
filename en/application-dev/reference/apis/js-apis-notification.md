@@ -3157,7 +3157,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 | Name  | Type  | Mandatory| Description  |
 | ------ | ------ | --- |  ------ |
 | bundle | string | Yes | Bundle information of the application.|
-| uid    | number | No | User ID. The default value is 0.|
+| uid    | number | No | User ID. The default value is **0**.|
 
 ## NotificationKey<sup>deprecated</sup>
 
