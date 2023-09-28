@@ -51,8 +51,8 @@ OpenHarmony传感器包含如下四个模块：Sensor API、Sensor Framework、S
 
     | 传感器                                             | 权限名                           | 敏感级别     | 权限描述                                                     |
     | -------------------------------------------------- | -------------------------------- | ------------ | ------------------------------------------------------------ |
-    | 加速度传感器，加速度未校准传感器，线性加速度传感器 | ohos.permission.ACCELEROMETER    | system_grant | 允许应用读取加速度传感器的数据，包括：加速度传感器、加速度未校准传感器，线性加速度传感器。 |
-    | 陀螺仪传感器，陀螺仪未校准传感器                   | ohos.permission.GYROSCOPE        | system_grant | 允许应用读取陀螺仪传感器的数据，包括：陀螺仪传感器，陀螺仪未校准传感器。 |
+    | 加速度传感器，加速度未校准传感器，线性加速度传感器 | ohos.permission.ACCELEROMETER    | system_grant | 允许应用读取加速度传感器的数据，包括：加速度传感器、加速度未校准传感器、线性加速度传感器。 |
+    | 陀螺仪传感器，陀螺仪未校准传感器                   | ohos.permission.GYROSCOPE        | system_grant | 允许应用读取陀螺仪传感器的数据，包括：陀螺仪传感器、陀螺仪未校准传感器。 |
     | 计步器                                             | ohos.permission.ACTIVITY_MOTION  | user_grant   | 该权限允许应用读取用户当前的运动状态。例如：判断用户是否处于运动中、记录用户行走步数。 |
     | 心率计                                             | ohos.permission.READ_HEALTH_DATA | user_grant   | 该权限允许应用读取用户的健康数据，如：心率数据等。           |
     
