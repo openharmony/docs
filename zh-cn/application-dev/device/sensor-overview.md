@@ -49,11 +49,11 @@ OpenHarmony传感器包含如下四个模块：Sensor API、Sensor Framework、S
 
 1. 针对下面所列传感器，开发者需要请求相应的权限，才能获取到相应传感器的数据。
 
-    | 传感器                       | 权限名                              | 敏感级别         | 权限描述                    |
-    | ------------------------- | -------------------------------- | ------------ | ----------------------- |
-    | 加速度传感器，加速度未校准传感器，线性加速度传感器 | ohos.permission.ACCELEROMETER    | system_grant | 允许订阅Motion组对应的加速度传感器的数据 |
-    | 陀螺仪传感器，陀螺仪未校准传感器          | ohos.permission.GYROSCOPE        | system_grant | 允许订阅Motion组对应的陀螺仪传感器的数据 |
-    | 计步器                       | ohos.permission.ACTIVITY_MOTION  | user_grant   | 允许订阅运动状态                |
-    | 心率计                       | ohos.permission.READ_HEALTH_DATA | user_grant   | 允许读取健康数据                |
+    | 传感器                                             | 权限名                           | 敏感级别     | 权限描述                               |
+    | -------------------------------------------------- | -------------------------------- | ------------ | -------------------------------------- |
+    | 加速度传感器，加速度未校准传感器，线性加速度传感器 | ohos.permission.ACCELEROMETER    | system_grant | 允许订阅sensor对应的加速度传感器的数据 |
+    | 陀螺仪传感器，陀螺仪未校准传感器                   | ohos.permission.GYROSCOPE        | system_grant | 允许订阅sensor对应的陀螺仪传感器的数据 |
+    | 计步器                                             | ohos.permission.ACTIVITY_MOTION  | user_grant   | 允许订阅sensor对应的计步器传感器的数据 |
+    | 心率计                                             | ohos.permission.READ_HEALTH_DATA | user_grant   | 允许订阅sensor对应的心率传感器的数据   |
     
 2. 传感器数据订阅和取消订阅接口成对调用，当不再需要订阅传感器数据时，开发者需要调用取消订阅接口停止数据上报。
