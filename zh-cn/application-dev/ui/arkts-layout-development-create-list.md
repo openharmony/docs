@@ -146,6 +146,7 @@ List() {
 ![zh-cn_image_0000001563060761](figures/zh-cn_image_0000001563060761.png)
 
 ```ts
+@Entry
 @Component
 struct CityList {
   build() {
@@ -352,6 +353,7 @@ List() {
 
 
 ```ts
+@Entry
 @Component
 struct ContactsList {
   

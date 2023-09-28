@@ -177,6 +177,7 @@ Grid() {
 
 
 ```ts
+@Entry
 @Component
 struct OfficeService {
   @State services: Array<string> = ['会议', '投票', '签到', '打印']
@@ -232,6 +233,7 @@ Grid() {
 
 
 ```ts
+@Entry
 @Component
 struct Shopping {
   @State services: Array<string> = ['直播', '进口']

@@ -384,8 +384,8 @@ struct MyComponent {
 
 ```ts
 import router from '@ohos.router';
-const moudel = import('./Index')  // 引入共享包中的命名路由页面
 import { BusinessError } from '@ohos.base';
+const moudel = import('./Index')  // 引入共享包中的命名路由页面
 @Entry
 @Component
 struct Index {
