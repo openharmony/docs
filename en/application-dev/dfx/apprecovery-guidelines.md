@@ -36,6 +36,7 @@ No error will be thrown if the preceding APIs are used in the troubleshooting sc
 **restartApp**: After this API is called, the recovery framework kills the current process and restarts the ability specified by **setRestartWant**, with **APP_RECOVERY** set as the startup cause. In API version 9 and scenarios where an ability is not specified by **setRestartWant**, the last foreground ability that supports recovery is started. If the no foreground ability supports recovery, the application crashes. If a saved state is available for the restarted ability, the saved state is passed as the **wantParam** attribute in the **want** parameter of the ability's **onCreate** callback.
 
 ### Application State Management
+
 Since API version 10, application recovery is not limited to automatic restart in the case of an exception. Therefore, you need to understand when the application will load the saved state.
 If the last exit of an application is not initiated by a user and a saved state is available for recovery, the startup reason is set to **APP_RECOVERY** when the application is started by the user next time, and the recovery state of the application is cleared.
 The application recovery status flag is set when **saveAppState** is actively or passively called. The flag is cleared when the application exits normally or the saved state is consumed. (A normal exit is usually triggered by pressing the back key or clearing recent tasks.)
@@ -43,9 +44,11 @@ The application recovery status flag is set when **saveAppState** is actively or
 ![Application recovery status management](./figures/application_recovery_status_management.png)
 
 ### Application State Saving and Restore
+
 API version 10 or later supports saving of the application state when an application is suspended. If a JsError occurs, **onSaveState** is called in the main thread. If an AppFreeze occurs, however, the main thread may be suspended, and therefore **onSaveState** is called in a non-main thread. The following figure shows the main service flow.
 
 ![Application recovery from the freezing state](./figures/application_recovery_from_freezing.png)
+
 When the application is suspended, the callback is not executed in the JS thread. Therefore, you are advised not to use the imported dynamic Native library or access the **thread_local** object created by the main thread in the code of the **onSaveState** callback.
 
 ### Framework Fault Management
