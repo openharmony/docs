@@ -43,7 +43,7 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 **示例：**
 
-```js
+```ts
 import deviceManager from "@ohos.driver.deviceManager";
 import type Device from '@system.device';
 
@@ -187,7 +187,7 @@ unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
 import deviceManager from "@ohos.driver.deviceManager";
 
 try {
