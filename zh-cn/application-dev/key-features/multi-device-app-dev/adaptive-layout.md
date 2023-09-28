@@ -81,12 +81,10 @@ struct FlexibleCapabilitySample1 {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center,
-      alignItems: ItemAlign.Center }) {
+    Column() {
       Column() {
-        Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center,
-          alignItems: ItemAlign.Center }) {
-          // 通过flexGrow和flexShink属性，将多余的空间全部分配给图片，将不足的控件全部分配给两侧空白区域。
+        Row() {
+          // 通过flexGrow和flexShrink属性，将多余的空间全部分配给图片，将不足的控件全部分配给两侧空白区域。
           Row().width(150).height(400).backgroundColor('#FFFFFF')
             .flexGrow(0).flexShrink(1)
           Image($r("app.media.illustrator")).width(400).height(400)
@@ -95,11 +93,19 @@ struct FlexibleCapabilitySample1 {
             .flexGrow(1).flexShrink(0)
           Row().width(150).height(400).backgroundColor('#FFFFFF')
             .flexGrow(0).flexShrink(1)
-        }.width(this.containerWidth)
+        }
+        .width(this.containerWidth)
+        .justifyContent(FlexAlign.Center)
+        .alignItems(VerticalAlign.Center)
       }
 
       this.slider()
-    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F1F3F5')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
@@ -132,8 +138,7 @@ struct FlexibleCapabilitySample2 {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center,
-      alignItems: ItemAlign.Center }) {
+    Column() {
       Column() {
         Row() {
           Text('飞行模式')
@@ -155,7 +160,12 @@ struct FlexibleCapabilitySample2 {
       }
 
       this.slider()
-    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F1F3F5')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
@@ -205,10 +215,10 @@ struct EquipartitionCapabilitySample {
   }
 
   build() {
-    Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column() {
       Column() {
         // 均匀分配父容器主轴方向的剩余空间
-        Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
+        Row() {
           ForEach(this.list, (item:number) => {
             Column() {
               Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
@@ -223,8 +233,9 @@ struct EquipartitionCapabilitySample {
             }.width(80).height(102)
           })
         }
+        .justifyContent(FlexAlign.SpaceEvenly)
         // 均匀分配父容器主轴方向的剩余空间
-        Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
+        Row() {
           ForEach(this.list, (item:number) => {
             Column() {
               Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
@@ -239,6 +250,7 @@ struct EquipartitionCapabilitySample {
             }.width(80).height(102)
           })
         }
+        .justifyContent(FlexAlign.SpaceEvenly)
       }
       .width(this.rate * 100 + '%')
       .height(222)
@@ -251,6 +263,8 @@ struct EquipartitionCapabilitySample {
     .width('100%')
     .height('100%')
     .backgroundColor('#F1F3F5')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
@@ -316,18 +330,20 @@ struct ProportionCapabilitySample {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Column() {
       Column() {
         Row() {
-          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Row() {
             Image($r("app.media.down"))
               .width(48)
               .height(48)
           }
           .height(96)
           .layoutWeight(1)  // 设置子组件在父容器主轴方向的布局权重
+          .justifyContent(FlexAlign.Center)
+          .alignItems(VerticalAlign.Center)
 
-          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Row() {
             Image($r("app.media.pause"))
               .width(48)
               .height(48)
@@ -335,14 +351,18 @@ struct ProportionCapabilitySample {
           .height(96)
           .layoutWeight(1)  // 设置子组件在父容器主轴方向的布局权重
           .backgroundColor('#66F1CCB8')
+          .justifyContent(FlexAlign.Center)
+          .alignItems(VerticalAlign.Center)
 
-          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Row() {
             Image($r("app.media.next"))
               .width(48)
               .height(48)
           }
           .height(96)
           .layoutWeight(1)  // 设置子组件在父容器主轴方向的布局权重
+          .justifyContent(FlexAlign.Center)
+          .alignItems(VerticalAlign.Center)
         }
         .width(this.rate * 100 + '%')
         .height(96)
@@ -355,6 +375,8 @@ struct ProportionCapabilitySample {
     .width('100%')
     .height('100%')
     .backgroundColor('#F1F3F5')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
@@ -415,8 +437,8 @@ struct ScaleCapabilitySample {
   }
 
   build() {
-    Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Column() {
+      Column() {
         Column() {
           Image($r("app.media.illustrator")).width('100%').height('100%')
         }
@@ -426,11 +448,16 @@ struct ScaleCapabilitySample {
       .backgroundColor("#FFFFFF")
       .height(this.sliderHeight)
       .width(this.sliderWidth)
+      .justifyContent(FlexAlign.Center)
+      .alignItems(HorizontalAlign.Center)
 
       this.slider()
-    }.width('100%')
+    }
+    .width('100%')
     .height('100%')
     .backgroundColor("#F1F3F5")
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
@@ -494,7 +521,7 @@ struct ExtensionCapabilitySample1 {
   }
 
   build() {
-    Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column() {
       Row({ space: 10 }) {
         // 通过List组件实现隐藏能力
         List({ space: 10 }) {
@@ -528,6 +555,8 @@ struct ExtensionCapabilitySample1 {
     .width('100%')
     .height('100%')
     .backgroundColor('#F1F3F5')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
@@ -556,7 +585,7 @@ struct ExtensionCapabilitySample2 {
   }
 
   build() {
-    Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column() {
       // 通过Scroll和Row组件实现隐藏能力
       Scroll(this.scroller) {
         Row({ space: 10 }) {
@@ -589,6 +618,8 @@ struct ExtensionCapabilitySample2 {
     .width('100%')
     .height('100%')
     .backgroundColor('#F1F3F5')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
@@ -632,55 +663,57 @@ struct HiddenCapabilitySample {
   }
 
   build() {
-      Flex({ direction: FlexDirection.Column,
-        justifyContent: FlexAlign.Center,
-        alignItems: ItemAlign.Center }) {
-        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-          Image($r("app.media.favorite"))
-            .width(48)
-            .height(48)
-            .objectFit(ImageFit.Contain)
-            .margin({ left: 12, right: 12 })
-            .displayPriority(1)  // 布局优先级
+    Column() {
+      Row() {
+        Image($r("app.media.favorite"))
+          .width(48)
+          .height(48)
+          .objectFit(ImageFit.Contain)
+          .margin({ left: 12, right: 12 })
+          .displayPriority(1)  // 布局优先级
 
-          Image($r("app.media.down"))
-            .width(48)
-            .height(48)
-            .objectFit(ImageFit.Contain)
-            .margin({ left: 12, right: 12 })
-            .displayPriority(2)  // 布局优先级
+        Image($r("app.media.down"))
+          .width(48)
+          .height(48)
+          .objectFit(ImageFit.Contain)
+          .margin({ left: 12, right: 12 })
+          .displayPriority(2)  // 布局优先级
 
-          Image($r("app.media.pause"))
-            .width(48)
-            .height(48)
-            .objectFit(ImageFit.Contain)
-            .margin({ left: 12, right: 12 })
-            .displayPriority(3)  // 布局优先级
+        Image($r("app.media.pause"))
+          .width(48)
+          .height(48)
+          .objectFit(ImageFit.Contain)
+          .margin({ left: 12, right: 12 })
+          .displayPriority(3)  // 布局优先级
 
-          Image($r("app.media.next"))
-            .width(48)
-            .height(48)
-            .objectFit(ImageFit.Contain)
-            .margin({ left: 12, right: 12 })
-            .displayPriority(2)  // 布局优先级
+        Image($r("app.media.next"))
+          .width(48)
+          .height(48)
+          .objectFit(ImageFit.Contain)
+          .margin({ left: 12, right: 12 })
+          .displayPriority(2)  // 布局优先级
 
-          Image($r("app.media.list"))
-            .width(48)
-            .height(48)
-            .objectFit(ImageFit.Contain)
-            .margin({ left: 12, right: 12 })
-            .displayPriority(1)  // 布局优先级
-        }
-        .width(this.rate * 100 + '%')
-        .height(96)
-        .borderRadius(16)
-        .backgroundColor('#FFFFFF')
-
-        this.slider()
+        Image($r("app.media.list"))
+          .width(48)
+          .height(48)
+          .objectFit(ImageFit.Contain)
+          .margin({ left: 12, right: 12 })
+          .displayPriority(1)  // 布局优先级
       }
-      .width('100%')
-      .height('100%')
-      .backgroundColor('#F1F3F5')
+      .width(this.rate * 100 + '%')
+      .height(96)
+      .borderRadius(16)
+      .backgroundColor('#FFFFFF')
+      .justifyContent(FlexAlign.Center)
+      .alignItems(VerticalAlign.Center)
+
+      this.slider()
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F1F3F5')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
