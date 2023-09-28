@@ -201,7 +201,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 ## workScheduler.obtainAllWorks
 
-obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
+obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 
 获取当前应用所有的延迟任务，使用Callback异步回调。
 
@@ -211,13 +211,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 | 参数名      | 类型                   | 必填   | 说明                              |
 | -------- | -------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback\<void> | 是    | 回调函数，获取成功时，err为undefined，否则为错误对象。 |
-
-**返回值**：
-
-| 类型                            | 说明              |
-| ----------------------------- | --------------- |
-| Array\<[WorkInfo](#workinfo)> | 返回当前应用所有的延迟任务。 |
+| callback |  AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt; | 是    | 回调函数，获取成功时，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -309,7 +303,7 @@ stopAndClearWorks(): void
 
 ## workScheduler.isLastWorkTimeOut
 
-isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
+isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): boolean
 
 检查延迟任务的最后一次执行是否超时，使用Callback异步回调。
 
@@ -320,7 +314,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 | 参数名      | 类型                   | 必填   | 说明                                       |
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | workId   | number               | 是    | 指定延迟任务的Id。                                 |
-| callback | AsyncCallback\<void> | 是    | 回调函数。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数。 |
 
 **返回值**：
 
