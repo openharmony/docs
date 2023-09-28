@@ -47,19 +47,21 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -140,19 +142,21 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -233,16 +237,18 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -320,16 +326,18 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -372,7 +380,6 @@ router.replaceUrl({
   }
   console.info('replaceUrl success');
 });
-
 ```
 
 ## router.back
@@ -490,13 +497,15 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
   ```js    
-try {
-  router.showAlertBeforeBackPage({            
-    message: 'Message Info'        
-  });
-} catch(error) {
-  console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
-}
+router.showAlertBeforeBackPage({
+  message: 'Message Info'
+})
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
+  })
   ```
 ## EnableAlertOptions
 

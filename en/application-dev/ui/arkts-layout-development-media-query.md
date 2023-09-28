@@ -64,7 +64,7 @@ Examples are as follows:
 
 - **(max-height: 800)**: The query is valid when the height is less than or equal to 800.
 
-- **(height &lt;= 800)**: The query is valid when the height is less than or equal to 800.
+- **(height &lt;= 800)**: The query is valid when the height is less than or equal to 800. (The logical operators are recommended when the media features are uncertain.)
 
 - **screen and (device-type: tv) or (resolution < 2)**: The query is valid when the device type is TV or the device resolution is less than 2. This is a multi-condition query that contains multiple media features.
 

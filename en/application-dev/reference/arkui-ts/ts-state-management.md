@@ -188,7 +188,7 @@ let value: number = AppStorage.Get('PropA'); // 47
 
 static Set&lt;T&gt;(propName: string, newValue: T): boolean
 
-Sets the value for the attribute with the specified attribute name in AppStorage.
+Sets the value for the attribute with the specified attribute name in AppStorage. If the value of **newValue** is the same as the value of the attribute with the specified attribute name, that is, no value needs to be assigned, the state variable will not instruct the UI to update the value of attribute.
 
 **Parameters**
 
@@ -215,7 +215,9 @@ let res1: boolean = AppStorage.Set('PropB', 47) // false
 
 static SetOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
-Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and default value.
+Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and the set value.
+
+If the new value is the same as the existing value of the attribute with the specified attribute name, the state variable will not instruct the UI to update the value of the attribute.
 
 **Parameters**
 
@@ -234,9 +236,7 @@ AppStorage.SetOrCreate('simpleProp', 121);
 
 static Delete(propName: string): boolean
 
-Deletes the attribute with the specified attribute name from AppStorage
-
-under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
+Deletes the attribute with the specified attribute name from AppStorage under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
 
 The subscribers of the attribute are attributes with the same name bound to APIs such as **Link** and **Prop**, **\@StorageLink('propName')**, and **\@StorageProp('propName')**. This means that if **\@StorageLink('propName')** and **\@StorageProp('propName')** are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from AppStorage.
 
