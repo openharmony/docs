@@ -230,9 +230,13 @@ struct EquipartitionCapabilitySample {
                 .textAlign(TextAlign.Center)
                 .margin({ top: 8 })
                 .padding({ bottom: 15 })
-            }.width(80).height(102)
+            }
+            .width(80)
+            .height(102)
+            .flexShrink(1)
           })
         }
+        .width('100%')
         .justifyContent(FlexAlign.SpaceEvenly)
         // 均匀分配父容器主轴方向的剩余空间
         Row() {
@@ -247,9 +251,13 @@ struct EquipartitionCapabilitySample {
                 .textAlign(TextAlign.Center)
                 .margin({ top: 8 })
                 .padding({ bottom: 15 })
-            }.width(80).height(102)
+            }
+            .width(80)
+            .height(102)
+            .flexShrink(1)
           })
         }
+        .width('100%')
         .justifyContent(FlexAlign.SpaceEvenly)
       }
       .width(this.rate * 100 + '%')
@@ -333,7 +341,7 @@ struct ProportionCapabilitySample {
     Column() {
       Column() {
         Row() {
-          Row() {
+          Column() {
             Image($r("app.media.down"))
               .width(48)
               .height(48)
@@ -341,9 +349,9 @@ struct ProportionCapabilitySample {
           .height(96)
           .layoutWeight(1)  // 设置子组件在父容器主轴方向的布局权重
           .justifyContent(FlexAlign.Center)
-          .alignItems(VerticalAlign.Center)
+          .alignItems(HorizontalAlign.Center)
 
-          Row() {
+          Column() {
             Image($r("app.media.pause"))
               .width(48)
               .height(48)
@@ -352,9 +360,9 @@ struct ProportionCapabilitySample {
           .layoutWeight(1)  // 设置子组件在父容器主轴方向的布局权重
           .backgroundColor('#66F1CCB8')
           .justifyContent(FlexAlign.Center)
-          .alignItems(VerticalAlign.Center)
+          .alignItems(HorizontalAlign.Center)
 
-          Row() {
+          Column() {
             Image($r("app.media.next"))
               .width(48)
               .height(48)
@@ -362,7 +370,7 @@ struct ProportionCapabilitySample {
           .height(96)
           .layoutWeight(1)  // 设置子组件在父容器主轴方向的布局权重
           .justifyContent(FlexAlign.Center)
-          .alignItems(VerticalAlign.Center)
+          .alignItems(HorizontalAlign.Center)
         }
         .width(this.rate * 100 + '%')
         .height(96)
