@@ -229,8 +229,8 @@ reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<rem
       console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
       const actionButton = reminders[i].actionButton || [];
       for (let j = 0; j < actionButton.length; j++) {
-        console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j]?.title);
-        console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j]?.type);
+        console.log("getValidReminders, actionButton.title = " + actionButton[j]?.title);
+        console.log("getValidReminders, actionButton.type = " + actionButton[j]?.type);
       }
       console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
       console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
@@ -284,8 +284,8 @@ reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentMan
     console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
     const actionButton = reminders[i].actionButton || [];
     for (let j = 0; j < actionButton.length; j++) {
-      console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j]?.title);
-      console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j]?.type);
+      console.log("getValidReminders, actionButton.title = " + actionButton[j]?.title);
+      console.log("getValidReminders, actionButton.type = " + actionButton[j]?.type);
     }
     console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
     console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
