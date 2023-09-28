@@ -2428,14 +2428,14 @@ async function huksAbort() {
 
 **系统能力**：SystemCapability.Security.Huks.Core
 
-| 名称                  | 值      | 说明                                    |
-| --------------------- | ------- | --------------------------------------- |
-| HUKS_TAG_TYPE_INVALID | 0 << 28 | 表示非法的Tag类型。                     |
-| HUKS_TAG_TYPE_INT     | 1 << 28 | 表示该Tag的数据类型为int类型的number。  |
-| HUKS_TAG_TYPE_UINT    | 2 << 28 | 表示该Tag的数据类型为uint类型的number。 |
-| HUKS_TAG_TYPE_ULONG   | 3 << 28 | 表示该Tag的数据类型为bigint。           |
-| HUKS_TAG_TYPE_BOOL    | 4 << 28 | 表示该Tag的数据类型为boolean。          |
-| HUKS_TAG_TYPE_BYTES   | 5 << 28 | 表示该Tag的数据类型为Uint8Array。       |
+| 名称                                         | 值      | 说明                                         |
+| -------------------------------------------- | ------- | -------------------------------------------- |
+| HUKS_TAG_TYPE_INVALID<sup>(deprecated)</sup> | 0 << 28 | 表示非法的Tag类型(从API version 9开始废弃)。 |
+| HUKS_TAG_TYPE_INT                            | 1 << 28 | 表示该Tag的数据类型为int类型的number。       |
+| HUKS_TAG_TYPE_UINT                           | 2 << 28 | 表示该Tag的数据类型为uint类型的number。      |
+| HUKS_TAG_TYPE_ULONG                          | 3 << 28 | 表示该Tag的数据类型为bigint。                |
+| HUKS_TAG_TYPE_BOOL                           | 4 << 28 | 表示该Tag的数据类型为boolean。               |
+| HUKS_TAG_TYPE_BYTES                          | 5 << 28 | 表示该Tag的数据类型为Uint8Array。            |
 
 ## HuksTag
 
