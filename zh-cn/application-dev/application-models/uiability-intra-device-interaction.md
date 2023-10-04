@@ -35,7 +35,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    let want: Want = {
      deviceId: '', // deviceId为空表示本设备
      bundleName: 'com.example.myapplication',
@@ -79,7 +79,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    ```ts
    import common from '@ohos.app.ability.common';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
 
    // context为需要停止的UIAbility实例的AbilityContext
    context.terminateSelf((err) => {
@@ -108,7 +108,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    let want: Want = {
      deviceId: '', // deviceId为空表示本设备
      bundleName: 'com.example.myapplication',
@@ -132,7 +132,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    import common from '@ohos.app.ability.common';
    import Want from '@ohos.app.ability.Want';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    const RESULT_CODE: number = 1001;
    let abilityResult: common.AbilityResult = {
      resultCode: RESULT_CODE,
@@ -161,7 +161,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    const RESULT_CODE: number = 1001;
 
    let want: Want = {
@@ -229,7 +229,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    let want: Want = {
      deviceId: '', // deviceId为空表示本设备
      // uncomment line below if wish to implicitly query only in the specific bundle.
@@ -255,7 +255,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    ```ts
    import common from '@ohos.app.ability.common';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
 
    // context为需要停止的UIAbility实例的AbilityContext
    context.terminateSelf((err) => {
@@ -304,7 +304,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    let want:Want = {
      deviceId: '', // deviceId为空表示本设备
      // uncomment line below if wish to implicitly query only in the specific bundle.
@@ -328,7 +328,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    import common from '@ohos.app.ability.common';
    import Want from '@ohos.app.ability.Want';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    const RESULT_CODE: number = 1001;
    let abilityResult: common.AbilityResult = {
      resultCode: RESULT_CODE,
@@ -357,7 +357,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    const RESULT_CODE: number = 1001;
 
    let want: Want = {
@@ -407,7 +407,7 @@ import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let context: common.UIAbilityContext = ...; // UIAbilityContext
+let context: common.UIAbilityContext = this.context; // UIAbilityContext
 let want: Want = {
   deviceId: '', // deviceId为空表示本设备
   bundleName: 'com.example.myapplication',
@@ -455,7 +455,7 @@ import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let context: common.UIAbilityContext = ...; // UIAbilityContext
+let context: common.UIAbilityContext = this.context; // UIAbilityContext
 let want: Want = {
   deviceId: '', // deviceId为空表示本设备
   bundleName: 'com.example.funcapplication',
