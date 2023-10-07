@@ -76,7 +76,7 @@ Publishes a notification. This API uses a promise to return the result.
 ```js
 // NotificationRequest object
 let notificationRequest = {
-    notificationId: 1,
+    id: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
@@ -163,7 +163,7 @@ Publishes a notification to a specified user. This API uses a promise to return 
 
 ```js
 let notificationRequest = {
-    notificationId: 1,
+    id: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
@@ -297,6 +297,8 @@ function cancelAllCallback(err) {
 }
 Notification.cancelAll(cancelAllCallback);
 ```
+
+
 
 ## Notification.cancelAll
 
@@ -693,6 +695,8 @@ Notification.removeSlot(slotType).then(() => {
 });
 ```
 
+
+
 ## Notification.removeAllSlots
 
 removeAllSlots(callback: AsyncCallback\<void\>): void
@@ -931,6 +935,8 @@ Notification.unsubscribe(subscriber).then(() => {
 	console.info("unsubscribe success");
 });
 ```
+
+
 
 ## Notification.enableNotification
 
@@ -1211,6 +1217,8 @@ Notification.displayBadge(bundle, false).then(() => {
 	console.info("displayBadge success");
 });
 ```
+
+
 
 ## Notification.isBadgeDisplayed
 
@@ -1880,6 +1888,8 @@ Notification.getAllActiveNotifications().then((data) => {
 	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
 });
 ```
+
+
 
 ## Notification.getActiveNotificationCount
 
