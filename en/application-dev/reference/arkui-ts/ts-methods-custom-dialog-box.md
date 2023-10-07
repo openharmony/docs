@@ -11,14 +11,14 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
 
 ## APIs
 
-CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number, maskColor?: ResourceColor, openAnimation?: AnimateParam, closeAniamtion?: AnimateParam})
+CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number})
 
 
 **Parameters**
 
 | Name                          | Type                                    | Mandatory  | Description                                    |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| builder                       | CustomDialog                             | Yes   | Constructor of the custom dialog box content.                             |
+| builder                       | CustomDialog                             | Yes   | Builder of the custom dialog box content.                             |
 | cancel                        | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the overlay exits.                            |
 | autoCancel                    | boolean                                  | No   | Whether to allow users to click the overlay to exit.<br>Default value: **true**                |
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|

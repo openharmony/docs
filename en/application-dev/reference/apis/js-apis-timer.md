@@ -12,6 +12,8 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 
 Sets a timer for the system to call a function after the timer goes off.
 
+The timer is automatically deleted after the callback is executed, and can be manually deleted by calling the **clearTimeout** API.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -26,7 +28,7 @@ Sets a timer for the system to call a function after the timer goes off.
 
 | Type| Description|
 | -------- | -------- |
-| number | Timer ID.|
+| number | ID of the timer. The value is an integer.|
 
 **Example**
 
@@ -41,7 +43,7 @@ Sets a timer for the system to call a function after the timer goes off.
 
 clearTimeout(timeoutID?: number): void
 
-Cancels the timer created via **setTimeout()**.
+Cancels the repeating timer set via **setTimeout()**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -67,6 +69,8 @@ setInterval(handler: Function | string, delay: number, ...arguments: any[]): num
 
 Sets a repeating timer for the system to repeatedly call a function at a fixed interval.
 
+The timer can only be manually deleted by calling the **clearInterval** API.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -81,7 +85,7 @@ Sets a repeating timer for the system to repeatedly call a function at a fixed i
 
 | Type| Description|
 | -------- | -------- |
-| number | Timer ID.|
+| number | ID of the timer. The value is an integer.|
 
 **Example**
 
