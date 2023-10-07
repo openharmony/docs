@@ -2854,7 +2854,7 @@
 
 ## ohos.permission.INSTANTSHARE_SWITCH_CONTROL
 
-允许系统服务或系统应用操作近场分享开关状态。
+允许系统服务或系统应用变更近场分享开关状态。
 
 **权限级别**：system_basic
 
