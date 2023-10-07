@@ -85,7 +85,7 @@ subscriber.getCode().then((code:number) => {
 });
 ```
 
-## getCodeSync
+## getCodeSync<sup>10+</sup>
 
 getCodeSync(): number
 
@@ -165,7 +165,7 @@ subscriber.setCode(1).then(() => {
 });
 ```
 
-## setCodeSync
+## setCodeSync<sup>10+</sup>
 
 setCodeSync(code: number): void
 
@@ -244,7 +244,7 @@ subscriber.getData().then((data:string) => {
 });
 ```
 
-## getDataSync
+## getDataSync<sup>10+</sup>
 
 getDataSync(): string
 
@@ -324,7 +324,7 @@ subscriber.setData("publish_data_changed").then(() => {
 });
 ```
 
-## setDataSync
+## setDataSync<sup>10+</sup>
 setDataSync(data: string): void
 
 setData的同步接口。
@@ -409,7 +409,7 @@ subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
 });
 ```
 
-## setCodeAndDataSync
+## setCodeAndDataSync<sup>10+</sup>
 
 setCodeAndData的同步接口。
 
@@ -491,7 +491,7 @@ subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
 });
 ```
 
-## isOrderedCommonEventSync
+## isOrderedCommonEventSync<sup>10+</sup>
 
 isOrderedCommonEventSync(): boolean
 
@@ -570,7 +570,7 @@ subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
 });
 ```
 
-## isStickyCommonEventSync
+## isStickyCommonEventSync<sup>10+</sup>
 
 isStickyCommonEventSync(): boolean
 
@@ -645,7 +645,7 @@ subscriber.abortCommonEvent().then(() => {
 });
 ```
 
-## abortCommonEventSync
+## abortCommonEventSync<sup>10+</sup>
 
 abortCommonEventSync(): void
 
@@ -711,7 +711,7 @@ subscriber.clearAbortCommonEvent().then(() => {
 });
 ```
 
-## clearAbortCommonEventSync
+## clearAbortCommonEventSync<sup>10+</sup>
 
 clearAbortCommonEventSync(): void
 
@@ -777,7 +777,7 @@ subscriber.getAbortCommonEvent().then((abortEvent:boolean) => {
 });
 ```
 
-## getAbortCommonEventSync
+## getAbortCommonEventSync<sup>10+</sup>
 
 getAbortCommonEventSync(): boolean
 
@@ -850,7 +850,7 @@ subscriber.getSubscribeInfo().then((subscribeInfo:CommonEventManager.CommonEvent
 });
 ```
 
-## getSubscribeInfoSync
+## getSubscribeInfoSync<sup>10+</sup>
 
 getSubscribeInfoSync(): CommonEventSubscribeInfo
 
