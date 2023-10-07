@@ -561,20 +561,17 @@ copyDirSync(src: string, dest: string, mode?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   // copy directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   try {
     fs.copyDirSync(srcPath, destPath, 0);
     console.info("copy directory succeed");
-  } catch (err) {
-    if (err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
-      }
-    }
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
 
@@ -2246,7 +2243,8 @@ moveDirSync(src: string, dest: string, mode?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -2254,12 +2252,8 @@ moveDirSync(src: string, dest: string, mode?: number): void
     fs.moveDirSync(srcPath, destPath, 1);
     console.info("move directory succeed");
   } catch (err) {
-    if (err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("move directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
-      }
-    }
+    let err: BusinessError = error as BusinessError;
+    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
 
