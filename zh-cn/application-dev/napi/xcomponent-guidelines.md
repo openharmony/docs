@@ -907,4 +907,4 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 
 - [Native XComponent（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Native/NdkXComponent)
 
-- [OpenGL三棱椎（API10）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_20230930/code/BasicFeature/Native/NdkOpenGL)
+- [OpenGL三棱椎（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Native/NdkOpenGL)
