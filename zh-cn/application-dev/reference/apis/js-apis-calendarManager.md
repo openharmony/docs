@@ -47,7 +47,7 @@ getCalendarManager(context : Context): CalendarManager;
 
 ## CalendarManager
 
-下列API示例中需先通过[getCalendarManager()](#calendarManager.getCalendarManager)方法获取CalendarManager对象，再通过此对象调用对应方法，进行Calendar的创建、删除、修改、查询等操作。
+下列API示例中需先通过[getCalendarManager()](#calendarmanagergetcalendarmanager)方法获取CalendarManager对象，再通过此对象调用对应方法，进行Calendar的创建、删除、修改、查询等操作。
 
 
 ### createCalendar
@@ -221,7 +221,7 @@ calendarManager.getCalendar(calendarAccount).then((data: calendarManager.Calenda
 
 getCalendar(callback: AsyncCallback\<Calendar>): void
 
-获取默认Calendar对象，默认Calendar是日历存储首次运行时创建的，若创建Event时不关注其Calendar归属，则无须通过[createCalendar()](#calendarmanagercreatecalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
+获取默认Calendar对象，默认Calendar是日历存储首次运行时创建的，若创建Event时不关注其Calendar归属，则无须通过[createCalendar()](#createcalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
 
 **需要权限**：ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
 
@@ -390,7 +390,7 @@ calendarManager.getAllCalendars().then((data: calendarManager.Calendar[]) => {
 
 ## Calendar
 
-下列API示例中需先通过[createCalendar()](#calendarmanagercreatecalendar)、[getCalendar()](#calendarmanagergetcalendar)中任一方法获取Calendar对象，再通过此对象调用对应方法，对该Calendar下的日程进行创建、删除、修改、查询等操作。
+下列API示例中需先通过[createCalendar()](#createcalendar)、[getCalendar()](#getcalendar)中任一方法获取Calendar对象，再通过此对象调用对应方法，对该Calendar下的日程进行创建、删除、修改、查询等操作。
 
 ### 属性
 
