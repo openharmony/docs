@@ -21,9 +21,10 @@ Before using the **StaticSubscriberExtensionContext** module, you must first obt
 
 ```ts
 import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
+import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext'
 
 export default class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
-    context = this.context;
+    context: StaticSubscriberExtensionContext = this.context;
 };
 ```
 
@@ -47,7 +48,7 @@ Observe the following when using this API:
 
 | Name  | Type                               | Mandatory| Description                      |
 | -------- | ----------------------------------- | ---- | -------------------------- |
-| want     | [Want](js-apis-application-want.md) | Yes  | Want information about the target ability.   |
+| want     | [Want](js-apis-app-ability-want.md) | Yes  | Want information about the target ability.   |
 | callback | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -73,13 +74,16 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
 
   try {
-    this.context.startAbility(want, (error) => {
+    this.context.startAbility(want, (error: BusinessError) => {
       if (error) {
         // Process service logic errors.
         console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
@@ -91,8 +95,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+    ' error.message: ' + JSON.stringify(message));
   }
   ```
 
@@ -116,7 +122,7 @@ Observe the following when using this API:
 
 | Name| Type                               | Mandatory| Description                   |
 | ------ | ----------------------------------- | ---- | ----------------------- |
-| want   | [Want](js-apis-application-want.md) | Yes  | Want information about the target ability.|
+| want   | [Want](js-apis-app-ability-want.md) | Yes  | Want information about the target ability.|
 
 **Return value**
 
@@ -147,7 +153,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
@@ -158,14 +167,16 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
         // Carry out normal service processing.
         console.log('startAbility succeed');
       })
-      .catch((error) => {
+      .catch((error: BusinessError) => {
         // Process service logic errors.
         console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
         ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+    ' error.message: ' + JSON.stringify(message));
   }
   ```
