@@ -234,7 +234,7 @@
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
-    str: String = '';
+    str: string = '';
 
     constructor(num: number, string: string) {
       this.num = num;

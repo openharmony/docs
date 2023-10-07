@@ -175,7 +175,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 2. 申请延迟任务。
    
    ```ts
-   private workInfo: workScheduler.WorkInfo = {
+   const workInfo: workScheduler.WorkInfo = {
      workId: 1,
      networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
      bundleName: 'com.example.application',
@@ -183,7 +183,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    }
    
    try {
-     workScheduler.startWork(this.workInfo);
+     workScheduler.startWork(workInfo);
      console.info(`startWork success`);
    } catch (error) {
      console.error(`startWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
@@ -193,7 +193,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 3. 取消延迟任务。
    
    ```ts
-   private workInfo: workScheduler.workInfo = {
+   const workInfo: workScheduler.WorkInfo = {
      workId: 1,
      networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
      bundleName: 'com.example.application', 
@@ -201,7 +201,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    }
    
    try {
-     workScheduler.stopWork(this.workInfo);
+     workScheduler.stopWork(workInfo);
      console.info(`stopWork success`);
    } catch (error) {
      console.error(`stopWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
