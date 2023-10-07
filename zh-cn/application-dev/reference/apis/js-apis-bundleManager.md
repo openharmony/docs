@@ -4346,7 +4346,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityTypeName: string, exte
 | --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | Want                            | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
 | extensionAbilityTypeName  | string                          | 是   | 表示自定义extensionAbility的类型。                        |
-| extensionAbilityFlags | [number](#extensionabilityflag) | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。 |
+| extensionAbilityFlags | [number](#extensionabilityflag) | 是   | 表示返回的ExtensionInfo对象中需要包含的信息标志。 |
 | userId                | number                          | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
@@ -4369,6 +4369,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityTypeName: string, exte
 **示例：**
 
 ```ts
+// 示例接口带userId参数查询
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 
@@ -4389,6 +4390,7 @@ try {
 ```
 
 ```ts
+// 示例接口不带userId参数查询
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 
