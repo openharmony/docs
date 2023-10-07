@@ -211,6 +211,7 @@ struct AnimatedShape {
         Button("Polyline1 default")
           .width(100).height(60)
           .margin({ left: 5, right: 5 })
+          .padding(10)
           .onClick(() => {
 
             if (this.polyline1Vec.equals(this.pointVec1)) {
