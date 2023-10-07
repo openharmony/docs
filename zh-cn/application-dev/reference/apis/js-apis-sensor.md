@@ -5965,6 +5965,18 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HEART_RATE     | 是   | 要取消订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。      |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
+**示例：** 
+
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.HeartRateResponse) {
+  console.info('Succeeded in invoking off. Humidity: ' + data.heartRate);
+}
+
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback);
+```
+
 ### HUMIDITY<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
@@ -6012,6 +6024,20 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_LINEAR_ACCELERATION | 是   | 要取消订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELERATION。 |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
+
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.LinearAccelerometerResponse) {
+  console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
+}
+
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
+```
 
 ### MAGNETIC_FIELD<sup>(deprecated)</sup>
 
@@ -6913,7 +6939,7 @@ sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.
 
 ## sensor.createRotationMatrix<sup>(deprecated)</sup>
 
-createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse&gt;
+createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;): Promise&lt;RotationMatrixResponse&gt;
 
 根据重力矢量和地磁矢量计算旋转矩阵。
 
