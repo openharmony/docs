@@ -2851,6 +2851,7 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
 ## ohos.permission.INSTANTSHARE_SWITCH_CONTROL
 
 允许系统服务或系统应用操作近场分享开关状态。
@@ -2862,6 +2863,7 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
 ## ohos.permission.ACCESS_INSTANTSHARE_SERVICE
 
 允许系统服务或系统应用访问近场分享服务。
@@ -2873,6 +2875,7 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
 ## ohos.permission.ACCESS_INSTANTSHARE_PRIVATE_ABILITY
 
 允许系统服务或系统应用使用近场分享私有应用能力。
