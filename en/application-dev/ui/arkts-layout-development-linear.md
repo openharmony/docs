@@ -466,17 +466,17 @@ Adaptive scaling means that the size of a child component is automatically adjus
           Column() {
             Text('layoutWeight(1)')
               .textAlign(TextAlign.Center)
-          }.layoutWeight(2).backgroundColor(0xF5DEB3).height('100%')
+          }.layoutWeight(1).backgroundColor(0xF5DEB3).height('100%')
 
           Column() {
             Text('layoutWeight(2)')
               .textAlign(TextAlign.Center)
-          }.layoutWeight(4).backgroundColor(0xD2B48C).height('100%')
+          }.layoutWeight(2).backgroundColor(0xD2B48C).height('100%')
 
           Column() {
-            Text('layoutWeight(6)')
+            Text('layoutWeight(3)')
               .textAlign(TextAlign.Center)
-          }.layoutWeight(6).backgroundColor(0xF5DEB3).height('100%')
+          }.layoutWeight(3).backgroundColor(0xF5DEB3).height('100%')
 
         }.backgroundColor(0xffd306).height('30%')
 

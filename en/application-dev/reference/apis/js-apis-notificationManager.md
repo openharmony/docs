@@ -112,6 +112,8 @@ let notificationRequest = {
 };
 Notification.publish(notificationRequest).then(() => {
 	console.info("publish success");
+}).catch((error) => {
+    console.error(`publish failed, ${JSON.stringify(error)}`);
 });
 
 ```
@@ -215,7 +217,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```js
 let notificationRequest = {
-    notificationId: 1,
+    id: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
@@ -230,6 +232,8 @@ let userId = 1;
 
 Notification.publish(notificationRequest, userId).then(() => {
 	console.info("publish success");
+}).catch((error) => {
+    console.error(`publish failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -308,6 +312,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```js
 Notification.cancel(0).then(() => {
 	console.info("cancel success");
+}).catch((error) => {
+    console.error(`cancel failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -418,6 +424,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```js
 Notification.cancelAll().then(() => {
 	console.info("cancelAll success");
+}).catch((error) => {
+    console.error(`cancelAll failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -509,6 +517,8 @@ let notificationSlot = {
 };
 Notification.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
+}).catch((error) => {
+    console.error(`addSlot failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -584,6 +594,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```js
 Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then(() => {
 	console.info("addSlot success");
+}).catch((error) => {
+    console.error(`addSlot failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -683,6 +695,8 @@ notificationSlotArray[0] = notificationSlot;
 
 Notification.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
+}).catch((error) => {
+    console.error(`addSlots failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -766,6 +780,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.getSlot(slotType).then((data) => {
 	console.info("getSlot success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`addSlot failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -840,6 +856,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```js
 Notification.getSlots().then((data) => {
 	console.info("getSlots success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`addSlot failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -917,6 +935,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.removeSlot(slotType).then(() => {
 	console.info("removeSlot success");
+}).catch((error) => {
+    console.error(`removeSlot failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -984,6 +1004,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```js
 Notification.removeAllSlots().then(() => {
 	console.info("removeAllSlots success");
+}).catch((error) => {
+    console.error(`removeAllSlots failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1076,6 +1098,8 @@ let bundle = {
 };
 Notification.setNotificationEnable(bundle, false).then(() => {
 	console.info("setNotificationEnable success");
+}).catch((error) => {
+    console.error(`setNotificationEnable failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1172,6 +1196,8 @@ let bundle = {
 };
 Notification.isNotificationEnabled(bundle).then((data) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`setNotificationEnable failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1254,6 +1280,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```ts
 notificationManager.isNotificationEnabled().then((data) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`isNotificationEnabled failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1345,6 +1373,8 @@ let userId = 1;
 
 notificationManager.isNotificationEnabled(userId).then((data) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`isNotificationEnabled failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1437,6 +1467,8 @@ let bundle = {
 };
 Notification.displayBadge(bundle, false).then(() => {
 	console.info("displayBadge success");
+}).catch((error) => {
+    console.error(`displayBadge failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1533,6 +1565,8 @@ let bundle = {
 };
 Notification.isBadgeDisplayed(bundle).then((data) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`isBadgeDisplayed failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1631,6 +1665,8 @@ let notificationSlot = {
 };
 Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
+}).catch((error) => {
+    console.error(`setSlotByBundle failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1686,7 +1722,7 @@ Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 
 ## Notification.getSlotsByBundle
 
-getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
+getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 Obtains the notification slots of a specified application. This API uses a promise to return the result.
 
@@ -1727,6 +1763,8 @@ let bundle = {
 };
 Notification.getSlotsByBundle(bundle).then((data) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`getSlotsByBundle failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1823,6 +1861,8 @@ let bundle = {
 };
 Notification.getSlotNumByBundle(bundle).then((data) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`getSlotNumByBundle failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1906,6 +1946,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```js
 Notification.getAllActiveNotifications().then((data) => {
 	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`getAllActiveNotifications failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1980,6 +2022,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```js
 Notification.getActiveNotificationCount().then((data) => {
 	console.info("getActiveNotificationCount success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`getActiveNotificationCount failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -2054,6 +2098,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```js
 Notification.getActiveNotifications().then((data) => {
 	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`removeGroupByBundle failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -2132,6 +2178,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 let groupName = "GroupName";
 Notification.cancelGroup(groupName).then(() => {
 	console.info("cancelGroup success");
+}).catch((error) => {
+    console.error(`cancelGroup failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -2224,6 +2272,8 @@ let bundleOption = {bundle: "Bundle"};
 let groupName = "GroupName";
 Notification.removeGroupByBundle(bundleOption, groupName).then(() => {
 	console.info("removeGroupByBundle success");
+}).catch((error) => {
+    console.error(`removeGroupByBundle failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -2318,6 +2368,8 @@ let doNotDisturbDate = {
 };
 Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 	console.info("setDoNotDisturbDate success");
+}).catch((error) => {
+    console.error(`setDoNotDisturbDate failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -2420,6 +2472,8 @@ let userId = 1;
 
 Notification.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 	console.info("setDoNotDisturbDate success");
+}).catch((error) => {
+    console.error(`setDoNotDisturbDate failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -2501,6 +2555,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```js
 Notification.getDoNotDisturbDate().then((data) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`getDoNotDisturbDate failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -2595,6 +2651,8 @@ let userId = 1;
 
 Notification.getDoNotDisturbDate(userId).then((data) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`getDoNotDisturbDate failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -2676,6 +2734,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```js
 Notification.isSupportDoNotDisturbMode().then((data) => {
 	console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`isSupportDoNotDisturbMode failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -2760,6 +2820,8 @@ let templateName = 'process';
 
 Notification.isSupportTemplate(templateName).then((data) => {
     console.info("isSupportTemplate success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`isSupportTemplate failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -2828,6 +2890,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```javascript
 Notification.requestEnableNotification().then(() => {
     console.info("requestEnableNotification success");
+}).catch((error) => {
+    console.error(`requestEnableNotification failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -2866,7 +2930,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-function setDistributedEnableCallback() {
+function setDistributedEnableCallback(err) {
     if (err) {
         console.info("setDistributedEnable failed " + JSON.stringify(err));
     } else {
@@ -2916,8 +2980,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 let enable = true;
 
 Notification.setDistributedEnable(enable).then(() => {
-        console.info("setDistributedEnable success");
-    });
+    console.info("setDistributedEnable success");
+}).catch((error) => {
+    console.error(`setDistributedEnable failed, ${JSON.stringify(error)}`);
+});
 ```
 
 
@@ -2991,9 +3057,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```javascript
 Notification.isDistributedEnabled()
-    .then((data) => {
-        console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
-    });
+.then((data) => {
+    console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`isDistributedEnabled failed, ${JSON.stringify(error)}`);
+});
 ```
 
 
@@ -3092,8 +3160,10 @@ let bundle = {
 let enable = true
 
 Notification.setDistributedEnableByBundle(bundle, enable).then(() => {
-        console.info("setDistributedEnableByBundle success");
-    });
+    console.info("setDistributedEnableByBundle success");
+}).catch((error) => {
+    console.error(`setDistributedEnableByBundle failed, ${JSON.stringify(error)}`);
+});
 ```
 
 ## Notification.isDistributedEnabledByBundle
@@ -3192,6 +3262,8 @@ let bundle = {
 
 Notification.isDistributedEnabledByBundle(bundle).then((data) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`isDistributedEnabledByBundle failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -3273,6 +3345,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```javascript
 Notification.getDeviceRemindType().then((data) => {
     console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`getDeviceRemindType failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -3400,6 +3474,8 @@ let request = {
 
 Notification.publishAsBundle(request, representativeBundle, userId).then(() => {
 	console.info("publishAsBundle success");
+}).catch((error) => {
+    console.error(`publishAsBundle failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -3501,6 +3577,8 @@ let userId = 100;
 
 Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
+}).catch((error) => {
+    console.error(`cancelAsBundle failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -3595,6 +3673,8 @@ Notification.setNotificationEnableSlot(
     Notification.SlotType.SOCIAL_COMMUNICATION,
     true).then(() => {
         console.info("setNotificationEnableSlot success");
+    }).catch((error) => {
+        console.error(`setNotificationEnableSlot failed, ${JSON.stringify(error)}`);
     });
 ```
 
@@ -3688,8 +3768,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```js
 // isNotificationSlotEnabled
 Notification.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION).then((data) => {
+Notification.SlotType.SOCIAL_COMMUNICATION).then((data) => {
     console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`isNotificationSlotEnabled failed, ${JSON.stringify(error)}`);
 });
 ```
 
@@ -3884,9 +3966,6 @@ Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
 }).catch((err) => {
     console.info('getSyncNotificationEnabledWithoutApp, err:' + err);
 });
-    .catch((err) => {
-        console.info('getSyncNotificationEnabledWithoutApp, err:', err);
-    });
 ```
 
 
