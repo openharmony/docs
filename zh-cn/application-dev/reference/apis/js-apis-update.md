@@ -1584,6 +1584,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
