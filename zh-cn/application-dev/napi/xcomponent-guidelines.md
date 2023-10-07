@@ -106,7 +106,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
     // 编写接口的描述信息，根据实际需要可以修改对应参数
     static napi_module nativerenderModule = {
         .nm_version = 1,
-        .nflag_s = 0,
+        .nm_flags = 0,
         .nm_filename = nullptr,
         // 入口函数
         .nm_register_func = Init,
