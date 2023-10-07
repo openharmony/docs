@@ -14,7 +14,9 @@ This component can contain only one child component.
 
 ## APIs
 
-**API 1:** Button(options?: {type?: ButtonType, stateEffect?: boolean})
+### Button
+
+Button(options?: {type?: ButtonType, stateEffect?: boolean})
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -25,7 +27,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 | type        | ButtonType | No   | Button type.<br>Default value: **ButtonType.Capsule**                          |
 | stateEffect | boolean    | No   | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>**NOTE**<br>When the pressed effect is enabled on the click of the button and the state style is set, the background color is aaplied based on the state style.|
 
-**API 2:** Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
+### Button
+
+Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
 
 Creates a button component based on text content. In this case, the component cannot contain child components.
 
@@ -36,7 +40,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name    | Type                               | Mandatory  | Description         |
 | ------- | ----------------------------------- | ---- | ------------- |
 | label   | [ResourceStr](ts-types.md#resourcestr) | No   | Button text.|
-| options | { type?: ButtonType, stateEffect?: boolean }   | No   | See parameters of API 1.|
+| options | { type?: ButtonType, stateEffect?: boolean }   | No   | For details, see [Button](#button-1).|
 
 ## Attributes
 
@@ -169,3 +173,41 @@ struct SwipeGestureExample {
 ```
 
 ![ifButton](figures/ifButton.gif)
+
+### Example 3
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct buttonTestDemo {
+  @State txt: string = 'overflowTextOverlengthTextOverflow.Clip';
+  @State widthShortSize: number = 200;
+
+  build() {
+    Row() {
+      Column() {
+        Button(this.txt)
+          .width(this.widthShortSize)
+          .height(100)
+          .labelStyle({ overflow: TextOverflow.Clip,
+            maxLines: 1,
+            minFontSize: 20,
+            maxFontSize: 20,
+            font: {
+              size: 20,
+              weight: FontWeight.Bolder,
+              family: 'cursive',
+              style: FontStyle.Italic
+            }
+          })
+          .fontSize(40)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![image-20230711171138661](figures/imageButtonLabelStyle.png)

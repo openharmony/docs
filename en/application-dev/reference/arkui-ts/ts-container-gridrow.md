@@ -1,6 +1,8 @@
 # GridRow
 
-The **\<GridRow>** component is used in a grid layout, together with its child component **[\<GridCol>](ts-container-gridcol.md)**.
+The responsive grid layout provides rules for layout design and resolves issues of dynamic layout across devices with different sizes, thereby ensuring layout consistency across layouts on different devices.
+
+The **\<GridRow>** component is used in a grid layout, together with its child component [\<GridCol>](ts-container-gridcol.md).
 
 >  **NOTE**
 >
@@ -21,19 +23,21 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name|Type|Mandatory|Description|
 |-----|-----|----|----|
-|gutter|Length \| GutterOption|   No |Gutter of the grid layout. **x** indicates the horizontal direction.|
+|gutter|Length \| GutterOption|   No |Gutter of the grid layout.|
 |columns| number \| GridRowColumnOption |  No |Number of columns in the grid layout.|
 |breakpoints|BreakPoints|  No |Array of breakpoints for the breakpoint value and the corresponding reference based on the window or container size.|
 |direction|GridRowDirection|   No |Arrangement direction of the grid layout.|
 
 ## GutterOption
 
+Provides the gutter options for the grid layout to define the spacing between child components in different directions.
+
 Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| x  | Length \| GridRowSizeOption | No  | Gutter in the horizontal direction.   |
-| y  | Length \| GridRowSizeOption | No  | Gutter in the vertical direction.     |
+| x  | Length \| GridRowSizeOption | No  | Horizontal spacing between grid child components.   |
+| y  | Length \| GridRowSizeOption | No  | Vertical spacing between grid child components.   |
 
 ## GridRowColumnOption
 
@@ -43,12 +47,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | number | No   | Device of the minimum size.   |
-| sm  | number | No   | Small-sized device.     |
-| md  | number | No   | Medium-sized device.   |
-| lg  | number | No   | Large-sized device.     |
-| xl  | number | No   | Extra-large-sized device.   |
-| xxl | number | No   | Ultra-large-sized device.   |
+| xs  | number | No   | Number of grid columns for minimum device width.   |
+| sm  | number | No   | Number of grid columns for small device width.     |
+| md  | number | No   | Number of grid columns for medium device width.   |
+| lg  | number | No   | Number of grid columns for large device width.     |
+| xl  | number | No   | Number of grid columns for extra large device width.   |
+| xxl | number | No   | Number of grid columns for extra extra large device width.   |
 
 ## GridRowSizeOption
 
@@ -58,21 +62,23 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | Length | No   | Device of the minimum size.   |
-| sm  | Length | No   | Small-sized device.     |
-| md  | Length | No   | Medium-sized device.   |
-| lg  | Length | No   | Large-sized device.     |
-| xl  | Length | No   | Extra-large-sized device.   |
-| xxl | Length | No   | Ultra-large-sized device.   |
+| xs  | Length | No   | Gutter size for minimum device width.   |
+| sm  | Length | No   | Gutter size for small device width.     |
+| md  | Length | No   | Gutter size for medium device width.   |
+| lg  | Length | No   | Gutter size for large device width.     |
+| xl  | Length | No   | Gutter size for extra large device width.   |
+| xxl | Length | No   | Gutter size for extra extra large device width.   |
 
 ## BreakPoints
+
+Sets breakpoints for the responsive grid container.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value  | Array&lt;string&gt; | No | Array of monotonically increasing breakpoints.<br>Default value: **["320vp", "600vp", "840vp"]**   |
-| reference  | BreakpointsReference | No   | Breakpoint switching reference.|
+| reference  | BreakpointsReference | No   | Breakpoint switching reference.<br>Default value: **BreakpointsReference.WindowSize**|
 ```ts
   // Enable the xs, sm, and md breakpoints.
   breakpoints: {value: ["100vp", "200vp"]}
@@ -139,13 +145,15 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 onBreakpointChange(callback: (breakpoints: string) => void)
 
+Triggered when the breakpoint changes.
+
 Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
 | Name  | Type  | Mandatory  | Description  |
 | ----- | ------ | ---- | ---------------------------------------- |
-|breakpoints| string |Yes|Breakpoint change.<br>The value can be `"xs"`, `"sm"`, `"md"`, `"lg"`, `"xl"`, or `"xxl"`.|
+|breakpoints| string |Yes|Breakpoint change.<br> The value can be **"xs"**, **"sm"**, **"md"**, **"lg"**, **"xl"**, or **"xxl"**.|
 
 ## Example
 
@@ -166,8 +174,8 @@ struct GridRowExample {
           reference: BreakpointsReference.WindowSize },
         direction: GridRowDirection.Row
       }) {
-        ForEach(this.bgColors, (color) => {
-          GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {
+        ForEach(this.bgColors, (color: Color) => {
+          GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 }, offset: 0, order: 0 }) {
             Row().width("100%").height("20vp")
           }.borderColor(color).borderWidth(2)
         })
