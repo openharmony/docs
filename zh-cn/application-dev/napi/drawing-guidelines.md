@@ -43,7 +43,7 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
     // 创建一个bitmap对象
     OH_Drawing_Bitmap* cBitmap = OH_Drawing_BitmapCreate();
     // 定义bitmap的像素格式
-    OH_Drawing_BitmapFormat cFormat {COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUYE};
+    OH_Drawing_BitmapFormat cFormat {COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
     // 构造对应格式的bitmap
     OH_Drawing_BitmapBuild(cBitmap, width, height, &cFormat);
     ```
