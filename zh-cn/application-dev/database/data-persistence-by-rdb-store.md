@@ -54,7 +54,7 @@
 
    Stage模型示例：
      
-   ```js
+   ```ts
    import relationalStore from '@ohos.data.relationalStore'; // 导入模块 
    import UIAbility from '@ohos.app.ability.UIAbility';
    import { BusinessError } from '@ohos.base';
@@ -64,7 +64,9 @@
      onWindowStageCreate(windowStage: window.WindowStage) {
        const STORE_CONFIG :relationalStore.StoreConfig= {
          name: 'RdbTest.db', // 数据库文件名
-         securityLevel: relationalStore.SecurityLevel.S1 // 数据库安全级别
+         securityLevel: relationalStore.SecurityLevel.S1, // 数据库安全级别
+         encrypt: false, // 可选参数，指定数据库是否加密，默认不加密
+         dataGroupId: "dataGroupID" // 可选参数，仅可在Stage模型下使用，表示为应用组ID，需要向应用市场获取。指定在此Id对应的沙箱路径下创建实例，当此参数不填时，默认在本应用沙箱目录下创建。
        };
 
        // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
@@ -187,8 +189,6 @@
      key4: value4,
    };
 
-   let store: relationalStore.RdbStore | undefined = undefined;
-
    if (store != undefined) {
      (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket, (err: BusinessError, rowId: number) => {
        if (err) {
@@ -287,10 +287,6 @@
 5. 删除数据库。
 
    调用deleteRdbStore()方法，删除数据库及数据库相关文件。示例代码如下：
-
-   > **说明：**
-   >
-   > 删除成功后，建议将数据库对象置为null。
    
    Stage模型示例：
 
@@ -305,7 +301,6 @@
            console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
            return;
          }
-         store = undefined;
          console.info('Succeeded in deleting RdbStore.');
        });
      }
@@ -325,7 +320,6 @@
        console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
        return;
      }
-     store = undefined;
      console.info('Succeeded in deleting RdbStore.');
    });
    ```
