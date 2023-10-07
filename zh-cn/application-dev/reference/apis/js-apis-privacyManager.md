@@ -625,7 +625,7 @@ try {
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | status  | number         | 是    | 访问状态。                                 |
-| lockscreenStatus?  | number         | 否    | 访问时的锁屏状态。                                 |
+| lockscreenStatus  | number         | 否    | 访问时的锁屏状态。                                 |
 | timestamp | number         | 是    | 访问时的时间戳，单位：ms。 |
 | accessDuration  | number         | 是    | 访问时长，单位：ms。                                 |
 
@@ -641,7 +641,7 @@ try {
 | PERM_ACTIVE_IN_FOREGROUND | 1      | 表示前台使用权限。 |
 | PERM_ACTIVE_IN_BACKGROUND | 2      | 表示后台使用权限。 |
 
-## LockscreenChangeType
+## LockscreenChangeType<sup>11+</sup>
 
 表示权限使用状态变化类型的枚举。
 
@@ -650,7 +650,7 @@ try {
 | 名称                      | 值     | 说明              |
 | ------------------------- | ------ | ---------------- |
 | PERM_ACTIVE_IN_UNLOCK | 1      | 表示非锁屏场景使用权限。 |
-| PERM_ACTIVE_IN_LOCKED | 2      | 表示锁屏场景 使用权限。 |
+| PERM_ACTIVE_IN_LOCKED | 2      | 表示锁屏场景使用权限。 |
 
 ## ActiveChangeResponse
 
