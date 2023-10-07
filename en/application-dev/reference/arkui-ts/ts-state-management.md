@@ -60,7 +60,7 @@ linkToPropA1.set(48); // Two-way synchronization: linkToPropA1.get() == linkToPr
 
 static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-Works in a way similar to the **Link** API. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with <b class="+ topic/ph hi-d/b " id="b537113298389">defaultValue</b> in AppStorage, and two-way bound data is returned.
+Works in a way similar to the **Link** API. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and two-way bound data is returned.
 
 **Parameters**
 
