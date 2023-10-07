@@ -4,7 +4,7 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
 
-## -1 Screen Unlock Error
+## -1 Time and Time Zone Service Error
 
 **Error Message**
 
