@@ -4327,3 +4327,84 @@ try {
     hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed: %{public}s', message);
 }
 ```
+
+### bundleManager.queryExtensionAbilityInfoSync<sup>11</sup>
+
+queryExtensionAbilityInfoSync(want: Want, extensionAbilityTypeName: string, extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
+
+根据给定的want、extensionAbilityTypeName、extensionAbilityFlags和userId获取ExtensionAbilityInfo，使用同步方式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名                | 类型                            | 必填 | 说明                                                      |
+| --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
+| want                  | Want                            | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
+| extensionAbilityTypeName  | string                          | 是   | 表示自定义extensionAbility的类型。                        |
+| extensionAbilityFlags | [number](#extensionabilityflag) | 是   | 表示返回的ExtensionInfo对象中需要包含的信息标志。 |
+| userId                | number                          | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                   |
+| ------------------------------------------------------------ | -------------------------------------- |
+| Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | 同步返回Array\<ExtensionAbilityInfo>。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 17700001 | The specified bundleName is not found.       |
+| 17700003 | The specified extensionAbility is not found. |
+| 17700004 | The specified userId is invalid.             |
+| 17700026 | The specified bundle is disabled.            |
+
+**示例：**
+
+```ts
+// 示例接口带userId参数查询
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+
+let extensionAbilityTypeName = "form";
+let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
+let userId = 100;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    var data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityTypeName, extensionFlags, userId)
+    hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
+}
+```
+
+```ts
+// 示例接口不带userId参数查询
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+
+let extensionAbilityTypeName = "form";
+let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    let data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityTypeName, extensionFlags);
+    hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
+}
+```
