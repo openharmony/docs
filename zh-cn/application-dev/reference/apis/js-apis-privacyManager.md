@@ -625,7 +625,7 @@ try {
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | status  | number         | 是    | 访问状态。                                 |
-| lockscreenStatus  | number         | 否    | 访问时的锁屏状态。                                 |
+| lockscreenStatus<sup>11+</sup>  | number         | 否    | 访问时的锁屏状态。                                 |
 | timestamp | number         | 是    | 访问时的时间戳，单位：ms。 |
 | accessDuration  | number         | 是    | 访问时长，单位：ms。                                 |
 

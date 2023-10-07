@@ -11,7 +11,9 @@
 
 修改EntryAbility.ets和导入GlobalThis等步骤参考[getPermissionUsedRecord](../../../application-dev/reference/apis/js-apis-privacyManager.md#getPermissionUsedRecord)
 
-```通过ts代码调用getPermissionUsedRecord获取权限访问记录，解析对应权限访问记录的锁屏状态
+调用getPermissionUsedRecord获取权限访问记录，解析对应权限访问记录的锁屏状态。
+```ts
+示例代码
 import privacyManager from '@ohos.privacyManager';
 
 try {
