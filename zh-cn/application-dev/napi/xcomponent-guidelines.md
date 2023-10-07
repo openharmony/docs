@@ -71,7 +71,7 @@ function myComponent() {
     @Component
     struct Index {
         @State message: string = 'Hello World'
-        xComponentContext: object | null = null;
+        xComponentContext: object | undefined = undefined;
         xComponentAttrs: XComponentAttrs = {
             id: 'xcomponentId',
             type: XComponentType.SURFACE,
@@ -82,11 +82,7 @@ function myComponent() {
             Row() {
             // ...
             // 在xxx.ets 中定义 XComponent
-            XComponent({
-                id: 'xcomponentId',
-                type: XComponentType.SURFACE,
-                libraryname: 'nativerender'
-            })
+            XComponent(this.xComponentAttrs)
                 .focusable(true) // 可响应键盘事件
                 .onLoad((xComponentContext) => {
                 this.xComponentContext = xComponentContext;
