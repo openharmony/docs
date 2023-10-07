@@ -124,8 +124,6 @@ listFile(): Array\<FileInfo>
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-### 属性
-
 | 名称 | 类型   | 可读 | 可写 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |
 | uri | string | 是 | 否 | 文件uri |
