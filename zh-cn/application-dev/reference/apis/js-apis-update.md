@@ -18,6 +18,8 @@
 
 ```js
 import update from '@ohos.update'
+// 用到BusinessError的函数需要import
+import { BusinessError } from '@ohos.base'
 ```
 
 ## update.getOnlineUpdater
@@ -2013,18 +2015,18 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | ---------------------- | ---------- | ------ |
 | EVENT_TASK_BASE        | EventClassify.TASK | 任务事件。   |
 | EVENT_TASK_RECEIVE     | 0x01000001 | 收到任务。   |
-| EVENT_TASK_CANCEL      | 0x01000010 | 取消任务。   |
-| EVENT_DOWNLOAD_WAIT    | 0x01000011 | 待下载。    |
-| EVENT_DOWNLOAD_START   | 0x01000100 | 开始下载。   |
-| EVENT_DOWNLOAD_UPDATE  | 0x01000101 | 下载进度更新。 |
-| EVENT_DOWNLOAD_PAUSE   | 0x01000110 | 下载暂停。   |
-| EVENT_DOWNLOAD_RESUME  | 0x01000111 | 恢复下载。   |
-| EVENT_DOWNLOAD_SUCCESS | 0x01001000 | 下载成功。   |
-| EVENT_DOWNLOAD_FAIL    | 0x01001001 | 下载失败。   |
-| EVENT_UPGRADE_WAIT     | 0x01001010 | 待升级。    |
-| EVENT_UPGRADE_START    | 0x01001011 | 开始升级。   |
-| EVENT_UPGRADE_UPDATE   | 0x01001100 | 升级中。    |
-| EVENT_APPLY_WAIT       | 0x01001101 | 待生效。    |
-| EVENT_APPLY_START      | 0x01001110 | 开始生效。   |
-| EVENT_UPGRADE_SUCCESS  | 0x01001111 | 更新成功。   |
-| EVENT_UPGRADE_FAIL     | 0x01010000 | 更新失败。   |
+| EVENT_TASK_CANCEL      | 0x01000002 | 取消任务。   |
+| EVENT_DOWNLOAD_WAIT    | 0x01000003 | 待下载。    |
+| EVENT_DOWNLOAD_START   | 0x01000004 | 开始下载。   |
+| EVENT_DOWNLOAD_UPDATE  | 0x01000005 | 下载进度更新。 |
+| EVENT_DOWNLOAD_PAUSE   | 0x01000006 | 下载暂停。   |
+| EVENT_DOWNLOAD_RESUME  | 0x01000007 | 恢复下载。   |
+| EVENT_DOWNLOAD_SUCCESS | 0x01000008 | 下载成功。   |
+| EVENT_DOWNLOAD_FAIL    | 0x01000009 | 下载失败。   |
+| EVENT_UPGRADE_WAIT     | 0x0100000A | 待升级。    |
+| EVENT_UPGRADE_START    | 0x0100000B | 开始升级。   |
+| EVENT_UPGRADE_UPDATE   | 0x0100000C | 升级中。    |
+| EVENT_APPLY_WAIT       | 0x0100000D | 待生效。    |
+| EVENT_APPLY_START      | 0x0100000E | 开始生效。   |
+| EVENT_UPGRADE_SUCCESS  | 0x0100000F | 更新成功。   |
+| EVENT_UPGRADE_FAIL     | 0x01000010 | 更新失败。   |
