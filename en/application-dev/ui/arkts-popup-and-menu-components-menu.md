@@ -28,7 +28,7 @@ Button('click for Menu')
 
 ## Creating a Menu in a Custom Style
 
-If the default style does not meet requirements, you can use \@CustomBuilder to customize menu content. Menus can also be customized through the **bindMenu** API.
+If the default style does not meet requirements, you can use [\@Builder](../quick-start/arkts-builder.md) to customize menu content. You can also use the **bindMenu** API to bind a custom menu to a component.
 
 
 ### \@Builder: Customizing Menu Content

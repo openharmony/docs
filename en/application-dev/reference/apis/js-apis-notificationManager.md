@@ -290,7 +290,7 @@ Cancels a notification with the specified ID and optional label. This API uses a
 | Name | Type  | Mandatory| Description    |
 | ----- | ------ | ---- | -------- |
 | id    | number | Yes  | Notification ID.  |
-| label | string | No  | Notification label.|
+| label | string | No  | Notification label. This parameter is left empty by default.|
 
 **Error codes**
 
@@ -3921,7 +3921,7 @@ Unsubscribes from notification events.
 | Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | type | string                                                       | Yes  | Event type. The value is fixed to **'checkNotification'**.|
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10)  | No  | Pointer to the notification verification function.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10)  | No  | Callback used to return the result. This parameter is left empty by default.|
 
 **Error codes**
 

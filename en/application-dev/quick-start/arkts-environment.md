@@ -12,11 +12,11 @@ Environment is a singleton object created by the ArkUI framework at application 
 
 ### Accessing Environment Parameters from UI
 
-- Use **Environment.EnvProp** to save the environment variables of the device to AppStorage.
+- Use **Environment.envProp** to save the environment variables of the device to AppStorage.
 
   ```ts
   // Save languageCode to AppStorage. The default value is en.
-  Environment.EnvProp('languageCode', 'en');
+  Environment.envProp('languageCode', 'en');
   ```
 
 - Decorate the variables with \@StorageProp to link them with components.
@@ -34,8 +34,8 @@ The chain of updates is as follows: Environment > AppStorage > Component.
 
 ```ts
 // Save the device language code to AppStorage.
-Environment.EnvProp('languageCode', 'en');
-let enable = AppStorage.Get('languageCode');
+Environment.envProp('languageCode', 'en');
+let enable = AppStorage.get('languageCode');
 
 @Entry
 @Component
@@ -59,9 +59,9 @@ struct Index {
 
 ```ts
 // Use Environment.EnvProp to save the device language code to AppStorage.
-Environment.EnvProp('languageCode', 'en');
+Environment.envProp('languageCode', 'en');
 // Obtain the one-way bound languageCode variable from AppStorage.
-const lang: SubscribedAbstractProperty<string> = AppStorage.Prop('languageCode');
+const lang: SubscribedAbstractProperty<string> = AppStorage.prop('languageCode');
 
 if (lang.get() === 'en') {
   console.info('Hi');
@@ -89,7 +89,7 @@ export default class EntryAbility extends UIAbility {
     window.then(window => {
       let uicontext = window.getUIContext()
       uicontext.runScopedTask(() => {
-        Environment.EnvProp('languageCode', 'en');
+        Environment.envProp('languageCode', 'en');
       })
     })
   }

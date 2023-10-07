@@ -225,7 +225,7 @@ Cancels a notification with the specified ID and optional label. This API uses a
 | Name | Type  | Mandatory| Description    |
 | ----- | ------ | ---- | -------- |
 | id    | number | Yes  | Notification ID.  |
-| label | string | No  | Notification label.|
+| label | string | No  | Notification label. This parameter is left empty by default.|
 
 **Example**
 
@@ -808,7 +808,7 @@ Subscribes to a notification with the subscription information specified. This A
 | Name      | Type                     | Mandatory| Description        |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | Yes  | Notification subscriber.|
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | No  | Notification subscription information.  |
+| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | No  | Notification subscription information. This parameter is left empty by default.  |
 
 **Example**
 
@@ -1668,7 +1668,7 @@ Removes all notifications for a specified application. This API uses a promise t
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoptiondeprecated) | No  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | No  | Bundle information of the application. By default, this parameter is left empty, indicating that all notifications will be removed.|
 
 **Example**
 
@@ -2875,7 +2875,7 @@ Notification.getDeviceRemindType().then((data) => {
 | Name  | Type  | Mandatory| Description  |
 | ------ | ------ | --- |  ------ |
 | bundle | string | Yes | Bundle information of the application.|
-| uid    | number | No | User ID.|
+| uid    | number | No | User ID. The default value is **0**.|
 
 ## NotificationKey<sup>deprecated</sup>
 

@@ -17,7 +17,7 @@ import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawa
 ## DrawableDescriptor.constructor
 constructor()
 
-Creates a **DrawableDescriptor** or **LayeredDrawableDescriptor** object. The globalization API [getDrawableDescriptor](js-apis-resource-manager.md#getdrawabledescriptor10) or [getDrawableDescriptorByName](js-apis-resource-manager.md#getdrawabledescriptorbyname10) is required for object construction.
+Creates a **DrawableDescriptor** or **LayeredDrawableDescriptor** object. The [getDrawableDescriptor](js-apis-resource-manager.md#getdrawabledescriptor10) or [getDrawableDescriptorByName](js-apis-resource-manager.md#getdrawabledescriptorbyname10) API is required for object construction.
 
 **System API**: This is a system API.
 
@@ -76,7 +76,7 @@ Obtains this **pixelMap** object.
 
 | Type                                      | Description      |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **pixelMap** object.|
+| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **PixelMap** object.|
 
 **Example**
   ```ts
@@ -96,7 +96,7 @@ Obtains the **pixelMap** object where the foreground, background, and mask are b
 
 | Type                                      | Description      |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **pixelMap** object.|
+| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **PixelMap** object.|
 
 **Example**
   ```ts
