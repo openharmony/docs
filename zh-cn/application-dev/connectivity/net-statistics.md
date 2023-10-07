@@ -41,7 +41,7 @@
 3. 获取所有网卡实时实时流量数据。
 4. 获取指定应用实时实时流量数据。
 
-```js
+```ts
 // 从@ohos.net.statistics中导入statistics命名空间
 import statistics from '@ohos.net.statistics';
 import { BusinessError } from '@ohos.base';
@@ -90,8 +90,8 @@ statistics.getUidRxBytes(uid, (error: BusinessError, stats: number) => {
 });
 
 //获取指定应用实时上行流量数据。
-let uid = 20010038;
-statistics.getUidTxBytes(uid, (error: BusinessError, stats: number) => {
+let uids = 20010038;
+statistics.getUidTxBytes(uids, (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
@@ -102,14 +102,17 @@ statistics.getUidTxBytes(uid, (error: BusinessError, stats: number) => {
 1. 获取指定网卡历史流量信息。
 2. 获取指定应用历史流量信息。
 
-```js
+```ts
+import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@ohos.base';
+
 class IfaceInfo {
-  iface: string = "wlan0",
-  startTime: number = 1685948465,
+  iface: string = "wlan0"
+  startTime: number = 1685948465
   endTime: number = 16859485670
 }
 //获取指定网卡历史流量信息。
-statistics.getTrafficStatsByIface(new IfaceInfo(), (error: BusinessError, statsInfo: object) => {
+statistics.getTrafficStatsByIface(new IfaceInfo(), (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
   console.log(JSON.stringify(error))
   console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
   console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
@@ -122,16 +125,10 @@ class UidInfo {
   ifaceInfo: IfaceInfo = new IfaceInfo()
 }
 
-class IfaceInfo {
-  iface: string = "wlan0"
-  startTime: number = 1685948465
-  endTime: number = 16859485670
-}
-
 let uidInfo = new UidInfo()
 
 //获取指定应用历史流量信息。
-statistics.getTrafficStatsByUid(uidInfo, (error: BusinessError, statsInfo: object) => {
+statistics.getTrafficStatsByUid(uidInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
   console.log(JSON.stringify(error))
   console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
   console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
@@ -145,13 +142,14 @@ statistics.getTrafficStatsByUid(uidInfo, (error: BusinessError, statsInfo: objec
 1. 订阅流量改变事件通知。
 2. 取消订阅流量改变事件通知。
 
-```js
+```ts
+import statistics from '@ohos.net.statistics';
 class Data {
-  iface: string = "",
-  uid?: number = ""
+  iface: string = ""
+  uid?: number = 0
 }
-let callbackData = new Data()
-let callback = (data: callbackData) => {
+
+let callback = (data: Data) => {
   console.log('on netStatsChange, data:' + JSON.stringify(data));
 };
 //订阅流量改变事件通知。
