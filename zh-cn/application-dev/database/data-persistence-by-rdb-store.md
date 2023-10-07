@@ -54,7 +54,7 @@
 
    Stage模型示例：
      
-   ```js
+   ```ts
    import relationalStore from '@ohos.data.relationalStore'; // 导入模块 
    import UIAbility from '@ohos.app.ability.UIAbility';
 
@@ -62,7 +62,9 @@
      onWindowStageCreate(windowStage) {
        const STORE_CONFIG = {
          name: 'RdbTest.db', // 数据库文件名
-         securityLevel: relationalStore.SecurityLevel.S1 // 数据库安全级别
+         securityLevel: relationalStore.SecurityLevel.S1, // 数据库安全级别
+         encrypt: false, // 可选参数，指定数据库是否加密，默认不加密
+         dataGroupId: "dataGroupID" // 可选参数，仅可在Stage模型下使用，表示为应用组ID，需要向应用市场获取。指定在此Id对应的沙箱路径下创建实例，当此参数不填时，默认在本应用沙箱目录下创建。
        };
 
        // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
