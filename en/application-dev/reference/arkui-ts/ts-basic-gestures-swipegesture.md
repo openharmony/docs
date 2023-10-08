@@ -17,7 +17,7 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 | -------- | -------- | -------- | -------- |
 | fingers | number | No| Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10.<br>Default value: **1**|
 | direction | [swipeDirection](#swipedirection)| No| Swipe direction.<br>Default value: **SwipeDirection.All**|
-| speed | number | No| Minimum speed of the swipe gesture, in vp/s.<br>Default value: **100**|
+| speed | number | No| Minimum speed of the swipe gesture, in vp/s.<br>Default value: **100**<br>**NOTE**<br>If the value is less than or equal to 0, it will be converted to the default value.|
 
 ## SwipeDirection
 
