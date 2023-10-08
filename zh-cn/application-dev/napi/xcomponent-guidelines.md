@@ -37,9 +37,12 @@ Native XComponent是XComponent组件提供在Native层的实例，可作为JS层
 开发者在ArkTS侧使用如下代码即可用XComponent组件进行利用EGL/OpenGLES渲染的开发。
 
 ```typescript
-XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' })
-  .onLoad((context) => {})
-  .onDestroy(() => {})
+@Builder
+function myComponent() {
+  XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' })
+    .onLoad((context) => {})
+    .onDestroy(() => {})
+}
 ```
 
 ### onLoad事件
@@ -64,21 +67,40 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 1. **在界面中定义XComponent**。
 
     ```typescript
-    // ...
-    // 在xxx.ets 中定义 XComponent
-    XComponent({
-    id: 'xcomponentId',
-    type: XComponentType.SURFACE,
-    libraryname: 'nativerender'
-    })
-    .focusable(true) // 可响应键盘事件
-    .onLoad((xComponentContext) => {
-        this.xComponentContext = xComponentContext;
-    })
-    .onDestroy(() => {
-        console.log("onDestroy");
-    })
-    // ...
+    @Entry
+    @Component
+    struct Index {
+        @State message: string = 'Hello World'
+        xComponentContext: object | undefined = undefined;
+        xComponentAttrs: XComponentAttrs = {
+            id: 'xcomponentId',
+            type: XComponentType.SURFACE,
+            libraryname: 'nativerender'
+        }
+
+        build() {
+            Row() {
+            // ...
+            // 在xxx.ets 中定义 XComponent
+            XComponent(this.xComponentAttrs)
+                .focusable(true) // 可响应键盘事件
+                .onLoad((xComponentContext) => {
+                this.xComponentContext = xComponentContext;
+                })
+                .onDestroy(() => {
+                console.log("onDestroy");
+                })
+            // ...
+            }
+            .height('100%')
+        }
+    }
+
+    interface XComponentAttrs {
+        id: string;
+        type: number;
+        libraryname: string;
+    }
     ```
 
 2. **Napi模块注册**，具体使用请参考[Native API在应用工程中的使用指导](napi-guidelines.md)。
