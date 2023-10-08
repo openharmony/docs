@@ -32,14 +32,14 @@ import appManager from '@ohos.app.ability.appManager';
 function getForegroundAppInfos() {
     appManager.getForegroundApplications((error, data) => {
         if (error) {
-            console.log('getForegroundApplications failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.log(`getForegroundApplications failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
             return;
         }
         for (let i = 0; i < data.length; i++) {
             let appStateData = data[i];
-            console.log('appStateData.bundleName: ${appStateData.bundleName}');
-            console.log('appStateData.uid: ${appStateData.uid}');
-            console.log('appStateData.state: ${appStateData.state}');
+            console.log(`appStateData.bundleName: ${appStateData.bundleName}`);
+            console.log(`appStateData.uid: ${appStateData.uid}`);
+            console.log(`appStateData.state: ${appStateData.state}`);
         }
     });
 }
