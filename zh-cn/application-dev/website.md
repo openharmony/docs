@@ -1496,7 +1496,7 @@
       - [Image](reference/native-apis/image.md)
       - [Rawfile](reference/native-apis/rawfile.md)
       - [MindSpore](reference/native-apis/_mind_spore.md)
-      - [NeuralNeworkRuntime](reference/native-apis/_neural_nework_runtime.md)
+      - [NeuralNetworkRuntime](reference/native-apis/_neural_nework_runtime.md)
       - [AudioDecoder](reference/native-apis/_audio_decoder.md)
       - [AudioEncoder](reference/native-apis/_audio_encoder.md)
       - [CodecBase](reference/native-apis/_codec_base.md)
