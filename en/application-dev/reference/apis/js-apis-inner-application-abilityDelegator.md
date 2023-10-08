@@ -54,7 +54,7 @@ import { BusinessError } from '@ohos.base';
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
+    console.info(`onAbilityCreateCallback, data: ${JSON.stringify(data)}`);
 }
 
 let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
@@ -63,7 +63,7 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 };
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
-    console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    console.error(`addAbilityMonitor fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -135,7 +135,7 @@ Adds an **AbilityMonitor** instance. This API is a synchronous API.
 
 | ID| Error Message|
 | ------- | -------- |
-| 16000100 | AddAbilityMonitor failed. |
+| 16000100 | AddAbilityMonitorSync failed. |
 | 401  | If the input parameter is not valid parameter. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -203,7 +203,7 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
-    console.error('removeAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    console.error(`removeAbilityMonitor fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -276,7 +276,7 @@ Deletes an **AbilityMonitor** instance. This API is a synchronous API.
 
 | ID| Error Message|
 | ------- | -------- |
-| 16000100 | RemoveAbilityMonitor failed. |
+| 16000100 | RemoveAbilityMonitorSync failed. |
 | 401  | If the input parameter is not valid parameter. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -346,9 +346,9 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAbility) => {
     if (error) {
-        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -399,9 +399,9 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : BusinessError, data : UIAbility) => {
     if (error && error.code !== 0) {
-        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -613,7 +613,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                                  | Mandatory| Description              |
 | -------- | -------------------------------------- | ---- | ------------------ |
-| want     | [Want](js-apis-application-want.md) | Yes  | **Want** parameter for starting the ability.   |
+| want     | [Want](js-apis-app-ability-want.md) | Yes  | **Want** parameter for starting the ability.   |
 | callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -669,7 +669,7 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name| Type                                  | Mandatory| Description           |
 | ------ | -------------------------------------- | ---- | --------------- |
-| want   | [Want](js-apis-application-want.md) | Yes  | **Want** parameter for starting the ability.|
+| want   | [Want](js-apis-app-ability-want.md) | Yes  | **Want** parameter for starting the ability.|
 
 **Return value**
 
@@ -1279,7 +1279,7 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 
 | ID| Error Message|
 | ------- | -------- |
-| 16000100 | AddAbilityStageMonitor failed. |
+| 16000100 | AddAbilityStageMonitorSync failed. |
 | 401 | If the input parameter is not valid parameter. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -1400,7 +1400,7 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 
 | ID| Error Message|
 | ------- | -------- |
-| 16000100 | RemoveAbilityStageMonitor failed. |
+| 16000100 | removeAbilityStageMonitorSync failed. |
 | 401 | If the input parameter is not valid parameter. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -1546,4 +1546,40 @@ abilityDelegator.waitAbilityStageMonitor({
 }, timeout, (err : BusinessError, data : AbilityStage) => {
     console.info('waitAbilityStageMonitor callback');
 });
+```
+
+### setMockList<sup>11+</sup>
+
+setMockList(mockList: { [key: string]: string }): void;
+
+Sets a list of mock data.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| mockList | { [key: string]: string } | Yes  | Key-value object of the mock, where **key** is the target path to be replaced and **value** is the path of the mock implementation to be used for the replacement.|
+
+**Error codes**
+
+| ID| Error Message       |
+| -------- | --------------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
+let mockList: Record<string, string> = {
+    '@ohos.router': 'src/main/mock/ohos/router.mock',
+    'common.time': 'src/main/mock/common/time.mock',
+};
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.setMockList(mockList);
 ```

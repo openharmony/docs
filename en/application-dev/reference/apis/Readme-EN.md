@@ -43,6 +43,7 @@
     - [@ohos.app.ability.wantAgent (WantAgent)](js-apis-app-ability-wantAgent.md)
     - [@ohos.app.ability.wantConstant (wantConstant)](js-apis-app-ability-wantConstant.md)
     - [@ohos.app.businessAbilityRouter (Business Ability Router)](js-apis-businessAbilityRouter.md)
+    - [@ohos.app.form.formAgent (FormAgent)](js-apis-app-form-formAgent.md)
     - [@ohos.app.form.formBindingData (formBindingData)](js-apis-app-form-formBindingData.md)
     - [@ohos.app.form.formHost (FormHost)](js-apis-app-form-formHost.md)
     - [@ohos.app.form.formInfo (FormInfo)](js-apis-app-form-formInfo.md)
