@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-@ohos.web.webview提供web控制能力，[web](../arkui-ts/ts-basic-components-web.md)组件提供具有网页显示能力。
+@ohos.web.webview提供web控制能力，[web](../arkui-ts/ts-basic-components-web.md)组件提供网页显示的能力。
 
 > **说明：**
 >
@@ -119,7 +119,7 @@ struct WebComponent {
 
 onMessageEvent(callback: (result: WebMessage) => void): void
 
-注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)。
+注册回调函数，接收HTML侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6386,7 +6386,7 @@ struct WebComponent {
 
 ## SecureDnsMode<sup>10+</sup>
 
-Web組件使用HTTPDNS的模式。
+Web组件使用HTTPDNS的模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
