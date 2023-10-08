@@ -12,6 +12,7 @@ The **ble** module provides APIs for operating and managing Bluetooth.
 
 ```js
 import ble from '@ohos.bluetooth.ble';
+import { BusinessError } from '@ohos.base';
 ```
 
 

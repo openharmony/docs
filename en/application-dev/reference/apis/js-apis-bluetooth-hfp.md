@@ -12,6 +12,7 @@ The **hfp** module provides APIs for using the Bluetooth Hands-Free Profile (HFP
 
 ```js
 import hfp from '@ohos.bluetooth.hfp';
+import { BusinessError } from '@ohos.base';
 ```
 
 

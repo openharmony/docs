@@ -12,6 +12,7 @@ The **connection** module provides APIs for operating and managing Bluetooth.
 
 ```js
 import connection from '@ohos.bluetooth.connection';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -529,7 +530,7 @@ try {
 
 getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 
-Obtains the connection state of the specified profile.
+Obtains the connection state of a Bluetooth profile.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -1337,13 +1338,13 @@ Represents the class of a Bluetooth device.
 
 ## BluetoothTransport<a name="BluetoothTransport"></a>
 
-Enumerates the device types.
+Enumerates the device types. The default device type is **TRANSPORT_BR_EDR**.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name                              | Value   | Description             |
 | -------------------------------- | ------ | --------------- |
-| TRANSPORT_BR_EDR   | 0 | Classic Bluetooth (BR/EDR) device, which is the default value. |
+| TRANSPORT_BR_EDR   | 0 | Classic Bluetooth (BR/EDR) device.|
 | TRANSPORT_LE  | 1 | BLE device. |
 
 

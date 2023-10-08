@@ -12,6 +12,7 @@ The **pan** module provides APIs for accessing the Bluetooth personal area netwo
 
 ```js
 import pan from '@ohos.bluetooth.pan';
+import { BusinessError } from '@ohos.base';
 ```
 
 

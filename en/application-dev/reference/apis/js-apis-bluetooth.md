@@ -13,6 +13,7 @@ The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth L
 
 ```js
 import bluetooth from '@ohos.bluetooth';
+import { BusinessError } from '@ohos.base';
 ```
 
 
