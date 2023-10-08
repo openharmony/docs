@@ -1270,7 +1270,7 @@ try {
 
 ## missionManager.moveMissionsToForeground<sup>10+</sup>
 
-moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): Promise&lt;void&gt; ;
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): Promise&lt;void&gt;;
 
 Switches a batch of missions to the foreground, and moves the mission with the specified ID to the top. This API uses a promise to return the result.
 
