@@ -300,6 +300,63 @@ function convertSM2AsyKey() {
 }
 ```
 
+### 随机生成HMAC密钥，并获得二进制数据
+
+示例9：随机生成对称密钥SymKey，并获得二进制数据（场景1、3）
+
+1. 创建对称密钥生成器。
+2. 通过对称密钥生成器随机生成对称密钥。
+3. 获取算法库密钥对象的二进制数据。
+
+以使用Promise方式随机生成HMAC密钥（256位）为例：
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function testGenerateHmacKey() {
+  // Create a SymKeyGenerator instance.
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("HMAC|SHA256");
+  // Use the key generator to randomly generate a symmetric key.
+  let promiseSymKey = symKeyGenerator.generateSymKey();
+  promiseSymKey.then(key => {
+    // Obtain the binary data of the symmetric key and output a 256-bit byte stream. The length is 32 bytes.
+    let encodedKey = key.getEncoded();
+    console.info('key hex:' + encodedKey.data);
+  })
+}
+```
+
+### 根据HMAC密钥二进制数据，生成密钥
+
+示例10：随机生成对称密钥SymKey，并获得二进制数据（场景1、3）
+
+1. 创建对称密钥生成器。
+2. 通过对称密钥生成器，根据指定的对称密钥二进制数据，生成SymKey对象。
+3. 获取算法库密钥对象的二进制数据。
+
+以使用callback方式生成HMAC密钥（256位）为例：
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function testConvertHmacKey() {
+  let keyBlob = {
+    data : stringToUint8Array("12345678abcdefgh12345678abcdefgh")
+  }
+  // Create a SymKeyGenerator instance.
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("HMAC");
+  symKeyGenerator.convertKey(keyBlob, (error, symKey) => {
+    if (error) {
+      AlertDialog.show({ message: "Convert symKey fail" });
+      return;
+    }
+    AlertDialog.show({ message: "Convert symKey success" });
+  })
+}
+```
+
 ## 非对称密钥对象根据参数生成与获取参数
 
 ### 场景说明
