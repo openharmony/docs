@@ -6,8 +6,8 @@ UIAbility is an application component that has the UI. The **UIAbility** module 
 - [Callee](#callee): an internal object of UIAbility. The CalleeAbility (callee) uses this object to communicate with the CallerAbility (caller).
 
 > **NOTE**
-> 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+>
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
@@ -244,8 +244,8 @@ Called when a UIAbility instance that has undergone the following states is star
   ```ts
   class MyUIAbility extends UIAbility {
       onNewWant(want, launchParams) {
-          console.log('onNewWant, want: ${want.abilityName}');
-          console.log('onNewWant, launchParams: ${JSON.stringify(launchParams)}');
+          console.log(`onNewWant, want: ${want.abilityName}`);
+          console.log(`onNewWant, launchParam: ${JSON.stringify(launchParam)}`);
       }
   }
   ```
@@ -269,7 +269,7 @@ Dumps client information.
   ```ts
   class MyUIAbility extends UIAbility {
       onDump(params) {
-          console.log('dump, params: ${JSON.stringify(params)}');
+          console.log(`dump, params: ${JSON.stringify(params)}`);
           return ['params'];
       }
   }
@@ -683,10 +683,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
                       console.log('Remote state changed ' + str);
                   });
               } catch (error) {
-                  console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+                  console.log(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
               }
           }).catch((err) => {
-              console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+              console.log(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
           })
       }
   }

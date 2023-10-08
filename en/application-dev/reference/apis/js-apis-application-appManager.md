@@ -31,9 +31,9 @@ Checks whether this application is undergoing a stability test. This API uses an
   ```ts
   appManager.isRunningInStabilityTest((error, flag) => {
     if (error && error.code !== 0) {
-        console.error('isRunningInStabilityTest fail, error: ${JSON.stringify(error)}');
+        console.error(`isRunningInStabilityTest fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('isRunningInStabilityTest success, the result is: ${JSON.stringify(flag)}');
+        console.log(`isRunningInStabilityTest success, the result is: ${JSON.stringify(flag)}`);
     }
   });
   ```
@@ -57,9 +57,9 @@ Checks whether this application is undergoing a stability test. This API uses a 
     
   ```ts
   appManager.isRunningInStabilityTest().then((flag) => {
-      console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
+      console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
   }).catch((error) => {
-      console.error('error: ${JSON.stringify(error)}');
+      console.error(`error: ${JSON.stringify(error)}`);
   });
   ```
 
@@ -82,9 +82,9 @@ Checks whether this application is running on a RAM constrained device. This API
     
   ```ts
   appManager.isRamConstrainedDevice().then((data) => {
-      console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
+      console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
   }).catch((error) => {
-      console.error('error: ${JSON.stringify(error)}');
+      console.error(`error: ${JSON.stringify(error)}`);
   });
   ```
 
@@ -107,9 +107,9 @@ Checks whether this application is running on a RAM constrained device. This API
   ```ts
   appManager.isRamConstrainedDevice((error, data) => {
       if (error && error.code !== 0) {
-          console.error('isRamConstrainedDevice fail, error: ${JSON.stringify(error)}');
+          console.error(`isRamConstrainedDevice fail, error: ${JSON.stringify(error)}`);
       } else {
-          console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
+          console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
       }
   });
   ```
@@ -132,9 +132,9 @@ Obtains the memory size of this application. This API uses a promise to return t
     
   ```ts
   appManager.getAppMemorySize().then((data) => {
-      console.log('The size of app memory is: ${JSON.stringify(data)}');
+      console.log(`The size of app memory is: ${JSON.stringify(data)}`);
   }).catch((error) => {
-      console.error('error: ${JSON.stringify(error)}');
+      console.error(`error: ${JSON.stringify(error)}`);
   });
   ```
 
@@ -157,9 +157,9 @@ Obtains the memory size of this application. This API uses an asynchronous callb
   ```ts
   appManager.getAppMemorySize((error, data) => {
       if (error && error.code !== 0) {
-          console.error('getAppMemorySize fail, error: ${JSON.stringify(error)}');
+          console.error(`getAppMemorySize fail, error: ${JSON.stringify(error)}`);
       } else {
-          console.log('The size of app memory is: ${JSON.stringify(data)}');
+          console.log(`The size of app memory is: ${JSON.stringify(data)}`);
       }
   });
   ```
@@ -185,9 +185,9 @@ Obtains information about the running processes. This API uses a promise to retu
     
   ```ts
   appManager.getProcessRunningInfos().then((data) => {
-      console.log('The process running infos is: ${JSON.stringify(data)}');
+      console.log(`The process running infos is: ${JSON.stringify(data)}`);
   }).catch((error) => {
-      console.error('error: ${JSON.stringify(error)}');
+      console.error(`error: ${JSON.stringify(error)}`);
   });
   ```
 
@@ -214,9 +214,9 @@ Obtains information about the running processes. This API uses an asynchronous c
   ```ts
   appManager.getProcessRunningInfos((error, data) => {
       if (error && error.code !== 0) {
-          console.error('getProcessRunningInfos fail, error: ${JSON.stringify(error)}');
+          console.error(`getProcessRunningInfos fail, error: ${JSON.stringify(error)}`);
       } else {
-          console.log('getProcessRunningInfos success, data: ${JSON.stringify(data)}');
+          console.log(`getProcessRunningInfos success, data: ${JSON.stringify(data)}`);
       }
   });
   ```

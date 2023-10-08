@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)
 
-**AbilityDelegatorRegistry**, a module of the [arkXtest User Guide](../../application-test/arkxtest-guidelines.md), is used to obtain [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) and [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) objects. **AbilityDelegator** provides APIs for creating **AbilityMonitor** objects, which can be used to listen for ability lifecycle changes. **AbilityDelegatorArgs** provides APIs for obtaining test parameters.
+**AbilityDelegatorRegistry**, a module of the [Automatic Test Framework](../../application-test/arkxtest-guidelines.md), is used to obtain [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) and [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) objects. **AbilityDelegator** provides APIs for creating **AbilityMonitor** objects, which can be used to listen for ability lifecycle changes. **AbilityDelegatorArgs** provides APIs for obtaining test parameters.
 
 > **NOTE**
 > 
@@ -54,7 +54,7 @@ let want = {
 };
 abilityDelegator.startAbility(want, (err) => {
     if (err) {
-        console.error('Failed start ability, error: ${JSON.stringify(err)}');
+        console.error(`Failed start ability, error: ${JSON.stringify(err)}`);
     } else {
         console.log('Success start ability.');
     }
@@ -81,8 +81,8 @@ Obtains an [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 let args = AbilityDelegatorRegistry.getArguments();
-console.info('getArguments bundleName: ${args.bundleName}');
-console.info('getArguments parameters: ${JSON.stringify(args.parameters)}');
-console.info('getArguments testCaseNames: ${args.testCaseNames}');
-console.info('getArguments testRunnerClassName: ${args.testRunnerClassName}');
+console.info(`getArguments bundleName: ${args.bundleName}`);
+console.info(`getArguments parameters: ${JSON.stringify(args.parameters)}`);
+console.info(`getArguments testCaseNames: ${args.testCaseNames}`);
+console.info(`getArguments testRunnerClassName: ${args.testRunnerClassName}`);
 ```

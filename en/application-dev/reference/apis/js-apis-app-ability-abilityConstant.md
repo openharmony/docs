@@ -45,6 +45,7 @@ Enumerates the initial ability launch reasons. You can use it together with [onC
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
@@ -77,6 +78,7 @@ Enumerates the reasons for the last exit. You can use it together with [onCreate
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {

@@ -83,7 +83,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 restartApp(): void;
 
-Restarts the current process and starts the first ability that is displayed when the application is started. If the state of this ability is saved, the saved state data is passed into the **wantParam** attribute in the **want** parameter of the **OnCreate** lifecycle callback of the ability.
+Restarts the current process and starts the first ability that is displayed when the application is started. If the state of this ability is saved, the saved state data is passed into the **wantParam** attribute in the **want** parameter of the **onCreate** lifecycle callback of the ability.
 
 In API version 10, the ability specified by [setRestartWant](#apprecoverysetrestartwant) is started. If no ability is specified, the following rules are used:
 - If the ability of the current application running in the foreground supports recovery, that ability is started.
@@ -111,7 +111,7 @@ let observer = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```
 
@@ -145,7 +145,7 @@ let observer = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```
 
@@ -185,7 +185,7 @@ let observer = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```
 
@@ -201,7 +201,7 @@ Sets an ability that will be recovered. The ability must be a UIAbility in the c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)| Yes| Want of the target ability. You can set the **bundleName** and **abilityName** fields in **Want** to specify the ability.|
+| want | [Want](js-apis-app-ability-want.md)| Yes| Want of the target ability. You can set the **bundleName** and **abilityName** fields in **Want** to specify the ability.|
 
 **Example**
 
