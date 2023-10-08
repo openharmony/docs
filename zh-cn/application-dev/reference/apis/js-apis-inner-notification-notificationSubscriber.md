@@ -266,7 +266,7 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| mode | notification.[DoNotDisturbDate](js-apis-notificationManager.md#DoNotDisturbDate) | 是 | 回调返回免打扰时间选项变更。 |
+| mode | notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate) | 是 | 回调返回免打扰时间选项变更。 |
 
 **示例：**
 
@@ -296,7 +296,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ### onEnabledNotificationChanged<sup>8+</sup>
 
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)) => void
+onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)) => void
 
 监听应用通知使能变化。
 
@@ -306,9 +306,9 @@ onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](j
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ------------ | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)\> | 是 | 回调返回监听到的应用信息。 |
+| 参数名 | 类型                                                                                                           | 必填 | 说明 |
+| ------------ |--------------------------------------------------------------------------------------------------------------| ---- | -------------------------- |
+| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)\> | 是 | 回调返回监听到的应用信息。 |
 
 **示例：**
 
@@ -382,13 +382,13 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称            | 类型                                              | 可读 | 可写 | 说明     |
-| --------------- | ------------------------------------------------- | ---- | --- | -------- |
-| request         | [NotificationRequest](js-apis-inner-notification-notificationRequest#notificationrequest)       | 是  | 否  | 通知内容。 |
+| 名称            | 类型                                                                 | 可读 | 可写 | 说明     |
+| --------------- |--------------------------------------------------------------------| ---- | --- | -------- |
+| request         | [NotificationRequest](js-apis-notification.md#notificationrequest) | 是  | 否  | 通知内容。 |
 | sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap.md) | 是  | 否  | 通知排序信息。 |
-| reason          | number                                            | 是  | 否  | 删除原因。 |
-| sound           | string                                            | 是  | 否  | 通知声音。 |
-| vibrationValues | Array\<number\>                                   | 是  | 否  | 通知震动。 |
+| reason          | number                                                             | 是  | 否  | 删除原因。 |
+| sound           | string                                                             | 是  | 否  | 通知声音。 |
+| vibrationValues | Array\<number\>                                                    | 是  | 否  | 通知震动。 |
 
 
 ## EnabledNotificationCallbackData<sup>8+</sup>
