@@ -335,7 +335,7 @@ formObserver.on('notifyInvisible', (data: formInfo.RunningFormInfo[]) => {
 
 ## on('notifyInvisible')
 
- on(type: 'notifyInvisible', hostBundleName: string, observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;>): void
+ on(type: 'notifyInvisible', hostBundleName: string, observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;>,): void
 
 订阅通知卡片不可见的事件。
 
