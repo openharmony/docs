@@ -76,7 +76,7 @@ Measures the width of the given single-line text.
 
 | Type         | Description      |
 | ------------  | --------- |
-| SizeOptions   | Layout width and height occupied by the text.<br>The unit is px.|
+| [SizeOption](../arkui-ts/ts-types.md#sizeoptions)   | Layout width and height occupied by the text.<br>The unit is px.|
 
 
 **Example**

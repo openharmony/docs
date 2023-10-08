@@ -16,7 +16,6 @@ The **PromptAction** module provides APIs for creating and showing toasts, dialo
 
 ```ts
 import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## promptAction.showToast

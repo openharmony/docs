@@ -45,7 +45,7 @@ What the internal state is depends on the component. For example, for the [bindP
 
 ## Example
 
-This example uses the **text** attribute of the [\<TextInput>](../reference/arkui-ts/ts-basic-components-textinput.md) component.
+This example uses the **text** parameter of the [\<TextInput>](../reference/arkui-ts/ts-basic-components-textinput.md) component.
 
 
 ```ts

@@ -161,7 +161,7 @@ struct Index {
         Button('Button')
           .onClick(()=>{
             // Reference the native method in the HAR.
-            nativeMulti();
+            nativeMulti(1, 2);
         })
       }
       .width('100%')
