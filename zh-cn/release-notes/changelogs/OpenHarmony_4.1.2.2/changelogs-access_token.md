@@ -14,8 +14,9 @@
 使用和接口描述等信息参考[getPermissionUsedRecord](../../../application-dev/reference/apis/js-apis-privacyManager.md#privacymanagergetpermissionusedrecord)
 
 调用getPermissionUsedRecord获取权限访问记录，解析对应权限访问记录的锁屏状态。
+
+示例代码:
 ```ts
-示例代码
 import privacyManager from '@ohos.privacyManager';
 
 try {
