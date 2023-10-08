@@ -146,7 +146,7 @@ class ChatListData extends BasicDataSource {
 }
 ```
 
-接下来，需要创建示例数据。在自定义组件ChatListDisplayView中，创建一个ChatListData类型的局部变量chatList_Lazy，并在aboutToAppear()方法中创建示例数据，详细代码请参考[文件ChatListPage.ets](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/Solutions/IM/Chat/features/chatlist/src/main/ets/pages/ChatListPage.ets)。
+接下来，需要创建示例数据。在自定义组件ChatListDisplayView中，创建一个ChatListData类型的局部变量chatList_Lazy，并在aboutToAppear()方法中创建示例数据。
 
 ```ts
 @Component  
@@ -215,7 +215,7 @@ LazyForEach懒加载可以通过设置cachedCount属性来指定缓存数量。�
 
 ### 实现示例
 
-List/Grid容器组件的cachedCount属性用于为LazyForEach懒加载设置列表项ListItem的最少缓存数量。应用可以通过增加cachedCount参数，调整屏幕外预加载项的数量。在示例代码[文件ChatListPage.ets](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/Solutions/IM/Chat/features/chatlist/src/main/ets/pages/ChatListPage.ets)中，提供了一个开关用于设置是否使能该属性，如下所示。在设置cachedCount后，当列表界面滑动时，除了获取屏幕上展示的数据，还会额外获取指定数量的列表项数据缓存起来。
+List/Grid容器组件的cachedCount属性用于为LazyForEach懒加载设置列表项ListItem的最少缓存数量。应用可以通过增加cachedCount参数，调整屏幕外预加载项的数量。在示例代码中，提供了一个开关用于设置是否使能该属性，如下所示。在设置cachedCount后，当列表界面滑动时，除了获取屏幕上展示的数据，还会额外获取指定数量的列表项数据缓存起来。
 
 ```ts
 build() {
