@@ -567,6 +567,10 @@ Subscribes to AVPlayer errors. This event is used only for error prompt and does
 
 The AVPlayer provides the following error types<a name = error_info></a>:
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
 | ID| Error Message             | Description                                                        |
 | -------- | --------------------- | ------------------------------------------------------------ |
 | 201      | No Permission:        | No permission to perform the operation. The [AVPlayer state](#avplayerstate9) is error.|
@@ -2531,7 +2535,7 @@ An application can subscribe to only one AVRecorder error event. When the applic
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID       | Error Message                                      |
+| ID| Error Message                                           |
 | -------- | ------------------------------------------------   |
 | 5400101  | No memory. Return by callback.                     |
 | 5400102  | Operation not allowed. Return by callback.         |
@@ -2566,7 +2570,7 @@ Unsubscribes from AVRecorder errors. After the unsubscription, your application 
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID       | Error Message                                      |
+| ID| Error Message                                           |
 | -------- | ------------------------------------------------   |
 | 5400101  | No memory. Return by callback.                     |
 | 5400102  | Operation not allowed. Return by callback.         |
