@@ -649,7 +649,7 @@ try {
 
 | 名称                      | 值     | 说明              |
 | ------------------------- | ------ | ---------------- |
-| PERM_ACTIVE_IN_UNLOCK | 1      | 表示非锁屏场景使用权限。 |
+| PERM_ACTIVE_IN_UNLOCKED | 1      | 表示非锁屏场景使用权限。 |
 | PERM_ACTIVE_IN_LOCKED | 2      | 表示锁屏场景使用权限。 |
 
 ## ActiveChangeResponse
