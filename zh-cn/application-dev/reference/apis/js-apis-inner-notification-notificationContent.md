@@ -12,7 +12,8 @@
 
 | 名称           | 类型                                                                        | 只读 | 必填 | 说明               |
 | -----------   | --------------------------------------------------------------------------- | ---- | --- | ------------------ |
-| contentType    | [ContentType](./js-apis-notificationManager.md#contenttype)                | 否  | 是  | 通知内容类型。       |
+| contentType<sup>(deprecated)</sup> | [ContentType](./js-apis-notificationManager.md#contenttype)  | 否  | 否  | 通知内容类型。<br>从API version 11开始不再维护，建议使用notificationContentType代替。       |
+| notificationContentType<sup>11+</sup>    | [ContentType](./js-apis-notificationManager.md#contenttype)                | 否  | 否  | 通知内容类型。       |
 | normal         | [NotificationBasicContent](#notificationbasiccontent)                      | 否  | 否  | 基本类型通知内容。   |
 | longText       | [NotificationLongTextContent](#notificationlongtextcontent)                | 否  | 否  | 长文本类型通知内容。 |
 | multiLine      | [NotificationMultiLineContent](#notificationmultilinecontent)              | 否  | 否  | 多行类型通知内容。   |
