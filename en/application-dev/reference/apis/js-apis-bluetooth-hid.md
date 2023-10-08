@@ -12,6 +12,7 @@ The **hid** module provides APIs for using the Bluetooth Human Interface Device 
 
 ```js
 import hid from '@ohos.bluetooth.hid';
+import { BusinessError } from '@ohos.base';
 ```
 
 

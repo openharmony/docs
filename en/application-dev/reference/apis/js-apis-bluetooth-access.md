@@ -11,6 +11,7 @@ The **access** module provides APIs for enabling and disabling Bluetooth and obt
 
 ```js
 import access from '@ohos.bluetooth.access';
+import { BusinessError } from '@ohos.base';
 ```
 
 
