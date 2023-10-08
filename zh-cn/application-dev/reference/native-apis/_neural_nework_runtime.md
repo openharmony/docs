@@ -1,4 +1,4 @@
-# NeuralNeworkRuntime
+# NeuralNetworkRuntime
 
 
 提供Neural Network Runtime加速模型推理的相关接口。
