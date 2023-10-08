@@ -51,7 +51,7 @@ struct ListItemExample {
   }
 }
 ```
-## cl.arkui.2 Change of Effect for When Both Margin and Margin Are Setting
+## cl.arkui.2 Change of Effect for When Both Margin and Margin Are Set
 
 When a component has both **margin** and **position** attributes set, the settings for both attributes take effect, instead of only the settings of **position**.
 
@@ -67,4 +67,4 @@ When a component has both **margin** and **position** attributes set, it is move
 
 **Adaptation Guide**
 
-If both **margin **and **position** are set for a component, or if **position** is set for a component that has default margin settings (for example, the **\<Checkbox>** component), you are advised to adjust the margin to ensure that the component is in an appropriate position.
+If both **margin** and **position** are set for a component, or if **position** is set for a component that has default margin settings (for example, the **\<Checkbox>** component), you are advised to adjust the margin to ensure that the component is in an appropriate position.

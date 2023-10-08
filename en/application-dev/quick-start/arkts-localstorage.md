@@ -182,7 +182,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 The two decorators \@LocalStorageProp and \@LocalStorageLink can work together to obtain the state variable stored in a LocalStorage instance in the UI component.
 
-This example uses \@LocalStorage as an example to show how to:
+This example uses \@LocalStorageLink to show how to:
 
 - Use the **build** function to create a LocalStorage instance named **storage**.
 
@@ -192,8 +192,7 @@ This example uses \@LocalStorage as an example to show how to:
 
   ```ts
   // Create a new instance and initialize it with the given object.
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
+  let storage = new LocalStorage({ 'PropA': 47 });
 
   @Component
   struct Child {
@@ -235,9 +234,7 @@ In this example, the **CompA** and **Child** components create local data that i
 
   ```ts
   // Create a new instance and initialize it with the given object.
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
-
+  let storage = new LocalStorage({ 'PropA': 47 });
   // Make LocalStorage accessible from the @Component decorated component.
   @Entry(storage)
   @Component
@@ -277,10 +274,9 @@ This example shows how to create a two-way data synchronization between an \@Loc
 
 ```ts
 // Create a LocalStorage instance.
-let storage = new LocalStorage();
-storage['PropA'] = 47;
+let storage = new LocalStorage({ 'PropA': 47 });
 // Invoke the link9+ API to create a two-way data synchronization with PropA. linkToPropA is a global variable.
-let linkToPropA = storage.link<number>('PropA');
+let linkToPropA = storage.link('PropA');
 
 @Entry(storage)
 @Component
@@ -304,7 +300,7 @@ struct CompA {
 ```
 
 
-### Example of Syncing State Variable Between Sibling Components
+### Example of Syncing State Variables Between Sibling Components
 
 This example shows how to use \@LocalStorageLink to create a two-way synchronization for the state between sibling components.
 
@@ -392,10 +388,11 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage = new LocalStorage();
+  storage: LocalStorage = new LocalStorage({
+    'PropA': 47
+  });
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    this.storage['PropA'] = 47;
     windowStage.loadContent('pages/Index', this.storage);
   }
 }
