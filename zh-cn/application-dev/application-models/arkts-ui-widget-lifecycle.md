@@ -22,7 +22,6 @@
    import formProvider from '@ohos.app.form.formProvider';
    import { Configuration } from '@ohos.app.ability.Configuration';
    import Want from '@ohos.app.ability.Want';
-   import formInfo from '@ohos.app.form.formInfo';
    import Base from '@ohos.base';
    
    export default class EntryFormAbility extends FormExtensionAbility {
