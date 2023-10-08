@@ -12,6 +12,7 @@ The **ble** module provides APIs for operating and managing Bluetooth.
 
 ```js
 import ble from '@ohos.bluetooth.ble';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -961,9 +962,10 @@ Subscribes to BLE connection state changes.
 **Example**
 
 ```js
+import constant from '@ohos.bluetooth.constant';
 function Connected(bleConnectionChangeState: ble.BLEConnectionChangeState) {
   let deviceId: string = bleConnectionChangeState.deviceId;
-  let status: ProfileConnectionState = bleConnectionChangeState.state;
+  let status: constant.ProfileConnectionState = bleConnectionChangeState.state;
 }
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.on('connectionStateChange', Connected);
@@ -1268,9 +1270,9 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 // Callback
-function getServices(code: BusinessError, gattServices: Array<GattService>) {
+function getServices(code: BusinessError, gattServices: Array<ble.GattService>) {
   if (code.code == 0) {
-      let services: Array<GattService> = gattServices;
+      let services: Array<ble.GattService> = gattServices;
       console.log('bluetooth code is ' + code.code);
       console.log('bluetooth services size is ', services.length);
 

@@ -13,6 +13,7 @@ The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth L
 
 ```js
 import bluetooth from '@ohos.bluetooth';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -757,7 +758,7 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data : boolean) {
+function onReceiveEvent(data : bluetooth.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
 bluetooth.on('stateChange', onReceiveEvent);
@@ -1140,7 +1141,7 @@ Obtains a profile object.
 **Example**
 
 ```js
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 ```
 
 
@@ -1394,7 +1395,7 @@ Obtains the connected devices.
 **Example**
 
 ```js
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let retArray : Array<string> = a2dpSrc.getConnectionDevices();
 ```
 
@@ -1426,7 +1427,7 @@ Obtains the connection state of the profile.
 **Example**
 
 ```js
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret : bluetooth.ProfileConnectionState = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1463,7 +1464,7 @@ Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 **Example**
 
 ```js
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret : boolean = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1496,7 +1497,7 @@ Disconnects an A2DP connection.
 **Example**
 
 ```js
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret : boolean = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1529,7 +1530,7 @@ No value is returned.
 function onReceiveEvent(data : bluetooth.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1562,7 +1563,7 @@ No value is returned.
 function onReceiveEvent(data : bluetooth.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1594,7 +1595,7 @@ Obtains the playing state of a device.
 **Example**
 
 ```js
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let state : bluetooth.PlayingState = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -2428,7 +2429,7 @@ No value is returned.
 ```js
 function Connected(BLEConnectChangedState : bluetooth.BLEConnectChangedState) {
   let deviceId : string = BLEConnectChangedState.deviceId;
-  let status : ProfileConnectionState = BLEConnectChangedState.state;
+  let status : bluetooth.ProfileConnectionState = BLEConnectChangedState.state;
 }
 
 let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
@@ -3196,7 +3197,6 @@ Obtains the name of the remote BLE device. This API uses a promise to return the
 ```js
 // promise
 let gattClient : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let ret : boolean = device.connect();
 gattClient.getDeviceName().then((data) => {
     console.info('device name' + JSON.stringify(data));
 })
@@ -3231,7 +3231,7 @@ No value is returned.
 ```js
 // callback
 let gattClient : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let ret : boolean = device.connect();
+let ret : boolean = gattClient.connect();
 gattClient.getRssiValue((err : BusinessError, data : number)=> {
     console.info('rssi err ' + JSON.stringify(err));
     console.info('rssi value' + JSON.stringify(data));
