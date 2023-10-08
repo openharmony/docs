@@ -105,7 +105,7 @@ struct Parent {
 
 1. \@Component LinkChild：\@Link testNum: number从父组件的LinkChild({testNum:this.testNum.c})。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，比如\@Link: T和\@State : T。所以，这里应该改为\@Link testNum: ClassA，从父组件初始化的方式为LinkChild({testNum: $testNum})。
 
-2. \@Component PropChild2：\@Prop可以本地初始化，也可以从父组件初始化，但是必须初始化，对于\@Prop testNum: ClassA没有本地初始化，所以必须从父组件初始化PropChild1({testNum: this.testNum})。
+2. \@Component PropChild2：\@Prop可以本地初始化，也可以从父组件初始化，但是必须初始化，对于\@Prop testNum: ClassA没有本地初始化，所以必须从父组件初始化PropChild2({testNum: this.testNum})。
 
 3. \@Component PropChild3：没有改变\@Prop testNum: ClassA的值，所以这时较优的选择是使用\@ObjectLink，因为\@Prop是会深拷贝数据，具有拷贝的性能开销，所以这个时候\@ObjectLink是比\@Link和\@Prop更优的选择。
 
@@ -169,7 +169,7 @@ struct Parent {
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum.c}`)
+      Text(`Parent testNum ${this.testNum[0].c}`)
         .onClick(() => {
           this.testNum[0].c += 1;
         })
