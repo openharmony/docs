@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-@ohos.web.webview提供web控制能力，[web](../arkui-ts/ts-basic-components-web.md)组件提供具有网页显示能力。
+@ohos.web.webview提供web控制能力，[web](../arkui-ts/ts-basic-components-web.md)组件提供网页显示的能力。
 
 > **说明：**
 >
@@ -121,7 +121,7 @@ struct WebComponent {
 
 onMessageEvent(callback: (result: WebMessage) => void): void
 
-注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)。
+注册回调函数，接收HTML侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -267,13 +267,13 @@ struct WebComponent {
             }
           }
           catch (error) {
-            let e: business_error.BusinessError = resError as business_error.BusinessError;
+            let e: business_error.BusinessError = error as business_error.BusinessError;
             console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
           }
         })
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .onPageEnd((e) => {
+        .onPageEnd(() => {
           console.log("In ArkTS side message onPageEnd init mesaage channel");
           // 1. 创建消息端口
           this.ports = this.controller.createWebMessagePorts(true);
@@ -324,8 +324,8 @@ struct WebComponent {
                 }
               }
             }
-            catch (resError) {
-              let e: business_error.BusinessError = resError as business_error.BusinessError;
+            catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
               console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           });
@@ -757,10 +757,10 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| data       | string | 是   | 按照”Base64“或者”URL"编码后的一段字符串。                    |
+| data       | string | 是   | 按照"Base64"或者"URL"编码后的一段字符串。                    |
 | mimeType   | string | 是   | 媒体类型（MIME）。                                           |
-| encoding   | string | 是   | 编码类型，具体为“Base64"或者”URL编码。                       |
-| baseUrl    | string | 否   | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
+| encoding   | string | 是   | 编码类型，具体为"Base64"或者"URL"编码。                       |
+| baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给window.origin。 |
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
 > **说明：**
@@ -1759,7 +1759,7 @@ struct WebComponent {
       Text(this.msg2).fontSize(20)
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(e => {
+        .onPageEnd(() => {
           this.controller.runJavaScriptExt('test()')
             .then((result) => {
               try {
@@ -2261,7 +2261,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 | 类型                   | 说明              |
 | ---------------------- | ----------------- |
-| Array\<WebMessagePort> | web消息端口列表。 |
+| [WebMessagePort](#webmessageport) | web消息端口列表。 |
 
 **错误码：**
 
@@ -6865,7 +6865,7 @@ struct WebComponent {
 
 ## SecureDnsMode<sup>10+</sup>
 
-Web組件使用HTTPDNS的模式。
+Web组件使用HTTPDNS的模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
