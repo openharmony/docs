@@ -201,7 +201,7 @@ try {
 }
 ```
 
-## Obtain the calendar information.
+## Obtaining Calendar Information
 
 [Calendar](../reference/apis/js-apis-i18n.md#calendar8) provides APIs to obtain calendar information, for example, localized representation of the calendar, the start day of a week, and the minimum number of days in the first week of a year.
 
@@ -332,21 +332,21 @@ try {
 
      Call **isValidNumber** to check whether the format of the input phone number is correct.
 
-   ```js
-   let validNumber = phoneNumberFormat.isValidNumber("15812341234"); // validNumber = true
+   ```ts
+   let validNumber = phoneNumberFormat.isValidNumber("123****8911"); // validNumber = true
    ```
 
 4. Format a phone number.
 
      Call **format** to format the input phone number.
 
-   ```js
-   let formattedNumber = phoneNumberFormat.format("15812341234"); // formattedNumber = "+8615812341234"
+   ```ts
+   let formattedNumber = phoneNumberFormat.format("123****8911"); // formattedNumber = "+86123****8911"
    ```
 
 ## Measurement Conversion
 
-The **I18NUtil** class provides an API to implement measurement conversion.
+**I18NUtil** provides an API to implement measurement conversion.
 
 ### Available APIs
 
@@ -575,7 +575,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
    let timezoneDisplayName = timezone.getDisplayName(); // timezoneDisplayName = "New Zealand Standard Time"
    ```
 
-## Obtain the **Transliterator** object.
+## Obtaining the Transliterator Object
 
 Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to create a **Transliterator** object and obtain the transliterated string.
 
@@ -611,7 +611,7 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 
    ```js
    let transliterator = I18n.Transliterator.getInstance("Any-Latin"); // Any-Latin means to convert any text to Latin text.
-   let transformText = transliterator.transform ("你好");   // transformText = "nǐ hǎo"
+   let transformText = transliterator.transform("Hello");   // transformText = "nǐ hǎo"
    let transliterator2 = I18n.Transliterator.getInstance("Latin-ASCII");   // Latin-ASCII means to convert Latin text to ASCII text.
    let transformText = transliterator2.transform(transformText);   // transformText = "ni hao"
    ```
@@ -644,21 +644,21 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 
 2. Check the input character has a certain attribute.
 
-   Check whether the input character is a digit.
+   Checks whether the input character is a digit.
 
    ```js
    let isDigit = I18n.Unicode.isDigit("1"); // isDigit = true
    isDigit = I18n.Unicode.isDigit("a"); // isDigit = false
    ```
 
-   Check whether the input character is a space.
+   Checks whether the input character is a space.
 
    ```js
    let isSpaceChar = I18n.Unicode.isSpaceChar(" "); // isSpaceChar = true
    isSpaceChar = I18n.Unicode.isSpaceChar("\n"); // isSpaceChar = false
    ```
 
-   Check whether the input character is a white space.
+   Checks whether the input character is a white space.
 
    ```js
    let isWhitespace = I18n.Unicode.isWhitespace(" "); // isWhitespace = true
@@ -672,28 +672,28 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
    isRTL = I18n.Unicode.isRTL("a"); // isRTL = false
    ```
 
-   Check whether the input character is an ideographic character.
+   Checks whether the input character is an ideographic character.
 
    ```js
    let isIdeograph = I18n.Unicode.isIdeograph("Hello"); // isIdeograph = true
    isIdeograph = I18n.Unicode.isIdeograph("a"); // isIdeograph = false
    ```
 
-   Check whether the input character is a letter.
+   Checks whether the input character is a letter.
 
    ```js
    let isLetter = I18n.Unicode.isLetter("a"); // isLetter = true
    isLetter = I18n.Unicode.isLetter("."); // isLetter = false
    ```
 
-   Check whether the input character is a lowercase letter.
+   Checks whether the input character is a lowercase letter.
 
    ```js
    let isLowerCase = I18n.Unicode.isLowerCase("a"); // isLetter = true
    isLowerCase = I18n.Unicode.isLowerCase("A"); // isLetter = false
    ```
 
-   Check whether the input character is an uppercase letter.
+   Checks whether the input character is an uppercase letter.
 
    ```js
    let isUpperCase = I18n.Unicode.isUpperCase("a"); // isUpperCase = false
@@ -732,4 +732,3 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
    ```js
    let order = I18n.I18NUtil.getDateOrder("zh-CN"); // order = "y-L-d" indicates that the sequence of year, month, and day in Chinese is year-month-day.
    ```
-<!--no_check-->
