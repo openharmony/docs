@@ -2568,8 +2568,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handlqq
-                  er.cancel()
+                  event.handler.cancel()
                 }
               },
               cancel: () => {
