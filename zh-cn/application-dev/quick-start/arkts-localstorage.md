@@ -44,7 +44,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 在上文中已经提到，如果要建立LocalStorage和自定义组件的联系，需要使用\@LocalStorageProp和\@LocalStorageLink装饰器。使用\@LocalStorageProp(key)/\@LocalStorageLink(key)装饰组件内的变量，key标识了LocalStorage的属性。
 
 
-当自定义组件初始化的时候，\@LocalStorageProp(key)/\@LocalStorageLink(key)装饰的变量会通过给定的key，绑定在LocalStorage对应的属性，完成初始化。本地初始化是必要的，因为无法保证LocalStorage一定存在给定的key（这取决于应用逻辑，是否在组件初始化之前在LocalStorage实例中存入对应的属性）。
+当自定义组件初始化的时候，\@LocalStorageProp(key)/\@LocalStorageLink(key)装饰的变量会通过给定的key，绑定LocalStorage对应的属性，完成初始化。本地初始化是必要的，因为无法保证LocalStorage一定存在给定的key（这取决于应用逻辑是否在组件初始化之前在LocalStorage实例中存入对应的属性）。
 
 
 > **说明：**
@@ -182,7 +182,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 除了应用程序逻辑使用LocalStorage，还可以借助LocalStorage相关的两个装饰器\@LocalStorageProp和\@LocalStorageLink，在UI组件内部获取到LocalStorage实例中存储的状态变量。
 
-本示例以\@LocalStorage为例，展示了：
+本示例以\@LocalStorageLink为例，展示了：
 
 - 使用构造函数创建LocalStorage实例storage；
 
@@ -192,8 +192,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   ```ts
   // 创建新实例并使用给定对象初始化
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
+  let storage = new LocalStorage({ 'PropA': 47 });
 
   @Component
   struct Child {
@@ -235,9 +234,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   ```ts
   // 创建新实例并使用给定对象初始化
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
-
+  let storage = new LocalStorage({ 'PropA': 47 });
   // 使LocalStorage可从@Component组件访问
   @Entry(storage)
   @Component
@@ -277,10 +274,9 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 ```ts
 // 构造LocalStorage实例
-let storage = new LocalStorage();
-storage['PropA'] = 47;
+let storage = new LocalStorage({ 'PropA': 47 });
 // 调用link9+接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
-let linkToPropA = storage.link<number>('PropA');
+let linkToPropA = storage.link('PropA');
 
 @Entry(storage)
 @Component
@@ -392,10 +388,11 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage = new LocalStorage();
+  storage: LocalStorage = new LocalStorage({
+    'PropA': 47
+  });
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    this.storage['PropA'] = 47;
     windowStage.loadContent('pages/Index', this.storage);
   }
 }

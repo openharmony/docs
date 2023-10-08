@@ -880,7 +880,7 @@ on\(type: 'simStateChange', options: { slotId: number }, callback: Callback\<Sim
 
 **示例：**
 
-```js
+```ts
 class SlotId {
     slotId: number = 0
 }
@@ -924,7 +924,7 @@ off\(type: 'simStateChange', callback?: Callback\<SimStateData\>\): void;
 
 **示例：**
 
-```js
+```ts
 let callback: (data: observer.SimStateData) => void = (data: observer.SimStateData) => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 }

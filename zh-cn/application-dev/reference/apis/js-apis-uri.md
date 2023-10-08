@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```ts
-import uri from '@ohos.uri'  
+import uri from '@ohos.uri'
 ```
 
 ## URI

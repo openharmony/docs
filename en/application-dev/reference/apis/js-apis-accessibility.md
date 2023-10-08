@@ -168,7 +168,7 @@ Enables listening for the enabled status changes of captions configuration. This
 
 | Name     | Type                     | Mandatory  | Description                                     |
 | -------- | ----------------------- | ---- | --------------------------------------- |
-| type     | string                  | Yes   | Type of the event to listen for, which is set to **'enableChange'** in this API.|
+| type     | string                  | Yes   | Listening type, which is set to **'enableChange'** in this API.|
 | callback | Callback&lt;boolean&gt; | Yes   | Callback invoked when the enabled status of captions configuration changes.             |
 
 **Example**
@@ -198,7 +198,7 @@ Enables listening for captions style changes. This API uses an asynchronous call
 
 | Name     | Type                                      | Mandatory  | Description                                |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                   | Yes   | Type of the event to listen for, which is set to **'styleChange'** in this API.|
+| type     | string                                   | Yes   | Listening type, which is set to **'styleChange'** in this API.|
 | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | Yes   | Callback invoked when the style of captions changes.           |
 
 **Example**
@@ -228,10 +228,10 @@ Disables listening for the enabled status changes of captions configuration. Thi
 
 **Parameters**
 
-| Name     | Type                     | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Type of the event to listen for, which is set to **'enableChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | No   | Callback for the event.          |
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | Yes  | Listening type, which is set to **'enableChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used for disable listening. The value must be the same as the value of **callback** in **on('enableChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
@@ -258,10 +258,10 @@ Disables listening for captions style changes. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description                                  |
-| -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| type     | string                                   | Yes   | Type of the event to listen for, which is set to **'styleChange'** in this API.|
-| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | No   | Callback for the event.             |
+| Name  | Type                                            | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                           | Yes  | Listening type, which is set to **'styleChange'** in this API. |
+| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | No  | Callback used for disable listening. The value must be the same as the value of **callback** in **on('styleChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
@@ -462,7 +462,7 @@ import { BusinessError } from '@ohos.base';
 
 let abilityType : accessibility.AbilityType = 'spoken';
 let abilityState : accessibility.AbilityState = 'enable';
-let abilityList: accessibility.AccessibilityInfo[];
+let abilityList: accessibility.AccessibilityAbilityInfo[];
 try {
     accessibility.getAbilityLists(abilityType, abilityState, 
     (err: BusinessError<void>, data: accessibility.AccessibilityAbilityInfo[]) => {
@@ -611,10 +611,10 @@ Enables listening for the enabled status changes of the accessibility applicatio
 
 **Parameters**
 
-| Name     | Type                     | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Type of the event to listen for, which is set to **'accessibilityStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | Yes   | Callback used to return the result.          |
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | Yes  | Listening type, which is set to **'accessibilityStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return the result. The returned result indicates the global enabled status of the accessibility application.|
 
 **Example**
 
@@ -642,7 +642,7 @@ Enables listening for the enabled status changes of the touch guide mode. This A
 
 | Name     | Type                     | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Type of the event to listen for, which is set to **'touchGuideStateChange'** in this API.|
+| type     | string                  | Yes   | Listening type, which is set to **'touchGuideStateChange'** in this API.|
 | callback | Callback&lt;boolean&gt; | Yes   | Callback used to return the result.          |
 
 **Example**
@@ -669,10 +669,10 @@ Disables listening for the enabled status changes of the accessibility applicati
 
 **Parameters**
 
-| Name     | Type                     | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Type of the event to listen for, which is set to **'accessibilityStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | No   | Callback for the event.          |
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | Yes  | Listening type, which is set to **'accessibilityStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used for disable listening. The value must be the same as the value of **callback** in **accessibility.on('accessibilityStateChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
@@ -698,10 +698,10 @@ Disables listening for the enabled status changes of the touch guide mode. This 
 
 **Parameters**
 
-| Name     | Type                     | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Type of the event to listen for, which is set to **'touchGuideStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | No   | Callback for the event.          |
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | Yes  | Listening type, which is set to **'touchGuideStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used for disable listening. The value must be the same as the value of **callback** in **accessibility.on('touchGuideStateChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
@@ -717,7 +717,7 @@ try {
 }
 ```
 
-## accessibility.isOpenAccessibility
+## accessibility.isOpenAccessibility<sup>(deprecated)</sup>
 
 isOpenAccessibility(): Promise&lt;boolean&gt;
 
@@ -743,7 +743,7 @@ accessibility.isOpenAccessibility().then((data: boolean) => {
 });
 ```
 
-## accessibility.isOpenAccessibility
+## accessibility.isOpenAccessibility<sup>(deprecated)</sup>
 
 isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -772,7 +772,34 @@ accessibility.isOpenAccessibility((err: BusinessError<void>, data: boolean) => {
 });
 ```
 
-## accessibility.isOpenTouchGuide
+## accessibility.isOpenAccessibilitySync<sup>10+</sup>
+
+isOpenAccessibilitySync(): boolean
+
+Checks whether accessibility is enabled.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Return value**
+
+| Type       | Description                                 |
+| ----------- | ------------------------------------- |
+| boolean&gt; | Returns **true** if accessibility is enabled; returns **false** otherwise.|
+
+**Example**
+
+```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let status: boolean = accessibility.isOpenAccessibilitySync();
+} catch (exception) {
+    console.error('failed to isOpenAccessibilitySync because ' + JSON.stringify(exception));
+}
+```
+
+## accessibility.isOpenTouchGuide<sup>(deprecated)</sup>
 
 isOpenTouchGuide(): Promise&lt;boolean&gt;
 
@@ -798,7 +825,7 @@ accessibility.isOpenTouchGuide().then((data: boolean) => {
 });
 ```
 
-## accessibility.isOpenTouchGuide
+## accessibility.isOpenTouchGuide<sup>(deprecated)</sup>
 
 isOpenTouchGuide(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -825,6 +852,33 @@ accessibility.isOpenTouchGuide((err: BusinessError<void>, data: boolean) => {
     }
     console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
 });
+```
+
+## accessibility.isOpenTouchGuideSync<sup>10+</sup>
+
+isOpenTouchGuideSync(): boolean
+
+Checks whether touch guide mode is enabled.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Vision
+
+**Return value**
+
+| Type   | Description                                 |
+| ------- | ------------------------------------- |
+| boolean | Returns **true** if touch guide mode is enabled; returns **false** otherwise.|
+
+**Example**
+
+```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let status: boolean = accessibility.isOpenTouchGuideSync();
+} catch (exception) {
+    console.error('failed to isOpenTouchGuideSync because ' + JSON.stringify(exception));
+}
 ```
 
 ## accessibility.sendEvent<sup>(deprecated)</sup>
@@ -887,7 +941,7 @@ Sends an accessibility event. This API uses an asynchronous callback to return t
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | event    | [EventInfo](#eventinfo)   | Yes   | Accessibility event.                                 |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **error** that contains data is returned.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **err** that contains data is returned.|
 
 **Example**
 
@@ -963,7 +1017,7 @@ Sends an accessibility event. This API uses an asynchronous callback to return t
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | event    | [EventInfo](#eventinfo)   | Yes   | Accessibility event.                                 |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **error** that contains data is returned.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **err** that contains data is returned.|
 
 **Example**
 

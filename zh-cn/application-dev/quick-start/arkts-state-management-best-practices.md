@@ -293,7 +293,7 @@ struct MyView {
 
 - 最后一个Text组件Text('c: ${this.b.c.c}')，当点击该组件时UI不会刷新。 因为，\@State b : ClassB 只能观察到this.b属性的变化，比如this.b.a, this.b.b 和this.b.c的变化，但是无法观察嵌套在属性中的属性，即this.b.c.c（属性c是内嵌在b中的对象classC的属性）。
 
-- 为了观察到嵌套与内部的ClassC的属性，需要做如下改变：
+- 为了观察到嵌套于内部的ClassC的属性，需要做如下改变：
   - 构造一个子组件，用于单独渲染ClassC的实例。 该子组件可以使用\@ObjectLink c : ClassC或\@Prop c : ClassC。通常会使用\@ObjectLink，除非子组件需要对其ClassC对象进行本地修改。
   - 嵌套的ClassC必须用\@Observed修饰。当在ClassB中创建ClassC对象时（本示例中的ClassB(10, 20, 30）)，它将被包装在ES6代理中，当ClassC属性更改时（this.b.c.c += 1），该代码将修改通知到\@ObjectLink变量。
 
@@ -1451,3 +1451,130 @@ struct ChildFour {
   }
 }
 ```
+## 精准控制状态变量关联的组件数
+
+精准控制状态变量关联的组件数能减少不必要的组件刷新，提高组件的刷新效率。有时开发者会将同一个状态变量绑定多个同级组件的属性，当状态变量改变时，会让这些组件做出相同的改变，这有时会造成组件的不必要刷新，如果存在某些比较复杂的组件，则会大大影响整体的性能。但是如果将这个状态变量绑定在这些同级组件的父组件上，则可以减少需要刷新的组件数，从而提高刷新的性能。
+
+### 不推荐用法
+
+```ts
+@Observed
+class Translate {
+  translateX: number = 20;
+}
+@Component
+struct Title {
+  @ObjectLink translateObj: Translate;
+  build() {
+    Row() {
+      Image($r('app.media.icon'))
+        .width(50)
+        .height(50)
+        .translate({
+          x:this.translateObj.translateX // this.translateObj.translateX used in two component both in Row
+        })
+      Text("Title")
+        .fontSize(20)
+        .translate({
+          x: this.translateObj.translateX
+        })
+    }
+  }
+}
+@Entry
+@Component
+struct Page {
+  @State translateObj: Translate = new Translate();
+  build() {
+    Column() {
+      Title({
+        translateObj: this.translateObj
+      })
+      Stack() {
+      }
+      .backgroundColor("black")
+      .width(200)
+      .height(400)
+      .translate({
+        x:this.translateObj.translateX //this.translateObj.translateX used in two components both in Column
+      })
+      Button("move")
+        .translate({
+          x:this.translateObj.translateX
+        })
+        .onClick(() => {
+          animateTo({
+            duration: 50
+          },()=>{
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
+          })
+        })
+    }
+  }
+}
+```
+
+在上面的示例中，状态变量this.translateObj.translateX被用在多个同级的子组件下，当this.translateObj.translateX变化时，会导致所有关联它的组件一起刷新，但实际上由于这些组件的变化是相同的，因此可以将这个属性绑定到他们共同的父组件上，来实现减少组件的刷新数量。经过分析，所有的子组件其实都处于Page下的Column中，因此将所有子组件相同的translate属性统一到Column上，来实现精准控制状态变量关联的组件数。
+
+### 推荐用法
+
+```
+@Observed
+class Translate {
+  translateX: number = 20;
+}
+@Component
+struct Title {
+  @ObjectLink translateObj: Translate;
+  build() {
+    Row() { 
+      Image($r('app.media.icon'))
+        .width(50)
+        .height(50)
+        // .translate({
+        //   x: this.translateObj.translateX
+        // })
+      Text("Title")
+        .fontSize(20)
+        // .translate({
+        //   x: this.translateObj.translateX
+        // })
+    }
+  }
+}
+@Entry
+@Component
+struct Page {
+  @State translateObj: Translate = new Translate();
+  build() {
+    Column() {
+      Title({
+        translateObj: this.translateObj
+      })
+      Stack() {
+      }
+      .backgroundColor("black")
+      .width(200)
+      .height(400)
+      // .translate({
+      //   x: this.translateObj.translateX
+      // })
+      Button("move")
+        // .translate({
+        //   x: this.translateObj.translateX
+        // })
+        .onClick(() => {
+          animateTo({
+            duration: 50
+          },()=>{
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
+          })
+        })
+    }
+    .translate({ // the component in Column shares the same property translate
+      x: this.translateObj.translateX
+    })
+  }
+}
+```
+

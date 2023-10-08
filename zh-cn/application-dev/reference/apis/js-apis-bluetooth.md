@@ -12,6 +12,7 @@
 
 ```js
 import bluetooth from '@ohos.bluetooth';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -756,7 +757,7 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data : boolean) {
+function onReceiveEvent(data : bluetooth.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
 bluetooth.on('stateChange', onReceiveEvent);
@@ -1139,7 +1140,7 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 **示例：**
 
 ```js
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 ```
 
 
@@ -1393,7 +1394,7 @@ getConnectionDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let retArray : Array<string> = a2dpSrc.getConnectionDevices();
 ```
 
@@ -1425,7 +1426,7 @@ getDeviceState(device: string): ProfileConnectionState
 **示例：**
 
 ```js
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret : bluetooth.ProfileConnectionState = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1462,7 +1463,7 @@ connect(device: string): boolean
 **示例：**
 
 ```js
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret : boolean = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1495,7 +1496,7 @@ disconnect(device: string): boolean
 **示例：**
 
 ```js
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret : boolean = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1528,7 +1529,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data : bluetooth.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1561,7 +1562,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 function onReceiveEvent(data : bluetooth.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1593,7 +1594,7 @@ getPlayingState(device: string): PlayingState
 **示例：**
 
 ```js
-let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let state : bluetooth.PlayingState = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -2427,7 +2428,7 @@ server端订阅BLE连接状态变化事件。
 ```js
 function Connected(BLEConnectChangedState : bluetooth.BLEConnectChangedState) {
   let deviceId : string = BLEConnectChangedState.deviceId;
-  let status : ProfileConnectionState = BLEConnectChangedState.state;
+  let status : bluetooth.ProfileConnectionState = BLEConnectChangedState.state;
 }
 
 let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
@@ -3195,7 +3196,6 @@ client获取远端蓝牙低功耗设备名。
 ```js
 // promise
 let gattClient : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let ret : boolean = device.connect();
 gattClient.getDeviceName().then((data) => {
     console.info('device name' + JSON.stringify(data));
 })
@@ -3230,7 +3230,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 ```js
 // callback
 let gattClient : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let ret : boolean = device.connect();
+let ret : boolean = gattClient.connect();
 gattClient.getRssiValue((err : BusinessError, data : number)=> {
     console.info('rssi err ' + JSON.stringify(err));
     console.info('rssi value' + JSON.stringify(data));

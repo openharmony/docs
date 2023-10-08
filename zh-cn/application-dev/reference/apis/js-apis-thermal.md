@@ -134,7 +134,7 @@ subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
 **示例：**
 
 ```js
-thermal.subscribeThermalLevel((err: BusinessError<void>, level: thermal.ThermalLevel) => {
+thermal.subscribeThermalLevel((err: Error, level: thermal.ThermalLevel) => {
     console.info('thermal level is: ' + level);
 });
 ```

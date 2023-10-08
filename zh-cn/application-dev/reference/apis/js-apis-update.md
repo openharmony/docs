@@ -137,6 +137,8 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.checkNewVersion((err: BusinessError, result: update.CheckResult) => {
       console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
     });
@@ -169,6 +171,8 @@ checkNewVersion(): Promise\<CheckResult>
 **示例:**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.checkNewVersion()
       .then((result: update.CheckResult) => {
         console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
@@ -207,6 +211,8 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getNewVersionInfo((err: BusinessError, info: update.NewVersionInfo) => {
       console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
       console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
@@ -240,6 +246,8 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getNewVersionInfo().then((info: update.NewVersionInfo) => {
     console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
     console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
@@ -277,6 +285,8 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -329,6 +339,8 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -374,6 +386,8 @@ getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getCurrentVersionInfo((err: BusinessError, info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info?.osVersion}`);
   console.log(`info deviceName = ${info?.deviceName}`);
@@ -408,6 +422,8 @@ getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getCurrentVersionInfo().then((info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info.osVersion}`);
   console.log(`info deviceName = ${info.deviceName}`);
@@ -490,6 +506,8 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<A
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 描述文件选项
 const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
@@ -529,6 +547,8 @@ getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getTaskInfo((err: BusinessError, info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
 });
@@ -561,6 +581,8 @@ getTaskInfo(): Promise\<TaskInfo>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getTaskInfo().then((info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info.existTask}`);
 }).catch((err: BusinessError) => {
@@ -597,6 +619,8 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -646,6 +670,8 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -692,6 +718,8 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 版本摘要信息
 const versionDigestInfo : update.VersionDigestInfo= {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -740,6 +768,8 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -785,6 +815,8 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -833,6 +865,8 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -878,6 +912,8 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -926,6 +962,8 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -971,6 +1009,8 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -1019,6 +1059,8 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 版本摘要信息
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -1062,6 +1104,8 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getUpgradePolicy(err: BusinessError, policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
@@ -1095,6 +1139,8 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getUpgradePolicy().then((policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy.autoUpgradeStrategy}`);
@@ -1131,6 +1177,8 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 const policy: update.UpgradePolicy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
@@ -1174,6 +1222,8 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 const policy: update.UpgradePolicy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
@@ -1213,6 +1263,8 @@ terminateUpgrade(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.terminateUpgrade((err: BusinessError) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
@@ -1245,6 +1297,8 @@ terminateUpgrade(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
 }).catch((err: BusinessError) => {
@@ -1370,6 +1424,8 @@ factoryReset(): Promise\<void>
 **示例:**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
 }).catch((err: BusinessError) => {
@@ -1452,6 +1508,8 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 **示例:**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 const upgradeFile: update.UpgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
@@ -1527,6 +1585,8 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 **示例:**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
@@ -2013,18 +2073,18 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | ---------------------- | ---------- | ------ |
 | EVENT_TASK_BASE        | EventClassify.TASK | 任务事件。   |
 | EVENT_TASK_RECEIVE     | 0x01000001 | 收到任务。   |
-| EVENT_TASK_CANCEL      | 0x01000010 | 取消任务。   |
-| EVENT_DOWNLOAD_WAIT    | 0x01000011 | 待下载。    |
-| EVENT_DOWNLOAD_START   | 0x01000100 | 开始下载。   |
-| EVENT_DOWNLOAD_UPDATE  | 0x01000101 | 下载进度更新。 |
-| EVENT_DOWNLOAD_PAUSE   | 0x01000110 | 下载暂停。   |
-| EVENT_DOWNLOAD_RESUME  | 0x01000111 | 恢复下载。   |
-| EVENT_DOWNLOAD_SUCCESS | 0x01001000 | 下载成功。   |
-| EVENT_DOWNLOAD_FAIL    | 0x01001001 | 下载失败。   |
-| EVENT_UPGRADE_WAIT     | 0x01001010 | 待升级。    |
-| EVENT_UPGRADE_START    | 0x01001011 | 开始升级。   |
-| EVENT_UPGRADE_UPDATE   | 0x01001100 | 升级中。    |
-| EVENT_APPLY_WAIT       | 0x01001101 | 待生效。    |
-| EVENT_APPLY_START      | 0x01001110 | 开始生效。   |
-| EVENT_UPGRADE_SUCCESS  | 0x01001111 | 更新成功。   |
-| EVENT_UPGRADE_FAIL     | 0x01010000 | 更新失败。   |
+| EVENT_TASK_CANCEL      | 0x01000002 | 取消任务。   |
+| EVENT_DOWNLOAD_WAIT    | 0x01000003 | 待下载。    |
+| EVENT_DOWNLOAD_START   | 0x01000004 | 开始下载。   |
+| EVENT_DOWNLOAD_UPDATE  | 0x01000005 | 下载进度更新。 |
+| EVENT_DOWNLOAD_PAUSE   | 0x01000006 | 下载暂停。   |
+| EVENT_DOWNLOAD_RESUME  | 0x01000007 | 恢复下载。   |
+| EVENT_DOWNLOAD_SUCCESS | 0x01000008 | 下载成功。   |
+| EVENT_DOWNLOAD_FAIL    | 0x01000009 | 下载失败。   |
+| EVENT_UPGRADE_WAIT     | 0x0100000A | 待升级。    |
+| EVENT_UPGRADE_START    | 0x0100000B | 开始升级。   |
+| EVENT_UPGRADE_UPDATE   | 0x0100000C | 升级中。    |
+| EVENT_APPLY_WAIT       | 0x0100000D | 待生效。    |
+| EVENT_APPLY_START      | 0x0100000E | 开始生效。   |
+| EVENT_UPGRADE_SUCCESS  | 0x0100000F | 更新成功。   |
+| EVENT_UPGRADE_FAIL     | 0x01000010 | 更新失败。   |

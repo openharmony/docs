@@ -12,6 +12,7 @@ hid模块提供了访问蓝牙hid相关功能的方法。
 
 ```js
 import hid from '@ohos.bluetooth.hid';
+import { BusinessError } from '@ohos.base';
 ```
 
 

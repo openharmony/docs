@@ -11,7 +11,7 @@
 
 
 ```js
-import battery from '@system.battery';
+import battery, { BatteryResponse } from '@system.battery';
 ```
 
 

@@ -8,7 +8,6 @@ You can use the APIs of this module to configure the concerned information, obta
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
 
 ## Usage
 
@@ -550,7 +549,7 @@ try {
 }
 ```
 
-## AccessibilityExtensionContext.injectGesture
+## AccessibilityExtensionContext.injectGesture<sup>(deprecated)</sup>
 
 injectGesture(gesturePath: GesturePath): Promise\<void>;
 
@@ -599,7 +598,7 @@ try {
   console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
 }
 ```
-## AccessibilityExtensionContext.injectGesture
+## AccessibilityExtensionContext.injectGesture<sup>(deprecated)</sup>
 
 injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
@@ -645,6 +644,46 @@ try {
   console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
 }
 ```
+## AccessibilityExtensionContext.injectGestureSync<sup>10+</sup>
+
+injectGestureSync(gesturePath: GesturePath): void
+
+Injects a gesture.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name     | Type                                                        | Mandatory| Description                |
+| ----------- | ------------------------------------------------------------ | ---- | -------------------- |
+| gesturePath | [GesturePath](js-apis-accessibility-GesturePath.md#gesturepath) | Yes  | Path of the gesture to inject.|
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+
+| ID| Error Message                                           |
+| -------- | --------------------------------------------------- |
+| 9300003  | Do not have accessibility right for this operation. |
+
+**Example**
+
+```ts
+import GesturePath from '@ohos.accessibility.GesturePath';
+import GesturePoint from '@ohos.accessibility.GesturePoint';
+
+let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
+try {
+  for (let i = 0; i < 10; i++) {
+    let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+    gesturePath.points.push(gesturePoint);
+  }
+  axContext.injectGestureSync(gesturePath);
+} catch (exception) {
+  console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
+}
+```
+
 ## AccessibilityElement<sup>9+</sup>
 
 Defines the accessibilityelement. Before calling APIs of **AccessibilityElement**, you must call [AccessibilityExtensionContext.getFocusElement()](#accessibilityextensioncontextgetfocuselement) or [AccessibilityExtensionContext.getWindowRootElement()](#accessibilityextensioncontextgetwindowrootelement) to obtain an **AccessibilityElement** instance.

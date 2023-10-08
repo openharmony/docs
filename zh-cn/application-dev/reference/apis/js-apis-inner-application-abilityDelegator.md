@@ -54,7 +54,7 @@ import { BusinessError } from '@ohos.base';
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
+    console.info(`onAbilityCreateCallback, data: ${JSON.stringify(data)}`);
 }
 
 let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
@@ -63,7 +63,7 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 };
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
-    console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    console.error(`addAbilityMonitor fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -203,7 +203,7 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
-    console.error('removeAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    console.error(`removeAbilityMonitor fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -346,9 +346,9 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAbility) => {
     if (error) {
-        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -399,9 +399,9 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : BusinessError, data : UIAbility) => {
     if (error && error.code !== 0) {
-        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -613,7 +613,7 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名   | 类型                                   | 必填 | 说明               |
 | -------- | -------------------------------------- | ---- | ------------------ |
-| want     | [Want](js-apis-application-want.md) | 是   | 启动Ability参数    |
+| want     | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability参数    |
 | callback | AsyncCallback\<void>                   | 是   | 表示指定的回调方法 |
 
 **错误码**：
@@ -669,7 +669,7 @@ startAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型                                   | 必填 | 说明            |
 | ------ | -------------------------------------- | ---- | --------------- |
-| want   | [Want](js-apis-application-want.md) | 是   | 启动Ability参数 |
+| want   | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability参数 |
 
 **返回值：**
 
@@ -1547,3 +1547,40 @@ abilityDelegator.waitAbilityStageMonitor({
     console.info('waitAbilityStageMonitor callback');
 });
 ```
+
+### setMockList<sup>11+</sup>
+
+setMockList(mockList: { [key: string]: string }): void;
+
+设置模块的mock替换关系。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| mockList | { [key: string]: string } | 是   | 模块mock替换关系的键值对象，其中key为待替换的目标路径，value为用于替换的mock实现文件的路径。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息        |
+| -------- | --------------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
+let mockList: Record<string, string> = {
+    '@ohos.router': 'src/main/mock/ohos/router.mock',
+    'common.time': 'src/main/mock/common/time.mock',
+};
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.setMockList(mockList);
+```
+

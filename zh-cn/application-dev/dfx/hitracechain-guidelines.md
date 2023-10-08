@@ -64,8 +64,7 @@ hiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
                     eventType: hiSysEvent.EventType.FAULT,
                     params: customizedParams
                   };
-                  hiSysEvent.write(eventInfo).then((val: number) => {
-                    console.info(`write result is ${val}`);
+                  hiSysEvent.write(eventInfo).then(() => {
                     // 业务结束，关闭分布式跟踪。
                     hiTraceChain.end(traceId);
                   }).catch((err: BusinessError) => {

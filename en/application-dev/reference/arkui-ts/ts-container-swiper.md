@@ -114,7 +114,7 @@ Defines the navigation point indicator of the dot style, which inherits attribut
 | ------------------ | ---------------------------------------- | ---- | ---------------------------------------- |
 | itemWidth          | [Length](ts-types.md#length)             | No   | Width of the navigation point indicator of the dot style. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp|
 | itemHeight         | [Length](ts-types.md#length)             | No   | Height of the navigation point indicator of the dot style. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp|
-| selectedItemWidth  | [Length](ts-types.md#length)             | No   | Width of the selected navigation point indicator of the dot style. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp|
+| selectedItemWidth  | [Length](ts-types.md#length)             | No   | Width of the selected navigation point indicator of the dot style. This parameter cannot be set in percentage.<br>Default value: **12**<br>Unit: vp|
 | selectedItemHeight | [Length](ts-types.md#length)             | No   | Height of the selected navigation point indicator of the dot style. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp|
 | mask               | boolean                                  | No   | Whether to enable the mask for the navigation point indicator of the dot style.<br>Default value: **false**|
 | color              | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the navigation point indicator of the dot style.<br>Default value: **'\#182431'** (10% opacity)|
@@ -207,7 +207,7 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item)
+          Text(item.toString())
             .width('90%')
             .height(160)
             .backgroundColor(0xAFEEEE)
@@ -312,7 +312,7 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item)
+          Text(item.toString())
             .width('90%')
             .height(160)
             .backgroundColor(0xAFEEEE)
@@ -396,7 +396,7 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item)
+          Text(item.toString())
             .width('90%')
             .height(160)
             .backgroundColor(0xAFEEEE)

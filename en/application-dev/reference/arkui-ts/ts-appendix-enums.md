@@ -83,7 +83,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Press   | The mouse button is pressed.|
 | Release | The mouse button is released.|
 | Move    | The mouse cursor moves.  |
-| Hover   | The mouse pointer is hovered on an element.  |
+| Hover   | The mouse pointer is hovered on an element.<br>**NOTE**<br>This value has no effect. |
 
 ## Curve
 

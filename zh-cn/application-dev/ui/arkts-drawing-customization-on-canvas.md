@@ -283,7 +283,7 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
     .onReady(() =>{
       let con:Contextset = new Contextset()
        //创建一个径向渐变色的CanvasGradient对象
-       let grad:CanvasRenderingContext2D|undefined = con.context.createRadialGradient(200,200,50, 200,200,200)
+       let grad:CanvasGradient|undefined = con.context.createRadialGradient(200,200,50, 200,200,200)
        //为CanvasGradient对象设置渐变断点值，包括偏移和颜色
        if(grad){
         grad.addColorStop(0.0, '#E87361');

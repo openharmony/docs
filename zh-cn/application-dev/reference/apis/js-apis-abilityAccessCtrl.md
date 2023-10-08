@@ -634,13 +634,13 @@ ArkTS语法不支持直接使用globalThis，需要通过一个单例的map来�
 
 **globalThis.ets示例代码如下：**
 ```ts
-import common from '@ohos.app.ability.common';
+import { Context } from '@ohos.abilityAccessCtrl';
 
 // 构造单例对象
 export class GlobalThis {
     private constructor() {}
     private static instance: GlobalThis;
-    private _uiContexts = new Map<string, common.UIAbilityContext>();
+    private _uiContexts = new Map<string, Context>();
 
     public static getInstance(): GlobalThis {
     if (!GlobalThis.instance) {
@@ -649,11 +649,11 @@ export class GlobalThis {
     return GlobalThis.instance;
     }
 
-    getContext(key: string): common.UIAbilityContext | undefined {
+    getContext(key: string): Context | undefined {
     return this._uiContexts.get(key);
     }
 
-    setContext(key: string, value: common.UIAbilityContext): void {
+    setContext(key: string, value: Context): void {
     this._uiContexts.set(key, value);
     }
 
@@ -662,15 +662,14 @@ export class GlobalThis {
 ```
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
 import { GlobalThis } from '../utils/globalThis';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data)=>{
+    let context: Context = GlobalThis.getInstance().getContext('context');
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult)=>{
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);
     console.info('data authResults:' + data.authResults);
@@ -720,15 +719,14 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 修改EntryAbility.ets和导入GlobalThis等步骤同上，此处不再重复
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
 import { GlobalThis } from '../utils/globalThis';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data) => {
+    let context: Context = GlobalThis.getInstance().getContext('context');
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
         console.info('data:' + JSON.stringify(data));
         console.info('data permissions:' + data.permissions);
         console.info('data authResults:' + data.authResults);

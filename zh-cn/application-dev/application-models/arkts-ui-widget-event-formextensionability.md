@@ -49,7 +49,7 @@
   export default class EntryFormAbility extends FormExtensionAbility {
     onFormEvent(formId: string, message: string) {
       // Called when a specified message event defined by the form provider is triggered.
-      console.info(`FormAbility onEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
+      console.info(`FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
       let formData = new Map<Object, string>();
       formData.set('title', 'Title Update.'); // 和卡片布局中对应
       formData.set('detail', 'Description update success.'); // 和卡片布局中对应

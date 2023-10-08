@@ -314,7 +314,7 @@ For details about the implementation, see the example in [LazyForEach: Lazy Data
 
 When the grid is rendered in lazy loading mode, to improve the grid scrolling experience and minimize white blocks during grid scrolling, you can use the **cachedCount** parameter of the **\<Grid>** component. This parameter sets the number of grid items preloaded outside of the screen and is valid only in **LazyForEach**.
 
-  Specifically, the number of the grid items to cache before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. Grid items that exceed the display and cache range are released.
+Specifically, the number of the grid items to cache before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. Grid items that exceed the display and cache range are released.
 
 ```ts
 Grid() {
@@ -326,7 +326,7 @@ Grid() {
 .cachedCount(3)
 ```
 
->**NOTE**
->
->A greater **cachedCount** value may result in higher CPU and memory overhead of the UI. Adjust the value by taking into account both the comprehensive performance and user experience.
+> **NOTE**
+> 
+> A greater **cachedCount** value may result in higher CPU and memory overhead of the UI. Adjust the value by taking into account both the comprehensive performance and user experience.
 

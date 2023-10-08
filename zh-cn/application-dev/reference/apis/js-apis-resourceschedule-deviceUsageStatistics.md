@@ -62,6 +62,8 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例**：
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) => {
   if (err) {
     console.log('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -110,6 +112,8 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.isIdleState("com.ohos.camera").then((res: boolean) => {
   console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
@@ -190,6 +194,8 @@ queryAppGroup(): Promise&lt;number&gt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryAppGroup().then((res: number) => {
   console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
@@ -230,6 +236,8 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
   if(err) {
     console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -355,6 +363,8 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err: BusinessError, res:usageStatistics.BundleStatsMap) => {
   if (err) {
     console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -406,6 +416,8 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryBundleStatsInfos(0, 20000000000000).then((res:usageStatistics.BundleStatsMap) => {
   console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise success.');
   console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise result ' + JSON.stringify(res));
@@ -451,6 +463,8 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleStatsInfo>) => {
   if (err) {
     console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -506,6 +520,8 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000).then((res: Array<usageStatistics.BundleStatsInfo>) => {
   console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise success.');
   for (let i = 0; i < res.length; i++) {
@@ -553,6 +569,8 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryBundleEvents(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleEvents>) => {
   if (err) {
     console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -607,6 +625,8 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryBundleEvents(0, 20000000000000).then((res: Array<usageStatistics.BundleEvents>) => {
   console.log('BUNDLE_ACTIVE queryBundleEvents promise success.');
   for (let i = 0; i < res.length; i++) {
@@ -652,6 +672,8 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleEvents>) => {
   if (err) {
     console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -704,6 +726,8 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then((res: Array<usageStatistics.BundleEvents>) => {
   console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise success.');
   for (let i = 0; i < res.length; i++) {
@@ -750,6 +774,8 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
 ```ts
 // 无maxNum参数调用方式
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryModuleUsageRecords().then((res: Array<usageStatistics.HapModuleInfo>) => {
   console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
   for (let i = 0; i < res.length; i++) {
@@ -795,6 +821,8 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryModuleUsageRecords((err: BusinessError, res: Array<usageStatistics.HapModuleInfo>) => {
   if(err) {
     console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -848,6 +876,8 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryModuleUsageRecords(1000).then((res: Array<usageStatistics.HapModuleInfo>) => {
   console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
   for (let i = 0; i < res.length; i++) {
@@ -894,6 +924,8 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryModuleUsageRecords(1000, (err: BusinessError, res: Array<usageStatistics.HapModuleInfo>) => {
   if(err) {
     console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -949,6 +981,8 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 
 ```javascript
 //有bundleName的promise
+import { BusinessError } from '@ohos.base';
+
 let bundleName: string = "com.ohos.camera";
 usageStatistics.queryAppGroup(bundleName).then((res: number) => {
   console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
@@ -993,6 +1027,8 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let bundleName: string = "com.ohos.camera";
 usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
   if(err) {
@@ -1044,6 +1080,8 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let bundleName: string = "com.example.deviceUsageStatistics";
 let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
@@ -1090,6 +1128,8 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let bundleName: string = "com.example.deviceUsageStatistics";
 let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
@@ -1141,6 +1181,8 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 function onBundleGroupChanged(res: usageStatistics.AppGroupCallbackInfo) {
   console.log('BUNDLE_ACTIVE registerAppGroupCallBack RegisterGroupCallBack callback success.');
   console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
@@ -1191,6 +1233,8 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 function onBundleGroupChanged(res: usageStatistics.AppGroupCallbackInfo) {
   console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
   console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
@@ -1241,6 +1285,8 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.unregisterAppGroupCallBack().then( () => {
   console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
 }).catch((err: BusinessError) => {
@@ -1281,6 +1327,8 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.unregisterAppGroupCallBack((err: BusinessError) => {
   if(err) {
     console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -1331,6 +1379,8 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
   console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
   console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
@@ -1375,6 +1425,8 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryDeviceEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
   if(err) {
     console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -1426,6 +1478,8 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryNotificationEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
   console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
   console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
@@ -1470,6 +1524,8 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
   if(err) {
     console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);

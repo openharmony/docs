@@ -28,7 +28,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 | 参数名       | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber)    | 是   | 通知订阅对象。     |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | 是   | 通知订阅对象。     |
 | info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | 是   | 通知订阅信息。 |
 | callback   | AsyncCallback\<void\>     | 是   | 订阅动作回调函数。 |
 
@@ -62,6 +62,7 @@ let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
 let subscriber: notificationSubscribe.NotificationSubscriber = {
   onConsume: onConsumeCallback
 };
+//不会对bundleNames进行校验，开发者自己确定需要订阅哪些bundleName
 let info: notificationSubscribe.NotificationSubscribeInfo = {
   bundleNames: ["bundleName1","bundleName2"]
 };
@@ -84,7 +85,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 | 参数名       | 类型                   | 必填 | 说明             |
 | ---------- | ---------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber) | 是   | 通知订阅对象。     |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | 是   | 通知订阅对象。     |
 | callback   | AsyncCallback\<void\>  | 是   | 订阅动作回调函数。 |
 
 **错误码：**
@@ -137,7 +138,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
 | info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空。   |
 
 **错误码：**
@@ -187,7 +188,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 | 参数名       | 类型                   | 必填 | 说明                 |
 | ---------- | ---------------------- | ---- | -------------------- |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber) | 是   | 通知订阅对象。         |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | 是   | 通知订阅对象。         |
 | callback   | AsyncCallback\<void\>  | 是   | 取消订阅动作回调函数。 |
 
 **错误码：**
@@ -237,7 +238,7 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 | 参数名       | 类型                   | 必填 | 说明         |
 | ---------- | ---------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber) | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | 是   | 通知订阅对象。 |
 
 **错误码：**
 

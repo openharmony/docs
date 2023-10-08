@@ -12,6 +12,7 @@ ble模块提供了对蓝牙操作和管理的方法。
 
 ```js
 import ble from '@ohos.bluetooth.ble';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -961,9 +962,10 @@ server端订阅BLE连接状态变化事件。
 **示例：**
 
 ```js
+import constant from '@ohos.bluetooth.constant';
 function Connected(bleConnectionChangeState: ble.BLEConnectionChangeState) {
   let deviceId: string = bleConnectionChangeState.deviceId;
-  let status: ProfileConnectionState = bleConnectionChangeState.state;
+  let status: constant.ProfileConnectionState = bleConnectionChangeState.state;
 }
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.on('connectionStateChange', Connected);
@@ -1268,9 +1270,9 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
 ```js
 // callkback 模式
-function getServices(code: BusinessError, gattServices: Array<GattService>) {
+function getServices(code: BusinessError, gattServices: Array<ble.GattService>) {
   if (code.code == 0) {
-      let services: Array<GattService> = gattServices;
+      let services: Array<ble.GattService> = gattServices;
       console.log('bluetooth code is ' + code.code);
       console.log('bluetooth services size is ', services.length);
 

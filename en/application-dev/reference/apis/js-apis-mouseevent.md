@@ -27,6 +27,8 @@ Enumerates mouse event types.
 | AXIS_BEGIN  | 4   | Beginning of the axis event associated with the mouse.|
 | AXIS_UPDATE | 5   | Updating of the axis event associated with the mouse.|
 | AXIS_END    | 6   | Ending of the axis event associated with the mouse.|
+| ACTION_DOWN<sup>11+</sup> | 7   | Finger pressing on the touchpad.|
+| ACTION_UP<sup>11+</sup> | 8   | Finger lift from the touchpad.|
 
 ## Button
 
@@ -69,6 +71,19 @@ Defines the mouse axis type and axis value.
 | axis  | Axis   | Yes   | No   | Axis type. |
 | value | number | Yes   | No   | Axis value. |
 
+## ToolType<sup>11+</sup>
+
+Enumerates tool types.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+| Name     | Value | Description   |
+| ------- | ------| ----- |
+| UNKNOWN<sup>11+</sup> | 0 | Unknown. |
+| MOUSE<sup>11+</sup>  | 1 | Mouse.|
+| TOUCHSCREEN<sup>11+</sup> | 2 | Touchscreen.|
+| TOUCHPAD<sup>11+</sup> | 3 | Touchpad.|
+| JOYSTICK<sup>11+</sup> | 4 | Joystick.|
 
 ## MouseEvent
 
@@ -97,3 +112,4 @@ Defines the mouse event.
 | capsLock       | boolean     | Yes   | No   | Whether capsLock is active.<br>The value **true** indicates that capsLock is active, and the value **false** indicates the opposite. |
 | numLock        | boolean     | Yes   | No   | Whether numLock is active.                       |
 | scrollLock     | boolean     | Yes   | No   | Whether scrollLock is active.                    |
+| toolType<sup>11+</sup> | [ToolType](#tooltype11) | Yes   | No   | Tool type.                    |

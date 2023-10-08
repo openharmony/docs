@@ -63,7 +63,7 @@ on(type: 'layout', callback: () => void): void
 
 off(type: 'layout', callback?: () => void): void
 
-通过句柄向对应的查询条件取消注册回调，当组件布局完成时不在触发指定的回调。
+通过句柄向对应的查询条件取消注册回调，当组件布局完成时不再触发指定的回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -93,7 +93,7 @@ on(type: 'draw', callback: () => void): void
 
 off(type: 'draw', callback?: () => void): void
 
-通过句柄向对应的查询条件取消注册回调，当组件绘制完成时不在触发指定的回调。
+通过句柄向对应的查询条件取消注册回调，当组件绘制完成时不再触发指定的回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

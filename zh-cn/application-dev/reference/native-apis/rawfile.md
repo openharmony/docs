@@ -17,9 +17,9 @@
 
 | 文件名称                                     | 描述                 |
 | ---------------------------------------- | ------------------ |
-| [raw_dir.h](raw__dir_8h.md)              | 提供rawfile目录相关功能。<br>引用文件：\<rawfile/raw_dir.h>   |
-| [raw_file.h](raw__file_8h.md)            | 提供rawfile文件相关功能。<br>引用文件：\<rawfile/raw_file.h>  |
-| [raw_file_manager.h](raw__file__manager_8h.md) | 提供资源管理rawfile相关功能。<br>引用文件：\<rawfile/raw_file_manager.h> |
+| [raw_dir.h](raw__dir_8h.md)              | 提供rawfile目录相关功能。<br>**引用文件**：\<rawfile/raw_dir.h><br>**库**：librawfile.z.so |
+| [raw_file.h](raw__file_8h.md)            | 提供rawfile文件相关功能。<br>**引用文件**：\<rawfile/raw_file.h><br>**库**：librawfile.z.so |
+| [raw_file_manager.h](raw__file__manager_8h.md) | 提供资源管理rawfile相关功能。<br>**引用文件**：\<rawfile/raw_file_manager.h><br>**库**：librawfile.z.so |
 
 
 ### 结构体

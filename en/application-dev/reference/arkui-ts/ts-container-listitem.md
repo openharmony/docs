@@ -23,7 +23,7 @@ ListItem(value?: ListItemOptions)
 
 | Name| Type                                     | Mandatory| Description                                                    |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ListItemOptions](#listitemoptions10) | No  | Value of the list item, containing the **style** parameter of the **ListItemStyle**enum type.|
+| value  | [ListItemOptions](#listitemoptions10) | No  | Value of the list item, containing the **style** parameter of the **ListItemStyle** enum type. |
 
 ### ListItem<sup>(deprecated)</sup>
 
@@ -143,7 +143,6 @@ struct ListItemExample {
 
 ```ts
 // xxx.ets
-// xxx.ets
 @Entry
 @Component
 struct ListItemExample2 {
@@ -175,7 +174,7 @@ struct ListItemExample2 {
           .transition({ type: TransitionType.Delete, opacity: 0 })
           .swipeAction({
             end: {
-              builder: this.itemEnd,
+              builder: () => { this.itemEnd() },
               onAction: () => {
                 animateTo({ duration: 1000 }, () => {
                   let index = this.arr.indexOf(item)

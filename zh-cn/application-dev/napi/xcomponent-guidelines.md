@@ -15,7 +15,7 @@ Native XComponent是XComponent组件提供在Native层的实例，可作为JS层
 |OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size)|获取XComponent的id。|
 |OH_NativeXComponent_GetXComponentSize(OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height)|获取XComponent持有的surface的大小。|
 |OH_NativeXComponent_GetXComponentOffset(OH_NativeXComponent* component, const void* window, double* x, double* y)|获取XComponent持有的surface相对窗口左上角的偏移量。|
-|OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent)|获取由XComponent触发的触摸事件。|
+|OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent)|获取由XComponent触发的触摸事件。touchEvent内的具体属性值可参考[OH_NativeXComponent_TouchEvent](../reference/native-apis/_o_h___native_x_component___touch_event.md)。|
 |OH_NativeXComponent_GetTouchPointToolType(OH_NativeXComponent* component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType* toolType)|获取XComponent触摸点的工具类型。|
 |OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltX)|获取XComponent触摸点处相对X轴的倾斜角度。|
 |OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltY)|获取XComponent触摸点处相对Y轴的倾斜角度。|
@@ -37,9 +37,12 @@ Native XComponent是XComponent组件提供在Native层的实例，可作为JS层
 开发者在ArkTS侧使用如下代码即可用XComponent组件进行利用EGL/OpenGLES渲染的开发。
 
 ```typescript
-XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' })
-  .onLoad((context) => {})
-  .onDestroy(() => {})
+@Builder
+function myComponent() {
+  XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' })
+    .onLoad((context) => {})
+    .onDestroy(() => {})
+}
 ```
 
 ### onLoad事件
@@ -64,21 +67,40 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 1. **在界面中定义XComponent**。
 
     ```typescript
-    // ...
-    // 在xxx.ets 中定义 XComponent
-    XComponent({
-    id: 'xcomponentId',
-    type: XComponentType.SURFACE,
-    libraryname: 'nativerender'
-    })
-    .focusable(true) // 可响应键盘事件
-    .onLoad((xComponentContext) => {
-        this.xComponentContext = xComponentContext;
-    })
-    .onDestroy(() => {
-        console.log("onDestroy");
-    })
-    // ...
+    @Entry
+    @Component
+    struct Index {
+        @State message: string = 'Hello World'
+        xComponentContext: object | undefined = undefined;
+        xComponentAttrs: XComponentAttrs = {
+            id: 'xcomponentId',
+            type: XComponentType.SURFACE,
+            libraryname: 'nativerender'
+        }
+
+        build() {
+            Row() {
+            // ...
+            // 在xxx.ets 中定义 XComponent
+            XComponent(this.xComponentAttrs)
+                .focusable(true) // 可响应键盘事件
+                .onLoad((xComponentContext) => {
+                this.xComponentContext = xComponentContext;
+                })
+                .onDestroy(() => {
+                console.log("onDestroy");
+                })
+            // ...
+            }
+            .height('100%')
+        }
+    }
+
+    interface XComponentAttrs {
+        id: string;
+        type: number;
+        libraryname: string;
+    }
     ```
 
 2. **Napi模块注册**，具体使用请参考[Native API在应用工程中的使用指导](napi-guidelines.md)。
@@ -106,7 +128,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
     // 编写接口的描述信息，根据实际需要可以修改对应参数
     static napi_module nativerenderModule = {
         .nm_version = 1,
-        .nflag_s = 0,
+        .nm_flags = 0,
         .nm_filename = nullptr,
         // 入口函数
         .nm_register_func = Init,
@@ -349,6 +371,12 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
        OH_NativeXComponent_TouchEvent touchEvent;
        // 获取由XComponent触发的触摸事件
        OH_NativeXComponent_GetTouchEvent(component, window, &touchEvent);
+       // 获取XComponent触摸点相对于XComponent组件左边缘的坐标x和相对于XComponent组件上边缘的坐标y
+       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
+           "touch info: x = %{public}lf, y = %{public}lf", touchEvent.x, touchEvent.y);
+       // 获取XComponent触摸点相对于XComponent所在应用窗口左上角的x坐标和相对于XComponent所在应用窗口左上角的y坐标
+       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
+           "touch info: screenX = %{public}lf, screenY = %{public}lf", touchEvent.screenX, touchEvent.screenY);
        std::string id(idStr);
        PluginRender* render = PluginRender::GetInstance(id);
        if (render != nullptr && touchEvent.type == OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UP) {
@@ -900,3 +928,5 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 针对Native XComponent的使用，有以下相关实例可供参考：
 
 - [Native XComponent（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkXComponent)
+
+- [OpenGL三棱椎（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)

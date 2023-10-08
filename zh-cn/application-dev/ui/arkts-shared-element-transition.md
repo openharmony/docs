@@ -229,8 +229,8 @@ import curves from '@ohos.curves';
 @Component
 export struct share_zIndex_expand {
   // 声明与父组件进行交互的是否展开状态变量
-  @Link isExpand: boolean;
-  @Link curIndex: number;
+  @State isExpand: boolean = false;
+  @State curIndex: number = 0;
   @State listArray: Array<number> = [1, 2, 3, 4, 5, 6];
   private parentScroller: Scroller = new Scroller(); // 上层滑动组件控制器
 
@@ -321,7 +321,7 @@ import { share_zIndex_expand } from './utils'
 struct ShareZIndexDemo {
   @State isExpand: boolean = false;
   @State curIndex: number = 0;
-  @State scroller: Scroller = new Scroller();
+  private scroller: Scroller = new Scroller();
   @State Sze:Record<string,boolean|number|Scroller> = { 'isExpand': this.isExpand, 'curIndex': this.curIndex, 'parentScroller': this.scroller }
 
   build() {
@@ -527,7 +527,9 @@ struct GeometryTransitionDemo {
 
 ```ts
 import curves from '@ohos.curves';
-
+class itTmp{
+  $rect:Array<number> = []
+}
 @Entry
 @Component
 struct AutoAchieveShareTransitionDemo {
@@ -585,8 +587,8 @@ struct AutoAchieveShareTransitionDemo {
             .onClick(() => {
               // 获取对应组件的位置、大小信息
               let strJson = getInspectorByKey(item);
-              let rect:string = JSON.parse(strJson);
-              let rectInfo:string = JSON.parse('[' + rect + ']');
+              let rect:itTmp = JSON.parse(strJson);
+              let rectInfo:Array<object> = JSON.parse('[' + rect.$rect + ']');
               let rect_left:string = JSON.parse('[' + rectInfo[0] + ']')[0];
               let rect_top:string = JSON.parse('[' + rectInfo[0] + ']')[1];
               let rect_right:string = JSON.parse('[' + rectInfo[1] + ']')[0];
@@ -642,6 +644,7 @@ struct AutoAchieveShareTransitionDemo {
             .fontSize(20)
             .fontColor(0xcccccc)
             .margin({ top: 20 })
+            .width(100)
 
         }
         .borderRadius(this.layoutWidth == '100%' ? 0 : 10)

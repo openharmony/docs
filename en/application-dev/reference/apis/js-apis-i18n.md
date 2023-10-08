@@ -1,7 +1,7 @@
 # @ohos.i18n (Internationalization)
 
- This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402.
-The [Intl](js-apis-intl.md) module provides basic I18N capabilities through the standard I18N APIs defined in ECMA 402. It works with the I18N module to provide a complete suite of I18N capabilities.
+ This module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402.
+The [intl](js-apis-intl.md) module provides basic i18n capabilities through the standard i18n APIs defined in ECMA 402. It works with the **i18n** module to provide a complete suite of i18n capabilities.
 
 >  **NOTE**
 >  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -93,7 +93,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let displayLanguage: string = I18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
   } catch(error) {
@@ -119,7 +119,7 @@ Obtains the list of system languages. For details about languages, see [Instanti
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let systemLanguages: Array<string> = I18n.System.getSystemLanguages(); // [ "en-Latn-US", "zh-Hans" ]
   } catch(error) {
@@ -159,7 +159,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let systemCountries: Array<string> = I18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ], 240 countries or regions in total
   } catch(error) {
@@ -200,7 +200,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let res: boolean = I18n.System.isSuggested('zh', 'CN');  // res = true
   } catch(error) {
@@ -226,7 +226,7 @@ Obtains the system language. For details about languages, see [Instantiating the
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let systemLanguage: string = I18n.System.getSystemLanguage();  // systemLanguage indicates the current system language.
   } catch(error) {
@@ -264,7 +264,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     I18n.System.setSystemLanguage('zh'); // Set the current system language to zh.
   } catch(error) {
@@ -290,7 +290,7 @@ Obtains the system region. For details about system regions, see [Instantiating 
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let systemRegion: string = I18n.System.getSystemRegion(); // Obtain the current system region.
   } catch(error) {
@@ -328,7 +328,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     I18n.System.setSystemRegion('CN'); // Set the current system region to CN.
   } catch(error) {
@@ -354,7 +354,7 @@ Obtains the system locale. For details about system locales, see [Instantiating 
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let systemLocale: string = I18n.System.getSystemLocale();  // Obtain the current system locale.
   } catch(error) {
@@ -392,7 +392,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     I18n.System.setSystemLocale('zh-CN'); // Set the current system locale to zh-CN.
   } catch(error) {
@@ -418,7 +418,7 @@ Checks whether the 24-hour clock is used.
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let is24HourClock: boolean = I18n.System.is24HourClock();  // Check whether the 24-hour clock is enabled.
   } catch(error) {
@@ -456,7 +456,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   // Set the system time to the 24-hour clock.
   try {
     I18n.System.set24HourClock(true);
@@ -496,7 +496,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   // Add zh-CN to the preferred language list.
   let language = 'zh-CN';
   let index = 0;
@@ -537,7 +537,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   // Delete the first preferred language from the preferred language list.
   let index: number = 0;
   try {
@@ -565,7 +565,7 @@ Obtains the list of preferred languages.
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let preferredLanguageList: Array<string> = I18n.System.getPreferredLanguageList(); // Obtain the current preferred language list.
   } catch(error) {
@@ -591,7 +591,7 @@ Obtains the first language in the preferred language list.
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let firstPreferredLanguage: string = I18n.System.getFirstPreferredLanguage();  // Obtain the first language in the preferred language list.
   } catch(error) {
@@ -617,7 +617,7 @@ Obtains the preferred language of an application.
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let appPreferredLanguage: string = I18n.System.getAppPreferredLanguage(); // Obtain the preferred language of an application.
   } catch(error) {
@@ -655,7 +655,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     I18n.System.setUsingLocalDigit(true); // Enable the local digit switch.
   } catch(error) {
@@ -681,7 +681,7 @@ Checks whether use of local digits is enabled.
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let status: boolean = I18n.System.getUsingLocalDigit();  // Check whether the local digit switch is enabled.
   } catch(error) {
@@ -986,7 +986,7 @@ Obtains the displayed name of the **Calendar** object for the specified locale.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | Locale for the displayed name of the **Calendar** object. For example, displayed name of **buddhist** is **Buddhist&nbsp;Calendar** when the locale is set to **en-US**.|
+| locale | string | Yes   | Locale for the displayed name of the **Calendar** object. For example, displayed name of **buddhist** is **Buddhist Calendar** when the locale is set to **en-US**.|
 
 **Return value**
 
@@ -1028,6 +1028,103 @@ Checks whether a given date is a weekend in the calendar.
   calendar.isWeekend(); // false
   let date: Date = new Date(2011, 11, 6, 9, 0, 0);
   calendar.isWeekend(date); // true
+  ```
+
+
+### add<sup>11+</sup>
+
+add(field: string, amount: number): void
+
+Performs addition and subtraction operations on the specified field of the **Calendar** object.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Description                                      |
+| ---- | ---- | ---- | ---------------------------------------- |
+| field | string | Yes   | Specified field of the **Calendar** object. The supported value year, month, week_of_year, week_of_month, date, day_of_year, day_of_week, day_of_week_in_month, hour, hour_of_day, minute, second, millisecond.|
+| amount | number | Yes   | Addition or subtraction amount.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+    calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
+    calendar.add("year", 8); // 2021 + 8
+    let year: number = calendar.get("year"); // year = 2029
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call Calendar.add failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
+
+### getTimeInMillis<sup>11+</sup>
+
+getTimeInMillis(): number
+
+Obtains number of milliseconds that have elapsed since the Unix epoch in the current **Calendar** object.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type     | Description                                 |
+| ------- | ----------------------------------- |
+| number | Number of milliseconds that have elapsed since the Unix epoch.|
+
+**Example**
+  ```ts
+  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+  calendar.setTime(5000);
+  let millisecond: number = calendar.getTimeInMillis(); // millisecond = 5000
+  ```
+
+
+### compareDays<sup>11+</sup>
+
+compareDays(date: Date): number
+
+Compares the number of days between the calendar date and the specified date. The value is accurate to milliseconds. If the value is less than one day, it is treated as one day.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Description                                      |
+| ---- | ---- | ---- | ---------------------------------------- |
+| date | Date | Yes   | Specified date.|
+
+**Return value**
+
+| Type     | Description                                 |
+| ------- | ----------------------------------- |
+| number | Number of days between the calendar date and the specified date. A positive number indicates that the calendar date is earlier, and a negative number indicates the opposite.|
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+    calendar.setTime(5000);
+    let date: Date = new Date(6000);
+    let diff: number = calendar.compareDays(date); // diff = 1
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call Calendar.compareDays failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 
@@ -1079,7 +1176,7 @@ Checks whether the format of the specified phone number is valid.
 **Example**
   ```ts
   let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
-  let isValidNumber: boolean = phonenumberfmt.isValidNumber("15812312312"); // isValidNumber = true
+  let isValidNumber: boolean = phonenumberfmt.isValidNumber("158****2312"); // isValidNumber = true
   ```
 
 
@@ -1106,7 +1203,7 @@ Formats a phone number.
 **Example**
   ```ts
   let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
-  let formattedPhoneNumber: string = phonenumberfmt.format("15812312312"); // formattedPhoneNumber = "158 1231 2312"
+  let formattedPhoneNumber: string = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
   ```
 
 
@@ -1134,7 +1231,7 @@ Obtains the home location of a phone number.
 **Example**
   ```ts
   let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
-  let locationName: string = phonenumberfmt.getLocationName("15812312345", "zh-CN"); // locationName = "Zhanjiang, Guangdong Province"
+  let locationName: string = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "Zhanjiang, Guangdong Province"
   ```
 
 
@@ -1146,7 +1243,7 @@ Defines the options for this PhoneNumberFormat object.
 
 | Name  | Type    | Readable  | Writable  | Description                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | Yes   | Yes   | Format type of a phone number. The available options are as follows: E164,&nbsp;INTERNATIONAL,&nbsp;NATIONAL, and&nbsp;RFC3966.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.|
+| type | string | Yes   | Yes   | Format type of a phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, or **RFC3966**.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -1158,7 +1255,7 @@ Defines the measurement unit information.
 | Name           | Type    | Readable  | Writable  | Description                                      |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
 | unit          | string | Yes   | Yes   | Name of the measurement unit, for example, **meter**, **inch**, or **cup**.|
-| measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**,&nbsp;**US**, or&nbsp;**UK**.|
+| measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**, **US**, or **UK**.|
 
 
 ## getInstance<sup>8+</sup>
@@ -2057,7 +2154,7 @@ Checks whether the input character is an uppercase letter.
 
 static getType(char: string): string
 
-Obtains the category value of the input string.
+Obtains the type of the input string.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2071,9 +2168,9 @@ Obtains the category value of the input string.
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | Category value of the input character.|
+| string | Type of the input character.|
 
-The following table lists only the general category values. For more details, see the Unicode Standard.
+The following table lists only the common types. For more details, see the Unicode Standard.
 
 | Name| Value| Description|
 | ---- | -------- | ---------- |
@@ -2139,7 +2236,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| string | string obtained after formatting based on the measurement unit specified by **toUnit**.|
+| string | String obtained after formatting based on the measurement unit specified by **toUnit**.|
 
 **Example**
   ```ts
@@ -2172,6 +2269,48 @@ Obtains the sequence of the year, month, and day in the specified locale.
 **Example**
   ```ts
   let order: string = I18n.I18NUtil.getDateOrder("zh-CN");  // order = "y-L-d"
+  ```
+
+
+### getTimePeriodName<sup>11+</sup>
+
+static getTimePeriodName(hour:number, locale?: string): string
+
+Obtains the localized expression for the specified time of the specified locale.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                       |
+| ------ | ------ | ---- | ------------------------- |
+| hour | number | Yes   | Specified time, for example, **16**.|
+| locale | string | No   | Specified locale. By default, the locale of the application is used, for example, **zh-Hans-CN**.|
+
+**Return value**
+
+| Type    | Description                 |
+| ------ | ------------------- |
+| string | Localized expression for the specified time of the specified locale.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let name: string = I18n.I18NUtil.getTimePeriodName(2, "zh-CN");  // name = "a.m."
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call I18NUtil.getTimePeriodName failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 
@@ -2297,7 +2436,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   // Assume that the system language is zh-Hans, the system region is CN, and the system locale is zh-Hans-CN.
   let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
   let languages: string[] = ["zh-Hans", "en-US", "pt", "ar"];
@@ -2346,7 +2485,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   // Assume that the system language is zh-Hans, the system region is CN, and the system locale is zh-Hans-CN.
   let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
   let regions: string[] = ["CN", "US", "PT", "EG"];
@@ -2379,7 +2518,7 @@ Obtains the array of time zone city items after sorting.
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let timeZoneCityItemArray: Array<I18n.TimeZoneCityItem> = I18n.SystemLocaleManager.getTimeZoneCityItemArray();
     for (let i = 0; i < timeZoneCityItemArray.length; i++) {
@@ -2409,7 +2548,7 @@ Represents the list of languages or countries/regions sorted by **SystemLocaleMa
 
 ## TimeZoneCityItem<sup>10+</sup>
 
-Represents the type of time zone city items.
+Represents the time zone and city combination information.
 
 **System API**: This is a system API.
 
@@ -2422,7 +2561,7 @@ Represents the type of time zone city items.
 | cityDisplayName | string          |   Yes   | Displayed name of the city ID in the system locale.         |
 | offset          | int             |   Yes   | Offset of the time zone ID.                        |
 | zoneDisplayName | string          |   Yes   | Displayed name of the time zone ID in the system locale.         |
-| rawOffset       | int             |   No   | Row offset of the time zone ID.                      |
+| rawOffset       | int             |   No   | Fixed offset of the time zone ID.                      |
 
 
 ## SuggestionType<sup>10+</sup>
@@ -2453,6 +2592,136 @@ Represents the language or country/region sorting option.
 | locale          | string          |  No | System locale, for example, **zh-Hans-CN**. The default value of **locale** is the system locale.   |
 | isUseLocalName  | boolean         |  No | Whether to use the local name for sorting. If **getLanguageInfoArray** is called, the default value of **isUseLocalName** is **true**. If **getRegionInfoArray** is called, the default value of **isUseLocalName** is **false**.               |
 | isSuggestedFirst | boolean        |  No | Whether to move the recommended language or country/region to the top in the sorting result. The default value of **isSuggestedFirst** is **true**. |
+
+
+## HolidayManager<sup>11+</sup>
+
+### constructor<sup>11+</sup>
+
+constructor(icsPath: String)
+
+Creates a **HolidayManager** object.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+|   Name |      Type     | Mandatory|     Description     |
+| --------- | ------------- | ---- | ------------- |
+| icsPath   | String | Yes  | Path of the **.ics** file with the read permission granted for applications. |
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | param value not valid  |
+
+**Example**
+  ```ts
+  let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
+  ```
+
+### isHoliday<sup>11+</sup>
+
+isHoliday(date?: Date): boolean;
+
+Determines whether the specified date is a holiday.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+|   Name |      Type     | Mandatory|     Description     |
+| --------- | ---------------| ---- | ------------- |
+| date      | Date           | No  | **Date** object.<br>If no date is specified, the current date is used by default.|
+
+**Return value**
+
+|       Type       |         Description         |
+| ----------------- | ----------------------|
+| boolean           | The value **true** indicates that the specified date is a holiday, and the value **false** indicates the opposite.|
+
+**Example**
+  ```ts
+  try {
+    let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
+    let isHoliday = holidayManager.isHoliday();
+    console.log(isHoliday);
+    let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25));
+    console.log(isHoliday2);
+  } catch(error) {
+    console.error(`call holidayManager.isHoliday failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+
+### getHolidayInfoItemArray<sup>11+</sup>
+
+getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoitem11)&gt;
+
+Obtains the holiday information list of the specified year.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+|   Name |      Type     | Mandatory|     Description     |
+| --------- | -------------  | ---- | ------------- |
+| year      | number         | No  | Specified year, for example, 2023.<br>If no year is specified, the current year is used by default.|
+
+**Return value**
+
+|       Type       |         Description         |
+| ----------------- | -------------------- |
+| Array&lt;[HolidayInfoItem](#holidayinfoitem11)&gt; | Holiday information list.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | param value not valid  |
+
+**Example**
+  ```ts
+  try {
+    let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
+    let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
+    for (let i =0 ;i < holidayInfoItemArray.length; i++) {
+        console.log(JSON.stringify(holidayInfoItemArray[i]));
+    }
+  } catch(error) {
+    console.error(`call holidayManager.getHolidayInfoItemArray failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+## HolidayInfoItem<sup>11+</sup>
+
+Represents the holiday information.
+
+**System capability**: SystemCapability.Global.I18n
+
+| Name           | Type            |  Mandatory  |  Description                                  |
+| --------------- | --------------- | ------  | --------------------------------------- |
+| baseName        | string          |   Yes   | Holiday name.             |
+| year            | number          |   Yes   | Year of the holiday.                  |
+| month           | number          |   Yes   | Month of the holiday.         |
+| day             | number          |   Yes   | Day of the holiday.                        |
+| localNames      | Array&lt;[HolidayLocalName](#holidaylocalname11)&gt;          |   No   | Local names of the holiday.         |
+
+## HolidayLocalName<sup>11+</sup>
+
+Defines the local names of a holiday.
+
+**System capability**: SystemCapability.Global.I18n
+
+| Name           | Type            |  Mandatory  |  Description                                  |
+| --------------- | -----------------| ------  | --------------------------------------- |
+| language        | string           |   Yes   | Local language of a holiday, for example, **ar**, **en**, or **tr**.         |
+| name            | string           |   Yes   | Local name of a holiday. For example, the Turkish name of Sacrifice Feast is Kurban Bayrami.     |
 
 
 ## I18n.getDisplayCountry<sup>(deprecated)</sup>
@@ -2983,4 +3252,4 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | Category value of the input character.|
+| string | Type of the input character.|

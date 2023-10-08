@@ -15,7 +15,7 @@ import identifier from '@ohos.identifier.oaid';
 ```
 
 
-## identifer.getOAID
+## identifier.getOAID
 
 getOAID():Promise&lt;string&gt;
 
@@ -51,17 +51,16 @@ try {
   identifier.getOAID().then((data) => {
     const oaid: string = data;
     hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success`);
-  }).catch((err) => {
-    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid failed, message: ${(err as BusinessError).message}`);
+  }).catch((err: BusinessError) => {
+    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid failed, message: ${err.message}`);
   })
-} catch (err) {
-  const e: BusinessError = err as BusinessError;
-  hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', e.code, e.message);
+} catch (err: BusinessError) {
+  hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', err.code, err.message);
 }
 ```
 
 
-## identifer.getOAID
+## identifier.getOAID
 
 getOAID(callback: AsyncCallback&lt;string&gt;): void
 
@@ -99,7 +98,7 @@ import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
  
 try {
-  identifier.getOAID((err, data) => {
+  identifier.getOAID((err: BusinessError, data) => {
     if (err.code) {
       hilog.info(0x0000, 'testTag', '%{public}s', `get oaid failed, message: ${err.message}`);
     } else {
@@ -107,14 +106,13 @@ try {
       hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success`);
     }
    });
-} catch (err) {
-  const e: BusinessError = err as BusinessError;
-  hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', e.code, e.message);
+} catch (err: BusinessError) {
+  hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', err.code, err.message);
 }
 ```
 
 
-## identifer.resetOAID
+## identifier.resetOAID
 
 resetOAID(): void
 
@@ -144,8 +142,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   identifier.resetOAID();
-} catch (err) {
-  const e: BusinessError = err as BusinessError;
-  hilog.error(0x0000, 'testTag', 'reset oaid catch error: %{public}d %{public}s', e.code, e.message);
+} catch (err: BusinessError) {
+  hilog.error(0x0000, 'testTag', 'reset oaid catch error: %{public}d %{public}s', err.code, err.message);
 }
 ```

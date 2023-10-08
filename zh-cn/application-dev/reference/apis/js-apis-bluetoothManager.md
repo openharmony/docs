@@ -13,6 +13,7 @@
 
 ```js
 import bluetoothManager from '@ohos.bluetoothManager';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -2527,7 +2528,7 @@ isTetheringOn(): boolean
 ```js
 try {
     let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
-    let ret = panProfile.isTetheringOn();
+    panProfile.isTetheringOn();
 } catch (err) {
     console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
@@ -2591,8 +2592,6 @@ console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer)
 console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
 let gattServer = bluetoothManager.BLE.createGattServer();
 try {
-    
-ble.startAdvertising();
     let setting: bluetoothManager.AdvertiseSetting = {
         interval:150,
         txPower:0,
@@ -3236,7 +3235,7 @@ server端订阅BLE连接状态变化事件。
 ```js
 function Connected(BLEConnectChangedState: bluetoothManager.BLEConnectChangedState) {
   let deviceId: string = BLEConnectChangedState.deviceId;
-  let status: bluetoothManager.ProfileConnectionStare  = BLEConnectChangedState.state;
+  let status: bluetoothManager.ProfileConnectionState  = BLEConnectChangedState.state;
 }
 
 let gattServer = bluetoothManager.BLE.createGattServer();
@@ -4028,7 +4027,7 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 **示例：**
 
 ```js
-function ConnectStateChanged(state: bluetoothManager.BLEConnectChangeState) {
+function ConnectStateChanged(state: bluetoothManager.BLEConnectChangedState) {
     console.log('bluetooth connect state changed');
     let connectState: bluetoothManager.ProfileConnectionState = state.state;
 }
