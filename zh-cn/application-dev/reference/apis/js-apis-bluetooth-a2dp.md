@@ -12,6 +12,7 @@ a2dp模块提供了访问蓝牙音频接口的方法。
 
 ```js
 import a2dp from '@ohos.bluetooth.a2dp';
+import { BusinessError } from '@ohos.base';
 ```
 
 

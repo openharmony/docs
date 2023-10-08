@@ -58,7 +58,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | maxCount<sup>8+</sup> | number  | When **layoutDirection** is **Row** or **RowReverse**: maximum number of columns that can be displayed.<br>When **layoutDirection** is **Column** or **ColumnReverse**: maximum number of rows that can be displayed.<br>Default value: **Infinity**<br>**NOTE**<br>If the value of **maxCount** is smaller than that of **minCount**, the default values of **maxCount** and **minCount** are used.<br>A value less than 1 evaluates to the default value.|
 | minCount<sup>8+</sup> | number  | When **layoutDirection** is **Row** or **RowReverse**: minimum number of columns that can be displayed.<br>When **layoutDirection** is **Column** or **ColumnReverse**: minimum number of rows that can be displayed.<br>Default value: **1**<br>**NOTE**<br>A value less than 1 evaluates to the default value.|
 | cellLength<sup>8+</sup> | number  | When **layoutDirection** is **Row** or **RowReverse**: fixed height per row.<br>When **layoutDirection** is **Column** or **ColumnReverse**: fixed width per column.<br>Default value: size of the first element|
-| multiSelectable<sup>8+</sup> | boolean | Whether to enable mouse frame selection.<br>Default value: **false**<br>- **false**: The mouse frame selection is disabled.<br>- **true**: The mouse frame selection is enabled.|
+| multiSelectable<sup>8+</sup> | boolean | Whether to enable mouse frame selection.<br>Default value: **false**<br>- **false**: The mouse frame selection is disabled.<br>- **true**: The mouse frame selection is enabled.<br>**NOTE**<br> When mouse frame selection is enabled, you can use the **selected** attribute and the **onSelect** event of the **\<Griditem>** component to obtain the selection status of the component; you can also set the [style](./ts-universal-attributes-polymorphic-style.md) of the component in the selected state (by default, no style is set for the selected state).|
 | supportAnimation<sup>8+</sup> | boolean | Whether to enable animation. Currently, the grid item drag animation is supported.<br>Default value: **false**|
 | edgeEffect<sup>10+</sup> | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | Scroll effect. The spring effect and shadow effect are supported.<br>Default value: **EdgeEffect.None**<br>|
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
@@ -111,13 +111,19 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name| Description|
 | -------- | -------- |
-| onScrollIndex(event: (first: number) => void) | Triggered when the first item displayed in the grid changes. It is triggered once when the grid is initialized.<br>- **first**: index of the first item of the grid.<br>If it changes, this event will be triggered.|
+| onScrollIndex(event: (first: number, last<sup>10+</sup>: number) => void) | Triggered when the first or last item displayed in the grid changes. It is triggered once when the grid is initialized.<br>- **first**: index of the first item of the grid.<br>- **last**: index of the last item of the grid.<br>This event is triggered when either of the preceding indexes changes.|
 | onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | Triggered when a grid item starts to be dragged.<br>- **event**: See [ItemDragInfo](#itemdraginfo).<br>- **itemIndex**: index of the dragged item.<br>**NOTE**<br>If **void** is returned, the drag operation cannot be performed.<br>This event is triggered when the user long presses a grid item.<br>Drag detection also requires long press, and the event processing mechanism preferentially triggers child component events. Therefore, when **LongPressGesture** is bound to the grid item, the drag operation cannot be performed. In light of this, if both long press and drag operations are required, you can use universal drag events.|
 | onItemDragEnter(event: (event: ItemDragInfo) => void) | Triggered when the dragged item enters the drop target of the grid.<br>- **event**: See [ItemDragInfo](#itemdraginfo).|
 | onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | Triggered when the dragged item moves over the drop target of the grid.<br>- **event**: See [ItemDragInfo](#itemdraginfo).<br>- **itemIndex**: initial position of the dragged item.<br>- **insertIndex**: index of the position to which the dragged item will be dropped.|
 | onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | Triggered when the dragged item leaves the drop target of the grid.<br>- **event**: See [ItemDragInfo](#itemdraginfo).<br>- **itemIndex**: index of the dragged item.|
 | onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | Triggered when the dragged item is dropped on the drop target of the grid.<br>- **event**: See [ItemDragInfo](#itemdraginfo).<br>- **itemIndex**: initial position of the dragged item.<br>- **insertIndex**: index of the position to which the dragged item will be dropped.<br>- **isSuccess**: whether the dragged item is successfully dropped.|
 | onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute) | Triggered when the first item displayed in the grid changes. You can use this callback to set the position and length of the scrollbar.<br>- **index**: index of the first item displayed in the grid.<br>- **offset**: offset of the displayed first item relative to the start position of the grid.<br>- **ComputedBarAttribute**: See [ComputedBarAttribute](#computedbarattribute). |
+| onScroll<sup>10+</sup>(event: (scrollOffset: number, scrollState: ScrollState) => void) | Triggered when the grid scrolls.<br>- **scrollOffset**: scroll offset of each frame. The offset is positive when the grid is scrolled up and negative when the list is scrolled down.<br>- [scrollState](ts-container-list.md#scrollstate): current scroll state.|
+| onReachStart<sup>10+</sup>(event: () => void)          | Triggered when the grid reaches the start position.<br>**NOTE**<br>This event is triggered once when **initialIndex** is **0** during grid initialization and once when the grid scrolls to the start position. When the grid edge scrolling effect is the spring effect, this event is triggered once when the grid passes the start position and is triggered again when the grid returns to the start position.|
+| onReachEnd<sup>10+</sup>(event: () => void)            | Triggered when the grid reaches the end position.<br>**NOTE**<br>When the grid edge effect is the spring effect, this event is triggered once when the grid passes the end position and is triggered again when the grid returns to the end position.|
+| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when the grid starts to scroll. The input parameters indicate the amount by which the grid will scroll. The event handler then works out the amount by which the grid needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling state.<br>- **offsetRemain**: actual amount by which the grid scrolls, in vp.<br>This event is triggered when the user starts dragging the grid or the grid starts inertial scrolling. This event is not triggered when the grid rebounds or the scrolling controller is used.<br>**NOTE**<br>If **gridDirection** is set to **Axis.Vertical**, the return value is the amount by which the grid needs to scroll in the vertical direction. If **gridDirection** is set to **Axis.Horizontal**, the return value is the amount by which the grid needs to scroll in the horizontal direction.|
+| onScrollStart<sup>10+</sup>(event: () => void) | Triggered when the grid starts scrolling initiated by the user's finger dragging the grid or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) starts.|
+| onScrollStop<sup>10+</sup>(event: () => void)          | Triggered when the grid stops scrolling after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) stops.|
 
 ## ItemDragInfo
 
@@ -158,8 +164,8 @@ struct GridExample {
                 .height('100%')
                 .textAlign(TextAlign.Center)
             }
-          }, day => day)
-        }, day => day)
+          }, (day: string) => day)
+        }, (day: string) => day)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
@@ -181,8 +187,8 @@ struct GridExample {
                 .height(80)
                 .textAlign(TextAlign.Center)
             }
-          }, day => day)
-        }, day => day)
+          }, (day: string) => day)
+        }, (day: string) => day)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .columnsGap(10)
@@ -244,7 +250,10 @@ struct GridExample {
   }
 
   changeIndex(index1: number, index2: number) { // Exchange the array position.
-    [this.numbers[index1], this.numbers[index2]] = [this.numbers[index2], this.numbers[index1]];
+    let temp: string;
+    temp = this.numbers[index1];
+    this.numbers[index1] = this.numbers[index2];
+    this.numbers[index2] = temp;
   }
 
   build() {

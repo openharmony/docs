@@ -35,7 +35,7 @@ import fileio from '@ohos.fileio';
 
 **FA模型**
 
-  ```ts
+  ```js
   import featureAbility from '@ohos.ability.featureAbility';
 
   let context = featureAbility.getContext();
@@ -749,7 +749,15 @@ openSync(path: string, flags?: number, mode?: number): number
   fileio.writeSync(fd, 'hello world');
   let fd1 = fileio.openSync(filePath, 0o2002);
   fileio.writeSync(fd1, 'hello world');
-  let num = fileio.readSync(fd1, new ArrayBuffer(4096), {position: 0});
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+  }
+  let option = new Option();
+  option.position = 0;
+  let buf = new ArrayBuffer(4096)
+  let num = fileio.readSync(fd1, buf, option);
   console.info("num == " + num);
   ```
 
@@ -1702,7 +1710,15 @@ readText(filePath: string, options: { position?: number; length?: number; encodi
   ```ts
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, (err: BusinessError, str: string) => {
+  class Option {
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.position = 1;
+  option.encoding = 'utf-8';
+  fileio.readText(filePath, option, (err: BusinessError, str: string) => {
     // do something
   });
   ```
@@ -1737,7 +1753,15 @@ readTextSync(filePath: string, options?: { position?: number; length?: number; e
 
   ```ts
   let filePath = pathDir + "/test.txt";
-  let str = fileio.readTextSync(filePath, {position: 1, length: 3});
+  class Option {
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.position = 1;
+  option.length = 3;
+  let str = fileio.readTextSync(filePath, option);
   ```
 
 
@@ -3704,7 +3728,8 @@ readSync(buffer: ArrayBuffer, options?: { position?: number; offset?: number; le
   option.offset = 1;
   option.length = 5;
   option.position = 5;
-  let num = ss.readSync(new ArrayBuffer(4096), option);
+  let buf = new ArrayBuffer(4096)
+  let num = ss.readSync(buf, option);
   ```
 
 

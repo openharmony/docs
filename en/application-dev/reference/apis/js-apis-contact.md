@@ -13,11 +13,64 @@ The **contact** module provides contact management functions, such as adding, de
 import contact from '@ohos.contact';
 ```
 
-## contact.addContact
+## contact.addContact<sup>10+</sup>
+
+addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number&gt;): void 
+
+Adds a contact. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.WRITE_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                     | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| contact  | [Contact](#contact)         | Yes  | Contact information.                                                |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result, which is a contact ID.                              |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.addContact(
+    globalThis.context as Context,
+    {name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+    }, (err, data) => {
+      if (err) {
+        console.log(`addContact callback: err->${JSON.stringify(err)}`);
+        return;
+      }
+      console.log(`addContact callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.addContact(deprecated)<sup>7+</sup>
 
 addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
 Adds a contact. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContact](#contactquerycontact10).
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -28,11 +81,12 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 | Name  | Type                       | Mandatory| Description                          |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | contact  | [Contact](#contact)         | Yes  | Contact information.                  |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the contact ID.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result, which is a contact ID.|
 
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.addContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -45,12 +99,68 @@ Adds a contact. This API uses an asynchronous callback to return the result.
   });
   ```
 
+## contact.addContact<sup>10+</sup>
 
-## contact.addContact
+addContact(context: Context, contact: Contact): Promise<number&gt;
+
+Adds a contact. This API uses a promise to return the result.
+
+**Permission required**: ohos.permission.WRITE_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name | Type               | Mandatory| Description                                                        |
+| ------- | ------------------- | ---- | ------------------------------------------------------------ |
+| context | Context             | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| contact | [Contact](#contact) | Yes  | Contact information.                                                |
+
+**Return Value**
+
+| Type                 | Description                                       |
+| --------------------- | ------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the contact ID.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.addContact(
+    globalThis.context as Context,
+    {name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+  });
+  promise.then((data) => {
+    console.log(`addContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+    console.error(`addContact fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.addContact(deprecated)<sup>7+</sup>
 
 addContact(contact: Contact): Promise&lt;number&gt;
 
 Adds a contact. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [addContact](#contactaddcontact10).
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -71,6 +181,7 @@ Adds a contact. This API uses a promise to return the result.
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   let promise = contact.addContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -82,12 +193,60 @@ Adds a contact. This API uses a promise to return the result.
   });
   ```
 
+## contact.deleteContact<sup>10+</sup>
 
-## contact.deleteContact
+deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;): void
+
+Deletes a contact based on the specified contact key. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.WRITE_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                   | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| key      | string                    | Yes  | Contact key. Each contact corresponds to one key.                        |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }  
+  contact.deleteContact(globalThis.context as Context, 'xxx', (err) => {
+      if (err) {
+          console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log('deleteContact success');
+  });
+```
+
+## contact.deleteContact(deprecated)<sup>7+</sup>
 
 deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes a contact based on the specified contact key. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [deleteContact](#contactdeletecontact10).
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -103,6 +262,7 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.deleteContact('xxx', (err) => {
       if (err) {
           console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
@@ -113,11 +273,64 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
   ```
 
 
-## contact.deleteContact
+## contact.deleteContact<sup>10+</sup>
+
+deleteContact(context: Context,  key: string): Promise&lt;void&gt;
+
+Deletes a contact based on the specified contact key. This API uses a promise to return the result.
+
+**Permission required**: ohos.permission.WRITE_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                                                        |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| key     | string  | Yes  | Contact key. Each contact corresponds to one key.                      |
+
+**Return Value**
+
+| Type               | Description                                         |
+| ------------------- | --------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.deleteContact(globalThis.context as Context, 'xxx');
+  promise.then(() => {
+      console.log(`deleteContact success`);
+  }).catch((err) => {
+      console.error(`deleteContact fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.deleteContact(deprecated)<sup>7+</sup>
 
 deleteContact(key: string): Promise&lt;void&gt;
 
 Deletes a contact based on the specified contact key. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [deleteContact](#contactdeletecontact10).
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -138,6 +351,7 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
       console.log(`deleteContact success`);
@@ -147,11 +361,64 @@ Deletes a contact based on the specified contact key. This API uses a promise to
   ```
 
 
-## contact.updateContact
+## contact.updateContact<sup>10+</sup>
+
+updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;void&gt;): void
+
+Updates a contact based on the specified contact information. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.WRITE_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                   | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| contact  | [Contact](#contact)       | Yes  | Contact information.                                                |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                        |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.updateContact(globalThis.context as Context, {
+      id: 1,
+      name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+  }, (err) => {
+      if (err) {
+          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          return;
+      }
+      console.log('updateContact success');
+  });
+  ```
+
+## contact.updateContact(deprecated)<sup>7+</sup>
 
 updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
 Updates a contact based on the specified contact information. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [updateContact](#contactupdatecontact10).
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -167,6 +434,7 @@ Updates a contact based on the specified contact information. This API uses an a
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
@@ -181,11 +449,67 @@ Updates a contact based on the specified contact information. This API uses an a
   ```
 
 
-## contact.updateContact
+## contact.updateContact<sup>10+</sup>
+
+updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
+
+Updates a contact based on the specified contact information. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.WRITE_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                 | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| contact  | [Contact](#contact)                     | Yes  | Contact information.                                                |
+| attrs    | [ContactAttributes](#contactattributes) | Yes  | List of contact attributes.                                          |
+| callback | AsyncCallback&lt;void&gt;               | Yes  | Callback used to return the result.                        |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.updateContact(globalThis.context as Context, {
+      id: 1,
+      name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err) => {
+      if (err) {
+          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          return;
+      }
+      console.log('updateContact success');
+  });
+  ```
+
+## contact.updateContact(deprecated)<sup>7+</sup>
 
 updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
 
 Updates a contact based on the specified contact information. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [updateContact](#contactupdatecontact10).
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -202,6 +526,7 @@ Updates a contact based on the specified contact information. This API uses an a
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
@@ -218,11 +543,71 @@ Updates a contact based on the specified contact information. This API uses an a
   ```
 
 
-## contact.updateContact
+## contact.updateContact<sup>10+</sup>
+
+updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
+
+Updates a contact based on the specified contact information and attributes. This API uses a promise to return the result.
+
+**Permission required**: ohos.permission.WRITE_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name | Type                                   | Mandatory| Description                                                        |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| contact | [Contact](#contact)                     | Yes  | Contact information.                                                |
+| attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                                          |
+
+**Return Value**
+
+| Type               | Description                                             |
+| ------------------- | ------------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.updateContact(globalThis.context as Context, {
+      id: 1,
+      name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then(() => {
+      console.log('updateContact success');
+  }).catch((err) => {
+      console.error(`updateContact fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.updateContact(deprecated)<sup>7+</sup>
 
 updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
 Updates a contact based on the specified contact information and attributes. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [updateContact](#contactupdatecontact10).
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -243,6 +628,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   let promise = contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
@@ -258,9 +644,9 @@ Updates a contact based on the specified contact information and attributes. Thi
   ```
 
 
-## contact.isLocalContact
+## contact.isLocalContact<sup>10+</sup>
 
-isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
+isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether the ID of this contact is in the local address book. This API uses an asynchronous callback to return the result.
 
@@ -272,12 +658,62 @@ Checks whether the ID of this contact is in the local address book. This API use
 
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                      | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
 | id       | number                       | Yes  | Contact ID. Each contact corresponds to one ID.                  |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return a boolean value. The value **true** indicates that the contact ID is in the local address book, and the value **false** indicates the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the contact ID is in the local address book, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
 
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.isLocalContact(globalThis.context as Context, /*id*/1, (err, data) => {
+      if (err) {
+          console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`isLocalContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.isLocalContact(deprecated)<sup>7+</sup>
+
+isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether the ID of this contact is in the local address book. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [isLocalContact](#contactislocalcontact10).
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                        | Mandatory| Description                                                        |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| id       | number                       | Yes  | Contact ID. Each contact corresponds to one ID.                  |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the contact ID is in the local address book, and the value **false** indicates the opposite.|
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
   contact.isLocalContact(/*id*/1, (err, data) => {
       if (err) {
           console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
@@ -287,12 +723,63 @@ Checks whether the ID of this contact is in the local address book. This API use
   });
   ```
 
+## contact.isLocalContact<sup>10+</sup>
 
-## contact.isLocalContact
+isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
+
+Checks whether the ID of this contact is in the local address book. This API uses a promise to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                                                        |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| id      | number  | Yes  | Contact ID. Each contact corresponds to one ID.                  |
+
+**Return Value**
+
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the contact ID is in the local address book, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.isLocalContact(globalThis.context as Context, /*id*/1);
+  promise.then((data) => {
+      console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`isLocalContact fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.isLocalContact(deprecated)<sup>7+</sup>
 
 isLocalContact(id: number): Promise&lt;boolean&gt;
 
 Checks whether the ID of this contact is in the local address book. This API uses a promise to return the result.
+
+> **NOTE**
+>This API is supported since API version 7 and deprecated since API version 10. You are advised to use [isLocalContact](#contactislocalcontact10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -313,6 +800,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   let promise = contact.isLocalContact(/*id*/1);
   promise.then((data) => {
       console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
@@ -321,12 +809,59 @@ Checks whether the ID of this contact is in the local address book. This API use
   });
   ```
 
+## contact.isMyCard<sup>10+</sup>
 
-## contact.isMyCard
+isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether a contact is included in my card. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                        | Mandatory| Description                                                        |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                      | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| id       | number                       | Yes  | Contact ID.                                        |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the contact is included in my card, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.isMyCard(globalThis.context as Context, /*id*/1, (err, data) => {
+      if (err) {
+          console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`isMyCard callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.isMyCard(deprecated)<sup>7+</sup>
 
 isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether a contact is included in my card. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>This API is supported since API version 7 and deprecated since API version 10. You are advised to use [isMyCard](#contactismycard10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -342,6 +877,7 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.isMyCard(/*id*/1, (err, data) => {
       if (err) {
           console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
@@ -352,11 +888,64 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
   ```
 
 
-## contact.isMyCard
+## contact.isMyCard<sup>10+</sup>
+
+isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
+
+Checks whether a contact is included in my card. This API uses a promise to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                                                        |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| id      | number  | Yes  | Contact ID.                                        |
+
+**Return Value**
+
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the contact is included in my card, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.isMyCard(globalThis.context as Context, /*id*/1);
+  promise.then((data) => {
+      console.log(`isMyCard success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`isMyCard fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.isMyCard(deprecated)<sup>7+</sup>
 
 isMyCard(id: number): Promise&lt;boolean&gt;
 
 Checks whether a contact is included in my card. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [isMyCard](#contactismycard10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -377,6 +966,7 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   let promise = contact.isMyCard(/*id*/1);
   promise.then((data) => {
       console.log(`isMyCard success: data->${JSON.stringify(data)}`);
@@ -385,12 +975,59 @@ Checks whether a contact is included in my card. This API uses a promise to retu
   });
   ```
 
+## contact.queryMyCard<sup>10+</sup>
 
-## contact.queryMyCard
+queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
+
+Queries my card. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                    | Mandatory| Description                                                        |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.                              |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryMyCard(globalThis.context as Context, (err, data) => {
+      if (err) {
+          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.queryMyCard(deprecated)<sup>7+</sup>
 
 queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
 Queries my card. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryMyCard](#contactquerymycard10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -405,6 +1042,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryMyCard((err, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
@@ -414,12 +1052,62 @@ Queries my card. This API uses an asynchronous callback to return the result.
   });
   ```
 
+## contact.queryMyCard<sup>10+</sup>
 
-## contact.queryMyCard
+queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
+
+Queries my card. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                    | Mandatory| Description                                                        |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| attrs    | [ContactAttributes](#contactattributes)  | Yes  | List of contact attributes.                                          |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.                              |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryMyCard(globalThis.context as Context, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.queryMyCard(deprecated)<sup>7+</sup>
 
 queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
 Queries my card. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryMyCard](#contactquerymycard10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -435,6 +1123,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryMyCard({
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -446,12 +1135,66 @@ Queries my card. This API uses an asynchronous callback to return the result.
   });
   ```
 
+## contact.queryMyCard<sup>10+</sup>
 
-## contact.queryMyCard
+queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt;
+
+Queries my card based on the specified contact attributes. This API uses a promise to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name | Type                                   | Mandatory| Description                                                        |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                                          |
+
+**Return Value**
+
+| Type                              | Description                                       |
+| ---------------------------------- | ------------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryMyCard(globalThis.context as Context, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryMyCard success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryMyCard fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.queryMyCard(deprecated)<sup>7+</sup>
 
 queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 Queries my card based on the specified contact attributes. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryMyCard](#contactquerymycard10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -471,6 +1214,7 @@ Queries my card based on the specified contact attributes. This API uses a promi
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   let promise = contact.queryMyCard({
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
@@ -482,9 +1226,71 @@ Queries my card based on the specified contact attributes. This API uses a promi
   ```
 
 
-## contact.selectContact
+## contact.selectContact(deprecated)<sup>7+</sup>
 
 selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Selects a contact. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [selectContacts](#contactselectcontacts10).
+
+**System capability**: SystemCapability.Applications.Contacts
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  contact.selectContact((err, data) => {
+      if (err) {
+          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+
+## contact.selectContact(deprecated)<sup>7+</sup>
+
+selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
+
+Selects a contact. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [selectContacts](#contactselectcontacts10).
+
+**System capability**: SystemCapability.Applications.Contacts
+
+**Return Value**
+
+| Type                                           | Description                                             |
+| ----------------------------------------------- | ------------------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  let promise = contact.selectContact();
+  promise.then((data) => {
+      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.selectContacts<sup>10+</sup>
+
+selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Selects a contact. This API uses an asynchronous callback to return the result.
 
@@ -499,7 +1305,8 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
-  contact.selectContact((err, data) => {
+// The sample code applies only to JS source files.
+  contact.selectContacts((err, data) => {
       if (err) {
           console.log(`selectContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -508,10 +1315,9 @@ Selects a contact. This API uses an asynchronous callback to return the result.
   });
   ```
 
+## contact.selectContacts<sup>10+</sup>
 
-## contact.selectContact
-
-selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
+selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 Selects a contact. This API uses a promise to return the result.
 
@@ -526,7 +1332,8 @@ Selects a contact. This API uses a promise to return the result.
 **Example**
 
   ```js
-  let promise = contact.selectContact();
+// The sample code applies only to JS source files.
+  let promise = contact.selectContacts();
   promise.then((data) => {
       console.log(`selectContact success: data->${JSON.stringify(data)}`);
   }).catch((err) => {
@@ -534,12 +1341,117 @@ Selects a contact. This API uses a promise to return the result.
   });
   ```
 
+## contact.selectContacts<sup>10+</sup>
 
-## contact.queryContact
+selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Selects a contact. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| options | ContactSelectionOptions | Yes  | Contact selection options.|
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  contact.selectContacts({
+    isMultiSelect:false
+  }, (err, data) => {
+      if (err) {
+          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.selectContacts<sup>10+</sup>
+
+selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt;&gt;
+
+Selects a contact. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+**Return Value**
+
+| Type                                           | Description                                             |
+| ----------------------------------------------- | ------------------------------------------------- |
+| options | ContactSelectionOptions | Yes  | Contact selection options.|
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  let promise = contact.selectContacts({isMultiSelect:false});
+  promise.then((data) => {
+      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryContact<sup>10+</sup>
+
+queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact&gt;): void
+
+Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                    | Mandatory| Description                                                        |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                      |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContact(globalThis.context as Context, 'xxx', (err, data) => {
+      if (err) {
+          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
 Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContact](#contactquerycontact10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -555,6 +1467,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContact('xxx', (err, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
@@ -565,11 +1478,65 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   ```
 
 
-## contact.queryContact
+## contact.queryContact<sup>10+</sup>
+
+queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
+
+Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                    | Mandatory| Description                                                        |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                      |
+| holder   | [Holder](#holder)                        | Yes  | Application that creates the contacts.                                      |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContact(globalThis.context as Context, 'xxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
 Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContact](#contactquerycontact10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -586,6 +1553,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContact('xxx', {
       holderId: 0,
       bundleName: "",
@@ -599,12 +1567,63 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   });
   ```
 
+## contact.queryContact<sup>10+</sup>
 
-## contact.queryContact
+queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
+
+Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                    | Mandatory| Description                                                        |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                      |
+| attrs    | [ContactAttributes](#contactattributes)  | Yes  | List of contact attributes.                                          |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContact(globalThis.context as Context, 'xxx', {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
 Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContact](#contactquerycontact10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -621,6 +1640,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContact('xxx', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -632,12 +1652,68 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   });
   ```
 
+## contact.queryContact<sup>10+</sup>
 
-## contact.queryContact
+queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
+
+Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                    | Mandatory| Description                                                        |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                      |
+| holder   | [Holder](#holder)                        | Yes  | Application that creates the contacts.                                      |
+| attrs    | [ContactAttributes](#contactattributes)  | Yes  | List of contact attributes.                                          |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContact(globalThis.context as Context, 'xxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
 Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContact](#contactquerycontact10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -655,6 +1731,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContact('xxx', {
       holderId: 0,
       bundleName: "",
@@ -671,11 +1748,71 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   ```
 
 
-## contact.queryContact
+## contact.queryContact<sup>10+</sup>
+
+queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
+
+Queries contacts based on the specified key, application, and attributes. This API uses a promise to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name | Type                                   | Mandatory| Description                                                        |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| key     | string                                  | Yes  | Contact key. Each contact corresponds to one key.                      |
+| holder  | [Holder](#holder)                       | No  | Application that creates the contacts.                                      |
+| attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                                          |
+
+**Return Value**
+| Type                              | Description                                           |
+| ---------------------------------- | ----------------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryContact(globalThis.context as Context, 'xxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryContact fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 Queries contacts based on the specified key, application, and attributes. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContact](#contactquerycontact10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -697,6 +1834,7 @@ Queries contacts based on the specified key, application, and attributes. This A
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   let promise = contact.queryContact('xxx', {
       holderId: 0,
       bundleName: "",
@@ -711,12 +1849,59 @@ Queries contacts based on the specified key, application, and attributes. This A
   });
   ```
 
+## contact.queryContacts<sup>10+</sup>
 
-## contact.queryContacts
+queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Queries all contacts. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContacts(globalThis.context as Context, (err, data) => {
+      if (err) {
+          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
 queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries all contacts. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContacts](#contactquerycontacts10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -731,6 +1916,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContacts((err, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
@@ -740,12 +1926,64 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
   });
   ```
 
+## contact.queryContacts<sup>10+</sup>
 
-## contact.queryContacts
+queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Queries all contacts. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContacts(globalThis.context as Context, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
 queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries all contacts. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContacts](#contactquerycontacts10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -761,6 +1999,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContacts({
       holderId: 0,
       bundleName: "",
@@ -774,12 +2013,62 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
   });
   ```
 
+## contact.queryContacts<sup>10+</sup>
 
-## contact.queryContacts
+queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Queries all contacts. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContacts(globalThis.context as Context, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
 queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries all contacts. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContacts](#contactquerycontacts10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -795,6 +2084,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContacts({
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -806,12 +2096,67 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
   });
   ```
 
+## contact.queryContacts<sup>10+</sup>
 
-## contact.queryContacts
+queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Queries all contacts. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
+| attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContacts(globalThis.context as Context, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
 queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries all contacts. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContacts](#contactquerycontacts10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -828,6 +2173,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContacts({
       holderId: 0,
       bundleName: "",
@@ -843,10 +2189,9 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
   });
   ```
 
+## contact.queryContacts<sup>10+</sup>
 
-## contact.queryContacts
-
-queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
+queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 Queries all contacts based on the specified application and attributes. This API uses a promise to return the result.
 
@@ -856,20 +2201,36 @@ Queries all contacts based on the specified application and attributes. This API
 
 **Parameters**
 
-| Name| Type                                   | Mandatory| Description                  |
-| ------ | --------------------------------------- | ---- | ---------------------- |
-| holder | [Holder](#holder)                       | No  | Application that creates the contacts.|
-| attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.    |
+| Name | Type                                   | Mandatory| Description                                                        |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| holder  | [Holder](#holder)                       | No  | Application that creates the contacts.                                      |
+| attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                                          |
 
 **Return Value**
 | Type                                           | Description                                               |
 | ----------------------------------------------- | --------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
 **Example**
 
   ```js
-  let promise = contact.queryContacts({
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryContacts(globalThis.context as Context, {
       holderId: 0,
       bundleName: "",
       displayName: ""
@@ -883,12 +2244,105 @@ Queries all contacts based on the specified application and attributes. This API
   });
   ```
 
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
-## contact.queryContactsByPhoneNumber
+queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
+
+Queries all contacts based on the specified application and attributes. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContacts](#contactquerycontacts10).
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name| Type                                   | Mandatory| Description                  |
+| ------ | --------------------------------------- | ---- | ---------------------- |
+| holder | [Holder](#holder)                       | No  | Application that creates the contacts.|
+| attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.    |
+
+**Return Value**
+
+| Type                                           | Description                                               |
+| ----------------------------------------------- | --------------------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+// The sample code applies only to JS source files.
+  let promise = contact.queryContacts({
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryContacts success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryContacts fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
+
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name     | Type                                                 | Mandatory| Description                                                        |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                               | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| phoneNumber | string                                                | Yes  | Phone number of the contacts.                                          |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', (err, data) => {
+      if (err) {
+          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -904,6 +2358,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
@@ -914,11 +2369,65 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   ```
 
 
-## contact.queryContactsByPhoneNumber
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
+
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name     | Type                                                 | Mandatory| Description                                                        |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                               | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| phoneNumber | string                                                | Yes  | Phone number of the contacts.                                          |
+| holder      | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -935,6 +2444,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
@@ -948,12 +2458,63 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   });
   ```
 
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
-## contact.queryContactsByPhoneNumber
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name     | Type                                                 | Mandatory| Description                                                        |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                               | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| phoneNumber | string                                                | Yes  | Phone number of the contacts.                                          |
+| attrs       | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -970,6 +2531,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -981,12 +2543,68 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   });
   ```
 
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
-## contact.queryContactsByPhoneNumber
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name     | Type                                                 | Mandatory| Description                                                        |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                               | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| phoneNumber | string                                                | Yes  | Phone number of the contacts.                                          |
+| holder      | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
+| attrs       | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1004,6 +2622,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
@@ -1019,12 +2638,72 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   });
   ```
 
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
-## contact.queryContactsByPhoneNumber
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
+
+Queries contacts based on the specified phone number, application, and attributes. This API uses a promise to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description                                                        |
+| ----------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                 | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| phoneNumber | string                                  | Yes  | Phone number of the contacts.                                          |
+| holder      | [Holder](#holder)                       | No  | Application that creates the contacts.                                      |
+| attrs       | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                                          |
+
+**Return Value**
+
+| Type                                           | Description                                               |
+| ----------------------------------------------- | --------------------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryContactsByPhoneNumber success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryContactsByPhoneNumber fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 Queries contacts based on the specified phone number, application, and attributes. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1047,6 +2726,7 @@ Queries contacts based on the specified phone number, application, and attribute
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
@@ -1061,12 +2741,60 @@ Queries contacts based on the specified phone number, application, and attribute
   });
   ```
 
+## contact.queryContactsByEmail<sup>10+</sup>
 
-## contact.queryContactsByEmail
+queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| email    | string                                                | Yes  | Email address of the contact.                                          |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', (err, data) => {
+      if (err) {
+          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByEmail](#contactquerycontactsbyemail10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1082,6 +2810,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContactsByEmail('xxx@email.com', (err, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -1091,12 +2820,65 @@ Queries contacts based on the specified email address. This API uses an asynchro
   });
   ```
 
+## contact.queryContactsByEmail<sup>10+</sup>
 
-## contact.queryContactsByEmail
+queryContactsByEmail(context: Context,  email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| email    | string                                                | Yes  | Email address of the contact.                                          |
+| holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByEmail](#contactquerycontactsbyemail10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1113,6 +2895,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0,
       bundleName: "",
@@ -1126,12 +2909,63 @@ Queries contacts based on the specified email address. This API uses an asynchro
   });
   ```
 
+## contact.queryContactsByEmail<sup>10+</sup>
 
-## contact.queryContactsByEmail
+queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| email    | string                                                | Yes  | Email address of the contact.                                          |
+| attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                        |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByEmail](#contactquerycontactsbyemail10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1148,6 +2982,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContactsByEmail('xxx@email.com', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -1159,12 +2994,68 @@ Queries contacts based on the specified email address. This API uses an asynchro
   });
   ```
 
+## contact.queryContactsByEmail<sup>10+</sup>
 
-## contact.queryContactsByEmail
+queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| email    | string                                                | Yes  | Email address of the contact.                                          |
+| holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
+| attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                        |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByEmail](#contactquerycontactsbyemail10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1182,6 +3073,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0,
       bundleName: "",
@@ -1197,12 +3089,72 @@ Queries contacts based on the specified email address. This API uses an asynchro
   });
   ```
 
+## contact.queryContactsByEmail<sup>10+</sup>
 
-## contact.queryContactsByEmail
+queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
+
+Queries contacts based on the specified email address, application, and attributes. This API uses a promise to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name | Type                                   | Mandatory| Description                                                        |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| email   | string                                  | Yes  | Email address of the contact.                                          |
+| holder  | [Holder](#holder)                       | No  | Application that creates the contacts.                                      |
+| attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                                          |
+
+**Return Value**
+
+| Type                                           | Description                                               |
+| ----------------------------------------------- | --------------------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryContactsByEmail fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 Queries contacts based on the specified email address, application, and attributes. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByEmail](#contactquerycontactsbyemail10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1225,6 +3177,7 @@ Queries contacts based on the specified email address, application, and attribut
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   let promise = contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0,
       bundleName: "",
@@ -1239,12 +3192,59 @@ Queries contacts based on the specified email address, application, and attribut
   });
   ```
 
+## contact.queryGroups<sup>10+</sup>
 
-## contact.queryGroups
+queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
+
+Queries all groups of this contact. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                           | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result.                        |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryGroups(globalThis.context as Context, (err, data) => {
+      if (err) {
+          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryGroups(deprecated)<sup>7+</sup>
 
 queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 Queries all groups of this contact. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryGroups](#contactquerygroups10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1259,6 +3259,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryGroups((err, data) => {
       if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
@@ -1268,12 +3269,64 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
   });
   ```
 
+## contact.queryGroups<sup>10+</sup>
 
-## contact.queryGroups
+queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
+
+Queries all groups of this contact. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                           | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| holder   | Holder                                            | Yes  | Application that creates the contacts.                                      |
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result.                        |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryGroups(globalThis.context as Context, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryGroups(deprecated)<sup>7+</sup>
 
 queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 Queries all groups of this contact. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryGroups](#contactquerygroups10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1289,6 +3342,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryGroups({
       holderId: 0,
       bundleName: "",
@@ -1302,12 +3356,68 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
   });
   ```
 
+## contact.queryGroups<sup>10+</sup>
 
-## contact.queryGroups
+queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
+
+Queries all groups of this contact based on the specified application. This API uses a promise to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name | Type             | Mandatory| Description                                                        |
+| ------- | ----------------- | ---- | ------------------------------------------------------------ |
+| context | Context           | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| holder  | [Holder](#holder) | No  | Application that creates the contacts.                                      |
+
+**Return Value**
+
+| Type                                       | Description                                             |
+| ------------------------------------------- | ------------------------------------------------- |
+| Promise&lt;Array&lt;[Group](#group)&gt;&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryGroups(globalThis.context as Context, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  });
+  promise.then((data) => {
+      console.log(`queryGroups success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryGroups fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryGroups(deprecated)<sup>7+</sup>
 
 queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 Queries all groups of this contact based on the specified application. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryGroups](#contactquerygroups10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1328,6 +3438,7 @@ Queries all groups of this contact based on the specified application. This API 
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   let promise = contact.queryGroups({
       holderId: 0,
       bundleName: "",
@@ -1340,12 +3451,59 @@ Queries all groups of this contact based on the specified application. This API 
   });
   ```
 
+## contact.queryHolders<sup>10+</sup>
 
-## contact.queryHolders
+queryHolders(context: Context,  callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
+
+Queries all applications that have created contacts. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                                               | Mandatory| Description                                                        |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                             | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | Yes  | Callback used to return the result.        |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryHolders(globalThis.context as Context, (err, data) => {
+      if (err) {
+          console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryHolders callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryHolders(deprecated)<sup>7+</sup>
 
 queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 Queries all applications that have created contacts. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryHolders](#contactqueryholders10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1360,6 +3518,7 @@ Queries all applications that have created contacts. This API uses an asynchrono
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryHolders((err, data) => {
       if (err) {
           console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
@@ -1369,12 +3528,63 @@ Queries all applications that have created contacts. This API uses an asynchrono
   });
   ```
 
+## contact.queryHolders<sup>10+</sup>
 
-## contact.queryHolders
+queryHolders(context: Context ): Promise&lt;Array&lt;Holder&gt;&gt;
+
+Queries all applications that have created contacts. This API uses a promise to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                                                        |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+
+**Return Value**
+
+| Type                                         | Description                                                        |
+| --------------------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;Array&lt;[Holder](#holder)&gt;&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryHolders(globalThis.context as Context);
+  promise.then((data) => {
+      console.log(`queryHolders success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryHolders fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryHolders(deprecated)<sup>7+</sup>
 
 queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
 Queries all applications that have created contacts. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryHolders](#contactqueryholders10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1389,6 +3599,7 @@ Queries all applications that have created contacts. This API uses a promise to 
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   let promise = contact.queryHolders();
   promise.then((data) => {
       console.log(`queryHolders success: data->${JSON.stringify(data)}`);
@@ -1397,12 +3608,60 @@ Queries all applications that have created contacts. This API uses a promise to 
   });
   ```
 
+## contact.queryKey<sup>10+</sup>
 
-## contact.queryKey
+queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): void
+
+Queries the key of a contact based on the specified contact ID. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                     | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| id       | number                      | Yes  | Contact ID.                                        |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                     |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryKey(globalThis.context as Context, /*id*/1, (err, data) => {
+      if (err) {
+          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryKey(deprecated)<sup>7+</sup>
 
 queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
 Queries the key of a contact based on the specified contact ID. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryKey](#contactquerykey10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1418,6 +3677,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryKey(/*id*/1, (err, data) => {
       if (err) {
           console.log(`queryKey callback: err->${JSON.stringify(err)}`);
@@ -1427,12 +3687,65 @@ Queries the key of a contact based on the specified contact ID. This API uses an
   });
   ```
 
+## contact.queryKey<sup>10+</sup>
 
-## contact.queryKey
+queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
+
+Queries the key of a contact based on the specified contact ID. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                     | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| id       | number                      | Yes  | Contact ID.                                        |
+| holder   | [Holder](#holder)           | Yes  | Application that creates the contacts.                                      |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                     |
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryKey(globalThis.context as Context, /*id*/1, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryKey(deprecated)<sup>7+</sup>
 
 queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
 Queries the key of a contact based on the specified contact ID. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryKey](#contactquerykey10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1449,6 +3762,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
@@ -1462,12 +3776,69 @@ Queries the key of a contact based on the specified contact ID. This API uses an
   });
   ```
 
+## contact.queryKey<sup>10+</sup>
 
-## contact.queryKey
+queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
+
+Queries the key of a contact based on the specified contact ID and application. This API uses a promise to return the result.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+**Parameters**
+
+| Name | Type             | Mandatory| Description                                                        |
+| ------- | ----------------- | ---- | ------------------------------------------------------------ |
+| context | Context           | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| id      | number            | Yes  | Contact ID.                                        |
+| holder  | [Holder](#holder) | No  | Application that creates the contacts.                                      |
+
+**Return Value**
+
+| Type                 | Description                                                |
+| --------------------- | ---------------------------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**Example**
+
+  ```js
+// The sample code applies only to JS source files.
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryKey(globalThis.context as Context, /*id*/1, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  });
+  promise.then((data) => {
+      console.log(`queryKey success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryKey fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryKey(deprecated)<sup>7+</sup>
 
 queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 Queries the key of a contact based on the specified contact ID and application. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryKey](#contactquerykey10).
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1489,6 +3860,7 @@ Queries the key of a contact based on the specified contact ID and application. 
 **Example**
 
   ```js
+// The sample code applies only to JS source files.
   let promise = contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
@@ -1500,6 +3872,17 @@ Queries the key of a contact based on the specified contact ID and application. 
       console.error(`queryKey fail: err->${JSON.stringify(err)}`);
   });
   ```
+
+## ContactSelectionOptions<sup>10+</sup>
+
+Defines the contact selection options.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+|                Name              |                  Type                | Mandatory |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| isMultiSelect <sup>10+</sup>         | boolean | No  | Whether multiple contacts can be selected.    |
+
 
 
 ## Contact
@@ -1544,6 +3927,7 @@ Create contact data in JSON format:
 
 
 ```js
+// The sample code applies only to JS source files.
 let myContact = {
     phoneNumbers: [{
         phoneNumber: "138xxxxxxxx"
@@ -1562,6 +3946,7 @@ let myContact = {
   Or, create data by configuring a new Contact object.
 
 ```js
+// The sample code applies only to JS source files.
 let myContact = new contact.Contact();
 let name = new contact.Name();
 name.fullName = "fullName";
@@ -1590,6 +3975,7 @@ Create contact data in JSON format:
 
 
 ```js
+// The sample code applies only to JS source files.
 let contactAttributes = {
     attributes: [
         contact.Attribute.ATTR_EMAIL,
@@ -1603,6 +3989,7 @@ Or, create data by configuring a **ContactAttributes** object.
 
 
 ```js
+// The sample code applies only to JS source files.
 let contactAttributes = new contact.ContactAttributes();
 contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 ```
@@ -1637,6 +4024,7 @@ Enumerates contact attributes.
 Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE];
 ```
 
@@ -1673,6 +4061,7 @@ Defines a contact's email.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let email = {
     email: "xxx@email.com",
     displayName: "displayName"
@@ -1683,6 +4072,7 @@ let email = {
   Or, create data by configuring an **Email** object.
 
 ```js
+// The sample code applies only to JS source files.
 let email = new contact.Email();
 email.email = "xxx@email.com";
 ```
@@ -1706,6 +4096,7 @@ Defines an application that creates the contact.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let holder = {
   holderId: 0
 };
@@ -1714,6 +4105,7 @@ let holder = {
   Or, create data by configuring a **Holder** object.
 
 ```js
+// The sample code applies only to JS source files.
 let holder = new contact.Holder();
 holder.holderId = 0;
 ```
@@ -1750,6 +4142,7 @@ Defines a contact's event.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let event = {
     eventDate: "xxxxxx"
 };
@@ -1758,6 +4151,7 @@ let event = {
   Or, create data by configuring an **Event** object.
 
 ```js
+// The sample code applies only to JS source files.
 let event = new contact.Event();
 event.eventDate = "xxxxxx";
 ```
@@ -1780,6 +4174,7 @@ Defines a contact group.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let group = {
     groupId: 1,
     title: "title"
@@ -1789,6 +4184,7 @@ let group = {
   Or, create data by configuring a **Group** object.
 
 ```js
+// The sample code applies only to JS source files.
 let group = new contact.Group();
 group.title = "title";
 ```
@@ -1829,6 +4225,7 @@ Enumerates IM addresses.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let imAddress = {
     imAddress: "imAddress",
     labelName: "labelName"
@@ -1839,6 +4236,7 @@ let imAddress = {
   Or, create data by configuring an **ImAddress** object.
 
 ```js
+// The sample code applies only to JS source files.
 let imAddress = new contact.ImAddress();
 imAddress.imAddress = "imAddress";
 ```
@@ -1868,6 +4266,7 @@ Defines a contact's name.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let name = {
     familyName: "familyName",
     fullName: "fullName"
@@ -1877,6 +4276,7 @@ let name = {
   Or, create data by configuring a **Name** object.
 
 ```js
+// The sample code applies only to JS source files.
 let name = new contact.Name();
 name.familyName = "familyName";
 name.fullName = "fullName";
@@ -1899,6 +4299,7 @@ Defines a contact's nickname.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let nickName = {
     nickName: "nickName"
 };
@@ -1907,6 +4308,7 @@ let nickName = {
   Or, create data by configuring a **NickName** object.
 
 ```js
+// The sample code applies only to JS source files.
 let nickName = new contact.NickName();
 nickName.nickName = "nickName";
 ```
@@ -1928,6 +4330,7 @@ Defines a contact's note.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let note = {
     noteContent: "noteContent"
 };
@@ -1936,6 +4339,7 @@ let note = {
   Or, create data by configuring a **Note** object.
 
 ```js
+// The sample code applies only to JS source files.
 let note = new contact.Note();
 note.noteContent = "noteContent";
 ```
@@ -1958,6 +4362,7 @@ Defines a contact's organization.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let organization = {
     name: "name",
     title: "title"
@@ -1967,6 +4372,7 @@ let organization = {
   Or, create data by configuring an **Organization** object.
 
 ```js
+// The sample code applies only to JS source files.
 let organization = new contact.Organization();
 organization.name = "name";
 organization.title = "title";
@@ -2021,6 +4427,7 @@ Defines a contact's phone number.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let phoneNumber = {
     phoneNumber: "138xxxxxxxx",
     labelId: contact.PhoneNumber.NUM_HOME
@@ -2030,6 +4437,7 @@ let phoneNumber = {
   Or, create data by configuring a new **PhoneNumber** object.
 
 ```js
+// The sample code applies only to JS source files.
 let phoneNumber = new contact.PhoneNumber();
 phoneNumber.phoneNumber = "138xxxxxxxx";
 ```
@@ -2051,6 +4459,7 @@ Defines a contact's portrait.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let portrait = {
     uri: "uri"
 };
@@ -2059,6 +4468,7 @@ let portrait = {
   Or, create data by configuring a new **Portrait** object.
 
 ```js
+// The sample code applies only to JS source files.
 let portrait = new contact.Portrait();
 portrait.uri = "uri";
 ```
@@ -2102,6 +4512,7 @@ Defines a contact's postal address.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let postalAddress = {
     city: "city"
 };
@@ -2110,6 +4521,7 @@ let postalAddress = {
   Or, create data by configuring a new **PostalAddress** object.
 
 ```js
+// The sample code applies only to JS source files.
 let postalAddress = new contact.PostalAddress();
 postalAddress.city = "city";
 ```
@@ -2157,6 +4569,7 @@ Defines a contact's relationship.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let relation = {
     relationName: "relationName",
     labelId: contact.Relation.RELATION_ASSISTANT
@@ -2166,6 +4579,7 @@ let relation = {
   Or, create data by configuring a new **Relation** object.
 
 ```js
+// The sample code applies only to JS source files.
 let relation = new contact.Relation();
 relation.relationName = "relationName";
 relation.labelId = contact.Relation.RELATION_ASSISTANT;
@@ -2202,6 +4616,7 @@ Defines a contact's SIP address.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 var sipAddress = {
     sipAddress: "sipAddress"
 };
@@ -2210,6 +4625,7 @@ var sipAddress = {
   Or, create data by configuring a new **SipAddress** object.
 
 ```js
+// The sample code applies only to JS source files.
 let sipAddress = new contact.SipAddress();
 sipAddress.sipAddress = "sipAddress";
 ```
@@ -2231,6 +4647,7 @@ Defines a contact's website.
   Create contact data in JSON format:
 
 ```js
+// The sample code applies only to JS source files.
 let website = {
     website: "website"
 };
@@ -2239,6 +4656,7 @@ let website = {
   Or, create data by configuring a new **Website** object.
 
 ```js
+// The sample code applies only to JS source files.
 let website = new contact.Website();
 website.website = "website";
 ```

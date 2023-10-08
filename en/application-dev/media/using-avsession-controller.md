@@ -191,13 +191,11 @@ To enable a system application to access the AVSession service as a controller, 
    });
 
    // Subscribe to metadata changes.
-   let metaFilter = ['assetId', 'title', 'description'];
-   controller.on('metadataChange', metaFilter, (metadata: AVSessionManager.AVMetadata) => {
+   controller.on('metadataChange', ['assetId', 'title', 'description'], (metadata: AVSessionManager.AVMetadata) => {
      console.info(`on metadataChange assetId : ${metadata.assetId}`);
    });
    // Subscribe to playback state changes.
-   let playbackFilter = ['state', 'speed', 'loopMode'];
-   controller.on('playbackStateChange', playbackFilter, (playbackState: AVSessionManager.AVPlaybackState) => {
+   controller.on('playbackStateChange', ['state', 'speed', 'loopMode'], (playbackState: AVSessionManager.AVPlaybackState) => {
      console.info(`on playbackStateChange state : ${playbackState.state}`);
    });
    // Subscribe to supported command changes.

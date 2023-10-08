@@ -2711,8 +2711,6 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
 Creates a **Watcher** object to observe file or directory changes.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -2757,8 +2755,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 Called when an observed event occurs.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -2770,8 +2766,6 @@ Called when an observed event occurs.
 ## WatchEvent<sup>10+</sup>
 
 Defines the event to observe.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3890,8 +3884,6 @@ start(): void
 
 Starts listening.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Error codes**
@@ -3912,8 +3904,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 stop(): void
 
 Stops listening.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 

@@ -681,6 +681,8 @@
     - [国际化开发概述](internationalization/international-overview.md)
     - [Intl开发指导](internationalization/intl-guidelines.md)
     - [I18n开发指导](internationalization/i18n-guidelines.md)
+  - 增值服务
+    - [广告标识服务](ads-service/oaid/oaid-service.md)
   - 应用测试
     - [自动化测试框架使用指导](application-test/arkxtest-guidelines.md)
     - [SmartPerf性能工具使用指导](application-test/smartperf-guidelines.md)
@@ -737,14 +739,24 @@
     - ArkTS高性能编程
       - [高性能编程规范](performance/high-performance-programming.md)
       - [高效并发编程](performance/efficient-concurrent-programming.md)
+      - [N-API高效开发指导](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
+      - [多线程能力场景化](performance/multi_thread_capability.md)
     - 减少卡顿丢帧
       - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
+      - [组件复用使用指导](performance/component-recycle.md)
+      - [WaterFlow高性能开发指导](performance/waterflow_optimization.md)
+      - [Swiper高性能开发指导](performance/swiper_optimization.md)
       - [合理进行状态管理](performance/proper_state_management.md)
+      - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
       - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
       - [提升应用响应速度](performance/improve-application-response.md)
-      - [减少视图嵌套层次](performance/reduce-view-nesting-levels.md)
+      - [优化布局性能](performance/reduce-view-nesting-levels.md)
+      - [合理使用IPC通信](performance/reasonable-using-ipc.md)
+      - [减少首帧绘制时的冗余操作](performance/reduce-redundant-operations-when-render-first-frame.md)
+      - [列表场景性能提升实践](performance/list-perf-improvment.md)
+      - [动效能力实践](performance/animation_practice.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
 - 工具
@@ -781,6 +793,7 @@
         - [@ohos.app.ability.contextConstant (ContextConstant)](reference/apis/js-apis-app-ability-contextConstant.md)
         - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](reference/apis/js-apis-app-ability-environmentCallback.md)
         - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](reference/apis/js-apis-app-ability-extensionAbility.md)
+        - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](reference/apis/js-apis-app-ability-printExtensionAbility.md)
         - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](reference/apis/js-apis-app-ability-serviceExtensionAbility.md)
         - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](reference/apis/js-apis-app-ability-shareExtensionAbility.md)
         - [@ohos.app.ability.StartOptions (StartOptions)](reference/apis/js-apis-app-ability-startOptions.md)
@@ -1232,6 +1245,8 @@
       - [@ohos.util.Vector (线性容器Vector)](reference/apis/js-apis-vector.md)
       - [@ohos.worker (启动一个Worker)](reference/apis/js-apis-worker.md)
       - [@ohos.xml (xml解析与生成)](reference/apis/js-apis-xml.md)
+    - 广告
+      - [@ohos.identifier.oaid (广告标识服务)](reference/apis/js-apis-oaid.md)
     - 测试
       - [@ohos.application.testRunner (TestRunner)](reference/apis/js-apis-application-testRunner.md)
       - [@ohos.uitest (UiTest)](reference/apis/js-apis-uitest.md)
@@ -1779,6 +1794,8 @@
       - [企业设备管理错误码](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - 语言基础类库
       - [语言基础类库错误码](reference/errorcodes/errorcode-utils.md)
+    - 广告
+      - [广告标识服务错误码](reference/errorcodes/errorcode-oaid.md)
     - 测试
       - [uitest错误码](reference/errorcodes/errorcode-uitest.md)
   - Native接口参考

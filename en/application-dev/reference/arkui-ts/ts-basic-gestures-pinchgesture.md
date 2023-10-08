@@ -56,13 +56,15 @@ struct PinchGestureExample {
       // The gesture event is triggered by pinching three fingers together.
       .gesture(
       PinchGesture({ fingers: 3 })
-        .onActionStart((event: GestureEvent) => {
+        .onActionStart((event?: GestureEvent) => {
           console.info('Pinch start')
         })
-        .onActionUpdate((event: GestureEvent) => {
-          this.scaleValue = this.pinchValue * event.scale
-          this.pinchX = event.pinchCenterX
-          this.pinchY = event.pinchCenterY
+        .onActionUpdate((event?: GestureEvent) => {
+          if (event) {
+            this.scaleValue = this.pinchValue * event.scale
+            this.pinchX = event.pinchCenterX
+            this.pinchY = event.pinchCenterY
+          }
         })
         .onActionEnd(() => {
           this.pinchValue = this.scaleValue

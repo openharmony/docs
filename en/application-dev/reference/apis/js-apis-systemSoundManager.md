@@ -10,7 +10,7 @@ The **systemSoundManager** module provides basic capabilities for managing syste
 
 ## Modules to Import
 
-```js
+```ts
 import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 ```
 
@@ -44,8 +44,8 @@ Obtains a system sound manager.
 | [SystemSoundManager](#systemsoundmanager) | System sound manager obtained.|
 
 **Example**
-```js
-let systemSoundManagerInstance = systemSoundManager.getSystemSoundManager();
+```ts
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 ```
 
 ## SystemSoundManager
@@ -73,12 +73,14 @@ Sets a URI for the system ringtone. This API uses an asynchronous callback to re
 
 **Example**
 
-```js
-let context = this.context;
-let uri = 'file://data/test.wav'; // Set the URI of the target ringtone file.
-let type = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
+```ts
+import { BusinessError } from '@ohos.base';
 
-systemSoundManagerInstance.setSystemRingtoneUri(context, uri, type, (err) => {
+let context: Context = this.context;
+let uri = 'file://data/test.wav'; // Set the URI of the target ringtone file.
+let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
+
+systemSoundManagerInstance.setSystemRingtoneUri(context, uri, type, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set system ringtone uri. ${err}`);
     return;
@@ -113,14 +115,16 @@ Sets a URI for the system ringtone. This API uses a promise to return the result
 
 **Example**
 
-```js
-let context = this.context;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let context: Context = this.context;
 let uri = 'file://data/test.wav'; // Set the URI of the target ringtone file.
-let type = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
+let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
 systemSoundManagerInstance.setSystemRingtoneUri(context, uri, type).then(() => {
   console.info(`Promise returned to indicate a successful setting of the system ringtone uri.`);
-}).catch ((err) => {
+}).catch ((err: BusinessError) => {
   console.error(`Failed to set the system ringtone uri ${err}`);
 });
 ```
@@ -145,11 +149,13 @@ Obtains the URI of a system ringtone. This API uses an asynchronous callback to 
 
 **Example**
 
-```js
-let context = this.context;
-let type = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
+```ts
+import { BusinessError } from '@ohos.base';
 
-systemSoundManagerInstance.getSystemRingtoneUri(context, type, (err, value) => {
+let context: Context = this.context;
+let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
+
+systemSoundManagerInstance.getSystemRingtoneUri(context, type, (err: BusinessError, value: string) => {
   if (err) {
     console.error(`Failed to get system ringtone uri. ${err}`);
     return;
@@ -183,13 +189,15 @@ Obtains the URI of a system ringtone. This API uses a promise to return the resu
 
 **Example**
 
-```js
-let context = this.context;
-let type = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
+```ts
+import { BusinessError } from '@ohos.base';
 
-systemSoundManagerInstance.getSystemRingtoneUri(context, type).then((value) => {
+let context: Context = this.context;
+let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
+
+systemSoundManagerInstance.getSystemRingtoneUri(context, type).then((value: string) => {
   console.info(`Promise returned to indicate that the value of the system ringtone uri is obtained ${value}.`);
-}).catch ((err) => {
+}).catch ((err: BusinessError) => {
   console.error(`Failed to get the system ringtone uri ${err}`);
 });
 ```
@@ -214,12 +222,14 @@ Obtains a player to play the system ringtone. This API uses an asynchronous call
 
 **Example**
 
-```js
-let context = this.context;
-let type = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
-let systemRingtonePlayer = null;
+```ts
+import { BusinessError } from '@ohos.base';
 
-systemSoundManagerInstance.getSystemRingtonePlayer(context, type, (err, value) => {
+let context: Context = this.context;
+let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
+let systemRingtonePlayer: systemSoundManager.RingtonePlayer = null;
+
+systemSoundManagerInstance.getSystemRingtonePlayer(context, type, (err: BusinessError, value: systemSoundManager.RingtonePlayer) => {
   if (err) {
     console.error(`Failed to get system ringtone player. ${err}`);
     return;
@@ -254,15 +264,17 @@ Obtains a player to play the system ringtone. This API uses a promise to return 
 
 **Example**
 
-```js
-let context = this.context;
-let type = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
-let systemRingtonePlayer = null;
+```ts
+import { BusinessError } from '@ohos.base';
 
-systemSoundManagerInstance.getSystemRingtonePlayer(context, type).then((value) => {
+let context: Context = this.context;
+let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
+let systemRingtonePlayer: systemSoundManager.RingtonePlayer = null;
+
+systemSoundManagerInstance.getSystemRingtonePlayer(context, type).then((value: systemSoundManager.RingtonePlayer) => {
   console.info(`Promise returned to indicate that the value of the system ringtone player is obtained.`);
   systemRingtonePlayer = value;
-}).catch ((err) => {
+}).catch ((err: BusinessError) => {
   console.error(`Failed to get the system ringtone player ${err}`);
 });
 ```

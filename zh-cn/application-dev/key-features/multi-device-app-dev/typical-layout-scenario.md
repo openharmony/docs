@@ -45,7 +45,7 @@
 **参考代码**
 
 
-```
+```ts
 import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
 interface TabBar {
@@ -151,7 +151,7 @@ struct Home {
 **参考代码**
 
 
-```
+```ts
 import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
 @Entry
@@ -214,7 +214,7 @@ export default struct Banner {
 通过Grid组件实现
 
 
-```
+```ts
 import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
 interface GridItemInfo  {
@@ -276,7 +276,7 @@ struct MultiLaneList {
 通过List组件实现
 
 
-```
+```ts
 import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
 interface ListItemInfo  {
@@ -348,7 +348,7 @@ struct MultiLaneList {
 **参考代码**
 
 
-```
+```ts
 @Entry
 @Component
 struct SideBarSample {
@@ -432,7 +432,7 @@ struct SideBarSample {
 
 **参考代码**
 
-```
+```ts
 @Component
 struct Details {
   private imageSrc: Resource=$r('app.media.my_image_moon')
@@ -518,7 +518,7 @@ struct NavigationSample {
 
 **参考代码**
 
-```
+```ts
 // TripleColumn.ets
 import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
@@ -658,7 +658,7 @@ struct TripleColumnSample {
 
 **参考代码**
 
-```
+```ts
 @Entry
 @Component
 struct CustomDialogSample {
@@ -815,7 +815,7 @@ struct CustomDialogB {
 **参考代码**
 
 
-```
+```ts
 @Entry
 @Component
 struct BigImage {
@@ -847,7 +847,7 @@ Scroll（内容超出宽度时可滚动） + Row（横向均分：justifyContent
 **参考代码**
 
 
-```
+```ts
 interface OperationItem {
   name: string
   icon: Resource
@@ -915,7 +915,7 @@ export default struct OperationEntries {
 **参考代码**
 
 
-```
+```ts
 @Entry
 @Component
 export default struct Header {
@@ -990,7 +990,7 @@ export default struct Header {
 **参考代码**
 
 
-```
+```ts
 @Entry
 @Component
 struct IndentationSample {
@@ -1080,7 +1080,7 @@ struct ItemContent {
 **参考代码**
 
 
-```
+```ts
 @Entry
 @Component
 struct DiversionSample {
@@ -1143,7 +1143,7 @@ struct DiversionSample {
 **参考代码**
 
 
-```
+```ts
 @Entry
 @Component
 struct RepeatSample {

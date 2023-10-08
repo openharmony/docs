@@ -1,4 +1,4 @@
-# OHOS::Media::OhosImageRect
+# OhosImageRect
 
 
 ## Overview
@@ -33,7 +33,7 @@ The **OHOS::Media::OhosImageRect** struct defines the information about an image
 ### height
 
 ```
-int32_t OHOS::Media::OhosImageRect::height
+int32_t OhosImageRect::height
 ```
 
 **Description**
@@ -44,7 +44,7 @@ Height of the rectangle, in pixels.
 ### width
 
 ```
-int32_t OHOS::Media::OhosImageRect::width
+int32_t OhosImageRect::width
 ```
 
 **Description**
@@ -55,7 +55,7 @@ Width of the rectangle, in pixels.
 ### x
 
 ```
-int32_t OHOS::Media::OhosImageRect::x
+int32_t OhosImageRect::x
 ```
 
 **Description**
@@ -66,7 +66,7 @@ X coordinate of the rectangle.
 ### y
 
 ```
-int32_t OHOS::Media::OhosImageRect::y
+int32_t OhosImageRect::y
 ```
 
 **Description**

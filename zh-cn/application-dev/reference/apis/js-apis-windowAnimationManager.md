@@ -137,7 +137,7 @@ let controller: windowAnimationManager.WindowAnimationController = {
 
 windowAnimationManager.setController(controller);
 
-let finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback = null;
+let finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback;
 windowAnimationManager.minimizeWindowWithAnimation(target, (err: BusinessError, data: windowAnimationManager.WindowAnimationFinishedCallback) => {
     if (err) {
         console.error('Failed to minimize the window target. Cause: ' + JSON.stringify(err));
@@ -215,7 +215,7 @@ let controller: windowAnimationManager.WindowAnimationController = {
 
 windowAnimationManager.setController(controller);
 
-let promise: Promise<WindowAnimationFinishedCallback> = windowAnimationManager.minimizeWindowWithAnimation(target);
+let promise: Promise<windowAnimationManager.WindowAnimationFinishedCallback> = windowAnimationManager.minimizeWindowWithAnimation(target);
 promise.then((data: windowAnimationManager.WindowAnimationFinishedCallback) => {
     data.onAnimationFinish();
 }).catch((err: BusinessError)=>{

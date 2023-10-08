@@ -309,7 +309,7 @@ Typical key generation operations involve the following:
 
 > **NOTE**
 >
-> - Key parameters can be used to generate asymmetric keys from API version 10. 
+> - Key parameters can be used to generate asymmetric keys from API version 10.
 > - Asymmetric systems use a public key (**PubKey**) to encrypt data and a related private key (**PriKey**) to decrypt it. The public key and private key form a key pair (**KeyPair**). For details about asymmetric key parameters, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
 ### Available APIs
@@ -545,7 +545,7 @@ Important data needs to be encrypted in data storage or transmission for securit
 
 ### Available APIs
 
-The following table describes the APIs used in the typical encryption and decryption operations. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md). 
+The following table describes the APIs used in the typical encryption and decryption operations. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 > **NOTE**
 >
 > Due to complexity of cryptographic algorithms, the implementation varies depending on the key specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs to ensure correct use of these APIs.
@@ -894,6 +894,7 @@ function testAesMultiUpdate() {
           messageArr.push(plainText.charCodeAt(i));
         }
       }
+      globalCipherText = { data: tmpCipherText };
       return;
     })
     .then((): Promise<cryptoFramework.DataBlob> => {
@@ -969,14 +970,14 @@ function encryptMessagePromise() {
   let keyGenPromise = rsaGenerator.generateKeyPair();
   keyGenPromise.then((rsaKeyPair: cryptoFramework.KeyPair): Promise<void> => {
     let pubKey = rsaKeyPair.pubKey;
-    // Initialize the Cipher instance and use the public key to encrypt the message.
+    // Initialize the Cipher instance and use the public key to encrypt the data.
     return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null);
   }).then(() => {
     // doFinal
     let input: cryptoFramework.DataBlob = { data: stringToUint8Array(plan) };
     return cipher.doFinal(input);
   }).then(dataBlob => {
-    // Obtain the encrypted message.
+    // Obtain the encrypted data.
     console.info("EncryptOutPut is " + dataBlob.data);
   });
 }
@@ -990,7 +991,7 @@ function encryptMessageCallback() {
   // Generate an asymmetric key pair using the AsyKeyGenerator instance.
   rsaGenerator.generateKeyPair((err, keyPair) => {
     let pubKey = keyPair.pubKey;
-    // Initialize the Cipher instance and use the public key to encrypt the message.
+    // Initialize the Cipher instance and use the public key to encrypt the data.
     cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, (err, data) => {
       let input: cryptoFramework.DataBlob = { data: stringToUint8Array(plan) };
       // doFinal
@@ -1033,11 +1034,11 @@ function decryptMessagePromise() {
       return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
     })
     .then(() => {
-      // Call doFinal() to decrypt data.
+      // Call doFinal() to decrypt the data.
       return decoder.doFinal(cipherDataBlob);
     })
     .then(decodeData => {
-      // Check whether the decrypted message is consistent with the original message.
+      // Check whether the decrypted data is consistent with the original data.
       if (decodeData.data.toString() === input.data.toString()) {
         AlertDialog.show({ message: "decrypt success" });
         return;
@@ -1070,7 +1071,7 @@ function decryptMessageCallback() {
         decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null, (err, data) => {
           // Call doFinal() to decrypt the message.
           decoder.doFinal(cipherData, (err, data) => {
-            // Check whether the decrypted message is consistent with the original message.
+            // Check whether the decrypted data is consistent with the original data.
             if (input.data.toString() === data.data.toString()) {
               AlertDialog.show({ message: "decryption success" });
               return;
@@ -1196,7 +1197,7 @@ Use the PKCS1_OAEP padding mode in RSA encryption and decryption in promise mode
 
 1. Generate an RSA key pair based on the key parameters.<br>Call **createAsyKeyGeneratorBySpec()** to create an **AsyKeyGeneratorBySpec** object and generate an RSA asymmetric key pair. (You can also use **createAsyKeyGenerator()** to randomly generate or convert an RSA key object.)
 2. Create a **Cipher** instance.<br>Call **createCipher()** to create a cipher instance, initialize the cipher instance, set the key and encryption/decryption mode, use **setCipherSpec()** to set PKCS1_OAEP **pSource**, and use **update()** to pass in data.
-3. Encrypt and decrypt data.<br>Call the **doFinal()** provided by the **Cipher** class to perform encryption or decryption. The **pSource** of the **Cipher** instance to be encrypted must be the same as that decrypted.
+3. Encrypt and decrypt data.<br>Call the **doFinal()** API provided by the **Cipher** class to perform encryption or decryption. The **pSource** of the **Cipher** instance to be encrypted must be the same as that decrypted.
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -1382,7 +1383,7 @@ function encryptMessageCallback() {
   })
 }
 
-// Encrypt and decrypt the message in promise mode.
+// Encrypt and decrypt data in promise mode.
 function decryptMessagePromise() {
   // Create an AsyKeyGenerator instance.
   let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
@@ -1397,11 +1398,11 @@ function decryptMessagePromise() {
   let input: cryptoFramework.DataBlob = { data: stringToUint8Array(plan) };
   keyGenPromise.then((rsaKeyPair: cryptoFramework.KeyPair): Promise<void> => {
     keyPair = rsaKeyPair;
-    // Initialize the Cipher instance and use the public key to encrypt the message.
+    // Initialize the Cipher instance and use the public key to encrypt the data.
     return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
   })
     .then(() => {
-      // Call doFinal() to encrypt the message.
+      // Call doFinal() to encrypt data.
       return cipher.doFinal(input);
     })
     .then((dataBlob: cryptoFramework.DataBlob): Promise<void> => {
@@ -1413,11 +1414,11 @@ function decryptMessagePromise() {
       return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
     })
     .then(() => {
-      // Call doFinal() to decrypt the message.
+      // Call doFinal() to decrypt data.
       return decoder.doFinal(cipherDataBlob);
     })
     .then(decodeData => {
-      // Check whether the decrypted message is consistent with the original message.
+      // Check whether the decrypted data is consistent with the original data.
       if (decodeData.data.toString() === input.data.toString()) {
         AlertDialog.show({ message: "decrypt success" });
         return;
@@ -1426,7 +1427,7 @@ function decryptMessagePromise() {
     });
 }
 
-// Encrypt and decrypt the message in callback mode.
+// Encrypt and decrypt data in callback mode.
 function decryptMessageCallback() {
   // Create an AsyKeyGenerator instance.
   let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
@@ -1441,18 +1442,18 @@ function decryptMessageCallback() {
   // Generate an asymmetric key pair using the AsyKeyGenerator instance.
   sm2Generator.generateKeyPair((err, newKeyPair) => {
     keyPair = newKeyPair;
-    // Initialize the Cipher instance and use the public key to encrypt the message.
+    // Initialize the Cipher instance and use the public key to encrypt the data.
     cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null, (err, data) => {
       // Call doFinal() to encrypt data.
       cipher.doFinal(input, (err, data) => {
         // Obtain the encrypted information and use it as the input parameter for decryption.
         AlertDialog.show({ message: "EncryptOutPut is " + data.data });
         cipherData = data;
-        // Initialize the Cipher instance and use the private key to decrypt the message.
+        // Initialize the Cipher instance and use the private key to decrypt the data.
         decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null, (err, data) => {
           // Call doFinal() to decrypt data.
           decoder.doFinal(cipherData, (err, data) => {
-            // Check whether the decrypted message is consistent with the original message.
+            // Check whether the decrypted data is consistent with the original data.
             if (input.data.toString() === data.data.toString()) {
               AlertDialog.show({ message: "decrypt success" });
               return;
@@ -1608,7 +1609,7 @@ function stringToUint8Array(str: string) {
 }
 
 let globalKeyPair: cryptoFramework.KeyPair;
-let SignMessageBlob: cryptoFramework.DataBlob;
+let signMessageBlob: cryptoFramework.DataBlob;
 let plan1 = "This is Sign test plan1";
 let plan2 = "This is Sign test plan1";
 let input1: cryptoFramework.DataBlob = { data: stringToUint8Array(plan1) };
@@ -1699,7 +1700,7 @@ function stringToUint8Array(str: string) {
 }
 
 let globalKeyPair: cryptoFramework.KeyPair;
-let SignMessageBlob: cryptoFramework.DataBlob;
+let signMessageBlob: cryptoFramework.DataBlob;
 let plan1 = "This is Sign test plan1";
 let plan2 = "This is Sign test plan1";
 let input1: cryptoFramework.DataBlob = { data: stringToUint8Array(plan1) };
@@ -2094,7 +2095,7 @@ A message digest (MD) is a fixed size numeric representation of the content of a
 Typical MD operations involve the following:
 
 1. Create an **Md** instance with the specified digest algorithm (such as SHA-256).
-2. Pass in one or more messages for generating a digest, and generate a digest. 
+2. Pass in one or more messages for generating a digest, and generate a digest.
 3. Obtain the digest algorithm and digest length (in bytes).
 
 ### Available APIs
@@ -2244,7 +2245,7 @@ async function doLoopMdPromise() {
 
 ### When to Use
 
-A hash-based message authentication code (HMAC) can be used to verify both the integrity and authenticity of a message using a shared secret. 
+A hash-based message authentication code (HMAC) can be used to verify both the integrity and authenticity of a message using a shared secret.
 
 Typical MAC operations involve the following:
 

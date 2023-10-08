@@ -42,7 +42,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 2. 指定[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，调用[getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9)接口查询当前的设备是否支持相应的认证能力。
 
-    ```js
+    ```ts
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
     // 查询认证能力是否支持
@@ -66,7 +66,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 4. 调用[start](../reference/apis/js-apis-useriam-userauth.md#start10)接口发起认证，通过[callback](../reference/apis/js-apis-useriam-userauth.md#callback10)回调返回认证结果。
 
-    ```js
+    ```ts
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
     const authParam : userIAM_userAuth.AuthParam = {
@@ -97,7 +97,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 5. 如果业务需要取消订阅认证结果，可以使用已经成功订阅事件的[UserAuthInstance](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md#userauthinstance10)对象调用[off](../reference/apis/js-apis-useriam-userauth.md#off10)接口进行取消订阅。
 
-   ```js
+   ```ts
    import userIAM_userAuth from '@ohos.userIAM.userAuth';
    
    const authParam : userIAM_userAuth.AuthParam = {
@@ -136,7 +136,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 4. 通过使用已经成功发起认证的调用[UserAuthInstance](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md#userauthinstance10)对象调用[cancel](../reference/apis/js-apis-useriam-userauth.md#cancel10)接口取消本次认证。
 
-    ```js
+    ```ts
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
     const authParam : userIAM_userAuth.AuthParam = {

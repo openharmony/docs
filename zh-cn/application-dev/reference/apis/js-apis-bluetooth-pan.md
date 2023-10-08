@@ -12,6 +12,7 @@ pan模块提供了访问蓝牙个人区域网相关功能的方法。
 
 ```js
 import pan from '@ohos.bluetooth.pan';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -151,7 +152,7 @@ isTetheringOn(): boolean
 ```js
 try {
     let panProfile: pan.PanProfile = pan.createPanProfile();
-    let ret = panProfile.isTetheringOn();
+    panProfile.isTetheringOn();
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }

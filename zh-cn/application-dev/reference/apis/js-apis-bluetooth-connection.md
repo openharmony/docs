@@ -12,6 +12,7 @@ connection模块提供了对蓝牙操作和管理的方法。
 
 ```js
 import connection from '@ohos.bluetooth.connection';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -529,7 +530,7 @@ try {
 
 getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 
-依据ProfileId获取指定profile的连接状态。
+获取蓝牙Profile的连接状态，其中ProfileId为可选参数。如果携带ProfileId，则返回的是当前Profile的连接状态。如果未携带ProfileId，任一Profile已连接则返回[STATE_CONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate)，否则返回[STATE_DISCONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -646,8 +647,8 @@ setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void
 ```js
 //callback
 try {
-    connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError, data: string) => {
-        console.info('setDevicePinCode,device name err:' + JSON.stringify(err) + ',device name:' + JSON.stringify(data));
+    connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError) => {
+        console.info('setDevicePinCode,device name err:' + JSON.stringify(err));
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);

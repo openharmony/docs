@@ -118,7 +118,7 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 try {
-  pointer.isPointerVisible((error, visible) => {
+  pointer.isPointerVisible((error: Error, visible: Boolean) => {
     if (error) {
       console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -148,7 +148,7 @@ isPointerVisible(): Promise&lt;boolean&gt;
 
 ```js
 try {
-  pointer.isPointerVisible().then((visible: boolean) => {
+  pointer.isPointerVisible().then((visible: Boolean) => {
     console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
   });
 } catch (error) {
@@ -202,7 +202,7 @@ setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-  pointer.setPointerSpeed(5, (error) => {
+  pointer.setPointerSpeed(5, (error: Error) => {
     if (error) {
       console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -295,7 +295,7 @@ getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 try {
-  pointer.getPointerSpeed((error, speed) => {
+  pointer.getPointerSpeed((error: Error, speed: Number) => {
     if (error) {
       console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -449,7 +449,7 @@ getHoverScrollState(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 try {
-  pointer.getHoverScrollState((error, state) => {
+  pointer.getHoverScrollState((error: Error, state: Boolean) => {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -477,7 +477,7 @@ getHoverScrollState(): Promise&lt;boolean&gt;
 
 ```js
 try {
-  pointer.getHoverScrollState().then((state) => {
+  pointer.getHoverScrollState().then((state: Boolean) => {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -572,7 +572,7 @@ getMousePrimaryButton(callback: AsyncCallback&lt;PrimaryButton&gt;): void
 
 ```js
 try {
-  pointer.getMousePrimaryButton((error, primary) => {
+  pointer.getMousePrimaryButton((error: Error, primary: pointer.PrimaryButton) => {
     console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
   });
 } catch (error) {
@@ -600,7 +600,7 @@ getMousePrimaryButton(): Promise&lt;PrimaryButton&gt;
 
 ```js
 try {
-  pointer.getMousePrimaryButton().then((primary) => {
+  pointer.getMousePrimaryButton().then((primary: pointer.PrimaryButton) => {
     console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
   });
 } catch (error) {
@@ -640,7 +640,7 @@ setMouseScrollRows(rows: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-  pointer.setMouseScrollRows(1, (error) => {
+  pointer.setMouseScrollRows(1, (error: Error) => {
     if (error) {
       console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -706,7 +706,7 @@ getMouseScrollRows(callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 try {
-  pointer.getMouseScrollRows((error, rows) => {
+  pointer.getMouseScrollRows((error: Error, rows: Number) => {
     console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
   });
 } catch (error) {
@@ -734,7 +734,7 @@ getMouseScrollRows(): Promise&lt;number&gt;
 
 ```js
 try {
-  pointer.getMouseScrollRows().then((rows) => {
+  pointer.getMouseScrollRows().then((rows: Number) => {
     console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
   });
 } catch (error) {
@@ -882,8 +882,9 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 
 ```js
 import window from '@ohos.window';
+import { BusinessError }  from '@ohos.base';
 
-window.getLastWindow(this.context, (error, win) => {
+window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -922,8 +923,9 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 
 ```js
 import window from '@ohos.window';
+import { BusinessError }  from '@ohos.base';
 
-window.getLastWindow(this.context, (error, win) => {
+window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -961,8 +963,9 @@ setPointerStyleSync(windowId: number, pointerStyle: PointerStyle): void
 **示例**：
 ```js
 import window from '@ohos.window';
+import { BusinessError }  from '@ohos.base';
 
-window.getLastWindow(getContext(), (error, win) => {
+window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -1121,7 +1124,7 @@ getTouchpadScrollSwitch(callback:  AsyncCallback\<boolean>): void
 
 ```js
 try {
-  pointer.getTouchpadScrollSwitch ((error: Error, state: Boolean) => {
+  pointer.getTouchpadScrollSwitch((error: Error, state: Boolean) => {
     console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1178,7 +1181,7 @@ setTouchpadScrollDirection(state: boolean, callback: AsyncCallback\<void>): void
 
 ```js
 try {
-  pointer.setTouchpadScrollDirection(true, (error) => {
+  pointer.setTouchpadScrollDirection(true, (error: Error) => {
     if (error) {
       console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -1244,7 +1247,7 @@ getTouchpadScrollDirection(callback:  AsyncCallback\<boolean>): void
 
 ```js
 try {
-  pointer.getTouchpadScrollDirection ((error: Error, state: boolean) => {
+  pointer.getTouchpadScrollDirection ((error: Error, state: Boolean) => {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1272,7 +1275,7 @@ getTouchpadScrollDirection(): Promise\<boolean>
 
 ```js
 try {
-  pointer.getTouchpadScrollDirection().then((state) => {
+  pointer.getTouchpadScrollDirection().then((state: Boolean) => {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1301,7 +1304,7 @@ setTouchpadTapSwitch(state: boolean, callback: AsyncCallback\<void>): void
 
 ```js
 try {
-  pointer.setTouchpadTapSwitch(true, (error) => {
+  pointer.setTouchpadTapSwitch(true, (error: Error) => {
     if (error) {
       console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -1367,7 +1370,7 @@ getTouchpadTapSwitch(callback:  AsyncCallback\<boolean>): void
 
 ```js
 try {
-  pointer.getTouchpadTapSwitch((error, state) => {
+  pointer.getTouchpadTapSwitch((error: Error, state: Boolean) => {
     console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1424,7 +1427,7 @@ setTouchpadPointerSpeed(speed: number, callback: AsyncCallback\<void>): void
 
 ```js
 try {
-  pointer.setTouchpadPointerSpeed(1, (error) => {
+  pointer.setTouchpadPointerSpeed(1, (error: Error) => {
     if (error) {
       console.log(`setTouchpadPointerSpeedfailed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -1490,7 +1493,7 @@ getTouchpadPointerSpeed(callback: AsyncCallback\<number>): void
 
 ```js
 try {
-  pointer.getTouchpadPointerSpeed((error: Error, speed: number) => {
+  pointer.getTouchpadPointerSpeed((error: Error, speed: Number) => {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
@@ -1518,7 +1521,7 @@ getTouchpadPointerSpeed(): Promise\<number>
 
 ```js
 try {
-  pointer.getTouchpadPointerSpeed().then((speed: number) => {
+  pointer.getTouchpadPointerSpeed().then((speed: Number) => {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
@@ -1613,7 +1616,7 @@ getTouchpadPinchSwitch(callback:  AsyncCallback\<boolean>): void
 
 ```js
 try {
-  pointer.getTouchpadPinchSwitch((error, state) => {
+  pointer.getTouchpadPinchSwitch((error: Error, state: Boolean) => {
     console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1641,7 +1644,7 @@ getTouchpadPinchSwitch(): Promise\<boolean>
 
 ```js
 try {
-  pointer.getTouchpadPinchSwitch().then((state) => {
+  pointer.getTouchpadPinchSwitch().then((state: Boolean) => {
     console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1736,7 +1739,7 @@ getTouchpadSwipeSwitch(callback:  AsyncCallback\<boolean>): void
 
 ```js
 try {
-  pointer.getTouchpadSwipeSwitch((error, state) => {
+  pointer.getTouchpadSwipeSwitch((error: Error, state: Boolean) => {
     console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1764,7 +1767,7 @@ getTouchpadSwipeSwitch(): Promise\<boolean>
 
 ```js
 try {
-  pointer.getTouchpadSwipeSwitch().then((state: boolean) => {
+  pointer.getTouchpadSwipeSwitch().then((state: Boolean) => {
     console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1805,7 +1808,7 @@ setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>):
 
 ```js
 try {
-  pointer.setTouchpadRightClickType(RightClickType::TOUCHPAD_RIGHT_BUTTON , (error) => {
+  pointer.setTouchpadRightClickType(pointer.RightClickType.TOUCHPAD_RIGHT_BUTTON , (error: Error) => {
     if (error) {
       console.log(`setTouchpadRightClickType, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -1843,7 +1846,7 @@ setTouchpadRightClickType(type: RightClickType): Promise\<void>
 
 ```js
 try {
-  pointer.setTouchpadRightClickType(RightClickType::TOUCHPAD_RIGHT_BUTTON ).then(() => {
+  pointer.setTouchpadRightClickType(pointer.RightClickType.TOUCHPAD_RIGHT_BUTTON).then(() => {
     console.log(`setTouchpadRightClickType success`);
   });
 } catch (error) {
@@ -1899,7 +1902,7 @@ getTouchpadRightClickType(): Promise\<RightClickType>
 
 ```js
 try {
-  pointer.getTouchpadRightClickType().then((type) => {
+  pointer.getTouchpadRightClickType().then((type: pointer.RightClickType) => {
     console.log(`getTouchpadRightClickType success, typeed: ${JSON.stringify(type)}`);
   });
 } catch (error) {
@@ -1928,7 +1931,7 @@ setPointerSize(size: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-  pointer.setPointerSize(1, (error) => {
+  pointer.setPointerSize(1, (error: Error) => {
     if (error) {
       console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -2021,7 +2024,7 @@ getPointerSize(callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 try {
-  pointer.getPointerSize((error, size) => {
+  pointer.getPointerSize((error: Error, size: Number) => {
     console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
   });
 } catch (error) {
@@ -2049,7 +2052,7 @@ getPointerSize(): Promise&lt;number&gt;
 
 ```js
 try {
-  pointer.getPointerSize().then((size: number) => {
+  pointer.getPointerSize().then((size: Number) => {
     console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
   });
 } catch (error) {
@@ -2198,7 +2201,7 @@ getPointerColor(callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 try {
-  pointer.getPointerColor((error, color) => {
+  pointer.getPointerColor((error: Error, color: Number) => {
     console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
   });
 } catch (error) {
@@ -2226,7 +2229,7 @@ getPointerColor(): Promise&lt;number&gt;
 
 ```js
 try {
-  pointer.getPointerColor().then((color) => {
+  pointer.getPointerColor().then((color: Number) => {
     console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
   });
 } catch (error) {

@@ -14,6 +14,7 @@
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](js-apis-app-ability-environmentCallback.md)
     - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](js-apis-app-ability-extensionAbility.md)
+    - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](js-apis-app-ability-printExtensionAbility.md)
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-app-ability-serviceExtensionAbility.md)
     - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](js-apis-app-ability-shareExtensionAbility.md)
     - [@ohos.app.ability.StartOptions (StartOptions)](js-apis-app-ability-startOptions.md)
@@ -487,6 +488,9 @@
   - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
   - [@ohos.worker (启动一个Worker)](js-apis-worker.md)
   - [@ohos.xml (xml解析与生成)](js-apis-xml.md)
+
+- 广告
+  - [@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
 
 - 测试
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)

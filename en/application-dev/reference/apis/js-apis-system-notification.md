@@ -51,11 +51,7 @@ Displays a notification.
 
 **Example**
 ```ts
-class NotificationClass {
-  show: Function
-}
-
-let notificationObj: NotificationClass = {
+let notificationObj: notification = {
   show() {
     notification.show({
       contentTitle: 'title info',
@@ -69,5 +65,5 @@ let notificationObj: NotificationClass = {
   }
 }
 
-export default  notificationObj
+export default notificationObj
 ```

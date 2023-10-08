@@ -5169,11 +5169,11 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 
 **参数：**
 
-| 参数名   | 类型                                                 | 必填 | 说明                                       |
-| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| 参数名   | 类型                                                 | 必填 | 说明                                                      |
+| :------- | :--------------------------------------------------- | :--- |:--------------------------------------------------------|
 | type     | string                                               | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
-| rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 表示渲染器信息。              |
-| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 获取优先级最高的输出设备信息。                         |
+| rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 表示渲染器信息。                                                |
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 获取优先级最高的输出设备信息。                                         |
 
 **错误码：**
 

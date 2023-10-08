@@ -39,7 +39,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 try {
     access.enableBluetooth();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -69,7 +69,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 try {
     access.disableBluetooth();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -105,7 +105,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 try {
     let state = access.getState();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -138,13 +138,13 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: access.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
 try {
     access.on('stateChange', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -177,14 +177,14 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: access.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
 try {
     access.on('stateChange', onReceiveEvent);
     access.off('stateChange', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 

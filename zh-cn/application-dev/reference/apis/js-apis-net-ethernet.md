@@ -54,10 +54,10 @@ import { BusinessError } from '@ohos.base'
 
 let config: ethernet.InterfaceConfiguration = {
   mode: 0,
-  ipAddr: "192.168.xx.xxx"
-  route: "192.168.xx.xxx"
-  gateway: "192.168.xx.xxx"
-  netMask: "255.255.255.0"
+  ipAddr: "192.168.xx.xxx",
+  route: "192.168.xx.xxx",
+  gateway: "192.168.xx.xxx",
+  netMask: "255.255.255.0",
   dnsServers: "1.1.1.1"
 };
 
@@ -113,16 +113,19 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 **示例：**
 
 ```ts
-class Config  {
-  mode: number= 0,
-  ipAddr: string = "192.168.xx.xxx"
-  route: string = "192.168.xx.xxx"
-  gateway:string = "192.168.xx.xxx"
-  netMask:string = "255.255.255.0"
-  dnsServers: string = "1.1.1.1"
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
+let config: ethernet.InterfaceConfiguration = {
+  mode: 0,
+  ipAddr: "192.168.xx.xxx",
+  route: "192.168.xx.xxx",
+  gateway: "192.168.xx.xxx",
+  netMask: "255.255.255.0",
+  dnsServers: "1.1.1.1"
 };
 
-const setConfigPromise: Object = ethernet.setIfaceConfig("eth0", new Config());
+const setConfigPromise = ethernet.setIfaceConfig("eth0", config);
 
 setConfigPromise.then(() => {
   console.log("setIfaceConfig promise ok");
@@ -165,6 +168,9 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 **示例：**
 
 ```ts
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
 ethernet.getIfaceConfig("eth0", (error: BusinessError, value: ethernet.InterfaceConfiguration) => {
   if (error) {
     console.log("getIfaceConfig  callback error = " + JSON.stringify(error));
@@ -218,7 +224,9 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
   console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
   console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
@@ -265,6 +273,9 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
 ethernet.isIfaceActive("eth0", (error: BusinessError, value: number) => {
   if (error) {
     console.log("whether2Activate callback error = " + JSON.stringify(error));
@@ -313,7 +324,9 @@ isIfaceActive(iface: string): Promise\<number>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
@@ -351,6 +364,9 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 **示例：**
 
 ```ts
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
 ethernet.getAllActiveIfaces((error: BusinessError, value: string[]) => {
   if (error) {
     console.log("getAllActiveIfaces callback error = " + JSON.stringify(error));
@@ -393,6 +409,9 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 **示例：**
 
 ```ts
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
 ethernet.getAllActiveIfaces().then((data: string[]) => {
   console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
   for (let i = 0; i < data.length; i++) {
@@ -433,6 +452,8 @@ on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: bo
 **示例：**
 
 ```ts
+import ethernet from '@ohos.net.ethernet'
+
 ethernet.on('interfaceStateChange', (data: object) => {
   console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
 });
@@ -468,6 +489,8 @@ off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: 
 **示例：**
 
 ```ts
+import ethernet from '@ohos.net.ethernet'
+
 ethernet.off('interfaceStateChange');
 ```
 

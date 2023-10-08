@@ -106,8 +106,8 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
   ```ts
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
+    url: 'http://www.example.com', //需要手动替换为真实服务器地址
+    header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
     data: [{ name: "name123", value: "123" }],
@@ -159,8 +159,8 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
   ```ts
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
+    url: 'http://www.example.com', //需要手动替换为真实服务器地址
+    header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
     data: [{ name: "name123", value: "123" }],
@@ -213,8 +213,8 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
+    url: 'http://www.example.com', //需要手动替换为真实服务器地址
+    header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
     data: [{ name: "name123", value: "123" }],
@@ -253,8 +253,8 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
+    url: 'http://www.example.com', //需要手动替换为真实服务器地址
+    header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
     data: [{ name: "name123", value: "123" }],

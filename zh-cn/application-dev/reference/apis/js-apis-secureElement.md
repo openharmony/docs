@@ -1218,6 +1218,7 @@ try {
     });
 } catch (e) {
     console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
 
 try {
     if(nfcSEService != null) {

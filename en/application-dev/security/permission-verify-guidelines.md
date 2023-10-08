@@ -13,7 +13,7 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Token ID of the application. You can obtain the value from the [ApplicationInfo](../reference/apis/js-apis-bundleManager-applicationInfo.md) of the application.            |
-| permissionName | Permissions | Yes  | Name of the permission to verify. Valid permission names are defined in the [Application Permission List](permission-list.md). |
+| permissionName | Permissions | Yes  | Name of the permission to verify. Valid permission names are defined in the [Application Permission List](permission-list.md).|
 
 
 ## Example
@@ -22,24 +22,26 @@ The procedure is as follows:
 
 1. Obtain the caller's identity (**tokenId**).
    > **NOTE**
+   >
    > You can use **getCallingTokenId** to obtain the caller's **tokenId**. For details, see [RPC](../reference/apis/js-apis-rpc.md).
 2. Determine the permission to verify, which is **ohos.permission.ACCELEROMETER** in this example.
 3. Call **checkAccessToken()** to perform a permission verification for the caller.
 4. Proceed based on the permission verification result.
 
-```js
+```ts
   import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+  import { BusinessError } from '@ohos.base';
   import rpc from '@ohos.rpc'
 
   class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
-          let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
+          let callerTokenId: number = rpc.IPCSkeleton.getCallingTokenId();
           console.log("RpcServer: getCallingTokenId result: " + callerTokenId);
-          var atManager = abilityAccessCtrl.createAtManager();
+          let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
           try {
-              atManager.checkAccessToken(callerTokenId, "ohos.permission.ACCELEROMETER").then((data) => {
+              atManager.checkAccessToken(callerTokenId, "ohos.permission.ACCELEROMETER").then((data: abilityAccessCtrl.GrantStatus) => {
                   console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
-              }).catch((err) => {
+              }).catch((err: BusinessError) => {
                   console.log(`checkAccessToken fail, err->${JSON.stringify(err)}`);
               });
           } catch(err) {
@@ -48,5 +50,4 @@ The procedure is as follows:
           return true;
       }
   }
-
 ```

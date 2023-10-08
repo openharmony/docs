@@ -69,6 +69,8 @@
 3. 获取短时任务剩余时间。查询本次短时任务的剩余时间，用以判断是否继续运行其他业务，例如应用有两个小任务，在执行完第一个小任务后，可以判断本次短时任务是否还有剩余时间来决定是否执行第二个小任务。
    
   ```ts
+  let id: number; // 申请短时任务ID
+
   async function getRemainingDelayTime() {
     backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
       console.info('Succeeded in getting remaining delay time.');
@@ -81,6 +83,8 @@
 4. 取消短时任务。
    
   ```ts
+  let id: number; // 申请短时任务ID
+  
   function cancelSuspendDelay() {
     backgroundTaskManager.cancelSuspendDelay(id);
   }

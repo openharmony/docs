@@ -464,7 +464,7 @@ addSlot(type: SlotType): Promise\<void\>
 **示例：**
 
 ```ts
-import NotificationManager from '@ohos.notificationManager';
+import Base from '@ohos.base';
 
 Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then(() => {
   console.info("addSlot success");

@@ -35,6 +35,12 @@ If the default style does not meet requirements, you can use [\@Builder](../quic
 
 
 ```ts
+class Tmp{
+  iconStr2: ResourceStr = $r("app.media.view_list_filled")
+  set(val:Resource){
+    this.iconStr2 = val
+  }
+}
 @State select: boolean = true
 private iconStr: ResourceStr = $r("app.media.view_list_filled")
 private iconStr2: ResourceStr = $r("app.media.view_list_filled")
@@ -56,21 +62,22 @@ MyMenu(){
       content: "Menu option",
       endIcon: $r("app.media.arrow_right_filled"),
       // When the builder parameter is set, it indicates that a submenu is bound to a menu item. When the user hovers the cursor over the menu item, the submenu is displayed.
-      builder: this.SubMenu,
+      builder: this.SubMenu.bind(this),
     })
     MenuItemGroup ({ header: 'Subtitle' }) {
       MenuItem ({ content: "Menu option" })
         .selectIcon(true)
         .selected(this.select)
         .onChange((selected) => {
-	   console.info("menuItem select" + selected);
-	   this.iconStr2 = $r("app.media.icon");
+           console.info("menuItem select" + selected);
+            let Str:Tmp = new Tmp()
+            Str.set($r("app.media.icon"))
         })
       MenuItem({
         startIcon: $r("app.media.view_list_filled"),
         content: "Menu option",
         endIcon: $r("app.media.arrow_right_filled"),
-        builder: this.SubMenu
+        builder: this.SubMenu.bind(this)
       })
     }
     MenuItem({
@@ -80,7 +87,6 @@ MyMenu(){
     })
   }
 }
-  
 ```
 
 

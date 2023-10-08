@@ -365,7 +365,7 @@ try {
      Call **isValidNumber** to check whether the format of the input phone number is correct.
 
    ```ts
-   let validNumber = phoneNumberFormat.isValidNumber("15812341234"); // validNumber = true
+   let validNumber = phoneNumberFormat.isValidNumber("123****8911"); // validNumber = true
    ```
 
 4. Format a phone number.
@@ -373,12 +373,12 @@ try {
      Call **format** to format the input phone number.
 
    ```ts
-   let formattedNumber = phoneNumberFormat.format("15812341234"); // formattedNumber = "+8615812341234"
+   let formattedNumber = phoneNumberFormat.format("123****8911"); // formattedNumber = "+86123****8911"
    ```
 
 ## Measurement Conversion
 
-The **I18NUtil** class provides an API to implement measurement conversion.
+**I18NUtil** provides an API to implement measurement conversion.
 
 ### Available APIs
 
@@ -607,7 +607,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
    let timezoneDisplayName = timezone.getDisplayName(); // timezoneDisplayName = "New Zealand Standard Time"
    ```
 
-## Obtaining the **Transliterator** Object
+## Obtaining the Transliterator Object
 
 Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to create a **Transliterator** object and obtain the transliterated string.
 

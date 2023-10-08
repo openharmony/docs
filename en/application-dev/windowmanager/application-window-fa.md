@@ -23,7 +23,7 @@ The table below lists the common APIs used for application window development. F
 | -------- | -------- | -------- |
 | Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow.<br>**config** specifies the parameters used for creating the window.|
 | Window static method| findWindow(name: string): Window | Finds a window based on the name.|
-| Window | SetUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to this window.|
+| Window | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to this window.|
 | Window | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.|
 | Window | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | Sets the background color for this window.|
 | Window | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.|
@@ -48,14 +48,16 @@ You can create a subwindow, such as a dialog box, and set its properties.
    - Call **window.createWindow** to create a subwindow.
    - Call **window.findWindow** to find an available subwindow.
    
-   ```js
+   ```ts
       import window from '@ohos.window';
+      import { BusinessError } from '@ohos.base';
    
-      let windowClass = null;
+      let windowClass: window.Window | null = null;
       // Method 1: Create a subwindow.
-      let config = {name: "subWindow", windowType: window.WindowType.TYPE_APP};
-      window.createWindow(config, (err, data) => {
-          if (err.code) {
+      let config: window.Configuration = {name: "subWindow", windowType: window.WindowType.TYPE_APP};
+      window.createWindow(config, (err: BusinessError, data) => {
+          let errCode: number = err.code;
+          if (errCode) {
               console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
               return;
           }
@@ -74,18 +76,20 @@ You can create a subwindow, such as a dialog box, and set its properties.
 
    After the subwindow is created, you can set its properties, such as the size, position, background color, and brightness.
    
-   ```js
+   ```ts
    // Move the subwindow.
-   windowClass.moveWindowTo(300, 300, (err) => {
-     if (err.code) {
+   windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
+     let errCode: number = err.code;
+     if (errCode) {
        console.error('Failed to move the window. Cause:' + JSON.stringify(err));
        return;
      }
      console.info('Succeeded in moving the window.');
    });
    // Change the size of the subwindow.
-   windowClass.resize(500, 500, (err) => {
-     if (err.code) {
+   windowClass.resize(500, 500, (err: BusinessError) => {
+     let errCode: number = err.code;
+     if (errCode) {
        console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
        return;
      }
@@ -95,19 +99,21 @@ You can create a subwindow, such as a dialog box, and set its properties.
 
 3. Load content for the subwindow and show it.
 
-   Call **SetUIContent** and **showWindow** to load and display the content in the subwindow.
+   Call **setUIContent** and **showWindow** to load and display the content in the subwindow.
    
-   ```js
+   ```ts
    // Load the page content to the subwindow.
-   windowClass.SetUIContent("pages/page2", (err) => {
-       if (err.code) {
+   windowClass.setUIContent("pages/page2", (err: BusinessError) => {
+       let errCode: number = err.code;
+       if (errCode) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
        }
        console.info('Succeeded in loading the content.');
        // Show the subwindow.
-       windowClass.showWindow((err) => {
-        if (err.code) {
+       windowClass.showWindow((err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
                console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
                return;
            }
@@ -120,10 +126,11 @@ You can create a subwindow, such as a dialog box, and set its properties.
 
    When the subwindow is no longer needed, you can call **destroyWindow** to destroy it.
    
-   ```js
+   ```ts
    // Call destroy() to destroy the subwindow when it is no longer needed.
-   windowClass.destroyWindow((err) => {
-       if (err.code) {
+   windowClass.destroyWindow((err: BusinessError) => {
+       let errCode: number = err.code;
+       if (errCode) {
            console.error('Failed to destroy the subwindow. Cause:' + JSON.stringify(err));
            return;
        }
@@ -147,13 +154,15 @@ To create a better video watching and gaming experience, you can use the immersi
    >
    > Ensure that the top window of the application is the main window. You can use **window.getLastWindow** to obtain the main window.
    
-   ```js
+   ```ts
    import window from '@ohos.window';
-   
-   let mainWindowClass = null;
+   import { BusinessError } from '@ohos.base';
+
+   let mainWindowClass: window.Window | null = null;
    // Obtain the main window.
-   window.getLastWindow(this.context,(err, data) => {
-     if (err.code) {
+   window.getLastWindow(this.context,(err: BusinessError, data) => {
+     let errCode: number = err.code;
+     if (errCode) {
        console.error('Failed to get the subWindow. Cause: ' + JSON.stringify(err));
        return;
      }
@@ -167,12 +176,13 @@ To create a better video watching and gaming experience, you can use the immersi
    - Method 1: When the main window of the application is a full-screen window, call **setWindowSystemBarEnable** to hide the status bar and navigation bar.
    - Method 2: Call **setWindowLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setWindowSystemBarProperties** to set the opacity, background color, text color, and highlighted icon of the status bar and navigation bar to ensure that their display effect is consistent with that of the main window.
 
-   ```js
+   ```ts
    
    // Use method 1 to implement the immersive effect.
-   let names = [];
-   mainWindowClass.setWindowSystemBarEnable(names, (err) => {
-     if (err.code) {
+   let names: Array<'status' | 'navigation'> = [];
+   mainWindowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
+     let errCode: number = err.code;
+     if (errCode) {
        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
        return;
      }
@@ -180,23 +190,25 @@ To create a better video watching and gaming experience, you can use the immersi
    });
    // Use method 2 to implement the immersive effect.
     
-   let isLayoutFullScreen = true;
-   mainWindowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err) => {
-     if (err.code) {
+   let isLayoutFullScreen: boolean = true;
+   mainWindowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
+     let errCode: number = err.code;
+     if (errCode) {
        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
        return;
      }
      console.info('Succeeded in setting the window layout to full-screen mode.');
    });
-   let sysBarProps = {
+   let sysBarProps: window.SystemBarProperties = {
      statusBarColor: '#ff00ff',
      navigationBarColor: '#00ff00',
      // The following properties are supported since API version 8.
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
    };
-   mainWindowClass.setWindowSystemBarProperties(sysBarProps, (err) => {
-     if (err.code) {
+   mainWindowClass.setWindowSystemBarProperties(sysBarProps, (err: BusinessError) => {
+     let errCode: number = err.code;
+     if (errCode) {
        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
        return;
      }
@@ -206,19 +218,21 @@ To create a better video watching and gaming experience, you can use the immersi
 
 3. Load content for the immersive window and show it.
 
-   Call **SetUIContent** and **showWindow** to load and display the content in the immersive window.
+   Call **setUIContent** and **showWindow** to load and display the content in the immersive window.
    
-   ```js
+   ```ts
    // Load the page content to the immersive window.
-   mainWindowClass.SetUIContent("pages/page3", (err) => {
-       if (err.code) {
+   mainWindowClass.setUIContent("pages/page3", (err: BusinessError) => {
+       let errCode: number = err.code;
+       if (errCode) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
        }
        console.info('Succeeded in loading the content.');
        // Show the immersive window.
-       mainWindowClass.showWindow((err) => {
-           if (err.code) {
+       mainWindowClass.showWindow((err: BusinessError) => {
+           let errCode: number = err.code;
+           if (errCode) {
                console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
                return;
            }

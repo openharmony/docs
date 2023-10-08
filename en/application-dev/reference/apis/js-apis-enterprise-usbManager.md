@@ -4,16 +4,16 @@ The **usbManager** module provides APIs for USB management.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
+> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
 
 ## Modules to Import
 
-```js
-import usbManager from '@ohos.enterprise.usbManager'
+```ts
+import usbManager from '@ohos.enterprise.usbManager';
 ```
 
 ## usbManager.setUsbPolicy
@@ -47,12 +47,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let policy = usbManager.UsbPolicy.READ_WRITE
+let policy: usbManager.UsbPolicy = usbManager.UsbPolicy.READ_WRITE
 
 usbManager.setUsbPolicy(wantTemp, policy, (err) => {
   if (err) {
@@ -99,16 +100,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let policy = usbManager.UsbPolicy.READ_WRITE
+let policy: usbManager.UsbPolicy = usbManager.UsbPolicy.READ_WRITE
 
 usbManager.setUsbPolicy(wantTemp, policy).then(() => {
   console.info('Succeeded in setting usb policy');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
 })
 ```

@@ -144,7 +144,7 @@
 @CustomDialog
 struct CustomDialogExample {
   controller: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogExample({})
+    builder: undefined
   })
 
   build() {

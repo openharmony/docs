@@ -31,7 +31,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type                                                    | Mandatory| Description                                                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src    | [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr) \| [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | Yes  | Data source of the image. Local and online sources are supported. For details about how to reference an image, see [Loading Image Resources](../../ui/arkts-graphics-display.md#loading-image-resources).<br>1. **PixelMap**: an array of pixels storing graphical information. This type is usually used in image editing scenarios.<br>2. **ResourceStr**: a string or a **Resource** object.<br>The string format can be used to load local images and, more frequently, online images. When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. If an image needs to be used globally, you are advised to use the **Resource** format. The following types of strings are supported:<br>- Base64 strings in the format of data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where **[base64 data]** is a Base64 string.<br>- Strings with the **file://** prefix, which are used to access the images in the **files** folder in the installation directory of the application. Ensure that the application has the read permission to the files in the specified path.<br>The **Resource** format allows for access across bundles and modules. It is recommended for accessing local images.<br>3. **DrawableDescriptor**: an object created when the passed resource ID or name belongs to a common image.<br>**NOTE**<br>- ArkTS widgets support GIF animations, but the animations only play once on display.<br>- ArkTS widgets do not support the strings with the **http://** or **file://** prefix, or the [PixelMap](../apis/js-apis-image.md#pixelmap7) type.|
+| src    | [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr) \| [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | Yes  | Data source of the image. Local and online sources are supported. For details about how to reference an image, see [Loading Image Resources](../../ui/arkts-graphics-display.md#loading-image-resources).<br>1. **PixelMap**: an array of pixels storing graphical information. This type is usually used in image editing scenarios.<br>2. **ResourceStr**: a string or a **Resource** object.<br>The string format can be used to load local images and, more frequently, online images. When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. If an image needs to be used globally, you are advised to use the **Resource** format. The following types of strings are supported:<br>- Base64 strings in the format of data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where **[base64 data]** is a Base64 string.<br>- Strings with the **file://** prefix, which are used to access the images in the **files** folder in the installation directory of the application. Ensure that the application has the read permission to the files in the specified path.<br>The **Resource** format allows for access across bundles and modules. It is recommended for accessing local images.<br>3. **DrawableDescriptor**: an object created when the passed resource ID or name belongs to a common image.<br>**NOTE**<br>- ArkTS widgets support GIF animations, but the animations only play once on display.<br>- ArkTS widgets do not support the strings with the **http://** or **file://** prefix, or the [PixelMap](../apis/js-apis-image.md#pixelmap7) type.<br>- Online images must support the RFC 9113 standard to be successfully loaded.|
 
 ## Attributes
 
@@ -40,7 +40,7 @@ For details about how to use attributes, see [Setting Attributes](../../ui/arkts
 | Name                            | Type                                               | Description                                                        |
 | -------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
 | alt                              | string \| [Resource](ts-types.md#resource)         | Placeholder image displayed during loading. Local images (in PNG, JPG, BMP, SVG, or GIF format) are supported. Online images are not supported.<br>Default value: **null**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| objectFit                        | [ImageFit](ts-appendix-enums.md#imagefit)               | Image scale mode.<br>Default value: **ImageFit.Cover**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| objectFit                        | [ImageFit](ts-appendix-enums.md#imagefit)               | How the image is resized to fit its container.<br>Default value: **ImageFit.Cover**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | objectRepeat                     | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | How the image is repeated. When set to repeat, the image is repeated from the center to edges. The last image will be clipped if it does not fit in the component.<br>Default value: **ImageRepeat.NoRepeat**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
 | interpolation                    | [ImageInterpolation](#imageinterpolation)               | Interpolation effect of the image, which can alleviate aliasing that occurs when the image is zoomed.<br>Default value: **ImageInterpolation.None**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When the image is zoomed out, high quality interpolation is not applicable. You are advised to use medium or low quality interpolation instead.<br>This attribute is not applicable to SVG images.|
 | renderMode                       | [ImageRenderMode](#imagerendermode)                     | Rendering mode of the image, which can be **Original** or **Template** (monochrome).<br>Default value: **ImageRenderMode.Original**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
@@ -199,6 +199,11 @@ struct ImageExample2 {
 
 
 ```ts
+class tmp{
+  width: number = 0
+  height: number = 0
+}
+let msg:tmp = new tmp()
 @Entry
 @Component
 struct ImageExample3 {
@@ -223,9 +228,11 @@ struct ImageExample3 {
             .objectFit(ImageFit.Cover)
             .height(180).width(180)
             // Obtain the size of an image after the image loading is complete.
-            .onComplete((msg: { width: number,height: number }) => {
-              this.widthValue = msg.width
-              this.heightValue = msg.height
+            .onComplete(msg => {
+              if(msg){
+                this.widthValue = msg.width
+                this.heightValue = msg.height
+              }
             })
             .onError(() => {
               console.log('load image fail')

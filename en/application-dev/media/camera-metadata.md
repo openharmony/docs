@@ -17,9 +17,9 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 2. Obtain the metadata types supported by the current device from **supportedMetadataObjectTypes** in **CameraOutputCapability**, and then use **createMetadataOutput()** to create a metadata output stream.
      
    ```ts
-   function getMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.MetadataOutput {
+   function getMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.MetadataOutput | undefined {
      let metadataObjectTypes: Array<camera.MetadataObjectType> = cameraOutputCapability.supportedMetadataObjectTypes;
-     let metadataOutput: camera.MetadataOutput;
+     let metadataOutput: camera.MetadataOutput | undefined = undefined;
      try {
        metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
      } catch (error) {

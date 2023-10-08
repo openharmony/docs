@@ -49,13 +49,15 @@ struct TimePickerDialogExample {
         .onClick(() => {
           TimePickerDialog.show({
             selected: this.selectTime,
-            disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
-            textStyle: {color: Color.Black, font: {size: 20, weight: FontWeight.Normal}},
-            selectedTextStyle: {color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}},
+            disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
+            textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
+            selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
             onAccept: (value: TimePickerResult) => {
               // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
-              this.selectTime.setHours(value.hour, value.minute)
-              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              if (value.hour != undefined && value.minute != undefined) {
+                this.selectTime.setHours(value.hour, value.minute)
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              }
             },
             onCancel: () => {
               console.info("TimePickerDialog:onCancel()")
@@ -71,12 +73,14 @@ struct TimePickerDialogExample {
           TimePickerDialog.show({
             selected: this.selectTime,
             useMilitaryTime: true,
-            disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
-            textStyle: {color: Color.Black, font: {size: 20, weight: FontWeight.Normal}},
-            selectedTextStyle: {color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}},
+            disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
+            textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
+            selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
             onAccept: (value: TimePickerResult) => {
-              this.selectTime.setHours(value.hour, value.minute)
-              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              if (value.hour != undefined && value.minute != undefined) {
+                this.selectTime.setHours(value.hour, value.minute)
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              }
             },
             onCancel: () => {
               console.info("TimePickerDialog:onCancel()")
