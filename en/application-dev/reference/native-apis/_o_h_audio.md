@@ -48,7 +48,7 @@ The **OHAudio** module provides native APIs of the audio module.
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AudioStream_Result](#oh_audiostream_result) { AUDIOSTREAM_SUCCESS, AUDIOSTREAM_ERROR_INVALID_PARAM, AUDIOSTREAM_ERROR_ILLEGAL_STATE, AUDIOSTREAM_ERROR_SYSTEM } | Enumerates the audio stream operation results.| 
+| [OH_AudioStream_Result](#oh_audiostream_result) { AUDIOSTREAM_SUCCESS, AUDIOSTREAM_ERROR_INVALID_PARAM, AUDIOSTREAM_ERROR_ILLEGAL_STATE, AUDIOSTREAM_ERROR_SYSTEM } | Enumerates the audio stream result codes.| 
 | [OH_AudioStream_Type](#oh_audiostream_type) { AUDIOSTREAM_TYPE_RENDERER = 1, AUDIOSTREAM_TYPE_CAPTURER = 2 } | Enumerates the audio stream types.| 
 | [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) { AUDIOSTREAM_SAMPLE_U8 = 0, AUDIOSTREAM_SAMPLE_S16LE = 1, AUDIOSTREAM_SAMPLE_S24LE = 2, AUDIOSTREAM_SAMPLE_S32LE = 3 } | Enumerates the sampling formats of audio streams.| 
 | [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) { **AUDIOSTREAM_ENCODING_TYPE_RAW** = 0 } | Enumerates the encoding types of audio streams.| 
@@ -67,27 +67,27 @@ The **OHAudio** module provides native APIs of the audio module.
 | [OH_AudioCapturer_Pause](#oh_audiocapturer_pause) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer) | Pauses an audio capturer.| 
 | [OH_AudioCapturer_Stop](#oh_audiocapturer_stop) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer) | Stops an audio capturer.| 
 | [OH_AudioCapturer_Flush](#oh_audiocapturer_flush) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer) | Flushes obtained audio data.| 
-| [OH_AudioCapturer_GetCurrentState](#oh_audiocapturer_getcurrentstate) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_State](#oh_audiostream_state) \*state) | Obtains the state of an audio stream.| 
-| [OH_AudioCapturer_GetLatencyMode](#oh_audiocapturer_getlatencymode) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) \*latencyMode) | Obtains the latency mode of an audio stream.| 
-| [OH_AudioCapturer_GetStreamId](#oh_audiocapturer_getstreamid) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, uint32_t \*streamId) | Obtains the stream ID of an audio stream.| 
-| [OH_AudioCapturer_GetSamplingRate](#oh_audiocapturer_getsamplingrate) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, int32_t \*rate) | Obtains the sampling rate of an audio stream.| 
-| [OH_AudioCapturer_GetChannelCount](#oh_audiocapturer_getchannelcount) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, int32_t \*channelCount) | Obtains the number of channels for an audio stream.| 
-| [OH_AudioCapturer_GetSampleFormat](#oh_audiocapturer_getsampleformat) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) \*sampleFormat) | Obtains the sampling format of an audio stream.| 
-| [OH_AudioCapturer_GetEncodingType](#oh_audiocapturer_getencodingtype) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | Obtains the encoding type of an audio stream.| 
-| [OH_AudioCapturer_GetCapturerInfo](#oh_audiocapturer_getcapturerinfo) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) \*sourceType) | Obtains the usage scenario of an audio renderer.| 
+| [OH_AudioCapturer_GetCurrentState](#oh_audiocapturer_getcurrentstate) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_State](#oh_audiostream_state) \*state) | Obtains the state of an audio capturer.| 
+| [OH_AudioCapturer_GetLatencyMode](#oh_audiocapturer_getlatencymode) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) \*latencyMode) | Obtains the latency mode of an audio capturer.| 
+| [OH_AudioCapturer_GetStreamId](#oh_audiocapturer_getstreamid) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, uint32_t \*streamId) | Obtains the stream ID of an audio capturer.| 
+| [OH_AudioCapturer_GetSamplingRate](#oh_audiocapturer_getsamplingrate) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, int32_t \*rate) | Obtains the sampling rate of an audio capturer.| 
+| [OH_AudioCapturer_GetChannelCount](#oh_audiocapturer_getchannelcount) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, int32_t \*channelCount) | Obtains the number of channels for an audio capturer.| 
+| [OH_AudioCapturer_GetSampleFormat](#oh_audiocapturer_getsampleformat) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) \*sampleFormat) | Obtains the sampling format of an audio capturer.| 
+| [OH_AudioCapturer_GetEncodingType](#oh_audiocapturer_getencodingtype) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | Obtains the encoding type of an audio capturer.| 
+| [OH_AudioCapturer_GetCapturerInfo](#oh_audiocapturer_getcapturerinfo) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) \*sourceType) | Obtains the usage scenario of an audio capturer.| 
 | [OH_AudioRenderer_Release](#oh_audiorenderer_release) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | Releases an audio renderer.| 
 | [OH_AudioRenderer_Start](#oh_audiorenderer_start) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | Starts an audio renderer.| 
 | [OH_AudioRenderer_Pause](#oh_audiorenderer_pause) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | Pauses an audio renderer.| 
 | [OH_AudioRenderer_Stop](#oh_audiorenderer_stop) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | Stops an audio renderer.| 
 | [OH_AudioRenderer_Flush](#oh_audiorenderer_flush) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | Flushes written audio data.| 
-| [OH_AudioRenderer_GetCurrentState](#oh_audiorenderer_getcurrentstate) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_State](#oh_audiostream_state) \*state) | Obtains the state of an audio stream.| 
-| [OH_AudioRenderer_GetSamplingRate](#oh_audiorenderer_getsamplingrate) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*rate) | Obtains the sampling rate of an audio stream.| 
-| [OH_AudioRenderer_GetStreamId](#oh_audiorenderer_getstreamid) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, uint32_t \*streamId) | Obtains the stream ID of an audio stream.| 
-| [OH_AudioRenderer_GetChannelCount](#oh_audiorenderer_getchannelcount) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*channelCount) | Obtains the number of channels for an audio stream.| 
-| [OH_AudioRenderer_GetSampleFormat](#oh_audiorenderer_getsampleformat) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) \*sampleFormat) | Obtains the sampling format of an audio stream.| 
-| [OH_AudioRenderer_GetLatencyMode](#oh_audiorenderer_getlatencymode) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) \*latencyMode) | Obtains the latency mode of an audio stream.| 
+| [OH_AudioRenderer_GetCurrentState](#oh_audiorenderer_getcurrentstate) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_State](#oh_audiostream_state) \*state) | Obtains the state of an audio renderer.| 
+| [OH_AudioRenderer_GetSamplingRate](#oh_audiorenderer_getsamplingrate) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*rate) | Obtains the sampling rate of an audio renderer.| 
+| [OH_AudioRenderer_GetStreamId](#oh_audiorenderer_getstreamid) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, uint32_t \*streamId) | Obtains the stream ID of an audio renderer.| 
+| [OH_AudioRenderer_GetChannelCount](#oh_audiorenderer_getchannelcount) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*channelCount) | Obtains the number of channels for an audio renderer.| 
+| [OH_AudioRenderer_GetSampleFormat](#oh_audiorenderer_getsampleformat) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) \*sampleFormat) | Obtains the sampling format of an audio renderer.| 
+| [OH_AudioRenderer_GetLatencyMode](#oh_audiorenderer_getlatencymode) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) \*latencyMode) | Obtains the latency mode of an audio renderer.| 
 | [OH_AudioRenderer_GetRendererInfo](#oh_audiorenderer_getrendererinfo) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_Usage](#oh_audiostream_usage) \*usage) | Obtains the usage scenario of an audio renderer.| 
-| [OH_AudioRenderer_GetEncodingType](#oh_audiorenderer_getencodingtype) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | Obtains the encoding type of an audio stream.| 
+| [OH_AudioRenderer_GetEncodingType](#oh_audiorenderer_getencodingtype) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | Obtains the encoding type of an audio renderer.| 
 | [OH_AudioStreamBuilder_Create](#oh_audiostreambuilder_create) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*\*builder, [OH_AudioStream_Type](#oh_audiostream_type) type) | Creates an audio stream builder, which can be an audio renderer or capturer.| 
 | [OH_AudioStreamBuilder_Destroy](#oh_audiostreambuilder_destroy) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder) | Destroys an audio stream builder.| 
 | [OH_AudioStreamBuilder_SetSamplingRate](#oh_audiostreambuilder_setsamplingrate) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, int32_t rate) | Sets the sampling rate of an audio stream.| 
@@ -138,7 +138,7 @@ An audio capturer instance is used to capture audio data.
 
   
 ```
-typedef struct OH_AudioCapturer_Callbacks_StructOH_AudioCapturer_Callbacks
+typedef struct OH_AudioCapturer_Callbacks_Struct OH_AudioCapturer_Callbacks
 ```
 
 **Description**
@@ -176,7 +176,7 @@ An audio renderer instance is used to render audio data.
 
   
 ```
-typedef struct OH_AudioRenderer_Callbacks_StructOH_AudioRenderer_Callbacks
+typedef struct OH_AudioRenderer_Callbacks_Struct OH_AudioRenderer_Callbacks
 ```
 
 **Description**
@@ -267,7 +267,7 @@ enum OH_AudioStream_Result
 
 **Description**
 
-Enumerates the audio stream operation results.
+Enumerates the audio stream result codes.
 
 \@syscap SystemCapability.Multimedia.Audio.Core
 
@@ -473,7 +473,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetChannelCount (OH_AudioCapturer * captu
 
 **Description**
 
-Obtains the number of channels for an audio stream.
+Obtains the number of channels for an audio capturer.
 
 **Parameters**
 
@@ -500,7 +500,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetCurrentState (OH_AudioCapturer * captu
 
 **Description**
 
-Obtains the state of an audio stream.
+Obtains the state of an audio capturer.
 
 **Parameters**
 
@@ -527,7 +527,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetEncodingType (OH_AudioCapturer * captu
 
 **Description**
 
-Obtains the encoding type of an audio stream.
+Obtains the encoding type of an audio capturer.
 
 **Parameters**
 
@@ -554,7 +554,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode (OH_AudioCapturer * captur
 
 **Description**
 
-Obtains the latency mode of an audio stream.
+Obtains the latency mode of an audio capturer.
 
 **Parameters**
 
@@ -581,7 +581,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetSampleFormat (OH_AudioCapturer * captu
 
 **Description**
 
-Obtains the sampling format of an audio stream.
+Obtains the sampling format of an audio capturer.
 
 **Parameters**
 
@@ -608,7 +608,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate (OH_AudioCapturer * captu
 
 **Description**
 
-Obtains the sampling rate of an audio stream.
+Obtains the sampling rate of an audio capturer.
 
 **Parameters**
 
@@ -635,7 +635,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetStreamId (OH_AudioCapturer * capturer,
 
 **Description**
 
-Obtains the stream ID of an audio stream.
+Obtains the stream ID of an audio capturer.
 
 **Parameters**
 
@@ -792,7 +792,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelCount (OH_AudioRenderer * rende
 
 **Description**
 
-Obtains the number of channels for an audio stream.
+Obtains the number of channels for an audio renderer.
 
 **Parameters**
 
@@ -819,7 +819,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetCurrentState (OH_AudioRenderer * rende
 
 **Description**
 
-Obtains the state of an audio stream.
+Obtains the state of an audio renderer.
 
 **Parameters**
 
@@ -846,7 +846,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetEncodingType (OH_AudioRenderer * rende
 
 **Description**
 
-Obtains the encoding type of an audio stream.
+Obtains the encoding type of an audio renderer.
 
 **Parameters**
 
@@ -873,7 +873,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode (OH_AudioRenderer * render
 
 **Description**
 
-Obtains the latency mode of an audio stream.
+Obtains the latency mode of an audio renderer.
 
 **Parameters**
 
@@ -927,7 +927,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat (OH_AudioRenderer * rende
 
 **Description**
 
-Obtains the sampling format of an audio stream.
+Obtains the sampling format of an audio renderer.
 
 **Parameters**
 
@@ -954,7 +954,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate (OH_AudioRenderer * rende
 
 **Description**
 
-Obtains the sampling rate of an audio stream.
+Obtains the sampling rate of an audio renderer.
 
 **Parameters**
 
@@ -981,7 +981,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetStreamId (OH_AudioRenderer * renderer,
 
 **Description**
 
-Obtains the stream ID of an audio stream.
+Obtains the stream ID of an audio renderer.
 
 **Parameters**
 
