@@ -4,7 +4,7 @@
 On the widget page, the **postCardAction** API can be used to trigger a message event to start a FormExtensionAbility, which then updates the widget content. The following is an example of this widget update mode.
 
 
-- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the event to the FormExtensionAbility. Use [LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop) to decorate the widget data to be updated.
+- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the message event to start the FormExtensionAbility. Use [LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop) to decorate the widget data to be updated.
   
   ```ts
   let storage = new LocalStorage();
@@ -47,17 +47,14 @@ On the widget page, the **postCardAction** API can be used to trigger a message 
   export default class EntryFormAbility extends FormExtensionAbility {
     onFormEvent(formId, message) {
       // Called when a specified message event defined by the form provider is triggered.
-      console.info(`FormAbility onEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
-      let formData = {
-        'title':'Title Update.', // It matches the widget layout.
-        'detail':'Description update success.', // It matches the widget layout.
-      };
-      let formInfo = formBindingData.createFormBindingData(formData)
-      formProvider.updateForm(formId, formInfo).then((data) => {
-        console.info('FormAbility updateForm success.' + JSON.stringify(data));
-      }).catch((error) => {
-        console.error('FormAbility updateForm failed: ' + JSON.stringify(error));
-      })
+      console.info(`FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
+      let formData = new Map<Object, string>();
+      formData.set('title', 'Title Update.'); // It matches the widget layout.
+      formData.set('detail', 'Description update success.'); // It matches the widget layout.
+      let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
+      formProvider.updateForm(formId, formInfo).then(() => {
+        console.info('FormAbility updateForm success.');
+      });
     }
   
     ...

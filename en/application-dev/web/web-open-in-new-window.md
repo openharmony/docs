@@ -16,8 +16,6 @@ In the following example, when a user clicks the **Open Page in New Window** but
 
 - Application code:
 
-  For details about how to create a window, see [Web Development Examples] (https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser).
-
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';

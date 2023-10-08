@@ -48,7 +48,7 @@ Generally, a button is used to start a page. Below is an example:
   }
   ```
 
-- The UIAbility receives the router event and obtains parameters. It then starts the page specified in the received message.
+- The UIAbility receives the router event and obtains parameters. It then starts the page specified by **params**.
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';

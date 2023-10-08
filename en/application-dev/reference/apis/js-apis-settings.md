@@ -3,7 +3,7 @@
 The **settings** module provides APIs for setting data items.
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -24,8 +24,8 @@ Provides data items for setting the time and date formats.
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | DATE_FORMAT         | string | Yes  | Yes  | Date format.<br>The value can be **mm/dd/yyyy**, **dd/mm/yyyy**, or **yyyy/mm/dd**, where **mm** indicates the month, **dd** indicates the day, and **yyyy** indicates the year.|
 | TIME_FORMAT         | string | Yes  | Yes  | Time format.<br>**12**: 12-hour format.<br>**24**: 24-hour format.|
-| AUTO_GAIN_TIME      | string | Yes  | Yes  | Whether the date, time, and time zone are automatically obtained from the Network Identity and Time Zone (NITZ).<br>The value **true** means that the date, time, and time zone are automatically obtained from NITZ; and **false** means the opposite. |
-| AUTO_GAIN_TIME_ZONE | string | Yes  | Yes  | Whether the time zone is automatically obtained from NITZ.<br>The value **true** means that the time zone is automatically obtained from NITZ; and **false** means the opposite. |
+| AUTO_GAIN_TIME      | string | Yes  | Yes  | Whether the date, time, and time zone are automatically obtained from the Network Identity and Time Zone (NITZ).<br>The value **true** means that the date, time, and time zone are automatically obtained from NITZ;<br>and **false** means the opposite.|
+| AUTO_GAIN_TIME_ZONE | string | Yes  | Yes  | Whether the time zone is automatically obtained from NITZ.<br>The value **true** means that the time zone is automatically obtained from NITZ;<br>and **false** means the opposite.|
 
 ## display
 
@@ -39,7 +39,7 @@ Provides data items for setting the display effects.
 | ----------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | FONT_SCALE                    | string | Yes  | Yes  | Scale factor of the font. The value is a floating point number.                                |
 | SCREEN_BRIGHTNESS_STATUS      | string | Yes  | Yes  | Screen brightness. The value ranges from 0 to 255.                              |
-| AUTO_SCREEN_BRIGHTNESS        | string | Yes  | Yes  | Whether automatic screen brightness adjustment is enabled.<br>**AUTO_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is enabled.<br>**MANUAL_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is disabled. |
+| AUTO_SCREEN_BRIGHTNESS        | string | Yes  | Yes  | Whether automatic screen brightness adjustment is enabled.<br>**AUTO_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is enabled.<br><br>**MANUAL_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is disabled.|
 | AUTO_SCREEN_BRIGHTNESS_MODE   | number | Yes  | Yes  | Value of **AUTO_SCREEN_BRIGHTNESS** when automatic screen brightness adjustment is enabled.          |
 | MANUAL_SCREEN_BRIGHTNESS_MODE | number | Yes  | Yes  | Value of **AUTO_SCREEN_BRIGHTNESS** when automatic screen brightness adjustment is disabled.          |
 | SCREEN_OFF_TIMEOUT            | string | Yes  | Yes  | Waiting time for the device to enter the sleep state when not in use (unit: ms).  |
@@ -47,7 +47,7 @@ Provides data items for setting the display effects.
 | ANIMATOR_DURATION_SCALE       | string | Yes  | Yes  | Scale factor for the animation duration. This affects the start delay and duration of all such animations.<br>If the value is **0**, the animation ends immediately. The default value is **1**.|
 | TRANSITION_ANIMATION_SCALE    | string | Yes  | Yes  | Scale factor for transition animations.<br>The value **0** indicates that the transition animations are disabled.          |
 | WINDOW_ANIMATION_SCALE        | string | Yes  | Yes  | Scale factor for normal window animations.<br>The value **0** indicates that window animations are disabled.      |
-| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br>**0**: Display color inversion is disabled.|
+| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br><br>**0**: Display color inversion is disabled.|
 
 ## general
 
@@ -186,57 +186,57 @@ Provides data items for setting wireless network information.
 | WIFI_WATCHDOG_STATUS              | string | Yes  | Yes  | Whether Wi-Fi watchdog is available.<br>**true**: Wi-Fi watchdog is available.<br>**false**: Wi-Fi watchdog is unavailable.|
 
 
-## settings.setValue
+## settings.setValue<sup>10+</sup>
 
-setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, callback: AsyncCallback\<boolean>): void
+setValue(context: Context, name: string, value: string, callback: AsyncCallback\<boolean>): void
 
-Sets the value for a data item. This API uses an asynchronous callback to return the result.
+Sets the value for a data item. This API uses an asynchronous callback to return the result. 
 
-**System API**: This is a system API.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.Applications.settings.Core
 
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+
 **Parameters**
 
-| Name           | Type                                             | Mandatory| Description                                                        |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
-| name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
-| value             | object                                            | Yes  | Value of the data item. The value range varies by service.                              |
-| callback          | AsyncCallback\<boolean>                           | Yes  | Callback used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.              |
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                 | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| name     | string                  | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
+| value    | string                  | Yes  | Value of the data item. The value range varies by service.                              |
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.              |
 
 **Example**
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
+import settings from '@ohos.settings';
 
 // Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update its value.)
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let helper = featureAbility.acquireDataAbilityHelper(uri);
-// @ts-ignore
-// The value of the data item is a string.
-settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
-    console.log('Callback return whether value is set.');
+settings.setValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
+  console.log('Callback return whether value is set.');
 });
 ```
 
-## settings.setValue
+## settings.setValue<sup>10+</sup>
 
-setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Promise\<boolean>
+setValue(context: Context, name: string, value: string): Promise\<boolean>
 
 Sets the value for a data item. This API uses a promise to return the result.
 
-**System API**: This is a system API.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.Applications.settings.Core
 
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+
 **Parameters**
 
-| Name           | Type                                             | Mandatory| Description                                                        |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
-| name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
-| value             | object                                            | Yes  | Value of the data item. The value range varies by service.                              |
+| Name | Type   | Mandatory| Description                                                        |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| name    | string  | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
+| value   | string  | Yes  | Value of the data item. The value range varies by service.                              |
 
 **Return value**
 
@@ -247,16 +247,147 @@ Sets the value for a data item. This API uses a promise to return the result.
 **Example**
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
+import settings from '@ohos.settings';
 
 // Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update its value.)
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let helper = featureAbility.acquireDataAbilityHelper(uri);
-// @ts-ignore
-// The value of the data item is a string.
-settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
-    console.log('Callback return whether value is set.');
+settings.setValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
+  console.log('Callback return whether value is set.');
 });
+```
+
+## setting.getValue<sup>10+</sup>
+
+getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
+
+Obtains the value of a data item in the database. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Applications.settings.Core
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the value of the data item.                            |
+
+**Example**
+
+```js
+import settings from '@ohos.settings';
+
+settings.getValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
+  if (err) {
+    console.error(`Failed to get the setting. ${err.message} `);
+    return;
+  }
+  console.log(`callback:value -> ${JSON.stringify(value)}`)
+});
+```
+
+## setting.getValue<sup>10+</sup>
+
+getValue(context: Context, name: string): Promise\<string>
+
+Obtains the value of a data item in the database. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Applications.settings.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                                                        |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| name    | string  | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
+
+**Return value**
+
+| Type            | Description                               |
+| ---------------- | ----------------------------------- |
+| Promise\<string> | Promise used to return the value of the data item.|
+
+**Example**
+
+```js
+import settings from '@ohos.settings';
+
+settings.getValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
+  console.log(`promise:value -> ${JSON.stringify(value)}`)
+});
+```
+
+## settings.getValueSync<sup>10+</sup>
+
+getValueSync(context: Context, name: string, defValue: string): string;
+
+Obtains the value of a data item. Unlike **getValue**, this API returns the result synchronously.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Applications.settings.Core
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description                                                        |
+| -------- | ------- | ---- | ------------------------------------------------------------ |
+| context  | Context | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| name     | string  | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
+| defValue | string  | Yes  | Default value, which is returned when the value of a data item is not found in the database. Set this parameter as needed.|
+
+**Return value**
+
+| Type  | Description            |
+| ------ | ---------------- |
+| string | Value of the data item.|
+
+**Example**
+
+```js
+import settings from '@ohos.settings';
+
+// Obtain the value of SCREEN_BRIGHTNESS_STATUS (this data item already exists in the database).
+let value = settings.getValueSync(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
+```
+
+## settings.setValueSync<sup>10+</sup>
+
+setValueSync(context: Context, name: string, value: string): boolean
+
+Sets the value for a data item. Unlike **setValue**, this API returns the result synchronously.
+
+If the specified data item exists in the database, the **setValueSync** method updates the value of the data item. If the data item does not exist in the database, the **setValueSync** method inserts the data item into the database.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Applications.settings.Core
+
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                                                        |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
+| name    | string  | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
+| value   | string  | Yes  | Value of the data item. The value range varies by service.                      |
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | Result indicating whether the value is set successfully. Returns **true** if the value is set successfully; returns **false** otherwise.|
+
+**Example**
+
+```js
+import settings from '@ohos.settings';
+
+// Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValueSync API will update the value of the data item.)
+let ret = settings.setValueSync(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
 
 ## settings.enableAirplaneMode
@@ -390,7 +521,7 @@ Obtains the URI of a data item.
 
 ```js
 // Obtain the URI of a data item.
-let urivar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let uriVar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 ```
 
 ## setting.getURI<sup>(deprecated)</sup>
@@ -401,7 +532,7 @@ Obtains the URI of a data item. This API uses an asynchronous callback to return
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9. No substitute API is provided.
 
 **System capability**: SystemCapability.Applications.settings.Core
 
@@ -428,7 +559,7 @@ Obtains the URI of a data item. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9. No substitute API is provided.
 
 **System capability**: SystemCapability.Applications.settings.Core
 
@@ -452,6 +583,63 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri) => {
 })
 ```
 
+## settings.setValue<sup>(deprecated)</sup>
+
+setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, callback: AsyncCallback\<boolean>): void
+
+Sets the value for a data item. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setValue()](#settingssetvalue10) instead.
+
+**System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the FA model.
+
+**System capability**: SystemCapability.Applications.settings.Core
+
+**Parameters**
+
+| Name           | Type                                                        | Mandatory| Description                                                        |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
+| name              | string                                                       | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
+| value             | object                                                       | Yes  | Value of the data item. The value range varies by service.                              |
+| callback          | AsyncCallback\<boolean>                                      | Yes  | Callback used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.              |
+
+
+## settings.setValue<sup>(deprecated)</sup>
+
+setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Promise\<boolean>
+
+Sets the value for a data item. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setValue()](#settingssetvalue10-1) instead.
+
+**System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the FA model.
+
+**System capability**: SystemCapability.Applications.settings.Core
+
+**Parameters**
+
+| Name           | Type                                                        | Mandatory| Description                                                        |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
+| name              | string                                                       | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
+| value             | object                                                       | Yes  | Value of the data item. The value range varies by service.                              |
+
+**Return value**
+
+| Type             | Description                                              |
+| ----------------- | -------------------------------------------------- |
+| Promise\<boolean> | Promise used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.|
+
+
 ## setting.getValue<sup>(deprecated)</sup>
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void
@@ -460,7 +648,7 @@ Obtains the value of a data item in the database. This API uses an asynchronous 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getValue()](#settinggetvalue10) instead.
 
 **Model restriction**: This API can be used only in the FA model.
 
@@ -468,11 +656,11 @@ Obtains the value of a data item in the database. This API uses an asynchronous 
 
 **Parameters**
 
-| Name           | Type                                             | Mandatory| Description                                                        |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| Name           | Type                                                        | Mandatory| Description                                                        |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
-| name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
-| callback          | AsyncCallback\<object>                            | Yes  | Callback used to return the value of the data item.                            |
+| name              | string                                                       | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
+| callback          | AsyncCallback\<object>                                       | Yes  | Callback used to return the value of the data item.                            |
 
 **Example**
 
@@ -498,7 +686,7 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getValue()](#settinggetvalue10-1) instead.
 
 **Model restriction**: This API can be used only in the FA model.
 
@@ -506,10 +694,10 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 **Parameters**
 
-| Name           | Type                                             | Mandatory| Description                                                        |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| Name           | Type                                                        | Mandatory| Description                                                        |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
-| name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
+| name              | string                                                       | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
 
 **Return value**
 
@@ -537,7 +725,7 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getValueSync()](#settingsgetvaluesync10) instead.
 
 **Model restriction**: This API can be used only in the FA model.
 
@@ -545,11 +733,11 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 
 **Parameters**
 
-| Name           | Type                                             | Mandatory| Description                                                        |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| Name           | Type                                                        | Mandatory| Description                                                        |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
-| name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
-| defValue          | string                                            | Yes  | Default value, which is returned when the value of a data item is not found in the database. Set this parameter as needed.|
+| name              | string                                                       | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
+| defValue          | string                                                       | Yes  | Default value, which is returned when the value of a data item is not found in the database. Set this parameter as needed.|
 
 **Return value**
 
@@ -578,7 +766,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [setValueSync()](#settingssetvaluesync10) instead.
 
 **Model restriction**: This API can be used only in the FA model.
 
@@ -588,11 +776,11 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 **Parameters**
 
-| Name           | Type                                             | Mandatory| Description                                                        |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| Name           | Type                                                        | Mandatory| Description                                                        |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
-| name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
-| value             | string                                            | Yes  | Value of the data item. The value range varies by service.                      |
+| name              | string                                                       | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
+| value             | string                                                       | Yes  | Value of the data item. The value range varies by service.                      |
 
 **Return value**
 
