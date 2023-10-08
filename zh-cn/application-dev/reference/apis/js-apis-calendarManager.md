@@ -1,6 +1,6 @@
 # @ohos.calendarManager (日程管理能力)
 
-本模块提供日历与日程管理能力，包括日历和日程的创建、删除、修改、查询等。日历[Calendar](#calendar)主要包含帐户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
+本模块提供日历与日程管理能力，包括日历和日程的创建、删除、修改、查询等。日历管理器[CalendarManager](#calendarmanager)用于管理日历[Calendar](#calendar)。日历[Calendar](#calendar)主要包含帐户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
 
 > **说明：**
 >
@@ -13,8 +13,44 @@
 import calendarManager from '@ohos.calendarManager';
 ```
 
+## calendarManager.getCalendarManager
 
-## calendarManager.createCalendar
+getCalendarManager(context : Context): CalendarManager;
+
+根据上下文获取CalendarManager对象，用于管理日历。
+
+**系统能力**： SystemCapability.Applications.CalendarData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数**：
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+
+
+**示例**：
+
+```ts
+  // 当前示例代码仅适用于ts源文件
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let calendarManager:CalendarManager = calendarManager.getCalendarManager(globalThis.context as Context)
+    
+```
+
+## CalendarManager
+
+下列API示例中需先通过[getCalendarManager()](#calendarmanagergetcalendarmanager)方法获取CalendarManager对象，再通过此对象调用对应方法，进行Calendar的创建、删除、修改、查询等操作。
+
+
+### createCalendar
 
 createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>): void
 
@@ -55,7 +91,7 @@ try {
 }
 ```
 
-## calendarManager.createCalendar
+### createCalendar
 
 createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
@@ -96,7 +132,7 @@ calendarManager.createCalendar(calendarAccount).then((data: calendarManager.Cale
 });
 ```
 
-## calendarManager.deleteCalendar
+### deleteCalendar
 
 deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 
@@ -138,7 +174,7 @@ calendarManager.getCalendar(calendarAccount, (err: BusinessError, data: calendar
 });
 ```
 
-## calendarManager.deleteCalendar
+### deleteCalendar
 
 deleteCalendar(calendar: Calendar): Promise\<void>
 
@@ -181,11 +217,11 @@ calendarManager.getCalendar(calendarAccount).then((data: calendarManager.Calenda
 });
 ```
 
-## calendarManager.getCalendar
+### getCalendar
 
 getCalendar(callback: AsyncCallback\<Calendar>): void
 
-获取默认Calendar对象，默认Calendar是日历存储首次运行时创建的，若创建Event时不关注其Calendar归属，则无须通过[createCalendar()](#calendarmanagercreatecalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
+获取默认Calendar对象，默认Calendar是日历存储首次运行时创建的，若创建Event时不关注其Calendar归属，则无须通过[createCalendar()](#createcalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
 
 **需要权限**：ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
 
@@ -213,7 +249,7 @@ calendarManager.getCalendar((err: BusinessError, data:calendarManager.Calendar) 
 });
 ```
 
-## calendarManager.getCalendar
+### getCalendar
 
 getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>): void
 
@@ -250,7 +286,7 @@ calendarManager.getCalendar(calendarAccount, (err: BusinessError, data: calendar
 });
 ```
 
-## calendarManager.getCalendar
+### getCalendar
 
 getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
@@ -286,7 +322,7 @@ calendarManager.getCalendar().then((data: calendarManager.Calendar) => {
 });
 ```
 
-## calendarManager.getAllCalendars
+### getAllCalendars
 
 getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
@@ -320,7 +356,7 @@ calendarManager.getAllCalendars((err: BusinessError, data: calendarManager.Calen
 });
 ```
 
-## calendarManager.getAllCalendars
+### getAllCalendars
 
 getAllCalendars(): Promise\<Calendar[]>
 
@@ -354,7 +390,7 @@ calendarManager.getAllCalendars().then((data: calendarManager.Calendar[]) => {
 
 ## Calendar
 
-下列API示例中需先通过[createCalendar()](#calendarmanagercreatecalendar)、[getCalendar()](#calendarmanagergetcalendar)中任一方法获取Calendar对象，再通过此对象调用对应方法，对该Calendar下的日程进行创建、删除、修改、查询等操作。
+下列API示例中需先通过[createCalendar()](#createcalendar)、[getCalendar()](#getcalendar)中任一方法获取Calendar对象，再通过此对象调用对应方法，对该Calendar下的日程进行创建、删除、修改、查询等操作。
 
 ### 属性
 
