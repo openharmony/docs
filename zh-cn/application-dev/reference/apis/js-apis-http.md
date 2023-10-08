@@ -60,22 +60,23 @@ httpRequest.request(
     caPath: "", // 可选，默认使用系统预设CA证书，自API 10开始支持该属性
   },
   (err: BusinessError, data: http.HttpResponse ) => {
-    if (!err) {
-      // data.result为HTTP响应内容，可根据业务需要进行解析
-      console.info('Result:' + JSON.stringify(data.result));
-      console.info('code:' + JSON.stringify(data.responseCode));
-      // data.header为HTTP响应头，可根据业务需要进行解析
-      console.info('header:' + JSON.stringify(data.header));
-      console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-      // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
-      httpRequest.destroy();
-    } else {
-      console.info('error:' + JSON.stringify(err));
-      // 取消订阅HTTP响应头事件
-      httpRequest.off('headersReceive');
-      // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
-      httpRequest.destroy();
-    }
+  if (!err) {
+    // data.result为HTTP响应内容，可根据业务需要进行解析
+    console.info('Result:' + JSON.stringify(data.result));
+    console.info('code:' + JSON.stringify(data.responseCode));
+    // data.header为HTTP响应头，可根据业务需要进行解析
+    console.info('header:' + JSON.stringify(data.header));
+    console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
+    // 取消订阅HTTP响应头事件
+    httpRequest.off('headersReceive');
+    // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
+    httpRequest.destroy();
+  } else {
+    console.info('error:' + JSON.stringify(err));
+    // 取消订阅HTTP响应头事件
+    httpRequest.off('headersReceive');
+    // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
+    httpRequest.destroy();
   }
 );
 ```

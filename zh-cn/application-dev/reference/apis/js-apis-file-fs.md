@@ -561,20 +561,17 @@ copyDirSync(src: string, dest: string, mode?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   // copy directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   try {
     fs.copyDirSync(srcPath, destPath, 0);
     console.info("copy directory succeed");
-  } catch (err) {
-    if (err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
-      }
-    }
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
 
@@ -741,6 +738,8 @@ open(path: string, mode?: number): Promise&lt;File&gt;
     console.info("file fd: " + file.fd);
   }).catch((err: BusinessError) => {
     console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -771,10 +770,11 @@ open(path: string, mode?: number, callback: AsyncCallback&lt;File&gt;): void
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: fs.File) => {
     if (err) {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.info("open failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("file fd: " + file.fd);
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -853,6 +853,8 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
     fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -892,8 +894,8 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
       console.info("read file data succeed");
       let buf = buffer.from(arrayBuffer, 0, readLen);
       console.info(`The content of file: ${buf.toString()}`);
-      fs.closeSync(file);
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -1157,9 +1159,10 @@ write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; lengt
   let str: string = "hello, world";
   fs.write(file.fd, str).then((writeLen: number) => {
     console.info("write data to file succeed and size is:" + writeLen);
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("write data to file failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -1196,8 +1199,8 @@ write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; lengt
       console.info("write failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("write data to file succeed and size is:" + writeLen);
-      fs.closeSync(file);
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -1692,9 +1695,10 @@ fsync(fd: number): Promise&lt;void&gt;
   let file = fs.openSync(filePath);
   fs.fsync(file.fd).then(() => {
     console.info("sync data succeed");
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -1728,8 +1732,8 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
       console.info("fsync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fsync success");
-      fs.closeSync(file);
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -1793,9 +1797,10 @@ fdatasync(fd: number): Promise&lt;void&gt;
   let file = fs.openSync(filePath);
   fs.fdatasync(file.fd).then((err: BusinessError) => {
     console.info("sync data succeed");
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -1829,8 +1834,8 @@ fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
       console.info("fdatasync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fdatasync success");
-      fs.closeSync(file);
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -2238,7 +2243,8 @@ moveDirSync(src: string, dest: string, mode?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -2246,12 +2252,8 @@ moveDirSync(src: string, dest: string, mode?: number): void
     fs.moveDirSync(srcPath, destPath, 1);
     console.info("move directory succeed");
   } catch (err) {
-    if (err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("move directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
-      }
-    }
+    let err: BusinessError = error as BusinessError;
+    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
 
@@ -2490,9 +2492,10 @@ createRandomAccessFile(file: string|File, mode?: number): Promise&lt;RandomAcces
   fs.createRandomAccessFile(file).then((randomAccessFile: fs.RandomAccessFile) => {
     console.info("randomAccessFile fd: " + randomAccessFile.fd);
     randomAccessFile.close();
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -2528,8 +2531,8 @@ createRandomAccessFile(file: string|File, mode?: number, callback: AsyncCallback
     } else {
       console.info("randomAccessFilefile fd: " + randomAccessFile.fd);
       randomAccessFile.close();
-      fs.closeSync(file);
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -2707,9 +2710,11 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
   let file = fs.openSync(filePath);
   fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
     console.info("openStream succeed");
-    fs.closeSync(file);
+    stream.closeSync();
   }).catch((err: BusinessError) => {
     console.info("openStream failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -2744,8 +2749,9 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
       console.info("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fdopen stream success");
-      fs.closeSync(file);
+      stream.closeSync();
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -2780,6 +2786,7 @@ fdopenStreamSync(fd: number, mode: string): Stream
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
   let ss = fs.fdopenStreamSync(file.fd, "r+");
+  ss.closeSync();
   fs.closeSync(file);
   ```
 
@@ -3533,6 +3540,8 @@ lock(exclusive?: boolean): Promise\<void>
     console.log("lock file successful");
   }).catch((err: BusinessError) => {
     console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -3566,6 +3575,7 @@ lock(exclusive?: boolean, callback: AsyncCallback\<void>): void
     } else {
       console.log("lock file successful");
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -3593,6 +3603,7 @@ tryLock(exclusive?: boolean): void
   let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   console.log("lock file successful");
+  fs.closeSync(file);
   ```
 
 ### unlock
@@ -3614,6 +3625,7 @@ unlock(): void
   file.tryLock(true);
   file.unlock();
   console.log("unlock file successful");
+  fs.closeSync(file);
   ```
 
 
@@ -3716,10 +3728,11 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
   let arrayBuffer = new ArrayBuffer(bufferLength);
   randomaccessfile.write(arrayBuffer, option).then((bytesWritten: number) => {
     console.info("randomAccessFile bytesWritten: " + bytesWritten);
-    randomaccessfile.close();
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    randomaccessfile.close();
+    fs.closeSync(file);
   });
 
   ```
@@ -3766,10 +3779,10 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
     } else {
       if (bytesWritten) {
         console.info("write succeed and size is:" + bytesWritten);
-        randomAccessFile.close();
-        fs.closeSync(file);
       }
     }
+    randomAccessFile.close();
+    fs.closeSync(file);
   });
   ```
 

@@ -64,7 +64,7 @@ Examples are as follows:
 
 - **(max-height: 800)**: The query is valid when the height is less than or equal to 800.
 
-- **(height &lt;= 800)**: The query is valid when the height is less than or equal to 800.
+- **(height &lt;= 800)**: The query is valid when the height is less than or equal to 800. (The logical operators are recommended when the media features are uncertain.)
 
 - **screen and (device-type: tv) or (resolution < 2)**: The query is valid when the device type is TV or the device resolution is less than 2. This is a multi-condition query that contains multiple media features.
 
@@ -143,17 +143,17 @@ import mediaquery from '@ohos.mediaquery';
 import window from '@ohos.window';
 import common from '@ohos.app.ability.common';
 
-export let portraitFunc:mediaquery.MediaQueryResult|void|null = null;
 @Entry
 @Component
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
+  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
   // The query is valid when the device is in landscape mode.
-  listener:mediaquery = mediaquery.matchMediaSync('(orientation: landscape)');
+  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)');
 
   // The callback is triggered when the query is valid.
-  onPortrait(mediaQueryResult:mediaquery) {
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches as boolean) {// If the device is in landscape mode, the page layout is changed accordingly.
       this.color = '#FFD700';
       this.text = 'Landscape';
@@ -165,9 +165,8 @@ struct MediaQueryExample {
 
   aboutToAppear() {
     // Bind to the current application instance.
-    portraitFunc = this.onPortrait(this);
     // Register the callback.
-    this.listener.on('change', portraitFunc);
+    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) });
   }
 
   // Change the landscape/portrait mode of the device in the callback.
@@ -204,16 +203,15 @@ FA model:
 import mediaquery from '@ohos.mediaquery';
 import featureAbility from '@ohos.ability.featureAbility';
 
-let portraitFunc:mediaquery.MediaQueryResult|void|null = null;
-
 @Entry
 @Component
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
-  listener:mediaquery = mediaquery.matchMediaSync('(orientation: landscape)'); // The query is valid when the device is in landscape mode.
+  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
+  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // The query is valid when the device is in landscape mode.
 
-  onPortrait(mediaQueryResult:mediaquery) { // The callback is triggered when the query is valid.
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) { // The callback is triggered when the query is valid.
     if (mediaQueryResult.matches as boolean) {// If the device is in landscape mode, the page layout is changed accordingly.
       this.color = '#FFD700';
       this.text = 'Landscape';
@@ -224,8 +222,8 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    portraitFunc = this.onPortrait(this); // Bind to the current application instance.
-    this.listener.on('change', portraitFunc); // Register the callback.
+    // Bind to the current application instance.
+    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) }); // Register the callback.
   }
 
   build() {
@@ -233,12 +231,12 @@ struct MediaQueryExample {
       Text(this.text).fontSize(50).fontColor(this.color)
       Text('Landscape').fontSize(50).fontColor(this.color).backgroundColor(Color.Orange)
         .onClick(() => {
-          let context:featureAbility = featureAbility.getContext();
+          let context = featureAbility.getContext();
           context.setDisplayOrientation(0); // Invoke this API to manually change the landscape/portrait mode of the device.
         })
       Text('Portrait').fontSize(50).fontColor(this.color).backgroundColor(Color.Orange)
         .onClick(() => {
-          let context:featureAbility = featureAbility.getContext();
+          let context = featureAbility.getContext();
           context.setDisplayOrientation(1); // Invoke this API to manually change the landscape/portrait mode of the device.
         })
     }

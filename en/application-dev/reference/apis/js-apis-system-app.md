@@ -9,7 +9,7 @@
 
 
 ```ts
-import app from '@system.app'
+import app, { AppResponse } from '@system.app'
 ```
 
 ## App
@@ -33,9 +33,10 @@ This API is deprecated since API version 9. You are advised to use [bundleManage
 **Example**
 
 ```ts
-export default {
+import app, { AppResponse } from '@system.app'
+export default class Info {
   getInfo() {
-    let info = app.getInfo()
+    let info:AppResponse = app.getInfo()
     console.log(JSON.stringify(info))
   }
 }
@@ -54,7 +55,8 @@ You are advised to use [@ohos.ability.featureAbility](js-apis-ability-featureAbi
 **Example**
 
 ```ts
-export default {
+import app, { AppResponse } from '@system.app'
+export default class TerM {
   terminate() {
     app.terminate()
   }
@@ -78,9 +80,9 @@ Sets the maximum number of decoded images that can be cached in the memory to sp
 
 ```ts
 // app.ets
-import app from '@system.app'
+import app, { AppResponse } from '@system.app'
 
-export default {
+export default class OnC {
   onCreate() {
     app.setImageCacheCount(100) // Set the maximum number of decoded images that can be cached in the memory to 100.
     console.info('Application onCreate')
@@ -109,9 +111,9 @@ Sets the maximum size (in bytes) of the image data cached in the memory before d
 
 ```ts
 // app.ets
-import app from '@system.app'
+import app, { AppResponse } from '@system.app'
 
-export default {
+export default class OnC {
   onCreate() {
     app.setImageRawDataCacheSize(104857600)
     // Set the upper limit of the memory for caching image data before decoding to 100 MB. (100 x 1024 x 1024 B =104857600 B = 100 MB).
@@ -141,9 +143,9 @@ Sets the maximum size of the image file cache (in bytes) to speed up the loading
 
 ```ts
 // app.ets
-import app from '@system.app'
+import app, { AppResponse } from '@system.app'
 
-export default {
+export default class OnC {
   onCreate() {
     app.setImageFileCacheSize(209715200)
     // Set the upper limit of the image file cache to 200 MB. (200 x 1024 x 1024 B= 209715200 B = 200 MB).
@@ -157,7 +159,7 @@ export default {
 
 ### ScreenOnVisible<sup>(deprecated)</sup>
 
-static screenOnVisible(options?: ScreenOnVisibleOptions): void
+static screenOnVisible(options?: ScreenOnVisibleOptions):&nbsp;void
 
 Defines whether to keep the application visible when the screen is woken up.
 
@@ -188,13 +190,14 @@ You are advised to use [@ohos.window](js-apis-window.md) since API version 7.
 **Example**
 
 ```ts
-export default {
+import app, { AppResponse } from '@system.app'
+export default class Req {
   requestFullWindow() {
     app.requestFullWindow({
       duration: 200
     })
   }
-}
+} 
 ```
 
 ## AppResponse

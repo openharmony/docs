@@ -263,7 +263,7 @@ Cancels the listener for changes in the list of enabled accessibility extension 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type |  string | Yes| Listening type. The value is fixed at **'enabledAccessibilityExtensionListChange'**, indicating listening for changes in the list of enabled accessibility extension abilities.|
-| callback | Callback&lt;void&gt; | No| Callback for the event.|
+| callback | Callback&lt;void&gt; | No| Callback for the event. The value must be the same as the value of **callback** in **on('enabledAccessibilityExtensionListChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
@@ -456,7 +456,7 @@ Cancels the listener for attribute changes. This API uses an asynchronous callba
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;T&gt; | No| Callback for the event.|
+| callback | Callback&lt;T&gt; | No| Callback for the event. The value must be the same as the value of **callback** in **on()**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 

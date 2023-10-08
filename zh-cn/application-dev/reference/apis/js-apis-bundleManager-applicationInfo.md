@@ -36,7 +36,7 @@
 | bundleType                |[BundleType](js-apis-bundleManager.md#bundletype)             | 是   | 否   | 标识包的类型，取值为APP(普通应用)或者ATOMIC_SERVICE(原子化服务)。                                |
 | debug<sup>10+</sup>       | boolean                                | 是   | 否   | 标识应用是否处于调试模式，默认为false。        |
 
-## ModuleMetadata
+## ModuleMetadata<sup>10+</sup>
 
 描述模块的元数据信息。
 
@@ -44,5 +44,5 @@
 
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| moduleName| string         | 是   | 否   | 模块名。   |
-| metadata  | Array\<[Metadata](js-apis-bundleManager-metadata.md)>      | 是   | 否   | 该模块下的元数据信息列表。 |
+| moduleName<sup>10+</sup>| string         | 是   | 否   | 模块名。   |
+| metadata<sup>10+</sup>  | Array\<[Metadata](js-apis-bundleManager-metadata.md)>      | 是   | 否   | 该模块下的元数据信息列表。 |

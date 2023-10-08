@@ -19,6 +19,7 @@ Menu()
 Creates a fixed container for a menu. This API does not have any parameters.
 
 > **NOTE**
+>
 > Rules for calculating the width of menus and menu items:
 >
 > During the layout, the width of each menu item is expected to be the same. If a child component has its width set, the [size calculation rule](ts-universal-attributes-size.md#impact-of-constraintsize-on-widthheight) prevails.

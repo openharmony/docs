@@ -292,7 +292,7 @@ struct TextInputExample {
         .width(380)
         .height(60)
         .showError('Error')
-        .showUnit(():void=>this.itemEnd())
+        .showUnit(this.itemEnd)
 
       Text(`用户名：${this.Text}`)
         .width('95%')

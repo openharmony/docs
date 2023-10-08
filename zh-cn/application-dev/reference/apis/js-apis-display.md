@@ -103,6 +103,8 @@ getDefaultDisplaySync(): Display
 **示例：**
 
 ```ts
+import display from '@ohos.display';
+
 let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
@@ -137,9 +139,10 @@ getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import display from '@ohos.display';
 
 let displayClass: Array<display.Display> = [];
-display.getAllDisplays((err: BusinessError, data: AsyncCallback<Array<Display>>) => {
+display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
   displayClass = data;
   const errCode: number = err.code;
   if (errCode) {
@@ -176,10 +179,11 @@ getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import display from '@ohos.display';
 
 let displayClass: Array<display.Display> =[];
-let promise: Promise<Array<Display>> = display.getAllDisplays();
-promise.then((data: Promise<Array<Display>>) => {
+let promise: Promise<Array<display.Display>> = display.getAllDisplays();
+promise.then((data: Array<display.Display>) => {
   displayClass = data;
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
@@ -220,7 +224,7 @@ hasPrivateWindow(displayId: number): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import display from '@ohos.display';
 
 let displayClass: display.Display | null = null;
 try {
@@ -263,7 +267,9 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
-let callback: Callback<number> = (data: Callback<number>) => {
+import { Callback } from '@ohos.base';
+
+let callback: Callback<number> = (data: number) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
@@ -318,7 +324,9 @@ on(type: 'privateModeChange', callback: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-let callback: Callback<boolean> = (data: Callback<boolean>) => {
+import { Callback } from '@ohos.base';
+
+let callback: Callback<boolean> = (data: boolean) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
@@ -379,7 +387,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-display.getDefaultDisplay((err: BusinessError, data: AsyncCallback<Display>) => {
+display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
@@ -414,8 +422,8 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-let promise: Promise<Display> = display.getDefaultDisplay();
-promise.then((data: Promise<Display>) => {
+let promise: Promise<display.Display> = display.getDefaultDisplay();
+promise.then((data: display.Display) => {
   displayClass = data;
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
@@ -446,7 +454,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-display.getAllDisplay((err: BusinessError, data: AsyncCallback<Array<Display>>) => {
+display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
@@ -479,8 +487,8 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise: Promise<Array<Display>> = display.getAllDisplay();
-promise.then((data: Promise<Array<Display>>) => {
+let promise: Promise<Array<display.Display>> = display.getAllDisplay();
+promise.then((data: Array<display.Display>) => {
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
   console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
@@ -543,7 +551,7 @@ let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
 
-  displayClass.getCutoutInfo((err: BusinessError, data: AsyncCallback<CutoutInfo>) => {
+  displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
@@ -585,8 +593,8 @@ let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
 
-  let promise: Promise<CutoutInfo> = displayClass.getCutoutInfo();
-  promise.then((data: Promise<CutoutInfo>) => {
+  let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
+  promise.then((data: display.CutoutInfo) => {
     console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
