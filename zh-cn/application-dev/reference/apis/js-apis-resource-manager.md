@@ -296,6 +296,8 @@ import { BusinessError } from '@ohos.base';
 | bundleName | string | 是    | 否 | 应用的bundle名称 |
 | moduleName | string | 是    | 否 | 应用的module名称 |
 | id         | number | 是    | 否 | 资源的id值      |
+| params     | any[] | 是    | 否 | 其他资源参数（可选）      |
+| type       | number | 是    | 否 | 资源的类型（可选）      |
 
 
 ## ResourceManager
