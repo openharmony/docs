@@ -1757,7 +1757,7 @@
       - [Rawfile](reference/native-apis/rawfile.md)
       - [RDB](reference/native-apis/_r_d_b.md)
       - [MindSpore](reference/native-apis/_mind_spore.md)
-      - [NeuralNeworkRuntime](reference/native-apis/_neural_nework_runtime.md)
+      - [NeuralNetworkRuntime](reference/native-apis/_neural_nework_runtime.md)
       - [AVCapability](reference/native-apis/_a_v_capability.md)
       - [AVMuxer](reference/native-apis/_a_v_muxer.md)
       - [AudioDecoder](reference/native-apis/_audio_decoder.md)
