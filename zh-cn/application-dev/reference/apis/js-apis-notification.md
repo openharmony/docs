@@ -3418,10 +3418,10 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称        | 类型            | 可读 | 可写 | 说明                            |
-| ----------- | --------------- | --- | ---- | ------------------------------- |
-| bundleNames | Array\<string\> | 是  | 是  | 指定订阅哪些包名的APP发来的通知。 |
-| userId      | number          | 是  | 是  | 指定订阅哪个用户下发来的通知。    |
+| 名称                                                | 类型            | 可读 | 可写 | 说明                                                                                           |
+|---------------------------------------------------| --------------- | --- | ---- |----------------------------------------------------------------------------------------------|
+| bundleNames                                       | Array\<string\> | 是  | 是  | 指定订阅哪些包名的APP发来的通知。                                                                           |
+| userId | number          | 是  | 是  | 指定订阅哪个用户下发来的通知，可以通过[getCurrentOsAccount](js-apis-osAccount.md#getcurrentosaccount9)获取userId。 |
 
 
 ## NotificationTemplate<sup>8+</sup>
