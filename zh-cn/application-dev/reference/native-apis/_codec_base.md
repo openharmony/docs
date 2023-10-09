@@ -296,6 +296,12 @@ typedef void (*OH_AVCodecOnStreamChanged) (OH_AVCodec *codec, OH_AVFormat *forma
 | format | 新输出流描述信息 | 
 | userData | 用户特定数据 | 
 
+**format 携载字段：**
+| Key                    | 描述             |
+| ---------------------- | ---------------  |
+| OH_MD_KEY_WIDTH        | 视频输出宽度     |
+| OH_MD_KEY_HEIGHT       | 视频输出高度     |
+| OH_MD_KEY_PIXEL_FORMAT | 视频输出像素格式 |
 
 ### OH_AVCProfile
 
