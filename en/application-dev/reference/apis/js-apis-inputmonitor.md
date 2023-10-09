@@ -67,8 +67,10 @@ Enables listening for global mouse events.
   **Example**
 
 ```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+
 try {
-  inputMonitor.on('mouse', (mouseEvent) => {
+  inputMonitor.on('mouse', (mouseEvent: MouseEvent) => {
     console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
     return false;
   });
@@ -100,7 +102,7 @@ Disables listening for global touch events.
 
 ```js
 // Disable listening for a single callback.
-let callback = (touchEvent: touchEvent) => {
+let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
 };
@@ -115,7 +117,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-let callback = (touchEvent: touchEvent) => {
+let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
 };
@@ -263,6 +265,8 @@ Disables listening for global touchpad pinch events.
 
 ```js
 // Disable listening for a single callback.
+import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
   return false;
@@ -278,6 +282,8 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
+import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
   return false;
@@ -342,6 +348,8 @@ Disables listening for three-finger swipe events.
 
 ```js
 // Disable listening for a single callback.
+import { ThreeFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
   return false;
@@ -357,6 +365,8 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
+import { ThreeFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
   return false;
@@ -421,6 +431,8 @@ Disables listening for four-finger swipe events.
 
 ```js
 // Disable listening for a single callback.
+import { FourFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
   return false;
@@ -436,6 +448,8 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
+import { FourFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
   return false;

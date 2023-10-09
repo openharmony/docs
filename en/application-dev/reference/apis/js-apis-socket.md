@@ -1,4 +1,4 @@
-# @ohos.net.socket (Socket Connection) 
+# @ohos.net.socket (Socket Connection)
 
 The **socket** module implements data transfer over TCP, UDP, Web, and TLS socket connections.
 
@@ -545,7 +545,7 @@ class SocketInfo {
 let messageView = '';
 udp.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -585,7 +585,7 @@ let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -823,10 +823,12 @@ Defines a TCP socket connection. Before calling TCPSocket APIs, you need to call
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
-Binds the IP address and port number. The port number can be specified or randomly allocated by the system. This API uses an asynchronous callback to return the result.
+Binds an IP address and a port number. The port number can be specified or randomly allocated by the system. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> If the operation fails, the system randomly allocates a port number.
+> If the bind operation fails due to a port conflict, the system will randomly allocate a port number.
+> The TCP client can call **tcp.bind** to explicitly bind the IP address and port number and then call **tcp.connect** to connect to the server. Alternatively, the TCP client can directly call **tcp.connect** to automatically bind the IP address and port number to connect to the server.
+> If the IP address is **localhost** or **127.0.0.1**, only local loopback access is allowed; that is, the TCP client and the server must be deployed on the same device.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -869,10 +871,12 @@ tcp.bind(bindAddr, (err: BusinessError) => {
 
 bind(address: NetAddress): Promise\<void\>
 
-Binds the IP address and port number. The port number can be specified or randomly allocated by the system. This API uses a promise to return the result.
+Binds an IP address and a port number. The port number can be specified or randomly allocated by the system. This API uses a promise to return the result.
 
 > **NOTE**
-> If the operation fails, the system randomly allocates a port number.
+> If the bind operation fails due to a port conflict, the system will randomly allocate a port number.
+> The TCP client can call **tcp.bind** to explicitly bind the IP address and port number, and then call **tcp.connect** to connect to the server. Alternatively, the TCP client can directly call **tcp.connect** to automatically bind the IP address and port number to connect to the server.
+> If the IP address is **localhost** or **127.0.0.1**, only local loopback access is allowed; that is, the TCP client and the server are deployed on the same device.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -921,7 +925,7 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 Sets up a connection to the specified IP address and port number. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> This API can be called only after **bind** is successfully called.
+> This API allows you to connect to the TCP server without first executing **tcp.bind**.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -969,6 +973,9 @@ tcp.connect(tcpconnectoptions, (err: BusinessError) => {
 connect(options: TCPConnectOptions): Promise\<void\>
 
 Sets up a connection to the specified IP address and port number. This API uses a promise to return the result.
+
+> **NOTE**
+> This API allows you to connect to the TCP server without first executing **tcp.bind**.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1641,7 +1648,7 @@ class SocketInfo {
 let messageView = '';
 tcp.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -1681,7 +1688,7 @@ class SocketInfo {
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -1892,7 +1899,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts TCP socket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > The server uses this API to perform the **bind**, **listen**, and **accept** operations. If the **bind** operation fails, the system randomly allocates a port number.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1944,7 +1951,7 @@ listen(address: NetAddress): Promise\<void\>
 
 Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts TCP socket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > The server uses this API to perform the **bind**, **listen**, and **accept** operations. If the **bind** operation fails, the system randomly allocates a port number.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2696,7 +2703,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('message', (value: SocketInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
-      let messages: number = value.message.i
+      let messages: number = value.message[i]
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -2743,7 +2750,7 @@ class SocketInfo {
 let callback = (value: SocketInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3274,7 +3281,7 @@ class SocketInfo {
 let messageView = '';
 tls.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3314,7 +3321,7 @@ class SocketInfo {
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3794,7 +3801,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate().then((data: socket.X509CertRawData) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -3864,7 +3871,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -3936,7 +3943,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getProtocol().then((data: string) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4010,7 +4017,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCipherSuite().then((data: Array<string>) => {
   console.log('getCipherSuite success:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4080,7 +4087,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getSignatureAlgorithms().then((data: Array<string>) => {
   console.log("getSignatureAlgorithms success" + data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4165,7 +4172,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.send("xxxx").then(() => {
   console.log("send success");
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4241,7 +4248,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.close().then(() => {
   console.log("close success");
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4841,7 +4848,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 tlsServer.getCertificate().then((data: socket.x509certrawdata9) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4964,7 +4971,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 tlsServer.getProtocol().then((data: string) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -5596,7 +5603,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteAddress().then((data: socket.NetAddress) => {
     console.log('getRemoteAddress success:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error(err);
+    console.error("failed" + err);
   });
 });
 ```
@@ -5715,7 +5722,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate().then((data: socket.X509CertRawData) => {
     console.log('getRemoteCertificate success:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error(err);
+    console.error("failed" + err);
   });
 });
 ```
@@ -5773,7 +5780,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
-  client.getCipherSuite((err: string, data: Array<string>) => {
+  client.getCipherSuite((err: BusinessError, data: Array<string>) => {
     if (err) {
       console.log("getCipherSuite callback error = " + err);
     } else {
@@ -5838,7 +5845,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getCipherSuite().then((data: Array<string>) => {
     console.log('getCipherSuite success:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error(err);
+    console.error("failed" + err);
   });
 });
 ```
@@ -5957,7 +5964,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getSignatureAlgorithms().then((data: Array<string>) => {
     console.log("getSignatureAlgorithms success" + data);
   }).catch((err: BusinessError) => {
-    console.error(err);
+    console.error("failed" + err);
   });
 });
 ```
@@ -6020,7 +6027,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('message', (value: SocketInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
-      let messages: number = value.message.i
+      let messages: number = value.message[i]
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -6090,7 +6097,7 @@ class SocketInfo {
 let callback = (value: SocketInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }

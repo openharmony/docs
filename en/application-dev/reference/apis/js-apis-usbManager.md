@@ -29,11 +29,10 @@ Obtains the list of USB devices connected to the host. If no device is connected
 **Example**
 
 ```ts
-/*
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 console.log(`devicesList = ${devicesList}`);
-// devicesList is a list of USB devices.
-// A simple example of devicesList is provided as follows:
+/*
+The following is a simple example of the data structure for devicesList:
 [
   {
     name: "1-1",
@@ -118,7 +117,7 @@ For details about the error codes, see [USB Error Codes](../errorcodes/errorcode
 **Example**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -279,7 +278,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -318,7 +317,7 @@ Before you do this, ensure that you have claimed the interface by calling [usb.c
 **Example**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -358,7 +357,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -397,7 +396,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -436,7 +435,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -471,7 +470,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -526,7 +525,7 @@ let param: PARA = {
   data: 0
 };
 
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -554,7 +553,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
 | endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB port for data transfer.|
-| buffer | Uint8Array | Yes| Buffer for writing or reading data.|
+| buffer | Uint8Array | Yes| Buffer used to write or read data.|
 | timeout | number | No| Timeout duration in ms. This parameter is optional. The default value is **0**, indicating no timeout.|
 
 **Return value**
@@ -569,7 +568,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 // Call usb.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
 // Pass the obtained USB device as a parameter to usb.connectDevice. Then, call usb.connectDevice to connect the USB device.
 // Call usb.claimInterface to claim the USB interface. After that, call usb.bulkTransfer to start bulk transfer.
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -612,7 +611,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }

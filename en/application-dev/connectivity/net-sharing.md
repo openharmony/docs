@@ -59,14 +59,13 @@ For the complete list of APIs and example code, see [Network Sharing](../referen
 3. Call **startSharing** to start network sharing of the specified type.
 4. Return the callback for successfully starting network sharing.
 
-```js
+```ts
 // Import the sharing namespace from @ohos.net.sharing.
 import sharing from '@ohos.net.sharing';
 import { BusinessError } from '@ohos.base';
 
 // Subscribe to network sharing state changes.
-sharing.on('sharingStateChange', (error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+sharing.on('sharingStateChange', (data: boolean) => {
   console.log(JSON.stringify(data));
 });
 
@@ -85,13 +84,13 @@ sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessErro
 3. Call **stopSharing** to stop network sharing of the specified type.
 4. Return the callback for successfully stopping network sharing.
 
-```js
+```ts
 // Import the sharing namespace from @ohos.net.sharing.
 import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
 
 // Subscribe to network sharing state changes.
-sharing.on('sharingStateChange', (error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+sharing.on('sharingStateChange', (data: boolean) => {
   console.log(JSON.stringify(data));
 });
 
@@ -110,9 +109,10 @@ sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessError
 3. Call **getStatsTotalBytes** to obtain the data traffic generated during data sharing.
 4. Call **stopSharing** to stop network sharing of the specified type and clear the data volume of network sharing.
 
-```js
+```ts
 // Import the sharing namespace from @ohos.net.sharing.
 import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
 
 // Call startSharing to start network sharing of the specified type.
 sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessError) => {

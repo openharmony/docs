@@ -8,7 +8,7 @@ The **policy** module provides APIs for managing network policies, through which
 
 ## Modules to Import
 
-```js
+```ts
 import policy from '@ohos.net.policy';
 ```
 
@@ -44,7 +44,7 @@ Specifies whether background applications are allowed to access the network. Thi
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.setBackgroundAllowed(true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -88,7 +88,7 @@ Specifies whether background applications are allowed to access the network. Thi
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.setBackgroundAllowed(true).then(() => {
   console.log("setBackgroundAllowed success");
@@ -128,7 +128,7 @@ Checks whether the current application is allowed to access the network when run
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.isBackgroundAllowed((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -167,7 +167,7 @@ Checks whether the current application is allowed to access the network when run
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .isBackgroundAllowed()
@@ -194,9 +194,9 @@ Sets the metered network access policy for the application specified by a given 
 **Parameters**
 
 | Name  | Type                           | Mandatory| Description                                          |
-| -------- | ------------------------------- | ---- | ---------------------------------------------- | ------------ |
+| -------- | ------------------------------- | ---- | ---------------------------------------------- |
 | uid      | number                          | Yes  | Unique ID of the application.                                |
-| policy   | [NetUidPolicy](#netuidpolicy10) | Yes  | Network access policy for the application.                                | netuidpolicy |
+| policy   | [NetUidPolicy](#netuidpolicy10) | Yes  | Network access policy for the application.                                |
 | callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -212,7 +212,7 @@ Sets the metered network access policy for the application specified by a given 
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE, (error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -257,7 +257,7 @@ Sets the metered network access policy for the application specified by a given 
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE)
@@ -301,7 +301,7 @@ Obtains the network access policy for the application specified by a given UID. 
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.getPolicyByUid(11111, (error: BusinessError, data: object) => {
   console.log(JSON.stringify(error));
@@ -336,21 +336,21 @@ Obtains the network access policy for the application specified by a given UID. 
 **Error codes**
 
 | ID| Error Message                                    |
-| --------- | -------------------------------------------- | --- |
+| --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
 | 2100002   | Operation failed. Cannot connect to service. |
-| 2100003   | System internal error.                       |     |
+| 2100003   | System internal error.                       |
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .getPolicyByUid(11111)
-  .then((data: object) => {
+  .then((data: policy.NetUidPolicy) => {
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
@@ -390,7 +390,7 @@ Obtains all UIDs that match the specified network policy. This API uses an async
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.getUidsByPolicy(11111, (error: BusinessError, data: object) => {
   console.log(JSON.stringify(error));
@@ -435,7 +435,7 @@ Obtains all UIDs that match the specified network policy. This API uses a promis
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .getUidsByPolicy(11111)
@@ -478,9 +478,9 @@ Obtains the network quota policies. This API uses an asynchronous callback to re
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
-policy.getNetQuotaPolicies((error: BusinessError, data: NetQuotaPolicy[]) => {
+policy.getNetQuotaPolicies((error: BusinessError, data: policy.NetQuotaPolicy[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -516,11 +516,11 @@ Obtains the network quota policies. This API uses a promise to return the result
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .getNetQuotaPolicies()
-  .then((data: NetQuotaPolicy[]) => {
+  .then((data: policy.NetQuotaPolicy[]) => {
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
@@ -560,17 +560,17 @@ Sets network quota policies. This API uses an asynchronous callback to return th
 
 **Example**
 
-```js
+```ts
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
-let netQuotaPolicyList: Array = [];
+let netQuotaPolicyList: Array<policy.NetQuotaPolicy>|null = null;
 class Netquotapolicy {
   networkMatchRule: NetworkMatchRule = new NetworkMatchRule();
   quotaPolicy: QuotaPolicy = new QuotaPolicy();
 }
 class NetworkMatchRule {
-  netType: enum = connection.NetBearType.BEARER_CELLULAR;
+  netType: policy.NetBearType = connection.NetBearType.BEARER_CELLULAR;
   identity: string = '';
   simId: string = '1';
 }
@@ -628,17 +628,17 @@ Sets network quota policies. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
-let netQuotaPolicyList: Array = [];
+let netQuotaPolicyList: Array<policy.NetQuotaPolicy>|null = null;
 class Netquotapolicy {
   networkMatchRule: NetworkMatchRule = new NetworkMatchRule();
   quotaPolicy: QuotaPolicy = new QuotaPolicy();
 }
 class NetworkMatchRule {
-  netType: enum = connection.NetBearType.BEARER_CELLULAR;
+  netType: policy.NetBearType = connection.NetBearType.BEARER_CELLULAR;
   identity: string = '';
   simId: string = '1';
 }
@@ -697,7 +697,7 @@ Checks whether the application specified by a given UID is allowed to access a m
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.isUidNetAllowed(11111, true, (error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -743,7 +743,7 @@ Checks whether the application specified by a given UID is allowed to access a m
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .isUidNetAllowed(11111, true)
@@ -788,7 +788,7 @@ Checks whether an application is allowed to access the specified network. This A
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.isUidNetAllowed(11111, 'wlan0', (error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -834,7 +834,7 @@ Checks whether an application is allowed to access the specified network. This A
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .isUidNetAllowed(11111, 'wlan0')
@@ -879,7 +879,7 @@ Adds applications specified by given UIDs to the device idle allowlist. This API
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.setDeviceIdleTrustlist([11111, 22222], true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -924,7 +924,7 @@ Adds applications specified by given UIDs to the device idle allowlist. This API
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .setDeviceIdleTrustlist([11111, 22222], true)
@@ -967,9 +967,9 @@ Obtains the UIDs of applications that are on the device idle allowlist. This API
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
-policy.getDeviceIdleTrustlist((error: BusinessError, data: number) => {
+policy.getDeviceIdleTrustlist((error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -1005,11 +1005,11 @@ Obtains the UIDs of applications that are on the device idle allowlist. This API
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .getDeviceIdleTrustlist()
-  .then((data: number) => {
+  .then((data: number[]) => {
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
@@ -1049,7 +1049,7 @@ Obtains the background network policy for the application specified by a given U
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.getBackgroundPolicyByUid(11111, (error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
@@ -1094,7 +1094,7 @@ Obtains the background network policies configured for the specified application
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .getBackgroundPolicyByUid(11111)
@@ -1138,7 +1138,7 @@ Restores all the policies (cellular network, background network, firewall, and a
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.resetPolicies('1', (error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -1182,7 +1182,7 @@ Restores all the policies (cellular network, background network, firewall, and a
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .resetPolicies('1')
@@ -1228,7 +1228,7 @@ Updates a reminder policy. This API uses an asynchronous callback to return the 
 
 **Example**
 
-```js
+```ts
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 policy.updateRemindPolicy(
@@ -1280,7 +1280,7 @@ Updates a reminder policy. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 policy
@@ -1330,7 +1330,7 @@ Sets whether to add the application specified by a given UID to the power-saving
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.setPowerSaveTrustlist([11111, 22222], true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -1375,7 +1375,7 @@ Sets whether to add the application specified by a given UID to the power-saving
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .setPowerSaveTrustlist([11111, 22222], true)
@@ -1418,9 +1418,9 @@ Obtains the UID array of applications that are on the power-saving allowlist. Th
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
-policy.getPowerSaveTrustlist((error: BusinessError, data: number) => {
+policy.getPowerSaveTrustlist((error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -1456,11 +1456,11 @@ Obtains the UID array of applications that are on the device idle allowlist. Thi
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .getPowerSaveTrustlist()
-  .then((data: number) => {
+  .then((data: number[]) => {
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
@@ -1504,8 +1504,13 @@ Subscribes to policy changes. This API uses an asynchronous callback to return t
 
 **Example**
 
-```js
-policy.on('netUidPolicyChange', (data: number) => {
+```ts
+import policy from '@ohos.net.policy';
+interface Data {
+  uid: number,
+  policy: policy.NetUidPolicy
+}
+policy.on('netUidPolicyChange', (data: Data) => {
   console.log('on netUidPolicyChange: ' + JSON.stringify(data));
 });
 ```
@@ -1542,7 +1547,7 @@ Unsubscribes from policy changes. This API uses an asynchronous callback to retu
 
 **Example**
 
-```js
+```ts
 let callback = (data: object) => {
   console.log('on netUidPolicyChange, data:' + JSON.stringify(data));
 };
@@ -1582,7 +1587,7 @@ Subscribes to rule changes. This API uses an asynchronous callback to return the
 
 **Example**
 
-```js
+```ts
 policy.on('netUidRuleChange', (data: object) => {
   console.log('on netUidRuleChange: ' + JSON.stringify(data));
 });
@@ -1620,7 +1625,7 @@ Unsubscribes from rule changes. This API uses an asynchronous callback to return
 
 **Example**
 
-```js
+```ts
 let callback = (data: object) => {
   console.log('on netUidRuleChange, data:' + JSON.stringify(data));
 };
@@ -1660,7 +1665,7 @@ Subscribes to metered **iface** changes. This API uses an asynchronous callback 
 
 **Example**
 
-```js
+```ts
 policy.on('netMeteredIfacesChange', (data: string[]) => {
   console.log('on netMeteredIfacesChange: ' + JSON.stringify(data));
 });
@@ -1698,7 +1703,7 @@ Unsubscribes from metered **iface** changes. This API uses an asynchronous callb
 
 **Example**
 
-```js
+```ts
 let callback = (data: string[]) => {
   console.log('on netMeteredIfacesChange, data:' + JSON.stringify(data));
 };
@@ -1738,8 +1743,8 @@ Subscribes to network quota policy changes. This API uses an asynchronous callba
 
 **Example**
 
-```js
-policy.on('netQuotaPolicyChange', (data: NetQuotaPolicy[]) => {
+```ts
+policy.on('netQuotaPolicyChange', (data: policy.NetQuotaPolicy[]) => {
   console.log('on netQuotaPolicyChange: ' + JSON.stringify(data));
 });
 ```
@@ -1776,12 +1781,13 @@ Unsubscribes from network quota policy changes. This API uses an asynchronous ca
 
 **Example**
 
-```js
-let callback = (data: boolean) => {
+```ts
+policy.on('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
   console.log('on netQuotaPolicyChange, data:' + JSON.stringify(data));
-};
-policy.on('netQuotaPolicyChange', callback);
-policy.off('netQuotaPolicyChange', callback);
+});
+policy.off('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
+  console.log('on netQuotaPolicyChange, data:' + JSON.stringify(data));
+});
 ```
 
 ### on('netBackgroundPolicyChange')<sup>10+</sup>
@@ -1816,7 +1822,7 @@ Subscribes to background network policy changes. This API uses an asynchronous c
 
 **Example**
 
-```js
+```ts
 policy.on('netBackgroundPolicyChange', (data: boolean) => {
   console.log('on netBackgroundPolicyChange: ' + JSON.stringify(data));
 });
@@ -1854,7 +1860,7 @@ Unsubscribes from background network policy changes. This API uses an asynchrono
 
 **Example**
 
-```js
+```ts
 let callback = (data: boolean) => {
   console.log('on netBackgroundPolicyChange, data:' + JSON.stringify(data));
 };

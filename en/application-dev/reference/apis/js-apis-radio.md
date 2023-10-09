@@ -156,7 +156,7 @@ radio.getNetworkState((err: BusinessError, data: radio.NetworkState) => {
 
 getNetworkState\(slotId: number, callback: AsyncCallback\<NetworkState\>\): void
 
-Obtains the network status. This API uses an asynchronous callback to return the result.
+Obtains the network status of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -198,7 +198,7 @@ radio.getNetworkState(slotId, (err: BusinessError, data: radio.NetworkState) => 
 
 getNetworkState\(slotId?: number\): Promise\<NetworkState\>
 
-Obtains the network status. This API uses a promise to return the result.
+Obtains the network status of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -412,6 +412,35 @@ radio.getISOCountryCodeForNetwork(slotId).then((data: string) => {
 });
 ```
 
+## radio.getISOCountryCodeForNetworkSync<sup>10+</sup>
+
+getISOCountryCodeForNetworkSync\(slotId: number\): string
+
+Obtains the ISO country code of the network with which the SIM card in the specified slot is registered.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type             | Description                                                        |
+| ----------------- | ------------------------------------------------------------ |
+| string | ISO country code of the network, for example, **CN** (China).|
+
+**Example**
+
+```js
+let slotId = 0;
+let countryISO = radio.getISOCountryCodeForNetworkSync(slotId);
+console.log(`the country ISO is:` + countryISO);
+```
+
+
 
 ## radio.getPrimarySlotId<sup>7+</sup>
 
@@ -478,7 +507,7 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 ```ts
 import { BusinessError } from '@ohos.base';
 
-radio.getPrimarySlotId().then((data: string) => {
+radio.getPrimarySlotId().then((data: number) => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
@@ -570,11 +599,40 @@ radio.getSignalInformation(slotId).then((data: Array<radio.SignalInformation>) =
 });
 ```
 
+## radio.getSignalInformationSync<sup>10+</sup>
+
+getSignalInformationSync\(slotId: number\): Array\<SignalInformation\>
+
+Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Array\<[SignalInformation](#signalinformation)\>| Array of [SignalInformation](#signalinformation) objects.|
+
+
+**Example**
+
+```js
+let slotId = 0;
+let signalInfo = radio.getSignalInformationSync(slotId);
+console.log(`signal information size is:` + signalInfo.length);
+```
+
 ## radio.isNrSupported<sup>(deprecated)</sup>
 
 isNrSupported\(\): boolean
 
-Checks whether the current device supports 5G \(NR\).
+Checks whether the SIM card supports 5G \(NR\).
 
 > **NOTE**
 >
@@ -599,7 +657,7 @@ console.log("Result: "+ result);
 
 isNrSupported\(slotId: number\): boolean
 
-Checks whether the current device supports 5G \(NR\).
+Checks whether the SIM card in the specified slot supports 5G \(NR\).
 
 > **NOTE**
 >
@@ -892,6 +950,35 @@ radio.getOperatorName(slotId).then((data: string) => {
 }).catch((err: BusinessError) => {
     console.log(`getOperatorName failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## radio.getOperatorNameSync<sup>10+</sup>
+
+getOperatorNameSync\(slotId: number\): string
+
+Obtains the carrier name of the SIM card in the specified slot.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type             | Description                                                        |
+| ----------------- | ------------------------------------------------------------ |
+| string | Carrier name, for example, China Mobile.               |
+
+
+**Example**
+
+```js
+let slotId = 0;
+let operatorName = radio.getOperatorNameSync(slotId);
+console.log(`operator name is:` + operatorName);
 ```
 
 ## radio.setPrimarySlotId<sup>8+</sup>
@@ -2612,7 +2699,7 @@ radio.getImsRegInfo(slotId, mode).then((data: radio.ImsRegInfo) => {
 
 on\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback\<ImsRegInfo\>\): void
 
-Enables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
+Enables listening for **imsRegStateChange** events of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2659,7 +2746,7 @@ radio.on('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
 
 off\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback\<ImsRegInfo\>\): void
 
-Disables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
+Disables listening for **imsRegStateChange** events of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2905,7 +2992,7 @@ radio.setNROptionMode(slotId, mode).then(() => {
 
 getNROptionMode\(slotId: number, callback: AsyncCallback\<NROptionMode\>\): void
 
-Obtains the NR option mode. This API uses an asynchronous callback to return the result.
+Obtains the NR option mode of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3270,7 +3357,7 @@ Defines the network status.
 
 ## RegState
 
-Defines the network status.
+Defines the network registration status of the device.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -3622,7 +3709,7 @@ Enumerates IMS service types.
 
 ## NetworkCapabilityType<sup>10+</sup>
 
-Network capability type.
+Enumerates network capability types.
 
 **System API**: This is a system API.
 
