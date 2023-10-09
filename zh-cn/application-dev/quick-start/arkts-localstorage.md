@@ -280,7 +280,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 // 调用link9+接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
-let linkToPropA: SubscribedAbstractProperty = storage.link('PropA');
+let linkToPropA: SubscribedAbstractProperty<object> = storage.link('PropA');
 
 @Entry(storage)
 @Component
