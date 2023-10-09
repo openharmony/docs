@@ -123,7 +123,7 @@ Obtains the ability running information. This API uses an asynchronous callback 
 import abilityManager from '@ohos.application.abilityManager';
 
 abilityManager.getAbilityRunningInfos((err,data) => { 
-    console.log('getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}');
+    console.log(`getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -150,8 +150,8 @@ import abilityManager from '@ohos.application.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 abilityManager.getAbilityRunningInfos().then((data) => {
-    console.log('getAbilityRunningInfos  data: ${JSON.stringify(data)}');
+    console.log(`getAbilityRunningInfos  data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-  console.error('getAbilityRunningInfos err: ${JSON.stringify(err)}');
+  console.error(`getAbilityRunningInfos err: ${JSON.stringify(err)}`);
 });
 ```

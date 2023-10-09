@@ -280,7 +280,7 @@ Called when the configuration of this ServiceExtensionAbility is updated.
 
   class ServiceExt extends ServiceExtension {
       onConfigurationUpdate(config: Configuration) {
-          console.log('onConfigurationUpdate, config: ${JSON.stringify(config)}');
+          console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
       }
   }
   ```
@@ -308,7 +308,7 @@ Dumps the client information.
 
   class ServiceExt extends ServiceExtension {
       onDump(params: Array<string>) {
-          console.log('dump, params: ${JSON.stringify(params)}');
+          console.log(`dump, params: ${JSON.stringify(params)}`);
           return ['params'];
       }
   }
