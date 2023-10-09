@@ -11,11 +11,20 @@
 
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 ("video/avc")，硬解则支持 H264 ("video/avc") 和 H265 ("video/hevc")。
 
-## 开发步骤
+## 开发案例
 
 详细的API说明请参考[API文档](../reference/native-apis/_video_decoder.md)。
 如下为视频解码调用关系图：
 ![Invoking relationship of video decode stream](figures/video-decode.png)
+
+### 在 CMake 脚本中链接动态库
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+target_link_libraries(sample PUBLIC libnative_media_core.so)
+target_link_libraries(sample PUBLIC libnative_media_vdec.so)
+```
+
+### 开发步骤
 
 1. 创建编解码器实例对象。
    
