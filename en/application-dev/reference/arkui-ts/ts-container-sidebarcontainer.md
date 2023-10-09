@@ -32,7 +32,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | Name| Description|
 | -------- | -------- |
-| Embed | The sidebar is embedded in the component and displayed side by side with the content area. This value takes effect when the screen size is greater than 600 vp. When the screen size is smaller than 600 vp, the sidebar is hidden by default. The user can bring out the sidebar in Overlay mode by clicking the control button.|
+| Embed |  The sidebar is embedded in the component and displayed side by side with the content area.<br>When the component size is less than the sum of **minContentWidth** and **minSideBarWidth** and **showSideBar** is not set, the sidebar is automatically hidden. The user can bring out the sidebar in Overlay mode by clicking the control button.|
 | Overlay | The sidebar is displayed overlaid on the content area.|
 | AUTO | The sidebar is displayed in Embed mode when the component size is greater than or equal to the sum of **minSideBarWidth** and **minContentWidth**<br>and in Overlay mode otherwise.<br>If **minSideBarWidth** or **minContentWidth** is not set, the default value will be used for calculation. If the calculation result is less than 600 vp, 600 vp will be used as the breakpoint value for mode switching.|
 
@@ -74,7 +74,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name       | Type     | Mandatory| Description                                    |
 | ----------- | ------------- | ---- | ---------------------------------------- |
-| strokeWidth | [Length](ts-types.md#length)        | Yes  | Stroke width of the divider.<br>Default value: **1vp**<br>Unit: vp|
+| strokeWidth | [Length](ts-types.md#length)        | Yes  | Stroke width of the divider.|
 | color       | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the divider.<br>Default value: **#000000, 3%**  |
 | startMargin | [Length](ts-types.md#length)        | No  | Distance between the divider and the top of the sidebar.<br>Default value: **0**|
 | endMargin   | [Length](ts-types.md#length)        | No  | Distance between the divider and the bottom of the sidebar.<br>Default value: **0**|
