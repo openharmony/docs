@@ -1138,7 +1138,7 @@
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
       - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)](reference/apis/js-apis-WallpaperExtensionAbility.md)
       - [@ohos.web.webview (Webview)](reference/apis/js-apis-webview.md)
-      - [console (控制台)](reference/apis/js-apis-logs.md)
+      - [Console (控制台)](reference/apis/js-apis-logs.md)
       - [Timer (定时器)](reference/apis/js-apis-timer.md)
       - [syscap (系统能力)](reference/apis/js-apis-syscap.md)
       - application
