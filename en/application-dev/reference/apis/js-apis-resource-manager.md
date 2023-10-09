@@ -877,6 +877,141 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### getStringArrayValueSync<sup>10+</sup>
+
+getStringArrayValueSync(resId: number): Array&lt;string&gt;
+
+Obtains the string array corresponding to the specified resource ID. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Array&lt;string&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.getStringArrayValueSync($r('app.strarray.test').id);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringArrayValueSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getStringArrayValueSync<sup>10+</sup>
+
+getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
+
+Obtains the string array corresponding to the specified resource object. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Array&lt;string&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.strarray.test').id
+  };
+  try {
+    this.context.resourceManager.getStringArrayValueSync(resource);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringArrayValueSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getStringArrayByNameSync<sup>10+</sup>
+
+getStringArrayByNameSync(resName: string): Array&lt;string&gt;
+
+Obtains the string array corresponding to the specified resource name. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resName | string | Yes   | Resource name.|
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Array&lt;string&gt; | String array corresponding to the specified resource name.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                       |
+| 9001004  | If the resource not found by resName.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getStringArrayByNameSync("test");
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringArrayByNameSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
 ### getStringArrayValue<sup>9+</sup>
 
 getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
@@ -1163,6 +1298,146 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`promise getStringArrayByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValueSync<sup>10+</sup>
+
+getPluralStringValueSync(resId: number, num: number): string
+
+Obtains the singular-plural string corresponding to the specified resource ID based on the specified number. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+| num   | number | Yes   | Number.  |
+
+**Return value**
+
+| Type                   | Description         |
+| -------- | ----------- |
+| string   | Singular-plural string corresponding to the specified resource ID.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValueSync<sup>10+</sup>
+
+getPluralStringValueSync(resource: Resource, num: number): string
+
+Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+| num      | number                 | Yes   | Number.  |
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| string | Singular-plural string corresponding to the specified resource object.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.test').id
+  };
+  try {
+    this.context.resourceManager.getPluralStringValueSync(resource, 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringByNameSync<sup>10+</sup>
+
+getPluralStringByNameSync(resName: string, num: number): string
+
+Obtains the singular-plural string corresponding to the specified resource name based on the specified number. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resName | string | Yes   | Resource name.|
+| num      | number                 | Yes   | Number.  |
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| string | Singular-plural string corresponding to the specified resource name.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                       |
+| 9001004  | If the resource not found by resName.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.getPluralStringByNameSync("test", 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1458,6 +1733,167 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`promise getPluralStringByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getMediaContentSync<sup>10+</sup>
+
+getMediaContentSync(resId: number, density?: number): Uint8Array
+
+Obtains the media file content (with the default or specified screen density) corresponding to the specified resource ID. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+
+**Return value**
+
+| Type                   | Description         |
+| -------- | ----------- |
+| Uint8Array   | Media file content corresponding to the specified resource ID.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.getMediaContentSync($r('app.media.test').id); // Default screen density
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentSync failed, error code: ${code}, message: ${message}.`);
+  }
+
+  try {
+    this.context.resourceManager.getMediaContentSync($r('app.media.test').id, 120); // Specified screen density
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getMediaContentSync<sup>10+</sup>
+
+getMediaContentSync(resource: Resource, density?: number): Uint8Array
+
+Obtains the media file content (with the default or specified screen density) corresponding to the specified resource object. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Uint8Array | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContentSync(resource); // Default screen density
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentSync failed, error code: ${code}, message: ${message}.`);
+  }
+
+  try {
+    this.context.resourceManager.getMediaContentSync(resource, 120); // Specified screen density
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getMediaByNameSync<sup>10+</sup>
+
+getMediaByNameSync(resName: string, density?: number): Uint8Array
+
+Obtains the media file content (with the default or specified screen density) corresponding to the specified resource name. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resName | string | Yes   | Resource name.|
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Uint8Array | Media file content corresponding to the resource name.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                       |
+| 9001004  | If the resource not found by resName.         |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.getMediaByNameSync("test"); // Default screen density
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaByNameSync failed, error code: ${code}, message: ${message}.`);
+  }
+
+  try {
+    this.context.resourceManager.getMediaByNameSync("test", 120); // Specified screen density
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2030,6 +2466,167 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`promise getMediaByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getMediaContentBase64Sync<sup>10+</sup>
+
+getMediaContentBase64Sync(resId: number, density?: number): string
+
+Obtains the Base64 code of the image (with the default or specified screen density) corresponding to the specified resource ID.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+
+**Return value**
+
+| Type                   | Description         |
+| -------- | ----------- |
+| string   | Base64 code of the image corresponding to the specified resource ID.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id); // Default screen density
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentBase64Sync failed, error code: ${code}, message: ${message}.`);
+  }
+
+  try {
+    this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id, 120); // Specified screen density
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentBase64Sync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getMediaContentBase64Sync<sup>10+</sup>
+
+getMediaContentBase64Sync(resource: Resource, density?: number): string
+
+Obtains the Base64 code of the image (with the default or specified screen density) corresponding to the specified resource object.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| string | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContentBase64Sync(resource); // Default screen density
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentBase64Sync failed, error code: ${code}, message: ${message}.`);
+  }
+
+  try {
+    this.context.resourceManager.getMediaContentBase64Sync(resource, 120); // Specified screen density
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentBase64Sync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getMediaBase64ByNameSync<sup>10+</sup>
+
+getMediaBase64ByNameSync(resName: string, density?: number): string
+
+Obtains the Base64 code of the image (with the default or specified screen density) corresponding to the specified resource name.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resName | string | Yes   | Resource name.|
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| string | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                       |
+| 9001004  | If the resource not found by resName.         |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.getMediaBase64ByNameSync("test"); // Default screen density
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaBase64ByNameSync failed, error code: ${code}, message: ${message}.`);
+  }
+
+  try {
+    this.context.resourceManager.getMediaBase64ByNameSync("test", 120); // Specified screen density
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaBase64ByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3202,7 +3799,7 @@ Obtains the color value corresponding to the specified resource ID. This API use
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -3295,7 +3892,7 @@ Obtains the color value corresponding to the specified resource object. This API
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -3400,7 +3997,7 @@ Obtains the color value corresponding to the specified resource name. This API u
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | Yes   | Resource name.           |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -3475,6 +4072,47 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`promise getColorByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getRawFileContentSync<sup>10+</sup>
+
+getRawFileContentSync(path: string): Uint8Array
+
+Obtains the content of the raw file in the **resources/rawfile** directory. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                             | Mandatory  | Description                     |
+| -------- | ------------------------------- | ---- | ----------------------- |
+| path     | string                          | Yes   | Path of the raw file.            |
+
+**Return value**
+
+| Type                   | Description        |
+| --------------------- | ---------- |
+| Uint8Array | Content of the raw file.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001005  | If the resource not found by path.          |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.getRawFileContentSync("test.txt");
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getRawFileContentSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3565,6 +4203,47 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### getRawFileListSync<sup>10+</sup>
+
+getRawFileListSync(path: string): Array\<string\>
+
+Obtains the list of files in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                             | Mandatory  | Description                     |
+| -------- | ------------------------------- | ---- | ----------------------- |
+| path     | string                          | Yes   | Path of the **rawfile** folder.            |
+
+**Return value**
+
+| Type                       | Description         |
+| ------------------------- | ----------- |
+| Array\<string\> | List of files in the **resources/rawfile** directory.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001005  | If the resource not found by path.       |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try { // Passing "" means to obtain the list of files in the root directory of the raw file.
+    this.context.resourceManager.getRawFileListSync("")
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getRawFileListSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
 ### getRawFileList<sup>10+</sup>
 
 getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): void;
@@ -3649,6 +4328,47 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`promise getRawFileList failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getRawFdSync<sup>10+</sup>
+
+getRawFdSync(path: string): RawFileDescriptor
+
+Obtains the descriptor of the raw file in the **resources/rawfile** directory. 
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                              |
+| -------- | ---------------------------------------- | ---- | -------------------------------- |
+| path     | string                                   | Yes   | Path of the raw file.                     |
+
+**Return value**
+
+| Type                       | Description         |
+| ------------------------- | ----------- |
+| [RawFileDescriptor](#rawfiledescriptor8) | Descriptor of the raw file.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001005  | If the resource not found by path.          |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.getRawFdSync("test.txt");
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getRawFdSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3743,6 +4463,41 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### closeRawFdSync<sup>10+</sup>
+
+closeRawFdSync(path: string): void
+
+Closes the descriptor of the raw file in the **resources/rawfile** directory.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                       | Mandatory  | Description         |
+| -------- | ------------------------- | ---- | ----------- |
+| path     | string                    | Yes   | Path of the raw file.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001005  | The resource not found by path.          |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.closeRawFdSync("test.txt");
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`closeRawFd failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
 ### closeRawFd<sup>9+</sup>
 
 closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
@@ -3824,6 +4579,31 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### getConfigurationSync
+
+getConfigurationSync(): Configuration
+
+Obtains the device configuration. This API return the results synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Return value**
+
+| Type                                      | Description              |
+| ---------------------------------------- | ---------------- |
+| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the result.|
+
+**Example**
+  ```ts
+  try {
+    let value = this.context.resourceManager.getConfigurationSync();
+    let direction = value.direction;
+    let locale = value.locale;
+  } catch (error) {
+    console.error("getConfigurationSync error is " + error);
+  }
+  ```
+
 ### getConfiguration
 
 getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
@@ -3881,6 +4661,31 @@ Obtains the device configuration. This API uses a promise to return the result.
     });
   } catch (error) {
     console.error("getConfiguration promise error is " + error);
+  }
+  ```
+
+### getDeviceCapabilitySync
+
+getDeviceCapabilitySync(): DeviceCapability
+
+Obtains the device capability. This API return the results synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Return value**
+
+| Type                                      | Description                 |
+| ---------------------------------------- | ------------------- |
+| DeviceCapability | Promise used to return the result.|
+
+**Example**
+  ```ts
+  try {
+    let value = this.context.resourceManager.getDeviceCapabilitySync();
+    let screenDensity = value.screenDensity;
+    let deviceType = value.deviceType;
+  } catch (error) {
+    console.error("getDeviceCapabilitySync error is " + error);
   }
   ```
 
