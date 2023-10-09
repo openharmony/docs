@@ -40,7 +40,9 @@
   - Learning ArkTS
     - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
     - [Introduction to ArkTS](quick-start/introduction-to-arkts.md)
-    - [TypeScript to ArkTS Migration](quick-start/typescript-to-arkts-migration-guide.md)
+    - TypeScript to ArkTS Migration Guide
+      - [ArkTS Migration Background](quick-start/arkts-migration-background.md)
+      - [TypeScript to ArkTS Cookbook](quick-start/typescript-to-arkts-migration-guide.md)
     - UI Paradigm
       - Basic Syntax
         - [Basic Syntax Overview](quick-start/arkts-basic-syntax-overview.md)

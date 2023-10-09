@@ -40,7 +40,10 @@
   - 学习ArkTS语言
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
     - [ArkTS语言介绍](quick-start/introduction-to-arkts.md)
-    - [从TypeScript到ArkTS的迁移指导](quick-start/typescript-to-arkts-migration-guide.md)
+    - 从TypeScript到ArkTS的适配指导
+      - [ArkTS语法适配背景](quick-start/arkts-migration-background.md)
+      - [从TypeScript到ArkTS的适配规则](quick-start/typescript-to-arkts-migration-guide.md)
+      - [适配指导案例](quick-start/arkts-more-cases.md)
     - UI范式
       - 基本语法
         - [基本语法概述](quick-start/arkts-basic-syntax-overview.md)

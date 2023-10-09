@@ -213,7 +213,7 @@ type Animal = Cat | Dog | Frog | number
 
 let animal: Animal = new Cat()
 if (animal instanceof Frog) {
-    let frog: Frog = animal // animal is of type Frog here
+    let frog: Frog = animal as Frog // animal is of type Frog here
     animal.leap()
     frog.leap()
     // As a result frog leaps twice
@@ -284,7 +284,7 @@ Binary operators are as follows:
 | `a && b`   | Logical AND  |
 | `a \|\| b`   | Logical OR   |
 | `! a`      | Logical NOT  |
-## Control Flow
+## Statements
 
 ### `If` Statements
 
@@ -602,9 +602,9 @@ An optional parameter has the form `name?: Type`.
 ```typescript
 function hello(name?: string) {
     if (name == undefined) {
-        console.log("Hello, ${name}!")
-    } else {
         console.log("Hello!")
+    } else {
+        console.log(`Hello, ${name}!`)
     }
 }
 ```
@@ -840,6 +840,96 @@ class Person {
 console.log(Person.numberOfPersons)
 ```
 
+### Field Initializers
+
+ArkTS requires that all fields are explicitly initialized with some values
+either when the field is declared or in the `constructor`. This is similar
+to `strictPropertyInitialization` mode of the standard TypeScript. Such behavior
+is enforced to minimize the number of unexpected runtime errors and achieve
+better performance.
+
+The following code (invalid in ArkTS) is error-prone:
+
+```typescript
+class Person {
+    name: string // The compiler automatically sets to undefined
+
+    setName(n:string): void {
+        this.name = n
+    }
+
+    getName(): string {
+    // Return type "string" hides from the developers the fact
+    // that name can be undefined. The most correct would be
+    // to write the return type as "string | undefined". By doing so
+    // we tell the users of our API about all possible return values.
+        return this.name
+    }
+}
+
+let jack = new Person()
+// Let's assume that the developer forgets to call setName:
+// jack.setName("Jack")
+console.log(jack.getName().length); // runtime exception: name is undefined
+```
+
+Here is how it should look in ArkTS:
+
+```typescript
+class Person {
+    name: string = "" // The field is always defined
+
+    setName(n:string): void {
+        this.name = n
+    }
+
+    // The type is always string, no other "hidden options".
+    getName(): string {
+        return this.name
+    }
+}
+
+let jack = new Person()
+// Let's assume that the developer forgets to call setName:
+// jack.setName("Jack")
+console.log(jack.getName().length); // 0, no runtime error
+```
+
+And here how our code behaves if the field `name` can be `undefined`
+
+```typescript
+class Person {
+    name ?: string // The field may be undefined, great
+    // More explicit syntax may also be used:
+    // name: string | undefined = undefined
+
+    setName(n:string): void {
+        this.name = n
+    }
+
+    // Compile-time error:
+    // name can be "undefined", so we cannot say to those who use this API
+    // that it returns only strings:
+    getNameWrong(): string {
+        return this.name
+    }
+
+    getName(): string | undefined { // Return type matches the type of name
+        return this.name
+    }
+}
+
+let jack = new Person()
+// Let's assume that the developer forgets to call setName:
+// jack.setName("Jack")
+
+// Compile-time(!) error: Compiler suspects that we
+// may possibly access something undefined and won't build the code:
+console.log(jack.getName().length); // The code won't build and run
+
+console.log(jack.getName()?.length); // Builds ok, no runtime error
+```
+
 ### Getters and Setters
 
 Setters and getters can be used to provide controlled access to object properties.
@@ -917,7 +1007,14 @@ console.log(Cl.staticMethod())
 
 ### Inheritance
 
-A class can extend another class (called base class) and implement several interfaces by using the following syntax:
+A class can extend another class.
+The class that is being extended by another class is called ‘*base class*’,
+‘parent class’, or ‘superclass’.
+The class that extends another class is called ‘*extended class*’, ‘derived
+class’ or ‘subclass’.
+
+An extended class can implement several interfaces by using the
+following syntax:
 
 ```typescript
 class [extends BaseClassName] [implements listOfInterfaces] {
@@ -925,9 +1022,9 @@ class [extends BaseClassName] [implements listOfInterfaces] {
 }
 ```
 
-The extended class inherits fields and methods from the base class, but not constructors, and can add its own fields and methods as well as override methods defined by the base class.
-
-The base class is also called 'parent class' or 'superclass'. The extended class also called 'derived class' or 'subclass'.
+An extended class inherits fields and methods, but not constructors from
+the base class, and can add its own fields and methods, as well as override
+methods defined by the base class.
 
 Example:
 
@@ -1362,7 +1459,8 @@ See below:
 
 ```typescript
 let s = new Stack<string>
-s.push(55) // That will be a compile-time error
+s.push(55) /* That will be a compile-time error as 55 is not compatible
+  with type string */
 ```
 
 ## Generic Constraints
@@ -1515,7 +1613,7 @@ class Person {
 }
 ```
 
-**Note**: The return type of `getSpouseNick` must be `string | null | undefined`, as the method can return null or undefined.
+**Note**: The return type of `getSpouseNick` must be `string | null | undefined`, as the method can return `null` or `undefined`.
 
 An optional chain can be of any length and contain any number of `?.` operators.
 
