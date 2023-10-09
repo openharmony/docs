@@ -167,7 +167,8 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 
 ```ts
-let storage = new LocalStorage({ 'PropA': 47 }); // 创建新实例并使用给定对象初始化
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para); // 创建新实例并使用给定对象初始化
 let propA = storage.get('PropA') // propA == 47
 let link1 = storage.link('PropA'); // link1.get() == 47
 let link2 = storage.link('PropA'); // link2.get() == 47
@@ -192,7 +193,8 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   ```ts
   // 创建新实例并使用给定对象初始化
-  let storage = new LocalStorage({ 'PropA': 47 });
+  let para:Record<string,number> = { 'PropA': 47 };
+  let storage: LocalStorage = new LocalStorage(para);
 
   @Component
   struct Child {
@@ -234,7 +236,8 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   ```ts
   // 创建新实例并使用给定对象初始化
-  let storage = new LocalStorage({ 'PropA': 47 });
+  let para:Record<string,number> = { 'PropA': 47 };
+  let storage: LocalStorage = new LocalStorage(para);
   // 使LocalStorage可从@Component组件访问
   @Entry(storage)
   @Component
@@ -274,9 +277,10 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 ```ts
 // 构造LocalStorage实例
-let storage = new LocalStorage({ 'PropA': 47 });
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 // 调用link9+接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
-let linkToPropA = storage.link('PropA');
+let linkToPropA: SubscribedAbstractProperty = storage.link('PropA');
 
 @Entry(storage)
 @Component
@@ -316,65 +320,65 @@ Child自定义组件中的变化：
 
 1. playCountLink的刷新会同步回LocalStorage，并且引起兄弟组件和父组件相应的刷新。
 
-   ```ts
-   let storage = new LocalStorage({ countStorage: 1 });
+```ts
+let ls:Record<string,number> = { 'countStorage': 1}
+let storage:LocalStorage = new LocalStorage(ls);
+@Component
+struct Child {
+  // 子组件实例的名字
+  label: string = 'no name';
+  // 和LocalStorage中“countStorage”的双向绑定数据
+  @LocalStorageLink('countStorage') playCountLink: number = 0;
 
-   @Component
-   struct Child {
-     // 子组件实例的名字
-     label: string = 'no name';
-     // 和LocalStorage中“countStorage”的双向绑定数据
-     @LocalStorageLink('countStorage') playCountLink: number = 0;
+  build() {
+    Row() {
+      Text(this.label)
+        .width(50).height(60).fontSize(12)
+      Text(`playCountLink ${this.playCountLink}: inc by 1`)
+        .onClick(() => {
+          this.playCountLink += 1;
+        })
+        .width(200).height(60).fontSize(12)
+    }.width(300).height(60)
+  }
+}
 
-     build() {
-       Row() {
-         Text(this.label)
-           .width(50).height(60).fontSize(12)
-         Text(`playCountLink ${this.playCountLink}: inc by 1`)
-           .onClick(() => {
-             this.playCountLink += 1;
-           })
-           .width(200).height(60).fontSize(12)
-       }.width(300).height(60)
-     }
-   }
+@Entry(storage)
+@Component
+struct Parent {
+  @LocalStorageLink('countStorage') playCount: number = 0;
 
-   @Entry(storage)
-   @Component
-   struct Parent {
-     @LocalStorageLink('countStorage') playCount: number = 0;
+  build() {
+    Column() {
+      Row() {
+        Text('Parent')
+          .width(50).height(60).fontSize(12)
+        Text(`playCount ${this.playCount} dec by 1`)
+          .onClick(() => {
+            this.playCount -= 1;
+          })
+          .width(250).height(60).fontSize(12)
+      }.width(300).height(60)
 
-     build() {
-       Column() {
-         Row() {
-           Text('Parent')
-             .width(50).height(60).fontSize(12)
-           Text(`playCount ${this.playCount} dec by 1`)
-             .onClick(() => {
-               this.playCount -= 1;
-             })
-             .width(250).height(60).fontSize(12)
-         }.width(300).height(60)
+      Row() {
+        Text('LocalStorage')
+          .width(50).height(60).fontSize(12)
+        Text(`countStorage ${this.playCount} incr by 1`)
+          .onClick(() => {
+            storage.set<number|undefined>('countStorage', Number(storage.get<number>('countStorage')) + 1);
+          })
+          .width(250).height(60).fontSize(12)
+      }.width(300).height(60)
 
-         Row() {
-           Text('LocalStorage')
-             .width(50).height(60).fontSize(12)
-           Text(`countStorage ${this.playCount} incr by 1`)
-             .onClick(() => {
-               storage.set<number>('countStorage', 1 + storage.get<number>('countStorage'));
-             })
-             .width(250).height(60).fontSize(12)
-         }.width(300).height(60)
+      Child({ label: 'ChildA' })
+      Child({ label: 'ChildB' })
 
-         Child({ label: 'ChildA' })
-         Child({ label: 'ChildB' })
-
-         Text(`playCount in LocalStorage for debug ${storage.get<number>('countStorage')}`)
-           .width(300).height(60).fontSize(12)
-       }
-     }
-   }
-   ```
+      Text(`playCount in LocalStorage for debug ${storage.get<number>('countStorage')}`)
+        .width(300).height(60).fontSize(12)
+    }
+  }
+}
+```
 
 
 ### 将LocalStorage实例从UIAbility共享到一个或多个视图
@@ -386,15 +390,14 @@ Child自定义组件中的变化：
 // EntryAbility.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-
+let para:Record<string,number> = { 'PropA': 47 };
+let localStorage: LocalStorage = new LocalStorage(para);
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage = new LocalStorage({
-    'PropA': 47
-  });
+storage: LocalStorage = localStorage
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    windowStage.loadContent('pages/Index', this.storage);
-  }
+onWindowStageCreate(windowStage: window.WindowStage) {
+windowStage.loadContent('pages/Index', this.storage);
+}
 }
 ```
 

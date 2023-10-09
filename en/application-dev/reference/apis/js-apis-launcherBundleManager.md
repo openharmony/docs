@@ -123,6 +123,56 @@ try {
 }
 ```
 
+## launcherBundlemanager.getLauncherAbilityInfoSync<sup>10+</sup>
+
+getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>;
+
+Obtains the launcher ability information based on the given bundle name and user ID.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description        |
+| ---------- | ------ | ---- | -------------- |
+| bundleName | string | Yes  | Bundle name.|
+| userId     | number | Yes  | User ID.|
+
+**Return value**
+
+| Type                         | Description                                              |
+| ----------------------------- | -------------------------------------------------- |
+| Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)> | Array of the **LauncherAbilityInfo** objects obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 17700001 | The specified bundle name is not found.  |
+| 17700004 | The specified user ID is not found.       |
+
+**Example**
+
+```ts
+import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let data = launcherBundleManager.getLauncherAbilityInfoSync("com.example.demo", 100);
+    console.log("data is " + JSON.stringify(data));
+} catch (errData) {
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
+}
+```
+
 ## launcherBundlemanager.getAllLauncherAbilityInfo<sup>9+</sup>
 
 getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>) : void;
@@ -323,6 +373,52 @@ try {
     }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
+} catch (errData) {
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
+}
+```
+
+## launcherBundlemanager.getShortcutInfoSync<sup>10+</sup>
+
+getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>;
+
+Obtains the shortcut information of the current user based on the given bundle name.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
+
+| Name    | Type  | Mandatory| Description        |
+| ---------- | ------ | ---- | -------------- |
+| bundleName | string | Yes  | Bundle name.|
+
+**Return value**
+
+| Type                  | Description                                           |
+| ---------------------- | ----------------------------------------------- |
+| Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)> | Array of the **ShortcutInfo** objects obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                               |
+| -------- | ---------------------------------------- |
+| 17700001 | The specified bundle name is not found.  |
+
+**Example**
+
+```ts
+import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let data = launcherBundleManager.getShortcutInfoSync("com.example.demo");
+    console.log("data is " + JSON.stringify(data));
 } catch (errData) {
     let code = (errData as BusinessError).code;
     let message = (errData as BusinessError).message;

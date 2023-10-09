@@ -471,7 +471,7 @@ getNdefMessage(): [NdefMessage](#ndefmessage9)
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| [tag.NdefMessage](#ndefmessage9)  | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。|
+| [NdefMessage](#ndefmessage9)  | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。|
 
 **示例：**
 ```js
@@ -520,7 +520,7 @@ readNdef(): Promise\<[NdefMessage](#ndefmessage9)>
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise\<[tag.NdefMessage](#ndefmessage9)> | 以Promise形式返回从NDEF标签中读取到的Message数据对象。|
+| Promise\<[NdefMessage](#ndefmessage9)> | 以Promise形式返回从NDEF标签中读取到的Message数据对象。|
 
 **错误码：**
 
@@ -2190,7 +2190,7 @@ format(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [tag.NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的NDEF消息。可以为null，为null时仅格式化标签，不写入内容。 |
+| message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的NDEF消息。可以为null，为null时仅格式化标签，不写入内容。 |
 
 **错误码：**
 

@@ -30,7 +30,7 @@ enableWifi(): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2501000  | Operation failed.|
-| 2501003  | Failed for wifi is closing.|
+| 2501003  | Failed to enable Wi-Fi.|
 
 **示例：**
 
@@ -63,7 +63,7 @@ disableWifi(): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2501000  | Operation failed.|
-| 2501004  | Failed for wifi is opening.|
+| 2501004  | Failed to disable Wi-Fi.|
 
 **示例：**
 
@@ -2749,7 +2749,7 @@ createGroup(config: WifiP2PConfig): void
 			groupName: "****",
 			goBand: 0
 		}
-		wifiManager.createP2pGroup(config);	
+		wifiManager.createGroup(config);	
 		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -2858,12 +2858,12 @@ API 10起：ohos.permission.GET_WIFI_INFO
   }
   wifiManager.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
   
-  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
+  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice) => {
       console.info("p2p device change receive event: " + JSON.stringify(result));
   }
   wifiManager.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
   
-  let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
+  let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("p2p peer device change receive event: " + JSON.stringify(result));
       wifiManager.getP2pPeerDevices((err, data) => {
           if (err) {
@@ -3596,7 +3596,7 @@ off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
 
 **示例：**
 ```ts
-import wifi from '@ohos.wifi';
+import wifi from '@ohos.wifiManager';
 
 let recvDeviceConfigChangeFunc = (result:number) => {
     console.info("Receive device config change event: " + result);
@@ -3740,17 +3740,17 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 
 **示例：**
 ```ts
-import wifi from '@ohos.wifi';
+import wifiManager from '@ohos.wifiManager';
 
-let recvHotspotStaJoinFunc = (result:number) => {
+let recvHotspotStaJoinFunc = (result:wifiManager.StationInfo) => {
     console.info("Receive hotspot sta join event: " + result);
 }
 
 // Register event
-wifi.on("hotspotStaJoin", recvHotspotStaJoinFunc);
+wifiManager.on("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 // Unregister event
-wifi.off("hotspotStaJoin", recvHotspotStaJoinFunc);
+wifiManager.off("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 ```
 
@@ -3810,17 +3810,17 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 
 **示例：**
 ```ts
-import wifi from '@ohos.wifi';
+import wifiManager from '@ohos.wifiManager';
 
-let recvHotspotStaLeaveFunc = (result:number) => {
+let recvHotspotStaLeaveFunc = (result:wifiManager.StationInfo) => {
     console.info("Receive hotspot sta leave event: " + result);
 }
 
 // Register event
-wifi.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
+wifiManager.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
 
 // Unregister event
-wifi.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
+wifiManager.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
 
 ```
 
@@ -3953,7 +3953,7 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pConnectionChangeFunc = (result:number) => {
+  let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("Receive p2p connection change event: " + result);
   }
   
@@ -4026,7 +4026,7 @@ API 10起：无
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pDeviceChangeFunc = (result:number) => {
+  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice) => {
       console.info("Receive p2p device change event: " + result);
   }
   
@@ -4099,7 +4099,7 @@ API 10起：无
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pPeerDeviceChangeFunc = (result:number) => {
+  let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("Receive p2p peer device change event: " + result);
   }
   
@@ -4164,7 +4164,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pPersistentGroupChangeFunc = (result:number) => {
+  let recvP2pPersistentGroupChangeFunc = (result:void) => {
       console.info("Receive p2p persistent group change event: " + result);
   }
   

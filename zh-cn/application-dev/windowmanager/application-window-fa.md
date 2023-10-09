@@ -79,6 +79,7 @@
    
    ```ts
    // 移动子窗口位置。
+   let windowClass: window.Window = window.findWindow("test");
    windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -104,6 +105,7 @@
    
    ```ts
    // 为子窗口加载对应的目标页面。
+   let windowClass: window.Window = window.findWindow("test");
    windowClass.setUIContent("pages/page2", (err: BusinessError) => {
        let errCode: number = err.code;
        if (errCode) {
@@ -129,6 +131,7 @@
    
    ```ts
    // 销毁子窗口。当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用destroy接口销毁子窗口。
+   let windowClass: window.Window = window.findWindow("test");
    windowClass.destroyWindow((err: BusinessError) => {
        let errCode: number = err.code;
        if (errCode) {
@@ -161,7 +164,11 @@
 
    let mainWindowClass: window.Window | null = null;
    // 获取主窗口。
-   window.getLastWindow(this.context,(err: BusinessError, data) => {
+   class BaseContext {
+     stageMode: boolean = false;
+   }
+   let context: BaseContext = { stageMode: false };
+   window.getLastWindow(context,(err: BusinessError, data) => {
      let errCode: number = err.code;
      if (errCode) {
        console.error('Failed to get the subWindow. Cause: ' + JSON.stringify(err));
@@ -181,6 +188,7 @@
    
    // 实现沉浸式效果。方式一：设置导航栏、状态栏不显示。
    let names: Array<'status' | 'navigation'> = [];
+   let mainWindowClass: window.Window = window.findWindow("test");
    mainWindowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -223,6 +231,7 @@
    
    ```ts
    // 为沉浸式窗口加载对应的目标页面。
+   let mainWindowClass: window.Window = window.findWindow("test");
    mainWindowClass.setUIContent("pages/page3", (err: BusinessError) => {
        let errCode: number = err.code;
        if (errCode) {

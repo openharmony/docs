@@ -7,12 +7,12 @@ Concurrency models are used to implement concurrent tasks in different scenarios
 
 A typical message passing model is actor. It provides a relatively high degree of concurrency while eliminating a series of complex and occasional issues caused by locks. For these reasons, ArkTS chooses the actor model.
 
-Due to the memory isolation feature of the actor model, cross-thread serialization is required.
+[Comparison Between the Actor and Memory Sharing Models](actor-model-development-samples.md) provides an example of multithread concurrent programming based on the actor model.
 
 
 ## Data Transfer Objects
 
-Data objects that can be transferred are classified into the following types: [common objects](#common-objects), [transferable objects](#transferable-objects), [shared objects](#shared-objects), and [native binding objects](#native-binding-objects).
+Due to the memory isolation feature of the actor model, cross-thread serialization is required for the execution of multithread tasks and the transmission of results. Data objects that can be transferred are classified into the following types: [common objects](#common-objects), [transferable objects](#transferable-objects), [shared objects](#shared-objects), and [native binding objects](#native-binding-objects).
 
 
 ### Common Objects
