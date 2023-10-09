@@ -12,6 +12,7 @@ The **baseProfile** module provides APIs for using basic Bluetooth profiles.
 
 ```js
 import baseProfile from '@ohos.bluetooth.baseProfile';
+import { BusinessError } from '@ohos.base';
 ```
 
 
