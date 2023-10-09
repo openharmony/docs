@@ -392,8 +392,8 @@ console.info("key blob:" + encodedKey.data);
 
   > **说明：**
   >
-  > 1. 当使用字符串参数“HMAC”创建对称密钥生成器时，需要通过convertKey生成对称密钥，convertKey传入的二进制密钥数据长度在4096(byte)内。
-  > 2. 当使用字符串参数“HMAC|xxx”创建对称密钥生成器时，可以通过generateSymKey随机生成对应摘要算法长度的对称密钥，也通过convertKey生成HMAC算法中使用的对称密钥时(convertKey需要传入与摘要算法长度一致的二进制密钥数据)。</br>字符串参数具体取值详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节中的“HMAC密钥生成规格”。
+  > 1. 当使用字符串参数“HMAC”创建对称密钥生成器时，需要通过convertKey生成HMAC算法中使用的对称密钥，convertKey传入的二进制密钥数据长度在4096(byte)内。
+  > 2. 当使用字符串参数“HMAC|xxx”创建对称密钥生成器时，可以通过generateSymKey随机生成HMAC算法中使用的对称密钥，也可以通过convertKey生成HMAC算法中使用的对称密钥时(convertKey需传入与摘要算法长度一致的二进制密钥数据)。</br>字符串参数具体取值详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节中的“HMAC密钥生成规格”。
 
 ### clearMem
 
