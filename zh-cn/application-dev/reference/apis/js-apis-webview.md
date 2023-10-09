@@ -22,7 +22,7 @@ import web_webview from '@ohos.web.webview';
 
 ## once
 
-once(type: string, callback: Callback\<void\>): void
+once(type: string, headers: Callback\<void\>): void
 
 订阅一次指定类型Web事件的回调。
 
