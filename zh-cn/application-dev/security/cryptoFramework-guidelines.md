@@ -351,7 +351,8 @@ function stringToUint8Array(str) {
 
 function testConvertHmacKey() {
   let keyBlob = {
-    data : stringToUint8Array("12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh") // length is 256 (64 byte)
+    // The length is 512-bit (64 bytes).
+    data : stringToUint8Array("12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh")
   }
   // Create a SymKeyGenerator instance.
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator("HMAC");
