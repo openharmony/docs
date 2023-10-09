@@ -448,7 +448,7 @@ stop(streamID: number): Promise\<void>
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
-| 5400105  | Service died. Return by callback.       |
+| 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
