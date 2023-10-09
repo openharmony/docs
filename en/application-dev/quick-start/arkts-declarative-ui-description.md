@@ -29,7 +29,7 @@ Column() {
 
 ### With Mandatory Parameters
 
-A struct with mandatory parameters is a component whose API definition expects parameters enclosed in the parentheses.
+A struct with mandatory parameters is a component whose API definition expects parameters enclosed in parentheses.
 
 - Set the mandatory parameter **src** of the **\<Image>** component as follows:
 

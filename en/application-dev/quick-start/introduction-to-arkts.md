@@ -1104,9 +1104,9 @@ Both methods and properties of a class can have visibility modifiers.
 
 There are several visibility modifiers:
 
-- `private`,
-- `protected`,
-- `public`.
+- `private`
+- `protected`
+- `public`
 
 The default visibility is `public`.
 
