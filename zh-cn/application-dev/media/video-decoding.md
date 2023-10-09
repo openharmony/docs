@@ -93,7 +93,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
-        unique_lock<mutex> lock(signal_->inMutex_);
+        std::unique_lock<std::mutex> lock(signal_->inMutex_);
         // 解码输入帧id送入 inQueue_
         signal_->inQueue_.push(index);
         // 解码输入帧数据送入 inBufferQueue_
@@ -107,7 +107,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
-        unique_lock<mutex> lock(signal_->outMutex_);
+        std::unique_lock<std::mutex> lock(signal_->outMutex_);
         // 将对应输出 buffer 的 index 送入 outQueue_
         signal_->outQueue_.push(index);
         // 将对应解码完成的数据 data 送入 outBufferQueue_ (注： Surface模式下data为空)
@@ -139,20 +139,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_Destroy(format);
    ```
 
-4. （如需使用Surface送显，必须设置）设置Surface。
+4. （如需使用Surface送显，必须设置）设置Surface。应用需要从XComponent组件获取 nativeWindow，获取方式请参考 [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md)
    
    ``` c++
     // 配置送显窗口参数
-    sptr<Rosen::Window> window = nullptr;
-    sptr<Rosen::WindowOption> option = new Rosen::WindowOption();
-    option->SetWindowRect({0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT});
-    option->SetWindowType(Rosen::WindowType::WINDOW_TYPE_APP_LAUNCHING);
-    option->SetWindowMode(Rosen::WindowMode::WINDOW_MODE_FLOATING);
-    window = Rosen::Window::Create("video-decoding", option);
-    window->Show();
-    sptr<Surface> ps = window->GetSurfaceNode()->GetSurface();
-    OHNativeWindow *nativeWindow = CreateNativeWindowFromSurface(&ps);
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);    // 从 XComponent 获取 window 
     bool isSurfaceMode = true;
    ```  
 
@@ -259,7 +250,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
      if (ret != AV_ERR_OK) {
          // 异常处理
      }
-     return AV_ERR_OK;
     ```
 
 12. 调用OH_VideoDecoder_Destroy()销毁解码器实例，释放资源。
@@ -271,6 +261,5 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
      if (ret != AV_ERR_OK) {
          // 异常处理
      }
-     return AV_ERR_OK;
     ```
 

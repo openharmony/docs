@@ -480,7 +480,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 通过OHNativeWindow*变量类型，配置输入数据的Surface
     ```
 
-    OHNativeWindow*变量类型的使用方法请参考图形子系统/foundation/graphic/graphic_2d
+    OHNativeWindow*变量类型的使用方法请参考图形子系统 [NativeWindow](../reference/native-apis/_native_window.md)
 
 6. 调用OH_VideoEncoder_Start()启动编码器。
 

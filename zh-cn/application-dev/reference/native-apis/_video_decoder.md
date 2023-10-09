@@ -96,7 +96,7 @@ OH_AVCodec* OH_VideoDecoder_CreateByMime (const char *mime)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mime | MIME类型描述字符串，请参阅{\@链接AVCODEC_MIME_TYPE}。 | 
+| mime | MIME类型描述字符串，请参阅 [AVCODEC_MIMETYPE](_codec_base.md#变量)。 | 
 
 **返回：**
 
@@ -231,7 +231,7 @@ OH_AVFormat* OH_VideoDecoder_GetOutputDescription (OH_AVCodec *codec)
 
 **描述：**
 
-获取解码器输出数据的描述信息，参见{\@链接OH_AVFormat}。
+获取解码器输出数据的描述信息，参见**OH_AVFormat**。
 
 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者手动释放。
 
