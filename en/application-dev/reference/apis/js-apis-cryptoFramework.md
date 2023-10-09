@@ -39,7 +39,7 @@ Defines a binary data array.
 
 ## ParamsSpec
 
-Defines the parameters used for encryption and decryption. <br>For the symmetric encryption and decryption modes that require parameters such as the initialization vector (IV), you need to construct a child class object and pass it to [init()](#init-2). If the IV is not required (for example, the ECB mode), pass in **null** in [init()](#init-2).
+Defines the parameters used for encryption and decryption.<br>For the symmetric encryption and decryption modes that require parameters such as the initialization vector (IV), you need to construct a child class object and pass it to [init()](#init-2). If the IV is not required (for example, the ECB mode), pass in **null** in [init()](#init-2).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -53,7 +53,7 @@ Defines the parameters used for encryption and decryption. <br>For the symmetric
 
 ## IvParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption. <br>**IvParamsSpec** applies to the encryption and decryption modes such as CBC, CTR, OFB, and CFB, which use only the IV.
+Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption.<br>**IvParamsSpec** applies to the encryption and decryption modes such as CBC, CTR, OFB, and CFB, which use only the IV.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -67,7 +67,7 @@ Defines the child class of [ParamsSpec](#paramsspec). It is used as the paramete
 
 ## GcmParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption. <br>**GcmParamsSpec** applies to the GCM mode.
+Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption.<br>**GcmParamsSpec** applies to the GCM mode.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -90,7 +90,7 @@ Defines the child class of [ParamsSpec](#paramsspec). It is used as the paramete
 | Name   | Type                 | Readable| Writable| Description                                                        |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | Yes  | Yes  | IV, which is of 7 bytes.                             |
-| aad     | [DataBlob](#datablob) | Yes  | Yes  | Additional authentication data (AAD), which is of 8 bytes.                            |
+| aad     | [DataBlob](#datablob) | Yes  | Yes  | AAD, which is of 8 bytes.                            |
 | authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 12 bytes.<br>When the CCM mode is used for encryption, the last 12 bytes of the [DataBlob](#datablob) output by [doFinal()](#dofinal-2) are used as the **authTag** in [CcmParamsSpec](#ccmparamsspec) of [init()](#init-2).|
 
 > **NOTE**
