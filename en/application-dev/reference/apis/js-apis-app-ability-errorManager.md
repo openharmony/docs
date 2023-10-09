@@ -20,7 +20,7 @@ Registers an error observer.
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
-
+ 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the API to call. It is fixed at **"error"**.|
@@ -28,9 +28,9 @@ Registers an error observer.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | Index of the observer.|
+  | Type| Description|
+  | -------- | -------- |
+  | number | Index of the observer.|
 
 **Error codes**
 
@@ -77,7 +77,7 @@ Deregisters an error observer. This API uses an asynchronous callback to return 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
-
+ 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the API to call. It is fixed at **"error"**.|
@@ -123,7 +123,7 @@ Deregisters an error observer. This API uses a promise to return the result.
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
-
+ 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the API to call. It is fixed at **"error"**.|
@@ -165,5 +165,3 @@ try {
 }
 
 ```
-
- <!--no_check--> 

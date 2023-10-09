@@ -1952,6 +1952,8 @@ acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>
 
 Requests data from the widget provider. This API uses an asynchronous callback to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Required permissions**: ohos.permission.REQUIRE_FORM
 
 **System capability**: SystemCapability.Ability.Form
@@ -2000,6 +2002,8 @@ try {
 acquireFormData(formId: string): Promise<{[key: string]: Object}>;
 
 Requests data from the widget provider. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Required permissions**: ohos.permission.REQUIRE_FORM
 

@@ -96,6 +96,36 @@ try {
 }
 ```
 
+## BundleInstaller.getBundleInstallerSync<sup>10+</sup>
+
+getBundleInstallerSync(): BundleInstaller;
+
+Obtains a **BundleInstaller** object. This API is a synchronous API.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Return value**
+| Type                                                        | Description                                |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [BundleInstaller](js-apis-installer.md#BundleInstaller) | **BundleInstaller** object.|
+
+**Example**
+
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+try {
+    installer.getBundleInstallerSync();
+    console.info('getBundleInstallerSync successfully.');
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstallerSync failed. Cause: ' + message);
+}
+```
+
 ## BundleInstaller.install
 install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
 
@@ -339,7 +369,7 @@ try {
         data.install(hapFilePaths, installParam)
             .then((data: void) => {
                 console.info('install successfully: ' + JSON.stringify(data));
-            }).catch((error: BusinessError) => {
+        }).catch((error: BusinessError) => {
             console.error('install failed:' + error.message);
         });
     }).catch((error: BusinessError) => {
@@ -523,7 +553,7 @@ try {
         data.uninstall(bundleName, installParam)
             .then((data: void) => {
                 console.info('uninstall successfully: ' + JSON.stringify(data));
-            }).catch((error: BusinessError) => {
+        }).catch((error: BusinessError) => {
             console.error('uninstall failed:' + error.message);
         });
     }).catch((error: BusinessError) => {
@@ -700,7 +730,7 @@ try {
         data.recover(bundleName, installParam)
             .then((data: void) => {
                 console.info('recover successfully: ' + JSON.stringify(data));
-            }).catch((error: BusinessError) => {
+        }).catch((error: BusinessError) => {
             console.error('recover failed:' + error.message);
         });
     }).catch((error: BusinessError) => {
@@ -1038,7 +1068,7 @@ try {
         data.updateBundleForSelf(hapFilePaths, installParam)
             .then((data: void) => {
                 console.info('updateBundleForSelf successfully: ' + JSON.stringify(data));
-            }).catch((error: BusinessError) => {
+        }).catch((error: BusinessError) => {
             console.error('updateBundleForSelf failed:' + error.message);
         });
     }).catch((error: BusinessError) => {

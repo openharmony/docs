@@ -103,6 +103,39 @@ defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: 
 });
 ```
 
+## defaultAppMgr.isDefaultApplicationSync<sup>10+</sup>
+
+isDefaultApplicationSync(type: string): boolean;
+
+Checks whether this application is the default application of a system-defined application type. This API is a synchronous API.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| -------| ------ | ---- | --------------------------------------- |
+|  type  | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmgrapplicationtype).  |
+
+**Return value**
+
+| Type   | Description                |
+| ------- | -------------------- |
+| boolean | Returns **true** if the application is the default application; returns **false** otherwise.|
+
+
+**Example**
+
+```ts
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+try {
+  let data = defaultAppMgr.isDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER)
+  console.info('Operation successful. IsDefaultApplicationSync ? ' + JSON.stringify(data));
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
+```
+
 ## defaultAppMgr.getDefaultApplication
 
 getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
@@ -263,6 +296,60 @@ defaultAppMgr.getDefaultApplication("image/png", (err: BusinessError, data) => {
   }
   console.info('Operation successful. bundleInfo:' + JSON.stringify(data));
 });
+```
+
+## defaultAppMgr.getDefaultApplicationSync<sup>10+</sup>
+
+getDefaultApplicationSync(type: string, userId?: number): BundleInfo;
+
+Obtains the default application based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API is a synchronous API.
+
+**Required permissions**: ohos.permission.GET_DEFAULT_APPLICATION
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                   |
+| -------| ------ | ---- | --------------------------------------- |
+| type   | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmgrapplicationtype) or a file type that complies with the media type format.|
+| userId | number | No  | User ID. The default value is the user ID of the caller.         |
+
+**Return value**
+
+| Type                                      | Description                |
+| ------------------------------------------ | -------------------- |
+| [BundleInfo](js-apis-bundle-BundleInfo.md) | Bundle information of the default application.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 17700004 | The specified user ID is not found.       |
+| 17700023 | The specified default app does not exist. |
+| 17700025 | The specified type is invalid.            |
+
+**Example**
+
+```ts
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+try {
+  let data = defaultAppMgr.getDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER)
+  console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
+
+try {
+  let data = defaultAppMgr.getDefaultApplicationSync("image/png")
+  console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
 ```
 
 ## defaultAppMgr.setDefaultApplication
@@ -462,6 +549,75 @@ defaultAppMgr.setDefaultApplication("image/png", {
 });
 ```
 
+## defaultAppMgr.setDefaultApplicationSync<sup>10+</sup>
+
+setDefaultApplicationSync(type: string, elementName: ElementName, userId?: number): void;
+
+Sets the default application based on the application type defined in the system or the file type that complies with the media type format (type/subtype). This API is a synchronous API.
+
+**Required permissions**: ohos.permission.SET_DEFAULT_APPLICATION
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type  | Mandatory| Description                                     |
+| ----------- | ------ | ---- | --------------------------------------- |
+| type        | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmgrapplicationtype) or a file type that complies with the media type format.|
+| elementName | [ElementName](js-apis-bundle-ElementName.md) | Yes| Information about the element to be set as the default application.                          |
+| userId      | number | No  | User ID. The default value is the user ID of the caller.                           |
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                                      |
+| -------- | ---------------------------------------------- |
+| 17700004 | The specified user ID is not found.            |
+| 17700025 | The specified type is invalid.                 |
+| 17700028 | The specified ability does not match the type. |
+
+**Example**
+
+```ts
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+try {
+  defaultAppMgr.setDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+});
+  console.info('Operation successful.');
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
+
+let userId = 100;
+try {
+  defaultAppMgr.setDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, userId);
+  console.info('Operation successful.');
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
+
+try {
+  defaultAppMgr.setDefaultApplicationSync("image/png", {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, userId);
+  console.info('Operation successful.');
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
+```
+
 ## defaultAppMgr.resetDefaultApplication
 
 resetDefaultApplication(type: string, userId?: number): Promise\<void>
@@ -615,4 +771,53 @@ defaultAppMgr.resetDefaultApplication("image/png", (err: BusinessError, data) =>
   }
   console.info('Operation successful.');
 });
+```
+
+## defaultAppMgr.resetDefaultApplicationSync<sup>10+</sup>
+
+resetDefaultApplicationSync(type: string, userId?: number): void;
+
+Resets the default application based on the application type defined in the system or the file type that complies with the media type format (type/subtype). This API is a synchronous API.
+
+**Required permissions**: ohos.permission.SET_DEFAULT_APPLICATION
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                   |
+| ------ | ------ | ---- | --------------------------------------- |
+| type   | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmgrapplicationtype) or a file type that complies with the media type format.|
+| userId | number | No  | User ID. The default value is the user ID of the caller.                           |
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 17700004 | The specified user ID is not found. |
+| 17700025 | The specified type is invalid.      |
+
+**Example**
+
+```ts
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+
+let userId = 100;
+try {
+  defaultAppMgr.resetDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, userId);
+  console.info('Operation successful.');
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
+
+try {
+  defaultAppMgr.resetDefaultApplicationSync("image/png", userId);
+  console.info('Operation successful.');
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
 ```

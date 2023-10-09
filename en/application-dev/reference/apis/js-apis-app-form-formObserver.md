@@ -500,6 +500,8 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Pr
 
 Obtains the information about widget hosts based on the widget provider information. This API uses a promise to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
 
 **System capability**: SystemCapability.Ability.Form
@@ -558,6 +560,8 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, cal
 
 Obtains the information about widget hosts based on the widget provider information. This API uses an asynchronous callback to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
 
 **System capability**: SystemCapability.Ability.Form
@@ -614,6 +618,8 @@ getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 
 Obtains the information about widget hosts based on the widget ID. This API uses a promise to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
 
 **System capability**: SystemCapability.Ability.Form
@@ -666,6 +672,8 @@ try {
 getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.RunningFormInfo&gt;): void
 
 Obtains the information about widget hosts based on the widget provider information. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
 
