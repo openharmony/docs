@@ -30,41 +30,47 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview'
 
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    responseResource: WebResourceResponse = new WebResourceResponse()
-    // 开发者自定义响应数据
-    @State webData: string = '<!DOCTYPE html>\n' +
-    '<html>\n'+
-    '<head>\n'+
-    '<title>intercept test</title>\n'+
-    '</head>\n'+
-    '<body>\n'+
-    '<h1>intercept ok</h1>\n'+
-    '</body>\n'+
-    '</html>'
+    responseweb: WebResourceResponse = new WebResourceResponse()
+    heads:Header[] = new Array()
+    @State webdata: string = "<!DOCTYPE html>\n" +
+    "<html>\n"+
+    "<head>\n"+
+    "<title>intercept test</title>\n"+
+    "</head>\n"+
+    "<body>\n"+
+    "<h1>intercept test</h1>\n"+
+    "</body>\n"+
+    "</html>"
     build() {
       Column() {
-        Web({ src: $rawfile('example.html'), controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onInterceptRequest((event) => {
             if (event) {
-              console.info('url:' + event.request.getRequestUrl());
-              // 拦截页面请求
-              if (event.request.getRequestUrl() !== 'https://www.intercept.com/test.html') {
-                return this.responseResource;
-              }
+              console.log('url:' + event.request.getRequestUrl())
             }
-            // 构造响应数据
-            this.responseResource.setResponseData(this.webData);
-            this.responseResource.setResponseEncoding('utf-8');
-            this.responseResource.setResponseMimeType('text/html');
-            this.responseResource.setResponseCode(200);
-            this.responseResource.setReasonMessage('OK');
-            return this.responseResource;
+            let head1:Header = {
+              headerKey:"Connection",
+              headerValue:"keep-alive"
+            }
+            let head2:Header = {
+              headerKey:"Cache-Control",
+              headerValue:"no-cache"
+            }
+            let length = this.heads.push(head1)
+            length = this.heads.push(head2)
+            this.responseweb.setResponseHeader(this.heads)
+            this.responseweb.setResponseData(this.webdata)
+            this.responseweb.setResponseEncoding('utf-8')
+            this.responseweb.setResponseMimeType('text/html')
+            this.responseweb.setResponseCode(200)
+            this.responseweb.setReasonMessage('OK')
+            return this.responseweb
           })
       }
     }

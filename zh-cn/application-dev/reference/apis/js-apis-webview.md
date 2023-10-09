@@ -3510,7 +3510,7 @@ struct WebComponent {
 
 setNetworkAvailable(enable: boolean): void
 
-设置JavaScript中的window.navigator.onLine属性。
+设置JavaScript中的window.navigator.isOnLine属性。
 
 **需要权限：** ohos.permission.GET_NETWORK_INFO
 
@@ -3520,7 +3520,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
+| enable | boolean | 是   | 是否使能window.navigator.isOnLine。 |
 
 **错误码：**
 
@@ -6462,7 +6462,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 类型           | 说明          |
 | --------------| ------------- |
-| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+| Array\<string \| number \| boolean\> | 返回数组类型的数据。 |
 
 **错误码：**
 
@@ -6589,7 +6589,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 类型           | 说明          |
 | --------------| ------------- |
-| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+| Array\<string \| number \| boolean\> | 返回数组类型的数据。 |
 
 **错误码：**
 
