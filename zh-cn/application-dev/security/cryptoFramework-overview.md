@@ -398,7 +398,6 @@ HMAC（Hash-based Message Authentication Code）是一种基于密钥的消息�
   > 1. DSA不支持通过指定私钥参数（p, q, g, sk）来生成私钥。
   > 2. 当使用公共参数（p, q, g）来生成DSA密钥对时，DSA密钥长度至少需要1024位。
 
-
 ### SM2密钥生成规格
 
 > **说明：**
@@ -435,19 +434,20 @@ HMAC（Hash-based Message Authentication Code）是一种基于密钥的消息�
 
 - 支持以字符串参数来生成HMAC密钥，其生成参数如下表所示：
 
-  |对称密钥算法|摘要|字符串参数|
+  |对称密钥算法|摘要算法|字符串参数|
   |---|---|---|
   |HMAC|SHA1|HMAC\|SHA1|
   |HMAC|SHA224|HMAC\|SHA224|
   |HMAC|SHA256|HMAC\|SHA256|
   |HMAC|SHA384|HMAC\|SHA384|
   |HMAC|SHA512|HMAC\|SHA512|
-  |HMAC|SM4|HMAC\|SM4|
-  |HMAC|\|HMAC|
+  |HMAC|SM3|HMAC\|SM3|
+  |HMAC||HMAC|
 
   > **说明：**
   >
-  > “字符串参数”是“对称密钥算法”和“摘要”使用连接符号“|”拼接而成，用于在创建对称密钥生成器时，指定密钥规格。
+  > 1. “字符串参数”是“对称密钥算法”和“摘要算法”使用连接符号“|”拼接而成，用于在创建对称密钥生成器时，指定密钥规格。
+  > 2. 当需要传入的密钥长度不在上述摘要算法范围内，可以通过字符串参数“HMAC”创建对称密钥生成器，并根据HMAC密钥二进制数据生成密钥。
 
 ## 加解密规格
 
