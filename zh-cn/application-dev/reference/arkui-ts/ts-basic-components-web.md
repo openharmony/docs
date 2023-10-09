@@ -1869,7 +1869,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 | userAgent          | string        | 用于下载的用户代理。                           |
 | contentDisposition | string        | 服务器返回的 Content-Disposition响应头，可能为空。 |
 | mimetype           | string        | 服务器返回内容媒体类型（MIME）信息。                |
-| contentLength      | contentLength | 服务器返回文件的长度。                         |
+| contentLength      | number | 服务器返回文件的长度。                         |
 
 **示例：**
 
@@ -2628,8 +2628,8 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 | handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | 通知Web组件用户操作行为。  |
 | host     | string                                   | 请求证书服务器的主机名。    |
 | port     | number                                   | 请求证书服务器的端口号。    |
-| keyTypes | Array<string>                            | 可接受的非对称秘钥类型。    |
-| issuers  | Array<string>                            | 与私钥匹配的证书可接受颁发者。 |
+| keyTypes | Array<string\>                            | 可接受的非对称秘钥类型。    |
+| issuers  | Array<string\>                            | 与私钥匹配的证书可接受颁发者。 |
 
   **示例：**
   未对接证书管理的双向认证
