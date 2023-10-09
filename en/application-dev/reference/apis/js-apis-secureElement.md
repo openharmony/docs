@@ -66,7 +66,7 @@ try {
         if (state == secureElement.ServiceState.DISCONNECTED) {
             console.log("Service state is Disconnected");
         } else {
-            console.log.("Service state is Connected");
+            console.log("Service state is Connected");
         }
     });
 } catch (e) {
@@ -147,7 +147,7 @@ let nfcSEService = null;
 
 try {
     let ret: boolean;
-    // refer to newSEService for this.nfcSEService 
+    // Refer to newSEService for this.nfcSEService. 
     ret = nfcSEService.isConnected();
     if (ret) {
         console.log("get state: connected");
@@ -176,7 +176,7 @@ import secureElement from '@ohos.secureElement';
 let nfcSEService = null;
 
 try {
-    // refer to newSEService for this.nfcSEService 
+    // Refer to newSEService for this.nfcSEService. 
     nfcSEService.shutdown();
     console.log("shutdown successfully");
 } catch (e) {
@@ -207,7 +207,7 @@ let nfcSEService = null;
 
 this.result = "version: "
 try {
-    // refer to newSEService for this.nfcSEService 
+    // Refer to newSEService for this.nfcSEService. 
     console.log("version: " + nfcSEService.getVersion());
 } catch (e) {
     console.log("getVersion exception:" + e.message);
@@ -236,7 +236,7 @@ import secureElement from '@ohos.secureElement';
 let nfcOmaReader = null;
 
 try {
-    // refer to SEService.getReaders for this.nfcOmaReader 
+    // Refer to SEService.getReaders for this.nfcOmaReader. 
     console.log(nfcOmaReader.getName());
 } catch (e) {
     console.log("getName exception:" + e.message);
@@ -273,7 +273,7 @@ import secureElement from '@ohos.secureElement';
 let nfcOmaReader = null;
 
 try {
-    // refer to SEService.getReaders for this.nfcOmaReader
+    // Refer to SEService.getReaders for this.nfcOmaReader.
     if (nfcOmaReader.isSecureElementPresent()) {
         console.log("isSecureElementPresent TRUE");
     } else {
@@ -316,7 +316,7 @@ let nfcOmaReader = null;
 let nfcOmaSession = null;
 
 try {
-    // refer to SEService.getReaders for this.nfcOmaReader
+    // Refer to SEService.getReaders for this.nfcOmaReader.
     nfcOmaSession = nfcOmaReader.openSession();
     if (nfcOmaSession) {
         console.log("get session successfully");
@@ -352,7 +352,7 @@ import secureElement from '@ohos.secureElement';
 nfcOmaReader = null;
 
 try {
-    // refer to SEService.getReaders for this.nfcOmaReader
+    // Refer to SEService.getReaders for this.nfcOmaReader.
     nfcOmaReader.closeSessions();
     console.log("close Sessions successfully");
 } catch (e) {
@@ -383,7 +383,7 @@ let nfcOmaReader = null;
 let nfcOmaSession = null;
 
 try {
-    // See Reader.openSession for this.nfcOmaSession.
+    // Refer to Reader.openSession for this.nfcOmaSession.
     nfcOmaReader = nfcOmaSession.getReader();
     if (nfcOmaReader) {
         console.log("get reader successfully");
@@ -426,7 +426,7 @@ let nfcOmaSession = null;
 let str = ""; 
 
 try {
-    // See Reader.openSession for this.nfcOmaSession.
+    // Refer to Reader.openSession for this.nfcOmaSession.
     let ret = nfcOmaSession.getATR();
     if (ret) {
        str = 'getATR result:[';
@@ -468,7 +468,7 @@ import secureElement from '@ohos.secureElement';
 let nfcOmaSession = null;
 
 try {
-    // See Reader.openSession for this.nfcOmaSession.
+    // Refer to Reader.openSession for this.nfcOmaSession.
     nfcOmaSession.close();
     console.log("session close successfully");
 } catch (e) {
@@ -502,7 +502,7 @@ import secureElement from '@ohos.secureElement';
 let nfcOmaSession = null;
 
 try {
-    // See Reader.openSession for this.nfcOmaSession.
+    // Refer to Reader.openSession for this.nfcOmaSession.
     let ret = nfcOmaSession.isClosed();
     if (ret) {
         console.log("session state is closed");
@@ -538,7 +538,7 @@ import secureElement from '@ohos.secureElement';
 let nfcOmaSession = null;
 
 try {
-    // See Reader.openSession for this.nfcOmaSession.
+    // Refer to Reader.openSession for this.nfcOmaSession.
     nfcOmaSession.closeChannels();
     console.log("close Channels successfully");
 } catch (e) {
@@ -586,7 +586,7 @@ let nfcOmaSession = null;
 let nfcOmaChannel = null;
 
 try {
-    // See Reader.openSession for this.nfcOmaSession.
+    // Refer to Reader.openSession for this.nfcOmaSession.
     let getPromise = nfcOmaSession.openBasicChannel(this.aidArray);
     getPromise.then((channel) => {
         nfcOmaChannel = channel;
@@ -635,7 +635,7 @@ let nfcOmaChannel = null;
 let aidArray = [720, 1080];
 
 try {
-    // See Reader.openSession for this.nfcOmaSession.
+    // Refer to Reader.openSession for this.nfcOmaSession.
     nfcOmaSession.openBasicChannel(aidArray, (error, data) => {
         if (error) {
             console.log("openBasicChannel2 failed:" + JSON.stringify(error));
@@ -692,7 +692,7 @@ let aidArray = [720, 1080];
 let p2 = 0x00;
 
 try {
-    // See Reader.openSession for this.nfcOmaSession.
+    // Refer to Reader.openSession for this.nfcOmaSession.
     let getPromise = nfcOmaSession.openBasicChannel(aidArray, p2);
     getPromise.then((channel) => {
         nfcOmaChannel = channel;
@@ -744,7 +744,7 @@ let aidArray = [720, 1080];
 let p2 = 0x00;
 
 try {
-    // See Reader.openSession for this.nfcOmaSession.
+    // Refer to Reader.openSession for this.nfcOmaSession.
     nfcOmaSession.openBasicChannel(aidArray, p2, (error, data) => {
         if (error) {
             console.log("openBasicChannel4 failed:" + JSON.stringify(error));
@@ -799,7 +799,7 @@ let nfcOmaChannel = null;
 let aidArray = [720, 1080];
 
 try {
-    // See Reader.openSession for this.nfcOmaSession.
+    // Refer to Reader.openSession for this.nfcOmaSession.
     let getPromise = nfcOmaSession.openLogicalChannel(aidArray)
     getPromise.then((channel) => {
         nfcOmaChannel = channel;
@@ -848,7 +848,7 @@ let nfcOmaChannel = null;
 let aidArray = [720, 1080];
 
 try {
-    // See Reader.openSession for this.nfcOmaSession.
+    // Refer to Reader.openSession for this.nfcOmaSession.
     nfcOmaSession.openLogicalChannel(aidArray, (error, data) => {
         if (error) {
             console.log("openLogicChannel2 failed:" + JSON.stringify(error));
@@ -907,7 +907,7 @@ let p2 = 0x00;
 
 if (nfcOmaSession) {
     try {
-    // See Reader.openSession for this.nfcOmaSession.
+    // Refer to Reader.openSession for this.nfcOmaSession.
         let getPromise = nfcOmaSession.openLogicalChannel(aidArray, p2);
         getPromise.then((channel) => {
             nfcOmaChannel = channel;
@@ -964,7 +964,7 @@ let aidArray = [720, 1080];
 let p2 = 0x00;
 
 try {
-    // See Reader.openSession for this.nfcOmaSession.
+    // Refer to Reader.openSession for this.nfcOmaSession.
     nfcOmaSession.openLogicalChannel(aidArray, p2, (error, data) => {
         if (error) {
             console.log("openLogicChannel4 failed:" + JSON.stringify(error));
@@ -1001,7 +1001,7 @@ let nfcOmaSession = null;
 let nfcOmaChannel = null;
 
 try {
-    // See Session.openBasicChannel for this.nfcOmaChannel.
+    // Refer to Session.openBasicChannel for this.nfcOmaChannel.
     let ret = nfcOmaChannel.getSession();
     if (ret) {
         console.log("get session successfully");
@@ -1030,7 +1030,7 @@ let nfcOmaSession = null;
 let nfcOmaChannel = null;
 
 try {
-    // See Session.openBasicChannel for this.nfcOmaChannel.
+    // Refer to Session.openBasicChannel for this.nfcOmaChannel.
     nfcOmaChannel.close();
     console.log("channel close successfully");
 } catch (e) {
@@ -1060,7 +1060,7 @@ import secureElement from '@ohos.secureElement';
 let nfcOmaChannel = null;
 
 try {
-    // See Session.openBasicChannel for this.nfcOmaChannel.
+    // Refer to Session.openBasicChannel for this.nfcOmaChannel.
     let ret = nfcOmaChannel.isBasicChannel();
     if (ret) {
         console.log("isBasicChannel TRUE");
@@ -1094,7 +1094,7 @@ import secureElement from '@ohos.secureElement';
 let nfcOmaChannel = null;
 
 try {
-    // See Session.openBasicChannel for this.nfcOmaChannel.
+    // Refer to Session.openBasicChannel for this.nfcOmaChannel.
     let ret = nfcOmaChannel.isClosed();
     if (ret) {
         console.log("channel isClosed TRUE");
@@ -1133,7 +1133,7 @@ let str = '';
 let nfcOmaChannel = null;
 
 try {
-    // See Session.openBasicChannel for this.nfcOmaChannel.
+    // Refer to Session.openBasicChannel for this.nfcOmaChannel.
     let ret = nfcOmaChannel.getSelectResponse();
     if (ret) {
         str = "getSelectResponse result:[";
@@ -1190,7 +1190,7 @@ let nfcOmaChannel = null;
 let str = "";
 try {
     let command: number[] = [100, 200];
-    // See Session.openBasicChannel for this.nfcOmaChannel.
+    // Refer to Session.openBasicChannel for this.nfcOmaChannel.
     let getPromise = nfcOmaChannel.transmit(command);
     getPromise.then((data) => {
         str = "transmit1 result:[";
@@ -1243,7 +1243,7 @@ let nfcOmaChannel = null;
 
 try {
     let command: number[] = [100, 200];
-    // See Session.openBasicChannel for this.nfcOmaChannel.
+    // Refer to Session.openBasicChannel for this.nfcOmaChannel.
     nfcOmaChannel.transmit(command, (error, data) => {
         if (error) {
             console.log("transmit2 exception:" + JSON.stringify(error));
