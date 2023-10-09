@@ -106,6 +106,8 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 19020001 | memory error. |
@@ -153,6 +155,8 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 19020001 | memory error. |
@@ -196,6 +200,8 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 | callback | AsyncCallback\<void> | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -253,6 +259,8 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 19030001 | crypto operation error.      |
@@ -298,6 +306,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。表示X509证书序列化数据 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -349,6 +359,8 @@ getEncoded() : Promise\<EncodingBlob>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -394,6 +406,8 @@ getPublicKey() : cryptoFramework.PubKey
 | cryptoFramework.PubKey | X509证书公钥对象：仅用于X509Cert的verify接口 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -443,6 +457,8 @@ checkValidityWithDate(date: string) : void
 | date     | string         | 是   | 日期（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间必须以Z结尾：表示标准时间） |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -568,6 +584,8 @@ getIssuerName() : DataBlob
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -611,6 +629,8 @@ getSubjectName() : DataBlob
 | [DataBlob](#datablob) | 表示X509证书主体名称 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -656,6 +676,8 @@ getNotBeforeTime() : string
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -699,6 +721,8 @@ getNotAfterTime() : string
 | string | 表示X509证书有效期截止时间（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间以Z结尾：表示标准时间） |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -744,6 +768,8 @@ getSignature() : DataBlob
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -787,6 +813,8 @@ getSignatureAlgName() : string
 | string | 表示X509证书签名算法名称 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -832,6 +860,8 @@ getSignatureAlgOid() : string
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -875,6 +905,8 @@ getSignatureAlgParams() : DataBlob
 | [DataBlob](#datablob) | 表示X509证书签名算法参数 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -920,6 +952,8 @@ getKeyUsage() : DataBlob
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                    |
@@ -962,6 +996,8 @@ getExtKeyUsage() : DataArray
 | [DataArray](#dataarray) | 表示X509证书扩展秘钥用途 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -1043,6 +1079,8 @@ getSubjectAltNames() : DataArray
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -1086,6 +1124,8 @@ getIssuerAltNames() : DataArray
 | [DataArray](#dataarray) | 表示X509证书颁发者可选名称 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -1131,6 +1171,8 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 | callback | AsyncCallback\<X509Crl>       | 是   | 回调函数。表示证书吊销列表对象 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1178,6 +1220,8 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 | Promise\<X509Crl> | 表示证书吊销列表对象 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1306,6 +1350,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -1356,6 +1402,8 @@ getEncoded() : Promise\<EncodingBlob>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -1402,6 +1450,8 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 | callback | AsyncCallback\<void> | 是   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
@@ -1459,6 +1509,8 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 | Promise\<void> | Promise对象 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
@@ -1543,6 +1595,8 @@ getIssuerName() : DataBlob
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -1587,6 +1641,8 @@ getLastUpdate() : string
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -1630,6 +1686,8 @@ getNextUpdate() : string
 | string | 表示X509证书吊销列表下一次更新的日期 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
@@ -1680,6 +1738,8 @@ getRevokedCert(serialNumber : number) : X509CrlEntry
 | X509CrlEntry | 表示被吊销X509证书对象 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
@@ -1736,6 +1796,8 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -1784,6 +1846,8 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 | callback | AsyncCallback<Array\<X509CrlEntry>> | 是   | 回调函数。表示被吊销X509证书列表 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
@@ -1834,6 +1898,8 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -1878,6 +1944,8 @@ getTbsInfo() : DataBlob
 | [DataBlob](#datablob) | 表示证书吊销列表的tbsCertList信息 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
@@ -1927,6 +1995,8 @@ getSignature() : DataBlob
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -1970,6 +2040,8 @@ getSignatureAlgName() : string
 | string | 表示X509证书吊销列表签名的算法名 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
@@ -2015,6 +2087,8 @@ getSignatureAlgOid() : string
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -2058,6 +2132,8 @@ getSignatureAlgParams() : DataBlob
 | [DataBlob](#datablob) | 表示X509证书吊销列表签名的算法参数 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
@@ -2109,6 +2185,8 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -2154,6 +2232,8 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 | callback  | AsyncCallback\<void>            | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -2214,6 +2294,8 @@ validate(certChain : CertChainData) : Promise\<void>
 | Promise\<void> | Promise对象 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -2293,6 +2375,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -2330,6 +2414,8 @@ getEncoded() : Promise\<EncodingBlob>
 | Promise\<[EncodingBlob](#encodingblob)> | 表示被吊销证书的序列化数据 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
@@ -2391,6 +2477,8 @@ getCertIssuer() : DataBlob
 
 **错误码：**
 
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
 | 19020001 | memory error.  |
@@ -2425,6 +2513,8 @@ getRevocationDate() : string
 | string | 表示证书被吊销的日期 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
