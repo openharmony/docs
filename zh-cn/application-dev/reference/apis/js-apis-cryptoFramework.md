@@ -390,11 +390,6 @@ console.info("key blob:" + encodedKey.data);
 
 对称密钥，是[Key](#key)的子类，在对称加解密时需要将其对象传入[Cipher](#cipher)实例的[init()](#init-2)方法使用。<br/>对称密钥可以通过对称密钥生成器[SymKeyGenerator](#symkeygenerator)来生成。
 
-  > **说明：**
-  >
-  > 1. 当使用字符串参数“HMAC”创建对称密钥生成器时，需要通过convertKey生成HMAC算法中使用的对称密钥，convertKey传入的二进制密钥数据长度在4096(byte)内。
-  > 2. 当使用字符串参数“HMAC|xxx”创建对称密钥生成器时，可以通过generateSymKey随机生成HMAC算法中使用的对称密钥，也可以通过convertKey生成HMAC算法中使用的对称密钥(convertKey需传入与摘要算法长度一致的二进制密钥数据)。</br>字符串参数具体取值详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节中的“HMAC密钥生成规格”。
-
 ### clearMem
 
 clearMem(): void
