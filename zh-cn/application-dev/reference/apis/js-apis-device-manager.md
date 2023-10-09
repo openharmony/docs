@@ -32,6 +32,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 创建一个设备管理器实例。
 
+> 从API version 11 开始废弃。建议使用[deviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#devicemanagercreatedevicemanager)替代。
+
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -67,6 +69,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 设备信息。
 
+> 从API version 11 开始废弃。建议使用[DeviceBasicInfo](js-apis-distributedDeviceManager.md#devicebasicinfo)替代。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
 | 名称                     | 类型                        | 必填   | 说明       |
@@ -81,6 +85,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 ## DeviceType
 
 表示设备类型的枚举类。
+
+> 从API version 11 开始废弃。无替代接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
@@ -98,6 +104,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 表示设备认证类型的枚举类。
 
+> 从API version 11 开始废弃。无替代接口。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
 | 名称                 | 值  | 说明             |
@@ -111,6 +119,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 表示设备状态变化的枚举。
 
+> 从API version 11 开始废弃。建议使用[DeviceStateChange](js-apis-distributedDeviceManager.md#devicestatechange)替代。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
 | 名称      | 值  | 说明              |
@@ -123,6 +133,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 ## SubscribeInfo
 
 发现信息。
+
+> 从API version 11 开始废弃。无替代接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
@@ -141,6 +153,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 表示发现模式的枚举。
 
+> 从API version 11 开始废弃。无替代接口。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
 | 名称                    | 值  | 说明    |
@@ -152,6 +166,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 ## ExchangeMedium 
 
 表示发现类型的枚举。
+
+> 从API version 11 开始废弃。无替代接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
@@ -165,6 +181,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 ## ExchangeFreq 
 
 表示发现频率的枚举。
+
+> 从API version 11 开始废弃。无替代接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
@@ -180,6 +198,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 表示发现能力的枚举。
 
+> 从API version 11 开始废弃。无替代接口。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
 | 名称                        | 值  | 说明             |
@@ -192,6 +212,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 认证参数。
 
+> 从API version 11 开始废弃。无替代接口。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
 | 名称        | 类型                   | 必填   | 说明         |
@@ -202,6 +224,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 ## AuthInfo
 
 认证信息。
+
+> 从API version 11 开始废弃。无替代接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
@@ -214,6 +238,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 ## PublishInfo<sup>9+</sup>
 
 发布设备参数
+
+> 从API version 11 开始废弃。无替代接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
@@ -233,6 +259,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 release(): void
 
 设备管理实例不再使用后，通过该方法释放DeviceManager实例。
+
+> 从API version 11 开始废弃。建议使用[deviceManager.releaseDeviceManager](js-apis-distributedDeviceManager.md#devicemanagerreleasedevicemanager)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -264,6 +292,8 @@ release(): void
 getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 同步获取所有可信设备列表。
+
+> 从API version 11 开始废弃。建议使用[getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -302,6 +332,8 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 打开软总线系统端的心跳模式，让周围处于下线状态的可信设备快速上线，同时刷新已上线的可信设备列表。
+
+> 从API version 11 开始废弃。无替代接口。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -347,6 +379,8 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 获取所有可信设备列表。使用callback异步回调。
 
+> 从API version 11 开始废弃。建议使用[getAvailableDeviceList](js-apis-distributedDeviceManager.md#getavailabledevicelist)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -382,6 +416,8 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 获取所有可信设备列表。使用Promise异步回调。
 
+> 从API version 11 开始废弃。建议使用[getAvailableDeviceList](js-apis-distributedDeviceManager.md#getavailabledevicelist-1)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -410,6 +446,8 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 同步获取本地设备信息。
+
+> 从API version 11 开始废弃。建议使用[getLocalDeviceNetworkId](js-apis-distributedDeviceManager.md#getlocaldevicenetworkid),[getLocalDeviceName](js-apis-distributedDeviceManager.md#getlocaldevicename),[getLocalDeviceType](js-apis-distributedDeviceManager.md#getlocaldevicetype),[getLocalDeviceId](js-apis-distributedDeviceManager.md#getlocaldeviceid)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -449,6 +487,8 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 获取本地设备信息。使用callback异步回调。
 
+> 从API version 11 开始废弃。建议使用[getLocalDeviceNetworkId](js-apis-distributedDeviceManager.md#getlocaldevicenetworkid),[getLocalDeviceName](js-apis-distributedDeviceManager.md#getlocaldevicename),[getLocalDeviceType](js-apis-distributedDeviceManager.md#getlocaldevicetype),[getLocalDeviceId](js-apis-distributedDeviceManager.md#getlocaldeviceid)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -486,6 +526,8 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 获取本地设备信息。使用Promise异步回调。
 
+> 从API version 11 开始废弃。建议使用[getLocalDeviceNetworkId](js-apis-distributedDeviceManager.md#getlocaldevicenetworkid),[getLocalDeviceName](js-apis-distributedDeviceManager.md#getlocaldevicename),[getLocalDeviceType](js-apis-distributedDeviceManager.md#getlocaldevicetype),[getLocalDeviceId](js-apis-distributedDeviceManager.md#getlocaldeviceid)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -514,6 +556,8 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 通过指定设备的网络标识获取该设备的信息。使用callback异步回调。
+
+> 从API version 11 开始废弃。建议使用[getDeviceName](js-apis-distributedDeviceManager.md#getdevicename),[getDeviceType](js-apis-distributedDeviceManager.md#getdevicetype)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -554,6 +598,8 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 通过指定设备的网络标识获取该设备的信息。使用Promise异步回调。
 
+> 从API version 11 开始废弃。建议使用[getDeviceName](js-apis-distributedDeviceManager.md#getdevicename),[getDeviceType](js-apis-distributedDeviceManager.md#getdevicetype)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -590,6 +636,8 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
+
+> 从API version 11 开始废弃。建议使用[startDiscovering](js-apis-distributedDeviceManager.md#startdiscovering)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -649,6 +697,8 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
+
+> 从API version 11 开始废弃。建议使用[startDiscovering](js-apis-distributedDeviceManager.md#startdiscovering)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -732,6 +782,8 @@ stopDeviceDiscovery(subscribeId: number): void
 
 停止发现周边设备。
 
+> 从API version 11 开始废弃。建议使用[stopDiscovering](js-apis-distributedDeviceManager.md#stopdiscovering)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -770,6 +822,8 @@ stopDeviceDiscovery(subscribeId: number): void
 publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 发布设备发现。发布状态持续两分钟，超过两分钟会停止发布。
+
+> 从API version 11 开始废弃。无替代接口。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -825,6 +879,8 @@ unPublishDeviceDiscovery(publishId: number): void
 
 停止发布设备发现。
 
+> 从API version 11 开始废弃。无替代接口。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -863,6 +919,8 @@ unPublishDeviceDiscovery(publishId: number): void
 authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void
 
 认证设备。
+
+> 从API version 11 开始废弃。建议使用[bindTarget](js-apis-distributedDeviceManager.md#bindtarget)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -946,6 +1004,8 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 解除认证设备。
 
+> 从API version 11 开始废弃。建议使用[unbindTarget](js-apis-distributedDeviceManager.md#unbindtarget)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -997,6 +1057,8 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void
 
 验证认证信息。
+
+> 从API version 11 开始废弃。无替代接口。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -1060,6 +1122,8 @@ setUserOperation(operateAction: number, params: string): void;
 
 设置用户ui操作行为。
 
+> 从API version 11 开始废弃。建议使用[replyUiAction](js-apis-distributedDeviceManager.md#replyuiaction)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -1098,6 +1162,8 @@ setUserOperation(operateAction: number, params: string): void;
 requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
 
 获取凭据的注册信息。
+
+> 从API version 11 开始废弃。无替代接口。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -1148,6 +1214,8 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
 
 导入凭据信息。
+
+> 从API version 11 开始废弃。无替代接口。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -1230,6 +1298,8 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
 删除凭据信息。
 
+> 从API version 11 开始废弃。无替代接口。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -1282,6 +1352,8 @@ on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
 ui状态变更回调。
 
+> 从API version 11 开始废弃。建议使用[on('replyResult')](js-apis-distributedDeviceManager.md#onreplyresult)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -1325,6 +1397,8 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 取消ui状态变更回调。
 
+> 从API version 11 开始废弃。建议使用[off('replyResult')](js-apis-distributedDeviceManager.md#offreplyresult)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -1354,6 +1428,8 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
 注册设备状态回调。
+
+> 从API version 11 开始废弃。建议使用[on('deviceStateChange')](js-apis-distributedDeviceManager.md#ondevicestatechange)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -1400,6 +1476,8 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 取消注册设备状态回调。
 
+> 从API version 11 开始废弃。建议使用[off('deviceStateChange')](js-apis-distributedDeviceManager.md#offdevicestatechange)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -1445,6 +1523,8 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
 注册发现设备回调监听。
 
+> 从API version 11 开始废弃。建议使用[on('discoverSuccess')](js-apis-distributedDeviceManager.md#ondiscoversuccess)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -1482,6 +1562,8 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
 
 取消注册设备发现回调。
+
+> 从API version 11 开始废弃。建议使用[off('discoverSuccess')](js-apis-distributedDeviceManager.md#offdiscoversuccess)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -1528,6 +1610,8 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 注册设备发现失败回调监听。
 
+> 从API version 11 开始废弃。建议使用[on('discoverFailure')](js-apis-distributedDeviceManager.md#ondiscoverfailure)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -1564,6 +1648,8 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
 
 取消注册设备发现失败回调。
+
+> 从API version 11 开始废弃。建议使用[off('discoverFailure')](js-apis-distributedDeviceManager.md#offdiscoverfailure)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -1602,6 +1688,8 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 注册发布设备发现回调监听。
 
+> 从API version 11 开始废弃。无替代接口。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -1639,6 +1727,8 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 取消注册设备发布成功回调。
 
+> 从API version 11 开始废弃。无替代接口。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -1674,6 +1764,8 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
 注册设备发布失败回调监听。
+
+> 从API version 11 开始废弃。无替代接口。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -1712,6 +1804,8 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 取消注册设备发布失败回调。
 
+> 从API version 11 开始废弃。无替代接口。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -1749,6 +1843,8 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 注册设备管理服务死亡监听。
 
+> 从API version 11 开始废弃。建议使用[on('serviceDie')](js-apis-distributedDeviceManager.md#onservicedie)替代。
+
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
@@ -1780,6 +1876,8 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 off(type: 'serviceDie', callback?: () =&gt; void): void
 
 取消注册设备管理服务死亡监听。
+
+> 从API version 11 开始废弃。建议使用[off('serviceDie')](js-apis-distributedDeviceManager.md#offservicedie)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
