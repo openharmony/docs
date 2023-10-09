@@ -1405,7 +1405,7 @@ try {
 
 once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 
-获取霍尔传感器数据。
+获取一次霍尔传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor 
 
