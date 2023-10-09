@@ -16,21 +16,13 @@ import sensor from '@ohos.sensor';
 
 ### COLOR<sup>10+</sup>
 
-on(type: SensorId.COLOR, callback: Callback\<ColorResponse>,options?: Options): void
+on(type: SensorId.COLOR, callback: Callback\<ColorResponse>, options?: Options): void
 
 订阅颜色传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **系统API**：此接口为系统接口
-
-**错误码**：
-
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
-
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
 
 **参数：**
 
@@ -39,6 +31,14 @@ on(type: SensorId.COLOR, callback: Callback\<ColorResponse>,options?: Options): 
 | type     | [SensorId](#sensorid9).COLOR                    | 是   | 传感器类型，该值固定为SensorId.COLOR。                      |
 | callback | Callback&lt;[ColorResponse](#colorresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ColorResponse。         |
 | options  | [Options](#options)                             | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -51,6 +51,10 @@ try{
     console.log('Succeeded in getting the intensity of light: ' + data.lightIntensity);
     console.log('Succeeded in getting the color temperature: ' + data.colorTemperature);
   }, { interval: 100000000 });
+  setTimeout(() => {
+        sensor.off(sensor.SensorId.COLOR);
+        done();
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -59,21 +63,13 @@ try{
 
 ### SAR<sup>10+</sup>
 
-on(type: SensorId.SAR, callback: Callback\<SarResponse>,options?: Options): void
+on(type: SensorId.SAR, callback: Callback\<SarResponse>, options?: Options): void
 
 订阅吸收比率传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **系统API**：此接口为系统接口
-
-**错误码**：
-
-以下错误码的详细介绍请参见[ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
-
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
 
 **参数：**
 
@@ -82,6 +78,14 @@ on(type: SensorId.SAR, callback: Callback\<SarResponse>,options?: Options): void
 | type     | [SensorId](#sensorid9).SAR               | 是   | 传感器类型，该值固定为SensorId.SAR。                        |
 | callback | Callback&lt;[SarResponse](#sarresponse)> | 是   | 回调函数，异步上报的传感器数据固定为SarResponse。           |
 | options  | [Options](#options)                      | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -93,6 +97,9 @@ try {
   sensor.on(sensor.SensorId.SAR, (data: sensor.SarResponse) => {
     console.info('Succeeded in getting specific absorption rate : ' + data.absorptionRatio);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.SAR);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -101,7 +108,7 @@ try {
 
 ### ACCELEROMETER<sup>9+</sup>
 
-on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;,options?: Options): void
+on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;, options?: Options): void
 
 订阅加速度传感器数据。
 
@@ -137,6 +144,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.ACCELEROMETER);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -145,7 +155,7 @@ try {
 
 ### ACCELEROMETER_UNCALIBRATED<sup>9+</sup>
 
-on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;AccelerometerUncalibratedResponse&gt;,options?: Options): void
+on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
 
 订阅未校准加速度传感器数据。
 
@@ -184,6 +194,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate bias: ' + data.biasY);
     console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -224,6 +237,9 @@ try {
   sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data: sensor.LightResponse) => {
     console.info('Succeeded in getting the ambient light intensity: ' + data.intensity);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.AMBIENT_LIGHT);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -232,7 +248,7 @@ try {
 
 ###  AMBIENT_TEMPERATURE<sup>9+</sup>
 
-on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureResponse&gt;,options?: Options): void
+on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureResponse&gt;, options?: Options): void
 
 订阅温度传感器数据。
 
@@ -264,6 +280,9 @@ try {
   sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
     console.info('Succeeded in invoking on. Temperature: ' + data.temperature);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.AMBIENT_TEMPERATURE);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -304,6 +323,9 @@ try {
   sensor.on(sensor.SensorId.BAROMETER, (data: sensor.BarometerResponse) => {
     console.info('Succeeded in invoking on. Atmospheric pressure: ' + data.pressure);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.BAROMETER);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -312,7 +334,7 @@ try {
 
 ###  GRAVITY<sup>9+</sup>
 
-on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: Options): void
+on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;, options?: Options): void
 
 订阅重力传感器数据。
 
@@ -346,6 +368,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.GRAVITY);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -354,7 +379,7 @@ try {
 
 ###  GYROSCOPE<sup>9+</sup>
 
-on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;,options?: Options): void
+on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, options?: Options): void
 
 订阅校准的陀螺仪传感器数据。
 
@@ -390,6 +415,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.GYROSCOPE);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -438,6 +466,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate bias: ' + data.biasY);
     console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -479,6 +510,9 @@ try {
   sensor.on(sensor.SensorId.HALL, (data: sensor.HallResponse) => {
     console.info('Succeeded in invoking on. Hall status: ' + data.status);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.HALL);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -488,7 +522,7 @@ try {
 
 ###   HEART_RATE<sup>9+</sup>
 
-on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,options?: Options): void
+on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
 
 订阅心率传感器数据。
 
@@ -522,6 +556,9 @@ try {
   sensor.on(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
     console.info('Succeeded in invoking on. Heart rate: ' + data.heartRate);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.HEART_RATE);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -530,7 +567,7 @@ try {
 
 ###  HUMIDITY<sup>9+</sup>
 
-on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?: Options): void
+on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;, options?: Options): void
 
 订阅湿度传感器数据。
 
@@ -562,6 +599,9 @@ try {
   sensor.on(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
     console.info('Succeeded in invoking on. Humidity: ' + data.humidity);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.HUMIDITY);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -607,6 +647,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -615,7 +658,7 @@ try {
 
 ###  MAGNETIC_FIELD<sup>9+</sup>
 
-on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;,options?: Options): void
+on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;, options?: Options): void
 
 订阅地磁传感器数据。
 
@@ -649,6 +692,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.MAGNETIC_FIELD);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -659,7 +705,7 @@ try {
 
 on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;, options?: Options): void
 
-订阅未校准地磁传感器数据
+订阅未校准地磁传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor 
 
@@ -694,6 +740,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate bias: ' + data.biasY);
     console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -702,7 +751,7 @@ try {
 
 ### ORIENTATION<sup>9+</sup>
 
-on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;,options?: Options): void
+on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, options?: Options): void
 
 订阅方向传感器数据。
 
@@ -736,6 +785,9 @@ try {
     console.info('Succeeded in the device rotating at an angle around the X axis: ' + data.beta);
     console.info('Succeeded in the device rotating at an angle around the Y axis: ' + data.gamma);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.ORIENTATION);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -778,6 +830,9 @@ try {
   sensor.on(sensor.SensorId.PEDOMETER, (data: sensor.PedometerResponse) => {
     console.info('Succeeded in invoking on. Step count: ' + data.steps);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.PEDOMETER);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -821,6 +876,9 @@ try {
   sensor.on(sensor.SensorId.PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
     console.info('Succeeded in invoking on. Pedometer scalar: ' + data.scalar);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.PEDOMETER_DETECTION);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -861,6 +919,9 @@ try {
   sensor.on(sensor.SensorId.PROXIMITY, (data: sensor.ProximityResponse) => {
     console.info('Succeeded in invoking on. Distance: ' + data.distance);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.PROXIMITY);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -905,6 +966,9 @@ try {
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
     console.info('Succeeded in invoking on. Scalar quantity: ' + data.w);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.ROTATION_VECTOR);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -946,6 +1010,9 @@ try {
   sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
     console.info('Succeeded in invoking on. Scalar data: ' + data.scalar);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.SIGNIFICANT_MOTION);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -987,6 +1054,9 @@ try {
   sensor.on(sensor.SensorId.WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
     console.info('Succeeded in invoking on. Wear status: ' + data.value);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.WEAR_DETECTION);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -1441,7 +1511,7 @@ import sensor from "@ohos.sensor"
 import BusinessError from "@ohos.base"
 
 try {
-  sensor.once(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
+  sensor.once(sensor.SensorId.HUMIDITY, (data: sensor.HeartRateResponse) => {
     console.info('Succeeded in invoking once. Heart rate: ' + data.heartRate);
   });
 } catch (error) {
@@ -1595,7 +1665,7 @@ once(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;):
 
 **错误码**： 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。AMBIENT_LIGHT
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
