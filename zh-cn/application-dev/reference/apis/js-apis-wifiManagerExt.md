@@ -76,7 +76,7 @@ getSupportedPowerMode(): Promise&lt;Array&lt;PowerMode&gt;&gt;
 
 表示功率模式的枚举。
 
-**系统能力：** SystemCapability.Communication.WiFi.AP.Extension
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
