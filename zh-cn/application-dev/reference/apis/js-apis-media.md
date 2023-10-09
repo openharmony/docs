@@ -510,15 +510,6 @@ on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReas
 | type     | string   | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
 | callback | function | 是   | 状态机切换事件回调方法：<br/>state: [AVPlayerState](#avplayerstate9)，表示当前播放状态；<br/>reason: [StateChangeReason](#statechangereason9)，表示当前播放状态的切换原因。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
-
-| 错误码ID | 错误信息                          |
-| -------- | --------------------------------- |
-| 5400103  | IO error. Return by callback.     |
-| 5400105  | Service died. Return by callback. |
-
 **示例：**
 
 ```ts
@@ -2513,6 +2504,15 @@ on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeRe
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
 | callback | function | 是   | 状态机切换事件回调方法：<br>state: [AVRecorderState](#avrecorderstate9)，表示当前播放状态 ；<br>reason: [StateChangeReason](#statechangereason9)，表示当前播放状态的切换原因。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400103  | IO error. Return by callback.     |
+| 5400105  | Service died. Return by callback. |
 
 **示例：**
 
