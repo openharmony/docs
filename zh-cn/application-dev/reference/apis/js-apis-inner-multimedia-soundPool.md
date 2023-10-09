@@ -11,7 +11,6 @@ SoundPool需要和@ohos.multimedia.media配合使用，需要先通过[media.cre
 ## 导入模块
 
 ```js
-import media from '@ohos.multimedia.media';
 import audio from '@ohos.multimedia.audio';
 ```
 
@@ -30,7 +29,7 @@ import audio from '@ohos.multimedia.audio';
 | leftVolume  | number | 否  | 设置左声道音量，设置范围（0~1）。                                    |
 | rightVolume | number  | 否  | 设置右声道音量。（当前不支持左右分别设置，将以左声道音量为准）。 |
 | priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级。      |
-| parallelPlayFlag | boolean | 否   | 是否和其它正在播放的音频并行播放的标识，true:不抢占音频焦点和其它正在播放的音频并行播放，false:抢占焦点打断其它正在播放的音频。|
+| parallelPlayFlag | boolean | 否   | 是否和其它正在播放的音频并行播放的标识，true:不抢占音频焦点和其它正在播放的音频并行播放，false:抢占焦点打断其它正在播放的音频。<br/>此接口为系统接口。|
 
 ## SoundPool
 
@@ -445,7 +444,7 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 5400102  | Operate not permit. Return by callback. |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
@@ -519,7 +518,7 @@ setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>):
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 5400102  | Operate not permit. Return by callback. |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
@@ -595,7 +594,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 5400102  | Operate not permit. Return by callback. |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
@@ -673,7 +672,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 5400102  | Operate not permit. Return by callback. |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
@@ -694,7 +693,7 @@ soundPool.setVolume(streamID, 0.5, 0.5, (error) => {
 
 ### setVolume
 
-setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise<void>
+setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<void>
 
 设置音频流的播放音量。使用Promise方式异步获取返回值。
 
@@ -864,7 +863,7 @@ soundPool.release().then(() => {
 
 ### on('loadComplete')
 
-on(type: 'loadComplete', callback: Callback<number>): void
+on(type: 'loadComplete', callback: Callback\<number>): void
 
 音频池资源加载完成监听。
 
@@ -916,7 +915,7 @@ soundPool.off('loadComplete')
 
 ### on('playFinished')
 
-on(type: 'playFinished', callback: Callback<void>): void
+on(type: 'playFinished', callback: Callback\<void>): void
 
 音频池资源播放完成监听。
 
