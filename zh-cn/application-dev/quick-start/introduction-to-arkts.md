@@ -198,7 +198,7 @@ type Animal = Cat | Dog | Frog | number
 
 let animal: Animal = new Cat()
 if (animal instanceof Frog) {
-    let frog: Frog = animal // animal在这里是Frog类型
+    let frog: Frog = animal as Frog// animal在这里是Frog类型
     animal.leap()
     frog.leap()
     // 结果：青蛙跳了两次
@@ -269,11 +269,11 @@ type NullableObject = Object | null
 
 | 运算符  | 说明|
 | ---------- | ----------- |
-| `a && b`   | 逻辑与|
+| `a && b`   | 逻辑与 |
 | `a \|\| b` | 逻辑或 |
-| `! a`      | 逻辑非|
+| `! a`      | 逻辑非 |
 
-### 控制流
+### 语句
 
 #### `If`语句
 
@@ -583,9 +583,9 @@ function add(x: string, y: string): string {
 ```typescript
 function hello(name?: string) {
     if (name == undefined) {
-        console.log("Hello, ${name}!")
-    } else {
         console.log("Hello!")
+    } else {
+        console.log("Hello, ${name}!")
     }
 }
 ```
@@ -817,6 +817,83 @@ class Person {
 }
 
 console.log(Person.numberOfPersons)
+```
+
+#### 字段初始化
+
+为了减少运行时的错误和获得更好的执行性能，
+ArkTS要求所有字段在声明时或者构造函数中显式初始化。这和标准TS中的`strictPropertyInitialization`模式一样。
+
+以下代码是在ArkTS中不合法的代码。
+
+```typescript
+class Person {
+  name: string // undefined
+  
+  setName(n:string): void {
+    this.name = n
+  }
+  
+  getName(): string {
+  // 开发者使用"string"作为返回类型，这隐藏了name可能为"undefined"的事实。
+  // 更合适的做法是将返回类型标注为"string | undefined"，以告诉开发者这个API所有可能的返回值。
+    return this.name
+  }
+}
+
+let jack = new Person()
+// 假设代码中没有对name赋值，例如调用"jack.setName('Jack')"
+console.log(jack.getName().length); // 运行时异常：name is undefined
+```
+
+在ArkTS中，应该这样写代码。
+
+```typescript
+class Person {
+  name: string = ''
+  
+  setName(n:string): void {
+      this.name = n
+  }
+  
+  // 类型为"string"，不可能为"null"或者"undefined"
+  getName(): string {
+      return this.name
+  }
+  
+
+let jack = new Person()
+// 假设代码中没有对name赋值，例如调用"jack.setName('Jack')"
+console.log(jack.getName().length); // 0, 没有运行时异常
+```
+
+接下来的代码展示了如果`name`的值可以是`undefined`，那么应该如何写代码。
+
+```typescript
+class Person {
+    name ?: string // 可能为`undefined`
+
+    setName(n:string): void {
+        this.name = n
+    }
+
+    // 编译时错误：name可以是"undefined"，所以将这个API的返回值类型标记为string
+    getNameWrong(): string {
+        return this.name
+    }
+
+    getName(): string | undefined { // 返回类型匹配name的类型
+        return this.name
+    }
+}
+
+let jack = new Person()
+// 假设代码中没有对name赋值，例如调用"jack.setName('Jack')"
+
+// 编译时错误：编译器认为下一行代码有可能会访问undefined的属性，报错
+console.log(jack.getName().length);  // 编译失败
+
+console.log(jack.getName()?.length); // 编译成功，没有运行时错误
 ```
 
 #### getter和setter
