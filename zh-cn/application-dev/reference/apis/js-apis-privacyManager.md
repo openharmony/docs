@@ -627,6 +627,7 @@ try {
 | status  | number         | 是    | 访问状态。                                 |
 | timestamp | number         | 是    | 访问时的时间戳，单位：ms。 |
 | accessDuration  | number         | 是    | 访问时长，单位：ms。                                 |
+| count<sup>11+</sup> | number | 否 | 成功或失败次数。
 
 ## PermissionActiveStatus
 
