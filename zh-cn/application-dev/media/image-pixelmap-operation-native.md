@@ -1,4 +1,4 @@
-# PixelMap数据处理
+# PixelMap数据处理(Native)
 
 开发者可以通过本指导了解如何使用Native Image的接口。
 
