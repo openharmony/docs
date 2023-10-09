@@ -12,6 +12,7 @@ The **socket** module provides APIs for operating and managing Bluetooth sockets
 
 ```js
 import socket from '@ohos.bluetooth.socket';
+import { BusinessError } from '@ohos.base';
 ```
 
 ## socket.sppListen<a name="sppListen"></a>
