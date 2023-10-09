@@ -539,6 +539,42 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   });
   ```
 
+## fs.copyDirSync<sup>10+</sup>
+
+copyDirSync(src: string, dest: string, mode?: number): void
+
+Copies a directory. This API returns the result synchronously.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name   | Type    | Mandatory  | Description                         |
+  | ------ | ------ | ---- | --------------------------- |
+  | src | string | Yes   | Application sandbox path of the directory to copy.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  // Copy srcPath to destPath.
+  let srcPath = pathDir + "/srcDir/";
+  let destPath = pathDir + "/destDir/";
+  try {
+    fs.copyDirSync(srcPath, destPath, 0);
+    console.info("copy directory succeed");
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+  }
+  ```
+
 ## fs.dup<sup>10+</sup>
 
 dup(fd: number): File
@@ -681,7 +717,7 @@ Opens a file. This API uses a promise to return the result. File uniform resourc
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
@@ -702,6 +738,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     console.info("file fd: " + file.fd);
   }).catch((err: BusinessError) => {
     console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -719,7 +757,7 @@ Opens a file. This API uses an asynchronous callback to return the result. File 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                          | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Error codes**
 
@@ -732,10 +770,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: fs.File) => {
     if (err) {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.info("open failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("file fd: " + file.fd);
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -752,7 +791,7 @@ Synchronously opens a file. File URIs are supported.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
@@ -814,6 +853,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -848,13 +889,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let arrayBuffer = new ArrayBuffer(4096);
   fs.read(file.fd, arrayBuffer, (err: BusinessError, readLen: number) => {
     if (err) {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.info("read failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Read file data successfully");
       let buf = buffer.from(arrayBuffer, 0, readLen);
       console.info(`The content of file: ${buf.toString()}`);
-      fs.closeSync(file);
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -1118,9 +1159,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let str: string = "hello, world";
   fs.write(file.fd, str).then((writeLen: number) => {
     console.info("write data to file succeed and size is:" + writeLen);
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("write data to file failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -1157,8 +1199,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
       console.info("write failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("write data to file succeed and size is:" + writeLen);
-      fs.closeSync(file);
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -1653,9 +1695,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath);
   fs.fsync(file.fd).then(() => {
     console.info("Data flushed");
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -1689,8 +1732,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
       console.info("fsync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fsync success");
-      fs.closeSync(file);
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -1754,9 +1797,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath);
   fs.fdatasync(file.fd).then((err: BusinessError) => {
     console.info("Data flushed");
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -1790,8 +1834,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
       console.info("fdatasync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fdatasync success");
-      fs.closeSync(file);
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -2177,6 +2221,42 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   });
   ```
 
+## fs.moveDirSync<sup>10+</sup>
+
+moveDirSync(src: string, dest: string, mode?: number): void
+
+Moves a directory. This API returns the result synchronously.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name   | Type    | Mandatory  | Description                         |
+  | ------ | ------ | ---- | --------------------------- |
+  | src | string | Yes   | Application sandbox path of the directory to copy.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br>Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  // move directory from srcPath to destPath
+  let srcPath = pathDir + "/srcDir/";
+  let destPath = pathDir + "/destDir/";
+  try {
+    fs.moveDirSync(srcPath, destPath, 1);
+    console.info("move directory succeed");
+  } catch (err) {
+    let err: BusinessError = error as BusinessError;
+    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+  }
+  ```
+
 ## fs.moveFile
 
 moveFile(src: string, dest: string, mode?: number): Promise\<void>
@@ -2412,9 +2492,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.createRandomAccessFile(file).then((randomAccessFile: fs.RandomAccessFile) => {
     console.info("randomAccessFile fd: " + randomAccessFile.fd);
     randomAccessFile.close();
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -2450,8 +2531,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     } else {
       console.info("randomAccessFilefile fd: " + randomAccessFile.fd);
       randomAccessFile.close();
-      fs.closeSync(file);
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -2629,9 +2710,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath);
   fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
     console.info("Stream opened");
-    fs.closeSync(file);
+    stream.closeSync();
   }).catch((err: BusinessError) => {
     console.info("openStream failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -2666,8 +2749,9 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
       console.info("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fdopen stream success");
-      fs.closeSync(file);
+      stream.closeSync();
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -2702,6 +2786,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
   let ss = fs.fdopenStreamSync(file.fd, "r+");
+  ss.closeSync();
   fs.closeSync(file);
   ```
 
@@ -3455,6 +3540,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     console.log("lock file successful");
   }).catch((err: BusinessError) => {
     console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    fs.closeSync(file);
   });
   ```
 
@@ -3488,6 +3575,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     } else {
       console.log("lock file successful");
     }
+    fs.closeSync(file);
   });
   ```
 
@@ -3515,6 +3603,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   console.log("lock file successful");
+  fs.closeSync(file);
   ```
 
 ### unlock
@@ -3536,6 +3625,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   file.tryLock(true);
   file.unlock();
   console.log("unlock file successful");
+  fs.closeSync(file);
   ```
 
 
@@ -3638,10 +3728,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let arrayBuffer = new ArrayBuffer(bufferLength);
   randomaccessfile.write(arrayBuffer, option).then((bytesWritten: number) => {
     console.info("randomAccessFile bytesWritten: " + bytesWritten);
-    randomaccessfile.close();
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    randomaccessfile.close();
+    fs.closeSync(file);
   });
 
   ```
@@ -3688,10 +3779,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     } else {
       if (bytesWritten) {
         console.info("write succeed and size is:" + bytesWritten);
-        randomAccessFile.close();
-        fs.closeSync(file);
       }
     }
+    randomAccessFile.close();
+    fs.closeSync(file);
   });
   ```
 
@@ -3949,7 +4040,7 @@ Defines the file filtering configuration, which can be used by **listFile()**.
 | Name       | Type      | Description               |
 | ----------- | --------------- | ------------------ |
 | suffix | Array&lt;string&gt;     | Locate files that fully match the specified file name extensions, which are of the OR relationship.          |
-| displayName    | Array&lt;string&gt;     | Locate files that fuzzy match the specified file names, which are of the OR relationship.|
+| displayName    | Array&lt;string&gt;     | Locate files that fuzzy match the specified file names, which are of the OR relationship. Currently, only the wildcard * is supported.|
 | mimeType    | Array&lt;string&gt; | Locate files that fully match the specified MIME types, which are of the OR relationship.      |
 | fileSizeOver    | number | Locate files that are greater than or equal to the specified size.      |
 | lastModifiedAfter    | number | Locate files whose last modification time is the same or later than the specified time.      |
