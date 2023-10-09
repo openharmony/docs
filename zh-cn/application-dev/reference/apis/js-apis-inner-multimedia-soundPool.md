@@ -11,6 +11,7 @@ SoundPool需要和@ohos.multimedia.media配合使用，需要先通过[media.cre
 ## 导入模块
 
 ```js
+import media from '@ohos.multimedia.media';
 import audio from '@ohos.multimedia.audio';
 ```
 
