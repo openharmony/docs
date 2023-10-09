@@ -54,7 +54,7 @@ export class GlobalContext {
 ```
 
 ```ts
-import Want from '@ohos.application.Want';
+import Want from '@ohos.app.ability.Want';
 import { GlobalContext } from './GlobalContext';
 
 class EntryAbility {  
@@ -70,7 +70,7 @@ export default new EntryAbility()
 在目标端页面的自定义组件中获取包含页面信息的want参数并根据uri做路由处理：
 
 ```ts
-import Want from '@ohos.application.Want';
+import Want from '@ohos.app.ability.Want';
 import router from '@ohos.router';
 import { GlobalContext } from '../GlobalContext';
 
