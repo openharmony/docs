@@ -276,8 +276,22 @@ import wifi from '@ohos.wifi';
 try {
 	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
-		preSharedKey : "****",
-		securityType : 0
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 0,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
 	}
 	wifi.addDeviceConfig(config).then(result => {
 		console.info("result:" + JSON.stringify(result));
@@ -369,8 +383,22 @@ import wifi from '@ohos.wifi';
 try {
 	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
-		preSharedKey : "****",
-		securityType : 0
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 0,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
 	}
 	wifi.addDeviceConfig(config,(error,result) => {
 		console.info("result:" + JSON.stringify(result));
@@ -408,8 +436,22 @@ import wifi from '@ohos.wifi';
 try {
 	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
-		preSharedKey : "****",
-		securityType : 0
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 0,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
 	}
 	wifi.addUntrustedConfig(config).then(result => {
 		console.info("result:" + JSON.stringify(result));
@@ -443,8 +485,22 @@ import wifi from '@ohos.wifi';
 try {
 	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
-		preSharedKey : "****",
-		securityType : 0
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 0,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
 	}
 	wifi.addUntrustedConfig(config,(error,result) => {
 		console.info("result:" + JSON.stringify(result));
@@ -482,8 +538,26 @@ removeUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 import wifi from '@ohos.wifi';
 
 try {
-	let networkId = 0;
-	wifi.removeUntrustedConfig(networkId).then(result => {
+	let config:wifi.WifiDeviceConfig = {
+		ssid : "****",
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 0,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
+	}
+	wifi.removeUntrustedConfig(config).then(result => {
 		console.info("result:" + JSON.stringify(result));
 	});	
 }catch(error){
@@ -514,8 +588,26 @@ removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boole
 import wifi from '@ohos.wifi';
 
 try {
-	let networkId = 0;
-	wifi.removeUntrustedConfig(networkId,(error,result) => {
+	let config:wifi.WifiDeviceConfig = {
+		ssid : "****",
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 0,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
+	}
+	wifi.removeUntrustedConfig(config,(error,result) => {
 	console.info("result:" + JSON.stringify(result));
 	});	
 }catch(error){
@@ -592,8 +684,22 @@ import wifi from '@ohos.wifi';
 try {
 	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
-		preSharedKey : "****",
-		securityType : 3
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 3,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+		ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
 	}
 	wifi.connectToDevice(config);
 			
@@ -1101,8 +1207,22 @@ import wifi from '@ohos.wifi';
 try {
 	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
-		preSharedKey : "****",
-		securityType : 3
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 3,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
 	}
 	let ret = wifi.updateNetwork(config);
 	console.error("ret:" + ret);		
@@ -1363,7 +1483,6 @@ try {
 		ssid: "****",
 		securityType: 3,
 		band: 0,
-		channel: 0,
 		preSharedKey: "****",
 		maxConn: 0
 	}
@@ -1808,12 +1927,12 @@ let recvP2pConnectionChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
 }
 wifi.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
 
-let recvP2pDeviceChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
+let recvP2pDeviceChangeFunc = (result:wifi.WifiP2pDevice) => {
     console.info("p2p device change receive event: " + JSON.stringify(result));
 }
 wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
 
-let recvP2pPeerDeviceChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
+let recvP2pPeerDeviceChangeFunc = (result:wifi.WifiP2pDevice[]) => {
     console.info("p2p peer device change receive event: " + JSON.stringify(result));
     wifi.getP2pPeerDevices((err, data) => {
         if (err) {
