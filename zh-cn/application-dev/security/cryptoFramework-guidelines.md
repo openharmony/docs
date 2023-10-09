@@ -302,10 +302,10 @@ function convertSM2AsyKey() {
 
 ### 随机生成HMAC密钥，并获得二进制数据
 
-示例9：随机生成对称密钥SymKey，并获得二进制数据（场景1、3）
+示例9：随机生成HMAC算法中使用的对称密钥SymKey，并获得二进制数据（场景1、3）
 
 1. 创建对称密钥生成器。
-2. 通过对称密钥生成器随机生成对称密钥。
+2. 通过对称密钥生成器随机生成HMAC算法中使用的对称密钥。
 3. 获取算法库密钥对象的二进制数据。
 
 以使用Promise方式随机生成HMAC密钥（256位）为例：
@@ -329,21 +329,29 @@ function testGenerateHmacKey() {
 
 ### 根据HMAC密钥二进制数据，生成密钥
 
-示例10：随机生成对称密钥SymKey，并获得二进制数据（场景1、3）
+示例10：根据指定的HMAC对称密钥二进制数据，生成HMAC算法中使用的对称密钥SymKey（场景1、3）
 
 1. 创建对称密钥生成器。
-2. 通过对称密钥生成器，根据指定的对称密钥二进制数据，生成SymKey对象。
-3. 获取算法库密钥对象的二进制数据。
+2. 通过对称密钥生成器，根据指定的HMAC二进制密钥数据，生成SymKey对象。
 
-以使用callback方式生成HMAC密钥（256位）为例：
+以使用callback方式生成HMAC密钥（512位）为例：
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 
+function stringToUint8Array(str) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  let tmpUint8Array = new Uint8Array(arr);
+  return tmpUint8Array;
+}
+
 function testConvertHmacKey() {
   let keyBlob = {
-    data : stringToUint8Array("12345678abcdefgh12345678abcdefgh")
+    data : stringToUint8Array("12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh") // length is 256 (64 byte)
   }
   // Create a SymKeyGenerator instance.
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator("HMAC");

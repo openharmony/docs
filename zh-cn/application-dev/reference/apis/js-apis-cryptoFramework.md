@@ -388,7 +388,12 @@ console.info("key blob:" + encodedKey.data);
 
 ## SymKey
 
-对称密钥，是[Key](#key)的子类，在对称加解密时需要将其对象传入[Cipher](#cipher)实例的[init()](#init-2)方法使用。<br/>对称密钥可以通过对称密钥生成器[SymKeyGenerator](#symkeygenerator)来生成。
+对称密钥，是[Key](#key)的子类，在对称加解密时需要将其对象传入[Cipher](#cipher)实例的[init()](#init-2)方法使用，在HMAC时需要将其对象传入[Mac](#mac)实例的[init()](#init-6)方法使用。<br/>对称密钥可以通过对称密钥生成器[SymKeyGenerator](#symkeygenerator)来生成。
+
+  > **说明：**
+  >
+  > 1. 当使用字符串参数“HMAC”创建对称密钥生成器时，需要通过convertKey生成对称密钥，convertKey传入的二进制数据长度在4096(byte)范围内。
+  > 2. 当使用字符串参数“HMAC|xxx”创建对称密钥生成器时，可以通过generateSymKey随机生成对应摘要算法长度的对称密钥，通过convertKey生成HMAC算法中使用的对称密钥时。</br>字符串参数具体取值详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节中的“HMAC密钥生成规格”。
 
 ### clearMem
 
