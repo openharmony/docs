@@ -281,18 +281,15 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
     .height('100%')
     .backgroundColor('#F5DC62')
     .onReady(() =>{
-      let con:Contextset = new Contextset()
-       //创建一个径向渐变色的CanvasGradient对象
-       let grad:CanvasGradient|undefined = con.context.createRadialGradient(200,200,50, 200,200,200)
-       //为CanvasGradient对象设置渐变断点值，包括偏移和颜色
-       if(grad){
-        grad.addColorStop(0.0, '#E87361');
-        grad.addColorStop(0.5, '#FFFFF0');
-        grad.addColorStop(1.0, '#BDDB69');
-        con.context.fillStyle = grad;
-       }
-       //用CanvasGradient对象填充矩形
-      con.context.fillRect(0, 0, 400, 400);
+      //创建一个径向渐变色的CanvasGradient对象
+      let grad = this.context.createRadialGradient(200,200,50, 200,200,200)
+      //为CanvasGradient对象设置渐变断点值，包括偏移和颜色
+      grad.addColorStop(0.0, '#E87361');
+      grad.addColorStop(0.5, '#FFFFF0');
+      grad.addColorStop(1.0, '#BDDB69');
+      //用CanvasGradient对象填充矩形
+      this.context.fillStyle = grad;
+      this.context.fillRect(0, 0, 400, 400);
     })
   ```
 
