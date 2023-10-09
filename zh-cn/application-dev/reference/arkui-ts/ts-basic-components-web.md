@@ -114,7 +114,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  import { GlobalContext } from '../GlobalContext'
+  import { GlobalContext } from '../GlobalContext.ts'
 
   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
 
@@ -2305,7 +2305,9 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
   <body>
     <form id="upload-form" enctype="multipart/form-data">
       <input type="file" id="upload" name="upload"/>
+      </form>
   </body>
+  </html>
   ```
 
 ### onResourceLoad<sup>9+</sup>
@@ -2655,7 +2657,8 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handler.cancel()
+                  event.handlqq
+                  er.cancel()
                 }
               },
               cancel: () => {
