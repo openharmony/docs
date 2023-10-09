@@ -590,17 +590,17 @@ AVPlayer回调的**错误分类**<a name = error_info></a>可以分为以下几�
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
 
-| 错误码ID | 错误信息              | 说明                                                         |
-| -------- | --------------------- | ------------------------------------------------------------ |
-| 201      | No Permission:        | 无权限执行此操作，[AVPlayerState](#avplayerstate9)会进入error状态。 |
-| 401      | Invalid Parameter:    | 入参错误，表示调用无效。                                     |
-| 801      | Unsupport Capability: | 不支持该API能力，表示调用无效。                              |
-| 5400101  | No Memory:            | 播放内存不足，[AVPlayerState](#avplayerstate9)会进入error状态。 |
-| 5400102  | Operate Not Permit:   | 当前状态机不支持此操作，表示调用无效。                       |
-| 5400103  | IO Error:             | 播放中发现码流异常，[AVPlayerState](#avplayerstate9)会进入error状态。 |
-| 5400104  | Network Timeout:      | 网络原因超时响应，[AVPlayerState](#avplayerstate9)会进入error状态。 |
-| 5400105  | Service Died:         | 播放进程死亡，[AVPlayerState](#avplayerstate9)会进入error状态，需要调用release后重新创建实例。 |
-| 5400106  | Unsupport Format:     | 不支持的文件格式，[AVPlayerState](#avplayerstate9)会进入error状态。 |
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 201      | No Permission.        |
+| 401      | Invalid Parameter.    |
+| 801      | Unsupport Capability. |
+| 5400101  | No Memory.            |
+| 5400102  | Operate Not Permit.   |
+| 5400103  | IO Error.             |
+| 5400104  | Network Timeout.      |
+| 5400105  | Service Died.         |
+| 5400106  | Unsupport Format.     |
 
 **示例：**
 
