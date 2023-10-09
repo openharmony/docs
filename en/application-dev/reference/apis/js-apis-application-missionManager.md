@@ -247,11 +247,11 @@ Obtains information about all missions. This API uses an asynchronous callback t
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error.code) {
-          console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
       }
-      console.log('size = ${missions.length}');
-      console.log('missions = ${JSON.stringify(missions)}');
+      console.log(`size = ${missions.length}`);
+      console.log(`missions = ${JSON.stringify(missions)}`);
   });
   ```
 
@@ -319,19 +319,19 @@ Obtains the snapshot of a given mission. This API uses an asynchronous callback 
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
     }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.getMissionSnapShot('', id, (error, snapshot) => {
       if (error.code) {
-          console.error('getMissionSnapShot failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`getMissionSnapShot failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
       }
-      console.log('bundleName = ${snapshot.ability.bundleName}');
+      console.log(`bundleName = ${snapshot.ability.bundleName}`);
     });
   });
   ```
@@ -371,14 +371,14 @@ Obtains the snapshot of a given mission. This API uses a promise to return the r
   missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
     }).catch(function(error) {
-        console.error('getMissionInfos fail, error: ${error}');
+        console.error(`getMissionInfos fail, error: ${error}`);
     });
-    console.log('size = ${allMissions.length}');
-    console.log('missions = ${JSON.stringify(allMissions)}');
+    console.log(`size = ${allMissions.length}`);
+    console.log(`missions = ${JSON.stringify(allMissions)}`);
     let id = allMissions[0].missionId;
 
     let snapshot = missionManager.getMissionSnapShot('', id).catch(function (error){
-        console.error('getMissionSnapShot fail, error: ${error}');
+        console.error(`getMissionSnapShot fail, error: ${error}`);
     });
   ```
 
@@ -408,11 +408,11 @@ Locks a given mission. This API uses an asynchronous callback to return the resu
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
     }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.lockMission(id).then(() => {
@@ -454,14 +454,14 @@ Locks a given mission. This API uses a promise to return the result.
   missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
   }).catch(function(error) {
-      console.error('getMissionInfos fail, error: ${error}');
+      console.error(`getMissionInfos fail, error: ${error}`);
   });
-  console.log('size = ${allMissions.length}');
-  console.log('missions = ${JSON.stringify(allMissions)}');
+  console.log(`size = ${allMissions.length}`);
+  console.log(`missions = ${JSON.stringify(allMissions)}`);
   let id = allMissions[0].missionId;
 
   missionManager.lockMission(id).catch(function (error){
-      console.error('lockMission fail, error: ${error}');
+      console.error(`lockMission fail, error: ${error}`);
   });
   ```
 
@@ -492,11 +492,11 @@ Unlocks a given mission. This API uses an asynchronous callback to return the re
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
     }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.unlockMission(id).then(() => {
@@ -539,17 +539,17 @@ Unlocks a given mission. This API uses a promise to return the result.
   missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
   }).catch(function(error) {
-      console.error('getMissionInfos fail, error: ${error}');
+      console.error(`getMissionInfos fail, error: ${error}`);
   });
-  console.log('size = ${allMissions.length}');
-  console.log('missions = ${JSON.stringify(allMissions)}');
+  console.log(`size = ${allMissions.length}`);
+  console.log(`missions = ${JSON.stringify(allMissions)}`);
   let id = allMissions[0].missionId;
 
   missionManager.lockMission(id).catch(function (error){
-      console.error('lockMission fail, error: ${error}');
+      console.error(`lockMission fail, error: ${error}`);
   });
   missionManager.unlockMission(id).catch(function (error){
-      console.error('unlockMission fail, error: ${error}');
+      console.error(`unlockMission fail, error: ${error}`);
   });
   ```
 
@@ -580,11 +580,11 @@ Clears a given mission, regardless of whether it is locked. This API uses an asy
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
     }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.clearMission(id).then(() => {
@@ -627,14 +627,14 @@ Clears a given mission, regardless of whether it is locked. This API uses a prom
   missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
   }).catch(function(error) {
-      console.error('getMissionInfos fail, error: ${error}');
+      console.error(`getMissionInfos fail, error: ${error}`);
   });
-  console.log('size = ${allMissions.length}');
-  console.log('missions = ${JSON.stringify(allMissions)}');
+  console.log(`size = ${allMissions.length}`);
+  console.log(`missions = ${JSON.stringify(allMissions)}`);
   let id = allMissions[0].missionId;
 
   missionManager.clearMission(id).catch(function (error){
-    console.error('clearMission fail, error: ${error}');
+    console.error(`clearMission fail, error: ${error}`);
   });
   ```
 
@@ -716,11 +716,11 @@ Switches a given mission to the foreground. This API uses an asynchronous callba
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
     }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.moveMissionToFront(id).then(() => {
@@ -757,11 +757,11 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
     }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.moveMissionToFront(id,{windowMode : 101}).then(() => {
@@ -805,13 +805,13 @@ Switches a given mission to the foreground, with the startup parameters for the 
   missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
   }).catch(function(error) {
-      console.error('getMissionInfos fail, error: ${error}');
+      console.error(`getMissionInfos fail, error: ${error}`);
   });
-  console.log('size = ${allMissions.length}');
-  console.log('missions = ${JSON.stringify(allMissions)}');
+  console.log(`size = ${allMissions.length}`);
+  console.log(`missions = ${JSON.stringify(allMissions)}`);
   let id = allMissions[0].missionId;
 
   missionManager.moveMissionToFront(id).catch(function (error){
-    console.error('moveMissionToFront fail, error: ${error}');
+    console.error(`moveMissionToFront fail, error: ${error}`);
   });
   ```

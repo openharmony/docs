@@ -59,9 +59,9 @@ particleAbility.startAbility(
     },
     (error, data) => {
         if (error && error.code !== 0) {
-            console.error('startAbility fail, error: ${JSON.stringify(error)}');
+            console.error(`startAbility fail, error: ${JSON.stringify(error)}`);
         } else {
-            console.log('startAbility success, data: ${JSON.stringify(data)}');
+            console.log(`startAbility success, data: ${JSON.stringify(data)}`);
         }
     },
 );
@@ -139,9 +139,9 @@ import particleAbility from '@ohos.ability.particleAbility';
 particleAbility.terminateSelf(
     (error, data) => {
         if (error && error.code !== 0) {
-            console.error('terminateSelf fail, error: ${JSON.stringify(error)}');
+            console.error(`terminateSelf fail, error: ${JSON.stringify(error)}`);
         } else {
-            console.log('terminateSelf success, data: ${JSON.stringify(data)}');
+            console.log(`terminateSelf success, data: ${JSON.stringify(data)}`);
         }
     }
 );
@@ -236,9 +236,9 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(error, data) {
     if (error && error.code !== 0) {
-        console.error('Operation failed error: ${JSON.stringify(error)}');
+        console.error(`Operation failed error: ${JSON.stringify(error)}`);
     } else {
-        console.info('Operation succeeded, data: ${data}');
+        console.info(`Operation succeeded, data: ${data}`);
     }
 }
 
@@ -332,7 +332,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     particleAbility.startBackgroundRunning(id, request).then(() => {
         console.info('Operation succeeded');
     }).catch((err) => {
-        console.error('Operation failed cause: ${JSON.stringify(err)}');
+        console.error(`Operation failed cause: ${JSON.stringify(err)}`);
     });
 });
 
@@ -359,9 +359,9 @@ import particleAbility from '@ohos.ability.particleAbility';
 
 function callback(error, data) {
     if (error && error.code !== 0) {
-        console.error('Operation failed error: ${JSON.stringify(error)}');
+        console.error(`Operation failed error: ${JSON.stringify(error)}`);
     } else {
-        console.info('Operation succeeded, data: ${data}');
+        console.info(`Operation succeeded, data: ${data}`);
     }
 }
 
@@ -391,7 +391,7 @@ import particleAbility from '@ohos.ability.particleAbility';
 particleAbility.cancelBackgroundRunning().then(() => {
     console.info('Operation succeeded');
 }).catch((err) => {
-    console.error('Operation failed cause: ${JSON.stringify(err)}');
+    console.error(`Operation failed cause: ${JSON.stringify(err)}`);
 });
 
 ```
@@ -449,9 +449,9 @@ let connId = particleAbility.connectAbility(
 );
 
 particleAbility.disconnectAbility(connId).then((data) => {
-    console.log('data: ${data}');
+    console.log(`data: ${data}`);
 }).catch((error) => {
-    console.error('particleAbilityTest result errCode: ${error.code}');
+    console.error(`particleAbilityTest result errCode: ${error.code}`);
 });
 ```
 
@@ -500,7 +500,7 @@ let connId = particleAbility.connectAbility(
 );
 
 particleAbility.disconnectAbility(connId, (err) => {
-    console.error('particleAbilityTest disconnectAbility err: ${JSON.stringify(err)}');
+    console.error(`particleAbilityTest disconnectAbility err: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -552,7 +552,7 @@ let connId = particleAbility.connectAbility(
 particleAbility.disconnectAbility(connId).then((data) => {
     console.log(' data: ${data}');
 }).catch((error) => {
-    console.error('particleAbilityTest result errCode : ${error.code}');
+    console.error(`particleAbilityTest result errCode : ${error.code}`);
 });
 
 ```

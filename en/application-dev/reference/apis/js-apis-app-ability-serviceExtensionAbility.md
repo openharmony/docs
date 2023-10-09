@@ -33,7 +33,7 @@ None.
 
 onCreate(want: Want): void;
 
-Called when a ServiceExtensionAbility is created to initialize the service logic.
+Called to initialize the service logic when a ServiceExtensionAbility is being created.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -60,7 +60,7 @@ Called when a ServiceExtensionAbility is created to initialize the service logic
 
 onDestroy(): void;
 
-Called when this ServiceExtensionAbility is destroyed to clear resources.
+Called to clear resources when this ServiceExtensionAbility is being destroyed.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -81,7 +81,7 @@ Called when this ServiceExtensionAbility is destroyed to clear resources.
 
 onRequest(want: Want, startId: number): void;
 
-Called following **onCreate()** when a ServiceExtensionAbility is started by calling **startAbility()** or **startServiceExtensionAbility()**. The value of **startId** is incremented for each ability that is started.
+Called following **onCreate()** when a ServiceExtensionAbility is started by calling **startAbility()** or **startServiceExtensionAbility()**. The value of **startId** is incremented for each ServiceExtensionAbility that is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -92,7 +92,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want |  [Want](js-apis-app-ability-want.md) | Yes| Want information related to this ServiceExtensionAbility, including the ability name and bundle name.|
-| startId | number | Yes| Number of ability start times. The initial value is **1**, and the value is automatically incremented for each ability started.|
+| startId | number | Yes| Number of ServiceExtensionAbility start times. The initial value is **1**, and the value is automatically incremented for each ServiceExtensionAbility started.|
 
 **Example**
 
@@ -196,7 +196,7 @@ Called when a client is disconnected from this ServiceExtensionAbility.
   }
   ```
 
-After the **onDisconnect** lifecycle callback is executed, the application may exit. As a result, the asynchronous function in **onDisconnect** may fail to be executed correctly, for example, asynchronously writing data to the database. The asynchronous lifecycle can be used to ensure that the subsequent lifecycle continues after the asynchronous **onDisconnect** is complete.
+After the **onDisconnect()** lifecycle callback is executed, the application may exit. Consequently, the asynchronous function (for example, asynchronously writing data to the database) in **onDisconnect()** may fail to be executed. The asynchronous lifecycle can be used to ensure that the subsequent lifecycle continues after the asynchronous **onDisconnect()** is complete.
 
   ```ts
 class ServiceExt extends ServiceExtension {
@@ -254,7 +254,7 @@ Called when the configuration of this ServiceExtensionAbility is updated.
   ```ts
   class ServiceExt extends ServiceExtension {
       onConfigurationUpdate(config) {
-          console.log('onConfigurationUpdate, config: ${JSON.stringify(config)}');
+          console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
       }
   }
   ```
@@ -280,8 +280,9 @@ Dumps the client information.
   ```ts
   class ServiceExt extends ServiceExtension {
       onDump(params) {
-          console.log('dump, params: ${JSON.stringify(params)}');
+          console.log(`dump, params: ${JSON.stringify(params)}`);
           return ['params'];
       }
   }
   ```
+

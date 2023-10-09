@@ -114,7 +114,7 @@ Obtains the ability running information. This API uses an asynchronous callback 
 
 ```ts
 abilityManager.getAbilityRunningInfos((err,data) => { 
-    console.log('getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}');
+    console.log(`getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -138,8 +138,8 @@ Obtains the ability running information. This API uses a promise to return the r
 
 ```ts
 abilityManager.getAbilityRunningInfos().then((data) => {
-    console.log('getAbilityRunningInfos  data: ${JSON.stringify(data)}');
+    console.log(`getAbilityRunningInfos  data: ${JSON.stringify(data)}`);
 }).catch((err) => {
-  console.error('getAbilityRunningInfos err: ${JSON.stringify(err)}');
+  console.error(`getAbilityRunningInfos err: ${JSON.stringify(err)}`);
 });
 ```

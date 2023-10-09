@@ -140,7 +140,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       console.error(`applyQuickFix err: ${error}`);
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
 ```
 
@@ -185,7 +185,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       }
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
 ```
 
@@ -233,7 +233,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       console.error(`getApplicationQuickFixInfo err: ${error}`);
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
   ```
 

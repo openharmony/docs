@@ -113,7 +113,7 @@ import Want from '@ohos.application.Want';
             try {
                 fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
             } catch(e) {
-                console.error('openSync fail: ${JSON.stringify(e)}');
+                console.error(`openSync fail: ${JSON.stringify(e)}`);
             }
             let want = {
                 'deviceId': '', // An empty deviceId indicates the local device.
@@ -130,6 +130,6 @@ import Want from '@ohos.application.Want';
             });
         ```
 
-- For more details and examples, see [Application Model](../../application-models/application-model-composition.md).
+- For more details and examples, see [Want](../../application-models/want-overview.md).
 
   <!--no_check-->

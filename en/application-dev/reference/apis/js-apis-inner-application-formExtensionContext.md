@@ -42,7 +42,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 | Name|                Type              | Mandatory|              Description              |
 | ------| --------------------------------- | ---- | -------------------------------------- |
-| want| [Want](js-apis-application-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
+| want| [Want](js-apis-app-ability-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
 | callback| AsyncCallback&lt;void&gt;       | Yes | Callback used to return the result. If the ability is started, **err** is undefined; otherwise, **err** is an error object.|
 
 **Example**
@@ -87,7 +87,7 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name|                Type              | Mandatory|              Description              |
 | ------| --------------------------------- | ---- | -------------------------------------- |
-| want| [Want](js-apis-application-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
+| want| [Want](js-apis-app-ability-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
 
 **Return value**
 
@@ -148,7 +148,7 @@ Connects this ability to a ServiceExtensionAbility.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Callback used to return the information indicating that the connection is successful, interrupted, or failed.|
 
 **Return value**
@@ -310,7 +310,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   let commRemote = null;
   export default class MyFormExtensionAbility extends FormExtensionAbility {
     onFormEvent(formId, message) {
-      //In actual use, connection is the return value of connectServiceExtensionAbility(). The value 1 is meaningless and is only an example.
+      // In actual use, connection is the return value of connectServiceExtensionAbility(). The value 1 is meaningless and is only an example.
       let connection = 1;
 
       try {

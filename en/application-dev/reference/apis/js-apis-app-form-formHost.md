@@ -1408,7 +1408,7 @@ Obtains the widget state. This API uses an asynchronous callback to return the r
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| want | [Want](js-apis-application-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
+| want | [Want](js-apis-app-ability-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
 | callback | AsyncCallback&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Yes| Callback used to return the result. If the widget state is obtained, **error** is undefined and **data** is the widget state obtained; otherwise, **error** is an error object.|
 
 **Error codes**
@@ -1467,7 +1467,7 @@ Obtains the widget state. This API uses a promise to return the result.
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| want   | [Want](js-apis-application-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
+| want   | [Want](js-apis-app-ability-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
 
 **Return value**
 
@@ -1631,8 +1631,8 @@ Unsubscribes from widget addition events. This API uses an asynchronous callback
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | type | string | Yes  | Event type. The value **'formAdd'** indicates a widget addition event.|
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | No| Callback used to return **RunningFormInfo**. By default, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formAdd')**.|
-| bundleName | string | No| Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formAdd')**.<br>By default, the subscriptions for all the widget hosts are canceled.|
+| callback | Callback&lt;formInfo.RunningFormInfo&gt; | No| Callback used to return **RunningFormInfo**. If no value is passed in, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formAdd')**.|
+| bundleName | string | No| Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formAdd')**.<br>If no value is passed in, the subscriptions for all the widget hosts are canceled.|
 
 **Example**
 
@@ -1698,8 +1698,8 @@ Unsubscribes from widget removal events. This API uses an asynchronous callback 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | type | string | Yes  | Event type. The value **'formRemove'** indicates a widget removal event.|
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | No| Callback used to return **RunningFormInfo**. By default, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formRemove')**.|
-| bundleName | string | No| Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formRemove')**.<br>By default, the subscriptions for all the widget hosts are canceled.|
+| callback | Callback&lt;formInfo.RunningFormInfo&gt; | No| Callback used to return **RunningFormInfo**. If no value is passed in, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formRemove')**.|
+| bundleName | string | No| Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formRemove')**.<br>If no value is passed in, the subscriptions for all the widget hosts are canceled.|
 
 **Example**
 
@@ -2481,7 +2481,7 @@ Unsubscribes from events indicating that a widget becomes visible.
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | Yes  | Event type. This value **'notifyVisible'** indicates a widget visibility event.|
-| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | No  | Callback registered during the subscription. By default, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('notifyVisible')**.|
+| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | No  | Callback registered during the subscription. If no value is passed in, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('notifyVisible')**.|
 | bundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('notifyVisible')**.|
 
 **Example**
@@ -2553,7 +2553,7 @@ Unsubscribes from events indicating that a widget becomes invisible.
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | Yes  | Event type. This value **'notifyInvisible'** indicates a widget invisibility event.   |
-| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | No  | Callback registered during the subscription. By default, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('notifyInvisible')**.|
+| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | No  | Callback registered during the subscription. If no value is passed in, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('notifyInvisible')**.|
 | bundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('notifyInvisible')**. |
 
 **Example**
