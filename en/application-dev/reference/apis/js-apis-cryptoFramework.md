@@ -90,7 +90,7 @@ Defines the child class of [ParamsSpec](#paramsspec). It is used as the paramete
 | Name   | Type                 | Readable| Writable| Description                                                        |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | Yes  | Yes  | IV, which is of 7 bytes.                             |
-| aad     | [DataBlob](#datablob) | Yes  | Yes  | Additional authentication data (AAD), which is of 8 bytes.                            |
+| aad     | [DataBlob](#datablob) | Yes  | Yes  | AAD, which is of 8 bytes.                            |
 | authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 12 bytes.<br>When the CCM mode is used for encryption, the last 12 bytes of the [DataBlob](#datablob) output by [doFinal()](#dofinal-2) are used as the **authTag** in [CcmParamsSpec](#ccmparamsspec) of [init()](#init-2).|
 
 > **NOTE**
@@ -1545,20 +1545,6 @@ cipher.update(plainText)
   }, (error: BusinessError) => {
     console.info(`Update cipher failed.`);
   })
-
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-let data: cryptoFramework.DataBlob;           // The process of preparing the data to encrypt or decrypt is omitted here.
-// The init() and update() processes are omitted here.
-cipher.doFinal(data, (err, output) => {
-  if (err) {
-    console.error(`Failed to finalize cipher, ${err.code}, ${err.message}`);
-  } else {
-    console.info(`Finalize cipher success`);
-    if (output != null) {
-      // Concatenate output.data to obtain the complete plaintext/ciphertext (and authTag).
-    }
-  }
-})
 ```
 
 ### doFinal
