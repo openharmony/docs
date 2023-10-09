@@ -259,6 +259,102 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
 });
 ```
 
+## media.createSoundPool<sup>10+</sup>
+
+createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, callback: AsyncCallback\<SoundPool>): void
+
+Creates a **SoundPool** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+**Parameters**
+
+| Name  | Type                                           | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| maxStreams | number | Yes  | Maximum number of streams that can be played by the **SoundPool** instance.|
+| audioRenderInfo | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8)  | Yes  | Audio renderer parameters.|
+| callback | AsyncCallback<[SoundPool](js-apis-inner-multimedia-soundPool.md#SoundPool)> | Yes  | Callback used to return the result. If the operation is successful, a **SoundPool** instance is returned; otherwise, **null** is returned. The instance is used for loading and playback.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 5400101  | No memory. Return by callback. |
+
+**Example**
+
+```js
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content : audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags : 1
+}
+
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+```
+
+## media.createSoundPool<sup>10+</sup>
+
+createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
+
+Creates a **SoundPool** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+**Parameters**
+
+| Name  | Type                                           | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| maxStreams | number | Yes  | Maximum number of streams that can be played by the **SoundPool** instance.|
+| audioRenderInfo | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8)  | Yes  | Audio renderer parameters.|
+
+**Return value**
+
+| Type                                     | Description                                                        |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)> | Promise used to return the result. If the operation is successful, a **SoundPool** instance is returned; otherwise, **null** is returned. The instance is used for loading and playback.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                     |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
+
+**Example**
+
+```js
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content : audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags : 1
+}
+
+media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
+  if (soundpool_ != null) {
+    soundPool = soundpool_;
+    console.info('create SoundPool success');
+  } else {
+    console.error('create SoundPool fail');
+  }
+}).catch((error) => {
+  console.error(`soundpool catchCallback, error message:${error.message}`);
+});
+```
+
 ## AVErrorCode<sup>9+</sup><a name=averrorcode></a>
 
 Enumerates the [media error codes](../errorcodes/errorcode-media.md).
@@ -470,6 +566,10 @@ Subscribes to AVPlayer errors. This event is used only for error prompt and does
 | callback | function | Yes  | Callback used to return the error code ID and error message.|
 
 The AVPlayer provides the following error types<a name = error_info></a>:
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
 | ID| Error Message             | Description                                                        |
 | -------- | --------------------- | ------------------------------------------------------------ |
@@ -2435,7 +2535,7 @@ An application can subscribe to only one AVRecorder error event. When the applic
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID       | Error Message                                      |
+| ID| Error Message                                           |
 | -------- | ------------------------------------------------   |
 | 5400101  | No memory. Return by callback.                     |
 | 5400102  | Operation not allowed. Return by callback.         |
@@ -2470,7 +2570,7 @@ Unsubscribes from AVRecorder errors. After the unsubscription, your application 
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID       | Error Message                                      |
+| ID| Error Message                                           |
 | -------- | ------------------------------------------------   |
 | 5400101  | No memory. Return by callback.                     |
 | 5400102  | Operation not allowed. Return by callback.         |
