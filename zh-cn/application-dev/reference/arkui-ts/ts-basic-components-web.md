@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述    |
 | ---------- | ---------------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md)               | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
+| src        | [ResourceStr](ts-types.md#resourcestr)               | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 
 **示例：**
@@ -114,7 +114,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  import { GlobalContext } from '../GlobalContext'
+  import { GlobalContext } from '../GlobalContext.ts'
 
   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
 
@@ -2305,7 +2305,9 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
   <body>
     <form id="upload-form" enctype="multipart/form-data">
       <input type="file" id="upload" name="upload"/>
+      </form>
   </body>
+  </html>
   ```
 
 ### onResourceLoad<sup>9+</sup>
@@ -2388,7 +2390,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
 | 参数名  | 参数类型                                     | 参数描述      |
 | ---- | ---------------------------------------- | --------- |
-| data | string / [WebResourceRequest](#webresourcerequest) | url的相关信息。 |
+| data | string | [WebResourceRequest](#webresourcerequest) | url的相关信息。 |
 
 **返回值：**
 
