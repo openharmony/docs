@@ -400,7 +400,6 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 ```ts
 import Base from '@ohos.base';
 
-//订阅者信息
 let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
