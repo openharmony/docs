@@ -14,7 +14,7 @@
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](js-apis-app-ability-environmentCallback.md)
     - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](js-apis-app-ability-extensionAbility.md)
-    - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](js-apis-app-ability-printExtensionAbility.md)
+    - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](js-apis-app-ability-PrintExtensionAbility.md)
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-app-ability-serviceExtensionAbility.md)
     - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](js-apis-app-ability-shareExtensionAbility.md)
     - [@ohos.app.ability.StartOptions (StartOptions)](js-apis-app-ability-startOptions.md)
@@ -391,7 +391,7 @@
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
   - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)](js-apis-WallpaperExtensionAbility.md)
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
-  - [console (控制台)](js-apis-logs.md)
+  - [Console (控制台)](js-apis-logs.md)
   - [Timer (定时器)](js-apis-timer.md)
   - [syscap (系统能力)](js-apis-syscap.md)
   - application
