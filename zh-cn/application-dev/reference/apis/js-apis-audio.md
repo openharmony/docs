@@ -792,6 +792,17 @@ async function createTonePlayerBefore(){
 | type              | [DeviceChangeType](#devicechangetype)             | 是   | 设备连接状态变化。 |
 | deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
 
+## ChannelBlendMode<sup>11+</sup><a name="channelblendmode11"></a>
+
+枚举，声道混合模式类型。
+
+| 名称                                         |  值     | 说明                   |
+| :------------------------------------------- | :----- | :--------------------- |
+| MODE_DEFAULT<sup>11+</sup>                          | 0     | 无声道混合。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
+| MODE_BLEND_LR<sup>11+</sup>                              | 1      | 混合左右声道。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| MODE_ALL_LEFT<sup>11+</sup>   | 2      | 从左声道拷贝覆盖到右声道混合。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
+| MODE_ALL_RIGHT<sup>11+</sup> | 3 | 从右声道拷贝覆盖到左声道混合。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+
 ## DeviceChangeType
 
 枚举，设备连接状态变化。
@@ -5507,6 +5518,7 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 | capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)  | 是   | 否   | 音频采集器信息。               |
 | capturerState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
 | deviceDescriptors  | [AudioDeviceDescriptors](#audiodevicedescriptors)      | 是   | 否   | 音频设备描述。|
+| muted<sup>11+</sup>  | boolean    | 是   | 否   | 音频采集器静音状态。true表示音频采集器为静音状态，false表示音频采集器为非静音状态。|
 
 **示例：**
 
@@ -5572,6 +5584,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 | networkId<sup>9+</sup>        | string                     | 是   | 否   | 设备组网的ID。<br/>此接口为系统接口。 |
 | interruptGroupId<sup>9+</sup> | number                     | 是   | 否   | 设备所处的焦点组ID。<br/>此接口为系统接口。 |
 | volumeGroupId<sup>9+</sup>    | number                     | 是   | 否   | 设备所处的音量组ID。<br/>此接口为系统接口。 |
+| encodingTypes<sup>11+</sup>    | Array&lt;AudioEncodingType&gt;                     | 是   | 否   | 支持的编码类型。 |
 
 **示例：**
 
@@ -7176,6 +7189,28 @@ try {
   console.error(`Get current output devices Fail: ${error}`);
 }
 ```
+### setChannelBlendMode<sup>11+</sup>
+
+setChannelBlendMode(mode: ChannelBlendMode): void
+
+设置单双声道混合模式。使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| mode | [ChannelBlendMode](#channelblendmode11) | 是   | 声道混合模式类型。                                             |
+
+**示例：**
+
+```js
+let mode = audio.ChannelBlendMode.MODE_DEFAULT;
+
+audioRenderer.setChannelBlendMode(mode);
+console.info(`BlendMode: ${mode}`);
+```
 
 ### on('audioInterrupt')<sup>9+</sup>
 
@@ -8142,6 +8177,68 @@ try {
 }
 ```
 
+### getCurrentInputDevices<sup>11+</sup>
+
+getCurrentInputDevices(): AudioDeviceDescriptors
+
+获取录音流输入设备描述符。使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**返回值：**
+
+| 类型                   | 说明                                                   |
+| ---------------------- | ------------------------------------------------------ |
+| [AudioDeviceDescriptors](#audiodevicedescriptors)            | 同步接口，返回设备属性数组类型数据。 |
+
+**示例：**
+
+```js
+let deviceInfo = audioCapturer.getCurrentInputDevices();
+console.info(`DeviceInfo id: ${deviceInfo.id}`);
+console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
+console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
+console.info(`DeviceInfo name: ${deviceInfo.name}`);
+console.info(`DeviceInfo address: ${deviceInfo.address}`);
+console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
+console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
+console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
+console.info(`DeviceInfo encodingTypes: ${deviceInfo.encodingTypes}`);
+```
+
+### getCurrentAudioCapturerChangeInfo<sup>11+</sup>
+
+getCurrentAudioCapturerChangeInfo(): AudioCapturerChangeInfo
+
+获取录音流配置。使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**返回值：**
+
+| 类型             | 说明                                |
+| :--------------- | :---------------------------------- |
+| [AudioCapturerChangeInfo](#audiocapturerchangeinfo9) | 同步接口，返回描述音频采集器更改信息。 |
+
+**示例：**
+
+```js
+let info = audioCapturer.getCurrentAudioCapturerChangeInfo();
+console.info(`Info streamId: ${info.streamId}`);
+console.info(`Info source: ${info.capturerInfo.source}`);
+console.info(`Info capturerFlags: ${info.capturerInfo.capturerFlags}`);
+console.info(`Info capturerState: ${info.capturerState}`);
+console.info(`Info muted: ${info.muted}`);
+console.info(`Info type: ${info.deviceDescriptors[0].deviceType}`);
+console.info(`Info role: ${info.deviceDescriptors[0].deviceRole}`);
+console.info(`Info name: ${info.deviceDescriptors[0].name}`);
+console.info(`Info address: ${info.deviceDescriptors[0].address}`);
+console.info(`Info samplerates: ${info.deviceDescriptors[0].sampleRates[0]}`);
+console.info(`Info channelcounts: ${info.deviceDescriptors[0].channelCounts[0]}`);
+console.info(`Info channelmask: ${info.deviceDescriptors[0].channelMasks}`);
+console.info(`Info encodingTypes: ${info.deviceDescriptors[0].encodingTypes}`);
+```
+
 ### on('audioInterrupt')<sup>10+</sup>
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
@@ -8247,6 +8344,136 @@ off(type: 'audioInterrupt'): void
 audioCapturer.off('audioInterrupt');
 ```
 
+### on('inputDeviceChange')<sup>11+</sup>
+
+on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
+
+订阅监听音频输入设备变化。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                        |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'inputDeviceChange'。 |
+| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 返回监听的音频输入设备变化。                            |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error.              |
+
+**示例：**
+
+```js
+audioCapturer.on('inputDeviceChange', (err, deviceChangeInfo) => {
+  if (err) {
+    console.error(`Subscribes input device change event callback Fail: ${err}`);
+  } else {
+    console.info(`Subscribes input device change event callback Success!`);
+  }
+});
+```
+### off('inputDeviceChange')<sup>11+</sup>
+
+off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
+
+取消订阅音频输入设备更改事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                        |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'inputDeviceChange'。 |
+| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 取消监听的音频输入设备变化。                            |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error.              |
+
+**示例：**
+
+```js
+audioCapturer.off('inputDeviceChange', (err,deviceChangeInfo) => {
+  if (err) {
+    console.error(`Unsubscribes input device change event callback Fail: ${err}`);
+  } else {
+    console.info(`Unsubscribes input device change event callback Success!`);
+  }
+});
+```
+
+### on('audioCapturerChange')<sup>11+</sup>
+
+on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): void
+
+订阅监听录音流配置变化。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                        |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioCapturerChange'。 |
+| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 是   | 返回监听的录音流配置变化。                            |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error.              |
+
+**示例：**
+
+```js
+audioCapturer.on('audioCapturerChange', (err, capturerChangeInfo) => {
+  if (err) {
+    console.error(`Subscribes audio capturer change event callback Fail: ${err}`);
+  } else {
+    console.info(`Subscribes audio capturer change event callback Success!`);
+  }
+});
+```
+
+### off('audioCapturerChange')<sup>11+</sup>
+
+off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>): void
+
+取消订阅音频输入设备更改事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                        |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioCapturerChange'。 |
+| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 否   | 取消监听的录音流配置变化。                            |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error.              |
+
+**示例：**
+
+```js
+audioCapturer.off('audioCapturerChange', (err,deviceChangeInfo) => {
+  if (err) {
+    console.error(`Unsubscribes audio capturer change event callback Fail: ${err}`);
+  } else {
+    console.info(`Unsubscribes audio capturer change event callback Success!`);
+  }
+});
+```
 
 ### on('markReach')<sup>8+</sup>
 
