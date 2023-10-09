@@ -23,6 +23,7 @@
 | certificate              | string | 是   | 否   | 配置文件中的证书公钥。 |
 | apl                      | string | 是   | 否   | 配置文件中的apl字段，为normal、system_basic和system_core其中之一。 |
 | issuer                      | string | 是   | 否   | 配置文件中的发行者名称。 |
+|appIdentifier<sup>11</sup>| string         | 是   | 否   | 应用包的载体Id信息。            |
 
 ## Validity
 

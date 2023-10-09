@@ -63,3 +63,4 @@
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | appId     | string         | 是   | 否   | 应用的appId。                 |
 |fingerprint| string         | 是   | 否   | 应用包的指纹信息。            |
+|appIdentifier<sup>11</sup>| string         | 是   | 否   | 应用包的载体Id信息。            |
