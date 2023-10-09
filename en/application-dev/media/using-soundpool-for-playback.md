@@ -4,9 +4,11 @@ The **SoundPool** class provides APIs to implement low-latency playback of short
 
 Short sound effects (such as the camera shutter sound effect and system notification sound effect) are often required during application development. You can call the APIs provided by **SoundPool** to implement one-time loading of short sounds and multiple times of low-latency playback.
 
+Currently, the **SoundPool** APIs can be used to play an audio file that is less than 1 MB. If the size of an audio file exceeds 1 MB, 1 MB data is captured and played.
+
 This topic walks you through on how to use the **SoundPool** APIs to implement low-latency playback. For details about the API, see [SoundPool](../reference/apis/js-apis-inner-multimedia-soundPool.md).
 
-The full process includes creating a **SoundPool** instance, loading a sound (including decapsulation and decoding), setting playback parameters (playback rate, loop mode, and priority), playing the sound, stopping the playback, and releasing the instance.
+The full process includes creating a **SoundPool** instance, loading a sound (including decapsulation and decoding), setting playback parameters (playback rate, loop mode, and priority), playing the sound, stopping the playback, and releasing the instance. (For details about the decoding formats, see [Audio Decoding](audio-decoding.md).)
 
 During application development, you must subscribe to playback state changes and call the APIs in the defined sequence. Otherwise, an exception or undefined behavior may occur.  
 
@@ -29,6 +31,7 @@ During application development, you must subscribe to playback state changes and
     ```
 
 2. Call **load()** to load a sound.
+
     You can pass in a URI or an FD to load the sound. The following uses the URI as an example. For more methods, see [SoundPool](../reference/apis/js-apis-inner-multimedia-soundPool.md#load).
 
     ```ts
@@ -54,7 +57,7 @@ During application development, you must subscribe to playback state changes and
     ```
 
 4. Call **on('playFinished')** to listen for the completion of sound playing.
-     
+   
     ```ts
     soundPool.on('playFinished', () => {
       console.info("recive play finished message");
@@ -62,14 +65,14 @@ During application development, you must subscribe to playback state changes and
     ```
 
 5. Call **on('error')** to listen for errors that may occur.
-     
+   
     ```ts
     soundPool.on('error', (error) => {
       console.info('error happened,message is :' + error.message);
     })
     ```
 
-6. Set the playback parameters and call **play()** to play the sound.
+6. Set the playback parameters and call **play()** to play the sound. If **play()** with the same sound ID passed in is called for multiple times, the sound is played only once.
   
     ```ts
     let soundID: number;
@@ -93,7 +96,7 @@ During application development, you must subscribe to playback state changes and
     ```
 
 7. Call **setLoop()** to set the number of loops.
-     
+   
     ```ts
     let streamID: number;
     soundPool.setLoop(streamID, 1).then(() => {
@@ -104,7 +107,7 @@ During application development, you must subscribe to playback state changes and
     ```
 
 8. Call **setPriority()** to set the playback priority.
-     
+   
     ```ts
     let streamID: number;
     soundPool.setPriority(streamID, 1);
@@ -138,7 +141,7 @@ During application development, you must subscribe to playback state changes and
     ```
 
 11. Call **stop()** to stop the playback.
-     
+    
     ```ts
     let streamID: number;
     // Call play() to obtain the stream ID.
@@ -194,7 +197,7 @@ During application development, you must subscribe to playback state changes and
 ### Sample Code
 
 The following sample code implements low-latency playback using **SoundPool**.
-  
+
 ```ts
 
 import audio from '@ohos.multimedia.audio';
