@@ -1288,12 +1288,12 @@ export class ObservedArray<T> extends Array<T> {
    build() {
      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
        Text("Me:")
-       PersonView({ person: this.me, phones: this.me.phones, selectedPerson: this.$selectedPerson })
+       PersonView({ person: this.me, phones: this.me.phones, selectedPerson: this.selectedPerson })
 
        Divider().height(8)
 
        ForEach(this.contacts, (contact: Person) => {
-         PersonView({ person: contact, phones: contact.phones as ObservedArray<string>, selectedPerson: this.$selectedPerson })
+         PersonView({ person: contact, phones: contact.phones as ObservedArray<string>, selectedPerson: this.selectedPerson })
        },
          (contact: Person): string => { return contact.id_; }
        )
@@ -1302,7 +1302,7 @@ export class ObservedArray<T> extends Array<T> {
 
        Text("Edit:")
        PersonEditView({
-         selectedPerson: this.$selectedPerson,
+         selectedPerson: this.selectedPerson,
          name: this.selectedPerson.name,
          address: this.selectedPerson.address,
          phones: this.selectedPerson.phones

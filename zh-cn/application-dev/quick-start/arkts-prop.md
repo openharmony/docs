@@ -288,7 +288,7 @@ struct Index {
         Divider().height(5)
 
         ForEach(this.arr, 
-          (item: void) => {
+          (item: number) => {
             Child({value: item})
           }, 
           (item: string) => item.toString()
