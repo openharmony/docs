@@ -12,6 +12,7 @@ The **a2dp** module provides APIs for using the Bluetooth Advanced Audio Distrib
 
 ```js
 import a2dp from '@ohos.bluetooth.a2dp';
+import { BusinessError } from '@ohos.base';
 ```
 
 
