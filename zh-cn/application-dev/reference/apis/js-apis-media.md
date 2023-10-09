@@ -2505,6 +2505,15 @@ on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeRe
 | type     | string   | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
 | callback | function | 是   | 状态机切换事件回调方法：<br>state: [AVRecorderState](#avrecorderstate9)，表示当前播放状态 ；<br>reason: [StateChangeReason](#statechangereason9)，表示当前播放状态的切换原因。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400103  | IO error. Return by callback.     |
+| 5400105  | Service died. Return by callback. |
+
 **示例：**
 
 ```ts
@@ -2584,19 +2593,6 @@ off(type: 'error'): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录制错误事件回调类型'error'。 <br>- 'error'：录制过程中发生错误，触发该事件。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
-
-| 错误码ID | 错误信息                                            |
-| -------- | ------------------------------------------------   |
-| 5400101  | No memory. Return by callback.                     |
-| 5400102  | Operation not allowed. Return by callback.         |
-| 5400103  | I/O error. Return by callback.                     |
-| 5400104  | Time out. Return by callback.                      |
-| 5400105  | Service died. Return by callback.                  |
-| 5400106  | Unsupport format. Return by callback.              |
 
 **示例：**
 
@@ -3413,6 +3409,8 @@ on(type: 'error', callback: ErrorCallback): void
 开始订阅视频录制错误事件，当上报error错误事件后，用户需处理error事件，退出录制操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
