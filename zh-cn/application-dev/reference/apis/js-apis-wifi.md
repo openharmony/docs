@@ -1047,7 +1047,7 @@ try {
 
 IP信息。
 
-**系统能力：** SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
@@ -2560,7 +2560,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
   | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
   | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
 
-## wifi.off('hotspotStaLeave')<sup>9+</sup>
+## wifi.off('hotspotStaLeave')<sup>7+</sup>
 
 off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 
