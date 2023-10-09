@@ -72,7 +72,7 @@
   - 图片处理
     - [图像变换(ArkTS)](image-transformation.md)
     - [图像变换(Native)](image-transformation-native.md)
-    - [PixelMap数据处理](image-pixelmap-operation-native.md)
+    - [PixelMap数据处理(Native)](image-pixelmap-operation-native.md)
     - [位图操作](image-pixelmap-operation.md)
   - [图片编码](image-encoding.md)
   - [图片工具](image-tool.md)
