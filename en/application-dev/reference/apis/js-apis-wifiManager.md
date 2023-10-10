@@ -31,7 +31,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 | **ID**| **Error Message**|
   | -------- | -------- |
 | 2501000  | Operation failed.|
-| 2501003  | Failed to disable Wi-Fi.|
+| 2501003  | Failed to enable Wi-Fi.|
 
 **Example**
 
@@ -64,7 +64,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 | **ID**| **Error Message**|
   | -------- | -------- |
 | 2501000  | Operation failed.|
-| 2501004  | Failed to enable Wi-Fi.|
+| 2501004  | Failed to disable Wi-Fi.|
 
 **Example**
 
@@ -2718,7 +2718,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 			groupName: "****",
 			goBand: 0
 		}
-		wifiManager.createP2pGroup(config);	
+		wifiManager.createGroup(config);	
 		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
