@@ -71,8 +71,9 @@ stat(file: string|number): Promise&lt;Stat&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import { Stat } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.stat(filePath).then((stat: fs.Stat) => {
+  fs.stat(filePath).then((stat: Stat) => {
     console.info("get file info succeed, the size of file is " + stat.size);
   }).catch((err: BusinessError) => {
     console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
@@ -102,7 +103,8 @@ stat(file: string|number, callback: AsyncCallback&lt;Stat&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  fs.stat(pathDir, (err: BusinessError, stat: fs.Stat) => {
+  import { Stat } from '@ohos.file.fs';
+  fs.stat(pathDir, (err: BusinessError, stat: Stat) => {
     if (err) {
       console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -733,8 +735,9 @@ open(path: string, mode?: number): Promise&lt;File&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import { File } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file: fs.File) => {
+  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file: File) => {
     console.info("file fd: " + file.fd);
   }).catch((err: BusinessError) => {
     console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
@@ -767,8 +770,9 @@ open(path: string, mode?: number, callback: AsyncCallback&lt;File&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import { File } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: fs.File) => {
+  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: File) => {
     if (err) {
       console.info("open failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2487,9 +2491,10 @@ createRandomAccessFile(file: string|File, mode?: number): Promise&lt;RandomAcces
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import { RandomAccessFile } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  fs.createRandomAccessFile(file).then((randomAccessFile: fs.RandomAccessFile) => {
+  fs.createRandomAccessFile(file).then((randomAccessFile: RandomAccessFile) => {
     console.info("randomAccessFile fd: " + randomAccessFile.fd);
     randomAccessFile.close();
   }).catch((err: BusinessError) => {
@@ -2523,9 +2528,10 @@ createRandomAccessFile(file: string|File, mode?: number, callback: AsyncCallback
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
+  import { RandomAccessFile } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
+  fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: RandomAccessFile) => {
     if (err) {
       console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2601,8 +2607,9 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import { Stream } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+").then((stream: fs.Stream) => {
+  fs.createStream(filePath, "r+").then((stream: Stream) => {
     console.info("createStream succeed");
   }).catch((err: BusinessError) => {
     console.info("createStream failed with error message: " + err.message + ", error code: " + err.code);
@@ -2634,8 +2641,9 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import { Stream } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+", (err: BusinessError, stream: fs.Stream) => {
+  fs.createStream(filePath, "r+", (err: BusinessError, stream: Stream) => {
     if (err) {
       console.info("create stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2706,9 +2714,10 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import { Stream } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
+  fs.fdopenStream(file.fd, "r+").then((stream: Stream) => {
     console.info("openStream succeed");
     stream.closeSync();
   }).catch((err: BusinessError) => {
@@ -2742,9 +2751,10 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import { Stream } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-  fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
+  fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: Stream) => {
     if (err) {
       console.info("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2822,7 +2832,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
   import { WatchEventListener } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: fs.WatchEventListener) => {
+  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: WatchEventListener) => {
     if (watchEvent.event == 0x2) {
       console.info(watchEvent.fileName + 'was modified');
     } else if (watchEvent.event == 0x10) {
