@@ -22,7 +22,7 @@
 
   编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再封装成文件
 
-## 开发步骤
+## 开发指导
 
 详细的API说明请参考[API文档](../reference/native-apis/_audio_encoder.md)。
 
@@ -33,6 +33,15 @@
 
 如下为音频编码调用关系图：
 ![Invoking relationship of audio encode stream](figures/audio-encode.png)
+
+### 在 CMake 脚本中链接动态库
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+target_link_libraries(sample PUBLIC libnative_media_core.so)
+target_link_libraries(sample PUBLIC libnative_media_aenc.so)
+```
+
+### 开发步骤
 
 1. 创建编码器实例对象
 
