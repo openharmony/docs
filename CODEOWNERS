@@ -49,7 +49,8 @@ zh-cn/application-dev/device-usage-statistics/ @chenmingJay @ningningW @tangtian
 zh-cn/application-dev/ui/ @HelloCrease @tomatodevboy @niulihua
 zh-cn/application-dev/notification/ @huipeizi @jayleehw @li-weifeng2 @currydavids
 zh-cn/application-dev/windowmanager/ @ge-yafang @zhangqiang183  @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/webgl/ @zengyawen @zhangqiang183  @wind_zj @zxg-gitee
+zh-cn/application-dev/webgl/ @ge-yafang @zhangqiang183  @wind_zj @zxg-gitee
+zh-cn/application-dev/media/ @zengyawen
 zh-cn/application-dev/media/audio-overview.md @zengyawen @liuyuehua1 @saga2020 @currydavids
 zh-cn/application-dev/media/audio-playback.md @zengyawen @liuyuehua1 @saga2020 @currydavids
 zh-cn/application-dev/media/audio-recorder.md @zengyawen @liuyuehua1 @saga2020 @currydavids
@@ -68,6 +69,7 @@ zh-cn/application-dev/media/avsession-guidelines.md @zengyawen @liuyuehua1 @saga
 zh-cn/application-dev/media/image.md @zengyawen @zhangqiang183 @wind_zj @zxg-gitee
 zh-cn/application-dev/media/camera.md @zengyawen @liuyuehua1 @saga2020 @currydavids
 zh-cn/application-dev/media/remote-camera.md @zengyawen @liuyuehua1 @saga2020 @currydavids
+zh-cn/application-dev/security/ @zengyawen
 zh-cn/application-dev/security/accesstoken-overview.md @zengyawen @nianCode @shuqinglin2 @jinhaihw
 zh-cn/application-dev/security/accesstoken-guidelines.md @zengyawen @nianCode @shuqinglin2 @jinhaihw
 zh-cn/application-dev/security/permission-verify-guidelines.md @zengyawen @nianCode @shuqinglin2 @jinhaihw
@@ -81,14 +83,14 @@ zh-cn/application-dev/security/cryptoFramework-guidelines.md @zengyawen @gaoyong
 zh-cn/application-dev/security/hapsigntool-overview.md @zengyawen @gaoyong @niejiteng @jumozhanjiang
 zh-cn/application-dev/security/hapsigntool-guidelines.md @zengyawen @gaoyong @niejiteng @jumozhanjiang
 zh-cn/application-dev/security/app-provision-structure.md @zengyawen @gaoyong @niejiteng @jumozhanjiang
-zh-cn/application-dev/connectivity/net-mgmt-overview.md @zengyawen @zhang-hai-feng @jyh926 @gaoxi785
-zh-cn/application-dev/connectivity/http-request.md @zengyawen @zhang-hai-feng @jyh926 @gaoxi785
-zh-cn/application-dev/connectivity/websocket-connection.md @zengyawen @zhang-hai-feng @jyh926 @gaoxi785
-zh-cn/application-dev/connectivity/socket-connection.md @zengyawen @zhang-hai-feng @jyh926 @gaoxi785
+zh-cn/application-dev/connectivity/net-mgmt-overview.md @zhang_yixin13 @zhang-hai-feng @jyh926 @gaoxi785
+zh-cn/application-dev/connectivity/http-request.md @zhang_yixin13 @zhang-hai-feng @jyh926 @gaoxi785
+zh-cn/application-dev/connectivity/websocket-connection.md @zhang_yixin13 @zhang-hai-feng @jyh926 @gaoxi785
+zh-cn/application-dev/connectivity/socket-connection.md @zhang_yixin13 @zhang-hai-feng @jyh926 @gaoxi785
 zh-cn/application-dev/connectivity/ipc-rpc-overview.md @RayShih @xuepianpian @zhaopeng_gitee @vagrant_world
 zh-cn/application-dev/connectivity/ipc-rpc-development-guideline.md @RayShih @xuepianpian @zhaopeng_gitee @vagrant_world
 zh-cn/application-dev/connectivity/subscribe-remote-state.md @RayShih @xuepianpian @zhaopeng_gitee @vagrant_world
-zh-cn/application-dev/telephony/ @zengyawen @zhang-hai-feng @jyh926 @gaoxi785
+zh-cn/application-dev/telephony/ @zhang_yixin13 @zhang-hai-feng @jyh926 @gaoxi785
 zh-cn/application-dev/dfx/hiappevent-overview.md @zengyawen @stone2050 @stesen @elsen-liu
 zh-cn/application-dev/dfx/hiappevent-guidelines.md @zengyawen @stone2050 @stesen @elsen-liu
 zh-cn/application-dev/dfx/hitracemeter-overview.md @zengyawen @stone2050 @stesen @elsen-liu
@@ -306,7 +308,7 @@ zh-cn/application-dev/reference/apis/js-apis-lightweightset.md @gongjunsong @ge-
 zh-cn/application-dev/reference/apis/js-apis-linkedlist.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-list.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-logs.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
-zh-cn/application-dev/reference/apis/js-apis-media.md @liuyuehua1 @zengyawen @xxb-wzy @currydavids
+zh-cn/application-dev/reference/apis/js-apis-media.md @liuyuehua1 @zengyawen @currydavids
 zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @panqinxu @zengyawen @bubble_mao @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-mediaquery.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-missionManager.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
