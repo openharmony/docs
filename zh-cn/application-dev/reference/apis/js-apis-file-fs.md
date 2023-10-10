@@ -1495,8 +1495,9 @@ lstat(path: string): Promise&lt;Stat&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import { Stat } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.lstat(filePath).then((stat: fs.Stat) => {
+  fs.lstat(filePath).then((stat: Stat) => {
     console.info("get link status succeed, the size of file is" + stat.size);
   }).catch((err: BusinessError) => {
     console.info("get link status failed with error message: " + err.message + ", error code: " + err.code);
@@ -1526,8 +1527,9 @@ lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import { Stat } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.lstat(filePath, (err: BusinessError, stat: fs.Stat) => {
+  fs.lstat(filePath, (err: BusinessError, stat: Stat) => {
       if (err) {
         console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
       } else {
