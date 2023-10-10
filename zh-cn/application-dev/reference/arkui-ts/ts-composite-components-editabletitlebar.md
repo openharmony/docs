@@ -5,6 +5,7 @@
 
 
 > **说明：**
+>
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -19,6 +20,9 @@ import { EditableTitleBar } from "@ohos.arkui.advanced.EditableTitleBar"
 
 无
 
+## 属性
+不支持[通用属性](ts-universal-attributes-size.md)
+
 
 ## EditableTitleBar
 
@@ -32,29 +36,31 @@ EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuIt
 
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| leftIconStyle | [EditableLeftIconType](#editablelefticontype) | 是 | 左侧按钮类型 | 
-| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题 | 
-| menuItems | Array&lt;[EditableTitleBarMenuItem](#editabletitlebarmenuitem)&gt; | 否 | 右侧菜单项目列表 | 
-| onSave | ()&nbsp;=&gt;&nbsp;void | 否 | 保存时的动作闭包 | 
-| onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | 当左侧按钮类型为&nbsp;Left，触发取消时的动作闭包 | 
+| leftIconStyle | [EditableLeftIconType](#editablelefticontype) | 是 | 左侧按钮类型。 | 
+| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题。 | 
+| menuItems | Array&lt;[EditableTitleBarMenuItem](#editabletitlebarmenuitem)&gt; | 否 | 右侧菜单项目列表。 | 
+| onSave | ()&nbsp;=&gt;&nbsp;void | 否 | 保存时的动作闭包。 | 
+| onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | 当左侧按钮类型为&nbsp;Left，触发取消时的动作闭包。 | 
 
 
-### EditableLeftIconType
+## EditableLeftIconType
 
 | 名称 | 说明 | 
 | -------- | -------- |
-| Back | 返回按钮 | 
-| Cancel | 取消按钮 | 
+| Back | 返回按钮。 | 
+| Cancel | 取消按钮。 | 
 
 
-### EditableTitleBarMenuItem
+## EditableTitleBarMenuItem
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源 | 
-| isEnabled | boolean | 是 | 是否启用，默认启用 | 
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包 | 
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 | 
+| isEnabled | boolean | 是 | 是否启用，默认启用。 | 
+| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 | 
 
+## 事件
+不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 

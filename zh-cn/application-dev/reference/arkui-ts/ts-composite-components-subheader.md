@@ -1,10 +1,11 @@
 # @ohos.arkui.advanced.SubHeader（子标题）
 
 
-子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容；也可以用于内容项顶部，子标题名称用来概括该区块内容。
+子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。
 
 
 > **说明：**
+>
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -19,8 +20,10 @@ import { SubHeader } from '@ohos.arkui.advanced.SubHeader'
 
 无
 
+## 属性
+支持[通用属性](ts-universal-attributes-size.md)
 
-## 接口
+## SubHeader
 
 SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: ResourceStr, select?: SelectOptions, operationType?: OperationType, operationItem?: Array&lt;OperationOption&gt;})
 
@@ -37,12 +40,12 @@ SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: Reso
 | primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 标题内容。 | 
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 副标题内容。 | 
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 图标设置项。 | 
-| select | SelectOptions | 否 | - | select内容以及事件。 | 
-| operationType | OperationType | 否 | \@Prop | 操作区(右侧)元素样式。<br/>默认值：OperationType.BUTTON | 
-| operationItem | Array&lt;OperationOption&gt; | 否 | - | 操作区（右侧）的设置项。 | 
+| select | [SelectOptions](#selectoptions) | 否 | - | select内容以及事件。 | 
+| operationType | [OperationType](#operationtype) | 否 | \@Prop | 操作区(右侧)元素样式。<br/>默认值：OperationType.BUTTON | 
+| operationItem | Array&lt;[OperationOption](#operationoption)&gt; | 否 | - | 操作区（右侧）的设置项。 | 
 
 
-## OperationType枚举说明
+## OperationType
 
 | 名称 | 说明 | 
 | -------- | -------- |
@@ -69,6 +72,8 @@ SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: Reso
 | value | [ResourceStr](s-types.md#resourcestr) | 是 | 文本内容。 | 
 | action | ()=&gt;void | 否 | 事件。 | 
 
+## 事件
+支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 ### 示例1

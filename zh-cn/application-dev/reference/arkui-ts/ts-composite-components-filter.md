@@ -1,10 +1,11 @@
-# @ohos.arkui.advanced.Filter（筛选）
+# @ohos.arkui.advanced.Filter（多条件筛选）
 
 
 多条件筛选，帮助用户在大量信息中找到所需内容，应结合具体场景选择合适筛选方式。多条件筛选控件由筛选器与悬浮条构成，悬浮条可下拉展示悬浮筛选器。筛选器样式可分为多行可折叠类型与多行列表类型，并可以在筛选器最后一行附加快捷筛选器。
 
 
 > **说明：**
+>
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -19,6 +20,8 @@ import { Filter } from '@ohos.arkui.advanced.Filter'
 
 无
 
+## 属性
+支持[通用属性](ts-universal-attributes-size.md)
 
 ## Filter
 
@@ -61,9 +64,11 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。 | 
-| index | number | 是 | 该维度筛选项选中项目的索引值。<br/>默认值：-1 | 
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 该维度筛选项选中项目的值。<br/>默认值："" | 
+| index | number | 是 | 该维度筛选项选中项目的索引值。 | 
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 该维度筛选项选中项目的值。 | 
 
+## 事件
+不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 

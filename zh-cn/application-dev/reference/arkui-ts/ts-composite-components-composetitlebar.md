@@ -5,6 +5,7 @@
 
 
 > **说明：**
+>
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -19,6 +20,9 @@ import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
 
 无
 
+## 属性
+不支持[通用属性](ts-universal-attributes-size.md)
+
 
 ## ComposeTitleBar
 
@@ -32,20 +36,22 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| item | [ComposeTitleBarMenuItem](#composetitlebarmenuitem) | 否 | 用于左侧头像的单个菜单项目 | 
-| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题 | 
-| subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题 | 
-| menuItems | Array&lt;[ComposeTitleBarMenuItem](#composetitlebarmenuitem)&gt; | 否 | 右侧菜单项目列表 | 
+| item | [ComposeTitleBarMenuItem](#composetitlebarmenuitem) | 否 | 用于左侧头像的单个菜单项目。 | 
+| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题。 | 
+| subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 | 
+| menuItems | Array&lt;[ComposeTitleBarMenuItem](#composetitlebarmenuitem)&gt; | 否 | 右侧菜单项目列表。 | 
 
 
-### ComposeTitleBarMenuItem
+## ComposeTitleBarMenuItem
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源 | 
-| isEnabled | boolean | 是 | 是否启用，默认启用 | 
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包 | 
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 | 
+| isEnabled | boolean | 是 | 是否启用，默认启用。 | 
+| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 | 
 
+## 事件
+不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 

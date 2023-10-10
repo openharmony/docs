@@ -5,6 +5,7 @@
 
 
 > **说明：**
+>
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -18,6 +19,9 @@ import { ComposeListItem } from "@ohos.arkui.advanced.ComposeListItem"
 ## 子组件
 
 无
+
+## 属性
+支持[通用属性](ts-universal-attributes-size.md)
 
 
 ## ComposeListItem
@@ -100,103 +104,10 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | isCheck | boolean | 否 | 右侧Switch/CheckBox/Radio选中状态。 | 
 | onChange | (value:&nbsp;boolean)=&gt;void | 否 | 右侧Switch/CheckBox/Radio选中状态改变时触发回调。 | 
 
+## 事件
+支持[通用事件](ts-universal-events-click.md)
+
 ## 示例
-### 示例1
-
-```ts
-import { ComposeListItem } from '@ohos.arkui.advanced.ComposeListItem';
-
-@Entry
-@Component
-struct ComposeListItemExample {
-  build() {
-    Column() {
-      List() {
-        ListItem(){
-          ComposeListItem({
-            contentItem: ({
-              primaryText: '单行列表'
-            })
-          })
-        }
-      }
-    }
-  }
-}
-```
-
-
-![示例1-纯文本](figures/zh-cn_image_2023072903.PNG)
-
-
-### 示例2
-
-```ts
-import { ComposeListItem } from '@ohos.arkui.advanced.ComposeListItem';
-import { IconType } from '@ohos.arkui.advanced.ComposeListItem';
-
-@Entry
-@Component
-struct ComposeListItemExample {
-  build() {
-    Column() {
-      List() {
-        ListItem(){
-          ComposeListItem({
-            contentItem: ({
-              iconStyle: IconType.NORMAL_ICON,
-              icon: $r('sys.media.ohos_app_icon'),
-              primaryText: '双行列表',
-              secondaryText: '辅助文字'
-            })
-          })
-        }
-      }
-    }
-  }
-}
-```
-
-
-![示例2-左侧元素+文本](figures/zh-cn_image_2023072904.PNG)
-
-
-### 示例3
-
-```ts
-import { ComposeListItem } from '@ohos.arkui.advanced.ComposeListItem';
-import promptAction from '@ohos.promptAction'
-
-@Entry
-@Component
-struct ComposeListItemExample {
-  build() {
-    Column() {
-      List() {
-        ListItem() {
-          ComposeListItem({
-            operateItem: ({
-              icon: {
-                value: $r('sys.media.ohos_app_icon'),
-                action: () => {
-                  promptAction.showToast({ message: 'icon' })
-                } 
-              },
-              text: '右侧文本'
-            })
-          })
-        }
-      }
-    }
-  }
-}
-```
-
-
-![示例3-右侧元素](figures/zh-cn_image_2023072905.PNG)
-
-
-### 示例4
 
 ```ts
 import { ComposeListItem } from '@ohos.arkui.advanced.ComposeListItem';

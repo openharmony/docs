@@ -5,6 +5,7 @@
 
 
 > **说明：**
+>
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -19,6 +20,8 @@ import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog } f
 
 无
 
+## 属性
+不支持[通用属性](ts-universal-attributes-size.md)
 
 ## TipsDialog
 
@@ -68,7 +71,7 @@ SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: 
 | controller | CustomDialogController | 是 | 选择弹出框控制器。 | 
 | title | [ResourceStr](ts-types.md/#resourcestr) | 是 | 选择弹出框标题。 | 
 | content | [ResourceStr](ts-types.md/#resourcestr) | 否 | 选择弹出框内容。 | 
-| selectedIndex | number | 否 | 选择弹出框的选中项。 | 
+| selectedIndex | number | 否 | 选择弹出框的选中项。<br/>默认值：-1。 | 
 | confirm | boolean | 否 | 确认按钮。 | 
 | radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md)&gt; | 否 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 | 
 
@@ -140,8 +143,10 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 按钮的字体颜色。 | 
 
 
-## 示例
+## 事件
+不支持[通用事件](ts-universal-events-click.md)
 
+## 示例
 
 ### 示例1
 

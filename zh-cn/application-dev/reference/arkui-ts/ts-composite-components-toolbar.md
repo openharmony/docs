@@ -5,6 +5,7 @@
 
 
 > **说明：**
+>
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -19,6 +20,8 @@ import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
 
 无
 
+## 属性
+支持[通用属性](ts-universal-attributes-size.md)
 
 ## 接口
 
@@ -33,7 +36,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | 工具栏列表。 | 
-| activateIndex | number | 否 | 激活态的子项。<br/>默认值为-1。 | 
+| activateIndex | number | 否 | 激活态的子项。<br/>默认值：-1。 | 
 | controller | [TabsController](ts-container-tabs.md#Tabscontroller) | 是 | 筛选器的样式类型。 | 
 
 
@@ -59,6 +62,8 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 | DISABLE | 工具栏子项为不可点击状态。 | 
 | ACTIVATE | 工具栏子项为激活状态，可点击。 | 
 
+## 事件
+支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 

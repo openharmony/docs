@@ -5,6 +5,7 @@
 
 
 > **说明：**
+>
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -14,6 +15,8 @@
 import { ProgressButton } from '@ohos.arkui.advanced.ProgressButton'
 ```
 
+## 属性
+支持[通用属性](ts-universal-attributes-size.md)
 
 ## ProgressButton
 
@@ -29,10 +32,12 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 | -------- | -------- | -------- | -------- | -------- |
 | progress | number | 是 | \@Prop | 下载按钮的当前进度值。 | 
 | content | string | 是 |  | 下载按钮的文本。 | 
-| progressButtonWidth | Length | 否 | - | 下载按钮的宽度。 | 
+| progressButtonWidth | [Length](ts-types.md#length) | 否 | - | 下载按钮的宽度。<br/>默认值：44。 | 
 | clickCallback | void | 是 |  | 下载按钮的点击回调。 | 
-| enable | boolean | 是 |  | 下载按钮是否可以点击，<br/>默认为true。 | 
+| enable | boolean | 是 |  | 下载按钮是否可以点击。 | 
 
+## 事件
+支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 

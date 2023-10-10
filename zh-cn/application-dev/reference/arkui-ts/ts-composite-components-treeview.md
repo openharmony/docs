@@ -8,6 +8,7 @@
 
 
 > **说明：**
+>
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -22,8 +23,10 @@ import { TreeView } from "@ohos.arkui.advanced.TreeView"
 
 无
 
+## 属性
+不支持[通用属性](ts-universal-attributes-size.md)
 
-## 接口
+## TreeView
 
 TreeView({ treeController: TreeController })
 
@@ -43,13 +46,6 @@ TreeView({ treeController: TreeController })
 ## TreeController
 
 树视图组件的控制器，可以将此对象绑定至树视图组件，然后通过它控制树的节点信息，同一个控制器不可以控制多个树视图组件。
-
-
-### 导入对象
-
-```
-treeController: TreeController = new TreeController()
-```
 
 
 ### addNode
@@ -101,35 +97,28 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | parentId | number | 是 | 父节点Id。 | 
-| parentSubTitle | ResourceStr | 是 | 父节点副文本 | 
-| currentSubtitle | ResourceStr | 是 | 当前节点副文本 | 
+| parentSubTitle | [ResourceStr](ts-types.md#resourcestr) | 是 | 父节点副文本。 | 
+| currentSubtitle | [ResourceStr](ts-types.md#resourcestr) | 是 | 当前节点副文本。 | 
 
 
 ## NodeParam
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| parentNodeId | number | 否 | 父亲节点 | 
-| currentNodeId | number | 否 | 当前孩子节点 | 
-| isFolder | boolean | 否 | 是否是目录 | 
-| icon | ResourceStr | 否 | 图标 | 
-| selectedIcon | ResourceStr | 否 | 选中图标 | 
-| editIcon | ResourceStr | 否 | 编辑图标 | 
-| primaryTitle | ResourceStr | 否 | 主标题 | 
-| secondaryTitle | ResourceStr | 否 | 副标题 | 
-| container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由[@Builder](https://docs.openharmony.cn/pages/v3.1/en/application-dev/ui/ts-component-based-builder.md/)修饰 | 
+| parentNodeId | number | 否 | 父亲节点。 | 
+| currentNodeId | number | 否 | 当前孩子节点。 | 
+| isFolder | boolean | 否 | 是否是目录。 | 
+| icon | ResourceStr | 否 | 图标。 | 
+| selectedIcon | ResourceStr | 否 | 选中图标。 | 
+| editIcon | ResourceStr | 否 | 编辑图标。 | 
+| primaryTitle | ResourceStr | 否 | 主标题。 | 
+| secondaryTitle | ResourceStr | 否 | 副标题。 | 
+| container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由[@Builder](ts-component-based-builder.md)修饰。 | 
 
 
-## TreeListenerManager对象说明
+## TreeListenerManager
 
 树视图组件的监听器，可以将此对象绑定至树视图组件，然后通过它监听树的节点的变化，同一个监听器不可以控制多个树视图组件。
-
-
-### 导入对象
-
-```
-import { TreeListenerManager } from '@ohos.arkui.advanced.TreeView'
-```
 
 
 ### getInstance
@@ -168,7 +157,7 @@ on(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): v
 
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| type | [TreeListenType](#treelistentype) | 是 | 监听类型 | 
+| type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
 | nodeParam | [NodeParam](#nodeparam) | 是 | 节点信息。 | 
 
 
@@ -182,7 +171,7 @@ once(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void):
 
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| type | [TreeListenType](#treelistentype) | 是 | 监听类型 | 
+| type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
 | nodeParam | [NodeParam](#nodeparam) | 是 | 节点信息。 | 
 
 
@@ -200,7 +189,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| type | [TreeListenType](#treelistentype) | 是 | 监听类型 | 
+| type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
 | nodeParam | [NodeParam](#nodeparam) | 是 | 节点信息。 | 
 
 
@@ -208,21 +197,23 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 | 名称 | 说明 | 
 | -------- | -------- |
-| NODE_CLICK | 监听节点点击事件 | 
-| NODE_ADD | 监听节点增加事件 | 
-| NODE_DELETE | 监听节点删除事件 | 
-| NODE_MODIFY | 监听节点修改事件 | 
-| NODE_MOVE | 监听节点移动事件 | 
+| NODE_CLICK | 监听节点点击事件。 | 
+| NODE_ADD | 监听节点增加事件。 | 
+| NODE_DELETE | 监听节点删除事件。 | 
+| NODE_MODIFY | 监听节点修改事件。 | 
+| NODE_MOVE | 监听节点移动事件。 | 
 
 
 ## CallbackParam
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| currentNodeId | number | 是 | 当前孩子节点 | 
-| parentNodeId | number | 否 | 父亲节点表 | 
-| childIndex:&nbsp;number | number | 否 | 孩子索引 | 
+| currentNodeId | number | 是 | 当前孩子节点。 | 
+| parentNodeId | number | 否 | 父亲节点表。 | 
+| childIndex:&nbsp;number | number | 否 | 孩子索引。 | 
 
+## 事件
+不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 
@@ -243,25 +234,6 @@ struct TreeViewDemo {
     this.treeListener.off(TreeListenType.NODE_DELETE, null);
   }
 
-  @Builder menuBuilder1() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Text('新增').fontSize(16).width(100).height(30).textAlign(TextAlign.Center)
-        .onClick((event: ClickEvent) => {
-          this.treeController.addNode();
-        })
-      Divider()
-      Text('删除').fontSize(16).width(100).height(30).textAlign(TextAlign.Center)
-        .onClick((event: ClickEvent) => {
-          this.treeController.removeNode();
-        })
-      Divider()
-      Text('重命名').fontSize(16).width(100).height(30).textAlign(TextAlign.Center)
-        .onClick((event: ClickEvent) => {
-          this.treeController.modifyNode();
-        })
-    }.width(100).border({width: 1, color: 0x80808a, radius: '16dp'})
-  }
-
   aboutToAppear(): void {
     this.treeListener.on(TreeListenType.NODE_MOVE, (callbackParam: CallbackParam) => {
     })
@@ -273,22 +245,22 @@ struct TreeViewDemo {
     let editResource: Resource = $r('app.media.ic_public_collect_edit');
     let nodeParam: NodeParam = { parentNodeId:-1, currentNodeId: 1, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
       editIcon: editResource, primaryTitle: "目录1验证悬浮框自适应效果是否OK",
-      container: this.menuBuilder1.bind(this), secondaryTitle: "6" };
+      secondaryTitle: "6" };
     this.treeController
       .addNode(nodeParam)
       .addNode({parentNodeId:1, currentNodeId: 2, isFolder: false, primaryTitle: "项目1_1" })
-      .addNode({ parentNodeId:-1, currentNodeId: 7, isFolder: true, primaryTitle: "目录2", container: this.menuBuilder1.bind(this) })
+      .addNode({ parentNodeId:-1, currentNodeId: 7, isFolder: true, primaryTitle: "目录2" })
       .addNode({ parentNodeId:-1, currentNodeId: 23, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
-        editIcon: editResource, primaryTitle: "目录3", container: this.menuBuilder1.bind(this) })
-      .addNode({ parentNodeId:-1, currentNodeId: 24, isFolder: false, primaryTitle: "项目4", container: this.menuBuilder1.bind(this) })
+        editIcon: editResource, primaryTitle: "目录3" })
+      .addNode({ parentNodeId:-1, currentNodeId: 24, isFolder: false, primaryTitle: "项目4" })
       .addNode({ parentNodeId:-1, currentNodeId: 31, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
-        editIcon: editResource, primaryTitle: "目录5", container: this.menuBuilder1.bind(this), secondaryTitle: "0" })
+        editIcon: editResource, primaryTitle: "目录5", secondaryTitle: "0" })
       .addNode({ parentNodeId:-1, currentNodeId: 32, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
-        editIcon: editResource, primaryTitle: "目录6", container: this.menuBuilder1.bind(this), secondaryTitle: "0" })
+        editIcon: editResource, primaryTitle: "目录6", secondaryTitle: "0" })
       .addNode({ parentNodeId:32, currentNodeId: 35, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
-        editIcon: editResource, primaryTitle: "目录6-1", container: this.menuBuilder1.bind(this), secondaryTitle: "0" })
+        editIcon: editResource, primaryTitle: "目录6-1", secondaryTitle: "0" })
       .addNode({ parentNodeId:-1, currentNodeId: 33, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
-        editIcon: editResource, primaryTitle: "目录7", container: this.menuBuilder1.bind(this), secondaryTitle: "0" })
+        editIcon: editResource, primaryTitle: "目录7", secondaryTitle: "0" })
       .addNode({ parentNodeId:33, currentNodeId: 34, isFolder: false, primaryTitle: "项目8" })
       .addNode({ parentNodeId:-1, currentNodeId: 36, isFolder: false, primaryTitle: "项目9" })
       .buildDone();

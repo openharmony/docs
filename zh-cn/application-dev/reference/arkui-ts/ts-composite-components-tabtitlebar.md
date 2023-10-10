@@ -1,10 +1,11 @@
 # @ohos.arkui.advanced.TabTitleBar（页签型标题栏）
 
 
-页签型标题栏，用于页面之间的切换；仅一级页面适用。
+页签型标题栏，用于页面之间的切换。仅一级页面适用。
 
 
 > **说明：**
+>
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -18,6 +19,9 @@ import { TabTitleBar } from "@ohos.arkui.advanced.TabTitleBar"
 ## 子组件
 
 无
+
+## 属性
+不支持[通用属性](ts-universal-attributes-size.md)
 
 
 ## TabTitleBar
@@ -33,26 +37,29 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | tabItems | Array&lt;[TabTitleBarTabItem](#tabtitlebartabitem)&gt; | 是 | - | 左侧页签项目列表，定义标题栏左侧的页签项目。 | 
-| menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | 否 | - | 右侧菜单项目列表，定义标题栏右侧的菜单项目 | 
-| swiperContent | ()&nbsp;=&gt;&nbsp;void | 否 | \@BuilderParam | 页签列表关联的页面内容构造器 | 
+| menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | 否 | - | 右侧菜单项目列表，定义标题栏右侧的菜单项目。 | 
+| swiperContent | ()&nbsp;=&gt;&nbsp;void | 否 | \@BuilderParam | 页签列表关联的页面内容构造器。 | 
 
 
-### TabTitleBarMenuItem
-
-| 名称 | 类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源 | 
-| isEnabled | boolean | 是 | 是否启用 | 
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包 | 
-
-
-### TabTitleBarTabItem
+## TabTitleBarMenuItem
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 文字页签 | 
-| icon | [ResourceStr]ts-types.md#resourcestr) | 否 | 图片页签资源 | 
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 | 
+| isEnabled | boolean | 是 | 是否启用。 | 
+| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 | 
 
+
+## TabTitleBarTabItem
+
+| 名称 | 类型 | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- |
+| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 文字页签。 | 
+| icon | [ResourceStr]ts-types.md#resourcestr) | 否 | 图片页签资源。 | 
+
+
+## 事件
+不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 
