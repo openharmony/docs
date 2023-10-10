@@ -346,6 +346,81 @@ class EntryAbility extends UIAbility {
 }
 ```
 
+## data_preferences.getPreferencesSync<sup>10+</sup>
+
+getPreferencesSync(context: Context, options: Options): Preferences
+
+Obtains the **Preferences** instance. This API is a synchronous interface.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Parameters**
+
+| Name | Type                 | Mandatory| Description                                                        |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| context | Context               | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| options | [Options](#options10) | Yes  | Configuration options of the **Preferences** instance.                           |
+
+**Return value**
+
+| Type                       | Description                 |
+| --------------------------- | --------------------- |
+| [Preferences](#preferences) | **Preferences** instance obtained.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 15501001 | Only supported in stage mode.   |
+| 15501002 | The data group id is not valid. |
+
+**Example**
+
+FA model:
+
+```ts
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base'
+
+let context = featureAbility.getContext();
+let preferences: data_preferences.Preferences | null = null;
+
+try {
+    let options: data_preferences.Options =  { name: 'myStore' };
+    preferences = data_preferences.getPreferencesSync(context, options);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to get preferences. code =" + code + ", message =" + message);
+}
+```
+
+Stage model:
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
+import window from '@ohos.window';
+
+let preferences: data_preferences.Preferences | null = null;
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+        try {
+            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            preferences = data_preferences.getPreferencesSync(this.context, options);
+        } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to get preferences. code =" + code + ", message =" + message);
+        }
+    }
+}
+```
+
 ## data_preferences.deletePreferences
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
@@ -1029,6 +1104,72 @@ class EntryAbility extends UIAbility {
             }).catch((err: BusinessError) => {
                 console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
             })
+        } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
+        }
+    }
+}
+```
+
+## data_preferences.removePreferencesFromCacheSync<sup>10+</sup>
+
+removePreferencesFromCacheSync(context: Context, options: Options):void
+
+Removes a **Preferences** instance from the cache. This API returns the result synchronously.
+
+After an application calls [getPreferences](#data_preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#data_preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+
+After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Parameters**
+
+| Name | Type                 | Mandatory| Description                                                        |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| context | Context               | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| options | [Options](#options10) | Yes  | Configuration options of the **Preferences** instance.                           |
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 15501001 | Only supported in stage mode.   |
+| 15501002 | The data group id is not valid. |
+
+**Example**
+
+FA model:
+
+```ts
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+try {
+    let options: data_preferences.Options = { name: 'myStore' };
+    data_preferences.removePreferencesFromCacheSync(context, options);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
+}
+```
+
+Stage model:
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+        try {
+            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            data_preferences.removePreferencesFromCacheSync(this.context, options);
         } catch (err) {
             let code = (err as BusinessError).code;
             let message = (err as BusinessError).message;
@@ -1920,13 +2061,15 @@ try {
             }
             console.info("Successfully put the value of 'startup'.");
 
-            preferences.flush((err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Successfully flushed data.");
-            })
+            if (preferences != null) {
+                preferences.flush((err: BusinessError) => {
+                    if (err) {
+                        console.error("Failed to flush. Cause: " + err);
+                        return;
+                    }
+                    console.info("Successfully flushed data.");
+                })
+            }
         })
     })
 } catch (err) {
@@ -1958,7 +2101,7 @@ interface observer {
   key: string
 }
 try {
-    data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: data_preferences.Preferences) => {
+    data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: data_preferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
