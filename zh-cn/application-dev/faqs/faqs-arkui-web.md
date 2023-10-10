@@ -230,7 +230,7 @@ struct Index {
 
 **参考链接**
 
-[userAgent](../reference/arkui-ts/ts-basic-components-web.md#useragent)、[getUserAgent](../reference/apis/js-apis-webview.md#getuseragent)
+[userAgent](../reference/arkui-ts/ts-basic-components-web.md#useragentdeprecated)、[getUserAgent](../reference/apis/js-apis-webview.md#getuseragent)
 
 ## Web组件中如何通过手势滑动返回上一个Web页面
 
@@ -269,5 +269,5 @@ struct Index {
 
 **参考链接**
 
-[Web组件](../reference/apis/js-apis-webview.md#accessstep)
+[accessStep](../reference/apis/js-apis-webview.md#accessstep)
 
