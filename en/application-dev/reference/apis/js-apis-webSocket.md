@@ -21,17 +21,17 @@ import webSocket from '@ohos.net.webSocket';
 
 ```js
 import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
 
 let defaultIpAddress = "ws://";
-let ws: webSocket = webSocket.createWebSocket();
-ws.on('open', (err:string, value:string) => {
+let ws = webSocket.createWebSocket();
+ws.on('open', (err:BusinessError, value: Object) => {
   if (err != undefined) {
     console.log(JSON.stringify(err))
     return
   }
-  console.log("on open, status:" + value['status'] + ", message:" + value['message']);
   // When receiving the on('open') event, the client can use the send() API to communicate with the server.
-  ws.send("Hello, server!", (err:string, value:string) => {
+  ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("send success");
     } else {
@@ -39,11 +39,11 @@ ws.on('open', (err:string, value:string) => {
     }
   });
 });
-ws.on('message', (err:string, value:string) => {
+ws.on('message', (err: BusinessError, value: string) => {
   console.log("on message, message:" + value);
   // When receiving the `bye` message (the actual message name may differ) from the server, the client proactively disconnects from the server.
   if (value === 'bye') {
-    ws.close((err:string, value:string) => {
+    ws.close((err: BusinessError, value: boolean) => {
       if (!err) {
         console.log("close success");
       } else {
@@ -52,13 +52,13 @@ ws.on('message', (err:string, value:string) => {
     });
   }
 });
-ws.on('close', (err:string, value:Object) => {
+ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
   console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
-ws.on('error', (err:string) => {
+ws.on('error', (err: BusinessError) => {
   console.log("on error, error:" + JSON.stringify(err));
 });
-ws.connect(defaultIpAddress, (err:string, value:string) => {
+ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -121,9 +121,12 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
 let url = "ws://"
-ws.connect(url, (err:string, value:string) => {
+ws.connect(url, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -163,12 +166,15 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-let header = new Map<string, string>()
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+let header: Map<string, string>
 header.set("key", "value")
 header.set("key2", "value2")
 let url = "ws://"
-ws.connect(url, header, (err:string, value:string) => {
+ws.connect(url, header as webSocket.WebSocketRequestOptions, (err: BusinessError, value: Object) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -213,10 +219,12 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+
+let ws = webSocket.createWebSocket();
 let url = "ws://"
-let promise: webSocket = ws.connect(url);
-promise.then((value:string) => {
+let promise = ws.connect(url);
+promise.then((value: boolean) => {
   console.log("connect success")
 }).catch((err:string) => {
   console.log("connect fail, error:" + JSON.stringify(err))
@@ -250,10 +258,13 @@ Sends data through a WebSocket connection. This API uses an asynchronous callbac
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
 let url = "ws://"
-ws.connect(url, (err:string, value:string) => {
-  ws.send("Hello, server!", (err:string, value:string) => {
+ws.connect(url, (err: BusinessError, value: boolean) => {
+  ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("send success");
     } else {
@@ -295,11 +306,14 @@ Sends data through a WebSocket connection. This API uses a promise to return the
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
 let url = "ws://"
-ws.connect(url, (err:string, value:string) => {
-  let promise: webSocket = ws.send("Hello, server!");
-  promise.then((value:string) => {
+ws.connect(url, (err: BusinessError, value: boolean) => {
+  let promise = ws.send("Hello, server!");
+  promise.then((value: boolean) => {
     console.log("send success")
   }).catch((err:string) => {
     console.log("send fail, error:" + JSON.stringify(err))
@@ -333,8 +347,11 @@ Closes a WebSocket connection. This API uses an asynchronous callback to return 
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-ws.close((err:string, value:string) => {
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+ws.close((err: BusinessError) => {
   if (!err) {
     console.log("close success")
   } else {
@@ -370,13 +387,15 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-class Options {
-  code: number = 0
-  reason: string = ""
-}
-let options: Options = {code: 1000, reason: "your reason"}
-ws.close(options, (err:string, value:string) => {
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+
+let options: webSocket.WebSocketCloseOptions
+options.code = 1000
+options.reason = "your reason"
+ws.close(options, (err: BusinessError) => {
   if (!err) {
     console.log("close success")
   } else {
@@ -417,14 +436,14 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-class Options {
-  code: number = 0
-  reason: string = ""
-}
-let options: Options = {code: 1000, reason: "your reason"}
-let promise: webSocket = ws.close(x);
-promise.then((value:string) => {
+import webSocket from '@ohos.net.webSocket';
+
+let ws = webSocket.createWebSocket();
+let options: webSocket.WebSocketCloseOptions
+options.code = 1000
+options.reason = "your reason"
+let promise = ws.close();
+promise.then((value: boolean) => {
   console.log("close success")
 }).catch((err:string) => {
   console.log("close fail, err is " + JSON.stringify(err))
@@ -449,9 +468,16 @@ Enables listening for the **open** events of a WebSocket connection. This API us
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-ws.on('open', (err:string, value:string) => {
-  console.log("on open, status:" + value['status'] + ", message:" + value['message']);
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError, Callback } from '@ohos.base';
+
+let ws= webSocket.createWebSocket();
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
+ws.on('open', (err: BusinessError, value: OutValue) => {
+  console.log("on open, status:" + value.status + ", message:" + value.message);
 });
 ```
 
@@ -476,9 +502,16 @@ Disables listening for the **open** events of a WebSocket connection. This API u
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-let callback1 = (err:string, value:string) => {
-  console.log("on open, status:" + value['status'] + ", message:" + value['message']);
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
+let callback1 = (err: BusinessError, value: OutValue) => {
+  console.log("on open, status:" + value.status + ", message:" + value.message);
 }
 ws.on('open', callback1);
 // You can pass the callback of the on function to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
@@ -506,8 +539,11 @@ Enables listening for the **message** events of a WebSocket connection. This API
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-ws.on('message', (err:string, value:string) => {
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+ws.on('message', (err: BusinessError, value: string) => {
   console.log("on message, message:" + value);
 });
 ```
@@ -534,7 +570,9 @@ Disables listening for the **message** events of a WebSocket connection. This AP
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+
+let ws = webSocket.createWebSocket();
 ws.off('message');
 ```
 
@@ -556,8 +594,11 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-ws.on('close', (err:string, value:Object) => {
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
   console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
 ```
@@ -583,7 +624,9 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+
+let ws = webSocket.createWebSocket();
 ws.off('close');
 ```
 
@@ -605,8 +648,11 @@ Enables listening for the **error** events of a WebSocket connection. This API u
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-ws.on('error', (err:string) => {
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+ws.on('error', (err: BusinessError) => {
   console.log("on error, error:" + JSON.stringify(err))
 });
 ```
@@ -632,7 +678,8 @@ Disables listening for the **error** events of a WebSocket connection. This API 
 **Example**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+let ws = webSocket.createWebSocket();
 ws.off('error');
 ```
 
