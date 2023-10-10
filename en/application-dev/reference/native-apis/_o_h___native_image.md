@@ -19,7 +19,7 @@ The **OH_NativeImage** module provides the capabilities of **NativeImage**. Func
 
 | Name| Description|
 | -------- | -------- |
-| [native_image.h](native__image_8h.md) | Defines the functions for obtaining and using **NativeImage**.<br>File to include: &lt;native_image/native_image.h&gt; |
+| [native_image.h](native__image_8h.md) | Defines the functions for obtaining and using **NativeImage**.<br>File to include: &lt;native_image/native_image.h&gt;<br>Library: libnative_image.so|
 
 
 ### Types
