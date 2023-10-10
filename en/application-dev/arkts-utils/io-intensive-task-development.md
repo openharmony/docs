@@ -11,7 +11,7 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
     ```ts
     // a.ts
     import fs from '@ohos.file.fs';
-    
+
     // Define a concurrency function that internally calls I/O capabilities intensively.
     // Implement file writing.
     export async function write(data: string, filePath: string): Promise<void> {
@@ -24,7 +24,7 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
 	```ts
     import { write } from './a'
     import { BusinessError } from '@ohos.base';
-    
+
     @Concurrent
     async function concurrentTest(fileList: string[]): Promise<boolean> {
       // Write the file cyclically.
@@ -44,10 +44,10 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
 
     ```ts
     import taskpool from '@ohos.taskpool';
-    
-    let filePath1: string = "path1"; // Application file path
+
+    let filePath1: string = "path1"; // Application file path.
     let filePath2: string = "path2";
-    
+
     // Use TaskPool to execute the concurrency function that contains the intensive I/O operations.
     // In the case of a large array, the distribution of I/O intensive tasks also preempts the main thread. Therefore, multiple threads are required.
     taskpool.execute(concurrentTest, [filePath1, filePath2]).then(() => {

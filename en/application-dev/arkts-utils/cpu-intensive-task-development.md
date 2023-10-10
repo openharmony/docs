@@ -92,19 +92,19 @@ The following uses the training of a region-specific house price prediction mode
 
     ```ts
     import worker  from '@ohos.worker';
-    
+
     const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
-    
+
     // Receive the result of the worker thread.
     workerInstance.onmessage = (() => {
      console.info('MyWorker.ts onmessage');
      // Perform time-consuming operations in the worker thread.
     })
-    
+
     workerInstance.onerror = (() => {
      // Receive error information of the worker thread.
     })
-    
+
     // Send a training message to the worker thread.
     workerInstance.postMessage({ 'type': 0 });
     // Send a prediction message to the worker thread.
@@ -122,7 +122,7 @@ The following uses the training of a region-specific house price prediction mode
 
 5. In the worker thread, call [onmessage()](../reference/apis/js-apis-worker.md#onmessage9-1) to receive messages sent by the host thread, and call [postMessage()](../reference/apis/js-apis-worker.md#postmessage9-2) to send messages to the host thread.
 
-   For example, the prediction model and its training process are defined in the worker thread, and messages are exchanged with the main thread.
+    For example, the prediction model and its training process are defined in the worker thread, and messages are exchanged with the main thread.
 
     ```ts
     import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
@@ -172,13 +172,13 @@ The following uses the training of a region-specific house price prediction mode
     Method 1: In the host thread, call [terminate()](../reference/apis/js-apis-worker.md#terminate9) to destroy the worker thread and stop the worker thread from receiving messages.
 
     ```ts
-    // Destroy the worker thread.
+// Destroy the worker thread.
     workerInstance.terminate();
     ```
     
     Method 2: In the worker thread, call [close()](../reference/apis/js-apis-worker.md#close9) to destroy the worker thread and stop the worker thread from receiving messages.
-    
+
     ```ts
-    // Destroy the worker thread.
+// Destroy the worker thread.
     workerPort.close();
     ```
