@@ -53,8 +53,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 
 **Example**
 
-```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts 
 import { BusinessError } from '@ohos.base';
 
 let myReason = 'test requestSuspendDelay';
@@ -103,8 +102,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 
 **Example**
 
-```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts 
 import { BusinessError } from '@ohos.base';
 
 let id = 1;
@@ -153,8 +151,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 
 **Example**
 
-```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts 
 import { BusinessError } from '@ohos.base';
 
 let id = 1;
@@ -196,7 +193,6 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
   ```js
-  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
   import { BusinessError } from '@ohos.base';
 
   let id = 1;
@@ -509,7 +505,6 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
 ```js
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import { BusinessError } from '@ohos.base';
 
 let request: backgroundTaskManager.EfficiencyResourcesRequest = {
@@ -553,7 +548,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
 ```js
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { BusinessError } from '@ohos.base';
 
 try {
     backgroundTaskManager.resetAllEfficiencyResources();

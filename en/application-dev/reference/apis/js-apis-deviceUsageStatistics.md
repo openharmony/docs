@@ -46,6 +46,8 @@ Checks whether the application specified by **bundleName** is in the idle state.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 bundleState.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) => {
   if (err) {
     console.log('BUNDLE_ACTIVE isIdleState callback failed, because: ' + err.code);
@@ -78,6 +80,8 @@ Checks whether the application specified by **bundleName** is in the idle state.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 bundleState.isIdleState("com.ohos.camera").then((res: boolean) => {
   console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
@@ -102,6 +106,8 @@ Queries the priority group of this application. This API uses a promise to retur
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 bundleState.queryAppUsagePriorityGroup().then((res: number) => {
   console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
@@ -126,6 +132,8 @@ Queries the priority group of this application. This API uses an asynchronous ca
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 bundleState.queryAppUsagePriorityGroup((err: BusinessError, res: number) => {
   if(err) {
     console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
@@ -158,6 +166,8 @@ Queries the application usage duration statistics based on the specified start t
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 bundleState.queryBundleStateInfos(0, 20000000000000, (err: BusinessError ,
   res: bundleState.BundleActiveInfoResponse ) => {
   if (err) {
@@ -197,6 +207,8 @@ Queries the application usage duration statistics based on the specified start t
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 bundleState.queryBundleStateInfos(0, 20000000000000).then((res: bundleState.BundleActiveInfoResponse) => {
   console.log('BUNDLE_ACTIVE queryBundleStateInfos promise success.');
   console.log('BUNDLE_ACTIVE queryBundleStateInfos promise result ' + JSON.stringify(res));
@@ -229,6 +241,8 @@ Queries the application usage duration statistics in the specified time frame at
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED, 0, 20000000000000, (err: BusinessError, res: Array<bundleState.BundleStateInfo>) => {
   if (err) {
     console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
@@ -271,6 +285,8 @@ Queries the application usage duration statistics in the specified time frame at
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED, 0, 20000000000000).then((res: Array<bundleState.BundleStateInfo>) => {
   console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise success.');
   for (let i = 0; i < res.length; i++) {
@@ -305,6 +321,8 @@ Queries events of all applications based on the specified start time and end tim
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 bundleState.queryBundleActiveStates(0, 20000000000000, (err: BusinessError, res: Array<bundleState.BundleActiveState>) => {
   if (err) {
     console.log('BUNDLE_ACTIVE queryBundleActiveStates callback failed, because: ' + err.code);
@@ -346,6 +364,8 @@ Queries events of all applications based on the specified start time and end tim
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 bundleState.queryBundleActiveStates(0, 20000000000000).then((res: Array<bundleState.BundleActiveState>) => {
   console.log('BUNDLE_ACTIVE queryBundleActiveStates promise success.');
   for (let i = 0; i < res.length; i++) {
@@ -376,6 +396,8 @@ Queries events of this application based on the specified start time and end tim
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 bundleState.queryCurrentBundleActiveStates(0, 20000000000000, (err: BusinessError, res: Array<bundleState.BundleActiveState>) => {
   if (err) {
     console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
@@ -413,6 +435,8 @@ Queries events of this application based on the specified start time and end tim
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then((res: Array<bundleState.BundleActiveState>) => {
   console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise success.');
   for (let i = 0; i < res.length; i++) {
