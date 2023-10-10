@@ -1,7 +1,7 @@
 # @ohos.i18n (Internationalization)
 
-The **i18n** module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402.
-The [Intl](js-apis-intl.md) module provides basic I18N capabilities through the standard I18N APIs defined in ECMA 402. It works with the I18N module to provide a complete suite of I18N capabilities.
+ This module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402.
+The [intl](js-apis-intl.md) module provides basic i18n capabilities through the standard i18n APIs defined in ECMA 402. It works with the **i18n** module to provide a complete suite of i18n capabilities.
 
 >  **NOTE**
 >  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -1090,7 +1090,7 @@ Checks whether the format of the specified phone number is valid.
 **Example**
   ```js
   let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
-  let isValidNumber = phonenumberfmt.isValidNumber("15812312312"); // isValidNumber = true
+  let isValidNumber = phonenumberfmt.isValidNumber("158****2312"); // isValidNumber = true
   ```
 
 
@@ -1115,9 +1115,9 @@ Formats a phone number.
 | string | Formatted phone number.|
 
 **Example**
-  ```js
-  let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
-  let formattedPhoneNumber = phonenumberfmt.format("15812312312"); // formattedPhoneNumber = "158 1231 2312"
+  ```ts
+  let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
+  let formattedPhoneNumber: string = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
   ```
 
 
@@ -1143,9 +1143,9 @@ Obtains the home location of a phone number.
 | string | Home location of the phone number.|
 
 **Example**
-  ```js
-  let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
-  let locationName = phonenumberfmt.getLocationName("15812312345", "zh-CN"); // locationName = "Zhanjiang, Guangdong Province"
+  ```ts
+  let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
+  let locationName: string = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "Zhanjiang, Guangdong Province"
   ```
 
 
@@ -1157,7 +1157,7 @@ Defines the options for this PhoneNumberFormat object.
 
 | Name  | Type    | Readable  | Writable  | Description                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | Yes   | Yes   | Format type of a phone number. The available options are as follows: E164,&nbsp;INTERNATIONAL,&nbsp;NATIONAL, and&nbsp;RFC3966.|
+| type | string | Yes   | Yes   | Format type of a phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, or **RFC3966**.|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -1169,7 +1169,7 @@ Defines the measurement unit information.
 | Name           | Type    | Readable  | Writable  | Description                                      |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
 | unit          | string | Yes   | Yes   | Name of the measurement unit, for example, **meter**, **inch**, or **cup**.|
-| measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**,&nbsp;**US**, or&nbsp;**UK**.|
+| measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**, **US**, or **UK**.|
 
 
 ## getInstance<sup>8+</sup>
@@ -1823,7 +1823,7 @@ Converts the input string from the source format to the target format.
 
 static isDigit(char: string): boolean
 
-Checks whether the input character string is composed of digits.
+Checks whether the input string is composed of digits.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2031,7 +2031,7 @@ Checks whether the input character is an uppercase letter.
 
 static getType(char: string): string
 
-Obtains the category value of the input character string.
+Obtains the type of the input string.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2045,7 +2045,7 @@ Obtains the category value of the input character string.
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | Category value of the input character.|
+| string | Type of the input character.|
 
 **Example**
   ```js
@@ -2078,7 +2078,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
+| string | String obtained after formatting based on the measurement unit specified by **toUnit**.|
 
 **Example**
   ```js
@@ -2430,7 +2430,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
+| string | string obtained after formatting based on the measurement unit specified by **toUnit**.|
 
 
 ## Character<sup>(deprecated)</sup>
@@ -2440,7 +2440,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 static isDigit(char: string): boolean
 
-Checks whether the input character string is composed of digits.
+Checks whether the input string is composed of digits.
 
 This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isDigit](#isdigit9).
 
@@ -2624,7 +2624,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 static getType(char: string): string
 
-Obtains the category value of the input character string.
+Obtains the type of the input string.
 
 This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [getType](#gettype9).
 
@@ -2640,4 +2640,4 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | Category value of the input character.|
+| string | Type of the input character.|
