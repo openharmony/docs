@@ -8194,16 +8194,16 @@ getCurrentInputDevices(): AudioDeviceDescriptors
 **示例：**
 
 ```js
-let deviceInfo = audioCapturer.getCurrentInputDevices();
-console.info(`DeviceInfo id: ${deviceInfo.id}`);
-console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
-console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
-console.info(`DeviceInfo name: ${deviceInfo.name}`);
-console.info(`DeviceInfo address: ${deviceInfo.address}`);
-console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
-console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
-console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
-console.info(`DeviceInfo encodingTypes: ${deviceInfo.encodingTypes}`);
+let deviceDescriptors: audio.AudioDeviceDescriptors = audioCapturer.getCurrentInputDevices();
+console.info(`Device id: ${deviceDescriptors[0].id}`);
+console.info(`Device type: ${deviceDescriptors[0].deviceType}`);
+console.info(`Device role: ${deviceDescriptors[0].deviceRole}`);
+console.info(`Device name: ${deviceDescriptors[0].name}`);
+console.info(`Device address: ${deviceDescriptors[0].address}`);
+console.info(`Device samplerates: ${deviceDescriptors[0].sampleRates[0]}`);
+console.info(`Device channelcounts: ${deviceDescriptors[0].channelCounts[0]}`);
+console.info(`Device channelmask: ${deviceDescriptors[0].channelMasks}`);
+console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes}`);
 ```
 
 ### getCurrentAudioCapturerChangeInfo<sup>11+</sup>
@@ -8223,7 +8223,7 @@ getCurrentAudioCapturerChangeInfo(): AudioCapturerChangeInfo
 **示例：**
 
 ```js
-let info = audioCapturer.getCurrentAudioCapturerChangeInfo();
+let info: audio.AudioCapturerChangeInfo = audioCapturer.getCurrentAudioCapturerChangeInfo();
 console.info(`Info streamId: ${info.streamId}`);
 console.info(`Info source: ${info.capturerInfo.source}`);
 console.info(`Info capturerFlags: ${info.capturerInfo.capturerFlags}`);
@@ -8368,12 +8368,8 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 **示例：**
 
 ```js
-audioCapturer.on('inputDeviceChange', (err, deviceChangeInfo) => {
-  if (err) {
-    console.error(`Subscribes input device change event callback Fail: ${err}`);
-  } else {
-    console.info(`Subscribes input device change event callback Success!`);
-  }
+audioCapturer.on('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescriptors) => {
+  console.info(`Subscribes input device change event callback Success!`);
 });
 ```
 ### off('inputDeviceChange')<sup>11+</sup>
@@ -8400,12 +8396,8 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 **示例：**
 
 ```js
-audioCapturer.off('inputDeviceChange', (err,deviceChangeInfo) => {
-  if (err) {
-    console.error(`Unsubscribes input device change event callback Fail: ${err}`);
-  } else {
-    console.info(`Unsubscribes input device change event callback Success!`);
-  }
+audioCapturer.off('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescriptors) => {
+  console.info(`Unsubscribes input device change event callback Success!`);
 });
 ```
 
@@ -8433,12 +8425,8 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 **示例：**
 
 ```js
-audioCapturer.on('audioCapturerChange', (err, capturerChangeInfo) => {
-  if (err) {
-    console.error(`Subscribes audio capturer change event callback Fail: ${err}`);
-  } else {
-    console.info(`Subscribes audio capturer change event callback Success!`);
-  }
+audioCapturer.on('audioCapturerChange', (capturerChangeInfo: audio.AudioCapturerChangeInfo) => {
+  console.info(`Subscribes audio capturer change event callback Success !`)
 });
 ```
 
@@ -8466,12 +8454,8 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 **示例：**
 
 ```js
-audioCapturer.off('audioCapturerChange', (err,deviceChangeInfo) => {
-  if (err) {
-    console.error(`Unsubscribes audio capturer change event callback Fail: ${err}`);
-  } else {
-    console.info(`Unsubscribes audio capturer change event callback Success!`);
-  }
+audioCapturer.off('audioCapturerChange', (deviceChangeInfo: audio.AudioCapturerChangeInfo) => {
+  console.info(`Unsubscribes audio capturer change event callback Success!`);
 });
 ```
 
