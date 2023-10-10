@@ -18,8 +18,8 @@ SmartPerf come with SmartPerf-Device and SmartPerf-Daemon. SmartPerf-Device send
 
 ## Constraints
 
-- SmartPerf-Device and SmartPerf-Daemon are pre-installed in version 3.2 and later versions.
-- SmartPerf-Device requires a screen to work correctly.
+- SmartPerf-Device and SmartPerf-Daemon are pre-installed in OpenHarmony 3.2 and later versions.
+- SmartPerf-Device can only be used on devices with a screen.
 
 ## Environment Preparations
 
@@ -72,4 +72,26 @@ In the screenshots below, the RK3568 development board is used as an example.
 The default output path of the test result is as follows:
 ```
 /data/local/tmp/data.csv
+```
+
+The table below lists the data fields in the **data.csv** file.
+
+| Data Field   | Description            |Remarks|
+| :-----| :--------------------- |:-----|
+| cpuFrequ     | CPU frequency.       |Unit: Hz|
+| cpuLoad      | CPU load.    |%|
+| currentNow   | Current value. |Unit: mA|
+| fps          | Screen refresh rate.     |Unit: FPS|
+| fpsJitters   | Frame interval.   |Unit: ns|
+| gpuFrequ     | GPU frequency.        |Unit: Hz|
+| gpuLoad      | GPU load.    |%|
+| shell_front  | Front cover temperature.         |Unit: °C|
+| shell_frame  | Frame temperature.         |Unit: °C|
+| shell_back   | Rear cover temperature.         |Unit: °C|
+| soc_thermal  | SoC temperature.          |Unit: °C|
+| system_h     | System temperature.         |Unit: °C|
+| timeStamp    | Timestamp.        |Collection time.|
+| voltageNow   | Voltage value.   |Unit: μV|
+```
+
 ```
