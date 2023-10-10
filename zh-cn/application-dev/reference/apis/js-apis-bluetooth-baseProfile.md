@@ -12,7 +12,6 @@ baseProfile模块提供了基础的profile方法。
 
 ```js
 import baseProfile from '@ohos.bluetooth.baseProfile';
-import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -77,6 +76,7 @@ setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy, callback: 
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
@@ -127,6 +127,7 @@ setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy): Promise&l
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
@@ -173,6 +174,7 @@ getConnectionStrategy(deviceId: string, callback: AsyncCallback&lt;ConnectionStr
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
@@ -222,6 +224,7 @@ getConnectionStrategy(deviceId: string): Promise&lt;ConnectionStrategy&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
@@ -266,6 +269,7 @@ getConnectedDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
@@ -312,6 +316,7 @@ getConnectionState(deviceId: string): ProfileConnectionState
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
@@ -342,6 +347,7 @@ on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): v
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 function onReceiveEvent(data: baseProfile.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
@@ -375,6 +381,7 @@ off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#St
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 function onReceiveEvent(data: baseProfile.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
