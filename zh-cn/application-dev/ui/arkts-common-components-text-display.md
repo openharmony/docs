@@ -142,8 +142,6 @@ Text可通过以下两种方式来创建：
     .border({ width: 1 }).padding(10)
   ```
 
-  ![zh-cn_image_0000001563060693](figures/zh-cn_image_0000001563060693.png)
-
   ![zh-cn_image_0000001563060701](figures/zh-cn_image_0000001563060701.png)
 
 - 通过lineHeight属性设置文本行高。
