@@ -1,6 +1,6 @@
 # @ohos.file.picker (File Picker)
 
-**Picker** encapsulates the system applications such as **PhotoViewPicker**, **DocumentViewPicker** and **AudioViewPicker** to provide capabilities of selecting and saving files of different types. The application can select the picker as required.
+**Picker** encapsulates the system applications such as **PhotoViewPicker**, **DocumentViewPicker** and **AudioViewPicker** to provide capabilities of selecting and saving files of different types. The application can select the picker as required. The APIs of this module must be called called in UIAbility. Otherwise, the **photoPicker** or **FilePicker** cannot be started.
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@ import picker from '@ohos.file.picker';
 
 ## PhotoViewPicker
 
-Provides APIs for selecting and saving images and videos. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
+Provides APIs for selecting and saving images and videos. You are advised to use [PhotoViewPicker of PhotoAccessHelper](js-apis-photoAccessHelper.md) to select files. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -49,7 +49,7 @@ Selects one or more images or videos in a **photoPicker** page. This API uses a 
 ```ts
 import { BusinessError } from '@ohos.base';
 async function example01() {
-  try {  
+  try {
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 5;

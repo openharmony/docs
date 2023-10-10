@@ -81,6 +81,38 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   });
   ```
 
+## statvfs.getFreeSizeSync<sup>10+</sup>
+
+getFreeSizeSync(path:string): number
+
+Obtains the number of free bytes of the specified file system. This API returns the result synchronously.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name| Type  | Mandatory| Description                        |
+  | ------ | ------ | ---- | ---------------------------- |
+  | path   | string | Yes  | File path of the file system.|
+
+**Return value**
+
+  | Type                 | Description          |
+  | --------------------- | -------------- |
+  | number | Promise used to return the number of free bytes obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  let path = "/dev";
+  let number = statvfs.getFreeSizeSync(path);
+  console.info("getFreeSize promise successfully, Size: " + number);
+  ```
+
 ## statvfs.getTotalSize
 
 getTotalSize(path: string): Promise&lt;number&gt;
@@ -148,4 +180,36 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
       console.info("getTotalSize promise successfully, Size: " + number);
     }
   });
+  ```
+
+## statvfs.getTotalSizeSync<sup>10+</sup>
+
+getTotalSizeSync(path: string): number
+
+Obtains the total number of bytes of the specified file system. This API returns the result synchronously.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name| Type  | Mandatory| Description                        |
+  | ---- | ------ | ---- | ---------------------------- |
+  | path | string | Yes  | File path of the file system.|
+
+**Return value**
+
+  | Type                 | Description        |
+  | --------------------- | ------------ |
+  | number | Promise used to return the total number of bytes obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  let path = "/dev";
+  let number = statvfs.getTotalSizeSync(path);
+  console.info("getTotalSize promise successfully, Size: " + number);
   ```
