@@ -19,7 +19,7 @@ The **OH_NativeBuffer** module provides the capabilities of **NativeBuffer**. Us
 
 | Name| Description|
 | -------- | -------- |
-| [native_buffer.h](native__buffer_8h.md) | Declares the functions for obtaining and using **NativeBuffer**.<br>File to include: &lt;native_buffer/native_buffer.h&gt; |
+| [native_buffer.h](native__buffer_8h.md) | Declares the functions for obtaining and using **NativeBuffer**.<br>**File to include**: &lt;native_buffer/native_buffer.h&gt;<br>**Library**: libnative_buffer.so|
 
 
 ### Structs
