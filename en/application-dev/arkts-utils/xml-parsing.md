@@ -232,7 +232,7 @@ function tokenFunc(name, value) {
 }
 
 let options = {
-  supportDocType: true,
+  supportDoctype: true,
   ignoreNameSpace: true,
   tagValueCallbackFunction: tagFunc,
   attributeValueCallbackFunction: attFunc,
