@@ -38,7 +38,6 @@ getAttestStatus(callback: AsyncCallback&lt;AttestResultInfo&gt;) : void
 **示例：**
 
 ```ts
-import deviceAttest from '@ohos.deviceAttest';
 import base from '@ohos.base';
 
 try {
@@ -84,7 +83,6 @@ getAttestStatus() : Promise&lt;AttestResultInfo&gt;
 **示例：**
 
 ```ts
-import deviceAttest from '@ohos.deviceAttest';
 import base from '@ohos.base';
 
 try {
@@ -128,7 +126,6 @@ getAttestStatusSync() : AttestResultInfo
 **示例：**
 
 ```ts
-import deviceAttest from '@ohos.deviceAttest';
 import base from '@ohos.base';
 
 try {
