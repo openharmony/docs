@@ -711,6 +711,7 @@ let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
   console.log("TreeMap" + t.value);
   t = it.next()
+}
 
 // Method 2:
 let iter = treeMap[Symbol.iterator]();
