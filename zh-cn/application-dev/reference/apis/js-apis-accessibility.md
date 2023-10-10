@@ -1031,7 +1031,7 @@ let eventInfo: accessibility.EventInfo = ({
   triggerAction: 'click'
 });
 try {
-    accessibility.sendEvent(eventInfo, (err: BusinessError<void>) => {
+    accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError<void>) => {
         if (err) {
             console.error('failed to send event because ' + JSON.stringify(err));
             return;
