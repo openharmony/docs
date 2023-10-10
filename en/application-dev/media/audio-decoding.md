@@ -42,8 +42,6 @@ The figure below shows the call relationship of audio decoding.
 1. Create a decoder instance.
 
     ```cpp
-    using namespace std;
-
     // Create a decoder by name.
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_MPEG, false);
     const char *name = OH_AVCapability_GetName(capability);
@@ -59,17 +57,17 @@ The figure below shows the call relationship of audio decoding.
     // Initialize the queues.
     class ADecSignal {
     public:
-        mutex inMutex_;
-        mutex outMutex_;
-        mutex startMutex_;
-        condition_variable inCond_;
-        condition_variable outCond_;
-        condition_variable startCond_;
-        queue<uint32_t> inQueue_;
-        queue<uint32_t> outQueue_;
-        queue<OH_AVMemory *> inBufferQueue_;
-        queue<OH_AVMemory *> outBufferQueue_;
-        queue<OH_AVCodecBufferAttr> attrQueue_;
+        std::mutex inMutex_;
+        std::mutex outMutex_;
+        std::mutex startMutex_;
+        std::condition_variable inCond_;
+        std::condition_variable outCond_;
+        std::condition_variable startCond_;
+        std::queue<uint32_t> inQueue_;
+        std::queue<uint32_t> outQueue_;
+        std::queue<OH_AVMemory *> inBufferQueue_;
+        std::queue<OH_AVMemory *> outBufferQueue_;
+        std::queue<OH_AVCodecBufferAttr> attrQueue_;
     };
     ADecSignal *signal_;
     ```
@@ -141,7 +139,14 @@ The figure below shows the call relationship of audio decoding.
 
    - For AAC decoding, the parameter that specifies whether the data type is Audio Data Transport Stream (ADTS) must be specified. If this parameter is not specified, the data type is considered as Low Overhead Audio Transport Multiplex (LATM).
 
+   - For Vorbis decoding, the ID header and setup header must also be specified.
     ```cpp
+    enum AudioFormatType : int32_t {
+        TYPE_AAC = 0,
+        TYPE_FLAC = 1,
+        TYPE_MP3 = 2,
+        TYPE_VORBIS = 3,
+    };  
     // Set the decoding resolution.
     int32_t ret;
     // (Mandatory) Configure the audio sampling rate.
@@ -152,15 +157,19 @@ The figure below shows the call relationship of audio decoding.
     constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
     // (Optional) Configure the maximum input length.
     constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1152;
-    // (Optional) Configure the decode type（acc）
-    constexpr uint32_t DEFAULT_AAC_TYPE = 1;
     OH_AVFormat *format = OH_AVFormat_Create();
     // Set the format.
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE,DEFAULT_SMAPLERATE);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITRATE,DEFAULT_BITRATE);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT,DEFAULT_CHANNEL_COUNT);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_MAX_INPUT_SIZE,DEFAULT_MAX_INPUT_SIZE);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AAC_IS_ADTS, DEFAULT_AAC_TYPE);
+    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_SAMPLE_RATE.data(),DEFAULT_SMAPLERATE);
+    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_BITRATE.data(),DEFAULT_BITRATE);
+    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_CHANNEL_COUNT.data(),DEFAULT_CHANNEL_COUNT);
+    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_MAX_INPUT_SIZE.data(),DEFAULT_MAX_INPUT_SIZE);
+    if (audioType == TYPE_AAC) {
+        OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_AAC_IS_ADTS.data(), DEFAULT_AAC_TYPE);
+    }
+    if (audioType == TYPE_VORBIS) {
+        OH_AVFormat_SetStringValue(format, MediaDescriptionKey::MD_KEY_IDENTIFICATION_HEADER.data(), DEFAULT_ID_HEADER);
+        OH_AVFormat_SetStringValue(format, MediaDescriptionKey::MD_KEY_SETUP_HEADER.data(), DEFAULT_SETUP_HEADER);
+    }
     // Configure the decoder.
     ret = OH_AudioDecoder_Configure(audioDec, format);
     if (ret != AV_ERR_OK) {
@@ -178,12 +187,12 @@ The figure below shows the call relationship of audio decoding.
 5. Call **OH_AudioDecoder_Start()** to start the decoder.
 
     ```c++
-    unique_ptr<ifstream> inputFile_ = make_unique<ifstream>();
-    unique_ptr<ofstream> outFile_ = make_unique<ofstream>();
+    inputFile_ = std::make_unique<std::ifstream>();
     // Open the path of the binary file to be decoded.
-    inputFile_->open(inputFilePath.data(), ios::in | ios::binary); 
+    inputFile_->open(inputFilePath.data(), std::ios::in | std::ios::binary); 
     // Configure the path of the output file.
-    outFile_->open(outputFilePath.data(), ios::out | ios::binary);
+    outFile_ = std::make_unique<std::ofstream>();
+    outFile_->open(outputFilePath.data(), std::ios::out | std::ios::binary);
     // Start decoding.
     ret = OH_AudioDecoder_Start(audioDec);
     if (ret != AV_ERR_OK) {
@@ -197,21 +206,17 @@ The figure below shows the call relationship of audio decoding.
     // Configure the buffer information.
     OH_AVCodecBufferAttr info;
     // Set the package size, offset, and timestamp.
-    auto buffer = signal_->inBufferQueue_.front();
-    int64_t size;
-    int64_t pts;
-    inputFile_.read(reinterpret_cast<char *>(&size), sizeof(size));
-    if (inputFile_->eof()) {
-        size = 0;
-        info.flags = AVCODEC_BUFFER_FLAGS_EOS;
-    } else {
-        inputFile_.read(reinterpret_cast<char *>(&pts), sizeof(pts));
-        inputFile_.read((char *)OH_AVMemory_GetAddr(buffer), size);
-        info.flags = AVCODEC_BUFFER_FLAGS_CODEC_DATA;
-    }
-    info.size = size;
+    info.size = pkt_->size;
     info.offset = 0;
-    info.pts = pts;
+    info.pts = pkt_->pts;
+    info.flags = AVCODEC_BUFFER_FLAGS_CODEC_DATA;
+    auto buffer = signal_->inBufferQueue_.front();
+    if (inputFile_->eof()){
+        info.size = 0;
+        info.flags = AVCODEC_BUFFER_FLAGS_EOS;
+    }else{
+        inputFile_->read((char *)OH_AVMemory_GetAddr(buffer), INPUT_FRAME_BYTES);
+    }
     uint32_t index = signal_->inQueue_.front();
     // Send the data to the input queue for decoding. The index is the subscript of the queue.
     int32_t ret = OH_AudioDecoder_PushInputData(audioDec, index, info);

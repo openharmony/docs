@@ -889,7 +889,7 @@ Obtains the codec capability recommended by the system.
 
 | Name| Description| 
 | -------- | -------- |
-| mime | Pointer to a string that describes the MIME type. For details, see [AVCODEC_MIMETYPE](_codec_base.md#variables). | 
+| mime | Pointer to the MIME type.| 
 | isEncoder | Whether the instance is an encoder. The value **true** means an encoder and **false** means a decoder.| 
 
 **Returns**

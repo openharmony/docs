@@ -239,7 +239,7 @@ Creates an audio **OH_AVFormat** instance for reading and writing data.
 
 | Name| Description| 
 | -------- | -------- |
-| mimeType | Pointer to a string that describes the MIME type. For details, see [AVCODEC_MIMETYPE](_codec_base.md#variables). | 
+| mimeType | Pointer to the MIME type.| 
 | sampleRate | Sampling rate, in Hz.| 
 | channelCount | Number of audio channels. For example, 1 indicates mono and 2 indicates stereo.| 
 
@@ -269,7 +269,7 @@ Creates a video **OH_AVFormat** instance for reading and writing data.
 
 | Name| Description| 
 | -------- | -------- |
-| mimeType | Pointer to a string that describes the MIME type. For details, see [AVCODEC_MIMETYPE](_codec_base.md#variables). | 
+| mimeType | Pointer to the MIME type.| 
 | width | Video width, in pixels.| 
 | height | Video height, in pixels.| 
 
