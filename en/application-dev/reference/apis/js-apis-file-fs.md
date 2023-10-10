@@ -219,7 +219,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 accessSync(path: string): boolean
 
-Synchronously checks whether a file exists.
+Checks whether a file exists. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -332,7 +332,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 closeSync(file: number|File): void
 
-Synchronously closes a file.
+Closes a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -434,7 +434,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 copyFileSync(src: string|number, dest: string|number, mode?: number): void
 
-Synchronously copies a file.
+Copies a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -647,7 +647,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 mkdirSync(path: string): void
 
-Synchronously creates a directory.
+Creates a directory. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -743,7 +743,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 openSync(path: string, mode?: number): File
 
-Synchronously opens a file. File URIs are supported. 
+Opens a file. File URIs are supported. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -862,7 +862,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): number
 
-Synchronously reads data from a file.
+Reads data from a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -967,7 +967,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 rmdirSync(path: string): void
 
-Synchronously deletes a directory.
+Deletes a directory. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1061,7 +1061,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 unlinkSync(path: string): void
 
-Synchronously deletes a file.
+Deletes a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1166,7 +1166,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 writeSync(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; encoding?: string; }): number
 
-Synchronously writes data into a file.
+Writes data into a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1276,7 +1276,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 truncateSync(file: string|number, len?: number): void
 
-Synchronously truncates a file.
+Truncates a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1383,7 +1383,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 readTextSync(filePath: string, options?: { offset?: number; length?: number; encoding?: string; }): string
 
-Synchronously reads the text of a file. 
+Reads the text of a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1899,7 +1899,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 symlinkSync(target: string, srcPath: string): void
 
-Synchronously creates a symbolic link based on a file path.
+Creates a symbolic link based on a file path. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2352,7 +2352,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 mkdtempSync(prefix: string): string
 
-Synchronously creates a temporary directory.
+Creates a temporary directory. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2567,7 +2567,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 createStreamSync(path: string, mode: string): Stream
 
-Synchronously creates a stream based on the file path.
+Creates a stream based on the file path. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2675,7 +2675,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 fdopenStreamSync(fd: number, mode: string): Stream
 
-Synchronously opens a stream based on the file descriptor.
+Opens a stream based on the file descriptor. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3041,7 +3041,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 closeSync(): void
 
-Synchronously closes the stream.
+Closes the stream. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3125,7 +3125,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 flushSync(): void
 
-Synchronously flushes the stream.
+Flushes the stream. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3236,7 +3236,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; encoding?: string; }): number
 
-Synchronously writes data into the stream.
+Writes data into the stream. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3372,7 +3372,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): number
 
-Synchronously reads data from the stream.
+Reads data from the stream. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3381,7 +3381,7 @@ Synchronously reads data from the stream.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>|
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position. |
 
 **Return value**
 
@@ -3698,7 +3698,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; encoding?: string; }): number
 
-Synchronously writes data into a file.
+Writes data into a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3839,7 +3839,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): number
 
-Synchronously reads data from a file.
+Reads data from a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3848,7 +3848,7 @@ Synchronously reads data from a file.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.<br>|
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**. |
 
 **Return value**
 
