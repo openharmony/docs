@@ -2061,13 +2061,15 @@ try {
             }
             console.info("Successfully put the value of 'startup'.");
 
-            preferences.flush((err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Successfully flushed data.");
-            })
+            if (preferences != null) {
+                preferences.flush((err: BusinessError) => {
+                    if (err) {
+                        console.error("Failed to flush. Cause: " + err);
+                        return;
+                    }
+                    console.info("Successfully flushed data.");
+                })
+            }
         })
     })
 } catch (err) {
@@ -2099,7 +2101,7 @@ interface observer {
   key: string
 }
 try {
-    data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: data_preferences.Preferences) => {
+    data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: data_preferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
