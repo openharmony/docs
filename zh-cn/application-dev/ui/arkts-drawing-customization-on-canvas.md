@@ -272,25 +272,34 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
   Canvas中还提供其他类型的方法。渐变（[CanvasGradient对象](../reference/arkui-ts/ts-components-canvas-canvasgradient.md)）相关的方法：[createLinearGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createlineargradient)（创建一个线性渐变色）、[createRadialGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createradialgradient)（创建一个径向渐变色）等。
 
   ```ts
-  class Contextset{
+  class ConTextSet{
     settings: RenderingContextSettings = new RenderingContextSettings(true)
     context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
   }
-  Canvas(this.context)
-    .width('100%')
-    .height('100%')
-    .backgroundColor('#F5DC62')
-    .onReady(() =>{
-      //创建一个径向渐变色的CanvasGradient对象
-      let grad = this.context.createRadialGradient(200,200,50, 200,200,200)
-      //为CanvasGradient对象设置渐变断点值，包括偏移和颜色
-      grad.addColorStop(0.0, '#E87361');
-      grad.addColorStop(0.5, '#FFFFF0');
-      grad.addColorStop(1.0, '#BDDB69');
-      //用CanvasGradient对象填充矩形
-      this.context.fillStyle = grad;
-      this.context.fillRect(0, 0, 400, 400);
-    })
+  @Entry
+  @Component
+  struct Gradient{
+    private ConTextSet:ConTextSet = new ConTextSet()
+    build(){
+      Column(){
+        Canvas(this.ConTextSet.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#F5DC62')
+          .onReady(() =>{
+            //创建一个径向渐变色的CanvasGradient对象
+            let grad = this.ConTextSet.context.createRadialGradient(200,200,50, 200,200,200)
+            //为CanvasGradient对象设置渐变断点值，包括偏移和颜色
+            grad.addColorStop(0.0, '#E87361');
+            grad.addColorStop(0.5, '#FFFFF0');
+            grad.addColorStop(1.0, '#BDDB69');
+            //用CanvasGradient对象填充矩形
+            this.ConTextSet.context.fillStyle = grad;
+            this.ConTextSet.context.fillRect(0, 0, 400, 400);
+          })
+      }
+    }
+  }
   ```
 
   ![2023022700701(1)](figures/2023022700701(1).jpg)
