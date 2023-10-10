@@ -126,7 +126,7 @@ Enumerates the distributed KV store types.
 
 | Name                | Description                                                        |
 | -------------------- | ------------------------------------------------------------ |
-| DEVICE_COLLABORATION | Device KV store.<br> The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| DEVICE_COLLABORATION | Device KV store.<br>The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 | SINGLE_VERSION       | Single KV store.<br>The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
 
 ## SecurityLevel
@@ -2516,9 +2516,12 @@ try {
 
 ### putBatch
 
+
 putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Writes data to this single KV store. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
@@ -2581,6 +2584,8 @@ try {
 putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
 Write data to this KV store. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
@@ -2768,6 +2773,8 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 
 Deletes KV pairs from this KV store. This API uses an asynchronous callback to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
@@ -2830,6 +2837,8 @@ try {
 delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
 Deletes KV pairs from this KV store. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
@@ -3826,6 +3835,8 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 Obtains a **KVStoreResultSet** object that matches the specified predicate object. This API uses an asynchronous callback to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
@@ -3885,6 +3896,8 @@ try {
 getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
 
 Obtains a **KVStoreResultSet** object that matches the specified predicate object. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
@@ -6761,6 +6774,8 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 Obtains a **KVStoreResultSet** object that matches the specified predicate object for this device. This API uses an asynchronous callback to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
@@ -6819,6 +6834,8 @@ try {
 getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
 
 Obtains a **KVStoreResultSet** object that matches the specified predicate object for this device. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
@@ -6884,6 +6901,8 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
@@ -6947,6 +6966,8 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 >
 > **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 

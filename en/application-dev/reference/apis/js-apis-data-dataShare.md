@@ -6,8 +6,9 @@ The **DataShare** module allows an application to manage its own data and share 
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs provided by this module are system APIs and can be used only in the stage model.
+> - The APIs provided by this module are system APIs.
 >
+> - The APIs of this module can be used only in the stage model.
 
 
 ## Modules to Import
@@ -561,7 +562,7 @@ let offCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) =
 let uris:Array<string> = ["city", "datashareproxy://com.acts.ohos.data.datasharetest/appInfo", "key2"];
 let subscriberId = '11';
 if (dataShareHelper != undefined) {
-  let result: Array<dataShare.OperationResult> = dataShareHelper.off("publishedDataChange", uris, subscriberId, offCallback);
+  let result: Array<dataShare.OperationResult> = (dataShareHelper as dataShare.DataShareHelper).off("publishedDataChange", uris, subscriberId, offCallback);
 }
 ```
 
@@ -666,7 +667,7 @@ Publishes data to the database.
 | -------- | ----------------------------- | ---- | ------------------------------ |
 | data      | Array&lt;[PublishedItem](#publisheditem10)&gt;    | Yes  | Data to publish.|
 | bundleName | string                      | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data. |
-| version | number                         | No  | Version of the data to publish. A larger value indicates a later data version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.<br> If the data version is not checked, leave this parameter unspecified.|
+| version | number                         | No  | Version of the data to publish. A larger value indicates a later data version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.<br>If the data version is not checked, leave this parameter unspecified.|
 
 **Return value**
 
@@ -760,7 +761,7 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 
 **Example**
 
-```ts 
+```ts
 if (dataShareHelper != undefined) {
   let publishedData: Promise<Array<dataShare.PublishedItem>> = (dataShareHelper as dataShare.DataShareHelper).getPublishedData("com.acts.ohos.data.datasharetest");
 }
