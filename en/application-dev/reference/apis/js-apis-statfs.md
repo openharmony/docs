@@ -10,7 +10,7 @@ The **statfs** module provides APIs for obtaining file system information, inclu
 
 ## Modules to Import
 
-```js
+```ts
 import statfs from '@ohos.statfs';
 ```
 ## statfs.getFreeBytes
@@ -23,24 +23,25 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                        |
-| ------ | ------ | ---- | ---------------------------- |
-| path   | string | Yes  | File path of the file system.|
+  | Name| Type  | Mandatory| Description                        |
+  | ------ | ------ | ---- | ---------------------------- |
+  | path   | string | Yes  | File path of the file system.|
 
 **Return value**
 
-| Type                 | Description          |
-| --------------------- | -------------- |
-| Promise&lt;number&gt; | Promise used to return the number of free bytes obtained.|
+  | Type                 | Description          |
+  | --------------------- | -------------- |
+  | Promise&lt;number&gt; | Promise used to return the number of free bytes obtained.|
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let path = "/dev";
-  statfs.getFreeBytes(path).then(function (number) {
-      console.info("getFreeBytes promise successfully:" + number);
-  }).catch(function (err) {
-      console.info("getFreeBytes failed with error:" + err);
+  statfs.getFreeBytes(path).then((number: number) => {
+    console.info("getFreeBytes promise successfully:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("getFreeBytes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -54,10 +55,10 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                        |
-| -------- | --------------------------- | ---- | ---------------------------- |
-| path     | string                      | Yes  | File path of the file system.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of free bytes obtained.|
+  | Name  | Type                       | Mandatory| Description                        |
+  | -------- | --------------------------- | ---- | ---------------------------- |
+  | path     | string                      | Yes  | File path of the file system.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of free bytes obtained.|
 
 **Example**
 
@@ -81,24 +82,25 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                        |
-| ---- | ------ | ---- | ---------------------------- |
-| path | string | Yes  | File path of the file system.|
+  | Name| Type  | Mandatory| Description                        |
+  | ---- | ------ | ---- | ---------------------------- |
+  | path | string | Yes  | File path of the file system.|
 
 **Return value**
 
-| Type                 | Description        |
-| --------------------- | ------------ |
-| Promise&lt;number&gt; | Promise used to return the total number of bytes obtained.|
+  | Type                 | Description        |
+  | --------------------- | ------------ |
+  | Promise&lt;number&gt; | Promise used to return the total number of bytes obtained.|
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let path = "/dev";
-  statfs.getTotalBytes(path).then(function (number) {
-      console.info("getTotalBytes promise successfully:" + number);
-  }).catch(function (err) {
-      console.info("getTotalBytes failed with error:" + err);
+  statfs.getTotalBytes(path).then((number: number) => {
+    console.info("getTotalBytes promise successfully:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("getTotalBytes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -112,10 +114,10 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                        |
-| -------- | --------------------------- | ---- | ---------------------------- |
-| path     | string                      | Yes  | File path of the file system.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total number of bytes obtained.  |
+  | Name  | Type                       | Mandatory| Description                        |
+  | -------- | --------------------------- | ---- | ---------------------------- |
+  | path     | string                      | Yes  | File path of the file system.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total number of bytes obtained.  |
 
 **Example**
 
