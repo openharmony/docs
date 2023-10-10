@@ -39,13 +39,6 @@ Obtains an **OnlineUpdater** object.
 | ------------------- | ---- |
 | [Updater](#updater) | **OnlineUpdater** object.|
 
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -79,14 +72,6 @@ Obtains a **Restorer** object for restoring factory settings.
 | --------------------- | ------ |
 | [Restorer](#restorer) | **Restorer** object for restoring factory settings.|
 
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
-
 **Example**
 
 ```ts
@@ -111,13 +96,6 @@ Obtains a **LocalUpdater** object.
 | ----------------------------- | ------ |
 | [LocalUpdater](#localupdater) | **LocalUpdater** object.|
 
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -153,7 +131,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -185,7 +163,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -221,7 +199,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -254,7 +232,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -291,7 +269,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -342,7 +320,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -387,7 +365,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -421,7 +399,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -458,7 +436,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -503,7 +481,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -543,7 +521,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -575,7 +553,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -611,7 +589,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -660,7 +638,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -706,7 +684,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -754,7 +732,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -799,7 +777,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -847,7 +825,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -892,7 +870,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -940,7 +918,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -985,7 +963,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1033,7 +1011,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1076,7 +1054,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1109,7 +1087,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1145,7 +1123,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1188,7 +1166,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1227,7 +1205,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1259,7 +1237,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1286,13 +1264,6 @@ Enables listening for update events. This API uses an asynchronous callback to r
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
 
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -1320,14 +1291,6 @@ Disables listening for update events. This API uses an asynchronous callback to 
 | ----------------- | ---------------------------------------- | ---- | ---- |
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback.|
-
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -1366,7 +1329,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1398,7 +1361,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1436,7 +1399,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1480,7 +1443,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1518,7 +1481,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1555,7 +1518,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.                   |
 
 **Example**
 
@@ -1585,13 +1548,6 @@ Enables listening for update events. This API uses an asynchronous callback to r
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
 
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -1622,13 +1578,6 @@ Disables listening for update events. This API uses an asynchronous callback to 
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback.|
 
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 

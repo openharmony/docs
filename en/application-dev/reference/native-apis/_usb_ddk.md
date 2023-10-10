@@ -1,4 +1,4 @@
-# UsbDdk
+# UsbDDK
 
 
 ## Overview
@@ -19,8 +19,8 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 
 | Name| Description|
 | -------- | -------- |
-| [usb_ddk_api.h](usb__ddk__api_8h.md) | Declares the USB DDK APIs used by the USB host to access USB devices.<br>File to include: &lt;usb/usb_ddk_api.h&gt;|
-| [usb_ddk_types.h](usb__ddk__types_8h.md) | Provides the enumerated variables, structures, and macros used in USB DDK APIs.<br>File to include: &lt;usb/usb_ddk_types.h&gt; |
+| [usb_ddk_api.h](usb__ddk__api_8h.md) | Declares the USB DDK APIs used by the USB host to access USB devices.<br>File to include: &lt;usb/usb_ddk_api.h&gt;<br>Library: libusb_ndk.z.so|
+| [usb_ddk_types.h](usb__ddk__types_8h.md) | Provides the enumerated variables, structures, and macros used in USB DDK APIs.<br>File to include: &lt;usb/usb_ddk_types.h&gt; <br>Library: libusb_ndk.z.so|
 
 
 ### Structs

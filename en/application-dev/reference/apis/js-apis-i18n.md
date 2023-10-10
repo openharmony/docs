@@ -1,7 +1,7 @@
 # @ohos.i18n (Internationalization)
 
- This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402.
-The [Intl](js-apis-intl.md) module provides basic I18N capabilities through the standard I18N APIs defined in ECMA 402. It works with the I18N module to provide a complete suite of I18N capabilities.
+ This module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402.
+The [intl](js-apis-intl.md) module provides basic i18n capabilities through the standard i18n APIs defined in ECMA 402. It works with the **i18n** module to provide a complete suite of i18n capabilities.
 
 >  **NOTE**
 >  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -183,7 +183,7 @@ Checks whether the system language matches the specified region.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the system language matches the specified region; returns **false** otherwise.|
+| boolean | The value **true** indicates that the system language matches the specified region, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -412,7 +412,7 @@ Checks whether the 24-hour clock is used.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise.|
+| boolean | The value **true** indicates that the 24-hour clock is used, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -683,7 +683,7 @@ Checks whether use of local digits is enabled.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the local digit switch is turned on; returns **false** otherwise.|
+| boolean | The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -721,7 +721,7 @@ Checks whether a locale uses an RTL language.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the localized script is displayed from right to left; returns **false** otherwise.|
+| boolean | The value **true** indicates that the localized script is displayed from right to left, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -998,7 +998,7 @@ Obtains the displayed name of the **Calendar** object for the specified locale.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | Locale for the displayed name of the **Calendar** object. For example, displayed name of **buddhist** is **Buddhist&nbsp;Calendar** when the locale is set to **en-US**.|
+| locale | string | Yes   | Locale for the displayed name of the **Calendar** object. For example, displayed name of **buddhist** is **Buddhist Calendar** when the locale is set to **en-US**.|
 
 **Return value**
 
@@ -1031,7 +1031,7 @@ Checks whether a given date is a weekend in the calendar.
 
 | Type     | Description                                 |
 | ------- | ----------------------------------- |
-| boolean | Returns **true** if the specified date is a weekend; returns **false** otherwise.|
+| boolean | The value **true** indicates that the specified date is a weekend, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1085,12 +1085,12 @@ Checks whether the format of the specified phone number is valid.
 
 | Type     | Description                                   |
 | ------- | ------------------------------------- |
-| boolean | Returns **true** if the phone number format is valid; returns **false** otherwise.|
+| boolean | The value **true** indicates that the phone number format is valid, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
   let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
-  let isValidNumber = phonenumberfmt.isValidNumber("15812312312"); // isValidNumber = true
+  let isValidNumber = phonenumberfmt.isValidNumber("158****2312"); // isValidNumber = true
   ```
 
 
@@ -1115,9 +1115,9 @@ Formats a phone number.
 | string | Formatted phone number.|
 
 **Example**
-  ```js
-  let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
-  let formattedPhoneNumber = phonenumberfmt.format("15812312312"); // formattedPhoneNumber = "158 1231 2312"
+  ```ts
+  let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
+  let formattedPhoneNumber: string = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
   ```
 
 
@@ -1143,9 +1143,9 @@ Obtains the home location of a phone number.
 | string | Home location of the phone number.|
 
 **Example**
-  ```js
-  let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
-  let locationName = phonenumberfmt.getLocationName("15812312345", "zh-CN"); // locationName = "Zhanjiang, Guangdong Province"
+  ```ts
+  let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
+  let locationName: string = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "Zhanjiang, Guangdong Province"
   ```
 
 
@@ -1157,7 +1157,7 @@ Defines the options for this PhoneNumberFormat object.
 
 | Name  | Type    | Readable  | Writable  | Description                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | Yes   | Yes   | Format type of a phone number. The available options are as follows: E164,&nbsp;INTERNATIONAL,&nbsp;NATIONAL, and&nbsp;RFC3966.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.|
+| type | string | Yes   | Yes   | Format type of a phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, or **RFC3966**.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -1169,7 +1169,7 @@ Defines the measurement unit information.
 | Name           | Type    | Readable  | Writable  | Description                                      |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
 | unit          | string | Yes   | Yes   | Name of the measurement unit, for example, **meter**, **inch**, or **cup**.|
-| measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**,&nbsp;**US**, or&nbsp;**UK**.|
+| measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**, **US**, or **UK**.|
 
 
 ## getInstance<sup>8+</sup>
@@ -1512,7 +1512,7 @@ Checks whether the specified position of the text is a break point.
 
 | Type     | Description                             |
 | ------- | ------------------------------- |
-| boolean | Returns **true** if the position specified by the offset is a break point; returns **false** otherwise.|
+| boolean | The value **true** indicates that the position specified by the offset is a break point, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1852,7 +1852,7 @@ Converts the input string from the source format to the target format.
 
 static isDigit(char: string): boolean
 
-Checks whether the input character string is composed of digits.
+Checks whether the input string is composed of digits.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1866,7 +1866,7 @@ Checks whether the input character string is composed of digits.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | Returns **true** if the input character is a digit; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a digit, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1892,7 +1892,7 @@ Checks whether the input character is a space.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | Returns **true** if the input character is a space; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a space, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1918,7 +1918,7 @@ Checks whether the input character is a white space.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | Returns **true** if the input character is a white space; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a white space, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1944,7 +1944,7 @@ Checks whether the input character is of the right to left (RTL) language.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is of the RTL language, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1970,7 +1970,7 @@ Checks whether the input character is an ideographic character.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is an ideographic character, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1996,7 +1996,7 @@ Checks whether the input character is a letter.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | Returns **true** if the input character is a letter; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a letter, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -2022,7 +2022,7 @@ Checks whether the input character is a lowercase letter.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a lowercase letter, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -2048,7 +2048,7 @@ Checks whether the input character is an uppercase letter.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is an uppercase letter, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -2060,7 +2060,7 @@ Checks whether the input character is an uppercase letter.
 
 static getType(char: string): string
 
-Obtains the category value of the input character string.
+Obtains the type of the input string.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2074,9 +2074,9 @@ Obtains the category value of the input character string.
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | Category value of the input character.|
+| string | Type of the input character.|
 
-The following table lists only the general category values. For more details, see the Unicode Standard.
+The following table lists only the common types. For more details, see the Unicode Standard.
 
 | Name| Value| Description|
 | ---- | -------- | ---------- |
@@ -2142,7 +2142,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
+| string | String obtained after formatting based on the measurement unit specified by **toUnit**.|
 
 **Example**
   ```js
@@ -2589,7 +2589,7 @@ This API is deprecated since API version 9. You are advised to use [System.is24H
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise.|
+| boolean | The value **true** indicates that the 24-hour clock is used, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -2619,7 +2619,7 @@ This API is deprecated since API version 9. You are advised to use [System.set24
 
 | Type     | Description                           |
 | ------- | ----------------------------- |
-| boolean | Returns **true** if the 24-hour clock is enabled; returns **false** otherwise.|
+| boolean | The value **true** indicates that the 24-hour clock is enabled, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -2651,7 +2651,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                           |
 | ------- | ----------------------------- |
-| boolean | Returns **true** if the preferred language is successfully added; returns **false** otherwise.|
+| boolean | The value **true** indicates that the preferred language is successfully added, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -2684,7 +2684,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                           |
 | ------- | ----------------------------- |
-| boolean | Returns **true** if the preferred language is deleted; returns **false** otherwise.|
+| boolean | The value **true** indicates that the preferred language is deleted, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -2765,7 +2765,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
+| string | string obtained after formatting based on the measurement unit specified by **toUnit**.|
 
 
 ## Character<sup>(deprecated)</sup>
@@ -2775,7 +2775,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 static isDigit(char: string): boolean
 
-Checks whether the input character string is composed of digits.
+Checks whether the input string is composed of digits.
 
 This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isDigit](#isdigit9).
 
@@ -2791,7 +2791,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | Returns **true** if the input character is a digit; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a digit, and the value **false** indicates the opposite.|
 
 
 ### isSpaceChar<sup>(deprecated)</sup>
@@ -2814,7 +2814,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | Returns **true** if the input character is a space; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a space, and the value **false** indicates the opposite.|
 
 
 ### isWhitespace<sup>(deprecated)</sup>
@@ -2837,7 +2837,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | Returns **true** if the input character is a white space; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a white space, and the value **false** indicates the opposite.|
 
 
 ### isRTL<sup>(deprecated)</sup>
@@ -2860,7 +2860,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is of the RTL language, and the value **false** indicates the opposite.|
 
 
 ### isIdeograph<sup>(deprecated)</sup>
@@ -2883,7 +2883,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is an ideographic character, and the value **false** indicates the opposite.|
 
 
 ### isLetter<sup>(deprecated)</sup>
@@ -2906,7 +2906,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | Returns **true** if the input character is a letter; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a letter, and the value **false** indicates the opposite.|
 
 
 ### isLowerCase<sup>(deprecated)</sup>
@@ -2929,7 +2929,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a lowercase letter, and the value **false** indicates the opposite.|
 
 
 ### isUpperCase<sup>(deprecated)</sup>
@@ -2952,14 +2952,14 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is an uppercase letter, and the value **false** indicates the opposite.|
 
 
 ### getType<sup>(deprecated)</sup>
 
 static getType(char: string): string
 
-Obtains the type of the input character string.
+Obtains the type of the input string.
 
 This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [getType](#gettype9).
 
