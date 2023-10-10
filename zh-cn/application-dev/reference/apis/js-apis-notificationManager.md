@@ -1999,6 +1999,8 @@ getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>)
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2802,6 +2804,8 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2828,7 +2832,7 @@ notificationManager.isSupportDoNotDisturbMode(isSupportDoNotDisturbModeCallback)
 
 isSupportDoNotDisturbMode(): Promise\<boolean\>
 
-查询是否支持勿扰模式功能（Promise形式）。
+查询是否支持免打扰功能（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3723,8 +3727,6 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 取消代理通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
