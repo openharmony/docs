@@ -3555,7 +3555,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3635,7 +3635,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3703,7 +3703,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3776,7 +3776,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3843,7 +3843,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3908,7 +3908,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -4960,7 +4960,7 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
 | mode      | [SyncMode](#syncmode) | Yes  | Synchronization mode.                                    |
-| delayMs   | number                | No  | Allowed synchronization delay time, in ms. The default value is **0**.    |
+| delayMs   | number                | No  | Delay time allowed, in milliseconds. The default value is **0**.    |
 
 **Error codes**
 
@@ -5036,7 +5036,7 @@ Synchronizes the KV store manually. This API returns the result synchronously. F
 | deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
 | mode      | [SyncMode](#syncmode) | Yes  | Synchronization mode.                                    |
 | query     | [Query](#query)        | Yes  | **Query** object to match.                      |
-| delayMs   | number                | No  | Allowed synchronization delay time, in ms. The default value is **0**.|
+| delayMs   | number                | No  | Delay time allowed, in milliseconds. The default value is **0**.    |
 
 **Error codes**
 
@@ -5117,7 +5117,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -6201,7 +6201,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6279,7 +6279,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6351,7 +6351,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6415,7 +6415,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6470,7 +6470,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6555,7 +6555,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6632,7 +6632,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6701,7 +6701,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6778,7 +6778,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6842,7 +6842,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6902,7 +6902,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6971,7 +6971,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 15100001     | Over max limits.                     |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
