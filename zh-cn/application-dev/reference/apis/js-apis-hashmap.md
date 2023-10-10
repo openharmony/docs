@@ -555,6 +555,7 @@ hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 
 // 使用方法一：
+let keys = Array.from(hashMap.keys());
 for (let key of keys) {
   console.log("key:" + key);
   console.log("value:" + hashMap.get(key));
