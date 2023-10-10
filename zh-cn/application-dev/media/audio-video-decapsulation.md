@@ -27,7 +27,7 @@
 
   媒体文件格式转换时，需要先对音视频流进行解封装，然后按需将音视频流封装至新的格式文件内。
 
-## 开发案例
+## 开发指导
 详细的API说明参考[AVDemuxer](../reference/native-apis/_a_v_demuxer.md)和[AVSource](../reference/native-apis/_a_v_source.md)
 
 > **说明**

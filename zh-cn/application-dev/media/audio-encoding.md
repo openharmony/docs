@@ -22,7 +22,7 @@
 
   编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再封装成文件
 
-## 开发案例
+## 开发指导
 
 详细的API说明请参考[API文档](../reference/native-apis/_audio_encoder.md)。
 

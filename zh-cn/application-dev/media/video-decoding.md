@@ -11,7 +11,7 @@
 
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 ("video/avc")，硬解则支持 H264 ("video/avc") 和 H265 ("video/hevc")。
 
-## 开发案例
+## 开发指导
 
 详细的API说明请参考[API文档](../reference/native-apis/_video_decoder.md)。
 如下为视频解码调用关系图：

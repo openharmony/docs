@@ -25,7 +25,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
 
 两种模式的开发步骤详细说明请参考：[Buffer模式](#buffer模式)和[Surface模式](#surface模式)。
 
-## 开发案例
+## 开发指导
 
 详细的API说明请参考[API文档](../reference/native-apis/_video_encoder.md)。
 如下为视频编码调用关系图：

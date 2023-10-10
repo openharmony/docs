@@ -23,7 +23,7 @@
 
   转码后，保存文件时需要封装。
 
-## 开发案例
+## 开发指导
 
 详细的API说明请参考[API文档](../reference/native-apis/_a_v_muxer.md)。
 
