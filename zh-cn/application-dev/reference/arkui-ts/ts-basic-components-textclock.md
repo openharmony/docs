@@ -69,7 +69,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 | 名称                                         | 功能描述                                                     |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| onDateChange(event: (value: number) => void) | 提供时间变化回调，该事件最小回调间隔为秒。<br/>- value: Unix Time Stamp，即自1970年1月1日（UTC）起经过的毫秒数。 |
+| onDateChange(event: (value: number) => void) | 提供时间变化回调，该事件回调间隔为秒。<br/>- value: Unix Time Stamp，即自1970年1月1日（UTC）起经过的秒数。 |
 
 ## TextClockController
 
