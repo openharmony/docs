@@ -74,7 +74,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name       | Type     | Mandatory| Description                                    |
 | ----------- | ------------- | ---- | ---------------------------------------- |
-| strokeWidth | [Length](ts-types.md#length)        | Yes  | Stroke width of the divider.<br>Default value: **1vp**<br>Unit: vp|
+| strokeWidth | [Length](ts-types.md#length)        | Yes  | Stroke width of the divider.|
 | color       | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the divider.<br>Default value: **#000000, 3%**  |
 | startMargin | [Length](ts-types.md#length)        | No  | Distance between the divider and the top of the sidebar.<br>Default value: **0**|
 | endMargin   | [Length](ts-types.md#length)        | No  | Distance between the divider and the bottom of the sidebar.<br>Default value: **0**|
