@@ -778,7 +778,7 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<NotificationSlot\> | 以Promise形式返回获取一个通知通道。 |
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 以Promise形式返回获取一个通知通道。 |
 
 **错误码：**
 
