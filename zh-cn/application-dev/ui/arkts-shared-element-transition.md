@@ -93,11 +93,10 @@ import curves from '@ohos.curves';
 export struct share_transition_expand {
   // 声明与父组件进行交互的是否展开状态变量
   // 元素展开
-  @Link isExpand: boolean;
+  @State isExpand: boolean = false;
   // 当前展开元素
   @State curIndex: number = 0;
-  private listArray: Array<number> = [1, 2, 3, 4, 5, 6];
-
+  @State listArray: Array<number> = [1, 2, 3, 4, 5, 6];
   build() {
     Column() {
       List() {
@@ -183,7 +182,9 @@ import { share_transition_expand } from './utils';
 struct ShareTransitionDemo {
   @State isExpand: boolean = false;
   @State Tmp:Record<string,boolean> = { 'isExpand': false }
+  private scroller: Scroller = new Scroller();
   build() {
+    Scroll(this.scroller) {
     Column() {
       Text('兄弟节点出现消失')
         .fontWeight(FontWeight.Bold)
@@ -197,6 +198,7 @@ struct ShareTransitionDemo {
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Start)
+    }
   }
 }
 ```
