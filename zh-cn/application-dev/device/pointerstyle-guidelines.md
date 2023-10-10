@@ -38,7 +38,7 @@ import pointer from '@ohos.multimodalInput.pointer';
 // 1.应用切换到全屏播放
 // 2.调用鼠标光标隐藏接口隐藏光标
 try {
-  pointer.setPointerVisible(false, (error) => {
+  pointer.setPointerVisible(false, (error: Error) => {
     if (error) {
       console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -52,7 +52,7 @@ try {
 // 3.应用退出全屏播放
 // 4.调用鼠标光标显示接口显示光标
 try {
-  pointer.setPointerVisible(true, (error) => {
+  pointer.setPointerVisible(true, (error: Error) => {
     if (error) {
       console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -77,12 +77,13 @@ try {
 5. 设置鼠标光标样式为默认样式。
 
 ```js
+import { BusinessError }  from '@ohos.base';
 import pointer from '@ohos.multimodalInput.pointer';
 import window from '@ohos.window';
 
 // 1.开发者使能取色功能
 // 2.调用窗口实例获取对应的窗口id
-window.getLastWindow(this.context, (error, windowClass) => {
+window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -102,7 +103,7 @@ window.getLastWindow(this.context, (error, windowClass) => {
   }
 });
 // 4.取色结束
-window.getLastWindow(this.context, (error, windowClass) => {
+window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
