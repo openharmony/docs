@@ -320,7 +320,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is longer than 256 bytes. |
+| 12100001 | The tokenID is 0, permissionName exceeds 256 bytes, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
@@ -376,7 +376,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is longer than 256 bytes. |
+| 12100001 | The tokenID is 0, permissionName exceeds 256 bytes, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The interface is not used with |
@@ -425,7 +425,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is longer than 256 bytes. |
+| 12100001 | The tokenID is 0, permissionName exceeds 256 bytes, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The interface is not used with |
@@ -476,7 +476,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is longer than 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or permissionName exceeds 256. |
 | 12100004 | The interface is called repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
 | 12100007 | Service is abnormal. |
@@ -522,8 +522,8 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
-| 12100004 | The API is not used together with "on". |
+| 12100001 | The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
+| 12100004 | The interface is not used together with 'on'|
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -608,8 +608,8 @@ Represents the usage records of a permission.
 | lastAccessTime | number         | Yes   | Last time when the permission was accessed, accurate to ms.|
 | lastRejectTime | number         | Yes   | Last time when the access to the permission was rejected, accurate to ms.|
 | lastAccessDuration | number         | Yes   | Last access duration, in ms.|
-| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Successful access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_SUMMARY**. By default, 10 records are provided.                                |
-| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Rejected access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_SUMMARY**. By default, 10 records are provided.                                |
+| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Successful access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_DETAIL**. By default, 10 records are provided.                                |
+| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Rejected access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_DETAIL**. By default, 10 records are provided.                                |
 
 ## UsedRecordDetail
 
