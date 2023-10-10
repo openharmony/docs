@@ -167,12 +167,12 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para); // 创建新实例并使用给定对象初始化
-let propA = storage.get('PropA') // propA == 47
-let link1 = storage.link('PropA'); // link1.get() == 47
-let link2 = storage.link('PropA'); // link2.get() == 47
-let prop = storage.prop('PropA'); // prop.get() = 47
+let propA: number | undefined = storage.get('PropA') // propA == 47
+let link1: SubscribedAbstractProperty<number> = storage.link('PropA'); // link1.get() == 47
+let link2: SubscribedAbstractProperty<number> = storage.link('PropA'); // link2.get() == 47
+let prop: SubscribedAbstractProperty<number> = storage.prop('PropA'); // prop.get() = 47
 link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
 prop.set(1); // one-way sync: prop.get()=1; but link1.get() == link2.get() == 48
 link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
