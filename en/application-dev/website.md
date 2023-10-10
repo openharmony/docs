@@ -24,7 +24,6 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [In-Application HSP Development](quick-start/in-app-hsp.md)
-          - [Inter-Application HSP Development](quick-start/cross-app-hsp.md)
       - Quick Fix
         - [Quick Fix Overview](quick-start/quickfix-principles.md)
         - [CLI-based Quick Fix Development](quick-start/quickfix-debug.md)
@@ -74,11 +73,13 @@
           - [\@Watch Decorator: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
           - [$$ Syntax: Two-Way Synchronization of Built-in Components](quick-start/arkts-two-way-sync.md)
         - [MVVM](quick-start/arkts-mvvm.md)
+        - [Best Practices for State Management](quick-start/arkts-state-management-best-practices.md)
       - Rendering Control
         - [Overview of Rendering Control](quick-start/arkts-rendering-control-overview.md)
         - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
+        - [Best Practices for Rendering Control](quick-start/arkts-rendering-control-best-practices.md)
 - Development
   - Application Models
     - Application Model Overview
@@ -400,6 +401,7 @@
         - [Single I/O Task Development](arkts-utils/single-io-development.md)
       - Using Multithread Concurrency for Development
         - [Multithread Concurrency Overview](arkts-utils/multi-thread-concurrency-overview.md)
+        - [Comparison Between the Actor and Memory Sharing Models](arkts-utils/actor-model-development-samples.md)
         - [Comparison Between TaskPool and Worker](arkts-utils/taskpool-vs-worker.md)
         - [CPU Intensive Task Development](arkts-utils/cpu-intensive-task-development.md)
         - [I/O Intensive Task Development](arkts-utils/io-intensive-task-development.md)
@@ -510,6 +512,7 @@
         - [Camera Photographing Sample](media/camera-shooting-case.md)
         - [Camera Recording Sample](media/camera-recording-case.md)
         - [Implementation Solution for Portrait Mode] (media/camera-mode.md)
+        - [Dual-Channel Preview](media/camera-dual-channel-preview.md)
         - [Using Performance Improvement Features (for System Applications Only)](media/camera-performance-improvement.md)
     - Image
       - [Image Overview](media/image-overview.md)
@@ -675,6 +678,8 @@
     - [Internationalization Overview](internationalization/international-overview.md)
     - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
     - [Internationalization Development (i18n)](internationalization/i18n-guidelines.md)
+  - Value-added Services
+    - [OAID Service](ads-service/oaid/oaid-service.md)
   - Application Test
     - [arkXtest User Guide](application-test/arkxtest-guidelines.md)
     - [SmartPerf User Guide](application-test/smartperf-guidelines.md)
@@ -685,6 +690,7 @@
     - Graphics
       - [XComponent Development](napi/xcomponent-guidelines.md)
       - [Drawing Development](napi/drawing-guidelines.md)
+      - [Drawing and Display Sample](napi/drawing-sample.md)
       - [NativeBuffer Development](napi/native-buffer-guidelines.md)
       - [NativeImage Development](napi/native-image-guidelines.md)
       - [NativeVsync Development](napi/native-vsync-guidelines.md)
@@ -715,7 +721,7 @@
     - [restool](tools/restool.md)
     - [LLDB Usage Guide](tools/lldb-tool.md)
 - Hands-On Tutorials
-  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
+  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Release/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/tree/master)
 - API References
   - [SystemCapability](reference/syscap.md)
@@ -728,12 +734,14 @@
         - [@ohos.app.ability.AbilityConstant (AbilityConstant)](reference/apis/js-apis-app-ability-abilityConstant.md)
         - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](reference/apis/js-apis-app-ability-abilityLifecycleCallback.md)
         - [@ohos.app.ability.AbilityStage (AbilityStage)](reference/apis/js-apis-app-ability-abilityStage.md)
+        - [@ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)](reference/apis/js-apis-app-ability-actionExtensionAbility.md)
         - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](reference/apis/js-apis-app-ability-applicationStateChangeCallback.md)
         - [@ohos.app.ability.common (Context)](reference/apis/js-apis-app-ability-common.md)
         - [@ohos.app.ability.contextConstant (ContextConstant)](reference/apis/js-apis-app-ability-contextConstant.md)
         - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](reference/apis/js-apis-app-ability-environmentCallback.md)
         - [@ohos.app.ability.ExtensionAbility (ExtensionAbility Base Class)](reference/apis/js-apis-app-ability-extensionAbility.md)
         - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](reference/apis/js-apis-app-ability-serviceExtensionAbility.md)
+        - [@ohos.app.ability.ShareExtensionAbility (ExtensionAbility for Sharing)](reference/apis/js-apis-app-ability-shareExtensionAbility.md)
         - [@ohos.app.ability.StartOptions (StartOptions)](reference/apis/js-apis-app-ability-startOptions.md)
         - [@ohos.app.ability.UIAbility (UIAbility)](reference/apis/js-apis-app-ability-uiAbility.md)
         - [@ohos.app.ability.UIExtensionAbility (Base Class for ExtensionAbilities with UI)](reference/apis/js-apis-app-ability-uiExtensionAbility.md)
@@ -923,7 +931,6 @@
       - [@ohos.arkui.dragController (DragController)](reference/apis/js-apis-arkui-dragController.md)
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.inspector (Layout Callback)](reference/apis/js-apis-arkui-inspector.md)
-      - [@ohos.arkui.performanceMonitor (Performance Monitor)](reference/apis/js-apis-arkui-performancemonitor.md)
       - [@ohos.arkui.UIContext (UIContext)](reference/apis/js-apis-arkui-UIContext.md)
       - [@ohos.curves (Interpolation Calculation)](reference/apis/js-apis-curve.md)
       - [@ohos.font (Custom Font Registration)](reference/apis/js-apis-font.md)
@@ -992,6 +999,7 @@
       - [@ohos.data.uniformTypeDescriptor (Standard Data Definition)](reference/apis/js-apis-data-uniformTypeDescriptor.md)
       - [@ohos.data.ValuesBucket (Value Bucket)](reference/apis/js-apis-data-valuesBucket.md)
     - File Management
+      - [@ohos.ability.BackupExtensionAbility (BackupExtensionAbility)](reference/apis/js-apis-application-backupExtensionAbility.md)
       - [@ohos.file.backup (Backup and Restoration)](reference/apis/js-apis-file-backup.md)
       - [@ohos.file.cloudSync (Device-Cloud Synchronization)](reference/apis/js-apis-file-cloudsync.md)
       - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management)](reference/apis/js-apis-file-cloudsyncmanager.md)
@@ -1108,7 +1116,6 @@
       - [@ohos.multimodalInput.gestureEvent (Gesture Input Event)](reference/apis/js-apis-multimodalinput-gestureevent.md)
       - [@ohos.multimodalInput.inputConsumer (Input Consumer)](reference/apis/js-apis-inputconsumer.md)
       - [@ohos.multimodalInput.inputDevice (Input Device)](reference/apis/js-apis-inputdevice.md)
-      - [@ohos.multimodalInput.inputDeviceCooperate (Screen Hopping) (To Be Deprecated Soon)](reference/apis/js-apis-cooperate.md)
       - [@ohos.multimodalInput.inputEvent (Input Event)](reference/apis/js-apis-inputevent.md)
       - [@ohos.multimodalInput.inputEventClient (Key Event Injection)](reference/apis/js-apis-inputeventclient.md)
       - [@ohos.multimodalInput.inputMonitor (Input Monitor)](reference/apis/js-apis-inputmonitor.md)
@@ -1179,6 +1186,8 @@
       - [@ohos.util.Vector (Linear Container Vector)](reference/apis/js-apis-vector.md)
       - [@ohos.worker (Worker Startup)](reference/apis/js-apis-worker.md)
       - [@ohos.xml (XML Parsing and Generation)](reference/apis/js-apis-xml.md)
+    - Ads
+      - [@ohos.identifier.oaid (OAID)](reference/apis/js-apis-oaid.md)
     - Test
       - [@ohos.application.testRunner (TestRunner)](reference/apis/js-apis-application-testRunner.md)
       - [@ohos.uitest (UiTest)](reference/apis/js-apis-uitest.md)
@@ -1197,6 +1206,7 @@
       - [@ohos.geolocation (Geolocation)](reference/apis/js-apis-geolocation.md)
       - [@ohos.hiAppEvent (Application Event Logging)](reference/apis/js-apis-hiappevent.md)
       - [@ohos.multimedia.medialibrary (Media Library Management)](reference/apis/js-apis-medialibrary.md)
+      - [@ohos.multimodalInput.inputDeviceCooperate (Screen Hopping)](reference/apis/js-apis-cooperate.md)
       - [@ohos.prompt (Prompt)](reference/apis/js-apis-prompt.md)
       - [@ohos.reminderAgent (Reminder Agent)](reference/apis/js-apis-reminderAgent.md)
       - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)
@@ -1292,6 +1302,8 @@
         - [Universal Text Attributes](reference/arkui-ts/ts-universal-attributes-text-style.md)
         - [Drag and Drop Control](reference/arkui-ts/ts-universal-attributes-drag-drop.md)
         - [Safe Area](reference/arkui-ts/ts-universal-attributes-expand-safe-area.md)
+        - [Special Effect Drawing Combination](reference/arkui-ts/ts-universal-attributes-use-effect.md)
+        - [Render Fit](reference/arkui-ts/ts-universal-attributes-renderfit.md)
       - Gesture Handling
         - [Gesture Binding Methods](reference/arkui-ts/ts-gesture-settings.md)
         - Basic Gestures
@@ -1356,6 +1368,7 @@
       - [Column](reference/arkui-ts/ts-container-column.md)
       - [ColumnSplit](reference/arkui-ts/ts-container-columnsplit.md)
       - [Counter](reference/arkui-ts/ts-container-counter.md)
+      - [EffectComponent](reference/arkui-ts/ts-container-effectcomponent.md)
       - [Flex](reference/arkui-ts/ts-container-flex.md)
       - [FlowItem](reference/arkui-ts/ts-container-flowitem.md)
       - [FormLink](reference/arkui-ts/ts-container-formlink.md)
@@ -1629,6 +1642,7 @@
       - [promptAction Error Codes](reference/errorcodes/errorcode-promptAction.md)
       - [Router Error Codes](reference/errorcodes/errorcode-router.md)
       - [UI Appearance Error Codes](reference/errorcodes/errorcode-uiappearance.md)
+      - [Drag Event Error Codes](reference/errorcodes/errorcode-drag-event.md)
     - Graphics
       - [colorSpaceManager Error Codes](reference/errorcodes/errorcode-colorspace-manager.md)
       - [Display Error Codes](reference/errorcodes/errorcode-display.md)
@@ -1713,6 +1727,8 @@
       - [Enterprise Device Management Error Codes](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - Common Library
       - [Common Library Error Codes](reference/errorcodes/errorcode-utils.md)
+    - Ads
+      - [OAID Error Codes](reference/errorcodes/errorcode-oaid.md)
     - Test
       - [UiTest Error Codes](reference/errorcodes/errorcode-uitest.md)
   - Native APIs
