@@ -2,7 +2,7 @@
 
 ## When to Use
 
-USB Driver Development Kit (USB DDK) is a tool kit provided by OpenHarmony to help you develop USB device drivers for your applications based on the user mode. It provides a series of device access APIs, which implement functions such as opening and closing USB interfaces, performing non-isochronous and isochronous data transfer, and implementing control transfer and interrupt transfer over USB pipes, etc.
+USB Driver Development Kit (USB DDK) is a tool kit that helps you develop USB device drivers for your applications based on the user mode. It provides a series of device access APIs, which implement functions such as opening and closing USB interfaces, performing non-isochronous and isochronous data transfer, and implementing control transfer and interrupt transfer over USB pipes, etc.
 
 ## Available APIs
 
@@ -23,7 +23,20 @@ For details about the APIs, see [USB DDK](../reference/native-apis/_usb_ddk.md).
 
 ## How to Develop 
 
-To develop a USB driver using the USB DDK in OpenHarmony, perform the following steps:
+To develop a USB driver using the USB DDK, perform the following steps:
+
+**Adding Dynamic Link Libraries**
+
+Add the following libraries to **CMakeLists.txt**:
+```txt
+libusb_ndk.z.so
+```
+
+**Including Header Files**
+```c++
+#include <usb/usb_ddk_api.h>
+#include <usb/usb_ddk_types.h>
+```
 
 1. Obtain the device descriptor. Initialize the DDK by calling **OH_Usb_Init** of **usb_ddk_api.h**, and obtain the device descriptor by calling **OH_Usb_GetDeviceDescriptor**.
 

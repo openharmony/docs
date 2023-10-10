@@ -880,7 +880,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
 class SlotId {
     slotId: number = 0
 }
@@ -924,7 +924,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
 let callback: (data: observer.SimStateData) => void = (data: observer.SimStateData) => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 }

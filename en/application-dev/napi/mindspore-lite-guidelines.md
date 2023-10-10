@@ -85,7 +85,7 @@ The development process consists of the following main steps:
     The required model can be downloaded directly or obtained using the model conversion tool.
   
      - If the downloaded model is in the `.ms` format, you can use it directly for inference. The following uses the **mobilenetv2.ms** model as an example.
-     - If the downloaded model uses a third-party framework, such as TensorFlow, TensorFlow Lite, Caffe, or ONNX, you can use the [model conversion tool](https://www.mindspore.cn/lite/docs/en/r1.5/use/downloads.html#id1) to convert it to the .ms format.
+     - If the downloaded model uses a third-party framework, such as TensorFlow, TensorFlow Lite, Caffe, or ONNX, you can use the [model conversion tool](https://www.mindspore.cn/lite/docs/zh-CN/r1.5/use/downloads.html#id1) to convert it to the .ms format.
 
 2. Create a context, and set parameters such as the number of runtime threads and device type.
 
@@ -265,8 +265,8 @@ The development process consists of the following main steps:
 
 2. Run the CMake tool.
 
-    - Use hdc_std to connect to the RK3568 development board and put **demo** and **mobilenetv2.ms** to the same directory on the board.
-    - Run the hdc_std shell command to access the development board, go to the directory where **demo** is located, and run the following command:
+    - Use hdc_std to connect to the device and put **demo** and **mobilenetv2.ms** to the same directory on the device.
+    - Run the hdc_std shell command to access the device, go to the directory where **demo** is located, and run the following command:
 
     ```shell
     ./demo mobilenetv2.ms
@@ -280,3 +280,7 @@ The development process consists of the following main steps:
     output data is:
     0.000018 0.000012 0.000026 0.000194 0.000156 0.001501 0.000240 0.000825 0.000016 0.000006 0.000007 0.000004 0.000004 0.000004 0.000015 0.000099 0.000011 0.000013 0.000005 0.000023 0.000004 0.000008 0.000003 0.000003 0.000008 0.000014 0.000012 0.000006 0.000019 0.000006 0.000018 0.000024 0.000010 0.000002 0.000028 0.000372 0.000010 0.000017 0.000008 0.000004 0.000007 0.000010 0.000007 0.000012 0.000005 0.000015 0.000007 0.000040 0.000004 0.000085 0.000023 
     ```
+
+## Samples
+The following sample is provided to help you better understand how to use MindSpore Lite:
+- [Simple MindSpore Lite Tutorial](https://gitee.com/openharmony/third_party_mindspore/tree/OpenHarmony-3.2-Release/mindspore/lite/examples/quick_start_c)
