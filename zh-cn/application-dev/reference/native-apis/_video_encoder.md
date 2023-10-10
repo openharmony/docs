@@ -88,7 +88,7 @@ typedef enum OH_VideoEncodeBitrateMode OH_VideoEncodeBitrateMode
 
   
 ```
-enum OH_VideoEncode BitrateMode
+enum OH_VideoEncodeBitrateMode
 ```
 
 **描述：**
