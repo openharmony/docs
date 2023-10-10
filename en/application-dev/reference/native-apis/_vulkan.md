@@ -19,7 +19,7 @@ The **Vulkan** module provides Vulkan capabilities extended by OpenHarmony. It p
 
 | Name| Description|
 | -------- | -------- |
-| [vulkan_ohos.h](vulkan__ohos_8h.md) | Declares the Vulkan interfaces extended by OpenHarmony.<br>File to include: &lt;vulkan/vulkan.h&gt;|
+| [vulkan_ohos.h](vulkan__ohos_8h.md) | Declares the Vulkan interfaces extended by OpenHarmony.<br>File to include: &lt;vulkan/vulkan.h&gt;<br>Library: libvulkan.so |
 
 
 ### Structs
@@ -217,7 +217,7 @@ Defines the function pointer for creating a Vulkan surface.
 
 | Name| Description|
 | -------- | -------- |
-| instance | Vulkan instance.|
+| instance | **Vulkan** instance.|
 | pCreateInfo | Pointer to the **VkSurfaceCreateInfoOHOS** struct, including the parameters required for creating a Vulkan surface.|
 | pAllocator | Pointer to a callback function for custom memory allocation. If custom memory allocation is not required, pass in **NULL**, and the default memory allocation function is used.|
 | pSurface | Pointer to the Vulkan surface created. The type is **VkSurfaceKHR**.|
