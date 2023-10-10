@@ -434,15 +434,15 @@ HMAC（Hash-based Message Authentication Code）是一种基于密钥的消息�
 
 - 支持以字符串参数来生成HMAC密钥，其生成参数如下表所示：
 
-  |对称密钥算法|摘要算法|字符串参数|
-  |---|---|---|
-  |HMAC|SHA1|HMAC\|SHA1|
-  |HMAC|SHA224|HMAC\|SHA224|
-  |HMAC|SHA256|HMAC\|SHA256|
-  |HMAC|SHA384|HMAC\|SHA384|
-  |HMAC|SHA512|HMAC\|SHA512|
-  |HMAC|SM3|HMAC\|SM3|
-  |HMAC||HMAC|
+  |对称密钥算法|摘要算法|密钥长度（bit）|字符串参数|
+  |---|---|---|---|
+  |HMAC|SHA1|160|HMAC\|SHA1|
+  |HMAC|SHA224|224|HMAC\|SHA224|
+  |HMAC|SHA256|256|HMAC\|SHA256|
+  |HMAC|SHA384|384|HMAC\|SHA384|
+  |HMAC|SHA512|512|HMAC\|SHA512|
+  |HMAC|SM3|256|HMAC\|SM3|
+  |HMAC||[1, 32768]|HMAC|
 
   > **说明：**
   >

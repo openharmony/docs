@@ -336,10 +336,10 @@ function testGenerateHmacKey() {
 
 > **说明：**
 >
-> 1. 当传入“HMAC”创建对称密钥生成器时，可以传入[1, 4096]范围内(长度为byte)的二进制密钥数据生成symKey。
-> 2. 当传入“HMAC|SHA512”创建对称密钥生成器时，需要传入64-bit长度的二进制密钥数据生成symKey。
+> 1. 当传入“HMAC”创建对称密钥生成器时，支持传入长度在[1,4096]范围内（单位为byte）的二进制密钥数据生成symKey。
+> 2. 当传入“HMAC|SHA512”创建对称密钥生成器时，需要传入64-byte长度的二进制密钥数据生成symKey。
 
-以使用callback方式生成HMAC密钥（512位）为例：
+以使用callback方式生成HMAC密钥（使用SHA512作为哈希函数）为例：
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
