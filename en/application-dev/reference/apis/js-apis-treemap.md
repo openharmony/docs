@@ -22,7 +22,7 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import TreeMap from '@ohos.util.TreeMap';  
+import TreeMap from '@ohos.util.TreeMap';
 ```
 
 ## TreeMap
@@ -711,6 +711,7 @@ let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
   console.log("TreeMap" + t.value);
   t = it.next()
+}
 
 // Method 2:
 let iter = treeMap[Symbol.iterator]();
