@@ -2,7 +2,7 @@
 
 ## Scenarios
 
-You can use the native APIs provided by MindSpore Lite to deploy AI algorithms and provides APIs for the UI layer to invoke the algorithms for model inference. A typical scenario is the AI SDK development.
+You can use the native APIs provided by [MindSpore Lite](../reference/native-apis/_mind_spore.md) to deploy AI algorithms and provides APIs for the UI layer to invoke the algorithms for model inference. A typical scenario is the AI SDK development.
 
 ## Basic concepts
 
@@ -14,11 +14,11 @@ You can use the native APIs provided by MindSpore Lite to deploy AI algorithms a
 
 ## How to Develop
 
-1. Create a native C++ project.
+### 1. Create a native C++ project.
 
 Open DevEco Studio, choose **File** > **New** > **Create Project** to create a native C++ template project. By default, the **entry/src/main/** directory of the created project contains the **cpp/** directory. You can store C/C++ code in this directory and provide JavaScript APIs for the UI layer to call the code.
 
-2. Compile the C++ inference code.
+### 2. Compile the C++ inference code.
 
 Assume that you have prepared a model in the **.ms** format.
 
@@ -60,6 +60,14 @@ void *ReadModelFile(NativeResourceManager *nativeResourceManager, const std::str
 (2). Create a context, set parameters such as the number of threads and device type, and load the model.
 
 ```c++
+void DestroyModelBuffer(void **buffer) {
+    if (buffer == nullptr) {
+        return;
+    }
+    free(*buffer);
+    *buffer = nullptr;
+}
+
 OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
     // Create a context.
     auto context = OH_AI_ContextCreate();
@@ -93,7 +101,33 @@ OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
 
 (3). Set the model input data, perform model inference, and obtain the output data.
 
-```js
+```c++
+#define GET_PARAMS(env, info, num)    \
+    size_t argc = num;                \
+    napi_value argv[num] = {nullptr}; \
+    napi_value thisVar = nullptr;     \
+    void *data = nullptr;             \
+    napi_get_cb_info(env, info, &argc, argv, &thisVar, &data)
+
+constexpr int kNumPrintOfOutData = 10;
+constexpr int RANDOM_RANGE = 128;
+
+void FillTensorWithRandom(OH_AI_TensorHandle msTensor) {
+    auto size = OH_AI_TensorGetDataSize(msTensor);
+    char *data = (char *)OH_AI_TensorGetMutableData(msTensor);
+    for (size_t i = 0; i < size; i++) {
+        data[i] = (char)(rand() / RANDOM_RANGE);
+    }
+}
+
+// fill data to inputs tensor
+int FillInputTensors(OH_AI_TensorHandleArray &inputs) {
+    for (size_t i = 0; i < inputs.handle_num; i++) {
+        FillTensorWithRandom(inputs.handle_list[i]);
+    }
+    return OH_AI_STATUS_SUCCESS;
+}
+
 void RunMSLiteModel(OH_AI_ModelHandle model) {
     // Set the model input data.
     auto inputs = OH_AI_ModelGetInputs(model);
@@ -183,7 +217,7 @@ target_link_libraries(mslite_napi PUBLIC ace_napi.z)
 ```
 
 
-3. Use N-APIs to encapsulate C++ dynamic libraries into JavaScript modules.
+### 3. Use N-APIs to encapsulate C++ dynamic libraries into JavaScript modules.
 
 
 Create the **libmslite_api/** subdirectory in **entry/src/main/cpp/types/**, and create the **index.d.ts** file in the subdirectory. The file content is as follows:
@@ -203,7 +237,7 @@ In addition, add the **oh-package.json5** file to associate the API with the **.
 }
 ```
 
-4. Invoke the encapsulated MindSpore module in the UI code.
+### 4. Invoke the encapsulated MindSpore module in the UI code.
 
 In **entry/src/ets/MainAbility/pages/index.ets**, define the **onClick()** event and call the encapsulated **runDemo()** API in the event callback.
 

@@ -1,4 +1,4 @@
-# @ohos.net.socket (Socket Connection) 
+# @ohos.net.socket (Socket Connection)
 
 The **socket** module implements data transfer over TCP, UDP, Web, and TLS socket connections.
 
@@ -1691,7 +1691,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts TCP socket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > The server uses this API to perform the **bind**, **listen**, and **accept** operations. If the **bind** operation fails, the system randomly allocates a port number.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1715,7 +1715,7 @@ Binds the IP address and port number. The port number can be specified or random
 | 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable try again. |
 | 2303198  | Address already in use.                     |
-| 2303199  | Address not available.            |
+| 2303199  | Cannot assign requested address.            |
 
 **Example**
 
@@ -1736,7 +1736,7 @@ listen(address: NetAddress): Promise\<void\>
 
 Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts TCP socket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > The server uses this API to perform the **bind**, **listen**, and **accept** operations. If the **bind** operation fails, the system randomly allocates a port number.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1765,7 +1765,7 @@ Binds the IP address and port number. The port number can be specified or random
 | 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable try again. |
 | 2303198  | Address already in use.                     |
-| 2303199  | Address not available.            |
+| 2303199  | Cannot assign requested address.            |
 
 **Example**
 
@@ -1805,7 +1805,7 @@ Obtains the status of the TCPSocketServer connection. This API uses an asynchron
 | 401      | Parameter error.                |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 
 **Example**
 
@@ -1852,7 +1852,7 @@ Obtains the status of the TCPSocketServer connection. This API uses a promise to
 | -------- | ------------------------------- |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 
 **Example**
 
@@ -1899,7 +1899,7 @@ Sets other properties of the TCPSocketServer connection. This API uses an asynch
 | 401      | Parameter error.                |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 
 **Example**
 
@@ -1962,7 +1962,7 @@ Sets other properties of the TCPSocketServer connection. This API uses a promise
 | 401      | Parameter error.                |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 
 **Example**
 
@@ -2338,7 +2338,7 @@ Obtains the remote address of a socket connection. This API uses an asynchronous
 | 401      | Parameter error.                |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 
 **Example**
 
@@ -2380,7 +2380,7 @@ Obtains the remote address of a socket connection. This API uses a promise to re
 | -------- | ------------------------------- |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 
 **Example**
 
@@ -2751,7 +2751,7 @@ Obtains the status of the TLS socket connection. This API uses an asynchronous c
 
 | ID| Error Message                       |
 | ------- | ------------------------------ |
-| 2303188 | Not a socket.|
+| 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -2791,7 +2791,7 @@ Obtains the status of the TLS socket connection. This API uses a promise to retu
 
 | ID| Error Message                       |
 | ------- | ------------------------------ |
-| 2303188 | Not a socket.|
+| 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -2831,7 +2831,7 @@ Sets other properties of the TCP socket connection after **bind** is successfull
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 401     | Parameter error.               |
-| 2303188 | Not a socket.|
+| 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -2888,7 +2888,7 @@ Sets other properties of the TCP socket connection after **bind** is successfull
 | ID| Error Message                       |
 | ------- | ------------------------------ |
 | 401     | Parameter error.               |
-| 2303188 | Not a socket.|
+| 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -3132,10 +3132,10 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable try again.  |
-| 2303188 | Not a socket.              |
+| 2303188 | Socket operation on non-socket.              |
 | 2303191 | Protocol wrong type for socket.              |
 | 2303198 | Address already in use.                      |
-| 2303199 | Address not available.             |
+| 2303199 | Cannot assign requested address.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
 | 2303502 | Error in tls reading.                        |
@@ -3231,10 +3231,10 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable try again.  |
-| 2303188 | Not a socket.              |
+| 2303188 | Socket operation on non-socket.              |
 | 2303191 | Protocol wrong type for socket.              |
 | 2303198 | Address already in use.                      |
-| 2303199 | Address not available.             |
+| 2303199 | Cannot assign requested address.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
 | 2303502 | Error in tls reading.                        |
@@ -3322,7 +3322,7 @@ Obtains the remote address of a TLS socket connection. This API uses an asynchro
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 2303188 | Not a socket.|
+| 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -3355,7 +3355,7 @@ Obtains the remote address of a TLS socket connection. This API uses a promise t
 
 | ID| Error Message                       |
 | ------- | ------------------------------ |
-| 2303188 | Not a socket.|
+| 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -3943,7 +3943,7 @@ Listens to client connections after **bind** is successfully called. This API us
 | 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable try again. |
 | 2303198  | Address already in use.                     |
-| 2303199  | Address not available.            |
+| 2303199  | Cannot assign requested address.            |
 | 2303501  | SSL is null.                                |
 | 2303502  | Error in tls reading.                       |
 | 2303503  | Error in tls writing                        |
@@ -4009,7 +4009,7 @@ Listens to client connections after **bind** is successfully called. This API us
 | 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable try again. |
 | 2303198  | Address already in use.                     |
-| 2303199  | Address not available.            |
+| 2303199  | Cannot assign requested address.            |
 | 2303501  | SSL is null.                                |
 | 2303502  | Error in tls reading.                       |
 | 2303503  | Error in tls writing                        |
@@ -4067,7 +4067,7 @@ Obtains the status of the TLS socket server connection upon successful listening
 | ID| Error Message                       |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 | 2300002  | System internal error.          |
 
 **Example**
@@ -4127,7 +4127,7 @@ Obtains the status of the TLS socket server connection upon successful listening
 
 | ID| Error Message                       |
 | -------- | ------------------------------- |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 | 2300002  | System internal error.          |
 
 **Example**
@@ -4189,7 +4189,7 @@ Sets other properties of the TLS socket server connection upon successful listen
 | ID| Error Message                       |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 | 2300002  | System internal error.          |
 
 **Example**
@@ -4264,7 +4264,7 @@ Sets other properties of the TLS socket server connection upon successful listen
 | ID| Error Message                       |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 | 2300002  | System internal error.          |
 
 **Example**
@@ -5072,7 +5072,7 @@ Obtains the remote address of a TLS socket server connection. This API uses an a
 | ID| Error Message                       |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 | 2300002  | System internal error.          |
 
 **Example**
@@ -5130,7 +5130,7 @@ Obtains the remote address of a TLS socket server connection. This API uses a pr
 
 | ID| Error Message                       |
 | -------- | ------------------------------- |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 | 2300002  | System internal error.          |
 
 **Example**

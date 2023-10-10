@@ -135,7 +135,7 @@ try {
 
 setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the mouse movement speed. This API uses an asynchronous callback to return the result.
+Sets the moving speed of the mouse pointer. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -145,7 +145,7 @@ Sets the mouse movement speed. This API uses an asynchronous callback to return 
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed    | number                    | Yes   | Mouse movement speed. The value ranges from **1** to **11**. The default value is **5**.  |
+| speed    | number                    | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **5**.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
@@ -168,7 +168,7 @@ try {
 
 setPointerSpeed(speed: number): Promise&lt;void&gt;
 
-Sets the mouse movement speed. This API uses a promise to return the result.
+Sets the moving speed of the mouse pointer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -178,7 +178,7 @@ Sets the mouse movement speed. This API uses a promise to return the result.
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | Yes   | Mouse movement speed. The value ranges from **1** to **11**. The default value is **5**.|
+| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **5**.|
 
 **Return value**
 
@@ -202,7 +202,7 @@ try {
 
 getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the mouse movement speed. This API uses an asynchronous callback to return the result.
+Obtains the moving speed of the mouse pointer. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -234,7 +234,7 @@ try {
 
 getPointerSpeed(): Promise&lt;number&gt;
 
-Obtains the mouse movement speed. This API uses a promise to return the result.
+Obtains the moving speed of the mouse pointer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -614,7 +614,7 @@ try {
 
 getMouseScrollRows(): Promise&lt;number&gt;
 
-Obtains the mouse movement speed. This API uses a promise to return the result.
+Obtains the moving speed of the mouse pointer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -850,7 +850,7 @@ Enumerates mouse pointer styles.
 | MIDDLE_BTN_SOUTH_EAST            | 36   | Scrolling south-east |![MID_Btn_South_East.png](./figures/MID_Btn_South_East.png)|
 | MIDDLE_BTN_SOUTH_WEST            | 37   | Scrolling south-west |![MID_Btn_South_West.png](./figures/MID_Btn_South_West.png)|
 | MIDDLE_BTN_NORTH_SOUTH_WEST_EAST | 38   | Moving as a cone in four directions|![MID_Btn_North_South_West_East.png](./figures/MID_Btn_North_South_West_East.png)|
-| HORIZONTAL_TEXT_CURSOR<sup>10+</sup> | 39 | Horizontal text selection|![Horizontal_Text_Cursor.png](./figures/Horizontal_Text_Cursor.png)|
+| HORIZONTAL_TEXT_CURSOR<sup>10+</sup> | 39 | Horizontal text cursor|![Horizontal_Text_Cursor.png](./figures/Horizontal_Text_Cursor.png)|
 | CURSOR_CROSS<sup>10+</sup> | 40 | Cross cursor|![Cursor_Cross.png](./figures/Cursor_Cross.png)|
 | CURSOR_CIRCLE<sup>10+</sup> | 41 | Circular cursor|![Cursor_Circle.png](./figures/Cursor_Circle.png)|
 
@@ -1064,7 +1064,7 @@ Obtains the scroll direction of the touchpad. This API uses an asynchronous call
 
 ```js
 try {
-  pointer.getTouchpadScrollSwitch ((error, state) => {
+  pointer.getTouchpadScrollDirection ((error, state) => {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
