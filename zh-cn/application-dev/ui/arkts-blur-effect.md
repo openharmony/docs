@@ -70,7 +70,7 @@ struct Index1 {
         .fontFamily("cursive")
         .fontStyle(FontStyle.Italic)
       Image($r("app.media.wall"))
-        .blur(this.radius) // 使用blur接口为照片组件添加背景模糊效果
+        .blur(this.radius) // 使用blur接口为照片组件添加内容模糊效果
         .height('100%')
         .width("100%")
         .objectFit(ImageFit.Cover)
