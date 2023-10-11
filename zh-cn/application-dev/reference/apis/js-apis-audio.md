@@ -7203,6 +7203,15 @@ setChannelBlendMode(mode: ChannelBlendMode): void
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | mode | [ChannelBlendMode](#channelblendmode11) | 是   | 声道混合模式类型。                                             |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Input parameter value error.              |
+| 6800103 | Operation not permit at current state.    |
+
 **示例：**
 
 ```js
@@ -8363,13 +8372,15 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.              |
+| 6800101 | Input parameter value error.              |
 
 **示例：**
 
 ```js
 audioCapturer.on('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescriptors) => {
-  console.info(`Subscribes input device change event callback Success!`);
+  console.info(`inputDevice id: ${deviceChangeInfo[0].id}`);
+  console.info(`inputDevice deviceRole: ${deviceChangeInfo[0].deviceRole}`);
+  console.info(`inputDevice deviceType: ${deviceChangeInfo[0].deviceType}`);
 });
 ```
 ### off('inputDeviceChange')<sup>11+</sup>
@@ -8391,14 +8402,12 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.              |
+| 6800101 | Input parameter value error.              |
 
 **示例：**
 
 ```js
-audioCapturer.off('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescriptors) => {
-  console.info(`Unsubscribes input device change event callback Success!`);
-});
+audioCapturer.off('inputDeviceChange');
 ```
 
 ### on('audioCapturerChange')<sup>11+</sup>
@@ -8420,13 +8429,15 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.              |
+| 6800101 | Input parameter value error.              |
 
 **示例：**
 
 ```js
 audioCapturer.on('audioCapturerChange', (capturerChangeInfo: audio.AudioCapturerChangeInfo) => {
-  console.info(`Subscribes audio capturer change event callback Success !`)
+  console.info(`audioCapturerChange id: ${capturerChangeInfo[0].id}`);
+  console.info(`audioCapturerChange deviceRole: ${capturerChangeInfo[0].deviceRole}`);
+  console.info(`audioCapturerChange deviceType: ${capturerChangeInfo[0].deviceType}`);
 });
 ```
 
@@ -8449,14 +8460,12 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.              |
+| 6800101 | Input parameter value error.              |
 
 **示例：**
 
 ```js
-audioCapturer.off('audioCapturerChange', (deviceChangeInfo: audio.AudioCapturerChangeInfo) => {
-  console.info(`Unsubscribes audio capturer change event callback Success!`);
-});
+audioCapturer.off('audioCapturerChange');
 ```
 
 ### on('markReach')<sup>8+</sup>
