@@ -263,7 +263,6 @@
           - [创建列表（List）](ui/arkts-layout-development-create-list.md)
           - [创建网格（Grid/GridItem）](ui/arkts-layout-development-create-grid.md)
           - [创建轮播（Swiper）](ui/arkts-layout-development-create-looping.md)
-        - [改善布局性能](ui/arkts-layout-development-performance-boost.md)
       - 添加组件
         - 添加常用组件
           - [按钮（Button）](ui/arkts-common-components-button.md)
@@ -318,7 +317,6 @@
           - [绑定手势方法](ui/arkts-gesture-events-binding.md)
           - [单一手势](ui/arkts-gesture-events-single-gesture.md)
           - [组合手势](ui/arkts-gesture-events-combined-gestures.md)
-      - [性能提升的推荐方法](ui/arkts-performance-improvement-recommendation.md)
     - UI开发（兼容JS的类Web开发范式）
       - [UI开发（兼容JS的类Web开发范式）概述](ui/ui-js-overview.md)
       - 框架说明
@@ -741,11 +739,13 @@
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
       - [提升应用响应速度](performance/improve-application-response.md)
+      - [Flex布局性能提升使用指导](performance/flex-development-performance-boost.md)
       - [优化布局性能](performance/reduce-view-nesting-levels.md)
       - [合理使用IPC通信](performance/reasonable-using-ipc.md)
       - [减少首帧绘制时的冗余操作](performance/reduce-redundant-operations-when-render-first-frame.md)
       - [列表场景性能提升实践](performance/list-perf-improvment.md)
       - [动效能力实践](performance/animation_practice.md)
+      - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
 - 工具
