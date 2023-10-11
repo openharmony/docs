@@ -82,13 +82,13 @@
 | isRepeat | boolean | 是否循环任务 |
 | repeatCycleTime | number | 循环间隔 |
 | repeatCount | number | 循环次数 |
-| parameters | [key: string]: number | 携带参数信息 |
+| parameters | [key: string]: number \| string \| boolean | 携带参数信息 |
 
 WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 - workId、bundleName、abilityName为必填项，bundleName需为本应用包名。
 
-- 携带参数信息仅支持number、string、bool三种类型。
+- 携带参数信息仅支持number、string、boolean三种类型。
 
 - 至少设置一个满足的条件，包括网络类型、充电类型、存储状态、电池状态、定时状态等。
 
@@ -99,8 +99,8 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 以下是延迟任务回调开发使用的相关接口，更多接口及使用方式请见[延迟任务回调](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)文档。
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| onWorkStart(work: WorkInfo): void | 延迟调度任务开始的回调 |
-| onWorkStop(work: WorkInfo): void | 延迟调度任务结束的回调 |
+| onWorkStart(work: workScheduler.WorkInfo): void | 延迟调度任务开始的回调 |
+| onWorkStop(work: workScheduler.WorkInfo): void | 延迟调度任务结束的回调 |
 
 
 ## 开发步骤
