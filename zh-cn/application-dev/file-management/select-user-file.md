@@ -1,14 +1,14 @@
 # 选择用户文件
 
-终端用户有时需要分享、保存一些图片、视频等用户文件，开发者需要在应用中支持此类使用场景。此时，开发者可以使用OpenHarmony系统预置的[文件选择器（FilePicker）](../reference/apis/js-apis-file-picker.md)，实现用户文件选择及保存能力。通过Picker访问相关文件，无需申请权限。
+用户有时需要分享或保存图片、视频等用户文件，开发者可以通过系统预置的[文件选择器（FilePicker）](../reference/apis/js-apis-file-picker.md)，实现该能力。通过Picker访问相关文件，将拉起对应的应用，引导用户完成界面操作，接口本身无需申请权限。
 
 根据用户文件的常见类型，选择器（FilePicker）分别提供以下接口：
 
-- [PhotoViewPicker](../reference/apis/js-apis-file-picker.md#photoviewpicker)：适用于图片或视频类型文件的选择与保存。
+- [PhotoViewPicker](../reference/apis/js-apis-file-picker.md#photoviewpicker)：适用于图片或视频类型文件的选择与保存。优选使用[PhotoAccessHelper的PhotoViewPicker](../reference/apis/js-apis-photoAccessHelper.md)来选择文件。当前PhotoViewPicker对接的选择资源来自于图库，保存位置为系统文件管理器的特定目录，因此使用save接口保存的图片或视频无法在图库中展示。如需在图库中展示，请使用[安全控件创建媒体资源](./photoAccessHelper-resource-guidelines.md#使用安全控件创建媒体资源)。
 
-- [DocumentViewPicker](../reference/apis/js-apis-file-picker.md#documentviewpicker)：适用于文件类型文件的选择与保存。
+- [DocumentViewPicker](../reference/apis/js-apis-file-picker.md#documentviewpicker)：适用于文件类型文件的选择与保存。DocumentViewPicker对接的选择资源来自于FilePicker, 负责文件类型的资源管理，文件类型不区分后缀，比如浏览器下载的图片、文档等，都属于文件类型。
 
-- [AudioViewPicker](../reference/apis/js-apis-file-picker.md#audioviewpicker)：适用于音频类型文件的选择与保存。
+- [AudioViewPicker](../reference/apis/js-apis-file-picker.md#audioviewpicker)：适用于音频类型文件的选择与保存。AudioViewPicker目前对接的选择资源来自于FilePicker。
 
 ## 选择图片或视频类文件
 

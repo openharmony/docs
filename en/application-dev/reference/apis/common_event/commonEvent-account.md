@@ -62,25 +62,45 @@ When the device is unlocked with the lock screen password the first time after u
 APIs related to this event: **auth**. This API is a system API. For details, see [@ohos.account.osAccount (OS Account Management)](../js-apis-osAccount.md).
 
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN
-(Reserved, not supported yet) Indicates a successful login to a distributed account.
+Indicates a successful login to a distributed account.
 
 - Value: common.event.DISTRIBUTED_ACCOUNT_LOGIN
 - Required subscriber permissions: none
 
+When a distributed account is successfully logged in, the event notification service is triggered to publish this event carrying the system account ID.
+
+APIs related to this event: **setOsAccountDistributedInfo**, **updateOsAccountDistributedInfo** (deprecated), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API.
+For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
+
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT
-(Reserved, not supported yet) Indicates a successful logout of a distributed account.
+Indicates a successful logout from a distributed account.
 
 - Value: common.event.DISTRIBUTED_ACCOUNT_LOGOUT
 - Required subscriber permissions: none
 
+When a distributed account is successfully logged out, the event notification service is triggered to publish this event carrying the system account ID.
+
+APIs related to this event: **setOsAccountDistributedInfo**, **updateOsAccountDistributedInfo** (deprecated), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API.
+For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
+
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID
-(Reserved, not supported yet) Indicates the token of a distributed account is invalid.
+Indicates that the token of a distributed account is invalid.
 
 - Value: common.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID
 - Required subscriber permissions: none
 
+When the token of a distributed account is invalid, the event notification service is triggered to publish this event carrying the system account ID.
+
+APIs related to this event: **setOsAccountDistributedInfo**, **setOsAccountDistributedInfo** (deprecated), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API.
+For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
+
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF
-(Reserved, not supported yet) Indicates that a distributed account is deregistered.
+Indicates that a distributed account is deregistered.
 
 - Value: common.event.DISTRIBUTED_ACCOUNT_LOGOFF
 - Required subscriber permissions: none
+
+When a distributed account is deregistered, the event notification service is triggered to publish this event carrying the system account ID.
+
+APIs related to this event: **setOsAccountDistributedInfo**, **updateOsAccountDistributedInfo** (deprecated), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API.
+For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).

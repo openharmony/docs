@@ -1,7 +1,7 @@
 # LocationButton
 
 
-安全组件的位置按钮，用户通过点击该位置按钮，可以临时获取精准定位权限，而不需要权限弹框授权确认。
+安全控件的位置控件，用户通过点击该位置按钮，可以临时获取精准定位权限，而不需要权限弹框授权确认。
 
 
 > **说明：**
@@ -69,7 +69,7 @@ LocationButton(option:{icon?: LocationIconStyle, text?: LocationDescription, but
 
 ## 属性
 
-不支持通用属性，仅继承[安全组件通用属性](ts-securitycomponent-attributes.md#属性)。
+不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md#属性)。
 
 
 ## 事件
@@ -91,44 +91,16 @@ struct Index {
   build() {
     Row() {
       Column({space:10}) {
-        // 默认位置按钮
-        LocationButton()
-        // 生成默认位置按钮，包含图标+文字+背景
-        LocationButton()
-          .fontSize(35)
-          .fontColor(Color.White)
-          .iconSize(30)
-          .layoutDirection(SecurityComponentLayoutDirection.HORIZONTAL)
-          .borderWidth(1)
-          .borderStyle(BorderStyle.Dashed)
-          .borderColor(Color.Blue)
-          .borderRadius(20)
-          .fontWeight(100)
-          .iconColor(Color.White)
-          .padding({ left: 50, top: 50, bottom: 50, right: 50 })
-          .textIconSpace(20)
-          .backgroundColor(0x3282f6)
-          .onClick((event: ClickEvent, result: LocationButtonOnClickResult)=>{
-            console.error("result " + result)
-          })
-        // 生成定制图标、文字、背景的位置按钮
-        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_POSITION, buttonType:ButtonType.Normal})
-          .fontSize(35)
-          .fontColor(0x3282f6)
-          .iconSize(30)
-          .layoutDirection(SecurityComponentLayoutDirection.VERTICAL)
-          .borderWidth(1)
-          .borderStyle(BorderStyle.Dashed)
-          .borderColor(0x9ffcfd)
-          .borderRadius(20)
-          .fontWeight(100)
-          .iconColor(0x3282f6)
-          .padding({left:50, top:50, bottom:50, right:50})
-          .textIconSpace(20)
-          .backgroundColor(0x9ffcfd)
-          .onClick((event: ClickEvent, result: LocationButtonOnClickResult)=>{
-            console.error("result " + result)
-          })
+        // 默认参数下，图标、文字、背景都存在
+        LocationButton().onClick((event: ClickEvent, result: LocationButtonOnClickResult)=>{
+          console.info("result " + result)
+        })
+        // 传入参数即表示元素存在，不传入的参数表示元素不存在，例如：只显示图标
+        LocationButton({icon:LocationIconStyle.LINES})
+        // 只显示图标+背景
+        LocationButton({icon:LocationIconStyle.LINES, buttonType:ButtonType.Capsule})
+        // 图标、文字、背景都存在
+        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
       }.width('100%')
     }.height('100%')
   }

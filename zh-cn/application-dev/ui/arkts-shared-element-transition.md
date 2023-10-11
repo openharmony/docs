@@ -178,12 +178,11 @@ export struct share_transition_expand {
 ```ts
 // Index.ets
 import { share_transition_expand } from './utils';
-let Tmp:Record<string,boolean> = { 'isExpand': false }
 @Entry
 @Component
 struct ShareTransitionDemo {
   @State isExpand: boolean = false;
-
+  @State Tmp:Record<string,boolean> = { 'isExpand': false }
   build() {
     Column() {
       Text('兄弟节点出现消失')
@@ -192,7 +191,7 @@ struct ShareTransitionDemo {
         .fontColor(Color.Black)
         .margin(10)
 
-      share_transition_expand(Tmp)
+      share_transition_expand(this.Tmp)
 
     }
     .width('100%')
@@ -317,16 +316,13 @@ export struct share_zIndex_expand {
 ```ts
 // Index.ets
 import { share_zIndex_expand } from './utils'
-let isExpand: boolean = false;
-let curIndex: number = 0;
-let scroller: Scroller = new Scroller();
-let Sze:Record<string,boolean|number|Scroller> = { 'isExpand': isExpand, 'curIndex': curIndex, 'parentScroller': scroller }
 @Entry
 @Component
 struct ShareZIndexDemo {
   @State isExpand: boolean = false;
   @State curIndex: number = 0;
-  scroller: Scroller = new Scroller();
+  @State scroller: Scroller = new Scroller();
+  @State Sze:Record<string,boolean|number|Scroller> = { 'isExpand': this.isExpand, 'curIndex': this.curIndex, 'parentScroller': this.scroller }
 
   build() {
     Scroll(this.scroller) {
@@ -338,7 +334,7 @@ struct ShareZIndexDemo {
           .zIndex(0)
           .margin(10)
 
-        share_zIndex_expand(Sze)
+        share_zIndex_expand(this.Sze)
       }
       .width('100%')
       .height('100%')
@@ -493,7 +489,7 @@ struct GeometryTransitionDemo {
       .height(150)
       .margin(20)
       // 模态转场组件
-      .bindContentCover($$this.isPresent, this.MyBuilder, ModalTransition.NONE)
+      .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.NONE)
       // 这里配置了Row组件有共享元素效果，ID是share1
       .geometryTransition('share1')
       .onClick(() => {
@@ -589,8 +585,8 @@ struct AutoAchieveShareTransitionDemo {
             .onClick(() => {
               // 获取对应组件的位置、大小信息
               let strJson = getInspectorByKey(item);
-              let obj:string = JSON.parse(strJson);
-              let rectInfo:string = JSON.parse('[' + obj.$rect + ']');
+              let rect:string = JSON.parse(strJson);
+              let rectInfo:string = JSON.parse('[' + rect + ']');
               let rect_left:string = JSON.parse('[' + rectInfo[0] + ']')[0];
               let rect_top:string = JSON.parse('[' + rectInfo[0] + ']')[1];
               let rect_right:string = JSON.parse('[' + rectInfo[1] + ']')[0];
@@ -600,7 +596,7 @@ struct AutoAchieveShareTransitionDemo {
               };
 
               // 设置共享元素的位置、内容、状态
-              this.rect_top = rect_top;
+              this.rect_top = Number(rect_top);
               this.item = item;
               this.expand = true;
               this.count += 1;
@@ -608,7 +604,7 @@ struct AutoAchieveShareTransitionDemo {
               animateTo({ curve: curves.springMotion() }, () => {
                 this.layoutHeight = 2772 / 3.5;
                 this.layoutWidth = '100%';
-                this.layoutOffset = -((rect_top - 136) / 3.5);
+                this.layoutOffset = -((Number(rect_top) - 136) / 3.5);
               })
             })
           })

@@ -75,6 +75,31 @@ try {
 }
 ```
 
+## pointer.setPointerVisibleSync<sup>10+</sup>
+
+setPointerVisibleSync(visible: boolean): void
+
+使用同步方式设置鼠标指针显示或者隐藏。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**参数**：
+
+| 参数名      | 类型      | 必填   | 说明                                       |
+| ------- | ------- | ---- | ---------------------------------------- |
+| visible | boolean | 是    | 鼠标指针是否显示。true表示显示，false表示不显示。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setPointerVisibleSync(false)
+  console.log(`Set pointer visible success`)
+} catch (error) {
+  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
+}
+```
+
 ## pointer.isPointerVisible<sup>9+</sup>
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
@@ -128,6 +153,31 @@ try {
   });
 } catch (error) {
   console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.isPointerVisibleSync<sup>10+</sup>
+
+isPointerVisibleSync(): boolean
+
+使用同步方式获取鼠标指针显示或者隐藏。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**返回值**：
+
+| 参数                     | 说明                  |
+| ---------------------- | ------------------- |
+| boolean | 返回鼠标指针显示或隐藏状态。 |
+
+**示例**：
+
+```js
+try {
+  let visible: boolean = pointer.isPointerVisibleSync()
+  console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`)
+} catch (error) {
+  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
 ```
 
@@ -198,6 +248,33 @@ try {
 }
 ```
 
+## pointer.setPointerSpeedSync<sup>10+</sup>
+
+setPointerSpeedSync(speed: number): void
+
+使用同步方式设置鼠标移动速度。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| speed | number | 是    | 鼠标移动速度，范围1-11，默认为5。 |
+
+**示例**：
+
+```js
+try {
+  let speed = pointer.setPointerSpeedSync(5);
+  console.log(`Set pointer speed success`);
+} catch (error) {
+  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
 ## pointer.getPointerSpeed<sup>9+</sup>
 
 getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
@@ -253,6 +330,33 @@ try {
   pointer.getPointerSpeed().then(speed => {
     console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
   });
+} catch (error) {
+  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerSpeedSync<sup>10+</sup>
+
+getPointerSpeedSync(): number
+
+使用同步方式获取当前鼠标移动速度。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| number | 返回鼠标移动速度。 |
+
+**示例**：
+
+```js
+try {
+  let speed = pointer.getPointerSpeedSync();
+  console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
 } catch (error) {
   console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -727,6 +831,37 @@ window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
 });
 ```
 
+## pointer.getPointerStyleSync<sup>10+</sup>
+
+getPointerStyleSync(windowId: number): PointerStyle
+
+使用同步方式获取鼠标样式类型。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明     |
+| -------- | ------ | ---- | -------- |
+| windowId | number | 是   | 窗口id。 |
+
+**返回值**：
+
+| 参数                                       | 说明                  |
+| ---------------------------------------- | ------------------- |
+| [PointerStyle](#pointerstyle9) | 返回鼠标样式类型。 |
+
+**示例**：
+
+```js
+try {
+  let style: pointer.PointerStyle = pointer.getPointerStyleSync(-1)
+  console.log(`Get pointer style success, style: ${JSON.stringify(style)}`)
+} catch (error) {
+  console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
+}
+```
+
 ## pointer.setPointerStyle<sup>9+</sup>
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback&lt;void&gt;): void
@@ -807,6 +942,45 @@ window.getLastWindow(this.context, (error, win) => {
   }
 });
 ```
+
+## pointer.setPointerStyleSync<sup>10+</sup>
+
+setPointerStyleSync(windowId: number, pointerStyle: PointerStyle): void
+
+使用同步方式设置鼠标样式类型。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**参数**：
+
+| 参数名                  | 类型                             | 必填   | 说明               |
+| ------------------- | ------------------------------ | ---- | ---------------- |
+| windowId            | number                         | 是    | 窗口id。       |
+| pointerStyle        | [PointerStyle](#pointerstyle9) | 是    | 鼠标样式id。          |
+
+**示例**：
+```js
+import window from '@ohos.window';
+
+window.getLastWindow(getContext(), (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.setPointerStyleSync(windowId, pointer.PointerStyle.CROSS);
+    console.log(`Set pointer style success`);
+  } catch (error) {
+    console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
+});
+```
+
 ## PointerStyle<sup>9+</sup>
 
 鼠标样式类型。
@@ -1070,7 +1244,7 @@ getTouchpadScrollDirection(callback:  AsyncCallback\<boolean>): void
 
 ```js
 try {
-  pointer.getTouchpadScrollSwitch ((error: Error, state: boolean) => {
+  pointer.getTouchpadScrollDirection ((error: Error, state: boolean) => {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {

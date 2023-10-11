@@ -509,7 +509,7 @@ getPrimarySlotId\(\): Promise\<number\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-radio.getPrimarySlotId().then((data: string) => {
+radio.getPrimarySlotId().then((data: number) => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
@@ -629,7 +629,7 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 let signalInfo: Array<radio.SignalInformation> = radio.getSignalInformationSync(slotId);
-console.log(`signal information size is:` + signalInfo.size());
+console.log(`signal information size is:` + signalInfo.length);
 ```
 
 ## radio.isNrSupported<sup>(deprecated)</sup>
@@ -3034,7 +3034,6 @@ radio.getNROptionMode(slotId, (err: BusinessError, data: radio.NROptionMode) => 
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
-
 
 ## radio.getNROptionMode<sup>10+</sup>
 

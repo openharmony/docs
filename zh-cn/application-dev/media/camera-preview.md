@@ -26,7 +26,7 @@
    struct XComponentPage {
      // 创建XComponentController
      mXComponentController: XComponentController = new XComponentController;
-     surfaceId: string;
+     surfaceId: string = '';
 
      build() {
        Flex() {
@@ -42,7 +42,7 @@
              // 预览流与录像输出流的分辨率的宽高比要保持一致
              this.mXComponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
              // 获取Surface ID
-             this.surfaceId: string = this.mXComponentController.getXComponentSurfaceId();
+             this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
            })
            .width('1920px')
            .height('1080px')
@@ -51,7 +51,7 @@
    }
    ```
 
-3. 通过CameraOutputCapability类中的previewProfiles()方法获取当前设备支持的预览能力，返回previewProfilesArray数组 。通过createPreviewOutput()方法创建预览输出流，其中，createPreviewOutput()方法中的两个参数分别是previewProfilesArray数组中的第一项和步骤一中获取的surfaceId。
+3. 通过CameraOutputCapability类中的previewProfiles()方法获取当前设备支持的预览能力，返回previewProfilesArray数组 。通过createPreviewOutput()方法创建预览输出流，其中，createPreviewOutput()方法中的两个参数分别是previewProfilesArray数组中的第一项和步骤二中获取的surfaceId。
      
    ```ts
    function getPreviewOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, surfaceId: string): camera.PreviewOutput | undefined {

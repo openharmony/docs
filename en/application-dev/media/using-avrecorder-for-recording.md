@@ -16,6 +16,10 @@ For details about the state, see [AVRecorderState](../reference/apis/js-apis-med
 Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API reference.
 
 1. Create an **AVRecorder** instance. The AVRecorder is the **idle** state.
+
+   > **NOTE**
+   >
+   > Perform the subsequent operations after the AV recorder completes value assignment, that is, after **avRecorder = recorder;** is executed.
    
    ```ts
    import media from '@ohos.multimedia.media';
@@ -96,7 +100,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
 ## Sample Code
 
-  Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
+Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
 ```ts
 import media from '@ohos.multimedia.media';
@@ -147,7 +151,7 @@ export class AudioRecorderDemo {
 
   // Process of pausing recording.
   async pauseRecordingProcess() {
-    if (this.avRecorder != undefined && this.avRecorder.state ==='started') { // pause() can be called only when the AVRecorder is in the started state .
+    if (this.avRecorder != undefined && this.avRecorder.state === 'started') { // pause() can be called only when the AVRecorder is in the started state .
       await this.avRecorder.pause();
     }
   }

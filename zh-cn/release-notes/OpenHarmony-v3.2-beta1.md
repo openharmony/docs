@@ -188,7 +188,7 @@ _[API差异报告](api-diff/v3.2-beta1/Readme-CN.md)_
 | -------- | -------- | -------- | -------- |
 | ArkUI | [Vibrator](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator) | 本示例模拟倒计时场景，展示振动接口的使用方法。 | ArkTS |
 | DFX | [FaultLogger](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/FaultLogger) | 本示例展示了在ArkTS中如何获取应用故障相关信息。 | ArkTS |
-| ArkUI | [ComponentCollection](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentClollection/ComponentCollection) | 本示例为ArkUI中组件、通用、动画、全局方法的集合 | ArkTS |
+| ArkUI | [ComponentCollection](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection) | 本示例为ArkUI中组件、通用、动画、全局方法的集合 | ArkTS |
 | ArkUI | [ArkTSClock](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock) | 本示例使用ArkTS&nbsp;UI能力实现一个简单的时钟应用。 | ArkTS |
 | 网络管理 | [Http](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http) | 本示例仿postman输入API接口地址，获取相应数据，介绍数据请求接口的用法。 | ArkTS |
 | 网络管理 | [Socket](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket) | 本示例主要演示了Socket在网络通信方面的应用，展示了Socket在两端设备的连接验证、聊天通信方面的应用。 | ArkTS |

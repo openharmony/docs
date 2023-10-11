@@ -173,10 +173,10 @@ import formInfo from '@ohos.app.form.formInfo';
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
-| formName        | string               | 是    | 否     | 卡片名称。                                 |
-| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
-| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
+| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>  |
+| formName    | string               | 是    | 否     | 卡片名称。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>                     |
+| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>        |
+| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>        |
 
 ## LaunchReason<sup>10+</sup>
 

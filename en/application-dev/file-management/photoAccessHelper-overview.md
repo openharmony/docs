@@ -25,6 +25,7 @@
   - Unregistering the listening for the specified URI.
 
 > **NOTE**
+>
 > This development guide applies only to API version 10 based on the stage model.
 
 An application needs to obtain a **PhotoAccessHelper** instance before accessing and modifying the media data in an album. User personal data is involved in the **photoAccessHelper** module. Therefore, the application needs to apply for the related read and write permissions. Unless otherwise specified, the APIs of the **photoAccessHelper** module are used in **pages/index.ets** of the project or other customized .ets files by default.
@@ -47,9 +48,9 @@ The application needs to call [getPhotoAccessHelper](../reference/apis/js-apis-p
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-// The phAccessHelper instance obtained here is a global object. By default, the object obtained here is used in subsequent operations in this document. If an undefined error is reported, add the code snippet here.
+// The photoAccessHelper instance obtained here is a global object. By default, the object obtained here is used in subsequent operations in this document. If an undefined error is reported, add the code snippet here.
 const context = getContext(this);
-let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
 
 ## Applying for Permissions
@@ -103,18 +104,17 @@ The required permissions must be authorized by the user (user_grant). After addi
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+  import window from '@ohos.window';
 
   export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage:window.WindowStage) {
       let list : Array<Permissions> = ['ohos.permission.READ_IMAGEVIDEO', 'ohos.permission.WRITE_IMAGEVIDEO'];
-      let permissionRequestResult;
       let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
         if (err) {
           console.error('requestPermissionsFromUserError: ' + JSON.stringify(err));
         } else {
-          permissionRequestResult = result;
-          console.info('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
+          console.info('permissionRequestResult: ' + JSON.stringify(result));
         }
       });
     }

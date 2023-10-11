@@ -14,6 +14,7 @@
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](js-apis-app-ability-environmentCallback.md)
     - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](js-apis-app-ability-extensionAbility.md)
+    - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](js-apis-app-ability-printExtensionAbility.md)
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-app-ability-serviceExtensionAbility.md)
     - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](js-apis-app-ability-shareExtensionAbility.md)
     - [@ohos.app.ability.StartOptions (StartOptions)](js-apis-app-ability-startOptions.md)
@@ -43,6 +44,7 @@
     - [@ohos.app.ability.wantAgent (WantAgent模块)](js-apis-app-ability-wantAgent.md)
     - [@ohos.app.ability.wantConstant (wantConstant)](js-apis-app-ability-wantConstant.md)
     - [@ohos.app.businessAbilityRouter (业务路由模块)](js-apis-businessAbilityRouter.md)
+    - [@ohos.app.form.formAgent (FormAgent)](js-apis-app-form-formAgent.md)
     - [@ohos.app.form.formBindingData (卡片数据绑定类)](js-apis-app-form-formBindingData.md)
     - [@ohos.app.form.formHost (FormHost)](js-apis-app-form-formHost.md)
     - [@ohos.app.form.formInfo (FormInfo)](js-apis-app-form-formInfo.md)
@@ -261,6 +263,7 @@
 
 - 安全
   - [@ohos.abilityAccessCtrl (程序访问控制管理)](js-apis-abilityAccessCtrl.md)
+  - [@ohos.dlpPermission (数据防泄漏)](js-apis-dlppermission.md)
   - [@ohos.privacyManager (隐私管理)](js-apis-privacyManager.md)
   - [@ohos.security.cert (证书模块)](js-apis-cert.md)
   - [@ohos.security.cryptoFramework (加解密算法库框架)](js-apis-cryptoFramework.md)
@@ -301,6 +304,7 @@
   - [@ohos.file.securityLabel (数据标签)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (文件系统空间统计)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
+  - [@ohos.file.trash (回收站)](js-apis-file-trash.md)
   - [@ohos.file.volumeManager (卷管理)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (用户数据管理)](js-apis-userFileManager.md)
   - [@ohos.fileshare (文件分享)](js-apis-fileShare.md)

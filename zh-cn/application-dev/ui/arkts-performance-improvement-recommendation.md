@@ -34,7 +34,7 @@ class BasicDataSource implements IDataSource {
   }
 
   public getData(index: number): number {
-    return undefined|index
+    return index
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -91,7 +91,7 @@ class MyDataSource extends BasicDataSource {
   }
 
   public getData(index: number): number {
-    return this.dataArray[index]
+    return Number(this.dataArray[index])
   }
 
   public addData(index: number, data: string): void {
@@ -121,7 +121,7 @@ struct MyComponent {
         .onClick(() => {
           this.data.pushData('item value: ' + this.data.totalCount())
         })
-      }, ((item:string):string => item))
+      },(item:string):string => item)
     }
   }
 }
@@ -213,7 +213,7 @@ class MyDataSource extends BasicDataSource {
   }
 
   public getData(index: number): number {
-    return this.dataArray[index]
+    return Number(this.dataArray[index])
   }
 
   public addData(index: number, data: string): void {
@@ -318,7 +318,7 @@ class MyDataSource extends BasicDataSource {
   }
 
   public getData(index: number): number {
-    return this.dataArray[index]
+    return Number(this.dataArray[index])
   }
 
   public addData(index: number, data: string): void {

@@ -49,6 +49,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
   ```ts
   import backgroundTaskManager from '@ohos.backgroundTaskManager';
+  import { BusinessError } from '@ohos.base';
 
   let myReason = 'test requestSuspendDelay';
   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
@@ -81,6 +82,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
   ```ts
   import backgroundTaskManager from '@ohos.backgroundTaskManager';
+  import { BusinessError } from '@ohos.base';
 
   let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
   backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId, (err: BusinessError, res: number) => {
@@ -116,6 +118,9 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 **示例**：
 
 ```ts
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import { BusinessError } from '@ohos.base';
+
 let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
     backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then((res:number) => {
     console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
@@ -209,6 +214,8 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 function callback(err: BusinessError, data: void) {
@@ -303,6 +310,8 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
@@ -372,6 +381,8 @@ Stage模型示例：
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 function callback(err: BusinessError, data: void) {
@@ -431,6 +442,8 @@ Stage模型示例：
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {

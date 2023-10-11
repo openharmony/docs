@@ -791,23 +791,23 @@ struct SelectionMenu {
                           if (tmp['width'] != undefined) {
                             im.size[0] = tmp['width'] as Dimension;
                           }
-                          if (tmp['height']){
+                          if (tmp['height'] != undefined){
                             im.size[1] = tmp['height'] as Dimension;
                           }
-                          if (tmp['fit']){
+                          if (tmp['fit'] != undefined){
                             im.objectFit = tmp['fit'] as ImageFit;
                           }
-                          if (tmp['color']){
-                            tex.fontColor = tmp['height'] as ResourceColor;
+                          if (tmp['color'] != undefined){
+                            tex.fontColor = tmp['color'] as ResourceColor;
                           }
-                          if (tmp['size']){
-                            tex.fontSize = tmp['height'] as number;
+                          if (tmp['size'] != undefined){
+                            tex.fontSize = tmp['size'] as number;
                           }
-                          if (tmp['style']){
-                            tex.fontStyle = tmp['height'] as FontStyle;
+                          if (tmp['style'] != undefined){
+                            tex.fontStyle = tmp['style'] as FontStyle;
                           }
-                          if (tmp['weight']){
-                            tex.fontWeight = tmp['height'] as number;
+                          if (tmp['weight'] != undefined){
+                            tex.fontWeight = tmp['weight'] as number;
                           }
                         }
 

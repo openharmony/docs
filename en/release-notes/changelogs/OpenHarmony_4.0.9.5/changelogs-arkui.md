@@ -127,3 +127,97 @@ API version 10: The value **true** is used when the **loop** attribute is set to
 **Change Impact**
 
 A faster speed is required to turn pages.
+
+## cl.arkui.6 Renaming of the isShowBackground Attribute in the \<Swiper> Component
+
+**Change Impact**
+
+Renamed the **isShowBackground** attribute in the **\<Swiper>** component **showBackground**.
+
+**Example**
+
+```ts
+class MyDataSource implements IDataSource {
+  private list: number[] = []
+  private listener: DataChangeListener
+
+  constructor(list: number[]) {
+    this.list = list
+  }
+
+  totalCount(): number {
+    return this.list.length
+  }
+
+  getData(index: number): any {
+    return this.list[index]
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener
+  }
+
+  unregisterDataChangeListener() {
+  }
+}
+
+@Entry
+@Component
+struct SwiperExample {
+  private swiperController: SwiperController = new SwiperController()
+  private data: MyDataSource = new MyDataSource([])
+
+  aboutToAppear(): void {
+    let list = []
+    for (var i = 1; i <= 10; i++) {
+      list.push(i.toString());
+    }
+    this.data = new MyDataSource(list)
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Swiper(this.swiperController) {
+        LazyForEach(this.data, (item: string) => {
+          Text(item)
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, item => item)
+      }
+      .cachedCount(2)
+      .index(1)
+      .autoPlay(true)
+      .indicator(true)
+      .displayArrow({
+        showBackground: true,
+        isSidebarMiddle: true,
+        backgroundSize: 24,
+        backgroundColor: Color.White,
+        arrowSize: 18,
+        arrowColor: Color.Blue
+      }, false)
+
+      Row({ space: 12 }) {
+        Button('showNext')
+          .onClick(() => {
+            this.swiperController.showNext()
+          })
+        Button('showPrevious')
+          .onClick(() => {
+            this.swiperController.showPrevious()
+          })
+      }.margin(5)
+    }.width('100%')
+    .margin({ top: 5 })
+  }
+}
+```
+
+## cl.arkui.7 Changing of the Right Margin of the Rightmost Menu Icons in the \<Navigation> Component
+
+**Change Impact**
+
+Changed the right margin of the rightmost menu icons in the **\<Navigation>** component menus from 36 vp to 24 vp, to account for the offset of menus by 12 vp on the right.

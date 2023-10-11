@@ -1916,6 +1916,8 @@ acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>
 
 请求卡片提供方数据。使用callback异步回调。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
@@ -1963,6 +1965,8 @@ try {
 acquireFormData(formId: string): Promise<{[key: string]: Object}>;
 
 请求卡片提供方数据。使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 

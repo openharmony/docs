@@ -14,7 +14,7 @@ import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
 import featureAbility from '@ohos.ability.featureAbility';
 
-async function cameraShootingCase(context: featureAbility.Context, surfaceId: string) {
+async function cameraShootingCase(context: featureAbility.Context, surfaceId: string): Promise<void> {
   // 创建CameraManager对象
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   if (!cameraManager) {
@@ -236,8 +236,8 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
     console.error('Failed to set the zoom ratio value. errorCode = ' + err.code);
   }
   let photoCaptureSetting: camera.PhotoCaptureSetting = {
-    quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,                                     // 设置图片质量高
-    rotation: camera.ImageRotation.ROTATION_0                                            // 设置图片旋转角度0
+    quality: camera.QualityLevel.QUALITY_LEVEL_HIGH, // 设置图片质量高
+    rotation: camera.ImageRotation.ROTATION_0 // 设置图片旋转角度0
   }
   // 使用当前拍照设置进行拍照
   photoOutput.capture(photoCaptureSetting, (err: BusinessError) => {

@@ -2806,9 +2806,43 @@
 
 **起始版本**：11
 
+## ohos.permission.AGENT_REQUIRE_FORM
+
+允许应用代理请求卡片。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.WAKEUP_VISION
 
 允许应用访问语音助手视觉组件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+## ohos.permission.ENABLE_DISTRIBUTED_HARDWARE
+
+允许系统服务使能分布式硬件资源。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+**起始版本**：11
+## ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
+
+允许系统服务或系统应用访问分布式硬件资源。
 
 **权限级别**：system_basic
 

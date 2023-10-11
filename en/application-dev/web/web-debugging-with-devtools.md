@@ -41,9 +41,18 @@ To use DevTools for frontend page debugging, perform the following steps:
 3. Connect your device to a PC, and configure port mapping on the PC as follows:
 
    ```
-   // Configure port mapping.
-   hdc fport tcp:9222 tcp:9222 
+   // Search for the domain socket name required for DevTools. The name is related to the process ID. After the application being debugged is restarted, repeat this step to complete port forwarding.
+   cat /proc/net/unix | grep devtools
+   // Configure port mapping. Replace [pid] with the actual process ID.
+   hdc fport tcp:9222 localabstract:webview_devtools_remote_[pid]
    // View port mapping.
+   hdc fport ls
+   Example:
+   hdc shell
+   cat /proc/net/unix | grep devtools
+   // Display webview_devtools_remote_3458.
+   exit
+   hdc fport tcp:9222 localabstract:webview_devtools_remote_3458
    hdc fport ls
    ```
 

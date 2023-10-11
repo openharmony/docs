@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 ```
 
@@ -46,7 +46,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 | 名称                 | 类型                                | 必填 | 说明                                                         |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | title                | string                              | 是   | 用户认证界面的标题，最大长度为500字符。                      |
-| navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。                       |
+| navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。仅在单指纹、单人脸场景下支持。 |
 | windowMode           | [WindowModeType](#windowmodetype10) | 否   | 代表用户认证界面的显示类型，默认值为WindowModeType.DIALOG_BOX。<br>**系统接口**: 此接口为系统接口。 |
 
 ## UserAuthResult<sup>10+</sup>
@@ -82,7 +82,7 @@ onResult(result: UserAuthResult): void
 
 **示例：**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authParam : userAuth.AuthParam = {
@@ -92,7 +92,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
-  navigationButtonText: '返回',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -139,7 +138,7 @@ on(type: 'result', callback: IAuthCallback): void
 
 **示例：**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authParam : userAuth.AuthParam = {
@@ -149,7 +148,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
-  navigationButtonText: '返回',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -193,7 +191,7 @@ off(type: 'result', callback?: IAuthCallback): void
 
 **示例：**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authParam : userAuth.AuthParam = {
@@ -203,7 +201,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
-  navigationButtonText: '返回',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -250,7 +247,7 @@ start(): void
 
 **示例：**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authParam : userAuth.AuthParam = {
@@ -260,7 +257,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
-  navigationButtonText: '返回',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -294,7 +290,7 @@ cancel(): void
 
 **示例：**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authParam : userAuth.AuthParam = {
@@ -304,7 +300,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
-  navigationButtonText: '返回',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -353,7 +348,7 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 
 **示例：**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authParam : userAuth.AuthParam = {
@@ -363,7 +358,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
-  navigationButtonText: '返回',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -417,7 +411,7 @@ sendNotice(noticeType: NoticeType, eventData: string): void
 
 **示例：**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 interface  EventData {
@@ -479,7 +473,7 @@ on(type: 'command', callback: IAuthWidgetCallback): void
 
 **示例：**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const userAuthWidgetMgrVersion = 1;
@@ -525,7 +519,7 @@ off(type: 'command', callback?: IAuthWidgetCallback): void
 
 **示例：**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const userAuthWidgetMgrVersion = 1;
@@ -583,7 +577,7 @@ getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
 
 **示例：**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 let userAuthWidgetMgrVersion = 1;
@@ -617,7 +611,7 @@ sendCommand(cmdData: string): void
 
 **示例：**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const userAuthWidgetMgrVersion = 1;
@@ -701,7 +695,7 @@ callback(result : EventInfo) : void
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
@@ -786,7 +780,7 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
@@ -853,7 +847,7 @@ off : (name : AuthEventKey) => void
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
@@ -915,7 +909,7 @@ start : () => void
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
@@ -959,7 +953,7 @@ cancel : () => void
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
@@ -1016,7 +1010,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
@@ -1063,7 +1057,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 try {
@@ -1117,7 +1111,7 @@ constructor()
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
@@ -1144,7 +1138,7 @@ getVersion() : number
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
@@ -1180,7 +1174,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
@@ -1222,7 +1216,7 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
@@ -1271,7 +1265,7 @@ cancelAuth(contextID : Uint8Array) : number
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 // contextId可通过auth接口获取，此处直接定义
@@ -1312,7 +1306,7 @@ onResult: (result : number, extraInfo : AuthResult) => void
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
@@ -1355,7 +1349,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
@@ -1504,7 +1498,7 @@ getAuthenticator(): Authenticator
 | [Authenticator](#authenticatordeprecated) | 认证器对象。 |
 
 **示例：**
-  ```js
+  ```ts
   import userIAM_userAuth from '@ohos.userIAM.userAuth';
   
   let authenticator = userIAM_userAuth.getAuthenticator();
@@ -1546,7 +1540,7 @@ callback返回值：
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let authenticator = userIAM_userAuth.getAuthenticator();
@@ -1588,7 +1582,7 @@ execute(type : AuthType, level : SecureLevel): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 try {

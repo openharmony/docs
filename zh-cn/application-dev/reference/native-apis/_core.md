@@ -239,7 +239,7 @@ struct OH_AVFormat* OH_AVFormat_CreateAudioFormat (const char *mimeType, int32_t
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mimeType | MIME类型 | 
+| mimeType | MIME类型描述字符串，请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量) | 
 | sampleRate | 采样率，单位Hz。 | 
 | channelCount | 声道个数，如1为单声道，2为双声道。 | 
 
@@ -269,7 +269,7 @@ struct OH_AVFormat* OH_AVFormat_CreateVideoFormat (const char *mimeType, int32_t
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mimeType | MIME类型 | 
+| mimeType | MIME类型描述字符串，请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量) | 
 | width | 宽度，单位为px。 | 
 | height | 高度，单位为px。 | 
 

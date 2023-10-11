@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```js
+```ts
 import faultLogger from '@ohos.faultLogger'
 ```
 
@@ -53,7 +53,7 @@ Obtains the fault information about the current process. This API uses an asynch
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | Yes| Fault type.|
-| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
+| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>**value** is the fault information array obtained. If **value** is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
 
 **Error codes**
 
@@ -65,13 +65,16 @@ For details about the error codes, see [FaultLogger Error Codes](../errorcodes/e
 
 **Example**
 
-```js
-function queryFaultLogCallback(error, value) {
+```ts
+import faultLogger from '@ohos.faultLogger'
+import { BusinessError } from '@ohos.base'
+
+function queryFaultLogCallback(error: BusinessError, value: Array<faultLogger.FaultLogInfo>) {
     if (error) {
         console.info('error is ' + error);
     } else {
         console.info("value length is " + value.length);
-        let len = value.length;
+        let len: number = value.length;
         for (let i = 0; i < len; i++) {
             console.info("log: " + i);
             console.info("Log pid: " + value[i].pid);
@@ -88,7 +91,7 @@ function queryFaultLogCallback(error, value) {
 try {
     faultLogger.query(faultLogger.FaultType.JS_CRASH, queryFaultLogCallback);
 } catch (err) {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+    console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -110,7 +113,7 @@ Obtains the fault information about the current process. This API uses a promise
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise used to return the fault information array. You can obtain the fault information instance in its **then()** method or use **await**.<br>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval.|
+| Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise used to return the fault information array. You can obtain the fault information instance in its **then()** method or use **await**.<br>**value** is the fault information array obtained. If **value** is **undefined**, an exception occurs during the information retrieval.|
 
 **Error codes**
 
@@ -122,13 +125,16 @@ For details about the error codes, see [FaultLogger Error Codes](../errorcodes/e
 
 **Example**
 
-```js
+```ts
+import faultLogger from '@ohos.faultLogger'
+import { BusinessError } from '@ohos.base'
+
 async function getLog() {
     try {
-        let value = await faultLogger.query(faultLogger.FaultType.JS_CRASH);
+        let value: Array<faultLogger.FaultLogInfo> = await faultLogger.query(faultLogger.FaultType.JS_CRASH);
         if (value) {
             console.info("value length is " + value.length);
-            let len = value.length;
+            let len: number = value.length;
             for (let i = 0; i < len; i++) {
                 console.info("log: " + i);
                 console.info("Log pid: " + value[i].pid);
@@ -142,7 +148,7 @@ async function getLog() {
             }
         }
     } catch (err) {
-        console.error(`code: ${err.code}, message: ${err.message}`);
+        console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
     }
 }
 ```
@@ -164,17 +170,20 @@ Obtains the fault information about the current process. This API uses an asynch
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | Yes| Fault type.|
-| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
+| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>**value** is the fault information array obtained. If **value** is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
 
 **Example**
 
-```js
-function queryFaultLogCallback(error, value) {
+```ts
+import faultLogger from '@ohos.faultLogger'
+import { BusinessError } from '@ohos.base'
+
+function queryFaultLogCallback(error: BusinessError, value: Array<faultLogger.FaultLogInfo>) {
     if (error) {
         console.info('error is ' + error);
     } else {
         console.info("value length is " + value.length);
-        let len = value.length;
+        let len: number = value.length;
         for (let i = 0; i < len; i++) {
             console.info("log: " + i);
             console.info("Log pid: " + value[i].pid);
@@ -197,7 +206,7 @@ querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&g
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. You are advised to use [faultLogger.query](#faultloggerquery9-1) instead.
+> This API is deprecated since API version 9. You are advised to use [faultLogger.query](#faultloggerquery9-1).
 
 Obtains the fault information about the current process. This API uses a promise to return the fault information array obtained, which contains a maximum of 10 pieces of fault information.
 
@@ -213,16 +222,18 @@ Obtains the fault information about the current process. This API uses a promise
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise used to return the fault information array. You can obtain the fault information instance in its **then()** method or use **await**.<br>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval.|
+| Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise used to return the fault information array. You can obtain the fault information instance in its **then()** method or use **await**.<br>**value** is the fault information array obtained. If **value** is **undefined**, an exception occurs during the information retrieval.|
 
 **Example**
 
-```js
+```ts
+import faultLogger from '@ohos.faultLogger'
+
 async function getLog() {
-    let value = await faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH);
+    let value: Array<faultLogger.FaultLogInfo> = await faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH);
     if (value) {
         console.info("value length is " + value.length);
-        let len = value.length;
+        let len: number = value.length;
         for (let i = 0; i < len; i++) {
             console.info("log: " + i);
             console.info("Log pid: " + value[i].pid);

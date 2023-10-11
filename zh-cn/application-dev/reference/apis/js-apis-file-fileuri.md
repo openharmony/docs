@@ -105,7 +105,7 @@ toString(): string
   console.info("The uri of FileUri is " + fileUriObject.toString());
   ```
 
-## fileUri.getUriFromPath
+## fileuri.getUriFromPath
 
 getUriFromPath(path: string): string
 
@@ -135,6 +135,6 @@ getUriFromPath(path: string): string
 **示例：**
 
   ```ts
-  let filePath = pathDir + "test.txt";
+  let filePath = pathDir + "/test";
   let uri = fileuri.getUriFromPath(filePath);
   ```

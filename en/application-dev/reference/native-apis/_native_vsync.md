@@ -19,14 +19,14 @@ The **NativeVsync** module provides the capabilities of native virtual synchroni
 
 | Name| Description|
 | -------- | -------- |
-| [native_vsync.h](native__vsync_8h.md) | Declares the functions for obtaining and using native VSync.<br>File to include: &lt;native_vsync/native_vsync.h&gt;|
+| [native_vsync.h](native__vsync_8h.md) | Declares the functions for obtaining and using native VSync.<br>**File to include**: &lt;native_vsync/native_vsync.h&gt;<br>**Library**: libnative_vsync.so|
 
 
 ### Types
 
 | Name| Description|
 | -------- | -------- |
-| [OH_NativeVSync](#oh_nativevsync) | Provides the declaration of an **OH_NativeVSync** struct. |
+| [OH_NativeVSync](#oh_nativevsync) | Provides the declaration of an **OH_NativeVSync** struct.|
 | (\*[OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback)) (long long timestamp, void \*data) | Defines the pointer to a VSync callback function.|
 
 
@@ -37,7 +37,7 @@ The **NativeVsync** module provides the capabilities of native virtual synchroni
 | [OH_NativeVSync_Create](#oh_nativevsync_create) (const char \*name, unsigned int length) | Creates an **OH_NativeVSync** instance. A new **OH_NativeVSync** instance is created each time this function is called.|
 | [OH_NativeVSync_Destroy](#oh_nativevsync_destroy) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync) | Destroys an **OH_NativeVSync** instance.|
 | [OH_NativeVSync_RequestFrame](#oh_nativevsync_requestframe) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, [OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback) callback, void \*data) | Requests the next VSync signal. When the signal arrives, a callback function is invoked.|
-
+| [OH_NativeVSync_GetPeriod](#oh_nativevsync_getperiod) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, long long \*period) |Obtains the VSync period.|
 
 ## Type Description
 
@@ -51,7 +51,7 @@ typedef struct OH_NativeVSync OH_NativeVSync
 
 **Description**
 
-Provides the declaration of a **OH_NativeVSync** struct.
+Provides the declaration of an **OH_NativeVSync** struct.
 
 
 ### OH_NativeVSync_FrameCallback
@@ -76,6 +76,34 @@ Defines the pointer to a VSync callback function.
 
 
 ## Function Description
+
+### OH_NativeVSync_GetPeriod()
+
+
+```
+int OH_NativeVSync_GetPeriod (OH_NativeVSync * nativeVsync, long long * period )
+```
+
+**Description**
+
+Obtains the VSync period.
+
+\@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| nativeVsync | Pointer to an **OH_NativeVSync** instance.|
+| period | Pointer to the VSync period.|
+
+**Returns**
+
+Returns **0** if the operation is successful.
+
+**Since**
+
+10
 
 
 ### OH_NativeVSync_Create()

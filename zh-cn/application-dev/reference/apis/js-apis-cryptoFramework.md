@@ -73,13 +73,15 @@ buffer数组。
 
 | 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为12字节。                             |
-| aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节。                             |
+| iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为1~16字节，常用为12字节。                             |
+| aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为0~INT_MAX字节，常用为16字节。                             |
 | authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)方法的入参[GcmParamsSpec](#gcmparamsspec)中的的authTag。 |
 
 > **说明：**
 >
-> 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> 1. 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> 2. 对于在1~16字节长度范围内的iv，加解密算法库不作额外限制，但其结果取决于底层openssl是否支持。
+> 3. 用户不需要使用aad参数或aad长度为0时，可以指定aad的data属性为空的Uint8Array，来构造GcmParamsSpec，写法为aad: { data: new Uint8Array() }。
 
 ## CcmParamsSpec
 
@@ -1545,20 +1547,6 @@ cipher.update(plainText)
   }, (error: BusinessError) => {
     console.info(`Update cipher failed.`);
   })
-
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-let data: cryptoFramework.DataBlob;           // The process of preparing the data to encrypt or decrypt is omitted here.
-// The init() and update() processes are omitted here.
-cipher.doFinal(data, (err, output) => {
-  if (err) {
-    console.error(`Failed to finalize cipher, ${err.code}, ${err.message}`);
-  } else {
-    console.info(`Finalize cipher success`);
-    if (output != null) {
-      // Concatenate output.data to obtain the complete plaintext/ciphertext (and authTag).
-    }
-  }
-})
 ```
 
 ### doFinal
@@ -2220,7 +2208,7 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 当被签名的消息较短时，可在init初始化后，（无需update）直接调用verify接口传入被签名的消息和签名(signatureData)进行验签。
 
-当被签名的消息较长时，可通过update接口分段传入被签名的消息，最后调用verify接口对消息全文进行验签。verify接口的data入参在API 10之前只支持DataBlob， API 10之后增加支持null。，业务方可在循环中调用update接口，循环结束后调用verify传入签名(signatureData)进行验签。
+当被签名的消息较长时，可通过update接口分段传入被签名的消息，最后调用verify接口对消息全文进行验签。verify接口的data入参在API 10之前只支持DataBlob， API 10之后增加支持null。业务方可在循环中调用update接口，循环结束后调用verify传入签名(signatureData)进行验签。
 
 ### 属性
 

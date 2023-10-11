@@ -103,7 +103,7 @@ try {
 
 > **NOTE**
 >
-> Only the context of other modules in the current application and the context of the [intra-application HSP](../../../application-dev/quick-start/in-app-hsp.md) can be obtained. The context of other applications and the context of the [inter-application HSP](../../../application-dev/quick-start/cross-app-hsp.md) cannot be obtained.
+> Only the context of other modules in the current application and the context of the [intra-application HSP](../../../application-dev/quick-start/in-app-hsp.md) can be obtained.
 
 ## Context.createModuleContext
 

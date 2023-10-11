@@ -35,24 +35,25 @@ By setting the anchor, you set a position dependency relationship between a chil
 - The ID of the **\<RelativeContainer>** parent component is **__container__**.
 
   ```ts
+  let AlignRus:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+    'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
+    'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
+  }
+  let AlignRue:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+    'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
+    'left': { 'anchor': '__container__', 'align': HorizontalAlign.End }
+  }
   RelativeContainer() {
     Row()
       // Add other attributes.
-      .alignRules({
-        top: { anchor: '__container__', align: VerticalAlign.Top },
-        left: { anchor: '__container__', align: HorizontalAlign.Start }
-      })
+      .alignRules(AlignRus)
       .id("row1")
 
     Row()
       ...
-      .alignRules({
-        top: { anchor: '__container__', align: VerticalAlign.Top },
-        right: { anchor: '__container__', align: HorizontalAlign.End }
-      })
+      .alignRules(AlignRue)
       .id("row2")
   }
-  ...
   ```
 
   ![en-us_image_0000001562820901](figures/en-us_image_0000001562820901.png)
@@ -60,14 +61,15 @@ By setting the anchor, you set a position dependency relationship between a chil
 - A child element is used as the anchor.
 
   ```ts
-  RelativeContainer() {
-    ...
-    top: { anchor: 'row1', align: VerticalAlign.Bottom },
-    ...
+  let RelConB:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+    'top': { 'anchor': 'row1', 'align': VerticalAlign.Bottom }
   }
+  let Mleft:Record<string,number> = { 'left': 20 }
+  let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
+  RelativeContainer() {RelConB}
   .width(300).height(300)
-  .margin({ left: 20 })
-  .border({ width: 2, color: '#6699FF' })
+  .margin(Mleft)
+  .border(BWC)
   ```
 
   ![en-us_image_0000001562940613](figures/en-us_image_0000001562940613.png)

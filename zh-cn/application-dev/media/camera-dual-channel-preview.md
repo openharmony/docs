@@ -90,7 +90,7 @@
      let camerasDevices: Array<camera.CameraDevice> = cameraManager.getSupportedCameras(); // 获取支持的相机设备对象
    
      // 获取profile对象
-     let profiles: camera.CameraOutputCapability = await cameraManager.getSupportedOutputCapability(camerasDevices[0]); // 获取对应相机设备profiles
+     let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(camerasDevices[0]); // 获取对应相机设备profiles
      let previewProfiles: Array<camera.Profile> = profiles.previewProfiles;
    
      // 预览流1
@@ -122,7 +122,7 @@
      captureSession.addInput(cameraInput);
    
      // 把 预览流1 加入到会话
-     captureSession.addOutput(previewOutput)
+     captureSession.addOutput(previewOutput);
    
      // 把 预览流2 加入到会话
      captureSession.addOutput(previewOutput2);
@@ -152,13 +152,11 @@
            if (err || imgComponent === undefined) {
              return;
            }
-           let buffer: ArrayBuffer;
            if (imgComponent.byteBuffer as ArrayBuffer) {
-             buffer = imgComponent.byteBuffer;
+             // do something...
            } else {
              return;
            }
-           // do something...;
          })
        })
      })

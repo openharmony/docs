@@ -49,7 +49,7 @@ async function preview(context: featureAbility.Context, cameraInfo: camera.Camer
   session.addOutput(photoOutput);
   await session.commitConfig();
   await session.start();
-  await previewOutput.addDeferredSurface(previewSurfaceId);
+  previewOutput.addDeferredSurface(previewSurfaceId);
 }
 ```
 
@@ -114,7 +114,7 @@ async function enableQuickThumbnail(context: featureAbility.Context, surfaceId: 
       }
       // 显示或保存pixelmap
       showOrSavePicture(pixelMap);
-    })
+    });
   }
 }
 
@@ -183,7 +183,7 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
     let cameraManager: camera.CameraManager = camera.getCameraManager(context);
     let cameras: Array<camera.CameraDevice> = [];
     try {
-      cameras = cameraManager.getSupportedCameras()
+      cameras = cameraManager.getSupportedCameras();
     } catch (error) {
       let err = error as BusinessError;
       console.error(`getSupportedCameras catch error: Code: ${err.code}, message: ${err.message}`);

@@ -13,21 +13,22 @@ Currently, OpenHarmony allows you to view and modify part of EXIF data. For deta
 Read [Image](../reference/apis/js-apis-image.md#getimageproperty7) for APIs used to read and edit EXIF data.
 
 1. Obtain the image and create an **ImageSource** object.
-     
-   ```ts
+
+```ts
    // Import the required module.
    import image from '@ohos.multimedia.image';
-   
+
    // Obtain the sandbox path and create an ImageSource object.
    const fd : number = ...; // Obtain the file descriptor of the image to be processed.
    const imageSource : image.ImageSource = image.createImageSource(fd);
    ```
 
 2. Read and edit EXIF data.
-     
-   ```ts
+
+```ts
+   import {BusinessError} from '@ohos.base';
    // Read the EXIF data, where BitsPerSample indicates the number of bits per pixel.
-   imageSource.getImageProperty('BitsPerSample', (error, data) => {
+   imageSource.getImageProperty('BitsPerSample', (error : BusinessError, data : string) => {
      if (error) {
        console.error('Failed to get the value of the specified attribute key of the image.And the error is: ' + error);
      } else {
@@ -37,7 +38,8 @@ Read [Image](../reference/apis/js-apis-image.md#getimageproperty7) for APIs used
    
    // Edit the EXIF data.
    imageSource.modifyImageProperty('ImageWidth', '120').then(() => {
-     const width : Promise<string> = imageSource.getImageProperty("ImageWidth");
-     console.info('The new imageWidth is ' + width);
+     imageSource.getImageProperty("ImageWidth").then((width : string) => {
+        console.info('The new imageWidth is ' + width);
+     })
    })
    ```

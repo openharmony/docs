@@ -43,5 +43,7 @@ Constructor used to create a **GesturePoint** object.
 **Example**
 
 ```ts
+import GesturePoint from '@ohos.accessibility.GesturePoint';
+
 let gesturePoint = new GesturePoint.GesturePoint(1, 2);
 ```

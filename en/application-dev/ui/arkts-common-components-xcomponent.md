@@ -193,7 +193,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   > **NOTE**
   >
   > An application loads modules to implement cross-language invoking in either of the following modes:
-  > 
+  >
   > 1. Use the **import** mode of the NAPI.
   >
   > ```ts
@@ -230,11 +230,19 @@ You can bind the **\<XComponent>** to the **XComponentController** to obtain the
 
 
 ```ts
+class suf{
+  surfaceId:string = "";
+  mXComponentController: XComponentController = new XComponentController();
+  set(){
+    this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
+  }
+}
 @State surfaceId:string = "";
-mXComponentController: XComponentController = new XComponentController();
+mXComponentController: object = new XComponentController();
 XComponent({ id: '', type: 'surface', controller: this.mXComponentController })
   .onLoad(() => {
-    this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
+    let sufset = new suf()
+    sufset.set()
   })
 ```
 

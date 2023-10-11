@@ -432,7 +432,7 @@ hasCallSync\(\): boolean
 
 ```ts
 let hasCall: boolean = call.hasCallSync();
-console.log(`hasCallSync success, has call is ' + hasCall);
+console.log(`hasCallSync success, has call is ` + hasCall);
 ```
 
 
@@ -2058,7 +2058,7 @@ getSubCallIdList\(callId: number, callback: AsyncCallback\<Array\<string\>\>\): 
 ```ts
 import { BusinessError } from '@ohos.base';
 
-call.getSubCallIdList(1, (err: BusinessError, data: string) => {
+call.getSubCallIdList(1, (err: BusinessError, data: Array<string>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2103,7 +2103,7 @@ getSubCallIdList\(callId: number\): Promise\<Array\<string\>\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-call.getSubCallIdList(1).then((data: string) => {
+call.getSubCallIdList(1).then((data: Array<string>) => {
     console.log(`getSubCallIdList success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getSubCallIdList fail, promise: err->${JSON.stringify(err)}`);
@@ -2557,6 +2557,104 @@ call.stopDTMF(1).then(() => {
     console.log(`stopDTMF success.`);
 }).catch((err: BusinessError) => {
     console.error(`stopDTMF fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.postDialProceed<sup>11+</sup>
+
+postDialProceed\(callId: number, proceed: boolean, callback: AsyncCallback\<void\>\): void
+
+继续进行通话。使用callback异步回调。
+
+当用户呼叫号码为：“普通电话号码”+“;”+"DTMF字符"，例如“400xxxxxxx;123”，并且已经订阅了通话后延迟事件，
+电话接通后，系统将上报通话后延迟事件，应用可以调用此接口选择是否发送DTMF音。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                           |
+| -------- | ------------------------- | ---- | -------------------------------------------------------------- |
+| callId   | number                    | 是   | 呼叫Id。                                                       |
+| proceed  | boolean                   | 是   | 用户选择是否发送DTMF（Dual Tone Multi Frequency，双音多频）音。|
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.postDialProceed(1, true, (err: BusinessError) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## call.postDialProceed<sup>11+</sup>
+
+postDialProceed\(callId: number, proceed: boolean\): Promise\<void\>
+
+继续进行通话。使用Promise异步回调。
+
+当用户呼叫号码为：“普通电话号码”+“;”+"DTMF字符"，例如“400xxxxxxx;123”，并且已经订阅了通话后延迟事件，
+电话接通后，系统将上报通话后延迟事件，应用可以调用此接口选择是否发送DTMF音。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                    |
+| -------- | ------------------------- | ---- | ----------------------- |
+| callId   | number                    | 是   | 呼叫Id。                |
+| proceed  | boolean                   | 是   | 用户选择是否发送DTMF音。|
+
+**返回值：**
+
+| 类型                | 说明                        |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.postDialProceed(1, true).then(() => {
+    console.log(`postDialProceed success.`);
+}).catch((err: BusinessError) => {
+    console.error(`postDialProceed fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3057,6 +3155,87 @@ call.off('audioDeviceChange', (data: call.AudioDeviceCallbackInfo) => {
 });
 ```
 
+## call.on('postDialDelay')<sup>11+</sup>
+
+on\(type: 'postDialDelay', callback: Callback\<string\>\): void
+
+订阅拨号后延迟事件。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                                             | 必填 | 说明                                                |
+| -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
+| type     | string                                          | 是   | 拨号后延迟，参数固定为'postDialDelay'。               |
+| callback | Callback&lt;string&gt;                          | 是   | 回调函数。                                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```ts
+call.on('postDialDelay', (data: string) => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
+## call.off('postDialDelay')<sup>11+</sup>
+
+off\(type: 'postDialDelay', callback?: Callback\<string\>\): void
+
+取消订阅拨号后延迟事件。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                                                       | 必填  |                           说明                      |
+| -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------- |
+| type     | string                                                     | 是   | 拨号后延迟，参数固定为'postDialDelay'。               |
+| callback | Callback&lt;string&gt;                                     | 否   | 回调函数。不填该参数将不会收到取消订阅的处理结果。       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```ts
+call.off('postDialDelay', (data: string) => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
 
 ## call.isNewCallAllowed<sup>8+</sup>
 

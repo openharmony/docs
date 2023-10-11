@@ -37,7 +37,7 @@ import fileio from '@ohos.fileio';
 
   ```ts
   import featureAbility from '@ohos.ability.featureAbility';
-  
+
   let context = featureAbility.getContext();
   context.getFilesDir().then((data) => {
     let pathDir = data;
@@ -205,7 +205,7 @@ opendir(path: string, callback: AsyncCallback&lt;Dir&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  fileio.opendir(pathDir, (err: BusinessError, dir: fileio.Dir) => { 
+  fileio.opendir(pathDir, (err: BusinessError, dir: fileio.Dir) => {
     // example code in Dir struct
     // use read/readSync/close
   });
@@ -1470,7 +1470,7 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.ftruncate(fd, 5).then((err: BusinessError) => {    
+  fileio.ftruncate(fd, 5).then((err: BusinessError) => {
     console.info("truncate file succeed");
   }).catch((err: BusinessError) => {
     console.info("truncate file failed with error:" + err);

@@ -114,7 +114,7 @@ finishAnimation(callback?: () => void): void
 | ------------------ | ---------------------------------------- | ---- | ---------------------------------------- |
 | itemWidth          | [Length](ts-types.md#length)             | 否    | 设置Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
 | itemHeight         | [Length](ts-types.md#length)             | 否    | 设置Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
-| selectedItemWidth  | [Length](ts-types.md#length)             | 否    | 设置选中Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
+| selectedItemWidth  | [Length](ts-types.md#length)             | 否    | 设置选中Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：12<br/>单位：vp |
 | selectedItemHeight | [Length](ts-types.md#length)             | 否    | 设置选中Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
 | mask               | boolean                                  | 否    | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false |
 | color              | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
@@ -207,7 +207,7 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item)
+          Text(item.toString())
             .width('90%')
             .height(160)
             .backgroundColor(0xAFEEEE)
@@ -312,7 +312,7 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item)
+          Text(item.toString())
             .width('90%')
             .height(160)
             .backgroundColor(0xAFEEEE)
@@ -396,7 +396,7 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item)
+          Text(item.toString())
             .width('90%')
             .height(160)
             .backgroundColor(0xAFEEEE)

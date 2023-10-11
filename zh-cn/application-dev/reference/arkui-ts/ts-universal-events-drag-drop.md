@@ -182,7 +182,7 @@ struct Index {
         }.draggable(true)
         .onDragStart((event)=>{
           let video: UDC.Video = new UDC.Video();
-          video.videoUri = 'resource://RAWFILE/01.mp4';
+          video.videoUri = '/resources/rawfile/01.mp4';
           let data: UDC.UnifiedData = new UDC.UnifiedData(video);
           (event as DragEvent).setData(data);
         })

@@ -24,7 +24,6 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [应用内HSP开发指导](quick-start/in-app-hsp.md)
-          - [应用间HSP开发指导](quick-start/cross-app-hsp.md)
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
@@ -727,6 +726,31 @@
       - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
     - 数据管理
       - [RelationalStore开发指导](napi/native-relational-store-guidelines.md)
+  - 性能
+    - [性能优化概览](performance/performance-overview.md)
+    - ArkTS高性能编程
+      - [高性能编程规范](performance/high-performance-programming.md)
+      - [高效并发编程](performance/efficient-concurrent-programming.md)
+      - [安全和高效的使用N-API开发Native模块](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
+      - [多线程能力场景化](performance/multi_thread_capability.md)
+    - 减少卡顿丢帧
+      - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
+      - [组件复用使用指导](performance/component-recycle.md)
+      - [WaterFlow高性能开发指导](performance/waterflow_optimization.md)
+      - [Swiper高性能开发指导](performance/swiper_optimization.md)
+      - [合理进行状态管理](performance/proper_state_management.md)
+      - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
+      - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
+    - 提升应用启动和响应速度
+      - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
+      - [提升应用响应速度](performance/improve-application-response.md)
+      - [优化布局性能](performance/reduce-view-nesting-levels.md)
+      - [合理使用IPC通信](performance/reasonable-using-ipc.md)
+      - [减少首帧绘制时的冗余操作](performance/reduce-redundant-operations-when-render-first-frame.md)
+      - [列表场景性能提升实践](performance/list-perf-improvment.md)
+      - [动效能力实践](performance/animation_practice.md)
+    - 性能工具
+      - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
@@ -1136,7 +1160,6 @@
       - [@ohos.multimodalInput.gestureEvent (手势事件)](reference/apis/js-apis-multimodalinput-gestureevent.md)
       - [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis/js-apis-inputconsumer.md)
       - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis/js-apis-inputdevice.md)
-      - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(待停用)](reference/apis/js-apis-cooperate.md)
       - [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis/js-apis-inputevent.md)
       - [@ohos.multimodalInput.inputEventClient (按键注入)](reference/apis/js-apis-inputeventclient.md)
       - [@ohos.multimodalInput.inputMonitor (输入监听)](reference/apis/js-apis-inputmonitor.md)
@@ -1225,6 +1248,7 @@
       - [@ohos.geolocation (位置服务)](reference/apis/js-apis-geolocation.md)
       - [@ohos.hiAppEvent (应用打点)](reference/apis/js-apis-hiappevent.md)
       - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
+      - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)](reference/apis/js-apis-cooperate.md)
       - [@ohos.prompt (弹窗)](reference/apis/js-apis-prompt.md)
       - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
       - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)

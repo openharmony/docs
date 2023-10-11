@@ -32,8 +32,9 @@ QRCode(value: string)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码颜色。<br/>默认值：Color.Black <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码背景颜色。<br/>默认值：Color.White <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当设置[通用属性backgroundColor](./ts-universal-attributes-background.md)时，设置二维码内容区的背景颜色，而不是组件的背景颜色。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码颜色。<br/>默认值：Color.Black <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>从API version 11开始，默认值改为'#ff182431'。|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码背景颜色。<br/>默认值：Color.White <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>从API version 11开始，默认值改为'#ffffffff'。 |
+| contentOpacity<sup>11+<sup> | [number](ts-types.md#number) \| [Resource](ts-types.md#resource) | 设置二维码内容颜色的不透明度。不透明度最小值为0，最大值为1。<br/>默认值：1 |
 
 
 ## 事件
@@ -52,15 +53,19 @@ struct QRCodeExample {
   build() {
     Column({ space: 5 }) {
       Text('normal').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
-      QRCode(this.value).width(200).height(200)
+      QRCode(this.value).width(140).height(140)
 
       // 设置二维码颜色
       Text('color').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
-      QRCode(this.value).color(0xF7CE00).width(200).height(200)
+      QRCode(this.value).color(0xF7CE00).width(140).height(140)
 
       // 设置二维码背景色
       Text('backgroundColor').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
-      QRCode(this.value).width(200).height(200).backgroundColor(Color.Orange)
+      QRCode(this.value).width(140).height(140).backgroundColor(Color.Orange)
+
+      // 设置二维码不透明度
+      Text('contentOpacity').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
+      QRCode(this.value).width(140).height(140).color(Color.Black).contentOpacity(0.1)
     }.width('100%').margin({ top: 5 })
   }
 }

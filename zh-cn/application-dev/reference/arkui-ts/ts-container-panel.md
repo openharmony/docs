@@ -35,7 +35,7 @@ Panel(show: boolean)
 | type | [PanelType](#paneltype枚举说明) | 设置可滑动面板的类型。<br/>默认值：PanelType.Foldable |
 | mode | [PanelMode](#panelmode枚举说明) | 设置可滑动面板的初始状态。<br/>Minibar类型默认值：PanelMode.Mini；其余类型默认值：PanelMode.Half<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | dragBar | boolean | 设置是否存在dragbar，true表示存在，false表示不存在。<br/>默认值：true |
-| customHeight<sup>10+</sup> | Dimension&nbsp;\|&nbsp;[PanelHeight](#panelheight10枚举说明) | 指定PanelType.CUSTOM状态下的高度。<br/>默认值：0<br/>**说明：** <br/>不支持设置百分比。 |
+| customHeight<sup>10+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[PanelHeight](#panelheight10枚举说明) | 指定PanelType.CUSTOM状态下的高度。<br/>默认值：0<br/>**说明：** <br/>不支持设置百分比。 |
 | fullHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Full状态下的高度。<br/>默认值：当前组件主轴大小减去8vp空白区<br/>**说明：** <br/>不支持设置百分比。 |
 | halfHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Half状态下的高度。<br/>默认值：当前组件主轴大小的一半。<br/>**说明：** <br/>不支持设置百分比。 |
 | miniHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Mini状态下的高度。<br/>默认值：48<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |

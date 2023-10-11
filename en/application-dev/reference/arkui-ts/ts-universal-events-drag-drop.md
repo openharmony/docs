@@ -8,15 +8,16 @@ A drag event is triggered when a component is dragged.
 >
 > The resource files preset in the application (that is, the resource files that are contained in the HAP file before the application is installed) can be dragged and dropped only within the application.
 
-By default, ArkUI components cannot be dragged.
+The ArkUI framework implements the drag and drop capability for the following components, allowing them to serve as the drag source (from which data can be dragged) or drop target (to which data can be dropped). To enable drag and drop for these components, you only need to set their [draggable](ts-universal-attributes-drag-drop.md) attribute to **true**.
 
-When the [draggable](ts-universal-attributes-drag-drop.md) attribute of the following components is set to **true**, the components can respond to drag events. In this case, you do not need to configure data transmission for the components to drag them. To drag other components, you need to set the [draggable](ts-universal-attributes-drag-drop.md) attribute to **true** and implement data transmission in APIs such as **onDragStart**.
+- The following component supports drag actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<RichEditor>**, **\<Text>**, **\<Image>**, **\<FormComponent>**, **\<Hyperlink>**
 
-- The following components support drag and drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**.
+- The following component supports drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<Video>**
 
-- The following component supports drop actions by default: **\<Video>**.
+You can also define drag responses by implementing common drag events.
 
-- The following components support drag actions by default: **\<Text>**, **\<List>**, **\<Grid>**, **\<FormComponent>**, **\<Image>**, **\<Hyperlink>**.
+To enable drag and drop for other components, you need to set the **draggable** attribute to **true** and implement data transmission in APIs such as **onDragStart**.
+
 
 ## Events
 

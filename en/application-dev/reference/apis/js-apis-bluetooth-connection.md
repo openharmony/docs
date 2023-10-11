@@ -49,7 +49,7 @@ try {
     // The address can be scanned.
     connection.pairDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -93,7 +93,7 @@ try {
     // The address can be scanned.
     connection.pairDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -132,15 +132,16 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    connection.pairCredibleDevice('68:13:24:79:4C:8C', 1, err => {
+    connection.pairCredibleDevice('68:13:24:79:4C:8C', connection.BluetoothTransport
+        .TRANSPORT_BR_EDR, (err: BusinessError) => {
         if (err) {
-            console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+            console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
             return;
         }
         console.info('pairCredibleDevice, err: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -186,11 +187,11 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 try {
     connection.pairCredibleDevice('68:13:24:79:4C:8C', 0).then(() => {
         console.info('PairCredibleDevice');
-    }, err => {
+    }, (err: BusinessError) => {
         console.error('PairCredibleDevice:errCode' + err.code + ', errMessage: ' + err.message);
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -230,7 +231,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 try {
     connection.cancelPairedDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -275,7 +276,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 try {
     connection.cancelPairedDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -315,7 +316,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 try {
     connection.cancelPairingDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -360,7 +361,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 try {
     connection.cancelPairingDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -401,9 +402,9 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let remoteDeviceName = connection.getRemoteDeviceName('XX:XX:XX:XX:XX:XX');
+    let remoteDeviceName: string = connection.getRemoteDeviceName('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -444,9 +445,9 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let remoteDeviceClass = connection.getRemoteDeviceClass('XX:XX:XX:XX:XX:XX');
+    let remoteDeviceClass: connection.DeviceClass = connection.getRemoteDeviceClass('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -480,9 +481,9 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let localName = connection.getLocalName();
+    let localName: string = connection.getLocalName();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -517,9 +518,9 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let devices = connection.getPairedDevices();
+    let devices: Array<string> = connection.getPairedDevices();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -562,9 +563,9 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 ```js
 import constant from '@ohos.bluetooth.constant';
 try {
-    let result = connection.getProfileConnectionState(constant.ProfileId.PROFILE_A2DP_SOURCE);
+    let result: connection.ProfileConnectionState = connection.getProfileConnectionState(constant.ProfileId.PROFILE_A2DP_SOURCE);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -599,16 +600,15 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
-
+// Subscribe to the pinRequired event and configure the pairing confirmation after receiving a pairing request from the remote device.
+function onReceivePinRequiredEvent(data: connection.PinRequiredParam) { // data is the input parameter for the pairing request.
+    console.info('pin required  = '+ JSON.stringify(data));
+    connection.setDevicePairingConfirmation(data.deviceId, true);
+}
 try {
-    // Subscribe to the pinRequired event and configure the pairing confirmation after receiving a pairing request from the remote device.
-    function onReceivePinRequiredEvent(data) { // data is the input parameter for the pairing request.
-        console.info('pin required  = '+ JSON.stringify(data));
-        connection.setDevicePairingConfirmation(data.deviceId, true);
-    }
     connection.on('pinRequired', onReceivePinRequiredEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -646,11 +646,11 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 ```js
 //callback
 try {
-    connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err, data) => {
+    connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError, data: string) => {
         console.info('setDevicePinCode,device name err:' + JSON.stringify(err) + ',device name:' + JSON.stringify(data));
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -695,12 +695,12 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345').then(() => {
         console.info('setDevicePinCode');
-    }, error => {
+    }, (error: BusinessError) => {
         console.info('setDevicePinCode: errCode:' + error.code + ',errMessage' + error.message);
     })
 
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -737,7 +737,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 try {
     connection.setLocalName('device_name');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -776,7 +776,7 @@ try {
     // The device can be discovered and connected only when the discoverable and connectable mode is used.
     connection.setBluetoothScanMode(connection.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -811,9 +811,9 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let scanMode = connection.getBluetoothScanMode();
+    let scanMode: connection.ScanMode = connection.getBluetoothScanMode();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -841,15 +841,14 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
-let deviceId;
-function onReceiveEvent(data) {
-    deviceId = data;
+function onReceiveEvent(data: Array<string>) {
+    console.log('data length' + data.length);
 }
 try {
     connection.on('bluetoothDeviceFind', onReceiveEvent);
     connection.startBluetoothDiscovery();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -880,7 +879,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 try {
     connection.stopBluetoothDiscovery();
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -917,11 +916,11 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX', (err, data) => {
+    connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: Array<connection.ProfileUuids>) => {
         console.info('getLocalProfileUuids, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -960,11 +959,11 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 try {
     connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX').then(() => {
         console.info('getLocalProfileUuids');
-    }, err => {
-        console.error('getLocalProfileUuids: errCode' + err.code + ', errMessage: ' + err.message);
+    }, (err: BusinessError) => {
+        console.error('getLocalProfileUuids: errCode' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1002,11 +1001,11 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX', (err, data) => {
+    connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: Array<connection.ProfileUuids>) => {
         console.info('getRemoteProfileUuids, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 
 ```
@@ -1052,11 +1051,11 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 try {
     connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX').then(() => {
         console.info('getRemoteProfileUuids');
-    }, err => {
-        console.error('getRemoteProfileUuids: errCode' + err.code + ', errMessage: ' + err.message);
+    }, (err: BusinessError) => {
+        console.error('getRemoteProfileUuids: errCode' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1089,13 +1088,13 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
-function onReceiveEvent(data) { // data is a set of Bluetooth device addresses.
+function onReceiveEvent(data: Array<string>) { // data is an array of Bluetooth device addresses.
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 try {
     connection.on('bluetoothDeviceFind', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1128,14 +1127,14 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: Array<string>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 try {
     connection.on('bluetoothDeviceFind', onReceiveEvent);
     connection.off('bluetoothDeviceFind', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1168,13 +1167,13 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
-function onReceiveEvent(data) { // data, as the input parameter of the callback, indicates the pairing state.
+function onReceiveEvent(data: connection.BondStateParam) { // data, as the input parameter of the callback, indicates the pairing state.
     console.info('pair state = '+ JSON.stringify(data));
 }
 try {
     connection.on('bondStateChange', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1207,14 +1206,14 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: connection.BondStateParam) {
     console.info('bond state = '+ JSON.stringify(data));
 }
 try {
     connection.on('bondStateChange', onReceiveEvent);
     connection.off('bondStateChange', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1247,13 +1246,13 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
-function onReceiveEvent(data) { // data is the pairing request parameter.
+function onReceiveEvent(data: connection.PinRequiredParam) { // data is the pairing request parameter.
     console.info('pin required = '+ JSON.stringify(data));
 }
 try {
     connection.on('pinRequired', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1286,14 +1285,14 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: connection.PinRequiredParam) {
     console.info('pin required = '+ JSON.stringify(data));
 }
 try {
     connection.on('pinRequired', onReceiveEvent);
     connection.off('pinRequired', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 

@@ -85,7 +85,7 @@
       // 卡片提供方接收查询卡片状态通知接口，默认返回卡片初始状态。
       return formInfo.FormState.READY;
     }
-  }
+   }
    ```
 
 

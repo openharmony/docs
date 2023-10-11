@@ -53,8 +53,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **示例**：
 
-```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts 
 import { BusinessError } from '@ohos.base';
 
 let myReason = 'test requestSuspendDelay';
@@ -103,8 +102,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **示例**：
 
-```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts 
 import { BusinessError } from '@ohos.base';
 
 let id = 1;
@@ -153,8 +151,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **示例**：
 
-```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts 
 import { BusinessError } from '@ohos.base';
 
 let id = 1;
@@ -196,7 +193,6 @@ cancelSuspendDelay(requestId: number): void
 **示例**：
 
   ```js
-  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
   import { BusinessError } from '@ohos.base';
 
   let id = 1;
@@ -246,6 +242,8 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 function callback(error: BusinessError, data: void) {
@@ -330,6 +328,8 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
@@ -400,6 +400,8 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 function callback(error: BusinessError, data: void) {
@@ -460,6 +462,8 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
@@ -509,7 +513,6 @@ applyEfficiencyResources(request: EfficiencyResourcesRequest): void
 **示例**：
 
 ```js
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import { BusinessError } from '@ohos.base';
 
 let request: backgroundTaskManager.EfficiencyResourcesRequest = {
@@ -553,7 +556,7 @@ resetAllEfficiencyResources(): void
 **示例**：
 
 ```js
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { BusinessError } from '@ohos.base';
 
 try {
     backgroundTaskManager.resetAllEfficiencyResources();

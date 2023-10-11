@@ -20,7 +20,7 @@ In the stage model, you can perform the following operations during application 
 
 - Experiencing the immersive window feature
 
-- Setting a floating window 
+- Setting a floating window
 
 ## Available APIs
 
@@ -66,37 +66,42 @@ In the stage model, the main window of an application is created and maintained 
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // 1. Obtain the main window of the application.
-        let windowClass = null;
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // 2. Set the touchable property of the main window.
-            let isTouchable = true;
-            windowClass.setWindowTouchable(isTouchable, (err) => {
-                if (err.code) {
-                    console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in setting the window to be touchable.');
-            })
-        })
-        // 3. Load the page content to the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 1. Obtain the main window of the application.
+    let windowClass: window.Window | null = null;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      // 2. Set the touchable property of the main window.
+      let isTouchable: boolean = true;
+      windowClass.setWindowTouchable(isTouchable, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in setting the window to be touchable.');
+      })
+    })
+    // 3. Load the page content to the main window.
+    windowStage.loadContent("pages/page2", (err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+  }
 };
 ```
 
@@ -124,58 +129,71 @@ You can create an application subwindow, such as a dialog box, and set its prope
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
-let windowStage_ = null;
-let sub_windowClass = null;
+let windowStage_: window.WindowStage | null = null;
+let sub_windowClass: window.Window | null = null;
 
 export default class EntryAbility extends UIAbility {
   showSubWindow() {
     // 1. Create a subwindow.
-    windowStage_.createSubWindow("mySubWindow", (err, data) => {
-      if (err.code) {
-        console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
-        return;
-      }
-      sub_windowClass = data;
-      console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-      // 2. Set the position, size, and other properties of the subwindow.
-      sub_windowClass.moveWindowTo(300, 300, (err) => {
-        if (err.code) {
-          console.error('Failed to move the window. Cause:' + JSON.stringify(err));
+    if (windowStage_ == null) {
+      console.error('Failed to create the subwindow. Cause: windowStage_ is null');
+    }
+    else {
+      windowStage_.createSubWindow("mySubWindow", (err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
           return;
         }
-        console.info('Succeeded in moving the window.');
-      });
-      sub_windowClass.resize(500, 500, (err) => {
-        if (err.code) {
-          console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in changing the window size.');
-      });
-      // 3. Load the page content to the subwindow.
-      sub_windowClass.setUIContent("pages/page3", (err) => {
-        if (err.code) {
-          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in loading the content.');
-        // 3. Show the subwindow.
-        sub_windowClass.showWindow((err) => {
-          if (err.code) {
-            console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+        sub_windowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+        // 2. Set the position, size, and other properties of the subwindow.
+        sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to move the window. Cause:' + JSON.stringify(err));
             return;
           }
-          console.info('Succeeded in showing the window.');
+          console.info('Succeeded in moving the window.');
         });
-      });
-    })
+        sub_windowClass.resize(500, 500, (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in changing the window size.');
+        });
+        // 3. Load the page content to the subwindow.
+        sub_windowClass.setUIContent("pages/page3", (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in loading the content.');
+          // 3. Show the subwindow.
+          (sub_windowClass as window.Window).showWindow((err: BusinessError) => {
+            let errCode: number = err.code;
+            if (errCode) {
+              console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in showing the window.');
+          });
+        });
+      })
+    }
   }
 
   destroySubWindow() {
     // 4. Destroy the subwindow when it is no longer needed (depending on the service logic).
-    sub_windowClass.destroyWindow((err) => {
-      if (err.code) {
+    (sub_windowClass as window.Window).destroyWindow((err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
         console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
         return;
       }
@@ -183,7 +201,7 @@ export default class EntryAbility extends UIAbility {
     });
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage_ = windowStage;
     // Create a subwindow when it is needed, for example, when a click event occurs in the main window. Calling onWindowStageCreate is not always necessary. The code here is for reference only.
     this.showSubWindow();
@@ -219,13 +237,16 @@ To create a better video watching and gaming experience, you can use the immersi
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // 1. Obtain the main window of the application.
-    let windowClass = null;
-    windowStage.getMainWindow((err, data) => {
-      if (err.code) {
+    let windowClass: window.Window | null = null;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      let errCode: number = err.code;
+      if (errCode) {
         console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         return;
       }
@@ -233,9 +254,10 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       // 2. Use method 1 to implement the immersive effect.
-      let names = [];
-      windowClass.setWindowSystemBarEnable(names, (err) => {
-        if (err.code) {
+      let names: Array<'status' | 'navigation'> = [];
+      windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
           return;
         }
@@ -243,22 +265,24 @@ export default class EntryAbility extends UIAbility {
       });
       // 2. Use method 2 to implement the immersive effect.
       let isLayoutFullScreen = true;
-      windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err) => {
-        if (err.code) {
+      windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
           return;
         }
         console.info('Succeeded in setting the window layout to full-screen mode.');
       });
-      let sysBarProps = {
+      let sysBarProps: window.SystemBarProperties = {
         statusBarColor: '#ff00ff',
         navigationBarColor: '#00ff00',
         // The following properties are supported since API version 8.
         statusBarContentColor: '#ffffff',
         navigationBarContentColor: '#ffffff'
       };
-      windowClass.setWindowSystemBarProperties(sysBarProps, (err) => {
-        if (err.code) {
+      windowClass.setWindowSystemBarProperties(sysBarProps, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
           return;
         }
@@ -266,8 +290,9 @@ export default class EntryAbility extends UIAbility {
       });
     })
     // 3. Load the page content to the immersive window.
-    windowStage.loadContent("pages/page2", (err) => {
-      if (err.code) {
+    windowStage.loadContent("pages/page2", (err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
         console.error('Failed to load the content. Cause:' + JSON.stringify(err));
         return;
       }
@@ -305,46 +330,52 @@ A floating window is created based on an existing task. It is always displayed i
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // 1. Create a floating window.
-    let windowClass = null;
-    let config = {
+    let windowClass: window.Window | null = null;
+    let config: window.Configuration = {
       name: "floatWindow", windowType: window.WindowType.TYPE_FLOAT, ctx: this.context
     };
-    window.createWindow(config, (err, data) => {
-      if (err.code) {
+    window.createWindow(config, (err: BusinessError, data) => {
+      let errCode: number = err.code;
+      if (errCode) {
         console.error('Failed to create the floatWindow. Cause: ' + JSON.stringify(err));
         return;
       }
       console.info('Succeeded in creating the floatWindow. Data: ' + JSON.stringify(data));
       windowClass = data;
       // 2. Set the position, size, and properties of the floating window.
-      windowClass.moveWindowTo(300, 300, (err) => {
-        if (err.code) {
+      windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to move the window. Cause:' + JSON.stringify(err));
           return;
         }
         console.info('Succeeded in moving the window.');
       });
-      windowClass.resize(500, 500, (err) => {
-        if (err.code) {
+      windowClass.resize(500, 500, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
           return;
         }
         console.info('Succeeded in changing the window size.');
       });
       // 3. Load the page content to the floating window.
-      windowClass.setUIContent("pages/page4", (err) => {
-        if (err.code) {
+      windowClass.setUIContent("pages/page4", (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to load the content. Cause:' + JSON.stringify(err));
           return;
         }
         console.info('Succeeded in loading the content.');
         // 3. Show the floating window.
-        windowClass.showWindow((err) => {
-          if (err.code) {
+        (windowClass as window.Window).showWindow((err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
             console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
             return;
           }
@@ -352,8 +383,9 @@ export default class EntryAbility extends UIAbility {
         });
       });
       // 4. Destroy the floating window when it is no longer needed (depending on the service logic).
-      windowClass.destroyWindow((err) => {
-        if (err.code) {
+      windowClass.destroyWindow((err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
           return;
         }

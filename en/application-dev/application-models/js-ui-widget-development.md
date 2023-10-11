@@ -104,62 +104,60 @@ To create a widget in the stage model, you need to implement the lifecycle callb
    import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
    import dataPreferences from '@ohos.data.preferences';
+   import Want from '@ohos.app.ability.Want';
+   import Base from '@ohos.base';
    ```
 
 2. Implement the FormExtension lifecycle callbacks in **EntryFormAbility.ets**.
 
    
    ```ts
-   export default class EntryFormAbility extends FormExtensionAbility {
-       onAddForm(want) {
-           console.info('[EntryFormAbility] onAddForm');
-           // Called when the widget is created. The widget provider should return the widget data binding class.
-           let obj = {
-               "title": "titleOnCreate",
-               "detail": "detailOnCreate"
-           };
-           let formData = formBindingData.createFormBindingData(obj);
-           return formData;
-       }
-       onCastToNormalForm(formId) {
-           // Called when a temporary widget is being converted into a normal one. The widget provider should respond to the conversion.
-           console.info('[EntryFormAbility] onCastToNormalForm');
-       }
-       onUpdateForm(formId) {
-           // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
-           console.info('[EntryFormAbility] onUpdateForm');
-           let obj = {
-               "title": "titleOnUpdate",
-               "detail": "detailOnUpdate"
-           };
-           let formData = formBindingData.createFormBindingData(obj);
-           formProvider.updateForm(formId, formData).catch((error) => {
-               console.info('[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
-           });
-       }
-       onChangeFormVisibility(newStatus) {
-           // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification. This callback takes effect only for system applications.
-           console.info('[EntryFormAbility] onChangeFormVisibility');
-       }
-       onFormEvent(formId, message) {
-           // If the widget supports event triggering, override this method and implement the trigger.
-           console.info('[EntryFormAbility] onFormEvent');
-       }
-       onRemoveForm(formId) {
-           // Delete widget data.
-           console.info('[EntryFormAbility] onRemoveForm');
-       }
-       onConfigurationUpdate(config) {
-           console.info('[EntryFormAbility] nConfigurationUpdate, config:' + JSON.stringify(config));
-       }
-       onAcquireFormState(want) {
-           return formInfo.FormState.READY;
-       }
-   }
+    export default class EntryFormAbility extends FormExtensionAbility {
+      onAddForm(want: Want) {
+        console.info('[EntryFormAbility] onAddForm');
+        // Called when the widget is created. The widget provider should return the widget data binding class.
+        let obj: Record<string, string> = {
+          "title": "titleOnCreate",
+          "detail": "detailOnCreate"
+        };
+        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+        return formData;
+      }
+      onCastToNormalForm(formId: string) {
+        // Called when a temporary widget is being converted into a normal one. The widget provider should respond to the conversion.
+        console.info('[EntryFormAbility] onCastToNormalForm');
+      }
+      onUpdateForm(formId: string) {
+        // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
+        console.info('[EntryFormAbility] onUpdateForm');
+        let obj: Record<string, string> = {
+          "title": "titleOnUpdate",
+          "detail": "detailOnUpdate"
+        };
+        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+        formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
+          console.info('[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
+        });
+      }
+      onChangeFormVisibility(newStatus: Record<string, number>) {
+        // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification. This callback takes effect only for system applications.
+        console.info('[EntryFormAbility] onChangeFormVisibility');
+      }
+      onFormEvent(formId: string, message: string) {
+        // If the widget supports event triggering, override this method and implement the trigger.
+        console.info('[EntryFormAbility] onFormEvent');
+      }
+      onRemoveForm(formId: string) {
+        // Delete widget data.
+        console.info('[EntryFormAbility] onRemoveForm');
+      }
+      onAcquireFormState(want: Want) {
+        return formInfo.FormState.READY;
+      }
+    }
    ```
 
 > **NOTE**
->
 > FormExtensionAbility cannot reside in the background. Therefore, continuous tasks cannot be processed in the widget lifecycle callbacks.
 
 
@@ -248,44 +246,53 @@ A widget provider is usually started when it is needed to provide information ab
 
 
 ```ts
-const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
-async function storeFormInfo(formId: string, formName: string, tempFlag: boolean) {
-    // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
-    let formInfo = {
-        "formName": formName,
-        "tempFlag": tempFlag,
-        "updateCount": 0
-    };
-    try {
-        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
-        // put form info
-        await storage.put(formId, JSON.stringify(formInfo));
-        console.info(`[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
-        await storage.flush();
-    } catch (err) {
-        console.error(`[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err)}`);
-    }
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import formBindingData from '@ohos.app.form.formBindingData';
+import dataPreferences from '@ohos.data.preferences';
+import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
+import common from '@ohos.app.ability.common'
+
+
+const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
+let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
+  // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
+  let formInfo: Record<string, string | boolean | number> = {
+    "formName": formName,
+    "tempFlag": tempFlag,
+    "updateCount": 0
+  };
+  try {
+    const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    // put form info
+    await storage.put(formId, JSON.stringify(formInfo));
+    console.info(`[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    console.error(`[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err as Base.BusinessError)}`);
+  }
 }
 
-export default class EntryFormAbility extends FormExtension {
-    ...
-    onAddForm(want) {
-        console.info('[EntryFormAbility] onAddForm');
+export default class EntryFormAbility extends FormExtensionAbility {
+  onAddForm(want: Want) {
+    console.info('[EntryFormAbility] onAddForm');
 
-        let formId = want.parameters["ohos.extra.param.key.form_identity"];
-        let formName = want.parameters["ohos.extra.param.key.form_name"];
-        let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"];
-        // Persistently store widget data for subsequent use, such as instance acquisition and update.
-        // Implement this API based on project requirements.
-        storeFormInfo(formId, formName, tempFlag);
-
-        let obj = {
-            "title": "titleOnCreate",
-            "detail": "detailOnCreate"
-        };
-        let formData = formBindingData.createFormBindingData(obj);
-        return formData;
+    if (want.parameters) {
+      let formId = JSON.stringify(want.parameters["ohos.extra.param.key.form_identity"]);
+      let formName = JSON.stringify(want.parameters["ohos.extra.param.key.form_name"]);
+      let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"] as boolean;
+      // Persistently store widget data for subsequent use, such as instance acquisition and update.
+      // Implement this API based on project requirements.
+      storeFormInfo(formId, formName, tempFlag, this.context);
     }
+
+    let obj: Record<string, string> = {
+      "title": "titleOnCreate",
+      "detail": "detailOnCreate"
+    };
+    let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+    return formData;
+  }
 }
 ```
 
@@ -293,29 +300,31 @@ You should override **onRemoveForm** to implement widget data deletion.
 
 
 ```ts
-const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
-async function deleteFormInfo(formId: string) {
-    try {
-        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
-        // Delete the widget information.
-        await storage.delete(formId);
-        console.info(`[EntryFormAbility] deleteFormInfo, del form info successfully, formId: ${formId}`);
-        await storage.flush();
-    } catch (err) {
-        console.error(`[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
-    }
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import dataPreferences from '@ohos.data.preferences';
+import Base from '@ohos.base';
+import common from '@ohos.app.ability.common'
+
+const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
+let deleteFormInfo = async (formId: string, context: common.FormExtensionContext): Promise<void> => {
+  try {
+    const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    // Delete the widget information.
+    await storage.delete(formId);
+    console.info(`[EntryFormAbility] deleteFormInfo, del form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    console.error(`[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err as Base.BusinessError)}`);
+  }
 }
 
-...
-
-export default class EntryFormAbility extends FormExtension {
-    ...
-    onRemoveForm(formId) {
-        console.info('[EntryFormAbility] onRemoveForm');
-        // Delete the persistent widget instance data.
-        // Implement this API based on project requirements.
-        deleteFormInfo(formId);
-    }
+export default class EntryFormAbility extends FormExtensionAbility {
+  onRemoveForm(formId: string) {
+    console.info('[EntryFormAbility] onRemoveForm');
+    // Delete the persistent widget instance data.
+    // Implement this API based on project requirements.
+    deleteFormInfo(formId, this.context);
+  }
 }
 ```
 
@@ -336,18 +345,25 @@ When an application initiates a scheduled or periodic update, the application ob
 
 
 ```ts
-onUpdateForm(formId) {
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import formBindingData from '@ohos.app.form.formBindingData';
+import formProvider from '@ohos.app.form.formProvider';
+import Base from '@ohos.base';
+
+export default class EntryFormAbility extends FormExtensionAbility {
+  onUpdateForm(formId: string) {
     // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
     console.info('[EntryFormAbility] onUpdateForm');
-    let obj = {
-        "title": "titleOnUpdate",
-        "detail": "detailOnUpdate"
+    let obj: Record<string, string> = {
+      "title": "titleOnUpdate",
+      "detail": "detailOnUpdate"
     };
-    let formData = formBindingData.createFormBindingData(obj);
+    let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     // Call the updateForm() method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
-    formProvider.updateForm(formId, formData).catch((error) => {
-        console.info('[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
+    formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
+      console.info('[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
     });
+  }
 }
 ```
 
@@ -574,23 +590,26 @@ The following are examples:
 
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility'
-  
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
+
   export default class EntryAbility extends UIAbility {
-      onCreate(want, launchParam) {
-          let params = JSON.parse(want.parameters.params);
-          // Obtain the info parameter passed in the router event.
-          if (params.info === "router info") {
-              // do something
-              // console.info("router info:" + params.info)
-          }
-          // Obtain the message parameter passed in the router event.
-          if (params.message === "router message") {
-              // do something
-              // console.info("router message:" + params.message)
-          }
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+      if (want.parameters) {
+        let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
+        // Obtain the info parameter passed in the router event.
+        if (params.info === "router info") {
+          // do something
+          // console.info("router info:" + params.info)
+        }
+        // Obtain the message parameter passed in the router event.
+        if (params.message === "router message") {
+          // do something
+          // console.info("router message:" + params.message)
+        }
       }
-      ...
+    }
   };
   ```
 
@@ -599,17 +618,15 @@ The following are examples:
   
   ```ts
   import FormExtension from '@ohos.app.form.FormExtensionAbility';
-  
+
   export default class FormAbility extends FormExtension {
-      ...
-      onFormEvent(formId, message) {
-          // Obtain the detail parameter passed in the message event.
-          let msg = JSON.parse(message)
-          if (msg.detail === "message detail") {
-              // do something
-              // console.info("message info:" + msg.detail)
-          }
+    onFormEvent(formId: string, message: string) {
+      // Obtain the detail parameter passed in the message event.
+      let msg: Record<string, string> = JSON.parse(message)
+      if (msg.detail === "message detail") {
+        // do something
+        // console.info("message info:" + msg.detail)
       }
-      ...
+    }
   };
   ```

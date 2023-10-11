@@ -1,4 +1,4 @@
-# UsbDdk
+# UsbDDK
 
 
 ## 概述
@@ -19,8 +19,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [usb_ddk_api.h](usb__ddk__api_8h.md) | 声明用于主机侧访问设备的USB DDK接口。<br/>引用文件：&lt;usb/usb_ddk_api.h&gt; |
-| [usb_ddk_types.h](usb__ddk__types_8h.md) | 提供USB DDK中的枚举变量、结构体定义与宏定义。<br/>引用文件：&lt;usb/usb_ddk_types.h&gt; |
+| [usb_ddk_api.h](usb__ddk__api_8h.md) | 声明用于主机侧访问设备的USB DDK接口。<br/>引用文件：&lt;usb/usb_ddk_api.h&gt; <br/>库： libusb_ndk.z.so|
+| [usb_ddk_types.h](usb__ddk__types_8h.md) | 提供USB DDK中的枚举变量、结构体定义与宏定义。<br/>引用文件：&lt;usb/usb_ddk_types.h&gt; <br/>库： libusb_ndk.z.so|
 
 
 ### 结构体

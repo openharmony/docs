@@ -1,7 +1,7 @@
 # PasteButton
 
 
-安全组件的粘贴按钮，用户通过点击该粘贴按钮，可以临时获取读取剪贴板权限，而不会触发toast提示。
+安全控件的粘贴按钮，用户通过点击该粘贴按钮，可以临时获取读取剪贴板权限，而不会触发toast提示。
 
 
 > **说明：**
@@ -36,7 +36,7 @@ PasteButton(option:{icon?: PasteIconStyle, text?: PasteDescription, buttonType?:
 
 ## 属性
 
-不支持通用属性，仅继承[安全组件通用属性](ts-securitycomponent-attributes.md#属性)。
+不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md#属性)。
 
 
 ## PasteIconStyle枚举说明
@@ -81,7 +81,9 @@ struct Index {
     Row() {
       Column({space:10}) {
         // 默认参数下，图标、文字、背景都存在
-        PasteButton()
+        PasteButton().onClick((event: ClickEvent, result: PasteButtonOnClickResult)=>{
+          console.info("result " + result)
+        })
         // 传入参数即表示元素存在，不传入的参数表示元素不存在，例如：只显示图标
         PasteButton({icon:PasteIconStyle.LINES})
         // 只显示图标+背景

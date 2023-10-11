@@ -35,12 +35,15 @@ Before using the **Router** module, import it first.
 
 ```ts
 import router from '@ohos.router';
+import { BusinessError } from '@ohos.base';
+import promptAction from '@ohos.promptAction';
 ```
 
 - Scenario 1: There is a home page (**Home**) and a details page (**Detail**). You want to click an offering on the home page to go to the details page. In addition, the home page needs to be retained in the page stack so that the status can be restored when the page is returned. In this scenario, you can use the **pushUrl()** API and use the **Standard** instance mode (which can also be omitted).
 
 
   ```ts
+  import router from '@ohos.router';
   // On the Home page
   function onJumpClick(): void {
     router.pushUrl({
@@ -63,6 +66,7 @@ import router from '@ohos.router';
 
 
   ```ts
+  import router from '@ohos.router';
   // On the Login page
   function onJumpClick(): void {
     router.replaceUrl({
@@ -85,6 +89,7 @@ import router from '@ohos.router';
 
 
   ```ts
+  import router from '@ohos.router';
   // On the Setting page
   function onJumpClick(): void {
     router.pushUrl({
@@ -103,6 +108,7 @@ import router from '@ohos.router';
 
 
   ```ts
+  import router from '@ohos.router';
   // On the SearchResult page
   function onJumpClick(): void {
     router.replaceUrl({
@@ -122,27 +128,24 @@ If you need to transfer data to the target page during redirection, you can add 
 
 
 ```ts
+import router from '@ohos.router';
 class DataModelInfo {
-  age: number;
-
-  constructor(age: number) {
-    this.age = age;
-  }
+  age: number = 0;
 }
 
 class DataModel {
-  id: number;
-  info: DataModelInfo;
-
-  constructor(id: number, info: DataModelInfo) {
-    this.id = id;
-    this.info = info;
-  }
+  id: number = 0;
+  info: DataModelInfo|null = null;
 }
 
 function onJumpClick(): void {
   // On the Home page
-  let paramsInfo: DataModel = new DataModel(123, new DataModelInfo(20));
+  let paramsInfo: DataModel = {
+    id: 123,
+    info: {
+      age: 20
+    }
+  };
 
   router.pushUrl({
     url: 'pages/Detail', // Target URL.
@@ -161,9 +164,10 @@ On the target page, you can call the [getParams()](../reference/apis/js-apis-rou
 
 
 ```ts
-const params:DataModel = router.getParams() as DataModel; // Obtain the passed parameter object.
-const id:number = params.id; // Obtain the value of the id attribute.
-const age:number = params.info.age; // Obtain the value of the age attribute.
+import router from '@ohos.router';
+const params:Record<string,Object> = {'':router.getParams()}; // Obtain the passed parameter object.
+const id:Object = params['id']; // Obtain the value of the id attribute.
+const age:Object = params['info'].age; // Obtain the value of the age attribute.
 ```
 
 
@@ -188,6 +192,7 @@ You can use any of the following methods to return to a page:
 
 
   ```ts
+  import router from '@ohos.router';
   router.back();
   ```
 
@@ -197,6 +202,7 @@ You can use any of the following methods to return to a page:
 
 
   ```ts
+  import router from '@ohos.router';
   router.back({
     url: 'pages/Home'
   });
@@ -208,17 +214,12 @@ You can use any of the following methods to return to a page:
 
 
   ```ts
-  class routerParam {
-    info: string;
-
-    constructor(info: string) {
-      this.info = info;
-    }
-  }
-
+  import router from '@ohos.router';
   router.back({
     url: 'pages/Home',
-    params: new routerParam ('From Home Page')
+    params: {
+      info: 'From Home Page'
+    }
   });
   ```
 
@@ -228,9 +229,10 @@ On the target page, call the **router.getParams()** API at the position where pa
 
 
 ```ts
+import router from '@ohos.router';
 onPageShow() {
-  const params = router.getParams() as routerParam; // Obtain the passed parameter object.
-  const info = params.info; // Obtain the value of the info attribute.
+  const params:Record<string,Object> = {'':router.getParams()}; // Obtain the passed parameter object.
+  const info:Object = params['']; // Obtain the value of the info attribute.
 }
 ```
 
@@ -267,7 +269,8 @@ To enable the confirmation dialog box for page return, call the [router.showAler
 
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import router from '@ohos.router';
+import { BusinessError } from '@ohos.base';
 
 // Define a click event processing function for the back button.
 function onBackClick(): void {
@@ -277,7 +280,9 @@ function onBackClick(): void {
       message: 'Payment not completed yet. Are you sure you want to return?' // Set the content of the confirmation dialog box.
     });
   } catch (err) {
-    console.error(`Invoke showAlertBeforeBackPage failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+    let message = (err as BusinessError).message
+    let code = (err as BusinessError).code
+    console.error(`Invoke showAlertBeforeBackPage failed, code is ${code}, message is ${message}`);
   }
 
   // Invoke the router.back() API to return to the previous page.
@@ -307,7 +312,7 @@ In the event callback, call the [promptAction.showDialog()](../reference/apis/js
 
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
 import promptAction from '@ohos.promptAction';
 
 function onBackClick() {
@@ -324,7 +329,7 @@ function onBackClick() {
         color: '#0099FF'
       }
     ]
-  }).then((result) => {
+  }).then((result:promptAction.ShowDialogSuccessResponse) => {
     if (result.index === 0) {
       // The user selects Cancel.
       console.info('User canceled the operation.');
@@ -334,7 +339,7 @@ function onBackClick() {
       // Invoke the router.back() API to return to the previous page.
       router.back();
     }
-  }).catch((err:BusinessError) => {
+  }).catch((err:Error) => {
     console.error(`Invoke showDialog failed, code is ${err.code}, message is ${err.message}`);
   })
 }
@@ -369,27 +374,8 @@ When the configuration is successful, import the named route page to the page fr
 ```ts
 // entry/src/main/ets/pages/Index.ets
 import router from '@ohos.router';
-import'library/src/main/ets/pages/Index' // Import the named route page from the library of the shared package.
+import * from 'library/src/main/ets/Index.ets' // Import the named route page from the shared package library.
 import { BusinessError } from '@ohos.base';
-
-class innerParams {
-  data3: number[];
-
-  constructor(tuple: number[]) {
-    this.data3 = tuple;
-  }
-}
-
-class routerParams {
-  data1: string;
-  data2: innerParams;
-
-  constructor(data1: string, data2: number[]) {
-    this.data1 = data1;
-    this.data2 = new innerParams(data2);
-  }
-}
-
 @Entry
 @Component
 struct Index {
@@ -404,10 +390,17 @@ struct Index {
           try {
             router.pushNamedRoute({
               name: 'myPage',
-              params: new routerParams('message', [123, 456, 789])
+              params: {
+                data1: 'message',
+                data2: {
+                  data3: [123, 456, 789]
+                }
+              }
             })
           } catch (err) {
-            console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+            let message = (err as BusinessError).message
+            let code = (err as BusinessError).code
+            console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
           }
         })
     }

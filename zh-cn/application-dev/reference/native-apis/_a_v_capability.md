@@ -889,7 +889,7 @@ OH_AVCapability* OH_AVCodec_GetCapability (const char *mime, bool isEncoder)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mime | MIME类型。 | 
+| mime | MIME类型描述字符串，请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量)。 | 
 | isEncoder | 编码器为true，解码器为false。 | 
 
 **返回：**
@@ -920,7 +920,7 @@ OH_AVCapability* OH_AVCodec_GetCapabilityByCategory (const char *mime, bool isEn
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mime | MIME类型。 | 
+| mime | MIME类型描述字符串，请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量)。 | 
 | isEncoder | 编码器为true，解码器为false。 | 
 | category | 编解码器类别。 | 
 

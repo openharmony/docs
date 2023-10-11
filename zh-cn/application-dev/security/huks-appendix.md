@@ -34,7 +34,7 @@
 | RSA/ECB/NoPadding<br>RSA/ECB/PKCS1_V1_5<br>RSA/ECB/OAEP             | 8+                |  OAEP填充模式支持的摘要算法：SHA256/SHA384/SHA512  | 是 |
 | SM4/ECB/NoPadding<br> SM4/ECB/PKCS7<br>SM4/CBC/PKCS7 | 9+ | CBC模式下 IV 参数必选  |否 |
 | SM4/CTR/NoPadding<br>SM4/CBC/NoPadding<br> | 9+  | IV 参数必选  |是 |
-
+| SM2/-/NoPadding | 11+  | 摘要算法SM3  |是 |
 
 
 ### 签名&验签流程算法与摘要算法、填充模式的组合规格

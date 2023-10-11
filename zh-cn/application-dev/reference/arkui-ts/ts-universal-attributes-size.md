@@ -26,7 +26,7 @@
 | / | max(minWidth/minHeight, min(maxWidth/maxHeight, width/height))       |
 | maxWidth/maxHeight | max(minWidth/minHeight, width/height) |
 | minWidth/minHeight | min(maxWidth/maxHeight, width/height)       |
-|width/height|maxWidth/maxHeight > minWidth/minHeight时使用组件自身布局逻辑，<br/>结果在maxWidth/maxHeight与minWidth/minHeight之间。<br/> 其他情况结果为max(minWidth/minHeight, maxWidth, maxHeight)。 |
+|width/height|maxWidth/maxHeight > minWidth/minHeight时使用组件自身布局逻辑，<br/>结果在maxWidth/maxHeight与minWidth/minHeight之间。<br/> 其他情况结果为max(minWidth/minHeight, maxWidth/maxHeight)。 |
 |maxWidth/maxHeight && width/height| minWidth/minHeight |
 |minWidth/minHeight && width/height| 使用组件自身布局逻辑，最终结果不超过maxWidth/maxHeight |
 |maxWidth/maxHeight && minWidth/minHeight| width/height，根据其他布局属性可能拉伸或者压缩。 |

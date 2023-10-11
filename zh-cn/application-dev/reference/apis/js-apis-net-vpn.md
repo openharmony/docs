@@ -17,6 +17,8 @@ createVpnConnection(context: AbilityContext): VpnConnection
 
 创建一个 VPN 连接对象。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
 **参数：**
@@ -37,7 +39,8 @@ createVpnConnection(context: AbilityContext): VpnConnection
 
 | 错误码 ID | 错误信息         |
 | --------- | ---------------- |
-| 401       | Parameter error. |
+| 202       | Non-system applications use system APIs.         |
+| 401       | Parameter error.                                 |
 
 **示例：**
 Stage 模型示例：

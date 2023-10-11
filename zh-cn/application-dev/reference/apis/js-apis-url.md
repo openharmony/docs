@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```
-import Url from '@ohos.url' 
+import Url from '@ohos.url'
 ```
 ## URLParams<sup>9+</sup>
 
