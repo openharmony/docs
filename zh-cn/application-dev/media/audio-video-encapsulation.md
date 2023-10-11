@@ -94,7 +94,7 @@ target_link_libraries(sample PUBLIC libnative_media_avmuxer.so)
 
    ``` c++
    int videoTrackId = -1;
-   char *buffer = ...; // 编码config data，如果没有可以不传
+   uint8_t *buffer = ...; // 编码config data，如果没有可以不传
    size_t size = ...;  // 编码config data的长度，根据实际情况配置
    OH_AVFormat *formatVideo = OH_AVFormat_Create();
    OH_AVFormat_SetStringValue(formatVideo, OH_MD_KEY_CODEC_MIME, OH_AVCODEC_MIMETYPE_VIDEO_MPEG4); // 必填
@@ -113,7 +113,7 @@ target_link_libraries(sample PUBLIC libnative_media_avmuxer.so)
    
    ``` c++
    int videoTrackId = -1;
-   char *buffer = ...; // 编码config data，如果没有可以不传
+   uint8_t *buffer = ...; // 编码config data，如果没有可以不传
    size_t size = ...;  // 编码config data的长度，根据实际情况配置
    OH_AVFormat *formatVideo = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4, 1280, 720);
    OH_AVFormat_SetBuffer(formatVideo, OH_MD_KEY_CODEC_CONFIG, buffer, size); // 非必须
