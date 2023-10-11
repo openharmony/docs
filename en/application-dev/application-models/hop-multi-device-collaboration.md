@@ -315,17 +315,17 @@ A system application can connect to a service on another device by calling [conn
                             return;
                         }
                         let option = new rpc.MessageOption();
-                        let data = new rpc.MessageParcel();
-                        let reply = new rpc.MessageParcel();
+                        let data = new rpc.MessageSequence();
+                        let reply = new rpc.MessageSequence();
                         data.writeInt(1);
                         data.writeInt(99); // You can send data to the target application for corresponding operations.
                         // @param code Indicates the service request code sent by the client.
-                        // @param data Indicates the {@link MessageParcel} object sent by the client.
+                        // @param data Indicates the {@link MessageSequence} object sent by the client.
                         // @param reply Indicates the response message object sent by the remote service.
                         // @param options Specifies whether the operation is synchronous or asynchronous.
                         //
                         // @return Returns {@code true} if the operation is successful; returns {@code false} otherwise.
-                        remote.sendRequest(REQUEST_CODE, data, reply, option).then((ret: rpc.SendRequestResult) => {
+                        remote.sendMessageRequest(REQUEST_CODE, data, reply, option).then((ret: rpc.RequestResult) => {
                             let msg = reply.readInt();   // Receive the information (100) returned by the target device if the connection is successful.
                             console.info(`sendRequest ret:${ret} msg:${msg}`);
                         }).catch((error: BusinessError) => {
@@ -437,7 +437,7 @@ The following describes how to implement multi-device collaboration through cros
          
          ```ts
          import rpc from '@ohos.rpc'
-         export default class MyParcelable {
+         class MyParcelable {
              num: number = 0;
              str: string = "";
          
@@ -446,13 +446,13 @@ The following describes how to implement multi-device collaboration through cros
                  this.str = string;
              }
          
-             marshalling(messageSequence: rpc.MessageParcel) {
+             marshalling(messageSequence: rpc.MessageSequence) {
                  messageSequence.writeInt(this.num);
                  messageSequence.writeString(this.str);
                  return true;
              }
          
-             unmarshalling(messageSequence: rpc.MessageParcel) {
+             unmarshalling(messageSequence: rpc.MessageSequence) {
                  this.num = messageSequence.readInt();
                  this.str = messageSequence.readString();
                  return true;
