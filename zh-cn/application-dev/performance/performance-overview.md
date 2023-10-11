@@ -55,7 +55,7 @@
 - **ArkUI Inspector：**
   用于检查和调试应用程序页面布局的情况。
   
-- **Launch Profiler:**
+- **Launch Profiler：**
   分析启动过程中各阶段的性能问题。
 
 - **Frame Profiler：**
