@@ -19,14 +19,14 @@ The **NativeVsync** module provides the capabilities of native virtual synchroni
 
 | Name| Description|
 | -------- | -------- |
-| [native_vsync.h](native__vsync_8h.md) | Declares the functions for obtaining and using native VSync.<br>File to include: &lt;native_vsync/native_vsync.h&gt;|
+| [native_vsync.h](native__vsync_8h.md) | Declares the functions for obtaining and using native VSync.<br>**File to include**: &lt;native_vsync/native_vsync.h&gt;<br>**Library**: libnative_vsync.so|
 
 
 ### Types
 
 | Name| Description|
 | -------- | -------- |
-| [OH_NativeVSync](#oh_nativevsync) | Provides the declaration of an **OH_NativeVSync** struct. |
+| [OH_NativeVSync](#oh_nativevsync) | Provides the declaration of an **OH_NativeVSync** struct.|
 | (\*[OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback)) (long long timestamp, void \*data) | Defines the pointer to a VSync callback function.|
 
 
@@ -51,7 +51,7 @@ typedef struct OH_NativeVSync OH_NativeVSync
 
 **Description**
 
-Provides the declaration of a **OH_NativeVSync** struct.
+Provides the declaration of an **OH_NativeVSync** struct.
 
 
 ### OH_NativeVSync_FrameCallback
