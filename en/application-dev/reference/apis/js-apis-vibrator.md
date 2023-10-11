@@ -27,7 +27,7 @@ Starts vibration with the specified effect and attribute. This API uses an async
 
 | Name   | Type                                  | Mandatory| Description                                                      |
 | --------- | -------------------------------------- | ---- | :--------------------------------------------------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect.                                            |
+| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The options are as follows:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.                   |
 | attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.                                            |
 | callback  | AsyncCallback&lt;void&gt;              | Yes  | Callback used to return the result. If the vibration starts, **err** is **undefined**; otherwise, **err** is an error object.|
 
@@ -40,6 +40,8 @@ For details about the error codes, see [Vibrator Error Codes](../errorcodes/erro
 | 14600101 | Device operation failed. |
 
 **Example**
+
+Trigger vibration with the specified duration.
 
 ```ts
 import vibrator from '@ohos.vibrator';
@@ -65,6 +67,66 @@ try {
 }
 ```
 
+Trigger vibration with a preset effect.
+
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  vibrator.startVibration({
+    type: 'preset',
+    effectId: 'haptic.clock.timer',
+    count: 1,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error: BusinessError) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration');
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+Trigger vibration according to a custom vibration configuration file.
+
+```ts
+import vibrator from '@ohos.vibrator';
+import resourceManager from '@ohos.resourceManager';
+import { BusinessError } from '@ohos.base';
+
+const fileName: string = 'xxx.json';
+
+let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
+
+try {
+  vibrator.startVibration({
+    type: "file",
+    hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error: BusinessError) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration');
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+
+getContext().resourceManager.closeRawFdSync(fileName);
+```
+
 ## vibrator.startVibration<sup>9+</sup>
 
 startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
@@ -79,7 +141,7 @@ Starts vibration with the specified effect and attribute. This API uses a promis
 
 | Name   | Type                                  | Mandatory| Description          |
 | --------- | -------------------------------------- | ---- | -------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect.|
+| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The options are as follows:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.|
 | attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.|
 
 **Return value**
@@ -97,6 +159,8 @@ For details about the error codes, see [Vibrator Error Codes](../errorcodes/erro
 | 14600101 | Device operation failed. |
 
 **Example**
+
+Trigger vibration with the specified duration.
 
 ```ts
 import vibrator from '@ohos.vibrator';
@@ -120,6 +184,62 @@ try {
 }
 ```
 
+Trigger vibration with a preset effect.
+
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  vibrator.startVibration({
+    type: 'preset',
+    effectId: 'haptic.clock.timer',
+    count: 1,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }).then(() => {
+    console.info('Succeed in starting vibration');
+  }, (error: BusinessError) => {
+    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+Trigger vibration according to a custom vibration configuration file.
+
+```ts
+import vibrator from '@ohos.vibrator';
+import resourceManager from '@ohos.resourceManager';
+import { BusinessError } from '@ohos.base';
+
+const fileName: string = 'xxx.json';
+
+let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
+
+try {
+  vibrator.startVibration({
+    type: "file",
+    hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }).then(() => {
+    console.info('Succeed in starting vibration');
+  }, (error: BusinessError) => {
+    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+
+getContext().resourceManager.closeRawFdSync(fileName);
+```
+
 ## vibrator.stopVibration<sup>9+</sup>
 
 stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void
@@ -134,10 +254,12 @@ Stops vibration in the specified mode. This API uses an asynchronous callback to
 
 | Name  | Type                                 | Mandatory| Description                                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration.                                    |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration. The options are as follows:<br>- **VIBRATOR_STOP_MODE_TIME**: used to stop vibration with a fixed duration.<br>- **VIBRATOR_STOP_MODE_PRESET**: used to stop preset vibration.<br>To stop custom vibration, use [vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10).                               |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the vibration stops, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
+
+Stop vibration with a fixed duration.
 
 ```ts
 import vibrator from '@ohos.vibrator';
@@ -178,6 +300,48 @@ try {
 }
 ```
 
+Stop preset vibration.
+
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  // Start vibration with a preset effect.
+  vibrator.startVibration({
+    type: 'preset',
+    effectId: 'haptic.clock.timer',
+    count: 1,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error: BusinessError) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration');
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+
+try {
+  // Stop vibration in VIBRATOR_STOP_MODE_PRESET mode.
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: BusinessError) => {
+    if (error) {
+      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in stopping vibration');
+  })
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 ## vibrator.stopVibration<sup>9+</sup>
 
 stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
@@ -192,7 +356,7 @@ Stops vibration in the specified mode. This API uses a promise to return the res
 
 | Name  | Type                                 | Mandatory| Description                    |
 | -------- | ------------------------------------- | ---- | ------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration.|
+| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration. The options are as follows:<br>- **VIBRATOR_STOP_MODE_TIME**: used to stop vibration with a fixed duration.<br>- **VIBRATOR_STOP_MODE_PRESET**: used to stop preset vibration.<br>To stop custom vibration, use [vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10-1). |
 
 **Return value**
 
@@ -201,6 +365,8 @@ Stops vibration in the specified mode. This API uses a promise to return the res
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
+Stop vibration with a fixed duration.
 
 ```ts
 import vibrator from '@ohos.vibrator';
@@ -237,6 +403,44 @@ try {
 }
 ```
 
+Stop preset vibration.
+
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  // Start vibration with a preset effect.
+  vibrator.startVibration({
+    type: 'preset',
+    effectId: 'haptic.clock.timer',
+    count: 1,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }).then(() => {
+    console.info('Succeed in starting vibration');
+  }, (error: BusinessError) => {
+    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+
+try {
+  // Stop vibration in VIBRATOR_STOP_MODE_PRESET mode.
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
+    console.info('Succeed in stopping vibration');
+  }, (error: BusinessError) => {
+    console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 ## vibrator.stopVibration<sup>10+</sup>
 
 stopVibration(callback: AsyncCallback&lt;void&gt;): void
@@ -258,26 +462,6 @@ Stops vibration in all modes. This API uses an asynchronous callback to return t
 ```ts
 import vibrator from '@ohos.vibrator';
 import { BusinessError } from '@ohos.base';
-
-try {
-  // Start vibration at a fixed duration.
-  vibrator.startVibration({
-    type: 'time',
-    duration: 1000,
-  }, {
-    id: 0,
-    usage: 'alarm'
-  }, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in starting vibration');
-  });
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
 
 try {
   // Stop vibration in all modes.
@@ -317,24 +501,6 @@ import vibrator from '@ohos.vibrator';
 import { BusinessError } from '@ohos.base';
 
 try {
-  // Start vibration at a fixed duration.
-  vibrator.startVibration({
-    type: 'time',
-    duration: 1000,
-  }, {
-    id: 0,
-    usage: 'alarm'
-  }).then(() => {
-    console.info('Succeed in starting vibration');
-  }, (error: BusinessError) => {
-    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-
-try {
   // Stop vibration in all modes.
   vibrator.stopVibration().then(() => {
     console.info('Succeed in stopping vibration');
@@ -359,7 +525,7 @@ Checks whether the passed effect ID is supported. This API uses an asynchronous 
 
 | Name  | Type                        | Mandatory| Description                                                  |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| effectId | string                       | Yes  | Vibration effect ID.                                            |
+| effectId | string                       | Yes  | Vibration effect ID.                                          |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite.|
 
 **Example**
@@ -497,7 +663,7 @@ Describes the vibration effect.
 
 ## VibrateTime<sup>9+</sup>
 
-Describes the vibration with the specified duration.
+Describes the vibration with a fixed duration.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -531,7 +697,7 @@ Describes the custom vibration type, which is supported only by certain devices.
 
 ## HapticFileDescriptor<sup>10+</sup>
 
-Describes the FD of a custom vibration configuration file. Ensure that the file is available, and the parameters in it can be obtained from the sandbox path through the [file management API](js-apis-file-fs.md#fsopen) or from the HAP resource through the [resource management API](js-apis-resource-manager.md#getrawfd9). The use case is as follows: The system triggers vibration according to the sequence set in a configuration file, based on the specified offset and length. For details about the storage format of the vibration sequence, see [Custom Vibration Format](../../device/vibrator-guidelines.md#custom-vibration-format).
+Describes the FD of a custom vibration configuration file. Ensure that the file is available, and the parameters in it can be obtained from the sandbox path through the [file management API](js-apis-file-fs.md#fsopen) or from the HAP resource through the [resource management API](js-apis-resource-manager.md#getrawfd9). The use case is as follows: The system triggers vibration according to the sequence set in a configuration file, based on the specified offset and length. For details about the storage format of the vibration sequence, see [Custom Vibration](../../device/vibrator-guidelines.md#custom-vibration).
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
