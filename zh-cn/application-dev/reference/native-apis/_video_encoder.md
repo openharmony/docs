@@ -539,7 +539,7 @@ OH_AVErrCode OH_VideoEncoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCall
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向OH_AVCodec实例的指针。 | 
-| callback | 所有回调函数的集合，请参阅 **OH_AVCodecAsyncCallback**。 | 
+| callback | 所有回调函数的集合，请参阅 [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)。 | 
 | userData | 用户的特定数据。 | 
 
 **返回：**

@@ -25,7 +25,7 @@
 
   音频编辑（如调整单个声道的播放倍速等）需要基于PCM码流进行，所以需要先将音频文件解码。
 
-## 开发步骤
+## 开发指导
 
 详细的API说明请参考[API文档](../reference/native-apis/_audio_decoder.md)。
 参考以下示例代码，完成音频解码的全流程，包括：创建解码器，设置解码参数（采样率/码率/声道数等），开始，刷新，重置，销毁资源。
@@ -35,6 +35,15 @@
 
 如下为音频解码调用关系图：
 ![Invoking relationship of audio decode stream](figures/audio-decode.png)
+
+### 在 CMake 脚本中链接动态库
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+target_link_libraries(sample PUBLIC libnative_media_core.so)
+target_link_libraries(sample PUBLIC libnative_media_adec.so)
+```
+
+### 开发步骤
 
 1. 创建解码器实例对象
 

@@ -11,11 +11,20 @@
 
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 ("video/avc")，硬解则支持 H264 ("video/avc") 和 H265 ("video/hevc")。
 
-## 开发步骤
+## 开发指导
 
 详细的API说明请参考[API文档](../reference/native-apis/_video_decoder.md)。
 如下为视频解码调用关系图：
 ![Invoking relationship of video decode stream](figures/video-decode.png)
+
+### 在 CMake 脚本中链接动态库
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+target_link_libraries(sample PUBLIC libnative_media_core.so)
+target_link_libraries(sample PUBLIC libnative_media_vdec.so)
+```
+
+### 开发步骤
 
 1. 创建编解码器实例对象。
    
@@ -84,7 +93,7 @@
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
-        unique_lock<mutex> lock(signal_->inMutex_);
+        std::unique_lock<std::mutex> lock(signal_->inMutex_);
         // 解码输入帧id送入 inQueue_
         signal_->inQueue_.push(index);
         // 解码输入帧数据送入 inBufferQueue_
@@ -98,7 +107,7 @@
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
-        unique_lock<mutex> lock(signal_->outMutex_);
+        std::unique_lock<std::mutex> lock(signal_->outMutex_);
         // 将对应输出 buffer 的 index 送入 outQueue_
         signal_->outQueue_.push(index);
         // 将对应解码完成的数据 data 送入 outBufferQueue_ (注： Surface模式下data为空)
@@ -130,20 +139,11 @@
     OH_AVFormat_Destroy(format);
    ```
 
-4. （如需使用Surface送显，必须设置）设置Surface。
+4. （如需使用Surface送显，必须设置）设置Surface。应用需要从XComponent组件获取 nativeWindow，获取方式请参考 [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md)
    
    ``` c++
     // 配置送显窗口参数
-    sptr<Rosen::Window> window = nullptr;
-    sptr<Rosen::WindowOption> option = new Rosen::WindowOption();
-    option->SetWindowRect({0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT});
-    option->SetWindowType(Rosen::WindowType::WINDOW_TYPE_APP_LAUNCHING);
-    option->SetWindowMode(Rosen::WindowMode::WINDOW_MODE_FLOATING);
-    window = Rosen::Window::Create("video-decoding", option);
-    window->Show();
-    sptr<Surface> ps = window->GetSurfaceNode()->GetSurface();
-    OHNativeWindow *nativeWindow = CreateNativeWindowFromSurface(&ps);
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);    // 从 XComponent 获取 window 
     bool isSurfaceMode = true;
    ```  
 
@@ -251,7 +251,6 @@
      if (ret != AV_ERR_OK) {
          // 异常处理
      }
-     return AV_ERR_OK;
     ```
 
 12. 调用OH_VideoDecoder_Destroy()销毁解码器实例，释放资源。
@@ -263,6 +262,5 @@
      if (ret != AV_ERR_OK) {
          // 异常处理
      }
-     return AV_ERR_OK;
     ```
 
