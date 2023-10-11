@@ -457,7 +457,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.forEach((value: number, index?: number) => {
-  console.log("hyq value:" + value, "index:" + index);
+  console.log("value:" + value, "index:" + index);
 });
 ```
 
