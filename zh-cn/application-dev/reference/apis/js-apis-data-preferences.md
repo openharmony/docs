@@ -1894,7 +1894,7 @@ try {
 
 ### on('change')
 
-on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
+on(type: 'change', callback: ( key : string ) => void): void
 
 订阅数据变更，订阅的Key的值发生变更后，在执行[flush](#flush)方法后，触发callback回调。
 
@@ -1902,10 +1902,10 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                                     |
-| -------- | -------------------------------- | ---- | ---------------------------------------- |
-| type     | string                           | 是   | 事件类型，固定值'change'，表示数据变更。 |
-| callback | Callback&lt;{ key : string }&gt; | 是   | 回调对象实例。                           |
+| 参数名   | 类型     | 必填 | 说明                                     |
+| -------- | -------- | ---- | ---------------------------------------- |
+| type     | string   | 是   | 事件类型，固定值'change'，表示数据变更。 |
+| callback | Function | 是   | 回调函数。<br />key: 发生变化的Key。     |
 
 **示例：**
 
@@ -1947,7 +1947,7 @@ try {
 
 ### on('multiProcessChange')<sup>10+</sup>
 
-on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
+on(type: 'multiProcessChange', callback: ( key : string ) => void): void
 
 订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
 
@@ -1957,10 +1957,10 @@ on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                                                           |
-| -------- | -------------------------------- | ---- | -------------------------------------------------------------- |
-| type     | string                           | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
-| callback | Callback&lt;{ key : string }&gt; | 是   | 回调对象实例。                                                 |
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
+| callback | Function | 是   | 回调函数。<br />key: 发生变化的Key。                         |
 
 **错误码：**
 
@@ -2081,7 +2081,7 @@ try {
 
 ### off('change')
 
-off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
+off(type: 'change', callback?: ( key : string ) => void): void
 
 取消订阅数据变更。
 
@@ -2089,10 +2089,10 @@ off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                                       |
-| -------- | -------------------------------- | ---- | ------------------------------------------ |
-| type     | string                           | 是   | 事件类型，固定值'change'，表示数据变更。   |
-| callback | Callback&lt;{ key : string }&gt; | 否   | 需要取消的回调对象实例，不填写则全部取消。 |
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件类型，固定值'change'，表示数据变更。                     |
+| callback | Function | 否   | 需要取消的回调函数，不填写则全部取消。<br />key: 发生变化的Key。 |
 
 **示例：**
 
@@ -2137,7 +2137,7 @@ try {
 
 ### off('multiProcessChange')<sup>10+</sup>
 
-off(type: 'multiProcessChange', callback?: Callback&lt;{ key : string }&gt;): void
+off(type: 'multiProcessChange', callback?: ( key : string ) => void): void
 
 取消订阅进程间数据变更。
 
@@ -2145,10 +2145,10 @@ off(type: 'multiProcessChange', callback?: Callback&lt;{ key : string }&gt;): vo
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                                                           |
-| -------- | -------------------------------- | ---- | -------------------------------------------------------------- |
-| type     | string                           | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
-| callback | Callback&lt;{ key : string }&gt; | 否   | 需要取消的回调对象实例，不填写则全部取消。                     |
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
+| callback | Function | 否   | 需要取消的回调函数，不填写则全部取消。<br />key: 发生变化的Key。 |
 
 **示例：**
 
