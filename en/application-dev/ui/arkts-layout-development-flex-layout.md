@@ -554,34 +554,32 @@ When the size of the container in the flex layout is not large enough, the follo
 
 - **flexGrow**: percentage of the flex layout's remaining space that is allocated to the child component. In other words, it is the grow factor of the child component.
 
-
   ```ts
   Flex() {
-    Text('flexGrow(1)')
-      .flexGrow(1) 
-      .width(100)
-      .height(100)
-      .backgroundColor(0xF5DEB3)
-    
     Text('flexGrow(2)')
       .flexGrow(2)
       .width(100)
       .height(100)
+      .backgroundColor(0xF5DEB3)
+    Text('flexGrow(3)')
+      .flexGrow(3)
+      .width(100)
+      .height(100)
       .backgroundColor(0xD2B48C)
-
+  
     Text('no flexGrow')
-      .width(100) 
+      .width(100)
       .height(100)
       .backgroundColor(0xF5DEB3)
   }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE)
   ```
-
+  
   ![en-us_image_0000001562700449](figures/en-us_image_0000001562700449.png)
-
+  
   In the preceding figure, the width of the parent container is 400 vp, the original width of the three child components is 100 vp each, which adds up to the total width of 300 vp. The remaining space 100 vp is allocated to the child components based on their **flexGrow** settings. Child components that do not have **flexGrow** set are not involved in the allocation of remaining space.
-
+  
   The first child component and the second child component receive their share of remaining space at the 2:3 ratio. The width of the first child component is 100 vp + 100 vp x 2/5 = 140 vp, and the width of the second child component is 100 vp + 100 vp x 3/5 = 160 vp.
-
+  
 - **flexShrink**: shrink factor of the child component when the size of all child components is larger than the flex container.
 
 

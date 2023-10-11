@@ -272,28 +272,34 @@ Two modes are available for drawing with the **Canvas** component:
   **Canvas** also provides other usage. For example, regarding [CanvasGradient](../reference/arkui-ts/ts-components-canvas-canvasgradient.md), you can create a linear gradient with [createLinearGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createlineargradient) or create a radial gradient with [createRadialGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createradialgradient), among others.
 
   ```ts
-  class Contextset{
+  class ConTextSet{
     settings: RenderingContextSettings = new RenderingContextSettings(true)
     context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
   }
-  Canvas(this.context)
-    .width('100%')
-    .height('100%')
-    .backgroundColor('#F5DC62')
-    .onReady(() =>{
-      let con:Contextset = new Contextset()
-       // Create a CanvasGradient object with radial gradient colors.
-       let grad:CanvasRenderingContext2D|undefined = con.context.createRadialGradient(200,200,50, 200,200,200)
-       // Set the gradient color stop for the CanvasGradient object, including the offset and colors.
-       if(grad){
-        grad.addColorStop(0.0, '#E87361');
-        grad.addColorStop(0.5, '#FFFFF0');
-        grad.addColorStop(1.0, '#BDDB69');
-        con.context.fillStyle = grad;
-       }
-       // Fill the rectangle with the CanvasGradient object.
-      con.context.fillRect(0, 0, 400, 400);
-    })
+  @Entry
+  @Component
+  struct Gradient{
+    private ConTextSet:ConTextSet = new ConTextSet()
+    build(){
+      Column(){
+        Canvas(this.ConTextSet.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#F5DC62')
+          .onReady(() =>{
+            // Create a CanvasGradient object with radial gradient colors.
+            let grad = this.ConTextSet.context.createRadialGradient(200,200,50, 200,200,200)
+            // Set the gradient color stop for the CanvasGradient object, including the offset and colors.
+            grad.addColorStop(0.0, '#E87361');
+            grad.addColorStop(0.5, '#FFFFF0');
+            grad.addColorStop(1.0, '#BDDB69');
+            // Fill the rectangle with the CanvasGradient object.
+            this.ConTextSet.context.fillStyle = grad;
+            this.ConTextSet.context.fillRect(0, 0, 400, 400);
+          })
+      }
+    }
+  }
   ```
 
   ![2023022700701(1)](figures/2023022700701(1).jpg)

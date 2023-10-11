@@ -143,20 +143,7 @@ Below is the complete sample code and effect.
 
 ```ts
 import curves from '@ohos.curves';
-class SetOffset{
-  offsetX:number = 0;
-  offsetY:number = 0;
-  positionX:number = 100;
-  positionY:number = 100;
-  set(x:number,y:number):void{
-    this.offsetX = x;
-    this.offsetY = y;
-  }
-  setJ(x:number,y:number,diameter:number = 50):void{
-    this.positionX = x - diameter / 2;
-    this.positionY = y - diameter / 2;
-  }
-}
+
 @Entry
 @Component
 struct SpringMotionDemo {
@@ -176,15 +163,15 @@ struct SpringMotionDemo {
                 // When the user places or moves their finger on the screen, use the responsiveSpringMotion curve.
                 animateTo({ curve: curves.responsiveSpringMotion() }, () => {
                   // Subtract the radius so that the center of the ball moves to where the finger is placed.
-                  let setxy = new SetOffset();
-                  setxy.setJ(event.touches[0].screenX,event.touches[0].screenY,this.diameter)
-                  console.info(`move, animateTo x:${setxy.positionX}, y:${setxy.positionY}`);
+                  this.positionX = event.touches[0].screenX - this.diameter / 2;
+                  this.positionY = event.touches[0].screenY - this.diameter / 2;
+                  console.info(`move, animateTo x:${this.positionX}, y:${this.positionY}`);
                 })
               } else if (event.type === TouchType.Up) {
                 // After the user lifts their finger off the screen, use the springMotion curve.
                 animateTo({ curve: curves.springMotion() }, () => {
-                  let setxy = new SetOffset();
-                  setxy.set(100,100)
+                  this.positionX = 100;
+                  this.positionY = 100;
                   console.info(`touchUp, animateTo x:100, y:100`);
                 })
               }
