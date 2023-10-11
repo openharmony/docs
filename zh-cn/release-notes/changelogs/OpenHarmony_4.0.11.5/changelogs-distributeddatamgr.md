@@ -109,7 +109,7 @@ on(
 
 
 
-## cl.distributeddatamgr.4 data.DistributedObject.off参数变更
+## cl.distributeddatamgr.4 data.DataObject.off参数变更
 
 **变更影响**
 
