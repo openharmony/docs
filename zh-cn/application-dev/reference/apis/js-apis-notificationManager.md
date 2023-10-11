@@ -3782,8 +3782,6 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
@@ -4242,10 +4240,10 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明           |
-| ------ | ----------------------------- | ---- | -------------- |
-| type | string | 是   | 回调函数类型名，固定为'checkNotification'。 |
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)    | 是   | 消息验证函数指针。 |
+| 参数名 | 类型                                                                                                                      | 必填 | 说明           |
+| ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
+| type | string                                                                                                                  | 是   | 回调函数类型名，固定为'checkNotification'。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | 是   | 消息验证函数指针。 |
 
 **错误码：**
 
@@ -4291,10 +4289,10 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明           |
-| ------ | ----------------------------- | ---- | -------------- |
-| type | string                                                       | 是   | 回调函数类型名，固定为'checkNotification'。 |
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)  | 否   | 消息验证函数指针，默认为空。 |
+| 参数名 | 类型                                                                                                                      | 必填 | 说明           |
+| ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
+| type | string                                                                                                                  | 是   | 回调函数类型名，固定为'checkNotification'。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | 否   | 消息验证函数指针，默认为空。 |
 
 **错误码：**
 
