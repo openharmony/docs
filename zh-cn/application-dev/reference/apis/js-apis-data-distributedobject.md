@@ -298,7 +298,7 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-| callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备，即deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 **示例：**
 
@@ -662,7 +662,7 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-| callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备，即deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 **示例：**
 
