@@ -128,8 +128,8 @@
 | setSessionId(callback: AsyncCallback&lt;void&gt;): void | 退出所有已加入的session。 |
 | on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void | 监听分布式数据对象的数据变更。 |
 | off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void | 取消监听分布式数据对象的数据变更。 |
-| on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ): void | 监听分布式数据对象的上下线。 |
-| off(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \|'offline' ): void | 取消监听分布式数据对象的上下线。 |
+| on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void): void | 监听分布式数据对象的上下线。 |
+| off(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | 取消监听分布式数据对象的上下线。 |
 | save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | 保存分布式数据对象。 |
 | revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | 撤回保存的分布式数据对象。 |
 
