@@ -28,7 +28,7 @@
  on(type: 'change', callback: (sessionId: string, fields: Array<string>) => void): void;
  on(
     type: 'status',
-    callback?: (sessionId: string, networkId: string, status: 'online' | 'offline' ) => void
+    callback: (sessionId: string, networkId: string, status: 'online' | 'offline' ) => void
  ): void;
  ```
 

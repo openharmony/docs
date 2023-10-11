@@ -6,7 +6,6 @@
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口仅支持在JS文件中使用。
 
 
 ## 导入模块
@@ -323,7 +322,7 @@ off(type: 'status', callback?:(sessionId: string, networkId: string, status: 'on
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-| callback | Function | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>deviceId：标识变更对象的deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| callback | Function | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识变更对象的networkId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 
 **示例：**
@@ -693,7 +692,7 @@ off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'o
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-| callback | Function | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>deviceId：标识变更对象的deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| callback | Function | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识变更对象的networkId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 
 **示例：**
