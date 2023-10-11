@@ -138,7 +138,7 @@
 
 1. 导入`@ohos.data.distributedDataObject`模块。
    
-   ```js
+   ```ts
    import distributedDataObject from '@ohos.data.distributedDataObject';
    ```
 
@@ -151,7 +151,7 @@
 
    Stage模型示例：
    
-   ```js
+   ```ts
    // 导入模块
    import distributedDataObject from '@ohos.data.distributedDataObject';
    import UIAbility from '@ohos.app.ability.UIAbility';
@@ -173,7 +173,7 @@
    FA模型示例：
 
    
-   ```js
+   ```ts
    // 导入模块
    import distributedDataObject from '@ohos.data.distributedDataObject';
    import featureAbility from '@ohos.ability.featureAbility';
@@ -191,7 +191,7 @@
 
 4. 加入同步组网。同步组网中的数据对象分为发起方和被拉起方。
    
-   ```js
+   ```ts
    // 设备1加入sessionId
    let sessionId = '123456';
    
@@ -213,7 +213,7 @@
 
 5. 监听对象数据变更。可监听对端数据的变更，以callback作为变更回调实例。
    
-   ```js
+   ```ts
    localObject.on("change", (sessionId, fields) => {
      console.info("change" + sessionId);
      if (fields != null && fields != undefined) {
@@ -226,7 +226,7 @@
 
 6. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
    
-   ```js
+   ```ts
    localObject["name"] = 'jack1';
    localObject["age"] = 19;
    localObject["isVis"] = false;
@@ -239,7 +239,7 @@
    > 针对复杂类型的数据修改，目前仅支持对根属性的修改，暂不支持对下级属性的修改。
 
    
-   ```js
+   ```ts
    // 支持的修改方式
    localObject["parent"] = { mother: 'mom', father: 'dad' };
    // 不支持的修改方式
@@ -248,13 +248,13 @@
 
 7. 访问对象。可以通过直接获取的方式访问到分布式数据对象的属性，且该数据为组网内的最新数据。
    
-   ```js
+   ```ts
    console.info(`name:${localObject['name']}`); 
    ```
 
 8. 删除监听数据变更。可以指定删除监听的数据变更回调；也可以不指定，这将会删除该分布式数据对象的所有数据变更回调。
    
-   ```js
+   ```ts
    // 删除变更回调changeCallback
    localObject.off('change', (sessionId, fields) => {
      console.info("change" + sessionId);
@@ -270,7 +270,7 @@
 
 9. 监听分布式数据对象的上下线。可以监听对端分布式数据对象的上下线。
    
-   ```js
+   ```ts
    localObject.on('status', (sessionId, networkId, status) => {
      // 业务处理
    });
@@ -278,7 +278,7 @@
 
 10. 保存和撤回已保存的数据对象。
     
-    ```js
+    ```ts
     // 保存数据对象，如果应用退出后组网内设备需要恢复对象数据时调用
     localObject.save('local').then((result) => {
       console.info(`Succeeded in saving. SessionId:${result.sessionId},version:${result.version},deviceId:${result.deviceId}`);
@@ -296,7 +296,7 @@
 
 11. 删除监听分布式数据对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
     
-    ```js
+    ```ts
     // 删除上下线回调statusCallback
     localObject.off('status', (sessionId, deviceId, status) => {
       // 业务处理
@@ -307,7 +307,7 @@
 
 12. 退出同步组网。分布式数据对象退出组网后，本地的数据变更对端不会同步。
     
-    ```js
+    ```ts
     localObject.setSessionId(() => {
         console.info('leave all session.');
     });

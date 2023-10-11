@@ -11,7 +11,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import distributedObject from '@ohos.data.distributedDataObject';
 ```
 
@@ -40,7 +40,7 @@ create(context: Context, source: object): DataObject
 
 FA模型示例：
 
-```js
+```ts
 // 导入模块
 import distributedObject from '@ohos.data.distributedDataObject';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -83,7 +83,7 @@ genSessionId(): string
 
 **示例：**
 
-```js
+```ts
 import distributedObject from '@ohos.data.distributedDataObject';
 let sessionId = distributedObject.genSessionId();
 ```
@@ -141,7 +141,7 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId(), ()=>{
     console.info("join session");
@@ -174,7 +174,7 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId(), ()=>{
     console.info("join session");
@@ -217,7 +217,7 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
     console.info("join session.");
@@ -249,7 +249,7 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 
 **示例：**
 
-```js
+```ts
 let changeCallback = (sessionId, changeData) => {
     console.info("change" + sessionId);
     if (changeData != null && changeData != undefined) {
@@ -263,7 +263,7 @@ g_object.on("change", changeCallback);
 
 ### off('change')<sup>9+</sup>
 
-off(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void ): void
+off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void ): void
 
 当不再进行数据变更监听时，使用此接口删除对象的变更监听。
 
@@ -279,7 +279,7 @@ off(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =
 
 **示例：**
 
-```js
+```ts
 // 删除数据变更回调changeCallback
 g_object.off("change", changeCallback);
 // 删除所有的数据变更回调
@@ -299,11 +299,11 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-| callback | Function |  | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备，即deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备，即deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 **示例：**
 
-```js
+```ts
 let statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
@@ -312,7 +312,7 @@ g_object.on("status", statusCallback);
 
 ### off('status')<sup>9+</sup>
 
-off(type: 'status', callback:(sessionId: string, networkId: string, status: 'online' \| 'offline') => void): void
+off(type: 'status', callback?:(sessionId: string, networkId: string, status: 'online' \| 'offline') => void): void
 
 当不再进行对象上下线监听时，使用此接口删除对象的上下线监听。
 
@@ -323,12 +323,12 @@ off(type: 'status', callback:(sessionId: string, networkId: string, status: 'onl
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-| callback | Function |  | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>deviceId：标识变更对象的deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| callback | Function | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>deviceId：标识变更对象的deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 
 **示例：**
 
-```js
+```ts
 let statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
@@ -408,7 +408,7 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
 
 **示例：**
 
-```js
+```ts
 g_object.setSessionId("123456");
 g_object.save("local").then((result) => {
     console.info("save callback");
@@ -440,7 +440,7 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 
 **示例：**
 
-```js
+```ts
 g_object.setSessionId("123456");
 // 持久化数据
 g_object.save("local", (err, result) => {
@@ -534,7 +534,7 @@ createDistributedObject(source: object): DistributedObject
 
 **示例：**
 
-```js
+```ts
 import distributedObject from '@ohos.data.distributedDataObject';
 // 创建对象，对象包含4个属性类型，string,number,boolean和Object
 let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
@@ -572,7 +572,7 @@ setSessionId(sessionId?: string): boolean
 
 **示例：**
 
-```js
+```ts
 import distributedObject from '@ohos.data.distributedDataObject';
 let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});;
 // g_object加入分布式组网
@@ -602,7 +602,7 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 
 **示例：**
 
-```js
+```ts
 import distributedObject from '@ohos.data.distributedDataObject';
 let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 let changeCallback = (sessionId, changeData) => {
@@ -618,7 +618,7 @@ g_object.on("change", changeCallback);
 
 ### off('change')<sup>(deprecated)</sup>
 
-off(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void
+off(type: 'change', callback:? (sessionId: string, fields: Array&lt;string&gt;) => void): void
 
 当不再进行数据变更监听时，使用此接口删除对象的变更监听。
 
@@ -637,7 +637,7 @@ off(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =
 
 **示例：**
 
-```js
+```ts
 import distributedObject from '@ohos.data.distributedDataObject';
 let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 // 删除数据变更回调changeCallback
@@ -667,7 +667,7 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 
 **示例：**
 
-```js
+```ts
 import distributedObject from '@ohos.data.distributedDataObject';
 let statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
@@ -678,7 +678,7 @@ g_object.on("status", statusCallback);
 
 ### off('status')<sup>(deprecated)</sup>
 
-off(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' | 'offline' ) => void): void
+off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' | 'offline' ) => void): void
 
 当不再进行对象上下线监听时，使用此接口删除对象的上下线监听。
 
@@ -698,7 +698,7 @@ off(type: 'status', callback: (sessionId: string, networkId: string, status: 'on
 
 **示例：**
 
-```js
+```ts
 import distributedObject from '@ohos.data.distributedDataObject';
 let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 let statusCallback = (sessionId, networkId, status) => {

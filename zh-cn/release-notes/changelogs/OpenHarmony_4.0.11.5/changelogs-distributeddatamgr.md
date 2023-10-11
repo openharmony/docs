@@ -50,10 +50,10 @@
 修改前的接口原型
 
  ```ts
-off(type: 'change', callback: Callback<{ sessionId: string, fields: Array<string> }>): void;
+off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array<string> }>): void;
 off(
   type: 'status',
-  callback: Callback<{ sessionId: string, networkId: string, status: 'online' | 'offline' }>
+  callback?: Callback<{ sessionId: string, networkId: string, status: 'online' | 'offline' }>
 ): void;
 
  ```
@@ -61,7 +61,7 @@ off(
 修改后的接口原型
 
  ```ts
-off(type: 'change', callback: (sessionId: string, fields: Array<string>) => void): void;
+off(type: 'change', callback?: (sessionId: string, fields: Array<string>) => void): void;
 off(
    type: 'status',
    callback?: (sessionId: string, networkId: string, status: 'online' | 'offline' ) => void
@@ -100,7 +100,7 @@ on(
 on(type: 'change', callback: (sessionId: string, fields: Array<string>) => void): void;
 on(
    type: 'status',
-   callback?: (sessionId: string, networkId: string, status: 'online' | 'offline' ) => void
+   callback: (sessionId: string, networkId: string, status: 'online' | 'offline' ) => void
 ): void;
  ```
 
@@ -122,10 +122,10 @@ on(
 修改前的接口原型
 
  ```ts
-off(type: 'change', callback: Callback<{ sessionId: string, fields: Array<string> }>): void;
+off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array<string> }>): void;
 off(
   type: 'status',
-  callback: Callback<{ sessionId: string, networkId: string, status: 'online' | 'offline' }>
+  callback?: Callback<{ sessionId: string, networkId: string, status: 'online' | 'offline' }>
 ): void;
 
  ```
@@ -133,7 +133,7 @@ off(
 修改后的接口原型
 
  ```ts
-off(type: 'change', callback: (sessionId: string, fields: Array<string>) => void): void;
+off(type: 'change', callback?: (sessionId: string, fields: Array<string>) => void): void;
 off(
    type: 'status',
    callback?: (sessionId: string, networkId: string, status: 'online' | 'offline' ) => void
@@ -157,14 +157,14 @@ off(
 
  ```ts
 on(type: 'multiProcessChange', callback: Callback<{ key : string }>): void
-on(type: 'change', callback?: Callback<{ key : string }>): void
+on(type: 'change', callback: Callback<{ key : string }>): void
  ```
 
 修改后的接口原型
 
  ```ts
 on(type: 'multiProcessChange', callback: ( key : string ) => void): void
-on(type: 'change', callback?: ( key : string ) => void): void
+on(type: 'change', callback: ( key : string ) => void): void
  ```
 
 **适配指导**
@@ -184,14 +184,14 @@ on(type: 'change', callback?: ( key : string ) => void): void
 修改前的接口原型
 
  ```ts
-off(type: 'multiProcessChange', callback: Callback<{ key : string }>): void
+off(type: 'multiProcessChange', callback?: Callback<{ key : string }>): void
 off(type: 'change', callback?: Callback<{ key : string }>): void
  ```
 
 修改后的接口原型
 
  ```ts
-off(type: 'multiProcessChange', callback: ( key : string ) => void): void
+off(type: 'multiProcessChange', callback?: ( key : string ) => void): void
 off(type: 'change', callback?: ( key : string ) => void): void
  ```
 
