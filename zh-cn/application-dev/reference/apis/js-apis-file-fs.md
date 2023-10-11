@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import fs, { Filter, ConflictFiles } from '@ohos.file.fs';
+import fs from '@ohos.file.fs';
 ```
 
 ## 使用说明
@@ -71,9 +71,8 @@ stat(file: string|number): Promise&lt;Stat&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stat } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.stat(filePath).then((stat: Stat) => {
+  fs.stat(filePath).then((stat: fs.Stat) => {
     console.info("get file info succeed, the size of file is " + stat.size);
   }).catch((err: BusinessError) => {
     console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
@@ -103,8 +102,7 @@ stat(file: string|number, callback: AsyncCallback&lt;Stat&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stat } from '@ohos.file.fs';
-  fs.stat(pathDir, (err: BusinessError, stat: Stat) => {
+  fs.stat(pathDir, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
       console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -525,6 +523,7 @@ copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void,
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { ConflictFiles } from '@ohos.file.fs';
   // copy directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -735,14 +734,12 @@ open(path: string, mode?: number): Promise&lt;File&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { File } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file: File) => {
+  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file: fs.File) => {
     console.info("file fd: " + file.fd);
+    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
-  }).finally(() => {
-    fs.closeSync(file);
   });
   ```
 
@@ -770,9 +767,8 @@ open(path: string, mode?: number, callback: AsyncCallback&lt;File&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { File } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: File) => {
+  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: fs.File) => {
     if (err) {
       console.info("open failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1495,9 +1491,8 @@ lstat(path: string): Promise&lt;Stat&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stat } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.lstat(filePath).then((stat: Stat) => {
+  fs.lstat(filePath).then((stat: fs.Stat) => {
     console.info("get link status succeed, the size of file is" + stat.size);
   }).catch((err: BusinessError) => {
     console.info("get link status failed with error message: " + err.message + ", error code: " + err.code);
@@ -1527,14 +1522,13 @@ lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stat } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.lstat(filePath, (err: BusinessError, stat: Stat) => {
-      if (err) {
-        console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
-      } else {
-        console.info("get link status succeed, the size of file is" + stat.size);
-      }
+  fs.lstat(filePath, (err: BusinessError, stat: fs.Stat) => {
+    if (err) {
+      console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("get link status succeed, the size of file is" + stat.size);
+    }
   });
   ```
 
@@ -2012,6 +2006,7 @@ listFile(path: string, options?: {
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { Filter } from '@ohos.file.fs';
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
@@ -2021,7 +2016,7 @@ listFile(path: string, options?: {
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
   option.filter.displayName = ["*abc", "efg*"];
   option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date(0).getTime();
+  option.filter.lastModifiedAfter = new Date().getTime();
   fs.listFile(pathDir, option).then((filenames: Array<string>) => {
     console.info("listFile succeed");
     for (let i = 0; i < filenames.length; i++) {
@@ -2067,6 +2062,7 @@ listFile(path: string, options?: {
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { Filter } from '@ohos.file.fs';
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
@@ -2076,7 +2072,7 @@ listFile(path: string, options?: {
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
   option.filter.displayName = ["*abc", "efg*"];
   option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date(0).getTime();
+  option.filter.lastModifiedAfter = new Date().getTime();
   fs.listFile(pathDir, option, (err: BusinessError, filenames: Array<string>) => {
     if (err) {
       console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
@@ -2129,6 +2125,7 @@ listFileSync(path: string, options?: {
 **示例：**
 
   ```ts
+  import fs, { Filter } from '@ohos.file.fs';
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
@@ -2138,7 +2135,7 @@ listFileSync(path: string, options?: {
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
   option.filter.displayName = ["*abc", "efg*"];
   option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date(0).getTime();
+  option.filter.lastModifiedAfter = new Date().getTime();
   let filenames = fs.listFileSync(pathDir, option);
   console.info("listFile succeed");
   for (let i = 0; i < filenames.length; i++) {
@@ -2211,6 +2208,7 @@ moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void,
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { ConflictFiles } from '@ohos.file.fs';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -2493,10 +2491,9 @@ createRandomAccessFile(file: string|File, mode?: number): Promise&lt;RandomAcces
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { RandomAccessFile } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  fs.createRandomAccessFile(file).then((randomAccessFile: RandomAccessFile) => {
+  fs.createRandomAccessFile(file).then((randomAccessFile: fs.RandomAccessFile) => {
     console.info("randomAccessFile fd: " + randomAccessFile.fd);
     randomAccessFile.close();
   }).catch((err: BusinessError) => {
@@ -2530,10 +2527,9 @@ createRandomAccessFile(file: string|File, mode?: number, callback: AsyncCallback
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { RandomAccessFile } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: RandomAccessFile) => {
+  fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
     if (err) {
       console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2609,9 +2605,8 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stream } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+").then((stream: Stream) => {
+  fs.createStream(filePath, "r+").then((stream: fs.Stream) => {
     console.info("createStream succeed");
   }).catch((err: BusinessError) => {
     console.info("createStream failed with error message: " + err.message + ", error code: " + err.code);
@@ -2643,9 +2638,8 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stream } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+", (err: BusinessError, stream: Stream) => {
+  fs.createStream(filePath, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
       console.info("create stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2716,10 +2710,9 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stream } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdopenStream(file.fd, "r+").then((stream: Stream) => {
+  fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
     console.info("openStream succeed");
     stream.closeSync();
   }).catch((err: BusinessError) => {
@@ -2753,10 +2746,9 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stream } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-  fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: Stream) => {
+  fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
       console.info("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2831,10 +2823,10 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 **示例：**
 
   ```ts
-  import { WatchEventListener } from '@ohos.file.fs';
+  import fs, { WatchEvent } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: WatchEventListener) => {
+  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: WatchEvent) => {
     if (watchEvent.event == 0x2) {
       console.info(watchEvent.fileName + 'was modified');
     } else if (watchEvent.event == 0x10) {
@@ -3503,7 +3495,8 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
   let option = new Option();
   option.offset = 5;
   option.length = 5;
-  let num = ss.readSync(new ArrayBuffer(4096), option);
+  let buf = new ArrayBuffer(4096);
+  let num = ss.readSync(buf, option);
   ```
 
 ## File
@@ -3870,6 +3863,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
@@ -3886,7 +3880,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
     console.info("randomAccessFile readLength: " + readLength);
     randomaccessfile.close();
     fs.closeSync(file);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
