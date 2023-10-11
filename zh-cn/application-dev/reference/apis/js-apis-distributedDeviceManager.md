@@ -155,7 +155,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
   import { BusinessError } from '@ohos.base'
 
   try {
-    let deviceInfoList: Array<deviceManager.eviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+    let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error("getAvailableDeviceListSync errCode:" + e.code + ",errMessage:" + e.message);
