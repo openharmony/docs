@@ -1,7 +1,7 @@
 # @ohos.arkui.advanced.SelectTitleBar（下拉菜单标题栏）
 
 
-普通型标题栏的一种，含有一个 Select 控件，可用于页面之间的切换；可用于一级页面、二级及其以上界面（配置返回键）。
+下拉菜单标题栏包含一个下拉菜单，可用于页面之间的切换；可用于一级页面、二级及其以上界面（配置返回键）。
 
 
 > **说明：**
@@ -57,18 +57,30 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 
 ## 示例
 
-### 示例 1
-
 ```ts
 import { SelectTitleBar } from "@ohos.arkui.advanced.SelectTitleBar"
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 
 @Entry
 @Component
 struct Index {
+  menuItems: { value: Resource, isEnabled: boolean, action: () => void }[] =
+    [ { isEnabled: true, value: $r('app.media.ic_public_save'),
+        action: () => promptAction.showToast({ message: "show toast index 1" })
+      },
+      { isEnabled: true, value: $r('app.media.ic_public_reduce'),
+        action: () => promptAction.showToast({ message: "show toast index 2" })
+      },
+      { isEnabled: true, value: $r('app.media.ic_public_edit'),
+        action: () => promptAction.showToast({ message: "show toast index 3" })
+      },
+      { isEnabled: true, value: $r('app.media.ic_public_reduce'),
+        action: () => promptAction.showToast({ message: "show toast index 4" })
+      } ]
+
   build() {
-    Row() {
-      Column() {
+    Column() {
+      Row() {
         SelectTitleBar({
           options: [
             { value: '所有照片' },
@@ -76,30 +88,12 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' }
           ],
           selected: 0,
-          onSelected: (index) => prompt.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
           hidesBackButton: true
         })
       }.width('100%')
-    }.height('100%')
-  }
-}
-```
 
-![zh-cn_image_0000001665793709](figures/zh-cn_image_0000001665793709.png)
-
-
-### 示例 2
-
-```ts
-import { SelectTitleBar } from "@ohos.arkui.advanced.SelectTitleBar"
-import prompt from '@system.prompt'
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Column() {
+      Row() {
         Divider().height(2).color(0xCCCCCC)
         SelectTitleBar({
           options: [
@@ -108,7 +102,7 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' }
           ],
           selected: 0,
-          onSelected: (index) => prompt.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
           hidesBackButton: false
         })
         Divider().height(2).color(0xCCCCCC)
@@ -119,8 +113,8 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' }
           ],
           selected: 1,
-          onSelected: (index) => prompt.showToast({ message: 'page index ' + index }),
-          subtitle: "example@openharmony.cn"
+          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          subtitle: "example@example.com"
         })
         Divider().height(2).color(0xCCCCCC)
         SelectTitleBar({
@@ -130,47 +124,16 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' }
           ],
           selected: 1,
-          onSelected: (index) => prompt.showToast({ message: 'page index ' + index }),
-          subtitle: "example@openharmony.cn",
+          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          subtitle: "example@example.com",
           menuItems: [ { isEnabled: true, value: $r('app.media.ic_public_save'),
-            action: () => prompt.showToast({ message: "show toast index 1" })
+            action: () => promptAction.showToast({ message: "show toast index 1" })
           } ]
         })
         Divider().height(2).color(0xCCCCCC)
       }.width('100%')
-    }.height('100%')
-  }
-}
-```
 
-![zh-cn_image_0000001617439304](figures/zh-cn_image_0000001617439304.png)
-
-
-### 示例 3
-
-```ts
-import { SelectTitleBar } from "@ohos.arkui.advanced.SelectTitleBar"
-import prompt from '@system.prompt'
-
-@Entry
-@Component
-struct Index {
-  menuItems: { value: Resource, isEnabled: boolean, action: () => void }[] =
-    [ { isEnabled: true, value: $r('app.media.ic_public_save'),
-        action: () => prompt.showToast({ message: "show toast index 1" })
-      },
-      { isEnabled: true, value: $r('app.media.ic_public_reduce'),
-        action: () => prompt.showToast({ message: "show toast index 2" })
-      },
-      { isEnabled: true, value: $r('app.media.ic_public_edit'),
-        action: () => prompt.showToast({ message: "show toast index 3" })
-      },
-      { isEnabled: true, value: $r('app.media.ic_public_reduce'),
-        action: () => prompt.showToast({ message: "show toast index 4" })
-      } ]
-  build() {
-    Row() {
-      Column() {
+      Row() {
         SelectTitleBar({
           options: [
             { value: '所有照片' },
@@ -178,8 +141,8 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' }
           ],
           selected: 0,
-          onSelected: (index) => prompt.showToast({ message: 'page index ' + index }),
-          subtitle: "example@openharmony.cn",
+          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          subtitle: "example@example.com",
           menuItems: this.menuItems,
           badgeValue: 99,
           hidesBackButton: true
@@ -189,5 +152,9 @@ struct Index {
   }
 }
 ```
+
+![zh-cn_image_0000001665793709](figures/zh-cn_image_0000001665793709.png)
+
+![zh-cn_image_0000001617439304](figures/zh-cn_image_0000001617439304.png)
 
 ![zh-cn_image_0000001616959836](figures/zh-cn_image_0000001616959836.png)
