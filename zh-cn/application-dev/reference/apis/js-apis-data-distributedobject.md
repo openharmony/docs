@@ -234,7 +234,7 @@ g_object.setSessionId().then (()=>{
 
 ### on('change')<sup>9+</sup>
 
-on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void
+ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void ): void
 
 监听分布式数据对象的数据变更。
 
@@ -242,10 +242,10 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
-  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | 是 | 变更回调对象实例。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
+| callback | Function | 是 | 变更回调对象实例。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
 **示例：**
 
@@ -263,7 +263,7 @@ g_object.on("change", globalThis.changeCallback);
 
 ### off('change')<sup>9+</sup>
 
-off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void
+ off(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void ): void
 
 当不再进行数据变更监听时，使用此接口删除对象的变更监听。
 
@@ -271,10 +271,10 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
-  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | 否 | 需要删除的数据变更回调，若不设置则删除该对象所有的数据变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
+| callback | Function | 否 | 需要删除的数据变更回调，若不设置则删除该对象所有的数据变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
 
 **示例：**
@@ -288,7 +288,7 @@ g_object.off("change");
 
 ### on('status')<sup>9+</sup>
 
-on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, status: 'online' | 'offline' }>): void
+on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ): void
 
 监听分布式数据对象的上下线。
 
@@ -296,10 +296,10 @@ on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, st
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-  | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备，即deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
+| callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备，即deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 **示例：**
 
@@ -312,7 +312,7 @@ g_object.on("status", globalThis.statusCallback);
 
 ### off('status')<sup>9+</sup>
 
-off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, status: 'online' | 'offline' }>): void
+off(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ): void
 
 当不再进行对象上下线监听时，使用此接口删除对象的上下线监听。
 
@@ -320,10 +320,10 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-  | callback | Callback<{ sessionId: string, deviceId: string, status: 'online' \| 'offline' }> | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>deviceId：标识变更对象的deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
+| callback | Function | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>deviceId：标识变更对象的deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 
 **示例：**
@@ -583,7 +583,7 @@ g_object.setSessionId("");
 
 ### on('change')<sup>(deprecated)</sup>
 
-on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void
+on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void
 
 监听分布式数据对象的变更。
 
@@ -595,10 +595,10 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
-  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | 是 | 变更回调对象实例。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
+| callback | Function | 是 | 变更回调对象实例。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
 **示例：**
 
@@ -618,7 +618,7 @@ g_object.on("change", globalThis.changeCallback);
 
 ### off('change')<sup>(deprecated)</sup>
 
-off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void
+off(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void
 
 当不再进行数据变更监听时，使用此接口删除对象的变更监听。
 
@@ -630,11 +630,10 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
-  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | 否 | 需要删除的数据变更回调，若不设置则删除该对象所有的数据变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
-
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
+| callback | Function | 否 | 需要删除的数据变更回调，若不设置则删除该对象所有的数据变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
 **示例：**
 
@@ -649,7 +648,7 @@ g_object.off("change");
 
 ### on('status')<sup>(deprecated)</sup>
 
-on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, status: 'online' | 'offline' }>): void
+on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' | 'offline' ) => void): void
 
 监听分布式数据对象的上下线。
 
@@ -661,10 +660,10 @@ on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, st
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-  | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备，即deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
+| callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备，即deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 **示例：**
 
@@ -679,7 +678,7 @@ g_object.on("status", globalThis.statusCallback);
 
 ### off('status')<sup>(deprecated)</sup>
 
-off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, status: 'online' | 'offline' }>): void
+off(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' | 'offline' ) => void): void
 
 当不再进行对象上下线监听时，使用此接口删除对象的上下线监听。
 
@@ -691,10 +690,10 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-  | callback | Callback<{ sessionId: string, deviceId: string, status: 'online' \| 'offline' }> | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>deviceId：标识变更对象的deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
+| callback | Function | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>deviceId：标识变更对象的deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 
 **示例：**
