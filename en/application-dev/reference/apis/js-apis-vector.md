@@ -18,7 +18,7 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import Vector from '@ohos.util.Vector';  
+import Vector from '@ohos.util.Vector';
 ```
 
 

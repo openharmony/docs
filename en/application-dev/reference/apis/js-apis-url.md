@@ -7,7 +7,7 @@
 ## Modules to Import
 
 ```
-import Url from '@ohos.url' 
+import Url from '@ohos.url'
 ```
 ## URLParams<sup>9+</sup>
 
