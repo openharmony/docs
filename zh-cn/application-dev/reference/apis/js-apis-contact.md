@@ -1304,6 +1304,12 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回选择的联系人对象数组。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 401      | Parameter error.   |
+
 **示例：**
 
   ```js
@@ -1331,6 +1337,12 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 | ----------------------------------------------- | ------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回选择的联系人对象数组。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 401      | Parameter error.   |
+
 **示例：**
 
   ```js
@@ -1355,8 +1367,14 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 
 | 参数名   | 类型                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| options | ContactSelectionOptions | 是   | 选择联系人时的筛选条件 |
+| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件 |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回选择的联系人对象数组。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 401      | Parameter error.   |
 
 **示例：**
 
@@ -1385,8 +1403,14 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 
 | 类型                                            | 说明                                              |
 | ----------------------------------------------- | ------------------------------------------------- |
-| options | ContactSelectionOptions | 是   | 选择联系人时的筛选条件 |
+| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件 |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回选择的联系人对象数组。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 401      | Parameter error.   |
 
 **示例：**
 
