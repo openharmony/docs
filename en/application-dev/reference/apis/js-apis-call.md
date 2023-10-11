@@ -130,7 +130,7 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 | Name     |                 Type               | Mandatory|                Description                   |
 | ----------- | ----------------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                              | Yes  | Phone number.                            |
-| options     | [DialCallOptions](#dialcalloptions9)| No  | Call options, which carry other configuration information of the call.<br>If this parameter is not set, the following configuration is used by default. For details, see [DialCallOptions](#dialcalloptions9).<br>- **accountId**: 0 (card slot 1)<br>- **videoState**: voice call<br>- **dialScene**: common call<br>- **dialType**: carrier call |
+| options     | [DialCallOptions](#dialcalloptions9)| No  | Call options, which carry other configuration information of the call.<br>If this field is not set, the following configuration is used by default. For details, see [DialCallOptions](#dialcalloptions9).<br>- **accountId**: 0 (card slot 1)<br>- **videoState**: voice call<br>- **dialScene**: common call<br>- **dialType**: carrier call |
 
 **Return value**
 
@@ -191,7 +191,7 @@ Initiates a call. This API uses an asynchronous callback to return the result.
 | Name     | Type                        | Mandatory| Description                                   |
 | ----------- | ---------------------------- | ---- | --------------------------------------- |
 | phoneNumber | string                       | Yes  | Phone number.                             |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -224,7 +224,7 @@ Initiates a call. You can set call options as needed. This API uses an asynchron
 | ----------- | ---------------------------- | ---- | --------------------------------------- |
 | phoneNumber | string                       | Yes  | Phone number.                             |
 | options     | [DialOptions](#dialoptions)  | Yes  | Call option, which indicates whether the call is a voice call or video call. |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -264,7 +264,7 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result.<br>- **true**: success<br>- **false**: failure|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -375,7 +375,7 @@ Checks whether a call is in progress. This API uses an asynchronous callback to 
 
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. Callback used to return the result.<br>- **true**: A call is in progress.<br>- **false**: No call is in progress.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that a call is in progress, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -432,7 +432,7 @@ Checks whether a call is in progress.
 
 ```ts
 let hasCall: boolean = call.hasCallSync();
-console.log(`hasCallSync success, has call is ' + hasCall);
+console.log(`hasCallSync success, has call is ` + hasCall);
 ```
 
 
@@ -520,7 +520,7 @@ Checks whether a device supports voice calls.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | - **true**: The device supports voice calls.<br>- **false**: The device does not support voice calls.|
+| boolean | Result indicating whether the device supports voice calls. The value **true** indicates yes, and the value **false** indicates no.|
 
 ```ts
 let result: boolean = call.hasVoiceCapability();
@@ -540,7 +540,7 @@ Checks whether the called number is an emergency number. This API uses an asynch
 | Name     | Type                        | Mandatory| Description                                                        |
 | ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string                       | Yes  | Phone number.                                                  |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the called number is an emergency number, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -578,8 +578,8 @@ Checks whether the called number is an emergency number based on the phone numbe
 | Name     | Type                                              | Mandatory| Description                                                        |
 | ----------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string                                             | Yes  | Phone number.                                                  |
-| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number.                                              |
-| callback    | AsyncCallback&lt;boolean&gt;                       | Yes  | Callback used to return the result. - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
+| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Emergency number options.                                              |
+| callback    | AsyncCallback&lt;boolean&gt;                       | Yes  | Callback used to return the result. The value **true** indicates that the called number is an emergency number, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -618,7 +618,7 @@ Checks whether the called number is an emergency number based on the phone numbe
 | Name     | Type                                              | Mandatory| Description          |
 | ----------- | -------------------------------------------------- | ---- | -------------- |
 | phoneNumber | string                                             | Yes  | Phone number.    |
-| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | No  | Phone number.|
+| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | No  | Emergency number options.|
 
 **Return value**
 
@@ -1020,7 +1020,7 @@ Answers a call. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| callId | number | No  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events. This parameter is optional from API version 9.<br>If this parameter is not set, the latest ringing call will be connected.|
+| callId | number | No  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events. This field is optional from API version 9.<br>If this field is not set, the latest ringing call will be connected.|
 
 **Return value**
 
@@ -1158,7 +1158,7 @@ Ends a call. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| callId | number | No  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events. This parameter is optional from API version 9.<br>If this parameter is not set, the latest ongoing, dialed, or connected call will be ended.|
+| callId | number | No  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events. This field is optional from API version 9.<br>If this field is not set, the latest ongoing, dialed, or connected call will be ended.|
 
 **Return value**
 
@@ -1346,8 +1346,8 @@ Rejects a call. This API uses a promise to return the result.
 
 | Name | Type                                          | Mandatory| Description                                                        |
 | ------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callId  | number                                         | No  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events. This parameter is optional from API version 9.<br>If this parameter is not set, the latest ringing call will be rejected.|
-| options | [RejectMessageOptions](#rejectmessageoptions7) | No  | Options for the call rejection message. If this parameter is not set, no call rejection message will be sent.|
+| callId  | number                                         | No  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events. This field is optional from API version 9.<br>If this field is not set, the latest ringing call will be rejected.|
+| options | [RejectMessageOptions](#rejectmessageoptions7) | No  | Options for the call rejection message. If this field is not set, no call rejection message will be sent.|
 
 **Return value**
 
@@ -2058,7 +2058,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 ```ts
 import { BusinessError } from '@ohos.base';
 
-call.getSubCallIdList(1, (err: BusinessError, data: string) => {
+call.getSubCallIdList(1, (err: BusinessError, data: Array<string>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2103,7 +2103,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 ```ts
 import { BusinessError } from '@ohos.base';
 
-call.getSubCallIdList(1).then((data: string) => {
+call.getSubCallIdList(1).then((data: Array<string>) => {
     console.log(`getSubCallIdList success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getSubCallIdList fail, promise: err->${JSON.stringify(err)}`);
@@ -2213,7 +2213,7 @@ Obtains the call waiting status. This API uses an asynchronous callback to retur
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
-| callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | Yes  | Callback used to return the result.<br> <br>- **0**: Call waiting is disabled.<br>- **1**: Call waiting is enabled.|
+| callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | Yes  | Callback used to return the result.<br>The value can be:<br>- **0**: Call waiting is disabled.<br>- **1**: Call waiting is enabled.|
 
 **Error codes**
 
@@ -2390,7 +2390,7 @@ call.setCallWaiting(0, true).then(() => {
 
 startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\): void
 
-Enables DTMF. This API uses an asynchronous callback to return the result.
+Starts playing DTMF tones. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2401,7 +2401,7 @@ Enables DTMF. This API uses an asynchronous callback to return the result.
 | Name   | Type                | Mandatory| Description      |
 | --------- | -------------------- | ---- | ---------- |
 | callId    | number               | Yes  | Call ID.  |
-| character | string               | Yes  | DTMF code.  |
+| character | string               | Yes  | DTMF string.  |
 | callback  | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -2431,7 +2431,7 @@ call.startDTMF(1, "0", (err: BusinessError) => {
 
 startDTMF\(callId: number, character: string\): Promise\<void\>
 
-Enables DTMF. This API uses a promise to return the result.
+Starts playing DTMF tones. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2442,7 +2442,7 @@ Enables DTMF. This API uses a promise to return the result.
 | Name   | Type  | Mandatory| Description    |
 | --------- | ------ | ---- | -------- |
 | callId    | number | Yes  | Call ID.|
-| character | string | Yes  | DTMF code.|
+| character | string | Yes  | DTMF string.|
 
 **Return value**
 
@@ -2478,7 +2478,7 @@ call.startDTMF(1, "0").then(() => {
 
 stopDTMF\(callId: number, callback: AsyncCallback\<void\>\): void
 
-Stops DTMF. This API uses an asynchronous callback to return the result.
+Stops playing DTMF tones. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2518,7 +2518,7 @@ call.stopDTMF(1, (err: BusinessError) => {
 
 stopDTMF\(callId: number\): Promise\<void\>
 
-Stops DTMF. This API uses a promise to return the result.
+Stops playing DTMF tones. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2557,6 +2557,102 @@ call.stopDTMF(1).then(() => {
     console.log(`stopDTMF success.`);
 }).catch((err: BusinessError) => {
     console.error(`stopDTMF fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.postDialProceed<sup>11+</sup>
+
+postDialProceed\(callId: number, proceed: boolean, callback: AsyncCallback\<void\>\): void
+
+Continues a call by playing a post-dial DTMF string. This API uses an asynchronous callback to return the result.
+
+If the called number is in the format of "common phone number + semicolon (;) + DTMF string", for example, **400xxxxxxx;123**, and the listening for **postDialDelay** events is enabled, the system reports a **postDialDelay** event when the call is connected. The application can then call this API to send DTMF tones.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                          |
+| -------- | ------------------------- | ---- | -------------------------------------------------------------- |
+| callId   | number                    | Yes  | Call ID.                                                      |
+| proceed  | boolean                   | Yes  | Whether to send DTMF tones.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                    |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.postDialProceed(1, true, (err: BusinessError) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## call.postDialProceed<sup>11+</sup>
+
+postDialProceed\(callId: number, proceed: boolean\): Promise\<void\>
+
+Continues a call by playing a post-dial DTMF string. This API uses a promise to return the result.
+
+If the called number is in the format of "common phone number + semicolon (;) + DTMF string", for example, **400xxxxxxx;123**, and the listening for **postDialDelay** events is enabled, the system reports a **postDialDelay** event when the call is connected. The application can then call this API to send DTMF tones.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                   |
+| -------- | ------------------------- | ---- | ----------------------- |
+| callId   | number                    | Yes  | Call ID.               |
+| proceed  | boolean                   | Yes  | Whether to send DTMF tones.|
+
+**Return value**
+
+| Type               | Description                       |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.postDialProceed(1, true).then(() => {
+    console.log(`postDialProceed success.`);
+}).catch((err: BusinessError) => {
+    console.error(`postDialProceed fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2826,7 +2922,7 @@ Unsubscribes from **callDetailsChange** events. This API uses an asynchronous ca
 | Name  | Type                                                    | Mandatory| Description                              |
 | -------- | -------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                   | Yes  | Call details change. This field has a fixed value of **callDetailsChange**.|
-| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | No  | Callback used to return the result. If this parameter is not set, no subscription cancellation result will be received.|
+| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | No  | Callback used to return the result. If this field is not set, no subscription cancellation result will be received.|
 
 **Error codes**
 
@@ -2867,7 +2963,7 @@ Unsubscribes from **callEventChange** events. This API uses an asynchronous call
 | Name  | Type                                            | Mandatory| Description                              |
 | -------- | ------------------------------------------------ | ---- | ---------------------------------- |
 | type     | string                                           | Yes  | Call event change. This field has a fixed value of **callEventChange**.|
-| callback | Callback<[CallEventOptions](#calleventoptions8)> | No  | Callback used to return the result. If this parameter is not set, no subscription cancellation result will be received.|
+| callback | Callback<[CallEventOptions](#calleventoptions8)> | No  | Callback used to return the result. If this field is not set, no subscription cancellation result will be received.|
 
 **Error codes**
 
@@ -2908,7 +3004,7 @@ Unsubscribes from **callDisconnectedCause** events. This API uses an asynchronou
 | Name  | Type                                                      | Mandatory| Description                |
 | -------- | ---------------------------------------------------------- | ---- | ------------------- |
 | type     | string                                                     | Yes  | Call disconnection cause. This field has a fixed value of **callDisconnectedCause**.|
-| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)>     | No  | Callback used to return the result. If this parameter is not set, no subscription cancellation result will be received.|
+| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)>     | No  | Callback used to return the result. If this field is not set, no subscription cancellation result will be received.|
 
 **Error codes**
 
@@ -2949,7 +3045,7 @@ Unsubscribes from **mmiCodeResult** events. This API uses an asynchronous callba
 | Name  | Type                                             | Mandatory| Description       |
 | -------- | ------------------------------------------------ | ---- | ----------- |
 | type     | string                                           | Yes  | MMI code result. This field has a fixed value of **mmiCodeResult**.|
-| callback | Callback<[MmiCodeResults](#mmicoderesults9)>     | No  | Callback used to return the result. If this parameter is not set, no subscription cancellation result will be received.|
+| callback | Callback<[MmiCodeResults](#mmicoderesults9)>     | No  | Callback used to return the result. If this field is not set, no subscription cancellation result will be received.|
 
 **Error codes**
 
@@ -3033,7 +3129,7 @@ Unsubscribes from **audioDeviceChange** events. This API uses an asynchronous ca
 | Name  | Type                                                      | Mandatory |                           Description                     |
 | -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                                     | Yes  | Audio device change. This field has a fixed value of **audioDeviceChange**.|
-| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)>            | No  | Callback used to return the result. If this parameter is not set, no subscription cancellation result will be received.    |
+| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)>            | No  | Callback used to return the result. If this field is not set, no subscription cancellation result will be received.    |
 
 **Error codes**
 
@@ -3057,6 +3153,87 @@ call.off('audioDeviceChange', (data: call.AudioDeviceCallbackInfo) => {
 });
 ```
 
+## call.on('postDialDelay')<sup>11+</sup>
+
+on\(type: 'postDialDelay', callback: Callback\<string\>\): void
+
+Subscribes to **postDialDelay** events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description                                               |
+| -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
+| type     | string                                          | Yes  | Post-dial delay. This field has a fixed value of **postDialDelay**.              |
+| callback | Callback&lt;string&gt;                          | Yes  | Callback used to return the result.                                          |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+call.on('postDialDelay', (data: string) => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
+## call.off('postDialDelay')<sup>11+</sup>
+
+off\(type: 'postDialDelay', callback?: Callback\<string\>\): void
+
+Unsubscribes from **postDialDelay** events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                                      | Mandatory |                           Description                     |
+| -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------- |
+| type     | string                                                     | Yes  | Post-dial delay. This field has a fixed value of **postDialDelay**.              |
+| callback | Callback&lt;string&gt;                                     | No  | Callback used to return the result. If this field is not set, no subscription cancellation result will be received.      |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+call.off('postDialDelay', (data: string) => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
 
 ## call.isNewCallAllowed<sup>8+</sup>
 
@@ -4837,7 +5014,7 @@ Checks whether the call forwarding time can be set. This API uses an asynchronou
 | Name     | Type                          | Mandatory| Description                                                 |
 | ----------- | ----------------------------- | ---- | ----------------------------------------------------- |
 | slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                |
-| callback    | AsyncCallback&lt;boolean&gt;  | Yes  | Callback used to return the result. Callback used to return the result. The value **true** indicates that the call forwarding time can be set, and the value **false** indicates the opposite.|
+| callback    | AsyncCallback&lt;boolean&gt;  | Yes  | Callback used to return the result. The value **true** indicates that the call forwarding time can be set, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -5103,7 +5280,7 @@ Provides an option for determining whether a call is a video call.
 
 |        Name             | Type                              | Mandatory| Description                                                                                            |
 | ------------------------ | ---------------------------------- | ---- | ----------------------------------------------------------------------------------------------- |
-| extras                   | boolean                            | No  | Indication of a video call. <br>- **true**: video call<br>- **false** (default): voice call  |
+| extras                   | boolean                            | No  | Whether the call is a video call. <br>- **true**: video call<br>- **false** (default): voice call  |
 | accountId <sup>8+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1<br>- **1**: card slot 2<br> This is a system API.                                  |
 | videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | No  | Video state type. This is a system API.                                                                 |
 | dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | No  | Dialup scenario. This is a system API.                                                                     |
