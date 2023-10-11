@@ -28,9 +28,9 @@ You can use [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement ac
 | Stream.flush | Flushes all data from this stream.| Method| √ | √ | 
 | Stream.write | Writes data to a stream.| Method| √ | √ | 
 | Stream.read | Reads data from a stream.| Method| √ | √ | 
-| File.fd | Defines a file descriptor.| Attribute| √ | × | 
-| OpenMode | Defines the mode for opening a file.| Attribute| √ | × | 
-| Filter | Defines the options for setting the file filter.| Type| × | × | 
+| File.fd | Defines a file descriptor.| Attribute| - | - | 
+| OpenMode | Defines the mode for opening a file.| Attribute| - | - | 
+| Filter | Defines the options for setting the file filter.| Type| - | - | 
 
 ## Development Example
 
