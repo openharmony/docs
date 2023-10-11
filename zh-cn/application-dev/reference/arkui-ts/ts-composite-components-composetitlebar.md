@@ -106,23 +106,23 @@ struct Index {
 
 ```ts
 import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 
 @Entry
 @Component
 struct Index {
   menuItems: { value: Resource, isEnabled: boolean, action: () => void }[] =
     [ { isEnabled: true, value: $r('app.media.ic_public_save'),
-      action: () => prompt.showToast({ message: "show toast index 1" })
+      action: () => promptAction.showToast({ message: "show toast index 1" })
     },
       { isEnabled: true, value: $r('app.media.ic_public_reduce'),
-        action: () => prompt.showToast({ message: "show toast index 2" })
+        action: () => promptAction.showToast({ message: "show toast index 2" })
       },
       { isEnabled: true, value: $r('app.media.ic_public_edit'),
-        action: () => prompt.showToast({ message: "show toast index 3" })
+        action: () => promptAction.showToast({ message: "show toast index 3" })
       },
       { isEnabled: true, value: $r('app.media.ic_public_reduce'),
-        action: () => prompt.showToast({ message: "show toast index 4" })
+        action: () => promptAction.showToast({ message: "show toast index 4" })
       } ]
   build() {
     Row() {
@@ -159,7 +159,7 @@ struct Index {
 
 ```ts
 import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 
 @Entry
 @Component
@@ -169,7 +169,7 @@ struct Index {
       Column() {
         ComposeTitleBar({
           menuItems: [ { isEnabled: true, value: $r('app.media.ic_public_save'),
-            action: () => prompt.showToast({ message: "show toast index 1" })
+            action: () => promptAction.showToast({ message: "show toast index 1" })
           } ],
           title: "标题",
           subtitle: "副标题",

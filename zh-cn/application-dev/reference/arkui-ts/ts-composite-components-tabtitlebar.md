@@ -65,7 +65,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 ```ts
 import { TabTitleBar } from "@ohos.arkui.advanced.TabTitleBar"
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 
 @Entry
 @Component
@@ -108,13 +108,13 @@ struct Index {
         icon: $r('app.media.emoji_happy') } ]
   private readonly menuItems: { value: Resource, isEnabled: boolean, action: () => void }[] =
     [ { isEnabled: true, value: $r('app.media.ic_public_reduce'),
-        action: () => prompt.showToast({ message: "on item click! index 0" })
+        action: () => promptAction.showToast({ message: "on item click! index 0" })
       },
       { isEnabled: true, value: $r('app.media.ic_public_edit'),
-        action: () => prompt.showToast({ message: "on item click! index 1" })
+        action: () => promptAction.showToast({ message: "on item click! index 1" })
       },
       { isEnabled: true, value: $r('app.media.ic_public_save'),
-        action: () => prompt.showToast({ message: "on item click! index 2" })
+        action: () => promptAction.showToast({ message: "on item click! index 2" })
       } ]
   build() {
     Row() {

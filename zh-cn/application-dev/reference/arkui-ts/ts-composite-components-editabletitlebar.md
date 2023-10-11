@@ -64,53 +64,31 @@ EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuIt
 
 ## 示例
 
-### 示例 1
-
 ```ts
 import { EditableLeftIconType } from "@ohos.arkui.advanced.EditableTitleBar"
 import { EditableTitleBar } from "@ohos.arkui.advanced.EditableTitleBar"
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 
 @Entry
 @Component
 struct Index {
   build() {
-    Row() {
-      Column() {
+    Column() {
+      Row() {
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Cancel,
           title: "编辑页面",
           menuItems: [],
           onCancel: () => {
-            prompt.showToast({ message: "on cancel" })
+            promptAction.showToast({ message: "on cancel" })
           },
           onSave: () => {
-            prompt.showToast({ message: "on save" })
+            promptAction.showToast({ message: "on save" })
           }
         })
       }.width('100%')
-    }.height('100%')
-  }
-}
-```
 
-
-![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.png)
-
-
-### 示例 2
-
-```ts
-import { EditableLeftIconType } from "@ohos.arkui.advanced.EditableTitleBar"
-import { EditableTitleBar } from "@ohos.arkui.advanced.EditableTitleBar"
-import prompt from '@system.prompt'
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Column() {
+      Row() {
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Back,
           title: "编辑页面",
@@ -118,15 +96,15 @@ struct Index {
             { value: $r('app.media.ic_public_reduce'),
               isEnabled: false,
               action: () => {
-                prompt.showToast({ message: "show toast index 2" })
+                promptAction.showToast({ message: "show toast index 2" })
               }
             }
           ],
           onCancel: () => {
-            prompt.showToast({ message: "on cancel" })
+            promptAction.showToast({ message: "on cancel" })
           },
           onSave: () => {
-            prompt.showToast({ message: "on save" })
+            promptAction.showToast({ message: "on save" })
           }
         })
       }.width('100%')
@@ -134,5 +112,7 @@ struct Index {
   }
 }
 ```
+
+![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.png)
 
 ![zh-cn_image_0000001665393297](figures/zh-cn_image_0000001665393297.png)
