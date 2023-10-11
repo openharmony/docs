@@ -149,9 +149,9 @@ When **smooth** is set to **true**, all passed items are loaded and counted in l
 
 | Name               | Type| Mandatory| Description                                                    |
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
-| value                 | number   | Yes  | Index of the item to be scrolled to in the list.<br>**NOTE**<br>If the value set is a negative value or greater than the maximum index of the list items, the value is abnormal, and no scrolling will be performed.                    |
+| value                 | number   | Yes  | Index of the item to be scrolled to in the container.<br>**NOTE**<br>If the value set is a negative value or greater than the maximum index of the items in the container, the value is deemed abnormal, and no scrolling will be performed.                    |
 | smooth<sup>10+ </sup> | boolean  | No  | Whether to enable the smooth animation for scrolling to the item with the specified index. The value **true** means to enable that the smooth animation, and **false** means the opposite.<br>Default value: **false**<br>**NOTE**<br>Currently, only the **\<List>** component supports this parameter.|
-| align<sup>10+ </sup> | [ScrollAlign](#scrollalign10)  | No  | How the list item to scroll to is aligned with the list.<br>Default value: **ScrollAlign.START**<br>**NOTE**<br>Currently, only the **\<List>** component supports this parameter.|
+| align<sup>10+ </sup> | [ScrollAlign](#scrollalign10)  | No  | How the list item to scroll to is aligned with the container.<br>Default value when the container is **\<List>**: **ScrollAlign.START**<br> Default value when the container is **\<Grid>**: **ScrollAlign.AUTO**<br>**NOTE**<br>Currently, only the **\<List>** and **\<Grid>** components support this parameter.|
 
 ### scrollBy<sup>9+</sup>
 
