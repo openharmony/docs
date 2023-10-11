@@ -250,7 +250,7 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 **示例：**
 
 ```js
-globalThis.changeCallback = (sessionId, changeData) => {
+let changeCallback = (sessionId, changeData) => {
     console.info("change" + sessionId);
     if (changeData != null && changeData != undefined) {
         changeData.forEach(element => {
@@ -258,7 +258,7 @@ globalThis.changeCallback = (sessionId, changeData) => {
         });
     }
 }
-g_object.on("change", globalThis.changeCallback);
+g_object.on("change", changeCallback);
 ```
 
 ### off('change')<sup>9+</sup>
@@ -281,7 +281,7 @@ off(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =
 
 ```js
 // 删除数据变更回调changeCallback
-g_object.off("change", globalThis.changeCallback);
+g_object.off("change", changeCallback);
 // 删除所有的数据变更回调
 g_object.off("change");
 ```
@@ -304,10 +304,10 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 **示例：**
 
 ```js
-globalThis.statusCallback = (sessionId, networkId, status) => {
+let statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
-g_object.on("status", globalThis.statusCallback);
+g_object.on("status", statusCallback);
 ```
 
 ### off('status')<sup>9+</sup>
@@ -329,11 +329,11 @@ off(type: 'status', callback:(sessionId: string, networkId: string, status: 'onl
 **示例：**
 
 ```js
-globalThis.statusCallback = (sessionId, networkId, status) => {
+let statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
 // 删除上下线回调changeCallback
-g_object.off("status",globalThis.statusCallback);
+g_object.off("status", statusCallback);
 // 删除所有的上下线回调
 g_object.off("status");
 ```
@@ -605,7 +605,7 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
 let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-globalThis.changeCallback = (sessionId, changeData) => {
+let changeCallback = (sessionId, changeData) => {
     console.info("change" + sessionId);
     if (changeData != null && changeData != undefined) {
         changeData.forEach(element => {
@@ -613,7 +613,7 @@ globalThis.changeCallback = (sessionId, changeData) => {
         });
     }
 }
-g_object.on("change", globalThis.changeCallback);
+g_object.on("change", changeCallback);
 ```
 
 ### off('change')<sup>(deprecated)</sup>
@@ -641,7 +641,7 @@ off(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =
 import distributedObject from '@ohos.data.distributedDataObject';
 let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 // 删除数据变更回调changeCallback
-g_object.off("change", globalThis.changeCallback);
+g_object.off("change", changeCallback);
 // 删除所有的数据变更回调
 g_object.off("change");
 ```
@@ -669,11 +669,11 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
-globalThis.statusCallback = (sessionId, networkId, status) => {
+let statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
 let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-g_object.on("status", globalThis.statusCallback);
+g_object.on("status", statusCallback);
 ```
 
 ### off('status')<sup>(deprecated)</sup>
@@ -701,11 +701,11 @@ off(type: 'status', callback: (sessionId: string, networkId: string, status: 'on
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
 let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-globalThis.statusCallback = (sessionId, networkId, status) => {
+let statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
 // 删除上下线回调changeCallback
-g_object.off("status",globalThis.statusCallback);
+g_object.off("status", statusCallback);
 // 删除所有的上下线回调
 g_object.off("status");
 ```

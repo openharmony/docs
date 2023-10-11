@@ -127,7 +127,7 @@
 | on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void | 监听分布式数据对象的数据变更。 |
 | off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void | 取消监听分布式数据对象的数据变更。 |
 | on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void): void | 监听分布式数据对象的上下线。 |
-| off(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | 取消监听分布式数据对象的上下线。 |
+| off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | 取消监听分布式数据对象的上下线。 |
 | save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | 保存分布式数据对象。 |
 | revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | 撤回保存的分布式数据对象。 |
 
@@ -227,11 +227,11 @@
 6. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
    
    ```js
-   localObject[name] = 'jack1';
-   localObject[age] = 19;
-   localObject[isVis] = false;
-   localObject[parent] = { mother: 'jack1 mom', father: 'jack1 Dad' };
-   localObject[list] = [{ mother: 'jack1 mom' }, { father: 'jack1 Dad' }];
+   localObject["name"] = 'jack1';
+   localObject["age"] = 19;
+   localObject["isVis"] = false;
+   localObject["parent"] = { mother: 'jack1 mom', father: 'jack1 Dad' };
+   localObject["list"] = [{ mother: 'jack1 mom' }, { father: 'jack1 Dad' }];
    ```
 
    > **说明：**
@@ -241,9 +241,9 @@
    
    ```js
    // 支持的修改方式
-   localObject[parent] = { mother: 'mom', father: 'dad' };
+   localObject["parent"] = { mother: 'mom', father: 'dad' };
    // 不支持的修改方式
-   localObject[parent][mother] = 'mom';
+   localObject["parent"]["mother"] = 'mom';
    ```
 
 7. 访问对象。可以通过直接获取的方式访问到分布式数据对象的属性，且该数据为组网内的最新数据。
