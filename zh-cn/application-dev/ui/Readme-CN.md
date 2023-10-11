@@ -15,7 +15,6 @@
       - [创建列表（List）](arkts-layout-development-create-list.md)
       - [创建网格（Grid/GridItem）](arkts-layout-development-create-grid.md)
       - [创建轮播（Swiper）](arkts-layout-development-create-looping.md)
-    - [改善布局性能](arkts-layout-development-performance-boost.md)
   - 添加组件
     - 添加常用组件
       - [按钮（Button）](arkts-common-components-button.md)
@@ -70,7 +69,6 @@
       - [绑定手势方法](arkts-gesture-events-binding.md)
       - [单一手势](arkts-gesture-events-single-gesture.md)
       - [组合手势](arkts-gesture-events-combined-gestures.md)
-  - [性能提升的推荐方法](arkts-performance-improvement-recommendation.md)
 - UI开发（兼容JS的类Web开发范式）
   - [UI开发（兼容JS的类Web开发范式）概述](ui-js-overview.md)
   - 框架说明
