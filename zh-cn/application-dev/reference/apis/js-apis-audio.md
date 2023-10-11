@@ -8202,8 +8202,8 @@ console.info(`Device name: ${deviceDescriptors[0].name}`);
 console.info(`Device address: ${deviceDescriptors[0].address}`);
 console.info(`Device samplerates: ${deviceDescriptors[0].sampleRates[0]}`);
 console.info(`Device channelcounts: ${deviceDescriptors[0].channelCounts[0]}`);
-console.info(`Device channelmask: ${deviceDescriptors[0].channelMasks}`);
-console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes}`);
+console.info(`Device channelmask: ${deviceDescriptors[0].channelMasks[0]}`);
+console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
 ```
 
 ### getCurrentAudioCapturerChangeInfo<sup>11+</sup>
@@ -8235,8 +8235,8 @@ console.info(`Info name: ${info.deviceDescriptors[0].name}`);
 console.info(`Info address: ${info.deviceDescriptors[0].address}`);
 console.info(`Info samplerates: ${info.deviceDescriptors[0].sampleRates[0]}`);
 console.info(`Info channelcounts: ${info.deviceDescriptors[0].channelCounts[0]}`);
-console.info(`Info channelmask: ${info.deviceDescriptors[0].channelMasks}`);
-console.info(`Info encodingTypes: ${info.deviceDescriptors[0].encodingTypes}`);
+console.info(`Info channelmask: ${info.deviceDescriptors[0].channelMasks[0]}`);
+console.info(`Info encodingTypes: ${info.deviceDescriptors[0].encodingTypes[0]}`);
 ```
 
 ### on('audioInterrupt')<sup>10+</sup>
