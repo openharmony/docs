@@ -159,7 +159,7 @@ OH_AVCodec* OH_VideoEncoder_CreateByMime (const char *mime)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mime | MIME类型描述字符串，请参阅 **AVCODEC_MIME_TYPE**。 | 
+| mime | MIME类型描述字符串，请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量)。 | 
 
 **返回：**
 
