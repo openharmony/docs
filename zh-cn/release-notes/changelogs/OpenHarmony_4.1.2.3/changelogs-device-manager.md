@@ -1,6 +1,6 @@
 # 设备管理 JS API 变更 Changelog
 
-从OpenHarmony 4.1.2.3版本开始，设备管理模块能力更新至新模块[@ohos.distributedDeviceManager](zh-cn/application-dev/reference/pis/js-apis-distributedDeviceManager.md)，本模块中接口全部废弃。
+从OpenHarmony 4.1.2.3版本开始，设备管理模块能力更新至新模块[@ohos.distributedDeviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-distributedDeviceManager.md)，本模块中接口全部废弃。
 
 **关键的接口/组件变更**
 
