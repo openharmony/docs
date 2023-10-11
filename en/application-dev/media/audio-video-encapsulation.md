@@ -87,7 +87,7 @@ The following walks you through how to implement the entire process of audio and
 
    ``` c++
    int videoTrackId = -1;
-   char *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
+   uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
    size_t size =...; // Length of the encoding configuration data. Set this parameter based on project requirements.
    OH_AVFormat *formatVideo = OH_AVFormat_Create();
    OH_AVFormat_SetStringValue(formatVideo, OH_MD_KEY_CODEC_MIME, OH_AVCODEC_MIMETYPE_VIDEO_MPEG4); // Mandatory.
@@ -106,7 +106,7 @@ The following walks you through how to implement the entire process of audio and
    
    ``` c++
    int videoTrackId = -1;
-   char *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
+   uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
    size_t size =...; // Length of the encoding configuration data. Set this parameter based on project requirements.
    OH_AVFormat *formatVideo = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4, 1280, 720);
    OH_AVFormat_SetBuffer(formatVideo, OH_MD_KEY_CODEC_CONFIG, buffer, size); // Optional
