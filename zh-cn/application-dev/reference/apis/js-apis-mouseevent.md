@@ -81,9 +81,8 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 | ------- | ------| ----- |
 | UNKNOWN<sup>11+</sup> | 0 | 未知类型  |
 | MOUSE<sup>11+</sup>  | 1 | 鼠标 |
-| TOUCHSCREEN<sup>11+</sup> | 2 | 触摸屏 |
+| JOYSTICK<sup>11+</sup> | 2 | 摇杆 |
 | TOUCHPAD<sup>11+</sup> | 3 | 触摸板 |
-| JOYSTICK<sup>11+</sup> | 4 | 摇杆 |
 
 ## MouseEvent
 
