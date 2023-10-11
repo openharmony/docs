@@ -312,7 +312,7 @@ g_object.on("status", globalThis.statusCallback);
 
 ### off('status')<sup>9+</sup>
 
-off(type: 'status', callback:(sessionId: string, networkId: string, status: 'online' \| 'offline'&gt;) => void): void
+off(type: 'status', callback:(sessionId: string, networkId: string, status: 'online' \| 'offline') => void): void
 
 当不再进行对象上下线监听时，使用此接口删除对象的上下线监听。
 
