@@ -8,16 +8,16 @@
 
 
 ## 完整示例
-[各类Context的获取方式](../application-models/application-context-stage.md)
+[BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import media from '@ohos.multimedia.media';
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function videoRecording(context: featureAbility.Context, surfaceId: string): Promise<void> {
+async function videoRecording(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
   // 创建CameraManager对象
-  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
     return;
