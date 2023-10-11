@@ -1,6 +1,6 @@
 # CommonEventSubscriber
 
-描述公共事件的订阅者
+描述公共事件的订阅者。
 
 > **说明：**
 >
