@@ -55,7 +55,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | 文字页签。 | 
-| icon | [ResourceStr]ts-types.md#resourcestr) | 否 | 图片页签资源。 | 
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图片页签资源。 | 
 
 
 ## 事件

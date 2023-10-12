@@ -1,7 +1,7 @@
 # @ohos.arkui.advanced.TreeView（树视图）
 
 
-树视图作为一种分层显示的列表，适合显示嵌套结构。拥有父列表项和子列表项，可展开或折叠。子列表项支持选中一项或多项。
+树视图作为一种分层显示的列表，适合显示嵌套结构。拥有父列表项和子列表项，可展开或折叠。
 
 
 用于效率型应用，如备忘录、电子邮件、图库中的侧边导航栏中。
@@ -113,7 +113,7 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 | editIcon | ResourceStr | 否 | 编辑图标。 | 
 | primaryTitle | ResourceStr | 否 | 主标题。 | 
 | secondaryTitle | ResourceStr | 否 | 副标题。 | 
-| container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由[@Builder](ts-component-based-builder.md)修饰。 | 
+| container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由@Builder修饰。 | 
 
 
 ## TreeListenerManager
@@ -135,16 +135,9 @@ getTreeListener(): TreeListener
 获取监听器
 
 
-## TreeListener对象说明
+## TreeListener
 
 树视图组件的监听器，可以将此对象绑定至树视图组件，然后通过它监听树的节点的变化，同一个监听器不可以控制多个树视图组件。
-
-
-### 导入对象
-
-```
-treeListener: TreeListener = TreeListenerManager.getInstance().getTreeListener()
-```
 
 
 ### on
@@ -158,7 +151,7 @@ on(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): v
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
-| nodeParam | [NodeParam](#nodeparam) | 是 | 节点信息。 | 
+| callbackParam | [CallbackParam](#callbackparam) | 是 | 节点信息。 | 
 
 
 ### once
@@ -172,7 +165,7 @@ once(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void):
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
-| nodeParam | [NodeParam](#nodeparam) | 是 | 节点信息。 | 
+| callbackParam | [CallbackParam](#callbackparam) | 是 | 节点信息。 | 
 
 
 ### off

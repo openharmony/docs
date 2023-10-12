@@ -69,7 +69,7 @@ SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: Reso
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](s-types.md#resourcestr) | 是 | 文本内容。 | 
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 文本内容。 | 
 | action | ()=&gt;void | 否 | 事件。 | 
 
 ## 事件

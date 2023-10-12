@@ -37,7 +37,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 | -------- | -------- | -------- | -------- |
 | toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | 工具栏列表。 | 
 | activateIndex | number | 否 | 激活态的子项。<br/>默认值：-1。 | 
-| controller | [TabsController](ts-container-tabs.md#Tabscontroller) | 是 | 筛选器的样式类型。 | 
+| controller | [TabsController](ts-container-tabs.md#tabscontroller) | 是 | 筛选器的样式类型。 | 
 
 
 ## ToolBarOptions
