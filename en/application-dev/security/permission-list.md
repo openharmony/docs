@@ -2851,3 +2851,15 @@ Allows a system ability or system application to access distributed hardware res
 **Enable via ACL**: TRUE
 
 **Start version**: 11
+
+## ohos.permission.ACCESS_MCP_AUTHORIZATION
+
+Allows the MCP host application to perform user account authorization login on behalf of its sub-applications.
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
