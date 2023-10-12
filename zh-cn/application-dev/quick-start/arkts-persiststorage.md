@@ -22,7 +22,7 @@ PersistentStorage和AppStorage中的属性建立双向同步。应用开发通�
 
 - 持久化经常变化的变量。
 
-当持久化更改的过程变得太繁重时，PersistentStorage实现可能会限制持久化属性更改的频率。
+PersistentStorage的持久化变量最好是小于2kb的数据，不要大量的数据持久化，因为PersistentStorage写入磁盘的操作是同步的，大量的数据本地化读写会同步在UI线程中执行，影响UI渲染性能。如果开发者需要存储大量的数据，建议使用数据库api。
 
 PersistentStorage和UIContext相关联，需要在[UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext)明确的时候才可以调用，可以通过在[runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法持久化数据。
 
