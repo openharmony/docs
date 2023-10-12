@@ -259,19 +259,9 @@ onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
 ```
 ## 如何开启自定义的无障碍扩展服务
 
-当前提供命令行和设备设置中的扩展服务管理页的开关两种方式来开启设备的无障碍扩展能力：  
+当前提供设备设置中的扩展服务管理页的开关来开启/关闭选择的无障碍扩展服务：  
 
- **方式一：**  使用命令行进行开启关闭。  
-通过hdc shell命令，输入以下设备系统命令，对扩展服务进行开启/关闭：
-- 开启命令：`accessibility enable -a AccessibilityExtAbility -b com.example.demo -c rg`
-- 关闭命令：`accessibility disable -a AccessibilityExtAbility -b com.example.demo`
-
-其中，`AccessibilityExtAbility`为自定义的无障碍扩展服务名，`com.example.demo`为bundleName，`rg`为无障碍扩展服务具体的类型（其中，r为`retrieve`的首字母，其余同理）。
-
-若开启或关闭成功，则会打印`enable ability successfully`或`disable ability successfully`。
-
-
- **方式二：** 在设备设置中的扩展服务管理页开启无障碍扩展服务
+** 在设备设置中的扩展服务管理页开启无障碍扩展服务
 - 打开设备设置页面，进入“辅助功能”，“扩展服务”小标题下的“已安装的服务”显示当前安装的扩展服务个数，点击进入，展示安装的扩展服务列表；  
 未安装扩展服务时，“已安装的扩展服务”不可点击，并显示“无服务”；<br>
 - 选择需要开启/关闭的扩展服务，通过开关按钮进行扩展服务的开启/关闭；  
