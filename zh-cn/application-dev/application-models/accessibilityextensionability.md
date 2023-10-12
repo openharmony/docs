@@ -140,7 +140,6 @@ export default class AccessibilityManager {
     }
   }
 
-
   async getCurrentPageAllElement(): Promise<void> {
     console.info(`AccessibilityManager getCurrentPageAllElement`);
     let rootElement: AccessibilityElement;
@@ -173,7 +172,6 @@ export default class AccessibilityManager {
     return info;
   }
 
-
   async getAttributeValue(accessibilityElement: AccessibilityElement, key: ElementAttributeKeys):
     Promise<attributeValues | null> {
     console.info(`AccessibilityUtils getAttributeValue`);
@@ -196,7 +194,6 @@ export default class AccessibilityManager {
     return null;
   }
 
-
   async printAllElementInfo(): Promise<void> {
     console.info(`AccessibilityManager printAllElementInfo`);
     if (this.currentPageElementArray === null || this.currentPageElementArray.length === 0) {
@@ -211,7 +208,6 @@ export default class AccessibilityManager {
   }
 }
 ```
-
 
 ## 如何处理一个无障碍事件
 
