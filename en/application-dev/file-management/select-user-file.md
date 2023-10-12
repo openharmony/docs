@@ -1,14 +1,14 @@
 # Selecting User Files
 
-If your application needs to support share and saving of user files (such as images and videos), you can use OpenHarmony [FilePicker](../reference/apis/js-apis-file-picker.md) to implement selection and saving of user files. No permission is required if your application uses **FilePicker** to access files.
+You can use [FilePicker](../reference/apis/js-apis-file-picker.md) to implement the capabilities required for sharing and saving user files such as images and videos. The **FilePicker** accesses the file to start the application and guide the user to perform operations on the GUI. The API itself does not need any permission.
 
 The **FilePicker** provides the following interfaces by file type:
 
-- [PhotoViewPicker](../reference/apis/js-apis-file-picker.md#photoviewpicker): used to select and save images or video files.
+- [PhotoViewPicker](../reference/apis/js-apis-file-picker.md#photoviewpicker): used to select and save images or videos. You are advised to use [PhotoViewPicker of PhotoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md) to select files. The **PhotoViewPicker** of **FilePicker** can select only assets in **Gallery**, which is in a directory of the system **FileManager**. Therefore, the images and videos saved using **save()** cannot be viewed in **Gallery**. To enable the saved assets to be viewed in **Gallery**, use [a security component to create the media asset](./photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security component).
 
-- [DocumentViewPicker](../reference/apis/js-apis-file-picker.md#documentviewpicker): used to select and save documents.
+- [DocumentViewPicker](../reference/apis/js-apis-file-picker.md#documentviewpicker): used to select and save documents. The documents can be selected by using **FilePicker**. The documents are not distinguished by file name extensions. For example, the images and documents downloaded from a browser are of the document type.
 
-- [AudioViewPicker](../reference/apis/js-apis-file-picker.md#audioviewpicker): used to select and save audio files.
+- [AudioViewPicker](../reference/apis/js-apis-file-picker.md#audioviewpicker): used to select and save audio files. Currently, the audio files can be selected by using **FilePicker**.
 
 ## Selecting Images or Video Files
 
@@ -28,7 +28,7 @@ The **FilePicker** provides the following interfaces by file type:
    const photoSelectOptions = new picker.PhotoSelectOptions();
    ```
 
-3. Set the file type and the maximum number of media files to select.<br>
+3. Set the file type and the maximum number of media files to select.
    For example, select a maximum of five images. For details about the media file types, see [PhotoViewMIMETypes](../reference/apis/js-apis-file-picker.md#photoviewmimetypes).
 
    ```ts

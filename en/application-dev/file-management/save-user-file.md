@@ -4,7 +4,9 @@ When a user needs to download a file from the network to a local directory or sa
 
 The operations for saving images, audio or video clips, and documents are similar. Call **save()** of the corresponding picker instance and pass in **saveOptions**. No permission is required if your application uses **FilePicker** to access files.
 
-The **save()** method saves files in the file manager, not in **Gallery**.
+Currently, all the **save()** APIs of **FilePicker** can be perceived by users. Specifically, **FilePicker** is started to save the files to a directory managed by **FileManager**. The files are isolated from the assets managed by **Gallery** and cannot be viewed in **Gallery**.
+
+To enable the saved image or video to be viewed in Gallery, [create the media asset using a security component](./photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
 
 
 ## Saving Images or Video Files
@@ -210,4 +212,3 @@ For example, select an image from **Gallery** and save it to the file manager.
    console.info('write data to file succeed and size is:' + writeLen);
    fs.closeSync(file);
    ```
-

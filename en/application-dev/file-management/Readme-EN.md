@@ -16,6 +16,7 @@
     - [Backup and Restoration Triggered by System Applications](app-file-backup.md)
 - User Files
   - [User File Overview](user-file-overview.md)
+  - [User File URI](user-file-uri-intro.md)
   - Selecting and Saving User Files (FilePicker)
     - [Selecting User Files](select-user-file.md)
     - [Saving User Files](save-user-file.md)
