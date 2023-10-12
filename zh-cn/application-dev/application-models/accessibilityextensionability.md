@@ -255,9 +255,9 @@ onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
 ```json
 {
   "accessibilityCapabilities": [
-    "retrieve", // 窗口内容检索能力
-    "gesture", // 执行手势动作的能力
-    "touchGuide" // 触摸探索模式
+    "retrieve",
+    "gesture",
+    "touchGuide"
   ]
 }
 ```
