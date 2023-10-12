@@ -1605,7 +1605,7 @@ struct WebComponent {
 
 postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
-发送Web消息端口到HTML5。
+发送Web消息端口到HTML。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2806,10 +2806,32 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
+```
+
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<body>
+<h1>online 属性</h1>
+<p id="demo"></p>
+<button onclick="func()">click</button>
+<script>
+    let online = navigator.onLine;
+    document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+
+    function func(){
+      var online = navigator.onLine;
+      document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+    }
+</script>
+</body>
+</html>
 ```
 
 ### hasImage
