@@ -732,7 +732,7 @@ Obtains the IDs of all distributed KV stores that are created by [getKVStore](#g
 
 | Type                   | Description                                                  |
 | ----------------------- | ------------------------------------------------------ |
-| Promise&lt;string[]&gt; | Promise used to return IDs of all the distributed KV stores created. |
+| Promise&lt;string[]&gt; | Promise used to return the IDs of all the distributed KV stores created. |
 
 **Example**
 
@@ -759,7 +759,7 @@ try {
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-Subscribes to service status changes. If a service is terminated, you need to register the callbacks for data change notifications and synchronization complete notifications again. In addition, an error will be returned for a synchronization operation.
+Subscribes to service status changes. If the service is terminated, you need to register the callbacks for data change notifications and synchronization complete notifications again. In addition, an error will be returned for a synchronization operation.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -802,7 +802,7 @@ Unsubscribes from service status changes. The **deathCallback** parameter must b
 | Name       | Type            | Mandatory| Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
 | event         | string               | Yes  | Event to unsubscribe from. The value is **distributedDataServiceDie**, which indicates a service status change event.|
-| deathCallback | Callback&lt;void&gt; | No  | Callback for the service status change event. If this parameter is not specified, all subscriptions to the service status change event are canceled.                                         |
+| deathCallback | Callback&lt;void&gt; | No  | Callback for the service status change event. If this parameter is not specified, all subscriptions to the service status change event will be canceled.                                         |
 
 **Example**
 
@@ -1053,7 +1053,7 @@ try {
 
 move(offset: number): boolean
 
-Moves the data read position with the specified offset from the current position. That is, move the number of rows specified by **offset** from the current position.
+Moves the data read position with the specified offset from the current position. That is, moves the number of rows specified by **offset** from the current position.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2783,7 +2783,7 @@ Deletes KV pairs from this KV store. This API uses an asynchronous callback to r
 
 | Name    | Type                                                    | Mandatory| Description                                           |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the **KVStoreResultSet** object to obtain. If this parameter is **null**, define the processing logic.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.|
 | callback   | AsyncCallback&lt;void&gt;                                    | Yes  | Callback invoked to return the result.                                     |
 
 **Error codes**
@@ -5122,7 +5122,7 @@ Subscribes to data changes of the specified type.
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return data changes.                        |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data change.                        |
 
 **Error codes**
 
@@ -6356,7 +6356,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | Yes  | ID of the target device.                                    |
 | keyPrefix | string                                                       | Yes  | Key prefix to match.                                        |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KvStoreResultSet** object that matches the specified device ID and key prefix.|
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
 
 **Error codes**
 
@@ -6420,7 +6420,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 
 | Type                                                  | Description                                                        |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KvStoreResultSet** object that matches the specified device ID and key prefix.|
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
 
 **Error codes**
 
@@ -6475,7 +6475,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId | string                                                       | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.                          |
 | query    | [Query](#query)                                               | Yes  | **Query** object to match.                                              |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KvStoreResultSet** object that matches the specified device ID and **Query** object.|
+| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object.|
 
 **Error codes**
 
@@ -6560,7 +6560,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 
 | Type                                                  | Description                                                        |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KvStoreResultSet** object that matches the specified device ID and **Query** object.|
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object.|
 
 **Error codes**
 
@@ -6784,7 +6784,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.             |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the **KVStoreResultSet** object to obtain. If this parameter is **null**, define the processing logic.             |
 | callback   | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt;   | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
@@ -6845,7 +6845,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 | Name    | Type                                                        | Mandatory| Description                                           |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the **KVStoreResultSet** object to obtain. If this parameter is **null**, define the processing logic.|
 
 **Return value**
 
@@ -6978,7 +6978,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 | Name    | Type                                                    | Mandatory| Description                                           |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
 | deviceId  | string                                                       | Yes  | ID of the target device.                                    |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the **KVStoreResultSet** object to obtain. If this parameter is **null**, define the processing logic.|
 
 **Return value**
 
