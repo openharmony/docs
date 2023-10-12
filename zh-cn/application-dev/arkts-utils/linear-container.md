@@ -242,7 +242,7 @@ stack1.push('a');
 let stack2: Stack<number> = new Stack();
 stack2.push(1); // 增加元素
 console.info(`result: ${stack1[0]}`); // 访问元素
-stack2.pop(); // 弹出元素
+stack2.pop(); // 删除栈顶元素并返回该删除元素
 console.info(`result: ${stack2.length}`);
 
 // List
