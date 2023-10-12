@@ -28,7 +28,7 @@ AccessibilityExtensionAbility为无障碍扩展服务框架，允许三方开发
 
 1. 提供辅助功能查询能力，包括获取辅助应用列表、辅助应用启用状态、辅助应用类型、发送无障碍事件等，具体API接口可参考[@ohos.accessibility](../reference/apis/js-apis-accessibility.md)；
 2. 提供无障碍扩展服务连接、断开连接、指定辅助事件及物理按键等事件的回调，具体API接口可参考[@ohos.application.AccessibilityExtensionAbility](../reference/apis/js-apis-application-accessibilityExtensionAbility.md)；
-3. 提供辅助功能扩展的上下文环境的能力，包括允许配置辅助应用关注信息类型、查询节点信息、手势注入等，具体API接口可参考[AccessibilityExtensionContext ](../reference/apis/js-apis-inner-application-accessibilityExtensionContext.md)；其中，创建注入手势所需的路径信息可参考[@ohos.accessibility.GesturePath](../reference/apis/ js-apis-accessibility-GesturePath.md)；创建注入手势所需的手势路径的触摸点信息可参考[ohos.accessibility.GesturePoint](../reference/apis/ js-apis-accessibility-GesturePoint.md)。
+3. 提供辅助功能扩展的上下文环境的能力，包括允许配置辅助应用关注信息类型、查询节点信息、手势注入等，具体API接口可参考[AccessibilityExtensionContext ](../reference/apis/js-apis-inner-application-accessibilityExtensionContext.md)；其中，创建注入手势所需的路径信息可参考[@ohos.accessibility.GesturePath](../reference/apis/js-apis-accessibility-GesturePath.md)；创建注入手势所需的手势路径的触摸点信息可参考[ohos.accessibility.GesturePoint](../reference/apis/js-apis-accessibility-GesturePoint.md)。
 
 ## 如何创建一个无障碍扩展服务
 
