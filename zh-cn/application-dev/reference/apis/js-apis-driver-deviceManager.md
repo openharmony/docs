@@ -45,10 +45,10 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
-import type Device from '@system.device';
+
 
 try {
-  let devices : Array<Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
+  let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
   for (let item of devices) {
     let device : deviceManager.USBDevice = item as deviceManager.USBDevice;
     console.info(`Device id is ${device.deviceId}`)
