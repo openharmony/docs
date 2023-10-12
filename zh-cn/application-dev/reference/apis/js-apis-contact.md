@@ -41,7 +41,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 **示例：**
 
 ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -70,7 +70,7 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[addContact](#contactaddcontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -86,7 +86,7 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.addContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -132,7 +132,7 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 **示例：**
 
 ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -181,7 +181,7 @@ addContact(contact: Contact): Promise&lt;number&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.addContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -221,7 +221,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 **示例：**
 
 ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -262,7 +262,7 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.deleteContact('xxx', (err) => {
       if (err) {
           console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
@@ -306,7 +306,7 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -351,7 +351,7 @@ deleteContact(key: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
       console.log(`deleteContact success`);
@@ -389,7 +389,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -403,7 +403,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -434,14 +434,14 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -478,7 +478,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -494,7 +494,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -526,7 +526,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
@@ -535,7 +535,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -577,7 +577,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 **示例：**
 
 ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -628,7 +628,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
@@ -672,7 +672,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -713,7 +713,7 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.isLocalContact(/*id*/1, (err, data) => {
       if (err) {
           console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
@@ -756,7 +756,7 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -800,7 +800,7 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.isLocalContact(/*id*/1);
   promise.then((data) => {
       console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
@@ -837,7 +837,7 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 **示例：**
 
 ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -877,7 +877,7 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.isMyCard(/*id*/1, (err, data) => {
       if (err) {
           console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
@@ -921,7 +921,7 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -966,7 +966,7 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.isMyCard(/*id*/1);
   promise.then((data) => {
       console.log(`isMyCard success: data->${JSON.stringify(data)}`);
@@ -1002,7 +1002,7 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 **示例：**
 
 ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1042,7 +1042,7 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryMyCard((err, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
@@ -1080,7 +1080,7 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 **示例：**
 
 ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1123,7 +1123,7 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryMyCard({
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -1168,7 +1168,7 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 **示例：**
 
 ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1214,7 +1214,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.queryMyCard({
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
@@ -1247,7 +1247,7 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.selectContact((err, data) => {
       if (err) {
           console.log(`selectContact callback: err->${JSON.stringify(err)}`);
@@ -1279,7 +1279,7 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.selectContact();
   promise.then((data) => {
       console.log(`selectContact success: data->${JSON.stringify(data)}`);
@@ -1305,7 +1305,7 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.selectContacts((err, data) => {
       if (err) {
           console.log(`selectContact callback: err->${JSON.stringify(err)}`);
@@ -1332,7 +1332,7 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.selectContacts();
   promise.then((data) => {
       console.log(`selectContact success: data->${JSON.stringify(data)}`);
@@ -1359,7 +1359,7 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.selectContacts({
     isMultiSelect:false
   }, (err, data) => {
@@ -1389,7 +1389,7 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
       console.log(`selectContact success: data->${JSON.stringify(data)}`);
@@ -1426,7 +1426,7 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1467,7 +1467,7 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContact('xxx', (err, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
@@ -1507,7 +1507,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1553,7 +1553,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContact('xxx', {
       holderId: 0,
       bundleName: "",
@@ -1596,7 +1596,7 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1640,7 +1640,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContact('xxx', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -1682,7 +1682,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 **示例：**
 
 ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1731,7 +1731,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContact('xxx', {
       holderId: 0,
       bundleName: "",
@@ -1782,7 +1782,7 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1834,7 +1834,7 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.queryContact('xxx', {
       holderId: 0,
       bundleName: "",
@@ -1876,7 +1876,7 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1916,7 +1916,7 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContacts((err, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
@@ -1954,7 +1954,7 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1999,7 +1999,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContacts({
       holderId: 0,
       bundleName: "",
@@ -2041,7 +2041,7 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2084,7 +2084,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContacts({
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -2125,7 +2125,7 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2173,7 +2173,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContacts({
       holderId: 0,
       bundleName: "",
@@ -2222,7 +2222,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2274,7 +2274,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 **示例：**
 
 ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.queryContacts({
       holderId: 0,
       bundleName: "",
@@ -2317,7 +2317,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2358,7 +2358,7 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
@@ -2398,7 +2398,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2444,7 +2444,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
@@ -2487,7 +2487,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2531,7 +2531,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -2573,7 +2573,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2622,7 +2622,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
@@ -2673,7 +2673,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2726,7 +2726,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
@@ -2769,7 +2769,7 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2810,7 +2810,7 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContactsByEmail('xxx@email.com', (err, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -2849,7 +2849,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2895,7 +2895,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0,
       bundleName: "",
@@ -2938,7 +2938,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2982,7 +2982,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContactsByEmail('xxx@email.com', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -3024,7 +3024,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3073,7 +3073,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0,
       bundleName: "",
@@ -3124,7 +3124,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3177,7 +3177,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0,
       bundleName: "",
@@ -3219,7 +3219,7 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3259,7 +3259,7 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryGroups((err, data) => {
       if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
@@ -3297,7 +3297,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3342,7 +3342,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryGroups({
       holderId: 0,
       bundleName: "",
@@ -3389,7 +3389,7 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3438,7 +3438,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.queryGroups({
       holderId: 0,
       bundleName: "",
@@ -3478,7 +3478,7 @@ queryHolders(context: Context,  callback: AsyncCallback&lt;Array&lt;Holder&gt;&g
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3518,7 +3518,7 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryHolders((err, data) => {
       if (err) {
           console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
@@ -3560,7 +3560,7 @@ queryHolders(context: Context ): Promise&lt;Array&lt;Holder&gt;&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3599,7 +3599,7 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.queryHolders();
   promise.then((data) => {
       console.log(`queryHolders success: data->${JSON.stringify(data)}`);
@@ -3636,7 +3636,7 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3677,7 +3677,7 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryKey(/*id*/1, (err, data) => {
       if (err) {
           console.log(`queryKey callback: err->${JSON.stringify(err)}`);
@@ -3716,7 +3716,7 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3762,7 +3762,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
@@ -3810,7 +3810,7 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3860,7 +3860,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 **示例：**
 
   ```js
-//当前示例代码仅使用与js源文件
+  // 当前示例代码仅使用与js源文件
   let promise = contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
@@ -3927,7 +3927,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let myContact = {
     phoneNumbers: [{
         phoneNumber: "138xxxxxxxx"
@@ -3946,7 +3946,7 @@ let myContact = {
   或使用new一个Contact对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let myContact = new contact.Contact();
 let name = new contact.Name();
 name.fullName = "fullName";
@@ -3975,7 +3975,7 @@ myContact.phoneNumbers = [phoneNumber];
 
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let contactAttributes = {
     attributes: [
         contact.Attribute.ATTR_EMAIL,
@@ -3989,7 +3989,7 @@ let contactAttributes = {
 
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let contactAttributes = new contact.ContactAttributes();
 contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 ```
@@ -4024,7 +4024,7 @@ contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE];
 ```
 
@@ -4061,7 +4061,7 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let email = {
     email: "xxx@email.com",
     displayName: "displayName"
@@ -4072,7 +4072,7 @@ let email = {
   或使用new一个Email对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let email = new contact.Email();
 email.email = "xxx@email.com";
 ```
@@ -4096,7 +4096,7 @@ email.email = "xxx@email.com";
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let holder = {
   holderId: 0
 };
@@ -4105,7 +4105,7 @@ let holder = {
   或使用new一个Holder对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let holder = new contact.Holder();
 holder.holderId = 0;
 ```
@@ -4142,7 +4142,7 @@ holder.holderId = 0;
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let event = {
     eventDate: "xxxxxx"
 };
@@ -4151,7 +4151,7 @@ let event = {
   或使用new一个Event对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let event = new contact.Event();
 event.eventDate = "xxxxxx";
 ```
@@ -4174,7 +4174,7 @@ event.eventDate = "xxxxxx";
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let group = {
     groupId: 1,
     title: "title"
@@ -4184,7 +4184,7 @@ let group = {
   或使用new一个Group对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let group = new contact.Group();
 group.title = "title";
 ```
@@ -4225,7 +4225,7 @@ group.title = "title";
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let imAddress = {
     imAddress: "imAddress",
     labelName: "labelName"
@@ -4236,7 +4236,7 @@ let imAddress = {
   或使用new一个ImAddress对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let imAddress = new contact.ImAddress();
 imAddress.imAddress = "imAddress";
 ```
@@ -4266,7 +4266,7 @@ imAddress.imAddress = "imAddress";
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let name = {
     familyName: "familyName",
     fullName: "fullName"
@@ -4276,7 +4276,7 @@ let name = {
   或使用new一个name对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let name = new contact.Name();
 name.familyName = "familyName";
 name.fullName = "fullName";
@@ -4299,7 +4299,7 @@ name.fullName = "fullName";
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let nickName = {
     nickName: "nickName"
 };
@@ -4308,7 +4308,7 @@ let nickName = {
   或使用new一个NickName对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let nickName = new contact.NickName();
 nickName.nickName = "nickName";
 ```
@@ -4330,7 +4330,7 @@ nickName.nickName = "nickName";
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let note = {
     noteContent: "noteContent"
 };
@@ -4339,7 +4339,7 @@ let note = {
   或使用new一个Note对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let note = new contact.Note();
 note.noteContent = "noteContent";
 ```
@@ -4362,7 +4362,7 @@ note.noteContent = "noteContent";
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let organization = {
     name: "name",
     title: "title"
@@ -4372,7 +4372,7 @@ let organization = {
   或使用new一个Organization对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let organization = new contact.Organization();
 organization.name = "name";
 organization.title = "title";
@@ -4427,7 +4427,7 @@ organization.title = "title";
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let phoneNumber = {
     phoneNumber: "138xxxxxxxx",
     labelId: contact.PhoneNumber.NUM_HOME
@@ -4437,7 +4437,7 @@ let phoneNumber = {
   或使用new一个PhoneNumber对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let phoneNumber = new contact.PhoneNumber();
 phoneNumber.phoneNumber = "138xxxxxxxx";
 ```
@@ -4459,7 +4459,7 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let portrait = {
     uri: "uri"
 };
@@ -4468,7 +4468,7 @@ let portrait = {
   或使用new一个Portrait对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let portrait = new contact.Portrait();
 portrait.uri = "uri";
 ```
@@ -4512,7 +4512,7 @@ portrait.uri = "uri";
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let postalAddress = {
     city: "city"
 };
@@ -4521,7 +4521,7 @@ let postalAddress = {
   或使用new一个PostalAddress对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let postalAddress = new contact.PostalAddress();
 postalAddress.city = "city";
 ```
@@ -4569,7 +4569,7 @@ postalAddress.city = "city";
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let relation = {
     relationName: "relationName",
     labelId: contact.Relation.RELATION_ASSISTANT
@@ -4579,7 +4579,7 @@ let relation = {
   或使用new一个Relation对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let relation = new contact.Relation();
 relation.relationName = "relationName";
 relation.labelId = contact.Relation.RELATION_ASSISTANT;
@@ -4616,7 +4616,7 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 var sipAddress = {
     sipAddress: "sipAddress"
 };
@@ -4625,7 +4625,7 @@ var sipAddress = {
   或使用new一个SipAddress对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let sipAddress = new contact.SipAddress();
 sipAddress.sipAddress = "sipAddress";
 ```
@@ -4647,7 +4647,7 @@ sipAddress.sipAddress = "sipAddress";
   使用JSON格式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let website = {
     website: "website"
 };
@@ -4656,7 +4656,7 @@ let website = {
   或使用new一个Website对象的方式创建数据：
 
 ```js
-//当前示例代码仅使用与js源文件
+// 当前示例代码仅使用与js源文件
 let website = new contact.Website();
 website.website = "website";
 ```
