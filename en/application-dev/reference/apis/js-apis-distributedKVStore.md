@@ -41,7 +41,7 @@ Provides constants of the distributed KV store.
 | Name                 | Value     | Description                                   |
 | --------------------- | ------- | --------------------------------------- |
 | MAX_KEY_LENGTH        | 1024    | Maximum length of a key in a distributed KV store, in bytes.  |
-| MAX_VALUE_LENGTH      | 4194303 | Maximum length of a value in a distributed KV store, in bytes. |
+| MAX_VALUE_LENGTH      | 4194303 | Maximum length of a value in a distributed KV store, in bytes.|
 | MAX_KEY_LENGTH_DEVICE | 896     | Maximum length of a key in a device KV store, in bytes.|
 | MAX_STORE_ID_LENGTH   | 128     | Maximum length of a KV store ID, in bytes. |
 | MAX_QUERY_LENGTH      | 512000  | Maximum query length, in bytes.               |
@@ -127,7 +127,7 @@ Enumerates the distributed KV store types.
 
 | Name                | Description                                                        |
 | -------------------- | ------------------------------------------------------------ |
-| DEVICE_COLLABORATION | Device KV store.<br> The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| DEVICE_COLLABORATION | Device KV store.<br>The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 | SINGLE_VERSION       | Single KV store.<br>The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
 
 ## SecurityLevel
@@ -149,13 +149,13 @@ Provides KV store configuration.
 
 | Name         | Type                       | Mandatory| Description                                                        |
 | --------------- | -------------- | ---- | -------------------------|
-| createIfMissing | boolean                         | No | Whether to create a KV store if no database file exists. The default value is **true**, which means to create a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| createIfMissing | boolean                         | No | Whether to create a KV store if the database file does not exist. The default value is **true**, which means to create a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 | encrypt         | boolean                         | No  | Whether to encrypt the KV store. The default value is **false**, which means the KV store is not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 | backup          | boolean                         | No  | Whether to back up the KV store. The default value is **true**, which means to back up the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 | autoSync        | boolean                         | No  | Whether to automatically synchronize database files. The default value is **false**, which means the database files are manually synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC|
 | kvStoreType     | [KVStoreType](#kvstoretype)     | No  | Type of the KV store to create. The default value is **DEVICE_COLLABORATION**, which indicates a device KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 | securityLevel   | [SecurityLevel](#securitylevel) | Yes  | Security level of the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| schema          | [Schema](#schema)               | No  | Schema used to define the values stored in the KV store. The default value is **undefined**, which means no schema is set.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| schema          | [Schema](#schema)               | No  | Schema used to define the values stored in the KV store. The default value is **undefined**, which means no schema is used.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 ## Schema
 
@@ -2337,6 +2337,8 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 
 Writes data to this single KV store. This API uses an asynchronous callback to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
@@ -2388,6 +2390,8 @@ try {
 putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
 Write data to this KV store. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
@@ -2545,6 +2549,8 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 
 Deletes KV pairs from this KV store. This API uses an asynchronous callback to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
@@ -2589,6 +2595,8 @@ try {
 delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
 Deletes KV pairs from this KV store. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
@@ -3500,6 +3508,8 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 Obtains a **KVStoreResultSet** object that matches the specified predicate object. This API uses an asynchronous callback to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
@@ -3555,6 +3565,8 @@ try {
 getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
 
 Obtains a **KVStoreResultSet** object that matches the specified predicate object. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
@@ -4526,7 +4538,7 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of IDs of the devices in the same networking environment to be synchronized.|
 | mode      | [SyncMode](#syncmode) | Yes  | Synchronization mode.                                    |
-| delayMs   | number                | No  | Allowed synchronization delay time, in ms. The default value is **0**. |
+| delayMs   | number                | No  | Delay time allowed, in milliseconds. The default value is **0**.    |
 
 **Error codes**
 
@@ -4597,7 +4609,7 @@ Synchronizes the KV store manually. This API returns the result synchronously. F
 | deviceIds | string[]              | Yes  | List of IDs of the devices in the same networking environment to be synchronized.|
 | mode      | [SyncMode](#syncmode) | Yes  | Synchronization mode.                                    |
 | query     | [Query](#query)        | Yes  | **Query** object to match.                      |
-| delayMs   | number                | No  | Allowed synchronization delay time, in ms. The default value is **0**. |
+| delayMs   | number                | No  | Delay time allowed, in milliseconds. The default value is **0**.    |
 
 **Error codes**
 
@@ -4737,7 +4749,7 @@ Unsubscribes from data changes.
 | Name  | Type                                                 | Mandatory| Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | Yes  | Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.|
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for the data change event. If the callback is not specified, all subscriptions to the data change event are canceled.|
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for the data change event. If the callback is not specified, all subscriptions to the data change event will be canceled.|
 
 **Error codes**
 
@@ -6168,6 +6180,8 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 Obtains a **KVStoreResultSet** object that matches the specified predicate object for this device. This API uses an asynchronous callback to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
@@ -6223,6 +6237,8 @@ try {
 getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
 
 Obtains a **KVStoreResultSet** object that matches the specified predicate object for this device. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
@@ -6281,6 +6297,8 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 
 Obtains a **KVStoreResultSet** object that matches the specified predicate object and device ID. This API uses an asynchronous callback to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
@@ -6337,6 +6355,8 @@ try {
 getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
 
 Obtains a **KVStoreResultSet** object that matches the specified predicate object and device ID. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
