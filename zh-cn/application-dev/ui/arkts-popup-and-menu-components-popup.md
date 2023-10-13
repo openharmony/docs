@@ -9,9 +9,9 @@ Popup属性可绑定在组件上显示气泡弹窗提示，设置弹窗内容、
 
 ## 文本提示气泡
 
-文本提示气泡常用于只展示带有文本的信息提示，不带有任何交互的场景。Popup属性需绑定组件，当bindPopup属性中参数show为true的时候会弹出气泡提示。
+文本提示气泡常用于只展示带有文本的信息提示，不带有任何交互的场景。Popup属性需绑定组件，当bindPopup属性中参数show为true时会弹出气泡提示。
 
-在Button组件上绑定Popup属性，每次点击Button按钮，handlePopup会切换布尔值，当其为true时，触发bindPopup弹出气泡。
+在Button组件上绑定Popup属性，每次点击Button按钮，handlePopup会切换布尔值，当值为true时，触发bindPopup弹出气泡。
 
 
 
@@ -41,7 +41,7 @@ struct PopupExample {
 
 ## 带按钮的提示气泡
 
-通过primaryButton、secondaryButton属性为气泡最多设置两个Button按钮，通过此按钮进行简单的交互；开发者可以通过配置action参数来设置想要触发的操作。
+通过primaryButton、secondaryButton属性为气泡最多设置两个Button按钮，通过此按钮进行简单的交互，开发者可以通过配置action参数来设置想要触发的操作。
 
 
 
