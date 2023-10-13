@@ -2,14 +2,6 @@
 
 AccessibilityExtensionAbility基于ExtensionAbility框架，提供无障碍扩展服务，开发者可以基于AccessibilityExtensionAbility模板开发自己的辅助应用，协助用户完成一些快捷的交互过程。
 
-> **环境要求**
->
-> IDE: DevEco Studio 3.0 Beta3 (3.0.0.900)及以后版本
->
-> SDK: API Version 9 及以后版本
->
-> Model: Stage
-
 ## AccessibilityExtensionAbility概述
 
 “信息无障碍”译自“Accessibility”，是指任何人在任何情况下都能平等、方便地获取信息并利用信息。其目的是缩小全社会不同阶层、不同地区、不同年龄、不同健康状况的人群在信息理解、信息交互、信息利用方面的数字鸿沟，使其更加方便地参与社会生活，享受数字发展带来的便利。
