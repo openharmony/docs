@@ -4,9 +4,9 @@ You can use [FilePicker](../reference/apis/js-apis-file-picker.md) to implement 
 
 The **FilePicker** provides the following interfaces by file type:
 
-- [PhotoViewPicker](../reference/apis/js-apis-file-picker.md#photoviewpicker): used to select and save images or videos. You are advised to use **PhotoViewPicker** of [**PhotoAccessHelper**](../reference/apis/js-apis-photoAccessHelper.md) to select files. Currently, the images and videos are saved in a directory of the system **FileManager**. Therefore, the images and videos saved by using **save()** cannot be displayed in **Gallery**. The images and videos displayed in **Gallery** are saved by using the [SaveButton](../reference/arkui-ts/ts-security-components-savebutton.md).
+- [PhotoViewPicker](../reference/apis/js-apis-file-picker.md#photoviewpicker): used to select and save images or videos. You are advised to use [PhotoViewPicker of PhotoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md) to select files. The **PhotoViewPicker** of **FilePicker** can select only assets in **Gallery**, which is in a directory of the system **FileManager**. Therefore, the images and videos saved using **save()** cannot be viewed in **Gallery**. To enable the saved assets to be viewed in **Gallery**, use [a security component to create the media asset](./photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security component).
 
-- [DocumentViewPicker](../reference/apis/js-apis-file-picker.md#documentviewpicker): used to select and save documents. The documents can be selected by using **FilePicker**. The documents are not distinguished by file name extensions. For example, the images and documents downloaded from browsers are of the document type.
+- [DocumentViewPicker](../reference/apis/js-apis-file-picker.md#documentviewpicker): used to select and save documents. The documents can be selected by using **FilePicker**. The documents are not distinguished by file name extensions. For example, the images and documents downloaded from a browser are of the document type.
 
 - [AudioViewPicker](../reference/apis/js-apis-file-picker.md#audioviewpicker): used to select and save audio files. Currently, the audio files can be selected by using **FilePicker**.
 
@@ -29,8 +29,8 @@ The **FilePicker** provides the following interfaces by file type:
    ```
 
 3. Set the file type and the maximum number of media files to select.
-
    For example, select a maximum of five images. For details about the media file types, see [PhotoViewMIMETypes](../reference/apis/js-apis-file-picker.md#photoviewmimetypes).
+
    ```ts
    import picker from '@ohos.file.picker';
 
@@ -204,4 +204,3 @@ The **FilePicker** provides the following interfaces by file type:
    console.info('readSync data to file succeed and buffer size is:' + readLen);
    fs.closeSync(file);
    ```
-<!--no_check-->

@@ -1829,7 +1829,7 @@ Provides APIs for encapsulating file asset attributes.
 
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | Yes  | No  | File asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**.        |
+| uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#media-file-uri).        |
 | fileType   | [FileType](#filetype) | Yes  | No  | Type of the file.                                              |
 | displayName               | string                   | Yes  | Yes  | File name, including the file name extension, to display.                                |
 
