@@ -103,10 +103,9 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let uploadTask;
-  let context;
-  let uploadConfig = {
+  ```ts
+  let uploadTask: request.UploadTask;
+  let uploadConfig: request.UploadConfig = {
     url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
@@ -114,13 +113,13 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     data: [{ name: "name123", value: "123" }],
   };
   try {
-    request.uploadFile(context, uploadConfig).then((data) => {
+    request.uploadFile(this.context, uploadConfig).then((data: request.UploadTask) => {
       uploadTask = data;
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
     });
   } catch (err) {
-    console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to request the upload. err: ${JSON.stringify(err)}`);
   }
   ```
 
@@ -157,10 +156,9 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let uploadTask;
-  let context;
-  let uploadConfig = {
+  ```ts
+  let uploadTask: request.UploadTask;
+  let uploadConfig: request.UploadConfig = {
     url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
@@ -168,7 +166,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     data: [{ name: "name123", value: "123" }],
   };
   try {
-    request.uploadFile(context, uploadConfig, (err, data) => {
+    request.uploadFile(this.context, uploadConfig, (err: BusinessError, data: request.UploadTask) => {
       if (err) {
         console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -176,7 +174,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
       uploadTask = data;
     });
   } catch (err) {
-    console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to request the upload. err: ${JSON.stringify(err)}`);
   }
   ```
 
@@ -310,8 +308,8 @@ Subscribes to upload progress events. This API uses a callback to return the res
 
 **Example**
 
-  ```js
-  let upProgressCallback = (uploadedSize, totalSize) => {
+  ```ts
+  let upProgressCallback = (uploadedSize: number, totalSize: number) => {
     console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
   };
   uploadTask.on('progress', upProgressCallback);
@@ -343,8 +341,8 @@ Subscribes to HTTP header events for an upload task. This API uses a callback to
 
 **Example**
 
-  ```js
-  let headerCallback = (headers) => {
+  ```ts
+  let headerCallback = (headers: object) => {
     console.info("upOnHeader headers:" + JSON.stringify(headers));
   };
   uploadTask.on('headerReceive', headerCallback);
@@ -376,16 +374,16 @@ Subscribes to upload completion or failure events. This API uses a callback to r
 
 **Example**
 
-  ```js
-  let upCompleteCallback = (taskStates) => {
-    for (let i = 0; i < taskStates.length; i++ ) {
+  ```ts
+  let upCompleteCallback = (taskStates: Array<request.TaskState>) => {
+    for (let i = 0; i < taskStates.length; i++) {
       console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
     }
   };
   uploadTask.on('complete', upCompleteCallback);
 
-  let upFailCallback = (taskStates) => {
-    for (let i = 0; i < taskStates.length; i++ ) {
+  let upFailCallback = (taskStates: Array<request.TaskState>) => {
+    for (let i = 0; i < taskStates.length; i++) {
       console.info("upOnFail taskState:" + JSON.stringify(taskStates[i]));
     }
   };
@@ -412,8 +410,8 @@ Unsubscribes from upload progress events. This API uses a callback to return the
 
 **Example**
 
-  ```js
-  let upProgressCallback = (uploadedSize, totalSize) => {
+  ```ts
+  let upProgressCallback = (uploadedSize: number, totalSize: number) => {
     console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
   };
   uploadTask.off('progress', upProgressCallback);
@@ -439,8 +437,8 @@ Unsubscribes from HTTP header events for an upload task. This API uses a callbac
 
 **Example**
 
-  ```js
-  let headerCallback = (header) => {
+  ```ts
+  let headerCallback = (header: object) => {
     console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
   };
   uploadTask.off('headerReceive', headerCallback);
@@ -465,18 +463,18 @@ Unsubscribes from upload completion or failure events. This API uses a callback 
 
 **Example**
 
-  ```js
-  let upCompleteCallback = (taskStates) => {
+  ```ts
+  let upCompleteCallback = (taskStates: Array<request.TaskState>) => {
     console.info('Upload delete complete notification.');
-    for (let i = 0; i < taskStates.length; i++ ) {
+    for (let i = 0; i < taskStates.length; i++) {
       console.info('taskState:' + JSON.stringify(taskStates[i]));
     }
   };
   uploadTask.off('complete', upCompleteCallback);
 
-  let upFailCallback = (taskStates) => {
+  let upFailCallback = (taskStates: Array<request.TaskState>) => {
     console.info('Upload delete fail notification.');
-    for (let i = 0; i < taskStates.length; i++ ) {
+    for (let i = 0; i < taskStates.length; i++) {
       console.info('taskState:' + JSON.stringify(taskStates[i]));
     }
   };
@@ -500,10 +498,10 @@ Deletes this upload task. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
-  uploadTask.delete().then((result) => {
+  ```ts
+  uploadTask.delete().then((result: boolean) => {
     console.info('Succeeded in deleting the upload task.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -527,8 +525,8 @@ Deletes this upload task. This API uses an asynchronous callback to return the r
 
 **Example**
 
-  ```js
-  uploadTask.delete((err, result) => {
+  ```ts
+  uploadTask.delete((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -696,17 +694,16 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let downloadTask;
-  let context;
+  ```ts
+  let downloadTask: request.DownloadTask;
   try {
-    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
+    request.downloadFile(this.context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
       downloadTask = data;
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
     })
   } catch (err) {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
   }
   ```
 
@@ -746,12 +743,13 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let downloadTask;
-  let context;
+  ```ts
+  let downloadTask: request.DownloadTask;
   try {
-    request.downloadFile(context, { url: 'https://xxxx/xxxxx.hap', 
-    filePath: 'xxx/xxxxx.hap'}, (err, data) => {
+    request.downloadFile(this.context, {
+      url: 'https://xxxx/xxxxx.hap',
+      filePath: 'xxx/xxxxx.hap'
+    }, (err: BusinessError, data: request.DownloadTask) => {
       if (err) {
         console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -759,7 +757,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
       downloadTask = data;
     });
   } catch (err) {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
   }
   ```
 
@@ -879,8 +877,8 @@ Subscribes to download progress events. This API uses a callback to return the r
 
 **Example**
 
-  ```js
-  let progresCallback = (receivedSize, totalSize) => {
+  ```ts
+  let progresCallback = (receivedSize: number, totalSize: number) => {
     console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   };
   downloadTask.on('progress', progresCallback);
@@ -906,8 +904,8 @@ Unsubscribes from download progress events. This API uses a callback to return t
 
 **Example**
 
-  ```js
-  let progresCallback = (receivedSize, totalSize) => {
+  ```ts
+  let progresCallback = (receivedSize: number, totalSize: number) => {
     console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
   };
   downloadTask.off('progress', progresCallback);
@@ -933,7 +931,7 @@ Subscribes to download events. This API uses an asynchronous callback to return 
 
 **Example**
 
-  ```js
+  ```ts
   let completeCallback = () => {
     console.info('Download task completed.');
   };
@@ -970,7 +968,7 @@ Unsubscribes from download events. This API uses a callback to return the result
 
 **Example**
 
-  ```js
+  ```ts
   let completeCallback = () => {
     console.info('Download delete complete notification.');
   };
@@ -1013,8 +1011,8 @@ Subscribes to download failure events. This API uses a callback to return the re
 
 **Example**
 
-  ```js
-  let failCallback = (err) => {
+  ```ts
+  let failCallback = (err: BusinessError) => {
     console.error(`Failed to download the task. Code: ${err.code}, message: ${err.message}`);
   };
   downloadTask.on('fail', failCallback);
@@ -1040,8 +1038,8 @@ Unsubscribes from download failure events. This API uses a callback to return th
 
 **Example**
 
-  ```js
-  let failCallback = (err) => {
+  ```ts
+  let failCallback = (err: BusinessError) => {
     console.error(`Failed to download the task. Code: ${err.code}, message: ${err.message}`);
   };
   downloadTask.off('fail', failCallback);
@@ -1065,10 +1063,10 @@ Removes this download task. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
-  downloadTask.delete().then((result) => {
+  ```ts
+  downloadTask.delete().then((result: boolean) => {
     console.info('Succeeded in removing the download task.');
-  }).catch ((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -1092,12 +1090,12 @@ Deletes this download task. This API uses an asynchronous callback to return the
 
 **Example**
 
-  ```js
-  downloadTask.delete((err, result)=>{
-    if(err) {
+  ```ts
+  downloadTask.delete((err: BusinessError, result: boolean) => {
+    if (err) {
       console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
       return;
-    } 
+    }
     console.info('Succeeded in removing the download task.');
   });
   ```
@@ -1121,10 +1119,10 @@ Obtains the information about this download task. This API uses a promise to ret
 
 **Example**
 
-  ```js
-  downloadTask.getTaskInfo().then((downloadInfo) => {    
+  ```ts
+  downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
     console.info('Succeeded in querying the download task')
-  }) .catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -1148,9 +1146,9 @@ Obtains the information about this download task. This API uses an asynchronous 
 
 **Example**
 
-  ```js
-  downloadTask.getTaskInfo((err, downloadInfo)=>{
-    if(err) {
+  ```ts
+  downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
+    if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('Succeeded in querying the download mimeType');
@@ -1177,10 +1175,10 @@ Obtains the **MimeType** of this download task. This API uses a promise to retur
 
 **Example**
 
-  ```js
-  downloadTask.getTaskMimeType().then((data) => {    
+  ```ts
+  downloadTask.getTaskMimeType().then((data: string) => {
     console.info('Succeeded in querying the download MimeType');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -1204,9 +1202,9 @@ Obtains the **MimeType** of this download task. This API uses an asynchronous ca
 
 **Example**
 
-  ```js
-  downloadTask.getTaskMimeType((err, data)=>{
-    if(err) {
+  ```ts
+  downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
+    if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('Succeeded in querying the download mimeType');
@@ -1233,10 +1231,10 @@ Pauses this download task. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
-  downloadTask.suspend().then((result) => {    
+  ```ts
+  downloadTask.suspend().then((result: boolean) => {
     console.info('Succeeded in pausing the download task.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -1260,9 +1258,9 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 
 **Example**
 
-  ```js
-  downloadTask.suspend((err, result)=>{
-    if(err) {
+  ```ts
+  downloadTask.suspend((err: BusinessError, result: boolean) => {
+    if (err) {
       console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
       return;
     }
@@ -1289,10 +1287,10 @@ Resumes this download task. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
-  downloadTask.restore().then((result) => {
+  ```ts
+  downloadTask.restore().then((result: boolean) => {
     console.info('Succeeded in resuming the download task.')
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -1316,12 +1314,12 @@ Resumes this download task. This API uses an asynchronous callback to return the
 
 **Example**
 
-  ```js
-  downloadTask.restore((err, result)=>{
+  ```ts
+  downloadTask.restore((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
       return;
-    } 
+    }
     console.info('Succeeded in resuming the download task.');
   });
   ```
@@ -1906,22 +1904,21 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOnTest",
-                       value: {
-                         filename: "taskOnTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOnTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -1938,13 +1935,13 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOnCallback = (progress) => {
-    console.info('upload task completed.');
+  let createOnCallback = (progress: request.agent.Progress) => {
+    console.info('upload task progress.');
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('progress', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -1978,22 +1975,21 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOnTest",
-                       value: {
-                         filename: "taskOnTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOnTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2010,13 +2006,13 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOnCallback = (progress) => {
+  let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('completed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2050,22 +2046,21 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOnTest",
-                       value: {
-                         filename: "taskOnTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOnTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2082,13 +2077,13 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOnCallback = (progress) => {
-    console.info('upload task completed.');
+  let createOnCallback = (progress: request.agent.Progress) => {
+    console.info('upload task failed.');
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('failed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2123,22 +2118,21 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOffTest",
-                       value: {
-                         filename: "taskOffTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOffTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2155,14 +2149,14 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOffCallback = (progress) => {
-    console.info('upload task completed.');
+  let createOffCallback = (progress: request.agent.Progress) => {
+    console.info('upload task progress.');
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('progress', createOffCallback);
     task.off('progress', createOffCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2196,22 +2190,21 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOffTest",
-                       value: {
-                         filename: "taskOffTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOffTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2228,14 +2221,14 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOffCallback = (progress) => {
+  let createOffCallback = (progress: request.agent.Progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('completed', createOffCallback);
     task.off('completed', createOffCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2269,22 +2262,21 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOffTest",
-                       value: {
-                         filename: "taskOffTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOffTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2301,14 +2293,14 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOffCallback = (progress) => {
-    console.info('upload task completed.');
+  let createOffCallback = (progress: request.agent.Progress) => {
+    console.info('upload task failed.');
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('failed', createOffCallback);
     task.off('failed', createOffCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2344,9 +2336,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStartTest',
@@ -2368,8 +2359,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
-    task.start((err) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
+    task.start((err: BusinessError) => {
       if (err) {
         console.error(`Failed to start the download task, Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2377,7 +2368,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
       console.info(`Succeeded in starting a download task.`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2413,9 +2404,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStartTest',
@@ -2437,14 +2427,14 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.start().then(() => {
       console.info(`Succeeded in starting a download task.`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to start the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2479,9 +2469,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskPauseTest',
@@ -2503,8 +2492,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
-    task.pause((err) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
+    task.pause((err: BusinessError) => {
       if (err) {
         console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2512,7 +2501,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
       console.info(`Succeeded in pausing a download task. `);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2544,9 +2533,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskPauseTest',
@@ -2568,14 +2556,14 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to pause the upload task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2609,9 +2597,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskResumeTest',
@@ -2633,8 +2620,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
-    task.resume((err) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
+    task.resume((err: BusinessError) => {
       if (err) {
         console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2642,7 +2629,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
       console.info(`Succeeded in resuming a download task. `);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2676,9 +2663,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskResumeTest',
@@ -2700,14 +2686,14 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.resume().then(() => {
       console.info(`Succeeded in resuming a download task. `);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2738,9 +2724,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStopTest',
@@ -2762,8 +2747,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
-    task.stop((err) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
+    task.stop((err: BusinessError) => {
       if (err) {
         console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2771,7 +2756,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
       console.info(`Succeeded in stopping a download task. `);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2802,9 +2787,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let config = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStopTest',
@@ -2826,14 +2810,14 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.stop().then(() => {
       console.info(`Succeeded in stopping a download task. `);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2870,17 +2854,16 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "reeateTest",
-                       value: {
-                         filename: "reeateTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./reeateTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "reeateTest",
+    value: {
+      filename: "reeateTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./reeateTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'reeateTest',
@@ -2902,7 +2885,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config, (err, task) => {
+  request.agent.create(this.context, config, (err: BusinessError, task: request.agent.Task) => {
     if (err) {
       console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2952,17 +2935,16 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "reeateTest",
-                       value: {
-                         filename: "reeateTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./reeateTest.avi",
-                       }
-                     }];
-  let config = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "reeateTest",
+    value: {
+      filename: "reeateTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./reeateTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'reeateTest',
@@ -2984,7 +2966,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
   }).catch((err) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
@@ -3021,8 +3003,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  request.agent.remove("id", (err) => {
+  ```ts
+  request.agent.remove("id", (err: BusinessError) => {
     if (err) {
       console.error(`Failed to removing a download task, Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3063,10 +3045,10 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
+  ```ts
   request.agent.remove("id").then(() => {
     console.info(`Succeeded in removing a download task. `);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to remove a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -3097,8 +3079,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  request.agent.show("123456", (err, TaskInfo) => {
+  ```ts
+  request.agent.show("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to show a unload task, Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3138,11 +3120,11 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  request.agent.show("123456").then((TaskInfo) => {
-    console.info(`Succeeded in showing a unload task.`);
-  }).catch((err) => {
-    console.error(`Failed to show a unload task, Code: ${err.code}, message: ${err.message}`);
+  ```ts
+  request.agent.show("123456").then((taskInfo: request.agent.TaskInfo) => {
+    console.info(`Succeeded in showing an upload task.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to show an upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3173,13 +3155,13 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  request.agent.touch("123456", "token", (err, TaskInfo) => {
+  ```ts
+  request.agent.touch("123456", "token", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
-      console.error(`Failed to touch a unload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to touch an upload task. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in touching a unload task.`);
+    console.info(`Succeeded in touching an upload task.`);
   });
   ```
 
@@ -3215,10 +3197,10 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  request.agent.touch("123456", "token").then((TaskInfo) => {
+  ```ts
+  request.agent.touch("123456", "token").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in touching a unload task. `);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to touch a unload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -3248,18 +3230,18 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let filter ={
-    bundle:"com.example.myapplication",
+  ```ts
+  let filter: request.agent.Filter = {
+    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
-    mode:request.agent.Mode.BACKGROUND
+    mode: request.agent.Mode.BACKGROUND
   }
-  request.agent.search(filter, (err, data) => {
+  request.agent.search(filter, (err: BusinessError, data: Array<string>) => {
     if (err) {
-      console.error(`Failed to search a unload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in searching a unload task. `);
+    console.info(`Upload task search succeeded. `);
   });
   ```
 
@@ -3293,16 +3275,16 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let filter ={
-    bundle:"com.example.myapplication",
+  ```ts
+  let filter: request.agent.Filter = {
+    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }
-  request.agent.search(filter).then((data) => {
-    console.info(`Succeeded in searching a unload task. `);
-  }).catch((err) => {
-    console.error(`Failed to search a unload task, Code: ${err.code}, message: ${err.message}`);
+  request.agent.search(filter).then((data: Array<string>) => {
+    console.info(`Upload task search succeeded. `);
+  }).catch((err: BusinessError) => {
+    console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3336,13 +3318,13 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  request.agent.query("123456", (err, TaskInfo) => {
+  ```ts
+  request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
-      console.error(`Failed to query a unload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query an upload task. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in querying a unload task. result: ${TaskInfo.uid}`);
+    console.info(`Succeeded in querying the upload task. Result: ${taskInfo.uid}`);
   });
   ```
 
@@ -3381,10 +3363,10 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  request.agent.query("123456",).then((TaskInfo) => {
-    console.info(`Succeeded in querying a unload task. result: ${TaskInfo.uid}`);
-  }).catch((err) => {
+  ```ts
+  request.agent.query("123456",).then((taskInfo: request.agent.TaskInfo) => {
+    console.info(`Succeeded in querying a unload task. result: ${taskInfo.uid}`);
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query a unload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```

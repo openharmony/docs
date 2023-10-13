@@ -10,7 +10,7 @@ You can use the APIs of this module to start, terminate, connect, and disconnect
 
 ## Modules to Import
 
-```
+```ts
 import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
 ```
 
@@ -18,10 +18,11 @@ import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
 
 Before using the **InputMethodExtensionContext** module, you must define a child class that inherits from **InputMethodExtensionAbility**.
 
-```js
+```ts
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-class EntryAbility extends InputMethodExtensionAbility {
-  onCreate() {
+import Want from '@ohos.app.ability.Want';
+class InputMethodExtnAbility extends InputMethodExtensionAbility {
+  onCreate(want: Want): void {
     let context = this.context;
   }
 }
@@ -31,7 +32,7 @@ class EntryAbility extends InputMethodExtensionAbility {
 
 destroy(callback: AsyncCallback\<void>): void
 
-Terminates this ability. This API uses an asynchronous callback to return the result.
+Destroys this input method. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -43,8 +44,12 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 **Example**
 
-```js
-this.context.destroy(() => {
+```ts
+this.context.destroy((err: BusinessError) => {
+  if(err) {
+    console.log('Failed to destroy context.');
+    return;
+  }
   console.log('Succeeded in destroying context.');
 });
 ```
@@ -53,7 +58,7 @@ this.context.destroy(() => {
 
 destroy(): Promise\<void>;
 
-Terminates this ability. This API uses a promise to return the result.
+Destroys this input method. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -61,12 +66,14 @@ Terminates this ability. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void>; | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
-```js
+```ts
 this.context.destroy().then(() => {
   console.log('Succeed in destroying context.');
+}).catch((err: BusinessError)=>{
+  console.log('Failed to destroy context.');
 });
 ```
