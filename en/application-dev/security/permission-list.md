@@ -2856,10 +2856,10 @@ Allows a system ability or system application to access distributed hardware res
 
 Allows the MCP host application to perform user account authorization login on behalf of its sub-applications.
 
-**权限级别**：system_basic
+**Permission level**: system_basic
 
-**授权方式**：system_grant
+**Authorization mode**: system_grant
 
-**ACL使能**：TRUE
+**Enable via ACL**: TRUE
 
-**起始版本**：11
+**Start version**: 11
