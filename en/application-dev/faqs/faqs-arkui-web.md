@@ -231,7 +231,7 @@ struct Index {
 
 **Reference**
 
-[userAgent](../reference/arkui-ts/ts-basic-components-web.md#useragent) and [getUserAgent](../reference/apis/js-apis-webview.md#getuseragent)
+[userAgent](../reference/arkui-ts/ts-basic-components-web.md#useragentdeprecated), [getUserAgent](../reference/apis/js-apis-webview.md#getuseragent)
 
 ## How do I enable the \<Web> component to return to the previous web page following a swipe gesture?
 
@@ -270,4 +270,4 @@ struct Index {
 
 **Reference**
 
-[Web](../reference/apis/js-apis-webview.md#accessstep)
+[accessStep](../reference/apis/js-apis-webview.md#accessstep)
