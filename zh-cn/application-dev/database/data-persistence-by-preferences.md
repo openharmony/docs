@@ -180,10 +180,7 @@
      应用订阅数据变更需要指定observer作为回调方法。订阅的Key值发生变更后，当执行flush()方法时，observer被触发回调。示例代码如下所示：
      
    ```ts
-   interface observer {
-      key: string
-   }
-   preferences.on('change', (key: observer) => {
+   preferences.on('change', (key: string) => {
      console.info('The key' + key + 'changed.');
    });
    // 数据产生变更，由'auto'变为'manual'
