@@ -234,7 +234,7 @@ onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
 "extensionAbilities": [
   {
     "name": "AccessibilityExtAbility",
-    "srcEntry": "./ets/AccessibilityExtAbility/AccessibilityExtAbility.ts",
+    "srcEntry": "./ets/AccessibilityExtAbility/AccessibilityExtAbility.ets",
     "label": "$string:MainAbility_label",
     "description": "$string:MainAbility_desc",
     "type": "accessibility",
