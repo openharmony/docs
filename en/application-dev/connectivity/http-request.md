@@ -165,5 +165,3 @@ httpRequest.requestInStream(
 );
 ```
 
-
-- [新闻数据加载（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/NewsDataArkTS)
