@@ -802,7 +802,7 @@ constructor(locale: string)
 
 | 名称  | 类型   | 可读   | 可写   | 说明                |
 | ---- | ---- | ---- | ---- | ----------------- |
-| type | string | 是    | 是    | 实体的类型，如: "phone_number", "date"等。 |
+| type | string | 是    | 是    | 实体的类型，当前仅支持"phone_number"。 |
 | begin | number | 是    | 是    | 实体的起始位置。 |
 | end | number | 是    | 是    | 实体的终止位置。 |
 
