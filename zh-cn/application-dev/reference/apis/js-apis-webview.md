@@ -2306,7 +2306,7 @@ struct WebComponent {
 
 postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
-发送Web消息端口到HTML5。
+发送Web消息端口到HTML。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3512,8 +3512,6 @@ setNetworkAvailable(enable: boolean): void
 
 设置JavaScript中的window.navigator.isOnLine属性。
 
-**需要权限：** ohos.permission.GET_NETWORK_INFO
-
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -3567,9 +3565,15 @@ struct WebComponent {
 <body>
 <h1>online 属性</h1>
 <p id="demo"></p>
+<button onclick="func()">click</button>
 <script>
     let online = navigator.onLine;
     document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+
+    function func(){
+      var online = navigator.onLine;
+      document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+    }
 </script>
 </body>
 </html>
@@ -4114,7 +4118,7 @@ struct WebComponent {
 
 getCertificate(): Promise<Array<cert.X509Cert>>
 
-获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert定义](./js-apis-cert.md)），便于开发者展示网站证书信息。
+获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert](./js-apis-cert.md#x509cert)定义），便于开发者展示网站证书信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
