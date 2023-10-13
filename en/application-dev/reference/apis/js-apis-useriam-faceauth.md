@@ -5,12 +5,11 @@ The **userIAM.faceAuth** module provides APIs for face enrollment.
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> - The APIs provided by this module are system APIs.
+>- The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
-```js
+```ts
 import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 ```
 
@@ -26,6 +25,8 @@ A constructor used to create a **FaceAuthManager** object.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.FaceAuth
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type                  | Description                |
@@ -34,7 +35,7 @@ A constructor used to create a **FaceAuthManager** object.
 
 **Example**
 
-```js
+```ts
 import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
 let faceAuthManager = new userIAM_faceAuth.FaceAuthManager();
@@ -47,6 +48,8 @@ setSurfaceId(surfaceId: string): void;
 Sets an [XComponent surface ID](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) for the face preview page in the face enrollment process. This API must be used with [AddCredential](./js-apis-osAccount.md#addcredential8).
 
 **System capability**: SystemCapability.UserIAM.UserAuth.FaceAuth
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.MANAGE_USER_IDM
 
@@ -68,7 +71,7 @@ For details about the following error codes, see [User Authentication Error Code
 
 **Example**
 
-```js
+```ts
 import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
 // The surfaceId is obtained from the XComponent control. The surfaceId here is only an example.
