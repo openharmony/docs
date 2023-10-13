@@ -90,7 +90,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
-import type { BusinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -145,7 +145,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
-import type { BusinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -236,7 +236,7 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
-import type { BusinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
