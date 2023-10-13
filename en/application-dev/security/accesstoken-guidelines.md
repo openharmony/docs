@@ -174,7 +174,7 @@ Example: Apply for the permission for an application to access the Calendar.
    import { BusinessError } from '@ohos.base';
    
    async function checkAccessToken(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
-     let atManager = abilityAccessCtrl.createAtManager();
+     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
      let grantStatus: abilityAccessCtrl.GrantStatus = abilityAccessCtrl.GrantStatus.PERMISSION_DENIED;
    
      // Obtain the access token ID of the application.
@@ -222,7 +222,7 @@ Example: Apply for the permission for an application to access the Calendar.
    ```typescript
    import UIAbility from '@ohos.app.ability.UIAbility';
    import window from '@ohos.window';
-   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+   import abilityAccessCtrl, { Context, PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
 
    const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
@@ -230,11 +230,11 @@ Example: Apply for the permission for an application to access the Calendar.
     // ...
     onWindowStageCreate(windowStage: window.WindowStage) {
       // Main window is created. Set the main page for this ability.
-      let context = this.context;
-      let atManager = abilityAccessCtrl.createAtManager();
+      let context: Context = this.context;
+      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       // The return value of requestPermissionsFromUser determines whether to display a dialog box to request user authorization.
 
-      atManager.requestPermissionsFromUser(context, permissions).then((data) => {
+      atManager.requestPermissionsFromUser(context, permissions).then((data: PermissionRequestResult) => {
         let grantStatus: Array<number> = data.authResults;
         let length: number = grantStatus.length;
         for (let i = 0; i < length; i++) {
@@ -257,8 +257,7 @@ Example: Apply for the permission for an application to access the Calendar.
    Sample code for requesting user authorization on the UI:
 
    ```typescript
-   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-   import common from '@ohos.app.ability.common';
+   import abilityAccessCtrl, { Context, PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
 
    const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
@@ -267,10 +266,10 @@ Example: Apply for the permission for an application to access the Calendar.
    @Component
    struct Index {
     reqPermissionsFromUser(permissions: Array<Permissions>): void {
-      let context = getContext(this) as common.UIAbilityContext;
-      let atManager = abilityAccessCtrl.createAtManager();
+      let context: Context  = getContext(this) as common.UIAbilityContext;
+      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       // The return value of requestPermissionsFromUser determines whether to display a dialog box to request user authorization.
-      atManager.requestPermissionsFromUser(context, permissions).then((data) => {
+      atManager.requestPermissionsFromUser(context, permissions).then((data: PermissionRequestResult) => {
         let grantStatus: Array<number> = data.authResults;
         let length: number = grantStatus.length;
         for (let i = 0; i < length; i++) {
@@ -298,7 +297,7 @@ Example: Apply for the permission for an application to access the Calendar.
 
    After [requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) is called, the application waits for the user authorization result. If the user has granted the permission, the application can access the Calendar. If the user has not granted the permission, a message will be displayed indicating that user authorization is required, and the user is directed to **Settings** to set the permission.
 
-   The ArkTS syntax does not support direct use of **globalThis**. A singleton map is required to pass **globalThis**. You need to perform the following operations:
+   The ArkTS syntax does not support direct use of **globalThis**. A singleton map is required to enable the use of **globalThis**. You need to perform the following operations:
 
    a. Import the created singleton object **GlobalThis** to **EntryAbility.ets**.
       ```typescript
@@ -315,13 +314,13 @@ Example: Apply for the permission for an application to access the Calendar.
 
    The sample code of **globalThis.ets** is as follows:
    ```typescript
-   import common from '@ohos.app.ability.common';
+   import { Context } from '@ohos.abilityAccessCtrl';
 
    // Construct a singleton object.
    export class GlobalThis {
      private constructor() {}
      private static instance: GlobalThis;
-     private _uiContexts = new Map<string, common.UIAbilityContext>();
+     private _uiContexts = new Map<string, Context>();
 
      public static getInstance(): GlobalThis {
        if (!GlobalThis.instance) {
@@ -330,11 +329,11 @@ Example: Apply for the permission for an application to access the Calendar.
        return GlobalThis.instance;
      }
 
-     getContext(key: string): common.UIAbilityContext | undefined {
+     getContext(key: string): Context | undefined {
        return this._uiContexts.get(key);
      }
 
-     setContext(key: string, value: common.UIAbilityContext): void {
+     setContext(key: string, value: Context): void {
        this._uiContexts.set(key, value);
      }
 
@@ -343,24 +342,25 @@ Example: Apply for the permission for an application to access the Calendar.
    ```
 
    ```typescript
+   import { Context } from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
    import Want from '@ohos.app.ability.Want';
    import { GlobalThis } from '../utils/globalThis';
    import common from '@ohos.app.ability.common';
 
    function openPermissionsInSystemSettings(): void {
-     let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
-     let wantInfo: Want = {
-       action: 'action.settings.app.info',
-       parameters: {
-         settingsParamBundleName: 'com.example.myapplication' // Open the Details page of the application.
-       }
-     }
-     context.startAbility(wantInfo).then(() => {
-       // ...
-     }).catch((err: BusinessError) => {
-       // ...
-     })
+    let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
+    let wantInfo: Want = {
+      action: 'action.settings.app.info',
+      parameters: {
+        settingsParamBundleName: 'com.example.myapplication' // Open the Details page of the application.
+      }
+    }
+    context.startAbility(wantInfo).then(() => {
+      // ...
+    }).catch((err: BusinessError) => {
+      // ...
+    })
    }
    ```
 
