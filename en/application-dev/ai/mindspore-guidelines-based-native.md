@@ -102,6 +102,14 @@ OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
 (3). Set the model input data, perform model inference, and obtain the output data.
 
 ```c++
+#define GET_PARAMS(env, info, num)    \
+    size_t argc = num;                \
+    napi_value argv[num] = {nullptr}; \
+    napi_value thisVar = nullptr;     \
+    void *data = nullptr;             \
+    napi_get_cb_info(env, info, &argc, argv, &thisVar, &data)
+
+constexpr int kNumPrintOfOutData = 10;
 constexpr int RANDOM_RANGE = 128;
 
 void FillTensorWithRandom(OH_AI_TensorHandle msTensor) {

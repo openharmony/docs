@@ -72,7 +72,7 @@ Creates a **RunningLock** object.
 **Example**
 
 ```js
-runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: BusinessError<void>, lock: runningLock.RunningLock) => {
+runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: Error, lock: runningLock.RunningLock) => {
     if (typeof err === 'undefined') {
         console.info('created running lock: ' + lock);
     } else {
@@ -136,7 +136,7 @@ Checks whether the specified type of **RunningLock** is supported. This API uses
 **Example**
 
 ```js
-runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND, (err: BusinessError<void>, data: boolean) => {
+runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND, (err: Error, data: boolean) => {
     if (typeof err === 'undefined') {
         console.info('BACKGROUND lock support status: ' + data);
     } else {
@@ -202,7 +202,7 @@ Creates a **RunningLock** object.
 **Example**
 
 ```js
-runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: BusinessError<void>, lock: runningLock.RunningLock) => {
+runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: Error, lock: runningLock.RunningLock) => {
     if (typeof err === 'undefined') {
         console.info('created running lock: ' + lock);
     } else {
