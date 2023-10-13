@@ -1560,7 +1560,7 @@ async function example() {
   };
   try {
     let fetchResult = await mgr.getPhotoAssets(fetchOption);
-    await fetchResult.close();
+    fetchResult.close();
     console.info('close succeed.');
   } catch (err) {
     console.error('close fail. message = ' + err);
@@ -1665,7 +1665,7 @@ async function example() {
   };
   let fetchResult = await mgr.getPhotoAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     fetchResult.getNextObject((err, fileAsset) => {
       if (fileAsset != undefined) {
         console.info('fileAsset displayName: ', fileAsset.displayName);
@@ -1705,7 +1705,7 @@ async function example() {
   };
   let fetchResult = await mgr.getPhotoAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     let fileAsset = await fetchResult.getNextObject();
     console.info('fileAsset displayName: ', fileAsset.displayName);
   }
@@ -2148,7 +2148,7 @@ async function example() {
 
 delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
-删除系统相册中的文件。
+删除系统相册中的文件，仅支持删除回收站相册中文件。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
@@ -2158,7 +2158,7 @@ delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | 是   | 相册uri |
+| uri | string | 是   | 系统相册中文件的uri |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空 |
 
 **示例**：
@@ -2192,7 +2192,7 @@ async function example() {
 
 delete(uri: string): Promise&lt;void&gt;;
 
-删除系统相册中的文件。
+删除系统相册中的文件，仅支持删除回收站相册中文件。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
@@ -2202,7 +2202,7 @@ delete(uri: string): Promise&lt;void&gt;;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | 是   | 相册uri |
+| uri | string | 是   | 系统相册中文件的uri |
 
 **返回值：**
 
@@ -2239,7 +2239,7 @@ async function example() {
 
 recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
-恢复系统相册中的文件。
+恢复系统相册中的文件，仅支持恢复回收站相册中文件。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
@@ -2249,7 +2249,7 @@ recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | 是   | 相册uri |
+| uri | string | 是   | 系统相册中文件的uri |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空 |
 
 **示例**：
@@ -2283,7 +2283,7 @@ async function example() {
 
 recover(uri: string): Promise&lt;void&gt;;
 
-恢复系统相册中的文件。
+恢复系统相册中的文件，仅支持恢复回收站相册中文件。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
@@ -2293,7 +2293,7 @@ recover(uri: string): Promise&lt;void&gt;;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | 是   | 相册uri |
+| uri | string | 是   | 系统相册中文件的uri |
 
 **返回值：**
 
