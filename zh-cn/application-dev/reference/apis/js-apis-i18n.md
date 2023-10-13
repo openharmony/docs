@@ -777,7 +777,7 @@ constructor(locale: string)
 
 | 类型   | 说明                |
 | ---- | ----------------- |
-| Array<[EntityInfoItem](#EntityInfoItem)> | 识别的实体对象列表 |
+| Array<[EntityInfoItem](#entityinfoitem)> | 识别的实体对象列表 |
 
 **错误码：**
 
