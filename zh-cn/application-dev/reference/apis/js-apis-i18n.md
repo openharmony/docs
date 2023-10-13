@@ -765,7 +765,7 @@ constructor(locale: string)
   let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
   ```
 
-### findEntityInfo(text: string): Array<EntityInfoItem>
+### findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 **参数：**
 
