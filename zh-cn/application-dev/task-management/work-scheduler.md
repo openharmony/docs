@@ -73,12 +73,12 @@
 | workId          | number                            | 是    | 延迟任务ID。          |
 | bundleName      | string                            | 是    | 延迟任务包名。           |
 | abilityName     | string                            | 是    | 延迟任务回调通知的组件名。 |
-| networkType     | [NetworkType](#networktype)       | 否    | 网络类型。             |
+| networkType     | [NetworkType](../reference/apis/js-apis-resourceschedule-workScheduler.md#networktype)       | 否    | 网络类型。             |
 | isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟回调，false表示不充电触发延迟回调。|
-| chargerType     | [ChargingType](#chargingtype)     | 否    | 充电类型。             |
+| chargerType     | [ChargingType](../reference/apis/js-apis-resourceschedule-workScheduler.md#chargingtype)     | 否    | 充电类型。             |
 | batteryLevel    | number                            | 否    | 电量。              |
-| batteryStatus   | [BatteryStatus](#batterystatus)   | 否    | 电池状态。             |
-| storageRequest  | [StorageRequest](#storagerequest) | 否    | 存储状态。             |
+| batteryStatus   | [BatteryStatus](../reference/apis/js-apis-resourceschedule-workScheduler.md#batterystatus)   | 否    | 电池状态。             |
+| storageRequest  | [StorageRequest](../reference/apis/js-apis-resourceschedule-workScheduler.md#storagerequest) | 否    | 存储状态。             |
 | isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务，false表示非循环任务。 |
 | repeatCycleTime | number                            | 否    | 循环间隔，单位为毫秒。             |
 | repeatCount     | number                            | 否    | 循环次数。             |
