@@ -312,7 +312,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 
   ![zh-cn_image_0000001511421264](figures/zh-cn_image_0000001511421264.png)
 
-- 当类型为GridColColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备中子组件所占列数设置,各个尺寸下数值可不同。
+- 当类型为GridColColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备中子组件所占列数设置，各个尺寸下数值可不同。
 
 
   ```ts
