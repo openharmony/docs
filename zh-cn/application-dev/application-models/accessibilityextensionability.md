@@ -105,7 +105,7 @@ type attributeValues = string | number | boolean | AccessibilityElement | Access
 export default class AccessibilityManager {
   private static instance: AccessibilityManager;
   accessibleContext?: AccessibilityExtensionContext;
-  currentPageElementArray?: Array<AccessibilityElement>;
+  currentPageElementArray: Array<AccessibilityElement> | null = null;
 
   static getInstance(): AccessibilityManager {
     if (!AccessibilityManager.instance) {
@@ -201,8 +201,8 @@ export default class AccessibilityManager {
       return;
     }
     let info: string | null = null;
-    for (let element of this.currentPageElementArray) {
-      info = await this.getElementWantedInfo(element, wantedAttribute);
+    for (let index = 0; index < this.currentPageElementArray.length; index++) {
+      info = await this.getElementWantedInfo(this.currentPageElementArray[index], wantedAttribute);
       console.info(`AccessibilityManager element information: ${info}`);
     }
   }
