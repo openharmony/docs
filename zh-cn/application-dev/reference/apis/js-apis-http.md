@@ -971,7 +971,7 @@ httpRequest.off('dataReceiveProgress');
 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'Content-Type'为'application/x-www-form-urlencoded'时，
 请求提交的信息主体数据应在key和value进行URL转码后按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String；
 当'Content-Type'为'text/xml'时，该字段对应的类型通常为String；当'Content-Type'为'application/json'时，该字段对应的类型通常为Object；当'Content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer；当'Content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。以上信息仅供参考，并可能根据具体情况有所不同。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。|
-| <a id="expectDataType">expectDataType<sup>9+</sup></a>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |
+| <span name="expectDataType">expectDataType<sup>9+</sup></span>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |
 | usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true。   |
 | priority<sup>9+</sup>        | number                          | 否   | 优先级，范围[1,1000]，默认是1。                           |
 | header                       | Object                          | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。   |
