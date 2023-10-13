@@ -1008,7 +1008,7 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 | 参数名        | 类型                    | 必填   | 说明                                       |
 | ---------- | --------------------- | ---- | ---------------------------------------- |
 | bundleName | string                | 是    | 查询指定bundleName对应应用的分组。 |
-| callback   | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回制指定bundleName的应用分组。|
+| callback   | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回指定bundleName的应用分组。|
 
 **错误码**：
 
@@ -1594,7 +1594,6 @@ FA卡片的使用信息的属性集合。
 
 提供应用使用时长的具体信息。
 
-### 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
