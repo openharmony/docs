@@ -1,6 +1,6 @@
 # HTTP Data Request
 
-## When to Use
+## Overview
 
 An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
 
