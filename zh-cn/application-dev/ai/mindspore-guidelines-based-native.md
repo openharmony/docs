@@ -25,10 +25,12 @@
 在使用MindSpore Lite Native API进行开发前，需要先引用对应的头文件。
 
 ```c
+#include <iostream>
 #include <mindspore/model.h>
 #include <mindspore/context.h>
 #include <mindspore/status.h>
 #include <mindspore/tensor.h>
+#include <rawfile/raw_file_manager.h>
 ```
 
 (1). 读取模型文件。
