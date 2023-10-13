@@ -635,13 +635,13 @@ The ArkTS syntax does not support direct use of **globalThis**. A singleton map 
 
 The sample code of **globalThis.ets** is as follows:
 ```ts
-import common from '@ohos.app.ability.common';
+import { Context } from '@ohos.abilityAccessCtrl';
 
 // Construct a singleton object.
 export class GlobalThis {
     private constructor() {}
     private static instance: GlobalThis;
-    private _uiContexts = new Map<string, common.UIAbilityContext>();
+    private _uiContexts = new Map<string, Context>();
 
     public static getInstance(): GlobalThis {
     if (!GlobalThis.instance) {
@@ -650,11 +650,11 @@ export class GlobalThis {
     return GlobalThis.instance;
     }
 
-    getContext(key: string): common.UIAbilityContext | undefined {
+    getContext(key: string): Context | undefined {
     return this._uiContexts.get(key);
     }
 
-    setContext(key: string, value: common.UIAbilityContext): void {
+    setContext(key: string, value: Context): void {
     this._uiContexts.set(key, value);
     }
 
@@ -663,15 +663,14 @@ export class GlobalThis {
 ```
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
 import { GlobalThis } from '../utils/globalThis';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data)=>{
+    let context: Context = GlobalThis.getInstance().getContext('context');
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult)=>{
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);
     console.info('data authResults:' + data.authResults);
@@ -721,15 +720,14 @@ For details about the error codes, see [Application Access Control Error Codes](
 The procedure for modifying **EntryAbility.ets** and importing **GlobalThis** is the same as the preceding procedure, and omitted here.
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
 import { GlobalThis } from '../utils/globalThis';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data) => {
+    let context: Context = GlobalThis.getInstance().getContext('context');
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
         console.info('data:' + JSON.stringify(data));
         console.info('data permissions:' + data.permissions);
         console.info('data authResults:' + data.authResults);
