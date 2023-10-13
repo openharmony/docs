@@ -43,8 +43,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 - 在Windows上，下载安装OpenSSL工具，并配置环境变量。
 - 准备升级包制作工具
 - 编译出版本镜像文件
-- 将编译结果中的 out/rk3568/clang_x64/updater/updater/diff 放入做包工具此路径下： packaging_tools/lib/
-- 将编译结果中的 out/rk3568/clang_x64/thirdparty/e2fsprogs 路径下的 libext2fs.so、e2fsdriod、libext2_com_err.so、libext2_misc.so 放入做包工具此路径下：packaging_tools/lib/： packaging_tools/lib/
+- 将编译结果中的 out/rk3568/clang_x64/updater/updater/ 下的 diff 文件，out/rk3568/clang_x64/thirdparty/e2fsprogs 路径下的 libext2fs.so、e2fsdriod、libext2_com_err.so、libext2_misc.so 文件放入做包工具此路径下：packaging_tools/lib/
 
 
 ## 开发流程
