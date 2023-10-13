@@ -94,9 +94,14 @@ import { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.bindDevice(12345678, (error : BusinessError, data) => {
+  // generic function signiture (defined in @ohos.base）: 
+  // AsyncCallback&ltT, E = void&gt(err: BusinessError<E>, data: T): void
+  deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
     console.error(`Device is disconnected`);
-  }, (error, data) => {
+  }, (error : BusinessError, data: {
+      deviceId : number;
+      remote : rpc.IRemoteObject;
+  }) => {
     if (error) {
       console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
       return;
@@ -149,9 +154,12 @@ import { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.bindDevice(12345678, (error, data) => {
+  deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
     console.error(`Device is disconnected`);
-  }).then(data => {
+  }).then((data : {
+      deviceId : number;
+      remote : rpc.IRemoteObject;
+  }) => {
     console.info(`bindDevice success`);
   }, (error : BusinessError) => {
     console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
@@ -192,7 +200,7 @@ import deviceManager from "@ohos.driver.deviceManager";
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.unbindDevice(12345678, (error, data) => {
+  deviceManager.unbindDevice(12345678, (error : BusinessError, data : number) => {
     if (error) {
       console.error(`unbindDevice async fail. Code is ${error.code}, message is ${error.message}`);
       return;
@@ -240,7 +248,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.unbindDevice(12345678).then(data => {
+  deviceManager.unbindDevice(12345678).then((data : number) => {
     console.info(`unbindDevice success`);
   }, (error : BusinessError) => {
     console.error(`unbindDevice async fail. Code is ${error.code}, message is ${error.message}`);
