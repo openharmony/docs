@@ -36,7 +36,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -87,7 +87,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -128,7 +128,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -172,7 +172,7 @@ cancelReminder(reminderId: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -208,7 +208,7 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -266,7 +266,7 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -322,7 +322,7 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -358,7 +358,7 @@ cancelAllReminders(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
