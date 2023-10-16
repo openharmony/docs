@@ -1910,16 +1910,13 @@ on(type: 'change', callback: ( key : string ) => void): void
 **示例：**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: data_preferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('change', (key: observer) => {
+        preferences.on('change', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'manual', (err: BusinessError) => {
@@ -1973,9 +1970,6 @@ on(type: 'multiProcessChange', callback: ( key : string ) => void): void
 **示例1：**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
     data_preferences.getPreferences(this.context, options, (err: BusinessError, preferences: data_preferences.Preferences) => {
@@ -1983,7 +1977,7 @@ try {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('multiProcessChange', (key: observer) => {
+        preferences.on('multiProcessChange', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'manual', (err: BusinessError) => {
@@ -2011,9 +2005,6 @@ try {
 **示例2：**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     let options: data_preferences.Options = { name: 'myStore' };
     data_preferences.getPreferences(this.context, options, (err: BusinessError, val: data_preferences.Preferences) => {
@@ -2022,7 +2013,7 @@ try {
             return;
         }
         preferences = val;
-        preferences.on('multiProcessChange', (key: observer) => {
+        preferences.on('multiProcessChange', (key: string) => {
             console.info("The key " + key + " changed.");
             try {
                 data_preferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
@@ -2097,16 +2088,14 @@ off(type: 'change', callback?: ( key : string ) => void): void
 **示例：**
 
 ```ts
-interface observer {
-  key: string
-}
+
 try {
     data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: data_preferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('change', (key: observer) => {
+        preferences.on('change', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'auto', (err: BusinessError) => {
@@ -2123,7 +2112,7 @@ try {
                 }
                 console.info("Succeeded in flushing.");
             })
-            preferences.off('change', (key: observer) => {
+            preferences.off('change', (key: string) => {
                 console.info("The key " + key + " changed.");
             });
         })
@@ -2153,9 +2142,6 @@ off(type: 'multiProcessChange', callback?: ( key : string ) => void): void
 **示例：**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
     data_preferences.getPreferences(this.context, options, (err: BusinessError, preferences: data_preferences.Preferences) => {
@@ -2163,7 +2149,7 @@ try {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('multiProcessChange', (key: observer) => {
+        preferences.on('multiProcessChange', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'auto', (err: BusinessError) => {
@@ -2180,7 +2166,7 @@ try {
                 }
                 console.info("Succeeded in flushing.");
             })
-            preferences.off('multiProcessChange', (key: observer) => {
+            preferences.off('multiProcessChange', (key: string) => {
                 console.info("The key " + key + " changed.");
             });
         })

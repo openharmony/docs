@@ -43,10 +43,23 @@ FA模型示例：
 // 导入模块
 import distributedObject from '@ohos.data.distributedDataObject';
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
 // 获取context
 let context = featureAbility.getContext();
-// 创建对象，该对象包含4个属性类型：string、number、boolean和Object
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
+class SourceObject {
+    name: string
+    age: number
+    isVis: boolean
+
+    constructor(name: string, age: number, isVis: boolean) {
+        this.name = name
+        this.age = age
+        this.isVis = isVis
+    }
+}
+
+let source: SourceObject = new SourceObject("amy", 18, false);
+let g_object: distributedObject.DataObject = distributedObject.create(context, source);
 ```
 
 Stage模型示例：
@@ -55,13 +68,26 @@ Stage模型示例：
 // 导入模块
 import distributedObject from '@ohos.data.distributedDataObject';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
-let g_object;
+let g_object: distributedObject.DataObject|null = null;
+class SourceObject {
+    name: string
+    age: number
+    isVis: boolean
+
+    constructor(name: string, age: number, isVis: boolean) {
+        this.name = name
+        this.age = age
+        this.isVis = isVis
+    }
+}
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
-        g_object = distributedObject.create(this.context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
+    onWindowStageCreate(windowStage: window.WindowStage) {
+        let source: SourceObject = new SourceObject("amy", 18, false);
+        let g_object: distributedObject.DataObject = distributedObject.create(this.context, source);
     }
 }
 ```
@@ -84,7 +110,7 @@ genSessionId(): string
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-let sessionId = distributedObject.genSessionId();
+let sessionId: string = distributedObject.genSessionId();
 ```
 
 ## SaveSuccessResponse<sup>9+</sup>
@@ -220,13 +246,13 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
     console.info("join session.");
-    }).catch((error)=>{
+    }).catch((error: BusinessError)=>{
         console.info("error:" + error.code + error.message);
 });
 // 退出分布式组网
 g_object.setSessionId().then (()=>{
     console.info("leave all session.");
-    }).catch((error)=>{
+    }).catch((error: BusinessError)=>{
         console.info("error:" + error.code + error.message);
 });
 ```
@@ -249,15 +275,14 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 **示例：**
 
 ```ts
-let changeCallback = (sessionId, changeData) => {
+g_object.on("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
-    if (changeData != null && changeData != undefined) {
-        changeData.forEach(element => {
-        console.info("changed !" + element + " " + g_object[element]);
-        });
+    if (fields != null && fields != undefined) {
+        for (let index: number = 0; index < fields.length; index++) {
+            console.info("changed !" + fields[index] + " " + g_object[fields[index]]);
+        }
     }
-}
-g_object.on("change", changeCallback);
+});
 ```
 
 ### off('change')<sup>9+</sup>
@@ -280,7 +305,14 @@ off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) 
 
 ```ts
 // 删除数据变更回调changeCallback
-g_object.off("change", changeCallback);
+g_object.off("change", (sessionId: string, fields: Array<string>) => {
+    console.info("change" + sessionId);
+    if (fields != null && fields != undefined) {
+        for (let index: number = 0; index < fields.length; index++) {
+            console.info("changed !" + fields[index] + " " + g_object[fields[index]]);
+        }
+    }
+});
 // 删除所有的数据变更回调
 g_object.off("change");
 ```
@@ -303,10 +335,9 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 **示例：**
 
 ```ts
-let statusCallback = (sessionId, networkId, status) => {
-    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
-}
-g_object.on("status", statusCallback);
+g_object.on("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
+    console.info("status changed " + sessionId + " " + status + " " + networkId);
+});
 ```
 
 ### off('status')<sup>9+</sup>
@@ -328,11 +359,10 @@ off(type: 'status', callback?:(sessionId: string, networkId: string, status: 'on
 **示例：**
 
 ```ts
-let statusCallback = (sessionId, networkId, status) => {
-    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
-}
 // 删除上下线回调changeCallback
-g_object.off("status", statusCallback);
+g_object.off("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
+    console.info("status changed " + sessionId + " " + status + " " + networkId);
+});
 // 删除所有的上下线回调
 g_object.off("status");
 ```
@@ -364,7 +394,7 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 
 ```ts
 g_object.setSessionId("123456");
-g_object.save("local", (err, result) => {
+g_object.save("local", (err: BusinessError, result:distributedObject.SaveSuccessResponse) => {
     if (err) {
         console.info("save failed, error code = " + err.code);
         console.info("save failed, error message: " + err.message);
@@ -409,12 +439,12 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
 
 ```ts
 g_object.setSessionId("123456");
-g_object.save("local").then((result) => {
+g_object.save("local").then((result: distributedObject.SaveSuccessResponse) => {
     console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.info("save failed, error code = " + err.code);
     console.info("save failed, error message: " + err.message);
 });
@@ -442,7 +472,7 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 ```ts
 g_object.setSessionId("123456");
 // 持久化数据
-g_object.save("local", (err, result) => {
+g_object.save("local", (err: BusinessError, result: distributedObject.SaveSuccessResponse) => {
     if (err) {
         console.info("save failed, error code = " + err.code);
         console.info("save failed, error message: " + err.message);
@@ -454,7 +484,7 @@ g_object.save("local", (err, result) => {
     console.info("save deviceId:  " + result.deviceId);
 });
 // 删除持久化保存的数据
-g_object.revokeSave((err, result) => {
+g_object.revokeSave((err: BusinessError, result: distributedObject.RevokeSaveSuccessResponse) => {
     if (err) {
       console.info("revokeSave failed, error code = " + err.code);
       console.info("revokeSave failed, error message: " + err.message);
@@ -487,20 +517,20 @@ revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
 ```ts
 g_object.setSessionId("123456");
 // 持久化数据
-g_object.save("local").then((result) => {
+g_object.save("local").then((result: distributedObject.SaveSuccessResponse) => {
     console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.info("save failed, error code = " + err.code);
     console.info("save failed, error message: " + err.message);
 });
 // 删除持久化保存的数据
-g_object.revokeSave().then((result) => {
+g_object.revokeSave().then((result: distributedObject.RevokeSaveSuccessResponse) => {
     console.info("revokeSave callback");
     console.info("sessionId" + result.sessionId);
-}).catch((err)=> {
+}).catch((err: BusinessError)=> {
     console.info("revokeSave failed, error code = " + err.code);
     console.info("revokeSave failed, error message = " + err.message);
 });
@@ -535,8 +565,20 @@ createDistributedObject(source: object): DistributedObject
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-// 创建对象，对象包含4个属性类型，string,number,boolean和Object
-let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
+class SourceObject {
+    name: string
+    age: number
+    isVis: boolean
+
+    constructor(name: string, age: number, isVis: boolean) {
+        this.name = name
+        this.age = age
+        this.isVis = isVis
+    }
+}
+
+let source: SourceObject = new SourceObject("amy", 18, false);
+let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 ```
 
 ## DistributedObject<sup>(deprecated)</sup>
@@ -573,7 +615,20 @@ setSessionId(sessionId?: string): boolean
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});;
+class SourceObject {
+    name: string
+    age: number
+    isVis: boolean
+
+    constructor(name: string, age: number, isVis: boolean) {
+        this.name = name
+        this.age = age
+        this.isVis = isVis
+    }
+}
+
+let source: SourceObject = new SourceObject("amy", 18, false);
+let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId());
 // 设置为""退出分布式组网
@@ -603,16 +658,28 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-let changeCallback = (sessionId, changeData) => {
-    console.info("change" + sessionId);
-    if (changeData != null && changeData != undefined) {
-        changeData.forEach(element => {
-        console.info("changed !" + element + " " + g_object[element]);
-        });
+class SourceObject {
+    name: string
+    age: number
+    isVis: boolean
+
+    constructor(name: string, age: number, isVis: boolean) {
+        this.name = name
+        this.age = age
+        this.isVis = isVis
     }
 }
-g_object.on("change", changeCallback);
+
+let source: SourceObject = new SourceObject("amy", 18, false);
+let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+g_object.on("change", (sessionId: string, fields: Array<string>) => {
+    console.info("change" + sessionId);
+    if (fields != null && fields != undefined) {
+        for (let index: number = 0; index < fields.length; index++) {
+            console.info("changed !" + fields[index] + " " + g_object[fields[index]]);
+        }
+    }
+});
 ```
 
 ### off('change')<sup>(deprecated)</sup>
@@ -638,9 +705,29 @@ off(type: 'change', callback:? (sessionId: string, fields: Array&lt;string&gt;) 
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
+class SourceObject {
+    name: string
+    age: number
+    isVis: boolean
+
+    constructor(name: string, age: number, isVis: boolean) {
+        this.name = name
+        this.age = age
+        this.isVis = isVis
+    }
+}
+
+let source: SourceObject = new SourceObject("amy", 18, false);
+let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // 删除数据变更回调changeCallback
-g_object.off("change", changeCallback);
+g_object.off("change", (sessionId: string, fields: Array<string>) => {
+    console.info("change" + sessionId);
+    if (fields != null && fields != undefined) {
+        for (let index: number = 0; index < fields.length; index++) {
+            console.info("changed !" + fields[index] + " " + g_object[fields[index]]);
+        }
+    }
+});
 // 删除所有的数据变更回调
 g_object.off("change");
 ```
@@ -668,11 +755,24 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-let statusCallback = (sessionId, networkId, status) => {
-    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
+class SourceObject {
+    name: string
+    age: number
+    isVis: boolean
+
+    constructor(name: string, age: number, isVis: boolean) {
+        this.name = name
+        this.age = age
+        this.isVis = isVis
+    }
 }
-let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-g_object.on("status", statusCallback);
+
+let source: SourceObject = new SourceObject("amy", 18, false);
+let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+
+g_object.on("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
+    console.info("status changed " + sessionId + " " + status + " " + networkId);
+});
 ```
 
 ### off('status')<sup>(deprecated)</sup>
@@ -699,12 +799,24 @@ off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'o
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-let statusCallback = (sessionId, networkId, status) => {
-    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
+class SourceObject {
+    name: string
+    age: number
+    isVis: boolean
+
+    constructor(name: string, age: number, isVis: boolean) {
+        this.name = name
+        this.age = age
+        this.isVis = isVis
+    }
 }
+
+let source: SourceObject = new SourceObject("amy", 18, false);
+let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // 删除上下线回调changeCallback
-g_object.off("status", statusCallback);
+g_object.off("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
+    console.info("status changed " + sessionId + " " + status + " " + networkId);
+});
 // 删除所有的上下线回调
 g_object.off("status");
 ```
