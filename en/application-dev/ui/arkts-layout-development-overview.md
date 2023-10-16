@@ -27,7 +27,7 @@ To achieve the preceding effect, you need to declare the corresponding elements 
 
 ## Layout Elements
 
-You can leverage layout-related container components to create a specific layout. For example, the **List** component can form a linear layout.
+You can use layout-related container components to create a specific layout. For example, the **List** component can form a linear layout.
 
   **Figure 2** Layout elements 
 
@@ -46,17 +46,17 @@ You can leverage layout-related container components to create a specific layout
 
 The declarative UI provides eight common layouts. Choose a layout that best suits the use case.
 
-| Layout                                      | Description                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| [Linear layout](arkts-layout-development-linear.md) (Row and Column)| Use this layout when there are multiple sub-elements and they can be arranged linearly.      |
+| Layout                                                        | Description                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [Linear layout](arkts-layout-development-linear.md) (Row and Column)| Use this layout when there are multiple child components and they can be arranged linearly.|
 | [Stack layout](arkts-layout-development-stack-layout.md) (Stack)| Use this layout when you want to stack elements. The stacking does not occupy or affect the layout space of other child components in the same container. For example, when the [\<Panel>](../reference/arkui-ts/ts-container-panel.md) component is displayed as a child, superimposing it over other components makes more sense. In this case, the stack layout is preferred at the outer layer.|
-| [Flex layout](arkts-layout-development-flex-layout.md) (Flex)| The flex layout is similar to the linear layout. However, it empowers the container to adjust the size of its child components to best fill the available space. Use this layout when you need elements to stretch or shrink to fit into the container.|
+| [Flex layout](arkts-layout-development-flex-layout.md) (Flex) | The flex layout is similar to the linear layout. However, it empowers the container to adjust the size of its child components to best fill the available space. Use this layout when you need elements to stretch or shrink to fit into the container.|
 | [Relative layout](arkts-layout-development-relative-layout.md) (RelativeContainer)| The relative layout is a two-dimensional layout system. It does not need to comply with linear layout rules, and therefore exhibits more flexibility. By setting anchor rules (**AlignRules**) on a child component, you enable the component to position itself on the horizontal axis and vertical axis as relative to other child component in the container. Anchor rules support compression, stretching, stacking, and wrapping of child components. Use this layout when the distribution of elements is complex or when a linear layout may result in deeply nested components in the container.|
 | [Responsive grid layout](arkts-layout-development-grid-layout.md) (GridRow and GridCol)| The responsive grid is an auxiliary positioning tool for a multi-device application, dividing space into rows and columns. Unlike the regular grid, the responsive grid is not allocating fixed-size space. Instead, it allows a layout to dynamically change based on the screen size. In this way, the design and development costs for adapting to different screen sizes are significantly reduced, and the overall design and development process is more orderly and rhythmic. In addition, the responsive grid offers a consistent display experience across devices. Use this layout when you are presenting the same content on different screen sizes.|
 | [Media query](arkts-layout-development-media-query.md) (\@ohos.mediaquery)| You can use media queries to apply application styles based on the device type or device state. For example, you can apply specific layouts based on the attribute information of the target device and application, and update a page layout to reflect the dynamic screen changes.|
-| [List](arkts-layout-development-create-list.md) (List)| Use lists to easily and efficiently display structured, scrollable information. In ArkUI, the list allows you to lay out elements in the horizontal or vertical layout and is able to adapt to the number of elements in the cross axis direction. It can scroll when the content overflows. Use this layout when you are presenting similar data types or data type sets, such as images and text.|
-| [Grid](arkts-layout-development-create-grid.md) (Grid)| As an important adaptive layout, the grid excels at spacing elements evenly and defining the relationship between the elements. The grid layout controls the number of cells occupied by child components, number of rows or columns that child components span, and how the child components and spacing are adjusted proportionally when the grid container size changes. Use this layout in scenarios where space needs to be allocated evenly or based on a fixed proportion, such as calculators, albums, and calendars.|
-| [Looping](arkts-layout-development-create-looping.md) (Swiper)| Use this layout when you want to implement ad rotation, image preview, or scrollable content.             |
+| [List](arkts-layout-development-create-list.md) (List)     | Use lists to easily and efficiently display structured, scrollable information. In ArkUI, the list allows you to lay out elements in the horizontal or vertical layout and is able to adapt to the number of elements in the cross axis direction. It can scroll when the content overflows. Use this layout when you are presenting similar data types or data type sets, such as images and text.|
+| [Grid](arkts-layout-development-create-grid.md) (Grid)     | As an important adaptive layout, the grid excels at spacing elements evenly and defining the relationship between the elements. The grid layout controls the number of cells occupied by child components, number of rows or columns that child components span, and how the child components and spacing are adjusted proportionally when the grid container size changes. Use this layout in scenarios where space needs to be allocated evenly or based on a fixed proportion, such as calculators, albums, and calendars.|
+| [Looping](arkts-layout-development-create-looping.md) (Swiper)| Use this layout when you want to implement ad rotation, image preview, or scrollable content.      |
 
 
 ## Layout Position

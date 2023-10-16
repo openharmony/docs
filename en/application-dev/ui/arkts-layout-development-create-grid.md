@@ -30,15 +30,11 @@ The size of the **\<Grid>** component follows its width and height settings (if 
 
 Depending on the number of rows and columns and the proportion, the **\<Grid>** component behaves as follows:
 
-- If both the number and proportion are set for rows or columns, the **\<Grid>** component displays only elements in the fixed number of rows or columns. Other elements are not displayed, and the component cannot be scrolled.
+- If both the number and proportion are set for rows or columns, the **\<Grid>** component displays only elements in the fixed number of rows or columns. Other elements are not displayed, and the component cannot be scrolled. (This layout mode is recommended.)
 
 - If only the number or proportion is set for rows or columns, elements are arranged in the specified direction, and excess elements can be displayed in scrolling mode.
 
 - If neither the number nor the proportion is set for rows or columns, elements are arranged in the layout direction. The number of rows and columns is determined by the layout direction and the width and height of a single grid. Elements that exceed the range of rows and columns are not displayed, and the **\<Grid>** component cannot be scrolled.
-
->**NOTE**
->
->Whenever possible, set the number or proportion for rows or columns for layout.
 
 
 ## Setting the Arrangement Mode
@@ -180,6 +176,7 @@ For multiple **\<GridItem>** components with similar content structures, you are
 
 
 ```ts
+@Entry
 @Component
 struct OfficeService {
   @State services: Array<string> = ['Conference', 'Vote','Sign-in', 'Print']
@@ -235,6 +232,7 @@ In the horizontal scrollable grid layout shown in the preceding figure, **rowsTe
 
 
 ```ts
+@Entry
 @Component
 struct Shopping {
   @State services: Array<string> = ['Live', 'Premium']
@@ -260,7 +258,7 @@ struct Shopping {
 
 Similar to the Back to top button in a list layout, the feature of controlling the scrolling position is commonly used in the grid layout, for example, page turning in the calendar application, as shown below.
 
-  **Figure 10** Page turning in the calendar application 
+**Figure 10** Page turning in the calendar application 
 
 ![en-us_image_0000001562940549](figures/en-us_image_0000001562940549.gif)
 
@@ -268,41 +266,34 @@ When the **\<Grid>** component is initialized, it can be bound to a [Scroller](.
 
 
 ```ts
-export let scroller: Scroller = new Scroller()
+private scroller: Scroller = new Scroller()
 ```
 
 On the calendar page, when a user clicks the **Next** button, the application responds to the click event by setting the **next** parameter in the **scrollPage** API to **true** to scroll to the next page.
 
 
 ```ts
-class Tmp{
-  scroller: Scroller = new Scroller()
-  set(boo:boolean){
-    this.scroller.scrollPage({next:boo})
-  }
-}
 Column({ space: 5 }) {
   Grid(this.scroller) {
-    ...
   }
   .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
-  ...
- 
- Row({space: 20}) {
-   Button ('Previous')
-     .onClick(() => {
-       let ClickN = new Tmp()
-       ClickN.set(false)
-     })
 
-   Button ('Next')
-     .onClick(() => {
-       let ClickN = new Tmp()
-       ClickN.set(true)
-     })
- }
+  Row({space: 20}) {
+    Button ('Previous')
+      .onClick(() => {
+        this.scroller.scrollPage({
+          next: false
+        })
+      })
+
+    Button ('Next')
+      .onClick(() => {
+        this.scroller.scrollPage({
+          next: true
+        })
+      })
+  }
 }
-...
 ```
 
 

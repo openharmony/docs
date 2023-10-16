@@ -26,7 +26,7 @@ Linear layout is the most frequently used layout in development, built with the 
 
 - Cross axis: axis that runs perpendicular to the main axis. The cross axis is vertical for the **\<Row>** container and horizontal for the **\<Column>** container.
 
-- Spacing: vertical distance between child elements.
+- Spacing: distance between child elements.
 
 
 ## Spacing of Layout Child Elements in Arrangement Direction
@@ -474,9 +474,9 @@ Adaptive scaling means that the size of a child component is automatically adjus
           }.layoutWeight(2).backgroundColor(0xD2B48C).height('100%')
 
           Column() {
-            Text('layoutWeight(3)')
+            Text('layoutWeight(6)')
               .textAlign(TextAlign.Center)
-          }.layoutWeight(3).backgroundColor(0xF5DEB3).height('100%')
+          }.layoutWeight(6).backgroundColor(0xF5DEB3).height('100%')
 
         }.backgroundColor(0xffd306).height('30%')
 
