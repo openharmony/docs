@@ -2899,3 +2899,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.GET_BUNDLE_RESOURCES
+
+允许查询应用的资源信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
