@@ -5,11 +5,12 @@ Widgets that are updated periodically are subject to the scheduled time or inter
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 @Entry()
 @Component
 struct WidgetCard {
-  formId = ...; // Widget ID
+  formId: string = 'formId'; // Widget ID
 
   build() {
     Button (`Update Widget`)
@@ -21,7 +22,9 @@ struct WidgetCard {
         // formId is the ID of the widget to be updated.
         formHost.requestForm(this.formId.toString()).then(() => {
           console.info('Succeeded in requestForming.');
-        });
+        }).catch((error: Base.BusinessError) => {
+          console.error('requestForm fail, error: ' + JSON.stringify(error));
+        })
       })
 
     ...

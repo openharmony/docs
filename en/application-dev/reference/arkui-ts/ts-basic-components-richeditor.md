@@ -29,8 +29,9 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 >  **NOTE**
 >
-> The default value of the **clip** attribute is **true**.
-> The **align** attribute supports only the start, center, and end options.
+>  The default value of the **clip** attribute is **true**.
+>
+>  The **align** attribute supports only the start, center, and end options.
 
 | Name                     | Type                                                    | Description                                                        |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
