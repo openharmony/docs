@@ -1027,7 +1027,7 @@
       - [@ohos.request (Upload and Download)](reference/apis/js-apis-request.md)
     - Connectivity
       - [@ohos.bluetooth (Bluetooth) (To Be Deprecated Soon)](reference/apis/js-apis-bluetooth.md)
-      - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated Soon)](reference/apis/js-apis-bluetoothManager.md)
+      - [@ohos.bluetoothManager (Bluetooth) (Recommended)](reference/apis/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (Active Tags)](reference/apis/js-apis-connectedTag.md)
       - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](reference/apis/js-apis-cardEmulation.md)
       - [@ohos.nfc.controller (Standard NFC)](reference/apis/js-apis-nfcController.md)

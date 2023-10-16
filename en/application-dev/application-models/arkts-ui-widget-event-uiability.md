@@ -5,7 +5,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
 
 ## Updating Widget Content Through the router Event
 
-- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the router event to the FormExtensionAbility.
+- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the router event to start the UIAbility.
   
   ```ts
   let storage = new LocalStorage();
@@ -108,7 +108,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
    };
    ```
 
-- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the event to the UIAbility.
+- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the call event to start the UIAbility.
   
   ```ts
   let storage = new LocalStorage();

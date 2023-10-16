@@ -614,7 +614,7 @@ try {
 ```
 ## AccessibilityElement<sup>9+</sup>
 
-Defines the accessibilityelement. Before calling APIs of **AccessibilityElement**, you must call [AccessibilityExtensionContext.getFocusElement()](#accessibilityextensioncontextgetfocuselement) or [AccessibilityExtensionContext.getWindowRootElement()](#accessibilityextensioncontextgetwindowrootelement) to obtain an **AccessibilityElement** instance.
+Defines the **AccessibilityElement**. Before calling APIs of **AccessibilityElement**, you must call [AccessibilityExtensionContext.getFocusElement()](#accessibilityextensioncontextgetfocuselement) or [AccessibilityExtensionContext.getWindowRootElement()](#accessibilityextensioncontextgetwindowrootelement) to obtain an **AccessibilityElement** instance.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -635,7 +635,6 @@ Obtains all attribute names of this element. This API uses a promise to return t
 **Example**
 
 ```ts
-let rootElement;
 let attributeNames;
 rootElement.attributeNames().then((data) => {
     console.log('get attribute names success');
@@ -661,7 +660,6 @@ Obtains all attribute names of this element. This API uses an asynchronous callb
 **Example**
 
 ```ts
-let rootElement;
 let attributeNames;
 rootElement.attributeNames((err, data) => {
     if (err) {
@@ -705,7 +703,6 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 ```ts
 let attributeName = 'name';
 let attributeValue;
-let rootElement;
 try {
     rootElement.attributeValue(attributeName).then((data) => {
         console.log('get attribute value by name success');
@@ -744,7 +741,6 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let rootElement;
 let attributeValue;
 let attributeName = 'name';
 try {
@@ -777,7 +773,6 @@ Obtains the names of all actions supported by this element. This API uses a prom
 **Example**
 
 ```ts
-let rootElement;
 let actionNames;
 rootElement.actionNames().then((data) => {
     console.log('get action names success');
@@ -803,7 +798,6 @@ Obtains the names of all actions supported by this element. This API uses an asy
 **Example**
 
 ```ts
-let rootElement;
 let actionNames;
 rootElement.actionNames((err, data) => {
     if (err) {
@@ -846,7 +840,6 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let rootElement;
 try {
     rootElement.performAction('action').then((data) => {
         console.info('perform action success');
@@ -883,7 +876,6 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let rootElement;
 try {
     rootElement.performAction('action', (err, data) => {
         if (err) {
@@ -923,7 +915,6 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let rootElement;
 let actionName = 'action';
 let parameters = {
     'setText': 'test text'
@@ -964,7 +955,6 @@ Queries the element information of the **content** type. This API uses a promise
 **Example**
 
 ```ts
-let rootElement;
 let type = 'content';
 let condition = 'keyword';
 let elements;
@@ -998,7 +988,6 @@ Queries the element information of the **content** type. This API uses an asynch
 **Example**
 
 ```ts
-let rootElement;
 let type = 'content';
 let condition = 'keyword';
 let elements;
@@ -1039,7 +1028,6 @@ Queries the element information of the **focusType** type. This API uses a promi
 **Example**
 
 ```ts
-let rootElement;
 let type = 'focusType';
 let condition = 'normal';
 let element;
@@ -1073,7 +1061,6 @@ Queries the element information of the **focusType** type. This API uses an asyn
 **Example**
 
 ```ts
-let rootElement;
 let type = 'focusType';
 let condition = 'normal';
 let element;
@@ -1114,7 +1101,6 @@ Queries the element information of the **focusDirection** type. This API uses a 
 **Example**
 
 ```ts
-let rootElement;
 let type = 'focusDirection';
 let condition = 'up';
 let element;
@@ -1148,7 +1134,6 @@ Queries the element information of the **focusDirection** type. This API uses an
 **Example**
 
 ```ts
-let rootElement;
 let type = 'focusDirection';
 let condition = 'up';
 let elements;
