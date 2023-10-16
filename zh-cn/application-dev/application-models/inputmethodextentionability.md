@@ -366,7 +366,7 @@
 >   - 仅允许InputMethodExtensionAbility处于前台时开展与录音相关的业务。如仅允许软键盘在前台且用户主动操作语音输入法时，才进行录音；应用切换到后台时，应主动停止录音；
 >   - 系统会逐步增加对违反以上约定的行为进行管控和识别，因此未遵守此约定可能会造成业务功能异常。
 
-**禁用列表：**
+**禁用列表：** 
 
 - [@ohos.ability.featureAbility (FeatureAbility模块)](../reference/apis/js-apis-ability-featureAbility.md)
 - [@ohos.ability.particleAbility (ParticleAbility模块)](../reference/apis/js-apis-ability-particleAbility.md)
