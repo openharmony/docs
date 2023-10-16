@@ -12,6 +12,7 @@
 修改前的接口原型：
 
 ```ts
+// 新增5400102错误码涉及到的接口
 load(uri: string): Promise<number>
 load(fd: number, offset: number, length: number): Promise<number>
 play(soundID: number, params: PlayParameters, callback: AsyncCallback<number>): void
@@ -29,7 +30,7 @@ unload(soundID: number): Promise<void>
 修改后的接口原型：
 
 ```ts
-// 5400102错误码声明描述调整
+// 新增5400102错误码声明描述调整如下
 @throws { BusinessError } 5400102 - Operation not allowed.
 ```
 
@@ -49,6 +50,7 @@ unload(soundID: number): Promise<void>
 修改前的接口原型：
 
 ```ts
+// 新增5400103错误码涉及到的接口
 load(uri: string): Promise<number>
 load(fd: number, offset: number, length: number, callback: AsyncCallback<number>): void
 load(fd: number, offset: number, length: number): Promise<number>
@@ -58,7 +60,7 @@ unload(soundID: number): Promise<void>
 修改后的接口原型：
 
 ```ts
-// 5400103错误码声明描述调整
+// 新增5400102错误码声明描述调整如下
 @throws { BusinessError } 5400103 - I/O error.
 ```
 
@@ -78,6 +80,7 @@ unload(soundID: number): Promise<void>
 修改前的接口原型：
 
 ```ts
+// 新增5400105错误码涉及到的接口
 load(uri: string): Promise<number>
 load(fd: number, offset: number, length: number): Promise<number>
 play(soundID: number, params?: PlayParameters): Promise<number>
@@ -93,7 +96,7 @@ release(): Promise<void>
 修改后的接口原型：
 
 ```ts
-// 5400105错误码声明描述调整
+// 新增5400102错误码声明描述调整如下
 @throws { BusinessError } 5400105 - Service died.
 ```
 
@@ -118,7 +121,7 @@ on(type: 'loadComplete', callback: Callback<number>): void
 修改后的接口原型：
 
 ```ts
-// 不进行错误码设计
+// 修改接口说明，不进行错误码设计
 @param {'loadComplete'} type Type of the play finish event to listen for.
 @param {Callback<number>} callback Callback used to listen for load result event
 @syscap SystemCapability.Multimedia.Media.SoundPool
@@ -146,7 +149,7 @@ on(type: 'playFinished', callback: Callback<void>): void
 修改后的接口原型：
 
 ```ts
-// 不进行错误码设计
+// 修改说明不进行错误码设计
 @param {'loadComplete'} type Type of the play finish event to listen for.
 @param {Callback<number>} callback Callback used to listen for load result event
 @syscap SystemCapability.Multimedia.Media.SoundPool
