@@ -792,16 +792,18 @@ async function createTonePlayerBefore(){
 | type              | [DeviceChangeType](#devicechangetype)             | 是   | 设备连接状态变化。 |
 | deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
 
-## ChannelBlendMode<sup>11+</sup><a name="channelblendmode11"></a>
+## ChannelBlendMode<sup>11+</sup>
 
 枚举，声道混合模式类型。
 
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
 | 名称                                         |  值     | 说明                   |
 | :------------------------------------------- | :----- | :--------------------- |
-| MODE_DEFAULT<sup>11+</sup>                          | 0     | 无声道混合。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
-| MODE_BLEND_LR<sup>11+</sup>                              | 1      | 混合左右声道。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
-| MODE_ALL_LEFT<sup>11+</sup>   | 2      | 从左声道拷贝覆盖到右声道混合。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
-| MODE_ALL_RIGHT<sup>11+</sup> | 3 | 从右声道拷贝覆盖到左声道混合。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| MODE_DEFAULT<sup>11+</sup>                          | 0     | 无声道混合。  |
+| MODE_BLEND_LR<sup>11+</sup>                              | 1      | 混合左右声道。 |
+| MODE_ALL_LEFT<sup>11+</sup>   | 2      | 从左声道拷贝覆盖到右声道混合。  |
+| MODE_ALL_RIGHT<sup>11+</sup> | 3 | 从右声道拷贝覆盖到左声道混合。 |
 
 ## DeviceChangeType
 
@@ -5584,7 +5586,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 | networkId<sup>9+</sup>        | string                     | 是   | 否   | 设备组网的ID。<br/>此接口为系统接口。 |
 | interruptGroupId<sup>9+</sup> | number                     | 是   | 否   | 设备所处的焦点组ID。<br/>此接口为系统接口。 |
 | volumeGroupId<sup>9+</sup>    | number                     | 是   | 否   | 设备所处的音量组ID。<br/>此接口为系统接口。 |
-| encodingTypes<sup>11+</sup>    | Array&lt;AudioEncodingType&gt;                     | 是   | 否   | 支持的编码类型。 |
+| encodingTypes<sup>11+</sup>    | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt;                     | 是   | 否   | 支持的编码类型。 |
 
 **示例：**
 
