@@ -132,23 +132,24 @@ export default class MainAbility extends UIAbility {
 // import FA from "@ohos.ability.featureAbility";
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
+import rpc from '@ohos.rpc';
 
 let proxy: rpc.IRemoteObject | undefined = undefined;
 let connect: common.ConnectOptions = {
-    onConnect: (elementName, remoteProxy) => {
-        console.log("RpcClient: js onConnect called.");
-        proxy = remoteProxy;
-    },
-    onDisconnect: (elementName) => {
-        console.log("RpcClient: onDisconnect");
-    },
-    onFailed: () => {
-        console.log("RpcClient: onFailed");
-    }
+  onConnect: (elementName, remoteProxy) => {
+    console.log("RpcClient: js onConnect called.");
+    proxy = remoteProxy;
+  },
+  onDisconnect: (elementName) => {
+    console.log("RpcClient: onDisconnect");
+  },
+  onFailed: () => {
+    console.log("RpcClient: onFailed");
+  }
 };
 let want: Want = {
-    bundleName: "com.ohos.server",
-    abilityName: "com.ohos.server.EntryAbility",
+  bundleName: "com.ohos.server",
+  abilityName: "com.ohos.server.EntryAbility",
 };
 // Use this method to connect to the ability in the FA model.
 // FA.connectAbility(want, connect);
@@ -159,12 +160,16 @@ this.context.connectServiceExtensionAbility(want, connect);
 The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
 
 ```ts
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+import rpc from '@ohos.rpc';
 class MyDeathRecipient implements rpc.DeathRecipient{
     onRemoteDied() {
         console.log("server died");
     }
 }
 let deathRecipient = new MyDeathRecipient();
+let proxy: rpc.IRemoteObject | undefined = undefined;
 proxy.registerDeathRecipient(deathRecipient, 0);
 proxy.unregisterDeathRecipient(deathRecipient, 0);
 ```
