@@ -778,7 +778,7 @@ Obtains a notification slot of a specified type. This API uses a promise to retu
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<NotificationSlot\> | Promise used to return the result.|
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -1999,6 +1999,8 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2801,6 +2803,8 @@ Checks whether DND mode is supported. This API uses an asynchronous callback to 
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -3725,8 +3729,6 @@ Cancels a notification published by the reminder agent. This API uses an asynchr
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -3780,8 +3782,6 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 Cancels a notification published by the reminder agent. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
@@ -4241,10 +4241,10 @@ Subscribes to notification events. The notification service sends the notificati
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description          |
-| ------ | ----------------------------- | ---- | -------------- |
-| type | string | Yes  | Event type. The value is fixed to **'checkNotification'**.|
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10)    | Yes  | Pointer to the notification verification function.|
+| Name| Type                                                                                                                     | Mandatory| Description          |
+| ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
+| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | Yes  | Pointer to the notification verification function.|
 
 **Error codes**
 
@@ -4290,10 +4290,10 @@ Unsubscribes from notification events.
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description          |
-| ------ | ----------------------------- | ---- | -------------- |
-| type | string                                                       | Yes  | Event type. The value is fixed to **'checkNotification'**.|
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10)  | No  | Callback used to return the result. This parameter is left empty by default.|
+| Name| Type                                                                                                                     | Mandatory| Description          |
+| ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
+| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | No  | Callback used to return the result. This parameter is left empty by default.|
 
 **Error codes**
 
