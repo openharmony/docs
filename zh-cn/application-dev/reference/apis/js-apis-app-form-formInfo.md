@@ -73,7 +73,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | formState  | [FormState](#formstate)               | 是    | 否     | 卡片状态。                          |
-| want  | Want               | 是    | 否     | Want文本内容。    |
+| want  | [Want](js-apis-app-ability-want.md)         | 是    | 否     | Want文本内容。    |
 
 ##  FormState
 
