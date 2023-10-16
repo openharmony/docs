@@ -131,13 +131,13 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     }
     // 优先使用NNRT推理。
     // 这里利用查找到的第一个ACCELERATORS类别的NNRT硬件，来创建nnrt设备信息，并设置硬件使用高性能模式推理。还可以通过如：OH_AI_GetAllNNRTDeviceDescs()接口获取当前环境中所有NNRT硬件的描述信息，按设备名、类型等信息查找，找到某一具体设备作为NNRT推理硬件。
-    OH_AI_DeviceInfoHandle nnrt_device_info = OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDEVICE_ACCELERATORS);
+    OH_AI_DeviceInfoHandle nnrt_device_info = OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDEVICE_ACCELERATOR);
     if (nnrt_device_info == NULL) {
       printf("OH_AI_DeviceInfoCreate failed.\n");
       OH_AI_ContextDestroy(&context);
       return OH_AI_STATUS_LITE_ERROR;
     }
-    OH_AI_DeviceInfoSetPerformaceMode(nnrt_device_info, OH_AI_PERFORMANCE_HIGH);
+    OH_AI_DeviceInfoSetPerformanceMode(nnrt_device_info, OH_AI_PERFORMANCE_HIGH);
     OH_AI_ContextAddDeviceInfo(context, nnrt_device_info);
 
     // 其次设置CPU推理。
