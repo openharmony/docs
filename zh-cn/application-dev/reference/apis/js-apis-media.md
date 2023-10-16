@@ -7,7 +7,7 @@
 
 媒体子系统包含了音视频相关媒体业务，提供以下常用功能：
 
-- 音视频播放（[AVPlayer](#avplayer9)<sup>9+</sup>），[AudioPlayer](#audioplayerdeprecated)<sup>6+</sup>和[VideoPlayer](#videoplayer)<sup>8+</sup>整合，升级了状态机和错误码，推荐使用
+- 音视频播放（[AVPlayer](#avplayer9)<sup>9+</sup>），[AudioPlayer](#audioplayerdeprecated)<sup>6+</sup>和[VideoPlayer](#videoplayerdeprecated)<sup>8+</sup>整合，升级了状态机和错误码，推荐使用
 - 音视频录制（[AVRecorder](#avrecorder9)<sup>9+</sup>），[AudioRecorder](#audiorecorderdeprecated)<sup>6+</sup>和[VideoRecorder](#videorecorder9)<sup>9+</sup>整合，推荐使用
 - 音频播放（[AudioPlayer](#audioplayerdeprecated)<sup>6+</sup>），[AVPlayer](#avplayer9)<sup>9+</sup>发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
 - 视频播放（[VideoPlayer](#videoplayerdeprecated)<sup>8+</sup>），[AVPlayer](#avplayer9)<sup>9+</sup>发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
@@ -374,7 +374,7 @@ media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) =
 });
 ```
 
-## AVErrorCode<sup>9+</sup><a name=averrorcode></a>
+## AVErrorCode<sup>9+</sup>
 
 [媒体错误码](../errorcodes/errorcode-media.md)类型枚举
 
@@ -470,7 +470,7 @@ Codec MIME类型枚举。
 
 Audio/Video播放demo可参考：[音频播放开发指导](../../media/using-avplayer-for-playback.md)、[视频播放开发指导](../../media/video-playback.md)。
 
-### 属性<a name=avplayer_属性></a>
+### 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -495,7 +495,7 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/using-av
 
 将资源句柄（fd）传递给媒体播放器之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个媒体播放器。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致播放异常。
 
-### on('stateChange')<sup>9+</sup><a name = stateChange_on></a>
+### on('stateChange')<sup>9+</sup>
 
 on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReason) => void): void
 
@@ -549,7 +549,7 @@ avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason
 })
 ```
 
-### off('stateChange')<sup>9+</sup><a name = stateChange_off></a>
+### off('stateChange')<sup>9+</sup>
 
 off(type: 'stateChange'): void
 
@@ -569,7 +569,7 @@ off(type: 'stateChange'): void
 avPlayer.off('stateChange')
 ```
 
-### on('error')<sup>9+</sup><a name = error_on></a>
+### on('error')<sup>9+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -583,8 +583,6 @@ on(type: 'error', callback: ErrorCallback): void
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 错误事件回调类型，支持的事件：'error'，用户操作和系统都会触发此事件。 |
 | callback | function | 是   | 错误事件回调方法：使用播放器的过程中发生错误，会提供错误码ID和错误信息。 |
-
-AVPlayer回调的**错误分类**<a name = error_info></a>可以分为以下几种：
 
 **错误码：**
 
@@ -611,7 +609,7 @@ avPlayer.on('error', (error: BusinessError) => {
 })
 ```
 
-### off('error')<sup>9+</sup><a name = error_off></a>
+### off('error')<sup>9+</sup>
 
 off(type: 'error'): void
 
@@ -631,11 +629,11 @@ off(type: 'error'): void
 avPlayer.off('error')
 ```
 
-### prepare<sup>9+</sup><a name=avplayer_prepare></a>
+### prepare<sup>9+</sup>
 
 prepare(callback: AsyncCallback\<void>): void
 
-通过回调方式准备播放视频，需在[stateChange](#stateChange_on)事件成功触发至initialized状态后，才能调用。
+通过回调方式准备播放视频，需在[stateChange](#onstatechange9)事件成功触发至initialized状态后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -670,7 +668,7 @@ avPlayer.prepare((err: BusinessError) => {
 
 prepare(): Promise\<void>
 
-通过Promise方式准备播放视频，需在[stateChange](#stateChange_on)事件成功触发至initialized状态后，才能调用。
+通过Promise方式准备播放视频，需在[stateChange](#onstatechange9)事件成功触发至initialized状态后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -699,7 +697,7 @@ avPlayer.prepare().then(() => {
 })
 ```
 
-### play<sup>9+</sup><a name=avplayer_play></a>
+### play<sup>9+</sup>
 
 play(callback: AsyncCallback\<void>): void
 
@@ -765,7 +763,7 @@ avPlayer.play().then(() => {
 })
 ```
 
-### pause<sup>9+</sup><a name=avplayer_pause></a>
+### pause<sup>9+</sup>
 
 pause(callback: AsyncCallback\<void>): void
 
@@ -831,7 +829,7 @@ avPlayer.pause().then(() => {
 })
 ```
 
-### stop<sup>9+</sup><a name=avplayer_stop></a>
+### stop<sup>9+</sup>
 
 stop(callback: AsyncCallback\<void>): void
 
@@ -897,7 +895,7 @@ avPlayer.stop().then(() => {
 })
 ```
 
-### reset<sup>9+</sup><a name=avplayer_reset></a>
+### reset<sup>9+</sup>
 
 reset(callback: AsyncCallback\<void>): void
 
@@ -963,7 +961,7 @@ avPlayer.reset().then(() => {
 })
 ```
 
-### release<sup>9+</sup><a name=avplayer_release></a>
+### release<sup>9+</sup>
 
 release(callback: AsyncCallback\<void>): void
 
@@ -1029,7 +1027,7 @@ avPlayer.release().then(() => {
 })
 ```
 
-### getTrackDescription<sup>9+</sup><a name=avplayer_gettrackdescription></a>
+### getTrackDescription<sup>9+</sup>
 
 getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
@@ -1095,11 +1093,11 @@ avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => 
 });
 ```
 
-### seek<sup>9+</sup><a name=avplayer_seek></a>
+### seek<sup>9+</sup>
 
 seek(timeMs: number, mode?:SeekMode): void
 
-跳转到指定播放位置，只能在prepared/playing/paused/completed状态调用，可以通过[seekDone事件](#seekDone_on)确认是否生效。
+跳转到指定播放位置，只能在prepared/playing/paused/completed状态调用，可以通过[seekDone事件](#onseekdone9)确认是否生效。
 注：直播场景不支持seek。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1118,7 +1116,7 @@ let seekTime: number = 1000
 avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
 ```
 
-### on('seekDone')<sup>9+</sup><a name = seekDone_on></a>
+### on('seekDone')<sup>9+</sup>
 
 on(type: 'seekDone', callback: Callback\<number>): void
 
@@ -1141,7 +1139,7 @@ avPlayer.on('seekDone', (seekDoneTime:number) => {
 })
 ```
 
-### off('seekDone')<sup>9+</sup><a name = seekDone_off></a>
+### off('seekDone')<sup>9+</sup>
 
 off(type: 'seekDone'): void
 
@@ -1165,7 +1163,7 @@ avPlayer.off('seekDone')
 
 setSpeed(speed: PlaybackSpeed): void
 
-设置倍速模式，只能在prepared/playing/paused/completed状态调用，可以通过[speedDone事件](#speedDone_on)确认是否生效。
+设置倍速模式，只能在prepared/playing/paused/completed状态调用，可以通过[speedDone事件](#onspeeddone9)确认是否生效。
 注：直播场景不支持setSpeed。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1182,7 +1180,7 @@ setSpeed(speed: PlaybackSpeed): void
 avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X)
 ```
 
-### on('speedDone')<sup>9+</sup><a name = speedDone_on></a>
+### on('speedDone')<sup>9+</sup>
 
 on(type: 'speedDone', callback: Callback\<number>): void
 
@@ -1205,7 +1203,7 @@ avPlayer.on('speedDone', (speed:number) => {
 })
 ```
 
-### off('speedDone')<sup>9+</sup><a name = speedDone_off></a>
+### off('speedDone')<sup>9+</sup>
 
 off(type: 'speedDone'): void
 
@@ -1229,7 +1227,7 @@ avPlayer.off('speedDone')
 
 setBitrate(bitrate: number): void
 
-选择要播放的指定比特率，仅对**HLS协议网络流**有效，只能在prepared/playing/paused/completed状态调用，可以通过[bitrateDone](#bitrateDone_on)事件确认是否生效。
+选择要播放的指定比特率，仅对**HLS协议网络流**有效，只能在prepared/playing/paused/completed状态调用，可以通过[bitrateDone](#onbitratedone9)事件确认是否生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1237,7 +1235,7 @@ setBitrate(bitrate: number): void
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| bitrate | number | 是   | 指定比特率，可以通过[availableBitrates](#availableBitrates_on)事件获得当前HLS协议流可用的比特率，如果用户指定的比特率不在此列表中，则播放器将从可用比特率列表中选择最小和最接近的比特率。如果通过availableBitrates事件获得的比特率列表长度为0，则不支持指定比特率，也不会产生bitrateDone回调。 |
+| bitrate | number | 是   | 指定比特率，可以通过[availableBitrates](#onavailablebitrates9)事件获得当前HLS协议流可用的比特率，如果用户指定的比特率不在此列表中，则播放器将从可用比特率列表中选择最小和最接近的比特率。如果通过availableBitrates事件获得的比特率列表长度为0，则不支持指定比特率，也不会产生bitrateDone回调。 |
 
 **示例：**
 
@@ -1246,7 +1244,7 @@ let bitrate: number = 96000
 avPlayer.setBitrate(bitrate)
 ```
 
-### on('bitrateDone')<sup>9+</sup><a name = bitrateDone_on></a>
+### on('bitrateDone')<sup>9+</sup>
 
 on(type: 'bitrateDone', callback: Callback\<number>): void
 
@@ -1269,7 +1267,7 @@ avPlayer.on('bitrateDone', (bitrate:number) => {
 })
 ```
 
-### off('bitrateDone')<sup>9+</sup><a name = bitrateDone_off></a>
+### off('bitrateDone')<sup>9+</sup>
 
 off(type: 'bitrateDone'): void
 
@@ -1289,7 +1287,7 @@ off(type: 'bitrateDone'): void
 avPlayer.off('bitrateDone')
 ```
 
-### on('availableBitrates')<sup>9+</sup><a name = availableBitrates_on></a>
+### on('availableBitrates')<sup>9+</sup>
 
 on(type: 'availableBitrates', callback: (bitrates: Array\<number>) => void): void
 
@@ -1312,7 +1310,7 @@ avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
 })
 ```
 
-### off('availableBitrates')<sup>9+</sup><a name = availableBitrates_off></a>
+### off('availableBitrates')<sup>9+</sup>
 
 off(type: 'availableBitrates'): void
 
@@ -1336,7 +1334,7 @@ avPlayer.off('availableBitrates')
 
 setVolume(volume: number): void
 
-设置媒体播放音量，只能在prepared/playing/paused/completed状态调用，可以通过[volumeChange事件](#volumeChange_on)确认是否生效。
+设置媒体播放音量，只能在prepared/playing/paused/completed状态调用，可以通过[volumeChange事件](#onvolumechange9)确认是否生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1353,7 +1351,7 @@ let volume: number = 1.0
 avPlayer.setVolume(volume)
 ```
 
-### on('volumeChange')<sup>9+</sup><a name = volumeChange_on></a>
+### on('volumeChange')<sup>9+</sup>
 
 on(type: 'volumeChange', callback: Callback\<number>): void
 
@@ -1376,7 +1374,7 @@ avPlayer.on('volumeChange', (vol: number) => {
 })
 ```
 
-### off('volumeChange')<sup>9+</sup><a name = volumeChange_off></a>
+### off('volumeChange')<sup>9+</sup>
 
 off(type: 'volumeChange'): void
 
@@ -1396,11 +1394,11 @@ off(type: 'volumeChange'): void
 avPlayer.off('volumeChange')
 ```
 
-### on('endOfStream')<sup>9+</sup><a name = endOfStream_on></a>
+### on('endOfStream')<sup>9+</sup>
 
 on(type: 'endOfStream', callback: Callback\<void>): void
 
-监听资源播放至结尾的事件；如果用户设置**loop=1**，播放会跳转至开头重播；如果用户没有设置loop，会通过[stateChange](#stateChange_on)上报completed状态。
+监听资源播放至结尾的事件；如果用户设置**loop=1**，播放会跳转至开头重播；如果用户没有设置loop，会通过[stateChange](#onstatechange9)上报completed状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1419,7 +1417,7 @@ avPlayer.on('endOfStream', () => {
 })
 ```
 
-### off('endOfStream')<sup>9+</sup><a name = endOfStream_off></a>
+### off('endOfStream')<sup>9+</sup>
 
 off(type: 'endOfStream'): void
 
@@ -1439,7 +1437,7 @@ off(type: 'endOfStream'): void
 avPlayer.off('endOfStream')
 ```
 
-### on('timeUpdate')<sup>9+</sup><a name = timeUpdate_on></a>
+### on('timeUpdate')<sup>9+</sup>
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
@@ -1463,7 +1461,7 @@ avPlayer.on('timeUpdate', (time:number) => {
 })
 ```
 
-### off('timeUpdate')<sup>9+</sup><a name = timeUpdate_off></a>
+### off('timeUpdate')<sup>9+</sup>
 
 off(type: 'timeUpdate'): void
 
@@ -1483,7 +1481,8 @@ off(type: 'timeUpdate'): void
 avPlayer.off('timeUpdate')
 ```
 
-### on('durationUpdate')<sup>9+</sup><a name = durationUpdate_on></a>
+### on('durationUpdate')<sup>9+</sup>
+
 
 on(type: 'durationUpdate', callback: Callback\<number>): void
 
@@ -1507,7 +1506,7 @@ avPlayer.on('durationUpdate', (duration: number) => {
 })
 ```
 
-### off('durationUpdate')<sup>9+</sup><a name = durationUpdate_off></a>
+### off('durationUpdate')<sup>9+</sup>
 
 off(type: 'durationUpdate'): void
 
@@ -1527,7 +1526,7 @@ off(type: 'durationUpdate'): void
 avPlayer.off('durationUpdate')
 ```
 
-### on('bufferingUpdate')<sup>9+</sup><a name = bufferingUpdate_on></a>
+### on('bufferingUpdate')<sup>9+</sup>
 
 on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
@@ -1550,7 +1549,7 @@ avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number
 })
 ```
 
-### off('bufferingUpdate')<sup>9+</sup><a name = bufferingUpdate_off></a>
+### off('bufferingUpdate')<sup>9+</sup>
 
 off(type: 'bufferingUpdate'): void
 
@@ -1570,7 +1569,7 @@ off(type: 'bufferingUpdate'): void
 avPlayer.off('bufferingUpdate')
 ```
 
-### on('startRenderFrame')<sup>9+</sup><a name = startRenderFrame_on></a>
+### on('startRenderFrame')<sup>9+</sup>
 
 on(type: 'startRenderFrame', callback: Callback\<void>): void
 
@@ -1593,7 +1592,7 @@ avPlayer.on('startRenderFrame', () => {
 })
 ```
 
-### off('startRenderFrame')<sup>9+</sup><a name = startRenderFrame_off></a>
+### off('startRenderFrame')<sup>9+</sup>
 
 off(type: 'startRenderFrame'): void
 
@@ -1613,7 +1612,7 @@ off(type: 'startRenderFrame'): void
 avPlayer.off('startRenderFrame')
 ```
 
-### on('videoSizeChange')<sup>9+</sup><a name = videoSizeChange_on></a>
+### on('videoSizeChange')<sup>9+</sup>
 
 on(type: 'videoSizeChange', callback: (width: number, height: number) => void): void
 
@@ -1636,7 +1635,7 @@ avPlayer.on('videoSizeChange', (width: number, height: number) => {
 })
 ```
 
-### off('videoSizeChange')<sup>9+</sup><a name = videoSizeChange_off></a>
+### off('videoSizeChange')<sup>9+</sup>
 
 off(type: 'videoSizeChange'): void
 
@@ -1656,7 +1655,7 @@ off(type: 'videoSizeChange'): void
 avPlayer.off('videoSizeChange')
 ```
 
-### on('audioInterrupt')<sup>9+</sup><a name = audioInterrupt_on></a>
+### on('audioInterrupt')<sup>9+</sup>
 
 on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 
@@ -1681,7 +1680,7 @@ avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
 })
 ```
 
-### off('audioInterrupt')<sup>9+</sup><a name = audioInterrupt_off></a>
+### off('audioInterrupt')<sup>9+</sup>
 
 off(type: 'audioInterrupt'): void
 
@@ -1701,9 +1700,9 @@ off(type: 'audioInterrupt'): void
 avPlayer.off('audioInterrupt')
 ```
 
-## AVPlayerState<sup>9+</sup><a name = avplayerstate></a>
+## AVPlayerState<sup>9+</sup>
 
-[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#stateChange_on)事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/using-avplayer-for-playback.md)。
+[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#onstatechange9)事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/using-avplayer-for-playback.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1717,7 +1716,7 @@ avPlayer.off('audioInterrupt')
 |            completed            | string | 播放至结尾状态，当媒体资源播放至结尾时，如果用户未设置循环播放（loop = 1），AVPlayer会进入completed状态，此时调用play()会进入playing状态和重播，调用stop()会进入stopped状态。 |
 |             stopped             | string | 停止状态，在prepared/playing/paused/completed状态调用stop()方法，AVPlayer会进入stopped状态，此时播放引擎只会保留属性，但会释放内存资源，可以调用prepare()重新准备，也可以调用reset()重置，或者调用release()彻底销毁。 |
 |            released             | string | 销毁状态，销毁与当前AVPlayer关联的播放引擎，无法再进行状态转换，调用release()方法后，会进入released状态，结束流程。 |
-| error<a name = error_state></a> | string | 错误状态，当**播放引擎**发生**不可逆的错误**，详见[错误分类](#error_info)，则会转换至当前状态，可以调用reset()重置，也可以调用release()销毁重建。<br/>**注意：** 区分error状态和 [on('error')](#error_on) ：<br/>1、进入error状态时，会触发[on('error')](#error_on)监听事件，可以通过[on('error')](#error_on)事件获取详细错误信息；<br/>2、处于error状态时，播放服务进入不可播控的状态，要求客户端设计容错机制，使用reset()重置或者release()销毁重建；<br/>3、如果客户端收到[on('error')](#error_on)，但未进入error状态：<br/>原因1：客户端未按状态机调用API或传入参数错误，被AVPlayer拦截提醒，需要客户端调整代码逻辑；<br/>原因2：播放过程发现码流问题，导致容器、解码短暂异常，不影响连续播放和播控操作的，不需要客户端设计容错机制。 |
+| error | string | 错误状态，当**播放引擎**发生**不可逆的错误**（详见[媒体错误码](../errorcodes/errorcode-media.md)），则会转换至当前状态，可以调用reset()重置，也可以调用release()销毁重建。<br/>**注意：** 区分error状态和 [on('error')](#onerror9) ：<br/>1、进入error状态时，会触发on('error')监听事件，可以通过on('error')事件获取详细错误信息；<br/>2、处于error状态时，播放服务进入不可播控的状态，要求客户端设计容错机制，使用reset()重置或者release()销毁重建；<br/>3、如果客户端收到on('error')，但未进入error状态：<br/>原因1：客户端未按状态机调用API或传入参数错误，被AVPlayer拦截提醒，需要客户端调整代码逻辑；<br/>原因2：播放过程发现码流问题，导致容器、解码短暂异常，不影响连续播放和播控操作的，不需要客户端设计容错机制。 |
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -1828,7 +1827,7 @@ avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDe
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
 | state9+ | [AVRecorderState](#avrecorderstate9) | 是   | 否   | 音视频录制的状态。 |
 
-### prepare<sup>9+</sup><a name=avrecorder_prepare></a>
+### prepare<sup>9+</sup>
 
 prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
@@ -1963,7 +1962,7 @@ avRecorder.prepare(AVRecorderConfig).then(() => {
 });
 ```
 
-### getInputSurface<sup>9+</sup><a name=avrecorder_getinputsurface></a>
+### getInputSurface<sup>9+</sup>
 
 getInputSurface(callback: AsyncCallback\<string>): void
 
@@ -2048,7 +2047,7 @@ avRecorder.getInputSurface().then((surfaceId: string) => {
 });
 ```
 
-### start<sup>9+</sup><a name=avrecorder_start></a>
+### start<sup>9+</sup>
 
 start(callback: AsyncCallback\<void>): void
 
@@ -2122,7 +2121,7 @@ avRecorder.start().then(() => {
 });
 ```
 
-### pause<sup>9+</sup><a name=avrecorder_pause></a>
+### pause<sup>9+</sup>
 
 pause(callback: AsyncCallback\<void>): void
 
@@ -2196,7 +2195,7 @@ avRecorder.pause().then(() => {
 });
 ```
 
-### resume<sup>9+</sup><a name=avrecorder_resume></a>
+### resume<sup>9+</sup>
 
 resume(callback: AsyncCallback\<void>): void
 
@@ -2270,7 +2269,7 @@ avRecorder.resume().then(() => {
 });
 ```
 
-### stop<sup>9+</sup><a name=avrecorder_stop></a>
+### stop<sup>9+</sup>
 
 stop(callback: AsyncCallback\<void>): void
 
@@ -2348,7 +2347,7 @@ avRecorder.stop().then(() => {
 });
 ```
 
-### reset<sup>9+</sup><a name=avrecorder_reset></a>
+### reset<sup>9+</sup>
 
 reset(callback: AsyncCallback\<void>): void
 
@@ -2420,7 +2419,7 @@ avRecorder.reset().then(() => {
 });
 ```
 
-### release<sup>9+</sup><a name=avrecorder_release></a>
+### release<sup>9+</sup>
 
 release(callback: AsyncCallback\<void>): void
 
@@ -2490,7 +2489,7 @@ avRecorder.release().then(() => {
 });
 ```
 
-### on('stateChange')<sup>9+</sup><a name=avrecorder_onstatechange></a>
+### on('stateChange')<sup>9+</sup>
 
 on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeReason) => void): void
 
@@ -2542,7 +2541,7 @@ off(type: 'stateChange'): void
 avRecorder.off('stateChange');
 ```
 
-### on('error')<sup>9+</sup><a name=avrecorder_onerror></a>
+### on('error')<sup>9+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -2608,13 +2607,13 @@ avRecorder.off('error');
 
 | 名称     | 类型   | 说明                                                         |
 | -------- | ------ | ------------------------------------------------------------ |
-| idle     | string | 闲置状态。此时可以调用[prepare()](#avrecorder_prepare)方法设置录制参数，进入prepared状态。AVRecorder刚被创建，或者在任何非released状态下调用[reset()](#avrecorder_reset)方法，均进入idle状态。 |
-| prepared | string | 参数设置完成。此时可以调用[start()](#avrecorder_start)方法开始录制，进入started状态。 |
-| started  | string | 正在录制。此时可以调用[pause()](#avrecorder_pause)方法暂停录制，进入paused状态。也可以调用[stop()](#avrecorder_stop)方法结束录制，进入stopped状态。 |
-| paused   | string | 录制暂停。此时可以调用[resume()](#avrecorder_resume)方法继续录制，进入started状态。也可以调用[stop()](#avrecorder_stop)方法结束录制，进入stopped状态。 |
-| stopped  | string | 录制停止。此时可以调用[prepare()](#avrecorder_prepare)方法设置录制参数，重新进入prepared状态。 |
-| released | string | 录制资源释放。此时不能再进行任何操作。在任何其他状态下，均可以通过调用[release()](#avrecorder_release)方法进入released状态。 |
-| error    | string | 错误状态。当AVRecorder实例发生不可逆错误，会转换至当前状态。切换至error状态时会伴随[on('error')事件](#avrecorder_onerror)，该事件会上报详细错误原因。在error状态时，用户需要调用[reset()](#avrecorder_reset)方法重置AVRecorder实例，或者调用[release()](#avrecorder_release)方法释放资源。 |
+| idle     | string | 闲置状态。此时可以调用[AVRecorder.prepare()](#prepare9-2)方法设置录制参数，进入prepared状态。AVRecorder刚被创建，或者在任何非released状态下调用[AVRecorder.reset()](#reset9-2)方法，均进入idle状态。 |
+| prepared | string | 参数设置完成。此时可以调用[AVRecorder.start()](#start9)方法开始录制，进入started状态。 |
+| started  | string | 正在录制。此时可以调用[AVRecorder.pause()](#pause9-2)方法暂停录制，进入paused状态。也可以调用[AVRecorder.stop()](#stop9-2)方法结束录制，进入stopped状态。 |
+| paused   | string | 录制暂停。此时可以调用[AVRecorder.resume()](#resume9)方法继续录制，进入started状态。也可以调用[AVRecorder.stop()](#stop9-2)方法结束录制，进入stopped状态。 |
+| stopped  | string | 录制停止。此时可以调用[AVRecorder.prepare()](#prepare9-2)方法设置录制参数，重新进入prepared状态。 |
+| released | string | 录制资源释放。此时不能再进行任何操作。在任何其他状态下，均可以通过调用[AVRecorder.release()](#release9-2)方法进入released状态。 |
+| error    | string | 错误状态。当AVRecorder实例发生不可逆错误，会转换至当前状态。切换至error状态时会伴随[AVRecorder.on('error')事件](#onerror9-1)，该事件会上报详细错误原因。在error状态时，用户需要调用[AVRecorder.reset()](#reset9-2)方法重置AVRecorder实例，或者调用[AVRecorder.release()](#release9-2)方法释放资源。 |
 
 ## AVRecorderConfig<sup>9+</sup>
 
@@ -2713,9 +2712,9 @@ avRecorder.off('error');
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
 | state<sup>9+</sup> | [VideoRecordState](#videorecordstate9) | 是   | 否   | 视频录制的状态。 |
 
-### prepare<sup>9+</sup><a name=videorecorder_prepare1></a>
+### prepare<sup>9+</sup>
 
-prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
+prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void
 
 异步方式进行视频录制的参数设置。通过注册回调函数获取返回值。
 
@@ -2779,9 +2778,9 @@ videoRecorder.prepare(videoConfig, (err: BusinessError) => {
 })
 ```
 
-### prepare<sup>9+</sup><a name=videorecorder_prepare2></a>
+### prepare<sup>9+</sup>
 
-prepare(config: VideoRecorderConfig): Promise\<void>;
+prepare(config: VideoRecorderConfig): Promise\<void>
 
 异步方式进行视频录制的参数设置。通过Promise获取返回值。
 
@@ -2850,13 +2849,13 @@ videoRecorder.prepare(videoConfig).then(() => {
 
 ### getInputSurface<sup>9+</sup>
 
-getInputSurface(callback: AsyncCallback\<string>): void;
+getInputSurface(callback: AsyncCallback\<string>): void
 
 异步方式获得录制需要的surface。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的数据。
 
 应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-只能在[prepare()](#videorecorder_prepare1)接口调用后调用。
+只能在prepare()接口调用后调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2901,7 +2900,7 @@ getInputSurface(): Promise\<string>;
 
 应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-只能在[prepare()](#videorecorder_prepare1)接口调用后调用。
+只能在prepare()接口调用后调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2936,13 +2935,13 @@ videoRecorder.getInputSurface().then((surfaceId: string) => {
 });
 ```
 
-### start<sup>9+</sup><a name=videorecorder_start1></a>
+### start<sup>9+</sup>
 
-start(callback: AsyncCallback\<void>): void;
+start(callback: AsyncCallback\<void>): void
 
 异步方式开始视频录制。通过注册回调函数获取返回值。
 
-在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)后调用，需要依赖数据源先给surface传递数据。
+在prepare()和getInputSurface()后调用，需要依赖数据源先给surface传递数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2977,13 +2976,13 @@ videoRecorder.start((err: BusinessError) => {
 });
 ```
 
-### start<sup>9+</sup><a name=videorecorder_start2></a>
+### start<sup>9+</sup>
 
-start(): Promise\<void>;
+start(): Promise\<void>
 
 异步方式开始视频录制。通过Promise获取返回值。
 
-在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)后调用，需要依赖数据源先给surface传递数据。
+在prepare()和getInputSurface()后调用，需要依赖数据源先给surface传递数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3016,13 +3015,13 @@ videoRecorder.start().then(() => {
 });
 ```
 
-### pause<sup>9+</sup><a name=videorecorder_pause1></a>
+### pause<sup>9+</sup>
 
-pause(callback: AsyncCallback\<void>): void;
+pause(callback: AsyncCallback\<void>): void
 
 异步方式暂停视频录制。通过注册回调函数获取返回值。
 
-在[start()](#videorecorder_start1)后调用。可以通过调用[resume()](#videorecorder_resume1)接口来恢复录制。
+在start()后调用。可以通过调用resume()接口来恢复录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3057,13 +3056,13 @@ videoRecorder.pause((err: BusinessError) => {
 });
 ```
 
-### pause<sup>9+</sup><a name=videorecorder_pause2></a>
+### pause<sup>9+</sup>
 
-pause(): Promise\<void>;
+pause(): Promise\<void>
 
 异步方式暂停视频录制。通过Promise获取返回值。
 
-在[start()](#videorecorder_start1)后调用。可以通过调用[resume()](#videorecorder_resume1)接口来恢复录制。
+在start()后调用。可以通过调用resume()接口来恢复录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3096,9 +3095,9 @@ videoRecorder.pause().then(() => {
 });
 ```
 
-### resume<sup>9+</sup><a name=videorecorder_resume1></a>
+### resume<sup>9+</sup>
 
-resume(callback: AsyncCallback\<void>): void;
+resume(callback: AsyncCallback\<void>): void
 
 异步方式恢复视频录制。通过注册回调函数获取返回值。
 
@@ -3135,9 +3134,9 @@ videoRecorder.resume((err: Error) => {
 });
 ```
 
-### resume<sup>9+</sup><a name=videorecorder_resume2></a>
+### resume<sup>9+</sup>
 
-resume(): Promise\<void>;
+resume(): Promise\<void>
 
 异步方式恢复视频录制。通过Promise获取返回值。
 
@@ -3172,13 +3171,13 @@ videoRecorder.resume().then(() => {
 });
 ```
 
-### stop<sup>9+</sup><a name=videorecorder_stop1></a>
+### stop<sup>9+</sup>
 
-stop(callback: AsyncCallback\<void>): void;
+stop(callback: AsyncCallback\<void>): void
 
 异步方式停止视频录制。通过注册回调函数获取返回值。
 
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
+需要重新调用prepare()和getInputSurface()接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3213,13 +3212,13 @@ videoRecorder.stop((err: BusinessError) => {
 });
 ```
 
-### stop<sup>9+</sup><a name=videorecorder_stop2></a>
+### stop<sup>9+</sup>
 
-stop(): Promise\<void>;
+stop(): Promise\<void>
 
 异步方式停止视频录制。通过Promise获取返回值。
 
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
+需要重新调用prepare()和getInputSurface()接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3252,9 +3251,9 @@ videoRecorder.stop().then(() => {
 });
 ```
 
-### release<sup>9+</sup><a name=videorecorder_release1></a>
+### release<sup>9+</sup>
 
-release(callback: AsyncCallback\<void>): void;
+release(callback: AsyncCallback\<void>): void
 
 异步方式释放视频录制资源。通过注册回调函数获取返回值。
 
@@ -3289,9 +3288,9 @@ videoRecorder.release((err: BusinessError) => {
 });
 ```
 
-### release<sup>9+</sup><a name=videorecorder_release2></a>
+### release<sup>9+</sup>
 
-release(): Promise\<void>;
+release(): Promise\<void>
 
 异步方式释放视频录制资源。通过Promise获取返回值。
 
@@ -3324,13 +3323,13 @@ videoRecorder.release().then(() => {
 });
 ```
 
-### reset<sup>9+</sup><a name=videorecorder_reset1></a>
+### reset<sup>9+</sup>
 
-reset(callback: AsyncCallback\<void>): void;
+reset(callback: AsyncCallback\<void>): void
 
 异步方式重置视频录制。通过注册回调函数获取返回值。
 
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
+需要重新调用prepare()和getInputSurface()接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3364,13 +3363,13 @@ videoRecorder.reset((err: BusinessError) => {
 });
 ```
 
-### reset<sup>9+</sup><a name=videorecorder_reset2></a>
+### reset<sup>9+</sup>
 
-reset(): Promise\<void>;
+reset(): Promise\<void>
 
 异步方式重置视频录制。通过Promise获取返回值。
 
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
+需要重新调用prepare()和getInputSurface()接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3494,7 +3493,7 @@ videoRecorder.on('error', (error: Error) => {                                  /
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 | videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
 
-## media.createAudioPlayer<sup>(deprecated)</sup><a name=createaudioplayer></a>
+## media.createAudioPlayer<sup>(deprecated)</sup>
 
 createAudioPlayer(): AudioPlayer
 
@@ -3517,7 +3516,7 @@ createAudioPlayer(): AudioPlayer
 let audioPlayer: media.AudioPlayer = media.createAudioPlayer();
 ```
 
-## media.createVideoPlayer<sup>(deprecated)</sup><a name=createvideoplayer></a>
+## media.createVideoPlayer<sup>(deprecated)</sup>
 
 createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
 
@@ -3585,7 +3584,7 @@ media.createVideoPlayer().then((video: media.VideoPlayer) => {
 });
 ```
 
-## media.createAudioRecorder<sup>(deprecated)</sup><a name=createaudiorecorder></a>
+## media.createAudioRecorder<sup>(deprecated)</sup>
 
 createAudioRecorder(): AudioRecorder
 
@@ -3609,7 +3608,7 @@ createAudioRecorder(): AudioRecorder
 let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 ```
 
-## MediaErrorCode<sup>(deprecated)</sup><a name=mediaerrorcode></a>
+## MediaErrorCode<sup>(deprecated)</sup>
 
 媒体服务错误类型枚举。
 
@@ -3638,25 +3637,25 @@ let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 
 音频播放管理类，用于管理和播放音频媒体。在调用AudioPlayer的方法前，需要先通过[createAudioPlayer()](#mediacreateaudioplayerdeprecated)构建一个AudioPlayer实例。
 
-### 属性<a name=audioplayer_属性></a>
+### 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
 | 名称                            | 类型                                                   | 可读 | 可写 | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| src                             | string                                                 | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(m4a、aac、mp3、ogg、wav)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**需要权限：** ohos.permission.READ_MEDIA 或 ohos.permission.INTERNET。 |
+| src                             | string                                                 | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(m4a、aac、mp3、ogg、wav)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx <br/>**需要权限：** ohos.permission.READ_MEDIA 或 ohos.permission.INTERNET。 |
 | fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | 是   | 是   | 音频媒体文件描述，使用场景：应用中的音频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>音乐1(地址偏移:0，字节长度:100)<br/>音乐2(地址偏移:101，字节长度:50)<br/>音乐3(地址偏移:151，字节长度:150)<br/>1. 播放音乐1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }<br/>2. 播放音乐2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放音乐3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的音乐文件: 请使用src=fd://xx <br/> |
 | loop                            | boolean                                                | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | 是   | 是   | 音频焦点模型。                                               |
 | currentTime                     | number                                                 | 是   | 否   | 音频的当前播放位置，单位为毫秒（ms）。                       |
 | duration                        | number                                                 | 是   | 否   | 音频时长，单位为毫秒（ms）。                                 |
-| state                           | [AudioState](#audiostate)                              | 是   | 否   | 可以查询音频播放的状态，该状态不可作为调用play/pause/stop等状态切换的触发条件。 |
+| state                           | [AudioState](#audiostatedeprecated)                              | 是   | 否   | 可以查询音频播放的状态，该状态不可作为调用play/pause/stop等状态切换的触发条件。 |
 
-### play<a name=audioplayer_play></a>
+### play
 
 play(): void
 
-开始播放音频资源，需在[dataLoad](#audioplayer_on)事件成功触发后，才能调用。
+开始播放音频资源，需在'dataLoad'事件成功触发后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3669,7 +3668,7 @@ audioPlayer.on('play', () => {    //设置'play'事件回调
 audioPlayer.play();
 ```
 
-### pause<a name=audioplayer_pause></a>
+### pause
 
 pause(): void
 
@@ -3686,7 +3685,7 @@ audioPlayer.on('pause', () => {    //设置'pause'事件回调
 audioPlayer.pause();
 ```
 
-### stop<a name=audioplayer_stop></a>
+### stop
 
 stop(): void
 
@@ -3703,7 +3702,7 @@ audioPlayer.on('stop', () => {    //设置'stop'事件回调
 audioPlayer.stop();
 ```
 
-### reset<sup>7+</sup><a name=audioplayer_reset></a>
+### reset<sup>7+</sup>
 
 reset(): void
 
@@ -3720,7 +3719,7 @@ audioPlayer.on('reset', () => {    //设置'reset'事件回调
 audioPlayer.reset();
 ```
 
-### seek<a name=audioplayer_seek></a>
+### seek
 
 seek(timeMs: number): void
 
@@ -3747,7 +3746,7 @@ audioPlayer.on('timeUpdate', (seekDoneTime: number) => {    //设置'timeUpdate'
 audioPlayer.seek(30000);    //seek到30000ms的位置
 ```
 
-### setVolume<a name=audioplayer_setvolume></a>
+### setVolume
 
 setVolume(vol: number): void
 
@@ -3770,7 +3769,7 @@ audioPlayer.on('volumeChange', () => {    //设置'volumeChange'事件回调
 audioPlayer.setVolume(1);    //设置音量到100%
 ```
 
-### release<a name=audioplayer_release></a>
+### release
 
 release(): void
 
@@ -3785,11 +3784,11 @@ audioPlayer.release();
 audioPlayer = undefined;
 ```
 
-### getTrackDescription<sup>8+</sup><a name=audioplayer_gettrackdescription1></a>
+### getTrackDescription<sup>8+</sup>
 
 getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
-通过回调方式获取音频轨道信息。需在[dataLoad](#audioplayer_on)事件成功触发后，才能调用。
+通过回调方式获取音频轨道信息。需在'dataLoad'事件成功触发后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3811,11 +3810,11 @@ audioPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.Medi
 });
 ```
 
-### getTrackDescription<sup>8+</sup><a name=audioplayer_gettrackdescription2></a>
+### getTrackDescription<sup>8+</sup>
 
 getTrackDescription(): Promise\<Array\<MediaDescription>>
 
-通过Promise方式获取音频轨道信息。需在[dataLoad](#audioplayer_on)事件成功触发后，才能调用
+通过Promise方式获取音频轨道信息。需在'dataLoad'事件成功触发后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3859,7 +3858,7 @@ audioPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: num
 });
 ```
 
- ### on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')<a name = audioplayer_on></a>
+### on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')
 
 on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange', callback: () => void): void
 
@@ -3871,7 +3870,7 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 
 | 参数名   | 类型       | 必填 | 说明                                                         |
 | -------- | ---------- | ---- | ------------------------------------------------------------ |
-| type     | string     | 是   | 播放事件回调类型，支持的事件包括：'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'。<br>- 'play'：完成[play()](#audioplayer_play)调用，音频开始播放，触发该事件。<br>- 'pause'：完成[pause()](#audioplayer_pause)调用，音频暂停播放，触发该事件。<br>- 'stop'：完成[stop()](#audioplayer_stop)调用，音频停止播放，触发该事件。<br>- 'reset'：完成[reset()](#audioplayer_reset)调用，播放器重置，触发该事件。<br>- 'dataLoad'：完成音频数据加载后触发该事件，即src属性设置完成后触发该事件。<br>- 'finish'：完成音频播放后触发该事件。<br>- 'volumeChange'：完成[setVolume()](#audioplayer_setvolume)调用，播放音量改变后触发该事件。 |
+| type     | string     | 是   | 播放事件回调类型，支持的事件包括：'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'。<br>- 'play'：完成play()调用，音频开始播放，触发该事件。<br>- 'pause'：完成pause()调用，音频暂停播放，触发该事件。<br>- 'stop'：完成stop()调用，音频停止播放，触发该事件。<br>- 'reset'：完成reset()调用，播放器重置，触发该事件。<br>- 'dataLoad'：完成音频数据加载后触发该事件，即src属性设置完成后触发该事件。<br>- 'finish'：完成音频播放后触发该事件。<br>- 'volumeChange'：完成setVolume()调用，播放音量改变后触发该事件。 |
 | callback | () => void | 是   | 播放事件回调方法。                                           |
 
 **示例：**
@@ -4002,14 +4001,14 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 | stopped | string | 音频播放停止，stop/播放结束后处于此状态。      |
 | error   | string | 错误状态。                                     |
 
-## VideoPlayer<sup>(deprecated)</sup><a name=videoplayer></a>
+## VideoPlayer<sup>(deprecated)</sup>
 
 > **说明：**
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer](#avplayer9)替代。
 
-视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](#createvideoplayer)构建一个VideoPlayer实例。
+视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](#mediacreatevideoplayerdeprecated)构建一个VideoPlayer实例。
 
-### 属性<a name=videoplayer_属性></a>
+### 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4022,7 +4021,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | 是   | 是   | 音频焦点模型。                                               |
 | currentTime<sup>8+</sup>        | number                                                 | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms）。                       |
 | duration<sup>8+</sup>           | number                                                 | 是   | 否   | 视频时长，单位为毫秒（ms），返回-1表示直播模式。             |
-| state<sup>8+</sup>              | [VideoPlayState](#videoplayerstate)                    | 是   | 否   | 视频播放的状态。                                             |
+| state<sup>8+</sup>              | [VideoPlayState](#videoplaystatedeprecated)                    | 是   | 否   | 视频播放的状态。                                             |
 | width<sup>8+</sup>              | number                                                 | 是   | 否   | 视频宽，单位为像素（px）。                                   |
 | height<sup>8+</sup>             | number                                                 | 是   | 否   | 视频高，单位为像素（px）。                                   |
 
@@ -4141,7 +4140,7 @@ videoPlayer.prepare().then(() => {
 
 ### play<sup>8+</sup>
 
-play(callback: AsyncCallback\<void>): void;
+play(callback: AsyncCallback\<void>): void
 
 通过回调方式开始播放视频。
 
@@ -4167,7 +4166,7 @@ videoPlayer.play((err: BusinessError) => {
 
 ### play<sup>8+</sup>
 
-play(): Promise\<void>;
+play(): Promise\<void>
 
 通过Promise方式开始播放视频。
 
@@ -4780,7 +4779,7 @@ videoPlayer.on('error', (error: BusinessError) => {      // 设置'error'事件�
 videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'事件
 ```
 
-## VideoPlayState<sup>(deprecated)</sup><a name=videoplayerstate></a>
+## VideoPlayState<sup>(deprecated)</sup>
 
 视频播放的状态机，可通过state属性获取当前状态。
 
@@ -4803,9 +4802,9 @@ videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'�
 > **说明：**
 > 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder](#avrecorder9)替代。
 
-音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#mediacreateaudiorecorder) 构建一个AudioRecorder实例。
+音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#mediacreateaudiorecorderdeprecated) 构建一个AudioRecorder实例。
 
-### prepare<a name=audiorecorder_prepare></a>
+### prepare
 
 prepare(config: AudioRecorderConfig): void
 
@@ -4840,11 +4839,11 @@ audioRecorder.prepare(audioRecorderConfig);
 ```
 
 
-### start<a name=audiorecorder_start></a>
+### start
 
 start(): void
 
-开始录制，需在[prepare](#audiorecorder_on)事件成功触发后，才能调用start方法。
+开始录制，需在'prepare'事件成功触发后，才能调用start方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4857,11 +4856,11 @@ audioRecorder.on('start', () => {    //设置'start'事件回调
 audioRecorder.start();
 ```
 
-### pause<a name=audiorecorder_pause></a>
+### pause
 
 pause():void
 
-暂停录制，需要在[start](#audiorecorder_on)事件成功触发后，才能调用pause方法。
+暂停录制，需要在'start'事件成功触发后，才能调用pause方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4874,11 +4873,11 @@ audioRecorder.on('pause', () => {    //设置'pause'事件回调
 audioRecorder.pause();
 ```
 
-### resume<a name=audiorecorder_resume></a>
+### resume
 
 resume():void
 
-恢复录制，需要在[pause](#audiorecorder_on)事件成功触发后，才能调用resume方法。
+恢复录制，需要在'pause'事件成功触发后，才能调用resume方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4891,7 +4890,7 @@ audioRecorder.on('resume', () => {    //设置'resume'事件回调
 audioRecorder.resume();
 ```
 
-### stop<a name=audiorecorder_stop></a>
+### stop
 
 stop(): void
 
@@ -4908,7 +4907,7 @@ audioRecorder.on('stop', () => {    //设置'stop'事件回调
 audioRecorder.stop();
 ```
 
-### release<a name=audiorecorder_release></a>
+### release
 
 release(): void
 
@@ -4926,13 +4925,13 @@ audioRecorder.release();
 audioRecorder = undefined;
 ```
 
-### reset<a name=audiorecorder_reset></a>
+### reset
 
 reset(): void
 
 重置录音。
 
-进行重置录音之前，需要先调用[stop()](#audiorecorder_stop)停止录音。重置录音之后，需要调用[prepare()](#audiorecorder_prepare)设置录音参数项，才能再次进行录音。
+进行重置录音之前，需要先调用stop()停止录音。重置录音之后，需要调用prepare()设置录音参数项，才能再次进行录音。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4945,7 +4944,7 @@ audioRecorder.on('reset', () => {    //设置'reset'事件回调
 audioRecorder.reset();
 ```
 
-### on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset')<a name=audiorecorder_on></a>
+### on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset')
 
 on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset', callback: () => void): void
 
@@ -4957,7 +4956,7 @@ on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | 录制事件回调类型，支持的事件包括：'prepare'&nbsp;\|&nbsp;'start'&nbsp;\|  'pause' \| ’resume‘ \|&nbsp;'stop'&nbsp;\|&nbsp;'release'&nbsp;\|&nbsp;'reset'。<br/>-&nbsp;'prepare'&nbsp;：完成[prepare](#audiorecorder_prepare)调用，音频录制参数设置完成，触发该事件。<br/>-&nbsp;'start'&nbsp;：完成[start](#audiorecorder_start)调用，音频录制开始，触发该事件。<br/>-&nbsp;'pause': 完成[pause](#audiorecorder_pause)调用，音频暂停录制，触发该事件。<br/>-&nbsp;'resume': 完成[resume](#audiorecorder_resume)调用，音频恢复录制，触发该事件。<br/>-&nbsp;'stop'&nbsp;：完成[stop](#audiorecorder_stop)调用，音频停止录制，触发该事件。<br/>-&nbsp;'release'&nbsp;：完成[release](#audiorecorder_release)调用，音频释放录制资源，触发该事件。<br/>-&nbsp;'reset'：完成[reset](#audiorecorder_reset)调用，音频重置为初始状态，触发该事件。 |
+| type     | string   | 是   | 录制事件回调类型，支持的事件包括：'prepare'&nbsp;\|&nbsp;'start'&nbsp;\|  'pause' \| ’resume‘ \|&nbsp;'stop'&nbsp;\|&nbsp;'release'&nbsp;\|&nbsp;'reset'。<br/>-&nbsp;'prepare'&nbsp;：完成prepare调用，音频录制参数设置完成，触发该事件。<br/>-&nbsp;'start'&nbsp;：完成start调用，音频录制开始，触发该事件。<br/>-&nbsp;'pause': 完成pause调用，音频暂停录制，触发该事件。<br/>-&nbsp;'resume': 完成resume调用，音频恢复录制，触发该事件。<br/>-&nbsp;'stop'&nbsp;：完成stop调用，音频停止录制，触发该事件。<br/>-&nbsp;'release'&nbsp;：完成release调用，音频释放录制资源，触发该事件。<br/>-&nbsp;'reset'：完成reset调用，音频重置为初始状态，触发该事件。 |
 | callback | ()=>void | 是   | 录制事件回调方法。                                           |
 
 **示例：**
