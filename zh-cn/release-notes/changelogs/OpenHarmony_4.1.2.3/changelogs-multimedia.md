@@ -9,10 +9,9 @@
 
 仅影响错误使用接口的场景
 
-修改前的接口原型：
+当前变更涉及的接口原型：
 
 ```ts
-// 新增5400102错误码涉及到的接口
 load(uri: string): Promise<number>
 load(fd: number, offset: number, length: number): Promise<number>
 play(soundID: number, params: PlayParameters, callback: AsyncCallback<number>): void
@@ -47,10 +46,9 @@ unload(soundID: number): Promise<void>
 
 仅影响错误使用接口的场景
 
-修改前的接口原型：
+当前变更涉及的接口原型：
 
 ```ts
-// 新增5400103错误码涉及到的接口
 load(uri: string): Promise<number>
 load(fd: number, offset: number, length: number, callback: AsyncCallback<number>): void
 load(fd: number, offset: number, length: number): Promise<number>
@@ -77,10 +75,9 @@ unload(soundID: number): Promise<void>
 
 仅影响错误使用接口的场景
 
-修改前的接口原型：
+当前变更涉及的接口原型：
 
 ```ts
-// 新增5400105错误码涉及到的接口
 load(uri: string): Promise<number>
 load(fd: number, offset: number, length: number): Promise<number>
 play(soundID: number, params?: PlayParameters): Promise<number>
@@ -112,7 +109,7 @@ SoundPool的on('loadComplete')接口，按照API定义，开发者调用接口�
 
 仅影响错误使用接口的场景
 
-修改前的接口原型：
+当前变更涉及的接口原型：
 
 ```ts
 on(type: 'loadComplete', callback: Callback<number>): void
@@ -140,7 +137,7 @@ SoundPool的on('playFinished')接口，按照API定义，开发者调用接口�
 
 仅影响错误使用接口的场景
 
-修改前的接口原型：
+当前变更涉及的接口原型：
 
 ```ts
 on(type: 'playFinished', callback: Callback<void>): void
