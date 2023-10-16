@@ -1221,6 +1221,45 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
   }
   ```
 
+### getOsAccountLocalIdForUidSync<sup>10+</sup>
+
+getOsAccountLocalIdForUidSync(uid: number): number
+
+Obtains the OS account ID based on the process UID. The API returns the result synchronously.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description     |
+| ------ | ------ | ---- | --------- |
+| uid    | number | Yes  | Process UID.|
+
+**Return value**
+
+| Type                 | Description                                    |
+| --------------------- | --------------------------------------- |
+| number | OS account ID obtained.|
+
+**Error codes**
+
+| ID| Error Message      |
+| -------- | ------------- |
+| 12300002 | Invalid uid. |
+
+**Example**: Obtain the ID of the OS account whose process UID is **12345678**.
+
+  ```ts
+  let accountManager = account_osAccount.getAccountManager();
+  let uid: number = 12345678;
+  try {
+    let localId : number = accountManager.getOsAccountLocalIdForUidSync(uid);
+    console.log('getOsAccountLocalIdForUidSync successfully, localId: ' + localId);
+  } catch (err) {
+    console.log('getOsAccountLocalIdForUidSync exception: ' + JSON.stringify(err));
+  }
+  ```
+
 ### getOsAccountLocalIdForDomain<sup>9+</sup>
 
 getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
@@ -2592,7 +2631,7 @@ Unsubscribes from the OS account activation states, including the states of the 
 
 ### getBundleIdForUid<sup>9+</sup>
 
-getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
+getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the bundle ID based on the UID. This API uses an asynchronous callback to return the result.
 
@@ -2629,9 +2668,10 @@ Obtains the bundle ID based on the UID. This API uses an asynchronous callback t
     console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
   }
   ```
+
 ### getBundleIdForUid<sup>9+</sup>
 
-getBundleIdForUid(uid: number): Promise&lt;number&gt;;
+getBundleIdForUid(uid: number): Promise&lt;number&gt;
 
 Obtains the bundle ID based on the UID. This API uses a promise to return the result.
 
@@ -2672,6 +2712,47 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
     });
   } catch (e) {
     console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### getBundleIdForUidSync<sup>10+</sup>
+
+getBundleIdForUidSync(uid: number): number
+
+Obtains the bundle ID based on the specified UID. The API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description        |
+| ------- | ------ | ---- | ------------ |
+| uid     | number | Yes  |  Process UID.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| number | Bundle ID obtained.|
+
+**Error codes**
+
+| ID| Error Message      |
+| -------- | ------------- |
+| 12300002 | Invalid uid. |
+
+**Example**
+
+  ```ts
+  let accountManager = account_osAccount.getAccountManager();
+  let testUid: number = 1000000;
+  try {
+    let bundleId : number = accountManager.getBundleIdForUidSync(testUid);
+    console.info('getBundleIdForUidSync bundleId:' + bundleId);
+  } catch (e) {
+    console.info('getBundleIdForUidSync exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -5319,6 +5400,7 @@ Checks whether a domain account exists.
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
+| 12300111 | Operation timeout. |
 
 **Example**
   ```ts
@@ -5371,6 +5453,7 @@ Checks whether a domain account exists.
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
+| 12300111 | Operation timeout. |
 
 **Example**
   ```ts
@@ -5493,6 +5576,107 @@ Updates the token of a domain account. An empty token means an invalid token. Th
   }
   ```
 
+### getAccountInfo<sup>10+</sup>
+
+getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
+
+Obtains information about the specified domain account. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.GET_DOMAIN_ACCOUNTS
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | Yes  | Options for obtaining the domain account information.|
+| callback   | AsyncCallback&lt;DomainAccountInfo&gt;  | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+| 12300013 | Network exception. |
+| 12300111 | Operation timeout. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
+    domain: 'CHINA',
+    accountName: 'zhangsan'
+  }
+  try {
+    account_osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo,
+      (err: BusinessError, result: account_osAccount.DomainAccountInfo) => {
+      if (err) {
+        console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
+      } else {
+        console.log('getAccountInfo result: ' + result);
+      }
+    });
+  } catch (err) {
+    console.log('getAccountInfo exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### getAccountInfo<sup>10+</sup>
+
+getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountInfo&gt;
+
+Obtains information about the specified domain account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.GET_DOMAIN_ACCOUNTS
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | Yes  | Options for obtaining the domain account information.|
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;DomainAccountInfo&gt; | Promise used to return the domain account information obtained.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+| 12300013 | Network exception. |
+| 12300111 | Operation timeout. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
+    domain: 'CHINA',
+    accountName: 'zhangsan'
+  }
+  try {
+    account_osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo)
+      .then((result: account_osAccount.DomainAccountInfo) => {
+      console.log('getAccountInfo result: ' + result);
+    }).catch((err: BusinessError) => {
+      console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('getAccountInfo exception = ' + JSON.stringify(err));
+  }
+  ```
+
 ## UserIdentityManager<sup>8+</sup>
 
 Provides APIs for user identity management (IDM).
@@ -5581,7 +5765,7 @@ Opens a session to obtain the challenge value. This API uses a promise to return
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   try {
-    userIDM.openSession().then((challengechallenge: Uint8Array) => {
+    userIDM.openSession().then((challenge: Uint8Array) => {
         console.info('openSession challenge = ' + JSON.stringify(challenge));
     }).catch((err: BusinessError) => {
         console.info('openSession error = ' + JSON.stringify(err));
@@ -5852,7 +6036,7 @@ Deletes user credential information.
 **Example**
   ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
-  let credentialId: Uint8Array = new Uint8Array([0]);
+  let credentialId: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0]);
   let token: Uint8Array = new Uint8Array([0]);
   try {
     userIDM.delCred(credentialId, token, {
@@ -6635,7 +6819,7 @@ Defines the options for obtaining domain account information.
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
-Defines the options for obtaining domain account information using a plugin. The **GetDomainAccountInfoPluginOptions** class inherits from [**GetDomainAccountInfoOptions**](#getdomainaccountinfooptions10).
+Defines the options for the domain plug-in to obtain the domain account information. The **GetDomainAccountInfoPluginOptions** class inherits from [**GetDomainAccountInfoOptions**](#getdomainaccountinfooptions10).
 
 **System API**: This is a system API.
 
