@@ -1045,7 +1045,7 @@ let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPa
 
 generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
-异步获取非对称密钥生成器生成的密钥，通过注册回调函数获取结果。当使用COMMON_PARAMS_SPEC类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用KEY_PAIR_SPEC类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
+异步获取非对称密钥生成器生成的密钥，通过注册回调函数获取结果。当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1083,7 +1083,7 @@ asyKeyGeneratorBySpec.generateKeyPair((err, keyPair) => {
 
 generateKeyPair(): Promise\<KeyPair>
 
-异步获取该非对称密钥生成器生成的密钥，通过Promise获取结果。当使用COMMON_PARAMS_SPEC类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用KEY_PAIR_SPEC类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
+异步获取该非对称密钥生成器生成的密钥，通过Promise获取结果。当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1316,7 +1316,7 @@ try {
 
 ## Cipher
 
-提供加解密的算法操作功能，按序调用本类中的[init()](#init-2)、[update()](#update-4)、[doFinal()](#dofinal-2)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。<br/>完整的加解密流程示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节。
+提供加解密的算法操作功能，按序调用本类中的[init()](#init-1)、[update()](#update)、[doFinal()](#dofinal)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。<br/>完整的加解密流程示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节。
 
 一次完整的加/解密流程在对称加密和非对称加密中略有不同：
 
@@ -1427,12 +1427,12 @@ cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null)
 
 update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
-分段更新加密或者解密数据操作，通过注册回调函数获取加/解密数据。 <br/>必须在对[Cipher](#cipher)实例使用[init()](init-2)初始化后，才能使用本函数。
+分段更新加密或者解密数据操作，通过注册回调函数获取加/解密数据。 <br/>必须在对[Cipher](#cipher)实例使用[init()](init-1)初始化后，才能使用本函数。
 
 > **说明：**
 >
-> 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和[doFinal](#dofinal-2)结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
-> 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>
+> 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和doFinal结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
+> 2. 根据数据量，可以不调用update（即init完成后直接调用doFinal）或多次调用update。<br/>
 >    算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，采用多次update的方式传入数据。<br/>
 >    AES使用多次update操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
 > 3. RSA、SM2非对称加解密不支持update操作。
@@ -1492,8 +1492,8 @@ update(data: DataBlob): Promise\<DataBlob>
 
 > **说明：**
 >
-> 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和[doFinal](#dofinal-2)结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
-> 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>
+> 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和doFinal结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
+> 2. 根据数据量，可以不调用update（即init完成后直接调用doFinal）或多次调用update。<br/>
 >    算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，可以采用多次update的方式传入数据。<br/>
 >    AES使用多次update操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
 > 3. RSA、SM2非对称加解密不支持update操作。
@@ -1562,8 +1562,8 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 > **说明：**
 >
->  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用[init()](init-2)并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
->  2. 如果遇到解密失败，需检查加解密数据和[init](#init-2)时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
+>  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用init()并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
+>  2. 如果遇到解密失败，需检查加解密数据和init时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 >  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
 >  4. RSA、SM2非对称加解密时多次doFinal操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
 
@@ -1609,7 +1609,7 @@ cipher.doFinal(data, (err, output) => {
 
 doFinal(data: DataBlob | null): Promise\<DataBlob>
 
-（1）在对称加解密中，doFinal加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过Promise获取加密或者解密数据。<br/>如果数据量较小，可以在doFinal中一次性传入数据，而不使用update；如果在本次加解密流程中，已经使用[update](#update-4)传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出有如下区别：
+（1）在对称加解密中，doFinal加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过Promise获取加密或者解密数据。<br/>如果数据量较小，可以在doFinal中一次性传入数据，而不使用update；如果在本次加解密流程中，已经使用update传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出有如下区别：
 
 - 对于GCM和CCM模式的对称加密：一次加密流程中，如果将每一次update和doFinal的结果拼接起来，会得到“密文+authTag”，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag，而其余部分均为密文。（也就是说，如果doFinal的data参数传入null，则doFinal的结果就是authTag）<br/>authTag需要填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)；密文则作为解密时的入参data。
 - 对于其他模式的对称加解密、GCM和CCM模式的对称解密：一次加/解密流程中，每一次update和doFinal的结果拼接起来，得到完整的明文/密文。
@@ -1618,8 +1618,8 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 
 > **说明：**
 >
->  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用[init()](init-2)并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
->  2. 如果遇到解密失败，需检查加解密数据和[init](#init-2)时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
+>  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用init()并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
+>  2. 如果遇到解密失败，需检查加解密数据和init时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 >  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
 >  4. RSA、SM2非对称加解密时多次doFinal操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
 
@@ -1830,7 +1830,7 @@ let signer4 = cryptoFramework.createSign("DSA2048|SHA256");
 
 ## Sign
 
-Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过createSign(algName: string): Sign方法构造此实例。按序调用本类中的init、update、sign方法完成签名操作。签名操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过[createSign(algName: string): Sign](#cryptoframeworkcreatesign)方法构造此实例。按序调用本类中的init、update、sign方法完成签名操作。签名操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
 
 Sign类不支持重复初始化，当业务方需要使用新密钥签名时，需要重新创建新Sign对象并调用init初始化。
 
@@ -1854,7 +1854,7 @@ Sign类不支持重复初始化，当业务方需要使用新密钥签名时，�
 
 init(priKey: PriKey, callback: AsyncCallback\<void>): void
 
-使用私钥初始化Sign对象，Callback形式，Sign类暂不支持重复init。
+使用私钥初始化Sign对象，callback形式，Sign类暂不支持重复init。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2200,7 +2200,7 @@ let verifyer2 = cryptoFramework.createVerify("RSA1024|PSS|SHA256|MGF1_SHA256")
 
 ## Verify
 
-Verify类，使用Verify方法之前需要创建该类的实例进行操作，通过createVerify(algName: string): Verify方法构造此实例。按序调用本类中的init、update、verify方法完成签名操作。验签操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+Verify类，使用Verify方法之前需要创建该类的实例进行操作，通过[createVerify(algName: string): Verify](#cryptoframeworkcreateverify)方法构造此实例。按序调用本类中的init、update、verify方法完成签名操作。验签操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
 
 Verify类不支持重复初始化，当业务方需要使用新密钥验签时，需要重新创建新Verify对象并调用init初始化。
 
@@ -2222,7 +2222,7 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
-传入公钥初始化Verify对象，Callback形式
+传入公钥初始化Verify对象，callback形式。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2535,7 +2535,7 @@ let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
 
 ## KeyAgreement
 
-KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进行操作，通过createKeyAgreement(algName: string): KeyAgreement方法构造此实例。
+KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进行操作，通过[createKeyAgreement(algName: string): KeyAgreement](#cryptoframeworkcreatekeyagreement)方法构造此实例。
 
 ### 属性
 
@@ -2549,7 +2549,7 @@ KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进�
 
 generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob>): void
 
-基于传入的私钥与公钥进行密钥协商，返回共享秘密，Callback形式。
+基于传入的私钥与公钥进行密钥协商，返回共享秘密，callback形式。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2688,7 +2688,7 @@ Md类，调用Md方法可以进行MD（Message Digest）摘要计算。调用前
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
 
-传入消息进行Md更新计算。
+传入消息进行Md更新计算，callback形式。
 
 > **说明：**
 >
@@ -2730,7 +2730,7 @@ md.update(blob, (err,) => {
 
 update(input: DataBlob): Promise\<void>
 
-传入消息进行Md更新计算。
+传入消息进行Md更新计算，Promise形式。
 
 > **说明：**
 >
