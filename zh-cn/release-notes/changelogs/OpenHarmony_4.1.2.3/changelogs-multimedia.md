@@ -2,7 +2,7 @@
 
 ## cl.multimedia.1 5400102异步错误码实现修正
 
-部分含入参的API10接口，当开发者传递的参数错误，或是当状态机不支持此操作，接口应当按照接口声明，以异步方式抛出异常，提醒开发者在应用调试过程中出现此类接口使用问题。
+部分含入参的API10接口，当开发者传递的参数错误，或状态机异常（如load未完成就直接play），接口应当按照API声明抛出操作异常，提醒开发者在应用调试过程中出现此类接口使用问题。
 当前版本修正了部分接口没有按此预期抛出错误的问题
 
 **变更影响**
@@ -16,13 +16,13 @@ load(uri: string): Promise<number>
 load(fd: number, offset: number, length: number): Promise<number>
 play(soundID: number, params: PlayParameters, callback: AsyncCallback<number>): void
 play(soundID: number, callback: AsyncCallback<number>): void
-play(soundID: number, params?: PlayParameters): Promise\<number>
+play(soundID: number, params?: PlayParameters): Promise<number>
 stop(streamID: number, callback: AsyncCallback<void>): void
 stop(streamID: number): Promise<void>
 setLoop(streamID: number, loop: number): Promise<void>
 setPriority(streamID: number, priority: number): Promise<void>
 setRate(streamID: number, rate: audio.AudioRendererRate): Promise<void>
-setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<void>
+setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise<void>
 unload(soundID: number): Promise<void>
 ```
 
@@ -35,11 +35,11 @@ unload(soundID: number): Promise<void>
 
 **适配指导**
 
-正确使用API，无需适配。如发现抛出异常，则说明传入参数有误，或者状态机异常，需要按照API定义调用接口。
+正确使用API，无需适配。如发现抛出异常，则说明传入参数有误，或状态机异常，需要按照API定义调用接口。
 
 ## cl.multimedia.2 5400103异步错误码实现修正
 
-部分含入参的API10接口，当开发者调用接口发生媒体与其他模块的数据交互问题（I/O ERROR）的时候，接口应当按照接口声明，以异步方式抛出异常，提醒开发者在应用调试过程中出现此类接口使用问题。
+部分含入参的API10接口，当开发者调用接口发生媒体与其他模块的数据交互问题（I/O ERROR）的时候，接口应当按照接口声明抛出异常，提醒开发者在应用调试过程中出现此类接口使用问题。
 当前版本修正了部分接口没有按此预期抛出错误的问题
 
 **变更影响**
@@ -68,7 +68,7 @@ unload(soundID: number): Promise<void>
 
 ## cl.multimedia.3 5400105异步错误码实现修正
 
-部分含入参的API10接口，当调用接口发生播放服务死亡时，接口应当按照接口声明，以异步方式抛出异常，提醒开发者在应用调试过程中出现此类接口使用问题。
+部分含入参的API10接口，当调用接口发生播放服务死亡时，接口应当按照接口声明抛出异常，提醒开发者在应用调试过程中出现此类接口使用问题。
 当前版本修正了部分接口没有按此预期抛出错误的问题
 
 **变更影响**
@@ -103,7 +103,7 @@ release(): Promise<void>
 
 ## cl.multimedia.4 SoundPool.on('loadComplete')接口实现错误修正
 
-SoundPool的on('loadComplete')接口，按照API定义，开发者调用接口进行加载完成监听，发生错误时不需要抛出上层错误码。在历史版本中进行的错误码设计多余，在新版本中修复此问题。
+SoundPool的on('loadComplete')接口，按照API定义，开发者调用接口进行加载完成监听，发生错误时通过on('error')回调接口抛出。历史版本中接口抛出错误码的设计多余，在新版本中修复此问题。
 
 **变更影响**
 
@@ -127,11 +127,11 @@ on(type: 'loadComplete', callback: Callback<number>): void
 
 **适配指导**
 
-正确使用API，无需适配。按照API定义调用接口，无错误码抛出。
+正确使用API，无需适配。按照API定义调用接口，发生错误时通过on('error')回调接口抛出，不需要针对接口进行抛出错误码的设计。
 
 ## cl.multimedia.5 SoundPool.on('playFinished')接口实现错误修正
 
-SoundPool的on('playFinished')接口，按照API定义，开发者调用接口进行播放完成监听，发生错误时不需要抛出上层错误码。在历史版本中进行的错误码设计多余，在新版本中修复此问题。
+SoundPool的on('playFinished')接口，按照API定义，开发者调用接口进行播放完成监听，发生错误时通过on('error')回调接口抛出。历史版本中接口抛出错误码的设计多余，在新版本中修复此问题。
 
 **变更影响**
 
@@ -155,4 +155,4 @@ on(type: 'playFinished', callback: Callback<void>): void
 
 **适配指导**
 
-正确使用API，无需适配。按照API定义调用接口，无错误码抛出。
+正确使用API，无需适配。按照API定义调用接口，发生错误时通过on('error')回调接口抛出，不需要针对接口进行抛出错误码的设计。
