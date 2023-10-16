@@ -89,7 +89,7 @@ The following example registers the **test()** function with the frontend page. 
         Button('Register JavaScript To Window')
           .onClick(() => {
             try {
-              this.webviewController.registerJavaScriptProxy(this.testObj, "objName", ["test", "toString"]);
+              this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
               let e: business_error.BusinessError = error as business_error.BusinessError;
               console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -117,7 +117,7 @@ The following example registers the **test()** function with the frontend page. 
   <p id="demo"></p>
   <script>
       function callArkTS() {
-          let str = objName.test();
+          let str = testObjName.test();
           document.getElementById("demo").innerHTML = str;
           console.info('ArkTS Hello World! :' + str);
       }
