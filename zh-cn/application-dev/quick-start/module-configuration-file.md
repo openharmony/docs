@@ -28,7 +28,7 @@
     "abilities": [
       {
         "name": "EntryAbility",
-        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
         "label": "$string:EntryAbility_label",
@@ -267,7 +267,7 @@ abilities示例：
 {
   "abilities": [{
     "name": "EntryAbility",
-    "srcEntry": "./ets/entryability/EntryAbility.ts",
+    "srcEntry": "./ets/entryability/EntryAbility.ets",
     "launchType":"singleton",
     "description": "$string:description_main_ability",
     "icon": "$media:icon",
@@ -507,7 +507,7 @@ metadata中指定shortcut信息，其中：
        "abilities": [
          {
            "name": "EntryAbility",
-           "srcEntry": "./ets/entryability/EntryAbility.ts",
+           "srcEntry": "./ets/entryability/EntryAbility.ets",
            // ...
            "skills": [
              {
