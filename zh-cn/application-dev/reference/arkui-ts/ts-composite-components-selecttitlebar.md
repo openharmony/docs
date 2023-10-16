@@ -64,8 +64,13 @@ import promptAction from '@ohos.promptAction'
 @Entry
 @Component
 struct Index {
-  menuItems: { value: Resource, isEnabled: boolean, action: () => void }[] =
-    [ { isEnabled: true, value: $r('app.media.ic_public_save'),
+  menuItems: {
+    value: Resource,
+    isEnabled: boolean,
+    action: () => void
+  }[] =
+    [
+      { isEnabled: true, value: $r('app.media.ic_public_save'),
         action: () => promptAction.showToast({ message: "show toast index 1" })
       },
       { isEnabled: true, value: $r('app.media.ic_public_reduce'),
@@ -76,11 +81,13 @@ struct Index {
       },
       { isEnabled: true, value: $r('app.media.ic_public_reduce'),
         action: () => promptAction.showToast({ message: "show toast index 4" })
-      } ]
+      }
+    ]
 
   build() {
-    Column() {
-      Row() {
+    Row() {
+      Column() {
+		Divider().height(2).color(0xCCCCCC)
         SelectTitleBar({
           options: [
             { value: '所有照片' },
@@ -91,9 +98,6 @@ struct Index {
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
           hidesBackButton: true
         })
-      }.width('100%')
-
-      Row() {
         Divider().height(2).color(0xCCCCCC)
         SelectTitleBar({
           options: [
@@ -126,14 +130,11 @@ struct Index {
           selected: 1,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
           subtitle: "example@example.com",
-          menuItems: [ { isEnabled: true, value: $r('app.media.ic_public_save'),
+          menuItems: [{ isEnabled: true, value: $r('app.media.ic_public_save'),
             action: () => promptAction.showToast({ message: "show toast index 1" })
-          } ]
+          }]
         })
         Divider().height(2).color(0xCCCCCC)
-      }.width('100%')
-
-      Row() {
         SelectTitleBar({
           options: [
             { value: '所有照片' },
@@ -147,14 +148,11 @@ struct Index {
           badgeValue: 99,
           hidesBackButton: true
         })
+        Divider().height(2).color(0xCCCCCC)
       }.width('100%')
     }.height('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001665793709](figures/zh-cn_image_0000001665793709.png)
-
-![zh-cn_image_0000001617439304](figures/zh-cn_image_0000001617439304.png)
-
-![zh-cn_image_0000001616959836](figures/zh-cn_image_0000001616959836.png)
+![zh-cn_image_0000001616959836](figures/zh-cn_image_0000001616959836.jpg)

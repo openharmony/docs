@@ -55,55 +55,6 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 ## 示例
 
-### 示例 1
-
-```ts
-import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Column() {
-        ComposeTitleBar({
-          title: "标题"
-        })
-      }.width('100%')
-    }.height('100%')
-  }
-}
-```
-
-![zh-cn_image_0000001616913438](figures/zh-cn_image_0000001616913438.jpg)
-
-
-### 示例 2
-
-```ts
-import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Column() {
-        ComposeTitleBar({
-          title: "标题",
-          subtitle: "副标题"
-        })
-      }.width('100%')
-    }.height('100%')
-  }
-}
-```
-
-![zh-cn_image_0000001665513149](figures/zh-cn_image_0000001665513149.jpg)
-
-
-### 示例 3
-
 ```ts
 import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
 import promptAction from '@ohos.promptAction'
@@ -111,19 +62,25 @@ import promptAction from '@ohos.promptAction'
 @Entry
 @Component
 struct Index {
-  menuItems: { value: Resource, isEnabled: boolean, action: () => void }[] =
-    [ { isEnabled: true, value: $r('app.media.ic_public_save'),
+  menuItems: {
+    value: Resource,
+    isEnabled: boolean,
+    action: () => void
+  }[] = [
+    { isEnabled: true, value: $r('app.media.ic_public_save'),
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
-      { isEnabled: true, value: $r('app.media.ic_public_reduce'),
-        action: () => promptAction.showToast({ message: "show toast index 2" })
-      },
-      { isEnabled: true, value: $r('app.media.ic_public_edit'),
-        action: () => promptAction.showToast({ message: "show toast index 3" })
-      },
-      { isEnabled: true, value: $r('app.media.ic_public_reduce'),
-        action: () => promptAction.showToast({ message: "show toast index 4" })
-      } ]
+    { isEnabled: true, value: $r('app.media.ic_public_reduce'),
+      action: () => promptAction.showToast({ message: "show toast index 2" })
+    },
+    { isEnabled: true, value: $r('app.media.ic_public_edit'),
+      action: () => promptAction.showToast({ message: "show toast index 3" })
+    },
+    { isEnabled: true, value: $r('app.media.ic_public_reduce'),
+      action: () => promptAction.showToast({ message: "show toast index 4" })
+    }
+  ]
+
   build() {
     Row() {
       Column() {
@@ -146,38 +103,19 @@ struct Index {
           menuItems: this.menuItems,
         })
         Divider().height(2).color(0xCCCCCC)
-      }.width('100%')
-    }.height('100%')
-  }
-}
-```
-
-![zh-cn_image_0000001617233250](figures/zh-cn_image_0000001617233250.jpg)
-
-
-### 示例 4
-
-```ts
-import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
-import promptAction from '@ohos.promptAction'
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Column() {
         ComposeTitleBar({
-          menuItems: [ { isEnabled: true, value: $r('app.media.ic_public_save'),
+          menuItems: [{ isEnabled: true, value: $r('app.media.ic_public_save'),
             action: () => promptAction.showToast({ message: "show toast index 1" })
-          } ],
+          }],
           title: "标题",
           subtitle: "副标题",
-          item: { isEnabled: true, value: $r('app.media.app_icon') } })
-      }.width('100%')
+          item: { isEnabled: true, value: $r('app.media.app_icon') }
+        })
+        Divider().height(2).color(0xCCCCCC)
+      }
     }.height('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001617393174](figures/zh-cn_image_0000001617393174.jpg)
+![zh-cn_image_0000001616913438](figures/zh-cn_image_0000001616913438.jpg)

@@ -73,8 +73,9 @@ import promptAction from '@ohos.promptAction'
 @Component
 struct Index {
   build() {
-    Column() {
-      Row() {
+    Row() {
+      Column() {
+		Divider().height(2).color(0xCCCCCC)
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Cancel,
           title: "编辑页面",
@@ -86,9 +87,7 @@ struct Index {
             promptAction.showToast({ message: "on save" })
           }
         })
-      }.width('100%')
-
-      Row() {
+        Divider().height(2).color(0xCCCCCC)
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Back,
           title: "编辑页面",
@@ -107,12 +106,11 @@ struct Index {
             promptAction.showToast({ message: "on save" })
           }
         })
+		Divider().height(2).color(0xCCCCCC)
       }.width('100%')
     }.height('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.png)
-
-![zh-cn_image_0000001665393297](figures/zh-cn_image_0000001665393297.png)
+![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.jpg)

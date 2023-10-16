@@ -70,7 +70,8 @@ import promptAction from '@ohos.promptAction'
 @Entry
 @Component
 struct Index {
-  @Builder componentBuilder() {
+  @Builder
+  componentBuilder() {
     Text("#1ABC9C\nTURQUOISE")
       .fontWeight(FontWeight.Bold)
       .fontSize(14)
@@ -99,15 +100,34 @@ struct Index {
       .textAlign(TextAlign.Center)
       .fontColor("#CCFFFFFF")
       .backgroundColor("#27AE60")
+    Text("#3498DB\nPETER RIVER")
+      .fontWeight(FontWeight.Bold)
+      .fontSize(14)
+      .width("100%")
+      .textAlign(TextAlign.Center)
+      .fontColor("#CCFFFFFF")
+      .backgroundColor("#3498DB")
   }
-  private readonly tabItems: { title: ResourceStr, icon?: ResourceStr }[] =
-    [ { title: "页签1" },
+
+  private readonly tabItems: {
+    title: ResourceStr,
+    icon?: ResourceStr
+  }[] =
+    [
+      { title: "页签1" },
       { title: "页签2" },
       { title: "页签3" },
       { title: "Happy",
-        icon: $r('app.media.emoji_happy') } ]
-  private readonly menuItems: { value: Resource, isEnabled: boolean, action: () => void }[] =
-    [ { isEnabled: true, value: $r('app.media.ic_public_reduce'),
+        icon: $r('app.media.emoji_happy') },
+      { title: "页签4" },
+    ]
+  private readonly menuItems: {
+    value: Resource,
+    isEnabled: boolean,
+    action: () => void
+  }[] =
+    [
+      { isEnabled: true, value: $r('app.media.ic_public_reduce'),
         action: () => promptAction.showToast({ message: "on item click! index 0" })
       },
       { isEnabled: true, value: $r('app.media.ic_public_edit'),
@@ -115,7 +135,9 @@ struct Index {
       },
       { isEnabled: true, value: $r('app.media.ic_public_save'),
         action: () => promptAction.showToast({ message: "on item click! index 2" })
-      } ]
+      }
+    ]
+
   build() {
     Row() {
       Column() {
