@@ -356,7 +356,7 @@ try {
 
 requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<string>): void
 
-请求发布一张卡片到使用方。使用方通常为桌面。
+请求发布一张卡片到使用方。使用方通常为桌面，使用callback异步回调。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -413,7 +413,7 @@ try {
 
 requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
-请求发布一张卡片到使用方。使用方通常为桌面。
+请求发布一张卡片到使用方。使用方通常为桌面，使用callback异步回调。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -466,7 +466,7 @@ try {
 
 requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData): Promise&lt;string&gt;
 
-请求发布一张卡片到使用方。使用方通常为桌面。
+请求发布一张卡片到使用方。使用方通常为桌面，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -523,7 +523,7 @@ try {
 
 isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 
-查询是否支持发布一张卡片到使用方。
+查询是否支持发布一张卡片到使用方，使用callback异步回调。
 
 **系统接口**: 此接口为系统接口。
 
@@ -586,7 +586,7 @@ try {
 
 isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 
-查询是否支持发布一张卡片到使用方。
+查询是否支持发布一张卡片到使用方，使用Promise异步回调。
 
 **系统接口**: 此接口为系统接口。
 
