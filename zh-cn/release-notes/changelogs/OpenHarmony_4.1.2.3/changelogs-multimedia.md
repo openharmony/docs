@@ -26,10 +26,9 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise<vo
 unload(soundID: number): Promise<void>
 ```
 
-修改后的接口原型：
+修改后，上述接口新增5400102错误码声明:
 
 ```ts
-// 新增5400102错误码声明描述调整如下
 @throws { BusinessError } 5400102 - Operation not allowed.
 ```
 
@@ -55,10 +54,9 @@ load(fd: number, offset: number, length: number): Promise<number>
 unload(soundID: number): Promise<void>
 ```
 
-修改后的接口原型：
+修改后，上述接口新增5400103错误码声明:
 
 ```ts
-// 新增5400102错误码声明描述调整如下
 @throws { BusinessError } 5400103 - I/O error.
 ```
 
@@ -90,10 +88,9 @@ unload(soundID: number): Promise<void>
 release(): Promise<void>
 ```
 
-修改后的接口原型：
+修改后，上述接口新增5400105错误码声明:
 
 ```ts
-// 新增5400102错误码声明描述调整如下
 @throws { BusinessError } 5400105 - Service died.
 ```
 
@@ -115,10 +112,9 @@ SoundPool的on('loadComplete')接口，按照API定义，开发者调用接口�
 on(type: 'loadComplete', callback: Callback<number>): void
 ```
 
-修改后的接口原型：
+修改后，上述接口不进行错误码声明:
 
 ```ts
-// 修改接口说明，不进行错误码设计
 @param {'loadComplete'} type Type of the play finish event to listen for.
 @param {Callback<number>} callback Callback used to listen for load result event
 @syscap SystemCapability.Multimedia.Media.SoundPool
@@ -143,10 +139,9 @@ SoundPool的on('playFinished')接口，按照API定义，开发者调用接口�
 on(type: 'playFinished', callback: Callback<void>): void
 ```
 
-修改后的接口原型：
+修改后，上述接口不进行错误码声明:
 
 ```ts
-// 修改说明不进行错误码设计
 @param {'loadComplete'} type Type of the play finish event to listen for.
 @param {Callback<number>} callback Callback used to listen for load result event
 @syscap SystemCapability.Multimedia.Media.SoundPool
