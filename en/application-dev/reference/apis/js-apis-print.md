@@ -293,7 +293,7 @@ Prints files. This API uses an asynchronous callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Image (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported.|
+| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
 | callback | AsyncCallback&lt;PrintTask&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -331,7 +331,7 @@ Prints files. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Image (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported.|
+| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
 
 **Return value**
 | **Type**| **Description**|
