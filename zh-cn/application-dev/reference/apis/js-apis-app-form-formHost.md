@@ -2139,6 +2139,7 @@ acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formId | string | 是   | 卡片标识。 |
+| callback | AsyncCallback<{[key: string]: Object} | 是   | 以callback方式返回接口运行结果及分享数据。 |
 
 **错误码：**
 
