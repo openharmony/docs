@@ -2890,7 +2890,7 @@
 
 ## ohos.permission.ACCESS_MCP_AUTHORIZATION
 
-允许MCP宿主应用代理其子应用进行用户账号授权登录。
+允许MCP宿主应用代理其子应用进行用户帐号授权登录。
 
 **权限级别**：system_basic
 
