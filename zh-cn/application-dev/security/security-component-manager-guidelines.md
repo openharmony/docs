@@ -42,9 +42,6 @@
 /* 默认样式 */
 SaveButton()
 
-/* 自定义样式 icon、text、buttonType都是可选项，配置即存在，不配置即不存在*/
-SaveButton(options: SaveButtonOptions)
-
 /* 只有图标的样式 */
 SaveButton({ icon:SaveIconStyle.FULL_FILLED })
 
