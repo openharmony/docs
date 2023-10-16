@@ -10,7 +10,7 @@
 - [配置文件切换](configuration-file-diff.md)：config.json切换为app.json5和module.json5。
   ![model-switch-overview2](figures/model-switch-overview2.png)
 
-- [组件切换](pageability-switch.md)：PageAbility/ServiceAbility/DataAbility切换为UIAbility和ExtensionAbility（图片仅展示了FA模型的PageAbility切换成Stage模型的UIAbility：下图左侧为FA模型，app.ets为FA模型的PageAbility组件；下图右侧为Stage模型，EntryAbility.ts为Stage模型的UIAbility组件）。
+- [组件切换](pageability-switch.md)：PageAbility/ServiceAbility/DataAbility切换为UIAbility和ExtensionAbility（图片仅展示了FA模型的PageAbility切换成Stage模型的UIAbility：下图左侧为FA模型，app.ets为FA模型的PageAbility组件；下图右侧为Stage模型，EntryAbility.ets为Stage模型的UIAbility组件）。
   
 ![model-switch-overview3](figures/model-switch-overview3.png)
   
