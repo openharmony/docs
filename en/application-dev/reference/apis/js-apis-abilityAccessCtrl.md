@@ -64,7 +64,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or permissionName exceeds 256 bytes.|
 
 **Example**
 
@@ -112,7 +112,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or permissionName exceeds 256 bytes.|
 
 **Example**
 
@@ -157,7 +157,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName exceeds 256 bytes, or the flags value is invalid.|
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -210,7 +210,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName exceeds 256 bytes, or the flags value is invalid.|
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -270,7 +270,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName exceeds 256 bytes, or the flags value is invalid.|
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -323,7 +323,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName exceeds 256 bytes, or the flags value is invalid.|
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -382,7 +382,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or permissionName exceeds 256 bytes.|
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The operation is not allowed. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -466,7 +466,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or permissionName exceeds 256 bytes.|
 | 12100004 | The interface is called repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
 | 12100007 | Service is abnormal. |
@@ -811,7 +811,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or permissionName exceeds 256 bytes.|
 
 **Example**
 
