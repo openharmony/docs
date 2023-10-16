@@ -1,6 +1,6 @@
-# IPC & RPC Development Guidelines
+# IPC & RPC Development
 
-## When to Use
+## Overview
 
 IPC/RPC enables a proxy and a stub that run on different processes to communicate with each other, regardless of whether they run on the same or different devices.
 
@@ -258,7 +258,7 @@ Table 1 Native IPC APIs
 
    connectId = this.context.connectServiceExtensionAbility(want,connect);
 
-   // 跨设备绑定 
+   // Cross-device binding
    let deviceManagerCallback = (err: BusinessError, data: deviceManager.DeviceManager) => {
        if (err) {
            console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
@@ -274,7 +274,7 @@ Table 1 Native IPC APIs
        console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
    }
 
-   // 使用deviceManager获取目标设备NetworkId
+   // Use deviceManager to obtain the network ID of the target device.
    if (dmInstance != undefined) {
        let deviceList: Array<deviceManager.DeviceInfo> = dmInstance.getTrustedDeviceListSync();
        let networkId: string = deviceList[0].networkId;
