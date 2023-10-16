@@ -182,7 +182,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 The two decorators \@LocalStorageProp and \@LocalStorageLink can work together to obtain the state variable stored in a LocalStorage instance in the UI component.
 
-This example uses \@LocalStorage as an example to show how to:
+This example uses \@LocalStorageLink to show how to:
 
 - Use the **build** function to create a LocalStorage instance named **storage**.
 
@@ -300,7 +300,7 @@ struct CompA {
 ```
 
 
-### Example of Syncing State Variable Between Sibling Components
+### Example of Syncing State Variables Between Sibling Components
 
 This example shows how to use \@LocalStorageLink to create a two-way synchronization for the state between sibling components.
 
