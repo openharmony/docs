@@ -1,6 +1,6 @@
 # @ohos.file.photoAccessHelper (Album Management)
 
-The **photoAccessHelper** module provides APIs for album management, including creating an album and accessing and modifying media data an album.
+The **photoAccessHelper** module provides APIs for album management, including creating an album and accessing and modifying media data in an album.
 
 > **NOTE**
 >
@@ -370,6 +370,8 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses an asynchronous callback to return the result.
 
+If the application does not have the **ohos.permission.WRITE_IMAGEVIDEO** permission, you can use a security component to create a media asset. For details, see [Creating a Media Asset Using a Security Component](../../file-management/photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
@@ -418,6 +420,8 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 
 Creates an image or video asset with the specified file type and file name extension. This API uses an asynchronous callback to return the result.
 
+If the application does not have the **ohos.permission.WRITE_IMAGEVIDEO** permission, you can use a security component to create a media asset. For details, see [Creating a Media Asset Using a Security Component](../../file-management/photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
@@ -461,6 +465,8 @@ async function example() {
 createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): Promise&lt;string&gt;;
 
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses a promise to return the result.
+
+If the application does not have the **ohos.permission.WRITE_IMAGEVIDEO** permission, you can use a security component to create a media asset. For details, see [Creating a Media Asset Using a Security Component](../../file-management/photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1498,7 +1504,7 @@ Provides APIs for encapsulating file asset attributes.
 
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | Yes  | No  | File asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**.        |
+| uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#media-file-uri).        |
 | photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
 | displayName               | string                   | Yes  | No  | File name, including the file name extension, to display.                                |
 
@@ -1711,7 +1717,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file asset. This API uses an asynchronous callback to return the result.
 
-**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
+> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
 
 **System API**: This is a system API.
 
@@ -1759,7 +1765,7 @@ open(mode: string): Promise&lt;number&gt;
 
 Opens this file asset. This API uses a promise to return the result.
 
-**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
+> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
 
 **System API**: This is a system API.
 
@@ -1815,7 +1821,7 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file in read-only mode. This API uses an asynchronous callback to return the result.
 
-**NOTE**<br>After the read operation is complete, call **close** to close the file.
+> **NOTE**<br>After the read operation is complete, call **close** to close the file.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -1859,7 +1865,7 @@ getReadOnlyFd(): Promise&lt;number&gt;
 
 Opens this file in read-only mode. This API uses a promise to return the result.
 
-**NOTE**<br>After the read operation is complete, call **close** to close the file.
+> **NOTE**<br>After the read operation is complete, call **close** to close the file.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -2574,7 +2580,7 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 
 Sets user comment information of an image or video. This API uses a promise to return the result.
 
-**NOTE**<br>This API can be used to modify the comment information of only images or videos.
+> **NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
 **System API**: This is a system API.
 
@@ -2623,7 +2629,7 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets user comment information of an image or video. This API uses an asynchronous callback to return the result.
 
-**NOTE**<br>This API can be used to modify the comment information of only images or videos.
+> **NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
 **System API**: This is a system API.
 
@@ -2663,6 +2669,140 @@ async function example() {
     });
   } catch (err) {
     console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+## PhotoViewPicker
+
+Provides APIs for selecting images and videos. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Example**
+
+```ts
+let photoPicker = new photoAccessHelper.PhotoViewPicker();
+```
+
+### select
+
+select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
+
+Starts a **photoPicker** page for the user to select one or more images or videos. This API uses a promise to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
+
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#using-a-media-file-uri).
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| option | [PhotoSelectOptions](#photoselectoptions) | No  | Options for selecting files. If this parameter is not specified, images and videos are selected by default. A maximum of 50 files can be selected.|
+
+**Return value**
+
+| Type                           | Description   |
+| ----------------------------- | :---- |
+| Promise&lt;[PhotoSelectResult](#photoselectresult)&gt; | Promise return information about the images or videos selected.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+async function example01() {
+  try {  
+    let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+    PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
+    PhotoSelectOptions.maxSelectNumber = 5;
+    let photoPicker = new photoAccessHelper.PhotoViewPicker();
+    photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
+      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+    }).catch((err: BusinessError) => {
+      console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
+  }
+}
+```
+
+### select
+
+select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
+
+Starts a **photoPicker** page for the user to select one or more images or videos. This API uses an asynchronous callback to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
+
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#using-a-media-file-uri).
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| option | [PhotoSelectOptions](#photoselectoptions) | Yes  | Options for selecting images or videos.|
+| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return information about the images or videos selected.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+async function example02() {
+  try {
+    let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+    PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
+    PhotoSelectOptions.maxSelectNumber = 5;
+    let photoPicker = new photoAccessHelper.PhotoViewPicker();
+    photoPicker.select(PhotoSelectOptions, (err: BusinessError, PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
+      if (err) {
+        console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
+  }
+}
+```
+
+### select
+
+select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
+
+Starts a **photoPicker** page for the user to select one or more images or videos. This API uses an asynchronous callback to return the result.
+
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#using-a-media-file-uri).
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return information about the images or videos selected.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+async function example03() {
+  try {
+    let photoPicker = new photoAccessHelper.PhotoViewPicker();
+    photoPicker.select((err: BusinessError, PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
+      if (err) {
+        console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -3935,7 +4075,7 @@ setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 Sets the album cover. This API uses an asynchronous callback to return the result.
 
-**NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
+> **NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
 
 **System API**: This is a system API.
 
@@ -3995,7 +4135,7 @@ setCoverUri(uri: string): Promise&lt;void&gt;;
 
 Sets the album cover. This API uses a promise to return the result.
 
-**NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
+> **NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
 
 **System API**: This is a system API.
 
@@ -4125,10 +4265,10 @@ Enumerate the album subtypes.
 | USER_GENERIC |  1 |  User album.|
 | FAVORITE |  1025 |  Favorites.|
 | VIDEO |  1026 |  Video album.|
-| HIDDEN |  1027 |  Hidden album. **System API**: This is a system API.|
-| TRASH |  1028 |  Trash. **System API**: This is a system API.|
-| SCREENSHOT |  1029 |  Album for screenshots and screen recording files. **System API**: This is a system API.|
-| CAMERA |  1030 |  Album for photos and videos taken by the camera. **System API**: This is a system API.|
+| HIDDEN |  1027 |  Hidden album.<br>**System API**: This is a system API.|
+| TRASH |  1028 |  Trash.<br>**System API**: This is a system API.|
+| SCREENSHOT |  1029 |  Album for screenshots and screen recording files.<br>**System API**: This is a system API.|
+| CAMERA |  1030 |  Album for photos and videos taken by the camera.<br>**System API**: This is a system API.|
 | ANY |  2147483647 |  Any album.|
 
 ## PhotoKeys
@@ -4152,11 +4292,14 @@ Defines the key information about an image or video file.
 | ORIENTATION   | 'orientation'         | Orientation of the image file.                                            |
 | FAVORITE      | 'is_favorite'            | Whether the file is added to favorites.                                                   |
 | TITLE         | 'title'               | Title in the file.                                                  |
-| POSITION  | 'position'            | File location type. **System API**: This is a system API.                              |
-| DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds between the time when the file is deleted and January 1, 1970. **System API**: This is a system API.                |
-| HIDDEN  | 'hidden'            | Whether the file is hidden. **System API**: This is a system API.                              |
-| CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br/>**System API**: This is a system API. |
-| USER_COMMENT<sup>10+</sup>  | 'user_comment'            | User comment information. **System API**: This is a system API.          |
+| POSITION  | 'position'            | File location type.<br>**System API**: This is a system API.                              |
+| DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds between the time when the file is deleted and January 1, 1970.<br>**System API**: This is a system API.                |
+| HIDDEN  | 'hidden'            | Whether the file is hidden.<br>**System API**: This is a system API.                              |
+| CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br>**System API**: This is a system API.           |
+| USER_COMMENT<sup>10+</sup>  | 'user_comment'            | User comment information.<br>**System API**: This is a system API.          |
+| DATE_YEAR<sup>11+</sup>  | 'date_year'            | Year when the file was created.<br>**System API**: This is a system API.          |
+| DATE_MONTH<sup>11+</sup>  | 'date_month'            | Month when the file was created.<br>**System API**: This is a system API.          |
+| DATE_DAY<sup>11+</sup>  | 'date_day'            | Date when the file was created.<br>**System API**: This is a system API.          |
 
 ## AlbumKeys
 
@@ -4177,8 +4320,8 @@ Defines the options for creating an image or video asset.
 
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| subtype           | [PhotoSubtype](#photosubtype) | No | Subtype of the image or video. **System API**: This is a system API. |
-| cameraShotKey           | string | No | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br/>**System API**: This is a system API. |
+| subtype           | [PhotoSubtype](#photosubtype) | No | Subtype of the image or video.<br>**System API**: This is a system API. |
+| cameraShotKey           | string | No | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br>**System API**: This is a system API.  |
 
 ## CreateOptions
 
@@ -4237,3 +4380,37 @@ Enumerates the **DefaultChangeUri** subtypes.
 | ----------------- | ----------------------- | ------------------------------------------------------------ |
 | DEFAULT_PHOTO_URI | 'file://media/Photo'      | Default **PhotoAsset** URI. The **PhotoAsset** change notifications are received based on this parameter and **forSubUri{true}**.|
 | DEFAULT_ALBUM_URI | 'file://media/PhotoAlbum' | Default album URI. Album change notifications are received based on this parameter and **forSubUri{true}**. |
+
+## PhotoViewMIMETypes
+
+Enumerates the media file types that can be selected.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- | ---- |
+| IMAGE_TYPE  |  'image/*' | Image.|
+| VIDEO_TYPE |  'video/*' | Video.|
+| IMAGE_VIDEO_TYPE |  '\*/*' | Image and video.|
+
+## PhotoSelectOptions
+
+Defines the options for selecting images or videos.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                   | Type               | Mandatory| Description                         |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.|
+| maxSelectNumber       | number | No  | Maximum number of media files that can be selected. The default value is **50**, and the maximum value is **500**.     |
+
+## PhotoSelectResult
+
+Defines information about the images or videos selected.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                   | Type               | Readable| Writable| Description                          |
+| ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
+| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the media files selected.|
+| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media file is the original image.|
