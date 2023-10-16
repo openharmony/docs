@@ -1081,7 +1081,7 @@ Provides APIs to discard the least recently used data to make rooms for new elem
 
 **Example**
 
-```ts 
+```ts
   let  pro : util.LRUCache<number, number> = new util.LRUCache();
   pro.put(2,10);
   pro.put(1,8);

@@ -3237,11 +3237,6 @@ ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部�
 **TypeScript**
 
 ```typescript
-class C {
-  n: number // 只有在开启strictPropertyInitialization选项时会产生编译时错误
-  s: string // 只有在开启strictPropertyInitialization选项时会产生编译时错误
-}
-
 // 只有在开启noImplicitReturns选项时会产生编译时错误
 function foo(s: string): string {
   if (s != '') {
@@ -3258,11 +3253,6 @@ let n: number = null // 只有在开启strictNullChecks选项时会产生编译�
 **ArkTS**
 
 ```typescript
-class C {
-  n: number = 0
-  s: string = ''
-}
-
 function foo(s: string): string {
   console.log(s)
   return s
@@ -3270,6 +3260,41 @@ function foo(s: string): string {
 
 let n1: number | null = null
 let n2: number = 0
+```
+
+在定义类时，如果无法在声明时或者构造函数中初始化某实例属性，那么可以使用确定赋值断言符`!`来消除`strictPropertyInitialization`的报错。
+
+使用确定赋值断言符会增加代码错误的风险，开发者需要保证该实例属性在被使用前已被赋值，否则可能会产生运行时异常。
+
+使用确定赋值断言符会增加运行时的类型检查，从而增加额外的运行时开销，所以应尽可能避免使用确定赋值断言符。
+
+使用确定赋值断言符将产生`warning: arkts-no-definite-assignment`。
+
+**TypeScript**
+
+```typescript
+class C {
+  name: string  // 只有在开启strictPropertyInitialization选项时会产生编译时错误
+  age: number   // 只有在开启strictPropertyInitialization选项时会产生编译时错误
+}
+
+let c = new C()
+```
+
+**ArkTS**
+
+```typescript
+class C {
+  name: string = ''
+  age!: number      // warning: arkts-no-definite-assignment
+
+  initAge(age: number) {
+    this.age = age
+  }
+}
+
+let c = new C()
+c.initAge(10)
 ```
 
 **相关约束**
@@ -3311,13 +3336,13 @@ let s2: string = null // 编译时报错
 * 使用具体的类型而非any或unknown
 * 强制进行严格类型检查
 
-### 允许ArkTS代码导入TS代码, 不允许TS代码导入ArkTS代码
+### 允许.ets文件`import`.ets/.ts/.js文件源码, 不允许.ts/.js文件`import`.ets文件源码
 
 **规则：**`arkts-no-ts-deps`
 
 **级别：错误**
 
-ArkTS中的代码可以导入来自标准TypeScript的代码，而标准TypeScript的代码不能导入来自ArkTS中的代码。
+.ets文件可以`import`.ets/.ts/.js文件源码，但是.ts/.js文件不允许`import`.ets文件源码。
 
 **TypeScript**
 

@@ -88,7 +88,7 @@ typedef enum OH_VideoEncodeBitrateMode OH_VideoEncodeBitrateMode
 
   
 ```
-enum OH_VideoEncode BitrateMode
+enum OH_VideoEncodeBitrateMode
 ```
 
 **描述：**
@@ -159,7 +159,7 @@ OH_AVCodec* OH_VideoEncoder_CreateByMime (const char *mime)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mime | MIME类型描述字符串，请参阅 **AVCODEC_MIME_TYPE**。 | 
+| mime | MIME类型描述字符串，请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量)。 | 
 
 **返回：**
 
@@ -539,7 +539,7 @@ OH_AVErrCode OH_VideoEncoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCall
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向OH_AVCodec实例的指针。 | 
-| callback | 所有回调函数的集合，请参阅 **OH_AVCodecAsyncCallback**。 | 
+| callback | 所有回调函数的集合，请参阅 [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)。 | 
 | userData | 用户的特定数据。 | 
 
 **返回：**

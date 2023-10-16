@@ -1,7 +1,7 @@
 # 自定义弹窗（CustomDialog）
 
 
-自定义弹窗CustomDialog可用于广告、中奖、警告、软件更新等与用户交互响应操作。开发者可以通过CustomDialogController类显示自定义弹窗。具体用法请参考[自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)。
+CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更新等与用户交互响应操作。开发者可以通过CustomDialogController类显示自定义弹窗。具体用法请参考[自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)。
 
 
 ## 创建自定义弹窗
@@ -39,7 +39,7 @@
     }
    ```
    
-4. 点击与onClick事件绑定的组件使弹窗弹出
+4. 点击与onClick事件绑定的组件使弹窗弹出。
 
    ```ts
    @Entry
@@ -67,7 +67,7 @@
 弹窗可用于数据交互，完成用户一系列响应操作。
 
 
-1. 在\@CustomDialog装饰器内添加按钮操作，同时添加数据函数的创建。
+1. 在\@CustomDialog装饰器内添加按钮，同时添加数据函数。
 
   ```ts
   @CustomDialog

@@ -25,11 +25,18 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
 
 两种模式的开发步骤详细说明请参考：[Buffer模式](#buffer模式)和[Surface模式](#surface模式)。
 
-## 开发步骤
+## 开发指导
 
 详细的API说明请参考[API文档](../reference/native-apis/_video_encoder.md)。
 如下为视频编码调用关系图：
 ![Invoking relationship of video encode stream](figures/video-encode.png)
+
+### 在 CMake 脚本中链接动态库
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+target_link_libraries(sample PUBLIC libnative_media_core.so)
+target_link_libraries(sample PUBLIC libnative_media_venc.so)
+```
 
 ### Buffer模式
 
@@ -473,7 +480,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     // 通过OHNativeWindow*变量类型，配置输入数据的Surface
     ```
 
-    OHNativeWindow*变量类型的使用方法请参考图形子系统/foundation/graphic/graphic_2d
+    OHNativeWindow*变量类型的使用方法请参考图形子系统 [NativeWindow](../reference/native-apis/_native_window.md)
 
 6. 调用OH_VideoEncoder_Start()启动编码器。
 

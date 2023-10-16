@@ -433,7 +433,7 @@ struct MyComponent {
 
 通过sourceSize属性设置图片解码尺寸，降低图片的分辨率。
 
-原图尺寸为1280\*960，该示例将图片解码为150\*100和400\*400。
+原图尺寸为1280\*960，该示例将图片解码为40\*40和90\*90。
 
 
 ```ts
@@ -442,29 +442,28 @@ struct MyComponent {
 struct Index {
   build() {
     Column() {
-      Row({ space: 20 }) {
+      Row({ space: 50 }) {
         Image($r('app.media.example'))
           .sourceSize({
-            width: 150,
-            height: 150
+            width: 40,
+            height: 40
+          })
+          .objectFit(ImageFit.ScaleDown)
+          .aspectRatio(1)
+          .width('25%')
+          .border({ width: 1 })
+          .overlay('width:40 height:40', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
+        Image($r('app.media.example'))
+          .sourceSize({
+            width: 90,
+            height: 90
           })
           .objectFit(ImageFit.ScaleDown)
           .width('25%')
           .aspectRatio(1)
           .border({ width: 1 })
-          .overlay('width:150 height:150', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
-        Image($r('app.media.example'))
-          .sourceSize({
-            width: 400,
-            height: 400
-          })
-          .objectFit(ImageFit.ScaleDown)
-          .width('25%')
-          .aspectRatio(1)
-          .border({ width: 1 })
-          .overlay('width:400 height:400', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
+          .overlay('width:90 height:90', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
       }.height(150).width('100%').padding(20)
-
     }
   }
 }

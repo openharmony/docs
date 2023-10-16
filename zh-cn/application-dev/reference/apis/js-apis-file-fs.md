@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import fs, { Filter, ConflictFiles } from '@ohos.file.fs';
+import fs from '@ohos.file.fs';
 ```
 
 ## 使用说明
@@ -71,9 +71,8 @@ stat(file: string|number): Promise&lt;Stat&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stat } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.stat(filePath).then((stat: Stat) => {
+  fs.stat(filePath).then((stat: fs.Stat) => {
     console.info("get file info succeed, the size of file is " + stat.size);
   }).catch((err: BusinessError) => {
     console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
@@ -103,8 +102,7 @@ stat(file: string|number, callback: AsyncCallback&lt;Stat&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stat } from '@ohos.file.fs';
-  fs.stat(pathDir, (err: BusinessError, stat: Stat) => {
+  fs.stat(pathDir, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
       console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -325,7 +323,6 @@ close(file: number|File, callback: AsyncCallback&lt;void&gt;): void
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("close file success");
-      fs.closeSync(file);
     }
   });
   ```
@@ -525,6 +522,7 @@ copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void,
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { ConflictFiles } from '@ohos.file.fs';
   // copy directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -735,14 +733,12 @@ open(path: string, mode?: number): Promise&lt;File&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { File } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file: File) => {
+  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file: fs.File) => {
     console.info("file fd: " + file.fd);
+    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
-  }).finally(() => {
-    fs.closeSync(file);
   });
   ```
 
@@ -770,9 +766,8 @@ open(path: string, mode?: number, callback: AsyncCallback&lt;File&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { File } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: File) => {
+  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: fs.File) => {
     if (err) {
       console.info("open failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -854,7 +849,6 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
     console.info("read file data succeed");
     let buf = buffer.from(arrayBuffer, 0, readLen);
     console.info(`The content of file: ${buf.toString()}`);
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
@@ -1528,11 +1522,11 @@ lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   fs.lstat(filePath, (err: BusinessError, stat: fs.Stat) => {
-      if (err) {
-        console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
-      } else {
-        console.info("get link status succeed, the size of file is" + stat.size);
-      }
+    if (err) {
+      console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("get link status succeed, the size of file is" + stat.size);
+    }
   });
   ```
 
@@ -2010,6 +2004,7 @@ listFile(path: string, options?: {
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { Filter } from '@ohos.file.fs';
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
@@ -2019,7 +2014,7 @@ listFile(path: string, options?: {
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
   option.filter.displayName = ["*abc", "efg*"];
   option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date(0).getTime();
+  option.filter.lastModifiedAfter = new Date().getTime();
   fs.listFile(pathDir, option).then((filenames: Array<string>) => {
     console.info("listFile succeed");
     for (let i = 0; i < filenames.length; i++) {
@@ -2065,6 +2060,7 @@ listFile(path: string, options?: {
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { Filter } from '@ohos.file.fs';
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
@@ -2074,7 +2070,7 @@ listFile(path: string, options?: {
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
   option.filter.displayName = ["*abc", "efg*"];
   option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date(0).getTime();
+  option.filter.lastModifiedAfter = new Date().getTime();
   fs.listFile(pathDir, option, (err: BusinessError, filenames: Array<string>) => {
     if (err) {
       console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
@@ -2127,6 +2123,7 @@ listFileSync(path: string, options?: {
 **示例：**
 
   ```ts
+  import fs, { Filter } from '@ohos.file.fs';
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
@@ -2136,7 +2133,7 @@ listFileSync(path: string, options?: {
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
   option.filter.displayName = ["*abc", "efg*"];
   option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date(0).getTime();
+  option.filter.lastModifiedAfter = new Date().getTime();
   let filenames = fs.listFileSync(pathDir, option);
   console.info("listFile succeed");
   for (let i = 0; i < filenames.length; i++) {
@@ -2209,6 +2206,7 @@ moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void,
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { ConflictFiles } from '@ohos.file.fs';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -2475,7 +2473,7 @@ createRandomAccessFile(file: string|File, mode?: number): Promise&lt;RandomAcces
 |    参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
 |     file     | string\|[File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
-|     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
+|     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
 
 **返回值：**
 
@@ -2491,10 +2489,9 @@ createRandomAccessFile(file: string|File, mode?: number): Promise&lt;RandomAcces
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { RandomAccessFile } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  fs.createRandomAccessFile(file).then((randomAccessFile: RandomAccessFile) => {
+  fs.createRandomAccessFile(file).then((randomAccessFile: fs.RandomAccessFile) => {
     console.info("randomAccessFile fd: " + randomAccessFile.fd);
     randomAccessFile.close();
   }).catch((err: BusinessError) => {
@@ -2518,7 +2515,7 @@ createRandomAccessFile(file: string|File, mode?: number, callback: AsyncCallback
 |  参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
 |     file     | string\|[File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
-|     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
+|     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
 | callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
 
 **错误码：**
@@ -2528,10 +2525,9 @@ createRandomAccessFile(file: string|File, mode?: number, callback: AsyncCallback
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { RandomAccessFile } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: RandomAccessFile) => {
+  fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
     if (err) {
       console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2556,7 +2552,7 @@ createRandomAccessFileSync(file: string|File, mode?: number): RandomAccessFile
 |  参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
 |     file     | string\|[File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
-|     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
+|     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
 
 **返回值：**
 
@@ -2607,9 +2603,8 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stream } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+").then((stream: Stream) => {
+  fs.createStream(filePath, "r+").then((stream: fs.Stream) => {
     console.info("createStream succeed");
   }).catch((err: BusinessError) => {
     console.info("createStream failed with error message: " + err.message + ", error code: " + err.code);
@@ -2641,9 +2636,8 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stream } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+", (err: BusinessError, stream: Stream) => {
+  fs.createStream(filePath, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
       console.info("create stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2714,10 +2708,9 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stream } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdopenStream(file.fd, "r+").then((stream: Stream) => {
+  fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
     console.info("openStream succeed");
     stream.closeSync();
   }).catch((err: BusinessError) => {
@@ -2751,10 +2744,9 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Stream } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-  fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: Stream) => {
+  fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
       console.info("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2829,10 +2821,10 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 **示例：**
 
   ```ts
-  import { WatchEventListener } from '@ohos.file.fs';
+  import fs, { WatchEvent } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: WatchEventListener) => {
+  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: WatchEvent) => {
     if (watchEvent.event == 0x2) {
       console.info(watchEvent.fileName + 'was modified');
     } else if (watchEvent.event == 0x10) {
@@ -3501,7 +3493,8 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
   let option = new Option();
   option.offset = 5;
   option.length = 5;
-  let num = ss.readSync(new ArrayBuffer(4096), option);
+  let buf = new ArrayBuffer(4096);
+  let num = ss.readSync(buf, option);
   ```
 
 ## File
@@ -3868,6 +3861,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
@@ -3884,8 +3878,11 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
     console.info("randomAccessFile readLength: " + readLength);
     randomaccessfile.close();
     fs.closeSync(file);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    randomaccessfile.close();
+    fs.closeSync(file);
   });
   ```
 
@@ -3931,10 +3928,10 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
     } else {
       if (readLength) {
         console.info("read succeed and size is:" + readLength);
-        randomaccessfile.close();
-        fs.closeSync(file);
       }
     }
+    randomAccessFile.close();
+    fs.closeSync(file);
   });
   ```
 

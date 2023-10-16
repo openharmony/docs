@@ -298,6 +298,7 @@
   - [@ohos.file.hash (File Hash Processing)](js-apis-file-hash.md)
   - [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md)
   - [@ohos.file.picker (File Picker)](js-apis-file-picker.md)
+  - [@ohos.file.recent (Recent File List)](js-apis-file-recent.md)
   - [@ohos.file.securityLabel (Data Label)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
@@ -546,4 +547,4 @@
     - [remoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
   - data/rdb
-    - [resultSet](js-apis-data-resultset.md) 
+    - [resultSet](js-apis-data-resultset.md)

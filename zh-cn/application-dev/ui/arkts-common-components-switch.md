@@ -15,7 +15,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 ```
 
 
-该接口用于创建切换按钮，其中ToggleType为开关类型，包括Button、Checkbox和Switch，isOn为切换按钮的状态，接口调用有以下两种形式：
+其中，ToggleType为开关类型，包括Button、Checkbox和Switch，isOn为切换按钮的状态。接口调用有以下两种形式：
 
 
 - 创建不包含子组件的Toggle。
@@ -39,7 +39,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 
 - 创建包含子组件的Toggle。
-  当ToggleType为Button时，如果子组件有文本设置，则相应的文本内容会显示在按钮内部。
+  当ToggleType为Button时，只能包含一个子组件，如果子组件有文本设置，则相应的文本内容会显示在按钮上。
 
 
   ```ts
@@ -90,7 +90,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 ## 添加事件
 
-除支持通用事件外，Toggle通常用于选中和取消选中后触发某些操作，可以绑定onChange事件来响应操作后的自定义行为。
+除支持通用事件外，Toggle还用于选中和取消选中后触发某些操作，可以绑定onChange事件来响应操作后的自定义行为。
 
 
 ```ts
@@ -105,7 +105,7 @@ Toggle({ type: ToggleType.Switch, isOn: false })
 
 ## 场景示例
 
-Toggle可用于切换蓝牙开关状态。
+Toggle用于切换蓝牙开关状态。
 
 
 

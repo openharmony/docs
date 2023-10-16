@@ -45,10 +45,10 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
-import type Device from '@system.device';
+
 
 try {
-  let devices : Array<Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
+  let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
   for (let item of devices) {
     let device : deviceManager.USBDevice = item as deviceManager.USBDevice;
     console.info(`Device id is ${device.deviceId}`)
@@ -90,7 +90,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
-import type { BusinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -145,7 +145,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
-import type { BusinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -236,7 +236,7 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
-import type { BusinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参

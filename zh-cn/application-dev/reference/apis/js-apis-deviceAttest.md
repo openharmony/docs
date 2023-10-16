@@ -13,7 +13,6 @@
 
 ```ts
 import deviceAttest from '@ohos.deviceAttest';
-import base from '@ohos.base';
 ```
 
 ## deviceAttest.getAttestStatus
@@ -39,6 +38,8 @@ getAttestStatus(callback: AsyncCallback&lt;AttestResultInfo&gt;) : void
 **示例：**
 
 ```ts
+import base from '@ohos.base';
+
 try {
     deviceAttest.getAttestStatus((error: base.BusinessError, value: deviceAttest.AttestResultInfo) => {
     if (typeof error != 'undefined') {
@@ -82,6 +83,8 @@ getAttestStatus() : Promise&lt;AttestResultInfo&gt;
 **示例：**
 
 ```ts
+import base from '@ohos.base';
+
 try {
     deviceAttest.getAttestStatus().then((value: deviceAttest.AttestResultInfo) => {
     console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
@@ -123,6 +126,8 @@ getAttestStatusSync() : AttestResultInfo
 **示例：**
 
 ```ts
+import base from '@ohos.base';
+
 try {
     let value: deviceAttest.AttestResultInfo = deviceAttest.getAttestStatusSync();
     console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);

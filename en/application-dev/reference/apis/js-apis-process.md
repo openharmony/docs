@@ -368,7 +368,7 @@ let pres = process.getEnvironmentVar("PATH")
 ```
 
 
-## ProcessManager<sup>9+</sup>	
+## ProcessManager<sup>9+</sup>
 
 Provides APIs for throwing exceptions during the addition of a process.
 
