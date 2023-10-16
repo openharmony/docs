@@ -30,7 +30,7 @@ startWork(work: WorkInfo): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -83,7 +83,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -135,7 +135,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -179,7 +179,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -216,7 +216,7 @@ obtainAllWorks(callback : AsyncCallback\<void>) : Array\<WorkInfo>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -240,7 +240,7 @@ obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -277,7 +277,7 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -306,7 +306,7 @@ stopAndClearWorks(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -345,7 +345,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -371,7 +371,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -415,7 +415,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
