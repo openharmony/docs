@@ -1459,6 +1459,7 @@
       - [OffscreenCanvasRenderingContext2D对象](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D对象](reference/arkui-ts/ts-components-canvas-path2d.md)
     - 高级组件
+      - [@ohos.arkui.advanced.counter (计数器组件)](reference/arkui-ts/ohos-arkui-advanced-counter.md)
       - [@ohos.multimedia.avcastpicker (投播组件)](reference/arkui-ts/ohos-multimedia-avcastpicker.md)
     - 动画
       - [属性动画](reference/arkui-ts/ts-animatorproperty.md)
