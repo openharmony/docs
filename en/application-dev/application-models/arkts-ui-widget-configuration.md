@@ -52,8 +52,8 @@ Widget-related configuration includes **FormExtensionAbility** configuration and
    | updateDuration | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer *N*, the interval is calculated by multiplying *N* and 30 minutes.<br>**NOTE**<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| Number| Yes (initial value: **0**)|
    | formConfigAbility | Link to a specific page of the application. The value is a URI.| String| Yes (initial value: left empty)|
    | formVisibleNotify | Whether the widget is allowed to use the widget visibility notification.| String| Yes (initial value: left empty)|
-   | metadata | Metadata of the widget. This field contains the array of the **customizeData** field.| Object| Yes (initial value: left empty)|
-   | dataProxyEnabled | Whether the widget supports the [update-through-proxy](./arkts-ui-widget-update-by-proxy.md) feature.<br>- **true**: The widget supports the update-through-proxy feature.<br>- **false**: The widget does not support the update-through-proxy feature.<br>If this tag is set to **true**, the settings for the scheduled update time will still take effect, but the settings for the update interval and next update time will not.| Boolean| Yes (initial value: **false**)|
+   | metadata | Metadata of the widget. For details, see [Metadata](../reference/apis/js-apis-bundleManager-metadata.md).| Object| Yes (initial value: left empty)|
+   | dataProxyEnabled | Whether the widget supports the [update-through-proxy](./arkts-ui-widget-update-by-proxy.md) feature.<br>- **true**: The widget supports the update-through-proxy feature.<br>- **false**: The widget does not support the update-through-proxy feature.<br>If this tag is set to **true**, [the settings for the scheduled update time will still take effect, but the settings for the update interval and next update time will not](./arkts-ui-widget-update-by-time.md).| Boolean| Yes (initial value: **false**)|
    | isDynamic | Whether the widget is a dynamic widget. This tag applies only to ArkTS widgets.<br>- **true**: The widget is a dynamic widget.<br>- **false**: The widget is a static widget.<br>| Boolean| Yes (initial value: **true**)|
 
    **Table 2** Internal structure of the window object
@@ -86,7 +86,11 @@ Widget-related configuration includes **FormExtensionAbility** configuration and
          "defaultDimension": "2*2",
          "supportDimensions": [
            "2*2"
-         ]
+         ],
+         "formConfigAbility": "",
+         "formVisibleNotify": "",
+         "dataProxyEnabled": false,
+         "metadata": {}
        }
      ]
    }
