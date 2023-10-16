@@ -1045,7 +1045,7 @@ let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPa
 
 generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
-异步获取非对称密钥生成器生成的密钥，通过注册回调函数获取结果。当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
+异步获取非对称密钥生成器生成的密钥，通过注册回调函数获取结果。当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
