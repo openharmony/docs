@@ -33,16 +33,17 @@ getCalendarManager(context : Context): CalendarManager;
 **示例**：
 
 ```ts
-  // 当前示例代码仅适用于ts源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import common from '@ohos.app.ability.common';
+
+  export let mContext : common.UIAbilityContext | null = null;
   class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
+      mContext = this.context;
     }
   }
-  let calendarManager:CalendarManager = calendarManager.getCalendarManager(globalThis.context as Context)
-    
+  let calendarManager:CalendarManager = calendarManager.getCalendarManager(mContext as Context);
 ```
 
 ## CalendarManager
