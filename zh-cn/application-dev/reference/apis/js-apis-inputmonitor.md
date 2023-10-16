@@ -188,7 +188,7 @@ try {
 
 | 参数         | 类型                                       | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| touchEvent | [TouchEvent](../arkui-js/js-components-common-events.md) | 是    | 触摸输入事件。 |
+| touchEvent | [TouchEvent](./js-apis-touchevent.md) | 是    | 触摸输入事件。 |
 
 **返回值：**
 
