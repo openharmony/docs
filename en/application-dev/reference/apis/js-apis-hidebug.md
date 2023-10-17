@@ -25,7 +25,7 @@ Obtains the total heap memory size of this application.
 
 | Type  | Description                       |
 | ------ | --------------------------- |
-| bigint | Total heap memory size of the application, in KB.|
+| bigint | Total heap memory size of the application, in bytes.|
 
 
 **Example**
@@ -46,7 +46,7 @@ Obtains the allocated heap memory size of this application.
 
 | Type  | Description                             |
 | ------ | --------------------------------- |
-| bigint | Allocated heap memory of the application, in KB.|
+| bigint | Allocated heap memory of the application, in bytes.|
 
 
 **Example**
@@ -67,7 +67,7 @@ Obtains the free heap memory size of this application.
 
 | Type  | Description                           |
 | ------ | ------------------------------- |
-| bigint | Free heap memory size of the application, in KB.|
+| bigint | Free heap memory size of the application, in bytes.|
 
 **Example**
   ```js

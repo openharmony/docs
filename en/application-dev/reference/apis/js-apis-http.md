@@ -53,13 +53,15 @@ httpRequest.request(
       // data.header carries the HTTP response header. Parse the content based on service requirements.
       console.info('header:' + JSON.stringify(data.header));
       console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-      // Call the destroy() method to release resources after the HttpRequest is complete.
+      // Unsubscribe from HTTP Response Header events.
+      httpRequest.off('headersReceive');
+      // Call the destroy() method to release resources after HttpRequest is complete.
       httpRequest.destroy();
     } else {
       console.info('error:' + JSON.stringify(err));
       // Unsubscribe from HTTP Response Header events.
       httpRequest.off('headersReceive');
-      // Call the destroy() method to release resources after the HttpRequest is complete.
+      // Call the destroy() method to release resources after the call is complete.
       httpRequest.destroy();
     }
   }
@@ -470,8 +472,8 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | Name        | Type                                         | Mandatory| Description                                                        |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | No  | Request method. The default value is **GET**.                                                  |
-| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup>  | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this parameter serves as the content of the HTTP request and is encoded in UTF-8 format. If **'Content-Type'** is **'application/x-www-form-urlencoded'**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.|
-| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|
+| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup>  | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this parameter serves as the content of the HTTP request and is encoded in UTF-8 format. If **Content-Type** is **application/x-www-form-urlencoded**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.|
+| <span name="expectDataType">[expectDataType<sup>9+</sup>](#result)</span>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**.  |
 | priority<sup>9+</sup>        | number                          | No  | Priority. The value range is [1,1000]. The default value is **1**.                          |
 | header                       | Object                          | No  | HTTP request header. The default value is **{'Content-Type': 'application/json'}**.  |
@@ -548,7 +550,7 @@ Defines the response to an HTTP request.
 
 | Name              | Type                                        | Mandatory| Description                                                        |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| result               | string<sup>6+</sup> \| Object<sup>deprecated 8+</sup> \| ArrayBuffer<sup>8+</sup> | Yes  | Response content returned based on **Content-type** in the response header:<br>- application/json: a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content.<br>- application/octet-stream: ArrayBuffer<br>- Others: string|
+| <span name="result">[result](#expectDataType)</span>              | string<sup>6+</sup> \| Object<sup>deprecated 8+</sup> \| ArrayBuffer<sup>8+</sup> | Yes  | Response content returned based on **Content-type** in the response header. If **HttpRequestOptions** does not contain the **expectDataType** field, the response content is returned according to the following rules:<br>- application/json: string in JSON format<br>- application/octet-stream: ArrayBuffer<br>- image: ArrayBuffer<br>- Others: string<br> If **HttpRequestOptions** contains the **expectDataType** field, the response content must be of the same type as the data returned by the server.|
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)            | Yes  | Type of the return value.                          |
 | responseCode         | [ResponseCode](#responsecode) \| number      | Yes  | Result code for an HTTP request. If the callback function is successfully executed, a result code defined in [ResponseCode](#responsecode) will be returned. Otherwise, an error code will be returned in the **err** field in **AsyncCallback**.|
 | header               | Object                                       | Yes  | Response header. The return value is a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content. Common fields and parsing methods are as follows:<br>- content-type: header['content-type'];<br>- status-line: header['status-line'];<br>- date: header.date/header['date'];<br>- server: header.server/header['server'];|
@@ -590,7 +592,7 @@ Defines an object that stores the response to an HTTP request. Before invoking A
 
 flush(callback: AsyncCallback\<void\>): void
 
-Flushes data in the cache to the file system so that the cached data can be accessed in the next HTTP request. This API uses an asynchronous callback to return the result.
+Flushes cached data to the file system so that the data can be accessed in the next HTTP request. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -616,7 +618,7 @@ httpResponseCache.flush(err => {
 
 flush(): Promise\<void\>
 
-Flushes data in the cache to the file system so that the cached data can be accessed in the next HTTP request. This API uses a promise to return the result.
+Flushes cached data to the file system so that the data can be accessed in the next HTTP request. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
