@@ -164,7 +164,7 @@ calendarMgr.getCalendar(calendarAccount, (err: BusinessError, data: calendarMana
     console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
     console.info("Succeeded in getting calendar");
-    calendarManager.deleteCalendar(data, (err: BusinessError) => {
+    calendarMgr.deleteCalendar(data, (err: BusinessError) => {
       if (err) {
         console.error(`Failed to delete calendar: err->${JSON.stringify(err)}`);
       } else {
@@ -208,7 +208,7 @@ const calendarAccount: calendarManager.CalendarAccount = {
 };
 calendarMgr.getCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
   console.info("Succeeded in getting calendar");
-  calendarManager.deleteCalendar(data).then(() => {
+  calendarMgr.deleteCalendar(data).then(() => {
     console.info("Succeeded in deleting calendar");
   }).catch((err: BusinessError) => {
     console.error(`Failed to delete calendar: err->${JSON.stringify(err)}`);
