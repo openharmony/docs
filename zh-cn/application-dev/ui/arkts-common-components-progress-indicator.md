@@ -15,7 +15,7 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 ```
 
 
-其中，value用于设置初始进度值，total用于设置进度总长度，type决定Progress样式。
+其中，value用于设置初始进度值，total用于设置进度总长度，type用于设置Progress样式。
 
 
 

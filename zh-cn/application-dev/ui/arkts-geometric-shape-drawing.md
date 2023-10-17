@@ -45,9 +45,9 @@
 viewPort{ x?: number | string, y?: number | string, width?: number | string, height?: number | string }
 ```
 
-形状视口viewport指定用户空间中的一个矩形，该矩形映射到为关联的 SVG 元素建立的视区边界。viewport属性的值包含x、y、width和height四个可选参数，x 和 y 表示视区的左上角坐标，width和height表示其尺寸。
+形状视口viewport指定用户空间中的一个矩形，该矩形映射到为关联的SVG元素建立的视区边界。viewport属性的值包含x、y、width和height四个可选参数，x和y表示视区的左上角坐标，width和height表示其尺寸。
 
-以下3个示例讲解Viewport具体用法：
+以下3个示例讲解viewport具体用法：
 
 - 通过形状视口对图形进行放大与缩小。
 
@@ -66,7 +66,7 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
     height:number = 300
   }
   let viep1:tmp1 = new tmp1()
-  // 画一个宽高都为150的圆
+  // 画一个宽高都为75的圆
   Text('原始尺寸Circle组件')
   Circle({width: 75, height: 75}).fill('#E87361')
 
@@ -266,7 +266,7 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
 
 ## 场景示例
 
-- 在Shape的(-80, -5)点绘制一个封闭路径，填充颜色0x317AF7,线条宽度10,边框颜色红色,拐角样式锐角（默认值）。
+- 在Shape的(-80, -5)点绘制一个封闭路径，填充颜色0x317AF7，线条宽度10，边框颜色红色，拐角样式锐角（默认值）。
 
   ```ts
   @Entry

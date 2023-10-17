@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.mouseEvent (鼠标输入事件)
 
-设备上报的鼠标事件。
+设备上报的鼠标事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
 >  **说明：**
 >
