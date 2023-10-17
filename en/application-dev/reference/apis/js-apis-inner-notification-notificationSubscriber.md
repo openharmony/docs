@@ -272,6 +272,7 @@ Called when the DND time settings are changed.
 
 ```ts
 import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
 
 let subscribeCallback = (err: Base.BusinessError) => {
   if (err) {

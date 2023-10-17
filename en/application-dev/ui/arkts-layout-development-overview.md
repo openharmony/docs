@@ -27,7 +27,7 @@ To achieve the preceding effect, you need to declare the corresponding elements 
 
 ## Layout Elements
 
-You can leverage layout-related container components to create a specific layout. For example, the **List** component can form a linear layout.
+You can use layout-related container components to create a specific layout. For example, the **List** component can form a linear layout.
 
   **Figure 2** Layout elements 
 

@@ -260,7 +260,7 @@ struct Shopping {
 
 Similar to the Back to top button in a list layout, the feature of controlling the scrolling position is commonly used in the grid layout, for example, page turning in the calendar application, as shown below.
 
-  **Figure 10** Page turning in the calendar application 
+**Figure 10** Page turning in the calendar application 
 
 ![en-us_image_0000001562940549](figures/en-us_image_0000001562940549.gif)
 

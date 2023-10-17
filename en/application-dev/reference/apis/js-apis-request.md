@@ -1727,8 +1727,8 @@ Provides the file information of a table item.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| path | string | Yes| File path. The options are as follows:<br>- Relative path in the cache folder of the invoker.<br>- URI (applicable when the application has the permission to access the URI).|
-| mimeType | string | No| MIME type of the file. The default value is as follows:<br>- During an upload, the value is obtained from the file name or URI suffix.<br>- During a download, the value is **Content-Type** when there is response and **octet-stream** otherwise.|
+| path | string | Yes| Relative path in the cache folder of the invoker.|
+| mimeType | string | No| MIME type of the file, which is obtained from the file name.|
 | filename | string | No| File name. The default value is obtained from the file path.|
 | extras | Object | No| Additional information of the file.|
 
@@ -1758,7 +1758,7 @@ Provides the configuration information of an upload or download task.
 | mode | [Mode](#mode10) | No| Task mode. The default mode is background.<br>- For a foreground task, a callback is used for notification.<br>- For a background task, the system notification and network connection features (detection, recovery, and automatic retry) are provided.|
 | overwrite | boolean | No| Whether to overwrite an existing file during the download. The default value is **false**.<br>- **true**: Overwrite the existing file.<br>- **false**: Do not overwrite the existing file. In this case, the download fails.|
 | method | string | No| Standard HTTP method for the task. The value can be **GET**, **POST**, or **PUT**, which is case-insensitive.<br>- If the task is an upload, use **PUT** or **POST**. The default value is **PUT**.<br>- If the task is a download, use **GET** or **POST**. The default value is **GET**.|
-| headers | object | No| HTTPS headers to be included in the task.<br>- If the task is an upload, the default **Content-Type** is **multipart/form-data**.<br>- If the task is a download, the default **Content-Type** is **application/json**.|
+| headers | object | No| HTTP headers to be included in the task.<br>- If the task is an upload, the default **Content-Type** is **multipart/form-data**.<br>- If the task is a download, the default **Content-Type** is **application/json**.|
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task data.<br>- If the task is a download, the value is a string, typically in JSON format (an object will be converted to a JSON string); the default value is null.<br>- If the task is an upload, the value is Array<[FormItem](#formitem10)>; the default value is null.|
 | saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path in the cache folder of the invoker, for example, **"./xxx/yyy/zzz.html"** and **"xxx/yyy/zzz.html"**.<br>- URI (applicable when the application has the permission to access the URI), for example, **"datashare://bundle/xxx/yyy/zzz.html"**. This option is not supported currently.<br>The default value is a relative path in the cache folder of the application.|
 | network | [Network](#network10) | No| Network used for the task. The default value is **ANY** (Wi-Fi or cellular).|
@@ -2826,7 +2826,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
 
-Creates an upload or download task and adds it to the queue. An application can create a maximum of 10 tasks, and a maximum of 300 tasks can be carried. This API uses an asynchronous callback to return the result.
+Creates an upload or download task and adds it to the queue. An application can create a maximum of 10 unfinished tasks. This API uses an asynchronous callback to return the result.
 
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2902,7 +2902,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
-Creates an upload or download task and adds it to the queue. An application can create a maximum of 10 tasks, and a maximum of 300 tasks can be carried. This API uses a promise to return the result.
+Creates an upload or download task and adds it to the queue. An application can create a maximum of 10 unfinished tasks. This API uses a promise to return the result.
 
 
 **Required permissions**: ohos.permission.INTERNET
@@ -3082,10 +3082,10 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   ```ts
   request.agent.show("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
-      console.error(`Failed to show a unload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in showing a unload task.`);
+    console.info(`Succeeded in showing an upload task.`);
   });
   ```
 
@@ -3094,7 +3094,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 show(id: string): Promise&lt;TaskInfo&gt;
 
-Queries the task details based on the task ID. This API uses a promise to return the result.
+Queries a task details based on the task ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -3199,9 +3199,9 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
   ```ts
   request.agent.touch("123456", "token").then((taskInfo: request.agent.TaskInfo) => {
-    console.info(`Succeeded in touching a unload task. `);
+    console.info(`Succeeded in touching a upload task. `);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to touch a unload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to touch an upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3365,9 +3365,9 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
   ```ts
   request.agent.query("123456",).then((taskInfo: request.agent.TaskInfo) => {
-    console.info(`Succeeded in querying a unload task. result: ${taskInfo.uid}`);
+    console.info(`Succeeded in querying the upload task. Result: ${taskInfo.uid}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to query a unload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query the upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 

@@ -555,26 +555,26 @@ When the size of the container in the flex layout is not large enough, the follo
 - **flexGrow**: percentage of the flex layout's remaining space that is allocated to the child component. In other words, it is the grow factor of the child component.
 
 
-  ```ts
+    ```ts
   Flex() {
-    Text('flexGrow(1)')
-      .flexGrow(1) 
+    Text('flexGrow(2)')
+      .flexGrow(2) 
       .width(100)
       .height(100)
       .backgroundColor(0xF5DEB3)
     
-    Text('flexGrow(2)')
-      .flexGrow(2)
+    Text('flexGrow(3)')
+      .flexGrow(3)
       .width(100)
       .height(100)
       .backgroundColor(0xD2B48C)
-
+  
     Text('no flexGrow')
       .width(100) 
       .height(100)
       .backgroundColor(0xF5DEB3)
   }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE)
-  ```
+    ```
 
   ![en-us_image_0000001562700449](figures/en-us_image_0000001562700449.png)
 

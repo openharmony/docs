@@ -258,7 +258,7 @@ struct SimpleContacts {
           .width('100%')
           .justifyContent(FlexAlign.Start)
         }
-      }, ((item:Contact):string => item.key))
+      }, (item:Contact) => item.key.toString())
     }
     .width('100%')
   }
@@ -355,7 +355,6 @@ A **\<List>** component allows one or more **\<ListItemGroup>** child components
 ```ts
 @Component
 struct ContactsList {
-  ...
   
   @Builder itemHead(text: string) {
     // Header of the list group, corresponding to the group A and B locations.
@@ -370,15 +369,11 @@ struct ContactsList {
     List() {
       ListItemGroup({ header: this.itemHead('A') }) {
         // Render the repeated list items of group A.
-        ...
       }
-      ...
 
       ListItemGroup({ header: this.itemHead('B') }) {
         // Render the repeated list items of group B.
-        ...
       }
-      ...
     }
   }
 }
@@ -436,7 +431,7 @@ List() {
         ForEach(item.contacts, () => {
           ListItem() {
           }
-        }, ((item: cgtmpf): string => item.key))
+        }, (item: cgtmpf) => item.key.toString())
       }
     }
   })
@@ -460,11 +455,44 @@ Setting the **sticky** attribute to **StickyStyle.Header** implements a sticky h
 
 
 ```ts
+import util from '@ohos.util';
+class cgtmpf{
+  title:string = ''
+  contacts:Array<object>|null = null
+  key:string = ''
+}
+class Contact {
+  key: string = util.generateRandomUUID(true);
+  name: string;
+  icon: Resource;
+
+  constructor(name: string, icon: Resource) {
+    this.name = name;
+    this.icon = icon;
+  }
+}
+export let contactsGroups: object[] = [
+  {
+    title: 'A',
+    contacts: [
+      new Contact('Alice', $r('app.media.iconA')),
+      new Contact ('Ann', $r ('app.media.iconB')),
+      new Contact('Angela', $r('app.media.iconC')),
+    ],
+  } as cgtmpf,
+  {
+    title: 'B',
+    contacts: [
+      new Contact ('Ben', $r ('app.media.iconD')),
+      new Contact ('Bryan', $r ('app.media.iconE')),
+    ],
+  } as cgtmpf,
+]
+@Entry
 @Component
 struct ContactsList {
   // Define the contactsGroups array.
-  ...
- 
+
   @Builder itemHead(text: string) {
     // Header of the list group, corresponding to the group A and B locations.
     Text(text)
@@ -484,7 +512,7 @@ struct ContactsList {
             ForEach(item.contacts, () => {
               ListItem() {
               }
-            }, ((item:cgtmpf):string => item.key))
+            }, (item:cgtmpf) => item.key.toString())
           }
         }
       })
@@ -552,31 +580,24 @@ When the list scrolls, the **selectedIndex** value of the letter to highlight in
 
 
 ```ts
-...
 const alphabets = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
   'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
 @Entry
 @Component
 struct ContactsList {
   @State selectedIndex: number = 0;
   private listScroller: Scroller = new Scroller();
-  ...
 
   build() {
     Stack({ alignContent: Alignment.End }) {
-      List({ scroller: this.listScroller }) {
-        ...
-      }
+      List({ scroller: this.listScroller }) {}
       .onScrollIndex((firstIndex: number) => {
         // Recalculate the value of this.selectedIndex in the alphabetical index bar based on the index of the item to which the list has scrolled.
       })
-      ...
 
       // <AlphabetIndexer> component
       AlphabetIndexer({ arrayValue: alphabets, selected: 0 })
         .selected(this.selectedIndex)
-      ...
     }
   }
 }
@@ -601,17 +622,6 @@ In the example of the message list, the **end** parameter is set to a custom del
 
 
 ```ts
-class swtmp{
-  temp:Record<string,object> = {}
-  itemEnd:Function|undefined = undefined
-  get(index:number){
-    if(this.itemEnd){
-      this.temp = {'end':this.itemEnd(this, index)}
-    }
-    return this.temp
-  }
-}
-let swipertmp:swtmp = new swtmp()
 @Entry
 @Component
 struct MessageList {
@@ -629,21 +639,18 @@ struct MessageList {
     .onClick(() => {
       this.messages.splice(index, 1);
     })
-    ...
   }
 
   build() {
-    ...
       List() {
         ForEach(this.messages, (item:MessageList, index:number|undefined) => {
           if(index){
             ListItem() {
             }
-            .swipeAction(swipertmp.get(index)) // Set the swipe action.
+            .swipeAction({ end: ()=>{this.itemEnd(index)} }) // Set the swipe action.
           }
-        }, ((item:MessageList):string => item.id.toString()))
+        }, (item:MessageList) => item.id.toString())
       }
-    ...
   }
 }
 ```
@@ -727,13 +734,13 @@ The process of implementing the addition feature is as follows:
 
    ```ts
    @State toDoData: ToDo[] = [];
-    export let availableThings: string[] = ['Reading', 'Fitness', 'Travel','Music','Movie', 'Singing'];
+   export let availableThings: string[] = ['Reading', 'Fitness', 'Travel','Music','Movie', 'Singing'];
    ```
 
    Finally, build the list layout and list items:
 
-   ```ts
-    export class ToDo {
+  ```ts
+  export class ToDo {
     key: string = util.generateRandomUUID(true);
     name: string;
     toDoData:ToDo[] = [];
@@ -741,15 +748,15 @@ The process of implementing the addition feature is as follows:
     constructor(name: string) {
       this.name = name;
     }
-    }
-    let todo:ToDo = new ToDo()
-   List({ space: 10 }) {
-     ForEach(todo.toDoData, (toDoItem:ToDo) => {
-       ListItem() {
-       }
-     }, ((toDoItem:ToDo):string => toDoItem.key))
-   }
-   ```
+  }
+  let todo:ToDo = new ToDo()
+  List({ space: 10 }) {
+    ForEach(todo.toDoData, (toDoItem:ToDo) => {
+      ListItem() {
+      }
+    }, (toDoItem:ToDo) => toDoItem.key.toString())
+  }
+  ```
 
 2. Provide the entry for adding a list item, that is, add a click event to the add button.
 
@@ -843,7 +850,6 @@ The process of implementing the deletion feature is as follows:
           }
         }
       })
-      ...
   }
   ```
 
@@ -879,7 +885,6 @@ The process of implementing the deletion feature is as follows:
       todolist.toDoData = leftData;
       todolist.isEditMode = false;
     })
-    ...
   ```
 
 
