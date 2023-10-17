@@ -76,7 +76,7 @@ position、offset等属性影响了布局容器相对于自身或其他组件的
 | 拉伸        | 容器组件尺寸发生变化时，增加或减小的空间全部分配给容器组件内指定区域。      | [flexGrow](../reference/arkui-ts/ts-universal-attributes-flex-layout.md)和[flexShrink](../reference/arkui-ts/ts-universal-attributes-flex-layout.md)属性：<br/>1.&nbsp;flexGrow基于父容器的剩余空间分配来控制组件拉伸。<br/>2.&nbsp;flexShrink设置父容器的压缩尺寸来控制组件拉伸。 |
 | 缩放        | 子组件的宽高按照预设的比例，随容器组件发生变化，且变化过程中子组件的宽高比不变。 | [aspectRatio](../reference/arkui-ts/ts-universal-attributes-layout-constraints.md)属性指定当前组件的宽高比来控制缩放，公式为：aspectRatio=width/height。 |
 | 占比        | 占比能力是指子组件的宽高按照预设的比例，随父容器组件发生变化。          | 基于通用属性的两种实现方式：<br/>1.&nbsp;将子组件的宽高设置为父组件宽高的百分比。<br/>2.&nbsp;[layoutWeight](../reference/arkui-ts/ts-universal-attributes-size.md)属性，使得子元素自适应占满剩余空间。 |
-| 隐藏        | 隐藏能力是指容器组件内的子组件，按照其预设的显示优先级，随容器组件尺寸变化显示或隐藏，其中相同显示优先级的子组件同时显示或隐藏。 | 通过[displayPriority](../reference/arkui-ts/ts-universal-attributes-layout-constraints.md)属性来控制页面的显示和隐藏。 |
+| 隐藏        | 隐藏能力是指容器组件内的子组件，按照其预设的显示优先级，随容器组件尺寸变化显示或隐藏，其中相同显示优先级的子组件同时显示或隐藏。 | 通过[displayPriority](../reference/arkui-ts/ts-universal-attributes-layout-constraints.md)属性来控制组件的显示和隐藏。 |
 
 ## 相关实例
 
