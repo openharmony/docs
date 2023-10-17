@@ -43,7 +43,7 @@ For the complete list of APIs and example code, see [Ethernet Connection](../ref
 4. Call **isIfaceActive** in user mode to check whether the **eth0** port is active.
 5. Call **getIfaceConfig** in user mode to obtain the static network attributes of the **eth0** port. By default, an unconfigured Ethernet network uses the DHCP mode, in which the Ethernet network obtains the automatically assigned network attributes.
 
-```js
+```ts
 // Import the ethernet namespace from @ohos.net.ethernet.
 import ethernet from '@ohos.net.ethernet'
 import { BusinessError } from '@ohos.base';
@@ -96,7 +96,7 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
 5. Call **setIfaceConfig** in user mode to set the **eth0** port to the static mode, in which you need to manually assign the network attributes (including the IP address, subnet mask, gateway, and DNS).
 6. Call **getIfaceConfig** in user mode to obtain the static network attributes of the **eth0** port.
 
-```js
+```ts
 // Import the ethernet namespace from @ohos.net.ethernet.
 import ethernet from '@ohos.net.ethernet'
 import { BusinessError } from '@ohos.base';
@@ -123,7 +123,7 @@ ethernet.isIfaceActive("eth0", (error: BusinessError, data: number) => {
 });
 
 let ethernetParam: ethernet.InterfaceConfiguration = {
-  mode: ethernet.STATIC,
+  mode: ethernet.IPSetMode.STATIC,
   ipAddr: "192.168.xx.xx",
   routeAddr: "192.168.xx.xx",
   gateAddr: "192.168.xx.xx",
@@ -166,7 +166,7 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
 3. Check whether an **interfaceStateChange** event is triggered when the interface state changes.
 4. Call the **off()** method to unsubscribe from **interfaceStateChange** events.
 
-```js
+```ts
 // Import the ethernet namespace from @ohos.net.ethernet.
 import ethernet from '@ohos.net.ethernet'
 

@@ -1,6 +1,6 @@
 # Network Connection Management
 
-## Introduction
+## Overview
 
 The Network Connection Management module provides basic network management capabilities, including management of Wi-Fi/cellular/Ethernet connection priorities, network quality evaluation, subscription to network connection status changes, query of network connection information, and DNS resolution.
 
@@ -80,17 +80,17 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 
 6. Call **conn.unregister()** to unsubscribe from the network status changes if required.
 
-```js
+```ts
 // Import the connection namespace.
 import connection from '@ohos.net.connection'
 import { BusinessError } from '@ohos.base';
 
 let netSpecifier: connection.NetSpecifier = {
   netCapabilities: {
-  // Assume that the default network is Wi-Fi. If you need to create a cellular network connection, set the network type to CELLULAR.
-  bearerTypes: connection.NetBearType.BEARER_CELLULAR,
-  // Set the network capability to INTERNET.
-  networkCap: connection.NetCap.NET_CAPABILITY_INTERNET
+    // Assume that the default network is Wi-Fi. If you need to create a cellular network connection, set the network type to CELLULAR.
+    bearerTypes: [connection.NetBearType.BEARER_CELLULAR],
+    // Set the network capability to INTERNET.
+    networkCap: [connection.NetCap.NET_CAPABILITY_INTERNET]
   },
 };
 
@@ -127,7 +127,7 @@ conn.unregister((err: BusinessError, data: void) => {
 
 2. Call **getAllNets** to obtain the list of all connected networks.
 
-```js
+```ts
 // Import the connection namespace.
 import connection from '@ohos.net.connection'
 import { BusinessError } from '@ohos.base'
@@ -156,7 +156,7 @@ export class GlobalContext {
 }
 
 // Obtain the list of all connected networks.
-connection.getAllNets((err: BusinessError, data: connection.NetHandle) => {
+connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
   if (data) {
@@ -177,14 +177,14 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle) => {
 
 4. Call **getConnectionProperties** to obtain the connection information of the data network specified by **NetHandle**.
 
-```js
+```ts
 import connection from '@ohos.net.connection'
 import { BusinessError } from '@ohos.base';
-import data from '@ohos.telephony.data';
 
 // Construct a singleton object.
 export class GlobalContext {
   public netList: connection.NetHandle[] = [];
+  public netHandle: connection.NetHandle|null = null;
   private constructor() {}
   private static instance: GlobalContext;
   private _objects = new Map<string, Object>();
@@ -215,11 +215,11 @@ connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
 })
 
 // Obtain the network capability information of the data network specified by **NetHandle**. The capability information includes information such as the network type and specific network capabilities.
-connection.getNetCapabilities(this.netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
+connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
   console.log(JSON.stringify(err));
 
   // Obtain the network type via bearerTypes.
-  let bearerTypes: Set<number> = data.bearerTypes;
+  let bearerTypes: Set<number> = new Set(data.bearerTypes);
   let bearerTypesNum = Array.from(bearerTypes.values());
   for (let item of bearerTypesNum) {
     if (item == 0) {
@@ -233,7 +233,7 @@ connection.getNetCapabilities(this.netHandle, (err: BusinessError, data: connect
       console.log(JSON.stringify("BEARER_ETHERNET"));
     }
   }
-
+  
   // Obtain the specific network capabilities via networkCap.
   let itemNumber : Set<number> = new Set([0, 11, 12, 15, 16]);
   let dataNumber = Array.from(itemNumber.values());
@@ -258,7 +258,7 @@ connection.getNetCapabilities(this.netHandle, (err: BusinessError, data: connect
 })
 
 // Obtain the connection information of the data network specified by NetHandle. Connection information includes link and route information.
-connection.getConnectionProperties(this.netHandle, (err: BusinessError, data: connection.ConnectionProperties) => {
+connection.getConnectionProperties(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.ConnectionProperties) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
 })
@@ -272,7 +272,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
   }
 })
 
-let itemNumber : Set<number> = new Set(this.netList);
+let itemNumber : Set<connection.NetHandle> = new Set(GlobalContext.getContext().netList);
 let dataNumber = Array.from(itemNumber.values());
 for (let item of dataNumber) {
   // Obtain the network capability information of the network specified by each netHandle on the network list cyclically.
@@ -297,9 +297,10 @@ for (let item of dataNumber) {
 
 2. Call **getAddressesByName** to use the default network to resolve the host name to obtain the list of all IP addresses.
 
-```js
+```ts
     // Import the connection namespace.
 import connection from '@ohos.net.connection'
+import { BusinessError } from '@ohos.base'
 
 // Use the default network to resolve the host name to obtain the list of all IP addresses.
 connection.getAddressesByName(this.host, (err: BusinessError, data: connection.NetAddress[]) => {
