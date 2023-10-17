@@ -47,7 +47,7 @@
 - [Utils Development](subsys-utils-guide.md)
 - AI
     - [AI Framework Development](subsys-ai-aiframework-devguide.md)
-    - [NNRt Development](subsys-ai-nnrt-guide.md)
+    - [NNRt Access Adaptation](subsys-ai-nnrt-guide.md)
 - Sensor
   - [Sensor Overview](subsys-sensor-overview.md)
   - [Sensor Usage Guidelines](subsys-sensor-guide.md)

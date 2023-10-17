@@ -134,7 +134,7 @@ Subscribes to thermal level changes.
 **Example**
 
 ```js
-thermal.subscribeThermalLevel((err: BusinessError<void>, level: thermal.ThermalLevel) => {
+thermal.subscribeThermalLevel((err: Error, level: thermal.ThermalLevel) => {
     console.info('thermal level is: ' + level);
 });
 ```

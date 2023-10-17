@@ -31,7 +31,7 @@ Provides APIs for creating and modifying tensor information.
 | [OH_AI_TensorCreate](_mind_spore.md#oh_ai_tensorcreate) (const char \*name, OH_AI_DataType type, const int64_t \*shape, <br>size_t shape_num, const void \*data, size_t data_len) | Creates a tensor object.|
 | [OH_AI_TensorDestroy](_mind_spore.md#oh_ai_tensordestroy) (OH_AI_TensorHandle \*tensor) | Destroys a tensor object.|
 | [OH_AI_TensorClone](_mind_spore.md#oh_ai_tensorclone) (OH_AI_TensorHandle tensor) | Clones a tensor.|
-| [OH_AI_TensorSetName](_mind_spore.md#oh_ai_tensorsetname) (OH_AI_TensorHandle tensor, const char \  *name) | Sets the tensor name.|
+| [OH_AI_TensorSetName](_mind_spore.md#oh_ai_tensorsetname) (OH_AI_TensorHandle tensor, const char \*name) | Sets the tensor name.|
 | [OH_AI_TensorGetName](_mind_spore.md#oh_ai_tensorgetname) (const OH_AI_TensorHandle tensor) | Obtains the tensor name.|
 | [OH_AI_TensorSetDataType](_mind_spore.md#oh_ai_tensorsetdatatype) (OH_AI_TensorHandle tensor, OH_AI_DataType type) | Sets the data type of a tensor.|
 | [OH_AI_TensorGetDataType](_mind_spore.md#oh_ai_tensorgetdatatype) (const OH_AI_TensorHandle tensor) | Obtains the tensor type.|

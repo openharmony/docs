@@ -1,6 +1,6 @@
 # Socket Connection
 
-## Introduction
+## Overview
 
 The Socket Connection module allows an application to transmit data over a socket connection through the TCP, UDP, or TLS protocol.
 
