@@ -5,14 +5,13 @@ The **FormComponent** is used to display widgets.
 >  **NOTE**
 >
 > - This component is supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> - This component is intended for the widget host. For details about the widget provider, see [JS Service Widget UI Components](../js-service-widget-ui/js-service-widget-file.md).
-> 
+>- This component is intended for the widget host. For details about the widget provider, see [JS Service Widget UI Components](../js-service-widget-ui/js-service-widget-file.md).
 > - To use this component, you must have the system signature.
+> - The APIs provided by this component are system APIs.
 
 ## Required Permissions
 
-ohos.permission.REQUIRE_FORM
+ohos.permission.REQUIRE_FORM, ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 
 ## Child Components
