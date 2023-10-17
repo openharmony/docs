@@ -3308,7 +3308,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 | 参数名   | 类型                                              | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
-| holder   | Holder                                            | 是   | 创建联系人的应用信息。                                       |
+| holder   | [Holder](#holder)                                 | 是   | 创建联系人的应用信息。                                       |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。                         |
 
 **错误码：**
@@ -3360,7 +3360,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
 | 参数名   | 类型                                              | 必填 | 说明                                 |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-| holder   | Holder                                            | 是   | 创建联系人的应用信息。               |
+| holder   | [Holder](#holder)                                 | 是   | 创建联系人的应用信息。               |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。 |
 
 **示例：**
@@ -3477,7 +3477,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 ## contact.queryHolders<sup>10+</sup>
 
-queryHolders(context: Context,  callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
+queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 查询所有创建联系人的应用信息，使用callback方式作为异步方法。
 
@@ -3554,7 +3554,7 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 ## contact.queryHolders<sup>10+</sup>
 
-queryHolders(context: Context ): Promise&lt;Array&lt;Holder&gt;&gt;
+queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 
 查询所有创建联系人的应用信息，使用Promise方式作为异步方法。
 
@@ -4528,7 +4528,7 @@ portrait.uri = "uri";
 | postcode      | string   | 是   | 是   | 联系人所在区域的邮政编码。 |
 | region        | string   | 是   | 是   | 联系人所在的区域。         |
 | street        | string   | 是   | 是   | 联系人所在的街道。         |
-| labelId       | number   | 是   | 是   | 邮政地址名称。             |
+| labelId       | number   | 是   | 是   | 邮政地址类型。             |
 
 
 **对象创建示例：**
