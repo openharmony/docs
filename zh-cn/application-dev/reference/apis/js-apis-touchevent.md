@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.touchEvent (触摸输入事件)
 
-设备上报的触屏事件。
+设备上报的触屏事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
 >  **说明：**
 >
