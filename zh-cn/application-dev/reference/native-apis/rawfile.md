@@ -435,7 +435,7 @@ int OH_ResourceManager_ReadRawFile (const RawFile * rawFile, void * buf, size_t 
 
 **返回：**
 
-返回读取的字节数，如果读取长度超过文件末尾长度，则返回**0**。
+返回读取的字节数，如果读取长度小于文件长度，则返回**0**。
 
 **起始版本：**
 
@@ -513,7 +513,7 @@ int OH_ResourceManager_SeekRawFile (const RawFile * rawFile, long offset, int wh
 
 **返回：**
 
-如果搜索成功返回新的读写位置，如果发生错误返回 **(long) -1**。
+如果搜索成功返回**0**,rawFile指针更新到新的读写位置。如果发生错误返回 **(long) -1**。
 
 **起始版本：**
 
