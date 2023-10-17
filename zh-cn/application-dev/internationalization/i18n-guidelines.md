@@ -43,8 +43,8 @@
 
 2. 获取和设置系统语言。
    
-   调用setSystemLanguage接口设置系统语言（该接口为系统接口，只有具有UPDATE_CONFIGURATION权限的系统应用可以调用）。
-   调用getSystemLanguage接口获取系统语言。
+   调用[setSystemLanguage](../reference/apis/js-apis-i18n.md#setsystemlanguage9)接口设置系统语言（该接口为系统接口，只有具有UPDATE_CONFIGURATION权限的系统应用可以调用）。
+   调用[getSystemLanguage](../reference/apis/js-apis-i18n.md#getsystemlanguages9)接口获取系统语言。
    
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -60,8 +60,8 @@
 
 3. 获取和设置系统区域。
    
-   调用setSystemRegion接口设置系统国家（该接口为系统接口，只有具有UPDATE_CONFIGURATION权限的系统应用可以调用）。
-   调用getSystemRegion接口获取系统国家。
+   调用[setSystemRegion](../reference/apis/js-apis-i18n.md#getsystemregion9)接口设置系统国家（该接口为系统接口，只有具有UPDATE_CONFIGURATION权限的系统应用可以调用）。
+   调用[getSystemRegion](../reference/apis/js-apis-i18n.md#setsystemregion9)接口获取系统国家。
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -77,8 +77,8 @@
 
 4. 获取和设置系统Locale。
 
-   调用setSystemLocale接口设置系统Locale（该接口为系统接口，只有具有UPDATE_CONFIGURATION权限的系统应用可以调用）。Locale的定义请见[Locale](../internationalization/intl-guidelines.md#设置区域信息)
-   调用getSystemLocale接口获取系统Locale。
+   调用[setSystemLocale](../reference/apis/js-apis-i18n.md#setsystemlocale9)接口设置系统Locale（该接口为系统接口，只有具有UPDATE_CONFIGURATION权限的系统应用可以调用）。Locale的定义请见[Locale](../internationalization/intl-guidelines.md#设置区域信息)。
+   调用[getSystemLocale](../reference/apis/js-apis-i18n.md#getsystemlocale9)接口获取系统Locale。
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -94,7 +94,7 @@
 
 5. 判断Locale的语言是否为从右到左语言。
 
-   调用isRTL接口获取Locale的语言是否为从右到左语言。
+   调用[isRTL](../reference/apis/js-apis-i18n.md#i18nisrtl7)接口获取Locale的语言是否为从右到左语言。
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -110,8 +110,8 @@
 
 6. 获取和设置系统24小时制设置。
 
-   调用set24HourClock接口打开系统24小时制设置。
-   调用is24HourClock接口来判断当前是否打开系统24小时制设置。
+   调用[set24HourClock](../reference/apis/js-apis-i18n.md#set24hourclock9)接口打开系统24小时制设置（该接口为系统接口，只有具有UPDATE_CONFIGURATION权限的系统应用可以调用）。
+   调用[is24HourClock](../reference/apis/js-apis-i18n.md#is24hourclock9)接口来判断当前是否打开系统24小时制设置。
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -127,7 +127,7 @@
 
 7. 获取语言的本地化表示。
 
-   调用getDisplayLanguage接口获取某一语言的本地化表示。其中，language表示待本地化显示的语言，locale表示本地化的Locale，sentenceCase结果是否需要首字母大写。
+   调用[getDisplayLanguage](../reference/apis/js-apis-i18n.md#getdisplaylanguage9)接口获取某一语言的本地化表示。其中，language表示待本地化显示的语言，locale表示本地化的Locale，sentenceCase结果是否需要首字母大写。
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -145,7 +145,7 @@
 
 8. 获取国家的本地化表示。
 
-   调用getDisplayCountry接口获取某一国家的本地化表示。其中，country表示待本地化显示的国家，locale表示本地化的Locale，sentenceCase结果是否需要首字母大写。
+   调用[getDisplayCountry](../reference/apis/js-apis-i18n.md#getdisplaycountry9)接口获取某一国家的本地化表示。其中，country表示待本地化显示的国家，locale表示本地化的Locale，sentenceCase结果是否需要首字母大写。
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -163,8 +163,8 @@
 
 9. 获取系统语言列表和某个语言系统支持的国家列表。
 
-   调用getSystemLanguages接口获取系统支持的语言列表。
-   调用getSystemCountries接口获取某一语言系统支持的地区列表。
+   调用[getSystemLanguages](../reference/apis/js-apis-i18n.md#getsystemlanguages9)接口获取系统支持的语言列表。
+   调用[getSystemCountries](../reference/apis/js-apis-i18n.md#getsystemcountries9)接口获取某一语言系统支持的地区列表。
    ```ts
    import { BusinessError } from '@ohos.base';
    
@@ -179,7 +179,7 @@
 
 10. 判断语言和国家是否匹配。
 
-   调用isSuggested接口判断语言和地区是否匹配。
+   调用[isSuggested](../reference/apis/js-apis-i18n.md#issuggested9)接口判断语言和地区是否匹配。
    
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -194,11 +194,11 @@
 
 11. 获取与设置偏好语言。
 
-   调用addPreferredLanguage接口在当前系统偏好语言列表中插入偏好语言。
-   调用removePreferredLanguage接口移除系统偏好语言列表中的某个语言。（addPreferredLanguage接口和removePreferredLanguage接口为系统接口，只有具有UPDATE_CONFIGURATION权限的系统应用可以调用。）
-   调用getPreferredLanguageList接口获取系统当前偏好语言列表。
-   调用getFirstPreferredLanguage接口获取系统偏好语言列表中的第一个偏好语言。
-   调用getAppPreferredLanguageList接口获取应用偏好语言，应用偏好语言为系统偏好语言列表中第一个与应用的资源匹配的语言。
+   调用[addPreferredLanguage](../reference/apis/js-apis-i18n.md#addpreferredlanguage9)接口在当前系统偏好语言列表中插入偏好语言。
+   调用[removePreferredLanguage](../reference/apis/js-apis-i18n.md#removepreferredlanguage9)接口移除系统偏好语言列表中的某个语言。（addPreferredLanguage接口和removePreferredLanguage接口为系统接口，只有具有UPDATE_CONFIGURATION权限的系统应用可以调用。）
+   调用[getPreferredLanguageList](../reference/apis/js-apis-i18n.md#getpreferredlanguagelist9)接口获取系统当前偏好语言列表。
+   调用[getFirstPreferredLanguage](../reference/apis/js-apis-i18n.md#getfirstpreferredlanguage9)接口获取系统偏好语言列表中的第一个偏好语言。
+   调用[getAppPreferredLanguage](../reference/apis/js-apis-i18n.md#getapppreferredlanguage9)接口获取应用偏好语言，应用偏好语言为系统偏好语言列表中第一个与应用的资源匹配的语言。
    
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -217,8 +217,8 @@
 
 12. 获取和设置系统本地化数字开关。
 
-   调用setUsingLocalDigit接口打开本地化数字开关。（此接口为系统接口，只有具有UPDATE_CONFIGURATION权限的系统应用可以调用。）
-   调用getUsingLocalDigit接口访问本地化数字开关状态。
+   调用[setUsingLocalDigit](../reference/apis/js-apis-i18n.md#setusinglocaldigit9)接口打开本地化数字开关。（此接口为系统接口，只有具有UPDATE_CONFIGURATION权限的系统应用可以调用。）
+   调用[getUsingLocalDigit](../reference/apis/js-apis-i18n.md#getusinglocaldigit9)接口访问本地化数字开关状态。
    当前只有 "ar", "as", "bn", "fa", "mr", "my", "ne", "ur" 8个语言支持使用本地数字。
 
 ```ts
@@ -264,7 +264,7 @@ try {
 
 2. 实例化日历对象。
 
-   调用getCalendar接口获取指定locale和type的时区对象（i18n为导入的模块）。其中，type表示合法的日历类型，目前合法的日历类型包括："buddhist", "chinese", "coptic", "ethiopic", "hebrew", "gregory", "indian", "islamic_civil", "islamic_tbla", "islamic_umalqura", "japanese", "persian"。当type没有给出时，采用区域默认的日历类型。
+   调用[getCalendar](../reference/apis/js-apis-i18n.md#i18ngetcalendar8)接口获取指定locale和type的时区对象（i18n为导入的模块）。其中，type表示合法的日历类型，目前合法的日历类型包括："buddhist", "chinese", "coptic", "ethiopic", "hebrew", "gregory", "indian", "islamic_civil", "islamic_tbla", "islamic_umalqura", "japanese", "persian"。当type没有给出时，采用区域默认的日历类型。
 
    ```ts
    let calendar = I18n.getCalendar("zh-CN", "chinese"); // 创建中文农历日历
@@ -272,7 +272,7 @@ try {
 
 3. 设置日历对象的时间。
 
-     调用setTime接口设置日历对象的时间。setTime接口接收两种类型的参数。一种是传入一个Date对象，另一种是传入一个数值表示从1970.1.1 00:00:00 GMT逝去的毫秒数。
+     调用[setTime](../reference/apis/js-apis-i18n.md#settime8)接口设置日历对象的时间。setTime接口接收两种类型的参数。一种是传入一个Date对象，另一种是传入一个数值表示从1970.1.1 00:00:00 GMT逝去的毫秒数。
 
    ```ts
    let date1 = new Date();
@@ -283,7 +283,7 @@ try {
 
 4. 设置日历对象的年、月、日、时、分、秒。
 
-     调用set接口设置日历对象的年、月、日、时、分、秒。
+     调用[set](../reference/apis/js-apis-i18n.md#set8)接口设置日历对象的年、月、日、时、分、秒。
 
    ```ts
    calendar.set(2021, 12, 21, 6, 0, 0);
@@ -291,7 +291,7 @@ try {
 
 5. 设置、获取日历对象的时区。
 
-   调用setTimeZone接口和getTimeZone接口来设置、获取日历对象的时区。其中，setTimeZone接口需要传入一个字符串表示需要设置的时区。
+   调用[setTimeZone](../reference/apis/js-apis-i18n.md#settimezone8)接口和[getTimeZone](../reference/apis/js-apis-i18n.md#gettimezone8)接口来设置、获取日历对象的时区。其中，setTimeZone接口需要传入一个字符串表示需要设置的时区。
 
    ```ts
    calendar.setTimeZone("Asia/Shanghai");
@@ -300,7 +300,7 @@ try {
 
 6. 设置、获取日历对象的一周起始日。
 
-   调用setFirstDayOfWeek接口和getFirstDayOfWeek接口设置、获取日历对象的一周起始日。其中，setFirstDayOfWeek需要传入一个数值表示一周的起始日，1代表周日，7代表周六。
+   调用[setFirstDayOfWeek](../reference/apis/js-apis-i18n.md#setfirstdayofweek8)接口和[getFirstDayOfWeek](../reference/apis/js-apis-i18n.md#getfirstdayofweek8)接口设置、获取日历对象的一周起始日。其中，setFirstDayOfWeek需要传入一个数值表示一周的起始日，1代表周日，7代表周六。
 
    ```ts
    calendar.setFirstDayOfWeek(1);
@@ -308,7 +308,8 @@ try {
    ```
 
 7. 设置、获取日历对象第一周的最小天数。
-     调用setMinimalDaysInFirstWeek接口和getMinimalDaysInFirstWeek接口来设置、获取日历对象第一周的最小天数。
+
+   调用[setMinimalDaysInFirstWeek](../reference/apis/js-apis-i18n.md#setminimaldaysinfirstweek8)接口和[getMinimalDaysInFirstWeek](../reference/apis/js-apis-i18n.md#getminimaldaysinfirstweek8)接口来设置、获取日历对象第一周的最小天数。
 
    ```ts
    calendar.setMinimalDaysInFirstWeek(3);
@@ -316,7 +317,8 @@ try {
    ```
 
 8. 获取日历对象的本地化显示。
-   调用getDisplayName来获取日历对象的本地化显示。
+
+   调用[getDisplayName](../reference/apis/js-apis-i18n.md#getdisplayname8)来获取日历对象的本地化显示。
 
    ```ts
    let localizedName = calendar.getDisplayName("zh-CN"); // localizedName = "农历"
@@ -324,7 +326,7 @@ try {
 
 9. 判断某一个日期是否为周末。
 
-   调用isWeekend接口来判断输入的Date是否为周末。
+   调用[isWeekend](../reference/apis/js-apis-i18n.md#isweekend8)接口来判断输入的Date是否为周末。
 
    ```ts
    let date = new Date(2022, 12, 12, 12, 12, 12);
@@ -333,7 +335,7 @@ try {
 
 ## 电话号码格式化
 
-调用电话号码格式化[PhoneNumberFormat](../reference/apis/js-apis-i18n.md#phonenumberformat8)的接口，实现对针对不同国家电话号码的格式化以及判断电话号码格式是否正确的功能。
+   调用电话号码格式化[PhoneNumberFormat](../reference/apis/js-apis-i18n.md#phonenumberformat8)的接口，实现对针对不同国家电话号码的格式化以及判断电话号码格式是否正确的功能。
 
 ### 接口说明
 
@@ -354,7 +356,7 @@ try {
 
 2. 实例化电话号码格式化对象。
 
-   调用PhoneNumberFormat的构造函数来实例化电话号码格式化对象，需要传入电话号码的国家代码及格式化选项。其中，格式化选项是可选的，包括style选项，该选项的取值包括："E164", "INTERNATIONAL", "NATIONAL", "RFC3966"。
+   调用[PhoneNumberFormat](../reference/apis/js-apis-i18n.md#phonenumberformat8)的构造函数来实例化电话号码格式化对象，需要传入电话号码的国家代码及格式化选项。其中，格式化选项是可选的，包括style选项，该选项的取值包括："E164", "INTERNATIONAL", "NATIONAL", "RFC3966"。
 
    ```ts
    let phoneNumberFormat = new I18n.PhoneNumberFormat("CN", {type: "E164"});
@@ -362,7 +364,7 @@ try {
 
 3. 判断电话号码格式是否正确。
 
-     调用isValidNumber接口来判断输入的电话号码的格式是否正确。
+   调用[isValidNumber](../reference/apis/js-apis-i18n.md#isvalidnumber8)接口来判断输入的电话号码的格式是否正确。
 
    ```ts
    let validNumber = phoneNumberFormat.isValidNumber("123****8911"); // validNumber = true
@@ -370,7 +372,7 @@ try {
 
 4. 电话号码格式化。
 
-     调用电话号码格式化对象的format接口来对输入的电话号码进行格式化。
+   调用电话号码格式化对象的[format](../reference/apis/js-apis-i18n.md#format8)接口来对输入的电话号码进行格式化。
 
    ```ts
    let formattedNumber = phoneNumberFormat.format("123****8911"); // formattedNumber = "+86123****8911"
@@ -430,8 +432,7 @@ try {
 
 2. 实例化字母表索引对象。
 
-   调用getInstance接口来实例化特定locale对应的字母表索引对象。当locale参数为空时，实例化系统默认Locale的字母表索引对象。
-
+   调用[getInstance](../reference/apis/js-apis-i18n.md#getinstance8)接口来实例化特定locale对应的字母表索引对象。当locale参数为空时，实例化系统默认Locale的字母表索引对象。
 
    ```ts
    let indexUtil = I18n.getInstance("zh-CN");
@@ -439,7 +440,7 @@ try {
 
 3. 获取索引列表。
 
-     调用getIndexList接口来获取当前Locale对应的字母表索引列表。
+     调用[getIndexList](../reference/apis/js-apis-i18n.md#getindexlist8)接口来获取当前Locale对应的字母表索引列表。
 
    ```ts
    let indexList = indexUtil.getIndexList(); // indexList = ["...", "A", "B", "C", ..., "X", "Y", "Z", "..."]
@@ -447,7 +448,7 @@ try {
 
 4. 增加新的索引。
 
-     调用addLocale接口，将新的Locale对应的字母表索引添加到当前字母表索引列表中。
+     调用[addLocale](../reference/apis/js-apis-i18n.md#addlocale8)接口，将新的Locale对应的字母表索引添加到当前字母表索引列表中。
 
    ```ts
    indexUtil.addLocale("ar");
@@ -455,7 +456,7 @@ try {
 
 5. 获取字符串对应的索引。
 
-     调用getIndex接口来获取某一字符串对应的字母表索引。
+     调用[getIndex](../reference/apis/js-apis-i18n.md#getindex8)接口来获取某一字符串对应的字母表索引。
 
    ```ts
    let text = "access index";
@@ -491,7 +492,7 @@ try {
 
 2. 实例化断行对象。
 
-   调用getLineInstance接口来实例化断行对象。
+   调用[getLineInstance](../reference/apis/js-apis-i18n.md#i18ngetlineinstance8)接口来实例化断行对象。
 
    ```ts
    let locale = "en-US";
@@ -500,7 +501,7 @@ try {
 
 3. 设置、访问要断行处理的文本。
 
-   调用setLineBreakText接口和getLineBreakText接口来设置、访问要断行处理的文本。
+   调用[setLineBreakText](../reference/apis/js-apis-i18n.md#setlinebreaktext8)接口和[getLineBreakText](../reference/apis/js-apis-i18n.md#getlinebreaktext8)接口来设置、访问要断行处理的文本。
 
    ```ts
    let text = "Apple is my favorite fruit";
@@ -510,7 +511,7 @@ try {
 
 4. 获取断行对象当前的位置。
 
-   调用current接口来获取断行对象在当前处理文本中的位置。
+   调用[current](../reference/apis/js-apis-i18n.md#current8)接口来获取断行对象在当前处理文本中的位置。
 
    ```ts
    let pos = breakIterator.current(); // pos = 0
@@ -518,7 +519,7 @@ try {
 
 5. 设置断行对象的位置。
 
-   系统提供了很多接口可以用于调整断行对象在处理文本中的位置，包括first, last, next, previous, following。
+   系统提供了很多接口可以用于调整断行对象在处理文本中的位置，包括[first](../reference/apis/js-apis-i18n.md#first8), [last](../reference/apis/js-apis-i18n.md#last8), [next](../reference/apis/js-apis-i18n.md#next8), [previous](../reference/apis/js-apis-i18n.md#previous8), [following](../reference/apis/js-apis-i18n.md#following8)。
 
    ```ts
    let firstPos = breakIterator.first(); // 将断行对象设置到第一个分割点的位置，即文本的起始位置；firstPos = 0
@@ -534,7 +535,7 @@ try {
 
 6. 判断某个位置是否为分割点。
 
-   调用isBoundary接口来判断一个接口是否为分割点；如果该位置是分割点，则返回true，并且将断行对象移动到该位置；如果该位置不是分割点，则返回false，并且将断行对象移动到该位置后的一个分割点。
+   调用[isBoundary](../reference/apis/js-apis-i18n.md#isboundary8)接口来判断一个接口是否为分割点；如果该位置是分割点，则返回true，并且将断行对象移动到该位置；如果该位置不是分割点，则返回false，并且将断行对象移动到该位置后的一个分割点。
 
    ```ts
    let isboundary = breakIterator.isBoundary(5); // isboundary = false
@@ -568,7 +569,7 @@ try {
 
 2. 实例化时区对象，并获取相关时区信息。
 
-   调用getTimeZone接口来获取时区对象。
+   调用[getTimeZone](../reference/apis/js-apis-i18n.md#i18ngettimezone7)接口来获取时区对象。
 
    ```ts
    let timezone = I18n.getTimeZone(); // 使用默认参数可以获取系统时区对象。
@@ -585,7 +586,7 @@ try {
 
 3. 获取系统支持的时区ID。
 
-   调用getAvailableIDs接口获取系统支持的时区ID列表。
+   调用[getAvailableIDs](../reference/apis/js-apis-i18n.md#getavailableids9)接口获取系统支持的时区ID列表。
    时区ID列表中的时区ID可以作为getTimeZone接口的参数，来创建TimeZone对象。
 
    ```ts
@@ -596,9 +597,9 @@ try {
 
 4. 获取系统支持的时区城市ID。
 
-   调用getAvailableZoneCityIDs接口获取系统支持的时区城市ID列表。
-   调用getCityDisplayName接口获取时区城市ID的本地化显示。
-   调用getTimezoneFromCity接口基于时区城市ID创建时区对象。
+   调用[getAvailableZoneCityIDs](../reference/apis/js-apis-i18n.md#getavailablezonecityids9)接口获取系统支持的时区城市ID列表。
+   调用[getCityDisplayName](../reference/apis/js-apis-i18n.md#getcitydisplayname9)接口获取时区城市ID的本地化显示。
+   调用[getTimezoneFromCity](../reference/apis/js-apis-i18n.md#gettimezonefromcity9)接口基于时区城市ID创建时区对象。
 
    ```ts
    let zoneCityIDs = I18n.TimeZone.getAvailableZoneCityIDs(); // ["Auckland", "Magadan", ...]
@@ -629,7 +630,7 @@ try {
 
 2. 获取支持音译的ID列表。
 
-   调用getAvailableIDs接口来获取支持音译的ID列表。
+   调用[getAvailableIDs](../reference/apis/js-apis-i18n.md#getavailableids9-1)接口来获取支持音译的ID列表。
    每个ID的格式为 source-destination，例如 ASCII-Latin，表示将ASCII转换为Latin的音译ID。
 
    ```ts
@@ -638,8 +639,8 @@ try {
 
 3. 创建音译对象，获取音译字符串。
 
-   支持音译的ID列表中的ID可以作为getInstance接口的参数，创建音译对象。
-   调用transform接口，获取音译字符串。
+   支持音译的ID列表中的ID可以作为[getInstance](../reference/apis/js-apis-i18n.md#getinstance9)接口的参数，创建音译对象。
+   调用[transform](../reference/apis/js-apis-i18n.md#transform9)接口，获取音译字符串。
 
    ```ts
    let transliterator = I18n.Transliterator.getInstance("Any-Latin"); // Any-Latin表示将任意文本转换为Latin文本
@@ -734,7 +735,7 @@ try {
 
 3. 获取字符的类型。
 
-   调用getType接口获取字符的类型。
+   调用[getType](../reference/apis/js-apis-i18n.md#gettype9)接口获取字符的类型。
 
    ```ts
    let type = I18n.Unicode.getType("a"); // type = U_LOWER_CASE_LETTER
@@ -758,7 +759,7 @@ try {
 
 2. 判断日期的年月日的排序顺序。
 
-   调用getDateOrder接口判断某一Locale的日期中，年月日的排列顺序。
+   调用[getDateOrder](../reference/apis/js-apis-i18n.md#getdateorder9)接口判断某一Locale的日期中，年月日的排列顺序。
    接口返回一个字符串，由"y"，"L"，"d"三部分组成，分别表示年、月、日，使用中划线进行拼接。例如，"y-L-d"。
 
    ```ts
