@@ -1634,7 +1634,7 @@ getOffset(date?: number): number
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
-| date | number | 否    | 待计算偏差的时刻 |
+| date | number | 否    | 待计算偏差的时刻。 |
 
 **返回值：**
 
