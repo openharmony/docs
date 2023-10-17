@@ -106,8 +106,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   ```ts
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
+    url: 'http://www.example.com', // Replace the example with the actual server address.
+    header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
     data: [{ name: "name123", value: "123" }],
@@ -159,8 +159,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   ```ts
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
+    url: 'http://www.example.com', // Replace the example with the actual server address.
+    header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
     data: [{ name: "name123", value: "123" }],
@@ -215,8 +215,8 @@ Uploads files. This API uses a promise to return the result.
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
+    url: 'http://www.example.com', // Replace the example with the actual server address.
+    header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
     data: [{ name: "name123", value: "123" }],
@@ -257,8 +257,8 @@ Uploads files. This API uses an asynchronous callback to return the result.
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
+    url: 'http://www.example.com', // Replace the example with the actual server address.
+    header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
     data: [{ name: "name123", value: "123" }],
@@ -2826,7 +2826,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
 
-Creates an upload or download task and adds it to the queue. An application can create a maximum of 10 unfinished task. This API uses an asynchronous callback to return the result.
+Creates an upload or download task and adds it to the queue. An application can create a maximum of 10 unfinished tasks. This API uses an asynchronous callback to return the result.
 
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2902,7 +2902,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
-Creates an upload or download task and adds it to the queue. An application can create a maximum of 10 unfinished task. This API uses a promise to return the result.
+Creates an upload or download task and adds it to the queue. An application can create a maximum of 10 unfinished tasks. This API uses a promise to return the result.
 
 
 **Required permissions**: ohos.permission.INTERNET
@@ -3085,7 +3085,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
       console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in showing a upload task.`);
+    console.info(`Succeeded in showing an upload task.`);
   });
   ```
 
@@ -3201,7 +3201,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   request.agent.touch("123456", "token").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in touching a upload task. `);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to touch an upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
