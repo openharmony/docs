@@ -758,20 +758,22 @@ constructor(locale: string)
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| locale | string | 是    | 区域ID |
+| locale | string | 是    | 区域ID。 |
 
 **示例：**
   ```ts
   let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
   ```
 
-### findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
+###findEntityInfo<sup>11+</sup>
+
+findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 **参数：**
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| text | string | 是    | 用于识别实体的文本 |
+| text | string | 是    | 用于识别实体的文本。 |
 
 **返回值：**
 
