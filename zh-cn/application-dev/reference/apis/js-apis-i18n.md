@@ -1541,7 +1541,7 @@ getTimeZone(zoneID?: string): TimeZone
 
 | 类型       | 说明           |
 | -------- | ------------ |
-| TimeZone | 时区ID对应的时区对象。 |
+| [TimeZone](#timezone) | 时区ID对应的时区对象。 |
 
 **示例：** 
   ```js
@@ -1630,7 +1630,13 @@ getOffset(date?: number): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明     |
+| ------ | ------ | ---- | ------ |
+| date | number | 否    | 待计算偏差的时刻 |
+
+**返回值：**
 
 | 类型     | 说明                      |
 | ------ | ----------------------- |
