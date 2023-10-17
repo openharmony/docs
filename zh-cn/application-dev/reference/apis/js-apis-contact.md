@@ -183,7 +183,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -222,7 +222,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
