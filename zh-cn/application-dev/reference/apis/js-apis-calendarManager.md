@@ -33,16 +33,17 @@ getCalendarManager(context : Context): CalendarManager;
 **示例**：
 
 ```ts
-  // 当前示例代码仅适用于ts源文件
   // 获取context
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import common from '@ohos.app.ability.common';
+
+  export let mContext : common.UIAbilityContext | null = null;
   class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
+      mContext = this.context;
     }
   }
-  let calendarManager:CalendarManager = calendarManager.getCalendarManager(globalThis.context as Context)
-    
+  let calendarMgr:calendarManager.CalendarManager = calendarManager.getCalendarManager(mContext as Context);
 ```
 
 ## CalendarManager
@@ -78,7 +79,7 @@ const calendarAccount: calendarManager.CalendarAccount = {
   type: calendarManager.CalendarType.LOCAL
 };
 try {
-  calendarManager.createCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+  calendarMgr.createCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
     if (err) {
       console.error(`Failed to create calendar: err->${JSON.stringify(err)}`);
     } else {
@@ -124,7 +125,7 @@ const calendarAccount: calendarManager.CalendarAccount = {
   type: calendarManager.CalendarType.LOCAL,
   displayName : 'MyApplication'
 };
-calendarManager.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
+calendarMgr.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
   console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
   calendar = data;
 }).catch((error : BusinessError) => {
@@ -158,12 +159,12 @@ const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+calendarMgr.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
   if (err) {
     console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
     console.info("Succeeded in getting calendar");
-    calendarManager.deleteCalendar(data, (err: BusinessError) => {
+    calendarMgr.deleteCalendar(data, (err: BusinessError) => {
       if (err) {
         console.error(`Failed to delete calendar: err->${JSON.stringify(err)}`);
       } else {
@@ -205,9 +206,9 @@ const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.getCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
+calendarMgr.getCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
   console.info("Succeeded in getting calendar");
-  calendarManager.deleteCalendar(data).then(() => {
+  calendarMgr.deleteCalendar(data).then(() => {
     console.info("Succeeded in deleting calendar");
   }).catch((err: BusinessError) => {
     console.error(`Failed to delete calendar: err->${JSON.stringify(err)}`);
@@ -239,7 +240,7 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 import { BusinessError } from '@ohos.base';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
-calendarManager.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+calendarMgr.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
   if (err) {
     console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
@@ -276,7 +277,7 @@ const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+calendarMgr.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
   if (err) {
     console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
@@ -314,7 +315,7 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 import { BusinessError } from '@ohos.base';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
-calendarManager.getCalendar().then((data: calendarManager.Calendar) => {
+calendarMgr.getCalendar().then((data: calendarManager.Calendar) => {
   console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
   calendar = data;
 }).catch((err: BusinessError) => {
@@ -343,7 +344,7 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-calendarManager.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
+calendarMgr.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
   if (err) {
     console.error(`Failed to get all calendars: err->${JSON.stringify(err)}`);
   } else {
@@ -377,7 +378,7 @@ getAllCalendars(): Promise\<Calendar[]>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-calendarManager.getAllCalendars().then((data: calendarManager.Calendar[]) => {
+calendarMgr.getAllCalendars().then((data: calendarManager.Calendar[]) => {
   console.info(`Succeeded in getting all calendars->${JSON.stringify(data)}`);
   data.forEach((calendar) => {
     const account = calendar.getAccount();

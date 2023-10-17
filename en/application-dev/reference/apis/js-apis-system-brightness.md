@@ -12,7 +12,7 @@ The **brightness** module provides APIs for querying and adjusting the screen br
 
 
 ```js
-import brightness from '@system.brightness';
+import brightness, { BrightnessModeResponse, BrightnessResponse } from '@system.brightness';
 ```
 
 

@@ -169,7 +169,7 @@ getSystemResourceManager(): ResourceManager
 
 | 类型                                       | 说明                 |
 | ---------------------------------------- | ------------------ |
-| Resourcemanager | 返回系统资源的管理对象 |
+| [Resourcemanager](#resourcemanager) | 返回系统资源的管理对象 |
 
 **错误码：**
 
@@ -4593,7 +4593,7 @@ getConfigurationSync(): Configuration
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise&lt;[Configuration](#configuration)&gt; | 设备的Configuration |
+| [Configuration](#configuration) | 设备的Configuration |
 
 **示例：** 
   ```ts
@@ -4678,7 +4678,7 @@ getDeviceCapabilitySync(): DeviceCapability
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| DeviceCapability | 设备的DeviceCapability |
+| [DeviceCapability](#devicecapability) | 设备的DeviceCapability |
 
 **示例：** 
   ```ts

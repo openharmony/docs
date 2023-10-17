@@ -43,7 +43,7 @@
 - 在开发者对分布式数据对象进行“读取”或者“赋值”的时候，都会自动调用到set和get方法，映射到对应数据库的操作。
 
 **表1** 分布式数据对象和分布式数据库的对应关系
-  
+
 | 分布式对象实例 | 对象实例 | 属性名称 | 属性值 | 
 | -------- | -------- | -------- | -------- |
 | 分布式内存数据库 | 一个数据库（sessionID标识） | 一条数据库记录的key | 一条数据库记录的value | 
@@ -75,7 +75,7 @@
 关于分布式数据对象的数据同步，值得注意的是，同步的最小单位是“属性”。比如，下图中对象1包含三个属性：name、age和parents。当其中一个属性变更时，则数据同步时只需同步此变更的属性。
 
 **图3** 数据同步视图 
- 
+
 
 ![distributedObject_syncView](figures/distributedObject_syncView.jpg)
 
@@ -116,20 +116,20 @@
 
 以下是分布式对象跨设备数据同步功能的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[分布式数据对象](../reference/apis/js-apis-data-distributedobject.md)。
 
-> **说明：**
->
-> 本模块接口仅支持在JS文件中使用。
 
-| 接口名称 | 描述 | 
+
+| 接口名称 | 描述 |
 | -------- | -------- |
-| create(context: Context, source: object): DataObject | 创建并得到一个分布式数据对象实例。 | 
-| genSessionId(): string | 创建一个sessionId，可作为分布式数据对象的sessionId。 | 
-| setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void | 设置同步的sessionId，当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。 | 
-| setSessionId(callback: AsyncCallback&lt;void&gt;): void | 退出所有已加入的session。 | 
-| on(type: 'change', callback: Callback&lt;{ sessionId: string, fields: Array&lt;string&gt; }&gt;): void | 监听分布式数据对象的数据变更。 | 
-| on(type: 'status', callback: Callback&lt;{ sessionId: string, networkId: string, status: 'online' \| 'offline' }&gt;): void | 监听分布式数据对象的上下线。 | 
-| save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | 保存分布式数据对象。 | 
-| revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | 撤回保存的分布式数据对象。 | 
+| create(context: Context, source: object): DataObject | 创建并得到一个分布式数据对象实例。 |
+| genSessionId(): string | 创建一个sessionId，可作为分布式数据对象的sessionId。 |
+| setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void | 设置同步的sessionId，当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。 |
+| setSessionId(callback: AsyncCallback&lt;void&gt;): void | 退出所有已加入的session。 |
+| on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void | 监听分布式数据对象的数据变更。 |
+| off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void | 取消监听分布式数据对象的数据变更。 |
+| on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void): void | 监听分布式数据对象的上下线。 |
+| off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | 取消监听分布式数据对象的上下线。 |
+| save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | 保存分布式数据对象。 |
+| revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | 撤回保存的分布式数据对象。 |
 
 
 ## 开发步骤
@@ -137,8 +137,8 @@
 以一次分布式数据对象同步为例，说明开发步骤。
 
 1. 导入`@ohos.data.distributedDataObject`模块。
-     
-   ```js
+
+   ```ts
    import distributedDataObject from '@ohos.data.distributedDataObject';
    ```
 
@@ -150,118 +150,149 @@
 3. 创建并得到一个分布式数据对象实例。
 
    Stage模型示例：
-     
-   ```js
+   
+   ```ts
    // 导入模块
    import distributedDataObject from '@ohos.data.distributedDataObject';
    import UIAbility from '@ohos.app.ability.UIAbility';
-   
+   import { BusinessError } from '@ohos.base';
+   import window from '@ohos.window';
+
+   class ParentObject {
+     mother: string
+     father: string
+
+     constructor(mother: string, father: string) {
+       this.mother = mother
+       this.father = father
+     }
+   }
+   class SourceObject {
+     name: string | undefined
+     age: number | undefined
+     isVis: boolean | undefined
+     parent: Object | undefined
+
+     constructor(name: string | undefined, age: number | undefined, isVis: boolean | undefined, parent: ParentObject | undefined) {
+       this.name = name
+       this.age = age
+       this.isVis = isVis
+       this.parent = parent
+     }
+   }
+
    class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
-       // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
-       let localObject = distributedDataObject.create(this.context, {
-         name: 'jack',
-         age: 18,
-         isVis: false,
-         parent: { mother: 'jack mom', father: 'jack Dad' },
-         list: [{ mother: 'jack mom' }, { father: 'jack Dad' }]
-       });
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       let parentSource: ParentObject = new ParentObject('jack mom', 'jack Dad');
+       let source: SourceObject = new SourceObject("amy", 18, false, parentSource);
+       let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, source);
      }
    }
    ```
 
    FA模型示例：
 
-     
-   ```js
+   ```ts
    // 导入模块
    import distributedDataObject from '@ohos.data.distributedDataObject';
    import featureAbility from '@ohos.ability.featureAbility';
    // 获取context
    let context = featureAbility.getContext();
+   class ParentObject {
+     mother: string
+     father: string
+     constructor(mother: string, father: string) {
+       this.mother = mother
+       this.father = father
+     }
+   }
+   class SourceObject {
+     name: string | undefined
+     age: number | undefined
+     isVis: boolean | undefined
+     parent: ParentObject | undefined
+     constructor(name: string | undefined, age: number | undefined, isVis: boolean | undefined, parent: ParentObject | undefined) {
+       this.name = name
+       this.age = age
+       this.isVis = isVis
+       this.parent = parent
+     }
+   }
+   let parentSource: ParentObject = new ParentObject('jack mom', 'jack Dad');
+   let source: SourceObject = new SourceObject("amy", 18, false, parentSource);
    // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
-   let localObject = distributedDataObject.create(context, {
-     name: 'jack',
-     age: 18,
-     isVis: false,
-     parent: { mother: 'jack mom', father: 'jack Dad' },
-     list: [{ mother: 'jack mom' }, { father: 'jack Dad' }]
-   });
+   let localObject: distributedDataObject.DataObject = distributedDataObject.create(context, source);
    ```
 
 4. 加入同步组网。同步组网中的数据对象分为发起方和被拉起方。
-     
-   ```js
+
+   ```ts
    // 设备1加入sessionId
-   let sessionId = '123456';
+   let sessionId: string = '123456';
    
    localObject.setSessionId(sessionId);
    
    // 和设备1协同的设备2加入同一个session
    
    // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
-   let remoteObject = distributedDataObject.create(this.context, {
-     name: undefined,
-     age: undefined, //  undefined表示数据来自对端
-     isVis: true,
-     parent: undefined,
-     list: undefined
-   });
+   let remoteSource: SourceObject = new SourceObject(undefined, undefined, undefined, undefined);
+   let remoteObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, remoteSource);
    // 收到status上线后remoteObject同步数据，即name变成jack,age是18
    remoteObject.setSessionId(sessionId);
    ```
 
 5. 监听对象数据变更。可监听对端数据的变更，以callback作为变更回调实例。
-     
-   ```js
-   localObject.on("change", ({sessionId, fields}) => {
+
+   ```ts
+   localObject.on("change", (sessionId: string, fields: Array<string>) => {
      console.info("change" + sessionId);
      if (fields != null && fields != undefined) {
-       fields.forEach(element => {
-         console.info("changed !" + element + " " + localObject[element]);
-       });
+       for (let index: number = 0; index < fields.length; index++) {
+         console.info(`The element ${localObject[fields[index]]} changed.`);
+       }
      }
-   })
+   });
    ```
 
 6. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
-     
-   ```js
-   localObject.name = 'jack1';
-   localObject.age = 19;
-   localObject.isVis = false;
-   localObject.parent = { mother: 'jack1 mom', father: 'jack1 Dad' };
-   localObject.list = [{ mother: 'jack1 mom' }, { father: 'jack1 Dad' }];
+
+   ```ts
+   localObject["name"] = 'jack1';
+   localObject["age"] = 19;
+   localObject["isVis"] = false;
+   let parentSource1: ParentObject = new ParentObject('jack1 mom', 'jack1 Dad');
+   localObject["parent"] = parentSource1;
    ```
 
    > **说明：**
    >
    > 针对复杂类型的数据修改，目前仅支持对根属性的修改，暂不支持对下级属性的修改。
 
-     
-   ```js
+
+   ```ts
    // 支持的修改方式
-   localObject.parent = { mother: 'mom', father: 'dad' };
+   let parentSource1: ParentObject = new ParentObject('mom', 'Dad');
+   localObject["parent"] = parentSource1;
    // 不支持的修改方式
-   localObject.parent.mother = 'mom';
+   localObject["parent"]["mother"] = 'mom';
    ```
 
 7. 访问对象。可以通过直接获取的方式访问到分布式数据对象的属性，且该数据为组网内的最新数据。
-     
-   ```js
+
+   ```ts
    console.info(`name:${localObject['name']}`); 
    ```
 
 8. 删除监听数据变更。可以指定删除监听的数据变更回调；也可以不指定，这将会删除该分布式数据对象的所有数据变更回调。
-     
-   ```js
-   // 删除变更回调changeCallback
-   localObject.off('change', ({sessionId, fields}) => {
+
+   ```ts
+   // 删除变更回调
+   localObject.off('change', (sessionId: string, fields: Array<string>) => {
      console.info("change" + sessionId);
      if (fields != null && fields != undefined) {
-       fields.forEach(element => {
-         console.info("changed !" + element + " " + localObject[element]);
-       });
+       for (let index: number = 0; index < fields.length; index++) {
+         console.info("changed !" + fields[index] + " " + localObject[fields[index]]);
+       }
      }
    });
    // 删除所有的变更回调
@@ -269,36 +300,38 @@
    ```
 
 9. 监听分布式数据对象的上下线。可以监听对端分布式数据对象的上下线。
-     
-   ```js
-   localObject.on('status', ({sessionId, networkId, status}) => {
+
+   ```ts
+   localObject.on('status', (sessionId: string, networkId: string, status: 'online' | 'offline') => {
+     console.info("status changed " + sessionId + " " + status + " " +  networkId);
      // 业务处理
    });
    ```
 
 10. 保存和撤回已保存的数据对象。
-     
-    ```js
+
+    ```ts
     // 保存数据对象，如果应用退出后组网内设备需要恢复对象数据时调用
-    localObject.save('local').then((result) => {
+    localObject.save("local").then((result: distributedDataObject.SaveSuccessResponse) => {
       console.info(`Succeeded in saving. SessionId:${result.sessionId},version:${result.version},deviceId:${result.deviceId}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to save. Code:${err.code},message:${err.message}`);
     });
    
     // 撤回保存的数据对象
-    localObject.revokeSave().then((result) => {
+    localObject.revokeSave().then((result: distributedDataObject.RevokeSaveSuccessResponse) => {
       console.info(`Succeeded in revokeSaving. Session:${result.sessionId}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to revokeSave. Code:${err.code},message:${err.message}`);
     });
     ```
 
 11. 删除监听分布式数据对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
-     
-    ```js
-    // 删除上下线回调statusCallback
-    localObject.off('status', ({sessionId, deviceId, status}) => {
+
+    ```ts
+    // 删除上下线回调
+    localObject.off('status', (sessionId: string, networkId: string, status: 'online' | 'offline') => {
+      console.info("status changed " + sessionId + " " + status + " " + networkId);
       // 业务处理
     });
     // 删除所有的上下线回调
@@ -306,10 +339,10 @@
     ```
 
 12. 退出同步组网。分布式数据对象退出组网后，本地的数据变更对端不会同步。
-     
-    ```js
+
+    ```ts
     localObject.setSessionId(() => {
-        console.info('leave all session.');
+      console.info('leave all session.');
     });
     ```
 
@@ -317,6 +350,6 @@
 
 针对分布式数据对象开发，有以下相关实例可供参考：
 
-- [分布式组网认证（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedAuthentication)
+- [分布式组网认证（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SuperFeature/DistributedAppDev/DistributedAuthentication)
 
-- [分布式对象（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedNote)
+- [分布式对象（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SuperFeature/DistributedAppDev/DistributedNote)

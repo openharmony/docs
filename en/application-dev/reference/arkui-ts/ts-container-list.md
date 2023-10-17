@@ -223,7 +223,7 @@ struct ListExample {
         console.info('center' + centerIndex)
       })
       .onScroll((scrollOffset: number, scrollState: ScrollState) => {
-        console.info(`onScroll scrollState = ${ScrollState[scrollState]}, scrollOffset = ${[scrollOffset]}`)
+        console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
       })
       .width('90%')
     }

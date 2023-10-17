@@ -614,8 +614,8 @@ Represents the usage records of a permission.
 | lastAccessTime | number         | Yes   | Last time when the permission was accessed, accurate to ms.|
 | lastRejectTime | number         | Yes   | Last time when the access to the permission was rejected, accurate to ms.|
 | lastAccessDuration | number         | Yes   | Last access duration, in ms.|
-| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Successful access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_SUMMARY**. By default, 10 records are provided.                                |
-| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Rejected access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_SUMMARY**. By default, 10 records are provided.                                |
+| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Successful access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_DETAIL**. By default, 10 records are provided.                                |
+| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Rejected access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_DETAIL**. By default, 10 records are provided.                                |
 
 ## UsedRecordDetail
 
@@ -626,8 +626,10 @@ Represents the details of a single access record.
 | Name      | Type            | Mandatory  | Description                                      |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | status  | number         | Yes   | Access status.                                |
+| lockScreenStatus<sup>11+</sup>  | number         | No   | Screen lock status during the access.                                |
 | timestamp | number         | Yes   | Access timestamp, in ms.|
 | accessDuration  | number         | Yes   | Access duration, in ms.                                |
+| count<sup>11+</sup> | number | No| Number of successful or failed accesses.
 
 ## PermissionActiveStatus
 
@@ -640,6 +642,17 @@ Enumerates the permission usage statuses.
 | PERM_INACTIVE             | 0      | The permission is not used.  |
 | PERM_ACTIVE_IN_FOREGROUND | 1      | The permission is being used by an application running in the foreground.|
 | PERM_ACTIVE_IN_BACKGROUND | 2      | The permission is being used by an application running in the background.|
+
+## LockScreenChangeType<sup>11+</sup>
+
+Enumerates the permission usage statuses.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+| Name                     | Value    | Description             |
+| ------------------------- | ------ | ---------------- |
+| PERM_ACTIVE_IN_UNLOCKED | 1      | Permission to use when the screen is unlocked.|
+| PERM_ACTIVE_IN_LOCKED | 2      | Permission to use when the screen is locked.|
 
 ## ActiveChangeResponse
 

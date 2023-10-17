@@ -38,8 +38,8 @@ Creates a toggle. In this API, **ToggleType** indicates the toggle type, which c
   ![en-us_image_0000001511421228](figures/en-us_image_0000001511421228.png)
 
 
-- Create a toggle that contains child components.
-  This can be achieved by calling the API with **ToggleType** set to **Button**. If the child component has text set, the text content is displayed inside the button.
+- Create a toggle that contains a child component.
+  This can be achieved by calling the API with **ToggleType** set to **Button**. Only one child component is allowed. If the child component has text set, the text content is displayed inside the button.
 
 
   ```ts
@@ -115,12 +115,14 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 struct ToggleExample {
+  @State BOnSt:promptAction.ShowToastOptions = {'message': 'Bluetooth is on.'}
+  @State BOffSt:promptAction.ShowToastOptions = {'message': 'Bluetooth is off.'}
   build() {
     Column() {
       Row() {
         Text("Bluetooth Mode")
-        .height(50)
-        .fontSize(16)
+          .height(50)
+          .fontSize(16)
       }
       Row() {
         Text("Bluetooth")
@@ -133,11 +135,9 @@ struct ToggleExample {
           .margin({left: 200, right: 10})
           .onChange((isOn: boolean) => {
             if(isOn) {
-              let st:Record<string,string> = {'message': 'Bluetooth is on.'}
-              promptAction.showToast(st)
+              promptAction.showToast(this.BOnSt)
             } else {
-              let st:Record<string,string> = {'message': 'Bluetooth is off.'}
-              promptAction.showToast(st)
+              promptAction.showToast(this.BOffSt)
             }
           })
       }

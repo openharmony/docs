@@ -16,6 +16,50 @@
 import deviceSettings from '@ohos.enterprise.deviceSettings';
 ```
 
+## deviceSettings.setScreenOffTime<sup>11+</sup>
+
+setScreenOffTime(admin: Want, time: number): void
+
+以同步方法指定设备管理应用设置设备息屏时间。成功返回null，失败抛出对应异常。
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| time | number            | 是    | 设备息屏时间(单位：毫秒，建议参数与设备可选息屏时间保持一致)       |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  deviceSettings.setScreenOffTime(wantTemp, 30000);
+  console.info(`Succeeded in setting screen off time`);
+} catch(err) {
+  console.error(`Failed to set screen off time. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## deviceSettings.getScreenOffTime
 
 getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void

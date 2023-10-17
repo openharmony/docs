@@ -1910,13 +1910,13 @@ ArkTS不支持通过注释的方式绕过严格类型检查。首先将注释（
 
 ## arkts-no-tsdeps
 
-ets文件可以import ets、ts、js文件源码，但是不允许ts、js文件import ets文件源码
+不允许.ts、.js文件`import`.ets文件源码。
 
 **建议改法**
 
-方式1.将ts文件修改后缀成ets。  
-方式2.将被依赖的ets文件后缀改成ts。  
-方式3.将ets中被ts导入的接口分拆成ts文件。
+方式1.将.ts文件的后缀修改成ets，按照ArkTS语法规则适配代码。
+
+方式2.将.ets文件中被.ts文件依赖的代码单独抽取到.ts文件中。
 
 ## arkts-no-special-imports
 

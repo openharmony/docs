@@ -105,5 +105,7 @@
   - [企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
 - 语言基础类库
   - [语言基础类库错误码](errorcode-utils.md)
+- 应用服务
+  - [广告标识服务错误码](errorcode-oaid.md)
 - 测试
   - [uitest错误码](errorcode-uitest.md)
