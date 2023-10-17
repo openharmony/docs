@@ -564,4 +564,4 @@ This API is supported in ArkTS widgets.
 | Name   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | DEFAULT | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.|
-| INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.            |
+| INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>The **showError** attribute is not supported for this style.|
