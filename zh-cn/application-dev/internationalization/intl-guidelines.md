@@ -30,7 +30,7 @@
 
 2. 实例化Locale对象。
 
-   使用Locale的构造函数创建Locale对象，该方法接收一个表示Locale的字符串及可选的[属性](../reference/apis/js-apis-intl.md#localeoptions)列表（intl为导入的模块名）。
+   使用Locale的构造函数创建Locale对象，该方法接收一个表示Locale的字符串及可选的[属性](../reference/apis/js-apis-intl.md#localeoptions)列表（Intl为导入的模块名）。
 
    表示Locale的字符串参数可以分为以下四部分：语言、脚本、地区、扩展参数。各个部分按照顺序使用中划线“-”进行连接。
    -  语言：必选，使用2个或3个小写英文字母表示（可参考ISO-639标准），例如英文使用“en”表示，中文使用“zh”表示。
@@ -147,7 +147,7 @@
    ```ts
    let options: Intl.DateTimeOptions = {dateStyle: "full", timeStyle: "full"};
    let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
-   let resolvedOptions = dateTimeFormat.resolvedOptions(); // resolvedOptions = {"locale": "zh-CN", "calendar": "gregorian", "dateStyle":"full", "timeStyle":"full", "timeZone": "CST"}
+   let resolvedOptions = dateTimeFormat.resolvedOptions(); // resolvedOptions = {"locale": "zh-CN", "calendar": "gregorian", "dateStyle":"full", "timeStyle":"full", "timeZone": "Asia/Shanghai"}
    ```
 
 ## 数字格式化
@@ -175,7 +175,7 @@
 
 2. 实例化数字格式化对象。
 
-   一种方法是使用NumberFormat提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（intl为导入的模块名）。
+   一种方法是使用NumberFormat提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（Intl为导入的模块名）。
 
    ```ts
    let numberFormat = new Intl.NumberFormat();
@@ -206,7 +206,7 @@
    ```ts
    let options: Intl.NumberOptions = {compactDisplay: "short", notation: "compact"};
    let numberFormat = new Intl.NumberFormat("zh-CN", options);
-   let resolvedOptions = numberFormat.resolvedOptions();  // resolvedOptions = {"locale": "zh-CN", "compactDisplay": "short", "notation": "compact", "numberingSystem": "Latn"}
+   let resolvedOptions = numberFormat.resolvedOptions();  // resolvedOptions = {"locale": "zh-CN", "currencySign": "standard", "signDisplay": "auto", "compactDisplay": "short", "notation": "compact", "numberingSystem": "Latn"}
    ```
 
 ## 字符串排序
@@ -234,7 +234,7 @@
 
 2. 实例化排序对象。
 
-   一种方法是使用Collator提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（intl为导入的模块名）。
+   一种方法是使用Collator提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（Intl为导入的模块名）。
 
    ```ts
    let collator = new Intl.Collator();
@@ -295,7 +295,7 @@
 
 2. 实例化单复数对象。
 
-   一种方法是使用PluralRules提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（intl为导入的模块名）。
+   一种方法是使用PluralRules提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（Intl为导入的模块名）。
 
    ```ts
    let pluralRules = new Intl.PluralRules();
@@ -343,7 +343,7 @@
 
 2. 实例化相对时间格式化对象。
 
-   一种方法是使用RelativeTimeFormat提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（intl为导入的模块名）。
+   一种方法是使用RelativeTimeFormat提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（Intl为导入的模块名）。
    
    ```ts
    let relativeTimeFormat = new Intl.RelativeTimeFormat();
