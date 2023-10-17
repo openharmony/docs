@@ -67,7 +67,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   调用方式：
 
   ```
-  Image($rawfile('snap'))
+  Image($rawfile('example1'))
   ```
 
 - 媒体库file://data/storage
@@ -150,7 +150,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 
 2. 引用多媒体。
 
-   请求网络图片请求，解码编码PixelMap。
+   请求网络图片，解码编码PixelMap。
 
    1. 引用网络权限与媒体库权限。
        ```ts
