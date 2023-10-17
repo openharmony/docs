@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.keyEvent (按键输入事件)
 
-设备上报的按键事件。
+设备上报的按键事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
 >  **说明：**
 >
