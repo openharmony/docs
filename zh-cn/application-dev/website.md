@@ -682,7 +682,7 @@
     - [国际化开发概述](internationalization/international-overview.md)
     - [Intl开发指导](internationalization/intl-guidelines.md)
     - [I18n开发指导](internationalization/i18n-guidelines.md)
-  - 增值服务
+  - 应用服务
     - [广告标识服务](ads-service/oaid/oaid-service.md)
   - 应用测试
     - [自动化测试框架使用指导](application-test/arkxtest-guidelines.md)
@@ -1248,7 +1248,7 @@
       - [@ohos.util.Vector (线性容器Vector)](reference/apis/js-apis-vector.md)
       - [@ohos.worker (启动一个Worker)](reference/apis/js-apis-worker.md)
       - [@ohos.xml (xml解析与生成)](reference/apis/js-apis-xml.md)
-    - 广告
+    - 应用服务
       - [@ohos.identifier.oaid (广告标识服务)](reference/apis/js-apis-oaid.md)
     - 测试
       - [@ohos.application.testRunner (TestRunner)](reference/apis/js-apis-application-testRunner.md)
@@ -1797,7 +1797,7 @@
       - [企业设备管理错误码](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - 语言基础类库
       - [语言基础类库错误码](reference/errorcodes/errorcode-utils.md)
-    - 广告
+    - 应用服务
       - [广告标识服务错误码](reference/errorcodes/errorcode-oaid.md)
     - 测试
       - [uitest错误码](reference/errorcodes/errorcode-uitest.md)
