@@ -296,6 +296,8 @@ Defines the resource information of an application.
 | bundleName | string | Yes   | No| Bundle name of the application.|
 | moduleName | string | Yes   | No| Module name of the application.|
 | id         | number | Yes   | No| Resource ID.     |
+| params     | any[] | Yes   | No| Other resource parameters, which are optional.     |
+| type       | number | Yes   | No| Resource type, which is optional.     |
 
 
 ## ResourceManager

@@ -1,7 +1,6 @@
 # USB Service Development
 
 
-
 ## When to Use
 
 In Host mode, you can obtain the list of connected USB devices, enable or disable the devices, manage device access permissions, and perform data transfer or control transfer.

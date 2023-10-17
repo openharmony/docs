@@ -1006,8 +1006,8 @@ Enumerates mouse pointer styles.
 | NORTH_EAST_SOUTH_WEST            | 11   | North-east and south-west adjustment|![North_East_South_West.png](./figures/North_East_South_West.png)|
 | NORTH_WEST_SOUTH_EAST            | 12   | North-west and south-east adjustment|![North_West_South_East.png](./figures/North_West_South_East.png)|
 | CROSS                            | 13   | Cross (accurate selection)  |![Cross.png](./figures/Cross.png)|
-| CURSOR_COPY                      | 14   | Copy cursor    |![Copy.png](./figures/Copy.png)|
-| CURSOR_FORBID                    | 15   | Forbid cursor   |![Forbid.png](./figures/Forbid.png)|
+| CURSOR_COPY                      | 14   | Copy    |![Copy.png](./figures/Copy.png)|
+| CURSOR_FORBID                    | 15   | Forbid   |![Forbid.png](./figures/Forbid.png)|
 | COLOR_SUCKER                     | 16   | Sucker    |![Colorsucker.png](./figures/Colorsucker.png)|
 | HAND_GRABBING                    | 17   | Grabbing hand  |![Hand_Grabbing.png](./figures/Hand_Grabbing.png)|
 | HAND_OPEN                        | 18   | Opening hand  |![Hand_Open.png](./figures/Hand_Open.png)|
@@ -1017,8 +1017,8 @@ Enumerates mouse pointer styles.
 | RESIZE_LEFT_RIGHT                | 22   | Left and right resizing|![Resize_Left_Right.png](./figures/Resize_Left_Right.png)|
 | RESIZE_UP_DOWN                   | 23   | Up and down resizing|![Resize_Up_Down.png](./figures/Resize_Up_Down.png)|
 | SCREENSHOT_CHOOSE                | 24   | Screenshot crosshair|![Screenshot_Cross.png](./figures/Screenshot_Cross.png)|
-| SCREENSHOT_CURSOR                | 25   | Screenshot cursor    |![Screenshot_Cursor.png](./figures/Screenshot_Cursor.png)|
-| TEXT_CURSOR                      | 26   | Text cursor  |![Text_Cursor.png](./figures/Text_Cursor.png)|
+| SCREENSHOT_CURSOR                | 25   | Screenshot    |![Screenshot_Cursor.png](./figures/Screenshot_Cursor.png)|
+| TEXT_CURSOR                      | 26   | Text selection  |![Text_Cursor.png](./figures/Text_Cursor.png)|
 | ZOOM_IN                          | 27   | Zoom in    |![Zoom_In.png](./figures/Zoom_In.png)|
 | ZOOM_OUT                         | 28   | Zoom out    |![Zoom_Out.png](./figures/Zoom_Out.png)|
 | MIDDLE_BTN_EAST                  | 29   | Scrolling east  |![MID_Btn_East.png](./figures/MID_Btn_East.png)|
@@ -1031,9 +1031,9 @@ Enumerates mouse pointer styles.
 | MIDDLE_BTN_SOUTH_EAST            | 36   | Scrolling south-east |![MID_Btn_South_East.png](./figures/MID_Btn_South_East.png)|
 | MIDDLE_BTN_SOUTH_WEST            | 37   | Scrolling south-west |![MID_Btn_South_West.png](./figures/MID_Btn_South_West.png)|
 | MIDDLE_BTN_NORTH_SOUTH_WEST_EAST | 38   | Moving as a cone in four directions|![MID_Btn_North_South_West_East.png](./figures/MID_Btn_North_South_West_East.png)|
-| HORIZONTAL_TEXT_CURSOR<sup>10+</sup> | 39 | Horizontal text cursor|![Horizontal_Text_Cursor.png](./figures/Horizontal_Text_Cursor.png)|
-| CURSOR_CROSS<sup>10+</sup> | 40 | Cross cursor|![Cursor_Cross.png](./figures/Cursor_Cross.png)|
-| CURSOR_CIRCLE<sup>10+</sup> | 41 | Circular cursor|![Cursor_Circle.png](./figures/Cursor_Circle.png)|
+| HORIZONTAL_TEXT_CURSOR<sup>10+</sup> | 39 | Horizontal text selection|![Horizontal_Text_Cursor.png](./figures/Horizontal_Text_Cursor.png)|
+| CURSOR_CROSS<sup>10+</sup> | 40 | Cross|![Cursor_Cross.png](./figures/Cursor_Cross.png)|
+| CURSOR_CIRCLE<sup>10+</sup> | 41 | Circle|![Cursor_Circle.png](./figures/Cursor_Circle.png)|
 | LOADING<sup>10+</sup> | 42 | Animation loading|![Loading.png](./figures/Loading.png)|
 | RUNNING<sup>10+</sup> | 43 | Animation running in the background|![Running.png](./figures/Running.png)|
 
@@ -1410,7 +1410,7 @@ try {
 
 setTouchpadPointerSpeed(speed: number, callback: AsyncCallback\<void>): void
 
-Sets the cursor moving speed of the touchpad. This API uses an asynchronous callback to return the result.
+Sets the mouse pointer moving speed of the touchpad. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -1420,7 +1420,7 @@ Sets the cursor moving speed of the touchpad. This API uses an asynchronous call
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed | number                    | Yes   |Cursor moving speed of the touchpad. The value range is [1,11]. The default value is **5**. |
+| speed | number                    | Yes   |Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **5**. |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Example**
@@ -1443,7 +1443,7 @@ try {
 
 setTouchpadPointerSpeed(speed: number): Promise\<void>
 
-Sets the cursor moving speed of the touchpad. This API uses a promise to return the result.
+Sets the mouse pointer moving speed of the touchpad. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -1453,7 +1453,7 @@ Sets the cursor moving speed of the touchpad. This API uses a promise to return 
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed| number | Yes   | Cursor moving speed of the touchpad. The value range is [1,11]. The default value is **5**.   |
+| speed| number | Yes   | Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **5**.   |
 
 **Return value**
 
@@ -1477,7 +1477,7 @@ try {
 
 getTouchpadPointerSpeed(callback: AsyncCallback\<number>): void
 
-Obtains the cursor moving speed of the touchpad. This API uses an asynchronous callback to return the result.
+Obtains the mouse pointer moving speed of the touchpad. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -1505,7 +1505,7 @@ try {
 
 getTouchpadPointerSpeed(): Promise\<number>
 
-Obtains the cursor moving speed of the touchpad. This API uses a promise to return the result.
+Obtains the mouse pointer moving speed of the touchpad. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
