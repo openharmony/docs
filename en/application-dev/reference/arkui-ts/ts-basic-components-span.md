@@ -1,6 +1,6 @@
 # Span
 
-The **\<Span>** component is used to display inline text in the **\<Text>** component.
+As a child of the **\<Text>** and **\<RichEditor>** components, the **\<Span>** component is used to display inline text.
 
 >  **NOTE**
 >
