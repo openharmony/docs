@@ -177,6 +177,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification is failed. |
 | 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
 
 **示例：**
 
@@ -258,6 +259,7 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification is failed. |
 | 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
 
 **示例：**
 
@@ -343,6 +345,7 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification is failed. |
 | 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
 
 **示例：**
 
