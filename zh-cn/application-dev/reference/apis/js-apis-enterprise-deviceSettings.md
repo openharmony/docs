@@ -457,9 +457,9 @@ getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy;
 
 **返回值：**
 
-| 类型   | 说明                                  |
-| ----- | ----------------------------------- |
-| PowerPolicy | [PowerPolicy](#powerPolicy) | 是    | 电源策略       |
+| 类型   | 说明                                  | 说明                       |
+| ----- | ----------------------------------- |------------------------------- |
+| PowerPolicy | [PowerPolicy](#powerPolicy) |   电源策略       |
 
 **错误码**：
 
