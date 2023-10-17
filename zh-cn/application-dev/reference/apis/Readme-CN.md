@@ -489,7 +489,7 @@
   - [@ohos.worker (启动一个Worker)](js-apis-worker.md)
   - [@ohos.xml (xml解析与生成)](js-apis-xml.md)
 
-- 广告
+- 应用服务
   - [@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
 
 - 测试
