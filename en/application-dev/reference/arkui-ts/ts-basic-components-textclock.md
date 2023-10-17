@@ -69,7 +69,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name                                        | Description                                                    |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| onDateChange(event: (value: number) => void) | Called when the time changes in seconds at minimum.<br>- **value**: Unix time stamp, which is the number of milliseconds that have elapsed since the Unix epoch.|
+| onDateChange(event: (value: number) => void) | Called when the time changes in seconds.<br>- **value**: Unix time stamp, which is the number of seconds that have elapsed since the Unix epoch.|
 
 ## TextClockController
 
