@@ -486,11 +486,11 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 
 **参数：** 
 
-| 参数名   | 类型                                          | 必填 | 说明                                                        |
-| -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。                       |
-| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HallResponse。          |
-| options  | [Options](#options)                           | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+| 参数名   | 类型                                          | 必填 | 说明                                                         |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。                        |
+| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HallResponse。           |
+| options  | [Options](#options)                           | 否   | 可选参数列表，默认值为200000000ns。当霍尔事件被触发的很频繁时，该参数用于限定事件上报的频率。 |
 
 **错误码**： 
 
@@ -895,11 +895,11 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                        |
-| -------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。                  |
-| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ProximityResponse。     |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。                   |
+| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ProximityResponse。      |
+| options  | [Options](#options)                                     | 否   | 可选参数列表，默认值为200000000ns。当接近光事件被触发的很频繁时，该参数用于限定事件上报的频率。 |
 
 **错误码**： 
 
@@ -4284,7 +4284,7 @@ try {
 
 | 名称   | 类型   | 可读 | 可写 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| scalar | number | 是   | 是   | 表示剧烈运动程度。测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；如果取值为1则代表存在大幅度运动，取值为0则代表没有大幅度运动。 |
+| scalar | number | 是   | 是   | 表示剧烈运动程度。测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；若存在大幅度运动则数据上报为1。 |
 
 
 ## ProximityResponse
@@ -4904,7 +4904,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PROXIMITY      | 是   | 要订阅的接近光传感器类型为SENSOR_TYPE_ID_PROXIMITY。         |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 注册接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+| options  | [Options](#options)                                     | 否   | 可选参数列表，默认值为200000000ns。当接近光事件被触发的很频繁时，该参数用于限定事件上报的频率。 |
 
 **示例：** 
 
@@ -4994,7 +4994,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HALL | 是   | 要订阅的霍尔传感器类型为SENSOR_TYPE_ID_HALL。                |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 注册霍尔传感器的回调函数，上报的数据类型为&nbsp;HallResponse。 |
-| options  | [Options](#options)                           | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+| options  | [Options](#options)                           | 否   | 可选参数列表，默认值为200000000ns。当霍尔事件被触发的很频繁时，该参数用于限定事件上报的频率。 |
 
 **示例：** 
 
