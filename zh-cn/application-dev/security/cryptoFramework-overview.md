@@ -432,6 +432,10 @@ HMAC（Hash-based Message Authentication Code）是一种基于密钥的消息�
 
 ### HMAC密钥生成规格
 
+> **说明：**
+>
+> 从API version 11开始， 支持HMAC密钥生成。
+
 - 支持以字符串参数来生成HMAC密钥，其生成参数如下表所示：
 
   |对称密钥算法|摘要算法|密钥长度（bit）|字符串参数|

@@ -302,6 +302,10 @@ function convertSM2AsyKey() {
 
 ### 随机生成HMAC密钥，并获得二进制数据
 
+ > **说明：**
+ >
+ > 从API version 11开始， 支持HMAC密钥随机生成。
+
 示例9：随机生成HMAC算法中使用的对称密钥SymKey，并获得二进制数据（场景1、3）
 
 1. 创建对称密钥生成器。
@@ -328,6 +332,10 @@ function testGenerateHmacKey() {
 ```
 
 ### 根据HMAC密钥二进制数据，生成密钥
+
+ > **说明：**
+ >
+ > 从API version 11开始， 支持HMAC密钥转换。
 
 示例10：根据指定的HMAC对称密钥二进制数据，生成HMAC算法中使用的对称密钥SymKey（场景1、3）
 
