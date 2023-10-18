@@ -316,7 +316,6 @@ function convertSM2AsyKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
-import { BusinessError } from '@ohos.base';
 
 function testGenerateHmacKey() {
   // Create a SymKeyGenerator instance.
@@ -351,7 +350,6 @@ function testGenerateHmacKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
-import { BusinessError } from '@ohos.base';
 
 function stringToUint8Array(str) {
   let arr = [];
@@ -371,10 +369,10 @@ function testConvertHmacKey() {
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator("HMAC");
   symKeyGenerator.convertKey(keyBlob, (error, symKey) => {
     if (error) {
-      AlertDialog.show({ message: "Convert symKey fail" });
+      console.info('Convert symKey fail!');
       return;
     }
-    AlertDialog.show({ message: "Convert symKey success" });
+    console.info('Convert symKey success!');
   })
 }
 ```
@@ -421,7 +419,6 @@ function testConvertHmacKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
-import { BusinessError } from '@ohos.base';
 
 // Print bigint information.
 function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
