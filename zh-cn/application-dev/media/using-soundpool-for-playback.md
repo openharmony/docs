@@ -216,7 +216,7 @@ struct Soundpool {
     rate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
     leftVolume: number = 0.5, // range = 0.0-1.0
     rightVolume: number = 0.5, // range = 0.0-1.0
-    priority: number = 0 // 最低优先级
+    priority: number = 0, // 最低优先级
     parallelPlayFlag: boolean = false // 不和其它正在播放的音频并行播放
   }
   private uri: string = "";
@@ -230,7 +230,7 @@ struct Soundpool {
     // 加载音频资源
     await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
       console.info("file fd: " + file.fd);
-      uri = 'fd://' + (file.fd).toString()
+      this.uri = 'fd://' + (file.fd).toString()
     }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
     this.soundId = await this.soundPool.load(this.uri);
   }
