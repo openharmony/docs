@@ -157,8 +157,8 @@
 - 值： usual.event.CONFIGURATION_CHANGED
 - 订阅者所需权限： 无
 
-## COMMON_EVENT_LOCALE_CHANGED
-（预留事件，暂未支持）表示设备区域设置已更改的公共事件的操作。
+## [COMMON_EVENT_LOCALE_CHANGED](./common_event/commonEvent-locale.md)
+表示设备区域设置已更改的公共事件的操作。
 - 值： usual.event.LOCALE_CHANGED
 - 订阅者所需权限： 无
 

@@ -273,6 +273,36 @@ static setSystemLanguage(language: string): void
   }
   ```
 
+[监听事件](./js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED
+
+**示例：**
+  ```ts
+  import CommonEventManager from '@ohos.commonEventManager';
+  import { BusinessError } from '@ohos.base';
+
+  let subscriber: CommonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+
+  // 订阅者信息
+  let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = {
+    events: [CommonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
+  };
+
+  // 创建订阅者
+  CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:CommonEventManager.CommonEventSubscriber) => {
+      console.info("createSubscriber");
+      subscriber = commonEventSubscriber;
+      CommonEventManager.subscribe(subscriber, (err, data) => {
+        if (err) {
+          console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
+          return;
+        }
+        console.info("the subscribed event has occurred."); // 订阅的事件发生时执行
+      })
+  }).catch((err: BusinessError) => {
+      console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  });  
+  ```
+
 ### getSystemRegion<sup>9+</sup>
 
 static getSystemRegion(): string
