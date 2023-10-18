@@ -36,7 +36,7 @@ startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | 是 | 子进程源文件路径，由模块名和相对路径组成。 |
+  | srcEntry | string | 是 | 子进程源文件相对路径。 |
   | startMode | [StartMode](#childprocessmanagerstartmode) | 是 | 子进程启动模式。 |
 
 **返回值：**
@@ -71,12 +71,12 @@ export default class DemoProcess extends ChildProcess {
 import childProcessManager from '@ohos.app.ability.childProcessManager';
 
 try {
-childProcessManager.startChildProcess("entry/./ets/process/DemoProcess.ts", childProcessManager.StartMode.SELF_FORK)
-  .then((data) => {
-    console.log(`startChildProcess success, pid: ${data}`);
-  }, (err: BusinessError) => {
-    console.error(`startChildProcess error, errorCode: ${err.code}`);
-  })
+  childProcessManager.startChildProcess("./ets/process/DemoProcess.ts", childProcessManager.StartMode.SELF_FORK)
+    .then((data) => {
+      console.log(`startChildProcess success, pid: ${data}`);
+    }, (err: BusinessError) => {
+      console.error(`startChildProcess error, errorCode: ${err.code}`);
+    })
 } catch (err) {
   console.error(`startChildProcess error, errorCode: ${err.code}`);
 }
@@ -94,7 +94,7 @@ startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallbac
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | 是 | 子进程源文件路径，由模块名和相对路径组成。 |
+  | srcEntry | string | 是 | 子进程源文件相对路径。 |
   | startMode | [StartMode](#childprocessmanagerstartmode) | 是 | 子进程启动模式。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 以callback的形式返回子进程pid。 |
 
@@ -124,7 +124,7 @@ export default class DemoProcess extends ChildProcess {
 import childProcessManager from '@ohos.app.ability.childProcessManager';
 
 try {
-  childProcessManager.startChildProcess("entry/./ets/process/DemoProcess.ts", childProcessManager.StartMode.SELF_FORK, (err, data) => {
+  childProcessManager.startChildProcess("./ets/process/DemoProcess.ts", childProcessManager.StartMode.SELF_FORK, (err, data) => {
     if (data) {
       console.log(`startChildProcess success, pid: ${data}`);
     } else {
