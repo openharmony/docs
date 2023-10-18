@@ -95,7 +95,7 @@
    fs.closeSync(file);
    ```
 
-6. 订阅、去订阅DLP打开事件。
+6. 订阅、取消订阅DLP打开事件。
    
    ```ts
    event(info: dlpPermission.VisitedDLPFileInfo) {
