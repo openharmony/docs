@@ -779,7 +779,7 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 | 类型   | 说明                |
 | ---- | ----------------- |
-| Array<[EntityInfoItem](#entityinfoitem)> | 识别的实体对象列表。 |
+| Array&lt;[EntityInfoItem](#entityinfoitem)&gt; | 识别的实体对象列表。 |
 
 **错误码：**
 
