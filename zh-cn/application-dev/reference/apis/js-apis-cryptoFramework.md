@@ -640,6 +640,10 @@ generateSymKey(callback: AsyncCallback\<SymKey>): void
 
 目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
 
+> **说明：**
+>
+> 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则会随机生成与哈希长度一致的二进制密钥数据（如指定“HMAC|SHA256”会随机生成256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则不支持随机生成对称密钥数据，可通过[convertKey](#convertkey)方式生成对称密钥数据。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -716,6 +720,10 @@ convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
 异步根据指定数据生成对称密钥，通过注册回调函数获取结果。
 
 必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
+
+> **说明：**
+>
+> 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则需要传入与哈希长度一致的二进制密钥数据（如传入SHA256对应256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则支持传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3066,6 +3074,10 @@ Mac类，调用Mac方法可以进行MAC（Message Authentication Code）加密�
 init(key: SymKey, callback: AsyncCallback\<void>): void
 
 使用对称密钥初始化Mac计算，通过注册回调函数获取结果。
+
+  > **说明：**
+  >
+  > 建议通过[HMAC密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)创建对称密钥生成器，调用[generateSymKey](#generatesymkey)随机生成对称密钥或调用[convertKey](#convertkey)传入与密钥规格长度一致的二进制密钥数据生成密钥。<br/>当指定“HMAC”生成对称密钥生成器时，仅支持调用[convertKey](#convertkey)传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据生成密钥。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 

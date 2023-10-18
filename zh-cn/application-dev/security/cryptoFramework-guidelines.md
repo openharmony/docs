@@ -300,6 +300,83 @@ function convertSM2AsyKey() {
 }
 ```
 
+### 随机生成HMAC密钥，并获得二进制数据
+
+ > **说明：**
+ >
+ > 从API version 11开始， 支持HMAC密钥随机生成。
+
+示例9：随机生成HMAC算法中使用的对称密钥SymKey，并获得二进制数据（场景1、3）
+
+1. 创建对称密钥生成器。
+2. 通过对称密钥生成器随机生成HMAC算法中使用的对称密钥。
+3. 获取算法库密钥对象的二进制数据。
+
+以使用Promise方式随机生成HMAC密钥（256位）为例：
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function testGenerateHmacKey() {
+  // Create a SymKeyGenerator instance.
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("HMAC|SHA256");
+  // Use the key generator to randomly generate a symmetric key.
+  let promiseSymKey = symKeyGenerator.generateSymKey();
+  promiseSymKey.then(key => {
+    // Obtain the binary data of the symmetric key and output a 256-bit byte stream. The length is 32 bytes.
+    let encodedKey = key.getEncoded();
+    console.info('key hex:' + encodedKey.data);
+  })
+}
+```
+
+### 根据HMAC密钥二进制数据，生成密钥
+
+ > **说明：**
+ >
+ > 从API version 11开始， 支持HMAC密钥转换。
+
+示例10：根据指定的HMAC对称密钥二进制数据，生成HMAC算法中使用的对称密钥SymKey（场景1、3）
+
+1. 创建对称密钥生成器。
+2. 通过对称密钥生成器，根据指定的HMAC二进制密钥数据，生成SymKey对象。
+
+> **说明：**
+>
+> 1. 当传入“HMAC”创建对称密钥生成器时，支持传入长度在[1,4096]范围内（单位为byte）的二进制密钥数据生成symKey。
+> 2. 当传入“HMAC|SHA512”创建对称密钥生成器时，需要传入64-byte长度的二进制密钥数据生成symKey。
+
+以使用callback方式生成HMAC密钥（使用SHA512作为哈希函数）为例：
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function stringToUint8Array(str) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  let tmpUint8Array = new Uint8Array(arr);
+  return tmpUint8Array;
+}
+
+function testConvertHmacKey() {
+  let keyBlob = {
+    // The length is 512-bit (64 bytes).
+    data : stringToUint8Array("12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh")
+  }
+  // Create a SymKeyGenerator instance.
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("HMAC");
+  symKeyGenerator.convertKey(keyBlob, (error, symKey) => {
+    if (error) {
+      console.info('Convert symKey fail!');
+      return;
+    }
+    console.info('Convert symKey success!');
+  })
+}
+```
+
 ## 非对称密钥对象根据参数生成与获取参数
 
 ### 场景说明
@@ -342,7 +419,6 @@ function convertSM2AsyKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
-import { BusinessError } from '@ohos.base';
 
 // Print bigint information.
 function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
