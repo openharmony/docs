@@ -53,6 +53,7 @@ startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 | ------- | -------- |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
+| 16000062  | The number of child process exceeds upper bound. |
 
 **示例：**
 
@@ -105,6 +106,7 @@ startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallbac
 | ------- | -------- |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
+| 16000062  | The number of child process exceeds upper bound. |
 
 **示例：**
 
