@@ -273,7 +273,7 @@ static setSystemLanguage(language: string): void
   }
   ```
 
-[监听事件](./js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED
+[监听事件](./commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED，[事件处理](./js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1)示例代码如下：
 
 **示例：**
   ```ts
