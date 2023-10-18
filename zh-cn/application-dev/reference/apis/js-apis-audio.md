@@ -3988,7 +3988,7 @@ getCurrentAudioCapturerInfoArraySync(): AudioCapturerChangeInfoArray
 
 | 类型                                                                         | 说明                                 |
 | -----------------------------------------------------------------------------| ----------------------------------- |
-| [AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)      | 返回当前音频渲染器信息。  |
+| [AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)      | 返回当前音频采集器信息。  |
 
 **示例：**
 
