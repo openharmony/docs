@@ -487,7 +487,7 @@ try {
 }
 ```
 
-## PowerPolicy
+## PowerPolicy<sup>11+</sup>
 
 电源策略。
 
@@ -500,7 +500,7 @@ try {
 | powerPolicyAction | [PowerPolicyAction](#powerPolicyAction) | 是 | 执行电源策略的动作。 |
 | delayTime | number | 是 | 延迟时间。 |
 
-## PowerScene
+## PowerScene<sup>11+</sup>
 
 执行电源策略的场景。
 
@@ -512,7 +512,7 @@ try {
 | -------- | -------- | -------- |
 | TIME_OUT | 0 | 超时场景。 |
 
-## PowerPolicyAction
+## PowerPolicyAction<sup>11+</sup>
 
 执行电源策略的动作。
 
