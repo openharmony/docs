@@ -63,8 +63,8 @@ This error code is reported if the **write** API is called to perform applicatio
 
 The specified event name does not comply with the following rules:
 
-- The event parameter name contains only digits, lowercase letters, and underscores (\_).
-- The event parameter name starts with a lowercase letter and does not end with an underscore (\_).
+- The event name contains only digits, lowercase letters, and underscores (\_).
+- The event name starts with a lowercase letter and does not end with an underscore (\_).
 - The event name is not empty and contains a maximum of 48 characters.
 
 **Solution**
@@ -119,11 +119,11 @@ This error code is reported if the **write** API is called to perform applicatio
 
 **Possible Causes**
 
-The specified event name does not comply with the following rules:
+The specified event parameter name does not comply with the following rules:
 
 - The event parameter name contains only digits, lowercase letters, and underscores (\_).
 - The event parameter name starts with a lowercase letter and does not end with an underscore (\_).
-- An event parameter name is not empty and contains a maximum of 16 characters.
+- The event parameter name is not empty and contains a maximum of 16 characters.
 
 **Solution**
 
@@ -185,7 +185,7 @@ The specified filtering event domain name does not comply with the following rul
 
 - The event domain name contains only digits, lowercase letters, and underscores (\_).
 - The event domain name starts with a lowercase letter and does not end with an underscore (\_).
-- The event domain name is not empty and contains a maximum of 32 characters.
+- The event domain name is not empty and contains a maximum of 16 characters.
 
 **Solution**
 

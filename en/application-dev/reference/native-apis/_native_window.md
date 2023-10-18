@@ -19,7 +19,7 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 
 | Name| Description|
 | -------- | -------- |
-| [external_window.h](external__window_8h.md) | Declares the functions for obtaining and using **NativeWindow**.<br>File to include: &lt;native_window/external_window.h&gt; |
+| [external_window.h](external__window_8h.md) | Declares the functions for obtaining and using **NativeWindow**.<br>File to include: &lt;native_window/external_window.h&gt; <br>Library: libnative_window.so|
 
 
 ### Structs
@@ -160,9 +160,6 @@ Enumerates the HDR metadata keys.
 
 9
 
-**Deprecated**
-
-This enum is deprecated since API version 10. No substitute enum is provided.
 
 | Value| Description|
 | -------- | -------- |
@@ -197,9 +194,6 @@ Enumerates the scaling modes.
 
 9
 
-**Deprecated**
-
-This enum is deprecated since API version 10. No substitute enum is provided.
 
 | Value| Description|
 | -------- | -------- |
@@ -530,9 +524,6 @@ Returns **0** if the operation is successful.
 
 9
 
-**Deprecated**
-
-This function is deprecated since API version 10. No substitute function is provided.
 
 
 ### OH_NativeWindow_NativeWindowSetMetaDataSet()
@@ -566,9 +557,6 @@ Returns **0** if the operation is successful.
 
 9
 
-**Deprecated**
-
-This function is deprecated since API version 10. No substitute function is provided.
 
 
 ### OH_NativeWindow_NativeWindowSetScalingMode()
@@ -600,10 +588,6 @@ Returns **0** if the operation is successful.
 
 9
 
-**Deprecated**
-
-This function is deprecated since API version 10. No substitute function is provided.
-
 
 ### OH_NativeWindow_NativeWindowSetTunnelHandle()
 
@@ -633,6 +617,3 @@ Returns **0** if the operation is successful.
 
 9
 
-**Deprecated**
-
-This function is deprecated since API version 10. No substitute function is provided.

@@ -26,6 +26,12 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 
 异步方式创建音视频播放实例，通过注册回调函数获取返回值。
 
+> **说明：**
+>
+> - 可创建的视频播放实例不能超过13个。
+> - 可创建的音视频播放实例（即音频、视频、音视频三类相加）不能超过16个。
+> - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568仅支持创建6个以内的视频播放实例。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -62,6 +68,12 @@ media.createAVPlayer((error, video) => {
 createAVPlayer(): Promise\<AVPlayer>
 
 异步方式创建音视频播放实例，通过Promise获取返回值。
+
+> **说明：**
+>
+> - 可创建的视频播放实例不能超过13个。
+> - 可创建的音视频播放实例（即音频、视频、音视频三类相加）不能超过16个。
+> - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568仅支持创建6个以内的视频播放实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -101,9 +113,13 @@ media.createAVPlayer().then((video) => {
 createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 
 异步方式创建音视频录制实例。通过注册回调函数获取返回值。
-一台设备只允许创建一个录制实例。
 
-*注意：使用相机进行视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
+> **说明：**
+>
+> - 可创建的音视频录制实例不能超过2个。
+> - 由于设备共用音频通路，一个设备仅能有一个实例进行音频录制。创建第二个实例录制音频时，将会因为音频通路冲突导致创建失败。
+
+使用相机进行视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -141,9 +157,13 @@ media.createAVRecorder((error, recorder) => {
 createAVRecorder(): Promise\<AVRecorder>
 
 异步方式创建音视频录制实例。通过Promise获取返回值。
-一台设备只允许创建一个录制实例。
 
-*注意：使用相机进行视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
+> **说明：**
+>
+> - 可创建的音视频录制实例不能超过2个。
+> - 由于设备共用音频通路，一个设备仅能有一个实例进行音频录制。创建第二个实例录制音频时，将会因为音频通路冲突导致创建失败。
+
+使用相机进行视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 

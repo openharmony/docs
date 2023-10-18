@@ -44,7 +44,7 @@ Based on the preceding figure, let's look into the initial creation, re-renderin
 
 3. If defined, the component's **aboutToAppear** callback is invoked.
 
-4. On initial render, the **build** function of a component is executed for rendering. The rendering creates instances of further child components. While executing the **build** function, the framework observes read access on each state variable and then constructs two mapping tables:
+4. On initial render, the **build** function of the built-in component is executed for rendering. If the child component is a custom component, the rendering creates an instance of the child component. While executing the **build** function, the framework observes read access on each state variable and then constructs two mapping tables:
    1. State variable -> UI component (including **ForEach** and **if**)
    2. UI component -> Update function for this component, which is a lambda. As a subset of the **build** function, the lambda creates one UI component and executes its attribute methods.
 

@@ -214,7 +214,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 accessSync(path: string): boolean
 
-Synchronously checks whether a file exists.
+Checks whether a file exists. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -280,7 +280,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath);
   fs.close(file).then(() => {
       console.info("File closed");
-      fs.closeSync(file);
   }).catch((err) => {
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -323,7 +322,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 closeSync(file: number|File): void
 
-Synchronously closes a file.
+Closes a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -423,7 +422,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 copyFileSync(src: string|number, dest: string|number, mode?: number): void
 
-Synchronously copies a file.
+Copies a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -518,7 +517,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 mkdirSync(path: string): void
 
-Synchronously creates a directory.
+Creates a directory. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -552,7 +551,7 @@ Opens a file. This API uses a promise to return the result. File uniform resourc
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
@@ -589,7 +588,7 @@ Opens a file. This API uses an asynchronous callback to return the result. File 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                          | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Error codes**
 
@@ -612,7 +611,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 openSync(path: string, mode?: number): File
 
-Synchronously opens a file. File URIs are supported.
+Opens a file. This API returns the result synchronously. File URIs are supported.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -621,7 +620,7 @@ Synchronously opens a file. File URIs are supported.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
@@ -656,7 +655,7 @@ Reads data from a file. This API uses a promise to return the result.
 | ------- | ----------- | ---- | ------------------------------------------------------------ |
 | fd      | number      | Yes  | FD of the file.                                    |
 | buffer  | ArrayBuffer | Yes  | Buffer used to store the file data read.                          |
-| options | Object      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
+| options | Object      | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
 
 **Return value**
 
@@ -697,7 +696,7 @@ Reads data from a file. This API uses an asynchronous callback to return the res
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | Yes   | FD of the file.                            |
   | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file data read.                       |
-  | options | Object      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
+  | options | Object      | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
   | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked when the data is read asynchronously.                            |
 
 **Error codes**
@@ -712,7 +711,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let buf = new ArrayBuffer(4096);
   fs.read(file.fd, buf, (err, readLen) => {
     if (err) {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.info("read failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Read file data successfully");
       console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
@@ -725,7 +724,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): number
 
-Synchronously reads data from a file.
+Reads data from a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -735,7 +734,7 @@ Synchronously reads data from a file.
   | ------- | ----------- | ---- | ---------------------------------------- |
   | fd      | number      | Yes   | FD of the file.                            |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file data read.                       |
-  | options | Object      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
+  | options | Object      | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
 
 **Return value**
 
@@ -828,7 +827,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 rmdirSync(path: string): void
 
-Synchronously deletes a directory.
+Deletes a directory. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -920,7 +919,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 unlinkSync(path: string): void
 
-Synchronously deletes a file.
+Deletes a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -956,7 +955,7 @@ Writes data into a file. This API uses a promise to return the result.
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | Yes   | FD of the file.                            |
   | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported currently.|
 
 **Return value**
 
@@ -995,7 +994,7 @@ Writes data into a file. This API uses an asynchronous callback to return the re
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | Yes   | FD of the file.                            |
   | buffer   | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported currently.|
   | callback | AsyncCallback&lt;number&gt;     | Yes   | Callback invoked when the data is written asynchronously.                      |
 
 **Error codes**
@@ -1021,7 +1020,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 writeSync(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; encoding?: string; }): number
 
-Synchronously writes data into a file.
+Writes data into a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1031,7 +1030,7 @@ Synchronously writes data into a file.
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | Yes   | FD of the file.                            |
   | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported currently.|
 
 **Return value**
 
@@ -1128,7 +1127,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 truncateSync(file: string|number, len?: number): void
 
-Synchronously truncates a file.
+Truncates a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1164,13 +1163,13 @@ Reads the text content of a file. This API uses a promise to return the result.
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filePath | string | Yes  | Application sandbox path of the file.                                  |
-| options  | Object | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **'utf-8'**, which is the only value supported.|
+| options  | Object | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the data (string) to be encoded. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
 
   | Type                   | Description        |
   | --------------------- | ---------- |
-  | Promise&lt;string&gt; | Promise used to return the content read.|
+  | Promise&lt;string&gt; | Promise used to return the file content read.|
 
 **Error codes**
 
@@ -1200,7 +1199,7 @@ Reads the text content of a file. This API uses an asynchronous callback to retu
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                      | Yes  | Application sandbox path of the file.                                  |
-| options  | Object                      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **'utf-8'**, which is the only value supported.|
+| options  | Object                      | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding**: format of the data to be encoded. The default value is **'utf-8'**, which is the only value supported.|
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the content read.                        |
 
 **Error codes**
@@ -1211,7 +1210,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.readText(filePath, { offset: 1, encoding: 'UTF-8' }, (err, str) => {
+  fs.readText(filePath, { offset: 1, encoding: 'utf-8' }, (err, str) => {
     if (err) {
       console.info("read text failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1224,7 +1223,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 readTextSync(filePath: string, options?: { offset?: number; length?: number; encoding?: string; }): string
 
-Synchronously reads the text of a file. 
+Reads the text of a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1233,7 +1232,7 @@ Synchronously reads the text of a file.
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filePath | string | Yes  | Application sandbox path of the file.                                  |
-| options  | Object | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **'utf-8'**, which is the only value supported.|
+| options  | Object | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the data (string) to be encoded. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
 
@@ -1426,7 +1425,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 renameSync(oldPath: string, newPath: string): void
 
-Renames a file or directory synchronously.
+Renames a file or directory. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1720,7 +1719,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 symlinkSync(target: string, srcPath: string): void
 
-Synchronously creates a symbolic link based on a file path.
+Creates a symbolic link based on a file path. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1773,7 +1772,7 @@ Lists all files in a directory. This API uses a promise to return the result.<br
 
   | Type                  | Description        |
   | --------------------- | ---------- |
-  | Promise&lt;string[]&gt; | Promise used to return the files names listed.|
+  | Promise&lt;string[]&gt; | Promise used to return the file names listed.|
 
 **Error codes**
 
@@ -1929,7 +1928,7 @@ Moves a file. This API uses a promise to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
 
 **Return value**
 
@@ -1967,7 +1966,7 @@ Moves a file. This API uses an asynchronous callback to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is moved.             |
 
 **Error codes**
@@ -2002,7 +2001,7 @@ Moves a file synchronously.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
 
 **Error codes**
 
@@ -2035,7 +2034,7 @@ Creates a temporary directory. This API uses a promise to return the result.
 
   | Type                  | Description        |
   | --------------------- | ---------- |
-  | Promise&lt;string&gt; | Promise used to return the unique directory generated.|
+  | Promise&lt;string&gt; | Promise used to return the directory created.|
 
 **Error codes**
 
@@ -2086,7 +2085,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 mkdtempSync(prefix: string): string
 
-Synchronously creates a temporary directory.
+Creates a temporary directory. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2186,7 +2185,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 createStreamSync(path: string, mode: string): Stream
 
-Synchronously creates a stream based on the file path.
+Creates a stream based on the file path. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2234,7 +2233,7 @@ Opens a stream based on the file descriptor. This API uses a promise to return t
 
   | Type                              | Description       |
   | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the result.|
+  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the stream opened.|
 
 **Error codes**
 
@@ -2267,7 +2266,7 @@ Opens a stream based on the file descriptor. This API uses an asynchronous callb
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | Yes   | FD of the file.                            |
   | mode     | string                                   | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
-  | callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes   | Callback invoked when the stream is opened.                         |
+  | callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes   | Callback invoked when the stream is created asynchronously.                           |
 
 **Error codes**
 
@@ -2292,7 +2291,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 fdopenStreamSync(fd: number, mode: string): Stream
 
-Synchronously opens a stream based on the file descriptor.
+Opens a stream based on the file descriptor. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2333,7 +2332,7 @@ Represents detailed file information. Before calling any API of the **Stat()** c
 | Name    | Type  | Readable  | Writable  | Description                                      |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |                        
 | ino    | number | Yes   | No   | File ID. Different files on the same device have different **ino**s.|                 |
-| mode   | number | Yes   | No   | File permissions. The meaning of each bit is as follows:<br>- **0o400**: The owner has the read permission on a regular file or a directory entry.<br>- **0o200**: The owner has the permission to write a regular file or create and delete a directory entry.<br>- **0o100**: The owner has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o040**: The user group has the read permission on a regular file or a directory entry.<br>- **0o020**: The user group has the permission to write a regular file or create and delete a directory entry.<br>- **0o010**: The user group has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o004**: Other users have the permission to read a regular file or read a directory entry.<br>- **0o002**: Other users have the permission to write a regular file or create and delete a directory entry.<br>- **0o001**: Other users have the permission to execute a regular file or search for the specified path in a directory.|
+| mode   | number | Yes   | No   | File permissions. The meaning of each bit is as follows:<br>- **0o400**: The owner has the permission to read a regular file or a directory entry.<br>- **0o200**: The owner has the permission to write a regular file or create and delete a directory entry.<br>- **0o100**: The owner has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o040**: The user group has the permission to read a regular file or a directory entry.<br>- **0o020**: The user group has the permission to write a regular file or create and delete a directory entry.<br>- **0o010**: The user group has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o004**: Other users have the permission to read a regular file or a directory entry.<br>- **0o002**: Other users have the permission to write a regular file or create and delete a directory entry.<br>- **0o001**: Other users have the permission to execute a regular file or search for the specified path in a directory.|
 | uid    | number | Yes   | No   | ID of the file owner.|
 | gid    | number | Yes   | No   | ID of the user group of the file.|
 | size   | number | Yes   | No   | File size, in bytes. This parameter is valid only for regular files. |
@@ -2428,7 +2427,7 @@ Checks whether this file is a named pipe (or FIFO). Named pipes are used for int
 
   | Type     | Description                   |
   | ------- | --------------------- |
-  | boolean | Whether the file is a FIFO.|
+  | boolean | Whether the file is an FIFO.|
 
 **Error codes**
 
@@ -2532,7 +2531,7 @@ Closes the stream. This API uses a promise to return the result.
 
   | Type                 | Description           |
   | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise used to return the stream close result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -2586,7 +2585,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 closeSync(): void
 
-Synchronously closes the stream.
+Closes the stream. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2614,7 +2613,7 @@ Flushes the stream. This API uses a promise to return the result.
 
   | Type                 | Description           |
   | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise used to return the stream flushing result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -2668,7 +2667,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 flushSync(): void
 
-Synchronously flushes the stream.
+Flushes the stream. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2761,7 +2760,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; encoding?: string; }): number
 
-Synchronously writes data into the stream.
+Writes data into the stream. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2803,7 +2802,7 @@ Reads data from the stream. This API uses a promise to return the result.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): position of the data to read in the file. By default, data is read from the current position.|
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.|
 
 **Return value**
 
@@ -2842,7 +2841,7 @@ Reads data from the stream. This API uses an asynchronous callback to return the
   | Name     | Type                                      | Mandatory  | Description                                      |
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file read.                             |
-  | options  | Object                                   | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.|
+  | options  | Object                                   | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.|
   | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked when data is read asynchronously from the stream.                        |
 
 **Error codes**
@@ -2869,7 +2868,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): number
 
-Synchronously reads data from the stream.
+Reads data from the stream. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2878,7 +2877,7 @@ Synchronously reads data from the stream.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): position of the data to read in the file. By default, data is read from the current position.<br> |
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>|
 
 **Return value**
 

@@ -8,7 +8,7 @@
 
 | Name                 | Type                | Readable| Writable| Description                        |
 | --------------------- | -------------------- | ---- | ---- | ---------------------------- |
-| bundleName            | string               | Yes | No | Bundle name.                  |
+| bundleName            | string               | Yes | No | Bundle name of the subscriber that can receive the common event.|
 | code                  | number               | Yes | No | Result code of the common event.      |
 | data                  | string               | Yes | No | Custom result data of the common event.|
 | subscriberPermissions | Array\<string>       | Yes | No | Permissions required for subscribers to receive the common event.            |

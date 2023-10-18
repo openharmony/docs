@@ -6,6 +6,8 @@ The **Animator** module provides APIs for applying animation effects, including 
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
+> This module can be used in ArkTS since API version 9.
+>
 > This module cannot be used in the file declaration of the [UIAbility](./js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
 
 
@@ -342,7 +344,7 @@ struct AnimatorTest {
       duration: 2000,
       easing: "ease",
       delay: 0,
-      fill: "none",
+      fill: "forwards",
       direction: "normal",
       iterations: 1,
       begin: 100,
@@ -362,6 +364,12 @@ struct AnimatorTest {
       _this.wid = value
       _this.hei = value
     }
+  }
+
+  aboutToDisappear() {
+    // Because backAnimator references this in onframe, backAnimator is saved in this.
+    // When the custom component disappears, leave backAnimator empty to avoid memory leak.
+    this.backAnimator = undefined;
   }
 
   build() {
@@ -446,16 +454,18 @@ struct AnimatorTest {
             .onClick(() => {
               if (this.flag) {
                 this.flag = false
-                this.backAnimator.reset({
-                  duration: 5000,
-                  easing: "ease-in",
-                  delay: 0,
-                  fill: "none",
-                  direction: "normal",
-                  iterations: 4,
-                  begin: 100,
-                  end: 300
-                })
+                if(this.backAnimator){
+                  this.backAnimator.reset({
+                    duration: 3000,
+                    easing: "ease-in",
+                    delay: 0,
+                    fill: "forwards",
+                    direction: "alternate",
+                    iterations: 3,
+                    begin: 100,
+                    end: 300
+                  })
+                }
               } else {
                 console.info(this.TAG, 'Animation not ended')
               }

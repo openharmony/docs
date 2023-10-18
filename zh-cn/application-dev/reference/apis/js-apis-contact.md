@@ -104,7 +104,7 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                 |
 | -------- | ------------------------- | ---- | ------------------------------------ |
 | key      | string                    | 是   | 联系人key值，一个联系人对应一个key。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回删除联系人的结果。     |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步删除联系人之后的回调。     |
 
 **示例：**
 
@@ -141,7 +141,7 @@ deleteContact(key: string): Promise&lt;void&gt;
 
 | 类型                | 说明                                          |
 | ------------------- | --------------------------------------------- |
-| Promise&lt;void&gt; | 以Promise形式返回结果，返回删除联系人的结果。 |
+| Promise&lt;void&gt; | 返回一个Promise对象。 |
 
 **示例：**
 
@@ -172,7 +172,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                 |
 | -------- | ------------------------- | ---- | ------------------------------------ |
 | contact  | [Contact](#contact)       | 是   | 联系人信息。                         |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回更新联系人的更新结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步更新联系人之后的回调。 |
 
 **示例：**
 
@@ -183,7 +183,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -209,7 +209,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 | -------- | --------------------------------------- | ---- | ------------------------------------ |
 | contact  | [Contact](#contact)                     | 是   | 联系人信息。                         |
 | attrs    | [ContactAttributes](#contactattributes) | 是   | 联系人的属性列表。                   |
-| callback | AsyncCallback&lt;void&gt;               | 是   | 回调函数，返回更新联系人的更新结果。 |
+| callback | AsyncCallback&lt;void&gt;               | 是   | 异步更新联系人之后的回调。 |
 
 **示例：**
 
@@ -222,7 +222,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -252,7 +252,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 **返回值：**
 | 类型                | 说明                                              |
 | ------------------- | ------------------------------------------------- |
-| Promise&lt;void&gt; | 以Promise形式返回结果，返回更新联系人的更新结果。 |
+| Promise&lt;void&gt; | 返回一个Promise对象。 |
 
 **示例：**
 
@@ -514,7 +514,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-选择联系人，使用callback方式作为异步方法。
+调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
 
 该接口仅支持在FA模型中调用。
 
@@ -543,7 +543,7 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
-选择联系人，使用Promise方式作为异步方法。
+调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
 
 该接口仅支持在FA模型中调用。
 
@@ -1359,7 +1359,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
 | 参数名   | 类型                                              | 必填 | 说明                                 |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-| holder   | Holder                                            | 是   | 创建联系人的应用信息。               |
+| holder   | [Holder](#holder)                                 | 是   | 创建联系人的应用信息。               |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。 |
 
 **示例：**
@@ -2182,7 +2182,7 @@ portrait.uri = "uri";
 | postcode      | string   | 是   | 是   | 联系人所在区域的邮政编码。 |
 | region        | string   | 是   | 是   | 联系人所在的区域。         |
 | street        | string   | 是   | 是   | 联系人所在的街道。         |
-| labelId       | number   | 是   | 是   | 邮政地址名称。             |
+| labelId       | number   | 是   | 是   | 邮政地址类型。             |
 
 
 **对象创建示例：**

@@ -36,7 +36,7 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
   
    ```ts
    Flex({justifyContent:FlexAlign.Center}){
-     Button('click me')
+     Button('Click Me')
        .onClick(() => {
          this.dialogController.open()
        })
@@ -63,12 +63,12 @@ Custom dialog boxes can be used for data interactions to complete a series of re
        Column() {
          Text('I am content') .fontSize(20).margin({ top: 10, bottom: 10 })
          Flex({ justifyContent: FlexAlign.SpaceAround }) {
-           Button('cancel')
+           Button('Cancel')
              .onClick(() => {
                this.controller.close()
                this.cancel()
              }).backgroundColor(0xffffff).fontColor(Color.Black)
-           Button('confirm')
+           Button('Confirm')
              .onClick(() => {
                this.controller.close()
                this.confirm()
@@ -98,3 +98,61 @@ Custom dialog boxes can be used for data interactions to complete a series of re
    ```
 
    ![en-us_image_0000001511421320](figures/en-us_image_0000001511421320.png)
+
+## Sample Code
+
+```ts
+// xxx.ets
+@CustomDialog
+struct CustomDialogExample {
+  controller: CustomDialogController
+  cancel: () => void
+  confirm: () => void
+  build() {
+    Column() {
+      Text('I am content').fontSize(20).margin({ top: 10, bottom: 10 })
+      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+        Button('Cancel')
+          .onClick(() => {
+            this.controller.close()
+            this.cancel()
+          }).backgroundColor(0xffffff).fontColor(Color.Black)
+        Button('Confirm')
+          .onClick(() => {
+            this.controller.close()
+            this.confirm()
+          }).backgroundColor(0xffffff).fontColor(Color.Red)
+      }.margin({ bottom: 10 })
+    }
+  }
+}
+
+@Entry
+@Component
+struct DialogExample {
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogExample({
+      cancel: this.onCancel,
+      confirm: this.onAccept,
+    }),
+    alignment: DialogAlignment.Default,  // Set the alignment mode of the dialog box. By default, the dialog box is displayed at the bottom.
+  })
+  onCancel() {
+    console.info('Callback when the first button is clicked')
+  }
+  onAccept() {
+    console.info('Callback when the second button is clicked')
+  }
+
+  build() {
+    Flex({ justifyContent: FlexAlign.Center }) {
+      Button('Click Me')
+        .onClick(() => {
+          this.dialogController.open()
+        })
+    }.width('100%')
+  }
+}
+```
+
+![Dialog](figures/Dialog.gif)
