@@ -8647,6 +8647,7 @@ tonePlayer.release().then(() => {
 枚举，活跃设备类型。
 
 > **说明：**
+>
 > 从 API version 9 开始废弃，建议使用[CommunicationDeviceType](#communicationdevicetype9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
@@ -8661,7 +8662,8 @@ tonePlayer.release().then(() => {
 枚举，中断事件返回类型。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。
+>
+> 从 API version 7 开始支持，从 API version 9 开始废弃。无替代接口，与中断事件配套使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -8675,7 +8677,8 @@ tonePlayer.release().then(() => {
 音频监听事件传入的参数。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。
+>
+> 从 API version 7 开始支持，从 API version 9 开始废弃。无替代接口，与中断事件配套使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -8690,6 +8693,7 @@ tonePlayer.release().then(() => {
 音频打断/获取焦点事件的回调方法。
 
 > **说明：**
+>
 > 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用[InterruptEvent](#interruptevent9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
