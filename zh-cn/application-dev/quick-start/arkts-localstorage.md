@@ -18,7 +18,7 @@ LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内“
 
 - 应用程序可以创建多个LocalStorage实例，LocalStorage实例可以在页面内共享，也可以通过GetShared接口，获取在UIAbility里创建的GetShared，实现跨页面、UIAbility内共享。
 
-- 组件树的根节点，即被\@Entry装饰的\@Component，可以被分配一个LocalStorage实例，此组件的所有子组件实例将自动获得对该LocalStorage实例的访问权限；
+- 组件树的根节点，即被\@Entry装饰的\@Component，可以被分配一个LocalStorage实例，此组件的所有子组件实例将自动获得对该LocalStorage实例的访问权限。
 
 - 被\@Component装饰的组件最多可以访问一个LocalStorage实例和[AppStorage](arkts-appstorage.md)，未被\@Entry装饰的组件不可被独立分配LocalStorage实例，只能接受父组件通过\@Entry传递来的LocalStorage实例。一个LocalStorage实例在组件树上可以被分配给多个组件。
 
@@ -155,7 +155,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 1. 当\@LocalStorageLink(key)装饰的数值改变被观察到时，修改将被同步回LocalStorage对应属性键值key的属性中。
 
-2. LocalStorage中属性键值key对应的数据一旦改变，属性键值key绑定的所有的数据（包括双向\@LocalStorageLink和单向\@LocalStorageProp）都将同步修改；
+2. LocalStorage中属性键值key对应的数据一旦改变，属性键值key绑定的所有的数据（包括双向\@LocalStorageLink和单向\@LocalStorageProp）都将同步修改。
 
 3. 当\@LocalStorageLink(key)装饰的数据本身是状态变量，它的改变不仅仅会同步回LocalStorage中，还会引起所属的自定义组件的重新渲染。
 
@@ -172,9 +172,9 @@ let storage: LocalStorage = new LocalStorage(para); // 创建新实例并使用�
 let propA: number | undefined = storage.get('PropA') // propA == 47
 let link1: SubscribedAbstractProperty<number> = storage.link('PropA'); // link1.get() == 47
 let link2: SubscribedAbstractProperty<number> = storage.link('PropA'); // link2.get() == 47
-let prop: SubscribedAbstractProperty<number> = storage.prop('PropA'); // prop.get() = 47
+let prop: SubscribedAbstractProperty<number> = storage.prop('PropA'); // prop.get() == 47
 link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
-prop.set(1); // one-way sync: prop.get()=1; but link1.get() == link2.get() == 48
+prop.set(1); // one-way sync: prop.get() == 1; but link1.get() == link2.get() == 48
 link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 ```
 
@@ -272,7 +272,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 ### \@LocalStorageLink和LocalStorage双向同步的简单场景
 
-下面的示例展示了\@LocalStorageLink装饰的数据和LocalStorage双向同步的场景
+下面的示例展示了\@LocalStorageLink装饰的数据和LocalStorage双向同步的场景：
 
 
 ```ts
