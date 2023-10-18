@@ -426,9 +426,9 @@ let wantTemp: Want = {
 };
 try {
   let delayTime = 0;
-  let powerScene:deviceSettings.PowerScene = deviceSettings.PowerScene.TIME_OUT;
-  let powerPolicyAction:deviceSettings.PowerPolicyAction = deviceSettings.PowerPolicyAction.AUTO_SUSPEND;
-  let powerPolicy = {powerPolicyAction, delayTime};
+  let powerScene: deviceSettings.PowerScene = deviceSettings.PowerScene.TIME_OUT;
+  let powerPolicyAction: deviceSettings.PowerPolicyAction = deviceSettings.PowerPolicyAction.AUTO_SUSPEND;
+  let powerPolicy: deviceSettings.PowerPolicy = {powerPolicyAction, delayTime};
   deviceSettings.setPowerPolicy(wantTemp, powerScene, powerPolicy);
   console.info(`Succeeded in setting power polilcy`);
 } catch (error) {
@@ -479,7 +479,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 try {
-  let powerScene:deviceSettings.PowerScene = deviceSettings.PowerScene.TIME_OUT;
+  let powerScene: deviceSettings.PowerScene = deviceSettings.PowerScene.TIME_OUT;
   let powerPolicy: deviceSettings.PowerPolicy = deviceSettings.setPowerPolicy(wantTemp, powerScene);
   console.info(`Succeeded in getting power polilcy ${JSON.stringify(powerPolicy)}`);
 } catch (error) {
