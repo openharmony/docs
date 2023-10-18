@@ -47,13 +47,12 @@ startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 
 **错误码**：
 
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
-| 16000062  | The number of child process exceeds upper bound. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -67,7 +66,7 @@ export default class DemoProcess extends ChildProcess {
   }
 }
 
-// 执行childProcessManager.startChildProcess方法:
+// 使用childProcessManager.startChildProcess方法启动子进程:
 import childProcessManager from '@ohos.app.ability.childProcessManager';
 
 try {
@@ -106,7 +105,6 @@ startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallbac
 | ------- | -------- |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
-| 16000062  | The number of child process exceeds upper bound. |
 
 **示例：**
 
