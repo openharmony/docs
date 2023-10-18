@@ -2911,3 +2911,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.SET_CODE_PROTECT_INFO
+
+允许系统应用设置云侧公钥以及工作秘钥密文，并协商代码保护秘钥信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
