@@ -14,6 +14,8 @@ Touchscreen events are events triggered when a finger or stylus is placed on, mo
 
 A click event is triggered when a complete press and lift action is performed by using a finger or a stylus. When a click event occurs, the following callback is triggered:
 
+
+
 ```ts
 onClick(event: (event?: ClickEvent) => void)
 ```
@@ -51,13 +53,14 @@ struct IfElseTransition {
 
 ## Drag Event
 
-A drag event is triggered when a user long presses a component (&gt;=500 ms) using a finger or stylus and drags the component to the drop target. The following figure illustrates the process of triggering a drag event.
+A drag event is triggered when a user long presses a component (&gt;= 500 ms) using a finger or stylus and drags the component to the drop target.
+
+Whether a drag event can be triggered depends on the distance of finger or stylus movement on the screen. The drag event is triggered when this distance reaches 5 vp. ArkUI supports intra-application and cross-application drag events.
+
+The following figure illustrates the process of triggering a drag event.
 
 
 ![en-us_image_0000001562820825](figures/en-us_image_0000001562820825.png)
-
-
-Whether a drag event can be triggered depends on the distance of long-pressing and dragging with the finger or stylus on the screen. The drag event is triggered when this distance reaches 5 vp. ArkUI supports intra-application and cross-application drag events.
 
 
 The drag event provides the following [APIs](../reference/arkui-ts/ts-universal-events-drag-drop.md).

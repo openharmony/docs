@@ -15,7 +15,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 ```
 
 
-Creates a toggle. In this API, **ToggleType** indicates the toggle type, which can be **Button**, **Checkbox**, or **Switch**, and **isOn** specifies whether the toggle is turned on. The API can be called in either of the following ways:
+In this API, **ToggleType** indicates the toggle type, which can be **Button**, **Checkbox**, or **Switch**, and **isOn** specifies whether the toggle is turned on. The API can be called in either of the following ways:
 
 
 - Create a toggle that does not contain child components.
@@ -39,7 +39,8 @@ Creates a toggle. In this API, **ToggleType** indicates the toggle type, which c
 
 
 - Create a toggle that contains a child component.
-  This can be achieved by calling the API with **ToggleType** set to **Button**. Only one child component is allowed. If the child component has text set, the text content is displayed inside the button.
+  
+  When **ToggleType** is set to **Button**, only one child component is allowed. If the child component has text set, the text content is displayed on the button.
 
 
   ```ts
