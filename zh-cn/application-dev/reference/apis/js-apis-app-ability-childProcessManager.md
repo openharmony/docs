@@ -14,23 +14,15 @@ childProcessManager模块提供子进程管理能力，支持子进程启动操�
 import childProcessManager from '@ohos.app.ability.childProcessManager';
 ```
 
-## StartMode
+## childProcessManager.StartMode
 
-子进程启动模式。
+子进程启动模式枚举。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                       | 值                             | 说明                              |
 | --------                     |  -----------------               |  -----------------               |
 | SELF_FORK |  0   | 从App自身进程Fork子进程。以该模式启动的子进程中不能进行Binder IPC调用，会导致子进程Crash。 |
-
-**示例**：
-
-```ts
-const enum StartMode {
-  SELF_FORK = 0,
-}
-```
 
 ## childProcessManager.startChildProcess
 
@@ -44,20 +36,19 @@ startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | 是 | 子进程源文件路径，由模块名和相对路径组成 |
-  | startMode | [StartMode](js-apis-app-ability-childProcessManager.md) | 是 | 子进程启动模式 |
+  | srcEntry | string | 是 | 子进程源文件路径，由模块名和相对路径组成。 |
+  | startMode | [StartMode](#childprocessmanagerstartmode) | 是 | 子进程启动模式。 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;number&gt; | 以Promise的形式返回子进程pid |
+  | Promise&lt;number&gt; | 以Promise的形式返回子进程pid。 |
 
 **错误码**：
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401  | Invalid input parameter. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
 | 16000062  | The number of child process exceeds upper bound. |
@@ -103,20 +94,19 @@ startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallbac
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | 是 | 子进程源文件路径，由模块名和相对路径组成 |
-  | startMode | [StartMode](js-apis-app-ability-childProcessManager.md) | 是 | 子进程启动模式 |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 以callback的形式返回子进程pid |
+  | srcEntry | string | 是 | 子进程源文件路径，由模块名和相对路径组成。 |
+  | startMode | [StartMode](#childprocessmanagerstartmode) | 是 | 子进程启动模式。 |
+  | callback | AsyncCallback&lt;number&gt; | 是 | 以callback的形式返回子进程pid。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401  | Invalid input parameter. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
 | 16000062  | The number of child process exceeds upper bound. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -130,7 +120,7 @@ export default class DemoProcess extends ChildProcess {
   }
 }
 
-// 执行childProcessManager.startChildProcess方法:
+// 使用childProcessManager.startChildProcess方法启动子进程:
 import childProcessManager from '@ohos.app.ability.childProcessManager';
 
 try {
