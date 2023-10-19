@@ -1,6 +1,6 @@
 # Using Performance Improvement Features (for System Applications Only)
 
-The camera startup performance is affected by time-consuming operations such as power-on of underlying components and initialization of the process pipeline. To improve the camera startup speed and thumbnail display speed, OpenHarmony introduces some features. The capabilities of these features are related to underlying components. You need to check whether these capabilities are supported before using them.
+The camera startup performance is affected by time-consuming operations such as power-on of underlying components and initialization of the process pipeline. To improve the camera startup speed and thumbnail display speed, OpenHarmony introduces some features. The capabilities of these features are related to underlying components. You need to check whether your underlying components support these capabilities before using the capabilities.
 
 These features are involved in the processes of starting the camera device, configuring streams, and taking photos. This topic describes the three scenarios.
 
@@ -22,7 +22,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
-| createDeferredPreviewOutput(profile: Profile): Promise\<PreviewOutput> | Creates a deferred **PreviewOutput** instance and adds it to the data stream instead of a common **PreviewOutput** instance during stream configuration.|
+| createDeferredPreviewOutput(profile: Profile): Promise\<PreviewOutput> | Creates a deferred **PreviewOutput** instance and adds it, instead of a common **PreviewOutput** instance, to the data stream during stream configuration. |
 | addDeferredSurface(surfaceId: string): Promise\<void> | Adds a surface for delayed preview. This API can run after **session.commitConfig()** or **session.start()** is called.|
 
 ### Development Example
@@ -31,7 +31,7 @@ The figure below shows the recommended API call process.
 
 ![](figures/deferred-surface-sequence-diagram.png)
 
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+There are different [types of contexts](../application-models/application-context-stage.md).
 
 ```ts
 import camera from '@ohos.multimedia.camera';
@@ -82,7 +82,7 @@ The figure below shows the recommended API call process.
 
 ![](figures/quick-thumbnail-sequence-diagram.png)
 
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+There are different [types of contexts](../application-models/application-context-stage.md).
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
@@ -139,7 +139,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 | ---- | ---- |
 | isPrelaunchSupported(camera: CameraDevice) : boolean |  Checks whether the camera supports prelaunch.|
 | setPrelaunchConfig(prelaunchConfig: PrelaunchConfig) : void | Sets the prelaunch parameters.|
-| prelaunch() : void | Prelaunches the camera. This API is called when a user clicks the system camera icon to start the camera application.|
+| prelaunch() : void | Prelaunches the camera. This API is called when a user touches the system camera icon to start the camera application. |
 
 ### Development Example
 
@@ -147,7 +147,7 @@ The figure below shows the recommended API call process.
 
 ![](figures/prelaunch-sequence-diagram.png)
 
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+There are different [types of contexts](../application-models/application-context-stage.md).
 
 - **Home screen**
 
