@@ -9,7 +9,7 @@ To reduce the number of application startup times and improve the access speed, 
 
 Silent access supports only basic database access. If service processing is required, implement service processing in the data consumer.
 
-If the service processing is complex, use **DataShareExtensionAbility** to start the data provider.
+If the service processing is complex, use [DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) to start the data provider.
 
 
 ## Working Principles
