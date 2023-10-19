@@ -557,7 +557,7 @@ Opens a file. This API uses a promise to return the result. File uniform resourc
 
   | Type                   | Description         |
   | --------------------- | ----------- |
-  | Promise&lt;[File](#file)&gt; | Promise used to return the file object.|
+  | Promise&lt;[File](#file)&gt; | Promise used to return the **File** object.|
 
 **Error codes**
 
@@ -2130,7 +2130,7 @@ Creates a stream based on the file path. This API uses a promise to return the r
 
   | Type                               | Description       |
   | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the result.|
+  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the stream created.|
 
 **Error codes**
 
@@ -2877,7 +2877,7 @@ Reads data from the stream. This API returns the result synchronously.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>|
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.|
 
 **Return value**
 
