@@ -8,7 +8,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 
 ## Sample Code
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+There are different [types of contexts](../application-models/application-context-stage.md).
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
@@ -39,7 +39,7 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
   }
 
   if (cameraArray.length <= 0) {
-    console.error("cameraManager.getSupportedCameras error")
+    console.error("cameraManager.getSupportedCameras error");
     return;
   }
 
