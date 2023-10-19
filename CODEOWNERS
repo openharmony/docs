@@ -593,3 +593,94 @@ zh-cn/application-dev/database/unified-data-definition.md @ge-yafang @feng-aiwen
 zh-cn/application-dev/database/share-data-by-datashareextensionability.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
 zh-cn/application-dev/database/share-data-by-silent-access.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
 zh-cn/application-dev/database/unified-data-channels.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+
+
+
+
+[入门-开发基础知识-应用程序包基础知识与应用配置文件]
+zh-cn/application-dev/quick-start/app*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/module*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/multi-hap*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/deviceconfig-structure.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/shared-guide.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/har-package.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/in-app-hsp.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/quickfix*.md @huipeizi @lixiaogang30
+
+
+[开发-应用模型]
+zh-cn/application-dev/application-models/ @huipeizi @lixiaogang30
+
+[开发-通知]
+zh-cn/application-dev/notification/ @huipeizi @lixiaogang30
+
+[开发-性能]
+zh-cn/application-dev/performance/ @huipeizi 
+
+[工具-调试工具]
+zh-cn/application-dev/tools/aa-tool.md @huipeizi @lixiaogang30
+zh-cn/application-dev/tools/bm-tool.md @huipeizi @lixiaogang30
+zh-cn/application-dev/tools/packing-tool.md @huipeizi @lixiaogang30
+zh-cn/application-dev/tools/unpacking-tool.md @huipeizi @lixiaogang30
+
+
+[API参考-Ability]
+zh-cn/application-dev/reference/apis/js-apis-ability*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-application*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-app-*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-businessAbilityRouter.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-continuation*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-ability*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-app*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-wantAgent*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-uripermissionmanager.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-wantAgent.md @huipeizi @lixiaogang30
+
+
+[API参考-包管理]
+zh-cn/application-dev/reference/apis/js-apis-bundle*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-appControl.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-defaultAppManager.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-distributedBundleManager.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-freeInstall.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-installer.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-launcherBundleManager.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-overlay.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-zlib.md @huipeizi @lixiaogang30
+
+
+[API参考-公共事件与通知]
+zh-cn/application-dev/reference/apis/js-apis-commonEvent*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-commonEvent*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-notification*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-notification*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-emitter.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/common_event/commonEvent-definitions.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/common_event/commonEventManager-definitions.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/common_event/commonEvent-ability.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/common_event/commonEvent-bundleManager.md @huipeizi @lixiaogang30
+
+
+[错误码-Ability]
+zh-cn/application-dev/reference/errorcodes/errorcode-ability.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-DistributedSchedule.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-form.md @huipeizi @lixiaogang30
+
+
+[错误码-包管理]
+zh-cn/application-dev/reference/errorcodes/errorcode-bundle.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-zlib.md @huipeizi @lixiaogang30
+
+
+[错误码-公共事件与通知]
+zh-cn/application-dev/reference/errorcodes/errorcode-CommonEventService.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-notification.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-DistributedNotificationService.md @huipeizi @lixiaogang30
+
+
+[FAQ]
+zh-cn/application-dev/faqs/faqs-ability.md @huipeizi @lixiaogang30
+zh-cn/application-dev/faqs/faqs-bundle-management.md @huipeizi @lixiaogang30
+zh-cn/application-dev/faqs/faqs-event-notification.md @huipeizi @lixiaogang30
+
+
