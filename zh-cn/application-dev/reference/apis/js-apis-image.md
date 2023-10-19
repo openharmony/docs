@@ -97,7 +97,7 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| PixelMap | 成功同步返回PixelMap对象，失败抛出异常。 |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
 
 **错误码：**
 
