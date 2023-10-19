@@ -19,6 +19,8 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
 Adds a contact. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -51,6 +53,8 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 addContact(contact: Contact): Promise&lt;number&gt;
 
 Adds a contact. This API uses a promise to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -89,6 +93,8 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes a contact based on the specified contact key. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -118,6 +124,8 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 deleteContact(key: string): Promise&lt;void&gt;
 
 Deletes a contact based on the specified contact key. This API uses a promise to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -153,6 +161,8 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
 Updates a contact based on the specified contact information. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -173,7 +183,7 @@ Updates a contact based on the specified contact information. This API uses an a
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -186,6 +196,8 @@ Updates a contact based on the specified contact information. This API uses an a
 updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
 
 Updates a contact based on the specified contact information. This API uses an asynchronous callback to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -210,7 +222,7 @@ Updates a contact based on the specified contact information. This API uses an a
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -223,6 +235,8 @@ Updates a contact based on the specified contact information. This API uses an a
 updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
 Updates a contact based on the specified contact information and attributes. This API uses a promise to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -264,6 +278,8 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether the ID of this contact is in the local address book. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -293,6 +309,8 @@ Checks whether the ID of this contact is in the local address book. This API use
 isLocalContact(id: number): Promise&lt;boolean&gt;
 
 Checks whether the ID of this contact is in the local address book. This API uses a promise to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -328,6 +346,8 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether a contact is included in my card. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -357,6 +377,8 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 isMyCard(id: number): Promise&lt;boolean&gt;
 
 Checks whether a contact is included in my card. This API uses a promise to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -392,6 +414,8 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
 Queries my card. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -420,6 +444,8 @@ Queries my card. This API uses an asynchronous callback to return the result.
 queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
 Queries my card. This API uses an asynchronous callback to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -452,6 +478,8 @@ Queries my card. This API uses an asynchronous callback to return the result.
 queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 Queries my card based on the specified contact attributes. This API uses a promise to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -488,6 +516,8 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Selects a contact. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **System capability**: SystemCapability.Applications.Contacts
 
 **Parameters**
@@ -515,6 +545,8 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 Selects a contact. This API uses a promise to return the result.
 
+This API can be used only in the FA model.
+
 **System capability**: SystemCapability.Applications.Contacts
 
 **Return Value**
@@ -540,6 +572,8 @@ Selects a contact. This API uses a promise to return the result.
 queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
 Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -570,6 +604,8 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
 Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -606,6 +642,8 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
 Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -638,6 +676,8 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
 Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -676,6 +716,8 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 Queries contacts based on the specified key, application, and attributes. This API uses a promise to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -718,6 +760,8 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries all contacts. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -746,6 +790,8 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries all contacts. This API uses an asynchronous callback to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -781,6 +827,8 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
 Queries all contacts. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -812,6 +860,8 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries all contacts. This API uses an asynchronous callback to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -849,6 +899,8 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 Queries all contacts based on the specified application and attributes. This API uses a promise to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -890,6 +942,8 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 
 Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -919,6 +973,8 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -955,6 +1011,8 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
 Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -987,6 +1045,8 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1025,6 +1085,8 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 Queries contacts based on the specified phone number, application, and attributes. This API uses a promise to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1068,6 +1130,8 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 
 Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -1097,6 +1161,8 @@ Queries contacts based on the specified email address. This API uses an asynchro
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1133,6 +1199,8 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
 Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -1165,6 +1233,8 @@ Queries contacts based on the specified email address. This API uses an asynchro
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1203,6 +1273,8 @@ Queries contacts based on the specified email address. This API uses an asynchro
 queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 Queries contacts based on the specified email address, application, and attributes. This API uses a promise to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1246,6 +1318,8 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 Queries all groups of this contact. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -1275,6 +1349,8 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
 Queries all groups of this contact. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -1283,7 +1359,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
 | Name  | Type                                             | Mandatory| Description                                |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-| holder   | Holder                                            | Yes  | Application that creates the contacts.              |
+| holder   | [Holder](#holder)                                 | Yes  | Application that creates the contacts.              |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1308,6 +1384,8 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 Queries all groups of this contact based on the specified application. This API uses a promise to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1347,6 +1425,8 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 Queries all applications that have created contacts. This API uses an asynchronous callback to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -1376,6 +1456,8 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
 Queries all applications that have created contacts. This API uses a promise to return the result.
 
+This API can be used only in the FA model.
+
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -1403,6 +1485,8 @@ Queries all applications that have created contacts. This API uses a promise to 
 queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
 Queries the key of a contact based on the specified contact ID. This API uses an asynchronous callback to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1433,6 +1517,8 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
 Queries the key of a contact based on the specified contact ID. This API uses an asynchronous callback to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1468,6 +1554,8 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 Queries the key of a contact based on the specified contact ID and application. This API uses a promise to return the result.
+
+This API can be used only in the FA model.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1619,7 +1707,7 @@ Enumerates contact attributes.
 | ATTR_CONTACT_EVENT    | Important dates such as birthday and anniversaries of the contact.|
 | ATTR_EMAIL            | Email address of the contact.                |
 | ATTR_GROUP_MEMBERSHIP | Groups of the contact.                    |
-| ATTR_IM               | IM addresses of the contact.            |
+| ATTR_IM               | Instant Message (IM) addresses of the contact.            |
 | ATTR_NAME             | Contact name.                    |
 | ATTR_NICKNAME         | Contact nickname.                    |
 | ATTR_NOTE             | Contact notes.                    |
@@ -1694,11 +1782,11 @@ Defines an application that creates the contact.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name       | Type  | Readable| Writable| Description        |
-| ----------- | ------ | ---- | ---- | ------------ |
-| bundleName  | string | Yes  | No  | Bundle name.|
-| displayName | string | Yes  | No  | Application name.  |
-| holderId    | number | Yes  | Yes  | Application ID.    |
+| Name       |   Type  | Readable| Writable| Description      |
+| ----------- | -------- | ---- | ---- | ---------- |
+| bundleName  | string   | Yes  | No  | Bundle name.    |
+| displayName | string   | Yes  | No  | Application name.|
+| holderId    | number   | Yes  | Yes  | Application ID.  |
 
 
 **Example**
@@ -2094,7 +2182,7 @@ Defines a contact's postal address.
 | postcode      | string   | Yes  | Yes  | Postal code of the region where the contact is located.|
 | region        | string   | Yes  | Yes  | Area where the contact is located.        |
 | street        | string   | Yes  | Yes  | Street where the contact resides.        |
-| labelId       | number   | Yes  | Yes  | Postal address ID.            |
+| labelId       | number   | Yes  | Yes  | Postal address type.            |
 
 
 **Example**
