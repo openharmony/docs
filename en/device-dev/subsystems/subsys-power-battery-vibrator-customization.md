@@ -67,4 +67,4 @@ Upon device restarting, connect a charger to the device and check whether the de
 
 During development, you can refer to the default battery vibrator configuration:
 
-[Default Battery Vibrator Configuration](https://gitee.com/openharmony/powermgr_battery_manager/tree/master/services/native/profile)
+[Default Battery Vibrator Configuration](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile)
