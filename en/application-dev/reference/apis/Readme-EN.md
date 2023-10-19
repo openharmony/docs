@@ -261,6 +261,7 @@
 
 - Security
   - [@ohos.abilityAccessCtrl (Ability Access Control)](js-apis-abilityAccessCtrl.md)
+  - [@ohos.dlpPermission (DLP)](js-apis-dlppermission.md)
   - [@ohos.privacyManager (Privacy Management)](js-apis-privacyManager.md)
   - [@ohos.security.cert (Certificate)](js-apis-cert.md)
   - [@ohos.security.cryptoFramework (Crypto Framework)](js-apis-cryptoFramework.md)
