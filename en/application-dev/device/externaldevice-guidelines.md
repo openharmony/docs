@@ -30,12 +30,12 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
 
   ```ts
   import deviceManager from '@ohos.driver.deviceManager';
-  import { BusinessError } from '@ohos.base';
+  import type { BusinessError } from '@ohos.base';
 
   let matchDevice : deviceManager.USBDevice | null = null;
   try {
-    let devices : Array<Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
-    for (let item : Device of devices : Array<Device>) {
+    let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
+    for (let item of devices) {
       let device : deviceManager.USBDevice = item as deviceManager.USBDevice;
       // Match the USB device based on productId and vendorId.
       if (device.productId == 1234 && device.vendorId === 2345) {
@@ -50,7 +50,6 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
   }
   if (!matchDevice) {
     console.error('No match device');
-    return;
   }
   ```
 
@@ -58,41 +57,48 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
 
   ```ts
   import deviceManager from '@ohos.driver.deviceManager';
-  import { BusinessError } from '@ohos.base';
+  import type { BusinessError } from '@ohos.base';
+  import type rpc from '@ohos.rpc'
 
-  let remoteObject : IRemoteObject;
+  let remoteObject : rpc.IRemoteObject;
   try {
-    deviceManager.bindDevice(matchDevice.deviceId, (error : BusinessError, data : MessageSequence) => {
+    // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
+    deviceManager.bindDevice(12345678, (error : BusinessError, data) => {
       console.error('Device is disconnected');
-    }, (error : BusinessError, data : MessageSequence) => {
-      if (error : BusinessError) {
+    }, (error : BusinessError, data) => {
+      if (error) {
         console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
         return;
       }
-      console.info('bindDevice success');
-      remoteObject = data.remote;
-    });
+    console.info('bindDevice success');
+    remoteObject = data.remote;
+  });
   } catch (error) {
     let errCode = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`bindDevice fail. Code is ${errCode}, message is ${message}`);
+  }
+  if (!remoteObject) {
+    console.error('Bind device failed');
   }
    ```
 
 3. Use the capabilities provided by the peripheral device driver.
 
   ```ts
-  import deviceManager from '@ohos.driver.deviceManager';
-  import { BusinessError } from '@ohos.base';
+  import type { BusinessError } from '@ohos.base';
+  import rpc from '@ohos.rpc'
 
-  let option : MessageOption = new rpc.MessageOption();
-  let data : MessageSequence = rpc.MessageSequence.create();
-  let reply : MessageSequence = rpc.MessageSequence.create();
+  let option : rpc.MessageOption = new rpc.MessageOption();
+  let data : rpc.MessageSequence = rpc.MessageSequence.create();
+  let reply : rpc.MessageSequence = rpc.MessageSequence.create();
   data.writeString('hello');
   let code = 1;
+  // The remoteObject application can be obtained by binding the device.
+  let remoteObject : rpc.IRemoteObject;
   // The code and data content varies depending on the interface provided by the driver.
   remoteObject.sendMessageRequest(code, data, reply, option)
-    .then((result : number) => {
+    .then(() => {
       console.info('sendMessageRequest finish.');
     }).catch((error : BusinessError) => {
       let errCode = (error as BusinessError).code;
@@ -104,21 +110,22 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
 
   ```ts
   import deviceManager from '@ohos.driver.deviceManager';
-  import { BusinessError } from '@ohos.base';
+  import type { BusinessError } from '@ohos.base';
 
   try {
-    deviceManager.unbindDevice(matchDevice.deviceId, (error : BusinessError, data : MessageSequence) => {
-      if (error : BusinessError) {
+    // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
+    deviceManager.unbindDevice(12345678, (error : BusinessError, data) => {
+      if (error) {
         let errCode = (error as BusinessError).code;
         let message = (error as BusinessError).message;
         console.error(`unbindDevice async fail. Code is ${errCode}, message is ${message}`);
         return;
       }
-      console.info('unbindDevice success');
-    });
+      console.info(`unbindDevice success`);
+  });
   } catch (error) {
     let errCode = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.error('unbindDevice fail. Code is ${errCode}, message is ${message}');
+    console.error(`unbindDevice fail. Code is ${errCode}, message is ${message}`);
   }
   ```
