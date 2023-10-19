@@ -72,7 +72,7 @@ Describes the widget state information.
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | formState  | [FormState](#formstate)               | Yes   | No    | Widget state.                         |
-| want  | Want               | Yes   | No    | Want text.   |
+| want  | [Want](js-apis-app-ability-want.md)         | Yes   | No    | Want text.   |
 
 ##  FormState
 
