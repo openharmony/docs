@@ -17,11 +17,11 @@ getMediaLibrary(context: Context): MediaLibrary
 
 Obtains a **MediaLibrary** instance, which is used to access and modify personal media data such as audios, videos, images, and documents.
 
-This API can be used only in the stage model.
-
 > **NOTE**
 >
 > This API is deprecated since API version 9. Use [getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper) instead.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -51,11 +51,11 @@ getMediaLibrary(): MediaLibrary
 
 Obtains a **MediaLibrary** instance, which is used to access and modify personal media data such as audios, videos, images, and documents.
 
-This API can be used only in the FA model.
-
 > **NOTE**
 >
 > This API is deprecated since API version 9. There is no substitute API.
+
+**Model restriction**: This API can be used only in the FA model.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
