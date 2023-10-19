@@ -600,6 +600,40 @@ static getFirstPreferredLanguage(): string
   }
   ```
 
+### setAppPreferredLanguage<sup>11+</sup>
+
+static setAppPreferredLanguage(language: string): void
+
+设置应用的偏好语言。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明    |
+| -------- | ------ | ---- | ----- |
+| language | string | 是    | 语言ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    I18n.System.setAppPreferredLanguage('zh'); // 设置应用当前语言为 "zh"
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
 ### getAppPreferredLanguage<sup>9+</sup>
 
 static getAppPreferredLanguage(): string
