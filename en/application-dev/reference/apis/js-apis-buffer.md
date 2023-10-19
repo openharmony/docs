@@ -16,23 +16,23 @@ import buffer from '@ohos.buffer';
 
 ## BufferEncoding
 
-Enumerates the supported encoding formats of strings.
+Enumerates the supported encoding formats.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Encoding Format   | Description                |
+| Type   | Description                |
 | ------- | -------------------- |
-| 'ascii' | ASCII format, which is case insensitive.|
-| 'utf8' | UTF-8 format, which is case insensitive.|
-| 'utf-8' | UTF-8 format, which is case insensitive.|
-| 'utf16le' | UTF-16 little-endian format, which is case insensitive.|
-| 'ucs2' | UTF-16 little-endian format, which is case insensitive.|
-| 'ucs-2' | UTF-16 little-endian format, which is case insensitive.|
-| 'base64' | Base64 format, which is case insensitive.|
-| 'base64url' | Base64 format, which is case insensitive.|
-| 'latin1' | ASCII format, which is case insensitive.|
-| 'binary' | Binary format, which is case insensitive.|
-| 'hex' | Hexadecimal format, which is case insensitive.|
+| 'ascii' | ASCII format.|
+| 'utf8' | UTF-8 format.|
+| 'utf-8' | UTF-8 format.|
+| 'utf16le' | UTF-16LE format.|
+| 'ucs2' | Alias of UTF-16LE.|
+| 'ucs-2' | Alias of UTF-16LE.|
+| 'base64' | Base64 format.|
+| 'base64url' | Base64URL format.|
+| 'latin1' | ASCII format.|
+| 'binary' | Binary format.|
+| 'hex' | Hexadecimal format.|
 
 ## buffer.alloc
 
@@ -1162,7 +1162,7 @@ let result = buf1.writeFloatLE(0xcabcbcbc, 0);
 
 readInt8(offset?: number): number
 
-Reads a 8-bit signed integer from this **Buffer** instance at the specified offset.
+Reads an 8-bit signed integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1449,7 +1449,7 @@ let result = buf1.writeIntLE(0x123456789011, 0, 6);
 
 readUInt8(offset?: number): number
 
-Reads a 8-bit unsigned integer from this **Buffer** instance at the specified offset.
+Reads an 8-bit unsigned integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1915,7 +1915,7 @@ Converts the data at the specified position in this **Buffer** instance into a s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| encoding | string | No| Encoding format of the string. The default value is **utf-8**.|
+| encoding | string | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
 | start  | number | No|  Offset to the start position of the data to convert. The default value is **0**.|
 | end  | number | No|  Offset to the end position of the data to convert. The default value is the length of this **Buffer** instance.|
 
@@ -2326,7 +2326,7 @@ let result = buf.writeFloatLE(0xcafebabe, 0);
 
 writeInt8(value: number, offset?: number): number
 
-Writes a 8-bit signed integer to this **Buffer** instance at the specified offset.
+Writes an 8-bit signed integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2606,7 +2606,7 @@ let result = buf.writeIntLE(0x1234567890ab, 0, 6);
 
 writeUInt8(value: number, offset?: number): number
 
-Writes a 8-bit unsigned integer to this **Buffer** instance at the specified offset.
+Writes an 8-bit unsigned integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
