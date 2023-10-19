@@ -52,9 +52,9 @@ import rpc from '@ohos.rpc';
 
 **返回值：**
 
-  | 类型            | 说明                            |
-  | --------------- | ------------------------------- |
-  | MessageSequence | 返回创建的MessageSequence对象。 |
+| 类型            | 说明                            |
+| --------------- | ------------------------------- |
+| [MessageSequence](#messagesequence9) | 返回创建的MessageSequence对象。 |
 
 **示例：**
 
@@ -80,7 +80,7 @@ reclaim(): void
 
 ### writeRemoteObject
 
-writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
+writeRemoteObject(object: IRemoteObject): void
 
 序列化远程对象并将其写入MessageSequence对象。
 
@@ -516,8 +516,8 @@ rewindWrite(pos: number): void
     data.rewindWrite(0);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    console.info("rpc rewind read data fail, errorCode " + e.code);
-    console.info("rpc rewind read data fail, errorMessage " + e.message);
+    console.info("rpc rewindWrite fail, errorCode " + e.code);
+    console.info("rpc rewindWrite fail, errorMessage " + e.message);
   }
   data.writeInt(5);
   let number = data.readInt();
@@ -601,8 +601,8 @@ readByte(): number
     console.log("RpcClient: readByte is: " + ret);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    console.info("rpc write byte fail, errorCode " + e.code);
-    console.info("rpc write byte fail, errorMessage" + e.message);
+    console.info("rpc read byte fail, errorCode " + e.code);
+    console.info("rpc read byte fail, errorMessage" + e.message);
   }
   ```
 
@@ -966,8 +966,8 @@ writeDouble(val: number): void
     data.writeDouble(10.2);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    console.info("rpc read float fail, errorCode " + e.code);
-    console.info("rpc read float fail, errorMessage" + e.message);
+    console.info("rpc write double fail, errorCode " + e.code);
+    console.info("rpc write double fail, errorMessage" + e.message);
   }
   ```
 
@@ -1272,9 +1272,9 @@ writeParcelable(val: Parcelable): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | ------ | --------- | ---- | ------ |
-  | val    | Parcelable | 是   | 要写入的可序列对象。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | --------- | ---- | ------ |
+| val    | [Parcelable](#parcelable9) | 是   | 要写入的可序列对象。 |
 
 **错误码：**
 
@@ -1328,9 +1328,9 @@ readParcelable(dataIn: Parcelable): void
 
 **参数：**
 
-  | 参数名 | 类型                      | 必填 | 说明                                      |
-  | ------ | ------------------------- | ---- | ----------------------------------------- |
-  | dataIn | Parcelable                | 是   | 需要从MessageSequence读取成员变量的对象。 |
+| 参数名 | 类型                       | 必填 | 说明                                      |
+| ------ | -------------------------- | ---- | ----------------------------------------- |
+| dataIn | [Parcelable](#parcelable9) | 是   | 需要从MessageSequence读取成员变量的对象。 |
 
 **错误码：**
 
@@ -1456,8 +1456,8 @@ readByteArray(dataIn: number[]): void
     data.readByteArray(array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    console.info("rpc write byteArray fail, errorCode " + e.code);
-    console.info("rpc write byteArray fail, errorMessage" + e.message);
+    console.info("rpc read byteArray fail, errorCode " + e.code);
+    console.info("rpc read byteArray fail, errorMessage" + e.message);
   }
   ```
 
@@ -1539,8 +1539,8 @@ writeShortArray(shortArray: number[]): void
     data.writeShortArray([11, 12, 13]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    console.info("rpc read byteArray fail, errorCode " + e.code);
-    console.info("rpc read byteArray fail, errorMessage" + e.message);
+    console.info("rpc write shortArray fail, errorCode " + e.code);
+    console.info("rpc write shortArray fail, errorMessage" + e.message);
   }
   ```
 
@@ -2636,7 +2636,7 @@ readException(): void
         } catch(error) {
           let e: BusinessError = error as BusinessError;
           console.info("rpc read exception fail, errorCode " + e.code);
-          console.info("rpc read no exception fail, errorMessage" + e.message);
+          console.info("rpc read exception fail, errorMessage" + e.message);
         }
         let msg = result.reply.readString();
         console.log("RPCTest: reply msg: " + msg);
@@ -2662,9 +2662,9 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 
 **参数：**
 
-  | 参数名          | 类型         | 必填 | 说明                       |
-  | --------------- | ------------ | ---- | -------------------------- |
-  | parcelableArray | Parcelable[] | 是   | 要写入的可序列化对象数组。 |
+| 参数名          | 类型         | 必填 | 说明                       |
+| --------------- | ------------ | ---- | -------------------------- |
+| parcelableArray | [Parcelable](#parcelable9)[] | 是   | 要写入的可序列化对象数组。 |
 
 **错误码：**
 
@@ -2721,9 +2721,9 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 
 **参数：**
 
-  | 参数名          | 类型         | 必填 | 说明                       |
-  | --------------- | ------------ | ---- | -------------------------- |
-  | parcelableArray | Parcelable[] | 是   | 要读取的可序列化对象数组。 |
+| 参数名          | 类型         | 必填 | 说明                       |
+| --------------- | ------------ | ---- | -------------------------- |
+| parcelableArray | [Parcelable](#parcelable9)[] | 是   | 要读取的可序列化对象数组。 |
 
 **错误码：**
 
@@ -2784,9 +2784,9 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
 **参数：**
 
-  | 参数名      | 类型            | 必填 | 说明                                           |
-  | ----------- | --------------- | ---- | ---------------------------------------------- |
-  | objectArray | IRemoteObject[] | 是   | 要写入MessageSequence的IRemoteObject对象数组。 |
+| 参数名      | 类型            | 必填 | 说明                                           |
+| ----------- | --------------- | ---- | ---------------------------------------------- |
+| objectArray | [IRemoteObject](#iremoteobject)[] | 是   | 要写入MessageSequence的IRemoteObject对象数组。 |
 
 **错误码：**
 
@@ -2833,9 +2833,9 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
 **参数：**
 
-  | 参数名  | 类型            | 必填 | 说明                                           |
-  | ------- | --------------- | ---- | ---------------------------------------------- |
-  | objects | IRemoteObject[] | 是   | 从MessageSequence读取的IRemoteObject对象数组。 |
+| 参数名  | 类型            | 必填 | 说明                                           |
+| ------- | --------------- | ---- | ---------------------------------------------- |
+| objects | [IRemoteObject](#iremoteobject)[] | 是   | 从MessageSequence读取的IRemoteObject对象数组。 |
 
 **错误码：**
 
@@ -2883,9 +2883,9 @@ readRemoteObjectArray(): IRemoteObject[]
 
 **返回值：**
 
-  | 类型            | 说明                        |
-  | --------------- | --------------------------- |
-  | IRemoteObject[] | 返回IRemoteObject对象数组。 |
+| 类型            | 说明                        |
+| --------------- | --------------------------- |
+| [IRemoteObject](#iremoteobject)[] | 返回IRemoteObject对象数组。 |
 
 **错误码：**
 
@@ -2923,7 +2923,7 @@ readRemoteObjectArray(): IRemoteObject[]
   }
   ```
 
-### closeFileDescriptor<sup>9+</sup>
+### closeFileDescriptor
 
 static closeFileDescriptor(fd: number): void
 
@@ -3137,9 +3137,9 @@ writeAshmem(ashmem: Ashmem): void
 
 **参数：**
 
-  | 参数名 | 类型   | 必填 | 说明                                  |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | ashmem | Ashmem | 是   | 要写入MessageSequence的匿名共享对象。 |
+| 参数名 | 类型   | 必填 | 说明                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| ashmem | [Ashmem](#ashmem8) | 是   | 要写入MessageSequence的匿名共享对象。 |
 
 **错误码：**
 
@@ -3168,7 +3168,7 @@ writeAshmem(ashmem: Ashmem): void
   } catch(error) {
     let e: BusinessError = error as BusinessError;
     console.info("rpc create ashmem fail, errorCode " + e.code);
-    console.info("rpc creat ashmem fail, errorMessage" + e.message);
+    console.info("rpc create ashmem fail, errorMessage" + e.message);
   }
   ```
 
@@ -3182,9 +3182,9 @@ readAshmem(): Ashmem
 
 **返回值：**
 
-  | 类型   | 说明               |
-  | ------ | ------------------ |
-  | Ashmem | 返回匿名共享对象。 |
+| 类型   | 说明               |
+| ------ | ------------------ |
+| [Ashmem](#ashmem8) | 返回匿名共享对象。 |
 
 **错误码：**
 
@@ -3213,7 +3213,7 @@ readAshmem(): Ashmem
   } catch(error) {
     let e: BusinessError = error as BusinessError;
     console.info("rpc create ashmem fail, errorCode " + e.code);
-    console.info("rpc creat ashmem fail, errorMessage" + e.message);
+    console.info("rpc create ashmem fail, errorMessage" + e.message);
   }
   try {
     let readAshmem = sequence.readAshmem();
@@ -3356,7 +3356,7 @@ static create(): MessageParcel
 
   | 类型          | 说明                          |
   | ------------- | ----------------------------- |
-  | MessageParcel | 返回创建的MessageParcel对象。 |
+  | [MessageParcel](#messageparceldeprecated) | 返回创建的MessageParcel对象。 |
 
 **示例：**
 
@@ -3382,7 +3382,7 @@ reclaim(): void
 
 ### writeRemoteObject
 
-writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
+writeRemoteObject(object: IRemoteObject): boolean
 
 序列化远程对象并将其写入MessageParcel对象。
 
@@ -4265,7 +4265,7 @@ writeSequenceable(val: Sequenceable): boolean
 
   | 参数名 | 类型                          | 必填 | 说明                 |
   | ------ | ----------------------------- | ---- | -------------------- |
-  | val    | [Sequenceable](#sequenceable) | 是   | 要写入的可序列对象。 |
+  | val    | [Sequenceable](#sequenceabledeprecated) | 是   | 要写入的可序列对象。 |
 
 **返回值：**
 
@@ -4347,7 +4347,7 @@ readSequenceable(dataIn: Sequenceable): boolean
   console.log("RpcClient: writeSequenceable is " + result);
   let ret = new MySequenceable(0, "");
   let result2 = data.readSequenceable(ret);
-  console.log("RpcClient: writeSequenceable is " + result2);
+  console.log("RpcClient: readSequenceable is " + result2);
   ```
 
 ### writeByteArray
@@ -5158,9 +5158,9 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 
 **参数：**
 
-  | 参数名            | 类型           | 必填 | 说明                       |
-  | ----------------- | -------------- | ---- | -------------------------- |
-  | sequenceableArray | Sequenceable[] | 是   | 要写入的可序列化对象数组。 |
+| 参数名            | 类型                                      | 必填 | 说明                       |
+| ----------------- | ----------------------------------------- | ---- | -------------------------- |
+| sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | 是   | 要写入的可序列化对象数组。 |
 
 **返回值：**
 
@@ -5208,9 +5208,9 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 
 **参数：**
 
-  | 参数名            | 类型           | 必填 | 说明                       |
-  | ----------------- | -------------- | ---- | -------------------------- |
-  | sequenceableArray | Sequenceable[] | 是   | 要读取的可序列化对象数组。 |
+| 参数名            | 类型                                      | 必填 | 说明                       |
+| ----------------- | ----------------------------------------- | ---- | -------------------------- |
+| sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | 是   | 要读取的可序列化对象数组。 |
 
 **示例：**
 
@@ -5256,7 +5256,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
 
   | 参数名      | 类型            | 必填 | 说明  |
   | ----------- | --------------- | ---- | ----- |
-  | objectArray | IRemoteObject[] | 是   | 要写入MessageParcel的IRemoteObject对象数组。 |
+  | objectArray | [IRemoteObject](#iremoteobject)[] | 是   | 要写入MessageParcel的IRemoteObject对象数组。 |
 
 **返回值：**
 
@@ -5308,7 +5308,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
   | 参数名  | 类型            | 必填 | 说明      |
   | ------- | --------------- | ---- | --------- |
-  | objects | IRemoteObject[] | 是   | 从MessageParcel读取的IRemoteObject对象数组。 |
+  | objects | [IRemoteObject](#iremoteobject)[] | 是   | 从MessageParcel读取的IRemoteObject对象数组。 |
 
 **示例：**
 
@@ -5355,7 +5355,7 @@ readRemoteObjectArray(): IRemoteObject[]
 
   | 类型            | 说明                        |
   | --------------- | --------------------------- |
-  | IRemoteObject[] | 返回IRemoteObject对象数组。 |
+  | [IRemoteObject](#iremoteobject)[] | 返回IRemoteObject对象数组。 |
 
 **示例：**
 
@@ -5542,9 +5542,9 @@ writeAshmem(ashmem: Ashmem): boolean
 
 **参数：**
 
-  | 参数名 | 类型   | 必填 | 说明                                |
-  | ------ | ------ | ---- | ----------------------------------- |
-  | ashmem | Ashmem | 是   | 要写入MessageParcel的匿名共享对象。 |
+| 参数名 | 类型   | 必填 | 说明                                |
+| ------ | ------ | ---- | ----------------------------------- |
+| ashmem | [Ashmem](#ashmem8) | 是   | 要写入MessageParcel的匿名共享对象。 |
 
 **返回值：**
 
@@ -5571,9 +5571,9 @@ readAshmem(): Ashmem
 
 **返回值：**
 
-  | 类型   | 说明               |
-  | ------ | ------------------ |
-  | Ashmem | 返回匿名共享对象。 |
+| 类型   | 说明               |
+| ------ | ------------------ |
+| [Ashmem](#ashmem8) | 返回匿名共享对象。 |
 
 **示例：**
 
@@ -5683,9 +5683,9 @@ marshalling(dataOut: MessageSequence): boolean
 
 **参数：**
 
-  | 参数名  | 类型            | 必填 | 说明                                        |
-  | ------- | --------------- | ---- | ------------------------------------------- |
-  | dataOut | MessageSequence | 是   | 可序列对象将被封送到的MessageSequence对象。 |
+| 参数名  | 类型            | 必填 | 说明                                        |
+| ------- | --------------- | ---- | ------------------------------------------- |
+| dataOut |[MessageSequence](#messagesequence9)| 是   | 可序列对象将被封送到的MessageSequence对象。 |
 
 **返回值：**
 
@@ -5733,9 +5733,9 @@ unmarshalling(dataIn: MessageSequence): boolean
 
 **参数：**
 
-  | 参数名 | 类型            | 必填 | 说明                                            |
-  | ------ | --------------- | ---- | ----------------------------------------------- |
-  | dataIn | MessageSequence | 是   | 已将可序列对象封送到其中的MessageSequence对象。 |
+| 参数名 | 类型            | 必填 | 说明                                            |
+| ------ | --------------- | ---- | ----------------------------------------------- |
+| dataIn | [MessageSequence](#messagesequence9) | 是   | 已将可序列对象封送到其中的MessageSequence对象。 |
 
 **返回值：**
 
@@ -5986,12 +5986,12 @@ onRemoteDied(): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 名称    | 类型            | 可读 | 可写 | 说明                                  |
-  | ------- | --------------- | ---- | ---- |-------------------------------------- |
-  | errCode | number          | 是   | 否   | 错误码。                              |
-  | code    | number          | 是   | 否   | 消息代码。                            |
-  | data    | MessageSequence | 是   | 否   | 发送给对端进程的MessageSequence对象。 |
-  | reply   | MessageSequence | 是   | 否   | 对端进程返回的MessageSequence对象。   |
+| 名称    | 类型            | 可读 | 可写 | 说明                                  |
+| ------- | --------------- | ---- | ---- |-------------------------------------- |
+| errCode | number          | 是   | 否   | 错误码。                              |
+| code    | number          | 是   | 否   | 消息代码。                            |
+| data    | [MessageSequence](#messagesequence9) | 是   | 否   | 发送给对端进程的MessageSequence对象。 |
+| reply   | [MessageSequence](#messagesequence9) | 是   | 否   | 对端进程返回的MessageSequence对象。   |
 
 ## SendRequestResult<sup>8+(deprecated)</sup>
 
@@ -6005,8 +6005,8 @@ onRemoteDied(): void
   | ------- | ------------- | ---- | ---- | ----------------------------------- |
   | errCode | number        | 是   | 否   | 错误码。                            |
   | code    | number        | 是   | 否   | 消息代码。                          |
-  | data    | MessageParcel | 是   | 否   | 发送给对端进程的MessageParcel对象。 |
-  | reply   | MessageParcel | 是   | 否   | 对端进程返回的MessageParcel对象。   |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 否   | 发送给对端进程的MessageParcel对象。 |
+  | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 否   | 对端进程返回的MessageParcel对象。   |
 
 ## IRemoteObject
 
@@ -6028,9 +6028,9 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 **返回值：**
 
-  | 类型          | 说明                                          |
-  | ------------- | --------------------------------------------- |
-  | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
+| 类型          | 说明                                          |
+| ------------- | --------------------------------------------- |
+| [IRemoteBroker](#iremotebroker) | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
@@ -6050,13 +6050,13 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 **返回值：**
 
-  | 类型          | 说明                                          |
-  | ------------- | --------------------------------------------- |
-  | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
+| 类型          | 说明                                          |
+| ------------- | --------------------------------------------- |
+| [IRemoteBroker](#iremotebroker) | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+>从API version 8开始不再维护，建议使用[sendRequest<sup>8+(deprecated)</sup>](#sendrequest8deprecated)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -6100,9 +6100,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **返回值：**
 
-  | 类型                             | 说明                                          |
-  | -------------------------------- | --------------------------------------------- |
-  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| 类型                                                         | 说明                                          |
+| ------------------------------------------------------------ | --------------------------------------------- |
+| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 ### sendMessageRequest<sup>9+</sup>
 
@@ -6125,7 +6125,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 类型                         | 说明                                      |
   | ---------------------------- | ----------------------------------------- |
-  | Promise&lt;RequestResult&gt; | 返回一个期约，兑现值是requestResult实例。 |
+  | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是requestResult实例。 |
 
 ### sendMessageRequest<sup>9+</sup>
 
@@ -6143,7 +6143,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
   | reply    | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options  | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
-  | callback | AsyncCallback&lt;RequestResult&gt;   | 是   | 接收发送结果的回调。                                                                   |
+  | callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | 是   | 接收发送结果的回调。                                                                   |
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
@@ -6157,13 +6157,13 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **参数：**
 
-  | 参数名   | 类型                                      | 必填 | 说明                                                                                   |
-  | -------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code     | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data     | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
-  | reply    | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
-  | options  | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
-  | callback | AsyncCallback&lt;SendRequestResult&gt;    | 是   | 接收发送结果的回调。                                                                   |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| code     | number                                                       | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+| data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                    |
+| reply    | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
+| options  | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 ### registerDeathRecipient<sup>9+</sup>
 
@@ -6325,7 +6325,7 @@ isObjectDead(): boolean
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+>从API version 8 开始不再维护，建议使用[sendRequest<sup>8+(deprecated)</sup>](#sendrequest8deprecated)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -6425,7 +6425,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 类型                         | 说明                                      |
   | ---------------------------- | ----------------------------------------- |
-  | Promise&lt;RequestResult&gt; | 返回一个期约，兑现值是requestResult实例。 |
+  | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是requestResult实例。 |
 
 **示例：**
 
@@ -6509,9 +6509,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **返回值：**
 
-  | 类型                             | 说明                                          |
-  | -------------------------------- | --------------------------------------------- |
-  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| 类型                                                         | 说明                                          |
+| ------------------------------------------------------------ | --------------------------------------------- |
+| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
 
@@ -6590,7 +6590,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
   | reply    | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options  | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
-  | callback | AsyncCallback&lt;RequestResult&gt;   | 是   | 接收发送结果的回调。                                                                   |
+  | callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | 是   | 接收发送结果的回调。                                                                   |
 
 **示例：**
 
@@ -6654,8 +6654,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
     proxy.sendMessageRequest(1, data, reply, option, sendRequestCallback);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    console.info("rpc send sequence request fail, errorCode " + e.code);
-    console.info("rpc send sequence request fail, errorMessage " + e.message);
+    console.info("rpc sendMessageRequest fail, errorCode " + e.code);
+    console.info("rpc sendMessageRequest fail, errorMessage " + e.message);
   }
   ```
 
@@ -6671,13 +6671,13 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **参数：**
 
-  | 参数名   | 类型                                      | 必填 | 说明                                                                                   |
-  | -------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code     | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data     | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
-  | reply    | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
-  | options  | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
-  | callback | AsyncCallback&lt;SendRequestResult&gt;    | 是   | 接收发送结果的回调。                                                                   |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| code     | number                                                       | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+| data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                    |
+| reply    | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
+| options  | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 **示例：**
 
@@ -6754,9 +6754,9 @@ getLocalInterface(interface: string): IRemoteBroker
 
 **返回值：**
 
-  | 类型          | 说明                                       |
-  | ------------- | ------------------------------------------ |
-  | IRemoteBroker | 默认返回Null，标识该接口是一个代理侧接口。 |
+| 类型                            | 说明                                       |
+| ------------------------------- | ------------------------------------------ |
+| [IRemoteBroker](#iremotebroker) | 默认返回Null，标识该接口是一个代理侧接口。 |
 
 **错误码：**
 
@@ -6833,9 +6833,9 @@ queryLocalInterface(interface: string): IRemoteBroker
 
 **返回值：**
 
-  | 类型          | 说明                                       |
-  | ------------- | ------------------------------------------ |
-  | IRemoteBroker | 默认返回Null，标识该接口是一个代理侧接口。 |
+| 类型                            | 说明                                       |
+| ------------------------------- | ------------------------------------------ |
+| [IRemoteBroker](#iremotebroker) | 默认返回Null，标识该接口是一个代理侧接口。 |
 
 **示例：**
 
@@ -7097,8 +7097,8 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
     proxy.unregisterDeathRecipient(deathRecipient, 0);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    console.info("proxy register deathRecipient fail, errorCode " + e.code);
-    console.info("proxy register deathRecipient fail, errorMessage " + e.message);
+    console.info("proxy unregister deathRecipient fail, errorCode " + e.code);
+    console.info("proxy unregister deathRecipient fail, errorMessage " + e.message);
   }
   ```
 
@@ -7370,7 +7370,7 @@ isObjectDead(): boolean
 
 ### constructor<sup>9+</sup>
 
-constructor(async?: boolean);
+constructor(async?: boolean)
 
 MessageOption构造函数。
 
@@ -7418,7 +7418,7 @@ MessageOption构造函数。
   ```
 ### isAsync<sup>9+</sup>
 
-isAsync(): boolean;
+isAsync(): boolean
 
 获取SendMessageRequest调用中确定同步或是异步的标志。
 
@@ -7439,7 +7439,7 @@ isAsync(): boolean;
 
 ### setAsync<sup>9+</sup>
 
-setAsync(async: boolean): void;
+setAsync(async: boolean): void
 
 设置SendMessageRequest调用中确定同步或是异步的标志。
 
@@ -7647,7 +7647,7 @@ static getCallingUid(): number
 
 ### getCallingTokenId<sup>8+</sup>
 
-static getCallingTokenId(): number;
+static getCallingTokenId(): number
 
 静态方法，获取调用者的TokenId，用于被调用方对调用方的身份校验。
 
@@ -7778,8 +7778,8 @@ static flushCmdBuffer(object: IRemoteObject): void
     rpc.IPCSkeleton.flushCmdBuffer(remoteObject);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    console.info("proxy set calling identity fail, errorCode " + e.code);
-    console.info("proxy set calling identity fail, errorMessage " + e.message);
+    console.info("proxy flushCmdBuffer fail, errorCode " + e.code);
+    console.info("proxy flushCmdBuffer fail, errorMessage " + e.message);
   }
   ```
 
@@ -7949,7 +7949,7 @@ RemoteObject构造函数。
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+>从API version 8 开始不再维护，建议使用[sendRequest<sup>8+(deprecated)</sup>](#sendrequest8deprecated)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -8034,9 +8034,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **返回值：**
 
-  | 类型                             | 说明                                          |
-  | -------------------------------- | --------------------------------------------- |
-  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| 类型                                                         | 说明                                          |
+| ------------------------------------------------------------ | --------------------------------------------- |
+| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
 
@@ -8105,9 +8105,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **返回值：**
 
-  | 类型                         | 说明                                          |
-  | ---------------------------- | --------------------------------------------- |
-  | Promise&lt;RequestResult&gt; | 返回一个期约，兑现值是RequestResult实例。     |
+| 类型                                            | 说明                                      |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是RequestResult实例。 |
 
 **示例：**
 
@@ -8152,13 +8152,13 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **参数：**
 
-  | 参数名        | 类型                                 | 必填 | 说明                                                                                   |
-  | ------------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-  | code          | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data          | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
-  | reply         | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
-  | options       | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
-  | AsyncCallback | AsyncCallback&lt;RequestResult&gt;   | 是   | 接收发送结果的回调。                                                                   |
+| 参数名        | 类型                                                  | 必填 | 说明                                                         |
+| ------------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| code          | number                                                | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+| data          | [MessageSequence](#messagesequence9)                  | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                  |
+| reply         | [MessageSequence](#messagesequence9)                  | 是   | 接收应答数据的MessageSequence对象。                          |
+| options       | [MessageOption](#messageoption)                       | 是   | 本次请求的同异步模式，默认同步调用。                         |
+| AsyncCallback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt; | 是   | 接收发送结果的回调。                                         |
 
 **示例：**
 
@@ -8204,13 +8204,13 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **参数：**
 
-  | 参数名        | 类型                                      | 必填 | 说明                                                                                   |
-  | ------------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code          | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data          | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
-  | reply         | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
-  | options       | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
-  | AsyncCallback | AsyncCallback&lt;SendRequestResult&gt;    | 是   | 接收发送结果的回调。                                                                   |
+| 参数名        | 类型                                                         | 必填 | 说明                                                         |
+| ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| code          | number                                                       | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+| data          | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                    |
+| reply         | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
+| options       | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
+| AsyncCallback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 **示例：**
 
@@ -8716,10 +8716,10 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 **参数：**
 
-  | 参数名         | 类型          | 必填 | 说明                                  |
-  | -------------- | ------------- | ---- | ------------------------------------- |
-  | localInterface | IRemoteBroker | 是   | 将与描述符绑定的IRemoteBroker对象。   |
-  | descriptor     | string        | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
+| 参数名         | 类型                            | 必填 | 说明                                  |
+| -------------- | ------------------------------- | ---- | ------------------------------------- |
+| localInterface | [IRemoteBroker](#iremotebroker) | 是   | 将与描述符绑定的IRemoteBroker对象。   |
+| descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
 
 **示例：**
 
@@ -8770,10 +8770,10 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 **参数：**
 
-  | 参数名         | 类型          | 必填 | 说明                                  |
-  | -------------- | ------------- | ---- | ------------------------------------- |
-  | localInterface | IRemoteBroker | 是   | 将与描述符绑定的IRemoteBroker对象。   |
-  | descriptor     | string        | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
+| 参数名         | 类型                            | 必填 | 说明                                  |
+| -------------- | ------------------------------- | ---- | ------------------------------------- |
+| localInterface | [IRemoteBroker](#iremotebroker) | 是   | 将与描述符绑定的IRemoteBroker对象。   |
+| descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
 
 **示例：**
 
@@ -8836,9 +8836,9 @@ static create(name: string, size: number): Ashmem
 
 **返回值：**
 
-  | 类型   | 说明                                           |
-  | ------ | ---------------------------------------------- |
-  | Ashmem | 返回创建的Ashmem对象；如果创建失败，返回null。 |
+| 类型               | 说明                                           |
+| ------------------ | ---------------------------------------------- |
+| [Ashmem](#ashmem8) | 返回创建的Ashmem对象；如果创建失败，返回null。 |
 
 **示例：**
 
@@ -8876,9 +8876,9 @@ static createAshmem(name: string, size: number): Ashmem
 
 **返回值：**
 
-  | 类型   | 说明                                           |
-  | ------ | ---------------------------------------------- |
-  | Ashmem | 返回创建的Ashmem对象；如果创建失败，返回null。 |
+| 类型               | 说明                                           |
+| ------------------ | ---------------------------------------------- |
+| [Ashmem](#ashmem8) | 返回创建的Ashmem对象；如果创建失败，返回null。 |
 
 **示例：**
 
@@ -8898,15 +8898,15 @@ static create(ashmem: Ashmem): Ashmem
 
 **参数：**
 
-  | 参数名 | 类型   | 必填 | 说明                 |
-  | ------ | ------ | ---- | -------------------- |
-  | ashmem | Ashmem | 是   | 已存在的Ashmem对象。 |
+| 参数名 | 类型               | 必填 | 说明                 |
+| ------ | ------------------ | ---- | -------------------- |
+| ashmem | [Ashmem](#ashmem8) | 是   | 已存在的Ashmem对象。 |
 
 **返回值：**
 
-  | 类型   | 说明                   |
-  | ------ | ---------------------- |
-  | Ashmem | 返回创建的Ashmem对象。 |
+| 类型               | 说明                   |
+| ------------------ | ---------------------- |
+| [Ashmem](#ashmem8) | 返回创建的Ashmem对象。 |
 
 **示例：**
 
@@ -8927,7 +8927,7 @@ static create(ashmem: Ashmem): Ashmem
 
 ### createAshmemFromExisting<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[create](#create9)类替代。
+>从API version 9 开始不再维护，建议使用[create](#create9)替代。
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
@@ -8937,15 +8937,15 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
 **参数：**
 
-  | 参数名 | 类型   | 必填 | 说明                 |
-  | ------ | ------ | ---- | -------------------- |
-  | ashmem | Ashmem | 是   | 已存在的Ashmem对象。 |
+| 参数名 | 类型               | 必填 | 说明                 |
+| ------ | ------------------ | ---- | -------------------- |
+| ashmem | [Ashmem](#ashmem8) | 是   | 已存在的Ashmem对象。 |
 
 **返回值：**
 
-  | 类型   | 说明                   |
-  | ------ | ---------------------- |
-  | Ashmem | 返回创建的Ashmem对象。 |
+| 类型               | 说明                   |
+| ------------------ | ---------------------- |
+| [Ashmem](#ashmem8) | 返回创建的Ashmem对象。 |
 
 **示例：**
 
