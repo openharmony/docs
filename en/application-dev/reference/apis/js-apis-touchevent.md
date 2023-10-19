@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.touchEvent (Touch Event)
 
-The **touchEvent** module provides touch (touchscreen) events reported by an input device.
+The **touchEvent** module provides touchscreen events reported by a device. It is inherited from [InputEvent](./js-apis-inputevent.md).
 
 >  **NOTE**
 >
@@ -91,5 +91,5 @@ Defines a touch event.
 | ---------- | ---------- | ---- | ---- | --------- |
 | action     | [Action](#action)     | Yes   | No   | Touch event type.    |
 | touch      | [Touch](#touch)      | Yes   | No   | Current touch point.  |
-| touches    | Touch[]    | Yes   | No   | All touch points.    |
+| touches    | [Touch](#touch)[]    | Yes   | No   | All touch points.    |
 | sourceType | [SourceType](#sourcetype) | Yes   | No   | Touch source type.|

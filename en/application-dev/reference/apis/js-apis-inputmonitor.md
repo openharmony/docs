@@ -188,7 +188,7 @@ Defines the callback for touch (touchscreen) events.
 
 | Name        | Type                                      | Mandatory  | Description                                      |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| touchEvent | [TouchEvent](../arkui-js/js-components-common-events.md) | Yes   | Touch event.|
+| touchEvent | [TouchEvent](./js-apis-touchevent.md) | Yes   | Touch event.|
 
 **Return value**
 
