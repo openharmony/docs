@@ -73,6 +73,12 @@ publish(request: NotificationRequest): Promise\<void\>
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
 | request  | [NotificationRequest](#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
+
 **示例：**
 
 ```ts
@@ -168,6 +174,12 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 | request  | [NotificationRequest](#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
+
 **示例：**
 
 ```ts
@@ -244,6 +256,12 @@ cancel(id: number, label?: string): Promise\<void\>
 | ----- | ------ | ---- | -------- |
 | id    | number | 是   | 通知ID。   |
 | label | string | 否   | 通知标签，默认为空。 |
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **示例：**
 
@@ -330,6 +348,12 @@ cancelAll(): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
+
 **示例：**
 
 ```ts
@@ -400,6 +424,12 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 | ---- | ---------------- | ---- | -------------------- |
 | slot | [NotificationSlot](#notificationslot) | 是   | 要创建的通知通道对象。 |
 
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
+
 **示例：**
 
 ```ts
@@ -461,6 +491,12 @@ addSlot(type: SlotType): Promise\<void\>
 | 参数名 | 类型     | 必填 | 说明                   |
 | ---- | -------- | ---- | ---------------------- |
 | type | [SlotType](#slottype) | 是   | 要创建的通知通道的类型。 |
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **示例：**
 
@@ -535,6 +571,12 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 | 参数名  | 类型                      | 必填 | 说明                     |
 | ----- | ------------------------- | ---- | ------------------------ |
 | slots | Array\<[NotificationSlot](#notificationslot)\> | 是   | 要创建的通知通道对象数组。 |
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **示例：**
 
@@ -724,6 +766,12 @@ removeSlot(slotType: SlotType): Promise\<void\>
 | -------- | -------- | ---- | ----------------------------------------------------------- |
 | slotType | [SlotType](#slottype) | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
 
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
+
 **示例：**
 
 ```ts
@@ -773,6 +821,12 @@ removeAllSlots(): Promise\<void\>
 删除所有通知通道（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **示例：**
 
@@ -892,6 +946,12 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
 | info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空。   |
 
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
+
 **示例：**
 
 ```ts
@@ -970,6 +1030,12 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 | ---------- | ---------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | 是   | 通知订阅对象。 |
 
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
+
 **示例：**
 
 ```ts
@@ -1045,6 +1111,12 @@ enableNotification(bundle: BundleOption, enable: boolean): Promise\<void\>
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](#bundleoption) | 是   | 指定应用的包信息。 |
 | enable | boolean      | 是   | 使能状态。   |
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **示例：**
 
@@ -1265,6 +1337,12 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 | bundle | [BundleOption](#bundleoption) | 是   | 指定应用的包信息。 |
 | enable | boolean      | 是   | 使能状态。   |
 
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
+
 **示例：**
 
 ```ts
@@ -1416,6 +1494,12 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](#bundleoption) | 是   | 指定应用的包信息。 |
 | slot   | [NotificationSlot](#notificationslot) | 是   | 通知通道。 |
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **示例：**
 
@@ -1656,6 +1740,12 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | notificationKey | [NotificationKey](#notificationkeydeprecated) | 是   | 通知键值。   |
 | reason          | [RemoveReason](#removereason-deprecated) | 是   | 通知删除原因。         |
 
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
+
 **示例：**
 
 ```ts
@@ -1732,6 +1822,12 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 | -------- | ---------- | ---- | ---------- |
 | hashCode | string | 是   | 通知唯一ID。 |
 | reason   | [RemoveReason](#removereason-deprecated) | 是   | 通知删除原因。         |
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **示例：**
 
@@ -1835,6 +1931,12 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](#bundleoption) | 否   | 指定应用的包信息。默认为空，表示删除所有通知。 |
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **示例：**
 
@@ -2144,6 +2246,12 @@ cancelGroup(groupName: string): Promise\<void\>
 | --------- | ------ | ---- | -------------- |
 | groupName | string | 是   | 通知组名称。 |
 
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
+
 **示例：**
 
 ```ts
@@ -2214,6 +2322,12 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 | --------- | ------------ | ---- | -------------- |
 | bundle    | [BundleOption](#bundleoption) | 是   | 应用的包信息。     |
 | groupName | string       | 是   | 通知组名称。 |
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **示例：**
 
@@ -2287,6 +2401,12 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 | 参数名 | 类型             | 必填 | 说明           |
 | ---- | ---------------- | ---- | -------------- |
 | date | [DoNotDisturbDate](#donotdisturbdate8) | 是   | 免打扰时间选项。 |
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **示例：**
 
@@ -2367,6 +2487,12 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 | ------ | ---------------- | ---- | -------------- |
 | date   | [DoNotDisturbDate](#donotdisturbdate8) | 是   | 免打扰时间选项。 |
 | userId | number           | 是   | 设置免打扰时间的用户ID。 |
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **示例：**
 
@@ -2696,6 +2822,12 @@ requestEnableNotification(): Promise\<void\>
 应用请求通知使能（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **示例：**
 
