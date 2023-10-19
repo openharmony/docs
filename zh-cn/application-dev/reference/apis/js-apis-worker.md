@@ -20,10 +20,10 @@ import worker from '@ohos.worker';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称                              | 类型                                                      | 可读 | 可写 | 说明                                                         |
-| --------------------------------- | --------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)      | 是   | 是   | worker线程用于与宿主线程通信的对象。                         |
-| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscope) | 是   | 是   | worker线程用于与宿主线程通信的对象。<br/>此属性从API version 7开始支持,从API version 9 开始被废弃。<br/>建议使用workerPort<sup>9+</sup>替代。 |
+| 名称                              | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | 是   | 是   | worker线程用于与宿主线程通信的对象。                         |
+| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 是   | worker线程用于与宿主线程通信的对象。<br/>此属性从API version 7开始支持,从API version 9 开始被废弃。<br/>建议使用workerPort<sup>9+</sup>替代。 |
 
 
 ## WorkerOptions
@@ -1156,7 +1156,7 @@ workerPort.onerror = function(e){
 ## Worker<sup>(deprecated)</sup>
 
 
-使用以下方法前，均需先构造Worker实例，Worker类继承[EventTarget](#eventtarget)。
+使用以下方法前，均需先构造Worker实例，Worker类继承[EventTarget](#eventtargetdeprecated)。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker<sup>9+</sup>](#threadworker9)替代。
@@ -1323,10 +1323,10 @@ on(type: string, listener: EventListener): void
 
 **参数：**
 
-| 参数名   | 类型                            | 必填 | 说明             |
-| -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | 是   | 监听的事件类型。 |
-| listener | [EventListener](#eventlistener) | 是   | 回调事件。       |
+| 参数名   | 类型                                      | 必填 | 说明             |
+| -------- | ----------------------------------------- | ---- | ---------------- |
+| type     | string                                    | 是   | 监听的事件类型。 |
+| listener | [EventListener](#eventlistenerdeprecated) | 是   | 回调事件。       |
 
 **示例：**
 
@@ -1351,10 +1351,10 @@ once(type: string, listener: EventListener): void
 
 **参数：**
 
-| 参数名   | 类型                            | 必填 | 说明             |
-| -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | 是   | 监听的事件类型。 |
-| listener | [EventListener](#eventlistener) | 是   | 回调事件。       |
+| 参数名   | 类型                                      | 必填 | 说明             |
+| -------- | ----------------------------------------- | ---- | ---------------- |
+| type     | string                                    | 是   | 监听的事件类型。 |
+| listener | [EventListener](#eventlistenerdeprecated) | 是   | 回调事件。       |
 
 **示例：**
 
@@ -1379,10 +1379,10 @@ off(type: string, listener?: EventListener): void
 
 **参数：**
 
-| 参数名   | 类型                            | 必填 | 说明                 |
-| -------- | ------------------------------- | ---- | -------------------- |
-| type     | string                          | 是   | 需要删除的事件类型。 |
-| listener | [EventListener](#eventlistener) | 否   | 删除的回调事件。     |
+| 参数名   | 类型                                      | 必填 | 说明                 |
+| -------- | ----------------------------------------- | ---- | -------------------- |
+| type     | string                                    | 是   | 需要删除的事件类型。 |
+| listener | [EventListener](#eventlistenerdeprecated) | 否   | 删除的回调事件。     |
 
 **示例：**
 
@@ -1486,9 +1486,9 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worke
 
 **参数：**
 
-| 参数名 | 类型                           | 必填 | 说明                   |
-| ------ | ------------------------------ | ---- | ---------------------- |
-| event  | [MessageEvent](#messageeventt) | 是   | 收到的Worker消息数据。 |
+| 参数名 | 类型                               | 必填 | 说明                   |
+| ------ | ---------------------------------- | ---- | ---------------------- |
+| event  | [MessageEvent\<T>](#messageeventt) | 是   | 收到的Worker消息数据。 |
 
 **示例：**
 
@@ -1515,9 +1515,9 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 
 **参数：**
 
-| 参数名 | 类型                           | 必填 | 说明       |
-| ------ | ------------------------------ | ---- | ---------- |
-| event  | [MessageEvent](#messageeventt) | 是   | 异常数据。 |
+| 参数名 | 类型                               | 必填 | 说明       |
+| ------ | ---------------------------------- | ---- | ---------- |
+| event  | [MessageEvent\<T>](#messageeventt) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -1546,10 +1546,10 @@ addEventListener(type: string, listener: EventListener): void
 
 **参数：**
 
-| 参数名   | 类型                            | 必填 | 说明             |
-| -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | 是   | 监听的事件类型。 |
-| listener | [EventListener](#eventlistener) | 是   | 回调的事件。     |
+| 参数名   | 类型                                      | 必填 | 说明             |
+| -------- | ----------------------------------------- | ---- | ---------------- |
+| type     | string                                    | 是   | 监听的事件类型。 |
+| listener | [EventListener](#eventlistenerdeprecated) | 是   | 回调的事件。     |
 
 **示例：**
 
@@ -1574,10 +1574,10 @@ removeEventListener(type: string, callback?: EventListener): void
 
 **参数：**
 
-| 参数名   | 类型                            | 必填 | 说明                     |
-| -------- | ------------------------------- | ---- | ------------------------ |
-| type     | string                          | 是   | 需要删除的监听事件类型。 |
-| callback | [EventListener](#eventlistener) | 否   | 删除的回调事件。         |
+| 参数名   | 类型                                      | 必填 | 说明                     |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 需要删除的监听事件类型。 |
+| callback | [EventListener](#eventlistenerdeprecated) | 否   | 删除的回调事件。         |
 
 **示例：**
 
@@ -1686,7 +1686,7 @@ workerInstance.removeAllListener();
 
 ## DedicatedWorkerGlobalScope<sup>(deprecated)</sup>
 
-Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口销毁Worker线程。DedicatedWorkerGlobalScope类继承[WorkerGlobalScope](#workerglobalscope)。
+Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口销毁Worker线程。DedicatedWorkerGlobalScope类继承[WorkerGlobalScope](#workerglobalscopedeprecated)。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9)替代。
@@ -1834,7 +1834,7 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 | 参数名 | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。         |
-| ev     | [MessageEvent](#messageeventt)                               | 是   | 收到宿主线程发送的数据。 |
+| ev     | [MessageEvent\<T>](#messageeventt)                           | 是   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
@@ -1867,10 +1867,10 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 
 **参数：**
 
-| 参数名 | 类型                           | 必填 | 说明       |
-| ------ | ------------------------------ | ---- | ---------- |
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。 |
-| ev     | [MessageEvent](#messageeventt) | 是   | 异常数据。 |
+| ev     | [MessageEvent\<T>](#messageeventt)                           | 是   | 异常数据。       |
 
 **示例：**
 
@@ -1973,7 +1973,7 @@ workerInstance.addEventListener("alert", (e)=>{
 
 ## WorkerGlobalScope<sup>(deprecated)</sup>
 
-Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eventtarget)。
+Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eventtargetdeprecated)。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[GlobalScope<sup>9+</sup>](#globalscope9)替代。
@@ -1985,7 +1985,7 @@ Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eve
 | 名称 | 类型                                                         | 可读 | 可写 | 说明                                  |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | 是   | 否   | Worker的名字，new&nbsp;Worker时指定。 |
-| self | [WorkerGlobalScope](#workerglobalscope)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | 是   | 否   | WorkerGlobalScope本身。               |
+| self | [WorkerGlobalScope](#workerglobalscopedeprecated)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | 是   | 否   | WorkerGlobalScope本身。               |
 
 
 ### onerror<sup>(deprecated)</sup>
