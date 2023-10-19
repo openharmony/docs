@@ -3035,7 +3035,7 @@ class C {
 
 **相关约束**
 
-* 不支持new.target
+不支持new.target
 
 ### 不支持`globalThis`
 
@@ -3092,7 +3092,7 @@ ArkTS仅支持`Partial`、`Required`、`Readonly`和`Record`，不支持TypeScri
 
 **相关约束**
 
-* 不支持globalThis
+不支持globalThis
 
 ### 不支持`Function.apply`、`Function.bind`和`Function.call`
 
@@ -3104,7 +3104,7 @@ ArkTS不允许使用标准库函数`Function.apply`、`Function.bind`以及`Func
 
 **相关约束**
 
-* 不支持在函数中使用this
+不支持在函数中使用this
 
 ### 不支持`as const`断言
 
