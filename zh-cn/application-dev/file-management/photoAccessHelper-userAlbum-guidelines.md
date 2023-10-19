@@ -12,7 +12,7 @@ photoAccessHelper提供用户相册相关的接口，供开发者创建、删除
 
 ## 创建用户相册
 
-通过[createAlbum](../reference/apis/js-apis-photoAccessHelper.md#createalbum)接口创建用户相册。
+通过[PhotoAccessHelper.createAlbum](../reference/apis/js-apis-photoAccessHelper.md#createalbum-1)接口创建用户相册。
 
 待创建的相册名参数规格为：
 
@@ -51,7 +51,7 @@ async function example() {
 
 ## 获取用户相册
 
-通过[getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums)接口获取用户相册。
+通过[PhotoAccessHelper.getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums-2)接口获取用户相册。
 
 **前提条件：**
 
@@ -63,8 +63,8 @@ async function example() {
 **开发步骤：**
 
 1. 建立检索条件，用于获取用户相册。
-2. 调用getAlbums接口获取用户相册资源。
-3. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一个用户相册。
+2. 调用PhotoAccessHelper.getAlbums接口获取用户相册资源。
+3. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个用户相册。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -96,7 +96,7 @@ async function example() {
 
 重命名用户相册修改的是相册的Albums.albumName属性。
 
-修改后再通过[Album.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify-2)更新到数据库中完成修改。
+修改后再通过[Album.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify-3)更新到数据库中完成修改。
 
 在重命名用户相册之前，需要先获取相册对象，可以通过[FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult)中的接口获取对应位置的用户相册。
 
@@ -112,8 +112,8 @@ async function example() {
 **开发步骤：**
 
 1. 建立检索条件，用于获取用户相册。
-2. 调用getAlbums接口获取用户相册资源。
-3. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一个用户相册。
+2. 调用PhotoAccessHelper.getAlbums接口获取用户相册资源。
+3. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个用户相册。
 4. 设置新的相册名。
 5. 调用Album.commitModify接口将修改的相册属性更新到数据中完成修改。
 
@@ -147,7 +147,7 @@ async function example() {
 
 ## 添加图片和视频到用户相册中
 
-先[获取用户相册](#获取用户相册)对象和需要添加到相册中的图片或视频的对象数组，然后调用[Album.addAssets](../reference/apis/js-apis-photoAccessHelper.md#addassets)接口往用户相册中添加图片或视频。
+先[获取用户相册](#获取用户相册)对象和需要添加到相册中的图片或视频的对象数组，然后调用[Album.addAssets](../reference/apis/js-apis-photoAccessHelper.md#addassets-1)接口往用户相册中添加图片或视频。
 
 **前提条件：**
 
@@ -160,7 +160,7 @@ async function example() {
 
 1. 建立相册检索条件，用于获取用户相册。
 2. 建立图片检索条件，用于获取图片。
-3. 调用getAlbums接口获取用户相册资源。
+3. 调用PhotoAccessHelper.getAlbums接口获取用户相册资源。
 4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一个用户相册。
 5. 调用[PhotoAccessHelper.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets)接口获取图片资源。
 6. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一张图片。
@@ -192,9 +192,9 @@ async function example() {
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     console.info('getAlbums successfully, albumName: ' + album.albumName);
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(photoFetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
-    console.info('getAssets successfully, albumName: ' + fileAsset.displayName);
-    await album.addAssets([fileAsset]);
+    let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
+    console.info('getAssets successfully, albumName: ' + photoAsset.displayName);
+    await album.addAssets([photoAsset]);
     albumFetchResult.close();
     photoFetchResult.close();
   } catch (err) {
@@ -205,7 +205,7 @@ async function example() {
 
 ## 获取用户相册中的图片和视频
 
-先[获取用户相册](#获取用户相册)对象，然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-2)接口获取用户相册中的图片资源。
+先[获取用户相册](#获取用户相册)对象，然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-3)接口获取用户相册中的图片资源。
 
 **前提条件：**
 
@@ -218,10 +218,10 @@ async function example() {
 
 1. 建立相册检索条件，用于获取用户相册。
 2. 建立图片检索条件，用于获取图片。
-3. 调用getAlbums接口获取用户相册资源。
-4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一个用户相册。
+3. 调用PhotoAccessHelper.getAlbums接口获取用户相册资源。
+4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个用户相册。
 5. 调用Album.getAssets接口获取用户相册中的图片资源。
-6. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一张图片。
+6. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -249,8 +249,8 @@ async function example() {
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     console.info('getAlbums successfully, albumName: ' + album.albumName);
     let photoFetchResult = await album.getAssets(photoFetchOptions);
-    let fileAsset = await photoFetchResult.getFirstObject();
-    console.info('album getAssets successfully, albumName: ' + fileAsset.displayName);
+    let photoAsset = await photoFetchResult.getFirstObject();
+    console.info('album getAssets successfully, albumName: ' + photoAsset.displayName);
     albumFetchResult.close();
     photoFetchResult.close();
   } catch (err) {
@@ -261,9 +261,9 @@ async function example() {
 
 ## 从用户相册中移除图片和视频
 
-先[获取用户相册](#获取用户相册)对象，然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-2)接口获取用户相册中的资源。
+先[获取用户相册](#获取用户相册)对象，然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-3)接口获取用户相册中的资源。
 
-选择其中要移除的图片调用[Album.removeAssets](../reference/apis/js-apis-photoAccessHelper.md#removeassets)接口移除。
+选择其中要移除的图片调用[Album.removeAssets](../reference/apis/js-apis-photoAccessHelper.md#removeassets-1)接口移除。
 
 **前提条件：**
 
@@ -276,10 +276,10 @@ async function example() {
 
 1. 建立相册检索条件，用于获取用户相册。
 2. 建立图片检索条件，用于获取图片。
-3. 调用getAlbums接口获取用户相册资源。
-4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一个用户相册。
+3. 调用PhotoAccessHelper.getAlbums接口获取用户相册资源。
+4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个用户相册。
 5. 调用Album.getAssets接口获取图片资源。
-6. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一张图片。
+6. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片。
 7. 调用Album.removeAssets接口从用户相册中移除图片。
 
 ```ts
@@ -308,9 +308,9 @@ async function example() {
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     console.info('getAlbums successfully, albumName: ' + album.albumName);
     let photoFetchResult = await album.getAssets(photoFetchOptions);
-    let fileAsset = await photoFetchResult.getFirstObject();
-    console.info('album getAssets successfully, albumName: ' + fileAsset.displayName);
-    await album.removeAssets([fileAsset]);
+    let photoAsset = await photoFetchResult.getFirstObject();
+    console.info('album getAssets successfully, albumName: ' + photoAsset.displayName);
+    await album.removeAssets([photoAsset]);
     albumFetchResult.close();
     photoFetchResult.close();
   } catch (err) {
@@ -321,7 +321,7 @@ async function example() {
 
 ## 删除用户相册
 
-先[获取用户相册](#获取用户相册)对象，然后调用[deleteAlbums](../reference/apis/js-apis-photoAccessHelper.md#deletealbums)删除用户相册。
+先[获取用户相册](#获取用户相册)对象，然后调用[PhotoAccessHelper.deleteAlbums](../reference/apis/js-apis-photoAccessHelper.md#deletealbums-1)删除用户相册。
 
 **前提条件：**
 
@@ -333,9 +333,9 @@ async function example() {
 **开发步骤：**
 
 1. 建立检索条件，用于获取用户相册。
-2. 调用getAlbums接口获取用户相册资源。
+2. 调用PhotoAccessHelper.getAlbums接口获取用户相册资源。
 3. 调用FetchResult.getFirstObject接口获取第一个用户相册。
-4. 调用deleteAlbums接口删除第一个用户相册。
+4. 调用PhotoAccessHelper.deleteAlbums接口删除第一个用户相册。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
