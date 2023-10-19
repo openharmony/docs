@@ -6,7 +6,6 @@
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
 
 ```ts
@@ -600,6 +599,7 @@ createAlbum(name: string): Promise&lt;Album&gt;;
 创建相册，使用Promise方式返回结果。
 
 待创建的相册名参数规格为：
+
 - 相册名字符串长度为1~255。
 - 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
@@ -3102,7 +3102,7 @@ async function example() {
 
 close(): void
 
-释放FetchFileResult实例并使其失效。无法调用其他方法。
+释放FetchResult实例并使其失效。无法调用其他方法。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4581,12 +4581,14 @@ async function example() {
 
 图片或视频的创建选项。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| subtype           | [PhotoSubtype](#photosubtype) | 否  | 图片或者视频的子类型。**系统接口**：此接口为系统接口。  |
-| cameraShotKey           | string | 否  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。**系统接口**：此接口为系统接口。   |
+| subtype           | [PhotoSubtype](#photosubtype) | 否  | 图片或者视频的子类型。  |
+| cameraShotKey           | string | 否  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。   |
 
 ## CreateOptions
 

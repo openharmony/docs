@@ -16,7 +16,7 @@ photoAccessHelper仅提供开发者对收藏夹、视频相册、截屏和录屏
 
 ### 获取收藏夹对象
 
-通过[getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums)接口获取收藏夹对象。
+通过[PhotoAccessHelper.getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums-2)接口获取收藏夹对象。
 
 **前提条件：**
 
@@ -26,7 +26,7 @@ photoAccessHelper仅提供开发者对收藏夹、视频相册、截屏和录屏
 **开发步骤：**
 
 1. 设置获取收藏夹的参数为photoAccessHelper.AlbumType.SYSTEM和photoAccessHelper.AlbumSubtype.FAVORITE。
-2. 调用getAlbums接口获取收藏夹对象。
+2. 调用PhotoAccessHelper.getAlbums接口获取收藏夹对象。
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
@@ -47,7 +47,7 @@ async function example() {
 
 ### 收藏图片和视频
 
-通过[setFavorite](../reference/apis/js-apis-photoAccessHelper.md#setfavorite)接口将图片或者视频设置收藏。
+通过[PhotoAsset.setFavorite](../reference/apis/js-apis-photoAccessHelper.md#setfavorite-1)接口将图片或者视频设置收藏。
 
 **前提条件：**
 
@@ -60,7 +60,7 @@ async function example() {
 
 1. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
 2. favoriteState参数设置为true，表示将会设置为收藏。
-3. 调用FileAsset.setFavorite接口设置收藏。
+3. 调用PhotoAsset.setFavorite接口设置收藏。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -78,10 +78,10 @@ async function example() {
 
   try {
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
-    console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
+    console.info('getAssets photoAsset.displayName : ' + photoAsset.displayName);
     let favoriteState = true;
-    await fileAsset.setFavorite(favoriteState);
+    await photoAsset.setFavorite(favoriteState);
   } catch (err) {
     console.error('setFavorite failed with err: ' + err);
   }
@@ -90,7 +90,7 @@ async function example() {
 
 ### 获取收藏夹中的图片和视频
 
-先[获取收藏夹对象](#获取收藏夹对象)。然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-2)接口获取收藏夹中的资源。
+先[获取收藏夹对象](#获取收藏夹对象)。然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-3)接口获取收藏夹中的资源。
 
 **前提条件：**
 
@@ -104,7 +104,7 @@ async function example() {
 1. [获取收藏夹对象](#获取收藏夹对象)。
 2. 建立图片检索条件，用于获取图片。
 3. 调用Album.getAssets接口获取图片资源。
-4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一张图片。
+4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -125,8 +125,8 @@ async function example() {
     console.info('get favorite Album successfully, albumUri: ' + album.albumUri);
 
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
-    console.info('favorite album getAssets successfully, albumName: ' + fileAsset.displayName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
+    console.info('favorite album getAssets successfully, albumName: ' + photoAsset.displayName);
     photoFetchResult.close();
     albumFetchResult.close();
   } catch (err) {
@@ -137,7 +137,7 @@ async function example() {
 
 ### 取消收藏图片或视频
 
-通过[setFavorite](../reference/apis/js-apis-photoAccessHelper.md#setfavorite)接口将图片或者视频取消收藏。
+通过[PhotoAsset.setFavorite](../reference/apis/js-apis-photoAccessHelper.md#setfavorite-1)接口将图片或者视频取消收藏。
 
 **前提条件：**
 
@@ -150,7 +150,7 @@ async function example() {
 
 1. [获取收藏夹中的图片和视频](#获取收藏夹中的图片和视频)。
 2. favoriteState参数设置为false。
-3. 调用FileAsset.setFavorite接口设置收藏。
+3. 调用PhotoAsset.setFavorite接口设置收藏。
 
 
 ```ts
@@ -172,10 +172,10 @@ async function example() {
     console.info('get favorite Album successfully, albumUri: ' + album.albumUri);
 
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
-    console.info('favorite album getAssets successfully, albumName: ' + fileAsset.displayName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
+    console.info('favorite album getAssets successfully, albumName: ' + photoAsset.displayName);
     let favoriteState = false;
-    await fileAsset.setFavorite(favoriteState);
+    await photoAsset.setFavorite(favoriteState);
     photoFetchResult.close();
     albumFetchResult.close();
   } catch (err) {
@@ -190,7 +190,7 @@ async function example() {
 
 ### 获取视频相册对象
 
-通过[getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums)接口获取视频相册对象。
+通过[PhotoAccessHelper.getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums-2)接口获取视频相册对象。
 
 **前提条件：**
 
@@ -200,7 +200,7 @@ async function example() {
 **开发步骤：**
 
 1. 设置获取视频相册的参数为photoAccessHelper.AlbumType.SYSTEM和photoAccessHelper.AlbumSubtype.VIDEO。
-2. 调用getAlbums接口获取视频相册。
+2. 调用PhotoAccessHelper.getAlbums接口获取视频相册。
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
@@ -221,7 +221,7 @@ async function example() {
 
 ### 获取视频相册中的视频
 
-先[获取视频相册对象](#获取视频相册对象)。然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-2)接口获取视频相册对象中的视频资源。
+先[获取视频相册对象](#获取视频相册对象)。然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-3)接口获取视频相册对象中的视频资源。
 
 **前提条件：**
 
@@ -235,7 +235,7 @@ async function example() {
 1. 先[获取视频相册对象](#获取视频相册对象)。
 2. 建立视频检索条件，用于获取视频。
 3. 调用Album.getAssets接口获取视频资源。
-4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一个视频。
+4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个视频。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -256,8 +256,8 @@ async function example() {
     console.info('get video Album successfully, albumUri: ' + album.albumUri);
 
     let videoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await videoFetchResult.getFirstObject();
-    console.info('video album getAssets successfully, albumName: ' + fileAsset.displayName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await videoFetchResult.getFirstObject();
+    console.info('video album getAssets successfully, albumName: ' + photoAsset.displayName);
     videoFetchResult.close();
     albumFetchResult.close();
   } catch (err) {
@@ -272,7 +272,7 @@ async function example() {
 
 ### 获取截屏和录屏相册对象
 
-通过[getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums)接口获取截屏和录屏相册。
+通过[getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums-2)接口获取截屏和录屏相册。
 
 **前提条件：**
 
@@ -282,7 +282,7 @@ async function example() {
 **开发步骤：**
 
 1. 设置获取截屏和录屏相册的参数为photoAccessHelper.AlbumType.SYSTEM和photoAccessHelper.AlbumSubtype.SCREENSHOT。
-2. 调用getAlbums接口获取截屏和录屏相册。
+2. 调用PhotoAccessHelper.getAlbums接口获取截屏和录屏相册。
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
@@ -303,7 +303,7 @@ async function example() {
 
 ### 获取截屏和录屏相册中的媒体资源
 
-先[获取截屏和录屏相册对象](#获取截屏和录屏相册对象)。然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-2)接口获取截屏和录屏相册对象中的媒体资源。
+先[获取截屏和录屏相册对象](#获取截屏和录屏相册对象)。然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-3)接口获取截屏和录屏相册对象中的媒体资源。
 
 **前提条件：**
 
@@ -317,7 +317,7 @@ async function example() {
 1. 先[获取截屏和录屏相册对象](#获取截屏和录屏相册对象)。
 2. 建立检索条件，用于获取媒体资源。
 3. 调用Album.getAssets接口获取媒体资源。
-4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一个媒体资源。
+4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个媒体资源。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -338,8 +338,8 @@ async function example() {
     console.info('get screenshot album successfully, albumUri: ' + album.albumUri);
 
     let screenshotFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await screenshotFetchResult.getFirstObject();
-    console.info('screenshot album getAssets successfully, albumName: ' + fileAsset.displayName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await screenshotFetchResult.getFirstObject();
+    console.info('screenshot album getAssets successfully, albumName: ' + photoAsset.displayName);
     screenshotFetchResult.close();
     albumFetchResult.close();
   } catch (err) {
