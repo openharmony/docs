@@ -374,7 +374,7 @@ try {
 
 requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<string>): void
 
-Requests to publish a widget carrying data to the widget host. This API uses an asynchronous callback to return the result. This API is usually called by the home screen.
+Requests to publish a widget carrying data to the widget host (usually the home screen). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -384,7 +384,7 @@ Requests to publish a widget carrying data to the widget host. This API uses an 
 
 | Name| Type                                                                   | Mandatory| Description            |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| want | [Want](js-apis-application-want.md)                           | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want | [Want](js-apis-app-ability-want.md)                           | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | Yes  | Data used for creating the widget.|
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the widget ID.|
 
@@ -437,7 +437,7 @@ try {
 
 requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
-Requests to publish a widget to the widget host. This API uses an asynchronous callback to return the result. This API is usually called by the home screen.
+Requests to publish a widget to the widget host (usually the home screen). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -447,7 +447,7 @@ Requests to publish a widget to the widget host. This API uses an asynchronous c
 
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| want     | [Want](js-apis-application-want.md) | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want     | [Want](js-apis-app-ability-want.md) | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | callback | AsyncCallback&lt;string&gt;         | Yes  |  Callback used to return the widget ID.|
 
 **Error codes**
@@ -493,7 +493,7 @@ try {
 
 requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData): Promise&lt;string&gt;
 
-Requests to publish a widget to the widget host. This API uses a promise to return the result. This API is usually called by the home screen.
+Requests to publish a widget to the widget host (usually the home screen). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -503,7 +503,7 @@ Requests to publish a widget to the widget host. This API uses a promise to retu
 
 | Name         | Type                                                        | Mandatory| Description                                                        |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want            | [Want](js-apis-application-want.md)                          | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want            | [Want](js-apis-app-ability-want.md)                          | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | No  | Data used for creating the widget. By default, no value is passed, indicating that no data is provided.                                     |
 
 **Return value**

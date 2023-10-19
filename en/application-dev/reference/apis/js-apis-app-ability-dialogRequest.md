@@ -26,7 +26,7 @@ Obtains the request information from Want.
 
 | Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| want  | [Want](js-apis-application-want.md) | Yes  | Want passed in the request for a modal dialog box.|
+| want  | [Want](js-apis-app-ability-want.md) | Yes  | Want passed in the request for a modal dialog box.|
 
 **Return value**
 
@@ -86,7 +86,7 @@ Obtains the request information from Want.
         try {
           let requestInfo = dialogRequest.getRequestInfo(want);
         } catch (err) {
-          console.error('getRequestInfo err= ${JSON.stringify(err)}');
+          console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
         }
       }
 
@@ -117,7 +117,7 @@ Obtains the request callback from Want.
 
 | Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| want  | [Want](js-apis-application-want.md) | Yes  | Want passed in the request for a modal dialog box.|
+| want  | [Want](js-apis-app-ability-want.md) | Yes  | Want passed in the request for a modal dialog box.|
 
 **Return value**
 
@@ -177,7 +177,7 @@ Obtains the request callback from Want.
        try {
             let requestCallback = dialogRequest.getRequestCallback(want);
         } catch(err) {
-            console.error('getRequestInfo err= ${JSON.stringify(err)}');
+            console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
         }
      }
 
@@ -284,14 +284,14 @@ Defines the request information, which is used as an input parameter for binding
                 console.info('Dialog Window Need Destroy.');
               }, (err: BusinessError) => {
                   if (err.code) {
-                      console.error('Failed to bind dialog target. Cause: ${JSON.stringify(err)}');
+                      console.error(`Failed to bind dialog target. Cause: ${JSON.stringify(err)}`);
                       return;
                   }
                   console.info('Succeeded in binding dialog target.');
               });
             });
         } catch(err) {
-            console.error('getRequestInfo err= ${JSON.stringify(err)}');
+            console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
         }
      }
 
@@ -331,7 +331,7 @@ Defines the result of the request for the modal dialog box. Only the result code
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | result | [ResultCode](#resultcode) | Yes| Yes| Result code of the request.|
-| want<sup>10+</sup> | [ResultWant](js-apis-application-want.md)  | Yes| Yes| Want information, such as the ability name and bundle name.|
+| want<sup>10+</sup> | [ResultWant](js-apis-app-ability-want.md)  | Yes| Yes| Want information, such as the ability name and bundle name.|
 
 ## RequestCallback
 
@@ -415,7 +415,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
             };
             requestCallback.setRequestResult(myResult);
         } catch(err) {
-            console.error('getRequestInfo err= ${JSON.stringify(err)}');
+            console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
         }
      }
 

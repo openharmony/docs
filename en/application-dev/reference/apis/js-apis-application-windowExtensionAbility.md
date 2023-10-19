@@ -36,7 +36,7 @@ Called when this Window Extension ability is connected to an ability for the fir
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
 
 **Example**
 
@@ -63,7 +63,7 @@ Called when this Window Extension ability is disconnected from all connected abi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
 
 
 **Example**

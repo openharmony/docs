@@ -111,7 +111,7 @@ let observer: errorManager.ErrorObserver = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```
 
@@ -145,7 +145,7 @@ let observer: errorManager.ErrorObserver = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```
 
@@ -185,7 +185,7 @@ let observer: errorManager.ErrorObserver = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```
 
@@ -201,7 +201,7 @@ Sets an ability that will be recovered. The ability must be a UIAbility in the c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)| Yes| Want of the target ability. You can set the **bundleName** and **abilityName** fields in **Want** to specify the ability.|
+| want | [Want](js-apis-app-ability-want.md)| Yes| Want of the target ability. You can set the **bundleName** and **abilityName** fields in **Want** to specify the ability.|
 
 **Example**
 
