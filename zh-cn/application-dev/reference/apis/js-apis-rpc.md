@@ -8927,7 +8927,7 @@ static create(ashmem: Ashmem): Ashmem
 
 ### createAshmemFromExisting<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[create](#create9)类替代。
+>从API version 9 开始不再维护，建议使用[create](#create9)替代。
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
