@@ -1,21 +1,16 @@
 # \@ohos.dlpPermission (数据防泄漏)
 
-
 数据防泄漏（DLP）是OpenHarmony提供的系统级的数据防泄漏解决方案，提供跨设备的文件的权限管理、加密存储、授权访问等能力。
-
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
 
-```
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 ```
-
-
 
 ## dlpPermission.isDLPFile
 
@@ -26,27 +21,29 @@ isDLPFile(fd: number): Promise&lt;boolean&gt;
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fd | number | 是 | 文件的fd(file descriptor, 文件描述符)。 | 
+| fd | number | 是 | 文件的fd(file descriptor, 文件描述符)。 |
 
 **返回值：**
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示是DLP文件，返回false表示非DLP文件。 | 
+| Promise&lt;boolean&gt; | Promise对象。返回true表示是DLP文件，返回false表示非DLP文件。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -63,7 +60,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.isDLPFile
 
 isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void
@@ -73,23 +69,25 @@ isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fd | number | 是 | 文件的fd。 | 
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示是DLP文件，返回false表示非DLP文件。 | 
+| fd | number | 是 | 文件的fd。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示是DLP文件，返回false表示非DLP文件。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -112,7 +110,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.getDLPPermissionInfo
 
 getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt;
@@ -123,26 +120,23 @@ getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt;
 
 **返回值：**
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[DLPPermissionInfo](#dlppermissioninfo)&gt; | Promise对象。返回查询的DLP文件的权限信息，无异常则表明查询成功。 | 
-
+| Promise&lt;[DLPPermissionInfo](#dlppermissioninfo)&gt; | Promise对象。返回查询的DLP文件的权限信息，无异常则表明查询成功。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 19100001 | Invalid parameter value. | 
-| 19100006 | No permission to invoke this API, which is for DLP sandbox application. | 
-| 19100011 | System service exception. | 
-
+| 19100001 | Invalid parameter value. |
+| 19100006 | No permission to invoke this API, which is for DLP sandbox application. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -159,7 +153,6 @@ async func(): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.getDLPPermissionInfo
 
 getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void;
@@ -170,27 +163,24 @@ getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DLPPermissionInfo](#dlppermissioninfo)&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
-
+| callback | AsyncCallback&lt;[DLPPermissionInfo](#dlppermissioninfo)&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100006 | No permission to invoke this API, which is for DLP sandbox application. | 
-| 19100011 | System service exception. | 
-
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100006 | No permission to invoke this API, which is for DLP sandbox application. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -213,7 +203,6 @@ async func(): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.getOriginalFileName
 
 getOriginalFileName(fileName: string): string
@@ -224,31 +213,28 @@ getOriginalFileName(fileName: string): string
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fileName | string | 是 | 指定要查询的文件名。 | 
+| fileName | string | 是 | 指定要查询的文件名。 |
 
 **返回值：**
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| string | 返回DLP文件的原始文件名。例如：DLP文件名为test.txt.dlp，则返回的原始文件名为test.txt。 | 
-
+| string | 返回DLP文件的原始文件名。例如：DLP文件名为test.txt.dlp，则返回的原始文件名为test.txt。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
-
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -262,7 +248,6 @@ async func(): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.getDLPSuffix
 
 getDLPSuffix(): string
@@ -273,24 +258,21 @@ getDLPSuffix(): string
 
 **返回值：**
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| string | 返回DLP文件扩展名。例如：原文件"text.txt"，返回拓展名为".dlp"，加密后的DLP文件名为"test.txt.dlp"。 | 
-
+| string | 返回DLP文件扩展名。例如：原文件"text.txt"，返回拓展名为".dlp"，加密后的DLP文件名为"test.txt.dlp"。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 19100011 | System service exception. | 
-
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -304,7 +286,6 @@ async func(): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.on('openDLPFile')
 
 on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void
@@ -314,24 +295,26 @@ on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | 'openDLPFile' | 是 | 监听事件类型。'openDLPFile'：打开DLP文件。 | 
-| listener | Callback&lt;AccessedDLPFileInfo&gt; | 是 | DLP文件打开事件的回调。在当前应用的沙箱应用打开DLP文件时，通知当前应用。 | 
+| type | 'openDLPFile' | 是 | 监听事件类型。'openDLPFile'：打开DLP文件。 |
+| listener | Callback&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | 是 | DLP文件打开事件的回调。在当前应用的沙箱应用打开DLP文件时，通知当前应用。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. | 
-| 19100011 | System service exception. | 
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -350,7 +333,6 @@ async func(): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.off('openDLPFile')
 
 off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void
@@ -360,24 +342,25 @@ off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | 'openDLPFile' | 是 | 监听事件类型。'openDLPFile'：打开DLP文件。 | 
-| listener | Callback&lt;AccessedDLPFileInfo&gt; | 否 | DLP文件被打开的事件的回调。在当前应用的沙箱应用打开DLP文件时，取消通知当前应用。默认为空，表示取消该类型事件的所有回调。 | 
+| type | 'openDLPFile' | 是 | 监听事件类型。'openDLPFile'：打开DLP文件。 |
+| listener | Callback&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | 否 | DLP文件被打开的事件的回调。在当前应用的沙箱应用打开DLP文件时，取消通知当前应用。默认为空，表示取消该类型事件的所有回调。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. | 
-| 19100011 | System service exception. | 
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -404,7 +387,6 @@ async func(): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.isInSandbox
 
 isInSandbox(): Promise&lt;boolean&gt;
@@ -415,25 +397,22 @@ isInSandbox(): Promise&lt;boolean&gt;
 
 **返回值：**
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise对象。返回当前应用是否运行在沙箱中。 | 
-
+| Promise&lt;boolean&gt; | Promise对象。返回当前应用是否运行在沙箱中。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
-
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -447,7 +426,6 @@ async func(): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.isInSandbox
 
 isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void
@@ -458,26 +436,23 @@ isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
-
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
-
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -496,7 +471,6 @@ async func(): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.getDLPSupportedFileTypes
 
 getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;
@@ -507,25 +481,22 @@ getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;
 
 **返回值：**
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回当前可支持权限设置和校验的文件扩展名类型列表。 | 
-
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回当前可支持权限设置和校验的文件扩展名类型列表。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
-
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -539,7 +510,6 @@ async func(): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.getDLPSupportedFileTypes
 
 getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
@@ -550,26 +520,23 @@ getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): vo
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
-
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
-
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -588,8 +555,6 @@ async func(): Promise<void> {
 }
 ```
 
-
-
 ## dlpPermission.setRetentionState
 
 setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
@@ -600,33 +565,30 @@ setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 | 
+| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 |
 
 **返回值：**
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
-
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100006 | No permission to invoke this API, which is for DLP sandbox application. | 
-| 19100011 | System service exception. | 
-
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100006 | No permission to invoke this API, which is for DLP sandbox application. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -642,7 +604,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.setRetentionState
 
 setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
@@ -653,28 +614,25 @@ setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 | 
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 | 
-
+| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100006 | No permission to invoke this API, which is for DLP sandbox application. | 
-| 19100011 | System service exception. | 
-
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100006 | No permission to invoke this API, which is for DLP sandbox application. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -693,8 +651,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
-
 ## dlpPermission.cancelRetentionState
 
 cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
@@ -702,34 +658,32 @@ cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 取消沙箱保留状态。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
+
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 | 
+| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 |
 
 **返回值：**
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
-
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
-
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -742,7 +696,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.cancelRetentionState
 
 cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
@@ -753,27 +706,24 @@ cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 | 
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 | 
-
+| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
-
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -792,8 +742,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
-
 ## dlpPermission.getRetentionSandboxList
 
 getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandboxInfo&gt;&gt;
@@ -804,33 +752,30 @@ getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandb
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 指定应用包名。默认为空，查询当前应用的保留沙箱信息列表。 | 
+| bundleName | string | 否 | 指定应用包名。默认为空，查询当前应用的保留沙箱信息列表。 |
 
 **返回值：**
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;RetentionSandboxInfo&gt; | Promise对象。返回查询的沙箱信息列表。 | 
-
+| Promise&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt; | Promise对象。返回查询的沙箱信息列表。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. | 
-| 19100011 | System service exception. | 
-
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -844,7 +789,6 @@ async func(): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.getRetentionSandboxList
 
 getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void
@@ -855,28 +799,25 @@ getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 指定应用包名。 | 
-| callback | AsyncCallback&lt;RetentionSandboxInfo&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
-
+| bundleName | string | 是 | 指定应用包名。 |
+| callback | AsyncCallback&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. | 
-| 19100011 | System service exception. | 
-
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -895,7 +836,6 @@ async func(bundleName:string): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.getRetentionSandboxList
 
 getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void
@@ -906,27 +846,24 @@ getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;RetentionSandboxInfo&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
-
+| callback | AsyncCallback&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. | 
-| 19100011 | System service exception. | 
-
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -945,8 +882,6 @@ async func(): Promise<void> {
 }
 ```
 
-
-
 ## dlpPermission.getDLPFileAccessRecords
 
 getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;
@@ -957,26 +892,23 @@ getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;
 
 **返回值：**
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;AccessedDLPFileInfo&gt; | Promise对象。返回最近访问的DLP文件列表。 | 
-
+| Promise&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | Promise对象。返回最近访问的DLP文件列表。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 19100001 | Invalid parameter value. | 
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. | 
-| 19100011 | System service exception. | 
-
+| 19100001 | Invalid parameter value. |
+| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -990,8 +922,6 @@ async func(): Promise<void> {
 }
 ```
 
-
-
 ## dlpPermission.getDLPFileAccessRecords
 
 getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;): void
@@ -1002,27 +932,24 @@ getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;AccessedDLPFileInfo&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
-
+| callback | AsyncCallback&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. | 
-| 19100011 | System service exception. | 
-
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -1041,8 +968,6 @@ async func(): Promise<void> {
 }
 ```
 
-
-
 ## dlpPermission.getDLPGatheringPolicy
 
 getDLPGatheringPolicy(): Promise&lt;GatheringPolicyType&gt;
@@ -1057,27 +982,24 @@ getDLPGatheringPolicy(): Promise&lt;GatheringPolicyType&gt;
 
 **返回值：**
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;GatheringPolicyType&gt; | Promise对象。返回当前DLP沙箱聚合策略。 | 
-
+| Promise&lt;[GatheringPolicyType](#gatheringpolicytype)&gt; | Promise对象。返回当前DLP沙箱聚合策略。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
-
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -1090,7 +1012,6 @@ async func(): Promise<void> {
   }
 }
 ```
-
 
 ## dlpPermission.getDLPGatheringPolicy
 
@@ -1106,28 +1027,25 @@ getDLPGatheringPolicy(callback: AsyncCallback&lt;GatheringPolicyType&gt;): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;GatheringPolicyType&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
-
+| callback | AsyncCallback&lt;[GatheringPolicyType](#gatheringpolicytype)&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
-
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
-
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -1146,7 +1064,6 @@ async func(): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.installDLPSandbox
 
 installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri: string): Promise&lt;DLPSandboxInfo&gt;
@@ -1160,32 +1077,35 @@ installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 | 
-| access | [DLPFileAccess](#dlpfileaccess) | 是 | DLP文件授权类型。 | 
-| userId | number | 是 | 当前的用户ID，通过帐号子系统获取的OS帐号ID，默认主用户ID：100。 | 
-| uri | string | 是 | DLP文件的URI。 | 
+| bundleName | string | 是 | 应用包名。 |
+| access | [DLPFileAccess](#dlpfileaccess) | 是 | DLP文件授权类型。 |
+| userId | number | 是 | 当前的用户ID，通过帐号子系统获取的OS帐号ID，默认主用户ID：100。 |
+| uri | string | 是 | DLP文件的URI。 |
 
 **返回值：**
-| 类型 | 说明 | 
+
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | Promise对象。安装沙箱应用，返回应用沙箱信息。 | 
+| Promise&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | Promise对象。安装沙箱应用，返回应用沙箱信息。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -1198,7 +1118,6 @@ async func(uri:string): Promise<void> {
   }
 }
 ```
-
 
 ## dlpPermission.installDLPSandbox
 
@@ -1213,28 +1132,30 @@ installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 | 
-| access | [DLPFileAccess](#dlpfileaccess) | 是 | DLP文件授权类型。 | 
-| userId | number | 是 | 当前的用户ID，通过帐号子系统获取的系帐号ID，默认主用户ID：100。 | 
-| uri | string | 是 | DLP文件的URI。 | 
-| callback | AsyncCallback&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | 是 | 获取应用沙箱信息的回调。 | 
+| bundleName | string | 是 | 应用包名。 |
+| access | [DLPFileAccess](#dlpfileaccess) | 是 | DLP文件授权类型。 |
+| userId | number | 是 | 当前的用户ID，通过帐号子系统获取的系帐号ID，默认主用户ID：100。 |
+| uri | string | 是 | DLP文件的URI。 |
+| callback | AsyncCallback&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | 是 | 获取应用沙箱信息的回调。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -1253,7 +1174,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.uninstallDLPSandbox
 
 uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number): Promise&lt;void&gt;
@@ -1267,31 +1187,34 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number): Promi
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 | 
+| bundleName | string | 是 | 应用包名。 |
 | userId | number | 是 | 当前的用户ID，通过帐号子系统获取的系统帐号ID，默认主用户ID：100 | 
-| appIndex | number | 是 | DLP沙箱号。 | 
+| appIndex | number | 是 | DLP沙箱号。 |
 
 **返回值：**
-| 类型 | 说明 | 
+
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -1306,7 +1229,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.uninstallDLPSandbox
 
 uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number, callback: AsyncCallback&lt;void&gt;): void
@@ -1320,27 +1242,29 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number, callba
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 | 
-| userId | number | 是 | 当前的用户ID，通过帐号子系统获取的系统帐号ID，默认主用户ID：100。 | 
-| appIndex | number | 是 | DLP沙箱号，即installDLPSandbox接口调用成功后的返回值。 | 
-| callback | AsyncCallback&lt;void&gt; | 是 | 获取卸载结果的回调。 | 
+| bundleName | string | 是 | 应用包名。 |
+| userId | number | 是 | 当前的用户ID，通过帐号子系统获取的系统帐号ID，默认主用户ID：100。 |
+| appIndex | number | 是 | DLP沙箱号，即installDLPSandbox接口调用成功后的返回值。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 获取卸载结果的回调。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -1361,8 +1285,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
-
 ## dlpPermission.on('uninstallDLPSandbox')
 
 on(type: 'uninstallDLPSandbox', listener: Callback&lt;DLPSandboxState&gt;): void
@@ -1376,25 +1298,26 @@ on(type: 'uninstallDLPSandbox', listener: Callback&lt;DLPSandboxState&gt;): void
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。 | 
-| listener | Callback&lt;DLPSandboxState&gt; | 是 | 沙箱应用卸载事件的回调。 | 
+| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。 |
+| listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | 是 | 沙箱应用卸载事件的回调。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -1413,8 +1336,6 @@ async func(): Promise<void> {
 }
 ```
 
-
-
 ## dlpPermission.off('uninstallDLPSandbox')
 
 off(type: 'uninstallDLPSandbox', listener?: Callback&lt;DLPSandboxState&gt;): void
@@ -1428,25 +1349,26 @@ off(type: 'uninstallDLPSandbox', listener?: Callback&lt;DLPSandboxState&gt;): vo
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。 | 
-| listener | Callback&lt;DLPSandboxState&gt; | 否 | 沙箱应用卸载事件的回调。默认为空，表示取消该类型事件的所有回调。 | 
+| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。 |
+| listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | 否 | 沙箱应用卸载事件的回调。默认为空，表示取消该类型事件的所有回调。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
@@ -1473,21 +1395,19 @@ async func(): Promise<void> {
 }
 ```
 
-
 ## DLPFile
 
-管理DLPFile的实例，表示一个DLP文件对象，需要通过generateDLPFile/openDLPFile 获取 DLPFile的示例。
+管理DLPFile的实例，表示一个DLP文件对象，需要通过[generateDLPFile](#dlppermissiongeneratedlpfile)/[openDLPFile](#dlppermissionopendlpfile)获取DLPFile的示例。
+
+### 属性
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-**属性：**
-
-| 名称 | 类型 | 只读 | 必填 | 说明 | 
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| dlpProperty | [DLPProperty](#dlpproperty) | 否 | 是 | 表示DLP文件授权相关信息 | 
-
+| dlpProperty | [DLPProperty](#dlpproperty) | 否 | 是 | 表示DLP文件授权相关信息。 |
 
 ### addDLPLinkFile
 
@@ -1502,30 +1422,33 @@ addDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 | 
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
 
 **返回值：**
-| 类型 | 说明 | 
+
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -1543,7 +1466,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
 ### addDLPLinkFile
 
 addDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): void
@@ -1557,26 +1479,28 @@ addDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): void
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 | 
-| callback | AsyncCallback&lt;void&gt; | 是 | 获取添加结果的回调。 | 
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 获取添加结果的回调。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -1599,8 +1523,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
-
 ### stopFuseLink
 
 stopFuseLink(): Promise&lt;void&gt;;
@@ -1614,24 +1536,26 @@ stopFuseLink(): Promise&lt;void&gt;;
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **返回值：**
-| 类型 | 说明 | 
+
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 19100001 | Invalid parameter value. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -1650,7 +1574,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
 ### stopFuseLink
 
 stopFuseLink(callback: AsyncCallback&lt;void&gt;): void
@@ -1664,7 +1587,8 @@ stopFuseLink(callback: AsyncCallback&lt;void&gt;): void
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取停止结果的回调。 |
 
@@ -1672,17 +1596,18 @@ stopFuseLink(callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permission denied. |
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -1706,8 +1631,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
-
 ### resumeFuseLink
 
 resumeFuseLink(): Promise&lt;void&gt;
@@ -1721,24 +1644,26 @@ resumeFuseLink(): Promise&lt;void&gt;
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **返回值：**
-| 类型 | 说明 | 
+
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 19100001 | Invalid parameter value. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -1758,7 +1683,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
 ### resumeFuseLink
 
 resumeFuseLink(callback: AsyncCallback&lt;void&gt;): void
@@ -1772,7 +1696,8 @@ resumeFuseLink(callback: AsyncCallback&lt;void&gt;): void
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取恢复结果的回调。 |
 
@@ -1780,17 +1705,18 @@ resumeFuseLink(callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -1815,8 +1741,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
-
 ### replaceDLPLinkFile
 
 replaceDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
@@ -1830,30 +1754,33 @@ replaceDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 | 
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
 
 **返回值：**
-| 类型 | 说明 | 
+
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -1874,8 +1801,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
-
 ### replaceDLPLinkFile
 
 replaceDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): void
@@ -1889,26 +1814,28 @@ replaceDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): v
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 | 
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取替换结果的回调。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -1934,8 +1861,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
-
 ### deleteDLPLinkFile
 
 deleteDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
@@ -1949,30 +1874,33 @@ deleteDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 | 
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
 
 **返回值：**
-| 类型 | 说明 | 
+
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -1991,7 +1919,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
 ### deleteDLPLinkFile
 
 deleteDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): void
@@ -2005,26 +1932,28 @@ deleteDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): vo
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 | 
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取删除结果的回调。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -2048,8 +1977,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
-
 ### recoverDLPFile
 
 recoverDLPFile(plaintextFd: number): Promise&lt;void&gt;;
@@ -2063,36 +1990,39 @@ recoverDLPFile(plaintextFd: number): Promise&lt;void&gt;;
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| plaintextFd | number | 是 | 目标明文文件的fd。 | 
+| plaintextFd | number | 是 | 目标明文文件的fd。 |
 
 **返回值：**
-| 类型 | 说明 | 
+
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100002 | Credential task error. | 
-| 19100003 | Credential task time out. | 
-| 19100004 | Credential service error. | 
-| 19100005 | Remote credential server error. | 
-| 19100008 | Not DLP file. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100010 | DLP file is read-only. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential task error. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Remote credential server error. |
+| 19100008 | Not DLP file. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100010 | DLP file is read-only. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -2112,7 +2042,6 @@ async func(uri:string, destUri:string): Promise<void> {
 }
 ```
 
-
 ### recoverDLPFile
 
 recoverDLPFile(plaintextFd: number, callback: AsyncCallback&lt;void&gt;): void
@@ -2126,32 +2055,34 @@ recoverDLPFile(plaintextFd: number, callback: AsyncCallback&lt;void&gt;): void
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| plaintextFd | number | 是 | 目标明文文件的fd。 | 
+| plaintextFd | number | 是 | 目标明文文件的fd。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取恢复结果的回调。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100002 | Credential task error. | 
-| 19100003 | Credential task time out. | 
-| 19100004 | Credential service error. | 
-| 19100005 | Remote credential server error. | 
-| 19100008 | Not DLP file. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100010 | DLP file is read-only. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential task error. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Remote credential server error. |
+| 19100008 | Not DLP file. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100010 | DLP file is read-only. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -2175,7 +2106,6 @@ async func(uri:string, destUri:string): Promise<void> {
 }
 ```
 
-
 ### closeDLPFile
 
 closeDLPFile(): Promise&lt;void&gt;
@@ -2189,27 +2119,30 @@ closeDLPFile(): Promise&lt;void&gt;
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 > **说明：**
+>
 > dlpFile不再使用，应该关闭释放内存，且对象不应继续使用。
 
 **返回值：**
-| 类型 | 说明 | 
+
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 19100001 | Invalid parameter value. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -2226,7 +2159,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
 ### closeDLPFile
 
 closeDLPFile(callback: AsyncCallback&lt;void&gt;): void
@@ -2240,10 +2172,12 @@ closeDLPFile(callback: AsyncCallback&lt;void&gt;): void
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 > **说明：**
+>
 > dlpFile不再使用，应该关闭释放内存，且对象不应继续使用。
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取关闭结果的回调。 |
 
@@ -2251,16 +2185,17 @@ closeDLPFile(callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 19100001 | Invalid parameter value. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -2284,7 +2219,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.generateDLPFile
 
 generateDLPFile(plaintextFd: number, ciphertextFd: number, property: DLPProperty): Promise&lt;DLPFile&gt;
@@ -2298,36 +2232,39 @@ generateDLPFile(plaintextFd: number, ciphertextFd: number, property: DLPProperty
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| plaintextFd | number | 是 | 待加密明文文件的fd。 | 
-| ciphertextFd | number | 是 | 目标加密文件的fd。 | 
-| property | [DLPProperty](#dlpproperty) | 是 | 授权用户信息：授权用户列表、owner帐号、联系人帐号。 | 
+| plaintextFd | number | 是 | 待加密明文文件的fd。 |
+| ciphertextFd | number | 是 | 目标加密文件的fd。 |
+| property | [DLPProperty](#dlpproperty) | 是 | 授权用户信息：授权用户列表、owner帐号、联系人帐号。 |
 
 **返回值：**
-| 类型 | 说明 | 
+
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[DLPFile](#dlpfile)&gt; | Promise对象。返回对象表示成功生成DLP文件，返回null表示失败。 | 
+| Promise&lt;[DLPFile](#dlpfile)&gt; | Promise对象。返回对象表示成功生成DLP文件，返回null表示失败。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100002 | Credential task error. | 
-| 19100003 | Credential task time out. | 
-| 19100004 | Credential service error. | 
-| 19100005 | Remote credential server error. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential task error. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Remote credential server error. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -2355,7 +2292,6 @@ async func(uri:string, dlpUri:string): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.generateDLPFile
 
 generateDLPFile(plaintextFd: number, ciphertextFd: number, property: DLPProperty, callback: AsyncCallback&lt;DLPFile&gt;): void
@@ -2369,32 +2305,34 @@ DLP管理应用调用该接口，将明文文件加密生成权限受控文件�
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| plaintextFd | number | 是 | 待加密明文文件的fd。 | 
-| ciphertextFd | number | 是 | 目标加密文件的fd。 | 
-| property | [DLPProperty](#dlpproperty) | 是 | 授权用户信息：授权用户列表、owner帐号、联系人帐号。 | 
-| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | 是 | 回调函数。返回DLPFile对象。 | 
+| plaintextFd | number | 是 | 待加密明文文件的fd。 |
+| ciphertextFd | number | 是 | 目标加密文件的fd。 |
+| property | [DLPProperty](#dlpproperty) | 是 | 授权用户信息：授权用户列表、owner帐号、联系人帐号。 |
+| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | 是 | 回调函数。返回DLPFile对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100002 | Credential task error. | 
-| 19100003 | Credential task time out. | 
-| 19100004 | Credential service error. | 
-| 19100005 | Remote credential server error. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential task error. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Remote credential server error. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -2426,7 +2364,6 @@ async func(uri:string, dlpUri:string): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.openDLPFile
 
 openDLPFile(ciphertextFd: number): Promise&lt;DLPFile&gt;
@@ -2440,12 +2377,14 @@ openDLPFile(ciphertextFd: number): Promise&lt;DLPFile&gt;
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| ciphertextFd | number | 是 | 加密文件的fd。 | 
+| ciphertextFd | number | 是 | 加密文件的fd。 |
 
 **返回值：**
-| 类型 | 说明 | 
+
+| 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;[DLPFile](#dlpfile)&gt; | Promise对象。返回对象表示打开生成DLP文件，返回null表示失败。 |
 
@@ -2453,22 +2392,23 @@ openDLPFile(ciphertextFd: number): Promise&lt;DLPFile&gt;
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100002 | Credential task error. | 
-| 19100003 | Credential task time out. | 
-| 19100004 | Credential service error. | 
-| 19100005 | Remote credential server error. | 
-| 19100008 | Not DLP file. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential task error. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Remote credential server error. |
+| 19100008 | Not DLP file. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -2485,7 +2425,6 @@ async func(uri:string): Promise<void> {
 }
 ```
 
-
 ## dlpPermission.openDLPFile
 
 openDLPFile(ciphertextFd: number, callback: AsyncCallback&lt;DLPFile&gt;): void
@@ -2499,31 +2438,33 @@ DLP管理应用调用该接口，打开DLP文件。获取DLPFile管理对象，�
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **参数：**
-| 参数名 | 类型 | 必填 | 说明 | 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| ciphertextFd | number | 是 | 加密文件的fd。 | 
-| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | 是 | 回调函数。返回DLPFile对象。 | 
+| ciphertextFd | number | 是 | 加密文件的fd。 |
+| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | 是 | 回调函数。返回DLPFile对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
 
-| 错误码ID | 错误信息 | 
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. | 
-| 202 | Non-system applications use system APIs. | 
-| 401 | Parameter error. | 
-| 19100001 | Invalid parameter value. | 
-| 19100002 | Credential task error. | 
-| 19100003 | Credential task time out. | 
-| 19100004 | Credential service error. | 
-| 19100005 | Remote credential server error. | 
-| 19100008 | Not DLP file. | 
-| 19100009 | Failed to operate the DLP file. | 
-| 19100011 | System service exception. | 
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential task error. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Remote credential server error. |
+| 19100008 | Not DLP file. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | System service exception. |
 
 **示例：**
-```
+
+```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
@@ -2551,22 +2492,19 @@ async func(uri:string): Promise<void> {
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-**参数：**
-
-| 名称 | 值 | 说明 | 
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| ACTION_VIEW | 0x00000001 | 表示文件的查看权限。 | 
-| ACTION_SAVE | 0x00000002 | 表示文件的保存权限。 | 
-| ACTION_SAVE_AS | 0x00000004 | 表示文件的另存为权限。 | 
-| ACTION_EDIT | 0x00000008 | 表示文件的编辑权限。 | 
-| ACTION_SCREEN_CAPTURE | 0x00000010 | 表示文件的截屏权限。 | 
-| ACTION_SCREEN_SHARE | 0x00000020 | 表示文件的共享屏幕权限。 | 
-| ACTION_SCREEN_RECORD | 0x00000040 | 表示文件的录屏权限。 | 
-| ACTION_COPY | 0x00000080 | 表示文件的复制权限。 | 
-| ACTION_PRINT | 0x00000100 | 表示文件的打印权限。 | 
-| ACTION_EXPORT | 0x00000200 | 表示文件的导出权限。 | 
-| ACTION_PERMISSION_CHANGE | 0x00000400 | 表示文件的修改文件权限。 | 
-
+| ACTION_VIEW | 0x00000001 | 表示文件的查看权限。 |
+| ACTION_SAVE | 0x00000002 | 表示文件的保存权限。 |
+| ACTION_SAVE_AS | 0x00000004 | 表示文件的另存为权限。 |
+| ACTION_EDIT | 0x00000008 | 表示文件的编辑权限。 |
+| ACTION_SCREEN_CAPTURE | 0x00000010 | 表示文件的截屏权限。 |
+| ACTION_SCREEN_SHARE | 0x00000020 | 表示文件的共享屏幕权限。 |
+| ACTION_SCREEN_RECORD | 0x00000040 | 表示文件的录屏权限。 |
+| ACTION_COPY | 0x00000080 | 表示文件的复制权限。 |
+| ACTION_PRINT | 0x00000100 | 表示文件的打印权限。 |
+| ACTION_EXPORT | 0x00000200 | 表示文件的导出权限。 |
+| ACTION_PERMISSION_CHANGE | 0x00000400 | 表示文件的修改文件权限。 |
 
 ## DLPFileAccess
 
@@ -2574,15 +2512,12 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-**参数：**
-
-| 名称 | 值 | 说明 | 
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| NO_PERMISSION | 0 | 表示无文件权限。 | 
-| READ_ONLY | 1 | 表示文件的只读权限。 | 
-| CONTENT_EDIT | 2 | 表示文件的编辑权限。 | 
-| FULL_CONTROL | 3 | 表示文件的完全控制权限。 | 
-
+| NO_PERMISSION | 0 | 表示无文件权限。 |
+| READ_ONLY | 1 | 表示文件的只读权限。 |
+| CONTENT_EDIT | 2 | 表示文件的编辑权限。 |
+| FULL_CONTROL | 3 | 表示文件的完全控制权限。 |
 
 ## DLPPermissionInfo
 
@@ -2590,11 +2525,10 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 是 | 否 | 表示DLP文件针对用户的授权类型，例如：只读 | 
-| flags | number | 是 | 否 | 表示DLP文件的详细操作权限，是不同[ActionFlagType](#actionflagtype)的组合。 | 
-
+| flags | number | 是 | 否 | 表示DLP文件的详细操作权限，是不同[ActionFlagType](#actionflagtype)的组合。 |
 
 ## AccessedDLPFileInfo
 
@@ -2602,12 +2536,10 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| uri | string | 是 | 否 | 表示DLP文件的uri。 | 
-| lastOpenTime | number | 是 | 否 | 表示DLP文件最近打开时间。 | 
-
-
+| uri | string | 是 | 否 | 表示DLP文件的uri。 |
+| lastOpenTime | number | 是 | 否 | 表示DLP文件最近打开时间。 |
 
 ## DLPSandboxInfo
 
@@ -2617,14 +2549,12 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
-| tokenID | number | 是 | 否 | 表示DLP沙箱应用的tokenID。 | 
+| tokenID | number | 是 | 否 | 表示DLP沙箱应用的tokenID。 |
 
-
-
-## DLPSandboxState                                                           
+## DLPSandboxState
 
 DLP沙箱身份。
 
@@ -2632,11 +2562,10 @@ DLP沙箱身份。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 否 | 表示应用包名。 | 
-| appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 | 
-
+| bundleName | string | 是 | 否 | 表示应用包名。 |
+| appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
 
 ## RetentionSandboxInfo
 
@@ -2644,12 +2573,11 @@ DLP沙箱身份。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 | 
-| bundleName | string | 是 | 否 | 表示应用包名。 | 
-| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。 | 
-
+| appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
+| bundleName | string | 是 | 否 | 表示应用包名。 |
+| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。 |
 
 ## AccountType
 
@@ -2659,11 +2587,10 @@ DLP沙箱身份。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 值 | 说明 | 
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| CLOUD_ACCOUNT | 1 | 表示云帐号。 | 
-| DOMAIN_ACCOUNT | 2 | 表示域帐号。 | 
-
+| CLOUD_ACCOUNT | 1 | 表示云帐号。 |
+| DOMAIN_ACCOUNT | 2 | 表示域帐号。 |
 
 ## AuthUser
 
@@ -2673,13 +2600,12 @@ DLP沙箱身份。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 只读 | 必填 | 说明 | 
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| authAccount | string | 否 | 是 | 表示被授权用户帐号。 | 
-| authAccountType | [AccountType](#accounttype) | 否 | 是 | 表示被授权用户帐号类型。 | 
-| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 否 | 是 | 表示被授予的权限。 | 
-| permExpiryTime | number | 否 | 是 | 表示授权到期时间。 | 
-
+| authAccount | string | 否 | 是 | 表示被授权用户帐号。 |
+| authAccountType | [AccountType](#accounttype) | 否 | 是 | 表示被授权用户帐号类型。 |
+| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 否 | 是 | 表示被授予的权限。 |
+| permExpiryTime | number | 否 | 是 | 表示授权到期时间。 |
 
 ## DLPProperty
 
@@ -2689,17 +2615,15 @@ DLP沙箱身份。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 只读 | 必填 | 说明 | 
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ownerAccount | string | 否 | 是 | 表示权限设置者帐号。 | 
-| ownerAccountID | string | 否 | 是 | 表示权限设置者帐号的ID。 | 
-| ownerAccountType | [AccountType](#accounttype) | 否 | 是 | 表示权限设置者帐号类型。 | 
-| authUserList | Array&lt;[AuthUser](#authuser)&gt; | 否 | 否 | 表示授权用户列表，默认为空。 | 
-| contactAccount | string | 否 | 是 | 表示联系人帐号。 | 
-| offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。 | 
-| everyoneAccessList | Array&lt;[DLPFileAccess](#dlpfileaccess)&gt; | 否 | 否 | 表示授予所有人的权限，默认为空。 | 
-
-
+| ownerAccount | string | 否 | 是 | 表示权限设置者帐号。 |
+| ownerAccountID | string | 否 | 是 | 表示权限设置者帐号的ID。 |
+| ownerAccountType | [AccountType](#accounttype) | 否 | 是 | 表示权限设置者帐号类型。 |
+| authUserList | Array&lt;[AuthUser](#authuser)&gt; | 否 | 否 | 表示授权用户列表，默认为空。 |
+| contactAccount | string | 否 | 是 | 表示联系人帐号。 |
+| offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。 |
+| everyoneAccessList | Array&lt;[DLPFileAccess](#dlpfileaccess)&gt; | 否 | 否 | 表示授予所有人的权限，默认为空。 |
 
 ## GatheringPolicyType
 
@@ -2711,8 +2635,7 @@ DLP沙箱聚合策略类型的枚举。沙箱聚合表示同一权限类型的DL
 
 **参数：**
 
-| 名称 | 值 | 说明 | 
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| GATHERING | 1 | 表示沙箱聚合。 | 
-| NON_GATHERING | 2 | 表示沙箱非聚合。 | 
-
+| GATHERING | 1 | 表示沙箱聚合。 |
+| NON_GATHERING | 2 | 表示沙箱非聚合。 |

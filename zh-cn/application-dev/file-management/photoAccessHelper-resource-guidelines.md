@@ -13,9 +13,9 @@
 
 开发者可以根据特定的条件查询媒体资源，如指定类型、指定日期、指定相册等。
 
-应用通过调用[PhotoAccessHelper.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets)获取媒体资源，并传入[FetchOptions](../reference/apis/js-apis-photoAccessHelper.md#fetchoptions)对象指定检索条件。如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现按照示例代码执行出现获取资源为空的情况请确认文件是否已预置，数据库中是否存在该文件的数据。
+应用通过调用[PhotoAccessHelper.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-1)获取媒体资源，并传入[FetchOptions](../reference/apis/js-apis-photoAccessHelper.md#fetchoptions)对象指定检索条件。如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现按照示例代码执行出现获取资源为空的情况请确认文件是否已预置，数据库中是否存在该文件的数据。
 
-如果只想获取某个位置的对象（如第一个、最后一个、指定索引等），可以通过[FetchFileResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult)中的接口获取对应位置的媒体资源对象。
+如果只想获取某个位置的对象（如第一个、最后一个、指定索引等），可以通过[FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult)中的接口获取对应位置的媒体资源对象。
 
 **前提条件：**
 
@@ -116,7 +116,7 @@ async function example() {
 
 ## 获取图片和视频缩略图
 
-通过接口[FileAsset.getThumbnail](../reference/apis/js-apis-photoAccessHelper.md#getthumbnail)，传入缩略图尺寸，可以获取图片和视频缩略图。缩略图常用于UI界面展示。
+通过接口[FileAsset.getThumbnail](../reference/apis/js-apis-photoAccessHelper.md#getthumbnail-2)，传入缩略图尺寸，可以获取图片和视频缩略图。缩略图常用于UI界面展示。
 
 **前提条件：**
 
@@ -134,7 +134,7 @@ async function example() {
 
 1. 建立检索条件，用于获取图片资源。
 2. 调用PhotoAccessHelper.getAssets接口获取图片资源。
-3. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一张图片。
+3. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片。
 4. 调用getThumbnail获取图片的缩略图的[PixelMap](../reference/apis/js-apis-image.md#pixelmap7)。
 
 ```ts
@@ -212,7 +212,7 @@ async function example() {
 
 1. 设置安全控件按钮属性。
 2. 创建安全控件按钮。
-3. 调用[createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset-5)接口创建图片资源
+3. 调用[createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset-6)接口创建图片资源
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
@@ -263,7 +263,7 @@ struct Index {
 
 重命名修改的是文件的FileAsset.displayName属性，即文件的显示文件名，包含文件后缀。
 
-修改后再通过[FileAsset.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify)更新到数据库中完成修改。
+修改后再通过[FileAsset.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify-1)更新到数据库中完成修改。
 
 在重命名文件之前，需要先获取文件对象，可以通过[FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult)中的接口获取对应位置的文件。
 
@@ -278,7 +278,7 @@ struct Index {
 
 1. 建立检索条件，用于获取图片资源。
 2. 调用getAssets接口获取目标图片资源。
-3. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一张图片，即要重命名的图片对象。
+3. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片，即要重命名的图片对象。
 4. 调用FileAsset.set接口将图片重命名为新的名字。
 5. 调用FileAsset.commitModify接口将修改的图片属性更新到数据库中完成修改。
 
@@ -313,7 +313,7 @@ async function example() {
 
 ## 将文件放入回收站
 
-通过[deleteAssets](../reference/apis/js-apis-photoAccessHelper.md#deleteassets)可以将文件放入回收站。
+通过[deleteAssets](../reference/apis/js-apis-photoAccessHelper.md#deleteassets-1)可以将文件放入回收站。
 
 放入回收站的文件将会保存30天，30天后会自动彻底删除。在此期间，应用用户可以通过系统应用“文件管理”或“图库”恢复文件。
 
@@ -328,7 +328,7 @@ async function example() {
 
 1. 建立检索条件，用于获取图片资源。
 2. 调用PhotoAccessHelper.getAssets接口获取目标图片资源。
-3. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一张图片，即要放入回收站的图片对象。
+3. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片，即要放入回收站的图片对象。
 4. 调用deleteAssets接口将文件放入回收站。
 
 ```ts
@@ -355,6 +355,7 @@ async function example() {
   }
 }
 ```
+
 # 应用如何选择媒体库资源
 
 用户有时需要分享图片、视频等用户文件，开发者可以通过特定接口拉起系统图库，用户自行选择待分享的资源，然后最终分享出去。此接口本身无需申请权限，目前适用于界面UIAbility，使用窗口组件触发。具体使用方式如下：
@@ -388,7 +389,7 @@ async function example() {
    ```
 
 4. 创建图库选择器实例，调用[select()](../reference/apis/js-apis-photoAccessHelper.md#select)接口拉起图库界面进行文件选择。文件选择成功后，返回[PhotoSelectResult](../reference/apis/js-apis-photoAccessHelper.md#photoselectresult)结果集。
-   
+
    select返回的uri权限是只读权限，可以根据结果集中uri进行读取文件数据操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    如有获取元数据需求，可以通过[文件管理接口](../reference/apis/js-apis-file-fs.md)和[文件URI](../reference/apis/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
