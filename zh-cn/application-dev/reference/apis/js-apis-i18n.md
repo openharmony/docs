@@ -813,7 +813,7 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 | 类型   | 说明                |
 | ---- | ----------------- |
-| Array&lt;[EntityInfoItem](#entityinfoitem)&gt; | 识别的实体对象列表。 |
+| Array&lt;[EntityInfoItem](#entityinfoitem11)&gt; | 识别的实体对象列表。 |
 
 **错误码：**
 
@@ -830,7 +830,7 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
   let result: Array<EntityInfoItem> = entityRecognizer.findEntityInfo(text); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
   ```
 
-### EntityInfoItem<sup>11+</sup>
+## EntityInfoItem<sup>11+</sup>
 
 实体信息对象。
 
