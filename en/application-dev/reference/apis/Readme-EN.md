@@ -302,6 +302,7 @@
   - [@ohos.file.securityLabel (Data Label)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
+  - [@ohos.file.trash (Trash)](js-apis-file-trash.md)
   - [@ohos.file.volumeManager (Volume Management)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (User Data Management)](js-apis-userFileManager.md)
   - [@ohos.fileshare (File Sharing)](js-apis-fileShare.md)
