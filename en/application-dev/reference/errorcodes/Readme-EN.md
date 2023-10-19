@@ -44,6 +44,7 @@
   - [Crypto Framework Error Codes](errorcode-crypto-framework.md)
   - [Certificate Error Codes](errorcode-cert.md)
   - [User Authentication Error Codes](errorcode-useriam.md)
+  - [DLP Service Error Codes](errorcode-dlp.md)
 - Data Management
   - [RDB Error Codes](errorcode-data-rdb.md)
   - [DataShare Error Codes](errorcode-datashare.md)
