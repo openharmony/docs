@@ -119,7 +119,7 @@ execute(group: TaskGroup, priority?: Priority): Promise<unknown[]>
 
 | 参数名     | 类型                        | 必填 | 说明                                                           |
 | --------- | --------------------------- | ---- | -------------------------------------------------------------- |
-| group     | [TaskGroup](#taskgroup)     | 是   | 需要在任务池中执行的任务组。                                      |
+| group     | [TaskGroup](#taskgroup10)     | 是   | 需要在任务池中执行的任务组。                                      |
 | priority  | [Priority](#priority)       | 否   | 等待执行的任务组的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
 
 **返回值：**
@@ -244,7 +244,7 @@ cancel(group: TaskGroup): void
 
 | 参数名   | 类型                    | 必填 | 说明                 |
 | ------- | ----------------------- | ---- | -------------------- |
-| group   | [TaskGroup](#taskgroup) | 是   | 需要取消执行的任务组。 |
+| group   | [TaskGroup](#taskgroup10) | 是   | 需要取消执行的任务组。 |
 
 **错误码：**
 
