@@ -3028,7 +3028,7 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | 是   | 所需查找的密钥的别名。 |
 | options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数。FALSE代表密钥不存在，TRUE代表密钥存在。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。false代表密钥不存在，true代表密钥存在。 |
 
 **示例：**
 
@@ -3066,7 +3066,7 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise对象。FALSE代表密钥不存在，TRUE代表密钥存在。 |
+| Promise\<boolean> | Promise对象。false代表密钥不存在，true代表密钥存在。 |
 
 **示例：**
 

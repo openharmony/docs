@@ -4,8 +4,8 @@
 
 > **说明：**
 >
->- 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->- 以下示例代码片段仅适用于JS语言开发。
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 以下示例代码片段仅适用于JS语言开发。
 
 ## 导入模块
 
@@ -39,13 +39,15 @@ buffer数组。
 
 ## ParamsSpec
 
-加解密参数，在进行对称加解密时需要构造其子类对象，并将子类对象传入[init()](#init-2)方法。<br/>适用于需要iv等参数的对称加解密模式（对于无iv等参数的模式如ECB模式，无需构造，在[init()](#init-2)中传入null即可）。
+加解密参数，在进行对称加解密时需要构造其子类对象，并将子类对象传入[init()](#init-2)方法。
+
+适用于需要iv等参数的对称加解密模式（对于无iv等参数的模式如ECB模式，无需构造，在[init()](#init-2)中传入null即可）。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 是   | 指明对称加解密参数的算法模式。可选值如下:<br/>- "IvParamsSpec": 适用于CBC\|CTR\|OFB\|CFB模式<br/>- "GcmParamsSpec": 适用于GCM模式<br/>- "CcmParamsSpec": 适用于CCM模式 |
+| algName | string | 是   | 是   | 指明对称加解密参数的算法模式。可选值如下:<br/> - "IvParamsSpec": 适用于CBC\|CTR\|OFB\|CFB模式<br/> - "GcmParamsSpec": 适用于GCM模式<br/> - "CcmParamsSpec": 适用于CCM模式 |
 
 > **说明：**
 >
@@ -53,7 +55,9 @@ buffer数组。
 
 ## IvParamsSpec
 
-加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-2)方法的参数。<br/>适用于CBC、CTR、OFB、CFB这些仅使用iv作为参数的加解密模式。
+加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-2)方法的参数。
+
+适用于CBC、CTR、OFB、CFB这些仅使用iv作为参数的加解密模式。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -67,7 +71,9 @@ buffer数组。
 
 ## GcmParamsSpec
 
-加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-2)方法的参数。<br/>适用于GCM模式。
+加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-2)方法的参数。
+
+适用于GCM模式。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -85,7 +91,9 @@ buffer数组。
 
 ## CcmParamsSpec
 
-加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-2)方法的参数。<br/>适用于CCM模式。
+加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-2)方法的参数。
+
+适用于CCM模式。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -155,7 +163,9 @@ buffer数组。
 
 ## CipherSpecItem<sup>10+</sup>
 
-表示加解密参数的枚举，这些加解密参数支持通过[setCipherSpec](#setcipherspec10)接口设置/通过[getCipherSpec](#getcipherspec10)接口获取。<br/>当前只支持RSA算法，详细规格请参考框架概述[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)
+表示加解密参数的枚举，这些加解密参数支持通过[setCipherSpec](#setcipherspec10)接口设置/通过[getCipherSpec](#getcipherspec10)接口获取。
+
+当前只支持RSA算法，详细规格请参考框架概述[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -168,7 +178,9 @@ buffer数组。
 
 ## SignSpecItem<sup>10+</sup>
 
-表示签名验签参数的枚举，这些签名验签参数支持通过[setSignSpec](#setsignspec10)、[setVerifySpec](#setverifyspec10)接口设置/通过[getSignSpec](#getsignspec10)、[getVerifySpec](#getverifyspec10)接口获取。<br/>当前只支持RSA算法，详细规格请参考框架概述[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)
+表示签名验签参数的枚举，这些签名验签参数支持通过[setSignSpec](#setsignspec10)、[setVerifySpec](#setverifyspec10)接口设置/通过[getSignSpec](#getsignspec10)、[getVerifySpec](#getverifyspec10)接口获取。
+
+当前只支持RSA算法，详细规格请参考框架概述[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -193,7 +205,9 @@ buffer数组。
 
 ## DSACommonParamsSpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DSA算法中公私钥包含的公共参数，随机生成公/私钥。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DSA算法中公私钥包含的公共参数，随机生成公/私钥。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -205,7 +219,9 @@ buffer数组。
 
 ## DSAPubKeySpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DSA算法中公钥包含的参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DSA算法中公钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -216,7 +232,9 @@ buffer数组。
 
 ## DSAKeyPairSpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DSA算法中公私钥包含的全量参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DSA算法中公私钥包含的全量参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -259,7 +277,9 @@ buffer数组。
 
 ## ECCCommonParamsSpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中公私钥包含的公共参数，随机生成公/私钥。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中公私钥包含的公共参数，随机生成公/私钥。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -274,7 +294,9 @@ buffer数组。
 
 ## ECCPriKeySpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中私钥包含的参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中私钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -285,7 +307,9 @@ buffer数组。
 
 ## ECCPubKeySpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中公钥包含的参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中公钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -296,7 +320,9 @@ buffer数组。
 
 ## ECCKeyPairSpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中公私钥包含的全量参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中公私钥包含的全量参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -308,7 +334,9 @@ buffer数组。
 
 ## RSACommonParamsSpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定RSA算法中公私钥包含的公共参数，随机生成公/私钥。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定RSA算法中公私钥包含的公共参数，随机生成公/私钥。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -318,7 +346,9 @@ buffer数组。
 
 ## RSAPubKeySpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定RSA算法中公钥包含的参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定RSA算法中公钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -329,7 +359,9 @@ buffer数组。
 
 ## RSAKeyPairSpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定RSA算法中公私钥包含的全量参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定RSA算法中公私钥包含的全量参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -341,7 +373,9 @@ buffer数组。
 
 ## Key
 
-密钥（父类），在运行密码算法（如加解密）时需要提前生成其子类对象，并传入[Cipher](#cipher)实例的[init()](#init-2)方法。<br/>密钥可以通过密钥生成器来生成。
+密钥（父类），在运行密码算法（如加解密）时需要提前生成其子类对象，并传入[Cipher](#cipher)实例的[init()](#init-2)方法。
+
+密钥可以通过密钥生成器来生成。
 
 ### 属性
 
@@ -356,7 +390,7 @@ buffer数组。
 
 getEncoded(): DataBlob
 
-以同步方法，获取密钥数据的字节流。密钥可以为对称密钥，公钥或者私钥。其中，公钥格式满足ASN.1语法、X.509规范、DER编码格式；私钥格式满足ASN.1语法，PKCS#8规范、DER编码方式。
+同步方法，获取密钥数据的字节流。密钥可以为对称密钥，公钥或者私钥。其中，公钥格式满足ASN.1语法、X.509规范、DER编码格式；私钥格式满足ASN.1语法，PKCS#8规范、DER编码方式。
 
 > **说明：**
 >
@@ -388,13 +422,15 @@ console.info("key blob:" + encodedKey.data);
 
 ## SymKey
 
-对称密钥，是[Key](#key)的子类，在对称加解密时需要将其对象传入[Cipher](#cipher)实例的[init()](#init-2)方法使用。<br/>对称密钥可以通过对称密钥生成器[SymKeyGenerator](#symkeygenerator)来生成。
+对称密钥，是[Key](#key)的子类，在对称加解密时需要将其对象传入[Cipher](#cipher)实例的[init()](#init-2)方法使用。
+
+对称密钥可以通过对称密钥生成器[SymKeyGenerator](#symkeygenerator)来生成。
 
 ### clearMem
 
 clearMem(): void
 
-以同步方法，将系统底层内存中的的密钥内容清零。建议在不再使用对称密钥实例时，调用本函数，避免内存中密钥数据存留过久。
+同步方法，将系统底层内存中的的密钥内容清零。建议在不再使用对称密钥实例时，调用本函数，避免内存中密钥数据存留过久。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -411,7 +447,9 @@ console.info("key blob:" + encodedKey.data);    // Display all 0s.
 
 ## PubKey
 
-公钥，是Key的子类，在非对称加解密、验签、密钥协商时需要将其对象作为输入使用。<br/>公钥可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10)来生成。
+公钥，是Key的子类，在非对称加解密、验签、密钥协商时需要将其对象作为输入使用。
+
+公钥可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10)来生成。
 
 ### 属性
 
@@ -426,7 +464,7 @@ console.info("key blob:" + encodedKey.data);    // Display all 0s.
 
 getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
-以同步方法，获取密钥参数。
+同步方法，获取密钥参数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -460,7 +498,9 @@ console.info("ecc item --- p: " + p.toString(16));
 
 ## PriKey
 
-私钥，是Key的子类，在非对称加解密、签名、密钥协商时需要将其作为输入使用。<br/>私钥可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10)来生成。
+私钥，是Key的子类，在非对称加解密、签名、密钥协商时需要将其作为输入使用。
+
+私钥可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10)来生成。
 
 ### 属性
 
@@ -475,7 +515,7 @@ console.info("ecc item --- p: " + p.toString(16));
 
 clearMem(): void
 
-以同步方法，将系统底层内存中的的密钥内容清零。
+同步方法，将系统底层内存中的的密钥内容清零。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -490,7 +530,7 @@ key.clearMem(); // For the asymmetric private key, clearMem() releases the inter
 
 getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
-以同步方法，获取密钥参数。
+同步方法，获取密钥参数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -524,11 +564,14 @@ console.info("ecc item --- p: " + p.toString(16));
 
 ## KeyPair
 
-非对称密钥对，包含：公钥与私钥。<br/>可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10)来生成。
+非对称密钥对，包含：公钥与私钥。
+
+可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10)来生成。
 
 > **说明：**
 >
-> KeyPair对象中的pubKey对象和priKey对象，作为KeyPair对象中的一个参数存在，当离开KeyPair对象作用域时，其内部对象可能被析构。<br/>
+> KeyPair对象中的pubKey对象和priKey对象，作为KeyPair对象中的一个参数存在，当离开KeyPair对象作用域时，其内部对象可能被析构。
+>
 > 业务方使用时应持有KeyPair对象的引用，而非内部pubKey或priKey对象的引用。
 
 ### 属性
@@ -540,12 +583,13 @@ console.info("ecc item --- p: " + p.toString(16));
 | priKey  | [PriKey](#prikey) | 是   | 否   | 私钥。      |
 | pubKey | [PubKey](#pubkey) | 是   | 否   | 公钥。       |
 
-
 ## cryptoFramework.createSymKeyGenerator
 
 createSymKeyGenerator(algName: string): SymKeyGenerator
 
-通过指定算法名称的字符串，获取相应的对称密钥生成器实例。<br/>支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
+通过指定算法名称的字符串，获取相应的对称密钥生成器实例。
+
+支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -574,7 +618,9 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 ## SymKeyGenerator
 
-对称密钥生成器。<br/>在使用该类的方法前，需要先使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)方法构建一个symKeyGenerator实例。
+对称密钥生成器。
+
+在使用该类的方法前，需要先使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)方法构建一个symKeyGenerator实例。
 
 ### 属性
 
@@ -588,7 +634,15 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 generateSymKey(callback: AsyncCallback\<SymKey>): void
 
-异步获取对称密钥生成器随机生成的密钥，通过注册回调函数获取结果。<br/>必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。<br/>目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
+异步获取对称密钥生成器随机生成的密钥，通过注册回调函数获取结果。
+
+必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
+
+目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
+
+> **说明：**
+>
+> 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则会随机生成与哈希长度一致的二进制密钥数据（如指定“HMAC|SHA256”会随机生成256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则不支持随机生成对称密钥数据，可通过[convertKey](#convertkey)方式生成对称密钥数据。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -624,7 +678,11 @@ symKeyGenerator.generateSymKey((err, symKey) => {
 
 generateSymKey(): Promise\<SymKey>
 
-异步获取该对称密钥生成器随机生成的密钥，通过Promise获取结果。<br/>必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。<br/>目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
+异步获取该对称密钥生成器随机生成的密钥，通过Promise获取结果。
+
+必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
+
+目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -659,14 +717,20 @@ symKeyGenerator.generateSymKey()
 
 convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
 
-异步根据指定数据生成对称密钥，通过注册回调函数获取结果。<br/>必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
+异步根据指定数据生成对称密钥，通过注册回调函数获取结果。
+
+必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
+
+> **说明：**
+>
+> 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则需要传入与哈希长度一致的二进制密钥数据（如传入SHA256对应256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则支持传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 参数名     | 类型                              | 必填 | 说明                                                         |
-| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名     | 类型          | 必填 | 说明                       |
+| -------- | ------------------- | ---- | ---------------------|
 | key      | [DataBlob](#datablob)             | 是   | 指定的对称密钥材料。                                         |
 | callback | AsyncCallback\<[SymKey](#symkey)> | 是   | 回调函数。当生成对称密钥成功，err为undefined，data为获取到的SymKey；否则为错误对象。 |
 
@@ -707,7 +771,9 @@ symKeyGenerator.convertKey(keyMaterialBlob, (err, symKey) => {
 
 convertKey(key: DataBlob): Promise\<SymKey>
 
-异步根据指定数据生成对称密钥，通过Promise获取结果。<br/>必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
+异步根据指定数据生成对称密钥，通过Promise获取结果。
+
+必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -759,7 +825,9 @@ symKeyGenerator.convertKey(keyMaterialBlob)
 
 createAsyKeyGenerator(algName: string): AsyKeyGenerator
 
-通过指定算法名称的字符串，获取相应的非对称密钥生成器实例。<br/>支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
+通过指定算法名称的字符串，获取相应的非对称密钥生成器实例。
+
+支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -974,7 +1042,9 @@ keyGenPromise.then( keyPair => {
 
 createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
-通过指定密钥参数，获取相应的非对称密钥生成器实例。<br/>支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
+通过指定密钥参数，获取相应的非对称密钥生成器实例。
+
+支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1045,7 +1115,9 @@ let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPa
 
 generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
-异步获取非对称密钥生成器生成的密钥，通过注册回调函数获取结果。当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
+异步获取非对称密钥生成器生成的密钥，通过注册回调函数获取结果。
+
+当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1083,7 +1155,9 @@ asyKeyGeneratorBySpec.generateKeyPair((err, keyPair) => {
 
 generateKeyPair(): Promise\<KeyPair>
 
-异步获取该非对称密钥生成器生成的密钥，通过Promise获取结果。当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
+异步获取该非对称密钥生成器生成的密钥，通过Promise获取结果。
+
+当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1120,7 +1194,9 @@ keyGenPromise.then( keyPair => {
 
 generatePriKey(callback: AsyncCallback\<PriKey>): void
 
-异步获取非对称密钥生成器生成的密钥，通过注册回调函数获取结果。当使用PRIVATE_KEY_SPEC类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用KEY_PAIR_SPEC类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
+异步获取非对称密钥生成器生成的密钥，通过注册回调函数获取结果。
+
+当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1158,7 +1234,9 @@ asyKeyGeneratorBySpec.generatePriKey((err, prikey) => {
 
 generatePriKey(): Promise\<PriKey>
 
-异步获取该非对称密钥生成器生成的密钥，通过Promise获取结果。当使用PRIVATE_KEY_SPEC类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用KEY_PAIR_SPEC类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
+异步获取该非对称密钥生成器生成的密钥，通过Promise获取结果。
+
+当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1195,7 +1273,9 @@ keyGenPromise.then( priKey => {
 
 generatePubKey(callback: AsyncCallback\<PubKey>): void
 
-异步获取非对称密钥生成器生成的密钥，通过注册回调函数获取结果。当使用PUBLIC_KEY_SPEC类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用KEY_PAIR_SPEC类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
+异步获取非对称密钥生成器生成的密钥，通过注册回调函数获取结果。
+
+当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1233,7 +1313,9 @@ asyKeyGeneratorBySpec.generateKeyPair((err, pubKey) => {
 
 generatePubKey(): Promise\<PubKey>
 
-异步获取该非对称密钥生成器生成的密钥，通过Promise获取结果。当使用PUBLIC_KEY_SPEC类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用KEY_PAIR_SPEC类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
+异步获取该非对称密钥生成器生成的密钥，通过Promise获取结果。
+
+当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1270,7 +1352,9 @@ keyGenPromise.then( pubKey => {
 
 createCipher(transformation: string): Cipher
 
-通过指定算法名称，获取相应的[Cipher](#cipher)实例。<br/>支持的规格详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节。
+通过指定算法名称，获取相应的[Cipher](#cipher)实例。
+
+支持的规格详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1282,7 +1366,8 @@ createCipher(transformation: string): Cipher
 
 > **说明：**
 >
-> 1. 目前对称加解密中，PKCS5和PKCS7的实现相同，其padding长度和分组长度保持一致（即PKCS5和PKCS7在3DES中均按照8字节填充，在AES中均按照16字节填充），另有NoPadding表示不填充。<br/>开发者需要自行了解密码学不同分组模式的差异，以便选择合适的参数规格。例如选择ECB和CBC模式时，建议启用填充，否则必须确保明文长度是分组大小的整数倍；选择其他模式时，可以不启用填充，此时密文长度和明文长度一致（即可能不是分组大小的整数倍）。
+> 1. 目前对称加解密中，PKCS5和PKCS7的实现相同，其padding长度和分组长度保持一致（即PKCS5和PKCS7在3DES中均按照8字节填充，在AES中均按照16字节填充），另有NoPadding表示不填充。
+> <br/>开发者需要自行了解密码学不同分组模式的差异，以便选择合适的参数规格。例如选择ECB和CBC模式时，建议启用填充，否则必须确保明文长度是分组大小的整数倍；选择其他模式时，可以不启用填充，此时密文长度和明文长度一致（即可能不是分组大小的整数倍）。
 > 2. 使用RSA、SM2进行非对称加解密时，必须创建两个Cipher对象分别进行加密和解密操作，而不能对同一个Cipher对象进行加解密。对称加解密没有此要求（即只要算法规格一样，可以对同一个Cipher对象进行加解密操作）。
 
 **返回值：**
@@ -1316,7 +1401,9 @@ try {
 
 ## Cipher
 
-提供加解密的算法操作功能，按序调用本类中的[init()](#init-1)、[update()](#update)、[doFinal()](#dofinal)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。<br/>完整的加解密流程示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节。
+提供加解密的算法操作功能，按序调用本类中的[init()](#init-1)、[update()](#update)、[doFinal()](#dofinal)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。
+
+完整的加解密流程示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节。
 
 一次完整的加/解密流程在对称加密和非对称加密中略有不同：
 
@@ -1327,7 +1414,6 @@ try {
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 加解密生成器指定的算法名称。 |
@@ -1336,7 +1422,9 @@ try {
 
 init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCallback\<void>): void
 
-初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。<br/>必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
+初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。
+
+必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1380,7 +1468,9 @@ cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null, (err, ) => {
 
 init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 
-初始化加解密的cipher对象，通过Promise获取结果。<br/>必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
+初始化加解密的cipher对象，通过Promise获取结果。
+
+必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1427,7 +1517,9 @@ cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null)
 
 update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
-分段更新加密或者解密数据操作，通过注册回调函数获取加/解密数据。 <br/>必须在对[Cipher](#cipher)实例使用[init()](init-1)初始化后，才能使用本函数。
+分段更新加密或者解密数据操作，通过注册回调函数获取加/解密数据。
+
+必须在对[Cipher](#cipher)实例使用[init()](init-1)初始化后，才能使用本函数。
 
 > **说明：**
 >
@@ -1488,11 +1580,14 @@ cipher.update(plainText, (err, output) => {       // Example of the encryption p
 
 update(data: DataBlob): Promise\<DataBlob>
 
-分段更新加密或者解密数据操作，通过通过Promise获取加/解密数据。<br/>必须在对[Cipher](#cipher)实例使用[init()](init-2)初始化后，才能使用本函数。
+分段更新加密或者解密数据操作，通过Promise获取加/解密数据。
+
+必须在对[Cipher](#cipher)实例使用[init()](init-2)初始化后，才能使用本函数。
 
 > **说明：**
 >
-> 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和doFinal结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
+> 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和doFinal结果产生影响。
+> <br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
 > 2. 根据数据量，可以不调用update（即init完成后直接调用doFinal）或多次调用update。<br/>
 >    算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，可以采用多次update的方式传入数据。<br/>
 >    AES使用多次update操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
@@ -1690,7 +1785,7 @@ rsaGenerator.generateKeyPair((err, keyPair) => {
 });
 ```
 
-**使用RSA加密的promise完整示例：**
+**使用RSA加密的Promise完整示例：**
 
 ```ts
 function stringToUint8Array(str: string) {
@@ -1792,7 +1887,9 @@ let mdName = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_ST
 
 createSign(algName: string): Sign
 
-Sign实例生成。<br/>支持的规格详见框架概述“[签名验签规格](../../security/cryptoFramework-overview.md#签名验签规格)”一节。
+Sign实例生成。
+
+支持的规格详见框架概述“[签名验签规格](../../security/cryptoFramework-overview.md#签名验签规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1854,7 +1951,9 @@ Sign类不支持重复初始化，当业务方需要使用新密钥签名时，�
 
 init(priKey: PriKey, callback: AsyncCallback\<void>): void
 
-使用私钥初始化Sign对象，callback形式，Sign类暂不支持重复init。
+使用私钥初始化Sign对象，通过注册回调函数获取结果。
+
+Sign类暂不支持重复init。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1878,7 +1977,9 @@ init(priKey: PriKey, callback: AsyncCallback\<void>): void
 
 init(priKey: PriKey): Promise\<void>
 
-使用私钥初始化Sign对象，Promise形式，Sign类暂不支持重复init。
+使用私钥初始化Sign对象，通过Promise获取结果。
+
+Sign类暂不支持重复init。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1907,7 +2008,9 @@ init(priKey: PriKey): Promise\<void>
 
 update(data: DataBlob, callback: AsyncCallback\<void>): void
 
-追加待签名数据，通过注册回调函数完成更新。 <br/>必须在对[Sign](#sign)实例使用[init()](#init-2)初始化后，才能使用本函数。
+追加待签名数据，通过注册回调函数完成更新。
+
+必须在对[Sign](#sign)实例使用[init()](#init-2)初始化后，才能使用本函数。
 
 > **说明：**
 >
@@ -1937,7 +2040,9 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 update(data: DataBlob): Promise\<void>
 
-追加待签名数据，通过promise方式完成更新。 <br/>必须在对[Sign](#sign)实例使用[init()](#init-3)初始化后，才能使用本函数。
+追加待签名数据，通过Promise方式完成更新。
+
+必须在对[Sign](#sign)实例使用[init()](#init-3)初始化后，才能使用本函数。
 
 > **说明：**
 >
@@ -1996,7 +2101,7 @@ sign(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 sign(data: DataBlob | null): Promise\<DataBlob>
 
-对数据进行签名，通过promise方式返回签名结果。
+对数据进行签名，通过Promise方式返回签名结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2057,7 +2162,7 @@ function signMessageCallback() {
 }
 ```
 
-**promise示例：**
+**Promise示例：**
 
 ```ts
 function stringToUint8Array(str: string) {
@@ -2098,7 +2203,9 @@ function signMessagePromise() {
 
 setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
-设置签名参数。常用的签名参数可以直接通过[createSign](#cryptoframeworkcreatesign) 来指定，剩余参数可以通过本接口指定。当前只支持RSA算法。
+设置签名参数。常用的签名参数可以直接通过[createSign](#cryptoframeworkcreatesign) 来指定，剩余参数可以通过本接口指定。
+
+当前只支持RSA算法。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2138,7 +2245,7 @@ getSignSpec(itemType: SignSpecItem): string | number
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| itemType | [SignSpecItem](#signspecitem)  | 是   | 用于指定需要获取的签名参数。 |
+| itemType | [SignSpecItem](#signspecitem10)  | 是   | 用于指定需要获取的签名参数。 |
 
 **返回值：**
 
@@ -2166,7 +2273,9 @@ let saltLen = signer.getSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
 
 createVerify(algName: string): Verify
 
-Verify实例生成。<br/>支持的规格详见框架概述“[签名验签规格](../../security/cryptoFramework-overview.md#签名验签规格)”一节。
+Verify实例生成。
+
+支持的规格详见框架概述“[签名验签规格](../../security/cryptoFramework-overview.md#签名验签规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2222,7 +2331,7 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
-传入公钥初始化Verify对象，callback形式。
+传入公钥初始化Verify对象，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2246,7 +2355,7 @@ init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
 init(pubKey: PubKey): Promise\<void>
 
-传入公钥初始化Verify对象，Promise形式。
+传入公钥初始化Verify对象，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2275,7 +2384,9 @@ init(pubKey: PubKey): Promise\<void>
 
 update(data: DataBlob, callback: AsyncCallback\<void>): void
 
-追加待验签数据，通过注册回调函数完成更新。 <br/>必须在对[Verify](#verify)实例使用[init()](#init-4)初始化后，才能使用本函数。
+追加待验签数据，通过注册回调函数完成更新。
+
+必须在对[Verify](#verify)实例使用[init()](#init-4)初始化后，才能使用本函数。
 
 > **说明：**
 >
@@ -2305,7 +2416,9 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 update(data: DataBlob): Promise\<void>
 
-追加待验签数据，通过Promise方式完成更新。 <br/>必须在对[Verify](#verify)实例使用[init()](#init-5)初始化后，才能使用本函数。
+追加待验签数据，通过Promise方式完成更新。
+
+必须在对[Verify](#verify)实例使用[init()](#init-5)初始化后，才能使用本函数。
 
 > **说明：**
 >
@@ -2340,7 +2453,7 @@ update(data: DataBlob): Promise\<void>
 
 verify(data: DataBlob | null, signatureData: DataBlob, callback: AsyncCallback\<boolean>): void
 
-对数据进行验签，返回验签结果，callback方式。
+对数据进行验签，通过注册回调函数返回返回验签结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2365,7 +2478,7 @@ verify(data: DataBlob | null, signatureData: DataBlob, callback: AsyncCallback\<
 
 verify(data: DataBlob | null, signatureData: DataBlob): Promise\<boolean>
 
-对数据进行验签，返回验签结果，promise方式。
+对数据进行验签，通过Promise返回验签结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2408,7 +2521,7 @@ verifyer.init(globalKeyPair.pubKey, (err, data) => {
 })
 ```
 
-**promise示例：**
+**Promise示例：**
 
 ```ts
 let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
@@ -2502,7 +2615,9 @@ let saltLen = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_N
 
 createKeyAgreement(algName: string): KeyAgreement
 
-KeyAgreement实例生成。<br/>支持的规格详见框架概述“[密钥协商规格](../../security/cryptoFramework-overview.md#密钥协商规格)”一节。
+KeyAgreement实例生成。
+
+支持的规格详见框架概述“[密钥协商规格](../../security/cryptoFramework-overview.md#密钥协商规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2549,7 +2664,7 @@ KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进�
 
 generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob>): void
 
-基于传入的私钥与公钥进行密钥协商，返回共享秘密，callback形式。
+基于传入的私钥与公钥进行密钥协商，通过注册回调函数返回共享秘密。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2574,7 +2689,7 @@ generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob
 
 generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 
-基于传入的私钥与公钥进行密钥协商，返回共享秘密，Promise形式。
+基于传入的私钥与公钥进行密钥协商，通过Promise返回共享秘密。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2616,7 +2731,7 @@ keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, (err, se
 });
 ```
 
-**promise示例：**
+**Promise示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
@@ -2635,7 +2750,9 @@ keyAgreementPromise.then((secret) => {
 
 createMd(algName: string): Md
 
-生成Md实例，用于进行消息摘要的计算与操作。<br/>支持的规格详见框架概述“[MD消息摘要算法规格](../../security/cryptoFramework-overview.md#md消息摘要算法规格)”一节。
+生成Md实例，用于进行消息摘要的计算与操作。
+
+支持的规格详见框架概述“[MD消息摘要算法规格](../../security/cryptoFramework-overview.md#md消息摘要算法规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2688,7 +2805,7 @@ Md类，调用Md方法可以进行MD（Message Digest）摘要计算。调用前
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
 
-传入消息进行Md更新计算，callback形式。
+传入消息进行Md更新计算，通过注册回调函数更新。
 
 > **说明：**
 >
@@ -2730,7 +2847,7 @@ md.update(blob, (err,) => {
 
 update(input: DataBlob): Promise\<void>
 
-传入消息进行Md更新计算，Promise形式。
+传入消息进行Md更新计算，通过Promise更新。
 
 > **说明：**
 >
@@ -2776,7 +2893,7 @@ promiseMdUpdate.then(() => {
 
 digest(callback: AsyncCallback\<DataBlob>): void
 
-返回Md的计算结果。
+通过注册回调函数返回Md的计算结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2818,7 +2935,7 @@ md.update(blob, (err,) => {
 
 digest(): Promise\<DataBlob>
 
-返回Md的计算结果。
+通过Promise返回Md的计算结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2901,7 +3018,9 @@ promiseMdUpdate.then(() => {
 
 createMac(algName: string): Mac
 
-生成Mac实例，用于进行消息认证码的计算与操作。<br/>支持的规格详见框架概述“[HMAC消息认证码算法规格](../../security/cryptoFramework-overview.md#hmac消息认证码算法规格)”一节。
+生成Mac实例，用于进行消息认证码的计算与操作。
+
+支持的规格详见框架概述“[HMAC消息认证码算法规格](../../security/cryptoFramework-overview.md#hmac消息认证码算法规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2954,7 +3073,11 @@ Mac类，调用Mac方法可以进行MAC（Message Authentication Code）加密�
 
 init(key: SymKey, callback: AsyncCallback\<void>): void
 
-使用对称密钥初始化Mac计算。
+使用对称密钥初始化Mac计算，通过注册回调函数获取结果。
+
+  > **说明：**
+  >
+  > 建议通过[HMAC密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)创建对称密钥生成器，调用[generateSymKey](#generatesymkey)随机生成对称密钥或调用[convertKey](#convertkey)传入与密钥规格长度一致的二进制密钥数据生成密钥。<br/>当指定“HMAC”生成对称密钥生成器时，仅支持调用[convertKey](#convertkey)传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据生成密钥。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2996,7 +3119,7 @@ symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
 
 init(key: SymKey): Promise\<void>
 
-使用对称密钥初始化Mac计算。
+使用对称密钥初始化Mac计算，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3043,7 +3166,7 @@ promiseConvertKey.then(symKey => {
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
 
-传入消息进行Mac更新计算。
+传入消息进行Mac更新计算，通过注册回调函数获取结果。
 
 > **说明：**
 >
@@ -3095,7 +3218,7 @@ symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
 
 update(input: DataBlob): Promise\<void>
 
-传入消息进行Mac更新计算。
+传入消息进行Mac更新计算，通过Promise获取结果。
 
 > **说明：**
 >
@@ -3150,7 +3273,7 @@ promiseConvertKey.then(symKey => {
 
 doFinal(callback: AsyncCallback\<DataBlob>): void
 
-返回Mac的计算结果。
+通过注册回调函数返回Mac的计算结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3204,7 +3327,7 @@ symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
 
 doFinal(): Promise\<DataBlob>
 
-返回Mac的计算结果。
+通过Promise返回Mac的计算结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3301,7 +3424,9 @@ promiseConvertKey.then(symKey => {
 
 createRandom(): Random
 
-生成Random实例，用于进行随机数的计算与设置种子。<br/>支持的规格详见框架概述“[随机数算法规格](../../security/cryptoFramework-overview.md#随机数)”一节。
+生成Random实例，用于进行随机数的计算与设置种子。
+
+支持的规格详见框架概述“[随机数算法规格](../../security/cryptoFramework-overview.md#随机数)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3346,7 +3471,7 @@ Random类，调用Random方法可以进行随机数计算。调用前，需要�
 
 generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 
-异步生成指定长度的随机数。
+异步生成指定长度的随机数，通过注册回调函数返回。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3384,7 +3509,7 @@ rand.generateRandom(12, (err, randData) => {
 
 generateRandom(len: number): Promise\<DataBlob>
 
-异步生成指定长度的随机数。
+异步生成指定长度的随机数，通过Promise返回。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3426,7 +3551,7 @@ promiseGenerateRand.then(randData => {
 
 generateRandomSync(len: number): DataBlob
 
-以同步方法生成指定长度的随机数。
+同步生成指定长度的随机数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 

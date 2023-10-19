@@ -16,33 +16,33 @@
 
 zh-cn/device-dev/ @li-yan339 @zengyawen
 zh-cn/application-dev/quick-start/arkts-get-started.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-basic-syntax-overview.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-declarative-ui-description.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-create-custom-components.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-page-custom-components-lifecycle.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-builder.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-builderparam.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-style.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-extend.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-statestyles.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-state-management-overview.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-state.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-prop.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-link.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-provide-and-consume.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-observed-and-objectlink.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-application-state-management-overview.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-localstorage.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-appstorage.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-persiststorage.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-environment.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-other-state-mgmt-functions-overview.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-watch.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-two-way-sync.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-rendering-control-overview.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-rendering-control-ifelse.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md @zhang_yixin13 @tomatodevboy @s10021109
+zh-cn/application-dev/quick-start/arkts-basic-syntax-overview.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-declarative-ui-description.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-create-custom-components.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-page-custom-components-lifecycle.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-builder.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-builderparam.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-style.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-extend.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-statestyles.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-state-management-overview.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-state.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-prop.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-link.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-provide-and-consume.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-observed-and-objectlink.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-application-state-management-overview.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-localstorage.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-appstorage.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-persiststorage.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-environment.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-other-state-mgmt-functions-overview.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-watch.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-two-way-sync.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-rendering-control-overview.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-rendering-control-ifelse.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
 zh-cn/application-dev/ability/ @huipeizi @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/IDL/ @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/device-usage-statistics/ @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001

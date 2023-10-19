@@ -172,7 +172,7 @@ getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DLPPermissionInfo](#dlppermissioninfo)&gt; | 是 | 查询当前DLP文件的权限。当查询成功时，err为undefined；否则为错误对象。 | 
+| callback | AsyncCallback&lt;[DLPPermissionInfo](#dlppermissioninfo)&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
 
 
 **错误码：**
@@ -460,7 +460,7 @@ isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 查询当前应用是否运行在沙箱中。当查询成功时，err为undefined；否则为错误对象。 | 
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
 
 
 **错误码：**
@@ -552,7 +552,7 @@ getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): vo
 
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 查询当前可支持权限设置和校验的文件扩展名类型列表。当查询成功时，err为undefined；否则为错误对象。 | 
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
 
 
 **错误码：**
@@ -656,7 +656,7 @@ setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 | 
-| callback | AsyncCallback&lt;void&gt; | 是 | 设置沙箱保留状态。当设置成功时，err为undefined；否则为错误对象。 | 
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 | 
 
 
 **错误码：**
@@ -756,7 +756,7 @@ cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 | 
-| callback | AsyncCallback&lt;void&gt; | 是 | 取消沙箱保留状态。当设置成功时，err为undefined；否则为错误对象。 | 
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 | 
 
 
 **错误码：**
@@ -858,7 +858,7 @@ getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 指定应用包名。 | 
-| callback | AsyncCallback&lt;RetentionSandboxInfo&gt; | 是 | 查询指定应用的沙箱信息列表。当设置成功时，err为undefined；否则为错误对象。 | 
+| callback | AsyncCallback&lt;RetentionSandboxInfo&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
 
 
 **错误码：**
@@ -908,7 +908,7 @@ getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo
 
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;RetentionSandboxInfo&gt; | 是 | 查询指定应用的沙箱信息列表。当设置成功时，err为undefined；否则为错误对象。 | 
+| callback | AsyncCallback&lt;RetentionSandboxInfo&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
 
 
 **错误码：**
@@ -1004,7 +1004,7 @@ getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&
 
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;AccessedDLPFileInfo&gt; | 是 | 查询最近访问的DLP文件列表。当查询成功时，err为undefined；否则为错误对象。 | 
+| callback | AsyncCallback&lt;AccessedDLPFileInfo&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
 
 
 **错误码：**
@@ -1108,7 +1108,7 @@ getDLPGatheringPolicy(callback: AsyncCallback&lt;GatheringPolicyType&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;GatheringPolicyType&gt; | 是 | 查询当前DLP沙箱聚合策略。当查询成功时，err为undefined；否则为错误对象。 | 
+| callback | AsyncCallback&lt;GatheringPolicyType&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 | 
 
 
 **错误码：**
@@ -1666,7 +1666,7 @@ stopFuseLink(callback: AsyncCallback&lt;void&gt;): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 获取添加结果的回调。 | 
+| callback | AsyncCallback&lt;void&gt; | 是 | 获取停止结果的回调。 |
 
 **错误码：**
 
@@ -1674,7 +1674,7 @@ stopFuseLink(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
-| 201 | Permission denied. | 
+| 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. | 
 | 401 | Parameter error. | 
 | 19100001 | Invalid parameter value. | 
@@ -1774,7 +1774,7 @@ resumeFuseLink(callback: AsyncCallback&lt;void&gt;): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 获取添加结果的回调。 | 
+| callback | AsyncCallback&lt;void&gt; | 是 | 获取恢复结果的回调。 |
 
 **错误码：**
 
@@ -1892,7 +1892,7 @@ replaceDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): v
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | linkFileName | string | 是 | 用于fuse文件系统的link文件名。 | 
-| callback | AsyncCallback&lt;void&gt; | 是 | 获取添加结果的回调。 | 
+| callback | AsyncCallback&lt;void&gt; | 是 | 获取替换结果的回调。 |
 
 **错误码：**
 
@@ -2008,7 +2008,7 @@ deleteDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): vo
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | linkFileName | string | 是 | 用于fuse文件系统的link文件名。 | 
-| callback | AsyncCallback&lt;void&gt; | 是 | 获取添加结果的回调。 | 
+| callback | AsyncCallback&lt;void&gt; | 是 | 获取删除结果的回调。 |
 
 **错误码：**
 
@@ -2129,7 +2129,7 @@ recoverDLPFile(plaintextFd: number, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | plaintextFd | number | 是 | 目标明文文件的fd。 | 
-| callback | AsyncCallback&lt;void&gt; | 是 | 获取添加结果的回调。 | 
+| callback | AsyncCallback&lt;void&gt; | 是 | 获取恢复结果的回调。 |
 
 **错误码：**
 
@@ -2245,7 +2245,7 @@ closeDLPFile(callback: AsyncCallback&lt;void&gt;): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 获取添加结果的回调。 | 
+| callback | AsyncCallback&lt;void&gt; | 是 | 获取关闭结果的回调。 |
 
 **错误码：**
 
@@ -2269,7 +2269,7 @@ async func(uri:string): Promise<void> {
   let file = fs.openSync(uri);
   try {
     let dlpFile: dlpPermission.DLPFile = await dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-    dlpFile.closeDLPFile((err, res) => { // 还原DLP文件
+    dlpFile.closeDLPFile((err, res) => { // 关闭DLP文件
       if (err != undefined) {
         console.error('closeDLPFile error,', err.code, err.message);
       } else {
@@ -2447,7 +2447,7 @@ openDLPFile(ciphertextFd: number): Promise&lt;DLPFile&gt;
 **返回值：**
 | 类型 | 说明 | 
 | -------- | -------- |
-| Promise&lt;[DLPFile](#dlpfile)&gt; | Promise对象。返回对象表示成功生成DLP文件，返回null表示失败。 | 
+| Promise&lt;[DLPFile](#dlpfile)&gt; | Promise对象。返回对象表示打开生成DLP文件，返回null表示失败。 |
 
 **错误码：**
 
@@ -2619,14 +2619,14 @@ DLP文件授权类型的枚举。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| appIndex | number | 是 | 否 | 表示DLP沙箱号。 | 
+| appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
 | tokenID | number | 是 | 否 | 表示DLP沙箱应用的tokenID。 | 
 
 
 
 ## DLPSandboxState                                                           
 
-DLP沙箱状态。
+DLP沙箱身份。
 
 **系统接口：** 此接口为系统接口。
 
