@@ -330,11 +330,11 @@ struct ForEachWithIndex {
   build() {
     Column() {
       ForEach(this.arr,
-        (it, indx) => {
-          Text(`Item: ${indx} - ${it}`)
+        (it, index) => {
+          Text(`Item: ${index} - ${it}`)
         },
-        (it, indx) => {
-          return `${indx} - ${it}`
+        (it, index) => {
+          return `${index} - ${it}`
         }
       )
     }
