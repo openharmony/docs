@@ -16,13 +16,13 @@ The widget host consists of the following modules:
 
 - Widget usage: provides operations such as creating, deleting, or updating a widget.
 
-- Communication adapter: provided by the OpenHarmony SDK for communication with the Widget Manager. It sends widget-related operations to the Widget Manager.
+- Communication adapter: provided by the SDK for communication with the Widget Manager. It sends widget-related operations to the Widget Manager.
 
 The Widget Manager consists of the following modules:
 
 - Periodic updater: starts a scheduled task based on the update policy to periodically update a widget after it is added to the Widget Manager.
 
-- Cache manager: caches view information of a widget after it is added to the Widget Manager to directly return the cached data when the widget is obtained next time. This reduces the latency greatly.
+- Cache manager: caches view information of a widget after it is added to the Widget Manager. This enables the cached data to be directly returned when the widget is obtained next time, greatly reducing the latency.
 
 - Lifecycle manager: suspends update when a widget is switched to the background or is blocked, and updates and/or clears widget data during upgrade and deletion.
 
@@ -36,9 +36,10 @@ The widget provider consists of the following modules:
 
 - Instance manager: implemented by the widget provider developer for persistent management of widget instances allocated by the Widget Manager.
 
-- Communication adapter: provided by the OpenHarmony SDK for communication with the Widget Manager. It pushes update data to the Widget Manager.
+- Communication adapter: provided by the SDK for communication with the Widget Manager. It pushes update data to the Widget Manager.
 
 > **NOTE**
+>
 > You only need to develop the widget provider. The system automatically handles the work of the widget host and Widget Manager.
 
 
@@ -48,29 +49,29 @@ The **FormExtensionAbility** class has the following APIs. For details, see [For
 
 | Name| Description|
 | -------- | -------- |
-| onAddForm(want:&nbsp;Want):&nbsp;formBindingData.FormBindingData | Called to notify the widget provider that a widget has been created.|
-| onCastToNormalForm(formId:&nbsp;string):&nbsp;void | Called to notify the widget provider that a temporary widget has been converted to a normal one.|
-| onUpdateForm(formId:&nbsp;string):&nbsp;void | Called to notify the widget provider that a widget has been updated.|
-| onChangeFormVisibility(newStatus:&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;number&nbsp;}):&nbsp;void | Called to notify the widget provider of the change in widget visibility.|
-| onFormEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void | Called to instruct the widget provider to receive and process a widget event.|
-| onRemoveForm(formId:&nbsp;string):&nbsp;void | Called to notify the widget provider that a widget has been destroyed.|
-| onConfigurationUpdate(config:&nbsp;Configuration):&nbsp;void | Called when the configuration of the environment where the widget is running is updated.|
-| onShareForm?(formId:&nbsp;string):&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;any&nbsp;} | Called by the widget provider to receive shared widget data.|
+| onAddForm(want: Want): formBindingData.FormBindingData | Called to notify the widget provider that a widget is being created.|
+| onCastToNormalForm(formId: string): void | Called to notify the widget provider that a temporary widget is being converted to a normal one.|
+| onUpdateForm(formId: string): void | Called to notify the widget provider that a widget is being updated.|
+| onChangeFormVisibility(newStatus: { [key: string]: number }): void | Called to notify the widget provider that the widget visibility status is being changed.|
+| onFormEvent(formId: string, message: string): void | Called to instruct the widget provider to process a widget event.|
+| onRemoveForm(formId: string): void | Called to notify the widget provider that a widget is being destroyed.|
+| onConfigurationUpdate(config: Configuration): void | Called when the configuration of the environment where the widget is running is being updated.|
+| onShareForm?(formId: string): { [key: string]: any } | Called to notify the widget provider that the widget host is sharing the widget data.|
 
 The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis/js-apis-app-form-formProvider.md).
 
 | Name| Description|
 | -------- | -------- |
-| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result.|
-| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number):&nbsp;Promise&lt;void&gt;; | Sets the next refresh time for a widget. This API uses a promise to return the result.|
-| updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;FormBindingData,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | Updates a widget. This API uses an asynchronous callback to return the result.|
-| updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;FormBindingData):&nbsp;Promise&lt;void&gt;; | Updates a widget. This API uses a promise to return the result.|
+| setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void; | Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result.|
+| setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;; | Sets the next refresh time for a widget. This API uses a promise to return the result.|
+| updateForm(formId: string, formBindingData: FormBindingData, callback: AsyncCallback&lt;void&gt;): void; | Updates a widget. This API uses an asynchronous callback to return the result.|
+| updateForm(formId: string, formBindingData: FormBindingData): Promise&lt;void&gt;; | Updates a widget. This API uses a promise to return the result.|
 
 The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis/js-apis-app-form-formBindingData.md).
 
 | Name| Description|
 | -------- | -------- |
-| createFormBindingData(obj?:&nbsp;Object&nbsp;\|&nbsp;string):&nbsp;FormBindingData | Creates a **FormBindingData** object.|
+| createFormBindingData(obj?: Object \| string): FormBindingData | Creates a **FormBindingData** object.|
 
 
 ## How to Develop
@@ -81,9 +82,9 @@ The widget provider development based on the [stage model](stage-model-developme
 
 - [Configuring the Widget Configuration Files](#configuring-the-widget-configuration-files): Configure the application configuration file **module.json5** and profile configuration file.
 
-- [Persistently Storing Widget Data](#persistently-storing-widget-data): This operation is a form of widget data exchange.
+- [Persistently Storing Widget Data](#persistently-storing-widget-data): Manage widget data persistence.
 
-- [Updating Widget Data](#updating-widget-data): Call **updateForm()** to update the information displayed on a widget.
+- [Updating Widget Data](#updating-widget-data): Call **updateForm()** to update the information displayed in a widget.
 
 - [Developing the Widget UI Page](#developing-the-widget-ui-page): Use HML+CSS+JSON to develop a JS widget UI page.
 
@@ -92,7 +93,7 @@ The widget provider development based on the [stage model](stage-model-developme
 
 ### Creating a FormExtensionAbility Instance
 
-To create a widget in the stage model, implement the lifecycle callbacks of **FormExtensionAbility**. Generate a widget template by referring to [Developing a Service Widget](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-development-service-widget-0000001263280425).
+To create a widget in the stage model, you need to implement the lifecycle callbacks of FormExtensionAbility. Generate a widget template and then perform the following:
 
 1. Import related modules to **EntryFormAbility.ts**.
 
@@ -121,7 +122,7 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
            return formData;
        }
        onCastToNormalForm(formId) {
-           // Called when the widget host converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
+        // Called when a temporary widget is being converted into a normal one. The widget provider should respond to the conversion.
            console.info('[EntryFormAbility] onCastToNormalForm');
        }
        onUpdateForm(formId) {
@@ -190,7 +191,7 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
    }
    ```
 
-2. Configure the widget configuration information. In the **metadata** configuration item of FormExtensionAbility, you can specify the resource index of specific configuration information of the widget. For example, if resource is set to **$profile:form_config**, **form_config.json** in the **resources/base/profile/** directory of the development view is used as the profile configuration file of the widget. The following table describes the internal field structure.
+2. Configure the widget configuration information. In the **metadata** configuration item of FormExtensionAbility, you can specify the resource index of specific configuration information of the widget. For example, if **resource** is set to **$profile:form_config**, **form_config.json** in the **resources/base/profile/** directory of the development view is used as the profile configuration file of the widget. The following table describes the internal structure of the profile configuration file.
 
    **Table 1** Widget profile configuration file
 
@@ -317,7 +318,7 @@ export default class EntryFormAbility extends FormExtension {
 }
 ```
 
-For details about persistence, see [Application Data Persistence Overview](../database/app-data-persistence-overview.md).
+For details about how to implement data persistence, see [Application Data Persistence Overview](../database/app-data-persistence-overview.md).
 
 The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 
@@ -545,7 +546,7 @@ The following is an example:
   }
   ```
 
-- Receive the router event and obtain parameters in UIAbility.
+- Receive the router event in UIAbility and obtain parameters.
 
 
   ```ts
