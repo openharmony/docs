@@ -472,7 +472,7 @@ config.highContrastText.off((data: boolean) => {
 ## DaltonizationColorFilter
 
 用于不同弱视类型的校正颜色滤镜。  
-API11及以上版本颜色滤镜功能开启时（daltonizationState设置为true)，选择的校正颜色滤镜生效；颜色滤镜功能关闭时（daltonizationState设置为false)，显示为正常类型。
+颜色滤镜功能开启时（daltonizationState设置为true)，选择的校正颜色滤镜生效；颜色滤镜功能关闭时（daltonizationState设置为false)，显示为正常类型<sup>11+</sup>。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
