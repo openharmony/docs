@@ -580,3 +580,77 @@ export default class MyAbility extends UIAbility {
   }
 }
 ```
+
+## ApplicationContext.clearUpApplicationData<sup>11</sup>
+
+clearUpApplicationData(): Promise\<void\>;
+
+清理应用本身的数据。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onBackground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.clearUpApplicationData();
+    }
+}
+```
+
+## ApplicationContext.clearUpApplicationData<sup>11</sup>
+
+clearUpApplicationData(callback: AsyncCallback<void>): void;
+
+清理应用本身的数据。使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+| 参数名        | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| callback | AsyncCallback\<void> | 是   | 回调方法。清理应用本身的数据成功时，err为undefined，否则返回错误对象。  |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+export default class MyAbility extends UIAbility {
+    onBackground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.clearUpApplicationData(error => {
+            if (error) {
+                console.error(`clearUpApplicationData fail, error: ${JSON.stringify(error)}`);
+            }
+        });
+    }
+}
+```
