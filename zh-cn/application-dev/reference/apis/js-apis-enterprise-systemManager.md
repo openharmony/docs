@@ -26,14 +26,14 @@ setNTPServer(admin: Want, server: string): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**系统API**: 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| server | string | 是 | NTP服务器地址（以","分隔，）。 |
+| server | string | 是 | NTP服务器地址（以","分隔，如"ntpserver1.com,ntpserver2.com"）。 |
 
 **错误码**：
 
@@ -43,7 +43,6 @@ setNTPServer(admin: Want, server: string): void
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                       |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 401 | the param is nullptr |
 
 **示例：**
 
@@ -73,7 +72,7 @@ getNTPServer(admin: Want): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**系统API**: 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
