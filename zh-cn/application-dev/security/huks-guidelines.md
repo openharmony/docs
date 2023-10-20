@@ -278,7 +278,7 @@ try {
 **代码示例：**
 
 ```ts
-import { expect } from '@ohos/hypium';
+//import { expect } from '@ohos/hypium';
 import huks from '@ohos.security.huks';
 import { BusinessError } from '@ohos.base';
 
@@ -539,11 +539,11 @@ async function publicGenerateItemFunc(keyAlias: string, huksOptions: huks.HuksOp
         })
         .catch((err: BusinessError) => {
             console.error(`callback: generateKeyItem failed`);
-            expect(null).assertFail();
+            //expect(null).assertFail();
         })
     } catch (err) {
         console.error(`callback: generateKeyItem invalid`);
-        expect(null).assertFail();
+        //expect(null).assertFail();
     }
 }
 
@@ -555,11 +555,11 @@ async function publicImportKeyItemFunc(keyAlias: string, HuksOptions: huks.HuksO
             console.info(`promise: importKeyItem success, data = ${JSON.stringify(data)}`);
         }).catch((err: BusinessError) => {
             console.error(`promise: importKeyItem failed`);
-            expect(null).assertFail();
+            //expect(null).assertFail();
         })
     } catch (err) {
         console.error(`promise: importKeyItem input arg invalid`);
-        expect(null).assertFail();
+        //expect(null).assertFail();
     }
 }
 
@@ -572,11 +572,11 @@ async function publicDeleteKeyItemFunc(KeyAlias: string, HuksOptions: huks.HuksO
         })
         .catch((err: BusinessError) => {
             console.error(`promise: deleteKeyItem failed`);
-            expect(null).assertFail();
+            //expect(null).assertFail();
         })
     } catch (err) {
         console.error(`promise: deleteKeyItem input arg invalid`);
-        expect(null).assertFail();
+        //expect(null).assertFail();
     }
 }
 
@@ -591,7 +591,7 @@ function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, huksOp
                 }
             });
         } catch (error) {
-            expect(null).assertFail();
+            //expect(null).assertFail();
         }
     });
 }
@@ -608,11 +608,11 @@ async function publicImportWrappedKeyFunc(keyAlias: string, wrappingKeyAlias: st
         })
         .catch((error: BusinessError) => {
             console.error(`callback: importWrappedKeyItem failed`);
-            expect(null).assertFail();
+            //expect(null).assertFail();
         });
     } catch (error) {
         console.error(`callback: importWrappedKeyItem input arg invalid`);
-        expect(null).assertFail();
+        //expect(null).assertFail();
     }
 }
 
@@ -625,11 +625,11 @@ async function publicImportWrappedKeyPromise(keyAlias: string, wrappingKeyAlias:
         })
         .catch((error: BusinessError) => {
             console.error(`callback: importWrappedKeyItem failed`);
-            expect(null).assertFail();
+           //expect(null).assertFail();
         });
     } catch (error) {
         console.error(`callback: importWrappedKeyItem input arg invalid`);
-        expect(null).assertFail();
+        //expect(null).assertFail();
     }
 }
 
@@ -644,11 +644,11 @@ async function publicInitFunc(srcKeyAlias: string, HuksOptions: huks.HuksOptions
         })
         .catch((error: BusinessError) => {
             console.error(`promise: doInit key failed`);
-            expect(null).assertFail();
+            //expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: doInit input arg invalid`);
-        expect(null).assertFail();
+        //expect(null).assertFail();
     }
     return handle;
 }
@@ -681,17 +681,17 @@ async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.Huk
             })
             .catch((error: BusinessError) => {
                 console.error(`promise: doUpdate failed`);
-                expect(null).assertFail();
+                //expect(null).assertFail();
             });
         } catch (error) {
             console.error(`promise: doUpdate input arg invalid`);
-            expect(null).assertFail();
+            //expect(null).assertFail();
         }
         if ((!isFinished) && (inDataSegPosition + maxUpdateSize > lastInDataPosition)) {
             console.log(`update size invalid isFinished = ${isFinished}`);
             console.log(`inDataSegPosition = ${inDataSegPosition}`);
             console.log(`lastInDataPosition = ${lastInDataPosition}`);
-            expect(null).assertFail();
+            //expect(null).assertFail();
             return;
         }
         inDataSegPosition += maxUpdateSize;
@@ -710,11 +710,11 @@ async function publicFinishSession(handle: number, HuksOptions: huks.HuksOptions
         })
         .catch((error: BusinessError) => {
             console.error(`promise: doFinish key failed`);
-            expect(null).assertFail();
+            //expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: doFinish input arg invalid`);
-        expect(null).assertFail();
+        //expect(null).assertFail();
     }
     return new Uint8Array(outData);
 }
@@ -738,11 +738,11 @@ async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, hu
         })
         .catch((error: BusinessError) => {
             console.error(`promise: doUpdate failed`);
-            expect(null).assertFail();
+            //expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: doUpdate input arg invalid`);
-        expect(null).assertFail();
+        //expect(null).assertFail();
     }
     console.info(`enter promise doInit`);
     try {
@@ -753,11 +753,11 @@ async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, hu
         })
         .catch((error: BusinessError) => {
             console.error(`promise: doInit key failed`);
-            expect(null).assertFail();
+            //expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: doInit input arg invalid`);
-        expect(null).assertFail();
+        //expect(null).assertFail();
     }
     return outSharedKey;
 }
@@ -784,11 +784,11 @@ async function generateAndExportPublicKey(keyAlias: string, HuksOptions: huks.Hu
         })
         .catch((error: BusinessError) => {
             console.error(`promise: exportKeyItem failed`);
-            expect(null).assertFail();
+            //expect(null).assertFail();
         });
     } catch (e) {
         console.error(`promise: generate pubKey failed`);
-        expect(null).assertFail();
+        //expect(null).assertFail();
     }
 }
 
@@ -2123,7 +2123,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
    */
    import huks from '@ohos.security.huks';
    import { BusinessError } from '@ohos.base';
-
+   
    /*
    * 确定密钥别名和封装密钥属性参数集
    */
@@ -2133,18 +2133,18 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
    let handle: number;
    let fingerAuthToken: Uint8Array;
    let finishOutData: Uint8Array;
-
+   
    class throwObject {
        isThrow: boolean = false;
    }
-
+   
    /* 集成生成密钥参数集 & 加密参数集 */
    class propertyEncryptType {
        tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
        value: huks.HuksKeyAlg | huks.HuksKeyPurpose | huks.HuksKeySize | huks.HuksKeyPadding | huks.HuksCipherMode
            | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_SM4;
    }
-
+   
    let propertiesEncrypt: propertyEncryptType[] = [
        {
            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -2171,12 +2171,12 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
            value: StringToUint8Array(IV),
        }
    ]
-
+   
    let encryptOptions: huks.HuksOptions = {
        properties: propertiesEncrypt,
        inData: new Uint8Array(new Array())
    }
-
+   
    function StringToUint8Array(str: string) {
        let arr: number[] = [];
        for (let i = 0, j = str.length; i < j; ++i) {
@@ -2184,7 +2184,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
        }
        return new Uint8Array(arr);
    }
-
+   
    function updateSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: throwObject) {
        return new Promise<huks.HuksReturnResult>((resolve, reject) => {
            try {
@@ -2201,7 +2201,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
            }
        });
    }
-
+   
    async function publicUpdateFunc(handle: number, token: Uint8Array, huksOptions: huks.HuksOptions) {
        console.info(`enter callback doUpdate`);
        let throwObject: throwObject = {isThrow: false};
@@ -2221,7 +2221,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
            console.error(`callback: doUpdate input arg invalid`);
        }
    }
-
+   
    function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: throwObject) {
        return new Promise<huks.HuksReturnResult>((resolve, reject) => {
            try {
@@ -2238,7 +2238,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
            }
        });
    }
-
+   
    async function publicFinishFunc(handle: number, token: Uint8Array, huksOptions: huks.HuksOptions) {
        console.info(`enter callback doFinish`);
        let throwObject: throwObject = {isThrow: false};
@@ -2259,7 +2259,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
            console.error(`callback: doFinish input arg invalid`);
        }
    }
-
+   
    async function testSm4Cipher() {
        encryptOptions.inData = StringToUint8Array(cipherInData);
        /* 传入认证令牌 */
@@ -2566,7 +2566,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
    import huks from '@ohos.security.huks';
    import userIAM_userAuth from '@ohos.userIAM.userAuth';
    import { BusinessError } from '@ohos.base';
-
+   
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
@@ -2579,11 +2579,11 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
    let challenge: Uint8Array;
    let authType = userIAM_userAuth.UserAuthType.FINGERPRINT;
    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-
+   
    class throwObject {
        isThrow: boolean = false;
    }
-
+   
    function StringToUint8Array(str: string) {
        let arr: number[] = [];
        for (let i = 0, j = str.length; i < j; ++i) {
@@ -2591,14 +2591,14 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
        }
        return new Uint8Array(arr);
    }
-
+   
    /* 集成生成密钥参数集 & 加密参数集 */
    class propertyDecryptType {
        tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
        value: huks.HuksKeyAlg | huks.HuksKeyPurpose | huks.HuksKeySize | huks.HuksKeyPadding | huks.HuksCipherMode
            | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_SM4
    }
-
+   
    let propertiesDecrypt: propertyDecryptType[] = [
        {
            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -2625,12 +2625,12 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
            value: StringToUint8Array(IV),
        }
    ]
-
+   
    let decryptOptions: huks.HuksOptions = {
        properties: propertiesDecrypt,
        inData: new Uint8Array(new Array())
    }
-
+   
    function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
        return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
            try {
@@ -2647,7 +2647,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
            }
        });
    }
-
+   
    async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
        console.info(`enter callback doInit`);
        let throwObject: throwObject = {isThrow: false};
@@ -2669,7 +2669,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
            console.error(`callback: doInit input arg invalid`);
        }
    }
-
+   
    function userIAMAuthFinger(huksChallenge: Uint8Array) {
        // 获取认证对象
        let auth: userIAM_userAuth.AuthInstance ;
@@ -2680,7 +2680,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
            console.log("get auth instance failed" + error);
            return;
        }
-
+   
        // 订阅认证结果
        try {
            auth.on("result", {
@@ -2693,7 +2693,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
        } catch (error) {
            console.log("subscribe authentication event failed " + error);
        }
-
+   
        // 开始认证
        try {
            auth.start();
@@ -2702,7 +2702,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
            console.info("authV9 start auth failed, error = " + error);
        }
    }
-
+   
    function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: throwObject) {
        return new Promise<huks.HuksReturnResult>((resolve, reject) => {
            try {
@@ -2719,7 +2719,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
            }
        });
    }
-
+   
    async function publicFinishFunc(handle: number, token: Uint8Array, huksOptions: huks.HuksOptions) {
        console.info(`enter callback doFinish`);
        let throwObject: throwObject = {isThrow: false};
@@ -2740,14 +2740,14 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
            console.error(`callback: doFinish input arg invalid`);
        }
    }
-
+   
    async function testSm4Cipher() {
        /* 初始化密钥会话获取挑战值 */
        await publicInitFunc(srcKeyAlias, decryptOptions);
-
+   
        /* 调用userIAM进行身份认证 */
        userIAMAuthFinger(challenge);
-
+   
        /* 认证成功后进行解密, 需要传入Auth获取到的authToken值 */
        decryptOptions.inData = StringToUint8Array(cipherText);
        await publicFinishFunc(handle, fingerAuthToken, decryptOptions);
