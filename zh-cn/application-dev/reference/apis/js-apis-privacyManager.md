@@ -625,7 +625,7 @@ try {
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | status  | number         | 是    | 访问状态。                                 |
-| lockScreenStatus<sup>11+</sup>  | number         | 否    | 访问时的锁屏状态。                                 |
+| lockScreenStatus<sup>11+</sup>  | number         | 否    | 访问时的锁屏状态。<br> - 1，表示非锁屏场景使用权限。<br> - 2，表示锁屏场景使用权限。                                 |
 | timestamp | number         | 是    | 访问时的时间戳，单位：ms。 |
 | accessDuration  | number         | 是    | 访问时长，单位：ms。                                 |
 | count<sup>11+</sup> | number | 否 | 成功或失败次数。
@@ -641,17 +641,6 @@ try {
 | PERM_INACTIVE             | 0      | 表示未使用权限。   |
 | PERM_ACTIVE_IN_FOREGROUND | 1      | 表示前台使用权限。 |
 | PERM_ACTIVE_IN_BACKGROUND | 2      | 表示后台使用权限。 |
-
-## LockScreenChangeType<sup>11+</sup>
-
-表示权限使用状态变化类型的枚举。
-
-**系统能力：** SystemCapability.Security.AccessToken
-
-| 名称                      | 值     | 说明              |
-| ------------------------- | ------ | ---------------- |
-| PERM_ACTIVE_IN_UNLOCKED | 1      | 表示非锁屏场景使用权限。 |
-| PERM_ACTIVE_IN_LOCKED | 2      | 表示锁屏场景使用权限。 |
 
 ## ActiveChangeResponse
 
