@@ -1,6 +1,7 @@
 # 启动一个Worker
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 Worker是与主线程并行的独立线程。创建Worker的线程称之为宿主线程，Worker自身的线程称之为Worker线程。创建Worker传入的url文件在Worker线程中执行，可以处理耗时操作但不可以直接操作UI。
@@ -620,17 +621,79 @@ WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被�
 
 **示例：**
 
-```
+```js
 // main.js
 import worker from '@ohos.worker';
 const workerInstance = new worker.Worker("workers/worker.js")
 ```
 
-```
+```js
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort
 parentPort.onerror = function(e){
     console.log("worker.js onerror")
 }
+```
+## 完整示例
+
+```js
+// main thread(同级目录为例)
+import worker from '@ohos.worker';
+// 主线程中创建Worker对象
+const workerInstance = new worker.Worker("workers/worker.ts");
+
+// 主线程向worker线程传递信息
+workerInstance.postMessage("123");
+
+// 主线程接收worker线程信息
+workerInstance.onmessage = function(e) {
+    // data：worker线程发送的信息
+    let data = e.data;
+    console.log("main thread onmessage");
+
+    // 销毁Worker对象
+    workerInstance.terminate();
+}
+
+// 在调用terminate后，执行回调onexit
+workerInstance.onexit = function() {
+    console.log("main thread terminate");
+}
+```
+
+```js
+// worker.ts
+import worker from '@ohos.worker';
+
+// 创建worker线程中与主线程通信的对象
+const parentPort = worker.parentPort
+
+// worker线程接收主线程信息
+parentPort.onmessage = function(e) {
+    // data：主线程发送的信息
+    let data = e.data;
+    console.log("worker.ts onmessage");
+
+    // worker线程向主线程发送信息
+    parentPort.postMessage("123")
+}
+
+// worker线程发生error的回调
+parentPort.onerror= function(e) {
+    console.log("worker.ts onerror");
+}
+```
+
+build-profile.json5配置：
+
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/entryability/workers/worker.ts"
+      ]
+    }
+  }
+
 ```
