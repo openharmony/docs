@@ -32,19 +32,19 @@ import appManager from '@ohos.app.ability.appManager';
 
 let applicationStateObserver: appManager.ApplicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
-        console.log('onForegroundApplicationChanged appStateData: ${JSON.stringify(appStateData)}');
+        console.log(`onForegroundApplicationChanged appStateData: ${JSON.stringify(appStateData)}`);
     },
     onAbilityStateChanged(abilityStateData) {
-        console.log('onAbilityStateChanged onAbilityStateChanged: ${JSON.stringify(abilityStateData)}');
+        console.log(`onAbilityStateChanged onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
     },
     onProcessCreated(processData) {
-        console.log('onProcessCreated onProcessCreated: ${JSON.stringify(processData)}');
+        console.log(`onProcessCreated onProcessCreated: ${JSON.stringify(processData)}`);
     },
     onProcessDied(processData) {
-        console.log('onProcessDied onProcessDied: ${JSON.stringify(processData)}');
+        console.log(`onProcessDied onProcessDied: ${JSON.stringify(processData)}`);
     },
     onProcessStateChanged(processData) {
-        console.log('onProcessStateChanged onProcessStateChanged: ${JSON.stringify(processData)}');
+        console.log(`onProcessStateChanged onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
 };
 let observerCode = appManager.on('applicationState', applicationStateObserver);

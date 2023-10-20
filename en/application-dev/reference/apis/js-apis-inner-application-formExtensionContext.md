@@ -42,7 +42,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 | Name|                Type              | Mandatory|              Description              |
 | ------| --------------------------------- | ---- | -------------------------------------- |
-| want| [Want](js-apis-application-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
+| want| [Want](js-apis-app-ability-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
 | callback| AsyncCallback&lt;void&gt;       | Yes | Callback used to return the result. If the ability is started, **err** is undefined; otherwise, **err** is an error object.|
 
 **Example**
@@ -89,7 +89,7 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name|                Type              | Mandatory|              Description              |
 | ------| --------------------------------- | ---- | -------------------------------------- |
-| want| [Want](js-apis-application-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
+| want| [Want](js-apis-app-ability-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
 
 **Return value**
 
@@ -152,7 +152,7 @@ Connects this ability to a ServiceExtensionAbility.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Callback used to return the information indicating that the connection is successful, interrupted, or failed.|
 
 **Return value**
@@ -168,6 +168,7 @@ Connects this ability to a ServiceExtensionAbility.
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000053 | The ability is not on the top of the UI. |

@@ -31,7 +31,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void;
 
-Called to initialize the service logic when a UIAbility instance in the completely closed state is created. In other words, a UIAbility instance enters this lifecycle callback from a [cold start] (../../application-models/uiability-intra-device-interaction.md#cold-start-target-uiability).
+Called to initialize the service logic when a UIAbility instance in the completely closed state is created. In other words, a UIAbility instance enters this lifecycle callback from a [cold start](../../application-models/uiability-intra-device-interaction.md#cold-starting-uiability).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -250,7 +250,7 @@ Called to save data during the ability migration preparation process.
 
 onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void;
 
-Called when a UIAbility instance that has undergone the following states is started again: started in the foreground, running in the foreground, and switched to the background In other words, a UIAbility instance enters this lifecycle callback from a [hot start] (../../application-models/uiability-intra-device-interaction.md#hot-start-target-uiability).
+Called when a UIAbility instance that has undergone the following states is started again: started in the foreground, running in the foreground, and switched to the background In other words, a UIAbility instance enters this lifecycle callback from a [hot start](../../application-models/uiability-intra-device-interaction.md#hot-starting-uiability).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -269,8 +269,8 @@ Called when a UIAbility instance that has undergone the following states is star
 
   class MyUIAbility extends UIAbility {
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          console.log('onNewWant, want: ${want.abilityName}');
-          console.log('onNewWant, launchParam: ${JSON.stringify(launchParam)}');
+          console.log(`onNewWant, want: ${want.abilityName}`);
+          console.log(`onNewWant, launchParam: ${JSON.stringify(launchParam)}`);
       }
   }
   ```
@@ -296,7 +296,7 @@ Dumps client information.
 
   class MyUIAbility extends UIAbility {
       onDump(params: Array<string>) {
-          console.log('dump, params: ${JSON.stringify(params)}');
+          console.log(`dump, params: ${JSON.stringify(params)}`);
           return ['params'];
       }
   }
@@ -767,10 +767,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
                       console.log('Remote state changed ' + str);
                   });
               } catch (error) {
-                  console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+                  console.log(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
               }
           }).catch((err: BusinessError) => {
-              console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+              console.log(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
           })
       }
   }

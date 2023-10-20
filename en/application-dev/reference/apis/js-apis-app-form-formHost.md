@@ -1348,7 +1348,7 @@ Obtains the widget state. This API uses an asynchronous callback to return the r
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| want | [Want](js-apis-application-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
+| want | [Want](js-apis-app-ability-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
 | callback | AsyncCallback&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Yes| Callback used to return the result. If the widget state is obtained, **error** is undefined and **data** is the widget state obtained; otherwise, **error** is an error object.|
 
 **Error codes**
@@ -1410,7 +1410,7 @@ Obtains the widget state. This API uses a promise to return the result.
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| want   | [Want](js-apis-application-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
+| want   | [Want](js-apis-app-ability-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
 
 **Return value**
 
@@ -1963,6 +1963,7 @@ Requests data from the widget provider. This API uses an asynchronous callback t
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formId | string | Yes  | Widget ID.|
+| callback | AsyncCallback<{[key: string]: Object} | Yes  | Callback used to return the API call result and the shared data.|
 
 **Error codes**
 

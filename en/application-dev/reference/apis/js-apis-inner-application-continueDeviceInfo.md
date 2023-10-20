@@ -24,24 +24,22 @@ The **ContinueDeviceInfo** module defines the parameters required for initiating
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager';
 
-  let continueDeviceInfo = {
+  distributedMissionManager.continueMission(
+    {
       srcDeviceId: '123',
       dstDeviceId: '456',
       missionId: 123,
       wantParam: {
           'key':'value'
       }
-  };
-
-  let continueCallback = {
-      onContinueDone(result) {
-          console.log('onContinueDone, result: ${JSON.stringify(result)}');
+    },
+    {
+      onContinueDone(result): void {
+          console.log(`onContinueDone, result: ${JSON.stringify(result)}`);
       }
-  };
-
-  distributedMissionManager.continueMission(continueDeviceInfo, continueCallback, (error) => {
+    }, (error) => {
       if (error && error.code) {
-          console.error('continueMission failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`continueMission failed, error.code: ${error.code}, error.message: ${error.message}`);
       }
       console.log('continueMission finished');
   });
