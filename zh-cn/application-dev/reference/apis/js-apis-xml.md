@@ -40,7 +40,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<?xml version="1.0" encoding="utf-8"?>
+console.log(view1) // <?xml version="1.0" encoding="utf-8"?>
 ```
 
 
@@ -74,7 +74,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<note importance1="high1"/>
+console.log(view1) // <note importance1="high1"/>
 ```
 
 
@@ -105,7 +105,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<d/>
+console.log(view1) // <d/>
 ```
 
 
@@ -133,7 +133,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<?xml version="1.0" encoding="utf-8"?>
+console.log(view1) // <?xml version="1.0" encoding="utf-8"?>
 ```
 
 
@@ -167,7 +167,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 ### endElement
@@ -194,7 +194,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 
@@ -229,7 +229,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 ### setComment
@@ -259,7 +259,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<!--Hello, World!-->'
+console.log(view1) // <!--Hello, World!-->
 ```
 
 
@@ -290,7 +290,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //'<![CDATA[root SYSTEM]]>''
+console.log(view1) // <![CDATA[root SYSTEM]]>
 ```
 
 
@@ -324,7 +324,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) // '<note importance="high">Happy1</note>'
+console.log(view1) // <note importance="high">Happy1</note>
 ```
 
 
@@ -355,7 +355,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //'<!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">'
+console.log(view1) // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 ```
 
 
@@ -405,12 +405,13 @@ let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer, 'UTF-8');
 let str1 = '';
 function func1(name, value){
-    str1 += name+':'+value;
+    str1 += name+value;
     return true;
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func1}
 that.parse(options);
-console.log(str1) //'note:company:title:title:lens:lens:a:b:h:table:h:tr:h:td:h:td:'
+console.log(str1)
+//  note [<!ENTITY foo "baa">]note    funcrion matchwo(a,6){return 1;}    Hello, World!    companyJohn amp;amp; Hanscompany    titleHappytitle    titleHappytitle    lensWorklens    lensPlaylens    go there    abba    h:table        h:tr            h:tdApplesh:td            h:tdBananash:td        h:tr    h:tablenote
 ```
 
 
