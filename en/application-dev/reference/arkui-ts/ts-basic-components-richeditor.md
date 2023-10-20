@@ -5,6 +5,8 @@ The **\<RichEditor>** is a component that supports interactive text editing and 
 >  **NOTE**
 >
 >  This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  Drag effects such as floating for the **\<RichEditor>** component can only be implemented through the [onDragStart](ts-universal-events-drag-drop.md) event.
 
 
 ## Child Components
@@ -37,7 +39,7 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus.|
 | bindSelectionMenu | {<br>spantype: [RichEditorSpanType](#richeditorspantype),<br>content: [CustomBuilder](ts-types.md#custombuilder8),<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8),<br>options?: [SelectionMenuOptions](#selectionmenuoptions)<br>} | Custom selection menu.<br> Default value: {<br>  spanType: RichEditorSpanType:TEXT<br>responseType: ResponseType.LongPress<br>Other: null<br>}<br>**NOTE**<br>Currently, the **spanType** parameter setting does not take effect, regardless of the value.|
-| copyOption | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>**NOTE**<br>If **copyOptions** is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, long pressing content in the component will display a shortcut menu, after which you can adjust the content selection scope and perform the desired operation, such as copy and select all.<br>If **copyOptions** is set to **CopyOptions.None**, copy and paste is not allowed. |
+| copyOption | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed for text content.<br>Default value: **CopyOptions.LocalDevice**<br>**NOTE**<br>If **copyOptions** is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, long pressing content in the component will display a shortcut menu, after which you can adjust the content selection scope and perform the desired operation, such as copy and select all.<br>If **copyOptions** is set to **CopyOptions.None**, copy and paste is not allowed. |
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
@@ -230,7 +232,7 @@ Adds an image span.
 
 updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions): void
 
-Updates the text or image span style. <br>If only part of a span is updated, the span is split into multiple spans based on the updated part and the unupdated part.
+Updates the text or image span style. <br>If only part of a span is updated, the span is split into multiple spans based on the updated part and the non-updated part.
 
 **Parameters**
 
@@ -345,7 +347,7 @@ Provides the image span style information.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| size  | [Dimension, Dimension]  | No| Width and height of the image.|
+| size  | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)]  | No| Width and height of the image.|
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No  | Vertical alignment mode of the image.<br>Default value: **ImageSpanAlignment.BASELINE**|
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | No| Scale mode of the image.<br> Default value: **ImageFit.Cover**|
 
