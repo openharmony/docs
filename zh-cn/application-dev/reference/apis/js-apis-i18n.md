@@ -241,6 +241,8 @@ static setSystemLanguage(language: string): void
 
 设置系统语言。当前调用该接口不支持系统界面语言的实时刷新。
 
+若设置系统语言后，需要[监听事件](./commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED，可以[订阅](./js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1)该事件。
+
 **系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
@@ -264,13 +266,34 @@ static setSystemLanguage(language: string): void
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
+  import CommonEventManager from '@ohos.commonEventManager';
 
+  // 设置系统语言
   try {
     I18n.System.setSystemLanguage('zh'); // 设置系统当前语言为 "zh"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
+ 
+  // 订阅公共事件
+  let subscriber: CommonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = { // 订阅者信息
+    events: [CommonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
+  };
+  CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:CommonEventManager.CommonEventSubscriber) => { // 创建订阅者
+      console.info("createSubscriber");
+      subscriber = commonEventSubscriber;
+      CommonEventManager.subscribe(subscriber, (err, data) => {
+        if (err) {
+          console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
+          return;
+        }
+        console.info("the subscribed event has occurred."); // 订阅的事件发生时执行
+      })
+  }).catch((err: BusinessError) => {
+      console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  });  
   ```
 
 ### getSystemRegion<sup>9+</sup>
