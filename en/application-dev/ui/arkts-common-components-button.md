@@ -15,7 +15,7 @@ You can create a button that contains or does not contain child components.
   Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })
   ```
 
-  Creates a button that does not contain child components. In this API, **label** indicates the button text, **type** indicates the button type, and **stateEffect** specifies whether to set pressed effect on the click of the button.
+  In this API, **label** indicates the button text, **type** indicates the button type, and **stateEffect** specifies whether to enable the pressed effect on the click of the button.
 
   ```ts
   Button('Ok', { type: ButtonType.Normal, stateEffect: true }) 
@@ -28,13 +28,13 @@ You can create a button that contains or does not contain child components.
   ![en-us_image_0000001562820757](figures/en-us_image_0000001562820757.png)
 
 
-- Create a button that contains child components.
+- Create a button that contains a single child component.
 
   ```ts
   Button(options?: {type?: ButtonType, stateEffect?: boolean})
   ```
 
-  Creates a button that contains a single child component, which can either be a [basic component](../reference/arkui-ts/ts-basic-components-blank.md) or a [container component](../reference/arkui-ts/ts-container-ability-component.md).
+  The child component contained can either be a [basic component](../reference/arkui-ts/ts-basic-components-blank.md) or a [container component](../reference/arkui-ts/ts-container-ability-component.md).
 
   ```ts
   Button({ type: ButtonType.Normal, stateEffect: true }) {
@@ -54,6 +54,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 
 - Capsule button (default type)
+
   Buttons of this type have rounded corners whose radius is automatically set to half of the button height. The rounded corners cannot be reset through the **borderRadius** attribute.
 
   ```ts
@@ -67,6 +68,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 
 - Circle button
+
   Buttons of this type are round. The rounded corners cannot be reset through the **borderRadius** attribute.
 
   ```ts
@@ -79,6 +81,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   ![en-us_image_0000001511740428](figures/en-us_image_0000001511740428.png)
 
 - Normal button
+
   Buttons of this type have rounded corners set to 0. The rounded corners can be reset through the **borderRadius** attribute.
 
   ```ts
@@ -95,7 +98,8 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 ## Setting Styles
 
 - Set the border radius.
-  In general cases, you can use universal attributes to define the button styles. For example, you can use the **borderRadius** attribute to set the border radius.
+
+  You can use universal attributes to define the button styles. For example, you can use the **borderRadius** attribute to set the border radius.
 
   ```ts
   Button('circle border', { type: ButtonType.Normal }) 
@@ -107,6 +111,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 
 - Set the text style.
+
   Add text style attributes for the button.
 
   ```ts
@@ -120,6 +125,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 
 - Set the background color.
+
   Add the **backgroundColor** attribute for the button.
 
   ```ts
@@ -130,6 +136,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 
 - Assign a function to the button.
+
   In this example, the delete function is assigned to the button.
 
   ```ts

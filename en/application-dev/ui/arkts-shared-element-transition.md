@@ -60,7 +60,7 @@ This example implements a shared element transition for the scenario where, as a
     List() {
       // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
       if (!this.isExpand) {
-        Text ('I appear in normal state')
+        Text ('Collapse')
           .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.9) }))
       }
     
@@ -72,7 +72,7 @@ This example implements a shared element transition for the scenario where, as a
     
       // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
       if (this.isExpand) {
-        Text ('I appear in expanded state')
+        Text ('Expand')
           .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion() }))
       }
     }
