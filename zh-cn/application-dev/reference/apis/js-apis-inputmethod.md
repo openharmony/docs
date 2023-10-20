@@ -2722,9 +2722,9 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 > **说明**
 > 
-> 已激活输入法包括默认输入法，未激活输入法包括使能输入法以外的其他已安装的输入法。
+> 已激活输入法包括默认输入法和已使能的输入法应用，未激活输入法包括除使能输入法以外的其他已安装的输入法。
 > 
-> 默认输入法默认使能。
+> 默认输入法默认使能，其他输入法可被设置为使能或非使能。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2741,7 +2741,6 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401      | parameter error.                    |
 | 12800001 | package manager error.              |
 | 12800008 | input method manager service error. |
 
@@ -2769,9 +2768,9 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 > **说明**
 > 
-> 已激活输入法包括默认输入法，未激活输入法包括使能输入法以外的其他已安装的输入法。
+> 已激活输入法包括默认输入法和已使能的输入法应用，未激活输入法包括除使能输入法以外的其他已安装的输入法。
 > 
-> 默认输入法默认使能。
+> 默认输入法默认使能，其他输入法可被设置为使能或非使能。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2781,21 +2780,20 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 | ------ | ------- | ---- | ----------------------- |
 | enable | boolean | 是   |- true表示返回已激活输入法列表，false表示返回未激活输入法列表。 |
 
+**返回值：**
+
+| 类型                                                         | 说明                                       |
+| ------------------------------------------------------------ | ------------------------------------------ |
+| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise对象，返回已激活/未激活输入法列表。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401      | parameter error.                    |
 | 12800001 | package manager error.              |
 | 12800008 | input method manager service error. |
-
-**返回值：**
-
-| 类型                                                         | 说明                          |
-| ------------------------------------------------------------ | ----------------------------- |
-| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise对象，返回已激活/未激活输入法列表。 |
 
 **示例：**
 
@@ -2819,9 +2817,9 @@ getInputMethodsSync(enable: boolean): Array&lt;InputMethodProperty&gt;
 
 > **说明**
 > 
-> 已激活输入法包括默认输入法，未激活输入法包括使能输入法以外的其他已安装的输入法。
+> 已激活输入法包括默认输入法和已使能的输入法应用，未激活输入法包括除使能输入法以外的其他已安装的输入法。
 > 
-> 默认输入法默认使能。
+> 默认输入法默认使能，其他输入法可被设置为使能或非使能。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2831,21 +2829,20 @@ getInputMethodsSync(enable: boolean): Array&lt;InputMethodProperty&gt;
 | ------ | ------- | ---- | ----------------------- |
 | enable | boolean | 是   |- true表示返回已激活输入法列表，false表示返回未激活输入法列表。 |
 
+**返回值：**
+
+| 类型                                                 | 说明                          |
+| ---------------------------------------------------- | ----------------------------- |
+| Array\<[InputMethodProperty](#inputmethodproperty8)> | 返回已激活/未激活输入法列表。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401 | parameter error. |
 | 12800001 | package manager error.                 |
 | 12800008 |input method manager service error. |
-
-**返回值：**
-
-| 类型                                                         | 说明                          |
-| ------------------------------------------------------------ | ----------------------------- |
-| Array\<[InputMethodProperty](#inputmethodproperty8)> | 返回已激活/未激活输入法列表。 |
 
 **示例：**
 
@@ -2883,17 +2880,13 @@ getAllInputMethods(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&g
 **示例：**
 
 ```ts
-try {
-  inputMethodSetting.getAllInputMethods((err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
-    if (err) {
-      console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
-      return;
-    }
-    console.log('Succeeded in getting all inputMethods.');
-  });
-} catch (err) {
-  console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
-}
+inputMethodSetting.getAllInputMethods((err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
+  if (err) {
+    console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('Succeeded in getting all inputMethods.');
+});
 ```
 
 ### getAllInputMethods<sup>11+</sup>
@@ -2904,6 +2897,12 @@ getAllInputMethods(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
+**返回值：**
+
+| 类型                                                         | 说明                              |
+| ------------------------------------------------------------ | --------------------------------- |
+| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise对象，返回所有输入法列表。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
@@ -2913,24 +2912,14 @@ getAllInputMethods(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 | 12800001 | package manager error.              |
 | 12800008 | input method manager service error. |
 
-**返回值：**
-
-| 类型                                                         | 说明                              |
-| ------------------------------------------------------------ | --------------------------------- |
-| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise对象，返回所有输入法列表。 |
-
 **示例：**
 
 ```ts
-try {
-  inputMethodSetting.getAllInputMethods().then((data: Array<inputMethod.InputMethodProperty>) => {
-    console.log('Succeeded in getting all inputMethods.');
-  }).catch((err: Error) => {
-    console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
-  })
-} catch(err) {
+inputMethodSetting.getAllInputMethods().then((data: Array<inputMethod.InputMethodProperty>) => {
+  console.log('Succeeded in getting all inputMethods.');
+}).catch((err: Error) => {
   console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
-}
+})
 ```
 
 ### getAllInputMethodsSync<sup>11+</sup>
@@ -2941,6 +2930,12 @@ getAllInputMethodsSync(): Array&lt;InputMethodProperty&gt;
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
+**返回值：**
+
+| 类型                                                 | 说明               |
+| ---------------------------------------------------- | ------------------ |
+| Array\<[InputMethodProperty](#inputmethodproperty8)> | 返回所有输入法列表 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
@@ -2950,20 +2945,10 @@ getAllInputMethodsSync(): Array&lt;InputMethodProperty&gt;
 | 12800001 | package manager error.              |
 | 12800008 | input method manager service error. |
 
-**返回值：**
-
-| 类型                                                 | 说明                 |
-| ---------------------------------------------------- | -------------------- |
-| Array\<[InputMethodProperty](#inputmethodproperty8)> | 返回所有输入法列表。 |
-
 **示例：**
 
 ```ts
-try {
-  let imeProp = inputMethodSetting.getAllInputMethodsSync();
-} catch(err) {
-  console.error(`Failed to getAllInputMethodsSync: ${JSON.stringify(err)}`);
-}
+let imeProp = inputMethodSetting.getAllInputMethodsSync();
 ```
 
 ### showOptionalInputMethods<sup>9+</sup>
