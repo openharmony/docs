@@ -1,4 +1,4 @@
-# PixelMap Data Processing
+# PixelMap Data Processing (Native)
 
 You will learn how to use native image APIs to process images.
 

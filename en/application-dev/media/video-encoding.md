@@ -476,7 +476,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
     // Configure the surface of the input data through the OHNativeWindow* variable type.
     ```
 
-    For details about how to use the OHNativeWindow* variable type, see Graphics Subsystem/foundation/graphic/graphic_2d.
+    For details about how to use the OHNativeWindow* variable type, see [NativeWindow](../reference/native-apis/_native_window.md).
 
 6. Call **OH_VideoEncoder_Start()** to start the encoder.
 

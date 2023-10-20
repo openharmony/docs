@@ -36,6 +36,14 @@ Read [AVDemuxer](../reference/native-apis/_a_v_demuxer.md) and [AVSource](../ref
 > - To call the decapsulation APIs to parse a local file, request the **ohos.permission.READ_MEDIA** permission by following the instructions provided in [Applying for Permissions](../security/accesstoken-guidelines.md).
 > - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9).
 
+### Linking the Dynamic Library in the CMake Script
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
+target_link_libraries(sample PUBLIC libnative_media_avsource.so)
+```
+
+### How to Develop
+
 1. Create a demuxer instance.
 
    ``` c++

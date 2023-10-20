@@ -9,7 +9,7 @@ Mode management, as an enhancement to **CameraManager**, is used to manage advan
 ![portraitgraphing Development Process](figures/portrait-capture-development-process.png)
 
 ## Sample Code
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+There are different [types of contexts](../application-models/application-context-stage.md).
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
