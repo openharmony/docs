@@ -145,7 +145,7 @@ Since AppStorage is a singleton, its APIs are all static ones. How these APIs wo
 AppStorage.setOrCreate('PropA', 47);
 
 let storage: LocalStorage = new LocalStorage();
-storage['PropA'] = 17;
+storage.setOrCreate('PropA',17);
 let propA: number | undefined = AppStorage.get('PropA') // propA in AppStorage == 47, propA in LocalStorage == 17
 let link1: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link1.get() == 47
 let link2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link2.get() == 47
@@ -174,7 +174,7 @@ prop.get() // == 49
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let storage = new LocalStorage();
-storage['PropA'] = 48;
+storage.setOrCreate('PropA',48);
 
 @Entry(storage)
 @Component
