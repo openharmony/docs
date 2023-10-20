@@ -133,7 +133,9 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) // <?xml version="1.0" encoding="utf-8"?>
+console.log(view1)
+// <?xml version="1.0" encoding="utf-8"?>
+// <h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 
