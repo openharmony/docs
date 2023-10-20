@@ -59,7 +59,7 @@ import Want from '@ohos.app.ability.Want';
   try {
       fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
   } catch(e) {
-      console.error('openSync fail: ${JSON.stringify(e)}');
+      console.error(`openSync fail: ${JSON.stringify(e)}`);
   }
   let want: Want = {
     deviceId: '', // An empty deviceId indicates the local device.
@@ -72,7 +72,7 @@ import Want from '@ohos.app.ability.Want';
   };
   this.context.startAbility(want, (error: BusinessError) => {
       // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
-      console.error('error.code = ${error.code}');
+      console.error(`error.code = ${error.code}`);
   });
   // ...
   ```
