@@ -1790,3 +1790,153 @@ systemPasteboard.setPasteData(pasteData).then((data: void) => {
     console.error('Failed to set PasteData. Cause: ' + err.message);
 });
 ```
+### IsRemoteData<sup>11+</sup>
+
+isRemoteData(): boolean
+
+判断是否为远程数据。
+
+**系统能力：** SystemCapability.MiscServices.
+
+**返回值：**
+
+| 类型    | 说明                                  |
+| ------- | ------------------------------------- |
+| boolean | 是远程数据返回 true，否则返回 false。 |
+
+**示例：**
+
+```ts
+let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content')
+let remoteData: boolean = pasteData.isRemoteData()
+```
+
+### GetDataSource<sup>11+</sup>
+
+getDataSource(): string
+
+获取数据来源。
+
+**系统能力：** SystemCapability.MiscServices.
+
+**返回值：**
+
+| 类型   | 说明   |
+| ------ | ------ |
+| string | 数据来源。 |
+
+**示例：**
+
+```ts
+let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content')
+let dateSource: string = pasteData.getDataSource()
+```
+
+### HasDataType<sup>11+</sup>
+
+hasDataType(mimeType: string): boolean
+
+检查剪贴板内容中是否有指定的数据类型。
+
+**系统能力：** SystemCapability.MiscServices.
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明               |
+| -------- | ------ | ---- | ------------------ |
+| mimeType | string | 是   | 获取数据类型。 |
+
+**返回值：**
+
+| 类型    | 说明                                        |
+| ------- | ------------------------------------------- |
+| boolean | 有指定的数据类型返回 true，否则返回 false。 |
+
+**示例：**
+
+```ts
+let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN,'hello')
+let hasType: boolean = pasteData.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN)
+```
+
+### ClearDataSync<sup>11+</sup>
+
+clearDataSync(): void
+
+清空系统剪贴板内容;此接口为同步接口。
+
+**系统能力：** SystemCapability.MiscServices.
+
+**示例：**
+
+```ts
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard()
+systemPasteboard.clearDataSync()
+    console.info('Succeeded in clearing the pasteboard.')
+```
+
+### GetDataSync<sup>11+</sup>
+
+getDataSync(): PasteData
+
+读取系统剪贴板内容;此接口为同步接口。
+
+**系统能力：** SystemCapability.MiscServices.
+
+**返回值：**
+
+| 类型                    | 说明                 |
+| ----------------------- | -------------------- |
+| [PasteData](#pastedata) | 返回系统剪贴板数据。 |
+
+**示例：**
+
+```ts
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard()
+let getData: PasteData = systemPasteboard.getDataSync()
+    console.info('Succeeded to get PasteData.')
+```
+
+### SetDataSync<sup>11+</sup>
+
+setDataSync(data: PasteData): void
+
+将数据写入系统剪贴板;此接口为同步接口。
+
+**系统能力：** SystemCapability.MiscServices.
+
+**参数：**
+
+| 参数名 | 类型                    | 必填 | 说明             |
+| ------ | ----------------------- | ---- | ---------------- |
+| data   | [PasteData](#pastedata) | 是   | PasteData 对象。 |
+
+**示例：**
+
+```ts
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard()
+let setData: PasteData = systemPasteboard.setDataSync()
+    console.info('Succeeded to set PasteData.')
+```
+
+### HasDataSync<sup>11+</sup>
+
+hasDataSync(): boolean
+
+将数据写入系统剪贴板;此接口为同步接口。
+
+**系统能力：** SystemCapability.MiscServices.
+
+**返回值：**
+
+| 类型    | 说明                                                                    |
+| ------- | ----------------------------------------------------------------------- |
+| boolean | 返回 true 表示系统剪贴板中有内容，返回 false 表示系统剪贴板中没有内容。 |
+
+**示例：**
+
+```ts
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard()
+let hasData: PasteData = systemPasteboard.HasDataSync()
+    console.info('Succeeded to check the PasteData.', hasData)
+```
