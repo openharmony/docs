@@ -600,6 +600,40 @@ static getFirstPreferredLanguage(): string
   }
   ```
 
+### setAppPreferredLanguage<sup>11+</sup>
+
+static setAppPreferredLanguage(language: string): void
+
+设置应用的偏好语言。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明    |
+| -------- | ------ | ---- | ----- |
+| language | string | 是    | 语言ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    I18n.System.setAppPreferredLanguage('zh'); // 设置应用当前语言为 "zh"
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
 ### getAppPreferredLanguage<sup>9+</sup>
 
 static getAppPreferredLanguage(): string
@@ -744,6 +778,71 @@ getCalendar(locale: string, type? : string): Calendar
   I18n.getCalendar("zh-Hans", "chinese"); // 获取中国农历日历对象
   ```
 
+## EntityRecognizer<sup>11+</sup>
+
+### constructor<sup>11+</sup>
+
+constructor(locale: string)
+
+创建实体识别对象。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明                |
+| ---- | ---- | ---- | ----------------- |
+| locale | string | 是    | 区域ID。 |
+
+**示例：**
+  ```ts
+  let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
+  ```
+
+### findEntityInfo<sup>11+</sup>
+
+findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
+
+识别文本中的实体信息。
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明                |
+| ---- | ---- | ---- | ----------------- |
+| text | string | 是    | 用于识别实体的文本。 |
+
+**返回值：**
+
+| 类型   | 说明                |
+| ---- | ----------------- |
+| Array&lt;[EntityInfoItem](#entityinfoitem11)&gt; | 识别的实体对象列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
+
+**示例：**
+  ```ts
+  let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
+  let text: string = "如有疑问，请联系158****2312";
+  let result: Array<EntityInfoItem> = entityRecognizer.findEntityInfo(text); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
+  ```
+
+## EntityInfoItem<sup>11+</sup>
+
+实体信息对象。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称  | 类型   | 可读   | 可写   | 说明                |
+| ---- | ---- | ---- | ---- | ----------------- |
+| type | string | 是    | 是    | 实体的类型，当前仅支持"phone_number"。 |
+| begin | number | 是    | 是    | 实体的起始位置。 |
+| end | number | 是    | 是    | 实体的终止位置。 |
 
 ## Calendar<sup>8+</sup>
 
