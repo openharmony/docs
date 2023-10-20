@@ -30,10 +30,7 @@ AccessibilityExtensionAbility为无障碍扩展服务框架，允许三方开发
 
 ### 创建工程
 
-如需新增独立的无障碍扩展服务应用，可按以下步骤进行。在DevEco Studio中新建一个工程，具体步骤如下：
-1. 在DevEco Studio的左上角标签栏，选择`File -> New -> Create Project`新建一个工程；
-2. 根据工程创建向导，选择`OpenHarmony`标签页，选择`Empty Ability`模板，点击Next，进入项目详细配置页；
-3. 选择项目类型为Application，Compile API（高版本为Compile SDK）为9及以上的版本，Model为`Stage`，然后点击Finish完成工程创建。
+如需新增独立的无障碍扩展服务应用，在DevEco Studio中新建一个API 9以上的Stage工程。
 
 ### 新建无障碍扩展服务ets文件
 
