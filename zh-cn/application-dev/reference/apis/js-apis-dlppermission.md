@@ -155,7 +155,7 @@ async func(): Promise<void> {
 
 ## dlpPermission.getDLPPermissionInfo
 
-getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void;
+getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void
 
 查询当前DLP沙箱的权限信息。使用callback方式异步返回结果。
 
@@ -1525,7 +1525,7 @@ async func(uri:string): Promise<void> {
 
 ### stopFuseLink
 
-stopFuseLink(): Promise&lt;void&gt;;
+stopFuseLink(): Promise&lt;void&gt;
 
 停止FUSE关联读写。使用Promise方式异步返回结果。
 
@@ -1965,7 +1965,7 @@ async func(uri:string): Promise<void> {
     await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
     dlpFile.deleteDLPLinkFile('test.txt.dlp.link', async (err, res) => { // 删除link文件
       if (err != undefined) {
-        console.error('replaceDLPLinkFile error,', err.code, err.message);
+        console.error('deleteDLPLinkFile error,', err.code, err.message);
         await dlpFile.closeDLPFile(); //关闭DLP对象
       } else {
         console.info('res', JSON.stringify(res));
@@ -1979,7 +1979,7 @@ async func(uri:string): Promise<void> {
 
 ### recoverDLPFile
 
-recoverDLPFile(plaintextFd: number): Promise&lt;void&gt;;
+recoverDLPFile(plaintextFd: number): Promise&lt;void&gt;
 
 移除DLP文件的权限控制，恢复成明文文件。使用Promise方式异步返回结果。
 
