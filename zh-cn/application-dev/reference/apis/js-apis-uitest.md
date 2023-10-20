@@ -2413,13 +2413,13 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 **参数：**
 
-| 参数名 | 类型             | 必填 | 说明                                                |
-| ------ | ---------------- | ---- | --------------------------------------------------- |
-| p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                    |
-| down   | boolean          | 是   | 滚轮滑动方向是否向下。                              |
-| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。 |
-| key1   | number           | 否   | 指定的第一个key值。                                 |
-| key2   | number           | 否   | 指定的第二个key值。                                 |
+| 参数名 | 类型             | 必填 | 说明                                                        |
+| ------ | ---------------- | ---- | ----------------------------------------------------------- |
+| p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                            |
+| down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。 |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。         |
+| key1   | number           | 否   | 指定的第一个key值。                                         |
+| key2   | number           | 否   | 指定的第二个key值。                                         |
 
 **错误码：**
 
@@ -2505,7 +2505,7 @@ async function demo() {
 
 ### mouseScroll<sup>11+</sup>
 
-mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, speed?: number): Promise\<void>;
+mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, speed?: number): Promise\<void>
 
 在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键并且指定滑动速度。
 
@@ -2516,7 +2516,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 | 参数名 | 类型             | 必填 | 说明                                                         |
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                             |
-| down   | boolean          | 是   | 滚轮滑动方向是否向下。                                       |
+| down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。  |
 | d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。          |
 | key1   | number           | 否   | 指定的第一个key值。                                          |
 | key2   | number           | 否   | 指定的第二个key值。                                          |
@@ -2542,7 +2542,7 @@ async function demo() {
 
 ### mouseDoubleClick<sup>11+</sup>
 
-mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>;
+mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
 
 在指定坐标点注入鼠标双击动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标双击动作。
 
@@ -2577,7 +2577,7 @@ async function demo() {
 
 ### mouseLongClick<sup>11+</sup>
 
-mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>;
+mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
 
 在指定坐标点注入鼠标长按动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标长按动作。
 
@@ -2612,7 +2612,7 @@ async function demo() {
 
 ### mouseMoveWithTrack<sup>11+</sup>
 
-mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>;
+mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 鼠标从起始坐标点滑向终点坐标点。
 
@@ -2690,7 +2690,7 @@ inputText(p: Point, text: string): Promise\<void>
 
 | 参数名 | 类型             | 必填 | 说明               |
 | ------ | ---------------- | ---- | ------------------ |
-| p      | [Point](#point9) | 是   | 植入文本的坐标点。 |
+| p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
 | text   | string           | 是   | 输入的文本信息。   |
 
 **错误码：**
