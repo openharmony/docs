@@ -581,7 +581,7 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.increaseCapacityTo(2);
-vector.increaseCapacityTo(8);
+vector.increaseCapacityTo(12);
 ```
 
 ### trimToCurrentLength
@@ -641,6 +641,19 @@ copyToArray(array: Array&lt;T&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | array | Array&lt;T&gt; | 是 | 指定数组。 |
+
+**示例：**
+
+```ts
+let vector : Vector<number> = new Vector();
+let array :Array<number> = new Array();
+vector.add(2);
+vector.add(4);
+vector.add(5);
+vector.add(4);
+vector.copyToArray(array);
+console.log("array: ",array)
+```
 
 ### getFirstElement
 
@@ -721,7 +734,6 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.add("a");
 let result = vector.getLastIndexFrom(4,3);
 ```
 
@@ -754,7 +766,6 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.add("a");
 let result = vector.getIndexFrom(4, 3);
 ```
 
@@ -814,6 +825,7 @@ vector.add(5);
 vector.add(4);
 let result = vector.get(2);
 ```
+
 ### set
 
 set(index: number, element: T): T
@@ -835,11 +847,27 @@ set(index: number, element: T): T
   | -------- | -------- |
   | T | 返回替换后的元素。 |
 
+**示例：**
+
+```ts
+let vector : Vector<number> = new Vector();
+vector.add(2);
+vector.add(4);
+vector.add(5);
+vector.add(4);
+let result = vector.set(3,66);
+console.log("vector: ",vector)
+```
+
 ### [Symbol.iterator]
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
 
 **系统能力：** SystemCapability.Utils.Lang
 

@@ -228,7 +228,7 @@ has(key: T): boolean
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<number> = new LightWeightSet();
 lightWeightSet.add(123);
 let result = lightWeightSet.has(123);
 ```
@@ -659,6 +659,10 @@ while(index < lightWeightSet.length) {
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
 
 **系统能力：** SystemCapability.Utils.Lang
 
