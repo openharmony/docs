@@ -59,6 +59,9 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 struct RadioExample {
+  @State Rst:promptAction.ShowToastOptions = {'message': 'Ringing mode.'}
+  @State Vst:promptAction.ShowToastOptions = {'message': 'Vibration mode.'}
+  @State Sst:promptAction.ShowToastOptions = {'message': 'Silent mode.'}
   build() {
     Row() {
       Column() {
@@ -68,8 +71,7 @@ struct RadioExample {
           .onChange((isChecked: boolean) => {
             if(isChecked) {
               // Switch to the ringing mode.
-              let st:Record<string,string> = {'message': 'Ringing mode.'}
-              promptAction.showToast(st)
+              promptAction.showToast(this.Rst)
             }
           })
         Text('Ringing')
@@ -81,8 +83,7 @@ struct RadioExample {
           .onChange((isChecked: boolean) => {
             if(isChecked) {
               // Switch to the vibration mode.
-              let st:Record<string,string> = {'message': 'Vibration mode.'}
-              promptAction.showToast(st)
+              promptAction.showToast(this.Vst)
             }
           })
         Text('Vibration')
@@ -94,8 +95,7 @@ struct RadioExample {
           .onChange((isChecked: boolean) => {
             if(isChecked) {
               // Switch to the silent mode.
-              let st:Record<string,string> = {'message': 'Silent mode.'}
-              promptAction.showToast(st)
+              promptAction.showToast(this.Sst)
             }
           })
         Text('Silent')

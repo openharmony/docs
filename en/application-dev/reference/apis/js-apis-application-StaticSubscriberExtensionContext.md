@@ -48,7 +48,7 @@ Observe the following when using this API:
 
 | Name  | Type                               | Mandatory| Description                      |
 | -------- | ----------------------------------- | ---- | -------------------------- |
-| want     | [Want](js-apis-application-want.md) | Yes  | Want information about the target ability.   |
+| want     | [Want](js-apis-app-ability-want.md) | Yes  | Want information about the target ability.   |
 | callback | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -122,7 +122,7 @@ Observe the following when using this API:
 
 | Name| Type                               | Mandatory| Description                   |
 | ------ | ----------------------------------- | ---- | ----------------------- |
-| want   | [Want](js-apis-application-want.md) | Yes  | Want information about the target ability.|
+| want   | [Want](js-apis-app-ability-want.md) | Yes  | Want information about the target ability.|
 
 **Return value**
 
