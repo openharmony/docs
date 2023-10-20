@@ -51,7 +51,7 @@ import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawa
 @Entry
 @Component
 struct Index {
-  private resManager:resoutceManageer.ResoutceManager = getContext().resourceManager
+  private resManager = getContext().resourceManager
 
   build() {
     Row() {
