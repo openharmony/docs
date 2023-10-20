@@ -3143,7 +3143,7 @@ Provides the information about the publisher for notification subscription.
 | Name       | Type           | Readable| Writable| Description                           |
 | ----------- | --------------- | --- | ---- | ------------------------------- |
 | bundleNames | Array\<string\> | Yes | Yes | Bundle names of the applications whose notifications are to be subscribed to.|
-| userId      | number          | Yes | Yes | User whose notifications are to be subscribed to.   |
+| userId | number          | Yes | Yes | User whose notifications are to be subscribed to. You can obtain the user ID through [getCurrentOsAccount](js-apis-osAccount.md#getcurrentosaccount9).|
 
 
 ## NotificationTemplate<sup>8+</sup>

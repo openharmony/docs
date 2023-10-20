@@ -246,7 +246,7 @@ class ClassC extends ClassA {
 ```
 
 
-  The following component hierarchy presents this data structure.
+  The following component hierarchy presents the data structure of a nested class object.
 
 ```ts
 @Component
@@ -296,7 +296,7 @@ struct ViewB {
 The @Observed decorated **ClassC** class can observe changes in attributes inherited from the base class.
 
 
-Event handlers in **ViewB**:
+Event handles in **ViewB**:
 
 
 - this.child.c = new ClassA(0) and this.b = new ClassB(new ClassA(0)): Change to the \@State decorated variable **b** and its attributes.
