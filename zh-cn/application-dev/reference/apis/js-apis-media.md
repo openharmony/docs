@@ -2700,7 +2700,7 @@ avRecorder.off('error');
 ## VideoRecorder<sup>9+</sup>
 
 > **说明：**
-> AVRecorder<sup>9+</sup>发布后停止维护，建议使用[AVRecorder](#avrecorder9)替代。
+> AVRecorder<sup>9+</sup>发布后，VideoRecorder停止维护，建议使用[AVRecorder](#avrecorder9)替代。
 
 视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#mediacreatevideorecorder9)构建一个[VideoRecorder](#videorecorder9)实例。
 
