@@ -2571,6 +2571,8 @@ postDialProceed\(callId: number, proceed: boolean, callback: AsyncCallback\<void
 
 **系统接口：** 此接口为系统接口。
 
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
 **系统能力**：SystemCapability.Telephony.CallManager
 
 **参数：**
@@ -2616,6 +2618,8 @@ postDialProceed\(callId: number, proceed: boolean\): Promise\<void\>
 电话接通后，系统将上报通话后延迟事件，应用可以调用此接口选择是否发送DTMF音。
 
 **系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
