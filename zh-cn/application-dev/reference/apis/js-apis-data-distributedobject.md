@@ -684,7 +684,7 @@ g_object.on("change", (sessionId: string, fields: Array<string>) => {
 
 ### off('change')<sup>(deprecated)</sup>
 
-off(type: 'change', callback:? (sessionId: string, fields: Array&lt;string&gt;) => void): void
+off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void
 
 当不再进行数据变更监听时，使用此接口删除对象的变更监听。
 
