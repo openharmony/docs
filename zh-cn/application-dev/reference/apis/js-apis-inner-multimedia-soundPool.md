@@ -63,7 +63,9 @@ load(uri: string, callback: AsyncCallback\<number>): void
 
 **示例：**
 
-```js
+```ts
+import fs from '@ohos.file.fs';
+
 let uri:string = "";
 
 //获取fd的uri路径
@@ -113,7 +115,9 @@ load(uri: string): Promise\<number>
 
 **示例：**
 
-```js
+```ts
+import fs from '@ohos.file.fs';
+
 let uri:string = "";
 let soundID: number;
 
@@ -161,7 +165,9 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 
 **示例：**
 
-```js
+```ts
+import fs from '@ohos.file.fs';
+
 let fd: number;
 let soundID: number;
 let fileSize: number;
@@ -221,7 +227,9 @@ load(fd: number, offset: number, length: number): Promise\<number>
 
 **示例：**
 
-```js
+```ts
+import fs from '@ohos.file.fs';
+
 let fd: number;
 let soundID: number;
 let fileSize: number;
@@ -275,12 +283,12 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 let soundID: number;
 let streamID: number;
 let PlayParameters: media.PlayParameters = {
-    loop: number = 3, // 循环4次
-    rate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
-    leftVolume: number = 0.5, // range = 0.0-1.0
-    rightVolume: number = 0.5, // range = 0.0-1.0
-    priority: number = 0 // 最低优先级
-    parallelPlayFlag: boolean = false // 不和其它正在播放的音频并行播放
+    loop = 3, // 循环4次
+    rate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
+    leftVolume = 0.5, // range = 0.0-1.0
+    rightVolume = 0.5, // range = 0.0-1.0
+    priority = 0, // 最低优先级
+    parallelPlayFlag = false // 不和其它正在播放的音频并行播放
   }
 soundPool.play(soundID, PlayParameters, (error, streamId: number) => {
   if (error) {
@@ -367,12 +375,12 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 let soundID: number;
 let streamID: number;
 let PlayParameters: media.PlayParameters = {
-    loop: number = 3, // 循环4次
-    rate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
-    leftVolume: number = 0.5, // range = 0.0-1.0
-    rightVolume: number = 0.5, // range = 0.0-1.0
-    priority: number = 0 // 最低优先级
-    parallelPlayFlag: boolean = false // 不和其它正在播放的音频并行播放
+    loop = 3, // 循环4次
+    rate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
+    leftVolume = 0.5, // range = 0.0-1.0
+    rightVolume = 0.5, // range = 0.0-1.0
+    priority = 0, // 最低优先级
+    parallelPlayFlag = false // 不和其它正在播放的音频并行播放
   }
 
 soundPool.play(soundID, PlayParameters).then((streamId: number) => {
