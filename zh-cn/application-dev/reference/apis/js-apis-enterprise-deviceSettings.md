@@ -404,8 +404,8 @@ setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): v
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
-| powerScene | [PowerScene](#powerScene) | 是    | 电源策略场景，当前只支持超时场景       |
-| powerPolicy | [PowerPolicy](#powerPolicy) | 是    | 电源策略       |
+| powerScene | [PowerScene](#powerscene) | 是    | 电源策略场景，当前只支持超时场景       |
+| powerPolicy | [PowerPolicy](#powerpolicy) | 是    | 电源策略       |
 
 **错误码**：
 
@@ -438,7 +438,7 @@ try {
 
 ## deviceSettings.getPowerPolicy<sup>11+</sup>
 
-getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy;
+getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 
 以同步方法指定设备管理应用获取电源策略。成功返回电源策略，失败抛出对应异常。
 
@@ -453,13 +453,13 @@ getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy;
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
-| powerScene | [PowerScene](#powerScene) | 是    | 电源策略场景，当前只支持超时场景       |
+| powerScene | [PowerScene](#powerscene) | 是    | 电源策略场景，当前只支持超时场景       |
 
 **返回值：**
 
 | 类型   | 说明                                  | 说明                       |
 | ----- | ----------------------------------- |------------------------------- |
-| PowerPolicy | [PowerPolicy](#powerPolicy) |   电源策略       |
+| PowerPolicy | [PowerPolicy](#powerpolicy) |   电源策略       |
 
 **错误码**：
 
@@ -497,7 +497,7 @@ try {
 
 | 名称         | 类型     | 必填 | 说明                            |
 | ----------- | --------| ----- | ------------------------------- |
-| powerPolicyAction | [PowerPolicyAction](#powerPolicyAction) | 是 | 执行电源策略的动作。 |
+| powerPolicyAction | [PowerPolicyAction](#powerpolicyaction) | 是 | 执行电源策略的动作。 |
 | delayTime | number | 是 | 延迟时间。 |
 
 ## PowerScene<sup>11+</sup>
