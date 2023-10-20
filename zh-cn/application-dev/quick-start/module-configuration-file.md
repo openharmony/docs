@@ -535,7 +535,7 @@ metadata中指定shortcut信息，其中：
 
 ## distributionFilter标签
 
-该标签下的子标签均为可选字段，在应用市场云端分发时做精准匹配使用，distributionFilter标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码。在进行分发时，通过deviceType与这五个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。
+该标签下的子标签均为可选字段，在应用市场云端分发时使用，distributionFilter标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码。在进行分发时，通过deviceType与这四个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。**注：该字段从API10及以后版本开始生效，API9及以前版本使用distroFilter字段。**
 
   **表12** **distributionFilter标签标签配置说明**
 
@@ -575,7 +575,7 @@ metadata中指定shortcut信息，其中：
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示需要排除的value属性。<br/>-&nbsp;include：表示需要包含的value属性。 | 字符串 | 该标签不可缺省。 |
 | value | 标识应用需要分发的国家地区码。 | 字符串数组 | 该标签不可缺省。 |
 
-在开发视图的resources/base/profile下面定义配置文件distro_filter_config.json，文件名可以自定义。
+在开发视图的resources/base/profile下面定义配置文件distributionFilter_config.json，文件名可以自定义。
 
 
 ```json
