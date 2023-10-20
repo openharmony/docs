@@ -2720,7 +2720,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 获取已激活/未激活的输入法应用列表。使用callback异步回调。
 
-> **说明**
+> **说明：**
 > 
 > 已激活输入法包括默认输入法和已使能的输入法应用，未激活输入法包括除使能输入法以外的其他已安装的输入法。
 > 
@@ -2766,7 +2766,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 获取已激活/未激活的输入法应用列表。使用promise异步回调。
 
-> **说明**
+> **说明：**
 > 
 > 已激活输入法包括默认输入法和已使能的输入法应用，未激活输入法包括除使能输入法以外的其他已安装的输入法。
 > 
@@ -2815,7 +2815,7 @@ getInputMethodsSync(enable: boolean): Array&lt;InputMethodProperty&gt;
 
 获取已激活/未激活的输入法应用列表。同步接口。
 
-> **说明**
+> **说明：**
 > 
 > 已激活输入法包括默认输入法和已使能的输入法应用，未激活输入法包括除使能输入法以外的其他已安装的输入法。
 > 
