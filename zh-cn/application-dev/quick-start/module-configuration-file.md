@@ -22,7 +22,7 @@
       {
         "name": "string",
         "value": "string",
-        "resource": "$profile:distributionFilter_config"
+        "resource": "$profile:distroFilter_config"
       }
     ],
     "abilities": [
@@ -524,14 +524,15 @@ metadata中指定shortcut信息，其中：
    ```
 
 
-## distributionFilter标签
+## distroFilter标签
 
-该标签下的子标签均为可选字段，在应用市场云端分发时做精准匹配使用，distributionFilter标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API Version、屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码。在进行分发时，通过deviceType与这五个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。
+该标签下的子标签均为可选字段，在应用市场云端分发时使用，distroFilter标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API Version、屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码。在进行分发时，通过deviceType与这五个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。
 
-  **表12** **distributionFilter标签标签配置说明**
+  **表12** **distroFilterr标签标签配置说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
+| apiVersion | 标识支持的apiVersion范围。 | 对象数组 | 可缺省，缺省值为空。 |
 | screenShape | 标识屏幕形状的支持策略。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | screenWindow | 标识应用运行时窗口的分辨率支持策略。该字段仅支持对轻量级智能穿戴设备进行配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | screenDensity | 标识屏幕的像素密度（dpi：Dot&nbsp;Per&nbsp;Inch）。该字段可选，如果配置了该字段，取值必须合法。该标签为字符串数组，字符串范围如下。<br/>-&nbsp;sdpi：表示小规模的屏幕密度（Small-scale&nbsp;Dots&nbsp;per&nbsp;Inch），适用于dpi取值为(0,120]的设备。<br/>-&nbsp;mdpi：表示中规模的屏幕密度（Medium-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(120,160]的设备。<br/>-&nbsp;ldpi：表示大规模的屏幕密度（Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(160,240]的设备。<br/>-&nbsp;xldpi：表示大规模的屏幕密度（Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(240,320]的设备。<br/>-&nbsp;xxldpi：表示大规模的屏幕密度（Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(320，480]的设备。<br/>-&nbsp;xxxldpi：表示大规模的屏幕密度（Extra&nbsp;Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(480,&nbsp;640]的设备。 | 对象数组 | 该标签可缺省，缺省值为空。 |
@@ -571,7 +572,11 @@ metadata中指定shortcut信息，其中：
 
 ```json
 {
-  "distributionFilter": {
+  "distroFilter": {
+    "apiVersion": {
+      "policy": "include",
+      "value": [4,5]
+    },
     "screenShape": {
       "policy": "include",
       "value": [
