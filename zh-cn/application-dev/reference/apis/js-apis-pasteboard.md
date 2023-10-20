@@ -1790,7 +1790,7 @@ systemPasteboard.setPasteData(pasteData).then((data: void) => {
     console.error('Failed to set PasteData. Cause: ' + err.message);
 });
 ```
-### IsRemoteData<sup>11+</sup>
+### isRemoteData<sup>11+</sup>
 
 isRemoteData(): boolean
 
@@ -1807,11 +1807,16 @@ isRemoteData(): boolean
 **示例：**
 
 ```ts
-let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content')
-let remoteData: boolean = pasteData.isRemoteData()
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try{
+    let remoteData: boolean = systemPasteboard.isRemoteData();
+    console.info('True exists.');
+}catch(err){
+    console.error('False does not exist.',err);
+}
 ```
 
-### GetDataSource<sup>11+</sup>
+### getDataSource<sup>11+</sup>
 
 getDataSource(): string
 
@@ -1828,11 +1833,15 @@ getDataSource(): string
 **示例：**
 
 ```ts
-let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content')
-let dateSource: string = pasteData.getDataSource()
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try{
+    let dateSource: string = systemPasteboard.getDataSource();
+}catch(err){ 
+    console.error('Request time out.',err);
+}
 ```
 
-### HasDataType<sup>11+</sup>
+### hasDataType<sup>11+</sup>
 
 hasDataType(mimeType: string): boolean
 
@@ -1855,11 +1864,16 @@ hasDataType(mimeType: string): boolean
 **示例：**
 
 ```ts
-let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN,'hello')
-let hasType: boolean = pasteData.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN)
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try{
+    let hasType: boolean = systemPasteboard.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
+    console.info('True exists.');
+}catch(err){
+    console.error('False does not exist.',err);
+}
 ```
 
-### ClearDataSync<sup>11+</sup>
+### clearDataSync<sup>11+</sup>
 
 clearDataSync(): void
 
@@ -1870,12 +1884,16 @@ clearDataSync(): void
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard()
-systemPasteboard.clearDataSync()
-    console.info('Succeeded in clearing the pasteboard.')
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try{
+    systemPasteboard.clearDataSync();
+    console.info('Succeeded in clearing the pasteboard.');
+}catch(err){
+    console.error('Request time out.',err);
+}
 ```
 
-### GetDataSync<sup>11+</sup>
+### getDataSync<sup>11+</sup>
 
 getDataSync(): PasteData
 
@@ -1892,12 +1910,16 @@ getDataSync(): PasteData
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard()
-let getData: PasteData = systemPasteboard.getDataSync()
-    console.info('Succeeded to get PasteData.')
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try{
+    let getData: PasteData = systemPasteboard.getDataSync();
+    console.info('Succeeded to get PasteData.');
+}catch(err){
+    console.error('Request time out.',err);
+}   
 ```
 
-### SetDataSync<sup>11+</sup>
+### setDataSync<sup>11+</sup>
 
 setDataSync(data: PasteData): void
 
@@ -1914,12 +1936,16 @@ setDataSync(data: PasteData): void
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard()
-let setData: PasteData = systemPasteboard.setDataSync()
-    console.info('Succeeded to set PasteData.')
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try{
+    let setData: PasteData = systemPasteboard.setDataSync();
+    console.info('Succeeded to set PasteData.');
+}catch(err){
+    console.error('Request time out.',err);
+}  
 ```
 
-### HasDataSync<sup>11+</sup>
+### hasDataSync<sup>11+</sup>
 
 hasDataSync(): boolean
 
@@ -1936,7 +1962,11 @@ hasDataSync(): boolean
 **示例：**
 
 ```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard()
-let hasData: PasteData = systemPasteboard.HasDataSync()
-    console.info('Succeeded to check the PasteData.', hasData)
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try{
+    let hasData: PasteData = systemPasteboard.HasDataSync();
+    console.info('Succeeded to check the PasteData.', hasData);
+}catch(err){
+    console.error('Request time out.',err);
+}    
 ```
