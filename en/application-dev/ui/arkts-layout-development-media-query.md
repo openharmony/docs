@@ -46,7 +46,7 @@ listener.on('change', onPortrait);
 
 ## Media Query Conditions
 
-The media query condition consists of the media type (optional), logical operator, and media feature. The logical operator is used to connect different media types and media features. A media feature must be enclosed in parentheses (). There may be multiple media features. The specific rules are as follows:
+The media query condition consists of the media type (optional), logical operator, and media feature. The logical operator is used to connect different media types and media features. A media feature must be enclosed in parentheses (). There may be multiple media features.
 
 
 ### Syntax
@@ -64,7 +64,7 @@ Examples are as follows:
 
 - **(max-height: 800)**: The query is valid when the height is less than or equal to 800.
 
-- **(height &lt;= 800)**: The query is valid when the height is less than or equal to 800.
+- **(height &lt;= 800)**: The query is valid when the height is less than or equal to 800. (The logical operators are recommended when the media features are uncertain.)
 
 - **screen and (device-type: tv) or (resolution < 2)**: The query is valid when the device type is TV or the device resolution is less than 2. This is a multi-condition query that contains multiple media features.
 
@@ -88,7 +88,7 @@ You can use logical operators (**and**, **or**, **not**, and **only**) to compos
 | or             | The **or** operator is used to combine multiple media features into one media query, in a logical OR operation. The query is valid if a media feature is true. For example, **screen and (max-height: 1000) or (round-screen: true)** indicates that the query is valid when the maximum height of the application is 1000 pixel units or the device screen is round.|
 | not            | The **not** operator is used to perform a logical negation for a media query. **true** is returned if the query condition is not met. Otherwise, **false** is returned. For example, **not screen and (min-height: 50) and (max-height: 600)** evaluates to **true** when the height of the application is less than 50 pixel units or greater than 600 pixel units.<br>You must specify the media type when using the **not** operator.|
 | only           | The **only** operator applies the selected style only when the entire expression is matched. It can be used to prevent ambiguity on browsers of earlier versions. The statements that contain both media types and media features produce ambiguity when they are received by some browsers of earlier versions. For example, regarding **screen and (min-height: 50)**, the browsers of earlier versions would mislead this sentence into **screen**, causing the fact that the specified style is applied when only the media type is matched. In this case, the **only** operator can be used to avoid this issue.<br>You must specify the media type when using the **only** operator.|
-| comma (, ) | The **or** operator is used to combine multiple media features into one media query, in a logical OR operation. The query is valid if a media feature is true. The effect of a comma operator is equivalent to that of the **or** operator. For example, **screen and (min-height: 1000), (round-screen: true)** indicates that the query is valid when the minimum height of the application is 1000 pixel units or the device screen is round.|
+| comma (,) | The **or** operator is used to combine multiple media features into one media query, in a logical OR operation. The query is valid if a media feature is true. The effect of a comma operator is equivalent to that of the **or** operator. For example, **screen and (min-height: 1000), (round-screen: true)** indicates that the query is valid when the minimum height of the application is 1000 pixel units or the device screen is round.|
 
 Media range operators include <=, >=, <, and >. For details, see the following table.
 
@@ -143,17 +143,17 @@ import mediaquery from '@ohos.mediaquery';
 import window from '@ohos.window';
 import common from '@ohos.app.ability.common';
 
-export let portraitFunc:mediaquery.MediaQueryResult|void|null = null;
 @Entry
 @Component
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
+  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
   // The query is valid when the device is in landscape mode.
-  listener:mediaquery = mediaquery.matchMediaSync('(orientation: landscape)');
+  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)');
 
   // The callback is triggered when the query is valid.
-  onPortrait(mediaQueryResult:mediaquery) {
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches as boolean) {// If the device is in landscape mode, the page layout is changed accordingly.
       this.color = '#FFD700';
       this.text = 'Landscape';
@@ -165,9 +165,8 @@ struct MediaQueryExample {
 
   aboutToAppear() {
     // Bind to the current application instance.
-    portraitFunc = this.onPortrait(this);
     // Register the callback.
-    this.listener.on('change', portraitFunc);
+    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) });
   }
 
   // Change the landscape/portrait mode of the device in the callback.
@@ -204,16 +203,15 @@ FA model:
 import mediaquery from '@ohos.mediaquery';
 import featureAbility from '@ohos.ability.featureAbility';
 
-let portraitFunc:mediaquery.MediaQueryResult|void|null = null;
-
 @Entry
 @Component
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
-  listener:mediaquery = mediaquery.matchMediaSync('(orientation: landscape)'); // The query is valid when the device is in landscape mode.
+  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
+  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // The query is valid when the device is in landscape mode.
 
-  onPortrait(mediaQueryResult:mediaquery) { // The callback is triggered when the query is valid.
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) { // The callback is triggered when the query is valid.
     if (mediaQueryResult.matches as boolean) {// If the device is in landscape mode, the page layout is changed accordingly.
       this.color = '#FFD700';
       this.text = 'Landscape';
@@ -224,8 +222,8 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    portraitFunc = this.onPortrait(this); // Bind to the current application instance.
-    this.listener.on('change', portraitFunc); // Register the callback.
+    // Bind to the current application instance.
+    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) }); // Register the callback.
   }
 
   build() {
@@ -233,12 +231,12 @@ struct MediaQueryExample {
       Text(this.text).fontSize(50).fontColor(this.color)
       Text('Landscape').fontSize(50).fontColor(this.color).backgroundColor(Color.Orange)
         .onClick(() => {
-          let context:featureAbility = featureAbility.getContext();
+          let context = featureAbility.getContext();
           context.setDisplayOrientation(0); // Invoke this API to manually change the landscape/portrait mode of the device.
         })
       Text('Portrait').fontSize(50).fontColor(this.color).backgroundColor(Color.Orange)
         .onClick(() => {
-          let context:featureAbility = featureAbility.getContext();
+          let context = featureAbility.getContext();
           context.setDisplayOrientation(1); // Invoke this API to manually change the landscape/portrait mode of the device.
         })
     }

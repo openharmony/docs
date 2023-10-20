@@ -29,8 +29,9 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 >  **NOTE**
 >
-> The default value of the **clip** attribute is **true**.
-> The **align** attribute supports only the start, center, and end options.
+>  The default value of the **clip** attribute is **true**.
+>
+>  The **align** attribute supports only the start, center, and end options.
 
 | Name                     | Type                                                    | Description                                                        |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -515,12 +516,14 @@ struct RichEditorExample {
             Button(item + "")
               .width(110).onClick(() => {
               this.controller.addTextSpan(item + '', {
+                offset: this.controller.getCaretOffset(),
                 style:
                 {
                   fontColor: Color.Orange,
                   fontSize: 30
                 }
               })
+              this.controller.setCaretOffset(this.controller.getCaretOffset() + item.toString().length)
             })
           }
         })
@@ -534,9 +537,12 @@ struct RichEditorExample {
         // Bind the custom keyboard.
         .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
         .height(200)
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width("100%")
     }
   }
 }
 ```
 
-![customKeyboard](figures/richEditorCustomKeyboard.png)
+![customKeyboard](figures/richEditorCustomKeyboard.gif)

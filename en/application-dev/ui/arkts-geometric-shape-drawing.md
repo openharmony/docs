@@ -23,7 +23,7 @@ A drawing component can be created in either of the following ways:
   ```
 
 
-- Create an independent drawing component to draw a specific shape. Seven shapes are supported: [Circle](../reference/arkui-ts/ts-drawing-components-circle.md), [Ellipse](../reference/arkui-ts/ts-drawing-components-ellipse.md), [Line](../reference/arkui-ts/ts-drawing-components-line.md), [Polyine](../reference/arkui-ts/ts-drawing-components-polyline.md), [Polygon](../reference/arkui-ts/ts-drawing-components-polygon.md), [Path](../reference/arkui-ts/ts-drawing-components-path.md), and [Rect](../reference/arkui-ts/ts-drawing-components-rect.md). The following uses the **Circle** API as an example:
+- Create an independent drawing component to draw a specific shape. Seven shapes are supported: [Circle](../reference/arkui-ts/ts-drawing-components-circle.md), [Ellipse](../reference/arkui-ts/ts-drawing-components-ellipse.md), [Line](../reference/arkui-ts/ts-drawing-components-line.md), [Polyline](../reference/arkui-ts/ts-drawing-components-polyline.md), [Polygon](../reference/arkui-ts/ts-drawing-components-polygon.md), [Path](../reference/arkui-ts/ts-drawing-components-path.md), and [Rect](../reference/arkui-ts/ts-drawing-components-rect.md). The following uses the **Circle** API as an example:
 
   ```ts
   Circle(options?: {width?: string | number, height?: string | number}
@@ -45,9 +45,9 @@ A drawing component can be created in either of the following ways:
 viewPort{ x?: number | string, y?: number | string, width?: number | string, height?: number | string }
 ```
 
-Creates a viewport, which is a rectangle in the user space that maps to the view boundary established for the associated SVG element. The value of the **viewport** attribute contains four optional parameters: **x**, **y**, **width**, and **height**. **x** and **y** indicate the coordinates of the upper left corner of the viewport, and **width** and **height** indicate the size of the viewport.
+Creates a viewport, which is a rectangle in the user space that maps to the view boundary established for the associated SVG element. Among the four optional parameters, **x** and **y** represent the coordinates of the upper left corner of the viewport, and **width** and **height** represent the size of the viewport.
 
-The following three examples describe how to use the viewport:
+The following examples describe how to use the viewport:
 
 - Zoom in or zoom out a graph through the shape viewport.
 
@@ -66,7 +66,7 @@ The following three examples describe how to use the viewport:
     height:number = 300
   }
   let viep1:tmp1 = new tmp1()
-  // Draw a circle whose width and height are both 150.
+  // Draw a circle whose width and height are both 75.
   Text ('Original Size Circle')
   Circle({width: 75, height: 75}).fill('#E87361')
 
@@ -266,7 +266,7 @@ The drawing component allows you to change the component style through various a
 
 ## Example Scenario
 
-- Draw a closed path at (-80, -5). The fill color is 0x317AF7, the stroke width is 10, the stroke color is red, and the Join style of the stroke is miter (default value).
+- Draw a closed path at (-80, -5). The fill color is 0x317AF7, the stroke width is 10, the stroke color is red, and the stroke join style is miter (default value).
 
   ```ts
   @Entry
