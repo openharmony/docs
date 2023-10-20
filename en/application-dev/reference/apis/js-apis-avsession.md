@@ -4343,7 +4343,7 @@ aVCastController.sendControlCommand(avCommand, (err: BusinessError) => {
 
 prepare(item: AVQueueItem, callback: AsyncCallback\<void>): void
 
-Prepares for the playback of a media asset. This API uses an asynchronous callback to return the result.
+Prepares for the playback of a media asset, that is, loads and buffers a media asset. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -4401,7 +4401,7 @@ aVCastController.prepare(playItem, (err: BusinessError) => {
 
 prepare(item: AVQueueItem): Promise\<void>
 
-Prepares for the playback of a media asset. This API uses a promise to return the result.
+Prepares for the playback of a media asset, that is, loads and buffers a media asset. This API uses a promise to return the result.
 
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
