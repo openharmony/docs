@@ -6,16 +6,16 @@ The view hierarchy can significantly affect application performance. For example
 
 In the following negative example, the **\<Grid>** component is used to implement a grid, but it is nested inside three levels of **\<Stack>** containers. As a result, the refresh and rendering process takes a long time to complete.
 
-```javascript
+```typescript
 @Entry
 @Component
-struct AspectRatioExample {
-  @State children: Number[] = Array.from(Array(900), (v, k) => k);
+struct AspectRatioExample12 {
+  @State children: Number[] = Array.from(Array<number>(900), (v, k) => k);
 
   build() {
     Scroll() {
       Grid() {
-        ForEach(this.children, (item) => {
+        ForEach(this.children, (item:Number[]) => {
           GridItem() {
             Stack() {
               Stack() {
@@ -25,7 +25,7 @@ struct AspectRatioExample {
               }
             }
           }
-        }, item => item)
+        }, (item:string) => item)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr')
       .columnsGap(0)
@@ -38,21 +38,20 @@ struct AspectRatioExample {
 
 Recommendation: Reduce the redundant nesting of **\<Stack>** containers. In this way, the number of components that each grid item needs to pass is three less, shortening the refresh and rendering time.
 
-```javascript
-// xxx.ets
+```typescript
 @Entry
 @Component
-struct AspectRatioExample {
-  @State children: Number[] = Array.from(Array(900), (v, k) => k);
+struct AspectRatioExample11 {
+  @State children: Number[] = Array.from(Array<number>(900), (v, k) => k);
 
   build() {
     Scroll() {
       Grid() {
-        ForEach(this.children, (item) => {
+        ForEach(this.children, (item:Number[]) => {
           GridItem() {
             Text(item.toString())
           }
-        }, item => item)
+        }, (item:string) => item)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr')
       .columnsGap(0)

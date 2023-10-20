@@ -732,7 +732,7 @@ Obtains a notification slot of a specified type. This API uses a promise to retu
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<NotificationSlot\> | Promise used to return the result.|
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -1860,6 +1860,8 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2607,6 +2609,8 @@ Checks whether DND mode is supported. This API uses an asynchronous callback to 
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -3383,8 +3387,6 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 Cancels a notification published by the reminder agent. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 

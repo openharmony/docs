@@ -106,7 +106,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
     // Write the API description. You can modify the corresponding parameters as required.
     static napi_module nativerenderModule = {
         .nm_version = 1,
-        .nflag_s = 0,
+        .nm_flags = 0,
         .nm_filename = nullptr,
         // Entry function
         .nm_register_func = Init,
@@ -428,7 +428,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
         
         // Set the callback of the mouse event. When the event is triggered, the N-API is called to call the original C++ method.
         mouseCallback_.DispatchMouseEvent = DispatchMouseEventCB;
-        // Set the callback of the mouse event. When the event is triggered, the N-API is called to call the original C++ method.
+        // Set the callback of the mouse pointer hover event. When the event is triggered, the N-API is called to call the original C++ method.
         mouseCallback_.DispatchHoverEvent = DispatchHoverEventCB;
         // Register OH_NativeXComponent_MouseEvent_Callback with NativeXComponent.
         OH_NativeXComponent_RegisterMouseEventCallback(nativeXComponent, &mouseCallback_);
@@ -677,7 +677,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
         GLfloat rightX = rotateY * (M_PI / 180 * 18);
         GLfloat rightY = 0;
 
-        // Determine the vertices for drawing the quadrilateral, which are represented by the percentage of the drawing area.
+        // Determine the vertices for drawing the quadrilateral, which are represented by the percentages of the drawing area.
         const GLfloat shapeVertices[] = {
             centerX / width_, centerY / height_,
             leftX / width_, leftY / height_,
@@ -698,7 +698,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
             rotate2d(centerX, centerY, &leftX, &leftY,rad);
             rotate2d(centerX, centerY, &rightX, &rightY,rad);
             
-            // Determine the vertices for drawing the quadrilateral, which are represented by the percentage of the drawing area.
+            // Determine the vertices for drawing the quadrilateral, which are represented by the percentages of the drawing area.
             const GLfloat shapeVertices[] = {
                     centerX / width_, centerY / height_,
                     leftX / width_, leftY / height_,
@@ -745,7 +745,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
             return;
         }
     
-        // Determine the vertices for drawing the quadrilateral, which are represented by the percentage of the drawing area.
+        // Determine the vertices for drawing the quadrilateral, which are represented by the percentages of the drawing area.
         GLfloat rotateX = 0;
         GLfloat rotateY = FIFTY_PERCENT * height_;
         GLfloat centerX = 0;
@@ -755,7 +755,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
         GLfloat rightX = rotateY * (M_PI / 180 * 18);
         GLfloat rightY = 0;
     
-        // Determine the vertices for drawing the quadrilateral, which are represented by the percentage of the drawing area.
+        // Determine the vertices for drawing the quadrilateral, which are represented by the percentages of the drawing area.
         const GLfloat shapeVertices[] = {
             centerX / width_, centerY / height_,
             leftX / width_, leftY / height_,
@@ -777,7 +777,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
             rotate2d(centerX, centerY, &leftX, &leftY,rad);
             rotate2d(centerX, centerY, &rightX, &rightY,rad);
             
-            // Determine the vertices for drawing the quadrilateral, which are represented by the percentage of the drawing area.
+            // Determine the vertices for drawing the quadrilateral, which are represented by the percentages of the drawing area.
             const GLfloat shapeVertices[] = {
                     centerX / width_, centerY / height_,
                     leftX / width_, leftY / height_,

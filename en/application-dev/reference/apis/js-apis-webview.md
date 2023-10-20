@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-The **Webview** module provides APIs for web control. It can be used with the **[<Web\>](../arkui-ts/ts-basic-components-web.md)** component, which can be used to display web pages.
+The **Webview** module provides APIs for web control. It can be used with the [<Web\>](../arkui-ts/ts-basic-components-web.md) component, which can be used to display web pages.
 
 > **NOTE**
 >
@@ -119,7 +119,7 @@ struct WebComponent {
 
 onMessageEvent(callback: (result: WebMessage) => void): void
 
-Registers a callback to receive messages from the HTML5 side. For the complete sample code, see [postMessage](#postmessage).
+Registers a callback to receive messages from the HTML side. For the complete sample code, see [postMessage](#postmessage).
 
 **System capability**: SystemCapability.Web.Webview.Core
 

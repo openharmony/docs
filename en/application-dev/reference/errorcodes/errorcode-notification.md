@@ -221,3 +221,22 @@ A memory allocation error occurs.
 **Solution**
 
 Ensure sufficient system memory.
+
+## 17700001 Bundle Name Not Found
+
+**Error Message**
+
+The specified bundle name was not found.
+
+**Description**
+
+This error code is reported when the bundle name is incorrect or the application is not installed.
+
+**Cause**
+
+1. The bundle name is incorrect.
+2. The application is not installed.
+
+**Solution**
+
+Verify the bundle name and make sure the application is installed.
