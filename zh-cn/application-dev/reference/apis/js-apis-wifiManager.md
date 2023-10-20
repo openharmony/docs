@@ -1246,7 +1246,9 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
 获取WLAN连接信息，使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 。 获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
+**需要权限：** ohos.permission.GET_WIFI_INFO 。 
+
+ 获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1271,7 +1273,9 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 获取WLAN连接信息，使用callback异步回调。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 。 获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
+**需要权限：** ohos.permission.GET_WIFI_INFO 。 
+
+获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -2937,23 +2941,6 @@ p2pCancelConnect(): void
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
-## wifiManager.startDiscoverDevices<sup>10+</sup>
-
-startDiscoverDevices(): void
-
-开始发现设备。
-
-**需要权限：** ohos.permission.GET_WIFI_INFO 
-
-**系统能力：** SystemCapability.Communication.WiFi.P2P
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2801000  | Operation failed.|
 
 ## wifiManager.startDiscoverDevices<sup>9+</sup>
 
@@ -3701,7 +3688,7 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
-| callback | Callback&lt;StationInfo&gt; | 是 | 状态改变回调函数。 |
+| callback | Callback&lt;StationInfo&gt; | 否 | 状态改变回调函数。 |
 
 **错误码：**
 
@@ -3709,7 +3696,7 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-| 2501000  | Operation failed.|
+| 2601000  | Operation failed.|
 
 ## wifiManager.off('hotspotStaJoin')<sup>9+</sup>
 
@@ -3736,7 +3723,7 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-| 2501000  | Operation failed.|
+| 2601000  | Operation failed.|
 
 **示例：**
 ```ts
@@ -3771,7 +3758,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
-  | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
+  | callback | Callback&lt;StationInf]&gt; | 否 | 状态改变回调函数。 |
 
 **错误码：**
 
@@ -3779,9 +3766,9 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-| 2501000  | Operation failed.|
+| 2601000  | Operation failed.|
 
-## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
+## wifiManager.off('hotspotStaLeave')<sup>7+</sup>
 
 off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 
@@ -4110,7 +4097,7 @@ API 10起：无
   wifiManager.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
 ```
 
-## wifiManager.on('p2pPersistentGroupChange')<sup>9</sup>
+## wifiManager.on('p2pPersistentGroupChange')<sup>9+</sup>
 
 on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 
@@ -4135,7 +4122,7 @@ on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
   | -------- | -------- |
 | 2801000  | Operation failed.|
 
-## wifiManager.off('p2pPersistentGroupChange')<sup>9</sup>
+## wifiManager.off('p2pPersistentGroupChange')<sup>9+</sup>
 
 off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 
