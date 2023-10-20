@@ -803,6 +803,8 @@ constructor(locale: string)
 
 findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
+识别文本中的实体信息。
+
 **参数：**
 
 | 参数名  | 类型   | 必填   | 说明                |
