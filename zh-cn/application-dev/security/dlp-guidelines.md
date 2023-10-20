@@ -57,7 +57,7 @@
    ```ts
    dlpPermission.isInSandbox().then((data)=> { 
      console.log('isInSandbox, result: ' + JSON.stringify(data));
-   }).catch((err) => {
+   }).catch((err:BusinessError) => {
      console.log("isInSandbox: "  + JSON.stringify(err));
    });
    ```
@@ -67,7 +67,7 @@
    ```ts
    dlpPermission.getDLPPermissionInfo().then((data)=> { 
      console.log('getDLPPermissionInfo, result: ' + JSON.stringify(data));
-   }).catch((err) => {
+   }).catch((err:BusinessError) => {
      console.log("getDLPPermissionInfo: "  + JSON.stringify(err));
    });
    ```
@@ -89,7 +89,7 @@
      let res = await dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
      console.info('res', res);
    } catch (err) {
-     console.error('error', err.code, err.message); // 失败报错
+     console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
    }
    fs.closeSync(file);
    ```
@@ -104,14 +104,14 @@
      try {
        dlpPermission.off('openDLPFile', this.event); // 取消订阅
      } catch (err) {
-       console.error('error', err.code, err.message); // 失败报错
+       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
      }
    }
    subscribe() {
      try {
        dlpPermission.on('openDLPFile', this.event); // 订阅
      } catch (err) {
-       console.error('error', err.code, err.message); // 失败报错
+       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
      }
    }
    async func() {
@@ -128,7 +128,7 @@
        let res:Array<dlpPermission.VisitedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
        console.info('res', JSON.stringify(res))
      } catch (err) {
-       console.error('error', err.code, err.message); // 失败报错
+       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
      }
    }
    ```
@@ -138,10 +138,10 @@
    ```ts
    async func() {
      try {
-       let res:Array<dlpPermission.VisitedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
+       let res:Array<dlpPermission.VisitedDLPFileInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
        console.info('res', JSON.stringify(res))
      } catch (err) {
-       console.error('error', err.code, err.message); // 失败报错
+       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
      }
    }
    ```
