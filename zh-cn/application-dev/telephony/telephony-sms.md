@@ -51,7 +51,7 @@
 3. 发送SMS消息。
 
 ```ts
-import sms from '@ohos.telephony.sms'
+import sms from '@ohos.telephony.sms';
 import { AsyncCallback } from '@ohos.base';
 import { BusinessError } from '@ohos.base';
 
