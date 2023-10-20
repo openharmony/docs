@@ -392,7 +392,7 @@ getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>):
 
 ```ts
 import { BusinessError } from '@ohos.base';
-policy.getUidsByPolicy(11111, (error: BusinessError, data: object) => {
+policy.getUidsByPolicy(11111, (error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
