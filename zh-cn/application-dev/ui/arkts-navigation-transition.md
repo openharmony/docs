@@ -25,7 +25,7 @@ struct NavigationDemo {
         .fontSize(14)
         .lineHeight(19)
         .opacity(0.4)
-        .margin({ top: 70 })
+        .margin({ top: 30 })
     }
     .alignItems(HorizontalAlign.Start)
   }
