@@ -376,7 +376,7 @@ import router from '@ohos.router';
 // library为新建共享包自定义的名字
 @Entry({ routeName : 'myPage' })
 @Component
-struct MyComponent {
+export struct MyComponent {
 }
 ```
 
