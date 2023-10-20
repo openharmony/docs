@@ -397,7 +397,7 @@ zh-cn/application-dev/reference/apis/js-apis-notification.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-observer.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-osAccount.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-particleAbility.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-permissionrequestresult.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-plainarray.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-pointer.md @ningningW
@@ -589,7 +589,7 @@ zh-cn/application-dev/reference/errorcodes/errorcode-inputmethod-framework.md @n
 zh-cn/application-dev/reference/errorcodes/errorcode-media.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-multimodalinput.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-nfc.md @RayShih
-zh-cn/application-dev/reference/errorcodes/errorcode-pasteboard.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-pasteboard.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-power.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-preferences.md @ge-yafang
 zh-cn/application-dev/reference/errorcodes/errorcode-promptAction.md @HelloCrease
