@@ -103,7 +103,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
       constructor(des : string) {
           super(des);
       }
-      onRemoteMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, option : MessageOption) {
+      onRemoteMessageRequest(code : number, data : rpc.MessageSequence, reply : rpc.MessageSequence, option : rpc.MessageOption) {
         //必须重写此接口
         return true;
       }
@@ -126,7 +126,7 @@ class StubTest extends rpc.RemoteObject{
     constructor(des : string) {
         super(des);
     }
-    onRemoteMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, option : MessageOption) {
+    onRemoteMessageRequest(code : number, data : rpc.MessageSequence, reply : rpc.MessageSequence, option : rpc.MessageOption) {
       //必须重写此接口
       return true;
     }
