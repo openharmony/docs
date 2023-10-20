@@ -30,7 +30,7 @@ Call [Locale](../reference/apis/js-apis-intl.md#locale) APIs to maximize or mini
 
 2. Instantiate a **Locale** object.
 
-   Create a **Locale** object by using the **Locale** constructor. This API receives a string that represents the locale and an optional [attribute](../reference/apis/js-apis-intl.md#localeoptions) list. (Note that **intl** is the name of the imported module.)
+   Create a **Locale** object by using the **Locale** constructor. This API receives a string that represents the locale and an optional [attribute](../reference/apis/js-apis-intl.md#localeoptions) list. (Note that **Intl** is the name of the imported module.)
 
    A **Locale** object consists of four parts: language, script, region, and extension, which are separated by using a hyphen (-).
    -  Language: mandatory. It is represented by a two-letter or three-letter code as defined in ISO-639. For example, **en** indicates English, and **zh** indicates Chinese.
@@ -147,7 +147,7 @@ Call [DateTimeFormat](../reference/apis/js-apis-intl.md#datetimeformat) APIs to 
    ```ts
    let options: Intl.DateTimeOptions = {dateStyle: "full", timeStyle: "full"};
    let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
-   let resolvedOptions = dateTimeFormat.resolvedOptions(); // resolvedOptions = {"locale": "zh-CN", "calendar": "gregorian", "dateStyle":"full", "timeStyle":"full", "timeZone": "CST"}
+   let resolvedOptions = dateTimeFormat.resolvedOptions(); // resolvedOptions = {"locale": "zh-CN", "calendar": "gregorian", "dateStyle":"full", "timeStyle":"full", "timeZone": "Asia/Shanghai"}
    ```
 
 ## Formatting Numbers
@@ -175,7 +175,7 @@ Call [NumberFormat](../reference/apis/js-apis-intl.md#numberformat) APIs to impl
 
 2. Instantiate a **NumberFormat** object.
 
-   Use the default constructor of **NumberFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **NumberFormat** object. (Note that **intl** is the name of the imported module.)
+   Use the default constructor of **NumberFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **NumberFormat** object. (Note that **Intl** is the name of the imported module.)
 
    ```ts
    let numberFormat = new Intl.NumberFormat();
@@ -206,7 +206,7 @@ Call [NumberFormat](../reference/apis/js-apis-intl.md#numberformat) APIs to impl
    ```ts
    let options: Intl.NumberOptions = {compactDisplay: "short", notation: "compact"};
    let numberFormat = new Intl.NumberFormat("zh-CN", options);
-   let resolvedOptions = numberFormat.resolvedOptions();  // resolvedOptions = {"locale": "zh-CN", "compactDisplay": "short", "notation": "compact", "numberingSystem": "Latn"}
+   let resolvedOptions = numberFormat.resolvedOptions();  // resolvedOptions = {"locale": "zh-CN", "currencySign": "standard", "signDisplay": "auto", "compactDisplay": "short", "notation": "compact", "numberingSystem": "Latn"}
    ```
 
 ## Sorting Strings
@@ -234,7 +234,7 @@ Users in different regions have different requirements for string sorting. You c
 
 2. Instantiate a **Collator** object.
 
-   Use the default constructor of **Collator** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **Collator** object. (Note that **intl** is the name of the imported module.)
+   Use the default constructor of **Collator** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **Collator** object. (Note that **Intl** is the name of the imported module.)
 
    ```ts
    let collator = new Intl.Collator();
@@ -295,7 +295,7 @@ According to the grammar of certain languages, the singular or plural form of a 
 
 2. Instantiate a **PluralRules** object.
 
-   Use the default constructor of **PluralRules** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **PluralRules** object. (Note that **intl** is the name of the imported module.)
+   Use the default constructor of **PluralRules** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **PluralRules** object. (Note that **Intl** is the name of the imported module.)
 
    ```ts
    let pluralRules = new Intl.PluralRules();
@@ -343,7 +343,7 @@ Call [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8)
 
 2. Instantiate a **RelativeTimeFormat** object.
 
-   Use the default constructor of **RelativeTimeFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **RelativeTimeFormat** object. (Note that **intl** is the name of the imported module.)
+   Use the default constructor of **RelativeTimeFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **RelativeTimeFormat** object. (Note that **Intl** is the name of the imported module.)
    
    ```ts
    let relativeTimeFormat = new Intl.RelativeTimeFormat();
@@ -385,4 +385,3 @@ Call [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8)
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let options = relativeTimeFormat.resolvedOptions(); // options = {"locale": "zh-CN", "style": "long", "numeric": "always", "numberingSystem": "latn"}
    ```
-

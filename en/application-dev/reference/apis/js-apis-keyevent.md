@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.keyEvent (Key Event)
 
-The **keyEvent** module provides key events reported by input devices.
+The **keyEvent** module provides key events reported by a device. It is inherited from [InputEvent](./js-apis-inputevent.md).
 
 >  **NOTE**
 >
@@ -32,7 +32,7 @@ Defines a key.
 
 | Name       | Type| Readable| Writable| Description          |
 | ----------- | -------- | ---- | ---- | -------------- |
-| code        | KeyCode  | Yes  | No  | Keycode.        |
+| code        | [KeyCode](js-apis-keycode.md#keycode)  | Yes  | No  | Keycode.        |
 | pressedTime | number   | Yes  | No  | Duration for pressing a key, in μs.|
 | deviceId    | number   | Yes  | No  | ID of the device to which the key belongs.  |
 
@@ -47,7 +47,7 @@ Key event.
 | action      | [Action](#action)   | Yes  | No  | Key action.                      |
 | key         | [Key](#key)      | Yes  | No  | Key for which the event is reported.            |
 | unicodeChar | number   | Yes  | No  | Unicode character corresponding to the key.         |
-| keys        | Key[]    | Yes  | No  | List of pressed keys.    |
+| keys        | [Key](#key) []    | Yes  | No  | List of pressed keys.    |
 | ctrlKey     | boolean  | Yes  | No  | Whether ctrlKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.|
 | altKey      | boolean  | Yes  | No  | Whether altKey is being pressed.    |
 | shiftKey    | boolean  | Yes  | No  | Whether shiftKey is being pressed.  |

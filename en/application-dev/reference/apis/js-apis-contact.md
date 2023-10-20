@@ -3310,7 +3310,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 | Name  | Type                                             | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                           | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
-| holder   | Holder                                            | Yes  | Application that creates the contacts.                                      |
+| holder   | [Holder](#holder)                                 | Yes  | Application that creates the contacts.                                      |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result.                        |
 
 **Error codes**
@@ -3362,7 +3362,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
 | Name  | Type                                             | Mandatory| Description                                |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-| holder   | Holder                                            | Yes  | Application that creates the contacts.              |
+| holder   | [Holder](#holder)                                 | Yes  | Application that creates the contacts.              |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Example**
@@ -3479,7 +3479,7 @@ Queries all groups of this contact based on the specified application. This API 
 
 ## contact.queryHolders<sup>10+</sup>
 
-queryHolders(context: Context,  callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
+queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 Queries all applications that have created contacts. This API uses an asynchronous callback to return the result.
 
@@ -3556,7 +3556,7 @@ Queries all applications that have created contacts. This API uses an asynchrono
 
 ## contact.queryHolders<sup>10+</sup>
 
-queryHolders(context: Context ): Promise&lt;Array&lt;Holder&gt;&gt;
+queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 
 Queries all applications that have created contacts. This API uses a promise to return the result.
 
@@ -4530,7 +4530,7 @@ Defines a contact's postal address.
 | postcode      | string   | Yes  | Yes  | Postal code of the region where the contact is located.|
 | region        | string   | Yes  | Yes  | Area where the contact is located.        |
 | street        | string   | Yes  | Yes  | Street where the contact resides.        |
-| labelId       | number   | Yes  | Yes  | Postal address ID.            |
+| labelId       | number   | Yes  | Yes  | Postal address type.            |
 
 
 **Example**
