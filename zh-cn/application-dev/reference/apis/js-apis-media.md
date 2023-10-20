@@ -513,6 +513,9 @@ on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReas
 **示例：**
 
 ```ts
+// 创建avPlayer实例对象
+let avPlayer = await media.createAVPlayer();
+
 avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
   switch (state) {
     case 'idle':
@@ -933,7 +936,7 @@ avPlayer.reset((err: BusinessError) => {
 
 reset(): Promise\<void>
 
-通过Promise方式通过Promise方式重置播放，只能在initialized/prepared/playing/paused/completed/stopped/error状态调用。
+通过Promise方式重置播放，只能在initialized/prepared/playing/paused/completed/stopped/error状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -999,7 +1002,7 @@ avPlayer.release((err: BusinessError) => {
 
 release(): Promise\<void>
 
-通过Promise方式通过Promise方式销毁播放，除released状态，都可以调用。
+通过Promise方式销毁播放，除released状态，都可以调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1726,7 +1729,7 @@ avPlayer.off('audioInterrupt')
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| fd     | number | 是   | 资源句柄，通过resourceManager.getRawFileDescriptor获取。     |
+| fd     | number | 是   | 资源句柄，通过[resourceManager.getRawFileDescriptor](js-apis-resource-manager.md#getrawfiledescriptordeprecated)获取。     |
 | offset | number | 是   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | length | number | 是   | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 
@@ -3592,7 +3595,7 @@ createAudioRecorder(): AudioRecorder
 一台设备只允许创建一个录制实例。
 
 > **说明：**
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[createAVRecorder](#mediacreateavrecorder9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[createAVRecorder](#mediacreateavrecorder9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
