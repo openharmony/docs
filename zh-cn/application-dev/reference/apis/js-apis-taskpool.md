@@ -229,7 +229,9 @@ taskpool.execute(task5);
 taskpool.execute(task6);
 // 1s后取消task
 setTimeout(()=>{
-  taskpool.cancel(task1);}, 1000);
+  taskpool.cancel(task1);
+
+}, 1000);
 ```
 
 ## taskpool.cancel<sup>10+</sup>
@@ -272,10 +274,10 @@ taskGroup1.addTask(printArgs, 10); // 10: test number
 let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
 taskGroup2.addTask(printArgs, 100); // 100: test number
 taskpool.execute(taskGroup1).then((res: Array<number>)=>{
-  console.info("taskGroup1 res is:" + res)
+  console.info("taskGroup1 res is:" + res);
 });
 taskpool.execute(taskGroup2).then((res: Array<number>)=>{
-  console.info("taskGroup2 res is:" + res)
+  console.info("taskGroup2 res is:" + res);
 });
 setTimeout(()=>{
   try {
