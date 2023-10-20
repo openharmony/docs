@@ -1,10 +1,11 @@
 # Mouse Event
 
-If an action triggers multiple events, the order of these events is fixed. By default, mouse events are transmitted transparently.
+If a mouse action triggers multiple events, the order of these events is fixed. By default, mouse events are transmitted transparently.
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  - The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  - For the time being, a mouse event can be triggered only by an external mouse.
 
 
 ## Events
@@ -12,17 +13,17 @@ If an action triggers multiple events, the order of these events is fixed. By de
 | Name                                                        | Bubbling Supported| Description                                                        |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | onHover(event: (isHover?: boolean) =&gt; void) | No      | Triggered when the mouse cursor enters or leaves the component.<br>**isHover**: whether the mouse cursor hovers over the component. The value **true** means that the mouse cursor enters the component, and the value **false** means that the mouse cursor leaves the component.|
-| onMouse(event: (event?: MouseEvent) =&gt; void) | Yes      | Triggered when the component is clicked by a mouse button or the mouse cursor moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
+| onMouse(event: (event?: MouseEvent) =&gt; void) | Yes   | Triggered when the component is clicked by a mouse button or the mouse pointer moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
 
 
 ## MouseEvent
 
 | Name     | Type                           | Description                  |
 | --------- | ------------------------------- | -------------------- |
-| screenX   | number                          | X coordinate of the cursor position relative to the upper left corner of the application window.|
-| screenY   | number                          | Y coordinate of the cursor position relative to the upper left corner of the application window.|
-| x         | number                          | X coordinate of the cursor position relative to the upper left corner of the component being clicked.|
-| y         | number                          | Y coordinate of the mouse position relative to the upper left corner of the component being clicked.|
+| screenX   | number                          | X coordinate of the mouse pointer relative to the upper left corner of the application window.|
+| screenY   | number                          | Y coordinate of the mouse pointer relative to the upper left corner of the application window.|
+| x         | number                          | X coordinate of the mouse pointer relative to the upper left corner of the component being clicked.|
+| y         | number                          | Y coordinate of the mouse pointer relative to the upper left corner of the component being clicked.|
 | button    | [MouseButton](ts-appendix-enums.md#mousebutton) | Mouse button.               |
 | action    | [MouseAction](ts-appendix-enums.md#mouseaction) | Mouse action.               |
 | stopPropagation      | () => void | Stops the event from bubbling upwards or downwards.                        |

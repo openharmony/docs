@@ -95,7 +95,7 @@ The **\<Text>** component accepts \<[Span](../reference/arkui-ts/ts-basic-compon
     Span('I am Upper-span').fontSize(12)
       .textCase(TextCase.UpperCase)
       .onClick(()=>{
-        console.info (' I'm Span - onClick')
+        console.info ('I'm Span - onClick')
       })
   }
   ```
@@ -141,8 +141,6 @@ The **\<Text>** component accepts \<[Span](../reference/arkui-ts/ts-basic-compon
     .fontSize(12)
     .border({ width: 1 }).padding(10)
   ```
-
-  ![en-us_image_0000001563060693](figures/en-us_image_0000001563060693.png)
 
   ![en-us_image_0000001563060701](figures/en-us_image_0000001563060701.png)
 

@@ -3,9 +3,9 @@
 
 ## Overview
 
-The stack layout reserves an area on the screen to display elements in a component and allows the elements to be stacked. You can implement a stack layout through the [\<Stack>](../reference/arkui-ts/ts-container-stack.md) component, which provides a stack container where positioned or non-positioned child components are pushed successively and the latter one sits on top of the previous one.
+The stack layout reserves an area on the screen to display elements in a component and allows the elements to be stacked. You can implement a stack layout through the [\<Stack>](../reference/arkui-ts/ts-container-stack.md) component, which provides a stack container where positioned or non-positioned child elements are pushed successively and the latter one sits on top of the previous one.
 
-The stack layout excels at page stacking and positioning, and is widely used in ads and widget arrangement.
+The stack layout excels at page stacking and positioning, and is widely used in ad and widget arrangement.
 
 In the **\<Stack>** component shown in Figure 1, the sequence of child elements (child components) is Item1 -> Item2 -> Item3.
 
