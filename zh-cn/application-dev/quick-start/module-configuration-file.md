@@ -535,7 +535,9 @@ metadata中指定shortcut信息，其中：
 
 ## distributionFilter标签
 
-该标签下的子标签均为可选字段，在应用市场云端分发时使用，distributionFilter标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码。在进行分发时，通过deviceType与这四个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。**注：该字段从API10及以后版本开始生效，API9及以前版本使用distroFilter字段。**
+该标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。可配置的属性包括屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码四个维度。在分发应用包时，通过deviceType与这四个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。并在metadata的resource字段中引用。
+
+该字段从API10及以后版本开始生效，API9及以前版本使用distroFilter字段。
 
   **表12** **distributionFilter标签标签配置说明**
 
@@ -622,8 +624,8 @@ metadata中指定shortcut信息，其中：
     // ...
     "metadata": [
       {
-        "name": "ohos.module.distro",
-        "resource": "$profile:distro_filter_config",
+        "name": "ohos.module.distribution",
+        "resource": "$profile:distributionFilter_config",
       }
     ]
   }
