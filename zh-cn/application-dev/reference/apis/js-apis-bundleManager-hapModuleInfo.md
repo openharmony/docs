@@ -28,6 +28,7 @@ HAP信息，系统应用可以通过[bundleManager.getBundleInfo](js-apis-bundle
 | moduleType                        | [ModuleType](js-apis-bundleManager.md#moduletype)            | 是   | 否   | 标识当前模块的类型。      |
 | preloads                          | Array\<[PreloadItem](#preloaditem)>                          | 是   | 否   | 原子化服务中模块的预加载列表。|
 | dependencies                      | Array\<[Dependency](#dependency)>                            | 是   | 否   | 模块运行依赖的动态共享库列表。  |
+| fileContextMenu                   | string                                                       | 是   | 否   | 模块的右键菜单配置。      |
 
 ## PreloadItem
 
