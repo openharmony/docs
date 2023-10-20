@@ -4,8 +4,7 @@ Applications can call **photoAccessHelper** APIs to manage media assets (images 
 
 > **NOTE**
 >
-> Before you start, you need to obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).
->
+> Before you start, you need to obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).<br>
 > By default, the **PhotoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used when **photoAccessHelper** APIs are used. If the code for obtaining the **PhotoAccessHelper** instance is not added, an error indicating that **photoAccessHelper** is not defined is reported.
 
 To ensure application running efficiency, most **photoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
@@ -54,7 +53,7 @@ async function example() {
 
 ### Obtaining an Image or Video by URI
 
-Example: Obtain the image with the file URI **file://media/Photo/1**.
+Example: Obtain the image based on the URI **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -64,7 +63,8 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  predicates.equalTo(photoAccessHelper.PhotoKeys.URI, 'file://media/Photo/1');
+  let uri = 'file://media/Photo/1/IMG_datetime_0001/displayName.jpg' // The URI must exist.
+  predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri.toString());
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
@@ -168,14 +168,14 @@ async function example() {
 
 ## Creating a Media Asset
 
-Use [createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset) to create a media asset.
+Use [createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset-3) to create a media asset.
 
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.WRITE_IMAGEVIDEO** permission.
 
-### Creating an Image or Video
+### Creating an Image or Video Asset
 
 Example: Create an image asset.
 
@@ -200,6 +200,61 @@ async function example() {
     console.info('createAsset successfully, file displayName: ' + fileAsset.displayName);
   } catch (err) {
     console.error('createAsset failed, message = ', err);
+  }
+}
+```
+
+## Creating a Media Asset Using a Security Component
+
+Example: Create an image asset using a security component. When using a security component to create a media asset, you do not need to apply for the **ohos.permission.WRITE_IMAGEVIDEO** permission for you application. For details, see [**\<SaveButton>**](../reference/arkui-ts/ts-security-components-savebutton.md).
+
+**How to Develop**
+
+1. Set the attributes of the security component.
+2. Create a security component.
+3. Call [createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset-5) to create an image asset.
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import fs from '@ohos.file.fs';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+  @State saveButtonOptions: SaveButtonOptions = {
+    icon: SaveIconStyle.FULL_FILLED,
+    text: SaveDescription.SAVE_IMAGE,
+    buttonType: ButtonType.Capsule
+  } // Set the attributes of the security component.
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        SaveButton(this.saveButtonOptions) // Create a security component.
+          .onClick(async (event, result: SaveButtonOnClickResult) => {
+             if (result == SaveButtonOnClickResult.SUCCESS) {
+               try {
+                 let context = getContext();
+                 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+                 let uri = await phAccessHelper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg'); // Create a media asset.
+                 console.info('createAsset successfully, uri: ' + uri);
+                 let file = await fs.open(uri, fs.OpenMode.READ_WRITE);
+                 await fs.close(file);
+               } catch (err) {
+                 console.error('createAsset failed, message = ', err);
+               }
+             } else {
+               console.error('SaveButtonOnClickResult createAsset failed');
+             }
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
 }
 ```
@@ -300,3 +355,76 @@ async function example() {
   }
 }
 ```
+# Enabling an Application to Select Media Assets
+
+When a user needs to share files such as images and videos, use a specific API to start **Gallery** for the user to select the files to share. No permission is required for this API. Currently, UIAbility is used to start **Gallery** by the window component.
+
+## Selecting Images or Video Files
+
+1. Import the **picker** and **fs** modules.
+
+   ```ts
+   import photoAccessHelper from '@ohos.file.photoAccessHelper';
+   import fs from '@ohos.file.fs';
+   import { BusinessError } from '@ohos.base';
+   ```
+
+2. Create a **PhotoSelectOptions** instance.
+
+   ```ts
+   import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+   const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+   ```
+
+3. Set the file type and the maximum number of media files to select.
+   For example, select a maximum of five images. For details about the media file types, see [PhotoViewMIMETypes](../reference/apis/js-apis-photoAccessHelper.md#photoviewmimetypes).
+
+   ```ts
+   import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+   photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE; // Select images.
+   photoSelectOptions.maxSelectNumber = 5; // Set the maximum number of images to select.
+   ```
+
+4. Create a **photoPicker** instance and call [select()](../reference/apis/js-apis-photoAccessHelper.md#select) to open the **Gallery** page for the user to select files. After the files are selected, the [PhotoSelectResult](../reference/apis/js-apis-photoAccessHelper.md#photoselectresult) is returned.
+
+   The permission on the URIs returned by **select()** is read-only. Further operations can be performed on the files based on the URIs in **PhotoSelectResult**. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger file opening.
+
+   If metadata needs to be obtained, you can use [File management](../reference/apis/js-apis-file-fs.md) and [File URI](../reference/apis/js-apis-file-fileuri.md) APIs to obtain file attribute information, such as the file size, access time, modification time, file name, and file path, based on the URI.
+
+   ```ts
+   import photoAccessHelper from '@ohos.file.photoAccessHelper';
+   import { BusinessError } from '@ohos.base';
+
+   let uris: Array<string> = [];
+   const photoViewPicker = new photoAccessHelper.PhotoViewPicker();
+   photoViewPicker.select(photoSelectOptions).then((photoSelectResult: picker.PhotoSelectResult) => {
+     uris = photoSelectResult.photoUris;
+     console.info('photoViewPicker.select to file succeed and uris are:' + uris);
+   }).catch((err: BusinessError) => {
+     console.error(`Invoke photoViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
+   })
+   ```
+
+5. After the UI is returned from the **Gallery** page, use a button to trigger API calling. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the file based on the URI and obtain the FD. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_ONLY**.
+
+   ```ts
+   import fs from '@ohos.file.fs';
+
+   let uri: string = '';
+   let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
+   console.info('file fd: ' + file.fd);
+   ```
+
+6. Use [fs.readSync()](../reference/apis/js-apis-file-fs.md#readsync) to read the file based on the FD. After the data is read, close the FD.
+
+   ```ts
+   import fs from '@ohos.file.fs';
+
+   let buffer = new ArrayBuffer(4096);
+   let readLen = fs.readSync(file.fd, buffer);
+   console.info('readSync data to file succeed and buffer size is:' + readLen);
+   fs.closeSync(file);
+   ```
+<!--no_check-->

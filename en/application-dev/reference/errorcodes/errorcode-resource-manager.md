@@ -8,7 +8,7 @@
 
 **Error Message**
 
-The resId invalid.
+If the resId invalid.
 
 **Description**
 
@@ -26,7 +26,7 @@ Check whether the specified **resId** exists.
 
 **Error Message**
 
-The resource not found by resId.
+If the resource not found by resId.
 
 **Description**
 
@@ -46,7 +46,7 @@ Check whether the specified **resId** is correct.
 
 **Error Message**
 
-The resName invalid.
+If the resName invalid.
 
 **Description**
 
@@ -64,7 +64,7 @@ Check whether the specified **resName** is correct.
 
 **Error Message**
 
-The resource not found by resName.
+If the resource not found by resName.
 
 **Description**
 
@@ -84,7 +84,7 @@ Check whether the specified **resName** is correct.
 
 **Error Message**
 
-The resource not found by path.
+If the resource not found by path.
 
 **Description**
 
@@ -102,7 +102,7 @@ Check whether the specified relative path is correct.
 
 **Error Message**
 
-the resource re-ref too much.
+If the resource re-ref too much.
 
 **Description**
 
@@ -120,7 +120,7 @@ Check the reference of resource $, and remove the cyclic reference, if any.
 
 **Error Message**
 
-The resource obtained by resId formatting error.
+If the resource obtained by resId formatting error.
 
 **Description**
 
@@ -142,7 +142,7 @@ Check whether the number and type of **args** parameters are the same as those o
 
 **Error Message**
 
-The resource obtained by resName formatting error.
+If the resource obtained by resName formatting error.
 
 **Description**
 
@@ -164,7 +164,7 @@ Check whether the number and type of **args** parameters are the same as those o
 
 **Error Message**
 
-Get system resource manager failed.
+If application can't access system resource.
 
 **Description**
 
@@ -182,7 +182,7 @@ Check whether the application process contains the sandbox path of system resour
 
 **Error Message**
 
-Overlay resource path is invalid.
+If the overlay path is invalid.
 
 **Description**
 

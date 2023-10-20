@@ -14,7 +14,7 @@ import deviceManager from "@ohos.driver.deviceManager";
 
 ## deviceManager.queryDevices
 
-queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
+queryDevices(busType?: number): Array&lt;Readonly&lt;deviceManager.Device&gt;&gt;
 
 获取接入主设备的外部设备列表。如果没有设备接入，那么将会返回一个空的列表。
 
@@ -32,7 +32,7 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 | 类型                                           | 说明           |
 | ---------------------------------------------- | -------------- |
-| Array&lt;Readonly&lt;[Device](#device)&gt;&gt; | 设备信息列表。 |
+| Array&lt;Readonly&lt;[deviceManager.Device](#device)&gt;&gt; | 设备信息列表。 |
 
 **错误码：**
 
@@ -45,10 +45,10 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
-import type Device from '@system.device';
+
 
 try {
-  let devices : Array<Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
+  let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
   for (let item of devices) {
     let device : deviceManager.USBDevice = item as deviceManager.USBDevice;
     console.info(`Device id is ${device.deviceId}`)
@@ -90,13 +90,16 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
-import type { BusinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.bindDevice(12345678, (error : BusinessError, data) => {
+  deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
     console.error(`Device is disconnected`);
-  }, (error, data) => {
+  }, (error : BusinessError, data: {
+      deviceId : number;
+      remote : rpc.IRemoteObject;
+  }) => {
     if (error) {
       console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
       return;
@@ -145,13 +148,16 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
-import type { BusinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.bindDevice(12345678, (error, data) => {
+  deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
     console.error(`Device is disconnected`);
-  }).then(data => {
+  }).then((data : {
+      deviceId : number;
+      remote : rpc.IRemoteObject;
+  }) => {
     console.info(`bindDevice success`);
   }, (error : BusinessError) => {
     console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
@@ -192,7 +198,7 @@ import deviceManager from "@ohos.driver.deviceManager";
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.unbindDevice(12345678, (error, data) => {
+  deviceManager.unbindDevice(12345678, (error : BusinessError, data : number) => {
     if (error) {
       console.error(`unbindDevice async fail. Code is ${error.code}, message is ${error.message}`);
       return;
@@ -236,11 +242,11 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
-import type { BusinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.unbindDevice(12345678).then(data => {
+  deviceManager.unbindDevice(12345678).then((data : number) => {
     console.info(`unbindDevice success`);
   }, (error : BusinessError) => {
     console.error(`unbindDevice async fail. Code is ${error.code}, message is ${error.message}`);

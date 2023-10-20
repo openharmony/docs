@@ -36,19 +36,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | value | number | Value of the chart. It can be dynamically changed.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | startAngle | number | Start angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | endAngle | number | End angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **360**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| colors | Array&lt;[ColorStop](#colorstop)&gt; | Colors of the chart. Colors can be set for individual segments.<br>Default value: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| strokeWidth | Length | Stroke width of the chart.<br>Default value: **4**<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value cannot be in percentage.|
-
-## ColorStop
-
-Describes a gradient stop.
-
-Since API version 9, this API is supported in ArkTS widgets.
-
-| Name     | Type            | Description                                                        |
-| --------- | -------------------- | ------------------------------------------------------------ |
-| ColorStop | [[ResourceColor](ts-types.md#resourcecolor), number] | Type of the gradient stop. The first parameter indicates the color value. If it is set to a non-color value, the black color is used. The second parameter indicates the color weight. If it is set to a negative number or a non-numeric value, the color weight is 0.|
-
+| colors | Array&lt;[[ResourceColor](ts-types.md#resourcecolor), number]&gt; | Colors of the chart. Colors can be set for individual segments.<br>Default value: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The first parameter indicates the color value. If it is set to a non-color value, the black color is used. The second parameter indicates the color weight. If it is set to a negative number or a non-numeric value, the color weight is 0.|
+| strokeWidth | Length | Stroke width of the chart.<br>Default value: **4**<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.<br>The value cannot be in percentage.|
 
 ## Example
 

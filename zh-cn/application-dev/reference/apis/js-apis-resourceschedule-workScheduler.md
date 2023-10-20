@@ -30,7 +30,7 @@ startWork(work: WorkInfo): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -44,6 +44,7 @@ startWork(work: WorkInfo): void
 
 ```ts
   import { BusinessError } from '@ohos.base';
+  
   let workInfo: workScheduler.WorkInfo = {
       workId: 1,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
@@ -83,7 +84,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -96,6 +97,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 ```ts
   import { BusinessError } from '@ohos.base';
+
   let workInfo: workScheduler.WorkInfo = {
       workId: 1,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
@@ -135,7 +137,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -148,6 +150,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 ```ts
   import { BusinessError } from '@ohos.base';
+
   workScheduler.getWorkStatus(50, (error: BusinessError, res: workScheduler.WorkInfo) => {
     if (error) {
       console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
@@ -179,7 +182,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -192,6 +195,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 ```ts
   import { BusinessError } from '@ohos.base';
+
   workScheduler.getWorkStatus(50).then((res: workScheduler.WorkInfo) => {
     console.info(`workschedulerLog getWorkStatus success, ${JSON.stringify(res)}`);
   }).catch((error: BusinessError) => {
@@ -199,7 +203,32 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
   })
 ```
 
-## workScheduler.obtainAllWorks
+## workScheduler.obtainAllWorks<sup>deprecated<sup>
+
+obtainAllWorks(callback : AsyncCallback\<void>) : Array\<WorkInfo>
+> 从API version 10开始不再维护，建议使用[workScheduler.obtainAllWorks<sup>10+<sup>](#workschedulerobtainallworks10)替代
+
+获取当前应用所有的延迟任务，使用Callback异步回调。
+
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+
+**参数**：
+
+| 参数名      | 类型                   | 必填   | 说明                              |
+| -------- | -------------------- | ---- | ------------------------------- |
+| callback |  AsyncCallback\<void> | 是    | 回调函数，获取成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 9700001 | Memory operation failed. |
+| 9700002 | Parcel operation failed. |
+| 9700003 | System service operation failed. |
+
+## workScheduler.obtainAllWorks<sup>10+<sup>
 
 obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 
@@ -215,7 +244,7 @@ obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -227,6 +256,7 @@ obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 
 ```ts
   import { BusinessError } from '@ohos.base';
+
   workScheduler.obtainAllWorks((error: BusinessError, res: Array<workScheduler.WorkInfo>) =>{
     if (error) {
       console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
@@ -252,7 +282,7 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -264,6 +294,7 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 ```ts
   import { BusinessError } from '@ohos.base';
+
   workScheduler.obtainAllWorks().then((res: Array<workScheduler.WorkInfo>) => {
     console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
   }).catch((error: BusinessError) => {
@@ -281,7 +312,7 @@ stopAndClearWorks(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -293,6 +324,7 @@ stopAndClearWorks(): void
 
 ```ts
   import { BusinessError } from '@ohos.base';
+
   try{
     workScheduler.stopAndClearWorks();
     console.info(`workschedulerLog stopAndClearWorks success`);
@@ -301,7 +333,35 @@ stopAndClearWorks(): void
   }
 ```
 
-## workScheduler.isLastWorkTimeOut
+## workScheduler.isLastWorkTimeOut<sup>deprecated<sup>
+
+isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
+
+> 从API version 10开始不再维护，建议使用[workScheduler.isLastWorkTimeOut<sup>10+<sup>](#workschedulerislastworktimeout10)替代
+
+检查延迟任务的最后一次执行是否超时，使用Callback异步回调。
+
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+
+**参数**：
+
+| 参数名      | 类型                   | 必填   | 说明                                       |
+| -------- | -------------------- | ---- | ---------------------------------------- |
+| workId   | number               | 是    | 指定延迟任务的Id。                                 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 9700001 | Memory operation failed. |
+| 9700002 | Parcel operation failed. |
+| 9700003 | System service operation failed. |
+| 9700004 | Check workInfo failed. |
+
+## workScheduler.isLastWorkTimeOut<sup>10+<sup>
 
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 
@@ -318,7 +378,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -331,6 +391,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 
 ```ts
   import { BusinessError } from '@ohos.base';
+
   workScheduler.isLastWorkTimeOut(500, (error: BusinessError, res: boolean) =>{
     if (error) {
       console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
@@ -362,7 +423,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -375,6 +436,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 ```ts
   import { BusinessError } from '@ohos.base';
+
   workScheduler.isLastWorkTimeOut(500)
     .then((res: boolean) => {
       console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);

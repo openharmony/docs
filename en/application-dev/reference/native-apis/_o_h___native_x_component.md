@@ -17,8 +17,8 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 
 | Name                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | Declares the APIs for accessing **NativeXComponent**.<br>File to include: &lt;ace/xcomponent/native_interface_xcomponent.h&gt; |
-| [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md) | Declares the enums used to access **NativeXComponent** key events.<br>File to include: &lt;ace/xcomponent/native_xcomponent_key_event.h&gt; |
+| [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | Declares the APIs for accessing **NativeXComponent**.<br>**File to include**: &lt;ace/xcomponent/native_interface_xcomponent.h&gt;<br>**Library**: libace_ndk.z.so|
+| [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md) | Declares the enums used to access **NativeXComponent** key events.<br>**File to include**: &lt;ace/xcomponent/native_xcomponent_key_event.h&gt;<br>**Library**: libace_ndk.z.so|
 
 
 ### Structs

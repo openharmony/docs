@@ -54,10 +54,10 @@ import { BusinessError } from '@ohos.base'
 
 let config: ethernet.InterfaceConfiguration = {
   mode: 0,
-  ipAddr: "192.168.xx.xxx"
-  route: "192.168.xx.xxx"
-  gateway: "192.168.xx.xxx"
-  netMask: "255.255.255.0"
+  ipAddr: "192.168.xx.xxx",
+  route: "192.168.xx.xxx",
+  gateway: "192.168.xx.xxx",
+  netMask: "255.255.255.0",
   dnsServers: "1.1.1.1"
 };
 
@@ -113,16 +113,19 @@ Sets the network interface configuration. This API uses a promise to return the 
 **Example**
 
 ```ts
-class Config  {
-  mode: number= 0,
-  ipAddr: string = "192.168.xx.xxx"
-  route: string = "192.168.xx.xxx"
-  gateway:string = "192.168.xx.xxx"
-  netMask:string = "255.255.255.0"
-  dnsServers: string = "1.1.1.1"
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
+let config: ethernet.InterfaceConfiguration = {
+  mode: 0,
+  ipAddr: "192.168.xx.xxx",
+  route: "192.168.xx.xxx",
+  gateway: "192.168.xx.xxx",
+  netMask: "255.255.255.0",
+  dnsServers: "1.1.1.1"
 };
 
-const setConfigPromise: Object = ethernet.setIfaceConfig("eth0", new Config());
+const setConfigPromise = ethernet.setIfaceConfig("eth0", config);
 
 setConfigPromise.then(() => {
   console.log("setIfaceConfig promise ok");
@@ -165,6 +168,9 @@ Obtains the configuration of a network interface. This API uses an asynchronous 
 **Example**
 
 ```ts
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
 ethernet.getIfaceConfig("eth0", (error: BusinessError, value: ethernet.InterfaceConfiguration) => {
   if (error) {
     console.log("getIfaceConfig  callback error = " + JSON.stringify(error));
@@ -218,7 +224,9 @@ Obtains the configuration of a network interface. This API uses a promise to ret
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
   console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
   console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
@@ -265,6 +273,9 @@ Checks whether a network interface is active. This API uses an asynchronous call
 **Example**
 
 ```ts
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
 ethernet.isIfaceActive("eth0", (error: BusinessError, value: number) => {
   if (error) {
     console.log("whether2Activate callback error = " + JSON.stringify(error));
@@ -313,7 +324,9 @@ Checks whether a network interface is active. This API uses a promise to return 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
@@ -351,6 +364,9 @@ Obtains the list of all active network interfaces. This API uses an asynchronous
 **Example**
 
 ```ts
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
 ethernet.getAllActiveIfaces((error: BusinessError, value: string[]) => {
   if (error) {
     console.log("getAllActiveIfaces callback error = " + JSON.stringify(error));
@@ -393,6 +409,9 @@ Obtains the list of all active network interfaces. This API uses a promise to re
 **Example**
 
 ```ts
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
 ethernet.getAllActiveIfaces().then((data: string[]) => {
   console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
   for (let i = 0; i < data.length; i++) {
@@ -433,6 +452,8 @@ Registers an observer for NIC hot swap events. This API uses an asynchronous cal
 **Example**
 
 ```ts
+import ethernet from '@ohos.net.ethernet'
+
 ethernet.on('interfaceStateChange', (data: object) => {
   console.log('on interfaceSharingStateChange: ' + JSON.stringify(data));
 });
@@ -468,6 +489,8 @@ Unregisters the observer for NIC hot swap events. This API uses an asynchronous 
 **Example**
 
 ```ts
+import ethernet from '@ohos.net.ethernet'
+
 ethernet.off('interfaceStateChange');
 ```
 
@@ -487,7 +510,7 @@ Defines the network configuration for the Ethernet connection.
 | gateway      | string                  | Yes| Gateway of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode.|
 | netMask      | string                  | Yes| Subnet mask of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode.|
 | dnsServers   | string                  | Yes| DNS server addresses of the Ethernet connection. The value must be an IPv4 address. This parameter does not need to be configured in DHCP mode. Multiple addresses are separated by commas (,).|
-| httpProxy<sup>10+</sup> | [HttpProxy](ts-apis-net-connection.md#httpproxy10) | No| HTTP proxy of the Ethernet connection. By default, no proxy is configured.|
+| httpProxy<sup>10+</sup> | [HttpProxy](js-apis-net-connection.md#httpproxy10) | No| HTTP proxy of the Ethernet connection. By default, no proxy is configured.|
 
 ## IPSetMode<sup>9+</sup>
 

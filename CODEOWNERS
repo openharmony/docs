@@ -16,33 +16,33 @@
 
 zh-cn/device-dev/ @li-yan339 @zengyawen
 zh-cn/application-dev/quick-start/arkts-get-started.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-basic-syntax-overview.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-declarative-ui-description.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-create-custom-components.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-page-custom-components-lifecycle.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-builder.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-builderparam.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-style.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-extend.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-statestyles.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-state-management-overview.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-state.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-prop.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-link.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-provide-and-consume.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-observed-and-objectlink.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-application-state-management-overview.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-localstorage.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-appstorage.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-persiststorage.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-environment.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-other-state-mgmt-functions-overview.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-watch.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-two-way-sync.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-rendering-control-overview.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-rendering-control-ifelse.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md @zhang_yixin13 @tomatodevboy @s10021109
-zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md @zhang_yixin13 @tomatodevboy @s10021109
+zh-cn/application-dev/quick-start/arkts-basic-syntax-overview.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-declarative-ui-description.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-create-custom-components.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-page-custom-components-lifecycle.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-builder.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-builderparam.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-style.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-extend.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-statestyles.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-state-management-overview.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-state.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-prop.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-link.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-provide-and-consume.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-observed-and-objectlink.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-application-state-management-overview.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-localstorage.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-appstorage.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-persiststorage.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-environment.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-other-state-mgmt-functions-overview.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-watch.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-two-way-sync.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-rendering-control-overview.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-rendering-control-ifelse.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md @zhang_yixin13 @zhangshuang-xiaohuihui @s10021109 @seaside_wu
 zh-cn/application-dev/ability/ @huipeizi @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/IDL/ @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/device-usage-statistics/ @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
@@ -321,7 +321,7 @@ zh-cn/application-dev/reference/apis/js-apis-notification.md @jayleehw @huipeizi
 zh-cn/application-dev/reference/apis/js-apis-observer.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-osAccount.md @nianCode @zengyawen @JiDong-CS @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-particleAbility.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @han-zhengshi @ge-yafang @logic42
+zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @han-zhengshi @HelloCrease @logic42
 zh-cn/application-dev/reference/apis/js-apis-permissionrequestresult.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-plainarray.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-pointer.md @yuanxinying @ningningW @cococoler @alien0208
@@ -535,7 +535,7 @@ zh-cn/application-dev/reference/errorcodes/errorcode-i18n.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-inputmethod-framework.md @hu-zhiqiong
 zh-cn/application-dev/reference/errorcodes/errorcode-multimodalinput.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-nfc.md @RayShih
-zh-cn/application-dev/reference/errorcodes/errorcode-pasteboard.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-pasteboard.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-power.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-preferences.md @ge-yafang
 zh-cn/application-dev/reference/errorcodes/errorcode-promptAction.md @HelloCrease
@@ -593,3 +593,94 @@ zh-cn/application-dev/database/unified-data-definition.md @ge-yafang @feng-aiwen
 zh-cn/application-dev/database/share-data-by-datashareextensionability.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
 zh-cn/application-dev/database/share-data-by-silent-access.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
 zh-cn/application-dev/database/unified-data-channels.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+
+
+
+
+[入门-开发基础知识-应用程序包基础知识与应用配置文件]
+zh-cn/application-dev/quick-start/app*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/module*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/multi-hap*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/deviceconfig-structure.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/shared-guide.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/har-package.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/in-app-hsp.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/quickfix*.md @huipeizi @lixiaogang30
+
+
+[开发-应用模型]
+zh-cn/application-dev/application-models/ @huipeizi @lixiaogang30
+
+[开发-通知]
+zh-cn/application-dev/notification/ @huipeizi @lixiaogang30
+
+[开发-性能]
+zh-cn/application-dev/performance/ @huipeizi 
+
+[工具-调试工具]
+zh-cn/application-dev/tools/aa-tool.md @huipeizi @lixiaogang30
+zh-cn/application-dev/tools/bm-tool.md @huipeizi @lixiaogang30
+zh-cn/application-dev/tools/packing-tool.md @huipeizi @lixiaogang30
+zh-cn/application-dev/tools/unpacking-tool.md @huipeizi @lixiaogang30
+
+
+[API参考-Ability]
+zh-cn/application-dev/reference/apis/js-apis-ability*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-application*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-app-*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-businessAbilityRouter.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-continuation*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-ability*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-app*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-wantAgent*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-uripermissionmanager.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-wantAgent.md @huipeizi @lixiaogang30
+
+
+[API参考-包管理]
+zh-cn/application-dev/reference/apis/js-apis-bundle*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-appControl.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-defaultAppManager.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-distributedBundleManager.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-freeInstall.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-installer.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-launcherBundleManager.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-overlay.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-zlib.md @huipeizi @lixiaogang30
+
+
+[API参考-公共事件与通知]
+zh-cn/application-dev/reference/apis/js-apis-commonEvent*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-commonEvent*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-notification*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-notification*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-emitter.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/common_event/commonEvent-definitions.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/common_event/commonEventManager-definitions.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/common_event/commonEvent-ability.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/common_event/commonEvent-bundleManager.md @huipeizi @lixiaogang30
+
+
+[错误码-Ability]
+zh-cn/application-dev/reference/errorcodes/errorcode-ability.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-DistributedSchedule.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-form.md @huipeizi @lixiaogang30
+
+
+[错误码-包管理]
+zh-cn/application-dev/reference/errorcodes/errorcode-bundle.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-zlib.md @huipeizi @lixiaogang30
+
+
+[错误码-公共事件与通知]
+zh-cn/application-dev/reference/errorcodes/errorcode-CommonEventService.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-notification.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-DistributedNotificationService.md @huipeizi @lixiaogang30
+
+
+[FAQ]
+zh-cn/application-dev/faqs/faqs-ability.md @huipeizi @lixiaogang30
+zh-cn/application-dev/faqs/faqs-bundle-management.md @huipeizi @lixiaogang30
+zh-cn/application-dev/faqs/faqs-event-notification.md @huipeizi @lixiaogang30
+
+

@@ -43,6 +43,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 - 在Windows上，下载安装OpenSSL工具，并配置环境变量。
 - 准备升级包制作工具
 - 编译出版本镜像文件
+- 将编译结果中的 out/rk3568/clang_x64/updater/updater/ 下的 diff 文件，out/rk3568/clang_x64/thirdparty/e2fsprogs 路径下的 libext2fs.so、e2fsdriod、libext2_com_err.so、libext2_misc.so 文件放入做包工具此路径下：packaging_tools/lib/
 
 
 ## 开发流程
@@ -72,7 +73,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 
 ### 生成公私钥对
-1. 使用OpenSSL工具生成公私钥对。
+1. 使用OpenSSL工具生成公私钥对，将公钥 signing_cert.crt 放入做包工具此路径下：packaging_tools/sign_cert/
 
 3. 请妥善保管私钥文件，在升级包制作过程中将私钥文件作为制作命令的参数带入，用于升级包签名，公钥用于升级时对升级包进行签名校验，公钥的放置如下： 轻量和小型系统将生成的公钥内容预置在代码中，需要厂商实现 HotaHalGetPubKey 这个接口来获取公钥。标准系统需要将生成的公钥放在device或vendor目录下的 /hisilicon/hi3516dv300/build/updater_config/signing_cert.crt 这个文件中。
 
@@ -118,7 +119,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    <?xml version="1.0"?>
    <package>
        <head name="Component header information">
-           <info fileVersion="01" prdID="hisi" softVersion="OpenHarmony x.x" date="202x.xx.xx" time="xx:xx:xx">head info</info>
+           <info fileVersion="02" prdID="hisi" softVersion="OpenHarmony x.x" date="202x.xx.xx" time="xx:xx:xx">head info</info>
        </head>
        <group name="Component information">
        <component compAddr="ota_tag" compId="27" resType="5" compType="0" compVer="1.0">./OTA.tag</component>
@@ -133,7 +134,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    | 信息类别 | 节点名称 | 节点标签 | 是否必填 | 内容说明 | 
    | -------- | -------- | -------- | -------- | -------- |
    | 头信息（head节点） | info节点 | / | 必填 | 该节点内容配置为：head&nbsp;info | 
-   | 头信息（head节点） | info节点 | fileVersion | 必填 | 保留字段，内容不影响升级包生成 | 
+   | 头信息（head节点） | info节点 | fileVersion | 必填 | update.bin文件校验方式，该节点内容配置为：02 |
    | 头信息（head节点） | info节点 | prdID | 必填 | 保留字段，内容不影响升级包生成 | 
    | 头信息（head节点） | info节点 | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须比基础版本大，且OpenHarmony后没有其他字母，否则无法生产升级 | 
    | 头信息（head节点） | info节点 | _date_ | _必填_ | 升级包制作日期，保留字段，不影响升级包生成 | 

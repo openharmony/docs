@@ -3413,7 +3413,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let permissionName = "ohos.permission.GET_BUNDLE_INFO";
 try {
-    let PermissionDef = bundleManager.getPermissionDefSync(permission);
+    let PermissionDef = bundleManager.getPermissionDefSync(permissionName);
     hilog.info(0x0000, 'testTag', 'getPermissionDefSync successfully. Data: %{public}s', JSON.stringify(PermissionDef));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -4352,11 +4352,11 @@ try {
 }
 ```
 
-### bundleManager.queryExtensionAbilityInfoSync<sup>11</sup>
+### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
 
-queryExtensionAbilityInfoSync(want: Want, extensionAbilityTypeName: string, extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
+queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
 
-根据给定的want、extensionAbilityTypeName、extensionAbilityFlags和userId获取ExtensionAbilityInfo，使用同步方式返回结果。
+根据给定的want、extensionAbilityType、extensionAbilityFlags和userId获取ExtensionAbilityInfo，使用同步方式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4369,7 +4369,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityTypeName: string, exte
 | 参数名                | 类型                            | 必填 | 说明                                                      |
 | --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | Want                            | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
-| extensionAbilityTypeName  | string                          | 是   | 表示自定义extensionAbility的类型。                        |
+| extensionAbilityType  | string                          | 是   | 表示自定义extensionAbility的类型。                        |
 | extensionAbilityFlags | [number](#extensionabilityflag) | 是   | 表示返回的ExtensionInfo对象中需要包含的信息标志。 |
 | userId                | number                          | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。 |
 
@@ -4397,7 +4397,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityTypeName: string, exte
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 
-let extensionAbilityTypeName = "form";
+let extensionAbilityType = "form";
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
@@ -4406,7 +4406,7 @@ let want = {
 };
 
 try {
-    var data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityTypeName, extensionFlags, userId)
+    var data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags, userId)
     hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
     hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
@@ -4418,7 +4418,7 @@ try {
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 
-let extensionAbilityTypeName = "form";
+let extensionAbilityType = "form";
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let want = {
     bundleName : "com.example.myapplication",
@@ -4426,7 +4426,7 @@ let want = {
 };
 
 try {
-    let data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityTypeName, extensionFlags);
+    let data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags);
     hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
     hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');

@@ -1894,7 +1894,7 @@ try {
 
 ### on('change')
 
-on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
+on(type: 'change', callback: ( key : string ) => void): void
 
 订阅数据变更，订阅的Key的值发生变更后，在执行[flush](#flush)方法后，触发callback回调。
 
@@ -1902,24 +1902,21 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                                     |
-| -------- | -------------------------------- | ---- | ---------------------------------------- |
-| type     | string                           | 是   | 事件类型，固定值'change'，表示数据变更。 |
-| callback | Callback&lt;{ key : string }&gt; | 是   | 回调对象实例。                           |
+| 参数名   | 类型     | 必填 | 说明                                     |
+| -------- | -------- | ---- | ---------------------------------------- |
+| type     | string   | 是   | 事件类型，固定值'change'，表示数据变更。 |
+| callback | Function | 是   | 回调函数。<br />key: 发生变化的Key。     |
 
 **示例：**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: data_preferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('change', (key: observer) => {
+        preferences.on('change', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'manual', (err: BusinessError) => {
@@ -1947,7 +1944,7 @@ try {
 
 ### on('multiProcessChange')<sup>10+</sup>
 
-on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
+on(type: 'multiProcessChange', callback: ( key : string ) => void): void
 
 订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
 
@@ -1957,10 +1954,10 @@ on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                                                           |
-| -------- | -------------------------------- | ---- | -------------------------------------------------------------- |
-| type     | string                           | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
-| callback | Callback&lt;{ key : string }&gt; | 是   | 回调对象实例。                                                 |
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
+| callback | Function | 是   | 回调函数。<br />key: 发生变化的Key。                         |
 
 **错误码：**
 
@@ -1973,9 +1970,6 @@ on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
 **示例1：**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
     data_preferences.getPreferences(this.context, options, (err: BusinessError, preferences: data_preferences.Preferences) => {
@@ -1983,7 +1977,7 @@ try {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('multiProcessChange', (key: observer) => {
+        preferences.on('multiProcessChange', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'manual', (err: BusinessError) => {
@@ -2011,9 +2005,6 @@ try {
 **示例2：**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     let options: data_preferences.Options = { name: 'myStore' };
     data_preferences.getPreferences(this.context, options, (err: BusinessError, val: data_preferences.Preferences) => {
@@ -2022,7 +2013,7 @@ try {
             return;
         }
         preferences = val;
-        preferences.on('multiProcessChange', (key: observer) => {
+        preferences.on('multiProcessChange', (key: string) => {
             console.info("The key " + key + " changed.");
             try {
                 data_preferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
@@ -2081,7 +2072,7 @@ try {
 
 ### off('change')
 
-off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
+off(type: 'change', callback?: ( key : string ) => void): void
 
 取消订阅数据变更。
 
@@ -2089,24 +2080,22 @@ off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                                       |
-| -------- | -------------------------------- | ---- | ------------------------------------------ |
-| type     | string                           | 是   | 事件类型，固定值'change'，表示数据变更。   |
-| callback | Callback&lt;{ key : string }&gt; | 否   | 需要取消的回调对象实例，不填写则全部取消。 |
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件类型，固定值'change'，表示数据变更。                     |
+| callback | Function | 否   | 需要取消的回调函数，不填写则全部取消。<br />key: 发生变化的Key。 |
 
 **示例：**
 
 ```ts
-interface observer {
-  key: string
-}
+
 try {
     data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: data_preferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('change', (key: observer) => {
+        preferences.on('change', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'auto', (err: BusinessError) => {
@@ -2123,7 +2112,7 @@ try {
                 }
                 console.info("Succeeded in flushing.");
             })
-            preferences.off('change', (key: observer) => {
+            preferences.off('change', (key: string) => {
                 console.info("The key " + key + " changed.");
             });
         })
@@ -2137,7 +2126,7 @@ try {
 
 ### off('multiProcessChange')<sup>10+</sup>
 
-off(type: 'multiProcessChange', callback?: Callback&lt;{ key : string }&gt;): void
+off(type: 'multiProcessChange', callback?: ( key : string ) => void): void
 
 取消订阅进程间数据变更。
 
@@ -2145,17 +2134,14 @@ off(type: 'multiProcessChange', callback?: Callback&lt;{ key : string }&gt;): vo
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                                                           |
-| -------- | -------------------------------- | ---- | -------------------------------------------------------------- |
-| type     | string                           | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
-| callback | Callback&lt;{ key : string }&gt; | 否   | 需要取消的回调对象实例，不填写则全部取消。                     |
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
+| callback | Function | 否   | 需要取消的回调函数，不填写则全部取消。<br />key: 发生变化的Key。 |
 
 **示例：**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
     data_preferences.getPreferences(this.context, options, (err: BusinessError, preferences: data_preferences.Preferences) => {
@@ -2163,7 +2149,7 @@ try {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('multiProcessChange', (key: observer) => {
+        preferences.on('multiProcessChange', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'auto', (err: BusinessError) => {
@@ -2180,7 +2166,7 @@ try {
                 }
                 console.info("Succeeded in flushing.");
             })
-            preferences.off('multiProcessChange', (key: observer) => {
+            preferences.off('multiProcessChange', (key: string) => {
                 console.info("The key " + key + " changed.");
             });
         })

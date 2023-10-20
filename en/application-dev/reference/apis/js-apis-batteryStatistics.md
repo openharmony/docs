@@ -45,7 +45,7 @@ batteryStats.getBatteryStats()
 .then((data: batteryStats.BatteryStatsInfo[]) => {
     console.info('battery statistics info: ' + data);
 })
-.catch((err: { code: number, message: string }) => {
+.catch((err: Error) => {
     console.error('get battery statistics failed, err: ' + err);
 });
 ```
@@ -77,7 +77,7 @@ For details about the error codes, see [Thermal Manager Error Codes](../errorcod
 **Example**
 
 ```js
-batteryStats.getBatteryStats((err: BusinessError<void>, data: batteryStats.BatteryStatsInfo[]) => {
+batteryStats.getBatteryStats((err: Error, data : batteryStats.BatteryStatsInfo[]) => {
     if (typeof err === 'undefined') {
         console.info('battery statistics info: ' + data);
     } else {

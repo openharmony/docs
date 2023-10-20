@@ -39,6 +39,7 @@ Describes widget information.
 | supportDimensions    | Array&lt;number&gt;      | Yes   | No    | Dimensions supported by the widget. For details, see [FormDimension](#formdimension).  |
 | customizeData    | {[key: string]: [value: string]}      | Yes   | No    | Custom data of the widget.        |
 | isDynamic<sup>10+</sup>      | boolean               | Yes   | No    | Whether the widget is a dynamic widget.<br>ArkTS widgets are classified into dynamic and static widgets. JS widgets are all dynamic widgets.              |
+| transparencyEnabled<sup>11+</sup>      | boolean               | Yes   | No    | Whether the widget supports the setting of the background transparency.<br>For ArkTS widgets, the support for the background transparency setting depends on user configurations. For JS widgets, the background transparency setting is not supported.              |
 
 ## FormType
 
@@ -72,7 +73,7 @@ Describes the widget state information.
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | formState  | [FormState](#formstate)               | Yes   | No    | Widget state.                         |
-| want  | Want               | Yes   | No    | Want text.   |
+| want  | [Want](js-apis-app-ability-want.md)         | Yes   | No    | Want text.   |
 
 ##  FormState
 

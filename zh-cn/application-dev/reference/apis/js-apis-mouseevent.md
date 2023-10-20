@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.mouseEvent (鼠标输入事件)
 
-设备上报的鼠标事件。
+设备上报的鼠标事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
 >  **说明：**
 >
@@ -68,7 +68,7 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 | 名称    | 类型   | 可读   | 可写   | 说明   |
 | ----- | ------ | ---- | ---- | ---- |
-| axis  | Axis   | 是    | 否    | 轴类型  |
+| axis  | [Axis](#axis)   | 是    | 否    | 轴类型  |
 | value | number | 是    | 否    | 轴的值  |
 
 ## ToolType<sup>11+</sup>
@@ -81,9 +81,8 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 | ------- | ------| ----- |
 | UNKNOWN<sup>11+</sup> | 0 | 未知类型  |
 | MOUSE<sup>11+</sup>  | 1 | 鼠标 |
-| TOUCHSCREEN<sup>11+</sup> | 2 | 触摸屏 |
+| JOYSTICK<sup>11+</sup> | 2 | 摇杆 |
 | TOUCHPAD<sup>11+</sup> | 3 | 触摸板 |
-| JOYSTICK<sup>11+</sup> | 4 | 摇杆 |
 
 ## MouseEvent
 
@@ -101,9 +100,9 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 | rawDeltaX      | number      | 是    | 否    | 鼠标本次操作横坐标偏移值 |
 | rawDeltaY      | number      | 是    | 否    | 鼠标本次操作纵坐标偏移值                          |
 | button         | [Button](#button)      | 是    | 否    | 鼠标按钮                               
-| pressedButtons | Button[]    | 是    | 否    | 当前处于按下状态的鼠标按钮                              |
-| axes           | AxisValue[] | 是    | 否    | 事件包含的所有轴数据                               |
-| pressedKeys    | KeyCode[]   | 是    | 否    | 当前处于按下状态的按键列表                            |
+| pressedButtons | [Button](#button)[]    | 是    | 否    | 当前处于按下状态的鼠标按钮                              |
+| axes           | [AxisValue](#axisvalue)[] | 是    | 否    | 事件包含的所有轴数据                               |
+| pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | 是    | 否    | 当前处于按下状态的按键列表                            |
 | ctrlKey        | boolean     | 是    | 否    | 当前ctrlKey是否处于按下状态 <br>ture表示处于按下状态，false表示处于抬起状态    |
 | altKey         | boolean     | 是    | 否    | 当前altKey是否处于按下状态                         |
 | shiftKey       | boolean     | 是    | 否    | 当前shiftKey是否处于按下状态                       |

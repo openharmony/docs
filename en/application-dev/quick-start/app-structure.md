@@ -7,7 +7,7 @@ The **app** tag contains application-wide configuration. The internal structure 
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| bundleName | Bundle name, which uniquely identifies an application. The bundle name must start with a letter and can contain only letters, digits, underscores (_), and periods (.). The bundle name is a string with 7 to 127 bytes of a reverse domain name, for example, **"com.example.myapplication"**. It is recommended that the first level be the domain suffix "com" and the second level be the vendor/individual name. More levels are also accepted.| String| No|
+| bundleName | Bundle name, which uniquely identifies an application. The bundle name must start with a letter and can contain only letters, digits, underscores (_), and periods (.). The bundle name is a string with 7 to 128 bytes of a reverse domain name, for example, **"com.example.myapplication"**. It is recommended that the first level be the domain suffix "com" and the second level be the vendor/individual name. More levels are also accepted.| String| No|
 | vendor | Vendor of the application. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 |version | Version of the application.| Object| No|
 | apiVersion | OpenHarmony API version on which the application depends.| Object| Yes (initial value: left empty)|

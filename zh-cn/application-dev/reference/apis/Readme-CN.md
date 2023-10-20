@@ -463,6 +463,7 @@
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)](js-apis-EnterpriseAdminExtensionAbility.md)
   - [@ohos.enterprise.networkManager (网络管理)](js-apis-enterprise-networkManager.md)
   - [@ohos.enterprise.restrictions (限制类策略)](js-apis-enterprise-restrictions.md)
+  - [@ohos.enterprise.securityManager (安全管理)](js-apis-enterprise-securityManager.md)
   - [@ohos.enterprise.systemManager (系统管理)](js-apis-enterprise-systemManager.md)
   - [@ohos.enterprise.usbManager (USB管理)](js-apis-enterprise-usbManager.md)
   - [@ohos.enterprise.wifiManager (WiFi管理)](js-apis-enterprise-wifiManager.md)
@@ -491,6 +492,9 @@
   - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
   - [@ohos.worker (启动一个Worker)](js-apis-worker.md)
   - [@ohos.xml (xml解析与生成)](js-apis-xml.md)
+
+- 应用服务
+  - [@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
 
 - 测试
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)

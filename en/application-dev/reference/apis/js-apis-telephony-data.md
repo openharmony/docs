@@ -8,7 +8,7 @@ The **data** module provides basic mobile data management functions. You can obt
 
 ## Modules to Import
 
-```js
+```ts
 import data from '@ohos.telephony.data';
 ```
 
@@ -28,8 +28,11 @@ Obtains the default slot of the SIM card used for mobile data. This API uses an 
 
 **Example**
 
-```js
-data.getDefaultCellularDataSlotId((err, data) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.getDefaultCellularDataSlotId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -50,11 +53,13 @@ Obtains the default slot of the SIM card used for mobile data. This API uses a p
 
 **Example**
 
-```js
-let promise = data.getDefaultCellularDataSlotId();
-promise.then((data) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.getDefaultCellularDataSlotId().then((data: number) => {
     console.log(`getDefaultCellularDataSlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`getDefaultCellularDataSlotId fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -75,7 +80,9 @@ Obtains the default SIM card used for mobile data synchronously.
 
 **Example**
 
-```js
+```ts
+import data from '@ohos.telephony.data';
+
 console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
 ```
 
@@ -116,8 +123,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-data.setDefaultCellularDataSlotId(0, (err) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.setDefaultCellularDataSlotId(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}.`);
 });
 ```
@@ -164,11 +174,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = data.setDefaultCellularDataSlotId(0);
-promise.then(() => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.setDefaultCellularDataSlotId(0).then(() => {
     console.log(`setDefaultCellularDataSlotId success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setDefaultCellularDataSlotId fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -189,8 +201,11 @@ Obtains the cellular data flow type, which can be uplink or downlink. This API u
 
 **Example**
 
-```js
-data.getCellularDataFlowType((err, data) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.getCellularDataFlowType((err: BusinessError, data: data.DataFlowType) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -211,11 +226,13 @@ Obtains the cellular data flow type, which can be uplink or downlink. This API u
 
 **Example**
 
-```js
-let promise = data.getCellularDataFlowType();
-promise.then((data) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.getCellularDataFlowType().then((data: data.DataFlowType) => {
     console.log(`test success, promise: data->${JSON.stringify(data)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`test fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -236,8 +253,11 @@ Obtains the connection status of the packet switched (PS) domain. This API uses 
 
 **Example**
 
-```js
-data.getCellularDataState((err, data) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.getCellularDataState((err: BusinessError, data: data.DataConnectState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -258,11 +278,13 @@ Obtains the connection status of the PS domain. This API uses a promise to retur
 
 **Example**
 
-```js
-let promise = data.getCellularDataState();
-promise.then((data) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.getCellularDataState().then((data: data.DataConnectState) => {
     console.log(`test success, promise: data->${JSON.stringify(data)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`test fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -298,8 +320,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-data.isCellularDataEnabled((err, data) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.isCellularDataEnabled((err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -333,11 +358,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = data.isCellularDataEnabled();
-promise.then((data) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.isCellularDataEnabled().then((data: boolean) => {
     console.log(`test success, promise: data->${JSON.stringify(data)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`test fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -374,8 +401,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-data.isCellularDataRoamingEnabled(0, (err, data) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.isCellularDataRoamingEnabled(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -417,11 +447,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = data.isCellularDataRoamingEnabled(0);
-promise.then((data) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.isCellularDataRoamingEnabled(0).then((data: boolean) => {
     console.log(`test success, promise: data->${JSON.stringify(data)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`test fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -460,8 +492,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-data.enableCellularData((err) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.enableCellularData((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -498,11 +533,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = data.enableCellularData();
-promise.then(() => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.enableCellularData().then(() => {
     console.log(`enableCellularData success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`enableCellularData fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -541,8 +578,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-data.disableCellularData((err) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.disableCellularData((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -579,11 +619,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = data.disableCellularData();
-promise.then(() => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.disableCellularData().then(() => {
     console.log(`disableCellularData success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`disableCellularData fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -623,8 +665,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-data.enableCellularDataRoaming(0, (err) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.enableCellularDataRoaming(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -669,11 +714,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = data.enableCellularDataRoaming(0);
-promise.then(() => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.enableCellularDataRoaming(0).then(() => {
     console.log(`enableCellularDataRoaming success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`enableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -713,8 +760,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-data.disableCellularDataRoaming(0, (err) => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.disableCellularDataRoaming(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -759,11 +809,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = data.disableCellularDataRoaming(0);
-promise.then(() => {
+```ts
+import data from '@ohos.telephony.data';
+import { BusinessError } from '@ohos.base';
+
+data.disableCellularDataRoaming(0).then(() => {
     console.log(`disableCellularDataRoaming success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`disableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -784,8 +836,10 @@ Obtains the default ID of the SIM card used for mobile data.
 
 **Example**
 
-```js
-console.log("Result: "+ data.getDefaultCellularDataSimId())
+```ts
+import data from '@ohos.telephony.data';
+
+console.log("Result: "+ data.getDefaultCellularDataSimId());
 ```
 
 ## DataFlowType

@@ -6,10 +6,11 @@ The **mindSporeLite** module provides APIs for the MindSpore Lite inference engi
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version. Unless otherwise stated, the MindSpore model is used in the sample code.
->
+> 
+> The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
-```js
+```ts
 import mindSporeLite from '@ohos.ai.mindSporeLite';
 ```
 
@@ -30,7 +31,7 @@ Defines the configuration information of the running environment.
 
 **Example**
 
-```js
+```ts
 let context: mindSporeLite.Context = {};
 context.target = ['cpu','nnrt'];
 ```
@@ -54,7 +55,7 @@ Defines the CPU backend device option.
 
 **Example**
 
-```js
+```ts
 let context: mindSporeLite.Context = {};
 context.cpu = {};
 context.target = ['cpu'];
@@ -98,10 +99,10 @@ Loads the input model from the full path for model inference. This API uses an a
 
 **Example**
 
-```js
-let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file, (result) => {
-  const modelInputs = result.getInputs();
+```ts
+let model_file : string = '/path/to/xxx.ms';
+mindSporeLite.loadModelFromFile(model_file, (result : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
 })
 ```
@@ -123,12 +124,12 @@ Loads the input model from the full path for model inference. This API uses an a
 
 **Example**
 
-```js
+```ts
 let context: mindSporeLite.Context = {};
-context = {'target': ['cpu']};
-let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file, context, (result) => {
-  const modelInputs = result.getInputs();
+context.target = ['cpu'];
+let model_file : string = '/path/to/xxx.ms';
+mindSporeLite.loadModelFromFile(model_file, context, (result : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
 })
 ```
@@ -155,10 +156,10 @@ Loads the input model from the full path for model inference. This API uses a pr
 
 **Example**
 
-```js
+```ts
 let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file).then((result) => {
-  const modelInputs = result.getInputs();
+mindSporeLite.loadModelFromFile(model_file).then((result : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
 })
 ```
@@ -178,19 +179,51 @@ Loads the input model from the memory for inference. This API uses an asynchrono
 | callback | Callback<[Model](#model)> | Yes  | Callback used to return the result, which is a **Model** object.|
 
 **Example**
+```ts
+// Construct a singleton object.
+export class GlobalContext {
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
 
-```js
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+
+}
+```
+
+```ts
 import resourceManager from '@ohos.resourceManager'
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+
 let modelName = '/path/to/xxx.ms';
-let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(modelName).then((buffer) => {
-  let modelBuffer = buffer;
-  mindSporeLite.loadModelFromBuffer(modelBuffer.buffer, (result) => {
-  	const modelInputs = result.getInputs();
-  	console.log(modelInputs[0].name);
+globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
+  let modelBuffer : ArrayBuffer = buffer.buffer;
+  mindSporeLite.loadModelFromBuffer(modelBuffer, (result : mindSporeLite.Model) => {
+    let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
+    console.log(modelInputs[0].name);
   })
-}).catch(error => {
-  console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
 })
 ```
 ## mindSporeLite.loadModelFromBuffer
@@ -211,20 +244,28 @@ Loads the input model from the memory for inference. This API uses an asynchrono
 
 **Example**
 
-```js
+```ts
 import resourceManager from '@ohos.resourceManager'
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
 let modelName = '/path/to/xxx.ms';
-let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(modelName).then((error,buffer) => {
-  let modelBuffer = buffer;
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let globalContext= GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+
+globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
+  let modelBuffer : ArrayBuffer = buffer.buffer;
   let context: mindSporeLite.Context = {};
-  context = {'target': ['cpu']};
-  mindSporeLite.loadModelFromBuffer(modelBuffer.buffer, context, (result) => {
-    const modelInputs = result.getInputs();
+  context.target = ['cpu'];
+  mindSporeLite.loadModelFromBuffer(modelBuffer, context, (result : mindSporeLite.Model) => {
+    let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
     console.log(modelInputs[0].name);
-  })  
-}).catch(error => {
-  console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
+  })
 })
 ```
 ## mindSporeLite.loadModelFromBuffer
@@ -250,18 +291,26 @@ Loads the input model from the memory for inference. This API uses a promise to 
 
 **Example**
 
-```js
+```ts
 import resourceManager from '@ohos.resourceManager'
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
 let modelName = '/path/to/xxx.ms';
-let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(modelName).then((buffer) => {
-  let modelBuffer = buffer;
-  mindSporeLite.loadModelFromBuffer(modelBuffer.buffer).then((result) => {
-    const modelInputs = result.getInputs();
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+
+globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
+  let modelBuffer : ArrayBuffer = buffer.buffer;
+  mindSporeLite.loadModelFromBuffer(modelBuffer).then((result : mindSporeLite.Model) => {
+    let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
     console.log(modelInputs[0].name);
-  })  
-}).catch(error => {
-  console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
+  })
 })
 ```
 ## mindSporeLite.loadModelFromFd
@@ -281,12 +330,12 @@ Loads the input model based on the specified file descriptor for inference. This
 
 **Example**
 
-```js
+```ts
 import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
 let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
-mindSporeLite.loadModelFromFd(file.fd, (result) => {
-  const modelInputs = result.getInputs();
+mindSporeLite.loadModelFromFd(file.fd, (result : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
 })
 ```
@@ -308,14 +357,14 @@ Loads the input model based on the specified file descriptor for inference. This
 
 **Example**
 
-```js
+```ts
 import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
 let context : mindSporeLite.Context = {};
-context = {'target': ['cpu']};
+context.target = ['cpu'];
 let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
-mindSporeLite.loadModelFromFd(file.fd, context, (result) => {
-  const modelInputs = result.getInputs();
+mindSporeLite.loadModelFromFd(file.fd, context, (result : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
 })
 ```
@@ -342,15 +391,13 @@ Loads the input model based on the specified file descriptor for inference. This
 
 **Example**
 
-```js
+```ts
 import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
 let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
-let mindSporeLiteModel = await mindSporeLite.loadModelFromFd(file.fd);
-mindSporeLite.loadModelFromFd(file.fd).then((result) => {
-  const modelInputs = result.getInputs();
-  console.log(modelInputs[0].name);
-})
+let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFd(file.fd);
+let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+console.log(modelInputs[0].name);
 ```
 ## Model
 
@@ -374,10 +421,10 @@ Obtains the model input for inference.
 
 **Example**
 
-```js
+```ts
 let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file).then((result) => {
-  const modelInputs = result.getInputs();
+mindSporeLite.loadModelFromFile(model_file).then((result : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
 })
 ```
@@ -393,22 +440,33 @@ Executes the inference model. This API uses an asynchronous callback to return t
 
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
-| inputs | [MSTensor](#mstensor)[] | Yes  | Model input, which is an **MSTensor** object.|
-| callback | Callback<[MSTensor](#mstensor)[]> | Yes  | Callback used to return the result, **MSTensor** object.|
+| inputs | [MSTensor](#mstensor)[] | Yes  | List of input models.  |
+| callback | Callback<[MSTensor](#mstensor)[]> | Yes  | Callback used to return the result, which is a list of **MSTensor** objects.|
 
 **Example**
 
-```js
+```ts
 import resourceManager from '@ohos.resourceManager'
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+
 let inputName = 'input_data.bin';
-let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
-  let inputBuffer = buffer;
-  let model_file = '/path/to/xxx.ms';
-  let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-  const modelInputs = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(inputBuffer.buffer);
-  mindSporeLiteModel.predict(modelInputs, (result) => {
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let modelBuffer : ArrayBuffer = buffer.buffer;
+  let model_file : string = '/path/to/xxx.ms';
+  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+
+  modelInputs[0].setData(modelBuffer);
+  mindSporeLiteModel.predict(modelInputs, (result : mindSporeLite.MSTensor[]) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
       console.log(output[i].toString());
@@ -426,29 +484,38 @@ Executes the inference model. This API uses a promise to return the result. Ensu
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                      |
-| ------ | ----------------------- | ---- | -------------------------- |
-| inputs | [MSTensor](#mstensor)[] | Yes  | Model input, which is an **MSTensor** object.|
+| Name| Type                   | Mandatory| Description                          |
+| ------ | ----------------------- | ---- | ------------------------------ |
+| inputs | [MSTensor](#mstensor)[] | Yes  | List of input models.  |
 
 **Return value**
 
-| Type                   | Description              |
-| ----------------------- | ------------------ |
-| [MSTensor](#mstensor)[] | **MSTensor** object.|
+| Type                   | Description                  |
+| ----------------------- | ---------------------- |
+| [MSTensor](#mstensor)[] | List of **MSTensor** objects.|
 
 **Example**
 
-```js
+```ts
 import resourceManager from '@ohos.resourceManager'
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+export class Test {
+    value:number = 0;
+    foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+}
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;;
 let inputName = 'input_data.bin';
-let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
-  let inputBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let inputBuffer = buffer.buffer;
   let model_file = '/path/to/xxx.ms';
-  let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-  const modelInputs = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(inputBuffer.buffer);
-  mindSporeLiteModel.predict(modelInputs).then((result) => {
+  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+  modelInputs[0].setData(modelBuffer);
+  mindSporeLiteModel.predict(modelInputs).then((result : mindSporeLite.MSTensor[]) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
       console.log(output[i].toString());
@@ -469,7 +536,7 @@ Resets the tensor size.
 
 | Name| Type                 | Mandatory| Description                         |
 | ------ | --------------------- | ---- | ----------------------------- |
-| inputs | [MSTensor](#mstensor)[]            | Yes  | Model input, which is an **MSTensor** object.   |
+| inputs | [MSTensor](#mstensor)[]            | Yes  | List of input models. |
 | dims   | Array&lt;Array&lt;number&gt;&gt; | Yes  | Target tensor size.|
 
 **Return value**
@@ -480,10 +547,10 @@ Resets the tensor size.
 
 **Example**
 
-```js
+```ts
 let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel) => {
-  const modelInputs = mindSporeLiteModel.getInputs();
+mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   let new_dim = new Array([1,32,32,1]);
   mindSporeLiteModel.resize(modelInputs, new_dim);
 })
@@ -510,10 +577,10 @@ In the following sample code, you first need to use [getInputs()](#getinputs) to
 
 **Example**
 
-```js
+```ts
 let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel) => {
-  const modelInputs = mindSporeLiteModel.getInputs();
+mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   console.log(modelInputs[0].name);
   console.log(modelInputs[0].shape.toString());
   console.log(modelInputs[0].elementNum.toString());
@@ -539,17 +606,26 @@ Obtains tensor data.
 
 **Example**
 
-```js
+```ts
 import resourceManager from '@ohos.resourceManager'
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 let inputName = 'input_data.bin';
-let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
-  let inputBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let inputBuffer = buffer.buffer;
   let model_file = '/path/to/xxx.ms';
-  let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-  const modelInputs = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(inputBuffer.buffer);
-  mindSporeLiteModel.predict(modelInputs).then((result) => {
+  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+  modelInputs[0].setData(inputBuffer);
+  mindSporeLiteModel.predict(modelInputs).then((result : mindSporeLite.MSTensor[]) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
       console.log(output[i].toString());
@@ -574,16 +650,25 @@ Sets the tensor data.
 
 **Example**
 
-```js
+```ts
 import resourceManager from '@ohos.resourceManager'
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 let inputName = 'input_data.bin';
-let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
-  let inputBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let inputBuffer = buffer.buffer;
   let model_file = '/path/to/xxx.ms';
-  let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-  const modelInputs = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(inputBuffer.buffer);
+  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+  modelInputs[0].setData(inputBuffer);
 })
 ```
 

@@ -14,6 +14,8 @@ Touchscreen events are events triggered when a finger or stylus is placed on, mo
 
 A click event is triggered when a complete press and lift action is performed by using a finger or a stylus. When a click event occurs, the following callback is triggered:
 
+
+
 ```ts
 onClick(event: (event?: ClickEvent) => void)
 ```
@@ -51,13 +53,14 @@ struct IfElseTransition {
 
 ## Drag Event
 
-A drag event is triggered when a user long presses a component (&gt;=500 ms) using a finger or stylus and drags the component to the drop target. The following figure illustrates the process of triggering a drag event.
+A drag event is triggered when a user long presses a component (&gt;= 500 ms) using a finger or stylus and drags the component to the drop target.
+
+Whether a drag event can be triggered depends on the distance of finger or stylus movement on the screen. The drag event is triggered when this distance reaches 5 vp. ArkUI supports intra-application and cross-application drag events.
+
+The following figure illustrates the process of triggering a drag event.
 
 
 ![en-us_image_0000001562820825](figures/en-us_image_0000001562820825.png)
-
-
-Whether a drag event can be triggered depends on the distance of long-pressing and dragging with the finger or stylus on the screen. The drag event is triggered when this distance reaches 5 vp. ArkUI supports intra-application and cross-application drag events.
 
 
 The drag event provides the following [APIs](../reference/arkui-ts/ts-universal-events-drag-drop.md).
@@ -83,7 +86,7 @@ import image from '@ohos.multimedia.image';
 @Component
 struct Index {
   @State visible: Visibility = Visibility.Visible
-  private pixelMapReader:object|undefined = undefined
+  private pixelMapReader:image.PixelMap|undefined = undefined
 
   aboutToAppear() {
     console.info('begin to create pixmap has info message: ')
@@ -101,15 +104,15 @@ struct Index {
       width:number = 96
     }
     let hwo:hw = new hw()
-    let opts:Record<string,number|boolean|hw> = {
+    let ops:image.InitializationOptions|void = {
       'alphaType': 0,
       'editable': true,
       'pixelFormat': 4,
       'scaleMode': 1,
       'size': hwo
     }
-    const promise:image = image.createPixelMap(color, opts);
-    promise.then((data:object|undefined) => {
+    const promise: Promise<image.PixelMap> = image.createPixelMap(color, ops);
+    promise.then((data:image.PixelMap|undefined) => {
       console.info('create pixmap has info message: ' + JSON.stringify(data))
       if(data){
         this.pixelMapReader = data;
@@ -146,7 +149,7 @@ struct Index {
         .textAlign(TextAlign.Center)
         .backgroundColor(Color.Pink)
         .visibility(this.visible)
-        .onDragStart(() => {                    // Triggered when cross-window dragging starts.
+        .onDragStart((event: DragEvent|undefined, extraParams: string|undefined):CustomBuilder | DragItemInfo => {
           console.info('Text onDrag start')
           return { pixelMap: this.pixelMapReader, extraInfo: 'custom extra info.' }
         })
@@ -202,7 +205,7 @@ struct Index {
               .textAlign(TextAlign.Center)
               .backgroundColor(0xFFFFFF)
           }
-        }, ((item:string):string => item))
+        }, (item:string):string => item)
 
         ListItem() {
           Text('Across Window Drag This')

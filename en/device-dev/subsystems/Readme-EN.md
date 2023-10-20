@@ -47,7 +47,7 @@
 - [Utils Development](subsys-utils-guide.md)
 - AI
     - [AI Framework Development](subsys-ai-aiframework-devguide.md)
-    - [NNRt Development](subsys-ai-nnrt-guide.md)
+    - [NNRt Access Adaptation](subsys-ai-nnrt-guide.md)
 - Sensor
   - [Sensor Overview](subsys-sensor-overview.md)
   - [Sensor Usage Guidelines](subsys-sensor-guide.md)
@@ -116,8 +116,10 @@
         - [Battery Level and LED Color Mapping Customization](subsys-power-level-LED-color.md)
         - [Battery Temperature Protection Customization](subsys-power-temperature-protection.md)
         - [Battery Level Customization](subsys-power-battery-level-customization.md)
+        - [Battery Vibrator Customization](subsys-power-battery-vibrator-customization.md)
         - [Charging Current and Voltage Limit Customization](subsys-power-charge-current-voltage-limit.md)
         - [Charging Type Customization](subsys-power-charge-type-customization.md)
+        - [Power Vibrator Customization](subsys-power-vibrator-customization.md)
         - [Power-off Charging Animation Customization](subsys-power-poweroff-charge-animation.md)
     - Power Consumption Statistics
         - [Power Consumption Statistics Customization](subsys-power-stats-power-average-customization.md)

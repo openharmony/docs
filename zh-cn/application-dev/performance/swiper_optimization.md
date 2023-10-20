@@ -110,7 +110,7 @@ struct SwiperExample {
   private dataSrc: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list = []
+    let list: Array<number> = []
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
@@ -173,10 +173,10 @@ import { MyDataSource } from './Index'
 
 @Component
 export struct PhotoItem { //Swiper的子组件
-  myIndex: number;
-  private dataSource: MyDataSource;
+  myIndex: number = 0;
+  private dataSource: MyDataSource = new MyDataSource([]);
   context = getContext(this);
-  @State imageContent: image.PixelMap = undefined;
+  @State imageContent: image.PixelMap | undefined = undefined;
 
   aboutToAppear(): void {
     console.info(`aboutToAppear` + this.myIndex);
@@ -218,7 +218,7 @@ import Curves from '@ohos.curves';
 import { PhotoItem } from './PhotoItem'
 import image from '@ohos.multimedia.image';
 
-type MyObject = {
+interface MyObject {
   description: string,
   image: image.PixelMap,
 };
@@ -254,14 +254,14 @@ export class MyDataSource implements IDataSource {
 struct Index {
   @State currentIndex: number = 0;
   cacheCount: number = 1
-  swiperController: SwiperController;
+  swiperController: SwiperController = new SwiperController();
   private data: MyDataSource = new MyDataSource([]);
   context = getContext(this);
 
   aboutToAppear() {
     let list: MyObject[] = []
     for (let i = 0; i < 6; i++) {
-      list.push({ description: "", image: undefined })
+      list.push({ description: "", image: this.data.getData(this.currentIndex)?.image })
     }
     this.data = new MyDataSource(list)
   }

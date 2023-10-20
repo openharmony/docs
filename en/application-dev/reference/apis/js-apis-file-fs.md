@@ -9,7 +9,7 @@ The **fs** module provides APIs for file operations, including basic file manage
 ## Modules to Import
 
 ```ts
-import fs, { Filter, ConflictFiles } from '@ohos.file.fs';
+import fs from '@ohos.file.fs';
 ```
 
 ## Guidelines
@@ -323,7 +323,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("close file success");
-      fs.closeSync(file);
     }
   });
   ```
@@ -523,6 +522,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { ConflictFiles } from '@ohos.file.fs';
   // Copy srcPath to destPath.
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -736,10 +736,9 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file: fs.File) => {
     console.info("file fd: " + file.fd);
+    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
-  }).finally(() => {
-    fs.closeSync(file);
   });
   ```
 
@@ -850,7 +849,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     console.info("Read file data successfully");
     let buf = buffer.from(arrayBuffer, 0, readLen);
     console.info(`The content of file: ${buf.toString()}`);
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
@@ -1341,6 +1339,179 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.truncateSync(filePath, len);
   ```
 
+## fs.readLines<sup>11+</sup>
+
+readLines(filePath: string, options?: Options): Promise&lt;ReaderIterator&gt;
+
+Reads the text content of a file line by line. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filePath | string | Yes  | Application sandbox path of the file.                                  |
+| options | [Options](#options11) | No  | Options for reading the text. The following options are supported:<br>- **encoding** (string): format of the data to be encoded.<br>It is valid only when the data is of the string type.<br>The default value is **'utf-8'**, which is the only value supported.|
+
+**Return value**
+
+  | Type                   | Description        |
+  | --------------------- | ---------- |
+  | Promise&lt;[ReaderIterator](#readeriterator11)&gt; | Promise used to return a **ReaderIterator** object.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { Options } from '@ohos.file.fs';
+  let filePath = pathDir + "/test.txt";
+  let options: Options = {
+    encoding: 'utf-8'
+  };
+  fs.readLines(filePath, options).then((readerIterator: fs.ReaderIterator) => {
+    for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
+      console.info("content: " + it.value);
+    }
+  }).catch((err: BusinessError) => {
+    console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## fs.readLines<sup>11+</sup>
+
+readLines(filePath: string, options?: Options, callback: AsyncCallback&lt;ReaderIterator&gt;): void
+
+Reads the text content of a file line by line. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filePath | string | Yes  | Application sandbox path of the file.                                  |
+| options | [Options](#options11) | No  | Options for reading the text. The following options are supported:<br>- **encoding** (string): format of the data to be encoded.<br>It is valid only when the data is of the string type.<br>The default value is **'utf-8'**, which is the only value supported.|
+| callback | AsyncCallback&lt;[ReaderIterator](#readeriterator11)&gt; | Yes  | Callback invoked to return a **ReaderIterator** object.                                  |
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { Options } from '@ohos.file.fs';
+  let filePath = pathDir + "/test.txt";
+  let options: Options = {
+    encoding: 'utf-8'
+  };
+  fs.readLines(filePath, options, (err: BusinessError, readerIterator: fs.ReaderIterator) => {
+    if (err) {
+      console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
+        console.info("content: " + it.value);
+      }
+    }
+  })
+  ```
+
+## fs.readLinesSync
+
+readLinesSync(filePath: string, options?: Options): ReaderIterator
+
+Reads the text content of a file line by line. This API returns the result synchronously.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filePath | string | Yes  | Application sandbox path of the file.                                  |
+| options | [Options](#options11) | No  | Options for reading the text. The following options are supported:<br>- **encoding** (string): format of the data to be encoded.<br>It is valid only when the data is of the string type.<br>The default value is **'utf-8'**, which is the only value supported.|
+
+**Return value**
+
+  | Type                   | Description        |
+  | --------------------- | ---------- |
+  | [ReaderIterator](#readeriterator11) | **ReaderIterator** object.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { Options } from '@ohos.file.fs';
+  let filePath = pathDir + "/test.txt";
+  let options: Options = {
+    encoding: 'utf-8'
+  };
+  let readerIterator = fs.readLines(filePath, options);
+  for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
+    console.info("content: " + it.value);
+  }
+  ```
+
+## ReaderIterator<sup>11+</sup>
+
+Provides a **ReaderIterator** object. Before calling APIs of **ReaderIterator**, you need to use **readLines()** to create a **ReaderIterator** instance.
+
+### next
+
+next(): ReaderIteratorResult
+
+Obtains the **ReaderIterator** result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Return value**
+
+  | Type                   | Description        |
+  | --------------------- | ---------- |
+  | ReaderIteratorResult | **ReaderIteratorResult** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { Options } from '@ohos.file.fs';
+  let filePath = pathDir + "/test.txt";
+  let options: Options = {
+    encoding: 'utf-8'
+  };
+  fs.readLines(filePath, options).then((readerIterator: fs.ReaderIterator) => {
+    for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
+      console.info("content: " + it.value);
+    }
+  }).catch((err: BusinessError) => {
+    console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## ReaderIteratorResult
+
+Represents the information obtained by the **ReadIterator** object.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+| Name       | Type      | Description               |
+| ----------- | --------------- | ------------------ |
+| done | boolean     |  Whether the iteration is complete.         |
+| value    | string     | File text content read line by line.|
+
 ## fs.readText
 
 readText(filePath: string, options?: { offset?: number; length?: number; encoding?: string; }): Promise&lt;string&gt;
@@ -1524,11 +1695,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   fs.lstat(filePath, (err: BusinessError, stat: fs.Stat) => {
-      if (err) {
-        console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
-      } else {
-        console.info("get link status succeed, the size of file is" + stat.size);
-      }
+    if (err) {
+      console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("get link status succeed, the size of file is" + stat.size);
+    }
   });
   ```
 
@@ -2006,6 +2177,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { Filter } from '@ohos.file.fs';
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
@@ -2015,7 +2187,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
   option.filter.displayName = ["*abc", "efg*"];
   option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date(0).getTime();
+  option.filter.lastModifiedAfter = new Date().getTime();
   fs.listFile(pathDir, option).then((filenames: Array<string>) => {
     console.info("listFile succeed");
     for (let i = 0; i < filenames.length; i++) {
@@ -2061,6 +2233,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { Filter } from '@ohos.file.fs';
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
@@ -2070,7 +2243,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
   option.filter.displayName = ["*abc", "efg*"];
   option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date(0).getTime();
+  option.filter.lastModifiedAfter = new Date().getTime();
   fs.listFile(pathDir, option, (err: BusinessError, filenames: Array<string>) => {
     if (err) {
       console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
@@ -2123,6 +2296,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 **Example**
 
   ```ts
+  import fs, { Filter } from '@ohos.file.fs';
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
@@ -2132,12 +2306,46 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
   option.filter.displayName = ["*abc", "efg*"];
   option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date(0).getTime();
+  option.filter.lastModifiedAfter = new Date().getTime();
   let filenames = fs.listFileSync(pathDir, option);
   console.info("listFile succeed");
   for (let i = 0; i < filenames.length; i++) {
     console.info("filename: %s", filenames[i]);
   }
+  ```
+
+## fs.lseek<sup>11+</sup>
+
+lseek(fd: number, offset: number, whence?: WhenceType): number
+
+Adjusts the offset of a file.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name   | Type    | Mandatory  | Description                         |
+  | ------ | ------ | ---- | --------------------------- |
+  | fd | number | Yes   | FD of the file.|
+  | offset | number | Yes   | Offset to set.|
+  | whence | [WhenceType](#whencetype11) | No   | Type of the relative position of the offset.|
+
+**Return value**
+
+  | Type                  | Description        |
+  | --------------------- | ---------- |
+  | number | Position of the current offset as measured from the beginning of the file.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  console.info('The current offset is at ' + fs.lseek(file.fd, 5, fs.WhenceType.SEEK_SET));
+  fs.closeSync(file);
   ```
 
 ## fs.moveDir<sup>10+</sup>
@@ -2205,6 +2413,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { ConflictFiles } from '@ohos.file.fs';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -2471,7 +2680,7 @@ Creates a **RandomAccessFile** instance based on the specified file path or file
 |    Name   | Type    | Mandatory  | Description                         |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
 |     file     | string\|[File](#file) | Yes   | Application sandbox path of the file or an opened file object.|
-|     mode     | number | No  | [Option](#openmode) for creating the **RandomAccessFile** instance. This parameter is valid only when the application sandbox path of the file is passed in. One of the following options must be specified:<br>- **OpenMode.READ_ONLY(0o0)**: Create the file in read-only mode. This is the default value.<br>- **OpenMode.WRITE_ONLY(0o1)**: Create the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Create the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the **RandomAccessFile** object already exists and is created in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Create the file in append mode. New data will be added to the end of the **RandomAccessFile** object. <br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the created file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Create a **RandomAccessFile** instance in synchronous I/O mode.|
+|     mode     | number | No  | [Option](#openmode) for creating the **RandomAccessFile** instance. This parameter is valid only when the application sandbox path of the file is passed in. One of the following options must be specified:<br>- **OpenMode.READ_ONLY(0o0)**: Create the file in read-only mode. This is the default value.<br>- **OpenMode.WRITE_ONLY(0o1)**: Create the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Create the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the **RandomAccessFile** object already exists and is created in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Create the file in append mode. New data will be added to the end of the **RandomAccessFile** object. <br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the created file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Create a **RandomAccessFile** instance in synchronous I/O mode.|
 
 **Return value**
 
@@ -2513,7 +2722,7 @@ Creates a **RandomAccessFile** instance based on the specified file path or file
 |  Name   | Type    | Mandatory  | Description                         |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
 |     file     | string\|[File](#file) | Yes   | Application sandbox path of the file or an opened file object.|
-|     mode     | number | No  | [Option](#openmode) for creating the **RandomAccessFile** instance. This parameter is valid only when the application sandbox path of the file is passed in. One of the following options must be specified:<br>- **OpenMode.READ_ONLY(0o0)**: Create the file in read-only mode. This is the default value.<br>- **OpenMode.WRITE_ONLY(0o1)**: Create the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Create the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the **RandomAccessFile** object already exists and is created in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Create the file in append mode. New data will be added to the end of the **RandomAccessFile** object. <br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the created file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Create a **RandomAccessFile** instance in synchronous I/O mode.|
+|     mode     | number | No  | [Option](#openmode) for creating the **RandomAccessFile** instance. This parameter is valid only when the application sandbox path of the file is passed in. One of the following options must be specified:<br>- **OpenMode.READ_ONLY(0o0)**: Create the file in read-only mode. This is the default value.<br>- **OpenMode.WRITE_ONLY(0o1)**: Create the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Create the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the **RandomAccessFile** object already exists and is created in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Create the file in append mode. New data will be added to the end of the **RandomAccessFile** object. <br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the created file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Create a **RandomAccessFile** instance in synchronous I/O mode.|
 | callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | Yes  | Callback invoked to return the **RandomAccessFile** instance created.                                  |
 
 **Error codes**
@@ -2550,7 +2759,7 @@ Creates a **RandomAccessFile** instance based on the specified file path or file
 |  Name   | Type    | Mandatory  | Description                         |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
 |     file     | string\|[File](#file) | Yes   | Application sandbox path of the file or an opened file object.|
-|     mode     | number | No  | [Option](#openmode) for creating the **RandomAccessFile** instance. This parameter is valid only when the application sandbox path of the file is passed in. One of the following options must be specified:<br>- **OpenMode.READ_ONLY(0o0)**: Create the file in read-only mode. This is the default value.<br>- **OpenMode.WRITE_ONLY(0o1)**: Create the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Create the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the **RandomAccessFile** object already exists and is created in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Create the file in append mode. New data will be added to the end of the **RandomAccessFile** object. <br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the created file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Create a **RandomAccessFile** instance in synchronous I/O mode.|
+|     mode     | number | No  | [Option](#openmode) for creating the **RandomAccessFile** instance. This parameter is valid only when the application sandbox path of the file is passed in. One of the following options must be specified:<br>- **OpenMode.READ_ONLY(0o0)**: Create the file in read-only mode. This is the default value.<br>- **OpenMode.WRITE_ONLY(0o1)**: Create the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Create the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the **RandomAccessFile** object already exists and is created in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Create the file in append mode. New data will be added to the end of the **RandomAccessFile** object. <br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the created file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Create a **RandomAccessFile** instance in synchronous I/O mode.|
 
 **Return value**
 
@@ -2819,10 +3028,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 **Example**
 
   ```ts
-  import { WatchEventListener } from '@ohos.file.fs';
+  import fs, { WatchEvent } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: fs.WatchEventListener) => {
+  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: WatchEvent) => {
     if (watchEvent.event == 0x2) {
       console.info(watchEvent.fileName + 'was modified');
     } else if (watchEvent.event == 0x10) {
@@ -3491,7 +3700,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let option = new Option();
   option.offset = 5;
   option.length = 5;
-  let num = ss.readSync(new ArrayBuffer(4096), option);
+  let buf = new ArrayBuffer(4096);
+  let num = ss.readSync(buf, option);
   ```
 
 ## File
@@ -3858,6 +4068,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 **Example**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
@@ -3874,8 +4085,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     console.info("randomAccessFile readLength: " + readLength);
     randomaccessfile.close();
     fs.closeSync(file);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    randomaccessfile.close();
+    fs.closeSync(file);
   });
   ```
 
@@ -3921,10 +4135,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     } else {
       if (readLength) {
         console.info("read succeed and size is:" + readLength);
-        randomaccessfile.close();
-        fs.closeSync(file);
       }
     }
+    randomAccessFile.close();
+    fs.closeSync(file);
   });
   ```
 
@@ -4034,9 +4248,9 @@ Defines the constants of the **mode** parameter used in **open()**. It specifies
 
 ## Filter<sup>10+</sup>
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
-
 Defines the file filtering configuration, which can be used by **listFile()**.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 | Name       | Type      | Description               |
 | ----------- | --------------- | ------------------ |
@@ -4049,11 +4263,33 @@ Defines the file filtering configuration, which can be used by **listFile()**.
 
 ## ConflictFiles<sup>10+</sup>
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
-
 Defines information about the conflicting files. It is used the **copyDir()** and **moveDir()**.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 | Name       | Type      | Description               |
 | ----------- | --------------- | ------------------ |
 | srcFile | string     | Path of the source file.          |
 | destFile    | string     | Path of the destination file.|
+
+## Options<sup>11+</sup>
+
+Defines the options for reading the file text line by line (**readLines()**).
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+| Name       | Type      | Description               |
+| ----------- | --------------- | ------------------ |
+| encoding | string     | File encoding format. It is optional.          |
+
+## WhenceType<sup>11+</sup>
+
+Enumerates the types of the relative position for the offset. It is used in **lseek()**.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+| Name       | Value      | Description               |
+| ----------- | --------------- | ------------------ |
+| SEEK_SET | 0     | Beginning of the file.          |
+| SEEK_CUR    | 1     | Current position of the offset.|
+| SEEK_END    | 2     | End of the file.|

@@ -39,6 +39,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | supportDimensions    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的规格。具体可选规格参考[FormDimension](#formdimension)   |
 | customizeData    | {[key: string]: [value: string]}      | 是    | 否     | 卡片用户数据。         |
 | isDynamic<sup>10+</sup>      | boolean               | 是    | 否     | 卡片是否为动态卡片。<br/>仅ArkTS卡片区分动静态卡片，JS卡片均为动态卡片。               |
+| transparencyEnabled<sup>11+</sup>      | boolean               | 是    | 否     | 卡片是否支持设置背景透明度。<br/>ArkTS卡片由用户配置决定是否支持，JS卡片均不支持。               |
 
 ## FormType
 
@@ -72,7 +73,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | formState  | [FormState](#formstate)               | 是    | 否     | 卡片状态。                          |
-| want  | Want               | 是    | 否     | Want文本内容。    |
+| want  | [Want](js-apis-app-ability-want.md)         | 是    | 否     | Want文本内容。    |
 
 ##  FormState
 
@@ -144,6 +145,17 @@ import formInfo from '@ohos.app.form.formInfo';
 | FORM_VISIBLE | 1   | 表示卡片为可见。 |
 | FORM_INVISIBLE   | 2   | 表示卡片为不可见。 |
 
+## FormUsageState
+
+卡片当前使用状态枚举。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称        |  值   | 说明         |
+| ----------- | ---- | ------------ |
+| USED<sup>11+</sup> | 0   | 表示卡片在使用中。 |
+| UNUSED<sup>11+</sup> | 1   | 表示卡片未被使用。 |
+
 ## RunningFormInfo<sup>10+</sup>
 
 卡片使用方信息
@@ -162,10 +174,13 @@ import formInfo from '@ohos.app.form.formInfo';
 | abilityName<sup>10+</sup> | string               | 是    | 否     | 卡片所属的Ability名称。                       |
 | formName<sup>10+</sup>        | string               | 是    | 否     | 卡片名称。                                 |
 | dimension | number               | 是    | 否     | 卡片规格。   |
+| formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | 是    | 否     | 卡片当前使用状态枚举。   |
 
 ## formProviderFilter<sup>10+</sup>
 
-卡片提供方信息
+卡片提供方信息。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -173,10 +188,11 @@ import formInfo from '@ohos.app.form.formInfo';
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>  |
-| formName    | string               | 是    | 否     | 卡片名称。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>                     |
-| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>        |
-| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>        |
+| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。  |
+| formName    | string               | 是    | 否     | 卡片名称。                     |
+| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。        |
+| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。        |
+| isUnusedIncluded<sup>11+</sup> | boolean               | 是    | 否     | 是否包含未使用的卡片。        |
 
 ## LaunchReason<sup>10+</sup>
 

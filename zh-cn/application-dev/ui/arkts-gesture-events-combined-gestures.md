@@ -10,9 +10,9 @@ GestureGroup(mode:GestureMode, gesture:GestureType[])
 ```
 
 
-- mode：必选参数，为GestureMode枚举类。用于声明该组合手势的类型。
+- mode：为GestureMode枚举类。用于声明该组合手势的类型。
 
-- gesture：必选参数，为由多个手势组合而成的数组。用于声明组合成该组合手势的各个手势。
+- gesture：由多个手势组合而成的数组。用于声明组合成该组合手势的各个手势。
 
 
 ## 连续识别

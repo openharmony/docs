@@ -119,7 +119,7 @@ execute(group: TaskGroup, priority?: Priority): Promise<unknown[]>
 
 | 参数名     | 类型                        | 必填 | 说明                                                           |
 | --------- | --------------------------- | ---- | -------------------------------------------------------------- |
-| group     | [TaskGroup](#taskgroup)     | 是   | 需要在任务池中执行的任务组。                                      |
+| group     | [TaskGroup](#taskgroup10)     | 是   | 需要在任务池中执行的任务组。                                      |
 | priority  | [Priority](#priority)       | 否   | 等待执行的任务组的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
 
 **返回值：**
@@ -229,7 +229,8 @@ taskpool.execute(task5);
 taskpool.execute(task6);
 // 1s后取消task
 setTimeout(()=>{
-  taskpool.cancel(task1);}, 1000);
+  taskpool.cancel(task1);
+}, 1000);
 ```
 
 ## taskpool.cancel<sup>10+</sup>
@@ -244,7 +245,7 @@ cancel(group: TaskGroup): void
 
 | 参数名   | 类型                    | 必填 | 说明                 |
 | ------- | ----------------------- | ---- | -------------------- |
-| group   | [TaskGroup](#taskgroup) | 是   | 需要取消执行的任务组。 |
+| group   | [TaskGroup](#taskgroup10) | 是   | 需要取消执行的任务组。 |
 
 **错误码：**
 
@@ -272,10 +273,10 @@ taskGroup1.addTask(printArgs, 10); // 10: test number
 let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
 taskGroup2.addTask(printArgs, 100); // 100: test number
 taskpool.execute(taskGroup1).then((res: Array<number>)=>{
-  console.info("taskGroup1 res is:" + res)
+  console.info("taskGroup1 res is:" + res);
 });
 taskpool.execute(taskGroup2).then((res: Array<number>)=>{
-  console.info("taskGroup2 res is:" + res)
+  console.info("taskGroup2 res is:" + res);
 });
 setTimeout(()=>{
   try {

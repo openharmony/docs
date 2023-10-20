@@ -25,10 +25,12 @@ Assume that you have prepared a model in the **.ms** format.
 Before using the Native APIs provided by MindSpore Lite for development, you need to reference the corresponding header files.
 
 ```c
+#include <iostream>
 #include <mindspore/model.h>
 #include <mindspore/context.h>
 #include <mindspore/status.h>
 #include <mindspore/tensor.h>
+#include <rawfile/raw_file_manager.h>
 ```
 
 (1). Read model files.
@@ -102,6 +104,14 @@ OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
 (3). Set the model input data, perform model inference, and obtain the output data.
 
 ```c++
+#define GET_PARAMS(env, info, num)    \
+    size_t argc = num;                \
+    napi_value argv[num] = {nullptr}; \
+    napi_value thisVar = nullptr;     \
+    void *data = nullptr;             \
+    napi_get_cb_info(env, info, &argc, argv, &thisVar, &data)
+
+constexpr int kNumPrintOfOutData = 10;
 constexpr int RANDOM_RANGE = 128;
 
 void FillTensorWithRandom(OH_AI_TensorHandle msTensor) {

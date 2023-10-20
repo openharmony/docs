@@ -1290,6 +1290,18 @@
 
 **起始版本**：10
 
+## ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+允许设备设置安全管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
 允许设备管理应用安装和卸载包。
@@ -1337,6 +1349,18 @@
 **ACL使能**：TRUE
 
 **起始版本**：10
+
+## ohos.permission.ENTERPRISE_MANAGE_SETTINGS
+
+允许设备管理应用管理设置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
 
 ## ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -2893,6 +2917,42 @@
 允许系统服务或系统应用使用近场分享私有应用能力。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_MCP_AUTHORIZATION
+
+允许MCP宿主应用代理其子应用进行用户帐号授权登录。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.GET_BUNDLE_RESOURCES
+
+允许查询应用的资源信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.SET_CODE_PROTECT_INFO
+
+允许系统应用设置云侧公钥以及工作秘钥密文，并协商代码保护秘钥信息。
+
+**权限级别**：system_core
 
 **授权方式**：system_grant
 

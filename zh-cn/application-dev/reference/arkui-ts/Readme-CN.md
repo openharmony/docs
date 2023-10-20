@@ -167,6 +167,7 @@
   - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D对象](ts-components-canvas-path2d.md)
 - 高级组件
+  - [@ohos.arkui.advanced.counter (计数器组件)](ohos-arkui-advanced-counter.md)
   - [@ohos.multimedia.avcastpicker (投播组件)](ohos-multimedia-avcastpicker.md)
 - 安全控件
   - [安全控件通用属性](ts-securitycomponent-attributes.md)

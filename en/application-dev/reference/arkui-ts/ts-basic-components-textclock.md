@@ -59,7 +59,7 @@ The following table shows how different settings of **format** work out.
 | hh:mm| 5:00 |
 | mm:ss| 00:04 |
 | mm:ss.SS| 00:04.91 |
-| mm:ss.SS| 00:04.536 |
+| mm:ss.SSS| 00:04.536 |
 | hh:mm:ss aa | 5:00:04 AM|
 | HH | 17 |
 
@@ -69,7 +69,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name                                        | Description                                                    |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| onDateChange(event: (value: number) => void) | Called when the time changes in seconds at minimum.<br>- **value**: Unix time stamp, which is the number of milliseconds that have elapsed since the Unix epoch.|
+| onDateChange(event: (value: number) => void) | Called when the time changes in seconds.<br>- **value**: Unix time stamp, which is the number of seconds that have elapsed since the Unix epoch.|
 
 ## TextClockController
 

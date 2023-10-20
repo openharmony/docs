@@ -63,7 +63,9 @@ load(uri: string, callback: AsyncCallback\<number>): void
 
 **示例：**
 
-```js
+```ts
+import fs from '@ohos.file.fs';
+
 let uri:string = "";
 
 //获取fd的uri路径
@@ -101,9 +103,21 @@ load(uri: string): Promise\<number>
 | -------------- | ------------------------------------------ |
 | Promise\<number> | 异步音频池资源的加载，返回资源的id，有效值大于0。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise.|
+| 5400103  | I/O error. Return by promise. |
+| 5400105  | Service died. Return by promise. |
+
 **示例：**
 
-```js
+```ts
+import fs from '@ohos.file.fs';
+
 let uri:string = "";
 let soundID: number;
 
@@ -146,12 +160,14 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
 | 5400102  | Operation not allowed. Return by callback. |
-| 5400103  |I/O error. Return by callback. |
+| 5400103  | I/O error. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
-```js
+```ts
+import fs from '@ohos.file.fs';
+
 let fd: number;
 let soundID: number;
 let fileSize: number;
@@ -199,9 +215,21 @@ load(fd: number, offset: number, length: number): Promise\<number>
 | ---------------- | -------------------------------- |
 | Promise\<number> | 获取回调的soundID，有效值大于0。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise.|
+| 5400103  | I/O error. Return by promise. |
+| 5400105  | Service died. Return by promise. |
+
 **示例：**
 
-```js
+```ts
+import fs from '@ohos.file.fs';
+
 let fd: number;
 let soundID: number;
 let fileSize: number;
@@ -246,6 +274,7 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
@@ -254,12 +283,12 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 let soundID: number;
 let streamID: number;
 let PlayParameters: media.PlayParameters = {
-    loop: number = 3, // 循环4次
-    rate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
-    leftVolume: number = 0.5, // range = 0.0-1.0
-    rightVolume: number = 0.5, // range = 0.0-1.0
-    priority: number = 0 // 最低优先级
-    parallelPlayFlag: boolean = false // 不和其它正在播放的音频并行播放
+    loop = 3, // 循环4次
+    rate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
+    leftVolume = 0.5, // range = 0.0-1.0
+    rightVolume = 0.5, // range = 0.0-1.0
+    priority = 0, // 最低优先级
+    parallelPlayFlag = false // 不和其它正在播放的音频并行播放
   }
 soundPool.play(soundID, PlayParameters, (error, streamId: number) => {
   if (error) {
@@ -292,6 +321,7 @@ play(soundID: number, callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
@@ -330,18 +360,27 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 | ---------------- | -------------------------------- |
 | Promise\<number> | 获取回调的音频流ID，有效值大于0。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+
 **示例：**
 
 ```js
 let soundID: number;
 let streamID: number;
 let PlayParameters: media.PlayParameters = {
-    loop: number = 3, // 循环4次
-    rate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
-    leftVolume: number = 0.5, // range = 0.0-1.0
-    rightVolume: number = 0.5, // range = 0.0-1.0
-    priority: number = 0 // 最低优先级
-    parallelPlayFlag: boolean = false // 不和其它正在播放的音频并行播放
+    loop = 3, // 循环4次
+    rate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
+    leftVolume = 0.5, // range = 0.0-1.0
+    rightVolume = 0.5, // range = 0.0-1.0
+    priority = 0, // 最低优先级
+    parallelPlayFlag = false // 不和其它正在播放的音频并行播放
   }
 
 soundPool.play(soundID, PlayParameters).then((streamId: number) => {
@@ -373,6 +412,7 @@ stop(streamID: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **示例：**
@@ -409,6 +449,15 @@ stop(streamID: number): Promise\<void>
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
 | Promise\<void> | 返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
@@ -484,6 +533,15 @@ setLoop(streamID: number, loop: number): Promise\<void>
 | ---------------- | -------------------------------- |
 | Promise\<void> | 异步音频池setLoop方法的Promise返回值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+
 **示例：**
 
 ```js
@@ -558,6 +616,15 @@ setPriority(streamID: number, priority: number): Promise\<void>
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
 | Promise\<void> | 异步音频池setPriority的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
@@ -635,6 +702,15 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
 | Promise\<void> | 异步音频池setRate方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
@@ -714,6 +790,15 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<v
 | ---------------- | -------------------------------- |
 | Promise\<void> | 异步音频池setVolume方法的Promise返回值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+
 **示例：**
 
 ```js
@@ -788,6 +873,16 @@ unload(soundID: number): Promise\<void>
 | ---------------- | -------------------------------- |
 | Promise\<void> | 异步音频池unload方法的Promise返回值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+
 **示例：**
 
 ```js
@@ -851,6 +946,14 @@ release(): Promise\<void>
 | ---------------- | -------------------------------- |
 | Promise\<void> | 异步音频池release方法的Promise返回值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400105  | Service died. Return by promise.       |
+
 **示例：**
 
 ```js
@@ -876,15 +979,6 @@ on(type: 'loadComplete', callback: Callback\<number>): void
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 支持的事件：'loadComplete'，对应的ID加载完成会触发此回调。 |
 | callback | Callback\<number> | 是   | 对应资源加载完成的资源ID。                               |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
-
-| 错误码ID | 错误信息                                |
-| -------- | --------------------------------------- |
-| 5400103  | IO error. Return by callback. |
-| 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
@@ -928,15 +1022,6 @@ on(type: 'playFinished', callback: Callback\<void>): void
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 支持的事件：'playFinished'，音频流播放完成会触发此回调。 |
 | callback | Callback\<void> | 是   |  异步'playFinished'的回调方法。        |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
-
-| 错误码ID | 错误信息                                |
-| -------- | --------------------------------------- |
-| 5400103  | IO error. Return by callback. |
-| 5400105  | Service died. Return by callback.       |
 
 **示例：**
 

@@ -677,6 +677,8 @@
     - [国际化开发概述](internationalization/international-overview.md)
     - [Intl开发指导](internationalization/intl-guidelines.md)
     - [I18n开发指导](internationalization/i18n-guidelines.md)
+  - 应用服务
+    - [广告标识服务](ads-service/oaid/oaid-service.md)
   - 应用测试
     - [自动化测试框架使用指导](application-test/arkxtest-guidelines.md)
     - [SmartPerf性能工具使用指导](application-test/smartperf-guidelines.md)
@@ -1233,6 +1235,8 @@
       - [@ohos.util.Vector (线性容器Vector)](reference/apis/js-apis-vector.md)
       - [@ohos.worker (启动一个Worker)](reference/apis/js-apis-worker.md)
       - [@ohos.xml (xml解析与生成)](reference/apis/js-apis-xml.md)
+    - 应用服务
+      - [@ohos.identifier.oaid (广告标识服务)](reference/apis/js-apis-oaid.md)
     - 测试
       - [@ohos.application.testRunner (TestRunner)](reference/apis/js-apis-application-testRunner.md)
       - [@ohos.uitest (UiTest)](reference/apis/js-apis-uitest.md)
@@ -1459,6 +1463,7 @@
       - [OffscreenCanvasRenderingContext2D对象](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D对象](reference/arkui-ts/ts-components-canvas-path2d.md)
     - 高级组件
+      - [@ohos.arkui.advanced.counter (计数器组件)](reference/arkui-ts/ohos-arkui-advanced-counter.md)
       - [@ohos.multimedia.avcastpicker (投播组件)](reference/arkui-ts/ohos-multimedia-avcastpicker.md)
     - 动画
       - [属性动画](reference/arkui-ts/ts-animatorproperty.md)
@@ -1770,6 +1775,8 @@
       - [企业设备管理错误码](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - 语言基础类库
       - [语言基础类库错误码](reference/errorcodes/errorcode-utils.md)
+    - 应用服务
+      - [广告标识服务错误码](reference/errorcodes/errorcode-oaid.md)
     - 测试
       - [uitest错误码](reference/errorcodes/errorcode-uitest.md)
   - Native接口参考

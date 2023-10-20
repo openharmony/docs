@@ -24,3 +24,9 @@
 - 数据管理
   - [RelationalStore开发指导](native-relational-store-guidelines.md)
 
+- 硬件兼容性
+  - [硬件兼容性简介](hw-guide.md)
+  - [OpenHarmony ABI](ohos-abi.md)
+  - [CPU特性](cpu-features.md)
+  - [使用Neon指令扩展](neon-guide.md)
+

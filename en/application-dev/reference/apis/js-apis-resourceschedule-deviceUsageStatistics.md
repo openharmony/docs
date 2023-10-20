@@ -1594,7 +1594,6 @@ Provides the application group changes returned through a callback.
 
 Provides the usage duration information of an application.
 
-### Attributes
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 

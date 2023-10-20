@@ -14,6 +14,7 @@
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](js-apis-app-ability-environmentCallback.md)
     - [@ohos.app.ability.ExtensionAbility (ExtensionAbility Base Class)](js-apis-app-ability-extensionAbility.md)
+    - [@ohos.app.ability.PrintExtensionAbility (Print Extension Ability)](js-apis-app-ability-PrintExtensionAbility.md)
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-app-ability-serviceExtensionAbility.md)
     - [@ohos.app.ability.ShareExtensionAbility (ExtensionAbility for Sharing)](js-apis-app-ability-shareExtensionAbility.md)
     - [@ohos.app.ability.StartOptions (StartOptions)](js-apis-app-ability-startOptions.md)
@@ -122,8 +123,8 @@
     - [@ohos.continuation.continuationManager (continuationManager)](js-apis-continuation-continuationManager.md)
     - continuation
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)
-      - [continuationResult](js-apis-continuation-continuationResult.md)
-
+    - [continuationResult](js-apis-continuation-continuationResult.md)
+  
 - Common Event and Notification
   - [System Common Events](commonEventManager-definitions.md)
   - [@ohos.commonEventManager (Common Event) (Recommended)](js-apis-commonEventManager.md)
@@ -262,6 +263,7 @@
 
 - Security
   - [@ohos.abilityAccessCtrl (Ability Access Control)](js-apis-abilityAccessCtrl.md)
+  - [@ohos.dlpPermission (DLP)](js-apis-dlppermission.md)
   - [@ohos.privacyManager (Privacy Management)](js-apis-privacyManager.md)
   - [@ohos.security.cert (Certificate)](js-apis-cert.md)
   - [@ohos.security.cryptoFramework (Crypto Framework)](js-apis-cryptoFramework.md)
@@ -302,6 +304,7 @@
   - [@ohos.file.securityLabel (Data Label)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
+  - [@ohos.file.trash (Trash)](js-apis-file-trash.md)
   - [@ohos.file.volumeManager (Volume Management)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (User Data Management)](js-apis-userFileManager.md)
   - [@ohos.fileshare (File Sharing)](js-apis-fileShare.md)
@@ -381,6 +384,7 @@
   - [@ohos.InputMethodSubtype (Input Method Subtype)](js-apis-inputmethod-subtype.md)
   - [@ohos.logLibrary (Log Library)](js-apis-loglibrary.md)
   - [@ohos.pasteboard (Pasteboard)](js-apis-pasteboard.md)
+  - [@ohos.print (Print)](js-apis-print.md)
   - [@ohos.screenLock (Screenlock)](js-apis-screen-lock.md)
   - [@ohos.systemDateTime (System Time and Time Zone)](js-apis-system-date-time.md)
   - [@ohos.systemTimer (System Timer)](js-apis-system-timer.md)

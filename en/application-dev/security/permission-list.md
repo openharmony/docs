@@ -2304,7 +2304,7 @@ Allows a system application to disable the application with the overlay feature 
 
 ## ohos.permission.CONNECT_CELLULAR_CALL_SERVICE
 
-Allows a system ability (SA) to access the cellular call SA.
+Allows a system service to access the cellular call SA.
 
 **Permission level**: system_basic
 
@@ -2316,7 +2316,7 @@ Allows a system ability (SA) to access the cellular call SA.
 
 ## ohos.permission.CONNECT_IMS_SERVICE
 
-Allows an SA to access the IMS SA.
+Allows a system service to access the IMS SA.
 
 **Permission level**: system_basic
 
@@ -2831,7 +2831,7 @@ Allows an application to access the AI Voice vision component.
 **Start version**: 11
 ## ohos.permission.ENABLE_DISTRIBUTED_HARDWARE
 
-Allows a system ability to enable distributed hardware resources.
+Allows a system service to enable distributed hardware resources.
 
 **Permission level**: system_basic
 
@@ -2842,9 +2842,81 @@ Allows a system ability to enable distributed hardware resources.
 **Start version**: 11
 ## ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
 
-Allows a system ability or system application to access distributed hardware resources.
+Allows a system service or system application to access distributed hardware resources.
 
 **Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.INSTANTSHARE_SWITCH_CONTROL
+
+Allows a system service or system application to change the **instantshare** switch state.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.ACCESS_INSTANTSHARE_SERVICE
+
+Allows a system service or system application to access the **instantshare** service.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.ACCESS_INSTANTSHARE_PRIVATE_ABILITY
+
+Allows a system service or system application to use the **instantshare** private ability.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.ACCESS_MCP_AUTHORIZATION
+
+Allows the MCP host application to perform user account authorization and login for its sub-applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.GET_BUNDLE_RESOURCES
+
+Allows an application to obtain resource information of another application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.SET_CODE_PROTECT_INFO
+
+Allows a system application to set the public key and working secret ciphertext in the cloud and agrees on a key for code protection.
+
+**Permission level**: system_core
 
 **Authorization mode**: system_grant
 

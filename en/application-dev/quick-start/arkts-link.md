@@ -19,8 +19,8 @@ An \@Link decorated variable in a child component shares the same value with a v
 | \@Link Decorator| Description                                      |
 | ----------- | ---------------------------------------- |
 | Decorator parameters      | None.                                       |
-| Synchronization type       | Two-way:<br>from an \@State, \@StorageLink, or \@Link decorated variable in the parent component to this variable; and the other way around.|
-| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type. For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>**any** is not supported. A combination of simple and complex types is not supported. The **undefined** and **null** values are not allowed.<br>**NOTE**<br>The Length, ResourceStr, and ResourceColor types are a combination of simple and complex types and therefore not supported.|
+| Synchronization type       | Two-way: from an \@State, \@StorageLink, or \@Link decorated variable in the parent component to this variable; and the other way around. |
+| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type. For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>Union type of the preceding types, for example, string \| number, string \| undefined, or ClassA \| null. For details, see [Union Type @Link](#union-type-Link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@Link a: string \| undefined** is recommended; **@Link a: string** is not recommended.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>**any** is not supported. |
 | Initial value for the decorated variable  | Forbidden.                              |
 
 
@@ -28,7 +28,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
-| Initialization and update from the parent component| Mandatory. A two-way synchronization relationship can be established with the @State, @StorageLink, or \@Link decorated variable in the parent component. An \@Link decorated variable can be initialized from an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in the parent component.<br>Since API version 9, the syntax is **Comp({ aLink: this.aState })** for initializing an \@Link decorated variable in the child component from an @State decorated variable in its parent component. The **Comp({aLink: $aState})** syntax is also supported.|
+| Initialization and update from the parent component| Mandatory. A two-way synchronization relationship can be established with the @State, @StorageLink, or \@Link decorated variable in the parent component. An \@Link decorated variable can be initialized from an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in the parent component.<br>Since API version 9, the syntax is **Comp({&nbsp;aLink:&nbsp;this.aState&nbsp;})** for initializing an \@Link decorated variable in the child component from an @State decorated variable in its parent component. The **Comp({aLink:&nbsp;$aState})** syntax is also supported.|
 | Subnode initialization  | Supported; can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access | Private, accessible only within the component.                          |
 
@@ -239,5 +239,57 @@ struct Parent {
 
 
 As described above, the ArkUI framework can observe the addition, deletion, and replacement of array items. It should be noted that, in the preceding example, the type of the \@Link and \@State decorated variables is the same: number[]. It is not allowed to define the \@Link decorated variable in the child component as type number (**\@Link item: number**), and create child components for each array item in the \@State decorated array in the parent component. [\@Prop](arkts-prop.md) or \@Observed should be used depending on application semantics.
+
+## Union Type @Link
+
+@Link supports **undefined**, **null**, and union types. In the following example, the type of **name** is string | undefined. If the attribute or type of **name** is changed when the button in the parent component **Index** is clicked, the change will be synced to the child component.
+
+```ts
+
+@Component
+struct Child {
+  @Link name: string | undefined
+
+  build() {
+    Column() {
+
+      Button('Child change name to Bob')
+        .onClick(() => {
+          this.name = "Bob"
+        })
+
+      Button('Child change animal to undefined')
+        .onClick(() => {
+          this.name = undefined
+        })
+
+    }.width('100%')
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State name: string | undefined  = "mary"
+
+  build() {
+    Column() {
+      Text(`The name is  ${this.name}`).fontSize(30)
+
+      Child({name: this.name})
+
+      Button('Parents change name to Peter')
+        .onClick(() => {
+          this.name = "Peter"
+        })
+
+      Button('Parents change name to undefined')
+        .onClick(() => {
+          this.name = undefined
+        })
+    }
+  }
+}
+```
 
 <!--no_check-->
