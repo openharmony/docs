@@ -1808,12 +1808,12 @@ isRemoteData(): boolean
 
 ```ts
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try{
+try {
     let remoteData: boolean = systemPasteboard.isRemoteData();
-    console.info('True exists.');
-}catch(err){
-    console.error('False does not exist.',err);
-}
+        console.info(`It is remote data. remoteData: ${remoteData}`);
+} catch (err) {
+    console.error('It is not remote data.Cause:' + err.message);
+};
 ```
 
 ### getDataSource<sup>11+</sup>
@@ -1834,11 +1834,12 @@ getDataSource(): string
 
 ```ts
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try{
+try {
     let dateSource: string = systemPasteboard.getDataSource();
-}catch(err){ 
-    console.error('Request time out.',err);
-}
+        console.info(`Succeeded to get PasteData. dateSource: ${dateSource}`);
+} catch (err) { 
+    console.error('Failed to get PasteData. Cause:' + err.message);
+};
 ```
 
 ### hasDataType<sup>11+</sup>
@@ -1865,12 +1866,12 @@ hasDataType(mimeType: string): boolean
 
 ```ts
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try{
+try {
     let hasType: boolean = systemPasteboard.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
-    console.info('True exists.');
-}catch(err){
-    console.error('False does not exist.',err);
-}
+        console.info(`Succeeded to check the PasteData. hasType: ${hasType}`);
+} catch (err) {
+    console.error('Failed to check the PasteData. Cause:' + err.message);
+};
 ```
 
 ### clearDataSync<sup>11+</sup>
@@ -1885,12 +1886,12 @@ clearDataSync(): void
 
 ```ts
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try{
+try {
     systemPasteboard.clearDataSync();
-    console.info('Succeeded in clearing the pasteboard.');
-}catch(err){
-    console.error('Request time out.',err);
-}
+        console.info('Succeeded in clearing the pasteboard.');
+} catch (err) {
+    console.error('Failed in clearing the pasteboard. Cause:' + err.message);
+};
 ```
 
 ### getDataSync<sup>11+</sup>
@@ -1911,12 +1912,12 @@ getDataSync(): PasteData
 
 ```ts
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try{
+try {
     let getData: PasteData = systemPasteboard.getDataSync();
-    console.info('Succeeded to get PasteData.');
-}catch(err){
-    console.error('Request time out.',err);
-}   
+        console.info(`Succeeded to get PasteData. getData: ${getData}`);
+} catch (err) {
+    console.error('Failed to get PasteData. Cause:' + err.message);
+};   
 ```
 
 ### setDataSync<sup>11+</sup>
@@ -1937,12 +1938,12 @@ setDataSync(data: PasteData): void
 
 ```ts
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try{
+try {
     let setData: PasteData = systemPasteboard.setDataSync();
-    console.info('Succeeded to set PasteData.');
-}catch(err){
-    console.error('Request time out.',err);
-}  
+        console.info('Succeeded to set PasteData.');
+} catch (err) {
+    console.error('Failed to set PasteData. Cause:' + err.message);
+};  
 ```
 
 ### hasDataSync<sup>11+</sup>
@@ -1963,10 +1964,10 @@ hasDataSync(): boolean
 
 ```ts
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try{
+try {
     let hasData: PasteData = systemPasteboard.HasDataSync();
-    console.info('Succeeded to check the PasteData.', hasData);
-}catch(err){
-    console.error('Request time out.',err);
-}    
+        console.info(`Succeeded to check the PasteData. hasData: ${hasData}`);
+} catch (err) {
+    console.error('Failed to check the PasteData. Cause:' + err.message);
+};    
 ```
