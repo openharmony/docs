@@ -307,8 +307,8 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 ```js
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_SPEECH,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 1
 }
 
@@ -357,8 +357,8 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 ```js
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_SPEECH,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 1
 }
 
@@ -636,7 +636,7 @@ avPlayer.off('error')
 
 prepare(callback: AsyncCallback\<void>): void
 
-通过回调方式准备播放视频，需在[stateChange](#onstatechange9)事件成功触发至initialized状态后，才能调用。
+通过回调方式准备播放音频/视频，需在[stateChange](#onstatechange9)事件成功触发至initialized状态后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -671,7 +671,7 @@ avPlayer.prepare((err: BusinessError) => {
 
 prepare(): Promise\<void>
 
-通过Promise方式准备播放视频，需在[stateChange](#onstatechange9)事件成功触发至initialized状态后，才能调用。
+通过Promise方式准备播放音频/视频，需在[stateChange](#onstatechange9)事件成功触发至initialized状态后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
