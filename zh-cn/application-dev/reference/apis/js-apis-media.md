@@ -1866,7 +1866,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
 ```ts
 // 配置参数以实际硬件设备支持的范围为准
-let AVRecorderProfile: media.AVRecorderProfile = {
+let avRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : media.CodecMimeType.AUDIO_AAC,
@@ -1878,16 +1878,16 @@ let AVRecorderProfile: media.AVRecorderProfile = {
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
-let AVRecorderConfig: media.AVRecorderConfig = {
+let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
-  profile : AVRecorderProfile,
+  profile : avRecorderProfile,
   url : 'fd://', // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
   rotation : 0, // 合理值0、90、180、270，非合理值prepare接口将报错
   location : { latitude : 30, longitude : 130 }
 }
 
-avRecorder.prepare(AVRecorderConfig, (err: BusinessError) => {
+avRecorder.prepare(avRecorderConfig, (err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
   } else {
@@ -1937,7 +1937,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 ```ts
 // 配置参数以实际硬件设备支持的范围为准
-let AVRecorderProfile: media.AVRecorderProfile = {
+let avRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : media.CodecMimeType.AUDIO_AAC,
@@ -1949,16 +1949,16 @@ let AVRecorderProfile: media.AVRecorderProfile = {
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
-let AVRecorderConfig: media.AVRecorderConfig = {
+let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
-  profile : AVRecorderProfile,
+  profile : avRecorderProfile,
   url : 'fd://',  // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
   rotation : 0, // 合理值0、90、180、270，非合理值prepare接口报错
   location : { latitude : 30, longitude : 130 }
 }
 
-avRecorder.prepare(AVRecorderConfig).then(() => {
+avRecorder.prepare(avRecorderConfig).then(() => {
   console.info('prepare success');
 }).catch((err: Error) => {
   console.error('prepare failed and catch error is ' + err.message);
