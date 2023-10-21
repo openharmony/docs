@@ -44,13 +44,13 @@ listFile(): Array\<FileInfo>
   ```js
   let fileinfos = trash.listFile();
   for(let i = 0; i < fileinfos.length; i++){
-    console.info(fileinfos[i].uri);
-    console.info(fileinfos[i].srcPath);
-    console.info(fileinfos[i].fileName);
-    console.info(fileinfos[i].mode);
-    console.info(fileinfos[i].size);
-    console.info(fileinfos[i].mtime);
-    console.info(fileinfos[i].ctime);
+    console.info('uri: ' + fileinfos[i].uri);
+    console.info('srcPath: ' + fileinfos[i].srcPath);
+    console.info('fileName: ' + fileinfos[i].fileName);
+    console.info('mode: ' + fileinfos[i].mode);
+    console.info('size: ' + fileinfos[i].size);
+    console.info('mtime: ' + fileinfos[i].mtime);
+    console.info('ctime: ' + fileinfos[i].ctime);
   }
   ```
 
@@ -82,7 +82,7 @@ recover(uri: string): void;
 
   ```js
   let fileinfos = trash.listFile();
-  let uri = fileinfos[0];
+  let uri = fileinfos[0].uri;
   trash.recover(uri);
   ```
 
@@ -114,7 +114,7 @@ completelyDelete(uri: string): void
 
   ```js
   let fileinfos = trash.listFile();
-  let uri = fileinfos[0];
+  let uri = fileinfos[0].uri;
   trash.completelyDelete(uri);
   ```
 
