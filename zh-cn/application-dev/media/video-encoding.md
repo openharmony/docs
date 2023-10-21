@@ -49,12 +49,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     ``` c++
     // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
-    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(CodecMimeType::VIDEO_AVC.data());
+    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
     ```
 
     ```c++
     // 通过codec name创建编码器，应用有特殊需求，比如选择支持某种分辨率规格的编码器，可先查询capability，再根据codec name创建编码器。
-    OH_AVCapability *capability = OH_AVCodec_GetCapability(CodecMimeType::VIDEO_AVC.data(), true);
+    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     const char *codecName = OH_AVCapability_GetName(capability);
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
     ```
@@ -128,7 +128,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    示例中的变量如下：
     - DEFAULT_WIDTH：320像素宽度；  
     - DEFAULT_HEIGHT：240像素高度；  
-    - DEFAULT_PIXELFORMAT： 像素格式，因为示例使用YUV的文件保存的像素格式是YUV420P，所以设置为VideoPixelFormat::YUV420P。  
+    - DEFAULT_PIXELFORMAT： 像素格式，因为示例使用YUV的文件保存的像素格式是YUV420P，所以设置为 AV_PIXEL_FORMAT_YUVI420。  
 
     ``` c++
     // 配置视频帧宽度（必须）
@@ -136,12 +136,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 配置视频帧高度（必须）
     constexpr uint32_t DEFAULT_HEIGHT = 240;
     // 配置视频像素格式（必须）
-    constexpr VideoPixelFormat DEFAULT_PIXELFORMAT = VideoPixelFormat::YUV420P;
+    constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_YUVI420;
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_WIDTH.data(), DEFAULT_WIDTH);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_HEIGHT.data(), DEFAULT_HEIGHT);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_PIXEL_FORMAT.data(), DEFAULT_PIXELFORMAT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
     // 配置编码器
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
@@ -192,11 +192,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 配置传输特性
     int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
     // 配置最大矩阵系数
-    int32_t matrix = static_cast<int32_t>(OH_MaxtrixCoefficient::MATRIX_COFFICIENT_IDENTITY);
+    int32_t matrix = static_cast<int32_t>(OH_MaxtrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
     // 配置编码Profile
-    int32_t profile = static_cast<int32_t>(AVCProfile::AVC_PROFILE_BASELINE);
+    int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
     // 配置编码比特率模式
-    int32_t rateMode = static_cast<int32_t>(VideoEncodeBitrateMode::CBR);
+    int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
     // 配置关键帧的间隔，单位为毫秒
     int32_t iFrameInterval = 23000;
     // 配置所需的编码质量。只有在恒定质量模式下配置的编码器才支持此配置
@@ -204,17 +204,17 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 配置比特率
     int64_t bitRate = 3000000;
     // 写入format
-    OH_AVFormat_SetDoubleValue(format, MediaDescriptionKey::MD_KEY_FRAME_RATE, frameRate);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_RANGE_FLAG, rangeFlag);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_COLOR_PRIMARIES, primary);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_MATRIX_COEFFICIENTS, matrix);
+    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, primary);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
     
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_PROFILE, profile);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
-    OH_AVFormat_SetLongValue(format, MediaDescriptionKey::MD_KEY_BITRATE, bitRate);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_QUALITY, quality);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
+    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
 
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
@@ -358,12 +358,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     ``` c++
     // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
-    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(CodecMimeType::VIDEO_AVC.data());
+    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
     ```
 
     ```c++
     // 通过codec name创建编码器，应用有特殊需求，比如选择支持某种分辨率规格的编码器，可先查询capability，再根据codec name创建编码器。
-    OH_AVCapability *capability = OH_AVCodec_GetCapability(CodecMimeType::VIDEO_AVC.data(), true);
+    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     const char *codecName = OH_AVCapability_GetName(capability);
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
     ```
@@ -433,7 +433,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    示例中的变量如下：
     - DEFAULT_WIDTH：320像素宽度；  
     - DEFAULT_HEIGHT：240像素高度；  
-    - DEFAULT_PIXELFORMAT： 像素格式，因为示例使用YUV的文件保存的像素格式是YUV420P，所以设置为VideoPixelFormat::YUV420P。  
+    - DEFAULT_PIXELFORMAT： 像素格式，因为示例使用YUV的文件保存的像素格式是YUV420P，所以设置为 AV_PIXEL_FORMAT_YUVI420。  
 
     ``` c++
     // 配置视频帧宽度（必须）
@@ -441,12 +441,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 配置视频帧高度（必须）
     constexpr uint32_t DEFAULT_HEIGHT = 240;
     // 配置视频像素格式（必须）
-    constexpr VideoPixelFormat DEFAULT_PIXELFORMAT = VideoPixelFormat::YUV420P;
+    constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_YUVI420;
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_WIDTH.data(), DEFAULT_WIDTH);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_HEIGHT.data(), DEFAULT_HEIGHT);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_PIXEL_FORMAT.data(), DEFAULT_PIXELFORMAT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
     // 配置编码器
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
@@ -506,11 +506,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 配置传输特性
     int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
     // 配置最大矩阵系数
-    int32_t matrix = static_cast<int32_t>(OH_MaxtrixCoefficient::MATRIX_COFFICIENT_IDENTITY);
+    int32_t matrix = static_cast<int32_t>(OH_MaxtrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
     // 配置编码Profile
-    int32_t profile = static_cast<int32_t>(AVCProfile::AVC_PROFILE_BASELINE);
+    int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
     // 配置编码比特率模式
-    int32_t rateMode = static_cast<int32_t>(VideoEncodeBitrateMode::CBR);
+    int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
     // 配置关键帧的间隔，单位为毫秒
     int32_t iFrameInterval = 23000;
     // 配置所需的编码质量。只有在恒定质量模式下配置的编码器才支持此配置
@@ -518,17 +518,17 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 配置比特率
     int64_t bitRate = 3000000;
     // 写入format
-    OH_AVFormat_SetDoubleValue(format, MediaDescriptionKey::MD_KEY_FRAME_RATE, frameRate);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_RANGE_FLAG, rangeFlag);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_COLOR_PRIMARIES, primary);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_MATRIX_COEFFICIENTS, matrix);
+    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, primary);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
     
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_PROFILE, profile);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
-    OH_AVFormat_SetLongValue(format, MediaDescriptionKey::MD_KEY_BITRATE, bitRate);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_QUALITY, quality);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
+    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
 
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
