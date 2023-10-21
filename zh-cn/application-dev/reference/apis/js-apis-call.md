@@ -1785,6 +1785,7 @@ combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300007<sup>11+</sup>  | The number of conference calls exceeds the limit. |
 
 **示例：**
 
@@ -1830,6 +1831,7 @@ combineConference\(callId: number\): Promise\<void\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300007<sup>11+</sup>  | The number of conference calls exceeds the limit. |
 
 **示例：**
 
@@ -3344,6 +3346,7 @@ separateConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300008<sup>11+</sup>  | Conference call is not active. |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -3390,6 +3393,7 @@ separateConference\(callId: number\): Promise\<void\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300008<sup>11+</sup>  | Conference call is not active. |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -5612,6 +5616,8 @@ IP多媒体系统调用模式。
 | EVENT_INVALID_FDN_NUMBER              | 2    | 无效的FDN号事件 |
 | EVENT_HOLD_CALL_FAILED<sup>11+</sup>  | 3    | 保持通话失败事件 |
 | EVENT_SWAP_CALL_FAILED<sup>11+</sup>  | 4    | 保持当前通话并接听等待中电话失败事件 |
+| EVENT_COMBINE_CALL_FAILED<sup>11+</sup>  | 5 | 合并通话失败 |
+| EVENT_SPLIT_CALL_FAILED<sup>11+</sup> | 6    | 分离通话失败 |
 
 ## DialScene<sup>8+</sup>
 
