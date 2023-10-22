@@ -26,9 +26,9 @@ getFileAccessAbilityInfo() : Promise&lt;Array&lt;Want&gt;&gt;
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | --- | -- |
-  | Promise&lt;Array&lt;[Want](js-apis-app-ability-want.md)&gt;&gt; | 表示当前系统配置fileAccess的所有文件管理类服务 |
+| 类型 | 说明 |
+| --- | -- |
+| Promise&lt;Array&lt;[Want](js-apis-app-ability-want.md)&gt;&gt; | 表示当前系统配置fileAccess的所有文件管理类服务 |
 
 **错误码：**
 
@@ -65,9 +65,9 @@ getFileAccessAbilityInfo(callback: AsyncCallback&lt;Array&lt;Want&gt;&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | callback | AsyncCallback&lt;Array&lt;[Want](js-apis-app-ability-want.md)&gt;&gt; | 是 | 表示当前系统配置fileAccess的所有文件管理类服务 |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| callback | AsyncCallback&lt;Array&lt;[Want](js-apis-app-ability-want.md)&gt;&gt; | 是 | 表示当前系统配置fileAccess的所有文件管理类服务 |
 
 **错误码：**
 
@@ -108,16 +108,16 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | context | [Context](js-apis-inner-application-context.md) | 是 | 代表ability的上下文的能力 |
-  | wants | Array&lt;[Want](js-apis-app-ability-want.md)&gt; | 是 | Want是一种基本通信组件，主要用于服务拉起 |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| context | [Context](js-apis-inner-application-context.md) | 是 | 代表ability的上下文的能力 |
+| wants | Array&lt;[Want](js-apis-app-ability-want.md)&gt; | 是 | Want是一种基本通信组件，主要用于服务拉起 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | --- | -- |
-  | [FileAccessHelper](#fileaccesshelper) | 提供文件访问和操作能力的helper对象 |
+| 类型 | 说明 |
+| --- | -- |
+| [FileAccessHelper](#fileaccesshelper) | 提供文件访问和操作能力的helper对象 |
 
 **错误码：**
 
@@ -166,15 +166,15 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | context | [Context](js-apis-inner-application-context.md) | 是 | ability的上下文的能力 |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| context | [Context](js-apis-inner-application-context.md) | 是 | ability的上下文的能力 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | --- | -- |
-  | [FileAccessHelper](#fileaccesshelper) | 提供文件访问和操作的能力的helper对象 |
+| 类型 | 说明 |
+| --- | -- |
+| [FileAccessHelper](#fileaccesshelper) | 提供文件访问和操作的能力的helper对象 |
 
 **错误码：**
 
@@ -238,15 +238,15 @@ listFile(filter?: Filter) : FileIterator
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | -- | -- |
-  | filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象  |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | -- | -- |
+| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象  |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | --- | -- |
-  | [FileIterator](#fileiterator) | 文件(夹)信息的迭代器对象FileIterator |
+| 类型 | 说明 |
+| --- | -- |
+| [FileIterator](#fileiterator) | 文件(夹)信息的迭代器对象FileIterator |
 
 **错误码：**
 
@@ -296,15 +296,15 @@ scanFile(filter?: Filter) : FileIterator;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | -- | -- |
-  | filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象  |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | -- | -- |
+| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象  |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | --- | -- |
-  | [FileIterator](#fileiterator) | 文件信息的迭代器对象FileIterator |
+| 类型 | 说明 |
+| --- | -- |
+| [FileIterator](#fileiterator) | 文件信息的迭代器对象FileIterator |
 
 **错误码：**
 
@@ -406,15 +406,15 @@ listFile(filter?: Filter) : FileIterator
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | -- | -- |
-  | filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象  |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | -- | -- |
+| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象  |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | --- | -- |
-  | [FileIterator](#fileiterator) | 文件(夹)信息的迭代器对象FileIterator |
+| 类型 | 说明 |
+| --- | -- |
+| [FileIterator](#fileiterator) | 文件(夹)信息的迭代器对象FileIterator |
 
 **错误码：**
 
@@ -464,15 +464,15 @@ scanFile(filter?: Filter) : FileIterator
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | -- | -- |
-  | filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象  |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | -- | -- |
+| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象  |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | --- | -- |
-  | [FileIterator](#fileiterator) | 文件信息的迭代器对象FileIterator |
+| 类型 | 说明 |
+| --- | -- |
+| [FileIterator](#fileiterator) | 文件信息的迭代器对象FileIterator |
 
 **错误码：**
 
@@ -1351,10 +1351,10 @@ getFileInfoFromUri(uri: string, callback: AsyncCallback\<FileInfo>) : void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | uri | string | 是 | 文件(夹)的Uri |
-  | callback | AsyncCallback&lt;[FileInfo](#fileinfo)&gt; | 是 | uri对应的FileInfo对象 |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| uri | string | 是 | 文件(夹)的Uri |
+| callback | AsyncCallback&lt;[FileInfo](#fileinfo)&gt; | 是 | uri对应的FileInfo对象 |
 
 **示例：**
 
@@ -1979,6 +1979,308 @@ async function UnregisterObserver03() {
 }
 ```
 
+### moveItem<sup>11+</sup>
+
+moveItem(sourceUri: string, destUri: string, force?: boolean) : Promise<Array<MoveResult>>&gt;
+
+以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用Promise异步回调。
+
+当存在同名文件时，可以选择强制覆盖文件。
+
+目前仅支持设备内移动，跨设备不支持移动。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                                         |
+| --------- | ------- | ---- | ------------------------------------------------------------ |
+| sourceUri | string  | 是   | 待移动的源文件(夹)的uri。                                    |
+| destUri   | string  | 是   | 目标文件夹的uri。                                            |
+| force     | boolean | 否   | 选择当存在同名文件时，是否强制覆盖文件。当force为true时，强制覆盖文件；为false时不强制覆盖文件。该参数不填，默认为false。 |
+
+**返回值：**
+
+| 类型                                                    | 说明                                                         |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;Array&lt;[MoveResult](#moveresult11)&gt;&gt; | 返回 moveresult 数组，moveResult 为移动操作失败的返回信息，复制成功无返回信息。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+**示例 1：force 为空**
+
+```ts
+import { BusinessError } from '@ohos.base';
+// 以内置存储目录为例
+// 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
+// 开发者应根据自己实际获取的uri进行开发
+async function moveItemFunc01() {
+  let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+  let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let moveResult = await fileAccessHelper.moveItem(sourceUri, destUri);
+    if (moveResult.length === 0) {
+      console.log("moveItem success");
+    } else {
+      for (let i = 0; i < moveResult.length; i++) {
+        console.error("errCode" + moveResult[i].errCode);
+        console.error("errMsg" + moveResult[i].errMsg);
+        console.error("sourceUri" + moveResult[i].sourceUri);
+        console.error("destUri" + moveResult[i].destUri);
+      }
+    }
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error("moveItem failed, errCode:" + error.code + ", errMessage:" + error.message);
+  }
+}
+```
+
+**示例 2：force 为 true**
+
+```ts
+import { BusinessError } from '@ohos.base';
+// 以内置存储目录为例
+// 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
+// 开发者应根据自己实际获取的uri进行开发
+async function moveItemFunc02() {
+  let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+  let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let moveResult = await fileAccessHelper.moveItem(sourceUri, destUri, true);
+    if (moveResult.length === 0) {
+      console.log("moveItem success");
+    } else {
+      for (let i = 0; i < moveResult.length; i++) {
+        console.error("errCode" + moveResult[i].errCode);
+        console.error("errMsg" + moveResult[i].errMsg);
+        console.error("sourceUri" + moveResult[i].sourceUri);
+        console.error("destUri" + moveResult[i].destUri);
+      }
+    }
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error("moveItem failed, errCode:" + error.code + ", errMessage:" + error.message);
+  }
+}
+```
+
+### moveItem<sup>11+</sup>
+
+moveItem(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt;MoveResult&gt;&gt;) : void
+
+以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用callback异步回调。
+
+当前仅支持设备内移动，不支持跨设备移动。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名    | 类型                                                         | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| sourceUri | string                                                       | 是   | 待移动的源文件(夹)的uri。                                    |
+| destUri   | string                                                       | 是   | 目标文件夹的uri。                                            |
+| callback  | AsyncCallback&lt;Array&lt;[MoveResult](#moveresult11)&gt;&gt; | 是   | 回调返回MoveResult数组。MoveResult为移动操作失败的返回信息，移动成功无返回信息。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+// 以内置存储目录为例
+// 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
+// 开发者应根据自己实际获取的uri进行开发
+let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  fileAccessHelper.moveItem(sourceUri, destUri, async (err: BusinessError, copyResult: Array<fileAccess.MoveResult>) => {
+    if (err) {
+      console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
+    }
+    if (moveResult.length === 0) {
+      console.log("moveItem success");
+    } else {
+      for (let i = 0; i < moveResult.length; i++) {
+        console.error("errCode" + moveResult[i].errCode);
+        console.error("errMsg" + moveResult[i].errMsg);
+        console.error("sourceUri" + moveResult[i].sourceUri);
+        console.error("destUri" + moveResult[i].destUri);
+      }
+    }
+  });
+} catch (err) {
+  let error: BusinessError = err as BusinessError;
+  console.error("moveItem failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+### moveItem<sup>11+</sup>
+
+moveItem(sourceUri: string, destUri: string, force: boolean, callback: AsyncCallback&lt;Array&lt;MoveResult&gt;&gt;) : void
+
+以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用callback异步回调。
+
+当存在同名文件时，可以选择强制覆盖文件。
+
+当前仅支持设备内移动，不支持跨设备移动。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名    | 类型                                                         | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| sourceUri | string                                                       | 是   | 待移动的源文件(夹)的uri。                                    |
+| destUri   | string                                                       | 是   | 目标文件夹的uri。                                            |
+| force     | boolean                                                      | 是   | 选择当存在同名文件时，是否强制覆盖文件。当force为true时，强制覆盖文件；为false时不强制覆盖文件。该参数不填，默认为false。 |
+| callback  | AsyncCallback&lt;Array&lt;[MoveResult](#moveresult11)&gt;&gt; | 是   | 回调返回MoveResult数组。MoveResult为移动操作失败的返回信息，移动成功无返回信息。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+// 以内置存储目录为例
+// 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
+// 开发者应根据自己实际获取的uri进行开发
+let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  fileAccessHelper.moveItem(sourceUri, destUri, true, async (err: BusinessError, moveResult: Array<fileAccess.MoveResult>) => {
+    if (err) {
+      console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
+    }
+    if (moveResult.length === 0) {
+      console.log("copy success");
+    } else {
+      for (let i = 0; i < moveResult.length; i++) {
+        console.error("errCode" + moveResult[i].errCode);
+        console.error("errMsg" + moveResult[i].errMsg);
+        console.error("sourceUri" + moveResult[i].sourceUri);
+        console.error("destUri" + moveResult[i].destUri);
+      }
+    }
+  });
+} catch (err) {
+  let error: BusinessError = err as BusinessError;
+  console.error("moveItem failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+### moveFile<sup>11+</sup>
+
+moveFile(sourceUri: string, destUri: string, fileName: string) : Promise&lt;string&gt;
+
+以异步方法移动文件，返回移动后文件的uri。使用Promise异步回调。
+
+当存在同名文件时（即发生文件移动冲突时），可以重命名待移动的文件，再保存到目标文件夹。
+
+目前仅支持设备内移动，跨设备不支持移动。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                |
+| ---------- | ------ | ---- | ------------------- |
+| sourceFile | string | 是   | 待移动源文件的uri。 |
+| destFile   | string | 是   | 目标文件夹的uri。   |
+| fileName   | string | 是   | 冲突文件的新名称。  |
+
+**返回值：**
+
+| 类型                  | 说明                |
+| --------------------- | ------------------- |
+| Promise&lt;string&gt; | 新路径下的文件uri。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  async function moveFile01() {
+    // 以内置存储目录为例
+    // 示例代码sourceUri destUri表示Download目录下文件和文件夹，该uri是对应的fileInfo中uri
+    // 开发者应根据自己实际获取的uri进行开发
+    let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+    let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+    try {
+      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+      let fileUri = await fileAccessHelper.moveFile(sourceUri, destUri, fileName);
+      console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
+      console.error("moveFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+    }
+  }
+  ```
+
+### moveFile<sup>11+</sup>
+
+moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncCallback&lt;string&gt;) : void
+
+以异步方法移动文件，返回移动后文件的uri。使用callback异步回调。
+
+当存在同名文件时（即发生文件移动冲突时），可以重命名待移动的文件，再保存到目标文件夹。
+
+当前仅支持设备内移动，不支持跨设备移动。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名     | 类型                        | 必填 | 说明                  |
+| ---------- | --------------------------- | ---- | --------------------- |
+| sourceFile | string                      | 是   | 待移动的源文件的uri。 |
+| destFile   | string                      | 是   | 目标文件夹的uri。     |
+| fileName   | string                      | 是   | 冲突文件的新名称。    |
+| callback   | AsyncCallback&lt;string&gt; | 是   | 新路径下的文件uri。   |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  // 以内置存储目录为例
+  // 示例代码sourceUri destUri表示Download目录下文件和文件夹，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+  let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.moveFile(sourceUri, destUri, fileName, (err: BusinessError, fileUri: string) => {
+      if (err) {
+        console.error("Failed to moveFile in async, errCode:" + err.code + ", errMessage:" + err.message);
+      }
+      console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
+    });
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error("moveFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+  }
+  ```
+
 ## CopyResult<sup>10+</sup>
 
 表示复制操作失败时的返回信息，复制成功时则没有返回信息。
@@ -2054,3 +2356,19 @@ async function UnregisterObserver03() {
 | ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
 | type | [NotifyType](#notifytype10) | 是   | 否   | 变更的通知类型                                            |
 | uris | Array&lt;string&gt;         | 是   | 否   | 所变更文件的uri集合，目前仅支持单条通知，后序支持多条通知 |
+
+## MoveResult<sup>11+</sup>
+
+表示移动操作失败时的返回信息，移动成功时则没有返回信息。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+| 名称      | 类型   | 可读 | 可写 | 说明                                                         |
+| --------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| sourceUri | string | 是   | 否   | 源文件(夹) uri                                               |
+| destUri   | string | 是   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空。     |
+| errCode   | number | 是   | 否   | 错误码。接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。 |
+| errMsg    | string | 是   | 否   | 错误信息。                                                   |
+
