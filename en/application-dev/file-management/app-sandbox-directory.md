@@ -2,11 +2,11 @@
 
 The application sandbox is an isolation mechanism used to prevent malicious data access through path traversal. With this mechanism, only the application sandbox directory is visible to an application.
 
-- The system has a dedicated application sandbox directory in the internal storage to map the directory of each application. The application sandbox directory contains only the [application files](app-file-overview.md) and the minimum system files required for running of the application.
+- The system has a dedicated application sandbox directory in the internal storage to map the directory of each application. The application sandbox directory contains only the [application directories](#application-file-directory-and-application-file-path) and the minimum system files required for running of the application.
 
 - The application sandbox defines the minimum data range visible to each application. In the application sandbox directory, an application can access only its own application files and the system files required for its running. The application cannot access files of other applications. This ensures application file security.
 
-- In each application sandbox directory, the application can save and process its application files in the [application file directory](app-file-overview.md), and can only read the system files and directories. To access [user files](user-file-overview.md), the application need to call specific APIs and have authorization from the user.
+- In each application sandbox directory, the application can save and process its application files in the application file directory, and can only read the system files and directories. To access [user files](user-file-overview.md), the application need to call specific APIs and have authorization from the user.
 
 The following figure illustrates the file access mechanism in an application sandbox.
 
