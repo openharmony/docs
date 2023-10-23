@@ -72,7 +72,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 - 媒体库file://data/storage
 
-  支持file://路径前缀的字符串，用于访问通过媒体库提供的图片路径。
+  支持file://路径前缀的字符串，用于访问通过[媒体库](../reference/apis/js-apis-file-picker.md)提供的图片路径。
 
   1. 调用接口获取图库的照片url。
       ```ts
