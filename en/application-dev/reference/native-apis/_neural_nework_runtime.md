@@ -1,4 +1,4 @@
-# NeuralNeworkRuntime
+# NeuralNetworkRuntime
 
 
 ## Overview
@@ -20,8 +20,8 @@ Provides APIs for accelerating the Neural Network Runtime model inference.
 
 | Name | Description | 
 | -------- | -------- |
-| [neural_network_runtime.h](neural__network__runtime_8h.md) | Defines the Neural Network Runtime APIs. The AI inference framework uses the Native APIs provided by Neural Network Runtime to construct and compile models and perform inference and computing on acceleration hardware. Note: Currently, the APIs of Neural Network Runtime do not support multi-thread calling. <br>File to Include: <neural_network_runtime/neural_network_runtime.h> | 
-| [neural_network_runtime_type.h](neural__network__runtime__type_8h.md) | Defines the structure and enumeration for Neural Network Runtime. <br>File to Include: <neural_network_runtime/neural_network_runtime_type.h>  | 
+| [neural_network_runtime.h](neural__network__runtime_8h.md) | Defines the Neural Network Runtime APIs. The AI inference framework uses the Native APIs provided by Neural Network Runtime to construct and compile models and perform inference and computing on acceleration hardware. Note: Currently, the APIs of Neural Network Runtime do not support multi-thread calling. <br>File to Include: <neural_network_runtime/neural_network_runtime.h> <br/>Library: libneural_network_runtime.so | 
+| [neural_network_runtime_type.h](neural__network__runtime__type_8h.md) | Defines the structure and enumeration for Neural Network Runtime. <br>File to Include: <neural_network_runtime/neural_network_runtime_type.h> <br/>Library: libneural_network_runtime.so | 
 
 
 ### Structs

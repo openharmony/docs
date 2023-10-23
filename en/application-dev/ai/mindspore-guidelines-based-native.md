@@ -25,10 +25,12 @@ Assume that you have prepared a model in the **.ms** format.
 Before using the Native APIs provided by MindSpore Lite for development, you need to reference the corresponding header files.
 
 ```c
+#include <iostream>
 #include <mindspore/model.h>
 #include <mindspore/context.h>
 #include <mindspore/status.h>
 #include <mindspore/tensor.h>
+#include <rawfile/raw_file_manager.h>
 ```
 
 (1). Read model files.

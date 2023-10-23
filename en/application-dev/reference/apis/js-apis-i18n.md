@@ -1541,7 +1541,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
 
 | Type      | Description          |
 | -------- | ------------ |
-| TimeZone | **TimeZone** object corresponding to the time zone ID.|
+| [TimeZone](#timezone) | **TimeZone** object corresponding to the time zone ID.|
 
 **Example**
   ```js
@@ -1626,15 +1626,21 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 
 getOffset(date?: number): number
 
-Obtains the offset between the time zone represented by a **TimeZone** object and the UTC time zone at a certain time point.
+Obtains the offset between the time zone represented by a **TimeZone** object and the UTC time zone at a certain time.
 
 **System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description    |
+| ------ | ------ | ---- | ------ |
+| date | number | No   | Date and time.|
 
 **Return value**
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time point. The default value is the system time zone.|
+| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time. The default value is the system time.|
 
 **Example**
   ```js
@@ -2765,7 +2771,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| string | string obtained after formatting based on the measurement unit specified by **toUnit**.|
+| string | String obtained after formatting based on the measurement unit specified by **toUnit**.|
 
 
 ## Character<sup>(deprecated)</sup>
