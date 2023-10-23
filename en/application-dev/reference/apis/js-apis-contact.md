@@ -41,7 +41,7 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -70,7 +70,7 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContact](#contactquerycontact10).
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [addContact](#contactaddcontact10).
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -86,7 +86,7 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.addContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -132,7 +132,7 @@ Adds a contact. This API uses a promise to return the result.
 **Example**
 
 ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -181,7 +181,7 @@ Adds a contact. This API uses a promise to return the result.
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.addContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -221,7 +221,7 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 **Example**
 
 ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -262,7 +262,7 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.deleteContact('xxx', (err) => {
       if (err) {
           console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
@@ -306,7 +306,7 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -346,12 +346,12 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 
 | Type               | Description                                         |
 | ------------------- | --------------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result|
 
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
       console.log(`deleteContact success`);
@@ -389,7 +389,7 @@ Updates a contact based on the specified contact information. This API uses an a
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -403,7 +403,7 @@ Updates a contact based on the specified contact information. This API uses an a
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -434,14 +434,14 @@ Updates a contact based on the specified contact information. This API uses an a
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -478,7 +478,7 @@ Updates a contact based on the specified contact information. This API uses an a
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -494,7 +494,7 @@ Updates a contact based on the specified contact information. This API uses an a
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -526,7 +526,7 @@ Updates a contact based on the specified contact information. This API uses an a
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
@@ -535,7 +535,7 @@ Updates a contact based on the specified contact information. This API uses an a
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err) => {
       if (err) {
-          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
       }
       console.log('updateContact success');
@@ -565,7 +565,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 
 | Type               | Description                                             |
 | ------------------- | ------------------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result|
 
 **Error codes**
 
@@ -577,7 +577,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 **Example**
 
 ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -623,12 +623,12 @@ Updates a contact based on the specified contact information and attributes. Thi
 **Return Value**
 | Type               | Description                                             |
 | ------------------- | ------------------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result|
 
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
@@ -672,7 +672,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -713,7 +713,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.isLocalContact(/*id*/1, (err, data) => {
       if (err) {
           console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
@@ -756,7 +756,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 **Example**
 
 ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -800,7 +800,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.isLocalContact(/*id*/1);
   promise.then((data) => {
       console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
@@ -837,7 +837,7 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 **Example**
 
 ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -877,7 +877,7 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.isMyCard(/*id*/1, (err, data) => {
       if (err) {
           console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
@@ -921,7 +921,7 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 **Example**
 
 ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -966,7 +966,7 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.isMyCard(/*id*/1);
   promise.then((data) => {
       console.log(`isMyCard success: data->${JSON.stringify(data)}`);
@@ -1002,7 +1002,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1042,7 +1042,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryMyCard((err, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
@@ -1080,7 +1080,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1123,7 +1123,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryMyCard({
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -1168,7 +1168,7 @@ Queries my card based on the specified contact attributes. This API uses a promi
 **Example**
 
 ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1214,7 +1214,7 @@ Queries my card based on the specified contact attributes. This API uses a promi
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.queryMyCard({
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
@@ -1247,7 +1247,7 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.selectContact((err, data) => {
       if (err) {
           console.log(`selectContact callback: err->${JSON.stringify(err)}`);
@@ -1279,7 +1279,7 @@ Selects a contact. This API uses a promise to return the result.
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.selectContact();
   promise.then((data) => {
       console.log(`selectContact success: data->${JSON.stringify(data)}`);
@@ -1302,10 +1302,16 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 401      | Parameter error.   |
+
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.selectContacts((err, data) => {
       if (err) {
           console.log(`selectContact callback: err->${JSON.stringify(err)}`);
@@ -1329,10 +1335,16 @@ Selects a contact. This API uses a promise to return the result.
 | ----------------------------------------------- | ------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 401      | Parameter error.   |
+
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.selectContacts();
   promise.then((data) => {
       console.log(`selectContact success: data->${JSON.stringify(data)}`);
@@ -1353,13 +1365,19 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                                                 | Mandatory| Description                                |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| options | ContactSelectionOptions | Yes  | Contact selection options.|
+| options | [ContactSelectionOptions](#contactselectionoptions10) | Yes  | Contact selection options.|
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 401      | Parameter error.   |
 
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.selectContacts({
     isMultiSelect:false
   }, (err, data) => {
@@ -1383,13 +1401,19 @@ Selects a contact. This API uses a promise to return the result.
 
 | Type                                           | Description                                             |
 | ----------------------------------------------- | ------------------------------------------------- |
-| options | ContactSelectionOptions | Yes  | Contact selection options.|
+| options | [ContactSelectionOptions](#contactselectionoptions10) | Yes  | Contact selection options.|
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 401      | Parameter error.   |
 
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
       console.log(`selectContact success: data->${JSON.stringify(data)}`);
@@ -1426,7 +1450,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1467,7 +1491,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContact('xxx', (err, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
@@ -1507,7 +1531,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1553,7 +1577,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContact('xxx', {
       holderId: 0,
       bundleName: "",
@@ -1596,7 +1620,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1640,7 +1664,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContact('xxx', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -1682,7 +1706,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 **Example**
 
 ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1731,7 +1755,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContact('xxx', {
       holderId: 0,
       bundleName: "",
@@ -1782,7 +1806,7 @@ Queries contacts based on the specified key, application, and attributes. This A
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1834,7 +1858,7 @@ Queries contacts based on the specified key, application, and attributes. This A
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.queryContact('xxx', {
       holderId: 0,
       bundleName: "",
@@ -1876,7 +1900,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1916,7 +1940,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContacts((err, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
@@ -1954,7 +1978,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -1999,7 +2023,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContacts({
       holderId: 0,
       bundleName: "",
@@ -2041,7 +2065,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2084,7 +2108,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContacts({
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -2125,7 +2149,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2173,7 +2197,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContacts({
       holderId: 0,
       bundleName: "",
@@ -2222,7 +2246,7 @@ Queries all contacts based on the specified application and attributes. This API
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2274,7 +2298,7 @@ Queries all contacts based on the specified application and attributes. This API
 **Example**
 
 ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.queryContacts({
       holderId: 0,
       bundleName: "",
@@ -2317,7 +2341,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2358,7 +2382,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
@@ -2398,7 +2422,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2444,7 +2468,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
@@ -2487,7 +2511,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2531,7 +2555,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -2573,7 +2597,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2622,7 +2646,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
@@ -2673,7 +2697,7 @@ Queries contacts based on the specified phone number, application, and attribute
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2726,7 +2750,7 @@ Queries contacts based on the specified phone number, application, and attribute
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
@@ -2769,7 +2793,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2810,7 +2834,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContactsByEmail('xxx@email.com', (err, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -2849,7 +2873,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2895,7 +2919,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0,
       bundleName: "",
@@ -2938,7 +2962,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -2982,7 +3006,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContactsByEmail('xxx@email.com', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
@@ -3024,7 +3048,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3073,7 +3097,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0,
       bundleName: "",
@@ -3124,7 +3148,7 @@ Queries contacts based on the specified email address, application, and attribut
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3177,7 +3201,7 @@ Queries contacts based on the specified email address, application, and attribut
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0,
       bundleName: "",
@@ -3219,7 +3243,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3259,7 +3283,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryGroups((err, data) => {
       if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
@@ -3284,7 +3308,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 | Name  | Type                                             | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                           | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
-| holder   | Holder                                            | Yes  | Application that creates the contacts.                                      |
+| holder   | [Holder](#holder)                                 | Yes  | Application that creates the contacts.                                      |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result.                        |
 
 **Error codes**
@@ -3297,7 +3321,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3336,13 +3360,13 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
 | Name  | Type                                             | Mandatory| Description                                |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-| holder   | Holder                                            | Yes  | Application that creates the contacts.              |
+| holder   | [Holder](#holder)                                 | Yes  | Application that creates the contacts.              |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryGroups({
       holderId: 0,
       bundleName: "",
@@ -3389,7 +3413,7 @@ Queries all groups of this contact based on the specified application. This API 
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3438,7 +3462,7 @@ Queries all groups of this contact based on the specified application. This API 
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.queryGroups({
       holderId: 0,
       bundleName: "",
@@ -3453,7 +3477,7 @@ Queries all groups of this contact based on the specified application. This API 
 
 ## contact.queryHolders<sup>10+</sup>
 
-queryHolders(context: Context,  callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
+queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 Queries all applications that have created contacts. This API uses an asynchronous callback to return the result.
 
@@ -3478,7 +3502,7 @@ Queries all applications that have created contacts. This API uses an asynchrono
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3518,7 +3542,7 @@ Queries all applications that have created contacts. This API uses an asynchrono
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryHolders((err, data) => {
       if (err) {
           console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
@@ -3530,7 +3554,7 @@ Queries all applications that have created contacts. This API uses an asynchrono
 
 ## contact.queryHolders<sup>10+</sup>
 
-queryHolders(context: Context ): Promise&lt;Array&lt;Holder&gt;&gt;
+queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 
 Queries all applications that have created contacts. This API uses a promise to return the result.
 
@@ -3560,7 +3584,7 @@ Queries all applications that have created contacts. This API uses a promise to 
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3599,7 +3623,7 @@ Queries all applications that have created contacts. This API uses a promise to 
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.queryHolders();
   promise.then((data) => {
       console.log(`queryHolders success: data->${JSON.stringify(data)}`);
@@ -3636,7 +3660,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3677,7 +3701,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryKey(/*id*/1, (err, data) => {
       if (err) {
           console.log(`queryKey callback: err->${JSON.stringify(err)}`);
@@ -3716,7 +3740,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3762,7 +3786,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
@@ -3810,7 +3834,7 @@ Queries the key of a contact based on the specified contact ID and application. 
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   // Obtain the context.
   import UIAbility from '@ohos.app.ability.UIAbility';
   class EntryAbility extends UIAbility {
@@ -3860,7 +3884,7 @@ Queries the key of a contact based on the specified contact ID and application. 
 **Example**
 
   ```js
-// The sample code applies only to JS source files.
+  // The sample code applies only to JS source files.
   let promise = contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
@@ -4504,7 +4528,7 @@ Defines a contact's postal address.
 | postcode      | string   | Yes  | Yes  | Postal code of the region where the contact is located.|
 | region        | string   | Yes  | Yes  | Area where the contact is located.        |
 | street        | string   | Yes  | Yes  | Street where the contact resides.        |
-| labelId       | number   | Yes  | Yes  | Postal address ID.            |
+| labelId       | number   | Yes  | Yes  | Postal address type.            |
 
 
 **Example**

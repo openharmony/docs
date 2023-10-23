@@ -6,7 +6,8 @@ The **mindSporeLite** module provides APIs for the MindSpore Lite inference engi
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version. Unless otherwise stated, the MindSpore model is used in the sample code.
->
+> 
+> The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 ```ts
@@ -217,8 +218,8 @@ export class Test {
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
 let modelName = '/path/to/xxx.ms';
-globalContext.resourceManager.getRawFileContent(modelName).then((buffer : ArrayBuffer) => {
-  let modelBuffer : ArrayBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
+  let modelBuffer : ArrayBuffer = buffer.buffer;
   mindSporeLite.loadModelFromBuffer(modelBuffer, (result : mindSporeLite.Model) => {
     let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
     console.log(modelInputs[0].name);
@@ -257,8 +258,8 @@ export class Test {
 }
 let globalContext= GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
-globalContext.resourceManager.getRawFileContent(modelName).then((buffer : ArrayBuffer) => {
-  let modelBuffer : ArrayBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
+  let modelBuffer : ArrayBuffer = buffer.buffer;
   let context: mindSporeLite.Context = {};
   context.target = ['cpu'];
   mindSporeLite.loadModelFromBuffer(modelBuffer, context, (result : mindSporeLite.Model) => {
@@ -304,8 +305,8 @@ export class Test {
 }
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
-globalContext.resourceManager.getRawFileContent(modelName).then((buffer : ArrayBuffer) => {
-  let modelBuffer : ArrayBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
+  let modelBuffer : ArrayBuffer = buffer.buffer;
   mindSporeLite.loadModelFromBuffer(modelBuffer).then((result : mindSporeLite.Model) => {
     let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
     console.log(modelInputs[0].name);
@@ -439,8 +440,8 @@ Executes the inference model. This API uses an asynchronous callback to return t
 
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
-| inputs | [MSTensor](#mstensor)[] | Yes  | Model input, which is an **MSTensor** object.|
-| callback | Callback<[MSTensor](#mstensor)[]> | Yes  | Callback used to return the result, **MSTensor** object.|
+| inputs | [MSTensor](#mstensor)[] | Yes  | List of input models.  |
+| callback | Callback<[MSTensor](#mstensor)[]> | Yes  | Callback used to return the result, which is an **MSTensor** object.|
 
 **Example**
 
@@ -458,8 +459,8 @@ export class Test {
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : ArrayBuffer) => {
-  let modelBuffer : ArrayBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let modelBuffer : ArrayBuffer = buffer.buffer;
   let model_file : string = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
@@ -483,15 +484,15 @@ Executes the inference model. This API uses a promise to return the result. Ensu
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                      |
-| ------ | ----------------------- | ---- | -------------------------- |
-| inputs | [MSTensor](#mstensor)[] | Yes  | Model input, which is an **MSTensor** object.|
+| Name| Type                   | Mandatory| Description                          |
+| ------ | ----------------------- | ---- | ------------------------------ |
+| inputs | [MSTensor](#mstensor)[] | Yes  | List of input models.  |
 
 **Return value**
 
-| Type                   | Description              |
-| ----------------------- | ------------------ |
-| [MSTensor](#mstensor)[] | **MSTensor** object.|
+| Type                   | Description                  |
+| ----------------------- | ---------------------- |
+| [MSTensor](#mstensor)[] | List of **MSTensor** objects.|
 
 **Example**
 
@@ -508,8 +509,8 @@ export class Test {
 }
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;;
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : ArrayBuffer) => {
-  let inputBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let inputBuffer = buffer.buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
@@ -535,7 +536,7 @@ Resets the tensor size.
 
 | Name| Type                 | Mandatory| Description                         |
 | ------ | --------------------- | ---- | ----------------------------- |
-| inputs | [MSTensor](#mstensor)[]            | Yes  | Model input, which is an **MSTensor** object.   |
+| inputs | [MSTensor](#mstensor)[]            | Yes  | List of input models. |
 | dims   | Array&lt;Array&lt;number&gt;&gt; | Yes  | Target tensor size.|
 
 **Return value**
@@ -618,8 +619,8 @@ export class Test {
 }
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : ArrayBuffer) => {
-  let inputBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let inputBuffer = buffer.buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
@@ -662,8 +663,8 @@ export class Test {
 }
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : ArrayBuffer) => {
-  let inputBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let inputBuffer = buffer.buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();

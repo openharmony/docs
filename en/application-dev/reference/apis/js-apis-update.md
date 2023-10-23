@@ -136,6 +136,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.checkNewVersion((err: BusinessError, result: update.CheckResult) => {
       console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
     });
@@ -168,6 +170,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.checkNewVersion()
       .then((result: update.CheckResult) => {
         console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
@@ -206,6 +210,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getNewVersionInfo((err: BusinessError, info: update.NewVersionInfo) => {
       console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
       console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
@@ -239,6 +245,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getNewVersionInfo().then((info: update.NewVersionInfo) => {
     console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
     console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
@@ -276,6 +284,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -328,6 +338,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -373,6 +385,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getCurrentVersionInfo((err: BusinessError, info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info?.osVersion}`);
   console.log(`info deviceName = ${info?.deviceName}`);
@@ -407,6 +421,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getCurrentVersionInfo().then((info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info.osVersion}`);
   console.log(`info deviceName = ${info.deviceName}`);
@@ -489,6 +505,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Options of the description file
 const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
@@ -528,6 +546,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getTaskInfo((err: BusinessError, info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
 });
@@ -560,6 +580,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getTaskInfo().then((info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info.existTask}`);
 }).catch((err: BusinessError) => {
@@ -596,6 +618,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -645,6 +669,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -691,6 +717,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Version digest information
 const versionDigestInfo : update.VersionDigestInfo= {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -739,6 +767,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -784,6 +814,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -832,6 +864,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -877,6 +911,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -925,6 +961,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -970,6 +1008,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -1018,6 +1058,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -1061,6 +1103,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getUpgradePolicy(err: BusinessError, policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
@@ -1094,6 +1138,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.getUpgradePolicy().then((policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy.autoUpgradeStrategy}`);
@@ -1130,6 +1176,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 const policy: update.UpgradePolicy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
@@ -1173,6 +1221,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 const policy: update.UpgradePolicy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
@@ -1212,6 +1262,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.terminateUpgrade((err: BusinessError) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
@@ -1244,6 +1296,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
 }).catch((err: BusinessError) => {
@@ -1368,6 +1422,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
 }).catch((err: BusinessError) => {
@@ -1450,6 +1506,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 const upgradeFile: update.UpgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
@@ -1525,6 +1583,8 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
@@ -2011,18 +2071,18 @@ Enumerates event IDs.
 | ---------------------- | ---------- | ------ |
 | EVENT_TASK_BASE        | EventClassify.TASK | Task event.  |
 | EVENT_TASK_RECEIVE     | 0x01000001 | Task received.  |
-| EVENT_TASK_CANCEL      | 0x01000010 | Task cancelled.  |
-| EVENT_DOWNLOAD_WAIT    | 0x01000011 | Waiting for download.   |
-| EVENT_DOWNLOAD_START   | 0x01000100 | Download started.  |
-| EVENT_DOWNLOAD_UPDATE  | 0x01000101 | Download progress update.|
-| EVENT_DOWNLOAD_PAUSE   | 0x01000110 | Download paused.  |
-| EVENT_DOWNLOAD_RESUME  | 0x01000111 | Download resumed.  |
-| EVENT_DOWNLOAD_SUCCESS | 0x01001000 | Download succeeded.  |
-| EVENT_DOWNLOAD_FAIL    | 0x01001001 | Download failed.  |
-| EVENT_UPGRADE_WAIT     | 0x01001010 | Waiting for update.   |
-| EVENT_UPGRADE_START    | 0x01001011 | Update started.  |
-| EVENT_UPGRADE_UPDATE   | 0x01001100 | Update in progress.   |
-| EVENT_APPLY_WAIT       | 0x01001101 | Waiting for applying the update.   |
-| EVENT_APPLY_START      | 0x01001110 | Applying the update.  |
-| EVENT_UPGRADE_SUCCESS  | 0x01001111 | Update succeeded.  |
-| EVENT_UPGRADE_FAIL     | 0x01010000 | Update failed.  |
+| EVENT_TASK_CANCEL      | 0x01000002 | Task cancelled.  |
+| EVENT_DOWNLOAD_WAIT    | 0x01000003 | Waiting for download.   |
+| EVENT_DOWNLOAD_START   | 0x01000004 | Download started.  |
+| EVENT_DOWNLOAD_UPDATE  | 0x01000005 | Download progress update.|
+| EVENT_DOWNLOAD_PAUSE   | 0x01000006 | Download paused.  |
+| EVENT_DOWNLOAD_RESUME  | 0x01000007 | Download resumed.  |
+| EVENT_DOWNLOAD_SUCCESS | 0x01000008 | Download succeeded.  |
+| EVENT_DOWNLOAD_FAIL    | 0x01000009 | Download failed.  |
+| EVENT_UPGRADE_WAIT     | 0x0100000A | Waiting for update.   |
+| EVENT_UPGRADE_START    | 0x0100000B | Update started.  |
+| EVENT_UPGRADE_UPDATE   | 0x0100000C | Update in progress.   |
+| EVENT_APPLY_WAIT       | 0x0100000D | Waiting for applying the update.   |
+| EVENT_APPLY_START      | 0x0100000E | Applying the update.  |
+| EVENT_UPGRADE_SUCCESS  | 0x0100000F | Update succeeded.  |
+| EVENT_UPGRADE_FAIL     | 0x01000010 | Update failed.  |
