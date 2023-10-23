@@ -600,6 +600,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
 
 ```ts
+import worker, { MessageEvents } from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 //用法一:
@@ -775,6 +776,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
 
 ```ts
+import worker, { MessageEvents } from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 //用法一:
@@ -874,7 +876,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -884,7 +886,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     let buffer = new ArrayBuffer(8);
@@ -920,7 +922,7 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -930,7 +932,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.postMessage("receive data from main thread");
@@ -964,7 +966,7 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.close()
@@ -1007,7 +1009,7 @@ workerInstance.postMessage("hello world");
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     console.log("receive main thread message");
@@ -1491,6 +1493,7 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worke
 **示例：**
 
 ```ts
+import worker, { MessageEvents } from '@ohos.worker';
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.onmessage = (e: MessageEvents): void => {
     console.log("onmessage");
@@ -1727,7 +1730,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -1737,7 +1740,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
@@ -1768,7 +1771,7 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -1778,7 +1781,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
@@ -1806,7 +1809,7 @@ const workerInstance = new worker.Worker("workers/worker.ts");
 ```
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     parentPort.close()
@@ -1842,7 +1845,7 @@ workerInstance.postMessage("hello world");
 ```
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     console.log("receive main thread message");
