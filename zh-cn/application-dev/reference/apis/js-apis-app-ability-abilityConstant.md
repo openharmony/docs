@@ -132,24 +132,29 @@ class MyAbility extends UIAbility {
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 let want: Want = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
 };
 let option: StartOptions = {
-    windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
+  windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
 };
 
 // 确保从上下文获取到context
-this.context.startAbility(want, option).then(()=>{
-    console.log('Succeed to start ability.');
-}).catch((error: BusinessError)=>{
-    console.error('Failed to start ability with error: ${JSON.stringify(error)}');
-});
+class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    this.context.startAbility(want, option).then(()=>{
+      console.log('Succeed to start ability.');
+    }).catch((error: BusinessError)=>{
+      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
+    });
+  }
+}
 ```
 
 ## AbilityConstant.MemoryLevel
@@ -245,9 +250,16 @@ ContinueState说明枚举值。用于表示当前应用任务流转的状态。�
 **示例：**
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
-    console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
-  });
+class MyAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
+        console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+        });
+    }
+}
 ```
