@@ -34,12 +34,13 @@ getCalendarManager(context : Context): CalendarManager;
 
 ```ts
   // 获取context
+  // 以下代码中的class EntryAbility extends UIAbility，onWindowStageCreate在工程main/ets/entryability/EntryAbility.ets中，测试ohosTest/ets/testability/TestAbility.ets中有，可直接使用
   import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
 
   export let mContext : common.UIAbilityContext | null = null;
   class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
+    onWindowStageCreate(windowStage: window.WindowStage){
       mContext = this.context;
     }
   }
