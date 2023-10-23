@@ -10,7 +10,7 @@ A relational database (RDB) store is used to store data in complex relational mo
 
 - **Predicates**: A representation of the property or feature of a data entity, or the relationship between data entities. It is used to define operation conditions.
 
-- **ResultSet**: a set of query results, which allows access to the required data in flexible modes.
+- **ResultSet**: A set of query results, which allows access to the required data in flexible modes.
 
 
 ## Working Principles
@@ -53,8 +53,8 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 1. Obtain an **RdbStore** instance.<br>Example:
 
    Stage model:
-   
-   ```js
+
+   ```ts
    import relationalStore from '@ohos.data.relationalStore'; // Import the module.
    import UIAbility from '@ohos.app.ability.UIAbility';
 
@@ -63,6 +63,8 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
        const STORE_CONFIG = {
          name: 'RdbTest.db', // Database file name.
          securityLevel: relationalStore.SecurityLevel.S1 // Database security level.
+         encrypt: false, // Whether to encrypt the database. This parameter is optional. By default, the database is not encrypted.
+         dataGroupId: "dataGroupID" // Application group ID, which needs to be obtained from AppGallery. This parameter is optional and can be used only in the stage model. If this parameter is specified, the instance is created in the sandbox path corresponding to the specified ID. If this parameter is not specified, the instance is created in the sandbox directory of the application.
        };
 
        // The RDB store version is 3, and the table structure is EMPLOYEE (NAME, AGE, SALARY, CODES).
@@ -106,14 +108,14 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
    FA model:
 
-   
+
    ```js
    import relationalStore from '@ohos.data.relationalStore'; // Import the module.
    import featureAbility from '@ohos.ability.featureAbility';
-   
+
    // Obtain the context.
    let context = featureAbility.getContext();
-   
+
    const STORE_CONFIG = {
      name: 'RdbTest.db', // Database file name.
      securityLevel: relationalStore.SecurityLevel.S1 // Database security level.
@@ -150,22 +152,21 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
         store.executeSql("ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT", null);
         store.version = 3;
      }
-   
+
      // Before performing data operations on the database, obtain an RdbStore instance.
-   
+
    });
    ```
 
    > **NOTE**
    >
    > - The RDB store created by an application varies with the context. Multiple RDB stores are created for the same database name with different application contexts. For example, each UIAbility has its own context.
-   > 
+   >
    > - When an application calls **getRdbStore()** to obtain an RDB store instance for the first time, the corresponding database file is generated in the application sandbox. When the RDB store is used, temporary files ended with **-wal** and **-shm** may be generated in the same directory as the database file. If you want to move the database files to other places, you must also move these temporary files. After the application is uninstalled, the database files and temporary files generated on the device are also removed.
 
-2. Use **insert()** to insert data to the RDB store. 
-   
+2. Use **insert()** to insert data to the RDB store.
+
    Example:
-   
    ```js
    const valueBucket = {
      'NAME': 'Lisa',
@@ -179,19 +180,18 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
        return;
      }
      console.info(`Succeeded in inserting data. rowId:${rowId}`);
-})
+   })
    ```
-   
+
    > **NOTE**
->
+   >
    > **RelationalStore** does not provide explicit flush operations for data persistence. Data inserted by **insert()** is stored in files persistently.
-   
+
 3. Modify or delete data based on the specified **Predicates** instance.
 
-   Use **update()** to modify data and **delete()** to delete data. 
+   Use **update()** to modify data and **delete()** to delete data.
 
    Example:
-
    ```js
    // Modify data.
    const valueBucket = {
@@ -209,7 +209,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
      }
      console.info(`Succeeded in updating data. row count: ${rows}`);
    })
-   
+
    // Delete data.
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Lisa');
@@ -224,10 +224,9 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 4. Query data based on the conditions specified by **Predicates**.
 
-   Use **query()** to query data. The data obtained is returned in a **ResultSet** object. 
+   Use **query()** to query data. The data obtained is returned in a **ResultSet** object.
 
    Example:
-
    ```js
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Rose');
@@ -256,10 +255,9 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 5. Delete the RDB store.
 
-   Use **deleteRdbStore()** to delete the RDB store and related database files. 
+   Use **deleteRdbStore()** to delete the RDB store and related database files.
 
    Example:
-
    > **NOTE**
    >
    > After the deletion, you are advised to set the database object to null.
@@ -269,7 +267,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
    ```js
    import UIAbility from '@ohos.app.ability.UIAbility';
-   
+
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage) {
        relationalStore.deleteRdbStore(this.context, 'RdbTest.db', (err) => {
@@ -289,10 +287,10 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
    ```js
    import featureAbility from '@ohos.ability.featureAbility';
-   
+
    // Obtain the context.
    let context = featureAbility.getContext();
-   
+
    relationalStore.deleteRdbStore(context, 'RdbTest.db', (err) => {
      if (err) {
        console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);

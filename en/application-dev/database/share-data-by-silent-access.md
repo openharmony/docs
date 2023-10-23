@@ -11,7 +11,7 @@ In silent data access, the DatamgrService accesses and modifies data without sta
 
 The DatamgrService supports basic database access or data hosting only. If service processing is required, the service processing needs to be encapsulated into APIs for the data consumer to call.
 
-If the service processing is too complex to be processed by the data consumer, use **DataShareExtensionAbility** to start the data provider.
+If the service processing is too complex to be processed by the data consumer, use [DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) to start the data provider.
 
 
 ## Working Principles
@@ -23,7 +23,7 @@ The DatamgrService can serve as a proxy to access the following types of data:
   Persistent data belongs to the database of the data provider. It is stored in the sandbox of the data provider and can be shared in declaration mode by the data provider. Persistent data is configured as data tables for access.
 
 
-- Process data 
+- Process data
 
   The process data managed by the **DatamgrService** is stored in the DatamgrService sandbox in JSON or byte format. This type of data is automatically deleted 10 days after no subscription.
 
@@ -42,11 +42,12 @@ The DatamgrService can serve as a proxy to access the following types of data:
 - In silent access, **DatamgrService** obtains the access rules configured by the data provider through directory mapping, performs preprocessing based on rules, and accesses the database.
 
 - To use silent access, the URIs must be in the following format:
-  
+
+
 datashareproxy://{bundleName}/{dataPath}
-  
+
 The **DatamgrService** obtains the data provider application based on **bundleName**, reads the configuration, verifies the permission, and accesses data.
-  
+
   **dataPath** identifies the data. It can be customized and must be unique in the same data provider application.
 
 
@@ -83,7 +84,7 @@ The following table lists the APIs for silent data access. Most of the APIs are 
 
 | API                                    | Description                |
 | ---------------------------------------- | ------------------ |
-| publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void | Publish data to the **DatamgrService**.|
+| publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void | Publishes data to the **DatamgrService**. |
 | on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string, callback: AsyncCallback&lt;PublishedDataChangeNode&gt;): Array&lt;OperationResult&gt; | Subscribes to changes of the published data.   |
 
 
@@ -103,7 +104,7 @@ The following describes how to share an RDB store.
    | uri                     | URI of the data, which is the unique identifier for cross-application data access.                 | Yes   |
    | requiredReadPermission  | Permission required for reading data from the data proxy. If this parameter is not set, other applications are not allowed to access data. For details about the supported permissions, see [Application Permission List](../security/permission-list.md).           | No   |
    | requiredWritePermission | Permission required for modifying data from the data proxy. If this parameter is not set, other applications are not allowed to modify the data. For details about the supported permissions, see [Application Permission List](../security/permission-list.md).         | No   |
-   | metadata                | Data source information, including the **name** and **resource** fields.<br> The **name** field identifies the configuration, which has a fixed value of **dataProperties**.<br> The value of **resource** is **$profile:{fileName}**, indicating that the name of the configuration file is **{fileName}.json**.| Yes   |
+   | metadata                | Data source information, including the **name** and **resource** fields.<br>The **name** field identifies the configuration, which has a fixed value of **dataProperties**.<br>The value of **resource** is **$profile:{fileName}**, indicating that the name of the configuration file is **{fileName}.json**. | Yes   |
 
    **module.json5 example**
 
@@ -309,4 +310,3 @@ In the **module.json5** file of the data provider, set the process data ID, read
    let result: Array<dataShare.OperationResult> = dsProxyHelper.on("publishedDataChange", uris, "11", onPublishCallback);
    ```
 
-   
