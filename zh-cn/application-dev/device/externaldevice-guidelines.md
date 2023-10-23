@@ -32,7 +32,7 @@
 
   ```ts
   import deviceManager from '@ohos.driver.deviceManager';
-  import type { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let matchDevice : deviceManager.USBDevice | null = null;
   try {
@@ -59,22 +59,25 @@
 
   ```ts
   import deviceManager from '@ohos.driver.deviceManager';
-  import type { BusinessError } from '@ohos.base';
-  import type rpc from '@ohos.rpc'
+  import { BusinessError } from '@ohos.base';
+  import rpc from '@ohos.rpc'
 
   let remoteObject : rpc.IRemoteObject;
   try {
     // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
-    deviceManager.bindDevice(12345678, (error : BusinessError, data) => {
+    deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
       console.error('Device is disconnected');
-    }, (error : BusinessError, data) => {
+    }, (error : BusinessError, data : {
+        deviceId : number;
+        remote : rpc.IRemoteObject;
+    }) => {
       if (error) {
         console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
         return;
       }
     console.info('bindDevice success');
     remoteObject = data.remote;
-  });
+    });
   } catch (error) {
     let errCode = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -88,7 +91,7 @@
 3. 绑定成功后使用设备驱动能力。
 
   ```ts
-  import type { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
   import rpc from '@ohos.rpc'
 
   let option : rpc.MessageOption = new rpc.MessageOption();
@@ -99,7 +102,7 @@
   // remoteObject应用可以通过绑定设备获取到
   let remoteObject : rpc.IRemoteObject;
   // code和data内容取决于驱动提供的接口
-  remoteObject.sendMessageRequest(code, data, reply, option)
+  remoteObject.sendMessageRequest(code : number, data : rpc.MessageSequence, reply : rpc.MessageSequence, option : rpc.MessageOption)
     .then(() => {
       console.info('sendMessageRequest finish.');
     }).catch((error : BusinessError) => {
@@ -112,11 +115,11 @@
 
   ```ts
   import deviceManager from '@ohos.driver.deviceManager';
-  import type { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   try {
     // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
-    deviceManager.unbindDevice(12345678, (error : BusinessError, data) => {
+    deviceManager.unbindDevice(12345678, (error : BusinessError, data : number) => {
       if (error) {
         let errCode = (error as BusinessError).code;
         let message = (error as BusinessError).message;
