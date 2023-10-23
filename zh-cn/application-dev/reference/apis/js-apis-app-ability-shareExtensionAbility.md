@@ -104,7 +104,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 
 3. ShareExtAbility.ts文件中，增加导入ShareExtensionAbility的依赖包，自定义类继承ShareExtensionAbility并实现生命周期回调。
 
-   ```ts
+  ```ts
   import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
   import Want from '@ohos.app.ability.Want';
@@ -145,7 +145,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
       console.info(TAG, `onDestroy`);
     }
   }
-   ```
+  ```
 
 4. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册ShareExtensionAbility，type标签需要设置为“share”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
