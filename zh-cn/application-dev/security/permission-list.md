@@ -2370,9 +2370,9 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
-**起始版本**：10
+**起始版本**：11
 
 ## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
 
@@ -2987,6 +2987,18 @@
 ## ohos.permission.COOPERATE_MANAGER
 
 允许系统应用使能键鼠穿越能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.PERCEIVE_TRAIL
+
+允许系统应用使用MSDP足迹感知功能。
 
 **权限级别**：system_basic
 
