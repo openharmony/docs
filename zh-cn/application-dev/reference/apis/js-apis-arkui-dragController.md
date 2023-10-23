@@ -19,7 +19,7 @@ import dragController from "@ohos.arkui.dragController";
 
 ## dragController.executeDrag
 
-executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: AsyncCallback&lt;err: BusinessError&lt;E&gt;, data: {event: DragEvent, extraParams: string}&gt;): void
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: AsyncCallback&lt; {event: DragEvent, extraParams: string}&gt;): void
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回结果。
 

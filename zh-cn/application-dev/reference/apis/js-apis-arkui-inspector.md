@@ -37,7 +37,7 @@ createComponentObserver(id: string): ComponentObserver
 **示例：** 
 
 ```ts
-let listener:inspector = inspector.createComponentObserver('COMPONENT_ID'); //监听id为COMPONENT_ID的组件回调事件
+let listener:inspector.ComponentObserver = inspector.createComponentObserver('COMPONENT_ID'); //监听id为COMPONENT_ID的组件回调事件
 ```
 
 ## ComponentObserver

@@ -90,3 +90,8 @@
 ## 蓝牙
 
 - ohos.permission.ACCESS_BLUETOOTH
+
+## 剪贴板
+
+- ohos.permission.SECURE_PASTE
+- ohos.permission.READ_PASTEBOARD

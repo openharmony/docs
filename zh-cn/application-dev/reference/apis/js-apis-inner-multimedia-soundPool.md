@@ -74,7 +74,7 @@ await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
   uri = 'fd://' + (file.fd).toString()
 }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
 
-soundPool.load(uri, (error, soundId_: number) => {
+soundPool.load(uri, (error: BusinessError, soundId_: number) => {
   if (error) {
     console.info(`load soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
   } else {
@@ -176,13 +176,12 @@ let maxOffset: number;
 //获取fd的描述信息
 await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
   console.info("file fd: " + file.fd);
-  uri = 'fd://' + (file.fd).toString()
-}); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
-let stat: Stat = await fs.stat('/test_01.mp3');
+});
+let stat: fs.Stat = await fs.stat('/test_01.mp3');
 fileSize = stat.size;
 maxOffset = stat.size;
 
-soundPool.load(fd, 0, fileSize, (error, soundId_: number) => {
+soundPool.load(file.fd, 0, fileSize, (error: BusinessError, soundId_: number) => {
   if (error) {
     console.info(`load soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
   } else {
@@ -238,13 +237,12 @@ let maxOffset: number;
 //获取fd的描述信息
 await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
   console.info("file fd: " + file.fd);
-  uri = 'fd://' + (file.fd).toString()
-}); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
-let stat = await fs.stat('/test_01.mp3');
+}); 
+let stat: fs.Stat = await fs.stat('/test_01.mp3');
 fileSize = stat.size;
 maxOffset = stat.size;
 
-soundPool.load(fd, 0, fileSize).then((soundId: number) => {
+soundPool.load(file.fd, 0, fileSize).then((soundId: number) => {
   console.info('load success');
   soundID = soundId;
 }).catch((err) => {
@@ -282,7 +280,7 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 ```js
 let soundID: number;
 let streamID: number;
-let PlayParameters: media.PlayParameters = {
+let playParameters: media.PlayParameters = {
     loop = 3, // 循环4次
     rate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
     leftVolume = 0.5, // range = 0.0-1.0
@@ -290,7 +288,7 @@ let PlayParameters: media.PlayParameters = {
     priority = 0, // 最低优先级
     parallelPlayFlag = false // 不和其它正在播放的音频并行播放
   }
-soundPool.play(soundID, PlayParameters, (error, streamId: number) => {
+soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
   if (error) {
     console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
   } else {
@@ -329,7 +327,7 @@ play(soundID: number, callback: AsyncCallback\<number>): void
 ```js
 let soundID: number;
 let streamID: number;
-soundPool.play(soundID,  (error, streamId: number) => {
+soundPool.play(soundID,  (error: BusinessError, streamId: number) => {
   if (error) {
     console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
   } else {
@@ -374,7 +372,7 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 ```js
 let soundID: number;
 let streamID: number;
-let PlayParameters: media.PlayParameters = {
+let playParameters: media.PlayParameters = {
     loop = 3, // 循环4次
     rate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
     leftVolume = 0.5, // range = 0.0-1.0
@@ -383,10 +381,10 @@ let PlayParameters: media.PlayParameters = {
     parallelPlayFlag = false // 不和其它正在播放的音频并行播放
   }
 
-soundPool.play(soundID, PlayParameters).then((streamId: number) => {
+soundPool.play(soundID, playParameters).then((streamId: number) => {
   console.info('play success');
   streamID = streamId;
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error('soundpool play failed and catch error is ' + err.message);
 });
 ```
@@ -420,7 +418,7 @@ stop(streamID: number, callback: AsyncCallback\<void>): void
 ```js
 let streamID: number;
 //先调用play方法给拿到对应的streamID
-soundPool.stop(streamID, (error) => {
+soundPool.stop(streamID, (error: BusinessError) => {
   if (error) {
     console.info(`stop sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
   } else {
@@ -503,7 +501,7 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 let streamID: number;
 //先通过调用play方法获取到对应的streamID
 //设置循环2次
-soundPool.setLoop(streamID, 2, (error) => {
+soundPool.setLoop(streamID, 2, (error: BusinessError) => {
   if (error) {
     console.info(`setLoop soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
   } else {
@@ -586,7 +584,7 @@ setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>):
 let streamID: number;
 // 先调用play方法获取到对应资源的streamID
 // 给对应的streamID资源设置优先级为1
-soundPool.setPriority(streamID, 1, (error) => {
+soundPool.setPriority(streamID, 1, (error: BusinessError) => {
   if (error) {
     console.info(`setPriority soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
   } else {
@@ -672,7 +670,7 @@ let streamID: number;
 let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // 默认正常速率
 // 先调用play方法获取到对应资源的streamID
 
-soundPool.setRate(streamID, selectedAudioRendererRate, (error) => {
+soundPool.setRate(streamID, selectedAudioRendererRate, (error: BusinessError) => {
   if (error) {
     console.info(`setRate soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
   } else {
@@ -758,7 +756,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 let streamID: number;
 // 先调用play方法获取到对应资源的streamID
 //设置音量为0.5
-soundPool.setVolume(streamID, 0.5, 0.5, (error) => {
+soundPool.setVolume(streamID, 0.5, 0.5, (error: BusinessError) => {
   if (error) {
     console.info(`setVolume soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
   } else {
@@ -843,7 +841,7 @@ unload(soundID: number, callback: AsyncCallback\<void>): void
 ```js
 let soundID: number;
 // 先调用load方法获取到对应资源的soundID
-soundPool.unload(soundID, (error) => {
+soundPool.unload(soundID, (error: BusinessError) => {
   if (error) {
     console.info(`unload soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
   } else {
@@ -922,7 +920,7 @@ release(callback: AsyncCallback\<void>): void
 
 ```js
 
-soundPool.release((error) => {
+soundPool.release((error: BusinessError) => {
   if (error) {
     console.info(`release soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
   } else {
@@ -1080,7 +1078,7 @@ SoundPool回调的**错误分类**<a name = error_info></a>可以分为以下几
 **示例：**
 
 ```js
-soundPool.on('error', (error) => {
+soundPool.on('error', (error: BusinessError) => {
   console.error('error happened,and error message is :' + error.message)
   console.error('error happened,and error code is :' + error.code)
 })
