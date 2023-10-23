@@ -68,7 +68,9 @@ struct CustomDialogExampleTwo {
         .height(100)
       Button('点我关闭第二个弹窗')
         .onClick(() => {
-          this.controllerTwo.close()
+          if (this.controllerTwo != undefined) {
+            this.controllerTwo.close()
+          }
         })
         .margin(20)
     }
@@ -118,7 +120,9 @@ struct CustomDialogExample {
 
       Button('点我打开第二个弹窗')
         .onClick(() => {
-          this.dialogControllerTwo.open()
+          if (this.dialogControllerTwo != null) {
+            this.dialogControllerTwo.open()
+          }
         })
         .margin(20)
     }.borderRadius(10)
