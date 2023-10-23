@@ -530,15 +530,11 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
     authorizationType: number
   }
 
-  let discoverParam: DiscoverParam = {
-    discoverTargetType: 1
+  let discoverParam: Record<string, number> = {
+    'discoverTargetType': 1
   };
-
-  let filterOptions: FilterOptions = {
-    availableStatus: 1,
-    discoverDistance: 50,
-    authenticationStatus: 0,
-    authorizationType: 0
+  let filterOptions: Record<string, number> = {
+    'availableStatus': 0
   };
 
   try {
@@ -632,7 +628,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
     targetPkgName: 'xxxx',
     appName: 'xxxx',
     appOperation: 'xxxx',
-    customDescription: 'xxxx'
+    customDescription: 'xxxx',
   }
   try {
     dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
