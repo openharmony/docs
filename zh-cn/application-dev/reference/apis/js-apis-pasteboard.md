@@ -1809,10 +1809,10 @@ isRemoteData(): boolean
 ```ts
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
-    let remoteData: boolean = systemPasteboard.isRemoteData();
-    console.info(`Succeeded in checking the PasteData. RemoteData: ${remoteData}`);
+    let result: boolean = systemPasteboard.isRemoteData();
+    console.info(`Succeeded in checking the RemoteData. Result: ${result}`);
 } catch (err) {
-    console.error('Failed to check the PasteData. Cause:' + err.message);
+    console.error('Failed to check the RemoteData. Cause:' + err.message);
 };
 ```
 
@@ -1835,10 +1835,10 @@ getDataSource(): string
 ```ts
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
-    let dateSource: string = systemPasteboard.getDataSource();
-    console.info(`Succeeded in getting PasteData. DateSource: ${dateSource}`);
+    let result: string = systemPasteboard.getDataSource();
+    console.info(`Succeeded in getting DataSource. Result: ${result}`);
 } catch (err) { 
-    console.error('Failed to get PasteData. Cause:' + err.message);
+    console.error('Failed to get DataSource. Cause:' + err.message);
 };
 ```
 
@@ -1867,10 +1867,10 @@ hasDataType(mimeType: string): boolean
 ```ts
 let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 try {
-    let dataType: boolean = pasteData.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
-    console.info(`Succeeded in checking the PasteData. DataType: ${dataType}`);
+    let result: boolean = pasteData.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
+    console.info(`Succeeded in checking the DataType. Result: ${result}`);
 } catch (err) {
-    console.error('Failed to check the PasteData. Cause:' + err.message);
+    console.error('Failed to check the DataType. Cause:' + err.message);
 };
 ```
 
@@ -1878,7 +1878,7 @@ try {
 
 clearDataSync(): void
 
-清空系统剪贴板内容;此接口为同步接口。
+清空系统剪贴板内容; 此接口为同步接口。
 
 **系统能力：** SystemCapability.MiscServices.
 
@@ -1898,7 +1898,7 @@ try {
 
 getDataSync(): PasteData
 
-读取系统剪贴板内容;此接口为同步接口。
+读取系统剪贴板内容; 此接口为同步接口。
 
 **系统能力：** SystemCapability.MiscServices.
 
@@ -1913,8 +1913,8 @@ getDataSync(): PasteData
 ```ts
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
-    let data: PasteData = systemPasteboard.getDataSync();
-    console.info(`Succeeded in getting PasteData. Data: ${data}`);
+    let result: PasteData = systemPasteboard.getDataSync();
+    console.info(`Succeeded in getting PasteData. Result: ${result}`);
 } catch (err) {
     console.error('Failed to get PasteData. Cause:' + err.message);
 };   
@@ -1924,7 +1924,7 @@ try {
 
 setDataSync(data: PasteData): void
 
-将数据写入系统剪贴板;此接口为同步接口。
+将数据写入系统剪贴板; 此接口为同步接口。
 
 **系统能力：** SystemCapability.MiscServices.
 
@@ -1950,7 +1950,7 @@ try {
 
 hasDataSync(): boolean
 
-判断系统剪贴板中是否有内容;此接口为同步接口。
+判断系统剪贴板中是否有内容; 此接口为同步接口。
 
 **系统能力：** SystemCapability.MiscServices.
 
@@ -1965,8 +1965,8 @@ hasDataSync(): boolean
 ```ts
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
-    let data: boolean = systemPasteboard.HasDataSync();
-    console.info(`Succeeded in checking the PasteData. Data: ${data}`);
+    let result: boolean = systemPasteboard.HasDataSync();
+    console.info(`Succeeded in checking the PasteData. Result: ${result}`);
 } catch (err) {
     console.error('Failed to check the PasteData. Cause:' + err.message);
 };    
