@@ -2959,3 +2959,27 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.SECURE_PASTE
+
+允许应用静默读取剪贴板。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.READ_PASTEBOARD
+
+允许应用读取剪贴板。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
