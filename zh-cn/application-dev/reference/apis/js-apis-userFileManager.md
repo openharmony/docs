@@ -925,7 +925,7 @@ get(member: string): MemberType;
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称例如：ImageVideoKey.URI |
+| member | string | 是    | 成员参数名称例如：ImageVideoKey.DISPLAY_NAME。在get时，除了uri、photoType和displayName三个属性之外，其他的属性都需要在fetchColumns中填入需要get的PhotoKeys，例如：get title属性fetchColumns: ['title']。 |
 
 **示例：**
 
@@ -937,7 +937,7 @@ async function example() {
   try {
     let predicates = new dataSharePredicates.DataSharePredicates();
     let fetchOption = {
-      fetchColumns: [],
+      fetchColumns: ['title'],
       predicates: predicates
     };
     let fetchResult = await mgr.getPhotoAssets(fetchOption);
@@ -963,8 +963,8 @@ set(member: string, value: string): void;
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称例如：ImageVideoKey.URI |
-| value | string | 是    | 设置成员参数名称，只能修改ImageVideoKey.TITLE的值 |
+| member | string | 是    | 成员参数名称例如：ImageVideoKey.DISPLAY_NAME。 |
+| value | string | 是    | 设置成员参数名称，只能修改DISPLAY_NAME和TITLE的值。 |
 
 **示例：**
 
@@ -976,7 +976,7 @@ async function example() {
   try {
     let predicates = new dataSharePredicates.DataSharePredicates();
     let fetchOption = {
-      fetchColumns: [],
+      fetchColumns: ['title'],
       predicates: predicates
     };
     let fetchResult = await mgr.getPhotoAssets(fetchOption);
@@ -1012,21 +1012,23 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('commitModifyDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  let fileAsset = await fetchResult.getFirstObject();
-  let title = userFileManager.ImageVideoKey.TITLE;
-  let fileAssetTitle = fileAsset.get(title.toString());
-  console.info('fileAsset Get fileAssetTitle = ', fileAssetTitle);
-  fileAsset.set(title.toString(), "newTitle");
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+  let displayName: string = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
+  let fileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
+  console.info('fileAsset get fileAssetDisplayName = ', fileAssetDisplayName);
+  let newFileAssetDisplayName = 'new' + fileAssetDisplayName;
+  console.info('fileAsset newFileAssetDisplayName = ', newFileAssetDisplayName);
+  fileAsset.set(displayName, newFileAssetDisplayName);
   fileAsset.commitModify((err) => {
     if (err == undefined) {
-      let newFileAssetTitle = fileAsset.get(title.toString());
-      console.info('fileAsset Get newFileAssetTitle = ', newFileAssetTitle);
+      let commitModifyDisplayName = fileAsset.get(displayName);
+      console.info('fileAsset commitModify successfully, commitModifyDisplayName = ', commitModifyDisplayName);
     } else {
       console.error('commitModify failed, message =', err);
     }
@@ -1057,23 +1059,25 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('commitModifyDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  let fileAsset = await fetchResult.getFirstObject();
-  let title = userFileManager.ImageVideoKey.TITLE;
-  let fileAssetTitle = fileAsset.get(title.toString());
-  console.info('fileAsset Get fileAssetTitle = ', fileAssetTitle);
-  fileAsset.set(title.toString(), "newTitle");
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+  let displayName = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
+  let fileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
+  console.info('fileAsset get fileAssetDisplayName = ', fileAssetDisplayName);
+  let newFileAssetDisplayName = 'new' + fileAssetDisplayName;
+  console.info('fileAsset newFileAssetDisplayName = ', newFileAssetDisplayName);
+  fileAsset.set(displayName, newFileAssetDisplayName);
   try {
     await fileAsset.commitModify();
-    let newFileAssetTitle = fileAsset.get(title.toString());
-    console.info('fileAsset Get newFileAssetTitle = ', newFileAssetTitle);
+    let commitModifyDisplayName = fileAsset.get(displayName);
+    console.info('fileAsset commitModify successfully, commitModifyDisplayName = ', commitModifyDisplayName);
   } catch (err) {
-    console.error('release failed. message = ', err);
+    console.error('commitModify failed. message = ', err);
   }
 }
 ```
@@ -2449,7 +2453,7 @@ async function example() {
 
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType。示例：<br />fetchColumns: "uri"|
+| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。|
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 是   | 谓词查询，显示过滤条件 |
 
 ## AlbumFetchOptions
