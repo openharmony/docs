@@ -271,7 +271,7 @@ struct CustomLayout {
     let pos = 0;
     children.forEach((child) => {
       child.layout({ position: { x: pos, y: pos }, constraint: constraint })
-      pos += 100;
+      pos += 70;
     })
   }
 
