@@ -4,18 +4,18 @@ Applications can call **photoAccessHelper** APIs to manage media assets (images 
 
 > **NOTE**
 >
-> Before you start, you need to obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).<br>
-> By default, the **PhotoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used when **photoAccessHelper** APIs are used. If the code for obtaining the **PhotoAccessHelper** instance is not added, an error indicating that **photoAccessHelper** is not defined is reported.
+> - Before you start, you need to obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).
+> - By default, the **PhotoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used when **photoAccessHelper** APIs are used. If the code for obtaining the **PhotoAccessHelper** instance is not added, an error indicating that **photoAccessHelper** is not defined is reported.
 
-To ensure application running efficiency, most **photoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
+To ensure application running efficiency, most **PhotoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
 
 ## Obtaining the Specified Media Assets
 
 You can obtain media assets by media type, date, or album name.
 
-Use [PhotoAccessHelper.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets) with the [FetchOptions](../reference/apis/js-apis-photoAccessHelper.md#fetchoptions) object to specify search criteria. Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
+Use [PhotoAccessHelper.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-1) with the [FetchOptions](../reference/apis/js-apis-photoAccessHelper.md#fetchoptions) object to specify search criteria. Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
 
-To obtain the object at the specified position (for example, the first, the last, or object with the specified index) in the result set, use [FetchFileResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult).
+To obtain the object at the specified position (for example, the first, the last, or object with the specified index) in the result set, use [FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult).
 
 **Prerequisites**
 
@@ -42,8 +42,8 @@ async function example() {
   };
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets photoAsset.displayName : ' + photoAsset.displayName);
     fetchResult.close();
   } catch (err) {
     console.error('getAssets failed with err: ' + err);
@@ -72,8 +72,8 @@ async function example() {
 
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
     fetchResult.close();
   } catch (err) {
     console.error('getAssets failed with err: ' + err);
@@ -105,8 +105,8 @@ async function example() {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     console.info('getAssets count: ' + fetchResult.getCount());
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets photoAsset.displayName : ' + photoAsset.displayName);
     fetchResult.close();
   } catch (err) {
     console.error('getAssets failed with err: ' + err);
@@ -116,7 +116,7 @@ async function example() {
 
 ## Obtaining an Image or Video Thumbnail
 
-Use [FileAsset.getThumbnail](../reference/apis/js-apis-photoAccessHelper.md#getthumbnail) with the thumbnail size passed in to obtain the image or video thumbnail. The thumbnails offer a quick preview on images and videos.
+Use [PhotoAsset.getThumbnail](../reference/apis/js-apis-photoAccessHelper.md#getthumbnail-2) with the thumbnail size passed in to obtain the image or video thumbnail. The thumbnails offer a quick preview on images and videos.
 
 **Prerequisites**
 
@@ -133,9 +133,9 @@ Example: Obtain the thumbnail of 720 x 720 of an image.
 **How to Develop**
 
 1. Set the fetch options.
-2. Call **PhotoAccessHelper.getAssets** to obtain image assets.
-3. Call [FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject) to obtain the first image from the result set.
-4. Call **getThumbnail** to obtain the [PixelMap](../reference/apis/js-apis-image.md#pixelmap7) of the thumbnail of the image.
+2. Call [PhotoAccessHelper.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-1) to obtain image assets.
+3. Call [FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the first image from the result set.
+4. Call **PhotoAsset.getThumbnail** to obtain the [PixelMap](../reference/apis/js-apis-image.md#pixelmap7) of the thumbnail of the image.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -153,10 +153,10 @@ async function example() {
 
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets photoAsset.displayName : ' + photoAsset.displayName);
     let size: image.Size = { width: 720, height: 720 };
-    let pixelMap: image.PixelMap =  await fileAsset.getThumbnail(size);
+    let pixelMap: image.PixelMap =  await photoAsset.getThumbnail(size);
     let imageInfo: image.ImageInfo = await pixelMap.getImageInfo()
     console.info('getThumbnail successful, pixelMap ImageInfo size: ' + JSON.stringify(imageInfo.size));
     fetchResult.close();
@@ -168,7 +168,7 @@ async function example() {
 
 ## Creating a Media Asset
 
-Use [createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset-3) to create a media asset.
+Use [PhotoAccessHelper.createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset-3) to create a media asset.
 
 **Prerequisites**
 
@@ -182,7 +182,7 @@ Example: Create an image asset.
 **How to Develop**
 
 1. Set the file name and create **createOption** for setting attributes for the image asset to create.
-2. Call **createAsset** to create an image asset.
+2. Call **PhotoAccessHelper.createAsset** to create an image asset.
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
@@ -196,8 +196,8 @@ async function example() {
       subtype: photoAccessHelper.PhotoSubtype.DEFAULT
     };
 
-    let fileAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(displayName, createOption);
-    console.info('createAsset successfully, file displayName: ' + fileAsset.displayName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(displayName, createOption);
+    console.info('createAsset successfully, file displayName: ' + photoAsset.displayName);
   } catch (err) {
     console.error('createAsset failed, message = ', err);
   }
@@ -206,13 +206,13 @@ async function example() {
 
 ## Creating a Media Asset Using a Security Component
 
-Example: Create an image asset using a security component. When using a security component to create a media asset, you do not need to apply for the **ohos.permission.WRITE_IMAGEVIDEO** permission for you application. For details, see [**\<SaveButton>**](../reference/arkui-ts/ts-security-components-savebutton.md).
+Example: Create an image asset using a security component. When using a security component to create a media asset, you do not need to apply for the **ohos.permission.WRITE_IMAGEVIDEO** permission for your application. For details, see [**\<SaveButton>**](../reference/arkui-ts/ts-security-components-savebutton.md).
 
 **How to Develop**
 
 1. Set the attributes of the security component.
 2. Create a security component.
-3. Call [createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset-5) to create an image asset.
+3. Call [PhotoAccessHelper.createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset-6) to create an image asset.
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
@@ -261,9 +261,7 @@ struct Index {
 
 ## Renaming a Media Asset
 
-Set the **FileAsset.displayName** attribute to modify the file name (including the file name extension) displayed.
-
-After the modification, use [FileAsset.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify) to update the modification to the database.
+Set the **PhotoAsset.displayName** attribute to modify the file name (including the file name extension) displayed, and call [PhotoAsset.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify-1) to update the modification to the database.
 
 Before renaming a file, use [FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult) to obtain the file.
 
@@ -277,10 +275,10 @@ Example: Rename the first file in the obtained image assets.
 **How to Develop**
 
 1. Set the fetch options.
-2. Call **getAssets** to obtain image assets.
-3. Call [FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject) to obtain the first image from the obtained file assets.
-4. Call **FileAsset.set** to rename the image.
-5. Call **FileAsset.commitModify** to update the modified image attributes to the database.
+2. Call [PhotoAccessHelper.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-1) to obtain image assets.
+3. Call [FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the first image from the obtained file assets.
+4. Call **PhotoAsset.set** to rename the image.
+5. Call **PhotoAsset.commitModify** to update the modified image attributes to the database.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -298,12 +296,12 @@ async function example() {
 
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let title: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.TITLE;
-    let fileAssetTitle: photoAccessHelper.MemberType = fileAsset.get(title);
-    console.info('getAssets fileAsset.title : ' + fileAssetTitle);
-    fileAsset.set(title, newTitle);
-    await fileAsset.commitModify();
+    let photoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
+    console.info('getAssets photoAsset.title : ' + photoAssetTitle);
+    photoAsset.set(title, newTitle);
+    await photoAsset.commitModify();
     fetchResult.close();
   } catch (err) {
     console.error('commitModify failed with err: ' + err);
@@ -313,9 +311,9 @@ async function example() {
 
 ## Moving Media Assets to the Trash
 
-You can use [deleteAssets](../reference/apis/js-apis-photoAccessHelper.md#deleteassets) to move files to the trash.
+You can use [PhotoAccessHelper.deleteAssets](../reference/apis/js-apis-photoAccessHelper.md#deleteassets-1) to move files to the trash.
 
-The files moved to the trash will be retained for 30 days, and deleted permanently after 30 days. Before a file is deleted permanently from the trash, the user can restore it using the system application **FileManager** or **Gallery**.
+The files moved to the trash will be retained for 30 days, and automatically deleted permanently after 30 days. Before a file is deleted permanently from the trash, the user can restore it using the system application **FileManager** or **Gallery**.
 
 **Prerequisites**
 
@@ -327,9 +325,9 @@ Example: Move the first file in the result set to the trash.
 **How to Develop**
 
 1. Set the fetch options.
-2. Call **PhotoAccessHelper.getAssets** to obtain image assets.
-3. Call [**FetchResult.getFirstObject**](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject) to obtain the first image, that is, the image object to be moved to the trash.
-4. Call **deleteAssets** to move the file to the trash.
+2. Call [PhotoAccessHelper.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-1) to obtain image assets.
+3. Call [FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the first image, that is, the image object to be moved to the trash.
+4. Call **PhotoAccessHelper.deleteAssets** to move the file to the trash.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -346,20 +344,19 @@ async function example() {
 
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
-    await phAccessHelper.deleteAssets([fileAsset.uri]);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
+    await phAccessHelper.deleteAssets([photoAsset.uri]);
     fetchResult.close();
   } catch (err) {
     console.error('deleteAssets failed with err: ' + err);
   }
 }
 ```
-# Enabling an Application to Select Media Assets
 
-When a user needs to share files such as images and videos, use a specific API to start **Gallery** for the user to select the files to share. No permission is required for this API. Currently, UIAbility is used to start **Gallery** by the window component.
+## Using Picker to Select Media Assets
 
-## Selecting Images or Video Files
+When a user needs to share files such as images and videos, use a specific API to start **Gallery** for the user to select the files to share. No permission is required for this API. Currently, UIAbility is used to start **Gallery** by the window component. The procedure is as follows:
 
 1. Import the **picker** and **fs** modules.
 
@@ -373,7 +370,7 @@ When a user needs to share files such as images and videos, use a specific API t
 
    ```ts
    import photoAccessHelper from '@ohos.file.photoAccessHelper';
-
+   
    const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
    ```
 
@@ -382,12 +379,12 @@ When a user needs to share files such as images and videos, use a specific API t
 
    ```ts
    import photoAccessHelper from '@ohos.file.photoAccessHelper';
-
+   
    photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE; // Select images.
    photoSelectOptions.maxSelectNumber = 5; // Set the maximum number of images to select.
    ```
 
-4. Create a **photoPicker** instance and call [select()](../reference/apis/js-apis-photoAccessHelper.md#select) to open the **Gallery** page for the user to select files. After the files are selected, the [PhotoSelectResult](../reference/apis/js-apis-photoAccessHelper.md#photoselectresult) is returned.
+4. Create a **photoViewPicker** instance and call [PhotoViewPicker.select](../reference/apis/js-apis-photoAccessHelper.md#select) to open the **Gallery** page for the user to select files. After the files are selected, the [PhotoSelectResult](../reference/apis/js-apis-photoAccessHelper.md#photoselectresult) is returned.
 
    The permission on the URIs returned by **select()** is read-only. Further operations can be performed on the files based on the URIs in **PhotoSelectResult**. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger file opening.
 
@@ -396,10 +393,10 @@ When a user needs to share files such as images and videos, use a specific API t
    ```ts
    import photoAccessHelper from '@ohos.file.photoAccessHelper';
    import { BusinessError } from '@ohos.base';
-
+   
    let uris: Array<string> = [];
    const photoViewPicker = new photoAccessHelper.PhotoViewPicker();
-   photoViewPicker.select(photoSelectOptions).then((photoSelectResult: picker.PhotoSelectResult) => {
+   photoViewPicker.select(photoSelectOptions).then((photoSelectResult: photoAccessHelper.PhotoSelectResult) => {
      uris = photoSelectResult.photoUris;
      console.info('photoViewPicker.select to file succeed and uris are:' + uris);
    }).catch((err: BusinessError) => {
@@ -411,7 +408,7 @@ When a user needs to share files such as images and videos, use a specific API t
 
    ```ts
    import fs from '@ohos.file.fs';
-
+   
    let uri: string = '';
    let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
    console.info('file fd: ' + file.fd);
@@ -421,10 +418,9 @@ When a user needs to share files such as images and videos, use a specific API t
 
    ```ts
    import fs from '@ohos.file.fs';
-
+   
    let buffer = new ArrayBuffer(4096);
    let readLen = fs.readSync(file.fd, buffer);
    console.info('readSync data to file succeed and buffer size is:' + readLen);
    fs.closeSync(file);
    ```
-<!--no_check-->
