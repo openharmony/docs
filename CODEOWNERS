@@ -203,7 +203,7 @@ zh-cn/application-dev/reference/apis/js-apis-appmanager.md @littlejerry1 @huipei
 zh-cn/application-dev/reference/apis/js-apis-arraylist.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-audio.md @liuyuehua1 @zengyawen @magekkkk @currydavids
 zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md @chenmingJay @ningningW @very0228 @iceice1001
-zh-cn/application-dev/reference/apis/js-apis-battery-info.md  @zengyawen  @alien0208
+zh-cn/application-dev/reference/apis/js-apis-battery-info.md  @zengyawen  @alien0208 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-bluetooth.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-brightness.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-buffer.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
@@ -378,7 +378,7 @@ zh-cn/application-dev/reference/apis/js-apis-system-timer.md @hu-zhiqiong @illyb
 zh-cn/application-dev/reference/apis/js-apis-system-vibrate.md @hellohyh001 @ningningW @hu-zhiqiong @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/reference/apis/js-apis-telephony-data.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-testRunner.md @inter515 @littlejerry1 @RayShih @inter515 @jiyong
-zh-cn/application-dev/reference/apis/js-apis-thermal.md  @zengyawen  @alien0208
+zh-cn/application-dev/reference/apis/js-apis-thermal.md  @zengyawen  @alien0208 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-timer.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-touchevent.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-shortKey.md @mayunteng_1 @ningningW @cococoler @alien0208
@@ -431,7 +431,7 @@ zh-cn/application-dev/reference/apis/js-apis-application-configuration.md @littl
 zh-cn/application-dev/reference/apis/js-apis-application-configurationConstant.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-application-quickFixManager.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-avsession.md @liuyuehua1 @zengyawen @saga2020 @currydavids
-zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md  @zengyawen  @alien0208
+zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md  @zengyawen  @alien0208 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-Bundle-BundleStatusCallback.md @shuaytao @huipeizi @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-bundleManager-abilityInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-bundleManager-applicationInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
@@ -508,7 +508,7 @@ zh-cn/application-dev/reference/errorcodes/errorcode-audio.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-avsession.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-backgroundTaskMgr.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-batteryStatistics.md @zengyawen
-zh-cn/application-dev/reference/errorcodes/errorcode-brightness.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errorcode-brightness.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/errorcodes/errorcode-buffer.md @ge-yafang
 zh-cn/application-dev/reference/errorcodes/errorcode-bundle.md @huipeizi
 zh-cn/application-dev/reference/errorcodes/errorcode-colorspace-manager.md @ge-yafang
@@ -536,7 +536,7 @@ zh-cn/application-dev/reference/errorcodes/errorcode-inputmethod-framework.md @h
 zh-cn/application-dev/reference/errorcodes/errorcode-multimodalinput.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-nfc.md @RayShih
 zh-cn/application-dev/reference/errorcodes/errorcode-pasteboard.md @HelloCrease
-zh-cn/application-dev/reference/errorcodes/errorcode-power.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errorcode-power.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/errorcodes/errorcode-preferences.md @ge-yafang
 zh-cn/application-dev/reference/errorcodes/errorcode-promptAction.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-reminderAgentManager.md @ningningW 
@@ -545,10 +545,10 @@ zh-cn/application-dev/reference/errorcodes/errorcode-resource-manager.md @ningni
 zh-cn/application-dev/reference/errorcodes/errorcode-router.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md @RayShih
 zh-cn/application-dev/reference/errorcodes/errorcode-screenlock.md @hu-zhiqiong 
-zh-cn/application-dev/reference/errorcodes/errorcode-runninglock.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errorcode-runninglock.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/errorcodes/errorcode-sensor.md @hu-zhiqiong
 zh-cn/application-dev/reference/errorcodes/errorcode-system-parameterV9.md @zengyawen
-zh-cn/application-dev/reference/errorcodes/errorcode-thermal.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errorcode-thermal.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/errorcodes/errorcode-uitest.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-universal.md @RayShih
 zh-cn/application-dev/reference/errorcodes/errorcode-update.md @hu-zhiqiong
