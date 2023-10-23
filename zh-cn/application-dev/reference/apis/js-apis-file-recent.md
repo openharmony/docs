@@ -122,8 +122,6 @@ listFile(): Array\<FileInfo>
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
-
 | 名称 | 类型   | 可读 | 可写 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |
 | uri | string | 是 | 否 | 文件uri |
