@@ -1115,22 +1115,14 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
   ```ts
   import { BusinessError } from '@ohos.base'
 
-  interface CredentialInfo {
-    version: string,
-    userId: string
-  }
-
   class Data {
     registerInfo: ""
   }
 
-  let credentialInfo: CredentialInfo = {
-    version: "1.2.3",
-    userId: "123"
-  }
+  let credentialInfo = '[{"version": "1.2.3","userId": "123"}]';
 
   try {
-    dmInstance.requestCredentialRegisterInfo(credentialInfo, (data：Data) => {
+    dmInstance.requestCredentialRegisterInfo(credentialInfo, (err: BusinessError, data: Data) => {
       if (data) {
           console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
       } else {
