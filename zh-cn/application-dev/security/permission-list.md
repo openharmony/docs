@@ -2974,7 +2974,7 @@
 
 ## ohos.permission.READ_PASTEBOARD
 
-允许应用读取剪贴板
+允许应用读取剪贴板。
 
 **权限级别**：system_basic
 
