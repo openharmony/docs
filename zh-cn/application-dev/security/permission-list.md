@@ -2983,3 +2983,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.COOPERATE_MANAGER
+
+允许系统应用使能键鼠穿越能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
