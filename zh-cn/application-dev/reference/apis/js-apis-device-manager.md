@@ -49,9 +49,9 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base'
 
-  let dmInstance: deviceManager.Devicemanager | null = null;
+  let dmInstance: deviceManager.DeviceManager | null = null;
   try {
-    deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err: BusinessError, data: deviceManager.Devicemanager) => {
+    deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err: BusinessError, data: deviceManager.DeviceManager) => {
       if (err) { 
         console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
         return;
@@ -1187,7 +1187,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
   }
 
   class Data {
-    registerInfo: string = ""
+    registerInfo: ""
   }
 
   let credentialInfo: CredentialInfo = {

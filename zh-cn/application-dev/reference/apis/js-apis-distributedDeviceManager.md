@@ -49,8 +49,9 @@ createDeviceManager(bundleName: string): DeviceManager;
   import deviceManager from '@ohos.distributedDeviceManager'
   import { BusinessError } from '@ohos.base'
 
+  let dmInstance: deviceManager.DeviceManager | null = null;
   try {
-    let dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
+    dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
   } catch(err) {
     let e: BusinessError = err as BusinessError;
     console.error("createDeviceManager errCode:" + e.code + ",errMessage:" + e.message);
@@ -880,12 +881,12 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
   }
 
   try {
-    dmInstance.off('deviceStatusChange', (data: Data) => {
-      console.info('deviceStatusChange' + JSON.stringify(data));
+    dmInstance.off('deviceStateChange', (data: Data) => {
+      console.info('deviceStateChange' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("deviceStatusChange errCode:" + e.code + ",errMessage:" + e.message);
+    console.error("deviceStateChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
