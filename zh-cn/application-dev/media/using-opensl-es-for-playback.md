@@ -88,7 +88,7 @@ OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接�
    };
    SLDataSource slSource = {&slBufferQueue, &pcmFormat};
    SLObjectItf pcmPlayerObject = nullptr;
-   (*engineEngine)->CreateAudioPlayer(engineEngine, &pcmPlayerObject, &slSource, null, 0, nullptr, nullptr);
+   (*engineEngine)->CreateAudioPlayer(engineEngine, &pcmPlayerObject, &slSource, nullptr, 0, nullptr, nullptr);
    (*pcmPlayerObject)->Realize(pcmPlayerObject, SL_BOOLEAN_FALSE);
    ```
 
