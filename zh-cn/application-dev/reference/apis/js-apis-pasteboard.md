@@ -1794,7 +1794,7 @@ systemPasteboard.setPasteData(pasteData).then((data: void) => {
 
 isRemoteData(): boolean
 
-判断是否为远程数据。
+判断剪贴板中的数据来自其他设备。
 
 **系统能力：** SystemCapability.MiscServices
 
@@ -1802,7 +1802,7 @@ isRemoteData(): boolean
 
 | 类型    | 说明                                  |
 | ------- | ------------------------------------- |
-| boolean | 是远程数据返回true，否则返回false。 |
+| boolean | 是来自其他设备返回true，否则返回false。 |
 
 **示例：**
 
@@ -1942,7 +1942,7 @@ setDataSync(data: PasteData): void
 
 | 参数名 | 类型                    | 必填 | 说明             |
 | ------ | ----------------------- | ---- | ---------------- |
-| data   | [PasteData](#pastedata) | 是   | PasteData 对象。 |
+| data   | [PasteData](#pastedata) | 是   | 需要写入剪贴板中的数据。 |
 
 **示例：**
 
