@@ -2865,6 +2865,7 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
 ## ohos.permission.ENABLE_DISTRIBUTED_HARDWARE
 
 允许系统服务使能分布式硬件资源。
@@ -2876,6 +2877,19 @@
 **ACL使能**：FALSE
 
 **起始版本**：11
+
+## ohos.permission.DISABLE_PERMISSION_DIALOG
+
+允许系统应用去设置指定应用能否拉起权限弹窗。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
 
 允许系统服务或系统应用访问分布式硬件资源。
