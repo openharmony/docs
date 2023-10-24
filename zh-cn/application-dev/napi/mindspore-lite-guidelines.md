@@ -85,7 +85,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     需要的模型可以直接下载，也可以通过模型转换工具获得。
   
      - 下载模型的格式若为`.ms`，则可以直接使用。本文以mobilenetv2.ms为例。
-     - 如果是第三方框架的模型，比如 TensorFlow、TensorFlow Lite、Caffe、ONNX等，可以使用[模型转换工具](https://www.mindspore.cn/lite/docs/zh-CN/r1.5/use/downloads.html#id1)转换为`.ms`格式的模型文件。
+     - 如果是第三方框架的模型，比如 TensorFlow、TensorFlow Lite、Caffe、ONNX等，可以使用[模型转换工具](https://www.mindspore.cn/lite/docs/zh-CN/master/use/downloads.html#1-8-1)转换为`.ms`格式的模型文件。
 
 2. 创建上下文，设置线程数、设备类型等参数。
   
@@ -238,7 +238,3 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     output data is:
     0.000018 0.000012 0.000026 0.000194 0.000156 0.001501 0.000240 0.000825 0.000016 0.000006 0.000007 0.000004 0.000004 0.000004 0.000015 0.000099 0.000011 0.000013 0.000005 0.000023 0.000004 0.000008 0.000003 0.000003 0.000008 0.000014 0.000012 0.000006 0.000019 0.000006 0.000018 0.000024 0.000010 0.000002 0.000028 0.000372 0.000010 0.000017 0.000008 0.000004 0.000007 0.000010 0.000007 0.000012 0.000005 0.000015 0.000007 0.000040 0.000004 0.000085 0.000023 
     ```
-
-## 相关实例
-针对MindSpore Lite 的使用，有以下相关实例可供参考：
-- [简易MSLite教程](https://gitee.com/openharmony/third_party_mindspore/tree/master/mindspore/lite/examples/quick_start_c)
