@@ -4079,10 +4079,10 @@ getOutputDeviceSync(): OutputDeviceInfo
 
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
+| 错误码ID   | 错误信息 |
+|---------| --------------------------------------- |
+| 6600101 | Session service exception. |
+| 6600102 | The session does not exist. |
 
 **示例：**
 
@@ -7294,7 +7294,7 @@ getAVPlaybackStateSync(): AVPlaybackState;
 
 使用同步方法获取当前会话的播放状态。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **返回值：**
 
@@ -7308,7 +7308,9 @@ getAVPlaybackStateSync(): AVPlaybackState;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -7395,7 +7397,7 @@ try {
 
 ### getAVQueueItemsSync<sup>10+</sup>
 
-getAVQueueItemsSync(): \<Array\<AVQueueItem\>\>
+getAVQueueItemsSync(): Array\<AVQueueItem\>
 
 使用同步方法获取当前会话播放列表相关信息。
 
