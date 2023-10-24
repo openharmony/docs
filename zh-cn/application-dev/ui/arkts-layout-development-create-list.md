@@ -407,7 +407,7 @@ List() {
   ForEach(this.contactsGroups, item => {
     ListItemGroup({ header: this.itemHead(item.title) }) {
       // 循环渲染ListItem
-      ForEach(item.contacts, (contact) => {
+      ForEach(item.contacts, contact => {
         ListItem() {
           ...
         }
@@ -455,7 +455,7 @@ struct ContactsList {
       ForEach(this.contactsGroups, item => {
         ListItemGroup({ header: this.itemHead(item.title) }) {
           // 循环渲染ListItem
-          ForEach(item.contacts, (contact) => {
+          ForEach(item.contacts, contact => {
             ListItem() {
               ...
             }
