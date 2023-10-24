@@ -78,7 +78,7 @@ constructor是FileUri的构造函数。
 
   ```ts
   let path = pathDir + '/test';
-  let uri = fileuri.getUriFromPath(filePath);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
+  let uri = fileuri.getUriFromPath(path);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
   let fileUriObject = new fileuri.FileUri(uri);
   console.info("The name of FileUri is " + fileUriObject.name);
   ```
