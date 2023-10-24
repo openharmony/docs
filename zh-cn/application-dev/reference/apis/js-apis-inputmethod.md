@@ -2720,11 +2720,11 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 获取已激活/未激活的输入法应用列表。使用callback异步回调。
 
-> **说明**
+> **说明：**
 > 
-> 已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。
+> 已激活输入法为使能的输入法应用。默认输入法默认使能，其他输入法可被设置为使能或非使能。
 > 
-> 已激活/未激活为预留概念，暂不支持。
+> 已激活输入法列表包括默认输入法和已被设置为使能的输入法应用，未激活输入法列表包括除使能输入法以外的其他已安装的输入法。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2739,14 +2739,16 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                             |
-| -------- | -------------------------------------- |
-| 12800001 | package manager error.                 |
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 12800001 | package manager error.              |
 | 12800008 | input method manager service error. |
 
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodSetting.getInputMethods(true, (err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
     if (err) {
@@ -2755,7 +2757,7 @@ try {
     }
     console.log('Succeeded in getting inputMethods.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -2766,11 +2768,11 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 获取已激活/未激活的输入法应用列表。使用promise异步回调。
 
-> **说明**
+> **说明：**
 > 
-> 已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。
+> 已激活输入法为使能的输入法应用。默认输入法默认使能，其他输入法可被设置为使能或非使能。
 > 
-> 已激活/未激活为预留概念，暂不支持。
+> 已激活输入法列表包括默认输入法和已被设置为使能的输入法应用，未激活输入法列表包括除使能输入法以外的其他已安装的输入法。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2779,6 +2781,63 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 | 参数名 | 类型    | 必填 | 说明                    |
 | ------ | ------- | ---- | ----------------------- |
 | enable | boolean | 是   |- true表示返回已激活输入法列表，false表示返回未激活输入法列表。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                       |
+| ------------------------------------------------------------ | ------------------------------------------ |
+| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise对象，返回已激活/未激活输入法列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 12800001 | package manager error.              |
+| 12800008 | input method manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  inputMethodSetting.getInputMethods(true).then((data: Array<inputMethod.InputMethodProperty>) => {
+    console.log('Succeeded in getting inputMethods.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
+  })
+} catch(err: BusinessError) {
+  console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
+}
+```
+
+### getInputMethodsSync<sup>11+</sup>
+
+getInputMethodsSync(enable: boolean): Array&lt;InputMethodProperty&gt;
+
+获取已激活/未激活的输入法应用列表。同步接口。
+
+> **说明：**
+>
+> 已激活输入法为使能的输入法应用。默认输入法默认使能，其他输入法可被设置为使能或非使能。
+>
+> 已激活输入法列表包括默认输入法和已被设置为使能的输入法应用，未激活输入法列表包括除使能输入法以外的其他已安装的输入法。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                    |
+| ------ | ------- | ---- | ----------------------- |
+| enable | boolean | 是   |- true表示返回已激活输入法列表，false表示返回未激活输入法列表。 |
+
+**返回值：**
+
+| 类型                                                 | 说明                          |
+| ---------------------------------------------------- | ----------------------------- |
+| Array\<[InputMethodProperty](#inputmethodproperty8)> | 返回已激活/未激活输入法列表。 |
 
 **错误码：**
 
@@ -2789,23 +2848,126 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 | 12800001 | package manager error.                 |
 | 12800008 |input method manager service error. |
 
-**返回值：**
+**示例：**
 
-| 类型                                                         | 说明                          |
-| ------------------------------------------------------------ | ----------------------------- |
-| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise对象，返回已激活/未激活输入法列表。 |
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let imeProp = inputMethodSetting.getInputMethodsSync(true);
+} catch(err: BusinessError) {
+  console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
+}
+```
+
+### getAllInputMethods<sup>11+</sup>
+
+getAllInputMethods(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
+
+获取所有输入法应用列表。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                           |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | 是   | 回调函数，返回所有输入法列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 12800001 | package manager error.              |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  inputMethodSetting.getInputMethods(true).then((data: Array<inputMethod.InputMethodProperty>) => {
-    console.log('Succeeded in getting inputMethods.');
-  }).catch((err: Error) => {
-    console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
-  })
-} catch(err) {
-  console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
+  inputMethodSetting.getAllInputMethods((err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
+    if (err) {
+      console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in getting all inputMethods.');
+  });
+} catch (err: BusinessError) {
+  console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
+}
+```
+
+### getAllInputMethods<sup>11+</sup>
+
+getAllInputMethods(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
+
+获取所有输入法应用列表。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                                                         | 说明                              |
+| ------------------------------------------------------------ | --------------------------------- |
+| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise对象，返回所有输入法列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 12800001 | package manager error.              |
+| 12800008 | input method manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+inputMethodSetting.getAllInputMethods().then((data: Array<inputMethod.InputMethodProperty>) => {
+  console.log('Succeeded in getting all inputMethods.');
+}).catch((err: BussinessError) => {
+  console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
+})
+```
+
+### getAllInputMethodsSync<sup>11+</sup>
+
+getAllInputMethodsSync(): Array&lt;InputMethodProperty&gt;
+
+获取所有输入法应用列表。同步接口。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                                                 | 说明               |
+| ---------------------------------------------------- | ------------------ |
+| Array\<[InputMethodProperty](#inputmethodproperty8)> | 返回所有输入法列表 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 12800001 | package manager error.              |
+| 12800008 | input method manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let imeProp = inputMethodSetting.getAllInputMethodsSync();
+} catch(err: BusinessError) {
+  console.error(`Failed to getAllInputMethodsSync: ${JSON.stringify(err)}`);
 }
 ```
 
