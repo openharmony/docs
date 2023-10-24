@@ -49,9 +49,8 @@ createDeviceManager(bundleName: string): DeviceManager;
   import deviceManager from '@ohos.distributedDeviceManager'
   import { BusinessError } from '@ohos.base'
 
-  let dmInstance: deviceManager.DeviceManager | null = null;
   try {
-    dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
+    let dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
   } catch(err) {
     let e: BusinessError = err as BusinessError;
     console.error("createDeviceManager errCode:" + e.code + ",errMessage:" + e.message);
@@ -86,8 +85,10 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
   ```ts
   import { BusinessError } from '@ohos.base'
+  import deviceManager from '@ohos.distributedDeviceManager'
 
   try {
+    let dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
     deviceManager.releaseDeviceManager(dmInstance);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
