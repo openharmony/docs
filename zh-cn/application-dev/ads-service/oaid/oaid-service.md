@@ -53,7 +53,7 @@
         }).catch((err: BusinessError) => {
           hilog.error(0x0000, 'testTag', '%{public}s', `request permission failed, error message: ${err.message}`);
         })
-      } catch(err: BusinessError) {
+      } catch(err) {
         hilog.error(0x0000, 'testTag', '%{public}s', `catch err->${JSON.stringify(err)}`);
       }
     }
@@ -74,7 +74,7 @@
          hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success`);
        }
       });
-   } catch (err: BusinessError) {
+   } catch (err) {
      hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', err.code, err.message);
    }
    ```
@@ -83,12 +83,11 @@
    ```
    import identifier from '@ohos.identifier.oaid';
    import hilog from '@ohos.hilog'; 
-   import { BusinessError } from '@ohos.base';
    
    // 重置OAID
    try {
      identifier.resetOAID();
-   } catch (err: BusinessError) {
+   } catch (err) {
      hilog.error(0x0000, 'testTag', 'reset oaid catch error: %{public}d %{public}s', err.code, err.message);
    }
    ```
