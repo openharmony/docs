@@ -405,7 +405,7 @@ getEncoded(): DataBlob
 | [DataBlob](#datablob) | 用于查看密钥的具体内容。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -473,7 +473,7 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 | bigint\|string\|number | 用于查看密钥参数的具体内容。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -531,7 +531,7 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 | bigint\|string\|number | 用于查看密钥参数的具体内容。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -590,7 +590,7 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 | ----------------------------------- | -------------------------- |
 | [SymKeyGenerator](#symkeygenerator) | 返回对称密钥生成器的对象。 |
 
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. |
@@ -639,7 +639,7 @@ generateSymKey(callback: AsyncCallback\<SymKey>): void
 | callback | AsyncCallback\<[SymKey](#symkey)> | 是   | 回调函数。当生成对称密钥成功，err为undefined，data为获取到的SymKey；否则为错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -680,7 +680,7 @@ generateSymKey(): Promise\<SymKey>
 | Promise\<[SymKey](#symkey)> | Promise对象，返回对称密钥SymKey。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -723,7 +723,7 @@ convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
 | callback | AsyncCallback\<[SymKey](#symkey)> | 是   | 回调函数。当生成对称密钥成功，err为undefined，data为获取到的SymKey；否则为错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息                                               |
 | -------- | --------------------------------------------------- |
@@ -779,7 +779,7 @@ convertKey(key: DataBlob): Promise\<SymKey>
 | Promise\<[SymKey](#symkey)> | Promise对象，返回对称密钥SymKey。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息                                          |
 | -------- | --------------------------------------------- |
@@ -834,7 +834,7 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 | [AsyKeyGenerator](#asykeygenerator) | 返回非对称密钥生成器的对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -875,7 +875,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 | callback | AsyncCallback\<[KeyPair](#keypair)> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -913,7 +913,7 @@ generateKeyPair(): Promise\<KeyPair>
 | Promise\<[KeyPair](#keypair)> | 使用Promise的方式获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -952,7 +952,7 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null, callback: AsyncCall
 | callback | AsyncCallback\<[KeyPair](#keypair)> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1001,7 +1001,7 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null): Promise\<KeyPair>
 | Promise\<[KeyPair](#keypair)> | 使用Promise的方式获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1056,7 +1056,7 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 | [AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10) | 返回非对称密钥生成器实例。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1124,7 +1124,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 | callback | AsyncCallback\<[KeyPair](#keypair)> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
@@ -1165,7 +1165,7 @@ generateKeyPair(): Promise\<KeyPair>
 | Promise\<[KeyPair](#keypair)> | 使用Promise的方式获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1205,7 +1205,7 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 | callback | AsyncCallback\<[PriKey](#prikey)> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1246,7 +1246,7 @@ generatePriKey(): Promise\<PriKey>
 | Promise\<[PriKey](#prikey)> | 使用Promise的方式获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1286,7 +1286,7 @@ generatePubKey(callback: AsyncCallback\<PubKey>): void
 | callback | AsyncCallback\<[PubKey](#pubkey)> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1327,7 +1327,7 @@ generatePubKey(): Promise\<PubKey>
 | Promise\<[PubKey](#pubkey)> | 使用Promise的方式获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1379,7 +1379,7 @@ createCipher(transformation: string): Cipher
 | [Cipher](#cipher) | 返回加解密生成器的对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1441,7 +1441,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCal
 | callback | AsyncCallback\<void>      | 是   | 回调函数。当初始化成功，err为undefined，否则为错误对象。     |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息                                                 |
 | -------- | --------------------------------------------------------- |
@@ -1493,7 +1493,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -1544,7 +1544,7 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。当更新加/解密数据成功，err为undefined，data为此次更新的加/解密结果DataBlob；否则为错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -1614,7 +1614,7 @@ update(data: DataBlob): Promise\<DataBlob>
 | Promise\<[DataBlob](#datablob)> | Promise对象，返回此次更新的加/解密结果DataBlob。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -1679,7 +1679,7 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。当最终加/解密数据成功，err为undefined，data为剩余数据的加/解密结果DataBlob；否则为错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
@@ -1741,7 +1741,7 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 | Promise\<[DataBlob](#datablob)> | Promise对象，返回剩余数据的加/解密结果DataBlob。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -1840,7 +1840,7 @@ setCipherSpec(itemType: CipherSpecItem, itemValue: Uint8Array): void
 | itemValue | Uint8Array | 是   | 用于指定加解密参数的具体值。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1878,7 +1878,7 @@ getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 | string\|Uint8Array | 获取的加解密参数的具体值。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1917,7 +1917,7 @@ Sign实例生成。
 | Sign | 返回由输入算法指定生成的Sign对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1977,7 +1977,7 @@ Sign类暂不支持重复init。
 | callback | AsyncCallback\<void> | 是   | 回调函数。      |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2009,7 +2009,7 @@ Sign类暂不支持重复init。
 | Promise\<void> | Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2042,7 +2042,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback\<void>  | 是   | 回调函数。   |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2080,7 +2080,7 @@ update(data: DataBlob): Promise\<void>
 | Promise\<void> | Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2105,7 +2105,7 @@ sign(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 | callback | AsyncCallback\<[DataBlob](#datablob) > | 是   | 回调函数。  |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2135,7 +2135,7 @@ sign(data: DataBlob | null): Promise\<DataBlob>
 | Promise\<void> | Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2235,7 +2235,7 @@ setSignSpec(itemType: SignSpecItem, itemValue: number): void
 | itemValue | number | 是   | 用于指定签名参数的具体值。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2273,7 +2273,7 @@ getSignSpec(itemType: SignSpecItem): string | number
 | string\|number | 获取的签名参数的具体值。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2312,7 +2312,7 @@ Verify实例生成。
 | Verify | 返回由输入算法指定生成的Verify对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2364,7 +2364,7 @@ init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback\<void> | 是   | 回调函数。                     |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2394,7 +2394,7 @@ init(pubKey: PubKey): Promise\<void>
 | Promise\<void> | Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2427,7 +2427,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback\<void>  | 是   | 回调函数。   |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2465,7 +2465,7 @@ update(data: DataBlob): Promise\<void>
 | Promise\<void> | Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2491,7 +2491,7 @@ verify(data: DataBlob | null, signatureData: DataBlob, callback: AsyncCallback\<
 | callback      | AsyncCallback\<boolean> | 是   | 回调函数。  |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2522,7 +2522,7 @@ verify(data: DataBlob | null, signatureData: DataBlob): Promise\<boolean>
 | Promise\<boolean> | 异步返回值，代表验签是否通过。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2584,7 +2584,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 | itemValue | number | 是   | 用于指定验签参数的具体值。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2624,7 +2624,7 @@ getVerifySpec(itemType: SignSpecItem): string | number
 | string\|number | 获取的验签参数的具体值。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2663,7 +2663,7 @@ KeyAgreement实例生成。
 | KeyAgreement | 返回由输入算法指定生成的KeyAgreement对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2707,7 +2707,7 @@ generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 异步接受共享秘密的回调。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2738,7 +2738,7 @@ generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 | Promise\<[DataBlob](#datablob)> | 共享秘密。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2801,7 +2801,7 @@ createMd(algName: string): Md
 | Md   | 返回由输入算法指定生成的[Md](#md)对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -2854,7 +2854,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback\<void>  | 是   | 回调函数。   |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2900,7 +2900,7 @@ update(input: DataBlob): Promise\<void>
 | Promise\<void> | Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2937,7 +2937,7 @@ digest(callback: AsyncCallback\<DataBlob>): void
 | callback | AsyncCallback\<DataBlob> | 是   | 回调函数。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2982,7 +2982,7 @@ digest(): Promise\<DataBlob>
 | Promise\<[DataBlob](#datablob)> | Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3024,7 +3024,7 @@ getMdLength(): number
 | number | 返回md计算结果的字节长度。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3075,7 +3075,7 @@ createMac(algName: string): Mac
 | Mac  | 返回由输入算法指定生成的[Mac](#mac)对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -3128,7 +3128,7 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback\<void> | 是   | 回调函数。     |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3176,7 +3176,7 @@ init(key: SymKey): Promise\<void>
 | Promise\<void> | Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3223,7 +3223,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback\<void>  | 是   | 回调函数。   |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3281,7 +3281,7 @@ update(input: DataBlob): Promise\<void>
 | Promise\<void> | Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3327,7 +3327,7 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3382,7 +3382,7 @@ doFinal(): Promise\<DataBlob>
 | Promise\<[DataBlob](#datablob)> | Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3431,7 +3431,7 @@ getMacLength(): number
 | number | 返回mac计算结果的字节长度。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3483,7 +3483,7 @@ createRandom(): Random
 | Random | 返回由输入算法指定生成的[Random](#random)对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息     |
 | -------- | ------------ |
@@ -3530,7 +3530,7 @@ generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。            |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3574,7 +3574,7 @@ generateRandom(len: number): Promise\<DataBlob>
 | Promise\<[DataBlob](#datablob)> | Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3617,7 +3617,7 @@ generateRandomSync(len: number): DataBlob
 |[DataBlob](#datablob) | 表示生成的随机数。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3657,7 +3657,7 @@ setSeed(seed: DataBlob): void
 | seed   | DataBlob | 是   | 设置的种子。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](https://gitee.com/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md#/im-chenchen/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-universal.md)
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
 | 错误码ID | 错误信息           |
 | -------- | ----------------- |
