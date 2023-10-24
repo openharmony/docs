@@ -250,7 +250,7 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 import settings from '@ohos.settings';
 
 //更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
-settings.setValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
+settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
   console.log('Callback return whether value is set.');
 });
 ```
