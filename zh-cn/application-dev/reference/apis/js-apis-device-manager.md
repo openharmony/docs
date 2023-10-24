@@ -1189,7 +1189,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
   }
 
   class Data {
-    registerInfo = ""
+    registerInfo: string = ""
   }
 
   let credentialInfo: CredentialInfo = {
