@@ -71,6 +71,19 @@ Describes the options for showing the toast.
 | message  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes  | Text to display.<br>**NOTE**<br>The default font is **'Harmony Sans'**. Other fonts are not supported.|
 | duration | number                                                       | No  | Duration that the toast will remain on the screen. The default value is 1500 ms. The value range is 1500 ms to 10000 ms. If a value less than 1500 ms is set, the default value is used. If the value greater than 10000 ms is set, the upper limit 10000 ms is used.|
 | bottom   | string\| number                                              | No  | Distance between the toast border and the bottom of the screen.<br>Default value: **80vp**            |
+| showMode<sup>11+</sup>   | [ToastShowMode](#toastshowmode)    | No  | Whether to show the toast above the application.<br>Default value: **ToastShowMode.DEFAULT**, which means to show the toast within the application            |
+
+### ToastShowMode<sup>11+</sup>
+
+Describes the mode in which the toast is shown.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value| Description                                                        |
+| -------- | ---- | ------------------------------------------------------------ |
+| DEFAULT  | 0   | The toast is shown within the application.|
+| TOP_MOST | 1   | The toast is shown above the application.|
+
 
 ## promptAction.showDialog
 
