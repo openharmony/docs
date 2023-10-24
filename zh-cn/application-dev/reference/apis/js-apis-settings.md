@@ -278,7 +278,7 @@ getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 ```js
 import settings from '@ohos.settings';
 
-settings.getValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
+settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
   if (err) {
     console.error(`Failed to get the setting. ${err.message} `);
     return;
