@@ -620,7 +620,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
     targetPkgName: 'xxxx',
     appName: 'xxxx',
     appOperation: 'xxxx',
-    customDescription: 'xxxx',
+    customDescription: 'xxxx'
   }
 
   try {
