@@ -1329,7 +1329,7 @@ struct WebComponent {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
         .pinchSmooth(true)
-     }
+    }
   }
 }
   ```
