@@ -1802,7 +1802,7 @@ isRemoteData(): boolean
 
 | 类型    | 说明                                  |
 | ------- | ------------------------------------- |
-| boolean | 是远程数据返回 true，否则返回 false。 |
+| boolean | 是远程数据返回true，否则返回false。 |
 
 **示例：**
 
@@ -1864,7 +1864,7 @@ hasDataType(mimeType: string): boolean
 
 | 类型    | 说明                                        |
 | ------- | ------------------------------------------- |
-| boolean | 有指定类型的数据返回 true，否则返回 false。 |
+| boolean | 有指定类型的数据返回true，否则返回false。 |
 
 **示例：**
 
@@ -1884,7 +1884,7 @@ try {
 
 clearDataSync(): void
 
-清空系统剪贴板内容; 此接口为同步接口。
+清空系统剪贴板内容, 此接口为同步接口。
 
 **系统能力：** SystemCapability.MiscServices.
 
@@ -1906,7 +1906,7 @@ try {
 
 getDataSync(): PasteData
 
-读取系统剪贴板内容; 此接口为同步接口。
+读取系统剪贴板内容, 此接口为同步接口。
 
 **系统能力：** SystemCapability.MiscServices.
 
@@ -1934,7 +1934,7 @@ try {
 
 setDataSync(data: PasteData): void
 
-将数据写入系统剪贴板; 此接口为同步接口。
+将数据写入系统剪贴板, 此接口为同步接口。
 
 **系统能力：** SystemCapability.MiscServices.
 
@@ -1963,7 +1963,7 @@ try {
 
 hasDataSync(): boolean
 
-判断系统剪贴板中是否有内容; 此接口为同步接口。
+判断系统剪贴板中是否有内容, 此接口为同步接口。
 
 **系统能力：** SystemCapability.MiscServices.
 
@@ -1971,7 +1971,7 @@ hasDataSync(): boolean
 
 | 类型    | 说明                                                                    |
 | ------- | ----------------------------------------------------------------------- |
-| boolean | 返回 true 表示系统剪贴板中有内容，返回 false 表示系统剪贴板中没有内容。 |
+| boolean | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
 
 **示例：**
 
