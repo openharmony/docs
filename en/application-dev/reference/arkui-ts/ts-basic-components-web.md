@@ -21,7 +21,6 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 > **NOTE**
 >
 > Transition animation is not supported.
->
 > **\<Web>** components on a page must be bound to different **WebviewController**s.
 
 **Parameters**
@@ -115,7 +114,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  import { GlobalContext } from '../GlobalContext'
+  import { GlobalContext } from '../GlobalContext.ts'
 
   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
 
@@ -133,6 +132,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```
 
   2. Modify the **EntryAbility.ts** file.
+
     The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
   ```ts
   // xxx.ts
@@ -760,7 +760,7 @@ This API is deprecated since API version 9. You are advised to use [textZoomRati
 
 | Name          | Type  | Mandatory  | Default Value | Description           |
 | ------------- | ------ | ---- | ---- | --------------- |
-| textZoomAtio | number | Yes   | 100  | Text zoom ratio to set. The value range is (0, +∞).|
+| textZoomAtio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞).|
 
 **Example**
 
@@ -790,7 +790,7 @@ Sets the text zoom ratio of the page. The default value is **100**, which indica
 
 | Name          | Type  | Mandatory  | Default Value | Description           |
 | ------------- | ------ | ---- | ---- | --------------- |
-| textZoomRatio | number | Yes   | 100  | Text zoom ratio to set. The value range is (0, +∞).|
+| textZoomRatio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞).|
 
 **Example**
 
@@ -2306,7 +2306,9 @@ Called to process an HTML form whose input type is **file**, in response to the 
   <body>
     <form id="upload-form" enctype="multipart/form-data">
       <input type="file" id="upload" name="upload"/>
+      </form>
   </body>
+  </html>
   ```
 
 ### onResourceLoad<sup>9+</sup>
@@ -2389,7 +2391,7 @@ This API is deprecated since API version 10. You are advised to use [onLoadInter
 
 | Name | Type                                    | Description     |
 | ---- | ---------------------------------------- | --------- |
-| data | string / [WebResourceRequest](#webresourcerequest) | URL information.|
+| data | string \| [WebResourceRequest](#webresourcerequest) | URL information.|
 
 **Return value**
 
@@ -2627,8 +2629,8 @@ Called when an SSL client certificate request is received.
 | handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | User operation. |
 | host     | string                                   | Host name of the server that requests a certificate.   |
 | port     | number                                   | Port number of the server that requests a certificate.   |
-| keyTypes | Array<string>                            | Acceptable asymmetric private key types.   |
-| issuers  | Array<string>                            | Issuer of the certificate that matches the private key.|
+| keyTypes | Array<string\>                            | Acceptable asymmetric private key types.   |
+| issuers  | Array<string\>                            | Issuer of the certificate that matches the private key.|
 
   **Example**
   This example shows two-way authentication when interconnection with certificate management is not supported.
@@ -2656,7 +2658,8 @@ Called when an SSL client certificate request is received.
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handler.cancel()
+                  event.handlqq
+                  er.cancel()
                 }
               },
               cancel: () => {
@@ -2838,7 +2841,7 @@ Called when a permission request is received.
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onPermissionRequest((event) => {
             if (event) {
               AlertDialog.show({
@@ -2865,6 +2868,41 @@ Called when a permission request is received.
       }
     }
   }
+  ```
+
+  HTML file to be loaded:
+ ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+  <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+  <canvas id="canvas" width="500px" height="500px"></canvas>
+  <br>
+  <input type="button" title="HTML5 Camera" value="Enable Camera" onclick="getMedia()"/>
+  <script>
+    function getMedia()
+    {
+      let constraints = {
+        video: {width: 500, height: 500},
+        audio: true
+      };
+      // Obtain the video camera area.
+      let video = document.getElementByld("video");
+      // Returned Promise object
+      let promise = navigator.mediaDevices.getUserMedia(constraints);
+      // then() is asynchronous. Invoke the MediaStream object as a parameter.
+      promise.then(function (MediaStream) {
+        video.srcObject = MediaStream;
+        video.play();
+      });
+    }
+  </script>
+  </body>
+  </html>
   ```
 
 ### onContextMenuShow<sup>9+</sup>
@@ -2971,7 +3009,7 @@ Called when a request to obtain the geolocation information is received.
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src:$rawfile('index.html'), controller:this.controller })
         .geolocationAccess(true)
         .onGeolocationShow((event) => {
           if (event) {
@@ -2993,6 +3031,40 @@ Called when a request to obtain the geolocation information is received.
       }
     }
   }
+  ```
+
+  HTML file to be loaded:
+ ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+  <p id="demo">Click to obtain your current coordinates (which may take some time): </p>
+  <button onclick="getLocation()">Click Me</button>
+  <script>
+    var x=document.grtElementByld("demo");
+    function getLocation()
+    {
+      if (navigator.geolocation)
+      {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      }
+      else
+      {
+        x.innerHTML="Cannot obtain geographical location with the current browser.";
+      }
+    }
+
+    function showPosition(position)
+    {
+      x.innerHTML="Latitude:" + position.coords.latitude + "Longitude:" + position.coords.longitude;
+    }
+  </script>
+  </body>
+  </html>
   ```
 
 ### onGeolocationHide
@@ -3267,13 +3339,24 @@ Called when the web form data is resubmitted.
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  import business_error from '@ohos.base';
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
+        // After you click Submit on the web page, you can click Refresh to trigger the function again.
+        Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+        Web({ src:$rawfile('index.html'), controller: this.controller })
          .onDataResubmitted((event) => {
           console.log('onDataResubmitted')
           event.handler.resend();
@@ -3281,6 +3364,23 @@ Called when the web form data is resubmitted.
       }
     }
   }
+  ```
+
+ HTML file to be loaded:
+ ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <form action="http://httpbin.org/post" method="post">
+      <input type="text" name="username">
+      <input type="submit" name="Submit">
+    </form>
+  </body>
+  </html>
   ```
 
 ### onPageVisible<sup>9+</sup>
@@ -3625,7 +3725,7 @@ Called when a screen capture request is received.
 
 onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
-Called to indicate the offset by which the  web page overscrolls.
+Called to indicate the offset by which the web page overscrolls.
 
 **Parameters**
 
@@ -3660,8 +3760,7 @@ Called to indicate the offset by which the  web page overscrolls.
 
 onControllerAttached(callback: () => void)
 
-Called when the controller is successfully bound to the **\<Web>** component. The controller must be WebviewController.
-
+Called when the controller is successfully bound to the **\<Web>** component. The controller must be WebviewController. 
 As the web page is not yet loaded when this callback is called, APIs for operating the web page cannot be used in the callback, for example, [zoomIn](../apis/js-apis-webview.md#zoomin) and [zoomOut](../apis/js-apis-webview.md#zoomout). Other APIs, such as [loadUrl](../apis/js-apis-webview.md#loadurl) and [getWebId](../apis/js-apis-webview.md#getwebid), which do not involve web page operations, can be used properly.
 
 **Example**
