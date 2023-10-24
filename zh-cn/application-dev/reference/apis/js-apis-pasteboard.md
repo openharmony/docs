@@ -1796,7 +1796,7 @@ isRemoteData(): boolean
 
 判断是否为远程数据。
 
-**系统能力：** SystemCapability.MiscServices.
+**系统能力：** SystemCapability.MiscServices
 
 **返回值：**
 
@@ -1824,7 +1824,7 @@ getDataSource(): string
 
 获取数据来源。
 
-**系统能力：** SystemCapability.MiscServices.
+**系统能力：** SystemCapability.MiscServices
 
 **返回值：**
 
@@ -1852,7 +1852,7 @@ hasDataType(mimeType: string): boolean
 
 检查剪贴板内容中是否有指定类型的数据。
 
-**系统能力：** SystemCapability.MiscServices.
+**系统能力：** SystemCapability.MiscServices
 
 **参数：**
 
@@ -1886,7 +1886,7 @@ clearDataSync(): void
 
 清空系统剪贴板内容, 此接口为同步接口。
 
-**系统能力：** SystemCapability.MiscServices.
+**系统能力：** SystemCapability.MiscServices
 
 **示例：**
 
@@ -1908,7 +1908,7 @@ getDataSync(): PasteData
 
 读取系统剪贴板内容, 此接口为同步接口。
 
-**系统能力：** SystemCapability.MiscServices.
+**系统能力：** SystemCapability.MiscServices
 
 **返回值：**
 
@@ -1936,7 +1936,7 @@ setDataSync(data: PasteData): void
 
 将数据写入系统剪贴板, 此接口为同步接口。
 
-**系统能力：** SystemCapability.MiscServices.
+**系统能力：** SystemCapability.MiscServices
 
 **参数：**
 
@@ -1965,7 +1965,7 @@ hasDataSync(): boolean
 
 判断系统剪贴板中是否有内容, 此接口为同步接口。
 
-**系统能力：** SystemCapability.MiscServices.
+**系统能力：** SystemCapability.MiscServices
 
 **返回值：**
 
