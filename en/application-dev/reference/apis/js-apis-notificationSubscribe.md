@@ -141,6 +141,12 @@ Subscribes to a notification with the subscription information specified. This A
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | Yes  | Notification subscriber.|
 | info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | No  | Notification subscription information. This parameter is left empty by default.  |
 
+**Return value**
+
+| Type    | Description              | 
+| ------- |------------------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -239,6 +245,12 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 | Name      | Type                  | Mandatory| Description        |
 | ---------- | ---------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | Yes  | Notification subscriber.|
+
+**Return value**
+
+| Type    | Description        | 
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -347,6 +359,12 @@ Removes a notification for a specified application. This API uses a promise to r
 | notificationKey | [NotificationKey](#notificationkey) | Yes  | Notification key.  |
 | reason          | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.        |
 
+**Return value**
+
+| Type    | Description        | 
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -448,6 +466,12 @@ Removes a specified notification. This API uses a promise to return the result.
 | hashCode | string | Yes  | Unique notification ID.|
 | reason   | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.        |
 
+**Return value**
+
+| Type    | Description| 
+| ------- |--|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -538,6 +562,12 @@ Removes specified notifications. This API uses a promise to return the result.
 |-----------|-------------------------------| ---- |-------------|
 | hashCodes | Array\<String\>               | Yes  | Array of unique notification IDs.|
 | reason    | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.    |
+
+**Return value**
+
+| Type    | Description              | 
+| ------- |------------------|
+| Promise\<void\> | Promise that returns no value.|  
 
 **Error codes**
 
@@ -672,6 +702,12 @@ Removes all notifications for a specified application. This API uses a promise t
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | No  | Bundle information of the application. By default, this parameter is left empty, indicating that all notifications will be removed.|
+
+**Return value**
+
+| Type    | Description        | 
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|  
 
 **Error codes**
 
