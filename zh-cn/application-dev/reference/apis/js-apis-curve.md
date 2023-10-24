@@ -317,7 +317,7 @@ interpolate(fraction:&nbsp;number): number
 ```ts
 import Curves from '@ohos.curves'
 let curveValue = Curves.initCurve(Curve.EaseIn) // 创建一个默认先慢后快插值曲线
-let value: number = curve.interpolate(0.5) // 计算得到时间到一半时的插值
+let value: number = curveValue.interpolate(0.5) // 计算得到时间到一半时的插值
 ```
 
 
