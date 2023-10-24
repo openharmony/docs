@@ -2722,9 +2722,9 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 > **说明：**
 > 
-> 已激活输入法包括默认输入法和已使能的输入法应用，未激活输入法包括除使能输入法以外的其他已安装的输入法。
+> 已激活输入法为使能的输入法应用。默认输入法默认使能，其他输入法可被设置为使能或非使能。
 > 
-> 默认输入法默认使能，其他输入法可被设置为使能或非使能。
+> 已激活输入法列表包括默认输入法和已被设置为使能的输入法应用，未激活输入法列表包括除使能输入法以外的其他已安装的输入法。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2755,7 +2755,7 @@ try {
     }
     console.log('Succeeded in getting inputMethods.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -2768,9 +2768,9 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 > **说明：**
 > 
-> 已激活输入法包括默认输入法和已使能的输入法应用，未激活输入法包括除使能输入法以外的其他已安装的输入法。
+> 已激活输入法为使能的输入法应用。默认输入法默认使能，其他输入法可被设置为使能或非使能。
 > 
-> 默认输入法默认使能，其他输入法可被设置为使能或非使能。
+> 已激活输入法列表包括默认输入法和已被设置为使能的输入法应用，未激活输入法列表包括除使能输入法以外的其他已安装的输入法。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2801,10 +2801,10 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 try {
   inputMethodSetting.getInputMethods(true).then((data: Array<inputMethod.InputMethodProperty>) => {
     console.log('Succeeded in getting inputMethods.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -2816,10 +2816,10 @@ getInputMethodsSync(enable: boolean): Array&lt;InputMethodProperty&gt;
 获取已激活/未激活的输入法应用列表。同步接口。
 
 > **说明：**
-> 
-> 已激活输入法包括默认输入法和已使能的输入法应用，未激活输入法包括除使能输入法以外的其他已安装的输入法。
-> 
-> 默认输入法默认使能，其他输入法可被设置为使能或非使能。
+>
+> 已激活输入法为使能的输入法应用。默认输入法默认使能，其他输入法可被设置为使能或非使能。
+>
+> 已激活输入法列表包括默认输入法和已被设置为使能的输入法应用，未激活输入法列表包括除使能输入法以外的其他已安装的输入法。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2849,7 +2849,7 @@ getInputMethodsSync(enable: boolean): Array&lt;InputMethodProperty&gt;
 ```ts
 try {
   let imeProp = inputMethodSetting.getInputMethodsSync(true);
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -2880,13 +2880,17 @@ getAllInputMethods(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&g
 **示例：**
 
 ```ts
-inputMethodSetting.getAllInputMethods((err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
-  if (err) {
-    console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
-    return;
-  }
-  console.log('Succeeded in getting all inputMethods.');
-});
+try {
+  inputMethodSetting.getAllInputMethods((err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
+    if (err) {
+      console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in getting all inputMethods.');
+  });
+} catch (err: BusinessError) {
+  console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
+}
 ```
 
 ### getAllInputMethods<sup>11+</sup>
@@ -2917,7 +2921,7 @@ getAllInputMethods(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 ```ts
 inputMethodSetting.getAllInputMethods().then((data: Array<inputMethod.InputMethodProperty>) => {
   console.log('Succeeded in getting all inputMethods.');
-}).catch((err: Error) => {
+}).catch((err: BussinessError) => {
   console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
 })
 ```
@@ -2948,7 +2952,11 @@ getAllInputMethodsSync(): Array&lt;InputMethodProperty&gt;
 **示例：**
 
 ```ts
-let imeProp = inputMethodSetting.getAllInputMethodsSync();
+try {
+  let imeProp = inputMethodSetting.getAllInputMethodsSync();
+} catch(err: BusinessError) {
+  console.error(`Failed to getAllInputMethodsSync: ${JSON.stringify(err)}`);
+}
 ```
 
 ### showOptionalInputMethods<sup>9+</sup>
