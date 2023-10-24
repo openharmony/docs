@@ -6,7 +6,7 @@
 > 
 > 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应，开发者只需要将这些组件的draggale属性设置为true，即可使用默认拖拽能力。
+ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应，开发者只需要将这些组件的draggable属性设置为true，即可使用默认拖拽能力。
 
 - 默认支持拖出能力的组件（可从组件上拖出数据）：Search、TextInput、TextArea、RichEditor、Text、Image、FormComponent、Hyperlink
 
