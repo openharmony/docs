@@ -474,8 +474,12 @@ canShowFloating(callback: AsyncCallback\<boolean>): void
 **示例**：
 
 ```js
-settings.canShowFloating((status:boolean) => {
-    console.log('Checks whether a specified application can show as float window.');
+settings.canShowFloating((err:Error, status: boolean) => {
+  if (err) {
+    console.error(`Failed to Checks whether a specified application can show as float window ${err.message} `);
+    return;
+  }
+  console.log('Checks whether a specified application can show as float window.');
 });
 ```
 
