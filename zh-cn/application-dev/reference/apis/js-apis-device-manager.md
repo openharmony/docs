@@ -363,7 +363,7 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base'
   try {
-    dmInstance.getTrustedDeviceList((err: BusinessError, data: deviceManager.DeviceInfo) => {
+    dmInstance.getTrustedDeviceList((err: BusinessError, data: Array<deviceManager.DeviceInfo>) => {
       if (err) {
         console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
         return;
@@ -907,12 +907,13 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
   }
 
   // 认证的设备信息，可以从发现的结果中获取
-  let deviceInfo: DeviceInfo = {
+  let deviceInfo: deviceManager.DeviceInfo = {
     deviceId: "XXXXXXXX",
     deviceName: "",
     deviceType: 0x0E,
     networkId: "xxxxxxx",
-    range: 0
+    range: 0,
+    authForm: 0
   };
   let extraInfo: ExtraInfo = {
     targetPkgName: 'ohos.samples.xxx',
@@ -978,12 +979,13 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
   }
 
   try {
-    let deviceInfo: DeviceInfo = {
+    let deviceInfo: deviceManager.DeviceInfo = {
       deviceId: "XXXXXXXX",
       deviceName: "",
       deviceType: 0x0E,
       networkId: "xxxxxxx",
-      range: 0
+      range: 0,
+      authForm: 0
     };
     dmInstance.unAuthenticateDevice(deviceInfo);
   } catch (err) {
@@ -1115,14 +1117,22 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
   ```ts
   import { BusinessError } from '@ohos.base'
 
-  class Data {
-    registerInfo: ""
+  interface CredentialInfo {
+    version: string,
+    userId: string
   }
 
-  let credentialInfo = '[{"version": "1.2.3","userId": "123"}]';
+  class Data {
+    registerInfo: string = ""
+  }
 
+  let credentialInfo: CredentialInfo = {
+    version: "1.2.3",
+    userId: "123"
+  }
   try {
-    dmInstance.requestCredentialRegisterInfo(credentialInfo, (err: BusinessError, data: Data) => {
+    var jsonCredentialInfo = JSON.stringify(credentialInfo)
+    dmInstance.requestCredentialRegisterInfo(jsonCredentialInfo, (err: BusinessError, data: Data) => {
       if (data) {
           console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
       } else {
@@ -1202,7 +1212,8 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
   }
 
   try {
-    dmInstance.importCredential(credentialInfo, (data: Data) => {
+    var jsonCredentialInfo = JSON.stringify(credentialInfo)
+    dmInstance.importCredential(jsonCredentialInfo, (err: BusinessError, data: Data) => {
       if (data) {
           console.info("importCredential result:" + JSON.stringify(data));
       } else {
@@ -1254,7 +1265,8 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
   }
 
   try {
-    dmInstance.deleteCredential(queryInfo, (data: Data) => {
+    var jsonQueryInfo = JSON.stringify(queryInfo)
+    dmInstance.deleteCredential(jsonQueryInfo, (err: BusinessError, data: Data) => {
       if (data) {
           console.info("deleteCredential result:" + JSON.stringify(data));
       } else {
@@ -1455,7 +1467,14 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
   class Data {
     subscribeId: number = 0
-    device: deviceManager.DeviceInfo = {}
+    device: deviceManager.DeviceInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: 0,
+      networkId: "",
+      range: 0,
+      authForm:0,
+    }
   }
 
   try {
