@@ -1924,7 +1924,7 @@ import { BusinessError } from '@ohos.base';
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
     let result: PasteData = systemPasteboard.getDataSync();
-    console.info(`Succeeded in getting PasteData.`);
+    console.info('Succeeded in getting PasteData.');
 } catch (err: BusinessError) {
     console.error('Failed to get PasteData. Cause:' + err.message);
 };   
