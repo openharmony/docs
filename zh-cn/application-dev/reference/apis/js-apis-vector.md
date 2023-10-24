@@ -578,7 +578,7 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.increaseCapacityTo(2);
-vector.increaseCapacityTo(8);
+vector.increaseCapacityTo(12);
 ```
 
 ### trimToCurrentLength
@@ -638,6 +638,19 @@ copyToArray(array: Array&lt;T&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | array | Array&lt;T&gt; | 是 | 指定数组。 |
+
+**示例：**
+
+```ts
+let vector = new Vector();
+let array = new Array();
+vector.add(2);
+vector.add(4);
+vector.add(5);
+vector.add(4);
+vector.copyToArray(array);
+console.log("array: ",array)
+```
 
 ### getFirstElement
 
@@ -831,6 +844,18 @@ set(index: number, element: T): T
   | 类型 | 说明 |
   | -------- | -------- |
   | T | 返回替换后的元素。 |
+
+**示例：**
+
+```ts
+let vector = new Vector();
+vector.add(2);
+vector.add(4);
+vector.add(5);
+vector.add(4);
+let result = vector.set(3,66);
+console.log("vector: ",vector)
+```
 
 ### [Symbol.iterator]
 
