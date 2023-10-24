@@ -1871,9 +1871,9 @@ hasDataType(mimeType: string): boolean
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
-    let result: boolean = pasteData.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
+    let result: boolean = systemPasteboard.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
     console.info(`Succeeded in checking the DataType. Result: ${result}`);
 } catch (err: BusinessError) {
     console.error('Failed to check the DataType. Cause:' + err.message);
