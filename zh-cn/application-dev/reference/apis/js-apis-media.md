@@ -305,6 +305,9 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 **示例：**
 
 ```js
+import media from '@ohos.multimedia.media'
+import audio from '@ohos.multimedia.audio'
+
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
@@ -355,6 +358,9 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 **示例：**
 
 ```js
+import media from '@ohos.multimedia.media'
+import audio from '@ohos.multimedia.audio'
+
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
@@ -1795,6 +1801,10 @@ avPlayer.off('audioInterrupt')
 
 ```ts
 import media from '@ohos.multimedia.media'
+
+// 创建avPlayer实例对象
+let avPlayer = await media.createAVPlayer();
+
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
   console.info('audio key is ' + key); // 通过key值获取对应的value。key值具体可见[MediaDescriptionKey]
@@ -4359,6 +4369,18 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
+import media from '@ohos.multimedia.media'
+
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
+
 let seekTime: number = 5000;
 videoPlayer.seek(seekTime, (err: BusinessError, result: number) => {
   if (err == null) {
@@ -4389,6 +4411,16 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
 ```ts
 import media from '@ohos.multimedia.media'
+
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
 let seekTime: number = 5000;
 videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, result: number) => {
   if (err == null) {
@@ -4424,6 +4456,16 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
 ```ts
 import media from '@ohos.multimedia.media'
+
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
 let seekTime: number = 5000;
 videoPlayer.seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime表示seek完成后的时间点
   console.info('seek success');
@@ -4620,8 +4662,17 @@ setSpeed(speed:number, callback: AsyncCallback\<number>): void
 
 ```ts
 import media from '@ohos.multimedia.media'
-let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
+let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 videoPlayer.setSpeed(speed, (err: BusinessError, result: number) => {
   if (err == null) {
     console.info('setSpeed success!');
@@ -4655,8 +4706,17 @@ setSpeed(speed:number): Promise\<number>
 
 ```ts
 import media from '@ohos.multimedia.media'
-let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
+let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 videoPlayer.setSpeed(speed).then((result: number) => {
   console.info('setSpeed success');
 }).catch((error: BusinessError) => {
