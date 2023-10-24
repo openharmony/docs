@@ -1794,7 +1794,7 @@ systemPasteboard.setPasteData(pasteData).then((data: void) => {
 
 isRemoteData(): boolean
 
-判断剪贴板中的数据来自其他设备。
+判断剪贴板中的数据是否来自其他设备。
 
 **系统能力：** SystemCapability.MiscServices
 
