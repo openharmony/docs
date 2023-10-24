@@ -3021,3 +3021,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.EXECUTE_INSIGHT_INTENT
+
+允许系统应用执行意图调用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
