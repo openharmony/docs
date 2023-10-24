@@ -29,7 +29,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework";
 
 ## DataBlob
 
-buffer数组，Provides the data blob type。
+buffer数组，提供blob数据类型。
 
  **系统能力：** SystemCapability.Security.CryptoFramework
 
