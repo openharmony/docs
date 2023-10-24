@@ -613,23 +613,16 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
     deviceId: string = ""
   }
 
-  interface BindParam {
-    bindType: number, // 认证类型： 1 - 无帐号PIN码认证
-    targetPkgName: string,
-    appName: string,
-    appOperation: string,
-    customDescription: string
-  }
-
   // 认证的设备信息，可以从发现的结果中获取
   let deviceId = "XXXXXXXX";
-  let bindParam: BindParam = {
+  let bindParam: Record<string, string | number> = {
     bindType: 1, // 认证类型： 1 - 无帐号PIN码认证
     targetPkgName: 'xxxx',
     appName: 'xxxx',
     appOperation: 'xxxx',
     customDescription: 'xxxx',
   }
+
   try {
     dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
       if (err) {
