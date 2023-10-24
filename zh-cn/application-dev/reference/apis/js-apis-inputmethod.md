@@ -2570,12 +2570,17 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 **示例：**
 
 ```ts
+import inputMethod from '@ohos.inputMethod';
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { BusinessError } from '@ohos.base';
+
 let inputMethodProperty: inputMethod.InputMethodProperty = {
   packageName: 'com.example.kikakeyboard',
   name: 'InputMethodExAbility',
   methodId: '',
   id: 'propertyId',
 }
+let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err: BusinessError, data: Array<InputMethodSubtype>) => {
     if (err) {
@@ -2621,16 +2626,21 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 **示例：**
 
 ```ts
+import inputMethod from '@ohos.inputMethod';
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { BusinessError } from '@ohos.base';
+
 let inputMethodProperty: inputMethod.InputMethodProperty = {
   packageName: 'com.example.kikakeyboard',
   name: 'InputMethodExAbility',
   methodId: '',
   id: 'propertyId',
 }
+let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data: Array<InputMethodSubtype>) => {
     console.log('Succeeded in listing inputMethodSubtype.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -2664,6 +2674,10 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 **示例：**
 
 ```ts
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { BusinessError } from '@ohos.base';
+
+let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listCurrentInputMethodSubtype((err: BusinessError, data: Array<InputMethodSubtype>) => {
     if (err) {
@@ -2703,10 +2717,14 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 **示例：**
 
 ```ts
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { BusinessError } from '@ohos.base';
+
+let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listCurrentInputMethodSubtype().then((data: Array<InputMethodSubtype>) => {
     console.log('Succeeded in listing currentInputMethodSubtype.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
   })
 } catch(err) {
