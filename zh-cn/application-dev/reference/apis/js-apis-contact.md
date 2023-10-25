@@ -1238,6 +1238,8 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
 
+**需要权限**：ohos.permission.READ_CONTACTS
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
@@ -1270,6 +1272,8 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
 
+**需要权限**：ohos.permission.READ_CONTACTS
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **返回值：**
@@ -1295,8 +1299,6 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
-
-**需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1330,8 +1332,6 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
-
-**需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.Contacts
 
