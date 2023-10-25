@@ -661,7 +661,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 | 参数名         | 参数类型    | 必填   | 默认值   | 参数描述         |
 | ----------- | ------- | ---- | ----- | ------------ |
-| verticalScrollBarAccess | boolean | 是    | true | 设置是否显示纵向滚动条。 |
+| verticalScrollBar | boolean | 是    | true | 设置是否显示纵向滚动条。 |
 
 **示例：**
 
@@ -815,13 +815,13 @@ textZoomRatio(textZoomRatio: number)
 
 initialScale(percent: number)
 
-设置整体页面的缩放百分比，默认为100%。
+设置整体页面的缩放百分比，默认为100。
 
 **参数：**
 
 | 参数名     | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------- | ------ | ---- | ---- | --------------- |
-| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。 |
+| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比，number的取值范围1-100。 |
 
 **示例：**
 
@@ -5490,7 +5490,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
         Text(this.webResult).fontSize(20)
         Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(e => {
+        .onPageEnd(() => {
           this.controller.runJavaScript({
             script: 'test()',
             callback: (result: string)=> {
