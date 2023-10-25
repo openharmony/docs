@@ -4,8 +4,8 @@ The **cryptoFramework** module shields underlying hardware and algorithm librari
 
 > **NOTE**
 >
->- The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->- The following code snippets apply only to JavaScript development.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The following code snippets apply only to JavaScript development.
 
 ## Modules to Import
 
@@ -39,7 +39,9 @@ Defines a binary data array.
 
 ## ParamsSpec
 
-Defines the parameters used for encryption and decryption.<br>For the symmetric encryption and decryption modes that require parameters such as the initialization vector (IV), you need to construct a child class object and pass it to [init()](#init-2). If the IV is not required (for example, the ECB mode), pass in **null** in [init()](#init-2).
+Defines the parameters used for encryption and decryption. 
+
+For the symmetric encryption and decryption modes that require parameters such as the initialization vector (IV), you need to construct a child class object and pass it to [init()](#init-2). If the IV is not required (for example, the ECB mode), pass in **null** in [init()](#init-2).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -53,7 +55,9 @@ Defines the parameters used for encryption and decryption.<br>For the symmetric 
 
 ## IvParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption.<br>**IvParamsSpec** applies to the encryption and decryption modes such as CBC, CTR, OFB, and CFB, which use only the IV.
+Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption.
+
+**IvParamsSpec** applies to the encryption and decryption modes such as CBC, CTR, OFB, and CFB, which use only the IV.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -67,7 +71,9 @@ Defines the child class of [ParamsSpec](#paramsspec). It is used as the paramete
 
 ## GcmParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption.<br>**GcmParamsSpec** applies to the GCM mode.
+Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption.
+
+**GcmParamsSpec** applies to the GCM mode.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -83,7 +89,9 @@ Defines the child class of [ParamsSpec](#paramsspec). It is used as the paramete
 
 ## CcmParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption. <br>**CcmParamsSpec** applies to the CCM mode.
+Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption.
+
+**CcmParamsSpec** applies to the CCM mode.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -132,7 +140,7 @@ Enumerates the key parameters.
 | ECC_PK_X_BN | 209 | X coordinate of the public key **pk** (a point on the elliptic curve) in the ECC algorithm.|
 | ECC_PK_Y_BN | 210 | Y coordinate of the public key **pk** (a point on the elliptic curve) in the ECC algorithm.|
 | ECC_FIELD_TYPE_STR | 211 | Elliptic curve field type in the ECC algorithm. Currently, only the **Fp** field is supported.|
-| ECC_FIELD_SIZE_NUM | 212 | Size of the field in the ECC algorithm, in bits.<br>**NOTE**<br>For the **Fp** field, the field size is the length of the prime **p**, in bits. |
+| ECC_FIELD_SIZE_NUM | 212 | Size of the field in the ECC algorithm, in bits.<br>**NOTE**<br>For the **Fp** field, the size of the field is the length of the prime **p**, in bits.|
 | ECC_CURVE_NAME_STR | 213 | SECG curve name in the ECC algorithm.|
 | RSA_N_BN | 301 | Modulus **n** in the RSA algorithm.|
 | RSA_SK_BN | 302 | Private key **sk** (private key exponent **d**) in the RSA algorithm.|
@@ -153,7 +161,9 @@ Enumerates the key parameter types.
 
 ## CipherSpecItem<sup>10+</sup>
 
-Enumerates the cipher parameters. You can use [setCipherSpec](#setcipherspec10) to set cipher parameters, and use [getCipherSpec](#getcipherspec10) to obtain cipher parameters. <br>Currently, only the RSA is supported. For details, see [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).
+Enumerates the cipher parameters. You can use [setCipherSpec](#setcipherspec10) to set cipher parameters, and use [getCipherSpec](#getcipherspec10) to obtain cipher parameters.
+
+Currently, only the RSA algorithm is supported. For details, see [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -166,7 +176,9 @@ Enumerates the cipher parameters. You can use [setCipherSpec](#setcipherspec10) 
 
 ## SignSpecItem<sup>10+</sup>
 
-Enumerates the parameters for signing and signature verification. You can use [setSignSpec](#setsignspec10) and [setVerifySpec](#setverifyspec10) to set these parameters, and use [getSignSpec](#getsignspec10) and [getVerifySpec](#getverifyspec10) to obtain the parameters. <br>Currently, only the RSA is supported. For details, see [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).
+Enumerates the parameters for signing and signature verification. You can use [setSignSpec](#setsignspec10) and [setVerifySpec](#setverifyspec10) to set these parameters, and use [getSignSpec](#getsignspec10) and [getVerifySpec](#getverifyspec10) to obtain the parameters.
+
+Currently, only the RSA algorithm is supported. For details, see [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -191,7 +203,9 @@ Defines the asymmetric key parameters for creating a key generator. You need to 
 
 ## DSACommonParamsSpec<sup>10+</sup>
 
-Defines the common parameters contained in the public and private keys in the DSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10) and can be used to randomly generate public or private keys. <br>When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+Defines the common parameters contained in the public and private keys in the DSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10) and can be used to randomly generate public or private keys.
+
+When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -203,7 +217,9 @@ Defines the common parameters contained in the public and private keys in the DS
 
 ## DSAPubKeySpec<sup>10+</sup>
 
-Defines the parameters contained in the public key in the DSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10). <br>When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+Defines the parameters contained in the public key in the DSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -214,7 +230,9 @@ Defines the parameters contained in the public key in the DSA algorithm. It is a
 
 ## DSAKeyPairSpec<sup>10+</sup>
 
-Defines full parameters contained in the public and private keys in the DSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10). <br>When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+Defines full parameters contained in the public and private keys in the DSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -257,7 +275,9 @@ Defines a point on the elliptic curve.
 
 ## ECCCommonParamsSpec<sup>10+</sup>
 
-Defines the common parameters contained in the public and private keys in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10) and can be used to randomly generate public or private keys. <br>When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+Defines the common parameters contained in the public and private keys in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10) and can be used to randomly generate public or private keys.
+
+When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -272,7 +292,9 @@ Defines the common parameters contained in the public and private keys in the EC
 
 ## ECCPriKeySpec<sup>10+</sup>
 
-Defines the parameters contained in the private key in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10). <br>When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+Defines the parameters contained in the private key in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -283,7 +305,9 @@ Defines the parameters contained in the private key in the ECC algorithm. It is 
 
 ## ECCPubKeySpec<sup>10+</sup>
 
-Defines the parameters contained in the public key in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10). <br>When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+Defines the parameters contained in the public key in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -294,7 +318,9 @@ Defines the parameters contained in the public key in the ECC algorithm. It is a
 
 ## ECCKeyPairSpec<sup>10+</sup>
 
-Defines full parameters contained in the public and private keys in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10). <br>When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+Defines full parameters contained in the public and private keys in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -306,7 +332,9 @@ Defines full parameters contained in the public and private keys in the ECC algo
 
 ## RSACommonParamsSpec<sup>10+</sup>
 
-Defines the common parameters contained in the public and private keys in the RSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10) and can be used to randomly generate public or private keys. <br>When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+Defines the common parameters contained in the public and private keys in the RSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10) and can be used to randomly generate public or private keys.
+
+When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -316,7 +344,9 @@ Defines the common parameters contained in the public and private keys in the RS
 
 ## RSAPubKeySpec<sup>10+</sup>
 
-Defines the parameters contained in the public key in the RSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10). <br>When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+Defines the parameters contained in the public key in the RSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -327,7 +357,9 @@ Defines the parameters contained in the public key in the RSA algorithm. It is a
 
 ## RSAKeyPairSpec<sup>10+</sup>
 
-Defines full parameters contained in the public and private keys in the RSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10). <br>When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+Defines full parameters contained in the public and private keys in the RSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -339,7 +371,9 @@ Defines full parameters contained in the public and private keys in the RSA algo
 
 ## Key
 
-Provides APIs for key operations. Before performing cryptographic operations (such as encryption and decryption), you need to construct a child class object of **Key** and pass it to [init()](#init-2) of the [Cipher](#cipher) instance. <br>Keys can be generated by a key generator.
+Provides APIs for key operations. Before performing cryptographic operations (such as encryption and decryption), you need to construct a child class object of **Key** and pass it to [init()](#init-2) of the [Cipher](#cipher) instance.
+
+Keys can be generated by a key generator.
 
 ### Attributes
 
@@ -354,7 +388,7 @@ Provides APIs for key operations. Before performing cryptographic operations (su
 
 getEncoded(): DataBlob
 
-Obtains the byte stream of the key data synchronously. The key can be a symmetric key, public key, or private key. The public key must be in DER encoding format and comply with the ASN.1 syntax and X.509 specifications. The private key must be in DER encoding format and comply with the ASN.1 syntax and PKCS#8 specifications.
+Obtains the byte stream of the key data. This API returns the result synchronously. The key can be a symmetric key, public key, or private key. The public key must be in DER encoding format and comply with the ASN.1 syntax and X.509 specifications. The private key must be in DER encoding format and comply with the ASN.1 syntax and PKCS#8 specifications.
 
 > **NOTE**
 >
@@ -386,7 +420,9 @@ console.info("key blob:" + encodedKey.data);
 
 ## SymKey
 
-Provides APIs for symmetric key operations. It is a child class of [Key](#key). Its objects need to be passed to [init()](#init-2) of the [Cipher](#cipher) instance in symmetric encryption and decryption. <br>Symmetric keys can be generated by a [SymKeyGenerator](#symkeygenerator).
+Provides APIs for symmetric key operations. It is a child class of [Key](#key). Its objects need to be passed to [init()](#init-2) of the [Cipher](#cipher) instance in symmetric encryption and decryption.
+
+Symmetric keys can be generated by a [SymKeyGenerator](#symkeygenerator).
 
 ### clearMem
 
@@ -409,7 +445,9 @@ console.info("key blob:" + encodedKey.data);    // Display all 0s.
 
 ## PubKey
 
-Provides APIs for public key operations. It is a child class of [Key](#key). Its objects need to be passed in during asymmetric encryption and decryption, signature verification, and key agreement. <br>The public key can be generated by using the asymmetric key generator [AsyKeyGenerator](#asykeygenerator) or [AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10).
+Provides APIs for public key operations. It is a child class of [Key](#key). Its objects need to be passed in during asymmetric encryption and decryption, signature verification, and key agreement.
+
+The public key can be generated by using the asymmetric key generator [AsyKeyGenerator](#asykeygenerator) or [AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10).
 
 ### Attributes
 
@@ -424,7 +462,7 @@ Provides APIs for public key operations. It is a child class of [Key](#key). Its
 
 getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
-Obtains a key parameter synchronously.
+Obtains a key parameter. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -458,7 +496,9 @@ console.info("ecc item --- p: " + p.toString(16));
 
 ## PriKey
 
-Provides APIs for private key operations. It is a child class of [Key](#key). Its objects need to be passed in during asymmetric encryption and decryption, signing, and key agreement. <br>The public key can be generated by using the asymmetric key generator [AsyKeyGenerator](#asykeygenerator) or [AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10).
+Provides APIs for private key operations. It is a child class of [Key](#key). Its objects need to be passed in during asymmetric encryption and decryption, signing, and key agreement.
+
+The private key can be generated by using the asymmetric key generator [AsyKeyGenerator](#asykeygenerator) or [AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10).
 
 ### Attributes
 
@@ -488,7 +528,7 @@ key.clearMem(); // For the asymmetric private key, clearMem() releases the inter
 
 getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
-Obtains a key parameter synchronously.
+Obtains a key parameter. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -522,11 +562,14 @@ console.info("ecc item --- p: " + p.toString(16));
 
 ## KeyPair
 
-Defines an asymmetric key pair, which includes a public key and a private key. <br>The asymmetric key pair can be generated by using the asymmetric key generator [AsyKeyGenerator](#asykeygenerator) or [AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10).
+Defines an asymmetric key pair, which includes a public key and a private key.
+
+The asymmetric key pair can be generated by using the asymmetric key generator [AsyKeyGenerator](#asykeygenerator) or [AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10).
 
 > **NOTE**
 >
 > The **pubKey** and **priKey** objects in the **KeyPair** object exist as one parameter in the **KeyPair** object. When **KeyPair** leaves the scope, its internal objects can be destructed.
+>
 > The service must reference the **KeyPair** object instead of the internal **pubKey** or **priKey** object.
 
 ### Attributes
@@ -538,12 +581,13 @@ Defines an asymmetric key pair, which includes a public key and a private key. <
 | priKey  | [PriKey](#prikey) | Yes  | No  | Private key.     |
 | pubKey | [PubKey](#pubkey) | Yes  | No  | Public key.      |
 
-
 ## cryptoFramework.createSymKeyGenerator
 
 createSymKeyGenerator(algName: string): SymKeyGenerator
 
-Creates a **symKeyGenerator** instance based on the specified algorithm. <br>For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).
+Creates a **symKeyGenerator** instance based on the specified algorithm.
+
+For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -572,7 +616,9 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 ## SymKeyGenerator
 
-Provides APIs for using the **symKeyGenerator**. <br>Before using any API of the **SymKeyGenerator** class, you must create a **symKeyGenerator** instance by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
+Provides APIs for using the **symKeyGenerator**.
+
+Before using any API of the **SymKeyGenerator** class, you must create a **symKeyGenerator** instance by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
 
 ### Attributes
 
@@ -586,7 +632,11 @@ Provides APIs for using the **symKeyGenerator**. <br>Before using any API of the
 
 generateSymKey(callback: AsyncCallback\<SymKey>): void
 
-Generates a key randomly. This API uses an asynchronous callback to return the result. <br>This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator). <br>**RAND_priv_bytes()** of OpenSSL can be used to generate random keys.
+Generates a key randomly. This API uses an asynchronous callback to return the result.
+
+This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
+
+**RAND_priv_bytes()** of OpenSSL can be used to generate random keys.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -622,7 +672,11 @@ symKeyGenerator.generateSymKey((err, symKey) => {
 
 generateSymKey(): Promise\<SymKey>
 
-Generates a key randomly. This API uses a promise to return the result. <br>This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator). <br>**RAND_priv_bytes()** of OpenSSL can be used to generate random keys.
+Generates a key randomly. This API uses a promise to return the result.
+
+This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
+
+**RAND_priv_bytes()** of OpenSSL can be used to generate random keys.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -657,14 +711,16 @@ symKeyGenerator.generateSymKey()
 
 convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
 
-Converts data into a symmetric key. This API uses an asynchronous callback to return the result. <br>This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
+Converts data into a symmetric key. This API uses an asynchronous callback to return the result.
+
+This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 **Parameters**
 
-| Name    | Type                             | Mandatory| Description                                                        |
-| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| Name    | Type         | Mandatory| Description                      |
+| -------- | ------------------- | ---- | ---------------------|
 | key      | [DataBlob](#datablob)             | Yes  | Data to convert.                                        |
 | callback | AsyncCallback\<[SymKey](#symkey)> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the symmetric key generated. Otherwise, **err** is an error object.|
 
@@ -705,7 +761,9 @@ symKeyGenerator.convertKey(keyMaterialBlob, (err, symKey) => {
 
 convertKey(key: DataBlob): Promise\<SymKey>
 
-Converts data into a symmetric key. This API uses a promise to return the result. <br>This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
+Converts data into a symmetric key. This API uses a promise to return the result.
+
+This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -757,7 +815,9 @@ symKeyGenerator.convertKey(keyMaterialBlob)
 
 createAsyKeyGenerator(algName: string): AsyKeyGenerator
 
-Creates an **AsyKeyGenerator** instance based on the specified algorithm. <br>For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).
+Creates an **AsyKeyGenerator** instance based on the specified algorithm.
+
+For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -972,7 +1032,9 @@ keyGenPromise.then( keyPair => {
 
 createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
-Creates an **AsyKeyGenerator** instance based on the key parameters. <br>For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).
+Creates an **AsyKeyGenerator** instance based on the key parameters.
+
+For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1043,7 +1105,9 @@ Provides APIs for using the **AsKeyGenerator**. Before using the APIs of this cl
 
 generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
-Generates an asymmetric key pair. This API uses an asynchronous callback to return the result. When you use key parameters of the **COMMON_PARAMS_SPEC** type to create the key generator, you can obtain a key pair randomly generated. When you use **KEY_PAIR_SPEC** to create the key generator, you can obtain a key pair that matches the key parameters.
+Generates an asymmetric key pair. This API uses an asynchronous callback to return the result.
+
+If key parameters of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type are used to create the key generator, a key pair will be randomly generated. If key parameters of the [KEY_PAIR_SPEC](#asykeyspectype10) type are used to create the key generator, you can obtain a key pair that is consistent with the specified key parameters.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1081,7 +1145,9 @@ asyKeyGeneratorBySpec.generateKeyPair((err, keyPair) => {
 
 generateKeyPair(): Promise\<KeyPair>
 
-Generates an asymmetric key pair. This API uses a promise to return the result. When you use key parameters of the **COMMON_PARAMS_SPEC** type to create the key generator, you can obtain a key pair randomly generated. When you use **KEY_PAIR_SPEC** to create the key generator, you can obtain a key pair that matches the key parameters.
+Generates an asymmetric key pair. This API uses a promise to return the result.
+
+If key parameters of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type are used to create the key generator, a key pair will be randomly generated. If key parameters of the [KEY_PAIR_SPEC](#asykeyspectype10) type are used to create the key generator, you can obtain a key pair that is consistent with the specified key parameters.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1118,7 +1184,9 @@ keyGenPromise.then( keyPair => {
 
 generatePriKey(callback: AsyncCallback\<PriKey>): void
 
-Generates a private key. This API uses an asynchronous callback to return the result. If you use key parameters of the **PRIVATE_KEY_SPEC** type to create the key generator, you can obtain the specified private key. If you use **KEY_PAIR_SPEC** to create the key generator, you can obtain the private key from the generated key pair.
+Generates an asymmetric key pair. This API uses an asynchronous callback to return the result.
+
+If key parameters of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type are used to create the key generator, the specified private key can be obtained. If key parameters of the [KEY_PAIR_SPEC](#asykeyspectype10) type are used to create the key generator, you can obtain the specified private key from the key pair generated.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1156,7 +1224,9 @@ asyKeyGeneratorBySpec.generatePriKey((err, prikey) => {
 
 generatePriKey(): Promise\<PriKey>
 
-Generates a private key. This API uses a promise to return the result. If you use key parameters of the **PRIVATE_KEY_SPEC** type to create the key generator, you can obtain the specified private key. If you use **KEY_PAIR_SPEC** to create the key generator, you can obtain the private key from the generated key pair.
+Generates an asymmetric key pair. This API uses a promise to return the result.
+
+If key parameters of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type are used to create the key generator, the specified private key can be obtained. If key parameters of the [KEY_PAIR_SPEC](#asykeyspectype10) type are used to create the key generator, you can obtain the specified private key from the key pair generated.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1193,7 +1263,9 @@ keyGenPromise.then( priKey => {
 
 generatePubKey(callback: AsyncCallback\<PubKey>): void
 
-Generates a public key. This API uses an asynchronous callback to return the result. If you use key parameters of the **PUBLIC_KEY_SPEC** type to create the key generator, you can obtain the specified public key. If you use **KEY_PAIR_SPEC** to create the key generator, you can obtain the public key from the generated key pair.
+Generates an asymmetric key pair. This API uses an asynchronous callback to return the result.
+
+If key parameters of the [PUBLIC_KEY_SPEC](#asykeyspectype10) type are used to create the key generator, the specified public key can be obtained. If key parameters of the [KEY_PAIR_SPEC](#asykeyspectype10) type are used to create the key generator, you can obtain the specified public key from the key pair generated.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1231,7 +1303,9 @@ asyKeyGeneratorBySpec.generateKeyPair((err, pubKey) => {
 
 generatePubKey(): Promise\<PubKey>
 
-Generates a public key. This API uses a promise to return the result. If you use key parameters of the **PUBLIC_KEY_SPEC** type to create the key generator, you can obtain the specified public key. If you use **KEY_PAIR_SPEC** to create the key generator, you can obtain the public key from the generated key pair.
+Generates an asymmetric key pair. This API uses a promise to return the result.
+
+If key parameters of the [PUBLIC_KEY_SPEC](#asykeyspectype10) type are used to create the key generator, the specified public key can be obtained. If key parameters of the [KEY_PAIR_SPEC](#asykeyspectype10) type are used to create the key generator, you can obtain the specified public key from the key pair generated.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1239,7 +1313,7 @@ Generates a public key. This API uses a promise to return the result. If you use
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<[PubKey](#pubkey)> | Promise used to return the key pair generated.|
+| Promise\<[PubKey](#pubkey)> | Promise used to return the key generated.|
 
 **Error codes**
 
@@ -1268,7 +1342,9 @@ keyGenPromise.then( pubKey => {
 
 createCipher(transformation: string): Cipher
 
-Creates a [Cipher](#cipher) instance based on the specified algorithm. <br>For details about the supported specifications, see [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).
+Creates a [Cipher](#cipher) instance based on the specified algorithm.
+
+For details about the supported specifications, see [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1280,8 +1356,9 @@ Creates a [Cipher](#cipher) instance based on the specified algorithm. <br>For d
 
 > **NOTE**
 >
-> 1. In symmetric encryption and decryption, the implementation of PKCS #5 is the same as that of PKCS #7. PKCS #5 and PKCS #7 use the same padding length and block length. That is, data is padded with 8 bytes in 3DES and 16 bytes in AES. **noPadding** indicates that no padding is performed. <br>You need to understand the differences between different block cipher modes and use the correct parameter specifications. For example, padding is required for ECB and CBC. Otherwise, ensure that the plaintext length is an integer multiple of the block size. No padding is recommended for other modes. In this case, the ciphertext length is the same as the plaintext length.
-> 2. When RSA or SM2 is used for asymmetric encryption and decryption, create a **Cipher** instance for encryption and decryption respectively. Do not use the same **Cipher** instance for encryption and decryption. For symmetric encryption and decryption, one **cipher** object can be used to perform both encryption and decryption as long as the algorithm specifications are the same.
+> 1. In symmetric encryption and decryption, the implementation of PKCS #5 is the same as that of PKCS #7. PKCS #5 and PKCS #7 use the same padding length and block length. That is, data is padded with 8 bytes in 3DES and 16 bytes in AES. **noPadding** indicates that no padding is performed.
+> <br>You need to understand the differences between different block cipher modes and use the correct parameter specifications. For example, padding is required for ECB and CBC. Otherwise, ensure that the plaintext length is an integer multiple of the block size. No padding is recommended for other modes. In this case, the ciphertext length is the same as the plaintext length.
+> 2. When RSA or SM2 is used for asymmetric encryption and decryption, create a **Cipher** instance for encryption and decryption respectively. Do not use the same **Cipher** instance for encryption and decryption. For symmetric encryption and decryption, one **Cipher** object can be used to perform both encryption and decryption as long as the algorithm specifications are the same.
 
 **Return value**
 
@@ -1314,7 +1391,9 @@ try {
 
 ## Cipher
 
-Provides APIs for cipher operations. The [init()](#init-2), [update()](#update-4), and [doFinal()](#dofinal-2) APIs in this class are called in sequence to implement symmetric encryption or decryption and asymmetric encryption or decryption. <br>For details about the complete encryption and decryption process, see [Encryption and Decryption](../../security/cryptoFramework-guidelines.md#encryption-and-decryption).
+Provides APIs for cipher operations. The [init()](#init-1), [update()](#update), and [doFinal()](#dofinal) APIs in this class are called in sequence to implement symmetric encryption or decryption and asymmetric encryption or decryption.
+
+For details about the complete encryption and decryption process, see [Encryption and Decryption](../../security/cryptoFramework-guidelines.md#encryption-and-decryption).
 
 A complete symmetric encryption/decryption process is slightly different from the asymmetric encryption/decryption process.
 
@@ -1325,7 +1404,6 @@ A complete symmetric encryption/decryption process is slightly different from th
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-
 | Name   | Type  | Readable| Writable| Description                        |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | Yes  | No  | Algorithm.|
@@ -1334,7 +1412,9 @@ A complete symmetric encryption/decryption process is slightly different from th
 
 init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCallback\<void>): void
 
-Initializes a [cipher](#cipher) instance. This API uses an asynchronous callback to return the result. <br>This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
+Initializes a [cipher](#cipher) instance. This API uses an asynchronous callback to return the result.
+
+This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1378,7 +1458,9 @@ cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null, (err, ) => {
 
 init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 
-Initializes a [cipher](#cipher) instance. This API uses a promise to return the result. <br>This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
+Initializes a [cipher](#cipher) instance. This API uses a promise to return the result.
+
+This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1425,12 +1507,14 @@ cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null)
 
 update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
-Updates the data to encrypt or decrypt by segment. This API uses an asynchronous callback to return the encrypted or decrypted data. <br>This API can be called only after the [Cipher](#cipher) instance is initialized by using [init()](init-2).
+Updates the data to encrypt or decrypt by segment. This API uses an asynchronous callback to return the encrypted or decrypted data.
+
+This API can be called only after the [Cipher](#cipher) instance is initialized by using [init()](init-1).
 
 > **NOTE**
 >
-> 1. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext. The reason is the block mode and the related specifications affect the **update()** and [doFinal()](#dofinal-2) results. <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encrypted/decrypted block data generated by this **update()** is output. <br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**. <br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
-> 2. **update()** may be called multiple times or may not be called ([doFinal()](#dofinal-2) is called after [init](#init-2)), depending on the size of the data to encrypt or decrypt.
+> 1. The **update()** and **doFinal()** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext. <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encrypted/decrypted block data generated by this **update()** is output. <br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**. <br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
+> 2. You can use **update()** multiple times or do not use it (use **doFinal()** after **init()**), depending on the size of the data.
 >    The algorithm library does not set a limit on the amount of data that can be passed in by **updated()** (once or accumulatively). For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment.
 >    For details about the sample code for calling **update()** multiple times in AES, see [Encryption and Decryption](../../security/cryptoFramework-guidelines.md#encryption-and-decryption).
 > 3. RSA or SM2 asymmetric encryption and decryption do not support **update()**.
@@ -1486,12 +1570,15 @@ cipher.update(plainText, (err, output) => {       // Example of the encryption p
 
 update(data: DataBlob): Promise\<DataBlob>
 
-Updates the data to encrypt or decrypt by segment. This API uses a promise to return the encrypted or decrypted data. <br>This API can be called only after the [Cipher](#cipher) instance is initialized by using [init()](init-2).
+Updates the data to encrypt or decrypt by segment. This API uses a promise to return the encrypted or decrypted data.
+
+This API can be called only after the [Cipher](#cipher) instance is initialized by using [init()](init-2).
 
 > **NOTE**
 >
-> 1. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext. The reason is the block mode and the related specifications affect the **update()** and [doFinal()](#dofinal-2) results. <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encrypted/decrypted block data generated by this **update()** is output. <br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**. <br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
-> 2. **update()** may be called multiple times or may not be called ([doFinal()](#dofinal-2) is called after [init](#init-2)), depending on the size of the data to encrypt or decrypt.
+> 1. The **update()** and **doFinal()** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext.
+> <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encrypted/decrypted block data generated by this **update()** is output. <br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**. <br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
+> 2. You can use **update()** multiple times or do not use it (use **doFinal()** after **init()**), depending on the size of the data.<br>
 >    The algorithm library does not set a limit on the amount of data that can be passed in by **updated()** (once or accumulatively). For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment.
 >    For details about the sample code for calling **update()** multiple times in AES, see [Encryption and Decryption](../../security/cryptoFramework-guidelines.md#encryption-and-decryption).
 > 3. RSA or SM2 asymmetric encryption and decryption do not support **update()**.
@@ -1560,8 +1647,8 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 > **NOTE**
 >
->  1. In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call [init()](#init-2) to pass in a complete parameter list for initialization. <br>For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
->  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **[init](#init-2)**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
+>  1. In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call **init()** to pass in a complete parameter list for initialization. For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
+>  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **init()**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
 >  3. The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
 >  4. For details about the sample code for calling **doFinal()** multiple times during RSA or SM2 asymmetric encryption and decryption, see [Encryption and Decryption](../../security/cryptoFramework-guidelines.md#encryption-and-decryption).
 
@@ -1607,7 +1694,7 @@ cipher.doFinal(data, (err, output) => {
 
 doFinal(data: DataBlob | null): Promise\<DataBlob>
 
- (1) Encrypts or decrypts the remaining data (generated by the block cipher mode) and the data passed in by **doFinal()** to finalize the symmetric encryption or decryption. This API uses a promise to return the encrypted or decrypted data. <br>If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by [update()](#update-4), you can pass in **null** in **data** of **doFinal()**. <br>The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
+ (1) Encrypts or decrypts the remaining data (generated by the block cipher mode) and the data passed in by **doFinal()** to finalize the symmetric encryption or decryption. This API uses a promise to return the encrypted or decrypted data. If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by **update()**, you can pass in **null** in **data** of **doFinal()**. <br>The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
 
 - Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **null** is passed in by **data** of **doFinal()**, the result of **doFinal()** is **authTag**. <br>**authTag** must be [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) used for decryption. The ciphertext is the **data** passed in for decryption.
 - Symmetric encryption and decryption in other modes and symmetric decryption in GCM and CCM modes: The result is the complete plaintext/ciphertext.
@@ -1616,8 +1703,8 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 
 > **NOTE**
 >
->  1. In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call [init()](#init-2) to pass in a complete parameter list for initialization. <br>For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
->  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **[init](#init-2)**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
+>  1. In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call **init()** to pass in a complete parameter list for initialization. For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
+>  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **init()**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
 >  3. The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
 >  4. For details about the sample code for calling **doFinal()** multiple times during RSA or SM2 asymmetric encryption and decryption, see [Encryption and Decryption](../../security/cryptoFramework-guidelines.md#encryption-and-decryption).
 
@@ -1659,7 +1746,7 @@ cipher.doFinal(data)
       // Concatenate output.data to obtain the complete plaintext/ciphertext (and authTag).
     }
   }, (error: BusinessError) => {
-    console.error(`Failed to finalize cipher, ${error.code}, ${error.message}`);
+    console.error(`Failed to finish cipher, ${error.code}, ${error.message}`);
   })
 ```
 
@@ -1790,7 +1877,9 @@ let mdName = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_ST
 
 createSign(algName: string): Sign
 
-Creates a **Sign** instance. <br>For details about the supported specifications, see [Signing and Signature Verification Specifications](../../security/cryptoFramework-overview.md#signing-and-signature-verification-specifications).
+Creates a **Sign** instance.
+
+For details about the supported specifications, see [Signing and Signature Verification Specifications](../../security/cryptoFramework-overview.md#signing-and-signature-verification-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1828,7 +1917,7 @@ let signer4 = cryptoFramework.createSign("DSA2048|SHA256");
 
 ## Sign
 
-Provides APIs for signing. Before using any API of the **Sign** class, you must create a **Sign** instance by using **createSign(algName: string): Sign**. Invoke **init()**, **update()**, and **sign()** in this class in sequence to complete the signing operation. For details about the sample code, see [Signing and Signature Verification](../../security/cryptoFramework-guidelines.md#signing-and-signature-verification).
+Provides APIs for signing. Before using any API of the **Sign** class, you must create a **Sign** instance by using [createSign(algName: string): Sign](#cryptoframeworkcreatesign). Invoke **init()**, **update()**, and **sign()** in this class in sequence to complete the signing operation. For details about the sample code, see [Signing and Signature Verification](../../security/cryptoFramework-guidelines.md#signing-and-signature-verification).
 
 The **Sign** class does not support repeated initialization. When a new key is used for signing, you must create a new **Sign** object and call **init()** for initialization.
 
@@ -1852,7 +1941,9 @@ When **update()** is used, the **sign()** API supports only **DataBlob** in vers
 
 init(priKey: PriKey, callback: AsyncCallback\<void>): void
 
-Initializes a **Sign** object using a private key. This API uses an asynchronous callback to return the result. The **Sign** class does not support repeated calling of **init()**.
+Initializes the **Sign** instance with a private key. This API uses an asynchronous callback to return the result.
+
+The **Sign** class does not support repeated use of **init()**.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1876,7 +1967,9 @@ Initializes a **Sign** object using a private key. This API uses an asynchronous
 
 init(priKey: PriKey): Promise\<void>
 
-Initializes a **Sign** object using a private key. This API uses a promise to return the result. The **Sign** class does not support repeated calling of **init()**.
+Initializes the **Sign** instance with a private key. This API uses a promise to return the result.
+
+The **Sign** class does not support repeated use of **init()**.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1905,7 +1998,9 @@ Initializes a **Sign** object using a private key. This API uses a promise to re
 
 update(data: DataBlob, callback: AsyncCallback\<void>): void
 
-Updates the data to be signed. This API uses a callback to complete the update. <br>This API can be called only after the [Sign](#sign) instance is initialized by using [init()](init-2).
+Updates the data to be signed. This API uses an asynchronous callback to return the result.
+
+This API can be called only after the [Sign](#sign) instance is initialized by using [init()](init-2).
 
 > **NOTE**
 >
@@ -1935,12 +2030,14 @@ Updates the data to be signed. This API uses a callback to complete the update. 
 
 update(data: DataBlob): Promise\<void>
 
-Updates the data to be signed. This API uses a promise to return the result. <br>This API can be called only after the [Sign](#sign) instance is initialized by using [init()](#init-3).
+Updates the data to be signed. This API uses a promise to return the result.
+
+This API can be called only after the [Sign](#sign) instance is initialized by using [init()](#init-3).
 
 > **NOTE**
 >
 > **update()** may be called multiple times or may not be called (call [sign](#sign-2) after [init](#init-3)), depending on the size of the data.<br>
-> The algorithm library does not set a limit on the amount of data to be updated (once or accumulatively). If a large amount of data needs to be signed, you are advised to use **update()** multiple times to pass in data. This can prevent too much memory from being requested at a time.<br>
+> The algorithm library does not set a limit on the amount of data to be updated (once or accumulatively). If a large amount of data needs to be signed, you are advised to use **update()** multiple times to pass in data. This can prevent too much memory from being requested at a time.
 > For details about the sample code for calling **update()** multiple times, see [Signing and Signature verification](../../security/cryptoFramework-guidelines.md#signing-and-signature-verification).
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -2055,7 +2152,7 @@ function signMessageCallback() {
 }
 ```
 
-**Promise example**:
+**Example (promise)**
 
 ```ts
 function stringToUint8Array(str: string) {
@@ -2096,7 +2193,9 @@ function signMessagePromise() {
 
 setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
-Sets signing specifications. You can use this API to set signing parameters that cannot be set by [createSign](#cryptoframeworkcreatesign). Currently, only the RSA is supported.
+Sets signing specifications. You can use this API to set signing parameters that cannot be set by [createSign](#cryptoframeworkcreatesign).
+
+Currently, only the RSA is supported.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2136,7 +2235,7 @@ Obtains signing specifications. Currently, only the RSA is supported.
 
 | Name| Type    | Mandatory| Description      |
 | ------ | -------- | ---- | ---------- |
-| itemType | [SignSpecItem](#signspecitem)  | Yes  | Signing parameter to obtain.|
+| itemType | [SignSpecItem](#signspecitem10)  | Yes  | Signing parameter to obtain.|
 
 **Return value**
 
@@ -2164,7 +2263,9 @@ let saltLen = signer.getSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
 
 createVerify(algName: string): Verify
 
-Creates a **Verify** instance. <br>For details about the supported specifications, see [Signing and Signature Verification Specifications](../../security/cryptoFramework-overview.md#signing-and-signature-verification-specifications).
+Creates a **Verify** instance.
+
+For details about the supported specifications, see [Signing and Signature Verification Specifications](../../security/cryptoFramework-overview.md#signing-and-signature-verification-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2198,7 +2299,7 @@ let verifyer2 = cryptoFramework.createVerify("RSA1024|PSS|SHA256|MGF1_SHA256")
 
 ## Verify
 
-Provides APIs for signature verification. Before using any API of the **Verify** class, you must create a **Verify** instance by using **createVerify(algName: string): Verify**. Invoke **init()**, **update()**, and **sign()** in this class in sequence to complete the signature verification. For details about the sample code, see [Signing and Signature Verification](../../security/cryptoFramework-guidelines.md#signing-and-signature-verification).
+Provides APIs for signature verification. Before using any API of the **Verify** class, you must create a **Verify** instance by using [createVerify(algName: string): Verify](#cryptoframeworkcreateverify). Invoke **init()**, **update()**, and **sign()** in this class in sequence to complete the signature verification. For details about the sample code, see [Signing and Signature Verification](../../security/cryptoFramework-guidelines.md#signing-and-signature-verification).
 
 The **Verify** class does not support repeated initialization. When a new key is used for signature verification, you must create a new **Verify** object and call **init()** for initialization.
 
@@ -2220,7 +2321,7 @@ If the signed message is too long, you can call **update()** multiple times to p
 
 init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
-Initializes the **Verify** instance using a public key. This API uses an asynchronous callback to return the result.
+Initializes the **Verify** instance with a public key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2244,7 +2345,7 @@ Initializes the **Verify** instance using a public key. This API uses an asynchr
 
 init(pubKey: PubKey): Promise\<void>
 
-Initializes the **Verify** instance using a public key. This API uses a promise to return the result.
+Initializes the **Verify** instance with a public key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2273,7 +2374,9 @@ Initializes the **Verify** instance using a public key. This API uses a promise 
 
 update(data: DataBlob, callback: AsyncCallback\<void>): void
 
-Updates the data for signature verification. This API uses an asynchronous callback to return the result. <br>This API can be called only after the [Verify](#verify) instance is initialized using [init()](#init-4).
+Updates data for signature verification. This API uses an asynchronous callback to return the result.
+
+This API can be called only after the [Verify](#verify) instance is initialized using [init()](#init-4).
 
 > **NOTE**
 >
@@ -2303,7 +2406,9 @@ Updates the data for signature verification. This API uses an asynchronous callb
 
 update(data: DataBlob): Promise\<void>
 
-Updates the data for signature verification. This API uses a promise to return the result. <br>This API can be called only after the [Verify](#verify) instance is initialized using [init()](#init-5).
+Updates the data for signature verifications. This API uses a promise to return the result.
+
+This API can be called only after the [Verify](#verify) instance is initialized using [init()](#init-5).
 
 > **NOTE**
 >
@@ -2406,7 +2511,7 @@ verifyer.init(globalKeyPair.pubKey, (err, data) => {
 })
 ```
 
-**Promise example**:
+**Example (promise)**
 
 ```ts
 let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
@@ -2500,7 +2605,9 @@ let saltLen = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_N
 
 createKeyAgreement(algName: string): KeyAgreement
 
-Creates a **KeyAgreement** instance. <br>For details about the supported specifications, see [Key Agreement Specifications](../../security/cryptoFramework-overview.md#key-agreement-specifications).
+Creates a **KeyAgreement** instance.
+
+For details about the supported specifications, see [Key Agreement Specifications](../../security/cryptoFramework-overview.md#key-agreement-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2533,7 +2640,7 @@ let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
 
 ## KeyAgreement
 
-Provides APIs for key agreement operations. Before using any API of the **KeyAgreement** class, you must create a **KeyAgreement** instance by using **createKeyAgreement(algName: string): KeyAgreement**.
+Provides APIs for key agreement operations. Before using any API of the **KeyAgreement** class, you must create a **KeyAgreement** instance by using [createKeyAgreement(algName: string): KeyAgreement](#cryptoframeworkcreatekeyagreement).
 
 ### Attributes
 
@@ -2547,7 +2654,7 @@ Provides APIs for key agreement operations. Before using any API of the **KeyAgr
 
 generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob>): void
 
-Generates a shared secret. This API uses an asynchronous callback to return the result.
+Performs key agreement based on a private key and a public key. This API uses an asynchronous callback to return the shared secret generated.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2572,7 +2679,7 @@ Generates a shared secret. This API uses an asynchronous callback to return the 
 
 generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 
-Generates a shared secret. This API uses a promise to return the result.
+Performs key agreement based on a private key and a public key. This API uses a promise to return the shared secret generated.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2614,7 +2721,7 @@ keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, (err, se
 });
 ```
 
-**Promise example**:
+**Example (promise)**
 
 ```ts
 import { BusinessError } from '@ohos.base';
@@ -2633,7 +2740,9 @@ keyAgreementPromise.then((secret) => {
 
 createMd(algName: string): Md
 
-Creates an **Md** instance for message digest operations. <br>For details about the supported specifications, see [MD Algorithm Specifications](../../security/cryptoFramework-overview.md#md-algorithm-specifications).
+Creates an **Md** instance for message digest operations.
+
+For details about the supported specifications, see [MD Algorithm Specifications](../../security/cryptoFramework-overview.md#md-algorithm-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2672,7 +2781,7 @@ try {
 
 ## Md
 
-Provides APIs for message digest operations. Before using any API of the **Md** class, you must create an **Md** instance by using [createMd](#cryptoframeworkcreatemd).
+Provides APIs for message digest (MD) operations. Before using any API of the **Md** class, you must create an **Md** instance by using [createMd](#cryptoframeworkcreatemd).
 
 ### Attributes
 
@@ -2686,7 +2795,7 @@ Provides APIs for message digest operations. Before using any API of the **Md** 
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
 
-Updates the message digest data. This API uses an asynchronous callback to return the result.
+Updates the message for MD operations. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2728,7 +2837,7 @@ md.update(blob, (err,) => {
 
 update(input: DataBlob): Promise\<void>
 
-Updates the message digest data. This API uses a promise to return the result.
+Updates the message for MD operations. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2824,7 +2933,7 @@ Generates a message digest. This API uses a promise to return the result.
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<[DataBlob](#datablob)> | Promise that returns no value.|
+| Promise\<[DataBlob](#datablob)> | Promise that returns the result.|
 
 **Error codes**
 
@@ -2899,7 +3008,9 @@ promiseMdUpdate.then(() => {
 
 createMac(algName: string): Mac
 
-Creates a **Mac** instance for message authentication code (MAC) operations. For details about the supported specifications, see [HMAC Algorithm Specifications](../../security/cryptoFramework-overview.md#hmac-algorithm-specifications).
+Creates a **Mac** instance for message authentication code (MAC) operations.
+
+For details about the supported specifications, see [HMAC Algorithm Specifications](../../security/cryptoFramework-overview.md#hmac-algorithm-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2952,7 +3063,7 @@ Provides APIs for MAC operations. Before using any API of the **Mac** class, you
 
 init(key: SymKey, callback: AsyncCallback\<void>): void
 
-Initializes the MAC computation using a symmetric key. This API uses an asynchronous callback to return the result.
+Initializes the MAC computation with a symmetric key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2994,7 +3105,7 @@ symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
 
 init(key: SymKey): Promise\<void>
 
-Initializes the MAC computation using a symmetric key. This API uses a promise to return the result.
+Initializes the MAC computation with a symmetric key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3041,7 +3152,7 @@ promiseConvertKey.then(symKey => {
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
 
-Updates the MAC computation data. This API uses an asynchronous callback to return the result.
+Updates the message for MAC computation. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -3093,7 +3204,7 @@ symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
 
 update(input: DataBlob): Promise\<void>
 
-Updates the MAC computation data. This API uses a promise to return the result.
+Updates the message for MAC computation. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -3148,7 +3259,7 @@ promiseConvertKey.then(symKey => {
 
 doFinal(callback: AsyncCallback\<DataBlob>): void
 
-Finalizes the MAC computation. This API uses an asynchronous callback to return the result.
+Finishes the MAC computation. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3202,7 +3313,7 @@ symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
 
 doFinal(): Promise\<DataBlob>
 
-Finalizes the MAC computation. This API uses a promise to return the result.
+Finishes the MAC computation. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3210,7 +3321,7 @@ Finalizes the MAC computation. This API uses a promise to return the result.
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<[DataBlob](#datablob)> | Promise that returns no value.|
+| Promise\<[DataBlob](#datablob)> | Promise that returns the result.|
 
 **Error codes**
 
@@ -3299,7 +3410,9 @@ promiseConvertKey.then(symKey => {
 
 createRandom(): Random
 
-Creates a **Random** instance for generating random numbers and setting seeds. <br>For details about the supported specifications, see [Random Number](../../security/cryptoFramework-overview.md#random-number).
+Creates a **Random** instance for generating random numbers and setting seeds.
+
+For details about the supported specifications, see [Random Number Specifications](../../security/cryptoFramework-overview.md#random-number-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3396,7 +3509,7 @@ Generates a random number of the specified length. This API uses a promise to re
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<[DataBlob](#datablob)> | Promise that returns no value.|
+| Promise\<[DataBlob](#datablob)> | Promise that returns the result.|
 
 **Error codes**
 
@@ -3424,7 +3537,7 @@ promiseGenerateRand.then(randData => {
 
 generateRandomSync(len: number): DataBlob
 
-Generates a random number of the specified length synchronously.
+Generates a random number of the specified length. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 

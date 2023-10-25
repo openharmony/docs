@@ -1829,7 +1829,7 @@ Provides APIs for encapsulating file asset attributes.
 
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#media-file-uri).        |
+| uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).        |
 | fileType   | [FileType](#filetype) | Yes  | No  | Type of the file.                                              |
 | displayName               | string                   | Yes  | Yes  | File name, including the file name extension, to display.                                |
 
@@ -2877,7 +2877,7 @@ async function example() {
   };
   try {
     let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
-    await fetchResult.close();
+    fetchResult.close();
     console.info('close succeed.');
   } catch (err) {
     console.error('close fail. message = ' + err);
@@ -2982,7 +2982,7 @@ async function example() {
   };
   let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     fetchResult.getNextObject((err, fileAsset) => {
       if (fileAsset != undefined) {
         console.info('fileAsset displayName: ', fileAsset.displayName);
@@ -3022,7 +3022,7 @@ async function example() {
   };
   let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     let fileAsset: userFileManager.FileAsset = await fetchResult.getNextObject();
     console.info('fileAsset displayName: ', fileAsset.displayName);
   }
@@ -4056,7 +4056,7 @@ async function example() {
 
 delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
-Deletes files from a system album.
+Deletes a file from the system album. Only the files in the trash can be deleted.
 
 This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10) instead.
 
@@ -4068,7 +4068,7 @@ This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10)
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | URI of the album.|
+| uri | string | Yes  | URI of the file to delete.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Example**
@@ -4102,7 +4102,7 @@ async function example() {
 
 delete(uri: string): Promise&lt;void&gt;;
 
-Deletes files from a system album.
+Deletes a file from the system album. Only the files in the trash can be deleted.
 
 This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10) instead.
 
@@ -4114,7 +4114,7 @@ This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10)
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | URI of the album.|
+| uri | string | Yes  | URI of the file to delete.|
 
 **Return value**
 
@@ -4151,7 +4151,7 @@ async function example() {
 
 recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
-Recovers files in a system album.
+Recovers a file in the system album. Only the files in the trash can be recovered.
 
 This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets10) instead.
 
@@ -4163,7 +4163,7 @@ This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets1
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | URI of the album.|
+| uri | string | Yes  | URI of the file to recover.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Example**
@@ -4197,7 +4197,7 @@ async function example() {
 
 recover(uri: string): Promise&lt;void&gt;;
 
-Recovers files in a system album.
+Recovers a file in the system album. Only the files in the trash can be recovered.
 
 This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets10) instead.
 
@@ -4209,7 +4209,7 @@ This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets1
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | URI of the album.|
+| uri | string | Yes  | URI of the file to recover.|
 
 **Return value**
 
@@ -4369,7 +4369,7 @@ Defines the key information about an audio file.
 | ------------- | ------------------- | ---------------------------------------------------------- |
 | URI           | uri                 | URI of the file.                                                  |
 | DISPLAY_NAME  | display_name        | File name displayed.                                                  |
-| DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.            |
+| DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
 | DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
 | TITLE         | title               | Title in the file.                                                  |
 | ARTIST        | artist              | Author of the file.                                                  |
@@ -4398,9 +4398,9 @@ Defines the key information about an image or video file.
 | ORIENTATION   | orientation         | Orientation of the image file.                                            |
 | FAVORITE      | favorite            | Whether the file is added to favorites.                                                   |
 | POSITION<sup>10+</sup>  | position            | File location type.                              |
-| DATE_TRASHED<sup>10+</sup>  | date_trashed  | Date when the file was deleted. The value is the number of seconds between the time when the file is deleted and January 1, 1970.                |
+| DATE_TRASHED<sup>10+</sup>  | date_trashed  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time.                |
 | HIDDEN<sup>10+</sup>  | hidden            | Whether the file is hidden.                              |
-| CAMERA_SHOT_KEY<sup>10+</sup>    | camera_shot_key           | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) |
+| CAMERA_SHOT_KEY<sup>10+</sup>    | camera_shot_key           | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)   |
 | USER_COMMENT<sup>10+</sup>  | user_comment            | User comment information.                              |
 
 ## AlbumKey
@@ -4436,7 +4436,7 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Column names used for retrieval. If this parameter is left empty, the media files are fetched by URI, name, and file type by default. The specific field names are subject to the definition of the search object. Example:<br>fetchColumns: ['uri', 'title']|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. Example:<br>fetchColumns: ['uri', 'title']|
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## AlbumFetchOptions
