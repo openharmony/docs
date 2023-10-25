@@ -152,7 +152,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.bindDevice(12345678, (error: BusinessError, data: number) => {
+  deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
     console.error(`Device is disconnected`);
   }).then(data => {
     console.info(`bindDevice success, Device_Id is ${data.deviceId}.
