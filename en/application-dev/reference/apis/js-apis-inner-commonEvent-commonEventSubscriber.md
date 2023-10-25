@@ -87,7 +87,7 @@ subscriber.getCode().then((code:number) => {
 });
 ```
 
-## getCodeSync
+## getCodeSync<sup>10+</sup>
 
 getCodeSync(): number
 
@@ -167,7 +167,7 @@ subscriber.setCode(1).then(() => {
 });
 ```
 
-## setCodeSync
+## setCodeSync<sup>10+</sup>
 
 setCodeSync(code: number): void
 
@@ -246,7 +246,7 @@ subscriber.getData().then((data:string) => {
 });
 ```
 
-## getDataSync
+## getDataSync<sup>10+</sup>
 
 getDataSync(): string
 
@@ -326,7 +326,8 @@ subscriber.setData("publish_data_changed").then(() => {
 });
 ```
 
-## setDataSync
+## setDataSync<sup>10+</sup>
+
 setDataSync(data: string): void
 
 Sets the data for this common event. This API returns the result synchronously.
@@ -411,11 +412,11 @@ subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
 });
 ```
 
-## setCodeAndDataSync
-
-Sets the code and data for this common event. This API returns the result synchronously.
+## setCodeAndDataSync<sup>10+</sup>
 
 setCodeAndDataSync(code: number, data: string): void
+
+Sets the code and data for this common event. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -489,7 +490,7 @@ subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
 });
 ```
 
-## isOrderedCommonEventSync
+## isOrderedCommonEventSync<sup>10+</sup>
 
 isOrderedCommonEventSync(): boolean
 
@@ -562,7 +563,7 @@ subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
 });
 ```
 
-## isStickyCommonEventSync
+## isStickyCommonEventSync<sup>10+</sup>
 
 isStickyCommonEventSync(): boolean
 
@@ -635,7 +636,7 @@ subscriber.abortCommonEvent().then(() => {
 });
 ```
 
-## abortCommonEventSync
+## abortCommonEventSync<sup>10+</sup>
 
 abortCommonEventSync(): void
 
@@ -701,7 +702,7 @@ subscriber.clearAbortCommonEvent().then(() => {
 });
 ```
 
-## clearAbortCommonEventSync
+## clearAbortCommonEventSync<sup>10+</sup>
 
 clearAbortCommonEventSync(): void
 
@@ -767,7 +768,7 @@ subscriber.getAbortCommonEvent().then((abortEvent:boolean) => {
 });
 ```
 
-## getAbortCommonEventSync
+## getAbortCommonEventSync<sup>10+</sup>
 
 getAbortCommonEventSync(): boolean
 
@@ -840,7 +841,7 @@ subscriber.getSubscribeInfo().then((subscribeInfo:CommonEventManager.CommonEvent
 });
 ```
 
-## getSubscribeInfoSync
+## getSubscribeInfoSync<sup>10+</sup>
 
 getSubscribeInfoSync(): CommonEventSubscribeInfo
 
