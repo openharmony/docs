@@ -8368,7 +8368,7 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'inputDeviceChange'。 |
-| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 返回监听的音频输入设备变化。                            |
+| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 返回监听的音频输入设备变化(返回数据为切换后的设备信息)。                        |
 
 **错误码：**
 
