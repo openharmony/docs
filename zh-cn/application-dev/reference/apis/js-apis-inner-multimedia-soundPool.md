@@ -65,11 +65,27 @@ load(uri: string, callback: AsyncCallback\<number>): void
 
 ```ts
 import fs from '@ohos.file.fs';
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
 
 let uri:string = "";
 
 //获取fd的uri路径
-await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file:fs.File) => {
   console.info("file fd: " + file.fd);
   uri = 'fd://' + (file.fd).toString()
 }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
@@ -117,12 +133,28 @@ load(uri: string): Promise\<number>
 
 ```ts
 import fs from '@ohos.file.fs';
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
 
 let uri:string = "";
 let soundID: number;
 
 //获取fd的uri路径
-await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
   console.info("file fd: " + file.fd);
   uri = 'fd://' + (file.fd).toString()
 }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
@@ -167,19 +199,32 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 
 ```ts
 import fs from '@ohos.file.fs';
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
 
 let fd: number;
 let soundID: number;
-let fileSize: number;
-let maxOffset: number;
-
+let fileSize: number; //通过fs.stat()获取size值
+let uri: string = "";
 //获取fd的描述信息
-await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
   console.info("file fd: " + file.fd);
-});
-let stat: fs.Stat = await fs.stat('/test_01.mp3');
-fileSize = stat.size;
-maxOffset = stat.size;
+  uri = 'fd://' + (file.fd).toString()
+}); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
 
 soundPool.load(file.fd, 0, fileSize, (error: BusinessError, soundId_: number) => {
   if (error) {
@@ -228,19 +273,32 @@ load(fd: number, offset: number, length: number): Promise\<number>
 
 ```ts
 import fs from '@ohos.file.fs';
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
 
 let fd: number;
 let soundID: number;
-let fileSize: number;
-let maxOffset: number;
-
+let fileSize: number; //通过fs.stat()获取size值
+let uri: string = "";
 //获取fd的描述信息
-await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
   console.info("file fd: " + file.fd);
+  uri = 'fd://' + (file.fd).toString()
 }); 
-let stat: fs.Stat = await fs.stat('/test_01.mp3');
-fileSize = stat.size;
-maxOffset = stat.size;
 
 soundPool.load(file.fd, 0, fileSize).then((soundId: number) => {
   console.info('load success');
@@ -278,15 +336,32 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let soundID: number;
 let streamID: number;
 let playParameters: media.PlayParameters = {
-    loop = 3, // 循环4次
-    rate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
-    leftVolume = 0.5, // range = 0.0-1.0
-    rightVolume = 0.5, // range = 0.0-1.0
-    priority = 0, // 最低优先级
-    parallelPlayFlag = false // 不和其它正在播放的音频并行播放
+    loop: 3, // 循环4次
+    rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
+    leftVolume: 0.5, // range = 0.0-1.0
+    rightVolume: 0.5, // range = 0.0-1.0
+    priority: 0, // 最低优先级
+    parallelPlayFlag: false // 不和其它正在播放的音频并行播放
   }
 soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
   if (error) {
@@ -325,6 +400,23 @@ play(soundID: number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let soundID: number;
 let streamID: number;
 soundPool.play(soundID,  (error: BusinessError, streamId: number) => {
@@ -370,15 +462,32 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let soundID: number;
 let streamID: number;
 let playParameters: media.PlayParameters = {
-    loop = 3, // 循环4次
-    rate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
-    leftVolume = 0.5, // range = 0.0-1.0
-    rightVolume = 0.5, // range = 0.0-1.0
-    priority = 0, // 最低优先级
-    parallelPlayFlag = false // 不和其它正在播放的音频并行播放
+    loop: 3, // 循环4次
+    rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
+    leftVolume: 0.5, // range = 0.0-1.0
+    rightVolume: 0.5, // range = 0.0-1.0
+    priority: 0, // 最低优先级
+    parallelPlayFlag: false // 不和其它正在播放的音频并行播放
   }
 
 soundPool.play(soundID, playParameters).then((streamId: number) => {
@@ -416,6 +525,23 @@ stop(streamID: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let streamID: number;
 //先调用play方法给拿到对应的streamID
 soundPool.stop(streamID, (error: BusinessError) => {
@@ -460,9 +586,25 @@ stop(streamID: number): Promise\<void>
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let streamID: number;
 //先调用play方法给拿到对应的streamID
-
 soundPool.stop(streamID).then(() => {
   console.info('stop success');
 }).catch((err) => {
@@ -498,6 +640,23 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let streamID: number;
 //先通过调用play方法获取到对应的streamID
 //设置循环2次
@@ -543,6 +702,23 @@ setLoop(streamID: number, loop: number): Promise\<void>
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let streamID: number;
 //先通过调用play方法获取到对应的streamID
 //设置循环1次
@@ -581,6 +757,23 @@ setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>):
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let streamID: number;
 // 先调用play方法获取到对应资源的streamID
 // 给对应的streamID资源设置优先级为1
@@ -627,6 +820,23 @@ setPriority(streamID: number, priority: number): Promise\<void>
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let streamID: number;
 // 先调用play方法获取到对应资源的streamID
 // 给对应的streamID资源设置优先级为1
@@ -666,6 +876,23 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let streamID: number;
 let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // 默认正常速率
 // 先调用play方法获取到对应资源的streamID
@@ -713,6 +940,23 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let streamID: number;
 let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // 默认正常速率
 // 先调用play方法获取到对应资源的streamID
@@ -753,6 +997,23 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let streamID: number;
 // 先调用play方法获取到对应资源的streamID
 //设置音量为0.5
@@ -800,6 +1061,23 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<v
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let streamID: number;
 selectedAudioRendererRate: number = 0; // 默认正常速率
 // 先调用play方法获取到对应资源的streamID
@@ -839,6 +1117,23 @@ unload(soundID: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let soundID: number;
 // 先调用load方法获取到对应资源的soundID
 soundPool.unload(soundID, (error: BusinessError) => {
@@ -884,6 +1179,23 @@ unload(soundID: number): Promise\<void>
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 let soundID: number;
 // 先调用load方法获取到对应资源的soundID
 
@@ -919,6 +1231,22 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
 
 soundPool.release((error: BusinessError) => {
   if (error) {
@@ -955,6 +1283,22 @@ release(): Promise\<void>
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
 
 soundPool.release().then(() => {
   console.info('release success');
@@ -981,6 +1325,23 @@ on(type: 'loadComplete', callback: Callback\<number>): void
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 soundPool.on('loadComplete', (soundId: number) => {
   console.info('loadComplete success，soundId：' + soundId)
 })
@@ -1003,6 +1364,23 @@ off(type: 'loadComplete'): void
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 soundPool.off('loadComplete')
 ```
 
@@ -1024,6 +1402,23 @@ on(type: 'playFinished', callback: Callback\<void>): void
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 soundPool.on('playFinished', () => {
   console.info('playFinished success')
 })
@@ -1046,6 +1441,23 @@ off(type: 'playFinished'): void
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 soundPool.off('playFinished')
 ```
 
@@ -1078,6 +1490,23 @@ SoundPool回调的**错误分类**<a name = error_info></a>可以分为以下几
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+
 soundPool.on('error', (error: BusinessError) => {
   console.error('error happened,and error message is :' + error.message)
   console.error('error happened,and error code is :' + error.code)
@@ -1101,5 +1530,21 @@ off(type: 'error'): void
 **示例：**
 
 ```js
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
 soundPool.off('error')
 ```
