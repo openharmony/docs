@@ -123,8 +123,8 @@
     - [@ohos.continuation.continuationManager (continuationManager)](js-apis-continuation-continuationManager.md)
     - continuation
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)
-    - [continuationResult](js-apis-continuation-continuationResult.md)
-  
+      - [continuationResult](js-apis-continuation-continuationResult.md)
+
 - Common Event and Notification
   - [System Common Events](commonEventManager-definitions.md)
   - [@ohos.commonEventManager (Common Event) (Recommended)](js-apis-commonEventManager.md)
@@ -491,6 +491,9 @@
   - [@ohos.worker (Worker Startup)](js-apis-worker.md)
   - [@ohos.xml (XML Parsing and Generation)](js-apis-xml.md)
 
+- Application services
+  - [@ohos.identifier.oaid (OAID)](js-apis-oaid.md)
+
 - Test
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
@@ -551,4 +554,4 @@
     - [remoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
   - data/rdb
-    - [resultSet](js-apis-data-resultset.md)
+    - [resultSet](js-apis-data-resultset.md) 
