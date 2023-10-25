@@ -151,3 +151,4 @@ OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对�
 |符号类型|符号名|说明|
 | --- | --- | --- |
 |FUNC|napi_queue_async_work_with_qos|将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。|
+|FUNC|napi_run_script_path|运行abc文件。|
