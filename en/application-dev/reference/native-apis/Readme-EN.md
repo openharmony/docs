@@ -11,7 +11,7 @@
   - [Image](image.md)
   - [Rawfile](rawfile.md)
   - [MindSpore](_mind_spore.md)
-  - [NeuralNeworkRuntime](_neural_nework_runtime.md)
+  - [NeuralNetworkRuntime](_neural_nework_runtime.md)
   - [AudioDecoder](_audio_decoder.md)
   - [AudioEncoder](_audio_encoder.md)
   - [CodecBase](_codec_base.md)
