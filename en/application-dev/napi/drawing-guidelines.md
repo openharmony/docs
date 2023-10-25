@@ -8,7 +8,7 @@ The **NativeDrawing** module provides APIs for drawing 2D graphics and text. The
 
 ## Available APIs
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
 | OH_Drawing_BitmapCreate (void) | Creates a bitmap object.|
 | OH_Drawing_BitmapBuild (OH_Drawing_Bitmap *, const uint32_t width, const uint32_t height, const OH_Drawing_BitmapFormat *) | Initializes the width and height of a bitmap object and sets the pixel format for the bitmap.|
@@ -35,7 +35,7 @@ For details about the APIs, see [Drawing](../reference/native-apis/_drawing.md).
 
 ## Development Procedure for 2D Graphics Drawing
 
-The following steps describe how to use the canvas and brush of the Native Drawing module to draw a 2D graphics.
+The following steps describe how to use the canvas and brush of the **NativeDrawing** module to draw a 2D graphics.
 
 1. **Create a bitmap object.** Use `OH_Drawing_BitmapCreate` in `drawing_bitmap.h` to create a bitmap object (named `cBitmap` in this example), and use `OH_Drawing_BitmapBuild` to specify its length, width, and pixel format.
 
@@ -137,7 +137,7 @@ The following steps describe how to use the canvas and brush of the Native Drawi
 
 ## Development Procedure for Text Drawing
 
-The following steps describe how to use the text drawing and display feature of the Native Drawing module.
+The following steps describe how to use the text drawing feature of the **Nativerawing** module.
 1. **Create a canvas and a bitmap.**
 
     ```c++
