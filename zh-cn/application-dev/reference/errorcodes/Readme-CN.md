@@ -39,7 +39,7 @@
   - [reminderAgentManager错误码](errorcode-reminderAgentManager.md)
   - [workScheduler错误码](errorcode-workScheduler.md)
 - 安全
-  - [AccessToken错误码](errorcode-access-token.md)
+  - [访问控制错误码](errorcode-access-token.md)
   - [HUKS错误码](errorcode-huks.md)
   - [crypto framework错误码](errorcode-crypto-framework.md)
   - [cert错误码](errorcode-cert.md)
