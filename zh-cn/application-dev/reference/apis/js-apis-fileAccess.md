@@ -947,7 +947,7 @@ delete(uri: string) : Promise&lt;number&gt;
 
 | 类型 | 说明 |
 | --- | -- |
-| Promise&lt;number&gt | 删除操作的错误码 |
+| Promise&lt;number&gt; | 删除操作的错误码 |
 
 **错误码：**
 
