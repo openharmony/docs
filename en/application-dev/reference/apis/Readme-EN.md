@@ -219,7 +219,7 @@
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
   - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
-  
+
 - Graphics
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)
@@ -242,7 +242,7 @@
     - [MediaControlExtensionContext (ExtensionAbility Context for Media Playback Control)](js-apis-inner-application-MediaControlExtensionContext.md)
   - multimedia
     - [ringtonePlayer (Ringtone Player)](js-apis-inner-multimedia-ringtonePlayer.md)
-    - [soundPool ((Sound Pool)](js-apis-inner-multimedia-soundPool.md)
+    - [soundPool (Sound Pool)](js-apis-inner-multimedia-soundPool.md)
 
 - Resource Management
   - [@ohos.i18n (Internationalization)](js-apis-i18n.md)
@@ -487,7 +487,7 @@
   - [@ohos.worker (Worker Startup)](js-apis-worker.md)
   - [@ohos.xml (XML Parsing and Generation)](js-apis-xml.md)
 
-- Ads
+- Application services
   - [@ohos.identifier.oaid (OAID)](js-apis-oaid.md)
 
 - Test
