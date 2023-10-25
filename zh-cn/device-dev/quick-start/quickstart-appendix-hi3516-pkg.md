@@ -1,6 +1,6 @@
 # Hi3516标准系统入门（命令行方式）
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
 >
 > 从3.2版本起，标准系统不再针对Hi3516DV300进行适配验证，建议您使用RK3568进行标准系统的设备开发。
 >
