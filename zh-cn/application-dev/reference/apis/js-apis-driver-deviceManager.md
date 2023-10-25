@@ -154,12 +154,10 @@ try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
     console.error(`Device is disconnected`);
-  }).then((data : {
-      deviceId : number;
-      remote : rpc.IRemoteObject;
-  }) => {
-    console.info(`bindDevice success`);
-  }, (error : BusinessError) => {
+  }).then(data => {
+    console.info(`bindDevice success, Device_Id is ${data.deviceId}.
+    remote is ${data.remote != null ? data.remote.getDescriptor() : "null"}`);
+  }, (error: BusinessError) => {
     console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
   });
 } catch (error) {
@@ -247,7 +245,7 @@ import { BusinessError } from '@ohos.base';
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.unbindDevice(12345678).then((data : number) => {
-    console.info(`unbindDevice success`);
+    console.info(`unbindDevice success, Device_Id is ${data}.`);
   }, (error : BusinessError) => {
     console.error(`unbindDevice async fail. Code is ${error.code}, message is ${error.message}`);
   });
