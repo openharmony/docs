@@ -33,7 +33,7 @@ once(type: string, callback: Callback\<void\>): void
 | 参数名  | 类型              | 必填 | 说明                  |
 | ------- | ---------------- | ---- | -------------------- |
 | type     | string          | 是   | Web事件的类型，目前支持："webInited"（Web初始化完成）。      |
-| headers | Callback\<void\> | 是   | 所订阅的回调函数。 |
+| callback | Callback\<void\> | 是   | 所订阅的回调函数。 |
 
 **示例：**
 
