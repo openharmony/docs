@@ -23,6 +23,7 @@ The **AppProvisionInfo** module provides information in the [HarmonyAppProvision
 | certificate              | string | Yes  | No  | Certificate public key in the configuration file.|
 | apl                      | string | Yes  | No  | APL in the configuration file, which can be **normal**, **system_basic**, or **system_core**.|
 | issuer                      | string | Yes  | No  | Issuer name in the configuration file.|
+|appIdentifier<sup>11+</sup>| string         | Yes  | No  | Unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.           |
 
 ## Validity
 
