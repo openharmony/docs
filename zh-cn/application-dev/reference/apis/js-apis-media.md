@@ -2762,11 +2762,11 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
-  audioCodec : 'audio/mp4a-latm',
+  audioCodec : 'audio/mp4a-latm' as media.CodecMimeType,
   audioSampleRate : 48000,
-  fileFormat : 'mp4',
+  fileFormat : 'mp4' as media.ContainerFormatType,
   videoBitrate : 2000000,
-  videoCodec : 'video/avc',
+  videoCodec : 'video/avc' as media.CodecMimeType,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
@@ -2833,11 +2833,11 @@ prepare(config: VideoRecorderConfig): Promise\<void>
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
-  audioCodec : 'audio/mp4a-latm',
+  audioCodec : 'audio/mp4a-latm' as media.CodecMimeType,
   audioSampleRate : 48000,
-  fileFormat : 'mp4',
+  fileFormat : 'mp4' as media.ContainerFormatType,
   videoBitrate : 2000000,
-  videoCodec : 'video/avc',
+  videoCodec : 'video/avc' as media.CodecMimeType,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
