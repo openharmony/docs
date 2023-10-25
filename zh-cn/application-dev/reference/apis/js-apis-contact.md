@@ -15,7 +15,7 @@ import contact from '@ohos.contact';
 
 ## contact.addContact<sup>10+</sup>
 
-addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number&gt;>): void 
+addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number&gt;): void 
 
 添加联系人，使用callback方式作为异步方法。
 
@@ -1296,6 +1296,8 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
 
+**需要权限**：ohos.permission.READ_CONTACTS
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
@@ -1328,6 +1330,8 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.Contacts
 
