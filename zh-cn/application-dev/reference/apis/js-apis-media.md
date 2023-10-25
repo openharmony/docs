@@ -2777,7 +2777,7 @@ let videoConfig: media.VideoRecorderConfig = {
   videoSourceType : 0,
   profile : videoProfile,
   url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
-  orientationHint : 0,
+  rotation : 0,
   location : { latitude : 30, longitude : 130 },
 }
 
@@ -2848,7 +2848,7 @@ let videoConfig: media.VideoRecorderConfig = {
   videoSourceType : 0,
   profile : videoProfile,
   url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
-  orientationHint : 0,
+  rotation : 0,
   location : { latitude : 30, longitude : 130 },
 }
 
