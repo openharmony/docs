@@ -104,7 +104,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -149,7 +149,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
@@ -193,7 +193,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
@@ -247,7 +247,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want |[Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -295,7 +295,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want |[Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
@@ -342,7 +342,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 
@@ -465,9 +465,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
-Sets whether the window is in privacy mode. This API uses a promise to return the result.
-
-A window in privacy mode cannot be captured or recorded.
+Sets whether the window is in privacy mode. This API uses a promise to return the result. A window in privacy mode cannot be captured or recorded.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -489,9 +487,7 @@ A window in privacy mode cannot be captured or recorded.
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether the window is in privacy mode. This API uses an asynchronous callback to return the result.
-
-A window in privacy mode cannot be captured or recorded.
+Sets whether the window is in privacy mode. This API uses an asynchronous callback to return the result. A window in privacy mode cannot be captured or recorded.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

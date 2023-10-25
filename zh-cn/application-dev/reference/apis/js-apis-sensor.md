@@ -53,7 +53,6 @@ try{
   }, { interval: 100000000 });
   setTimeout(() => {
         sensor.off(sensor.SensorId.COLOR);
-        done();
   }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
@@ -1511,8 +1510,8 @@ import sensor from "@ohos.sensor"
 import BusinessError from "@ohos.base"
 
 try {
-  sensor.once(sensor.SensorId.HUMIDITY, (data: sensor.HeartRateResponse) => {
-    console.info('Succeeded in invoking once. Heart rate: ' + data.heartRate);
+  sensor.once(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
+    console.info('Succeeded in invoking once. Humidity: ' + data.humidity);
   });
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
@@ -4396,9 +4395,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称     | 类型   | 可读 | 可写 | 说明                     |
-| -------- | ------ | ---- | ---- | ------------------------ |
-| pressure | number | 是   | 是   | 压力值（单位：帕斯卡）。 |
+| 名称     | 类型   | 可读 | 可写 | 说明                   |
+| -------- | ------ | ---- | ---- | ---------------------- |
+| pressure | number | 是   | 是   | 压力值（单位：百帕）。 |
 
 
 ## HeartRateResponse

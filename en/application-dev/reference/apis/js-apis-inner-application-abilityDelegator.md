@@ -54,7 +54,7 @@ import { BusinessError } from '@ohos.base';
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
+    console.info(`onAbilityCreateCallback, data: ${JSON.stringify(data)}`);
 }
 
 let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
@@ -63,7 +63,7 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 };
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
-    console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    console.error(`addAbilityMonitor fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -197,7 +197,7 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
-    console.error('removeAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    console.error(`removeAbilityMonitor fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -333,9 +333,9 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAbility) => {
     if (error) {
-        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -386,9 +386,9 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : BusinessError, data : UIAbility) => {
     if (error && error.code !== 0) {
-        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -600,7 +600,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                                  | Mandatory| Description              |
 | -------- | -------------------------------------- | ---- | ------------------ |
-| want     | [Want](js-apis-application-want.md) | Yes  | **Want** parameter for starting the ability.   |
+| want     | [Want](js-apis-app-ability-want.md) | Yes  | **Want** parameter for starting the ability.   |
 | callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -656,7 +656,7 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name| Type                                  | Mandatory| Description           |
 | ------ | -------------------------------------- | ---- | --------------- |
-| want   | [Want](js-apis-application-want.md) | Yes  | **Want** parameter for starting the ability.|
+| want   | [Want](js-apis-app-ability-want.md) | Yes  | **Want** parameter for starting the ability.|
 
 **Return value**
 

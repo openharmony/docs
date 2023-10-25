@@ -3876,8 +3876,6 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
   let arrayBuffer = new ArrayBuffer(bufferLength);
   randomaccessfile.read(arrayBuffer, option).then((readLength: number) => {
     console.info("randomAccessFile readLength: " + readLength);
-    randomaccessfile.close();
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {

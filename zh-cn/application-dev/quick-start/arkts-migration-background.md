@@ -35,7 +35,7 @@ class Person {
 }
 
 let buddy = new Person()
-// 假设代码中没有对name的赋值，例如没有调用"jack.setName('Jack')"
+// 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"
 console.log(buddy.getName().length); // 运行时异常：name is undefined
 ```
 
@@ -56,7 +56,7 @@ class Person {
 }
 
 let buddy = new Person()
-// 假设代码中没有对name的赋值，例如没有调用"jack.setName('Jack')"
+// 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"
 console.log(buddy.getName().length); // 0, 没有运行时异常
 ```
 
@@ -81,7 +81,7 @@ class Person {
 }
 
 let buddy = new Person()
-// 假设代码中没有对name的赋值，例如没有调用"jack.setName('Jack')"
+// 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"
 
 // 编译时错误：编译器认为下一行代码有可能访问"undefined"的属性，报错
 console.log(buddy.getName().length);  // 编译失败

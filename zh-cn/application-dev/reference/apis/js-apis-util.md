@@ -37,7 +37,7 @@ format(format: string,  ...args: Object[]): string
 **示例：**
 
   ```ts
-  let res = util.format("%s", "hello world!");
+  let res = util.format("This is : %s", "hello world!");
   console.log(res);
   ```
 

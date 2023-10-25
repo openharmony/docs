@@ -120,6 +120,47 @@ usageStatistics.isIdleState("com.ohos.camera").then((res: boolean) => {
   console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
+## usageStatistics.isIdleStateSync<sup>10+<sup>
+
+isIdleStateSync(bundleName: string): boolean
+
+Checks whether the application specified by **bundleName** is in the idle state. A third-party application can only check the idle status of itself.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name       | Type                          | Mandatory  | Description                                      |
+| ---------- | ---------------------------- | ---- | ---------------------------------------- |
+| bundleName | string                       | Yes   | Bundle name of the application.                          |
+
+**Return value**
+
+| Type                    | Description                                      |
+| ---------------------- | ---------------------------------------- |
+| boolean | Returns **true** if the application is in the idle state; returns **false** otherwise, on the prerequisite that the specified **bundleName** is valid.|
+
+**Error codes**
+
+For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+
+| ID       | Error Message                    |
+| ---------- | ----------------------------     |
+| 10000001   | Memory operation failed.         |
+| 10000002   | Parcel operation failed.         |
+| 10000003   | System service operation failed. |
+| 10000004   | IPC failed.        |
+| 10000006   | Failed to get the application information.    |
+
+**Example**
+```ts
+let isIdleState: boolean = usageStatistics.isIdleStateSync("com.ohos.camera");
+```
+
 ## usageStatistics.queryAppGroup
 
 queryAppGroup(): Promise&lt;number&gt;
@@ -204,6 +245,86 @@ usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
     console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
   }
 });
+```
+
+## usageStatistics.queryAppGroupSync<sup>10+<sup>
+
+queryAppGroupSync(): number;
+
+Queries the group of this application.
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type             | Description                         |
+| --------------- | --------------------------- |
+| number | Group of the application.|
+
+**Error codes**
+
+For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+
+| ID       | Error Message                      |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
+
+**Example**
+
+```ts
+let priorityGroup: number = usageStatistics.queryAppGroupSync();
+```
+
+## usageStatistics.queryAppGroupSync<sup>10+<sup>
+
+queryAppGroupSync(bundleName: string): number
+
+Queries the group of the application specified by **bundleName**.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name       | Type                          | Mandatory  | Description                                      |
+| ---------- | ---------------------------- | ---- | ---------------------------------------- |
+| bundleName | string                       | Yes   | Bundle name of the application.                          |
+
+**Return value**
+
+| Type             | Description                         |
+| --------------- | --------------------------- |
+| number | Group of the application.|
+
+**Error codes**
+
+For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+
+| ID       | Error Message                      |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
+
+**Example**
+
+```ts
+let priorityGroup: number = usageStatistics.queryAppGroupSync("com.ohos.camera");
 ```
 
 ## usageStatistics.queryBundleStatsInfos
@@ -1473,7 +1594,6 @@ Provides the application group changes returned through a callback.
 
 Provides the usage duration information of an application.
 
-### Attributes
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 

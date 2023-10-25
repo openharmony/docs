@@ -313,7 +313,6 @@ setSize(size: number): void
   let data = rpc.MessageSequence.create();
   try {
     data.setSize(16);
-    console.log("RpcClient: setSize is " + data.getSize());
   } catch(error) {
     let e: BusinessError = error as BusinessError;
     console.info("rpc set size of MessageSequence fail, errorCode " + e.code);
@@ -351,7 +350,6 @@ setCapacity(size: number): void
   let data = rpc.MessageSequence.create();
   try {
     data.setCapacity(100);
-    console.log("RpcClient: setCapacity is " + data.getCapacity());
   } catch(error) {
     let e: BusinessError = error as BusinessError;
     console.info("rpc memory alloc fail, errorCode " + e.code);
@@ -2762,8 +2760,7 @@ readParcelableArray(parcelableArray: Parcelable[]): void
   let parcelable3 = new MyParcelable(3, "ccc");
   let a = [parcelable, parcelable2, parcelable3];
   let data = rpc.MessageSequence.create();
-  let result = data.writeParcelableArray(a);
-  console.log("RpcClient: writeParcelableArray is " + result);
+  data.writeParcelableArray(a);
   let b = [new MyParcelable(0, ""), new MyParcelable(0, ""), new MyParcelable(0, "")];
   try {
     data.readParcelableArray(b);
@@ -2814,8 +2811,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
   let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
   let data = rpc.MessageSequence.create();
   try {
-    let result = data.writeRemoteObjectArray(a);
-    console.log("RpcClient: writeRemoteObjectArray is " + result);
+    data.writeRemoteObjectArray(a);
   } catch(error) {
      let e: BusinessError = error as BusinessError;
      console.info("rpc write remote object array fail, errorCode " + e.code);
@@ -3216,8 +3212,7 @@ readAshmem(): Ashmem
     console.info("rpc create ashmem fail, errorMessage" + e.message);
   }
   try {
-    let readAshmem = sequence.readAshmem();
-    console.log("RpcTest: read ashmem to result is : " + readAshmem);
+    sequence.readAshmem();
   } catch(error) {
     let e: BusinessError = error as BusinessError;
     console.info("rpc read ashmem fail, errorCode " + e.code);
@@ -5412,7 +5407,8 @@ static closeFileDescriptor(fd: number): void
 
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  rpc.MessageParcel.closeFileDescriptor(file.fd);
+  let parcel = new rpc.MessageParcel();   
+  parcel.closeFileDescriptor(file.fd);
   ```
 
 ### dupFileDescriptor<sup>8+</sup>
@@ -5442,7 +5438,8 @@ static dupFileDescriptor(fd: number) :number
 
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  rpc.MessageParcel.dupFileDescriptor(file.fd);
+  let parcel = new rpc.MessageParcel();
+  parcel.dupFileDescriptor(file.fd);
   ```
 
 ### containFileDescriptors<sup>8+</sup>
@@ -5527,7 +5524,7 @@ readFileDescriptor(): number
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let writeResult = parcel.writeFileDescriptor(file.fd);
+  parcel.writeFileDescriptor(file.fd);
   let readFD = parcel.readFileDescriptor();
   console.log("RpcTest: parcel read fd is : " + readFD);
   ```
@@ -6056,7 +6053,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8开始不再维护，建议使用[sendRequest<sup>8+(deprecated)</sup>](#sendrequest8deprecated)类替代。
+>从API version 8开始不再维护，建议使用[sendRequest](#sendrequest8deprecated)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -6078,6 +6075,29 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 类型    | 说明                             |
   | ------- | -------------------------------- |
   | boolean | true：发送成功，false：发送失败。|
+
+### sendMessageRequest<sup>9+</sup>
+
+sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
+
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名  | 类型                                 | 必填 | 说明                                                                                   |
+  | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | options | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
+
+**返回值：**
+
+  | 类型                         | 说明                                      |
+  | ---------------------------- | ----------------------------------------- |
+  | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是requestResult实例。 |
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
@@ -6106,29 +6126,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 ### sendMessageRequest<sup>9+</sup>
 
-sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
-
-以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
-
-**系统能力**：SystemCapability.Communication.IPC.Core
-
-**参数：**
-
-  | 参数名  | 类型                                 | 必填 | 说明                                                                                   |
-  | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
-  | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
-  | options | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
-
-**返回值：**
-
-  | 类型                         | 说明                                      |
-  | ---------------------------- | ----------------------------------------- |
-  | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是requestResult实例。 |
-
-### sendMessageRequest<sup>9+</sup>
-
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
 以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
@@ -6147,7 +6144,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-1)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -6325,7 +6322,7 @@ isObjectDead(): boolean
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8 开始不再维护，建议使用[sendRequest<sup>8+(deprecated)</sup>](#sendrequest8deprecated)类替代。
+>从API version 8 开始不再维护，建议使用[sendRequest](#sendrequest8deprecated-2)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -6490,7 +6487,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-2)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -6661,7 +6658,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-3)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -6817,7 +6814,7 @@ getLocalInterface(interface: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9)类替代。
+>从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9-1)类替代。
 
 queryLocalInterface(interface: string): IRemoteBroker
 
@@ -6957,7 +6954,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### addDeathRecipient<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9)类替代。
+>从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9-1)类替代。
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -7104,7 +7101,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)类替代。
+>从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9-1)类替代。
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -7245,7 +7242,7 @@ getDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
+>从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9-1)类替代。
 
 getInterfaceDescriptor(): string
 
@@ -7378,9 +7375,9 @@ MessageOption构造函数。
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明                                   |
-| ------ | ------- | ---- | -------------------------------------- |
-| async  | boolean | 否   | 同步调用或异步调用标志。默认同步调用。 |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| async  | boolean | 否   | true：表示异步调用标志，false：表示同步调用标志。默认同步调用。 |
 
 **示例：**
 
@@ -7445,12 +7442,18 @@ setAsync(async: boolean): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
+**参数：**
+
+  | 参数名 | 类型    | 必填 | 说明                                              |
+  | ------ | ------- | ---- | ------------------------------------------------- |
+  | async  | boolean | 否   | true：表示异步调用标志，false：表示同步调用标志。 |
+
 **示例：**
 
   ```ts
   let option = new rpc.MessageOption();
   option.setAsync(true);
-  console.log("Set synchronization flag");
+  console.log("Set asynchronization flag");
   ```
 
 ### getFlags
@@ -7753,7 +7756,7 @@ static isLocalCalling(): boolean
 
 static flushCmdBuffer(object: IRemoteObject): void
 
-静态方法，将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在执行任何时间敏感操作之前调用此方法。
+静态方法，将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在任何时间执行敏感操作之前调用此方法。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7789,7 +7792,7 @@ static flushCmdBuffer(object: IRemoteObject): void
 
 static flushCommands(object: IRemoteObject): number
 
-静态方法，将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在执行任何时间敏感操作之前调用此方法。
+静态方法，将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在任何时间执行敏感操作之前调用此方法。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7862,7 +7865,7 @@ static resetCallingIdentity(): string
 
 static restoreCallingIdentity(identity: string): void
 
-静态方法，将远程用户的UID和PID替换为本地用户的UID和PID。它可以用于身份验证等场景。
+静态方法，将UID和PID恢复为远程用户的UID和PID。它通常在使用resetCallingIdentity后调用，需要resetCallingIdentity返回的远程用户的UID和PID。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7882,7 +7885,7 @@ static restoreCallingIdentity(identity: string): void
         callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
         console.log("RpcServer: callingIdentity is: " + callingIdentity);
       } finally {
-        rpc.IPCSkeleton.restoreCallingIdentity("callingIdentity ");
+        rpc.IPCSkeleton.restoreCallingIdentity(callingIdentity);
       }
       return true;
     }
@@ -7949,7 +7952,7 @@ RemoteObject构造函数。
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8 开始不再维护，建议使用[sendRequest<sup>8+(deprecated)</sup>](#sendrequest8deprecated)类替代。
+>从API version 8 开始不再维护，建议使用[sendRequest](#sendrequest8deprecated-4)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -8013,9 +8016,65 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   reply.reclaim();
   ```
 
+### sendMessageRequest<sup>9+</sup>
+
+sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
+
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名  | 类型                                 | 必填 | 说明                                                                                   |
+  | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | options | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
+
+**返回值：**
+
+| 类型                                            | 说明                                      |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是RequestResult实例。 |
+
+**示例：**
+
+  ```ts
+  class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+  }
+  let testRemoteObject = new TestRemoteObject("testObject");
+  let option = new rpc.MessageOption();
+  let data = rpc.MessageSequence.create();
+  let reply = rpc.MessageSequence.create();
+  data.writeInt(1);
+  data.writeString("hello");
+  testRemoteObject.sendMessageRequest(1, data, reply, option)
+    .then((result: rpc.RequestResult) => {
+      if (result.errCode === 0) {
+        console.log("sendMessageRequest got result");
+        result.reply.readException();
+        let msg = result.reply.readString();
+        console.log("RPCTest: reply msg: " + msg);
+      } else {
+        console.log("RPCTest: sendMessageRequest failed, errCode: " + result.errCode);
+      }
+    }).catch((e: Error) => {
+      console.log("RPCTest: sendMessageRequest got exception: " + e.message);
+    }).finally (() => {
+      console.log("RPCTest: sendMessageRequest ends, reclaim parcel");
+      data.reclaim();
+      reply.reclaim();
+    });
+  ```
+
 ### sendRequest<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-4)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -8088,62 +8147,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 ### sendMessageRequest<sup>9+</sup>
 
-sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
-
-以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
-
-**系统能力**：SystemCapability.Communication.IPC.Core
-
-**参数：**
-
-  | 参数名  | 类型                                 | 必填 | 说明                                                                                   |
-  | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
-  | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
-  | options | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
-
-**返回值：**
-
-| 类型                                            | 说明                                      |
-| ----------------------------------------------- | ----------------------------------------- |
-| Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是RequestResult实例。 |
-
-**示例：**
-
-  ```ts
-  class TestRemoteObject extends rpc.RemoteObject {
-    constructor(descriptor: string) {
-      super(descriptor);
-    }
-  }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageSequence.create();
-  let reply = rpc.MessageSequence.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  testRemoteObject.sendMessageRequest(1, data, reply, option)
-    .then((result: rpc.RequestResult) => {
-      if (result.errCode === 0) {
-        console.log("sendMessageRequest got result");
-        result.reply.readException();
-        let msg = result.reply.readString();
-        console.log("RPCTest: reply msg: " + msg);
-      } else {
-        console.log("RPCTest: sendMessageRequest failed, errCode: " + result.errCode);
-      }
-    }).catch((e: Error) => {
-      console.log("RPCTest: sendMessageRequest got exception: " + e.message);
-    }).finally (() => {
-      console.log("RPCTest: sendMessageRequest ends, reclaim parcel");
-      data.reclaim();
-      reply.reclaim();
-    });
-  ```
-
-### sendMessageRequest<sup>9+</sup>
-
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
 以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendMessageRequest返回时收到回调，回复内容在reply报文里。
@@ -8194,7 +8197,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-5)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -8256,64 +8259,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   data.writeInt(1);
   data.writeString("hello");
   testRemoteObject.sendRequest(1, data, reply, option, sendRequestCallback);
-  ```
-
-### onRemoteRequest<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)类替代。
-
-onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
-
-sendMessageRequest请求的响应处理函数，服务端在该函数里处理请求，回复结果。
-
-**系统能力**：SystemCapability.Communication.IPC.Core
-
-**参数：**
-
-  | 参数名 | 类型                                      | 必填 | 说明                                    |
-  | ------ | ----------------------------------------- | ---- | --------------------------------------- |
-  | code   | number                                    | 是   | 对端发送的服务请求码。                  |
-  | data   | [MessageParcel](#messageparceldeprecated) | 是   | 携带客户端调用参数的MessageParcel对象。 |
-  | reply  | [MessageParcel](#messageparceldeprecated) | 是   | 写入结果的MessageParcel对象。           |
-  | option | [MessageOption](#messageoption)           | 是   | 指示操作是同步还是异步。                |
-
-**返回值：**
-
-  | 类型    | 说明                             |
-  | ------- | -------------------------------- |
-  | boolean | true：操作成功，false：操作失败。|
-
-**示例：**
-
-  ```ts
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      console.log("server died");
-    }
-  }
-  class TestRemoteObject extends rpc.RemoteObject {
-    constructor(descriptor: string) {
-      super(descriptor);
-    }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
-    }
-    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-      if (code === 1) {
-        console.log("RpcServer: onRemoteRequest called");
-        return true;
-      } else {
-        console.log("RpcServer: unknown code: " + code);
-        return false;
-      }
-    }
-  }
   ```
 
 ### onRemoteMessageRequest<sup>9+</sup>
@@ -8451,6 +8396,64 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   }
   ```
 
+### onRemoteRequest<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)类替代。
+
+onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
+
+sendRequest请求的响应处理函数，服务端在该函数里处理请求，回复结果。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型                                      | 必填 | 说明                                    |
+  | ------ | ----------------------------------------- | ---- | --------------------------------------- |
+  | code   | number                                    | 是   | 对端发送的服务请求码。                  |
+  | data   | [MessageParcel](#messageparceldeprecated) | 是   | 携带客户端调用参数的MessageParcel对象。 |
+  | reply  | [MessageParcel](#messageparceldeprecated) | 是   | 写入结果的MessageParcel对象。           |
+  | option | [MessageOption](#messageoption)           | 是   | 指示操作是同步还是异步。                |
+
+**返回值：**
+
+  | 类型    | 说明                             |
+  | ------- | -------------------------------- |
+  | boolean | true：操作成功，false：操作失败。|
+
+**示例：**
+
+  ```ts
+  class MyDeathRecipient implements rpc.DeathRecipient {
+    onRemoteDied() {
+      console.log("server died");
+    }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      if (code === 1) {
+        console.log("RpcServer: onRemoteRequest called");
+        return true;
+      } else {
+        console.log("RpcServer: unknown code: " + code);
+        return false;
+      }
+    }
+  }
+  ```
+
 ### getCallingUid
 
 getCallingUid(): number
@@ -8546,6 +8549,9 @@ getLocalInterface(descriptor: string): IRemoteBroker
     isObjectDead(): boolean {
       return false;
     }
+    asObject(): rpc.IRemoteObject {
+      return this;
+    }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
   try {
@@ -8559,7 +8565,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9)类替代。
+>从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9-2)类替代。
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
@@ -8600,6 +8606,9 @@ queryLocalInterface(descriptor: string): IRemoteBroker
     }
     isObjectDead(): boolean {
       return false;
+    }
+    asObject(): rpc.IRemoteObject {
+      return this;
     }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
@@ -8665,7 +8674,7 @@ getDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
+>从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9-2)类替代。
 
 getInterfaceDescriptor(): string
 
@@ -8927,7 +8936,7 @@ static create(ashmem: Ashmem): Ashmem
 
 ### createAshmemFromExisting<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[create](#create9)类替代。
+>从API version 9 开始不再维护，建议使用[create](#create9-1)替代。
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 

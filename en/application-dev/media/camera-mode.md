@@ -9,7 +9,7 @@ Mode management, as an enhancement to **CameraManager**, is used to manage advan
 ![portraitgraphing Development Process](figures/portrait-capture-development-process.png)
 
 ## Sample Code
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+There are different [types of contexts](../application-models/application-context-stage.md).
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
@@ -69,7 +69,7 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
   }
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
     console.info(`Camera input error code: ${error.code}`);
-  })
+  });
 
   // Open the camera.
   await cameraInput.open();
@@ -106,7 +106,7 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
   // Listen for preview output errors.
   previewOutput.on('error', (error: BusinessError) => {
     console.info(`Preview output error code: ${error.code}`);
-  })
+  });
   // Create an ImageReceiver instance and set photographing parameters. Wherein, the resolution must be one of the photographing resolutions supported by the current device, which are obtained from photoProfilesArray.
   let imageReceiver: image.ImageReceiver = image.createImageReceiver(1920, 1080, 4, 8);
   // Obtain the surface ID for displaying photos.

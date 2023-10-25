@@ -58,6 +58,24 @@ Task service ability error.
 
 请检查任务配置是否正确。
 
+## 13499999 其他错误
+
+**错误信息**
+
+other error.
+
+**错误描述**
+
+在调用uploadFile或downloadFile接口时，出现特殊错误。
+
+**可能原因**
+
+该错误码表示服务异常，可能原因任务创建失败。
+
+**处理步骤**
+
+请检查任务配置是否正确。
+
 
 ## 21900004 应用任务队列已满
 
@@ -127,7 +145,7 @@ task not found error.
 
 **错误信息**
 
-task mode error.
+task state error.
 
 **错误描述**
 

@@ -190,24 +190,20 @@ let applicationContext: common.Context | null = null;
 try {
   applicationContext = this.context.getApplicationContext();
 } catch (error) {
-  console.info((error as BusinessError).code);
-  console.info((error as BusinessError).message);
+  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 
-if (applicationContext) {
-  let filesDir: string = applicationContext.filesDir;
-}
+let filesDir: string = applicationContext!.filesDir;
 let path: string = filesDir + "/serviceInfo.txt";
 console.info("output path: " + path);
-let file: file.fs = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 let serviceId: number = 10;
-let args: Array = new Array("allInfo");
+let args: Array<string> = new Array("allInfo");
 
 try {
   hidebug.getServiceDump(serviceId, file.fd, args);
 } catch (error) {
-  console.info((error as BusinessError).code);
-  console.info((error as BusinessError).message);
+  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 fs.closeSync(file);
 ```
@@ -245,8 +241,7 @@ try {
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info((error as BusinessError).code)
-  console.info((error as BusinessError).message)
+  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -275,8 +270,7 @@ try {
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info((error as BusinessError).code)
-  console.info((error as BusinessError).message)
+  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -311,8 +305,7 @@ import { BusinessError } from '@ohos.base'
 try {
   hidebug.dumpJsHeapData("heapData");
 } catch (error) {
-  console.info((error as BusinessError).code)
-  console.info((error as BusinessError).message)
+  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 

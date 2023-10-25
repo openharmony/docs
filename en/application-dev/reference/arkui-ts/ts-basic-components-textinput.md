@@ -56,7 +56,7 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method, and the **enterKeyType** attribute setting for the system keyboard will not take effect.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [TextInputController](#textinputcontroller8).[stopEditing](#stopediting10) API to close the keyboard.|
 >  **NOTE**
 >
->  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: <br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> } 
+>  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: <br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> }
 >
 >  Since API version 10, **.width('auto')** can be set for the **\<TextInput>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md#attributes).
 
@@ -85,7 +85,7 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | Name                | Description           |
 | ------------------ | ------------- |
 | Default   | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.  |
-| Inline    | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.|
+| Inline    | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.|
 
 ## PasswordIcon<sup>10+</sup>
 
@@ -294,7 +294,7 @@ struct TextInputExample {
         .width(380)
         .height(60)
         .showError('Error')
-        .showUnit(():void=>this.itemEnd())
+        .showUnit(this.itemEnd.bind(this))
 
       Text (`User name: ${this.Text}`)
         .width('95%')

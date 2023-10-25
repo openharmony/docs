@@ -1,6 +1,6 @@
 # Using TonePlayer for Audio Playback (for System Applications Only)
 
-TonePlayer<sup>9+</sup> provides APIs for playing and managing Dual Tone Multi Frequency (DTMF) tones, such as dial tones, ringback tones, supervisory tones, and proprietary tones. The main task of the TonePlayer is to generate sine waves of different frequencies by using the built-in algorithm based on the [ToneType](../reference/apis/js-apis-audio.md#tonetype9)s and add the sine waves to create a sound. The sound can then be played by using the [AudioRenderer](../reference/apis/js-apis-audio.md#audiorenderer8), and the playback task can also be managed by using the [AudioRenderer](../reference/apis/js-apis-audio.md#audiorenderer8). The full process includes loading the DTMF tone configuration, starting DTMF tone playing, stopping the playback, and releasing the resources associated with the **TonePlayer** object. For details about the APIs, see the [TonePlayer API Reference](../reference/apis/js-apis-audio.md#toneplayer9).
+TonePlayer<sup>9+</sup> provides APIs for playing and managing Dual Tone Multi Frequency (DTMF) tones, such as dial tones, ringback tones, supervisory tones, and proprietary tones. The main task of the TonePlayer is to generate sine waves of different frequencies by using the built-in algorithm based on the [ToneType](../reference/apis/js-apis-audio.md#tonetype9) and add the sine waves to create a sound. The sound can then be played by using the [AudioRenderer](../reference/apis/js-apis-audio.md#audiorenderer8), and the playback task can also be managed by using the [AudioRenderer](../reference/apis/js-apis-audio.md#audiorenderer8). The full process includes loading the DTMF tone configuration, starting DTMF tone playing, stopping the playback, and releasing the resources associated with the **TonePlayer** object. For details about the APIs, see the [TonePlayer API Reference](../reference/apis/js-apis-audio.md#toneplayer9).
 
 
 ## Supported Tone Types
@@ -50,31 +50,41 @@ To implement audio playback with the TonePlayer, perform the following steps:
      usage : audio.StreamUsage.STREAM_USAGE_DTMF,
      rendererFlags : 0
    };
-   let tonePlayerPromise = audio.createTonePlayer(audioRendererInfo);
+   async function createTonePlayer() {
+     let tonePlayerPromise = await audio.createTonePlayer(audioRendererInfo);
+   }
    ```
    
 2. Load the DTMF tone configuration of the specified type.
 
    ```ts
-   tonePlayerPromise.load(audio.ToneType.TONE_TYPE_DIAL_0);
+   async function load() {
+       await tonePlayerPromise.load(audio.ToneType.TONE_TYPE_DIAL_0);
+   }
    ```
 
 3. Start DTMF tone playing.
 
    ```ts
-   tonePlayerPromise.start();
+   async function start() {
+       await tonePlayerPromise.start();
+   }
    ```
 
 4. Stop the tone that is being played.
 
    ```ts
-   tonePlayerPromise.stop();
+   async function stop() {
+       await tonePlayerPromise.stop();
+   }
    ```
 
 5. Release the resources associated with the **TonePlayer** instance.
 
    ```ts
-   tonePlayerPromise.release();
+   async function release() {
+       await tonePlayerPromise.release();
+   }
    ```
 
 If the APIs are not called in the preceding sequence, the error code **6800301 NAPI_ERR_SYSTEM** is returned.
