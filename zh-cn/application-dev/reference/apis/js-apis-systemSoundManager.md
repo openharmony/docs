@@ -76,7 +76,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let context: Context = this.context;
+let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
@@ -118,7 +118,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let context: Context = this.context;
+let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
@@ -152,7 +152,7 @@ getSystemRingtoneUri(context: Context, type: RingtoneType, callback: AsyncCallba
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let context: Context = this.context;
+let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
 systemSoundManagerInstance.getSystemRingtoneUri(context, type, (err: BusinessError, value: string) => {
@@ -192,7 +192,7 @@ getSystemRingtoneUri(context: Context, type: RingtoneType): Promise&lt;string&gt
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let context: Context = this.context;
+let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
 systemSoundManagerInstance.getSystemRingtoneUri(context, type).then((value: string) => {
@@ -225,9 +225,9 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let context: Context = this.context;
+let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
-let systemRingtonePlayer: systemSoundManager.RingtonePlayer = null;
+let systemRingtonePlayer: systemSoundManager.RingtonePlayer | undefined = undefined;
 
 systemSoundManagerInstance.getSystemRingtonePlayer(context, type, (err: BusinessError, value: systemSoundManager.RingtonePlayer) => {
   if (err) {
@@ -267,9 +267,9 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;Ringto
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let context: Context = this.context;
+let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
-let systemRingtonePlayer: systemSoundManager.RingtonePlayer = null;
+let systemRingtonePlayer: systemSoundManager.RingtonePlayer | undefined = undefined;
 
 systemSoundManagerInstance.getSystemRingtonePlayer(context, type).then((value: systemSoundManager.RingtonePlayer) => {
   console.info(`Promise returned to indicate that the value of the system ringtone player is obtained.`);
