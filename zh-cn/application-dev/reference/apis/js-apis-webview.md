@@ -22,7 +22,7 @@ import web_webview from '@ohos.web.webview';
 
 ## once
 
-once(type: string, headers: Callback\<void\>): void
+once(type: string, callback: Callback\<void\>): void
 
 订阅一次指定类型Web事件的回调。
 
@@ -33,7 +33,7 @@ once(type: string, headers: Callback\<void\>): void
 | 参数名  | 类型              | 必填 | 说明                  |
 | ------- | ---------------- | ---- | -------------------- |
 | type     | string          | 是   | Web事件的类型，目前支持："webInited"（Web初始化完成）。      |
-| headers | Callback\<void\> | 是   | 所订阅的回调函数。 |
+| callback | Callback\<void\> | 是   | 所订阅的回调函数。 |
 
 **示例：**
 
@@ -3962,7 +3962,6 @@ struct WebComponent {
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
@@ -4049,7 +4048,6 @@ struct WebComponent {
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 

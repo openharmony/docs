@@ -7,7 +7,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 ![Photographing Development Process](figures/photographing-development-process.png)
 
 ## Sample Code
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+There are different [types of contexts](../application-models/application-context-stage.md).
 ```ts
 import camera from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';

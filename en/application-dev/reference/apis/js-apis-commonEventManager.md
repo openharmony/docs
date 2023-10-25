@@ -329,7 +329,7 @@ CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:C
 
 ```
 
-## CommonEventManager.createSubscriberSync
+## CommonEventManager.createSubscriberSync<sup>10+</sup>
 
 createSubscriberSync(subscribeInfo: CommonEventSubscribeInfo): CommonEventSubscriber
 
@@ -400,7 +400,6 @@ Subscribes to common events. This API uses an asynchronous callback to return th
 ```ts
 import Base from '@ohos.base';
 
-// Subscriber information.
 let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
 // Subscriber information.

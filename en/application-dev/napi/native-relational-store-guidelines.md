@@ -41,6 +41,25 @@ For details about the APIs, see [RDB](../reference/native-apis/_r_d_b.md).
 
 ## How to Develop
 
+**Adding the Dynamic Library**
+
+Add the following lib to **CMakeLists.txt**.
+```txt
+native_rdb_ndk_header.so
+```
+
+**Including Header Files**
+
+```c++
+#include <oh_cursor.h>
+#include <oh_predicates.h>
+#include <oh_value_object.h>
+#include <oh_values_bucket.h>
+#include <relational_store.h>
+#include <relational_store_error_code.h>
+
+```
+
 1. Obtain an OH_Rdb_Store instance and create a database file. 
 
    The **dataBaseDir** variable specifies the application sandbox path. In the stage model, you are advised to use the database directory. For details, see the **databaseDir** attribute of [Context](../reference/apis/js-apis-inner-application-context.md). In the FA model, there is no interface for obtaining the database sandbox path. Use the directory of the application. For details, see **getFilesDir** of [Context](../reference/apis/js-apis-inner-app-context.md). 

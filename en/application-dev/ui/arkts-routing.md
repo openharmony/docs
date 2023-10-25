@@ -1,7 +1,7 @@
 # Page Routing (router)
 
 
-Page routing refers to the redirection and data transfer between different pages in an application. In OpenHarmony, page routing can be implemented through APIs of the **Router** module. Through different URLs, you can easily navigate users through pages. This document describes the functions provided by the **Router** module from the following aspects: [Page Redirection](#page-redirection), [Page Return](#page-return), and [Adding a Confirmation Dialog Box Before Page Return](#adding-a-confirmation-dialog-box-before-page-return).
+Page routing refers to the redirection and data transfer between different pages in an application. In OpenHarmony, page routing can be implemented through APIs of the **Router** module. Through different URLs, you can easily navigate users through pages. This document describes the functions provided by the **Router** module from the following aspects: [Page Redirection](#page-redirection), [Page Return](#page-return), [Adding a Confirmation Dialog Box Before Page Return](#adding-a-confirmation-dialog-box-before-page-return), and [Named Route](#named-route).
 
 The **Router** module is applicable to page redirection between modules and within a module. It uses page URLs to decouple modules. Regarding page redirection within a module, prefer [Navigation](./arkts-navigation-navigation.md) over this module to create better transition effects.
 
@@ -386,7 +386,7 @@ When the configuration is successful, import the named route page to the page fr
 ```ts
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
-const moudel = import('./Index') // Import the named route page from the shared package.
+const moudel = import('library/src/main/ets/pages/Index') // Import the named route page in the shared package.
 @Entry
 @Component
 struct Index {

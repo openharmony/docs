@@ -45,7 +45,7 @@ struct UsbEndpointDescriptor UsbDdkEndpointDescriptor::endpointDescriptor
 
 
 ```
-uint8_t* UsbDdkEndpointDescriptor::extra
+const uint8_t* UsbDdkEndpointDescriptor::extra
 ```
 
 **描述:**

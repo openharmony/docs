@@ -12,11 +12,11 @@ The **\<WaterFlow>** component is a container that consists of cells formed by r
 ## Child Components
 
 
-The [\<FlowItem>](ts-container-flowitem.md) child component is supported.
+This component can contain the [\<FlowItem>](ts-container-flowitem.md) child component.
 
 >  **NOTE**
 >
->  When the **visibility** attribute of a child component in **\<WaterFlow >** is set to **None**, the child component is not displayed, but still takes up cells.
+>  If the **visibility** attribute of a **\<FlowItem>** is set to **None**, the component is not displayed in the container, but the gaps around the component are still effective.
 
 ## APIs
 

@@ -157,8 +157,8 @@ Indicates that an application HAP file is not suspended.
 - Value: **usual.event.CONFIGURATION_CHANGED**
 - Required subscriber permissions: none
 
-## COMMON_EVENT_LOCALE_CHANGED
-(Reserved, not supported yet) Indicates that the device locale has changed.
+## [COMMON_EVENT_LOCALE_CHANGED<sup>11+</sup>](./common_event/commonEvent-locale.md)
+Indicates that the device locale has changed.
 - Value: **usual.event.LOCALE_CHANGED**
 - Required subscriber permissions: none
 

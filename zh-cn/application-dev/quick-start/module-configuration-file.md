@@ -98,6 +98,7 @@ module.json5配置文件包含以下标签。
 | generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的versionCode保持不变时，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。**<br/>注：该字段仅对预置应用生效。**|布尔值|该标签可缺省, 缺省值为false。|
 | compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储，HAP在安装时无需解压libs，运行时会直接从HAP内加载libs库。 | 布尔值 | 可缺省，缺省值为true。 |
 | libIsolation | 用于区分同应用不同hap下的so文件，以防止so冲突。<br/>-&nbsp;true：当前hap的so会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前hap的so会直接储存在libs目录中。 | 布尔值 | 该标签可缺省, 缺省值为false。 |
+| fileContextMenu | 标识当前HAP的右键菜单配置项。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
 ## deviceTypes标签
 
@@ -535,7 +536,9 @@ metadata中指定shortcut信息，其中：
 
 ## distributionFilter标签
 
-该标签下的子标签均为可选字段，在应用市场云端分发时做精准匹配使用，distributionFilter标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码。在进行分发时，通过deviceType与这五个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。
+该标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。可配置的属性包括屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码四个维度。在分发应用包时，通过deviceType与这四个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。并在metadata的resource字段中引用。
+
+该字段从API10及以后版本开始生效，API9及以前版本使用distroFilter字段。
 
   **表12** **distributionFilter标签标签配置说明**
 
@@ -575,7 +578,7 @@ metadata中指定shortcut信息，其中：
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示需要排除的value属性。<br/>-&nbsp;include：表示需要包含的value属性。 | 字符串 | 该标签不可缺省。 |
 | value | 标识应用需要分发的国家地区码。 | 字符串数组 | 该标签不可缺省。 |
 
-在开发视图的resources/base/profile下面定义配置文件distro_filter_config.json，文件名可以自定义。
+在开发视图的resources/base/profile下面定义配置文件distributionFilter_config.json，文件名可以自定义。
 
 
 ```json
@@ -622,8 +625,8 @@ metadata中指定shortcut信息，其中：
     // ...
     "metadata": [
       {
-        "name": "ohos.module.distro",
-        "resource": "$profile:distro_filter_config",
+        "name": "ohos.module.distribution",
+        "resource": "$profile:distributionFilter_config",
       }
     ]
   }

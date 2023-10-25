@@ -496,7 +496,7 @@ off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
   let download = new cloudSync.Download();
 
   let callback = (pg: cloudSync.DownloadProgress) => {
-    console.info("download state：" + pg.state + "error type:" + pg.error);
+    console.info("download state：" + pg.state);
   }
 
   download.on('progress', callback);

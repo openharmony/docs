@@ -67,7 +67,7 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
 Custom dialog boxes can be used for data interactions to complete a series of response operations.
 
 
-1. Add button operations to the \@CustomDialog decorator and add the creation of data functions.
+1. Add buttons in the \@CustomDialog decorator structure and add data functions.
 
   ```ts
   @CustomDialog
@@ -134,7 +134,7 @@ Custom dialog boxes can be used for data interactions to complete a series of re
     }
   }
   ```
-
+   
    ![en-us_image_0000001511421320](figures/en-us_image_0000001511421320.png)
 
 ## Sample Code

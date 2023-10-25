@@ -1215,7 +1215,7 @@ import appManager from '@ohos.app.ability.appManager';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = "bundleName";
-function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: appManager.Array<ProcessInformation>) {
+function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: Array<appManager.ProcessInformation>) {
     if (err) {
         console.error(`getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -1405,12 +1405,10 @@ try {
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 0   |      当进程在创建中的时候处于的状态。       |
-| STATE_FOREGROUND          | 1   |            当进程切换到前台的时候处于的状态。      |
-| STATE_ACTIVE  | 2   |          当进程在获焦的时候处于的状态。   |
-| STATE_BACKGROUND        | 3   |       当进程处于后台不可见时处于的状态。           |
-| STATE_DESTROY        | 4   |         当进程在销毁的时候处于的状态。         |
+| STATE_CREATE<sup>10+<sup>    | 0   |      当进程在创建中的时候处于的状态。       |
+| STATE_FOREGROUND<sup>10+<sup>          | 1   |            当进程切换到前台的时候处于的状态。      |
+| STATE_ACTIVE<sup>10+<sup>  | 2   |          当进程在获焦的时候处于的状态。   |
+| STATE_BACKGROUND<sup>10+<sup>        | 3   |       当进程处于后台不可见时处于的状态。           |
+| STATE_DESTROY<sup>10+<sup>        | 4   |         当进程在销毁的时候处于的状态。         |

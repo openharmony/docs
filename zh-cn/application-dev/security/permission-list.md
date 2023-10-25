@@ -1398,6 +1398,18 @@
 
 **起始版本**：10
 
+## ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+允许设备管理系统的设置参数。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
@@ -2358,9 +2370,9 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
-**起始版本**：10
+**起始版本**：11
 
 ## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
 
@@ -2853,6 +2865,7 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
 ## ohos.permission.ENABLE_DISTRIBUTED_HARDWARE
 
 允许系统服务使能分布式硬件资源。
@@ -2864,6 +2877,19 @@
 **ACL使能**：FALSE
 
 **起始版本**：11
+
+## ohos.permission.DISABLE_PERMISSION_DIALOG
+
+允许系统应用去设置指定应用能否拉起权限弹窗。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
 
 允许系统服务或系统应用访问分布式硬件资源。
@@ -2941,6 +2967,54 @@
 允许系统应用设置云侧公钥以及工作秘钥密文，并协商代码保护秘钥信息。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.SECURE_PASTE
+
+允许应用静默读取剪贴板。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.READ_PASTEBOARD
+
+允许应用读取剪贴板。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.COOPERATE_MANAGER
+
+允许系统应用使能键鼠穿越能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.PERCEIVE_TRAIL
+
+允许系统应用使用MSDP足迹感知功能。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

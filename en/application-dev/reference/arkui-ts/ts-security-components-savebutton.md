@@ -76,7 +76,7 @@ Only the following events are supported.
 
 | Name| Description|
 | -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent)), result: [SaveButtonOnClickResult](#savebuttononclickresult)) =&gt; void) | Triggered when the component is touched.<br>**result**: authorization result. The authorization is effective for 5 seconds. This means that, the media library API can be called once within 5 seconds of the touch. If the API is called more than once or is not called within the 5 seconds, the authorization fails.<br>**event**: For details, see **ClickEvent**.|
+| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent)), result: [SaveButtonOnClickResult](#savebuttononclickresult)) =&gt; void) | Triggered when the component is touched.<br>**result**: authorization result. The authorization is effective for 10 seconds. This means that, a specific media library API can be called, an unlimited number of times, within 10 seconds of the touch. If the API is not called within the 10 seconds, the authorization fails.<br>**event**: For details, see **ClickEvent**.|
 
 
 ## Example

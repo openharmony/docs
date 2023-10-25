@@ -85,7 +85,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     需要的模型可以直接下载，也可以通过模型转换工具获得。
   
      - 下载模型的格式若为`.ms`，则可以直接使用。本文以mobilenetv2.ms为例。
-     - 如果是第三方框架的模型，比如 TensorFlow、TensorFlow Lite、Caffe、ONNX等，可以使用[模型转换工具](https://www.mindspore.cn/lite/docs/zh-CN/r1.5/use/downloads.html#id1)转换为`.ms`格式的模型文件。
+     - 如果是第三方框架的模型，比如 TensorFlow、TensorFlow Lite、Caffe、ONNX等，可以使用[模型转换工具](https://www.mindspore.cn/lite/docs/zh-CN/master/use/downloads.html#1-8-1)转换为`.ms`格式的模型文件。
 
 2. 创建上下文，设置线程数、设备类型等参数。
 

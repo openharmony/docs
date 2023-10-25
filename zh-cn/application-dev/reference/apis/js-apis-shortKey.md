@@ -33,6 +33,7 @@ setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&l
 **示例**：
 
 ```
+import shortKey from '@ohos.multimodalInput.shortKey';
 try {
   shortKey.setKeyDownDuration("screenshot", 500, (error) => {
     if (error) {
@@ -70,6 +71,7 @@ setKeyDownDuration(businessKey: string, delay: number): Promise&lt;void&gt;
 **示例**：
 
 ```
+import shortKey from '@ohos.multimodalInput.shortKey';
 try {
   shortKey.setKeyDownDuration("screenshot", 500).then(() => {
     console.log(`Set key down duration success`);

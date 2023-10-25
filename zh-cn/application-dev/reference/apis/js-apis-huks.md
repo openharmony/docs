@@ -1400,6 +1400,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occured in crypto engine. |
+| 12000011 | The entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
@@ -1462,6 +1463,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occured in crypto engine. |
+| 12000011 | The entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
@@ -2429,14 +2431,14 @@ async function huksAbort() {
 
 **系统能力**：SystemCapability.Security.Huks.Core
 
-| 名称                                         | 值      | 说明                                         |
-| -------------------------------------------- | ------- | -------------------------------------------- |
-| HUKS_TAG_TYPE_INVALID<sup>(deprecated)</sup> | 0 << 28 | 表示非法的Tag类型。从API version 9开始废弃。 |
-| HUKS_TAG_TYPE_INT                            | 1 << 28 | 表示该Tag的数据类型为int类型的number。       |
-| HUKS_TAG_TYPE_UINT                           | 2 << 28 | 表示该Tag的数据类型为uint类型的number。      |
-| HUKS_TAG_TYPE_ULONG                          | 3 << 28 | 表示该Tag的数据类型为bigint。                |
-| HUKS_TAG_TYPE_BOOL                           | 4 << 28 | 表示该Tag的数据类型为boolean。               |
-| HUKS_TAG_TYPE_BYTES                          | 5 << 28 | 表示该Tag的数据类型为Uint8Array。            |
+| 名称                  | 值      | 说明                                    |
+| --------------------- | ------- | --------------------------------------- |
+| HUKS_TAG_TYPE_INVALID | 0 << 28 | 表示非法的Tag类型。                     |
+| HUKS_TAG_TYPE_INT     | 1 << 28 | 表示该Tag的数据类型为int类型的number。  |
+| HUKS_TAG_TYPE_UINT    | 2 << 28 | 表示该Tag的数据类型为uint类型的number。 |
+| HUKS_TAG_TYPE_ULONG   | 3 << 28 | 表示该Tag的数据类型为bigint。           |
+| HUKS_TAG_TYPE_BOOL    | 4 << 28 | 表示该Tag的数据类型为boolean。          |
+| HUKS_TAG_TYPE_BYTES   | 5 << 28 | 表示该Tag的数据类型为Uint8Array。       |
 
 ## HuksTag
 
@@ -3325,16 +3327,12 @@ function huksFinish() {
     console.log(resultMessage);
 }
 async function huksAbort() {
-    huks.abort(handle, options).then((data) => {
-        if (data.errorCode === 0) {
-            resultMessage = "abort success!";
-        } else {
-            resultMessage = "abort fail errorCode: " + data.errorCode;
-        }
-    }).catch((err: BusinessError) => {
-        resultMessage = "abort fail， catch errorMessage:" + JSON.stringify(err)
+    new Promise<huks.HuksResult>((resolve, reject) => {
+        huks.abort(handle, options, (err, data) => {
+            console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
+            console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
+        });
     });
-    console.log(resultMessage);
 }
 ```
 
@@ -3463,12 +3461,16 @@ async function huksFinish() {
 }
 
 function huksAbort() {
-    new Promise<huks.HuksResult>((resolve, reject) => {
-        huks.abort(handle, options, (err, data) => {
-            console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
-            console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
-        });
+    huks.abort(handle, options).then((data) => {
+        if (data.errorCode === 0) {
+            resultMessage = "abort success!";
+        } else {
+            resultMessage = "abort fail errorCode: " + data.errorCode;
+        }
+    }).catch((err: BusinessError) => {
+        resultMessage = "abort fail， catch errorMessage:" + JSON.stringify(err)
     });
+    console.log(resultMessage);
 }
 ```
 

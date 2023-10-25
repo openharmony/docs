@@ -581,7 +581,7 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.increaseCapacityTo(2);
-vector.increaseCapacityTo(8);
+vector.increaseCapacityTo(12);
 ```
 
 ### trimToCurrentLength
@@ -721,7 +721,6 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.add("a");
 let result = vector.getLastIndexFrom(4,3);
 ```
 
@@ -754,7 +753,6 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.add("a");
 let result = vector.getIndexFrom(4, 3);
 ```
 
@@ -814,6 +812,7 @@ vector.add(5);
 vector.add(4);
 let result = vector.get(2);
 ```
+
 ### set
 
 set(index: number, element: T): T
@@ -840,6 +839,10 @@ set(index: number, element: T): T
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
 
 **系统能力：** SystemCapability.Utils.Lang
 

@@ -46,7 +46,7 @@ MDNS管理的典型场景有：
 
 ```ts
 // 从@ohos.net.mdns中导入mdns命名空间
-import mdns from '@ohos.net.mdns'
+import mdns from '@ohos.net.mdns';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -130,7 +130,7 @@ mdns.removeLocalService(context as Context, localServiceInfo, (error: BusinessEr
 
 ```ts
 // 从@ohos.net.mdns中导入mdns命名空间
-import mdns from '@ohos.net.mdns'
+import mdns from '@ohos.net.mdns';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import featureAbility from '@ohos.ability.featureAbility';
