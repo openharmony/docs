@@ -455,7 +455,7 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor).then((data : BusinessError) => {
+abilityDelegator.waitAbilityMonitor(monitor).then((data : UIAbility) => {
     console.info('waitAbilityMonitor promise');
 });
 ```

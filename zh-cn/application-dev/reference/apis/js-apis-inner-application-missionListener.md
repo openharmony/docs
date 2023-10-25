@@ -58,8 +58,8 @@ let listener: missionManager.MissionListener = {
 };
 
 try {
-    let listenerId = missionManager.on('mission', listener);
+  let listenerId = missionManager.on('mission', listener);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+  console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```

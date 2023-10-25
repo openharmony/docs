@@ -25,7 +25,7 @@ import ability from '@ohos.ability.ability';
 | DataAbilityResult   | [DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)               | DataAbilityResult二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | AbilityResult二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityBase |
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | ConnectOptions二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| StartAbilityParameter   | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)               | StartAbilityParameter二级模块。<br/>**系统能力**：ystemCapability.Ability.AbilityRuntime.FAModel |
+| StartAbilityParameter   | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)               | StartAbilityParameter二级模块。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
 
 **示例：**
 ```ts
