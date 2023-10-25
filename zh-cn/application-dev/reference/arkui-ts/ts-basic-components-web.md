@@ -88,7 +88,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```
 
   2.修改EntryAbility.ts。
-  以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用开发路径](../../application-models/application-context-stage.md#获取应用开发路径)。
+  以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
   ```ts
   // xxx.ts
   import UIAbility from '@ohos.app.ability.UIAbility';
