@@ -20,9 +20,9 @@ import common from '@ohos.app.ability.common';
 在使用DriverExtensionContext的功能前，需要通过DriverExtensionAbility子类实例获取。
 
 ```ts
-  import DriverExtensionAbility from '@ohos.app.ability.DriverExtensionAbility';
+  import DriverExtensionAbility, { DriverExtensionContext } from '@ohos.app.ability.DriverExtensionAbility';
 
-  let context : DriverExtensionContext;
+  let context : DriverExtensionContext | undefined;
   class EntryAbility extends DriverExtensionAbility {
     onInit() {
       context = this.context; // 获取DriverExtensionContext
@@ -41,5 +41,7 @@ updateDriverState(): void;
 **示例：**
 
   ```ts
-  this.context.updateDriverState() ;
+  if (context != null) {
+    context.updateDriverState();
+  }
   ```
