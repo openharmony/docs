@@ -171,14 +171,14 @@
    ```ts
    let URI = null;
    const audioViewPicker = new picker.AudioViewPicker();
-   audioViewPicker.select(audioSelectOptions).then(audioSelectResult => {
-     URI = audioSelectOptions[0];
+   audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
+     URI = audioSelectResult[0];
      console.info('audioViewPicker.select to file succeed and URI is:' + URI);
    }).catch((err) => {
      console.error(`Invoke audioViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
-
+   
 4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
 
    ```ts
