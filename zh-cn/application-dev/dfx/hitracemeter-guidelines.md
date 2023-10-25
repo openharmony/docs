@@ -43,7 +43,7 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World';
+     @State message: string = '运行';
  
      build() {
        Row() {
