@@ -213,7 +213,8 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 import settings from '@ohos.settings';
 
 //更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
-settings.setValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
+const context: Context =  getContext(this);
+settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
   console.log('Callback return whether value is set.');
 });
 ```
@@ -250,7 +251,8 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 import settings from '@ohos.settings';
 
 //更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
-settings.setValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
+const context: Context =  getContext(this);
+settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
   console.log('Callback return whether value is set.');
 });
 ```
@@ -277,8 +279,8 @@ getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 
 ```js
 import settings from '@ohos.settings';
-
-settings.getValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
+const context: Context =  getContext(this);
+settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
   if (err) {
     console.error(`Failed to get the setting. ${err.message} `);
     return;
@@ -314,8 +316,8 @@ getValue(context: Context, name: string): Promise\<string>
 
 ```js
 import settings from '@ohos.settings';
-
-settings.getValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
+const context: Context =  getContext(this);
+settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
   console.log(`promise:value -> ${JSON.stringify(value)}`)
 });
 ```
@@ -350,7 +352,8 @@ getValueSync(context: Context, name: string, defValue: string): string;
 import settings from '@ohos.settings';
 
 //获取数据项亮度的值（该数据项在数据库中已存在）
-let value = settings.getValueSync(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
+const context: Context =  getContext(this);
+let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
 
 ## settings.setValueSync<sup>10+</sup>
@@ -387,7 +390,8 @@ setValueSync(context: Context, name: string, value: string): boolean
 import settings from '@ohos.settings';
 
 //更新数据项亮度的值（该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值）
-let ret = settings.setValueSync(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
+const context: Context =  getContext(this);
+let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
 
 ## settings.enableAirplaneMode
@@ -470,8 +474,12 @@ canShowFloating(callback: AsyncCallback\<boolean>): void
 **示例**：
 
 ```js
-settings.canShowFloating((status:boolean) => {
-    console.log('Checks whether a specified application can show as float window.');
+settings.canShowFloating((err:Error, status: boolean) => {
+  if (err) {
+    console.error(`Failed to Checks whether a specified application can show as float window ${err.message} `);
+    return;
+  }
+  console.log('Checks whether a specified application can show as float window.');
 });
 ```
 
