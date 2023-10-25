@@ -607,6 +607,9 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | url | string | 是 | 资源地址。 |
 | header | Object | 是 | 添加要包含在上传请求中的HTTP或HTTPS标志头。 |
 | method | string | 是 | 请求方法：POST、PUT。缺省为POST。 |
+| index | number | 否 | 任务的路径索引，默认值为0。 |
+| begins | number | 否 | 在上传开始时读取的文件起点。默认值为0，取值为闭区间。|
+| ends | number | 否 | 在上传结束时读取的文件终点。默认值为-1，取值为闭区间。 |
 | files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
