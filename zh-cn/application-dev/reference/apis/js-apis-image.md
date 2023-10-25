@@ -234,7 +234,7 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 ```ts
 import {BusinessError} from '@ohos.base'
 const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-pixelmap.readPixelsToBuffer(readBuffer, (err : BusinessError, res : Object) => {
+pixelmap.readPixelsToBuffer(readBuffer, (err : BusinessError, res : void) => {
     if(err) {
         console.log('Failed to read image pixel data.');  //不符合条件则进入
     } else {
