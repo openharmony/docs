@@ -400,7 +400,7 @@ WLAN热点信息。
 
 ## DeviceAddressType <sup>10+</sup>
 
-wifi 设备地址（mac/bissid）类型。
+wifi 设备地址（mac/bssid）类型。
 
 **系统能力：** SystemCapability.Communication.WiFi.Core
 
@@ -1659,7 +1659,7 @@ Ipv6信息。
 | -------- | -------- | -------- | -------- | -------- |
 | linkIpv6Address | string | 是 | 否 | 链路Ipv6地址。 |
 | globalIpv6Address | string | 是 | 否 | 全局Ipv6地址。 |
-| randomGlobalIpv6Address | number | 是 | 否 | 随机全局Ipv6地址。 |
+| randomGlobalIpv6Address | string | 是 | 否 | 随机全局Ipv6地址。 |
 | gateway | string | 是 | 否 | 网关。 |
 | netmask | string | 是 | 否 | 网络掩码。 |
 | primaryDNS | string | 是 | 否 | 主DNS服务器Ipv6地址。 |
