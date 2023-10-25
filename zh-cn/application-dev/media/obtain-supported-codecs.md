@@ -105,7 +105,7 @@
 
     // 查询当前能力中，高的范围
     OH_AVRange heightRange;
-    int32_t ret = OH_AVCapability_GetVideoWidthRange(capability, &heightRange);
+    int32_t ret = OH_AVCapability_GetVideoHeightRange(capability, &heightRange);
     if (ret != AV_ERR_OK) {
         // 处理异常
     }
