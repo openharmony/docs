@@ -41,6 +41,44 @@ Enumerates the orientations of the display.
 | PORTRAIT_INVERTED | 2 | The display is in reverse portrait mode.|
 | LANDSCAPE_INVERTED | 3 | The display is in reverse landscape mode.|
 
+## FoldStatus<sup>10+</sup>
+
+Enumerates the folding statuses of a foldable device.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| FOLD_STATUS_UNKNOWN | 0 | The folding status of the device is unknown.|
+| FOLD_STATUS_EXPANDED | 1 | The device is fully open.|
+| FOLD_STATUS_FOLDED | 2 | The device is folded (completely closed).|
+| FOLD_STATUS_HALF_FOLDED | 3 | The device is half-folded, somehow between fully open and completely closed.|
+
+## FoldDisplayMode<sup>10+</sup>
+
+Enumerates the display modes of a foldable device.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| FOLD_DISPLAY_MODE_UNKNOWN | 0 | The display mode of the device is unknown.|
+| FOLD_DISPLAY_MODE_FULL | 1 | The device is displayed in full screen.|
+| FOLD_DISPLAY_MODE_MAIN | 2 | The main screen of the device is displayed.|
+| FOLD_DISPLAY_MODE_SUB | 3 | The subscreen of the device is displayed.|
+| FOLD_DISPLAY_MODE_COORDINATION | 4 | Both screens of the device are displayed in collaborative mode.|
+
+## FoldCreaseRegion<sup>10+</sup>
+
+Defines the crease region of a foldable device.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name  | Type| Readable| Writable| Description              |
+| ------ | -------- | ---- | ---- | ------------------ |
+| displayId   | number   | Yes  | No  | ID of the screen where the crease is located.|
+| creaseRects    | Array\<[Rect](#rect9)>   | Yes  | No  | Crease region.|
+
 ## Rect<sup>9+</sup>
 
 Describes a rectangle on the display.
@@ -103,6 +141,8 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 **Example**
 
 ```ts
+import display from '@ohos.display';
+
 let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
@@ -137,9 +177,10 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import display from '@ohos.display';
 
 let displayClass: Array<display.Display> = [];
-display.getAllDisplays((err: BusinessError, data: AsyncCallback<Array<Display>>) => {
+display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
   displayClass = data;
   const errCode: number = err.code;
   if (errCode) {
@@ -176,10 +217,11 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import display from '@ohos.display';
 
 let displayClass: Array<display.Display> =[];
-let promise: Promise<Array<Display>> = display.getAllDisplays();
-promise.then((data: Promise<Array<Display>>) => {
+let promise: Promise<Array<display.Display>> = display.getAllDisplays();
+promise.then((data: Array<display.Display>) => {
   displayClass = data;
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
@@ -220,7 +262,7 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import display from '@ohos.display';
 
 let displayClass: display.Display | null = null;
 try {
@@ -263,7 +305,9 @@ Subscribes to display changes.
 **Example**
 
 ```ts
-let callback: Callback<number> = (data: Callback<number>) => {
+import { Callback } from '@ohos.base';
+
+let callback: Callback<number> = (data: number) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
@@ -318,7 +362,9 @@ Subscribes to privacy mode changes of this display. When there is a privacy wind
 **Example**
 
 ```ts
-let callback: Callback<boolean> = (data: Callback<boolean>) => {
+import { Callback } from '@ohos.base';
+
+let callback: Callback<boolean> = (data: boolean) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
@@ -355,6 +401,332 @@ try {
 }
 ```
 
+## display.isFoldable<sup>10+</sup>
+isFoldable(): boolean
+
+Checks whether the device is foldable.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type| Description|
+| ----------------------------------------------- | ------------------------------------------------------- |
+| boolean | Returns **true** if the device is foldable, and returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import display from '@ohos.display';
+
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+
+  let ret: boolean = false;
+  try {
+    ret = display.isFoldable();
+  } catch (exception) {
+    console.error('Failed to check is foldable or not. Code: ' + JSON.stringify(exception));
+  }
+  if (ret == undefined) {
+    console.log("Failed to check is foldable or not.");
+  }
+  if (ret) {
+    console.log("The device is foldable.");
+  } else if (!ret) {
+    console.log("The device is not foldable.");
+  }
+} catch (exception) {
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.setFoldDisplayMode<sup>10+</sup>
+setFoldDisplayMode(mode: FoldDisplayMode): void
+
+Sets the display mode of the foldable device.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| mode     | [FoldDisplayMode](#folddisplaymode10)    | Yes  | Display mode.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import display from '@ohos.display';
+
+try {
+  let mode: display.FoldDisplayMode = display.FoldDisplayMode.FOLD_DISPLAY_MODE_FULL;
+  display.setFoldDisplayMode(mode);
+} catch (exception) {
+  console.error('Failed to change the fold display mode. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.getFoldStatus<sup>10+</sup>
+getFoldStatus(): FoldStatus
+
+Obtains the folding status of the foldable device.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type| Description|
+| ----------------------------------------------- | ------------------------------------------------------- |
+| [FoldStatus](#foldstatus10) | Folding status of the device.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import display from '@ohos.display';
+
+try {
+  display.getFoldStatus();
+} catch (exception) {
+  console.error('Failed to obtain the fold status. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.getFoldDisplayMode<sup>10+</sup>
+getFoldDisplayMode(): FoldDisplayMode
+
+Obtains the display mode of the foldable device.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type| Description|
+| ----------------------------------------------- | ------------------------------------------------------- |
+| [FoldDisplayMode](#folddisplaymode10) | Display mode of the device.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import display from '@ohos.display';
+
+try {
+  display.getFoldDisplayMode();
+} catch (exception) {
+  console.error('Failed to obtain the fold display mode. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.getCurrentFoldCreaseRegion<sup>10+</sup>
+getCurrentFoldCreaseRegion(): FoldCreaseRegion
+
+Obtains the crease region of the foldable device in the current display mode.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type| Description|
+| ----------------------------------------------- | ------------------------------------------------------- |
+| [FoldCreaseRegion](#foldcreaseregion10) | Crease region of the device.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import display from '@ohos.display';
+
+try {
+  display.getCurrentFoldCreaseRegion();
+} catch (exception) {
+  console.error('Failed to obtain the current fold crease region. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.on('foldStatusChange')<sup>10+</sup>
+
+on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
+
+Subscribes to folding status change events of the foldable device.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** indicates that the folding status of the device changes.|
+| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | Yes  | Callback used to return the folding status.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { Callback } from '@ohos.base';
+
+let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+try {
+  display.on('foldStatusChange', callback);
+} catch (exception) {
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.off('foldStatusChange')<sup>10+</sup>
+
+off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
+
+Unsubscribes from folding status change events of the foldable device.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** is triggered when the folding status of the device changes.|
+| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used to return the folding status.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+try {
+  display.off('foldStatusChange');
+} catch (exception) {
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.on('foldDisplayModeChange')<sup>10+</sup>
+
+on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): void
+
+Subscribes to display mode change events of the foldable device.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The event **'foldDisplayModeChange'** is triggered when the display mode of the device changes.|
+| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | Yes  | Callback used to return the display mode.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { Callback } from '@ohos.base';
+
+let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+try {
+  display.on('foldDisplayModeChange', callback);
+} catch (exception) {
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.off('foldDisplayModeChange')<sup>10+</sup>
+
+off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): void
+
+Unsubscribes from display mode change events of the foldable device.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The event **'foldDisplayModeChange'** is triggered when the display mode of the device changes.|
+| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | No  | Callback used to return the display mode.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+try {
+  display.off('foldDisplayModeChange');
+} catch (exception) {
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+}
+```
+
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
 
 getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
@@ -379,7 +751,7 @@ Obtains the default display object. This API uses an asynchronous callback to re
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-display.getDefaultDisplay((err: BusinessError, data: AsyncCallback<Display>) => {
+display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
@@ -414,8 +786,8 @@ Obtains the default display object. This API uses a promise to return the result
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-let promise: Promise<Display> = display.getDefaultDisplay();
-promise.then((data: Promise<Display>) => {
+let promise: Promise<display.Display> = display.getDefaultDisplay();
+promise.then((data: display.Display) => {
   displayClass = data;
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
@@ -446,7 +818,7 @@ Obtains all display objects. This API uses an asynchronous callback to return th
 ```ts
 import { BusinessError } from '@ohos.base';
 
-display.getAllDisplay((err: BusinessError, data: AsyncCallback<Array<Display>>) => {
+display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
@@ -479,8 +851,8 @@ Obtains all display objects. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise: Promise<Array<Display>> = display.getAllDisplay();
-promise.then((data: Promise<Array<Display>>) => {
+let promise: Promise<Array<display.Display>> = display.getAllDisplay();
+promise.then((data: Array<display.Display>) => {
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
   console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
@@ -543,7 +915,7 @@ let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
 
-  displayClass.getCutoutInfo((err: BusinessError, data: AsyncCallback<CutoutInfo>) => {
+  displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
@@ -585,8 +957,8 @@ let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
 
-  let promise: Promise<CutoutInfo> = displayClass.getCutoutInfo();
-  promise.then((data: Promise<CutoutInfo>) => {
+  let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
+  promise.then((data: display.CutoutInfo) => {
     console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
