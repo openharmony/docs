@@ -7932,7 +7932,7 @@ audioCapturer.getBufferSize().then((data: number) => {
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRecLog: getBufferSize: ERROR: ${err}`);
 });
-audioCapturer.read(bufferSize, true, (err: BusinessError, buffer: number) => {
+audioCapturer.read(bufferSize, true, (err: BusinessError, buffer: ArrayBuffer) => {
   if (!err) {
     console.info('Success in reading the buffer data');
   }
@@ -7972,7 +7972,7 @@ audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: ERROR ${err}`);
 });
 console.info(`Buffer size: ${bufferSize}`);
-audioCapturer.read(bufferSize, true).then((buffer: number) => {
+audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
   console.info('buffer read successfully');
 }).catch((err: BusinessError) => {
   console.info(`ERROR : ${err}`);
@@ -8076,8 +8076,8 @@ import { BusinessError } from '@ohos.base';
 audioCapturer.getBufferSize((err: BusinessError, bufferSize: number) => {
   if (!err) {
     console.info(`BufferSize : ${bufferSize}`);
-    audioCapturer.read(bufferSize, true).then((buffer: number) => {
-      console.info(`Buffer read is ${buffer}`);
+    audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
+      console.info(`Buffer read is ${buffer.byteLength}`);
     }).catch((err: BusinessError) => {
       console.error(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
     });
