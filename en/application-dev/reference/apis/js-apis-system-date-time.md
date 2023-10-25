@@ -487,7 +487,9 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the system date. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is supported since API version 9 and deprecated since API version 10. You are advised to use [systemDateTime.setTime](#systemdatetimesettime) instead.
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [systemDateTime.setTime](#systemdatetimesettime) instead.
 
 **System API**: This is a system API.
 
@@ -528,7 +530,9 @@ setDate(date: Date): Promise&lt;void&gt;
 
 Sets the system date. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is supported since API version 9 and deprecated since API version 10. You are advised to use [systemDateTime.setTime](#systemdatetimesettime) instead.
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [systemDateTime.setTime](#systemdatetimesettime) instead.
 
 **System API**: This is a system API.
 
@@ -572,7 +576,9 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 Obtains the current system date. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is supported since API version 9 and deprecated since API version 10. You are advised to use **new Date()** instead, which returns a **Date** object.
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use **new Date()** instead, which returns a **Date** object.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -607,7 +613,9 @@ getDate(): Promise&lt;Date&gt;
 
 Obtains the current system date. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is supported since API version 9 and deprecated since API version 10. You are advised to use **new Date()** instead, which returns a **Date** object.
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use **new Date()** instead, which returns a **Date** object.
 
 **System capability**: SystemCapability.MiscServices.Time
 

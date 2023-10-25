@@ -15,7 +15,7 @@ Indicates that the system time has changed.
 - Value: usual.event.TIME_TICK
 - Required subscriber permissions: none
 
-When the system time changes, the event notification service is triggered to publish this event.
+On devices where the unit of time is minutes, when the system time changes, the event notification service is triggered to publish this event.
 
 ## COMMON_EVENT_TIMEZONE_CHANGED
 Indicates that the system time zone has changed.
