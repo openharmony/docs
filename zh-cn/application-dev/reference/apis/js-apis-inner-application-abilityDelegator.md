@@ -145,6 +145,10 @@ addAbilityMonitorSync(monitor: AbilityMonitor): void;
 ```ts
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
+function onAbilityCreateCallback(data: UIAbility) {
+    console.info('onAbilityCreateCallback');
+}
+
 let monitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
@@ -279,6 +283,10 @@ removeAbilityMonitorSync(monitor: AbilityMonitor): void;
 
 ```ts
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+function onAbilityCreateCallback(data: UIAbility) {
+    console.info('onAbilityCreateCallback');
+}
 
 let monitor = {
     abilityName: 'abilityname',
@@ -442,7 +450,7 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor).then((data : BusinessError) => {
+abilityDelegator.waitAbilityMonitor(monitor).then((data : UIAbility) => {
     console.info('waitAbilityMonitor promise');
 });
 ```

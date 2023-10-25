@@ -17,12 +17,6 @@ import common from '@ohos.app.ability.common';
 
 在使用ApplicationContext的功能前，需要通过context的实例获取。
 
-```ts
-import common from '@ohos.app.ability.common';
-
-let applicationContext: common.ApplicationContext = this.context.getApplicationContext();
-```
-
 ## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): **number**;

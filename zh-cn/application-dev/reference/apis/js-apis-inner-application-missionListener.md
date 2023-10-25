@@ -46,20 +46,20 @@ let listener: missionManager.MissionListener = {
     console.log(`onMissionMovedToFront mission: ${JSON.stringify(mission)}`);
   },
   onMissionLabelUpdated: (mission) => {
-    console.log(`onMissionLabelUpdated mission: ${JSON.stringify(mission)}`);
+    console.log(`onMissionLabelUpdated mission: ' + ${JSON.stringify(mission)}`);
   },
   onMissionIconUpdated: (mission, icon) => {
-    console.log(`onMissionIconUpdated mission: ${JSON.stringify(mission)}`);
-    console.log(`onMissionIconUpdated icon: ${JSON.stringify(mission)}`);
+    console.log(`onMissionIconUpdated mission: ' + ${JSON.stringify(mission)}`);
+    console.log(`onMissionIconUpdated icon: ' + ${JSON.stringify(mission)}`);
   },
   onMissionClosed: (mission) => {
-    console.log(`onMissionClosed mission: ${JSON.stringify(mission)}`);
-    }
-};
+    console.log(`onMissionClosed mission: ' + ${JSON.stringify(mission)}`);
+  },
+}
 
 try {
-    let listenerId = missionManager.on('mission', listener);
+  let listenerId = missionManager.on('mission', listener);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+  console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```
