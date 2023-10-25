@@ -213,7 +213,7 @@ createPlainTextData(text: string): PasteData
 构建一个纯文本剪贴板内容对象。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
+> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
