@@ -51,23 +51,23 @@
    ```ts
    @state isPresent: boolean = true;
    ...
-   if (isPresent) {
+   if (this.isPresent) {
      Text('test')
        .transition(effect)
    }
    ...
    // 控制新增或者删除组件
    // 方式一：将控制变量放到animateTo闭包内，未通过animation接口定义动画参数的TransitionEffect将跟随animateTo的动画参数
-   animateTo({curve: curves.springMotion()}) {
+   animateTo({curve: curves.springMotion()}, ()=> {
      this.isPresent = false;
-   }
+   })
    
    // 方式二：直接控制删除或者新增组件，动画参数由TransitionEffect的animation接口配置
    this.isPresent = false;
    ```
 
 
-  完整的示例代码和效果如下：
+ 完整的示例代码和效果如下，示例中采用直接删除或新增组件的方式触发转场，也可以替换为在animateTo闭包内改变控制变量触发转场。
 
 ```ts
 import curves from '@ohos.curves';
