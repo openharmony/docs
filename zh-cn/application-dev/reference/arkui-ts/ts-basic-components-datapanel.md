@@ -79,7 +79,7 @@ LinearGradient(colorStops: ColorStop[])
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 是 | 颜色值。|
-| offset | [Length](ts-types.md#Length) | 是 | 渐变色断点（0~1之间的比例值，若数据值小于0则置为0，若数据值大于1则置为1）。|
+| offset | [Length](ts-types.md#Length) | 是 | 渐变色断点（0~1之间的比例值，若数据值小于0则置为0，若数据值大于1则置为1）。<br>**说明：** <br/>若传入字符串类型且内容为数字，则转换为对应的数值。<br/>例如'10vp'转换为10，'10%'转换为0.1。 |
 
 
 
