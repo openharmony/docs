@@ -140,15 +140,51 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
 3. 调用OH_AudioEncoder_Configure设置编码器
    设置必选项：采样率，码率，以及声道数，声道类型、位深；可选项：最大输入长度
    flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度
-
+   
+   例AAC调用流程：
    ```cpp
-   enum AudioFormatType : int32_t {
-       TYPE_AAC = 0,
-       TYPE_FLAC = 1,
-   };
+   #include "avcodec_audio_channel_layout.h"
+   #include "native_avcodec_base.h"
+   
    int32_t ret;
    // 配置音频采样率（必须）
-   constexpr uint32_t DEFAULT_SMAPLERATE = 44100;
+   constexpr uint32_t DEFAULT_SAMPLERATE = 44100; 
+   // 配置音频码率（必须）
+   constexpr uint64_t DEFAULT_BITRATE = 32000;
+   // 配置音频声道数（必须）
+   constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
+   // 配置音频声道类型（必须）
+   constexpr AudioChannelLayout CHANNEL_LAYOUT = AudioChannelLayout::STEREO;
+   // 配置音频位深（必须）aac只有SAMPLE_F32P
+   constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_F32LE;
+   // 配置音频compliance level (默认值0，取值范围-2~2)
+   constexpr int32_t COMPLIANCE_LEVEL = 0;
+   // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE
+   constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
+   // 配置最大输入长度（可选）
+   constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1024*DEFAULT_CHANNEL_COUNT *sizeof(float);//aac
+   OH_AVFormat *format = OH_AVFormat_Create();
+   // 写入format
+   OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_CHANNEL_COUNT,DEFAULT_CHANNEL_COUNT);
+   OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_SAMPLE_RATE,DEFAULT_SAMPLERATE);
+   OH_AVFormat_SetLongValue(format,OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT);
+   OH_AVFormat_SetLongValue(format,OH_MD_KEY_CHANNEL_LAYOUT,CHANNEL_LAYOUT);
+   OH_AVFormat_SetIntValue(format,OH_MD_KEY_MAX_INPUT_SIZE,DEFAULT_MAX_INPUT_SIZE);
+   // 配置编码器
+   ret = OH_AudioEncoder_Configure(audioEnc, format);
+   if (ret != AV_ERR_OK) {
+       // 异常处理
+   }
+   ```
+   例FLAC调用流程：
+   ```cpp
+   #include "avcodec_audio_channel_layout.h"
+   #include "native_avcodec_base.h"
+   
+   int32_t ret;
+   // 配置音频采样率（必须）
+   constexpr uint32_t DEFAULT_SMAPLERATE = 44100; 
    // 配置音频码率（必须）
    constexpr uint64_t DEFAULT_BITRATE = 32000;
    // 配置音频声道数（必须）
@@ -160,22 +196,16 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    // 配置音频compliance level (默认值0，取值范围-2~2)
    constexpr int32_t COMPLIANCE_LEVEL = 0;
    // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE
-   constexpr uint32_t BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
+   constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
    OH_AVFormat *format = OH_AVFormat_Create();
    // 写入format
-   OH_AVFormat_SetIntValue(format,MediaDescriptionKey::MD_KEY_SAMPLE_RATE.data(),DEFAULT_SMAPLERATE);
-   OH_AVFormat_SetLongValue(format,MediaDescriptionKey::MD_KEY_BITRATE.data(), DEFAULT_BITRATE);
-   OH_AVFormat_SetIntValue(format,MediaDescriptionKey::MD_KEY_CHANNEL_COUNT.data(),DEFAULT_CHANNEL_COUNT);
-   OH_AVFormat_SetIntValue(format,MediaDescriptionKey::MD_KEY_MAX_INPUT_SIZE.data(),DEFAULT_MAX_INPUT_SIZE);
-   OH_AVFormat_SetLongValue(format,MediaDescriptionKey::MD_KEY_CHANNEL_LAYOUT.data(),CHANNEL_LAYOUT);
-   OH_AVFormat_SetIntValue(format,MediaDescriptionKey::MD_KEY_AUDIO_SAMPLE_FORMAT.data(),SAMPLE_FORMAT);
-   if(audioType == TYPE_AAC){
-       OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_AUDIO_SAMPLE_FORMAT.data(), SAMPLE_AAC_FORMAT);
-   }
-   if (audioType == TYPE_FLAC) {
-       OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_BITS_PER_CODED_SAMPLE.data(), BITS_PER_CODED_SAMPLE);
-       OH_AVFormat_SetLongValue(format, MediaDescriptionKey::MD_KEY_COMPLIANCE_LEVEL.data(), COMPLIANCE_LEVEL);
-   }
+   OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_CHANNEL_COUNT,DEFAULT_CHANNEL_COUNT);
+   OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_SAMPLE_RATE,DEFAULT_SMAPLERATE);
+   OH_AVFormat_SetLongValue(format,OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITS_PER_CODED_SAMPLE, BITS_PER_CODED_SAMPLE); 
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT); 
+   OH_AVFormat_SetLongValue(format,OH_MD_KEY_CHANNEL_LAYOUT,CHANNEL_LAYOUT);
+   OH_AVFormat_SetLongValue(format, OH_MD_KEY_COMPLIANCE_LEVEL, COMPLIANCE_LEVEL); 
    // 配置编码器
    ret = OH_AudioEncoder_Configure(audioEnc, format);
    if (ret != AV_ERR_OK) {
