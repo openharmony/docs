@@ -35,7 +35,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    let want: Want = {
      deviceId: '', // An empty deviceId indicates the local device.
      bundleName: 'com.example.myapplication',
@@ -79,7 +79,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    ```ts
    import common from '@ohos.app.ability.common';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
 
    // context is the UIAbilityContext of the UIAbility instance to stop.
    context.terminateSelf((err) => {
@@ -108,7 +108,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    let want: Want = {
      deviceId: '', // An empty deviceId indicates the local device.
      bundleName: 'com.example.myapplication',
@@ -132,7 +132,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
    import common from '@ohos.app.ability.common';
    import Want from '@ohos.app.ability.Want';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    const RESULT_CODE: number = 1001;
    let abilityResult: common.AbilityResult = {
      resultCode: RESULT_CODE,
@@ -161,7 +161,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    const RESULT_CODE: number = 1001;
 
    let want: Want = {
@@ -229,7 +229,7 @@ The following example describes how to start the UIAbility of another applicatio
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    let want: Want = {
      deviceId: '', // An empty deviceId indicates the local device.
      // Uncomment the line below if you want to implicitly query data only in the specific bundle.
@@ -256,7 +256,7 @@ The following example describes how to start the UIAbility of another applicatio
    ```ts
    import common from '@ohos.app.ability.common';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
 
    // context is the UIAbilityContext of the UIAbility instance to stop.
    context.terminateSelf((err) => {
@@ -305,7 +305,7 @@ If you want to obtain the return result when using implicit Want to start the UI
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    let want:Want = {
      deviceId: '', // An empty deviceId indicates the local device.
      // Uncomment the line below if you want to implicitly query data only in the specific bundle.
@@ -329,7 +329,7 @@ If you want to obtain the return result when using implicit Want to start the UI
    import common from '@ohos.app.ability.common';
    import Want from '@ohos.app.ability.Want';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    const RESULT_CODE: number = 1001;
    let abilityResult: common.AbilityResult = {
      resultCode: RESULT_CODE,
@@ -358,7 +358,7 @@ If you want to obtain the return result when using implicit Want to start the UI
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
 
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let context: common.UIAbilityContext = this.context; // UIAbilityContext
    const RESULT_CODE: number = 1001;
 
    let want: Want = {
@@ -408,7 +408,7 @@ import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let context: common.UIAbilityContext = ...; // UIAbilityContext
+let context: common.UIAbilityContext = this.context; // UIAbilityContext
 let want: Want = {
   deviceId: '', // An empty deviceId indicates the local device.
   bundleName: 'com.example.myapplication',
@@ -457,7 +457,7 @@ import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let context: common.UIAbilityContext = ...; // UIAbilityContext
+let context: common.UIAbilityContext = this.context; // UIAbilityContext
 let want: Want = {
   deviceId: '', // An empty deviceId indicates the local device.
   bundleName: 'com.example.funcapplication',
