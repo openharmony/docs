@@ -854,6 +854,10 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 
 设置音频流播放速率。使用callback方式异步获取返回值。
 
+**说明：**
+
+该接口在4.0版本仅提供接口定义，暂无功能实现。
+
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
 **参数：**
@@ -912,6 +916,10 @@ soundPool.setRate(streamID, selectedAudioRendererRate, (error: BusinessError) =>
 setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 设置音频流的播放速率。使用Promise方式异步获取返回值。
+
+**说明：**
+
+该接口在4.0版本仅提供接口定义，暂无功能实现。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -983,7 +991,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 | streamID | number | 是   | 音频流ID，通过play方法获取。 |
 | leftVolume | number | 是   | 左声道音量，设置范围为0.0-1.0之间。 |
 | rightVolume | number | 是   | 右声道音量，当前右声道设置无效，以左声道为准。 |
-| callback | AsyncCallback\<void> | 是   | 异步音频池setRate方法的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 异步音频池setVolume方法的回调方法。 |
 
 **错误码：**
 
