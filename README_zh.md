@@ -18,7 +18,7 @@
 
  - master：最新开发版本。  
 
- - OpenHarmony 4.0 Beta2版本：点击[此处](zh-cn/release-notes/OpenHarmony-v4.0-beta2.md)了解版本详情。
+ - OpenHarmony 4.0 Release版本：点击[此处](zh-cn/release-notes/OpenHarmony-v4.0-release.md)了解版本详情。
 
  - OpenHarmony 3.2 Release版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.2-release.md)了解版本详情。
     
