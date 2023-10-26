@@ -143,12 +143,12 @@ When the **install** API of the **installer** module is called, the HAP passed i
 
 **Possible Causes**
 1. The HAP is not in ZIP format.
-2. The configuration file in the HAP is not in JSON format.
-3. Necessary fields are missing in the configuration file.
+2. The profile in the HAP is not in JSON format.
+3. Necessary fields are missing in the profile.
 
 **Solution**
 1. Check whether the HAP is in ZIP format.
-2. Check whether the configuration file is in [JSON format](../../quick-start/application-configuration-file-overview-stage.md).
+2. Check whether the profile is in [JSON format](../../quick-start/application-configuration-file-overview-stage.md).
 3. Check whether an error message is displayed when DevEco Studio compiles the HAP. If necessary fields are missing, an error message will be displayed.
 
 ## 17700011 Bundle Installation Failure Due to Signature Verification Failure
@@ -206,7 +206,7 @@ Calling the **install** API of the **installer** module to install the bundle fa
 
 **Possible Causes**
 
-The fields under **app** in the configuration files of these HAPs are inconsistent.
+The fields under **app** in the profiles of these HAPs are inconsistent.
 
 **Solution**
 
@@ -339,11 +339,11 @@ No default application is set for the device.
 
 Check whether the default application is set on the device.
 
-## 17700024 Configuration File Does Not Exist
+## 17700024 Profile Does Not Exist
 
 **Error Message**
 
-Failed to get the profile because there is no profile in the HAP.
+Failed to get the profile because the specified profile is not found in the HAP.
 
 **Description**
 
@@ -351,12 +351,14 @@ When an API for querying the profile is called, the configuration file does not 
 
 **Possible Causes**
 
-1. The metadata name passed in the API does not exist in the configuration file.
-2. The content of the configuration file is not in JSON format.
+1. The metadata name passed in the API does not exist in the profile.
+2. The content of the profile is not in JSON format.
+3. The type of the profile to query does not exist.
 
 **Solution**
 1. Check whether the metadata name in the **ability** or **extensionAbility** to be queried exists.
 2. Check whether the content of the profile to be queried is in JSON format.
+3. Check whether the application contains a profile that matches the value of **profileType** passed in.
 
 ## 17700025 Invalid Type
 
@@ -823,7 +825,7 @@ The device is not an enterprise device.
 
 2. Ensure that **const.bms.allowenterprisebundle** is set to **true**.
 
-## 17700051 Update Failure Because of Incorrect Distribution Type
+## 17700051 Update Failure Because of Incorrect Bundle Name
 
 **Error Message**
 
