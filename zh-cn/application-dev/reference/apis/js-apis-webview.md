@@ -1359,6 +1359,7 @@ class testObj {
   }
 
   test(): string {
+    console.log('ArkUI Web Component');
     return "ArkUI Web Component";
   }
 
@@ -1367,11 +1368,26 @@ class testObj {
   }
 }
 
+class webObj {
+  constructor() {
+  }
+
+  webTest(): string {
+    console.log('Web test');
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString');
+  }
+}
+
 @Entry
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   @State testObjtest: testObj = new testObj();
+  @State webTestObj: webObj = new webObj();
   build() {
     Column() {
       Button('refresh')
@@ -1387,6 +1403,7 @@ struct Index {
         .onClick(() => {
           try {
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -1408,12 +1425,19 @@ struct Index {
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
+      <p id="webDemo"></p>
     </body>
     <script type="text/javascript">
     function htmlTest() {
+      // This function call expects to return "ArkUI Web Component"
       let str=objName.test();
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
+
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
     }
 </script>
 </html>

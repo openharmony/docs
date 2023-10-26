@@ -262,7 +262,7 @@ imageAccess(imageAccess: boolean)
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
     controller: WebviewController | WebController})
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy)。
 
 **参数：**
 
