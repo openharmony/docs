@@ -46,7 +46,7 @@ zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md @zhang_
 zh-cn/application-dev/ability/ @huipeizi @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/IDL/ @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/device-usage-statistics/ @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
-zh-cn/application-dev/ui/ @HelloCrease @tomatodevboy @niulihua
+zh-cn/application-dev/ui/ @HelloCrease
 zh-cn/application-dev/notification/ @huipeizi @jayleehw @li-weifeng2 @currydavids
 zh-cn/application-dev/windowmanager/ @ge-yafang @zhangqiang183  @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/webgl/ @ge-yafang @zhangqiang183  @wind_zj @zxg-gitee
@@ -124,8 +124,8 @@ zh-cn/application-dev/device/vibrator-overview.md @hu-zhiqiong @hellohyh001 @but
 zh-cn/application-dev/device/vibrator-guidelines.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/device/sample-server-overview.md @hu-zhiqiong @hughes802 @zhangzhengxue @mamba-ting
 zh-cn/application-dev/device/sample-server-guidelines.md @hu-zhiqiong @hughes802 @zhangzhengxue @mamba-ting
-zh-cn/application-dev/reference/arkui-js/ @HelloCrease @niulihua @tomatodevboy
-zh-cn/application-dev/reference/arkui-ts/ @HelloCrease @niulihua @tomatodevboy
+zh-cn/application-dev/reference/arkui-js/ @HelloCrease
+zh-cn/application-dev/reference/arkui-ts/ @HelloCrease
 zh-cn/application-dev/reference/native-lib @zengyawen @gongjunsong @liwentao_uiw @blackstone-oh
 zh-cn/application-dev/quick-start/start-overview.md @ge-yafang
 zh-cn/application-dev/quick-start/start-with-ets-stage.md @ge-yafang
