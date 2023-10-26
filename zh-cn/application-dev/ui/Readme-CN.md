@@ -23,6 +23,7 @@
       - [进度条（Progress）](arkts-common-components-progress-indicator.md)
       - [文本显示（Text/Span）](arkts-common-components-text-display.md)
       - [文本输入（TextInput/TextArea）](arkts-common-components-text-input.md)
+      - [显示图片（Image）](arkts-graphics-display.md)
       - [自定义弹窗（CustomDialog）](arkts-common-components-custom-dialog.md)
       - [视频播放（Video）](arkts-common-components-video-player.md)
       - [XComponent](arkts-common-components-xcomponent.md)
@@ -35,7 +36,6 @@
       - [Navigation](arkts-navigation-navigation.md)
       - [Tabs](arkts-navigation-tabs.md)
   - 显示图形
-    - [显示图片（Image）](arkts-graphics-display.md)
     - [绘制几何图形（Shape）](arkts-geometric-shape-drawing.md)
     - [使用画布绘制自定义图形（Canvas）](arkts-drawing-customization-on-canvas.md)
   - 使用动画
