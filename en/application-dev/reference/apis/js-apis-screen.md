@@ -42,7 +42,7 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 import { BusinessError } from '@ohos.base';
 
 let screenClass: screen.Screen | null = null;
-screen.getAllScreens((err: BusinessError, data: AsyncCallback<Array<Screen>>) => {
+screen.getAllScreens((err: BusinessError, data: Array<screen.Screen>) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to get all screens. Cause:  ' + JSON.stringify(err));
@@ -81,8 +81,8 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 import { BusinessError } from '@ohos.base';
 
 let screenClass: screen.Screen | null = null;
-let promise: Promise<Array<Screen>> = screen.getAllScreens();
-promise.then((data: Array<Screen>) => {
+let promise: Promise<Array<screen.Screen>> = screen.getAllScreens();
+promise.then((data: Array<screen.Screen>) => {
   screenClass = data[0];
   console.log('Succeeded in getting all screens. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
@@ -109,7 +109,7 @@ Subscribes to events related to the screen state.
 
 ```ts
 try {
-  let callback: Callback<number> = (data: Callback<number>) => {
+  let callback: Callback<number> = (data: number) => {
     console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
   };
   screen.on('connect', callback);
@@ -137,7 +137,7 @@ Unsubscribes from events related to the screen state.
 
 ```ts
 try {
-  let callback: Callback<number> = (data: Callback<number>) => {
+  let callback: Callback<number> = (data: number) => {
     console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
   };
   screen.off('connect', callback);
@@ -184,7 +184,7 @@ try {
   let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
   let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
   let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
-  screen.makeExpand(expandOptionArray, (err: BusinessError, data: AsyncCallback<number>) => {
+  screen.makeExpand(expandOptionArray, (err: BusinessError, data: number) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
@@ -241,7 +241,7 @@ try {
   let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
   let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
   screen.makeExpand(expandOptionArray).then((
-    data: Promise<number>) => {
+    data: number) => {
     console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
@@ -371,7 +371,7 @@ import { BusinessError } from '@ohos.base';
 let mainScreenId: number = 0;
 let mirrorScreenIds: Array<number> = [1, 2, 3];
 try {
-  screen.makeMirror(mainScreenId, mirrorScreenIds, (err: BusinessError, data: AsyncCallback<number>) => {
+  screen.makeMirror(mainScreenId, mirrorScreenIds, (err: BusinessError, data: number) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
@@ -421,7 +421,7 @@ import { BusinessError } from '@ohos.base';
 let mainScreenId: number = 0;
 let mirrorScreenIds: Array<number> = [1, 2, 3];
 try {
-  screen.makeMirror(mainScreenId, mirrorScreenIds).then((data: Promise<number>) => {
+  screen.makeMirror(mainScreenId, mirrorScreenIds).then((data: number) => {
     console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
@@ -566,7 +566,7 @@ try {
     density: 2,
     surfaceId: ''
   };
-  screen.createVirtualScreen(option, (err: BusinessError, data: AsyncCallback<Screen>) => {
+  screen.createVirtualScreen(option, (err: BusinessError, data: screen.Screen) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
@@ -633,7 +633,7 @@ try {
     surfaceId: ''
   };
 
-  screen.createVirtualScreen(option).then((data: Promise<Screen>) => {
+  screen.createVirtualScreen(option).then((data: screen.Screen) => {
     screenClass = data;
     console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -847,7 +847,7 @@ Checks whether auto rotate is locked. This API uses a promise to return the resu
 ```ts
 import { BusinessError } from '@ohos.base';
 
-screen.isScreenRotationLocked().then((isLocked: Promise<boolean>) => {
+screen.isScreenRotationLocked().then((isLocked: boolean) => {
   console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
 }).catch((err: BusinessError) => {
   console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
@@ -873,7 +873,7 @@ Checks whether auto rotate is locked. This API uses an asynchronous callback to 
 ```ts
 import { BusinessError } from '@ohos.base';
 
-screen.isScreenRotationLocked((err: BusinessError, isLocked: AsyncCallback<boolean>) => {
+screen.isScreenRotationLocked((err: BusinessError, isLocked: boolean) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
@@ -1026,18 +1026,40 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  screenClass.setOrientation(screen.Orientation.VERTICAL, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
-      return;
+  try {
+    class VirtualScreenOption {
+      name : string = '';
+      width : number =  0;
+      height : number = 0;
+      density : number = 0;
+      surfaceId : string = '';
     }
-    console.info('Succeeded in setting the vertical orientation.');
-  });
-} catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
-};
+
+    let option : VirtualScreenOption = {
+      name: 'screen01',
+      width: 1080,
+      height: 2340,
+      density: 2,
+      surfaceId: ''
+    };
+
+    screen.createVirtualScreen(option).then((data: screen.Screen) => {
+      let screenClass: screen.Screen = data;
+      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+      screenClass.setOrientation(screen.Orientation.VERTICAL, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in setting the vertical orientation.');
+      });
+    }).catch((err: BusinessError) => {
+      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+    });
+  } catch (exception) {
+    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+  };
 ```
 
 ### setOrientation
@@ -1071,16 +1093,38 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  let promise: Promise<void> = screenClass.setOrientation(screen.Orientation.VERTICAL);
-  promise.then(() => {
-    console.info('Succeeded in setting the vertical orientation.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to set the vertical orientation. Cause: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
-};
+  try {
+    class VirtualScreenOption {
+      name : string = '';
+      width : number =  0;
+      height : number = 0;
+      density : number = 0;
+      surfaceId : string = '';
+    }
+
+    let option : VirtualScreenOption = {
+      name: 'screen01',
+      width: 1080,
+      height: 2340,
+      density: 2,
+      surfaceId: ''
+    };
+
+    screen.createVirtualScreen(option).then((data: screen.Screen) => {
+      let screenClass: screen.Screen = data;
+      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+      let promise: Promise<void> = screenClass.setOrientation(screen.Orientation.VERTICAL);
+      promise.then(() => {
+        console.info('Succeeded in setting the vertical orientation.');
+      }).catch((err: BusinessError) => {
+        console.error('Failed to set the vertical orientation. Cause: ' + JSON.stringify(err));
+      });
+    }).catch((err: BusinessError) => {
+      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+    });
+  } catch (exception) {
+    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+  };
 ```
 
 ### setScreenActiveMode
@@ -1109,18 +1153,40 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let modeIndex: number = 0;
 try {
-  screenClass.setScreenActiveMode(modeIndex, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in setting the vertical orientation.');
+  class VirtualScreenOption {
+    name : string = '';
+    width : number =  0;
+    height : number = 0;
+    density : number = 0;
+    surfaceId : string = '';
+  }
+
+  let option : VirtualScreenOption = {
+    name: 'screen01',
+    width: 1080,
+    height: 2340,
+    density: 2,
+    surfaceId: ''
+  };
+
+  screen.createVirtualScreen(option).then((data: screen.Screen) => {
+    let screenClass: screen.Screen = data;
+    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+    let modeIndex: number = 0;
+    screenClass.setScreenActiveMode(modeIndex, (err: BusinessError) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in setting the vertical orientation.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
   });
 } catch (exception) {
-  console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1155,16 +1221,38 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let modeIndex: number = 0;
 try {
-  let promise: Promise<void> = screenClass.setScreenActiveMode(modeIndex);
-  promise.then(() => {
-    console.info('Succeeded in setting screen active mode 0.');
+  class VirtualScreenOption {
+    name : string = '';
+    width : number =  0;
+    height : number = 0;
+    density : number = 0;
+    surfaceId : string = '';
+  }
+
+  let option : VirtualScreenOption = {
+    name: 'screen01',
+    width: 1080,
+    height: 2340,
+    density: 2,
+    surfaceId: ''
+  };
+
+  screen.createVirtualScreen(option).then((data: screen.Screen) => {
+    let screenClass: screen.Screen = data;
+    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+    let modeIndex: number = 0;
+    let promise: Promise<void> = screenClass.setScreenActiveMode(modeIndex);
+    promise.then(() => {
+      console.info('Succeeded in setting screen active mode 0.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
+    });
   }).catch((err: BusinessError) => {
-    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
+    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
   });
 } catch (exception) {
-  console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1196,16 +1284,38 @@ import { BusinessError } from '@ohos.base';
 
 let densityDpi: number = 320;
 try {
-  screenClass.setDensityDpi(densityDpi, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in setting the vertical orientation.');
+  class VirtualScreenOption {
+    name : string = '';
+    width : number =  0;
+    height : number = 0;
+    density : number = 0;
+    surfaceId : string = '';
+  }
+
+  let option : VirtualScreenOption = {
+    name: 'screen01',
+    width: 1080,
+    height: 2340,
+    density: 2,
+    surfaceId: ''
+  };
+
+  screen.createVirtualScreen(option).then((data: screen.Screen) => {
+    let screenClass: screen.Screen = data;
+    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+    screenClass.setDensityDpi(densityDpi, (err: BusinessError) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in setting the vertical orientation.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
   });
 } catch (exception) {
-  console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1242,14 +1352,35 @@ import { BusinessError } from '@ohos.base';
 
 let densityDpi: number = 320;
 try {
-  let promise: Promise<void> = screenClass.setDensityDpi(densityDpi);
-  promise.then(() => {
-    console.info('Succeeded in setting the pixel density of the screen to 320.');
+  class VirtualScreenOption {
+    name : string = '';
+    width : number =  0;
+    height : number = 0;
+    density : number = 0;
+    surfaceId : string = '';
+  }
+
+  let option : VirtualScreenOption = {
+    name: 'screen01',
+    width: 1080,
+    height: 2340,
+    density: 2,
+    surfaceId: ''
+  };
+
+  screen.createVirtualScreen(option).then((data: screen.Screen) => {
+    let screenClass: screen.Screen = data;
+    let promise: Promise<void> = screenClass.setDensityDpi(densityDpi);
+    promise.then(() => {
+      console.info('Succeeded in setting the pixel density of the screen to 320.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
+    });
   }).catch((err: BusinessError) => {
-    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
+    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
   });
 } catch (exception) {
-  console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
 };
 ```
 
