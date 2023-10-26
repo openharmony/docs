@@ -13,6 +13,7 @@ You can use the APIs provided by the **deviceAttest** module to obtain the devic
 
 ```ts
 import deviceAttest from '@ohos.deviceAttest';
+import base from '@ohos.base';
 ```
 
 ## deviceAttest.getAttestStatus
@@ -38,6 +39,7 @@ Obtains details about the device attestation result from the cloud. This API use
 **Example**
 
 ```ts
+
 try {
     deviceAttest.getAttestStatus((error: base.BusinessError, value: deviceAttest.AttestResultInfo) => {
     if (typeof error != 'undefined') {
@@ -81,6 +83,7 @@ Obtains details about the device attestation result from the cloud. This API use
 **Example**
 
 ```ts
+
 try {
     deviceAttest.getAttestStatus().then((value: deviceAttest.AttestResultInfo) => {
     console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
@@ -122,6 +125,7 @@ Obtains details about the device attestation result from the cloud synchronously
 **Example**
 
 ```ts
+
 try {
     let value: deviceAttest.AttestResultInfo = deviceAttest.getAttestStatusSync();
     console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
@@ -157,4 +161,3 @@ Defines the device attestation result information.
 > - **-2**: No attestation is performed.
 > - **-1**: The attestation fails.
 > - **0**: The attestation is successful.
-
