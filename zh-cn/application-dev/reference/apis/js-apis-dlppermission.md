@@ -521,7 +521,7 @@ try {
 
 setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
-设置沙箱保留状态。使用Promise方式异步返回结果。
+打开DLP文件时自动安装沙箱，关闭DLP文件时自动卸载沙箱。设置沙箱保留状态时DLP文件关闭时自动卸载暂时失效。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -568,7 +568,7 @@ try {
 
 setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-设置沙箱保留状态。使用callback方式异步返回结果。
+打开DLP文件时自动安装沙箱，关闭DLP文件时自动卸载沙箱。设置沙箱保留状态时DLP文件关闭时自动卸载暂时失效。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -613,7 +613,7 @@ try {
 
 cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
-取消沙箱保留状态。使用Promise方式异步返回结果。
+取消沙箱保留状态即恢复DLP文件关闭时自动卸载沙箱策略。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -656,7 +656,7 @@ try {
 
 cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-取消沙箱保留状态。使用callback方式异步返回结果。
+取消沙箱保留状态即恢复DLP文件关闭时自动卸载沙箱策略。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
