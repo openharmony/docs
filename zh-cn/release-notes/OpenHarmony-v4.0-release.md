@@ -548,10 +548,10 @@ Stage模型完善了以下特性：
 
 | 软件 | 版本 | 备注 |
 | -------- | -------- | -------- |
-| OpenHarmony | 4.0&nbsp;Release | NA |
-| Public&nbsp;SDK | Ohos_sdk_public&nbsp;4.0.10.12&nbsp;(API&nbsp;Version&nbsp;10&nbsp;Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco&nbsp;Studio默认获取的SDK为Public&nbsp;SDK。 |
-| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 4.0&nbsp;Release | OpenHarmony应用开发推荐使用。 |
-| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.1&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用。 |
+| OpenHarmony | 4.0 Release | NA |
+| Public SDK | Ohos_sdk_public 4.0.10.13 (API Version 10 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
+| HUAWEI DevEco Studio（可选） | 4.0 Release | OpenHarmony应用开发推荐使用。<br />*获取方式待更新。* |
+| HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[请点击这里获取](https://device.harmonyos.com/cn/develop/ide#download)。 |
 
 
 ## 源码获取
@@ -583,39 +583,65 @@ Stage模型完善了以下特性：
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
-```
-repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Beta5 --no-repo-verify
-repo sync -c
-repo forall -c 'git lfs pull'
-```
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-4.0-Release --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v4.0-Release --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
 
 **方式二**
 
 通过repo + https 下载。
 
-```
-repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-3.2-Beta5 --no-repo-verify
-repo sync -c
-repo forall -c 'git lfs pull'
-```
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-4.0-Release --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v4.0-Release --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
 
 
 ### 从镜像站点获取
 
-**表2** 获取源码路径
+  **表2** 获取源码路径
 
-| 版本源码 | **版本信息** | **下载站点** | **SHA256校验码** |
-| -------- | -------- | -------- | -------- |
-|  |  |  |  |
-|  |  |  |  |
-
+| 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
+| --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
+| 全量代码（标准、轻量和小型系统）        | 4.0 Release    | *待发布后更新* | - | - |
+| Hi3861解决方案（二进制）        | 4.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Release/hispark_pegasus.tar.gz.sha256) | 27.2 MB |
+| Hi3516解决方案-LiteOS（二进制） | 4.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 302 MB |
+| Hi3516解决方案-Linux（二进制）  | 4.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Release/hispark_taurus_Linux.tar.gz.sha256) | 193 MB |
+| RK3568标准系统解决方案（二进制）        | 4.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Release/dayu200_standard_arm32.tar.gz.sha256) | 	5.1 GB |
+| 标准系统Public SDK包（Mac）             | 4.0.10.13      | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Release/ohos-sdk-mac-public.tar.gz.sha256) | 841 MB |
+| 标准系统Public SDK包（Mac-M1）             | 4.0.10.13     | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 797 MB |
+| 标准系统Public SDK包（Windows/Linux）   | 4.0.10.13      | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 2.0 GB |
 
 ## 更新说明
 
-本版本在OpenHarmony 3.2 Release的基础上有如下变更。
+本版本在OpenHarmony 4.0 Beta2的基础上有如下变更：
 
 
-### 特性变更
+### API变更
+
+- OpenHarmony 4.0 Release相比4.0 Beta2的API差异请[点击这里查看](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/release-notes/api-diff/v4.0-Release-vs-v4.0-beta2/Readme-CN.md)。
+- OpenHarmony 4.0 Release相比3.2 Release的API差异请[点击这里查看](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/release-notes/api-diff/v4.0-Release-vs-v3.2-Release/Readme-CN.md)。
+
+此外，从4.0 Beta2至今，有少量接口变更可能影响此前应用工程的兼容性或需要您关注，详细的变更说明请[点击这里查看](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/release-notes/changelogs/v4.0-Release/Readme-CN.md)
 
 
 ### 芯片及开发板适配
@@ -629,10 +655,10 @@ repo forall -c 'git lfs pull'
 
 | 特性 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| 文件管理 | [选择并查看文档与媒体文件](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/FileManagement/FileShare/Picker)（APL等级需为system_basic） | 本示例展示了应用使用\@ohos.file.picker、\@ohos.multimedia.mediaLibrary、\@ohos.file.fs&nbsp;等接口，实现了picker拉起文档编辑保存、拉起系统相册图片查看、拉起视频并播放的功能。 | ArkTS |
-| 一次开发，多端部署 | [一多导航栏](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SuperFeature/MultiDeviceAppDev/MultiNavBar) | 本示例展示了导航组件在不同设备形态下的样式。<br/>在小型/轻量级设备上，以tabs形式展示，内容、导航为上下样式布局，通过点击底部tabs切换内容；<br/>在标准设备上，以SideBarContainer形式展示，内容、导航为左右布局，通过点击侧边一二级菜单进行内容切换。<br/>本示例使用一次开发多端部署&nbsp;中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，主要通过组件提供窗口断点事件，保证应用在不同设备或不同窗口尺寸下可以正常显示。 | ArkTS |
-| 卡片 | [应用主动添加数据代理卡片到桌面](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SuperFeature/Widget/RequestAddForm)（Full&nbsp;SDK） | 本示例主要展示了使用\@ohos.app.form.formBindingData、\@ohos.app.form.formProvider等接口，实现了在com.ohos.hag.famanager应用上，主动添加数据代理卡片到桌面的功能。 | ArkTS |
-| 安全 | [安全控件类型的UI控件](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SystemFeature/Security/AuthorizedButton)（Full&nbsp;SDK） | 本示例提供了安全控件类型的UI控件，支撑应用开发者集成安全控件做临时授权场景，当用户实际点击了某种类型的安全控件时，会对应用进行相应的临时授权，减少权限弹窗对用户的干扰，同时提供更小的授权范围。 | ArkTS |
+| 文件管理 | [选择并查看文档与媒体文件](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/FileManagement/FileShare/Picker)（APL等级需为system_basic） | 本示例展示了应用使用\@ohos.file.picker、\@ohos.multimedia.mediaLibrary、\@ohos.file.fs 等接口，实现了picker拉起文档编辑保存、拉起系统相册图片查看、拉起视频并播放的功能。 | ArkTS |
+| 一次开发，多端部署 | [一多导航栏](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SuperFeature/MultiDeviceAppDev/MultiNavBar) | 本示例展示了导航组件在不同设备形态下的样式。<br/>在小型/轻量级设备上，以tabs形式展示，内容、导航为上下样式布局，通过点击底部tabs切换内容；<br/>在标准设备上，以SideBarContainer形式展示，内容、导航为左右布局，通过点击侧边一二级菜单进行内容切换。<br/>本示例使用一次开发多端部署 中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，主要通过组件提供窗口断点事件，保证应用在不同设备或不同窗口尺寸下可以正常显示。 | ArkTS |
+| 卡片 | [应用主动添加数据代理卡片到桌面](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SuperFeature/Widget/RequestAddForm)（Full SDK） | 本示例主要展示了使用\@ohos.app.form.formBindingData、\@ohos.app.form.formProvider等接口，实现了在com.ohos.hag.famanager应用上，主动添加数据代理卡片到桌面的功能。 | ArkTS |
+| 安全 | [安全控件类型的UI控件](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SystemFeature/Security/AuthorizedButton)（Full SDK） | 本示例提供了安全控件类型的UI控件，支撑应用开发者集成安全控件做临时授权场景，当用户实际点击了某种类型的安全控件时，会对应用进行相应的临时授权，减少权限弹窗对用户的干扰，同时提供更小的授权范围。 | ArkTS |
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/)仓了解更多信息。
 
@@ -667,5 +693,5 @@ repo forall -c 'git lfs pull'
 | I82V2W | 进入设置反复打开关闭蓝牙开关出现内存泄漏，经测试“设置”一个小时内存涨幅到180M。 | 开关一次蓝牙应用内存泄露0.2MB，重新打开“设置”卡恢复，影响可控。 | 12月30日 |
 | I86M99<br/>I88UV6<br/>I88UVQ | 长时间稳定性压力测试出现foundation内存泄漏，24小时泄露40MB。 | 重启设备可恢复。影响可控。 | 12月30日 |
 | I7TZ3V等31个内核问题 | 内核btrfs_free_tree_block函数kernel_bug等31个内核问题。 | linux原生问题且当前linux社区无补丁，跟随linux社区补丁节奏修复。不影响功能正常使用。 | 跟随linux社区修复 |
-| I86CNJ等38个开源组件漏洞 | lj-linux-131204684-0577967&nbsp;等38个开源组件漏洞。 | 分析解决中，跟随社区漏洞管理流程SLA修复。不影响功能正常使用。 | 按漏洞SLA修复 |
+| I86CNJ等38个开源组件漏洞 | lj-linux-131204684-0577967 等38个开源组件漏洞。 | 分析解决中，跟随社区漏洞管理流程SLA修复。不影响功能正常使用。 | 按漏洞SLA修复 |
 | I82NVZ | GPU驱动渲染出的图像与标准不符问题。 | 该问题为RK3568驱动特有问题，非系统兼容性问题，不影响其他产品和硬件的兼容性认证。 | 12月30日 |
