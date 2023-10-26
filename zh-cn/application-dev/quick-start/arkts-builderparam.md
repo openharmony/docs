@@ -14,7 +14,7 @@
 
 ### 初始化\@BuilderParam装饰的方法
 
-\@BuildParam装饰的方法只能被自定义构建函数（\@Builder装饰的方法）初始化。
+\@BuilderParam装饰的方法只能被自定义构建函数（\@Builder装饰的方法）初始化。
 
 - 使用所属自定义组件的自定义构建函数或者全局的自定义构建函数，在本地初始化\@BuilderParam。
 
@@ -31,7 +31,7 @@
   }
   ```
 
-- 用父组件自定义构建函数初始化子组件\@BuildParam装饰的方法。
+- 用父组件自定义构建函数初始化子组件\@BuilderParam装饰的方法。
 
   ```ts
   @Component
