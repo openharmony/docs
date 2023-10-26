@@ -158,9 +158,9 @@ async function example() {
 
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
-    await fileAsset.setFavorite(true);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
+    await photoAsset.setFavorite(true);
     fetchResult.close();
   } catch (err) {
     console.error('onCallback failed with err: ' + err);
@@ -201,8 +201,8 @@ async function example() {
 
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
 
     let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
       console.info('onCallback1, changData: ' + JSON.stringify(changeData));
@@ -210,10 +210,10 @@ async function example() {
     let onCallback2 = (changeData: photoAccessHelper.ChangeData) => {
       console.info('onCallback2, changData: ' + JSON.stringify(changeData));
     }
-    phAccessHelper.registerChange(fileAsset.uri, false, onCallback1);
-    phAccessHelper.registerChange(fileAsset.uri, false, onCallback2);
-    phAccessHelper.unRegisterChange(fileAsset.uri, onCallback1);
-    await fileAsset.setFavorite(true);
+    phAccessHelper.registerChange(photoAsset.uri, false, onCallback1);
+    phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
+    phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
+    await photoAsset.setFavorite(true);
     fetchResult.close();
   } catch (err) {
     console.error('onCallback failed with err: ' + err);
