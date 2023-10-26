@@ -701,4 +701,8 @@ struct Library {
 }
 ```
 
+## 限制条件
+
+- @Prop修饰复杂类型时是深拷贝，在拷贝的过程中除了Map Set Date Array都会丢失类型。
+
 <!--no_check-->
