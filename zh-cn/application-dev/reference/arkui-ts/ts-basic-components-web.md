@@ -754,9 +754,9 @@ textZoomRatio(textZoomRatio: number)
   }
   ```
 
-### initialScale<sup>9+</sup>
+### <sup>9+</sup>
 
-initialScale(percent: number)
+(percent: number)
 
 设置整体页面的缩放百分比，默认为100。
 
@@ -764,7 +764,7 @@ initialScale(percent: number)
 
 | 参数名     | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------- | ------ | ---- | ---- | --------------- |
-| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比，number的取值范围1-100。 |
+| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比，取值范围：1-100。 |
 
 **示例：**
 
@@ -780,7 +780,7 @@ initialScale(percent: number)
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .initialScale(this.percent)
+          .(this.percent)
       }
     }
   }
@@ -4038,11 +4038,13 @@ cancel(): void
 webController: WebController = new WebController()
 ```
 
-### getCookieManager<sup>9+</sup><sup>(deprecated)</sup>
+### getCookieManager<sup>(deprecated)</sup>
 
 getCookieManager(): WebCookie
 
 获取web组件cookie管理对象。
+
+从API version 9开始不再维护，建议使用[getCookie](../apis/js-apis-webview.md#getcookie)代替。
 
 **返回值：**
 

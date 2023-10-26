@@ -1271,7 +1271,7 @@ struct WebComponent {
 
 zoom(factor: number): void
 
-调整当前网页的缩放比例，需要保障接口[zoomAccess](../arkui-ts/ts-basic-components-web.md#zoomaccess)配置为true状态。
+调整当前网页的缩放比例，[zoomAccess](../arkui-ts/ts-basic-components-web.md#zoomaccess)需为true。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1563,7 +1563,7 @@ struct WebComponent {
 
 | 类型                   | 说明              |
 | ---------------------- | ----------------- |
-| Array\<WebMessagePort> | web消息端口列表。 |
+| Array\<[WebMessagePort](#webmessageport)> | web消息端口列表。 |
 
 **错误码：**
 
