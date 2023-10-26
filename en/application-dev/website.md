@@ -264,7 +264,6 @@
           - [Creating a List (List)](ui/arkts-layout-development-create-list.md)
           - [Creating a Grid (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
           - [Creating a Swiper (Swiper)](ui/arkts-layout-development-create-looping.md)
-        - [Improving Layout Performance](ui/arkts-layout-development-performance-boost.md)
       - Adding a Component
         - Adding a Common Component
           - [Button](ui/arkts-common-components-button.md)
@@ -321,7 +320,6 @@
           - [Gesture Binding](ui/arkts-gesture-events-binding.md)
           - [Single Gesture](ui/arkts-gesture-events-single-gesture.md)
           - [Combined Gestures](ui/arkts-gesture-events-combined-gestures.md)
-      - [Recommendations for Improving Performance](ui/arkts-performance-improvement-recommendation.md)
     - UI Development with JavaScript-compatible Web-like Development Paradigm
       - [UI Development with JavaScript-compatible Web-like Development Paradigm Overview](ui/ui-js-overview.md)
       - Framework
@@ -678,6 +676,8 @@
     - [Internationalization Overview](internationalization/international-overview.md)
     - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
     - [Internationalization Development (i18n)](internationalization/i18n-guidelines.md)
+  - Application services
+    - [OAID Service](ads-service/oaid/oaid-service.md)
   - Application Test
     - [arkXtest User Guide](application-test/arkxtest-guidelines.md)
     - [SmartPerf User Guide](application-test/smartperf-guidelines.md)
@@ -705,18 +705,36 @@
       - [USB DDK Development](napi/usb-ddk-guidelines.md)
     - Data Management
       - [RelationalStore Development Guide](napi/native-relational-store-guidelines.md)
+  - Performance
+    - ArkTS High-Performance Programming
+      - [TypeScript and JavaScript High-Performance Programming Practices and Tools](performance/high-performance-programming.md)
+      - [Efficient Concurrent Programming](performance/efficient-concurrent-programming.md)
+    - Reducing Frame Freezing
+      - [Proper LazyForEach Usage for Optimization](performance/lazyforeach_optimization.md)
+      - [Best Practices for Component Reuse](performance/component-recycle.md)
+      - [High-Performance WaterFlow Development](performance/waterflow_optimization.md)
+      - [Swiper High-Performance Development](performance/swiper_optimization.md)
+      - [Proper State Management](performance/proper_state_management.md)
+      - [Reducing Frame Loss](performance/reduce-animation-frame-loss.md)
+    - Improving Application Startup and Response Times
+      - [Speeding Up Application Cold Start](performance/improve-application-cold-start-speed.md)
+      - [Speeding Up Application Response](performance/improve-application-response.md)
+      - [Flex Layout Performance Improvement](performance/flex-development-performance-boost.md)
+      - [Reducing Nesting](performance/reduce-view-nesting-levels.md)
+      - [Proper IPC Usage](performance/reasonable-using-ipc.md)
+      - [More Performance Improvement Methods](performance/arkts-performance-improvement-recommendation.md)
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - Debugging Tools
     - [Ability Assistant](tools/aa-tool.md)
     - [Bundle Manager](tools/bm-tool.md)
     - Packing and Unpacking Tools
-      - [Packing Tools](tools/packing-tool.md)
-      - [Unpacking Tools](tools/unpacking-tool.md)
+      - [Packing Tool](tools/packing-tool.md)
+      - [Unpacking Tool](tools/unpacking-tool.md)
     - [Common Event Manager](tools/cem-tool.md)
     - [Advanced Notification Manager](tools/anm-tool.md)
     - [restool](tools/restool.md)
-    - [LLDB Usage Guide](tools/lldb-tool.md)
+    - [LLDB](tools/lldb-tool.md)
 - Hands-On Tutorials
   - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/tree/master)
@@ -1113,7 +1131,6 @@
       - [@ohos.multimodalInput.gestureEvent (Gesture Input Event)](reference/apis/js-apis-multimodalinput-gestureevent.md)
       - [@ohos.multimodalInput.inputConsumer (Input Consumer)](reference/apis/js-apis-inputconsumer.md)
       - [@ohos.multimodalInput.inputDevice (Input Device)](reference/apis/js-apis-inputdevice.md)
-      - [@ohos.multimodalInput.inputDeviceCooperate (Screen Hopping) (To Be Deprecated Soon)](reference/apis/js-apis-cooperate.md)
       - [@ohos.multimodalInput.inputEvent (Input Event)](reference/apis/js-apis-inputevent.md)
       - [@ohos.multimodalInput.inputEventClient (Key Event Injection)](reference/apis/js-apis-inputeventclient.md)
       - [@ohos.multimodalInput.inputMonitor (Input Monitor)](reference/apis/js-apis-inputmonitor.md)
@@ -1184,6 +1201,8 @@
       - [@ohos.util.Vector (Linear Container Vector)](reference/apis/js-apis-vector.md)
       - [@ohos.worker (Worker Startup)](reference/apis/js-apis-worker.md)
       - [@ohos.xml (XML Parsing and Generation)](reference/apis/js-apis-xml.md)
+    - Application services
+      - [@ohos.identifier.oaid (OAID)](reference/apis/js-apis-oaid.md)
     - Test
       - [@ohos.application.testRunner (TestRunner)](reference/apis/js-apis-application-testRunner.md)
       - [@ohos.uitest (UiTest)](reference/apis/js-apis-uitest.md)
@@ -1202,6 +1221,7 @@
       - [@ohos.geolocation (Geolocation)](reference/apis/js-apis-geolocation.md)
       - [@ohos.hiAppEvent (Application Event Logging)](reference/apis/js-apis-hiappevent.md)
       - [@ohos.multimedia.medialibrary (Media Library Management)](reference/apis/js-apis-medialibrary.md)
+      - [@ohos.multimodalInput.inputDeviceCooperate (Screen Hopping)](reference/apis/js-apis-cooperate.md)
       - [@ohos.prompt (Prompt)](reference/apis/js-apis-prompt.md)
       - [@ohos.reminderAgent (Reminder Agent)](reference/apis/js-apis-reminderAgent.md)
       - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)
@@ -1545,6 +1565,8 @@
       - [File Organization](reference/arkui-js-lite/js-framework-file.md)
       - ["js" Tag](reference/arkui-js-lite/js-framework-js-tag.md)
       - [app.js](reference/arkui-js-lite/js-framework-js-file.md)
+      - [Lifecycle](reference/arkui-js-lite/js-framework-lifecycle.md)
+      - [Multi-Language Capability](reference/arkui-js-lite/js-framework-localization.md)
       - Syntax
         - [HML](reference/arkui-js-lite/js-framework-syntax-hml.md)
         - [CSS](reference/arkui-js-lite/js-framework-syntax-css.md)
@@ -1718,6 +1740,8 @@
       - [Enterprise Device Management Error Codes](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - Common Library
       - [Common Library Error Codes](reference/errorcodes/errorcode-utils.md)
+    - Application services
+      - [OAID Error Codes](reference/errorcodes/errorcode-oaid.md)
     - Test
       - [UiTest Error Codes](reference/errorcodes/errorcode-uitest.md)
   - Native APIs
@@ -1734,7 +1758,7 @@
       - [Rawfile](reference/native-apis/rawfile.md)
       - [RDB](reference/native-apis/_r_d_b.md)
       - [MindSpore](reference/native-apis/_mind_spore.md)
-      - [NeuralNeworkRuntime](reference/native-apis/_neural_nework_runtime.md)
+      - [NeuralNetworkRuntime](reference/native-apis/_neural_nework_runtime.md)
       - [AVCapability](reference/native-apis/_a_v_capability.md)
       - [AVMuxer](reference/native-apis/_a_v_muxer.md)
       - [AudioDecoder](reference/native-apis/_audio_decoder.md)
