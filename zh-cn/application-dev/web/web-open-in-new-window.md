@@ -6,8 +6,6 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
 
 > **说明：**
 >
-> - [allowWindowOpenMethod()](../reference/arkui-ts/ts-basic-components-web.md#allowwindowopenmethod10)接口设置为true时，前端页面通过JavaScript函数调用的方式打开新窗口。
->
 > - 如果开发者在[onWindowNew()](../reference/arkui-ts/ts-basic-components-web.md#onwindownew9)接口通知中不需要打开新窗口，需要将[ControllerHandler.setWebController()](../reference/arkui-ts/ts-basic-components-web.md#setwebcontroller9)接口返回值设置成null。
 
 
@@ -18,7 +16,7 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
 
   ```ts
   // xxx.ets
-    import web_webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview'
 
   //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
