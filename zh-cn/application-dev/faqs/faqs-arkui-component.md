@@ -1,8 +1,7 @@
 # ArkUI组件开发常见问题(ArkTS)
 
-## 自定义弹窗能否在ts文件中定义和使用
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 自定义弹窗能否在ts文件中定义和使用(API 9)
 
 自定义弹窗的定义和初始化需要用到属于ArkTS语法内容，必须在ets后缀文件中定义使用，不能在ts后缀文件中定义使用。
 
@@ -10,9 +9,8 @@
 
 [自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
 
-## 自定义弹窗中的变量如何传递给页面
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 自定义弹窗中的变量如何传递给页面(API 9)
 
 **问题现象**
 
@@ -20,139 +18,136 @@
 
 **解决措施**
 
--   方式一：使用组件的状态变量传递。
--   方式二：在初始化弹窗时，传递一个方法给自定义弹窗，在自定义弹窗中触发该方法，弹窗中变量作为方法的参数。
--   方式三：使用AppStorage或LocalStorage方式管理页面状态，实现自定义弹窗和页面之间状态的共享。
+- 方式一：使用组件的状态变量传递。
+
+- 方式二：在初始化弹窗时，传递一个方法给自定义弹窗，在自定义弹窗中触发该方法，弹窗中变量作为方法的参数。
+
+- 方式三：使用AppStorage或LocalStorage方式管理页面状态，实现自定义弹窗和页面之间状态的共享。
 
 **代码示例**
 
--   方式一：
+- 方式一：
 
-    ```
-    @CustomDialog
-    struct CustomDialog01 {
-      @Link inputValue: string
-      controller: CustomDialogController
-      build() {
-        Column() {
-          Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 })
-          TextInput({ placeholder: '', text: this.inputValue }).height(60).width('90%')
-            .onChange((value: string) => {
-              this.inputValue = value
-            })
-        }
+  ```
+  @CustomDialog
+  struct CustomDialog01 {
+    @Link inputValue: string
+    controller: CustomDialogController
+    build() {
+      Column() {
+        Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 })
+        TextInput({ placeholder: '', text: this.inputValue }).height(60).width('90%')
+          .onChange((value: string) => {
+            this.inputValue = value
+          })
       }
     }
-    
-    @Entry
-    @Component
-    struct DialogDemo01 {
-      @State inputValue: string = 'click me'
-      dialogController: CustomDialogController = new CustomDialogController({
-        builder: CustomDialog01({
-          inputValue: $inputValue
-        })
+  }
+  
+  @Entry
+  @Component
+  struct DialogDemo01 {
+    @State inputValue: string = 'click me'
+    dialogController: CustomDialogController = new CustomDialogController({
+      builder: CustomDialog01({
+        inputValue: $inputValue
       })
-    
-      build() {
-        Column() {
-          Button(this.inputValue)
-            .onClick(() => {
-              this.dialogController.open()
-            }).backgroundColor(0x317aff)
-        }.width('100%').margin({ top: 5 })
+    })
+  
+    build() {
+      Column() {
+        Button(this.inputValue)
+          .onClick(() => {
+            this.dialogController.open()
+          }).backgroundColor(0x317aff)
+      }.width('100%').margin({ top: 5 })
+    }
+  }
+  ```
+
+- 方式二：
+
+  ```
+  @CustomDialog
+  struct CustomDialog02 {
+    private inputValue: string
+    changeInputValue: (val: string) => void
+    controller: CustomDialogController
+    build() {
+      Column() {
+        Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 })
+        TextInput({ placeholder: '', text: this.inputValue }).height(60).width('90%')
+          .onChange((value: string) => {
+            this.changeInputValue(value)
+          })
       }
     }
-    
-    ```
-
--   方式二：
-
-    ```
-    @CustomDialog
-    struct CustomDialog02 {
-      private inputValue: string
-      changeInputValue: (val: string) => void
-      controller: CustomDialogController
-      build() {
-        Column() {
-          Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 })
-          TextInput({ placeholder: '', text: this.inputValue }).height(60).width('90%')
-            .onChange((value: string) => {
-              this.changeInputValue(value)
-            })
+  }
+  
+  @Entry
+  @Component
+  struct DialogDemo02 {
+    @State inputValue: string = 'click me'
+    dialogController: CustomDialogController = new CustomDialogController({
+      builder: CustomDialog02({
+        inputValue: this.inputValue,
+        changeInputValue: (val: string) => {
+          this.inputValue = val
         }
-      }
-    }
-    
-    @Entry
-    @Component
-    struct DialogDemo02 {
-      @State inputValue: string = 'click me'
-      dialogController: CustomDialogController = new CustomDialogController({
-        builder: CustomDialog02({
-          inputValue: this.inputValue,
-          changeInputValue: (val: string) => {
-            this.inputValue = val
-          }
-        })
       })
-    
-      build() {
-        Column() {
-          Button(this.inputValue)
-            .onClick(() => {
-              this.dialogController.open()
-            }).backgroundColor(0x317aff)
-        }.width('100%').margin({ top: 5 })
+    })
+  
+    build() {
+      Column() {
+        Button(this.inputValue)
+          .onClick(() => {
+            this.dialogController.open()
+          }).backgroundColor(0x317aff)
+      }.width('100%').margin({ top: 5 })
+    }
+  }
+  ```
+
+- 方式三：
+
+  ```
+  let storage = LocalStorage.GetShared()
+  @CustomDialog
+  struct CustomDialog03 {
+    @LocalStorageLink('inputVal')  inputValue: string = ''
+    controller: CustomDialogController
+    build() {
+      Column() {
+        Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 })
+        TextInput({ placeholder: '', text: this.inputValue }).height(60).width('90%')
+          .onChange((value: string) => {
+            this.inputValue = value;
+          })
       }
     }
-    
-    ```
-
--   方式三：
-
-    ```
-    let storage = LocalStorage.GetShared()
-    @CustomDialog
-    struct CustomDialog03 {
-      @LocalStorageLink('inputVal')  inputValue: string = ''
-      controller: CustomDialogController
-      build() {
-        Column() {
-          Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 })
-          TextInput({ placeholder: '', text: this.inputValue }).height(60).width('90%')
-            .onChange((value: string) => {
-              this.inputValue = value;
-            })
-        }
-      }
+  }
+  
+  @Entry(storage)
+  @Component
+  struct DialogDemo03 {
+    @LocalStorageLink('inputVal') inputValue: string = ''
+    dialogController: CustomDialogController = new CustomDialogController({
+      builder: CustomDialog03()
+    })
+  
+    build() {
+      Column() {
+        Button(this.inputValue)
+          .onClick(() => {
+            this.dialogController.open()
+          }).backgroundColor(0x317aff)
+      }.width('100%').margin({ top: 5 })
     }
-    
-    @Entry(storage)
-    @Component
-    struct DialogDemo03 {
-      @LocalStorageLink('inputVal') inputValue: string = ''
-      dialogController: CustomDialogController = new CustomDialogController({
-        builder: CustomDialog03()
-      })
-    
-      build() {
-        Column() {
-          Button(this.inputValue)
-            .onClick(() => {
-              this.dialogController.open()
-            }).backgroundColor(0x317aff)
-        }.width('100%').margin({ top: 5 })
-      }
-    }
-    
-    ```
+  }
+  ```
 
 
-## 如何获取组件的宽高
-
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 如何获取组件的宽高(API 9)
 
 **问题现象**
 
@@ -160,16 +155,16 @@
 
 **解决措施**
 
--   方式一：使用组件区域变化事件onAreaChange，在组件初始化或组件尺寸发生变化时触发。
--   方式二：在点击或触摸事件中，事件的回调信息中存在目标元素的区域信息。
+- 方式一：使用组件区域变化事件onAreaChange，在组件初始化或组件尺寸发生变化时触发。
+
+- 方式二：在点击或触摸事件中，事件的回调信息中存在目标元素的区域信息。
 
 **参考链接**
 
 [组件区域变化事件](../reference/arkui-ts/ts-universal-component-area-change-event.md)，[点击事件](../reference/arkui-ts/ts-universal-events-click.md)，[触摸事件](../reference/arkui-ts/ts-universal-events-touch.md)
 
-## 如何一键清空TextInput、TextArea组件内容
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 如何一键清空TextInput、TextArea组件内容(API 9)
 
 **问题现象**
 
@@ -203,9 +198,8 @@ controller: TextInputController = new TextInputController()
 }
 ```
 
-## 如何设置自定义弹窗位置
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 如何设置自定义弹窗位置(API 9)
 
 **问题现象**
 
@@ -219,9 +213,8 @@ controller: TextInputController = new TextInputController()
 
 [自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
 
-## 如何隐藏容器组件的溢出内容
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 如何隐藏容器组件的溢出内容(API 9)
 
 **问题现象**
 
@@ -235,9 +228,8 @@ controller: TextInputController = new TextInputController()
 
 [形状裁剪](../reference/arkui-ts/ts-universal-attributes-sharp-clipping.md)
 
-## 自定义弹窗大小如何自适应内容
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 自定义弹窗大小如何自适应内容(API 9)
 
 **问题现象**
 
@@ -245,18 +237,18 @@ controller: TextInputController = new TextInputController()
 
 **解决措施**
 
--   方式一：采用弹窗容器默认样式。在默认样式中，弹窗容器高度自适应子节点，最大可为窗口高度的90%；弹窗容器的宽度根据栅格系统自适应，不跟随子节点变化。
--   方式二：当显示设置customStyle为true时，弹窗宽高跟随子节点内容适应。
+- 方式一：采用弹窗容器默认样式。在默认样式中，弹窗容器高度自适应子节点，最大可为窗口高度的90%；弹窗容器的宽度根据栅格系统自适应，不跟随子节点变化。
+
+- 方式二：当显示设置customStyle为true时，弹窗宽高跟随子节点内容适应。
 
 **参考链接**
 
 [自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
 
-## 如何理解自定义弹窗中的gridCount参数
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 如何理解自定义弹窗中的gridCount参数(API 9)
 
-gridCount参数是指弹窗宽度占栅格列数的个数。系统把窗口宽等分，等分的份数即为栅格列数，不同设备栅格列数不同。假设设备屏幕密度值在320vp<=水平宽度<600vp，所以栅格列数是4，则gridCount的有效值在\[1, 4\]。
+gridCount参数是指弹窗宽度占栅格列数的个数。系统把窗口宽等分，等分的份数即为栅格列数，不同设备栅格列数不同。假设设备屏幕密度值在320vp&lt;=水平宽度&lt;600vp，所以栅格列数是4，则gridCount的有效值在[1, 4]。
 
 注意：仅采用弹窗默认样式时设置有效。
 
@@ -264,9 +256,8 @@ gridCount参数是指弹窗宽度占栅格列数的个数。系统把窗口宽�
 
 [自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
 
-## 如何去除自定义弹窗的白色背景
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 如何去除自定义弹窗的白色背景(API 9)
 
 **问题现象**
 
@@ -276,16 +267,16 @@ gridCount参数是指弹窗宽度占栅格列数的个数。系统把窗口宽�
 
 需要采用自定义样式来消除自定义弹窗的白色背景：
 
-1.  在初始化自定义弹窗时设置customStyle为true。
-2.  在定义弹窗时设置组件背景色backgroundColor。
+1. 在初始化自定义弹窗时设置customStyle为true。
+
+2. 在定义弹窗时设置组件背景色backgroundColor。
 
 **参考链接**
 
 [自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
 
-## TextInput组件密码模式下，右边的眼睛图标能否支持自定义
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## TextInput组件密码模式下，右边的眼睛图标能否支持自定义(API 9)
 
 **问题现象**
 
@@ -299,9 +290,8 @@ TextInput组件设置type为InputType.Password时，右侧出现眼睛图标，�
 
 [TextInput组件](../reference/arkui-ts/ts-basic-components-textinput.md)
 
-## TextInput的onSubmit事件如何使用
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## TextInput的onSubmit事件如何使用(API 9)
 
 **问题现象**
 
@@ -315,9 +305,8 @@ onSubmit事件在外接键盘或软键盘回车时触发该回调，回调的参
 
 [TextInput组件](../reference/arkui-ts/ts-basic-components-textinput.md)
 
-## TextInput在聚焦时如何使光标回到起点
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## TextInput在聚焦时如何使光标回到起点(API 9)
 
 **问题现象**
 
@@ -325,8 +314,9 @@ TextInput组件在聚焦时，光标位置会自动根据触摸点位置变化�
 
 **解决措施**
 
-1.  TextInput组件绑定onEditChange事件，该事件TextInput可进行输入时触发。
-2.  在事件回调用TextInputController.caretPosition方法设置光标位置，不过需要用到setTimeout延迟方法。
+1. TextInput组件绑定onEditChange事件，该事件TextInput可进行输入时触发。
+
+2. 在事件回调用TextInputController.caretPosition方法设置光标位置，不过需要用到setTimeout延迟方法。
 
 **代码示例**
 
@@ -356,9 +346,7 @@ struct TextInputDemo {
 [TextInput组件](../reference/arkui-ts/ts-basic-components-textinput.md)
 
 
-## 如何获取可滚动组件的当前滚动偏移量
-
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 如何获取可滚动组件的当前滚动偏移量(API 9)
 
 **问题现象**
 
@@ -366,16 +354,16 @@ struct TextInputDemo {
 
 **解决措施**
 
-1.  可滚动组件在初始化时可设置scroller参数，绑定滚动控制器。
-2.  通过控制器的currentOffset方法可获取水平和竖直方向的滚动偏移量。
+1. 可滚动组件在初始化时可设置scroller参数，绑定滚动控制器。
+
+2. 通过控制器的currentOffset方法可获取水平和竖直方向的滚动偏移量。
 
 **参考链接**
 
 [Scroll](../reference/arkui-ts/ts-container-scroll.md#currentoffset)
 
-## 如何实现文本竖向排列
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 如何实现文本竖向排列(API 9)
 
 **问题现象**
 
@@ -404,9 +392,8 @@ struct Index15 {
 }
 ```
 
-## 如何将Ability的UI界面设置成透明 
 
-适用于：OpenHarmony 3.2 Beta5，API9
+## 如何将Ability的UI界面设置成透明(API 9)
 
 **问题现象**
 
@@ -436,29 +423,30 @@ build() {
 }
 ```
 
-## constraintSize尺寸设置不生效
 
-适用于：Openharmony 3.2 Beta5 API 9 stage模型
+## constraintSize尺寸设置不生效(API 9)
+
+适用于Stage模型。
 
 **问题现象**
 
-constraintSize约束组件尺寸时，子组件内设置百分比宽度，例如width\('100%'\)会采用constraintSize约束中的最大宽乘百分比，导致撑开组件，看起来constraintSize设置没生效。
+constraintSize约束组件尺寸时，子组件内设置百分比宽度，例如width('100%')会采用constraintSize约束中的最大宽乘百分比，导致撑开组件，看起来constraintSize设置没生效。
 
 **解决措施**
 
 可以在外层使用Scroll组件，设置constraintSize，当子组件占用空间超过设置的约束值时，会显示滚动条。
 
-## 如何将背景颜色设置为透明
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 如何将背景颜色设置为透明(API 9)
 
 **解决措施**
 
 将backgroundColor设置为 '\#00000000'。
 
-## Scroll组件滚动到达不了最底部
 
-适用于：OpenHarmony 3.2 Beta5 API 9 Stage模型
+## Scroll组件滚动到达不了最底部(API 9)
+
+适用于Stage模型。
 
 **问题现象**
 
@@ -468,9 +456,10 @@ Scroll组件在未设置高度情况下，默认为窗口高度，当滚动区�
 
 Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度。
 
-## 如何自定义Video组件控制栏样式
 
-适用于：OpenHarmony 3.2 Beta5 API 9 Stage模型
+## 如何自定义Video组件控制栏样式(API 9)
+
+适用于Stage模型。
 
 **解决措施**
 
@@ -570,7 +559,7 @@ Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度�
 
 [Video](../reference/arkui-ts/ts-media-components-video.md#start)
 
-## 如何设置组件不同状态下的样式
+## 如何设置组件不同状态下的样式(API 9)
 
 **问题现象**
 
@@ -630,9 +619,9 @@ struct StyleExample {
 
 [多态样式](../reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)
 
-## Scroll内Flex加宽高与滑动冲突
+## Scroll内Flex加宽高与滑动冲突(API 9)
 
-适用于：OpenHarmony 3.2 Beta5 API 9 Stage模型
+适用于Stage模型。
 
 **问题现象**
 
@@ -642,9 +631,10 @@ struct StyleExample {
 
 Scroll组件中的容器组件不设置尺寸，大小由内容撑开。
 
-## 父组件中如何处理子组件内点击事件
 
-适用于：OpenHarmony 3.2 Beta5 API 9 Stage模型
+## 父组件中如何处理子组件内点击事件(API 9)
+
+适用于Stage模型。
 
 在父组件中初始化子组件时，将父组件中定义的方法，传递给子组件，在子组件中调用该方法，类似于变量传递。
 
@@ -690,9 +680,8 @@ struct MyComponent {
 }
 ```
 
-## 如何主动拉起软键盘
 
-适用于OpenHarmony 3.2 Beta5  API 9
+## 如何主动拉起软键盘(API 9)
 
 **解决措施**
 
@@ -702,9 +691,8 @@ struct MyComponent {
 
 焦点控制：[焦点控制](../reference/arkui-ts/ts-universal-attributes-focus.md)
 
-## SideBarContainer如何设置controlButton属性
 
-适用于 OpenHarmony 3.2 Beta5，API9
+## SideBarContainer如何设置controlButton属性(API 9)
 
 **解决措施**
 
