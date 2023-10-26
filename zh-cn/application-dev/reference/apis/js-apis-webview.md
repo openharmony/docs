@@ -1271,7 +1271,7 @@ struct WebComponent {
 
 zoom(factor: number): void
 
-调整当前网页的缩放比例。
+调整当前网页的缩放比例，需要保障接口zoomAccess配置为true状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2767,7 +2767,7 @@ struct WebComponent {
 
 setNetworkAvailable(enable: boolean): void
 
-设置JavaScript中的window.navigator.onLine属性。
+设置JavaScript中的window.navigator.isOnline属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2775,7 +2775,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
+| enable | boolean | 是   | 是否使能window.navigator.isOnline。 |
 
 **错误码：**
 
