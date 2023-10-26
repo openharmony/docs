@@ -754,9 +754,9 @@ textZoomRatio(textZoomRatio: number)
   }
   ```
 
-### <sup>9+</sup>
+### initialScale<sup>9+</sup>
 
-(percent: number)
+initialScale(percent: number)
 
 设置整体页面的缩放百分比，默认为100。
 
@@ -764,7 +764,7 @@ textZoomRatio(textZoomRatio: number)
 
 | 参数名     | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------- | ------ | ---- | ---- | --------------- |
-| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比，取值范围：1-100。 |
+| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。<br>取值范围：1-100 |
 
 **示例：**
 
