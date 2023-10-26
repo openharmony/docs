@@ -170,7 +170,6 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
         // 异常处理
     }
     ```
-
 4. 调用OH_AudioDecoder_Prepare()，解码器就绪。
 
     ```cpp
