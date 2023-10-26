@@ -39,9 +39,11 @@ OpenHarmony提供定制电池服务振动的能力，产品定制开发者可根
     以如下配置为例：
 
     ```json
-    "start_charge": {
-        "enable": true, 
-        "type": "haptic.charging"
+    {
+        "start_charge": {
+            "enable": true, 
+            "type": "haptic.charging"
+        }
     }
     ```
    - start_charge：振动场景字符串名称，不可修改。
