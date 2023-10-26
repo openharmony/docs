@@ -672,7 +672,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    let AutoStartupCallback = {
+    let autoStartupCallback = {
       onAutoStartupOn(data) {
         console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
       },
@@ -680,7 +680,7 @@ export default class MyAbility extends UIAbility {
         console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
       }
     };
-    applicationContext.on('abilityAutoStartup', AutoStartupCallback);
+    applicationContext.on('abilityAutoStartup', autoStartupCallback);
   }
 }
 ```

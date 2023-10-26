@@ -248,7 +248,6 @@ import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
 
 AutoStartupManager.queryAllAutoStartupApplications().then((data) => {
   console.info('====> queryAllAutoStartupApplications OK');
-  expect(JSON.stringify(data).indexOf('com.example.autostartupapp')).assertTrue();
 }).catch((err) => {
   console.info('====> queryAllAutoStartupApplications ERR err: ' + JSON.stringify(err));
 });
