@@ -4,8 +4,8 @@ The **DriverExtensionAbility** module provides the ExtensionAbility related to d
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
-> The APIs of this module can be used only in the stage model.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 
@@ -189,7 +189,7 @@ Dumps client information.
   ```ts
   class DriverExt extends DriverExtension {
       onDump(params) {
-          console.log('dump, params: ${JSON.stringify(params)}');
+          console.log(`dump, params: ${JSON.stringify(params)}`);
           return ['params'];
       }
   }
