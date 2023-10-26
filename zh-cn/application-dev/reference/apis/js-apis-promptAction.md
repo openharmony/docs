@@ -89,7 +89,7 @@ try {
 
 showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
-创建并显示对话框，对话框响应后同步返回结果。
+创建并显示对话框，对话框响应后异步返回结果。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -292,7 +292,7 @@ try {
 
 showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
 
-创建并显示操作菜单，菜单响应后同步返回结果。
+创建并显示操作菜单，菜单响应后异步返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
