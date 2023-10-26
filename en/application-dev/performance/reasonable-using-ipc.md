@@ -1,4 +1,4 @@
-# Proper IPC Usage
+# IPC Usage
 
 # **Background**
 
@@ -160,4 +160,3 @@ Proper IPC usage is critical to optimizing application performance. Through scen
 
 · [4] [@ohos.wifiManager (WLAN)](../reference/apis/js-apis-wifiManager.md)
 
-<!--no_check-->
