@@ -167,7 +167,6 @@
   - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D对象](ts-components-canvas-path2d.md)
 - 高级组件
-  - [@ohos.multimedia.avcastpicker (投播组件)](ohos-multimedia-avcastpicker.md)
   - [@ohos.arkui.advanced.ComposeListItem (列表)](ts-composite-components-composelistitem.md)
   - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](ts-composite-components-composetitlebar.md)
   - [@ohos.arkui.advanced.Dialog (弹出框)](ts-composite-components-dialog.md)
@@ -181,6 +180,7 @@
   - [@ohos.arkui.advanced.TabTitleBar (页签型标题栏)](ts-composite-components-tabtitlebar.md)
   - [@ohos.arkui.advanced.ToolBar (工具栏)](ts-composite-components-toolbar.md)
   - [@ohos.arkui.advanced.TreeView (树视图)](ts-composite-components-treeview.md)
+  - [@ohos.multimedia.avcastpicker (投播组件)](ohos-multimedia-avcastpicker.md)
 - 安全控件
   - [安全控件通用属性](ts-securitycomponent-attributes.md)
   - [LocationButton](ts-security-components-locationbutton.md)
