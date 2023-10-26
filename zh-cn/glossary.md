@@ -121,21 +121,17 @@
 
 - ### PA
 
-    Particle Ability，是在FA模型的Ability框架下无界面的Ability，主要为Feature Ability提供服务与支持，例如作为后台服务提供计算能力，或作为数据仓库提供数据访问能力。Particle Ability有三种模板，分别为Service模板（Service Ability）、Data模板（Data Ability）、以及Form模板（Form Ability）。
+    Particle Ability，在FA模型中代表无界面的Ability，主要为Feature Ability提供支持，例如作为后台服务提供计算能力，或作为数据仓库提供数据访问能力。
 
 ## S
 
-- ### SA
+- ### Service widget，服务卡片
 
-    System Ability的简称，这是由系统开发者编写的系统级组件。
-
-- ### Secondary Framework
-
-    次生框架，指不依赖原生框架实现的三方开框架。
+    将用户应用程序的重要信息以服务卡片的形式展示在桌面，用户可通过快捷手势使用卡片，以达到服务直达、减少层级跳转的目的。
 
 - ### Stage模型
 
-    Ability框架自API version 9提供的开发模型。Stage模型将Ability分为UIAbility和ExtensionAbility两大类，其中ExtensionAbility又被扩展为ServiceExtensionAbility、FormExtensionAbility、DataShareExtensionAbility等等一系列ExtensionAbility。
+    API version 9开始新增的应用模型，提供UIAbility、ExtensionAbility两大类应用组件。由于该模型还提供了AbilityStage、WindowStage等类作为应用组件和Window窗口的“舞台”，因此称之为Stage模型。
 
 - ### Super virtual device，超级虚拟终端
 
@@ -143,7 +139,7 @@
 
 - ### SysCap
 
-    全称是System Capability，指OpenHarmony中每个相对独立的特性，如蓝牙，WiFi，NFC，摄像头等，都是系统能力之一。每个系统能力对应多个API，每个API定义上包含了相应的SysCap标签。
+    全称System Capability，即系统能力。不同值用于指代OpenHarmony中各个相对独立的特性/系统能力，如蓝牙、Wi-Fi、NFC等。每个特性/系统能力对应多个API，每个API定义上包含了相应的SysCap标签。
 
 - ### System Type，系统类型
     - Mini System，轻量系统：面向MCU（Microcontroller Unit，微控制单元）类处理器，例如ARM Cortex-M、RISC-V 32位的设备，资源极其有限，参考内存≥128KiB，提供丰富的近距连接能力以及丰富的外设总线访问能力。典型产品有智能家居领域的联接类模组、传感器设备等。
@@ -152,12 +148,6 @@
 
 ## U
 
-- ### UI Component
+- ### UIAbility
 
-    UI组件，组成用户界面的一部分，可提供用户交互的能力。
-
-## X
-
-- ### XComponent
-
-    ArkUI提供的组件接口，满足开发者自渲染的需求。
+    Stage模型中的组件类型名，即UIAbility组件，包含UI，提供展示UI的能力，主要用于和用户交互。
