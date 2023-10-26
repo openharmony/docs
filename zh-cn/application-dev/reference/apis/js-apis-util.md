@@ -416,7 +416,7 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
 **示例：**
 
   ```ts
-  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM : true });
   let result = new Uint8Array(6);
   result[0] = 0xEF;
   result[1] = 0xBB;
@@ -696,14 +696,14 @@ RationalNumber的构造函数。
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber();
+let rationalNumber = new util.RationalNumber();
 ```
 
 ### parseRationalNumber<sup>9+</sup>
 
 parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
-替代原有参构造的参数处理。
+用于创建具有给定分子和分母的RationalNumber实例。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -717,7 +717,7 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 **示例：**
 
 ```ts
-  let rationalNumber = util.RationalNumber.parseRationalNumber(1,2)
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 ```
 
 ### createRationalFromString<sup>8+</sup>
@@ -743,8 +743,7 @@ static createRationalFromString​(rationalString: string): RationalNumber​
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
+let rational = util.RationalNumber.createRationalFromString("3/4");
 ```
 
 ### compare<sup>9+</sup>
@@ -759,7 +758,7 @@ compare​(another: RationalNumber): number​
 
 | 参数名  | 类型           | 必填 | 说明               |
 | ------- | -------------- | ---- | ------------------ |
-| another | RationalNumber | 是   | 其他的有理数对象。 |
+| another | [RationalNumber](#rationalnumber8) | 是   | 其他的有理数对象。 |
 
 **返回值：**
 
@@ -769,11 +768,13 @@ compare​(another: RationalNumber): number​
 
 **示例：**
 
-  ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
-  let result = rationalNumber.compare(rational);
-  ```
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.compare(rational);
+console.log("result = " + result);
+// 输出结果：result = -1
+```
 
 ### valueOf<sup>8+</sup>
 
@@ -792,8 +793,17 @@ valueOf(): number
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.valueOf();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.valueOf();
+console.log("result = " + result);
+// 输出结果：result = 0.5
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.valueOf();
+console.log("result = " + result);
+// 输出结果：result = 0.5
 ```
 
 ### equals<sup>8+</sup>
@@ -819,9 +829,19 @@ equals​(obj: Object): boolean
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
-  let result = rationalNumber.equals(rational);
+let rationalNumber = new util.RationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.equals(rational);
+console.log("result = " + result);
+// 输出结果：result = false
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.equals(rational);
+console.log("result = " + result);
+// 输出结果：result = false
 ```
 
 ### getCommonFactor<sup>9+</sup>
@@ -848,8 +868,9 @@ getCommonFactor(number1: number,number2: number): number
 **示例：**
 
 ```ts
-let rationalNumber = new util.RationalNumber(1,2);
 let result = util.RationalNumber.getCommonFactor(4,6);
+console.log("result = " + result);
+// 输出结果：result = 2
 ```
 
 ### getNumerator<sup>8+</sup>
@@ -869,8 +890,17 @@ getNumerator​(): number
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.getNumerator();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.getNumerator();
+console.log("result = " + result);
+// 输出结果：result = 1
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.getNumerator();
+console.log("result = " + result);
+// 输出结果：result = 1
 ```
 
 ### getDenominator<sup>8+</sup>
@@ -890,8 +920,17 @@ getDenominator​(): number
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.getDenominator();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.getDenominator();
+console.log("result = " + result);
+// 输出结果：result = 2
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2)
+let result = rationalNumber.getDenominator();
+console.log("result = " + result);
+// 输出结果：result = 2
 ```
 
 ### isZero<sup>8+</sup>
@@ -911,8 +950,17 @@ isZero​():boolean
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.isZero();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.isZero();
+console.log("result = " + result);
+// 输出结果：result = false
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.isZero();
+console.log("result = " + result);
+// 输出结果：result = false
 ```
 
 ### isNaN<sup>8+</sup>
@@ -932,8 +980,17 @@ isNaN​(): boolean
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.isNaN();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.isNaN();
+console.log("result = " + result);
+// 输出结果：result = false
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.isNaN();
+console.log("result = " + result);
+// 输出结果：result = false
 ```
 
 ### isFinite<sup>8+</sup>
@@ -953,8 +1010,17 @@ isFinite​():boolean
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.isFinite();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.isFinite();
+console.log("result = " + result);
+// 输出结果：result = true
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.isFinite();
+console.log("result = " + result);
+// 输出结果：result = true
 ```
 
 ### toString<sup>8+</sup>
@@ -974,8 +1040,17 @@ toString​(): string
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.toString();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.toString();
+console.log("result = " + result);
+// 输出结果：result = 1/2
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.toString();
+console.log("result = " + result);
+// 输出结果：result = 1/2
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -986,7 +1061,7 @@ RationalNumber的构造函数。
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[constructor<sup>9+</sup>](#constructor9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[parserationalnumber<sup>9+</sup>](#parserationalnumber9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1000,7 +1075,7 @@ RationalNumber的构造函数。
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
+let rationalNumber = new util.RationalNumber(1,2);
 ```
 
 ### compareTo<sup>(deprecated)</sup>
@@ -1030,9 +1105,9 @@ compareTo​(another: RationalNumber): number​
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
-  let result = rationalNumber.compareTo(rational);
+let rationalNumber = new util.RationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.compareTo(rational);
 ```
 
 ### getCommonDivisor<sup>(deprecated)</sup>
@@ -1063,8 +1138,8 @@ static getCommonDivisor​(number1: number,number2: number): number
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = util.RationalNumber.getCommonDivisor(4,6);
+let rationalNumber = new util.RationalNumber(1,2);
+let result = util.RationalNumber.getCommonDivisor(4,6);
 ```
 
 ## LRUCache<sup>9+</sup>
