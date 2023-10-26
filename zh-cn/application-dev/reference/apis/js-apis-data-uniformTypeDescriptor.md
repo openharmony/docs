@@ -122,7 +122,7 @@ OpenHarmony标准化数据类型的枚举定义。
 | belongingToTypes<sup>11+</sup>  | Array\<string>          | 是   | 否   | 表示统一数据类型所属的统一数据类型 ID。 |
 | description<sup>11+</sup>     | string                  | 是   | 否   | 表示统一数据类型的文本说明。         |
 | referenceURL<sup>11+</sup>     | string                  | 是   | 否   | 统一数据类型的引用 URL，用于描述类型的详细信息。         |
-| incoFile<sup>11+</sup>     | string                  | 是   | 否   | 统一数据类型的默认图标文件路径。         |
+| iconFile<sup>11+</sup>     | string                  | 是   | 否   | 统一数据类型的默认图标文件路径。         |
 
 ### equals<sup>11+</sup> 
 
