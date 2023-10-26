@@ -82,7 +82,6 @@
         - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
-        - [渲染控制优秀实践](quick-start/arkts-rendering-control-best-practices.md)
 - 开发
   - 应用模型
     - 应用模型概述
@@ -1463,7 +1462,20 @@
       - [OffscreenCanvasRenderingContext2D对象](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D对象](reference/arkui-ts/ts-components-canvas-path2d.md)
     - 高级组件
-      - [@ohos.arkui.advanced.counter (计数器组件)](reference/arkui-ts/ohos-arkui-advanced-counter.md)
+      - [@ohos.arkui.advanced.ComposeListItem (列表)](reference/arkui-ts/ts-composite-components-composelistitem.md)
+      - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](reference/arkui-ts/ts-composite-components-composetitlebar.md)
+      - [@ohos.arkui.advanced.Counter (计数器组件)](reference/arkui-ts/ohos-arkui-advanced-counter.md)
+      - [@ohos.arkui.advanced.Dialog (弹出框)](reference/arkui-ts/ts-composite-components-dialog.md)
+      - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](reference/arkui-ts/ts-composite-components-editabletitlebar.md)
+      - [@ohos.arkui.advanced.Filter (多条件筛选)](reference/arkui-ts/ts-composite-components-filter.md)
+      - [@ohos.arkui.advanced.ProgressButton (下载按钮)](reference/arkui-ts/ts-composite-components-progressbutton.md)
+      - [@ohos.arkui.advanced.SelectTitleBar (下拉菜单标题栏)](reference/arkui-ts/ts-composite-components-selecttitlebar.md)
+      - [@ohos.arkui.advanced.SplitLayout (上下结构布局)](reference/arkui-ts/ts-composite-components-splitlayout.md)
+      - [@ohos.arkui.advanced.SubHeader (子标题)](reference/arkui-ts/ts-composite-components-subheader.md)
+      - [@ohos.arkui.advanced.SwipeRefresher (内容加载)](reference/arkui-ts/ts-composite-components-swiperefresher.md)
+      - [@ohos.arkui.advanced.TabTitleBar (页签型标题栏)](reference/arkui-ts/ts-composite-components-tabtitlebar.md)
+      - [@ohos.arkui.advanced.ToolBar (工具栏)](reference/arkui-ts/ts-composite-components-toolbar.md)
+      - [@ohos.arkui.advanced.TreeView (树视图)](reference/arkui-ts/ts-composite-components-treeview.md)
       - [@ohos.multimedia.avcastpicker (投播组件)](reference/arkui-ts/ohos-multimedia-avcastpicker.md)
     - 动画
       - [属性动画](reference/arkui-ts/ts-animatorproperty.md)
