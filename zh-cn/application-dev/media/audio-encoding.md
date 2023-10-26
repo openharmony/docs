@@ -144,6 +144,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    例AAC调用流程：
    ```cpp
    #include "avcodec_audio_channel_layout.h"
+   #include "native_avcodec_base.h"
    
    int32_t ret;
    // 配置音频采样率（必须）
@@ -159,7 +160,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    // 配置音频compliance level (默认值0，取值范围-2~2)
    constexpr int32_t COMPLIANCE_LEVEL = 0;
    // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE
-   constexpr uint32_t BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
+   constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
    // 配置最大输入长度（可选）
    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1024*DEFAULT_CHANNEL_COUNT *sizeof(float);//aac
    OH_AVFormat *format = OH_AVFormat_Create();
@@ -179,6 +180,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    例FLAC调用流程：
    ```cpp
    #include "avcodec_audio_channel_layout.h"
+   #include "native_avcodec_base.h"
    
    int32_t ret;
    // 配置音频采样率（必须）
@@ -194,7 +196,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    // 配置音频compliance level (默认值0，取值范围-2~2)
    constexpr int32_t COMPLIANCE_LEVEL = 0;
    // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE
-   constexpr uint32_t BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
+   constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
    OH_AVFormat *format = OH_AVFormat_Create();
    // 写入format
    OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_CHANNEL_COUNT,DEFAULT_CHANNEL_COUNT);
