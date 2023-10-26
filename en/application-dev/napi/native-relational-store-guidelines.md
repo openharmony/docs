@@ -1,4 +1,4 @@
-# RelationalStore Development Guide
+# RelationalStore Development
 
 
 ## When to Use

@@ -20,6 +20,12 @@
   - [Purgeable Memory Development](purgeable-memory-guidelines.md)
 - Device Management
   - [USB DDK Development](usb-ddk-guidelines.md)
+
 - Data Management
   - [RelationalStore Development](native-relational-store-guidelines.md)
 
+- Hardware Compatibility
+  - [Introduction to Hardware Compatibility](hw-guide.md)
+  - [OpenHarmony ABIs](ohos-abi.md)
+  - [CPU Features](cpu-features.md)
+  - [Using Neon Instructions](neon-guide.md)
