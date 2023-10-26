@@ -819,7 +819,7 @@ module.json5添加"metadata"配置项：
       {
         "name": "ArkTSPartialUpdate",
         "value": "true"
-      }
+      } ]
   }
 }
 ```
