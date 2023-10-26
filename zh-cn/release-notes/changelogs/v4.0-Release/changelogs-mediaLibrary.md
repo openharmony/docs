@@ -14,7 +14,7 @@
 
   相机（Camera）、视频（Videos）、图片（Pictures）、音频（Audios）。
 
-2. 对应的资源uri格式发生变化，参见：[文件子系统ChangeLog](../OpenHarmony_4.0.11.2/changelogs-filemanagement.md)。
+2. 对应的资源uri格式发生变化，参见：[FileAsset属性变更](changelogs-file-management.md#clfile2-userfilemanager-fileasset属性变更)。
 
 **变更影响**
 
