@@ -4,7 +4,7 @@
 
 To help the OpenHarmony ecosystem develop and evolve in a healthy and orderly way, this Charter defines the governance process and lifecycle (create, change, deprecate, and delete) of OpenHarmony APIs. It also specifies basic design requirements of OpenHarmony APIs.
 
-This Charter is formulated by the [API SIG](https://www.openharmony.cn/SIG/api/) and approved by the [PMC](https://www.openharmony.cn/community/pmc/) for release. Any revision to this Charter will be released only after being reviewed by the API SIG and approved by the PMC.
+This Charter is formulated by the [API SIG](https://www.openharmony.cn/SIG/api/) and approved by the [PMC](https://www.openharmony.cn/pmc) for release. Any revision to this Charter will be released only after being reviewed by the API SIG and approved by the PMC.
 
 ## Overview
 
