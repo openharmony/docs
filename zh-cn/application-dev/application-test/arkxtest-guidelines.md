@@ -71,22 +71,23 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 如下示例代码实现的场景是：启动测试页面，检查设备当前显示的页面是否为预期页面。
 
-```js
+```ts
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { BusinessError } from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
 export default function abilityTest() {
-    describe('ActsAbilityTest', () =>{
+  describe('ActsAbilityTest', () =>{
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
+      await delegator.executeShellCommand('aa start -b '+ bundleName +' -a EntryAbility ').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
         console.info('Uitest, start ability finished:' + result)
       }).catch((err: BusinessError) => {
         console.info('Uitest, start ability failed: ' + err)
@@ -109,13 +110,43 @@ export default function abilityTest() {
 
 1.增加依赖导包。
 
-```js
+```ts
 import { Driver, ON } from '@ohos.UiTest'
 ```
 
-2.编写具体测试代码。
+2.编写index.ets页面代码。
 
-```js
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Text("Next")
+          .fontSize(50)
+          .margin({top:20})
+          .fontWeight(FontWeight.Bold)
+        Text("after click")
+          .fontSize(50)
+          .margin({top:20})
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+3.编写具体测试代码。
+
+```ts
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest'
@@ -123,6 +154,7 @@ import { BusinessError } from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
@@ -131,7 +163,7 @@ export default function abilityTest() {
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
+      await delegator.executeShellCommand('aa start -b '+ bundleName +' -a EntryAbility ').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
         console.info('Uitest, start ability finished:' + result)
       }).catch((err: BusinessError) => {
         console.info('Uitest, start ability failed: ' + err)
@@ -459,12 +491,7 @@ hdc shell uitest uiInput dircFling 3
 
 示例代码10：执行输入框输入操作。
 ```shell  
-hdc shell uitest uiInput input 100 100 hello
-```
-
-示例代码11：执行输入框输入操作。
-```shell  
-hdc shell uitest uiInput input 100 100 hello
+hdc shell uitest uiInput inputText 100 100 hello
 ```
 
 示例代码12：执行返回主页操作。
