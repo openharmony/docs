@@ -75,7 +75,7 @@ void TestDeathRecipient::OnRemoteDied(const wptr<IRemoteObject>& remoteObject)
 
 ```c++
 sptr<IPCObjectProxy> object = new IPCObjectProxy(1, to_utf16(DESCRIPTOR));
-sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient());// 构造一个消亡通知对象
+sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient()); // 构造一个消亡通知对象
 bool result = object->AddDeathRecipient(deathRecipient); // 注册消亡通知
 result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 ```
@@ -132,23 +132,24 @@ export default class MainAbility extends UIAbility {
 // import FA from "@ohos.ability.featureAbility";
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
+import rpc from '@ohos.rpc';
 
 let proxy: rpc.IRemoteObject | undefined = undefined;
 let connect: common.ConnectOptions = {
-    onConnect: (elementName, remoteProxy) => {
-        console.log("RpcClient: js onConnect called.");
-        proxy = remoteProxy;
-    },
-    onDisconnect: (elementName) => {
-        console.log("RpcClient: onDisconnect");
-    },
-    onFailed: () => {
-        console.log("RpcClient: onFailed");
-    }
+  onConnect: (elementName, remoteProxy) => {
+    console.log("RpcClient: js onConnect called.");
+    proxy = remoteProxy;
+  },
+  onDisconnect: (elementName) => {
+    console.log("RpcClient: onDisconnect");
+  },
+  onFailed: () => {
+    console.log("RpcClient: onFailed");
+  }
 };
 let want: Want = {
-    bundleName: "com.ohos.server",
-    abilityName: "com.ohos.server.EntryAbility",
+  bundleName: "com.ohos.server",
+  abilityName: "com.ohos.server.EntryAbility",
 };
 // FA模型通过此方法连接服务
 // FA.connectAbility(want, connect);
@@ -159,12 +160,16 @@ this.context.connectServiceExtensionAbility(want, connect);
 上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的unregisterDeathRecipient接口方法注销死亡回调
 
 ```ts
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+import rpc from '@ohos.rpc';
 class MyDeathRecipient implements rpc.DeathRecipient{
     onRemoteDied() {
         console.log("server died");
     }
 }
 let deathRecipient = new MyDeathRecipient();
+let proxy: rpc.IRemoteObject | undefined = undefined;
 proxy.registerDeathRecipient(deathRecipient, 0);
 proxy.unregisterDeathRecipient(deathRecipient, 0);
 ```
@@ -182,7 +187,7 @@ proxy.unregisterDeathRecipient(deathRecipient, 0);
 ### 参考代码
 
 ```c++
-//Proxy
+// Proxy
 int TestAbilityProxy::TestAnonymousStub()
 {
     MessageOption option;
@@ -194,7 +199,7 @@ int TestAbilityProxy::TestAnonymousStub()
     return result;
 }
 
-//Stub
+// Stub
 
 int TestAbilityStub::OnRemoteRequest(uint32_t code, MessageParcel &data, MessageParcel &reply, MessageOption &option)
 {

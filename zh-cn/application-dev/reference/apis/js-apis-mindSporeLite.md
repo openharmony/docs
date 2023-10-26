@@ -218,8 +218,8 @@ export class Test {
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
 let modelName = '/path/to/xxx.ms';
-globalContext.resourceManager.getRawFileContent(modelName).then((buffer : ArrayBuffer) => {
-  let modelBuffer : ArrayBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
+  let modelBuffer : ArrayBuffer = buffer.buffer;
   mindSporeLite.loadModelFromBuffer(modelBuffer, (result : mindSporeLite.Model) => {
     let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
     console.log(modelInputs[0].name);
@@ -258,8 +258,8 @@ export class Test {
 }
 let globalContext= GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
-globalContext.resourceManager.getRawFileContent(modelName).then((buffer : ArrayBuffer) => {
-  let modelBuffer : ArrayBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
+  let modelBuffer : ArrayBuffer = buffer.buffer;
   let context: mindSporeLite.Context = {};
   context.target = ['cpu'];
   mindSporeLite.loadModelFromBuffer(modelBuffer, context, (result : mindSporeLite.Model) => {
@@ -305,8 +305,8 @@ export class Test {
 }
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
-globalContext.resourceManager.getRawFileContent(modelName).then((buffer : ArrayBuffer) => {
-  let modelBuffer : ArrayBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
+  let modelBuffer : ArrayBuffer = buffer.buffer;
   mindSporeLite.loadModelFromBuffer(modelBuffer).then((result : mindSporeLite.Model) => {
     let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
     console.log(modelInputs[0].name);
@@ -440,7 +440,7 @@ predict(inputs: MSTensor[], callback: Callback&lt;MSTensor[]&gt;): void
 
 | 参数名 | 类型                    | 必填 | 说明                       |
 | ------ | ----------------------- | ---- | -------------------------- |
-| inputs | [MSTensor](#mstensor)[] | 是   | 模型的输入。MSTensor对象。 |
+| inputs | [MSTensor](#mstensor)[] | 是   | 模型的输入列表。MSTensor对象。 |
 | callback | Callback<[MSTensor](#mstensor)[]> | 是   | 回调函数。返回MSTensor对象。 |
 
 **示例：** 
@@ -459,8 +459,8 @@ export class Test {
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : ArrayBuffer) => {
-  let modelBuffer : ArrayBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let modelBuffer : ArrayBuffer = buffer.buffer;
   let model_file : string = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
@@ -484,15 +484,15 @@ predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 
 **参数：**
 
-| 参数名 | 类型                    | 必填 | 说明                       |
-| ------ | ----------------------- | ---- | -------------------------- |
-| inputs | [MSTensor](#mstensor)[] | 是   | 模型的输入。MSTensor对象。 |
+| 参数名 | 类型                    | 必填 | 说明                           |
+| ------ | ----------------------- | ---- | ------------------------------ |
+| inputs | [MSTensor](#mstensor)[] | 是   | 模型的输入列表。MSTensor对象。 |
 
 **返回值：**
 
-| 类型                    | 说明               |
-| ----------------------- | ------------------ |
-| [MSTensor](#mstensor)[] | 返回MSTensor对象。 |
+| 类型                    | 说明                   |
+| ----------------------- | ---------------------- |
+| [MSTensor](#mstensor)[] | 返回MSTensor对象列表。 |
 
 **示例：** 
 
@@ -509,8 +509,8 @@ export class Test {
 }
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;;
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : ArrayBuffer) => {
-  let inputBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let modelBuffer = buffer.buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
@@ -536,7 +536,7 @@ resize(inputs: MSTensor[], dims: Array&lt;Array&lt;number&gt;&gt;): boolean
 
 | 参数名 | 类型                  | 必填 | 说明                          |
 | ------ | --------------------- | ---- | ----------------------------- |
-| inputs | [MSTensor](#mstensor)[]            | 是   | 模型的输入。    |
+| inputs | [MSTensor](#mstensor)[]            | 是   | 模型的输入列表。  |
 | dims   | Array&lt;Array&lt;number&gt;&gt; | 是   | 需要修改的目标张量大小。 |
 
 **返回值：**
@@ -619,8 +619,8 @@ export class Test {
 }
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : ArrayBuffer) => {
-  let inputBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let inputBuffer = buffer.buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
@@ -663,8 +663,8 @@ export class Test {
 }
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : ArrayBuffer) => {
-  let inputBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let inputBuffer = buffer.buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();

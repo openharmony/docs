@@ -81,9 +81,14 @@
 3. 导入模块。
    
   ```ts
-    import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-    import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-    import { BusinessError } from '@ohos.base';
+  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
+  import rpc from '@ohos.rpc';
+  import { BusinessError } from '@ohos.base';
+  import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
   ```
 
 4. 申请和取消长时任务。
@@ -185,13 +190,6 @@
    **跨设备或跨应用**申请长时任务示例代码如下：
    
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  import rpc from '@ohos.rpc';
-  import { BusinessError } from '@ohos.base';
-
   const MSG_SEND_METHOD: string = 'CallSendMsg'
 
   let mContext: Context;
@@ -234,7 +232,7 @@
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
-    str: String = '';
+    str: string = '';
 
     constructor(num: number, string: string) {
       this.num = num;
@@ -351,6 +349,7 @@
   import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
   import rpc from "@ohos.rpc";
   import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
   ```
 
 4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 startBackgroundRunning() 接口实现长时任务的申请和取消，通过js代码实现。
@@ -430,20 +429,25 @@
       // 在执行长时任务前，调用申请接口。
       startContinuousTask();
       processAsyncJobs();
-    },
+    }
+
     onStop() {
       console.info('ServiceAbility onStop');
-    },
+    }
+
     onConnect(want: Want) {
       console.info('ServiceAbility onConnect');
       return mMyStub;
-    },
+    }
+
     onReconnect(want: Want) {
       console.info('ServiceAbility onReconnect');
-    },
+    }
+
     onDisconnect() {
       console.info('ServiceAbility onDisconnect');
-    },
+    }
+
     onCommand(want: Want, startId: number) {
       console.info('ServiceAbility onCommand');
     }

@@ -42,6 +42,7 @@
 
 ```ts
 // xxx.ets
+import display from '@ohos.display';
 @Entry
 @Component
 struct SheetTransitionExample {
@@ -49,6 +50,19 @@ struct SheetTransitionExample {
   @State isShow2:boolean = false
   @State sheetHeight:number = 300;
   @State showDragBar:boolean = true;
+  @State screenHeight:number = 0;
+
+  aboutToAppear() {
+    let displayClass: display.Display | null = null;
+
+    try {
+      displayClass = display.getDefaultDisplaySync();
+      console.info(`[screen info]: ${JSON.stringify(displayClass)}`)
+      this.screenHeight = displayClass.height; // 获取屏幕高度
+    } catch (exception) {
+      console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+    }
+  }
 
   @Builder myBuilder() {
     Column() {
@@ -63,7 +77,7 @@ struct SheetTransitionExample {
         .margin(10)
         .fontSize(20)
         .onClick(()=>{
-          this.sheetHeight = 300;
+          this.sheetHeight = this.screenHeight;
         })
 
       Button("close dragBar")

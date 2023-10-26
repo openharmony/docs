@@ -23,13 +23,20 @@
 
   转码后，保存文件时需要封装。
 
-## 开发步骤
+## 开发指导
 
 详细的API说明请参考[API文档](../reference/native-apis/_a_v_muxer.md)。
 
 > **说明：**
 > 
 > 如果调用封装能力写本地文件，需要[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
+
+### 在 CMake 脚本中链接动态库
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_avmuxer.so)
+```
+
+### 开发步骤
 
 参考以下示例代码，完成音视频封装的全流程。以封装mp4格式的音视频文件为例。
 
@@ -87,7 +94,7 @@
 
    ``` c++
    int videoTrackId = -1;
-   char *buffer = ...; // 编码config data，如果没有可以不传
+   uint8_t *buffer = ...; // 编码config data，如果没有可以不传
    size_t size = ...;  // 编码config data的长度，根据实际情况配置
    OH_AVFormat *formatVideo = OH_AVFormat_Create();
    OH_AVFormat_SetStringValue(formatVideo, OH_MD_KEY_CODEC_MIME, OH_AVCODEC_MIMETYPE_VIDEO_MPEG4); // 必填
@@ -106,7 +113,7 @@
    
    ``` c++
    int videoTrackId = -1;
-   char *buffer = ...; // 编码config data，如果没有可以不传
+   uint8_t *buffer = ...; // 编码config data，如果没有可以不传
    size_t size = ...;  // 编码config data的长度，根据实际情况配置
    OH_AVFormat *formatVideo = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4, 1280, 720);
    OH_AVFormat_SetBuffer(formatVideo, OH_MD_KEY_CODEC_CONFIG, buffer, size); // 非必须

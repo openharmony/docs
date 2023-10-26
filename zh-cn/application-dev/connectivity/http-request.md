@@ -40,7 +40,7 @@ HTTP数据请求功能主要由http模块提供。
 6. 调用该对象的off()方法，取消订阅http响应头事件。
 7. 当该请求使用完毕时，调用destroy()方法主动销毁。
 
-```js
+```ts
 // 引入包名
 import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
@@ -101,10 +101,10 @@ httpRequest.request(
 6. 调用该对象的off()方法，取消订阅相应事件。
 7. 当该请求使用完毕时，调用destroy()方法主动销毁。
 
-```js
+```ts
 // 引入包名
-import http from '@ohos.net.http'
-import ArrayList from '@ohos.util.ArrayList';
+import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
@@ -114,7 +114,7 @@ httpRequest.on('headersReceive', (header: Object) => {
 });
 // 用于订阅HTTP流式响应数据接收事件
 let res = '';
-httpRequest.on('dataReceive', (data: ArrayList) => {
+httpRequest.on('dataReceive', (data: ArrayBuffer) => {
   res += data;
   console.info('res: ' + res);
 });
@@ -123,7 +123,11 @@ httpRequest.on('dataEnd', () => {
   console.info('No more data in response, data receive end');
 });
 // 用于订阅HTTP流式响应数据接收进度事件
-httpRequest.on('dataReceiveProgress', (data: Object) => {
+class Data {
+  receiveSize: number = 0;
+  totalSize: number = 0;
+}
+httpRequest.on('dataReceiveProgress', (data: Data) => {
   console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
 });
 
@@ -144,7 +148,7 @@ let streamInfo: http.HttpRequestOptions = {
 httpRequest.requestInStream(
   // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
   "EXAMPLE_URL",
-  streamInfo, (err: string, data: string) => {
+  streamInfo, (err: BusinessError, data: number) => {
   console.error('error:' + JSON.stringify(err));
   console.info('ResponseCode :' + JSON.stringify(data));
   // 取消订阅HTTP响应头事件

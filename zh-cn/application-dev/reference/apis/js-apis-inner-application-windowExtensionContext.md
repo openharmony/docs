@@ -41,44 +41,50 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **示例：**
 
-  ```ts
+```ts
+import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'MainAbility'
-};
-let options: StartOptions = {
-  windowMode: 102
-};
+class WindowExtAbility extends WindowExtensionAbility {
+  
+  onConnect() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'MainAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 102
+    };
 
-try {
-  this.context.startAbility(want, options, (error: BusinessError) => {
-    let message = (error as BusinessError).message;
-    let errCode = (error as BusinessError).code;
-    if (errCode) {
-      // 处理业务逻辑错误
-      console.error('startAbility failed, error.code: ${errCode}, error.message: ${message}');
-      return;
+    try {
+      this.context.startAbility(want, options, (error: BusinessError) => {
+        let message = (error as BusinessError).message;
+        let errCode = (error as BusinessError).code;
+        if (errCode) {
+          // 处理业务逻辑错误
+          console.error(`startAbility failed, error.code: ${errCode}, error.message: ${message}`);
+          return;
+        }
+        // 执行正常业务
+        console.log('startAbility succeed');
+      });
+    } catch (paramError) {
+      // 处理入参错误异常
+      let message = (paramError as BusinessError).message;
+      let errCode = (paramError as BusinessError).code;
+      console.error(`error.code: ${errCode}, error.message: ${message}`);
     }
-    // 执行正常业务
-    console.log('startAbility succeed');
-  });
-} catch (paramError) {
-  // 处理入参错误异常
-  let message = (paramError as BusinessError).message;
-  let errCode = (paramError as BusinessError).code;
-  console.error('error.code: ${errCode}, error.message: ${message}');
+  }
 }
-  ```
+```
 
 ## WindowExtensionContext.startAbility
 
@@ -92,7 +98,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
@@ -103,35 +109,41 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>
 
 **示例：**
 
-  ```ts
+```ts
+import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 
-let want: Want = {
-  bundleName: 'com.example.myapp',
-  abilityName: 'MainAbility'
-};
-let options: StartOptions = {
-  windowMode: 102,
-};
+class WindowExtAbility extends WindowExtensionAbility {
 
-try {
-  this.context.startAbility(want, options)
-    .then(() => {
-      // 执行正常业务
-      console.log('startAbility succeed');
-    })
-    .catch((error: BusinessError) => {
-      // 处理业务逻辑错误
-      let message = (error as BusinessError).message;
-      let errCode = (error as BusinessError).code;
-      console.error('startAbility failed, error.code: ${errCode}, error.message: ${message}');
-    });
-} catch (paramError) {
-  // 处理入参错误异常
-  let message = (paramError as BusinessError).message;
-  let errCode = (paramError as BusinessError).code;
-  console.error('error.code: ${errCode}, error.message: ${message}');
+  onConnect() {
+    let want: Want = {
+      bundleName: 'com.example.myapp',
+      abilityName: 'MainAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 102,
+    };
+
+    try {
+      this.context.startAbility(want, options)
+        .then(() => {
+          // 执行正常业务
+          console.log('startAbility succeed');
+        })
+        .catch((error: BusinessError) => {
+          // 处理业务逻辑错误
+          let message = (error as BusinessError).message;
+          let errCode = (error as BusinessError).code;
+          console.error(`startAbility failed, error.code: ${errCode}, error.message: ${message}`);
+        });
+    } catch (paramError) {
+      // 处理入参错误异常
+      let message = (paramError as BusinessError).message;
+      let errCode = (paramError as BusinessError).code;
+      console.error(`error.code: ${errCode}, error.message: ${message}`);
+    }
+  }
 }
-  ```
+```

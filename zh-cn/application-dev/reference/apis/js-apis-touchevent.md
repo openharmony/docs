@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.touchEvent (触摸输入事件)
 
-设备上报的触屏事件。
+设备上报的触屏事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
 >  **说明：**
 >
@@ -79,7 +79,7 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | toolHeight  | number | 是    | 否    | 工具区域高度                              |
 | rawX        | number | 是    | 否    | 输入设备上的x坐标                           |
 | rawY        | number | 是    | 否    | 输入设备上的y坐标                           |
-| toolType    | ToolType | 是    | 否    | 工具类型                                |
+| toolType    | [ToolType](#tooltype) | 是    | 否    | 工具类型                                |
 
 ## TouchEvent
 
@@ -89,7 +89,7 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 
 | 名称         | 类型       | 可读   | 可写   | 说明        |
 | ---------- | ---------- | ---- | ---- | --------- |
-| action     | Action     | 是    | 否    | 触摸动作      |
-| touch      | Touch      | 是    | 否    | 当前触摸点     |
-| touches    | Touch[]    | 是    | 否    | 所有触摸点     |
-| sourceType | SourceType | 是    | 否    | 触摸来源的设备类型 |
+| action     | [Action](#action)     | 是    | 否    | 触摸动作      |
+| touch      |  [Touch](#touch)     | 是    | 否    | 当前触摸点     |
+| touches    | [Touch](#touch)[]    | 是    | 否    | 所有触摸点     |
+| sourceType |  [SourceType](#sourcetype) | 是    | 否    | 触摸来源的设备类型 |

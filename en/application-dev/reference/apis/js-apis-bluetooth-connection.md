@@ -12,6 +12,7 @@ The **connection** module provides APIs for operating and managing Bluetooth.
 
 ```js
 import connection from '@ohos.bluetooth.connection';
+import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -529,7 +530,7 @@ try {
 
 getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 
-Obtains the connection state of the specified profile.
+Obtains the connection state of a Bluetooth profile. The **ProfileId** parameter is optional. If **ProfileId** is specified, the connection state of the specified profile is returned. If no **ProfileId** is specified, [STATE_CONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate) is returned by any connected profile. If no profile is connected, [STATE_DISCONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate) is returned.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -646,8 +647,8 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 ```js
 //callback
 try {
-    connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError, data: string) => {
-        console.info('setDevicePinCode,device name err:' + JSON.stringify(err) + ',device name:' + JSON.stringify(data));
+    connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError) => {
+        console.info('setDevicePinCode,device name err:' + JSON.stringify(err));
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -1337,13 +1338,13 @@ Represents the class of a Bluetooth device.
 
 ## BluetoothTransport<a name="BluetoothTransport"></a>
 
-Enumerates the device types.
+Enumerates the device types. The default device type is **TRANSPORT_BR_EDR**.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name                              | Value   | Description             |
 | -------------------------------- | ------ | --------------- |
-| TRANSPORT_BR_EDR   | 0 | Classic Bluetooth (BR/EDR) device, which is the default value. |
+| TRANSPORT_BR_EDR   | 0 | Classic Bluetooth (BR/EDR) device.|
 | TRANSPORT_LE  | 1 | BLE device. |
 
 

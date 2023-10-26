@@ -266,11 +266,12 @@ UIAbility实例已经启动并在前台运行过，由于某些原因切换到�
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
 
   class MyUIAbility extends UIAbility {
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          console.log('onNewWant, want: ${want.abilityName}');
-          console.log('onNewWant, launchParam: ${JSON.stringify(launchParam)}');
+          console.log(`onNewWant, want: ${want.abilityName}`);
+          console.log(`onNewWant, launchParam: ${JSON.stringify(launchParam)}`);
       }
   }
   ```
@@ -296,7 +297,7 @@ onDump(params: Array\<string>): Array\<string>;
 
   class MyUIAbility extends UIAbility {
       onDump(params: Array<string>) {
-          console.log('dump, params: ${JSON.stringify(params)}');
+          console.log(`dump, params: ${JSON.stringify(params)}`);
           return ['params'];
       }
   }
@@ -605,11 +606,11 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
         deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble(1, 'world');
+        let msg = new MyMessageAble('msg', 'world');
         caller.callWithResult(method, msg)
           .then((data) => {
             console.log('Caller callWithResult() called');
-            let retmsg = new MyMessageAble(0, '');
+            let retmsg = new MyMessageAble('msg', 'world');
             data.readParcelable(retmsg);
           })
           .catch((callErr: BusinessError) => {
@@ -767,10 +768,10 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
                       console.log('Remote state changed ' + str);
                   });
               } catch (error) {
-                  console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+                  console.log(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
               }
           }).catch((err: BusinessError) => {
-              console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+              console.log(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
           })
       }
   }

@@ -39,12 +39,12 @@ Mission迁移完成后调用，返回迁移结果。
     },
     {
       onContinueDone(result) {
-          console.log('onContinueDone, result: ${JSON.stringify(result)}');
+          console.log(`onContinueDone, result: ${JSON.stringify(result)}`);
       }
     }, (error: BusinessError) => {
       if (error && error.code) {
-          console.error('continueMission failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`continueMission failed, error.code: ${error.code}, error.message: ${error.message}`);
       }
-      console.log('continueMission finished');
+      console.log(`continueMission finished`);
     });
   ```

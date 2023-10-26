@@ -1,6 +1,6 @@
 # @ohos.calendarManager (日程管理能力)
 
-本模块提供日历与日程管理能力，包括日历和日程的创建、删除、修改、查询等。日历[Calendar](#calendar)主要包含帐户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
+本模块提供日历与日程管理能力，包括日历和日程的创建、删除、修改、查询等。日历管理器[CalendarManager](#calendarmanager)用于管理日历[Calendar](#calendar)。日历[Calendar](#calendar)主要包含帐户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
 
 > **说明：**
 >
@@ -13,8 +13,46 @@
 import calendarManager from '@ohos.calendarManager';
 ```
 
+## calendarManager.getCalendarManager
 
-## calendarManager.createCalendar
+getCalendarManager(context : Context): CalendarManager;
+
+根据上下文获取CalendarManager对象，用于管理日历。
+
+**系统能力**： SystemCapability.Applications.CalendarData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数**：
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+
+
+**示例**：
+
+```ts
+  // 获取context
+  // 以下代码中的class EntryAbility extends UIAbility，onWindowStageCreate在工程main/ets/entryability/EntryAbility.ets中，测试ohosTest/ets/testability/TestAbility.ets中有，可直接使用
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import common from '@ohos.app.ability.common';
+
+  export let mContext : common.UIAbilityContext | null = null;
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage){
+      mContext = this.context;
+    }
+  }
+  let calendarMgr:calendarManager.CalendarManager = calendarManager.getCalendarManager(mContext as Context);
+```
+
+## CalendarManager
+
+下列API示例中需先通过[getCalendarManager()](#calendarmanagergetcalendarmanager)方法获取CalendarManager对象，再通过此对象调用对应方法，进行Calendar的创建、删除、修改、查询等操作。
+
+
+### createCalendar
 
 createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>): void
 
@@ -42,7 +80,7 @@ const calendarAccount: calendarManager.CalendarAccount = {
   type: calendarManager.CalendarType.LOCAL
 };
 try {
-  calendarManager.createCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+  calendarMgr.createCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
     if (err) {
       console.error(`Failed to create calendar: err->${JSON.stringify(err)}`);
     } else {
@@ -55,7 +93,7 @@ try {
 }
 ```
 
-## calendarManager.createCalendar
+### createCalendar
 
 createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
@@ -88,7 +126,7 @@ const calendarAccount: calendarManager.CalendarAccount = {
   type: calendarManager.CalendarType.LOCAL,
   displayName : 'MyApplication'
 };
-calendarManager.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
+calendarMgr.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
   console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
   calendar = data;
 }).catch((error : BusinessError) => {
@@ -96,7 +134,7 @@ calendarManager.createCalendar(calendarAccount).then((data: calendarManager.Cale
 });
 ```
 
-## calendarManager.deleteCalendar
+### deleteCalendar
 
 deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 
@@ -122,12 +160,12 @@ const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+calendarMgr.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
   if (err) {
     console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
     console.info("Succeeded in getting calendar");
-    calendarManager.deleteCalendar(data, (err: BusinessError) => {
+    calendarMgr.deleteCalendar(data, (err: BusinessError) => {
       if (err) {
         console.error(`Failed to delete calendar: err->${JSON.stringify(err)}`);
       } else {
@@ -138,7 +176,7 @@ calendarManager.getCalendar(calendarAccount, (err: BusinessError, data: calendar
 });
 ```
 
-## calendarManager.deleteCalendar
+### deleteCalendar
 
 deleteCalendar(calendar: Calendar): Promise\<void>
 
@@ -169,9 +207,9 @@ const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.getCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
+calendarMgr.getCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
   console.info("Succeeded in getting calendar");
-  calendarManager.deleteCalendar(data).then(() => {
+  calendarMgr.deleteCalendar(data).then(() => {
     console.info("Succeeded in deleting calendar");
   }).catch((err: BusinessError) => {
     console.error(`Failed to delete calendar: err->${JSON.stringify(err)}`);
@@ -181,11 +219,11 @@ calendarManager.getCalendar(calendarAccount).then((data: calendarManager.Calenda
 });
 ```
 
-## calendarManager.getCalendar
+### getCalendar
 
 getCalendar(callback: AsyncCallback\<Calendar>): void
 
-获取默认Calendar对象，默认Calendar是日历存储首次运行时创建的，若创建Event时不关注其Calendar归属，则无须通过[createCalendar()](#calendarmanagercreatecalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
+获取默认Calendar对象，默认Calendar是日历存储首次运行时创建的，若创建Event时不关注其Calendar归属，则无须通过[createCalendar()](#createcalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
 
 **需要权限**：ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
 
@@ -203,7 +241,7 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 import { BusinessError } from '@ohos.base';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
-calendarManager.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+calendarMgr.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
   if (err) {
     console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
@@ -213,7 +251,7 @@ calendarManager.getCalendar((err: BusinessError, data:calendarManager.Calendar) 
 });
 ```
 
-## calendarManager.getCalendar
+### getCalendar
 
 getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>): void
 
@@ -240,7 +278,7 @@ const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+calendarMgr.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
   if (err) {
     console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
@@ -250,7 +288,7 @@ calendarManager.getCalendar(calendarAccount, (err: BusinessError, data: calendar
 });
 ```
 
-## calendarManager.getCalendar
+### getCalendar
 
 getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
@@ -278,7 +316,7 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 import { BusinessError } from '@ohos.base';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
-calendarManager.getCalendar().then((data: calendarManager.Calendar) => {
+calendarMgr.getCalendar().then((data: calendarManager.Calendar) => {
   console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
   calendar = data;
 }).catch((err: BusinessError) => {
@@ -286,7 +324,7 @@ calendarManager.getCalendar().then((data: calendarManager.Calendar) => {
 });
 ```
 
-## calendarManager.getAllCalendars
+### getAllCalendars
 
 getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
@@ -307,7 +345,7 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-calendarManager.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
+calendarMgr.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
   if (err) {
     console.error(`Failed to get all calendars: err->${JSON.stringify(err)}`);
   } else {
@@ -320,7 +358,7 @@ calendarManager.getAllCalendars((err: BusinessError, data: calendarManager.Calen
 });
 ```
 
-## calendarManager.getAllCalendars
+### getAllCalendars
 
 getAllCalendars(): Promise\<Calendar[]>
 
@@ -341,7 +379,7 @@ getAllCalendars(): Promise\<Calendar[]>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-calendarManager.getAllCalendars().then((data: calendarManager.Calendar[]) => {
+calendarMgr.getAllCalendars().then((data: calendarManager.Calendar[]) => {
   console.info(`Succeeded in getting all calendars->${JSON.stringify(data)}`);
   data.forEach((calendar) => {
     const account = calendar.getAccount();
@@ -354,7 +392,7 @@ calendarManager.getAllCalendars().then((data: calendarManager.Calendar[]) => {
 
 ## Calendar
 
-下列API示例中需先通过[createCalendar()](#calendarmanagercreatecalendar)、[getCalendar()](#calendarmanagergetcalendar)中任一方法获取Calendar对象，再通过此对象调用对应方法，对该Calendar下的日程进行创建、删除、修改、查询等操作。
+下列API示例中需先通过[createCalendar()](#createcalendar)、[getCalendar()](#getcalendar)中任一方法获取Calendar对象，再通过此对象调用对应方法，对该Calendar下的日程进行创建、删除、修改、查询等操作。
 
 ### 属性
 

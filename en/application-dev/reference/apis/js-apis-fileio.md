@@ -35,9 +35,9 @@ Before using the APIs provided by this module to perform operations on a file or
 
 **FA Model**
 
-  ```ts
+  ```js
   import featureAbility from '@ohos.ability.featureAbility';
-  
+
   let context = featureAbility.getContext();
   context.getFilesDir().then((data) => {
     let pathDir = data;
@@ -116,7 +116,7 @@ Obtains file information. This API uses an asynchronous callback to return the r
 
 statSync(path: string): Stat
 
-Synchronously obtains file information.
+Obtains file information. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -149,7 +149,7 @@ Synchronously obtains file information.
 
 opendir(path: string): Promise&lt;Dir&gt;
 
-Opens a file directory. This API uses a promise to return the result.
+Opens a directory. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -205,7 +205,7 @@ Opens a file directory. This API uses an asynchronous callback to return the res
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  fileio.opendir(pathDir, (err: BusinessError, dir: fileio.Dir) => { 
+  fileio.opendir(pathDir, (err: BusinessError, dir: fileio.Dir) => {
     // Example code in Dir struct
     // Use read/readSync/close.
   });
@@ -216,7 +216,7 @@ Opens a file directory. This API uses an asynchronous callback to return the res
 
 opendirSync(path: string): Dir
 
-Synchronously opens a directory.
+Opens a directory. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -262,7 +262,7 @@ Checks whether the current process can access a file. This API uses a promise to
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the file.                                  |
-| mode   | number | No  | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>- **0**: Check whether the file exists.<br>- **1**: Check whether the process has the execute permission on the file.<br>- **2**: Check whether the process has the write permission on the file.<br>- **4**: Check whether the process has the read permission on the file. |
+| mode   | number | No  | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>- **0**: Check whether the file exists.<br>- **1**: Check whether the process has the execute permission on the file.<br>- **2**: Check whether the process has the write permission on the file.<br>- **4**: Check whether the process has the read permission on the file.|
 
 **Return value**
 
@@ -300,7 +300,7 @@ Checks whether the current process can access a file. This API uses an asynchron
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                    | Yes  | Application sandbox path of the file.                                  |
-| mode     | number                    | No  | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>- **0**: Check whether the file exists.<br>- **1**: Check whether the process has the execute permission on the file.<br>- **2**: Check whether the process has the write permission on the file.<br>- **4**: Check whether the process has the read permission on the file. |
+| mode     | number                    | No  | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>- **0**: Check whether the file exists.<br>- **1**: Check whether the process has the execute permission on the file.<br>- **2**: Check whether the process has the write permission on the file.<br>- **4**: Check whether the process has the read permission on the file.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file is asynchronously checked.                |
 
 **Example**
@@ -318,7 +318,7 @@ Checks whether the current process can access a file. This API uses an asynchron
 
 accessSync(path: string, mode?: number): void
 
-Synchronously checks whether the current process can access the specified file.
+Checks whether the current process can access the specified file. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -331,7 +331,7 @@ Synchronously checks whether the current process can access the specified file.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the file.                                  |
-| mode   | number | No  | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>- **0**: Check whether the file exists.<br>- **1**: Check whether the process has the execute permission on the file.<br>- **2**: Check whether the process has the write permission on the file.<br>- **4**: Check whether the process has the read permission on the file. |
+| mode   | number | No  | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>- **0**: Check whether the file exists.<br>- **1**: Check whether the process has the execute permission on the file.<br>- **2**: Check whether the process has the write permission on the file.<br>- **4**: Check whether the process has the read permission on the file.|
 
 **Example**
 
@@ -419,7 +419,7 @@ Closes a file. This API uses an asynchronous callback to return the result.
 
 closeSync(fd: number): void
 
-Synchronously closes a file.
+Closes a file. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -519,7 +519,7 @@ Copies a file. This API uses an asynchronous callback to return the result.
 
 copyFileSync(src: string|number, dest: string|number, mode?: number): void
 
-Synchronously copies a file.
+Copies a file. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -617,7 +617,7 @@ Creates a directory. This API uses an asynchronous callback to return the result
 
 mkdirSync(path: string, mode?: number): void
 
-Synchronously creates a directory.
+Creates a directory. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -715,7 +715,7 @@ Opens a file. This API uses an asynchronous callback to return the result.
 
 openSync(path: string, flags?: number, mode?: number): number
 
-Synchronously opens a file.
+Opens a file. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -749,7 +749,15 @@ Synchronously opens a file.
   fileio.writeSync(fd, 'hello world');
   let fd1 = fileio.openSync(filePath, 0o2002);
   fileio.writeSync(fd1, 'hello world');
-  let num = fileio.readSync(fd1, new ArrayBuffer(4096), {position: 0});
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+  }
+  let option = new Option();
+  option.position = 0;
+  let buf = new ArrayBuffer(4096)
+  let num = fileio.readSync(fd1, buf, option);
   console.info("num == " + num);
   ```
 
@@ -841,7 +849,7 @@ Reads data from a file. This API uses an asynchronous callback to return the res
 
 readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; position?: number; }): number
 
-Synchronously reads data from a file.
+Reads data from a file. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -945,7 +953,7 @@ Deletes a directory. This API uses an asynchronous callback to return the result
 
 rmdirSync(path: string): void
 
-Synchronously deletes a directory.
+Deletes a directory. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -1038,7 +1046,7 @@ Deletes a file. This API uses an asynchronous callback to return the result.
 
 unlinkSync(path: string): void
 
-Synchronously deletes a file.
+Deletes a file. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -1139,7 +1147,7 @@ Writes data into a file. This API uses an asynchronous callback to return the re
 
 writeSync(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
 
-Synchronously writes data into a file.
+Writes data into a file. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -1314,7 +1322,7 @@ Changes file permissions. This API uses an asynchronous callback to return the r
 
 chmodSync(path: string, mode: number): void
 
-Synchronously changes file permissions.
+Changes file permissions. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -1353,7 +1361,7 @@ Obtains file information based on the file descriptor. This API uses a promise t
 
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
-  | fd   | number | Yes   | Descriptor of the target file.|
+  | fd   | number | Yes   | File descriptor of the target file.|
 
 **Return value**
 
@@ -1391,7 +1399,7 @@ Obtains file information based on the file descriptor. This API uses an asynchro
 
   | Name     | Type                                | Mandatory  | Description              |
   | -------- | ---------------------------------- | ---- | ---------------- |
-| fd       | number                             | Yes   | File descriptor of the target file.    |
+  | fd       | number                             | Yes   | File descriptor of the target file.    |
   | callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes   | Callback invoked to return the file information obtained.|
 
 **Example**
@@ -1410,7 +1418,7 @@ Obtains file information based on the file descriptor. This API uses an asynchro
 
 fstatSync(fd: number): Stat
 
-Synchronously obtains file information based on the file descriptor.
+Obtains file status information based on the file descriptor. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -1422,7 +1430,7 @@ Synchronously obtains file information based on the file descriptor.
 
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
-| fd   | number | Yes   | File descriptor of the target file.|
+  | fd   | number | Yes   | File descriptor of the target file.|
 
 **Return value**
 
@@ -1470,7 +1478,7 @@ Truncates a file based on the file descriptor. This API uses a promise to return
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.ftruncate(fd, 5).then((err: BusinessError) => {    
+  fileio.ftruncate(fd, 5).then((err: BusinessError) => {
     console.info("File truncated");
   }).catch((err: BusinessError) => {
     console.info("truncate file failed with error:" + err);
@@ -1515,7 +1523,7 @@ Truncates a file based on the file descriptor. This API uses an asynchronous cal
 
 ftruncateSync(fd: number, len?: number): void
 
-Synchronously truncates a file based on the file descriptor.
+Truncates a file based on the file descriptor. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -1615,7 +1623,7 @@ Truncates a file based on the file path. This API uses an asynchronous callback 
 
 truncateSync(path: string, len?: number): void
 
-Synchronously truncates a file based on the file path.
+Truncates a file based on the file path. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -1702,7 +1710,15 @@ Reads the text content of a file. This API uses an asynchronous callback to retu
   ```ts
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, (err: BusinessError, str: string) => {
+  class Option {
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.position = 1;
+  option.encoding = 'utf-8';
+  fileio.readText(filePath, option, (err: BusinessError, str: string) => {
     // Do something.
   });
   ```
@@ -1712,7 +1728,7 @@ Reads the text content of a file. This API uses an asynchronous callback to retu
 
 readTextSync(filePath: string, options?: { position?: number; length?: number; encoding?: string; }): string
 
-Synchronously reads the text of a file. 
+Reads the text of a file. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -1737,7 +1753,15 @@ Synchronously reads the text of a file.
 
   ```ts
   let filePath = pathDir + "/test.txt";
-  let str = fileio.readTextSync(filePath, {position: 1, length: 3});
+  class Option {
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.position = 1;
+  option.length = 3;
+  let str = fileio.readTextSync(filePath, option);
   ```
 
 
@@ -1812,7 +1836,7 @@ Obtains link information. This API uses an asynchronous callback to return the r
 
 lstatSync(path: string): Stat
 
-Synchronously obtains the link information.
+Obtains the link information. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -1913,7 +1937,7 @@ Renames a file. This API uses an asynchronous callback to return the result.
 
 renameSync(oldPath: string, newPath: string): void
 
-Synchronously renames a file.
+Renames a file. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -2204,7 +2228,7 @@ Creates a symbolic link based on the file path. This API uses an asynchronous ca
 
 symlinkSync(target: string, srcPath: string): void
 
-Synchronously creates a symbolic link based on a file path.
+Creates a symbolic link based on a file path. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -2304,7 +2328,7 @@ Changes the file owner based on the file path. This API uses an asynchronous cal
 
 chownSync(path: string, uid: number, gid: number): void
 
-Synchronously changes the file owner based on its path.
+Changes the file owner based on its path. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -2398,7 +2422,7 @@ Creates a temporary directory. This API uses an asynchronous callback to return 
 
 mkdtempSync(prefix: string): string
 
-Synchronously creates a temporary directory.
+Creates a temporary directory. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -2502,7 +2526,7 @@ Changes file permissions based on the file descriptor. This API uses an asynchro
 
 fchmodSync(fd: number, mode: number): void
 
-Synchronously changes the file permissions based on the file descriptor.
+Changes the file permissions based on the file descriptor. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -2600,7 +2624,7 @@ Creates a stream based on the file path. This API uses an asynchronous callback 
 
 createStreamSync(path: string, mode: string): Stream
 
-Synchronously creates a stream based on the file path.
+Creates a stream based on the file path. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -2704,7 +2728,7 @@ Opens a stream based on the file descriptor. This API uses an asynchronous callb
 
 fdopenStreamSync(fd: number, mode: string): Stream
 
-Synchronously opens a stream based on the file descriptor.
+Opens a stream based on the file descriptor. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -2723,7 +2747,7 @@ Synchronously opens a stream based on the file descriptor.
 
   | Type               | Description       |
   | ------------------ | --------- |
-| [Stream](#stream) | Stream opened.|
+  | [Stream](#stream) | Stream opened.|
 
 **Example**
 
@@ -2813,7 +2837,7 @@ Changes the file owner based on the file descriptor. This API uses an asynchrono
 
 fchownSync(fd: number, uid: number, gid: number): void
 
-Synchronously changes the file owner based on the file descriptor.
+Changes the file owner based on the file descriptor. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -2916,7 +2940,7 @@ Changes the file owner (owner of the symbolic link, not the file referred to by 
 
 lchownSync(path: string, uid: number, gid: number): void
 
-Synchronously changes the file owner based on the file path and changes the owner of the symbolic link (not the referenced file).
+Changes the file owner based on the file path and changes the owner of the symbolic link (not the referenced file). This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -3278,7 +3302,7 @@ Closes the stream. This API uses a promise to return the result.
 
   | Type                 | Description           |
   | ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise used to return the stream close result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -3328,7 +3352,7 @@ Closes the stream. This API uses an asynchronous callback to return the result.
 
 closeSync(): void
 
-Synchronously closes the stream.
+Closes the stream. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -3411,7 +3435,7 @@ Flushes the stream. This API uses an asynchronous callback to return the result.
 
 flushSync(): void
 
-Synchronously flushes the stream.
+Flushes the stream. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -3526,7 +3550,7 @@ Writes data into the stream. This API uses an asynchronous callback to return th
 
 writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
 
-Synchronously writes data into the stream.
+Writes data into the stream. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -3669,7 +3693,7 @@ Reads data from the stream. This API uses an asynchronous callback to return the
 
 readSync(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length?: number; }): number
 
-Synchronously reads data from the stream.
+Reads data from the stream. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -3704,7 +3728,8 @@ Synchronously reads data from the stream.
   option.offset = 1;
   option.length = 5;
   option.position = 5;
-  let num = ss.readSync(new ArrayBuffer(4096), option);
+  let buf = new ArrayBuffer(4096)
+  let num = ss.readSync(buf, option);
   ```
 
 
@@ -3781,7 +3806,7 @@ Reads the next directory entry. This API uses an asynchronous callback to return
 
 readSync(): Dirent
 
-Synchronously reads the next directory entry.
+Reads the next directory entry. This API returns the result synchronously.
 
 > **NOTE**
 >

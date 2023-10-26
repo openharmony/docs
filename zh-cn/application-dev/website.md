@@ -40,7 +40,10 @@
   - 学习ArkTS语言
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
     - [ArkTS语言介绍](quick-start/introduction-to-arkts.md)
-    - [从TypeScript到ArkTS的迁移指导](quick-start/typescript-to-arkts-migration-guide.md)
+    - 从TypeScript到ArkTS的适配指导
+      - [ArkTS语法适配背景](quick-start/arkts-migration-background.md)
+      - [从TypeScript到ArkTS的适配规则](quick-start/typescript-to-arkts-migration-guide.md)
+      - [适配指导案例](quick-start/arkts-more-cases.md)
     - UI范式
       - 基本语法
         - [基本语法概述](quick-start/arkts-basic-syntax-overview.md)
@@ -262,7 +265,6 @@
           - [创建列表（List）](ui/arkts-layout-development-create-list.md)
           - [创建网格（Grid/GridItem）](ui/arkts-layout-development-create-grid.md)
           - [创建轮播（Swiper）](ui/arkts-layout-development-create-looping.md)
-        - [改善布局性能](ui/arkts-layout-development-performance-boost.md)
       - 添加组件
         - 添加常用组件
           - [按钮（Button）](ui/arkts-common-components-button.md)
@@ -319,7 +321,6 @@
           - [绑定手势方法](ui/arkts-gesture-events-binding.md)
           - [单一手势](ui/arkts-gesture-events-single-gesture.md)
           - [组合手势](ui/arkts-gesture-events-combined-gestures.md)
-      - [性能提升的推荐方法](ui/arkts-performance-improvement-recommendation.md)
     - UI开发（兼容JS的类Web开发范式）
       - [UI开发（兼容JS的类Web开发范式）概述](ui/ui-js-overview.md)
       - 框架说明
@@ -681,7 +682,7 @@
     - [国际化开发概述](internationalization/international-overview.md)
     - [Intl开发指导](internationalization/intl-guidelines.md)
     - [I18n开发指导](internationalization/i18n-guidelines.md)
-  - 增值服务
+  - 应用服务
     - [广告标识服务](ads-service/oaid/oaid-service.md)
   - 应用测试
     - [自动化测试框架使用指导](application-test/arkxtest-guidelines.md)
@@ -739,7 +740,7 @@
     - ArkTS高性能编程
       - [高性能编程规范](performance/high-performance-programming.md)
       - [高效并发编程](performance/efficient-concurrent-programming.md)
-      - [安全和高效的使用N-API开发Native模块](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
+      - [N-API高效开发指导](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
       - [多线程能力场景化](performance/multi_thread_capability.md)
     - 减少卡顿丢帧
       - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
@@ -752,11 +753,13 @@
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
       - [提升应用响应速度](performance/improve-application-response.md)
+      - [Flex布局性能提升使用指导](performance/flex-development-performance-boost.md)
       - [优化布局性能](performance/reduce-view-nesting-levels.md)
       - [合理使用IPC通信](performance/reasonable-using-ipc.md)
       - [减少首帧绘制时的冗余操作](performance/reduce-redundant-operations-when-render-first-frame.md)
       - [列表场景性能提升实践](performance/list-perf-improvment.md)
       - [动效能力实践](performance/animation_practice.md)
+      - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
 - 工具
@@ -793,7 +796,7 @@
         - [@ohos.app.ability.contextConstant (ContextConstant)](reference/apis/js-apis-app-ability-contextConstant.md)
         - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](reference/apis/js-apis-app-ability-environmentCallback.md)
         - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](reference/apis/js-apis-app-ability-extensionAbility.md)
-        - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](reference/apis/js-apis-app-ability-printExtensionAbility.md)
+        - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](reference/apis/js-apis-app-ability-PrintExtensionAbility.md)
         - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](reference/apis/js-apis-app-ability-serviceExtensionAbility.md)
         - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](reference/apis/js-apis-app-ability-shareExtensionAbility.md)
         - [@ohos.app.ability.StartOptions (StartOptions)](reference/apis/js-apis-app-ability-startOptions.md)
@@ -1152,7 +1155,7 @@
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
       - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)](reference/apis/js-apis-WallpaperExtensionAbility.md)
       - [@ohos.web.webview (Webview)](reference/apis/js-apis-webview.md)
-      - [console (控制台)](reference/apis/js-apis-logs.md)
+      - [Console (控制台)](reference/apis/js-apis-logs.md)
       - [Timer (定时器)](reference/apis/js-apis-timer.md)
       - [syscap (系统能力)](reference/apis/js-apis-syscap.md)
       - application
@@ -1245,7 +1248,7 @@
       - [@ohos.util.Vector (线性容器Vector)](reference/apis/js-apis-vector.md)
       - [@ohos.worker (启动一个Worker)](reference/apis/js-apis-worker.md)
       - [@ohos.xml (xml解析与生成)](reference/apis/js-apis-xml.md)
-    - 广告
+    - 应用服务
       - [@ohos.identifier.oaid (广告标识服务)](reference/apis/js-apis-oaid.md)
     - 测试
       - [@ohos.application.testRunner (TestRunner)](reference/apis/js-apis-application-testRunner.md)
@@ -1794,7 +1797,7 @@
       - [企业设备管理错误码](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - 语言基础类库
       - [语言基础类库错误码](reference/errorcodes/errorcode-utils.md)
-    - 广告
+    - 应用服务
       - [广告标识服务错误码](reference/errorcodes/errorcode-oaid.md)
     - 测试
       - [uitest错误码](reference/errorcodes/errorcode-uitest.md)
@@ -1812,7 +1815,7 @@
       - [Rawfile](reference/native-apis/rawfile.md)
       - [RDB](reference/native-apis/_r_d_b.md)
       - [MindSpore](reference/native-apis/_mind_spore.md)
-      - [NeuralNeworkRuntime](reference/native-apis/_neural_nework_runtime.md)
+      - [NeuralNetworkRuntime](reference/native-apis/_neural_nework_runtime.md)
       - [AVCapability](reference/native-apis/_a_v_capability.md)
       - [AVMuxer](reference/native-apis/_a_v_muxer.md)
       - [AudioDecoder](reference/native-apis/_audio_decoder.md)

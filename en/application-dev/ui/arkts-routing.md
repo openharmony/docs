@@ -1,14 +1,16 @@
 # Page Routing (router)
 
 
-Page routing refers to the redirection and data transfer between different pages in an application. In OpenHarmony, page routing can be implemented through APIs of the **Router** module. Through different URLs, you can easily navigate users through pages. This document describes the functions provided by the **Router** module from the following aspects: [Page Redirection](#page-redirection), [Page Return](#page-return), and [Adding a Confirmation Dialog Box Before Page Return](#adding-a-confirmation-dialog-box-before-page-return).
+Page routing refers to the redirection and data transfer between different pages in an application. In OpenHarmony, page routing can be implemented through APIs of the **Router** module. Through different URLs, you can easily navigate users through pages. This document describes the functions provided by the **Router** module from the following aspects: [Page Redirection](#page-redirection), [Page Return](#page-return), [Adding a Confirmation Dialog Box Before Page Return](#adding-a-confirmation-dialog-box-before-page-return), and [Named Route](#named-route).
 
+The **Router** module is applicable to page redirection between modules and within a module. It uses page URLs to decouple modules. Regarding page redirection within a module, prefer [Navigation](./arkts-navigation-navigation.md) over this module to create better transition effects.
 
 ## Page Redirection
 
 Page redirection is an important part of the development process. When using an application, you usually need to jump between different pages, and sometimes you need to pass data from one page to another.
 
-  **Figure 1** Page redirection 
+**Figure 1** Page redirection
+
 ![router-jump-to-detail](figures/router-jump-to-detail.gif)
 
 The **Router** module provides two redirection modes: [router.pushUrl()](../reference/apis/js-apis-router.md#routerpushurl9) and [router.replaceUrl()](../reference/apis/js-apis-router.md#routerreplaceurl9). Whether the target page will replace the current page depends on the mode used.
@@ -85,7 +87,7 @@ import promptAction from '@ohos.promptAction';
   >
   >In standard (multi-instance) mode, the **router.RouterMode.Standard** parameter can be omitted.
 
-- Scenario 3: There is a setting page (**Setting**) and a theme switching page (**Theme**). You want to click a theme option on the **Setting** page to go to the **Theme** page. In addition, you want to ensure that only one **Theme** page exists in the page stack at a time. When the back button is clicked on the **Theme** page, the **Setting** page is displayed. In this scenario, you can use the **pushUrl()** API and use the **Single** instance mode.
+- Scenario 3: There is a **Setting** page and a **Theme** page. After a theme option on the **Setting** page is clicked, the **Theme** page is displayed. Only one **Theme** page exists in the page stack at the same time. When the back button is clicked on the **Theme** page, the **Setting** page is displayed. In this scenario, you can use the **pushUrl()** API and use the **Single** instance mode.
 
 
   ```ts
@@ -165,9 +167,16 @@ On the target page, you can call the [getParams()](../reference/apis/js-apis-rou
 
 ```ts
 import router from '@ohos.router';
-const params:Record<string,Object> = {'':router.getParams()}; // Obtain the passed parameter object.
-const id:Object = params['id']; // Obtain the value of the id attribute.
-const age:Object = params['info'].age; // Obtain the value of the age attribute.
+class infoTmp{
+  age:number = 0
+}
+class rouTmp{
+  id:object = ()=>{}
+  info:infoTmp = new infoTmp()
+}
+const params:rouTmp = router.getParams() as rouTmp; // Obtain the passed parameter object.
+const id:object = params.id // Obtain the value of the id attribute.
+const age:number = params.info.age; // Obtain the value of the age attribute.
 ```
 
 
@@ -314,6 +323,7 @@ In the event callback, call the [promptAction.showDialog()](../reference/apis/js
 ```ts
 import router from '@ohos.router';
 import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
 
 function onBackClick() {
   // Display a custom confirmation dialog box.
@@ -340,7 +350,9 @@ function onBackClick() {
       router.back();
     }
   }).catch((err:Error) => {
-    console.error(`Invoke showDialog failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message
+    let code = (err as BusinessError).code
+    console.error(`Invoke showDialog failed, code is ${code}, message is ${message}`);
   })
 }
 ```
@@ -372,10 +384,9 @@ struct MyComponent {
 When the configuration is successful, import the named route page to the page from which you want to redirect.
 
 ```ts
-// entry/src/main/ets/pages/Index.ets
 import router from '@ohos.router';
-import * from 'library/src/main/ets/Index.ets' // Import the named route page from the shared package library.
 import { BusinessError } from '@ohos.base';
+const moudel = import('library/src/main/ets/pages/Index') // Import the named route page in the shared package.
 @Entry
 @Component
 struct Index {

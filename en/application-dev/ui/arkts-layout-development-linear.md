@@ -3,15 +3,15 @@
 
 ## Overview
 
-Linear layout is the most frequently used layout in development, built with the [\<Row>](../reference/arkui-ts/ts-container-row.md) and [\<Column>](../reference/arkui-ts/ts-container-column.md) linear containers. The linear layout is the basis of other layouts. Its child components are arranged in sequence linearly in the horizontal direction, as in a **\<Row>** container, or vertical direction, as in a **\<Column>** container.  
+Linear layout is the most frequently used layout in development, built with the [\<Row>](../reference/arkui-ts/ts-container-row.md) and [\<Column>](../reference/arkui-ts/ts-container-column.md) linear containers. The linear layout is the basis of other layouts. Its child elements are arranged in sequence linearly in the horizontal direction, as in a **\<Row>** container, or vertical direction, as in a **\<Column>** container.  
 
 
-  **Figure 1** Child component arrangement in a \<Column> container 
+  **Figure 1** Child element arrangement in a \<Column> container 
 
 ![arrangement-child-elements-column](figures/arrangement-child-elements-column.png)
 
 
-  **Figure 2** Child component arrangement in a \<Row> container 
+  **Figure 2** Child element arrangement in a \<Row> container 
 
 ![arrangement-child-elements-row](figures/arrangement-child-elements-row.png)
 
@@ -26,7 +26,7 @@ Linear layout is the most frequently used layout in development, built with the 
 
 - Cross axis: axis that runs perpendicular to the main axis. The cross axis is vertical for the **\<Row>** container and horizontal for the **\<Column>** container.
 
-- Spacing: vertical distance between child elements.
+- Spacing: distance between child elements.
 
 
 ## Spacing of Layout Child Elements in Arrangement Direction
@@ -418,9 +418,9 @@ In the layout container, you can use the **justifyContent** attribute to set the
   ![en-us_image_0000001511421352](figures/en-us_image_0000001511421352.png)
 
 
-## Adaptive Stretching
+## Adaptive Scaling
 
-In linear layout, adaptive stretching is achieved by using the [\<Blank>](../reference/arkui-ts/ts-basic-components-blank.md) component, which automatically fills the empty spaces in the container – **\<Row>** or **\<Column>** – along the main axis. Just add the width and height as a percentage, and then when the screen width and height change, adaptive stretching takes effect.
+In linear layout, adaptive stretching is achieved by using the [\<Blank>](../reference/arkui-ts/ts-basic-components-blank.md) component, which automatically fills the empty spaces in the container – **\<Row>** or **\<Column>** – along the main axis. Just add the width and height as a percentage, and then adaptive scaling will take effect once the screen width and height change.
 
 
 ```ts
@@ -450,10 +450,10 @@ struct BlankExample {
 
 ## Adaptive Scaling
 
-Adaptive scaling means that the size of a child component is automatically adjusted according to a preset ratio to fit into the container across devices of various screen sizes. In linear layout, adaptive scaling can be achieved using either of the following methods:
+Adaptive scaling means that the size of a child element is automatically adjusted according to a preset ratio to fit into the container across devices of various screen sizes. In linear layout, adaptive scaling can be achieved using either of the following methods:
 
 
-- When the container size is determined, use **layoutWeight** to set the weight of a child component during layout. The container space is then allocated along the main axis among the component and sibling components based on the set layout weight, and the component size setting is ignored.
+- When the container size is determined, use **layoutWeight** to set the weight of a child element during layout. The container space is then allocated along the main axis among the element and sibling elements based on the set layout weight, ignoring the size settings of the elements themselves.
 
   ```ts
   @Entry
@@ -474,9 +474,9 @@ Adaptive scaling means that the size of a child component is automatically adjus
           }.layoutWeight(2).backgroundColor(0xD2B48C).height('100%')
 
           Column() {
-            Text('layoutWeight(3)')
+            Text('layoutWeight(6)')
               .textAlign(TextAlign.Center)
-          }.layoutWeight(3).backgroundColor(0xF5DEB3).height('100%')
+          }.layoutWeight(6).backgroundColor(0xF5DEB3).height('100%')
 
         }.backgroundColor(0xffd306).height('30%')
 
@@ -510,7 +510,7 @@ Adaptive scaling means that the size of a child component is automatically adjus
 
   ![en-us_image_0000001511580968](figures/en-us_image_0000001511580968.png)
 
-- When the container size is determined, set the width of a child component in percentage. The container space is then allocated among the component and sibling components based on the set percentage.
+- When the container size is determined, set the width of a child element in percentage. The container space is then allocated among the element and sibling elements based on the set percentage.
 
   ```ts
   @Entry

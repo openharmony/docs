@@ -44,6 +44,8 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 **示例：**
 
   ```ts
+  import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
   class DriverExt extends DriverExtension {
     onInit(want : Want) {
       console.log('onInit, want: ${want.abilityName}');
@@ -94,12 +96,16 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 **示例：**
 
   ```ts
+  import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
   import rpc from '@ohos.rpc';
+  import Want from '@ohos.app.ability.Want';
   class StubTest extends rpc.RemoteObject{
       constructor(des : string) {
           super(des);
       }
-      onRemoteMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, option : MessageOption) {
+      onRemoteMessageRequest(code : number, data : rpc.MessageSequence, reply : rpc.MessageSequence, option : rpc.MessageOption) {
+        //必须重写此接口
+        return true;
       }
   }
   class DriverExt extends DriverExtension {
@@ -113,12 +119,16 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 如果生成返回值RemoteObject依赖一个异步接口，可以使用异步生命周期：
 
   ```ts
+import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
 import rpc from '@ohos.rpc';
+import Want from '@ohos.app.ability.Want';
 class StubTest extends rpc.RemoteObject{
     constructor(des : string) {
         super(des);
     }
-    onRemoteMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, option : MessageOption) {
+    onRemoteMessageRequest(code : number, data : rpc.MessageSequence, reply : rpc.MessageSequence, option : rpc.MessageOption) {
+      //必须重写此接口
+      return true;
     }
 }
 async function getDescriptor() {
@@ -151,6 +161,8 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
 **示例：**
 
   ```ts
+  import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
   class DriverExt extends DriverExtension {
     onDisconnect(want : Want) {
       console.log('onDisconnect, want: ${want.abilityName}');
@@ -161,6 +173,8 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
 在执行完onDisconnect生命周期回调后，应用可能会退出，从而可能导致onDisconnect中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDisconnect完成后再继续后续的生命周期。
 
   ```ts
+import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 class DriverExt extends DriverExtension {
   async onDisconnect(want : Want) {
     console.log('onDisconnect, want: ${want.abilityName}');
@@ -189,7 +203,7 @@ onDump(params: Array\<string>): Array\<string>;
   ```ts
   class DriverExt extends DriverExtension {
       onDump(params : Array<string>) {
-          console.log('dump, params: ${JSON.stringify(params)}');
+          console.log(`dump, params: ${JSON.stringify(params)}`);
           return ['params'];
       }
   }

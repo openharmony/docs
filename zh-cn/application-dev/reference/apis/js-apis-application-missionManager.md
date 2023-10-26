@@ -254,11 +254,11 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error.code) {
-          console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
       }
-      console.log('size = ${missions.length}');
-      console.log('missions = ${JSON.stringify(missions)}');
+      console.log(`size = ${missions.length}`);
+      console.log(`missions = ${JSON.stringify(missions)}`);
   });
   ```
 
@@ -327,19 +327,19 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
     }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.getMissionSnapShot('', id, (error, snapshot) => {
       if (error.code) {
-          console.error('getMissionSnapShot failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`getMissionSnapShot failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
       }
-      console.log('bundleName = ${snapshot.ability.bundleName}');
+      console.log(`bundleName = ${snapshot.ability.bundleName}`);
     });
   });
   ```
@@ -379,15 +379,15 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
   let id: number = -1;
   missionManager.getMissionInfos('',10).then((res) => {
     let allMissions = res;
-    console.log('size = ${allMissions.length}');
-    console.log('missions = ${JSON.stringify(allMissions)}');
+    console.log(`size = ${allMissions.length}`);
+    console.log(`missions = ${JSON.stringify(allMissions)}`);
     id = allMissions[0].missionId;
   }).catch((error: BusinessError) => {
-    console.error('getMissionInfos fail, error: ${error}');
+    console.error(`getMissionInfos fail, error: ${error}`);
   });
 
   let snapshot = missionManager.getMissionSnapShot('', id).catch((error: BusinessError) => {
-    console.error('getMissionSnapShot fail, error: ${error}');
+    console.error(`getMissionSnapShot fail, error: ${error}`);
   });
   ```
 
@@ -417,11 +417,11 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
     }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.lockMission(id).then(() => {
@@ -464,15 +464,15 @@ lockMission(missionId: number): Promise&lt;void&gt;;
   let id: number = -1;
   missionManager.getMissionInfos('',10).then((res) => {
     let allMissions = res;
-    console.log('size = ${allMissions.length}');
-    console.log('missions = ${JSON.stringify(allMissions)}');
+    console.log(`size = ${allMissions.length}`);
+    console.log(`missions = ${JSON.stringify(allMissions)}`);
     id = allMissions[0].missionId;
   }).catch((error: BusinessError) => {
-      console.error('getMissionInfos fail, error: ${error}');
+      console.error(`getMissionInfos fail, error: ${error}`);
   });
 
   missionManager.lockMission(id).catch((error: BusinessError) => {
-      console.error('lockMission fail, error: ${error}');
+      console.error(`lockMission fail, error: ${error}`);
   });
   ```
 
@@ -503,11 +503,11 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
     }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.unlockMission(id).then(() => {
@@ -550,18 +550,18 @@ unlockMission(missionId: number): Promise&lt;void&gt;;
   let id: number = -1;
   missionManager.getMissionInfos('',10).then((res) => {
     let allMissions = res;
-    console.log('size = ${allMissions.length}');
-    console.log('missions = ${JSON.stringify(allMissions)}');
+    console.log(`size = ${allMissions.length}`);
+    console.log(`missions = ${JSON.stringify(allMissions)}`);
     id = allMissions[0].missionId;
   }).catch((error: BusinessError) => {
-      console.error('getMissionInfos fail, error: ${error}');
+      console.error(`getMissionInfos fail, error: ${error}`);
   });
 
   missionManager.lockMission(id).catch((error: BusinessError) => {
-      console.error('lockMission fail, error: ${error}');
+      console.error(`lockMission fail, error: ${error}`);
   });
   missionManager.unlockMission(id).catch((error: BusinessError) => {
-      console.error('unlockMission fail, error: ${error}');
+      console.error(`unlockMission fail, error: ${error}`);
   });
   ```
 
@@ -592,11 +592,11 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
     }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.clearMission(id).then(() => {
@@ -639,15 +639,15 @@ clearMission(missionId: number): Promise&lt;void&gt;;
   let id: number = -1;
   missionManager.getMissionInfos('',10).then((res) => {
     let allMissions = res;
-    console.log('size = ${allMissions.length}');
-    console.log('missions = ${JSON.stringify(allMissions)}');
+    console.log(`size = ${allMissions.length}`);
+    console.log(`missions = ${JSON.stringify(allMissions)}`);
     id = allMissions[0].missionId;
   }).catch((error: BusinessError) => {
-      console.error('getMissionInfos fail, error: ${error}');
+      console.error(`getMissionInfos fail, error: ${error}`);
   });
 
   missionManager.clearMission(id).catch((error: BusinessError) => {
-    console.error('clearMission fail, error: ${error}');
+    console.error(`clearMission fail, error: ${error}`);
   });
   ```
 
@@ -731,11 +731,11 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
     }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.moveMissionToFront(id).then(() => {
@@ -772,11 +772,11 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
     }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.moveMissionToFront(id,{windowMode : 101}).then(() => {
@@ -820,14 +820,14 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
   let id: number = -1;
   missionManager.getMissionInfos('',10).then((res) => {
     let allMissions = res;
-    console.log('size = ${allMissions.length}');
-    console.log('missions = ${JSON.stringify(allMissions)}');
+    console.log(`size = ${allMissions.length}`);
+    console.log(`missions = ${JSON.stringify(allMissions)}`);
     id = allMissions[0].missionId;
   }).catch((error: BusinessError) => {
-      console.error('getMissionInfos fail, error: ${error}');
+      console.error(`getMissionInfos fail, error: ${error}`);
   });
 
   missionManager.moveMissionToFront(id).catch((error: BusinessError) => {
-    console.error('moveMissionToFront fail, error: ${error}');
+    console.error(`moveMissionToFront fail, error: ${error}`);
   });
   ```

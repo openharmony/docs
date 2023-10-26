@@ -14,9 +14,9 @@ photoAccessHelper提供监听媒体资源变更的接口，供开发者对指定
 
 通过调用[registerChange](../reference/apis/js-apis-photoAccessHelper.md#registerchange)接口监听指定uri。当被监听对象发生变更时返回监听器回调函数的值。
 
-### 对指定FileAsset注册监听
+### 对指定PhotoAsset注册监听
 
-对指定FileAsset注册监听，当被监听的FileAsset发生变更时，返回监听回调。
+对指定PhotoAsset注册监听，当被监听的PhotoAsset发生变更时，返回监听回调。
 
 **前提条件：**
 
@@ -28,7 +28,7 @@ photoAccessHelper提供监听媒体资源变更的接口，供开发者对指定
 **开发步骤：**
 
 1. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
-2. 对指定FileAsset注册监听。
+2. 对指定PhotoAsset注册监听。
 3. 将指定媒体资源设置为收藏。
 
 ```ts
@@ -114,22 +114,22 @@ async function example() {
 
 ## 模糊监听
 
-通过设置forChildUris值为true来注册模糊监听，uri为相册uri时，forChildUris为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。uri为fileAsset时，forChildUris为true、false没有区别，uri为DefaultChangeUri时，forChildUris必须为true，如果为false将找不到该uri，收不到任何消息。
+通过设置forChildUris值为true来注册模糊监听，uri为相册uri时，forChildUris为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。uri为photoAsset时，forChildUris为true、false没有区别，uri为DefaultChangeUri时，forChildUris必须为true，如果为false将找不到该uri，收不到任何消息。
 
-### 对所有FileAsset注册监听
+### 对所有PhotoAsset注册监听
 
-对所有FileAsset注册监听，当有被监听的FileAsset发生变更时，返回监听回调。
+对所有PhotoAsset注册监听，当有被监听的PhotoAsset发生变更时，返回监听回调。
 
 **前提条件：**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以对所有FileAsset注册监听，对被监听的FileAsset设置为收藏触发监听回调为例。
+下面以对所有PhotoAsset注册监听，对被监听的PhotoAsset设置为收藏触发监听回调为例。
 
 **开发步骤：**
 
-1. 对所有FileAsset注册监听。
+1. 对所有PhotoAsset注册监听。
 2. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
 3. 将指定媒体资源设置为收藏。
 

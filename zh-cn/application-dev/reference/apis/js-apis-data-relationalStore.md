@@ -79,6 +79,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -811,12 +813,13 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 import deviceManager from '@ohos.distributedDeviceManager';
 
 let dmInstance: deviceManager.DeviceManager;
+let deviceIds: Array<string> = [];
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-  let devices: Array<string> = dmInstance.getAvailableDeviceListSync();     
+  let devices: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
-    let deviceIds: Array<string> = devices[i].networkId;
+    deviceIds[i] = devices[i].networkId!;
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -3032,8 +3035,8 @@ let deviceId: string | undefined = undefined;
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   if(devices != undefined) {
-    let devices = dmInstance.getAvailableDeviceListSync();
     deviceId = devices[0].networkId;
   }
 } catch (err) {
@@ -4104,12 +4107,13 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 import deviceManager from '@ohos.distributedDeviceManager';
 
 let dmInstance: deviceManager.DeviceManager;
+let deviceIds: Array<string> = [];
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-  let devices = dmInstance.getAvailableDeviceListSync();
+  let devices: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
-      let deviceIds: Array<string> = devices[i].networkId;
+    deviceIds[i] = devices[i].networkId!;
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -4171,12 +4175,13 @@ import deviceManager from '@ohos.distributedDeviceManager';
 import { BusinessError } from "@ohos.base";
 
 let dmInstance: deviceManager.DeviceManager;
+let deviceIds: Array<string> = [];
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-  let devices = dmInstance.getAvailableDeviceListSync();
+  let devices: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
-    let deviceIds: Array<string> = devices[i].networkId;
+    deviceIds[i] = devices[i].networkId!;
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -4381,13 +4386,12 @@ try {
           console.info(`device= ${devices[i]} data changed`);
         }
       }
-    });
+    })
   }
-  catch(err) {
+} catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message
     console.error(`Register observer failed, code is ${code},message is ${message}`);
-  }
 }
 ```
 
@@ -4630,6 +4634,8 @@ if(store != undefined) {
 
 首先需要获取resultSet对象。
 
+**示例：**
+
 ```ts
 let resultSet: relationalStore.ResultSet | undefined = undefined;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -4689,14 +4695,14 @@ getColumnIndex(columnName: string): number
 
 **示例：**
 
-  ```ts
+```ts
 if(resultSet != undefined) {
   const id = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("ID"));
   const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
   const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
   const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
 }
-  ```
+```
 
 ### getColumnName
 

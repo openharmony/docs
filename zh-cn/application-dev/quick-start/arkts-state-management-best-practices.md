@@ -792,7 +792,7 @@ struct SubCounterComp {
     Text(`SubCounterComp: this.subValue.counter: ${this.subValue.counter}`)
       .onClick(() => {
         // 2nd click handler
-        this.subValue.incrSubCounter(7);
+        this.subValue.counter = 7;
       })
   }
 }
@@ -1058,396 +1058,117 @@ struct CompA {
 }
 ```
 
-## 组件复用场景
+## 精准控制状态变量关联的组件数
 
-子组件通过@Prop接收父组件传递的数据，如果嵌套的层数过多，会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题。下面给出5层@Prop嵌套传递数据的不推荐用法及通过@Reusable实现父组件向子组件传递数据的推荐用法。
+精准控制状态变量关联的组件数能减少不必要的组件刷新，提高组件的刷新效率。有时开发者会将同一个状态变量绑定多个同级组件的属性，当状态变量改变时，会让这些组件做出相同的改变，这有时会造成组件的不必要刷新，如果存在某些比较复杂的组件，则会大大影响整体的性能。但是如果将这个状态变量绑定在这些同级组件的父组件上，则可以减少需要刷新的组件数，从而提高刷新的性能。
 
 ### 不推荐用法
 
 ```ts
-// 以下是嵌套类对象的数据结构。
 @Observed
-class ClassA {
-  public title: string;
-
-  constructor(title: string) {
-    this.title = title;
+class Translate {
+  translateX: number = 20;
+}
+@Component
+struct Title {
+  @ObjectLink translateObj: Translate;
+  build() {
+    Row() {
+      Image($r('app.media.icon'))
+        .width(50)
+        .height(50)
+        .translate({
+          x:this.translateObj.translateX // this.translateObj.translateX used in two component both in Row
+        })
+      Text("Title")
+        .fontSize(20)
+        .translate({
+          x: this.translateObj.translateX
+        })
+    }
   }
 }
-
-@Observed
-class ClassB {
-  public name: string;
-  public a: ClassA;
-
-  constructor(name: string, a: ClassA) {
-    this.name = name;
-    this.a = a;
-  }
-}
-
-@Observed
-class ClassC {
-  public name: string;
-  public b: ClassB;
-
-  constructor(name: string, b: ClassB) {
-    this.name = name;
-    this.b = b;
-  }
-}
-
-@Observed
-class ClassD {
-  public name: string;
-  public c: ClassC;
-
-  constructor(name: string, c: ClassC) {
-    this.name = name;
-    this.c = c;
-  }
-}
-
-@Observed
-class ClassE {
-  public name: string;
-  public d: ClassD;
-
-  constructor(name: string, d: ClassD) {
-    this.name = name;
-    this.d = d;
-  }
-}
-
-```
-
-以下组件层次结构呈现的是@Prop嵌套场景的数据结构。
-
-```ts
 @Entry
 @Component
-struct Parent {
-  @State vote: ClassE = new ClassE('Hi', new ClassD('OpenHarmony', new ClassC('Hello', new ClassB('World', new ClassA('Peace')))))
-
+struct Page {
+  @State translateObj: Translate = new Translate();
   build() {
     Column() {
-      Button('change')
-        .onClick(() => {
-          this.vote.name = "Hello"
+      Title({
+        translateObj: this.translateObj
+      })
+      Stack() {
+      }
+      .backgroundColor("black")
+      .width(200)
+      .height(400)
+      .translate({
+        x:this.translateObj.translateX //this.translateObj.translateX used in two components both in Column
+      })
+      Button("move")
+        .translate({
+          x:this.translateObj.translateX
         })
-      Child({ voteOne: this.vote })
-    }
-  }
-}
-
-@Component
-struct Child {
-  @ObjectLink voteOne: ClassE
-  build() {
-    Column() {
-      Text(this.voteOne.name).fontSize(24).fontColor(Color.Red).margin(50)
         .onClick(() => {
-          console.log('this.voteOne.name:' + this.voteOne.name);
-          this.voteOne.name = 'Bye'
-        })
-      ChildOne({voteTwo:this.voteOne.d})
-    }
-  }
-}
-
-@Component
-struct ChildOne {
-  @ObjectLink voteTwo: ClassD
-  build() {
-    Column() {
-      Text(this.voteTwo.name).fontSize(24).fontColor(Color.Red).margin(50)
-        .onClick(() => {
-          console.log('this.voteTwo.name:' + this.voteTwo.name);
-          this.voteTwo.name = 'Bye Bye'
-        })
-      ChildTwo({voteThree:this.voteTwo.c})
-    }
-  }
-}
-
-@Component
-struct ChildTwo {
-  @ObjectLink voteThree: ClassC
-  build() {
-    Column() {
-      Text(this.voteThree.name).fontSize(24).fontColor(Color.Red).margin(50)
-        .onClick(() => {
-          console.log('this.voteThree.name:' + this.voteThree.name);
-          this.voteThree.name = 'Bye Bye Bye'
-        })
-      ChildThree({voteFour:this.voteThree.b})
-    }
-  }
-}
-
-@Component
-struct ChildThree {
-  @ObjectLink voteFour: ClassB
-  build() {
-    Column() {
-      Text(this.voteFour.name).fontSize(24).fontColor(Color.Red).margin(50)
-        .onClick(() => {
-          console.log('this.voteFour.name:' + this.voteFour.name);
-          this.voteFour.name = 'Bye Bye Bye Bye'
-        })
-      ChildFour({voteFive:this.voteFour.a})
-    }
-  }
-}
-
-@Component
-struct ChildFour {
-  @ObjectLink voteFive: ClassA
-  build() {
-    Column() {
-      Text(this.voteFive.title).fontSize(24).fontColor(Color.Red).margin(50)
-        .onClick(() => {
-          console.log('this.voteFive.title:' + this.voteFive.title);
-          this.voteFive.title = 'Bye Bye Bye Bye Bye'
+          animateTo({
+            duration: 50
+          },()=>{
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
+          })
         })
     }
   }
 }
 ```
+
+在上面的示例中，状态变量this.translateObj.translateX被用在多个同级的子组件下，当this.translateObj.translateX变化时，会导致所有关联它的组件一起刷新，但实际上由于这些组件的变化是相同的，因此可以将这个属性绑定到他们共同的父组件上，来实现减少组件的刷新数量。经过分析，所有的子组件其实都处于Page下的Column中，因此将所有子组件相同的translate属性统一到Column上，来实现精准控制状态变量关联的组件数。
 
 ### 推荐用法
 
-当在组件复用场景时，父组件向子组件传递数据，子组件变化不会同步给父组件，推荐使用aboutToResue。
-
-```ts
-// 以下是嵌套类对象的数据结构。
-@Observed
-class ClassA {
-  public title: string;
-
-  constructor(title: string) {
-    this.title = title;
-  }
-}
-
-@Observed
-class ClassB {
-  public name: string;
-  public a: ClassA;
-
-  constructor(name: string, a: ClassA) {
-    this.name = name;
-    this.a = a;
-  }
-}
-
-@Observed
-class ClassC {
-  public name: string;
-  public b: ClassB;
-
-  constructor(name: string, b: ClassB) {
-    this.name = name;
-    this.b = b;
-  }
-}
-
-@Observed
-class ClassD {
-  public name: string;
-  public c: ClassC;
-
-  constructor(name: string, c: ClassC) {
-    this.name = name;
-    this.c = c;
-  }
-}
-
-@Observed
-class ClassE {
-  public name: string;
-  public d: ClassD;
-
-  constructor(name: string, d: ClassD) {
-    this.name = name;
-    this.d = d;
-  }
-}
-
 ```
-
-以下组件层次结构呈现的是@Reusable组件复用场景的数据结构。
-
-```ts
-// 以下是嵌套类对象的数据结构。
 @Observed
-class ClassA {
-  public title: string;
-
-  constructor(title: string) {
-    this.title = title;
-  }
+class Translate {
+  translateX: number = 20;
 }
-
-@Observed
-class ClassB {
-  public name: string;
-  public a: ClassA;
-
-  constructor(name: string, a: ClassA) {
-    this.name = name;
-    this.a = a;
-  }
-}
-
-@Observed
-class ClassC {
-  public name: string;
-  public b: ClassB;
-
-  constructor(name: string, b: ClassB) {
-    this.name = name;
-    this.b = b;
-  }
-}
-
-@Observed
-class ClassD {
-  public name: string;
-  public c: ClassC;
-
-  constructor(name: string, c: ClassC) {
-    this.name = name;
-    this.c = c;
-  }
-}
-
-@Observed
-class ClassE {
-  public name: string;
-  public d: ClassD;
-
-  constructor(name: string, d: ClassD) {
-    this.name = name;
-    this.d = d;
+@Component
+struct Title {
+  @ObjectLink translateObj: Translate;
+  build() {
+    Row() { 
+      Image($r('app.media.icon'))
+        .width(50)
+        .height(50)
+      Text("Title")
+        .fontSize(20)
+    }
   }
 }
 @Entry
 @Component
-struct Parent {
-  @State vote: ClassE = new ClassE('Hi', new ClassD('OpenHarmony', new ClassC('Hello', new ClassB('World', new ClassA('Peace')))))
-
+struct Page {
+  @State translateObj: Translate = new Translate();
   build() {
     Column() {
-      Button('change')
+      Title({
+        translateObj: this.translateObj
+      })
+      Stack() {
+      }
+      .backgroundColor("black")
+      .width(200)
+      .height(400)
+      Button("move")
         .onClick(() => {
-          this.vote.name = "Hello"
-        })
-        .reuseId(Child.name)
-      Child({voteOne: this.vote})
-    }
-  }
-}
-
-@Reusable
-@Component
-struct Child {
-  @State voteOne: ClassE = new ClassE('voteOne', new ClassD('OpenHarmony', new ClassC('Hello', new ClassB('World', new ClassA('Peace')))))
-
-  aboutToReuse(params: ClassE) {
-    this.voteOne = params
-  }
-  build() {
-    Column() {
-      Text(this.voteOne.name).fontSize(24).fontColor(Color.Red).margin(50)
-        .onClick(() => {
-          console.error('this.voteOne.name:' + this.voteOne.name);
-          this.voteOne.name = 'Bye'
-        })
-        .reuseId(ChildOne.name)
-      ChildOne({voteTwo: this.voteOne.d})
-    }
-  }
-}
-
-@Reusable
-@Component
-struct ChildOne {
-  @State voteTwo: ClassD = new ClassD('voteTwo', new ClassC('Hello', new ClassB('World', new ClassA('Peace'))))
-  aboutToReuse(params: ClassD){
-    this.voteTwo = params
-  }
-  build() {
-    Column() {
-      Text(this.voteTwo.name).fontSize(24).fontColor(Color.Red).margin(50)
-        .onClick(() => {
-          console.error('this.voteTwo.name:' + this.voteTwo.name);
-          this.voteTwo.name = 'Bye Bye'
-        })
-        .reuseId(ChildTwo.name)
-      ChildTwo({voteThree: this.voteTwo.c})
-    }
-  }
-}
-
-@Reusable
-@Component
-struct ChildTwo {
-  @State voteThree: ClassC = new ClassC('voteThree', new ClassB('World', new ClassA('Peace')))
-  aboutToReuse(params: ClassC){
-    this.voteThree = params
-
-  }
-  build() {
-    Column() {
-      Text(this.voteThree.name).fontSize(24).fontColor(Color.Red).margin(50)
-        .onClick(() => {
-          console.log('this.voteThree.name:' + this.voteThree.name);
-          this.voteThree.name = 'Bye Bye Bye'
-        })
-        .reuseId(ChildThree.name)
-      ChildThree({voteFour: this.voteThree.b})
-    }
-  }
-}
-
-@Reusable
-@Component
-struct ChildThree {
-  @State voteFour: ClassB = new ClassB('voteFour', new ClassA('Peace'))
-  aboutToReuse(params: ClassB){
-    this.voteFour = params
-
-  }
-  build() {
-    Column() {
-      Text(this.voteFour.name).fontSize(24).fontColor(Color.Red).margin(50)
-        .onClick(() => {
-          console.log('this.voteFour.name:' + this.voteFour.name);
-          this.voteFour.name = 'Bye Bye Bye Bye'
-        })
-        .reuseId(ChildFour.name)
-      ChildFour({voteFive: this.voteFour.a})
-    }
-  }
-}
-
-@Reusable
-@Component
-struct ChildFour {
-  @State voteFive: ClassA = new ClassA('voteFive')
-  aboutToReuse(params: ClassA){
-    this.voteFive = params
-
-  }
-  build() {
-    Column() {
-      Text(this.voteFive.title).fontSize(24).fontColor(Color.Red).margin(50)
-        .onClick(() => {
-          console.log('this.voteFive.title:' + this.voteFive.title);
-          this.voteFive.title = 'Bye Bye Bye Bye Bye'
+          animateTo({
+            duration: 50
+          },()=>{
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
+          })
         })
     }
+    .translate({ // the component in Column shares the same property translate
+      x: this.translateObj.translateX
+    })
   }
 }
 ```

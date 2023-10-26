@@ -1530,7 +1530,7 @@ getTimeZone(zoneID?: string): TimeZone
 
 | 类型       | 说明           |
 | -------- | ------------ |
-| TimeZone | 时区ID对应的时区对象。 |
+| [TimeZone](#timezone) | 时区ID对应的时区对象。 |
 
 **示例：**
   ```ts
@@ -1618,6 +1618,12 @@ getOffset(date?: number): number
 获取某一时刻时区对象表示的时区与UTC时区的偏差。
 
 **系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明     |
+| ------ | ------ | ---- | ------ |
+| date | number | 否    | 待计算偏差的时刻。 |
 
 **返回值：**
 

@@ -1,12 +1,18 @@
 # Security
 
 
-- Access Control  
+- Access Control
   - [Access Control (Permission) Overview](accesstoken-overview.md)
   - [Applying for Permissions](accesstoken-guidelines.md)
   - [Verifying API Access Permissions](permission-verify-guidelines.md)
   - [Application Permission List](permission-list.md)
   - [Application Permission Group List](permission-group-list.md)
+- Security Component
+  - [Security Component Overview](security-component-manager-overview.md)
+  - [Security Component Development](security-component-manager-guidelines.md)
+- DLP
+  - [DLP Overview](dlp-overview.md)
+  - [DLP Development](dlp-guidelines.md)
 - User Authentication
   - [User Authentication Overview](userauth-overview.md)
   - [User Authentication Development](userauth-guidelines.md)
@@ -21,7 +27,7 @@
 - Certificate
   - [Certificate Overview](cert-overview.md)
   - [Certificate Development](cert-guidelines.md)
-- hapsigner 
+- hapsigner
   - [hapsigner Overview](hapsigntool-overview.md)
   - [hapsigner Guide](hapsigntool-guidelines.md)
   - [HarmonyAppProvision Configuration File](app-provision-structure.md)

@@ -363,7 +363,8 @@ class MyMath implements MyMathInterface {
 }
         
 class MyMathProxy implements MyMathInterface {
-  constructor(math: any) {
+  private myMath: MyMath;
+  constructor(math: MyMath) {
     this.myMath = new MyMath(math.a, math.b);
   }  
   // 代理MyMath类的compute方法
@@ -388,4 +389,4 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 ## 相关实例
 针对多线程并发，有以下相关实例可供参考：  
-* [聊天实例应用（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)
+* [聊天实例应用（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/Solutions/IM/Chat)

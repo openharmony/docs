@@ -1,7 +1,7 @@
 # 进度条（Progress）
 
 
-Progress是进度条显示组件，显示内容通常为某次目标操作的当前进度。具体用法请参考[Progress](../reference/arkui-ts/ts-basic-components-progress.md)。
+Progress是进度条显示组件，显示内容通常为目标操作的当前进度。具体用法请参考[Progress](../reference/arkui-ts/ts-basic-components-progress.md)。
 
 
 ## 创建进度条
@@ -15,7 +15,7 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 ```
 
 
-该接口用于创建type样式的进度条，其中value用于设置初始进度值，total用于设置进度总长度，type决定Progress样式。
+其中，value用于设置初始进度值，total用于设置进度总长度，type用于设置Progress样式。
 
 
 
@@ -29,13 +29,14 @@ Progress({ value: 24, total: 100, type: ProgressType.Linear }) // 创建一个�
 
 ## 设置进度条样式
 
-Progress有5种可选类型，在创建时通过设置ProgressType枚举类型给type可选项指定Progress类型。其分别为：ProgressType.Linear（线性样式）、 ProgressType.Ring（环形无刻度样式）、ProgressType.ScaleRing（环形有刻度样式）、ProgressType.Eclipse（圆形样式）和ProgressType.Capsule（胶囊样式）。
+Progress有5种可选类型，通过ProgressType可以设置进度条样式，ProgressType类型包括：：ProgressType.Linear（线性样式）、 ProgressType.Ring（环形无刻度样式）、ProgressType.ScaleRing（环形有刻度样式）、ProgressType.Eclipse（圆形样式）和ProgressType.Capsule（胶囊样式）。
 
 
 - 线性样式进度条（默认类型）
+
   >**说明：**
   >
-  > 从API version9开始，组件高度大于宽度的时候自适应垂直显示，相等时仍然保持水平显示。
+  > 从API version9开始，组件高度大于宽度时，自适应垂直显示；组件高度等于宽度时，保持水平显示。
 
 
   ```ts

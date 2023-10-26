@@ -15,6 +15,6 @@ USB服务系统包含USB API、USB Service、USB HAL。
 
 - USB API：提供USB的基础API，主要包含查询USB设备列表、批量数据传输、控制命令传输、权限控制等。
 
-- USB Service：主要实现HAL层数据的接收、解析、分发，前后台的策略管控以及对设备的管理等。
+- USB Service：主要实现HAL层数据的接收、解析、分发以及对设备的管理等。
 
 - USB HAL层：提供给用户态可直接调用的驱动能力接口。

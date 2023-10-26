@@ -66,7 +66,7 @@ try {
 
 ## Setting the Mouse Pointer Style
 
-When designing a color picker, you can have the mouse pointer switched to the color picker style during color pickup and then switched to the default style on completion of color pickup. This setting takes effect for the pointer style of a specified window in the current application. A total of 39 pointer styles can be set. For details, see [Pointer Style](../reference/apis/js-apis-pointer.md#pointerstyle9).
+When designing a color picker, you can have the mouse pointer switched to the color picker style during color pickup and then switched to the default style on completion of color pickup. This setting takes effect for the pointer style of a specified window in the current application. A total of 43 pointer styles can be set. For details, see [Pointer Style](../reference/apis/js-apis-pointer.md#pointerstyle9).
 
 ### How to Develop
 

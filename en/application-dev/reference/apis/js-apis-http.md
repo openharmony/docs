@@ -9,15 +9,16 @@ The **http** module provides the HTTP data request capability. An application ca
 
 ## Modules to Import
 
-```js
+```ts
 import http from '@ohos.net.http';
 ```
 
 ## Examples
 
-```js
+```ts
 // Import the http namespace.
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
@@ -66,16 +67,17 @@ httpRequest.request(
     // data.header carries the HTTP response header. Parse the content based on service requirements.
     console.info('header:' + JSON.stringify(data.header));
     console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-    // Call the destroy() method to release resources after the HttpRequest is complete.
+    // Unsubscribe from HTTP Response Header events.
+    httpRequest.off('headersReceive');
+    // Call destroy() to destroy the JavaScript object after the HTTP request is complete.
     httpRequest.destroy();
   } else {
     console.info('error:' + JSON.stringify(err));
     // Unsubscribe from HTTP Response Header events.
     httpRequest.off('headersReceive');
-    // Call the destroy() method to release resources after the HttpRequest is complete.
+    // Call destroy() to destroy the JavaScript object after the HTTP request is complete.
     httpRequest.destroy();
   }
-}
 );
 ```
 
@@ -97,11 +99,11 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 
 | Type       | Description                                                        |
 | :---------- | :----------------------------------------------------------- |
-| HttpRequest | An **HttpRequest** object, which contains the **request**, **requestInStream**, **destroy**, **on**, or **off** method.|
+| HttpRequest | **HttpRequest** object, which contains the **request**, **requestInStream**, **destroy**, **on**, or **off** method.|
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
 let httpRequest = http.createHttp();
@@ -173,7 +175,10 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 **Example**
 
-```js
+```ts
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL", (err: Error, data: http.HttpResponse) => {
   if (!err) {
     console.info('Result:' + data.result);
@@ -249,7 +254,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
 class Header {
@@ -261,7 +266,7 @@ class Header {
 }
 
 let httpRequest = http.createHttp();
-let promise:RequestOptions = httpRequest.request("EXAMPLE_URL", {
+let promise = httpRequest.request("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
@@ -273,13 +278,12 @@ promise.then((data:http.HttpResponse) => {
   console.info('code:' + data.responseCode);
   console.info('header:' + JSON.stringify(data.header));
   console.info('cookies:' + data.cookies); // 8+
-  console.info('header.Content-Type:' + data.header.ContentType);
-  console.info('header.Status-Line:' + data.header.StatusLine);
+  console.info('header.Content-Type:' + data.header);
+  console.info('header.Status-Line:' + data.header);
 
 }).catch((err:Error) => {
   console.info('error:' + JSON.stringify(err));
 });
-
 ```
 
 ### request<sup>6+</sup>
@@ -350,7 +354,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
 class Header {
@@ -362,7 +366,7 @@ class Header {
 }
 
 let httpRequest = http.createHttp();
-let promise:RequestOptions = httpRequest.request("EXAMPLE_URL", {
+let promise = httpRequest.request("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
@@ -373,8 +377,8 @@ promise.then((data:http.HttpResponse) => {
   console.info('code:' + data.responseCode);
   console.info('header:' + JSON.stringify(data.header));
   console.info('cookies:' + data.cookies); // 8+
-  console.info('header.Content-Type:' + data.header.Content-Type);
-  console.info('header.Status-Line:' + data.header.Status-Line);
+  console.info('header.Content-Type:' + data.header);
+  console.info('header.Status-Line:' + data.header);
 }).catch((err:Error) => {
   console.info('error:' + JSON.stringify(err));
 });
@@ -390,7 +394,10 @@ Destroys an HTTP request.
 
 **Example**
 
-```js
+```ts
+import http from '@ohos.net.http';
+let httpRequest = http.createHttp();
+
 httpRequest.destroy();
 ```
 
@@ -453,9 +460,11 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
+let httpRequest = http.createHttp();
 httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError, data: number) => {
   if (!err) {
     console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
@@ -525,9 +534,9 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
-
+import { BusinessError } from '@ohos.base';
 
 class Header {
   public contentType: string;
@@ -539,12 +548,12 @@ class Header {
 
 let httpRequest = http.createHttp();
 httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError<void> , data: number) => {
-    if (!err) {
-      console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
-    } else {
-      console.info("requestInStream ERROR : err = " + JSON.stringify(err));
-    }
-  })
+  if (!err) {
+    console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
+  } else {
+    console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+  }
+})
 ```
 
 ### requestInStream<sup>10+</sup>
@@ -612,7 +621,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
 class Header {
@@ -624,7 +633,7 @@ class Header {
 }
 
 let httpRequest = http.createHttp();
-let promise:RequestOptions = httpRequest.request("EXAMPLE_URL", {
+let promise = httpRequest.request("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
@@ -657,9 +666,11 @@ Registers an observer for HTTP Response Header events.
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
+let httpRequest = http.createHttp();
 httpRequest.on('headerReceive', (data: BusinessError) => {
   console.info('error:' + JSON.stringify(data));
 });
@@ -688,9 +699,10 @@ Unregisters the observer for HTTP Response Header events.
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
+let httpRequest = http.createHttp();
 httpRequest.off('headerReceive');
 ```
 
@@ -711,9 +723,10 @@ Registers an observer for HTTP Response Header events.
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
+let httpRequest = http.createHttp();
 httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
@@ -739,7 +752,10 @@ Unregisters the observer for HTTP Response Header events.
 
 **Example**
 
-```js
+```ts
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
 httpRequest.off('headersReceive');
 ```
 
@@ -760,9 +776,10 @@ Registers a one-time observer for HTTP Response Header events. Once triggered, t
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
+let httpRequest = http.createHttp();
 httpRequest.once('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
@@ -788,9 +805,10 @@ Registers an observer for events indicating receiving of HTTP streaming response
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
+let httpRequest = http.createHttp();
 httpRequest.on('dataReceive', (data: ArrayBuffer) => {
   console.info('dataReceive length: ' + JSON.stringify(data.byteLength));
 });
@@ -816,9 +834,10 @@ Unregisters the observer for events indicating receiving of HTTP streaming respo
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
+let httpRequest = http.createHttp();
 httpRequest.off('dataReceive');
 ```
 
@@ -842,9 +861,10 @@ Registers an observer for events indicating completion of receiving HTTP streami
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
+let httpRequest = http.createHttp();
 httpRequest.on('dataEnd', () => {
   console.info('Receive dataEnd !');
 });
@@ -870,9 +890,10 @@ Unregisters the observer for events indicating completion of receiving HTTP stre
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
+let httpRequest = http.createHttp();
 httpRequest.off('dataEnd');
 ```
 
@@ -896,7 +917,7 @@ Registers an observer for events indicating progress of receiving HTTP streaming
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
 class RequestData{
@@ -904,6 +925,7 @@ class RequestData{
   totalSize: number = 2000 
 }
 
+let httpRequest = http.createHttp();
 httpRequest.on('dataReceiveProgress', (data: RequestData) => {
   console.info('dataReceiveProgress:' + JSON.stringify(data));
 });
@@ -929,9 +951,10 @@ Unregisters the observer for events indicating progress of receiving HTTP stream
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
+let httpRequest = http.createHttp();
 httpRequest.off('dataReceiveProgress');
 ```
 
@@ -944,8 +967,8 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | Name        | Type                                         | Mandatory| Description                                                        |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | No  | Request method. The default value is **GET**.                                                  |
-| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this parameter serves as the content of the HTTP request and is encoded in UTF-8 format. If **'Content-Type'** is **'application/x-www-form-urlencoded'**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding and passed to the API as a string.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.|
-| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|
+| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this parameter serves as the content of the HTTP request and is encoded in UTF-8 format. If **Content-Type** is **application/x-www-form-urlencoded**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding and this field is usually in the String format. If **Content-Type** is **text/xml**, this field is usually in the String format. If **Content-Type** is **application/json**, this field is usually in the Object format. If **Content-Type** is **application/octet-stream**, this field is usually in the ArrayBuffer format. If **Content-Type** is **multipart/form-data** and the content to be uploaded is a file, this field is usually in the ArrayBuffer format. The preceding information is for reference only and may vary according to the actual situation.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.|
+| <span name="expectDataType">[expectDataType<sup>9+</sup>](#result)</span>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**.  |
 | priority<sup>9+</sup>        | number                          | No  | Priority. The value range is [1,1000]. The default value is **1**.                          |
 | header                       | Object                          | No  | HTTP request header. The default value is **{'Content-Type': 'application/json'}**.  |
@@ -953,7 +976,7 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.                            |
 | usingProxy<sup>10+</sup>     | boolean \| Object               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **object** type, the specified network proxy is used.
-| caPath<sup>10+</sup>     | string               | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificates. The path is the sandbox mapping path, and preset CA certificates are stored in **/etc/ssl/certs/cacert.pem**. You are advised to store CA certificates in this path. Currently, only **.pem** certificates are supported.                            |
+| caPath<sup>10+</sup>     | string               | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **Global.getContext().filesDir**. Currently, only **.pem** certificates are supported.                            |
 
 ## RequestMethod<sup>6+</sup>
 
@@ -1024,7 +1047,7 @@ Defines the response to an HTTP request.
 
 | Name              | Type                                        | Mandatory| Description                                                        |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| result               | string<sup>6+</sup> \| Object<sup>deprecated 8+</sup> \| ArrayBuffer<sup>8+</sup> | Yes  | Response content returned based on **Content-type** in the response header:<br>- application/json: a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content.<br>- application/octet-stream: ArrayBuffer<br>- Others: string|
+| <span name="result">[result](#expectDataType)</span>              | string<sup>6+</sup> \| Object<sup>deprecated 8+</sup> \| ArrayBuffer<sup>8+</sup> | Yes  | Response content returned based on **Content-type** in the response header. If **HttpRequestOptions** does not contain the **expectDataType** field, the response content is returned according to the following rules:<br>- application/json: string in JSON format<br>- application/octet-stream: ArrayBuffer<br>- image: ArrayBuffer<br>- Others: string<br> If **HttpRequestOptions** contains the **expectDataType** field, the response content must be of the same type as the data returned by the server.|
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | Yes  | Type of the return value.                          |
 | responseCode         | [ResponseCode](#responsecode) \| number      | Yes  | Result code for an HTTP request. If the callback function is successfully executed, a result code defined in [ResponseCode](#responsecode) will be returned. Otherwise, an error code will be returned in the **err** field in **AsyncCallback**.|
 | header               | Object                                       | Yes  | Response header. The return value is a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content. Common fields and parsing methods are as follows:<br>- content-type: header['content-type'];<br>- status-line: header['status-line'];<br>- date: header.date/header['date'];<br>- server: header.server/header['server'];|
@@ -1052,7 +1075,7 @@ Creates a default object to store responses to HTTP access requests.
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
 
 let httpResponseCache = http.createHttpResponseCache();
@@ -1066,7 +1089,7 @@ Defines an object that stores the response to an HTTP request. Before invoking A
 
 flush(callback: AsyncCallback\<void\>): void
 
-Flushes data in the cache to the file system so that the cached data can be accessed in the next HTTP request. This API uses an asynchronous callback to return the result.
+Flushes cached data to the file system so that the data can be accessed in the next HTTP request. This API uses an asynchronous callback to return the result. Cached data includes the response header (header), response body (result), cookies, request time (requestTime), and response time (responseTime).
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1078,9 +1101,11 @@ Flushes data in the cache to the file system so that the cached data can be acce
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
+let httpResponseCache = http.createHttpResponseCache();
 httpResponseCache.flush((err: BusinessError) => {
   if (err) {
     console.info('flush fail');
@@ -1094,7 +1119,7 @@ httpResponseCache.flush((err: BusinessError) => {
 
 flush(): Promise\<void\>
 
-Flushes data in the cache to the file system so that the cached data can be accessed in the next HTTP request. This API uses a promise to return the result.
+Flushes cached data to the file system so that the data can be accessed in the next HTTP request. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1106,9 +1131,11 @@ Flushes data in the cache to the file system so that the cached data can be acce
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
+let httpResponseCache = http.createHttpResponseCache();
 httpResponseCache.flush().then(() => {
   console.info('flush success');
 }).catch((err: BusinessError) => {
@@ -1132,9 +1159,11 @@ Disables the cache and deletes the data in it. This API uses an asynchronous cal
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
+let httpResponseCache = http.createHttpResponseCache();
 httpResponseCache.delete((err: BusinessError) => {
   if (err) {
     console.info('delete fail');
@@ -1160,9 +1189,11 @@ Disables the cache and deletes the data in it. This API uses a promise to return
 
 **Example**
 
-```js
+```ts
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
+let httpResponseCache = http.createHttpResponseCache();
 httpResponseCache.delete().then(() => {
   console.info('delete success');
 }).catch((err: Error) => {

@@ -36,7 +36,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -87,7 +87,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -128,7 +128,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -172,7 +172,7 @@ cancelReminder(reminderId: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -208,7 +208,7 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -227,14 +227,15 @@ reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<rem
     for (let i = 0; i < reminders.length; i++) {
       console.log("getValidReminders = " + reminders[i]);
       console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-      for (let j = 0; j < reminders[i].actionButton!.length; j++) {
-        console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton![j]!.title);
-        console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton![j]!.type);
+      const actionButton = reminders[i].actionButton || [];
+      for (let j = 0; j < actionButton.length; j++) {
+        console.log("getValidReminders, actionButton.title = " + actionButton[j]?.title);
+        console.log("getValidReminders, actionButton.type = " + actionButton[j]?.type);
       }
-      console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent!.pkgName);
-      console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent!.abilityName);
-      console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent!.pkgName);
-      console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent!.abilityName);
+      console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
+      console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
+      console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
+      console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
       console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
       console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
       console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -265,7 +266,7 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -281,14 +282,15 @@ reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentMan
   for (let i = 0; i < reminders.length; i++) {
     console.log("getValidReminders = " + reminders[i]);
     console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-    for (let j = 0; j < reminders[i].actionButton!.length; j++) {
-      console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton![j]!.title);
-      console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton![j]!.type);
+    const actionButton = reminders[i].actionButton || [];
+    for (let j = 0; j < actionButton.length; j++) {
+      console.log("getValidReminders, actionButton.title = " + actionButton[j]?.title);
+      console.log("getValidReminders, actionButton.type = " + actionButton[j]?.type);
     }
-    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent!.pkgName);
-    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent!.abilityName);
-    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent!.pkgName);
-    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent!.abilityName);
+    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
+    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
+    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
+    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
     console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
     console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
     console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -301,7 +303,7 @@ reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentMan
   }
 }).catch((err: BusinessError) => {
   console.log("promise err code:" + err.code + " message:" + err.message);
-});
+}); 
 ```
 
 ## reminderAgentManager.cancelAllReminders
@@ -320,7 +322,7 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -356,7 +358,7 @@ cancelAllReminders(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |

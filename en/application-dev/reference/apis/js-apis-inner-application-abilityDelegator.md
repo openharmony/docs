@@ -54,7 +54,7 @@ import { BusinessError } from '@ohos.base';
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
+    console.info(`onAbilityCreateCallback, data: ${JSON.stringify(data)}`);
 }
 
 let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
@@ -63,7 +63,7 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 };
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
-    console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    console.error(`addAbilityMonitor fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -117,6 +117,43 @@ abilityDelegator.addAbilityMonitor(monitor).then(() => {
 });
 ```
 
+### addAbilityMonitorSync<sup>10+</sup>
+
+addAbilityMonitorSync(monitor: AbilityMonitor): void;
+
+Adds an **AbilityMonitor** instance. This API is a synchronous API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | Yes  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) instance.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | AddAbilityMonitor failed. |
+| 401  | If the input parameter is not valid parameter. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+let monitor = {
+    abilityName: 'abilityname',
+    onAbilityCreate: onAbilityCreateCallback
+};
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityMonitorSync(monitor);
+```
+
 ### removeAbilityMonitor<sup>9+</sup>
 
 removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void;
@@ -160,7 +197,7 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
-    console.error('removeAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    console.error(`removeAbilityMonitor fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -215,6 +252,43 @@ abilityDelegator.removeAbilityMonitor(monitor).then(() => {
 });
 ```
 
+### removeAbilityMonitorSync<sup>10+</sup>
+
+removeAbilityMonitorSync(monitor: AbilityMonitor): void;
+
+Deletes an **AbilityMonitor** instance. This API is a synchronous API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | Yes  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) instance.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | RemoveAbilityMonitor failed. |
+| 401  | If the input parameter is not valid parameter. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+let monitor = {
+    abilityName: 'abilityname',
+    onAbilityCreate: onAbilityCreateCallback
+};
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.removeAbilityMonitorSync(monitor);
+```
+
 ### waitAbilityMonitor<sup>9+</sup>
 
 waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>): void;
@@ -259,9 +333,9 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAbility) => {
     if (error) {
-        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -312,9 +386,9 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : BusinessError, data : UIAbility) => {
     if (error && error.code !== 0) {
-        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -526,7 +600,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                                  | Mandatory| Description              |
 | -------- | -------------------------------------- | ---- | ------------------ |
-| want     | [Want](js-apis-application-want.md) | Yes  | **Want** parameter for starting the ability.   |
+| want     | [Want](js-apis-app-ability-want.md) | Yes  | **Want** parameter for starting the ability.   |
 | callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -582,7 +656,7 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name| Type                                  | Mandatory| Description           |
 | ------ | -------------------------------------- | ---- | --------------- |
-| want   | [Want](js-apis-application-want.md) | Yes  | **Want** parameter for starting the ability.|
+| want   | [Want](js-apis-app-ability-want.md) | Yes  | **Want** parameter for starting the ability.|
 
 **Return value**
 
@@ -1173,6 +1247,44 @@ abilityDelegator.addAbilityStageMonitor({
 });
 ```
 
+### addAbilityStageMonitorSync<sup>10+</sup>
+
+addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void;
+
+Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes of an ability stage. This API is a synchronous API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
+| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | AddAbilityStageMonitor failed. |
+| 401 | If the input parameter is not valid parameter. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+let monitor = {
+    moduleName: 'moduleName',
+    srcEntrance: 'srcEntrance',
+};
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityStageMonitorSync(monitor);
+```
+
 ### removeAbilityStageMonitor<sup>9+</sup>
 
 removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void;
@@ -1255,6 +1367,43 @@ abilityDelegator.removeAbilityStageMonitor({
 }).then(() => {
     console.info('removeAbilityStageMonitor promise');
 });
+```
+
+### removeAbilityStageMonitorSync<sup>10+</sup>
+
+removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void;
+
+Removes an **AbilityStageMonitor** instance from the application memory. This API is a synchronous API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | RemoveAbilityStageMonitor failed. |
+| 401 | If the input parameter is not valid parameter. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+let monitor = {
+    moduleName: 'moduleName',
+    srcEntrance: 'srcEntrance',
+};
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.removeAbilityStageMonitorSync(monitor);
 ```
 
 ### waitAbilityStageMonitor<sup>9+</sup>

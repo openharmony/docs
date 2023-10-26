@@ -3,7 +3,7 @@
   - ArkTS高性能编程
     - [高性能编程规范](high-performance-programming.md)
     - [高效并发编程](efficient-concurrent-programming.md)
-    - [安全和高效的使用N-API开发Native模块](develop-Native-modules-using-NAPI-safely-and-efficiently.md)
+    - [N-API高效开发指导](develop-Native-modules-using-NAPI-safely-and-efficiently.md)
     - [多线程能力场景化](multi_thread_capability.md)
   - 减少卡顿丢帧
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
@@ -16,10 +16,12 @@
   - 提升应用启动和响应速度
     - [提升应用冷启动速度](improve-application-cold-start-speed.md)
     - [提升应用响应速度](improve-application-response.md)
+    - [Flex布局性能提升使用指导](flex-development-performance-boost.md)
     - [优化布局性能](reduce-view-nesting-levels.md)
     - [合理使用IPC通信](reasonable-using-ipc.md)
     - [减少首帧绘制时的冗余操作](reduce-redundant-operations-when-render-first-frame.md)
     - [列表场景性能提升实践](list-perf-improvment.md)
     - [动效能力实践](animation_practice.md)
+    - [性能提升的其他方法](arkts-performance-improvement-recommendation.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)

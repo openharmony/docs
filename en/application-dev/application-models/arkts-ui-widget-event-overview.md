@@ -1,8 +1,7 @@
 # Widget Event Capability Overview
 
 For dynamic ATS widgets, the **postCardAction()** API is provided for interaction between the widget internal and the provider application. Currently, this API supports the router, message, and call events and can be called only in the widget.
-
-For static ATS widgets, the [FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md) component is provided for interaction between the widget internal and the provider application.
+For static ATS widgets, the [FormLink](../reference/arkui-ts/ts-container-formlink.md) component is provided for interaction between the widget internal and the provider application.
 
 ## Dynamic Widget Event Capability
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
@@ -34,7 +33,7 @@ For static ATS widgets, the [FormLink](../../application-dev/reference/arkui-ts/
 
 Sample code of the **postCardAction()** API:
 
-```typescript
+```ts
 Button ('Redirect')
   .width('40%')
   .height('20%')
@@ -66,4 +65,4 @@ Button ('Start in Background')
 ```
 
 ## Static Widget Event Capability
-See [FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md).
+See [FormLink](../reference/arkui-ts/ts-container-formlink.md).

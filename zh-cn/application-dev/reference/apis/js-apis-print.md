@@ -292,7 +292,7 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf |
+| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
 | callback | AsyncCallback&lt;PrintTask&gt; | 是 | 异步获取打印完成之后的回调 |
 
 **示例：**
@@ -330,7 +330,7 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf |
+| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1319,9 +1319,14 @@ off(type: 'printerStateChange', callback?: Callback&lt;boolean&gt;): void
 
 ```ts
 import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
 
-print.off('printerStateChange', (data: boolean) => {
-    console.log('off printerStateChange data : ' + JSON.stringify(data));
+print.off('printerStateChange', (err: BusinessError, data: boolean) => {
+    if (err) {
+        console.log('off printerStateChange failed, because : ' + JSON.stringify(err));
+    } else {
+        console.log('off printerStateChange data : ' + JSON.stringify(data));
+    }
 })
 ```
 
@@ -1375,9 +1380,14 @@ off(type: 'jobStateChange', callback?: Callback&lt;boolean&gt;): void
 
 ```ts
 import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
 
-print.off('jobStateChange', (data: boolean) => {
-    console.log('offJobStateChanged data : ' + JSON.stringify(data));
+print.off('jobStateChange', (err: BusinessError, data: boolean) => {
+    if (err) {
+        console.log('offJobStateChanged failed, because : ' + JSON.stringify(err));
+    } else {
+        console.log('offJobStateChanged data : ' + JSON.stringify(data));
+    }
 })
 ```
 
@@ -1431,9 +1441,14 @@ off(type: 'extInfoChange', callback?: Callback&lt;boolean&gt;): void
 
 ```ts
 import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
 
 print.off('extInfoChange', (err: BusinessError, data: boolean) => {
-    console.log('offExtInfoChange data : ' + JSON.stringify(data));
+    if (err) {
+        console.log('offExtInfoChange failed, because : ' + JSON.stringify(err));
+    } else {
+        console.log('offExtInfoChange data : ' + JSON.stringify(data));
+    }
 })
 ```
 

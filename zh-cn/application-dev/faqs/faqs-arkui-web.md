@@ -13,7 +13,7 @@ Web组件的onUrlLoadIntercept的不同返回结果对应不同的操作：
 
 **参考链接**
 
-[onUrlloadIntercept](../reference/arkui-ts/ts-basic-components-web.md#onurlloadintercept)
+[onUrlloadIntercept](../reference/arkui-ts/ts-basic-components-web.md#onurlloadinterceptdeprecated)
 
 ## 为什么Web组件的onKeyEvent键盘事件不生效
 
@@ -230,7 +230,7 @@ struct Index {
 
 **参考链接**
 
-[userAgent](../reference/arkui-ts/ts-basic-components-web.md#useragent)、[getUserAgent](../reference/apis/js-apis-webview.md#getuseragent)
+[userAgent](../reference/arkui-ts/ts-basic-components-web.md#useragentdeprecated)、[getUserAgent](../reference/apis/js-apis-webview.md#getuseragent)
 
 ## Web组件中如何通过手势滑动返回上一个Web页面
 
@@ -269,5 +269,5 @@ struct Index {
 
 **参考链接**
 
-[Web组件](../reference/apis/js-apis-webview.md#accessstep)
+[accessStep](../reference/apis/js-apis-webview.md#accessstep)
 

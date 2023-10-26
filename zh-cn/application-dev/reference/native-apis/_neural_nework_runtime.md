@@ -1,4 +1,4 @@
-# NeuralNeworkRuntime
+# NeuralNetworkRuntime
 
 
 提供Neural Network Runtime加速模型推理的相关接口。
@@ -20,8 +20,8 @@
 
 | 文件名称 | 描述 |
 | -------- | -------- |
-| [neural_network_runtime.h](neural__network__runtime_8h.md) | Neural Network Runtime部件接口定义，AI推理框架通过Neural Network Runtime提供的Native接口，完成模型构造与编译，并在加速硬件上执行推理计算。<br>引用文件：\<neural_network_runtime/neural_network_runtime.h> |
-| [neural_network_runtime_type.h](neural__network__runtime__type_8h.md) | Neural Network Runtime定义的结构体和枚举值。<br>引用文件：\<neural_network_runtime/neural_network_runtime_type.h> |
+| [neural_network_runtime.h](neural__network__runtime_8h.md) | Neural Network Runtime部件接口定义，AI推理框架通过Neural Network Runtime提供的Native接口，完成模型构造与编译，并在加速硬件上执行推理计算。<br>引用文件：\<neural_network_runtime/neural_network_runtime.h> <br/>库：libneural_network_runtime.so|
+| [neural_network_runtime_type.h](neural__network__runtime__type_8h.md) | Neural Network Runtime定义的结构体和枚举值。<br>引用文件：\<neural_network_runtime/neural_network_runtime_type.h> <br/>库：libneural_network_runtime.so|
 
 
 ### 结构体

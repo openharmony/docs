@@ -43,6 +43,8 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
 ```js
 import { BusinessError } from '@ohos.base';
+import statistics from '@ohos.net.statistics';
+
 statistics.getIfaceRxBytes("wlan0", (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -84,6 +86,8 @@ getIfaceRxBytes(nic: string): Promise\<number>;
 **示例：**
 
 ```js
+import statistics from '@ohos.net.statistics';
+
 statistics.getIfaceRxBytes("wlan0").then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
@@ -121,6 +125,8 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
 ```js
 import { BusinessError } from '@ohos.base';
+import statistics from '@ohos.net.statistics';
+
 statistics.getIfaceTxBytes("wlan0", (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -162,6 +168,8 @@ getIfaceTxBytes(nic: string): Promise\<number>;
 **示例：**
 
 ```js
+import statistics from '@ohos.net.statistics';
+
 statistics.getIfaceTxBytes("wlan0").then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
@@ -197,6 +205,8 @@ getCellularRxBytes(callback: AsyncCallback\<number>): void;
 
 ```js
 import { BusinessError } from '@ohos.base';
+import statistics from '@ohos.net.statistics';
+
 statistics.getCellularRxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -231,6 +241,8 @@ getCellularRxBytes(): Promise\<number>;
 **示例：**
 
 ```js
+import statistics from '@ohos.net.statistics';
+
 statistics.getCellularRxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
@@ -266,6 +278,8 @@ getCellularTxBytes(callback: AsyncCallback\<number>): void;
 
 ```js
 import { BusinessError } from '@ohos.base';
+import statistics from '@ohos.net.statistics';
+
 statistics.getCellularTxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -300,6 +314,8 @@ getCellularTxBytes(): Promise\<number>;
 **示例：**
 
 ```js
+import statistics from '@ohos.net.statistics';
+
 statistics.getCellularTxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
@@ -333,7 +349,9 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
+import statistics from '@ohos.net.statistics';
 import { BusinessError } from '@ohos.base';
+
 statistics.getAllRxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -367,6 +385,8 @@ getAllRxBytes(): Promise\<number>;
 **示例：**
 
 ```js
+import statistics from '@ohos.net.statistics';
+
 statistics.getCellularRxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
@@ -401,6 +421,8 @@ getAllTxBytes(callback: AsyncCallback\<number>): void;
 
 ```js
 import { BusinessError } from '@ohos.base';
+import statistics from '@ohos.net.statistics';
+
 statistics.getAllTxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -434,6 +456,8 @@ getAllTxBytes(): Promise\<number>;
 **示例：**
 
 ```js
+import statistics from '@ohos.net.statistics';
+
 statistics.getAllTxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
@@ -470,6 +494,8 @@ getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
 ```js
 import { BusinessError } from '@ohos.base';
+import statistics from '@ohos.net.statistics';
+
 statistics.getUidRxBytes(20010038, (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -510,6 +536,8 @@ getUidRxBytes(uid: number): Promise\<number>;
 **示例：**
 
 ```js
+import statistics from '@ohos.net.statistics';
+
 statistics.getUidRxBytes(20010038).then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
@@ -546,6 +574,8 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
 ```js
 import { BusinessError } from '@ohos.base';
+import statistics from '@ohos.net.statistics';
+
 statistics.getUidTxBytes(20010038, (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -586,6 +616,8 @@ getUidTxBytes(uid: number): Promise\<number>;
 **示例：**
 
 ```js
+import statistics from '@ohos.net.statistics';
+
 statistics.getUidTxBytes(20010038).then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
@@ -625,11 +657,13 @@ on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>)
 **示例：**
 
 ```js
- class IFace {
-    iFace: string = ""
-    uid?: number = 0
-  }
- statistics.on('netStatsChange', (data:IFace) => {
+import statistics from '@ohos.net.statistics';
+
+class IFace {
+  iface: string = ""
+  uid?: number = 0
+}
+statistics.on('netStatsChange', (data: IFace) => {
   console.log('on netStatsChange' + JSON.stringify(data));
 });
 ```
@@ -668,12 +702,14 @@ off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }
 **示例：**
 
 ```js
- class IFace {
-    iFace: string = ""
-    uid?: number = 0
-  }
-let callback =( data:IFace) => {
-    console.log("on netStatsChange, data:" + JSON.stringify(data));
+import statistics from '@ohos.net.statistics';
+
+class IFace {
+  iface: string = ""
+  uid?: number = 0
+}
+let callback: (data: IFace) => void = (data: IFace) => {
+    console.log("on netStatsChange, iFace:" + data.iface + " uid: " + data.uid);
 }
 statistics.on('netStatsChange', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -718,30 +754,27 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsIn
 
 ```js
 import { BusinessError } from '@ohos.base';
-class IFaceInfo {
-  iFace: string = "wlan0";
-  startTime: number = 1685948465;
-  endTime: number = 16859485670;
-}
-let iFaceInfo = new IFaceInfo();
+import statistics from '@ohos.net.statistics';
 
-statistics.getTrafficStatsByIface(iFaceInfo, (error: BusinessError, statsInfo: NetStatsInfo) => {
+let iFaceInfo: statistics.IfaceInfo
+
+statistics.getTrafficStatsByIface(iFaceInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
   console.log(JSON.stringify(error));
   console.log(
     "getTrafficStatsByIface bytes of received = " +
-      JSON.stringify(statsInfo.rxBytes)
+    JSON.stringify(statsInfo.rxBytes)
   );
   console.log(
     "getTrafficStatsByIface bytes of sent = " +
-      JSON.stringify(statsInfo.txBytes)
+    JSON.stringify(statsInfo.txBytes)
   );
   console.log(
     "getTrafficStatsByIface packets of received = " +
-      JSON.stringify(statsInfo.rxPackets)
+    JSON.stringify(statsInfo.rxPackets)
   );
   console.log(
     "getTrafficStatsByIface packets of sent = " +
-      JSON.stringify(statsInfo.txPackets)
+    JSON.stringify(statsInfo.txPackets)
   );
 });
 ```
@@ -784,28 +817,25 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
 **示例：**
 
 ```js
-class IFaceInfo {
-  iFace: string = "wlan0";
-  startTime: number = 1685948465;
-  endTime: number = 16859485670;
-}
-let iFaceInfo = new IFaceInfo();
-statistics.getTrafficStatsByIface(ifaceInfo).then((statsInfo: NetStatsInfo) => {
+import statistics from '@ohos.net.statistics';
+
+let iFaceInfo: statistics.IfaceInfo
+statistics.getTrafficStatsByIface(iFaceInfo).then((statsInfo: statistics.NetStatsInfo) => {
   console.log(
     "getTrafficStatsByIface bytes of received = " +
-      JSON.stringify(statsInfo.rxBytes)
+    JSON.stringify(statsInfo.rxBytes)
   );
   console.log(
     "getTrafficStatsByIface bytes of sent = " +
-      JSON.stringify(statsInfo.txBytes)
+    JSON.stringify(statsInfo.txBytes)
   );
   console.log(
     "getTrafficStatsByIface packets of received = " +
-      JSON.stringify(statsInfo.rxPackets)
+    JSON.stringify(statsInfo.rxPackets)
   );
   console.log(
     "getTrafficStatsByIface packets of sent = " +
-      JSON.stringify(statsInfo.txPackets)
+    JSON.stringify(statsInfo.txPackets)
   );
 });
 ```
@@ -847,37 +877,30 @@ getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): 
 
 ```js
 import { BusinessError } from '@ohos.base';
-class IFaceInfoClass {
-  iFace: string = "wlan0";
-  startTime: number = 1685948465;
-  endTime: number = 16859485670;
-}
+import statistics from '@ohos.net.statistics';
 
-class UidInfo {
-  iFaceInfo: object = new IFaceInfoClass();
-  uid: number = 20010037;
-}
-let uidInfo = new UidInfo();
+let uidInfo: statistics.UidInfo
+uidInfo.uid = 20010037
 
 statistics.getTrafficStatsByUid(
   uidInfo,
-  (error: BusinessError, statsInfo: NetStatsInfo) => {
+  (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
     console.log(JSON.stringify(error));
     console.log(
       "getTrafficStatsByUid bytes of received = " +
-        JSON.stringify(statsInfo.rxBytes)
+      JSON.stringify(statsInfo.rxBytes)
     );
     console.log(
       "getTrafficStatsByUid bytes of sent = " +
-        JSON.stringify(statsInfo.txBytes)
+      JSON.stringify(statsInfo.txBytes)
     );
     console.log(
       "getTrafficStatsByUid packets of received = " +
-        JSON.stringify(statsInfo.rxPackets)
+      JSON.stringify(statsInfo.rxPackets)
     );
     console.log(
       "getTrafficStatsByUid packets of sent = " +
-        JSON.stringify(statsInfo.txPackets)
+      JSON.stringify(statsInfo.txPackets)
     );
   }
 );
@@ -924,24 +947,17 @@ getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
 **示例：**
 
 ```js
- class IFaceInfoClass {
-    iFace:string= "wlan0"
-    startTime:number =1685948465
-    endTime:number =16859485670
-  }
+import statistics from '@ohos.net.statistics'
 
-  class  UidInfo  {
-    iFaceInfo:object=new IFaceInfoClass()
-    uid:number=20010037
-  }
-  let  uidInfo=new UidInfo()
+let uidInfo: statistics.UidInfo
+uidInfo.uid = 20010037
 
-  statistics.getTrafficStatsByUid(uidInfo).then((statsInfo:NetStatsInfo) => {
-    console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
-    console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
-  })
+statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInfo) => {
+  console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
+  console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
+  console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
+  console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
+})
 ```
 
 ## IfaceInfo<sup>10+</sup>

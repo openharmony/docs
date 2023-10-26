@@ -25,7 +25,7 @@
 
   音频编辑（如调整单个声道的播放倍速等）需要基于PCM码流进行，所以需要先将音频文件解码。
 
-## 开发步骤
+## 开发指导
 
 详细的API说明请参考[API文档](../reference/native-apis/_audio_decoder.md)。
 参考以下示例代码，完成音频解码的全流程，包括：创建解码器，设置解码参数（采样率/码率/声道数等），开始，刷新，重置，销毁资源。
@@ -35,6 +35,15 @@
 
 如下为音频解码调用关系图：
 ![Invoking relationship of audio decode stream](figures/audio-decode.png)
+
+### 在 CMake 脚本中链接动态库
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+target_link_libraries(sample PUBLIC libnative_media_core.so)
+target_link_libraries(sample PUBLIC libnative_media_adec.so)
+```
+
+### 开发步骤
 
 1. 创建解码器实例对象
 
@@ -161,7 +170,6 @@
         // 异常处理
     }
     ```
-    
 4. 调用OH_AudioDecoder_Prepare()，解码器就绪。
 
     ```cpp
@@ -176,7 +184,7 @@
     unique_ptr<ifstream> inputFile_ = make_unique<ifstream>();
     unique_ptr<ofstream> outFile_ = make_unique<ofstream>();
     // 打开待解码二进制文件路径
-    inputFile_->open(inputFilePath.data(), ios::in | ios::binary); 
+    inputFile_->open(inputFilePath.data(), ios::in | ios::binary);
     //配置解码文件输出路径
     outFile_->open(outputFilePath.data(), ios::out | ios::binary);
     // 开始解码

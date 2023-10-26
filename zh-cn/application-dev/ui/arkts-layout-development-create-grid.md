@@ -28,15 +28,11 @@ Grid组件为网格容器，其中容器内个条目对应一个GridItem组件�
 
 Grid组件根据行列数量与占比属性的设置，可以分为三种布局情况：
 
-- 行、列数量与占比同时设置：Grid只展示固定行列数的元素，其余元素不展示，且Grid不可滚动。
+- 行、列数量与占比同时设置：Grid只展示固定行列数的元素，其余元素不展示，且Grid不可滚动。（推荐使用该种布局方式）
 
 - 只设置行、列数量与占比中的一个：元素按照设置的方向进行排布，超出的元素可通过滚动的方式展示。
 
 - 行列数量与占比都不设置：元素在布局方向上排布，其行列数由布局方向、单个网格的宽高等多个属性共同决定。超出行列容纳范围的元素不展示，且Grid不可滚动。
-
->**说明：**
->
->推荐优先采用确定的行或列数量占比方式进行布局。
 
 
 ## 设置排列方式
@@ -177,6 +173,7 @@ Grid() {
 
 
 ```ts
+@Entry
 @Component
 struct OfficeService {
   @State services: Array<string> = ['会议', '投票', '签到', '打印']
@@ -232,6 +229,7 @@ Grid() {
 
 
 ```ts
+@Entry
 @Component
 struct Shopping {
   @State services: Array<string> = ['直播', '进口']
@@ -265,41 +263,34 @@ Grid组件初始化时，可以绑定一个[Scroller](../reference/arkui-ts/ts-c
 
 
 ```ts
-export let scroller: Scroller = new Scroller()
+private scroller: Scroller = new Scroller()
 ```
 
 在日历页面中，用户在点击“下一页”按钮时，应用响应点击事件，通过指定scrollPage方法的参数next为true，滚动到下一页。
 
 
 ```ts
-class Tmp{
-  scroller: Scroller = new Scroller()
-  set(boo:boolean){
-    this.scroller.scrollPage({next:boo})
-  }
-}
 Column({ space: 5 }) {
   Grid(this.scroller) {
-    ...
   }
   .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
-  ...
- 
- Row({space: 20}) {
-   Button('上一页')
-     .onClick(() => {
-       let ClickN = new Tmp()
-       ClickN.set(false)
-     })
 
-   Button('下一页')
-     .onClick(() => {
-       let ClickN = new Tmp()
-       ClickN.set(true)
-     })
- }
+  Row({space: 20}) {
+    Button('上一页')
+      .onClick(() => {
+        this.scroller.scrollPage({
+          next: false
+        })
+      })
+
+    Button('下一页')
+      .onClick(() => {
+        this.scroller.scrollPage({
+          next: true
+        })
+      })
+  }
 }
-...
 ```
 
 

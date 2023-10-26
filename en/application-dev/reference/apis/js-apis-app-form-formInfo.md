@@ -72,7 +72,7 @@ Describes the widget state information.
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | formState  | [FormState](#formstate)               | Yes   | No    | Widget state.                         |
-| want  | Want               | Yes   | No    | Want text.   |
+| want  | [Want](js-apis-app-ability-want.md)         | Yes   | No    | Want text.   |
 
 ##  FormState
 
@@ -173,10 +173,10 @@ Defines the information about the widget provider.
 
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| bundleName  | string               | Yes   | No    | Name of the bundle to which the widget provider belongs.                  |
-| formName        | string               | Yes   | No    | Widget name.                                |
-| moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.                     |
-| abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.                      |
+| bundleName  | string               | Yes   | No    | Name of the bundle to which the widget provider belongs.<br>**Model restriction**: This API can be used only in the stage model.<br> |
+| formName    | string               | Yes   | No    | Widget name.<br>**Model restriction**: This API can be used only in the stage model.<br>                    |
+| moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.<br>**Model restriction**: This API can be used only in the stage model.<br>       |
+| abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.<br>**Model restriction**: This API can be used only in the stage model.<br>       |
 
 ## LaunchReason<sup>10+</sup>
 

@@ -289,7 +289,7 @@ struct SliderExample {
       Slider({ style: SliderStyle.OutSet, value: 40 })
         .blockSize({ width: '60px', height: '60px' })
         .blockColor(Color.Red)
-        .blockStyle({ type: SliderBlockType.SHAPE, shape: new Path({ commands: 'M30 30 L15 56 L45 56 Z' }) })
+        .blockStyle({ type: SliderBlockType.SHAPE, shape: new Path({ commands: 'M60 60 M30 30 L15 56 L45 56 Z' }) })
       Divider()
       Text('tips').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Slider({ style: SliderStyle.InSet, value: this.tipsValue })

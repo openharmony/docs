@@ -62,6 +62,7 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
 **示例：**
 
   ```ts
+  import type { BundleVersion } from '@ohos.application.BackupExtensionAbility';
   class BackupExt extends BackupExtension {
     async onRestore(bundleVersion : BundleVersion) {
       console.log(`onRestore ok ${JSON.stringify(bundleVersion)}`);

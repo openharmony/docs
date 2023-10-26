@@ -60,7 +60,7 @@
     List() {
       // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
       if (!this.isExpand) {
-        Text('收起时我出现')
+        Text('收起')
           .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.9) }))
       }
     
@@ -72,7 +72,7 @@
     
       // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
       if (this.isExpand) {
-        Text('展开时我出现')
+        Text('展开')
           .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion() }))
       }
     }
@@ -93,11 +93,10 @@ import curves from '@ohos.curves';
 export struct share_transition_expand {
   // 声明与父组件进行交互的是否展开状态变量
   // 元素展开
-  @Link isExpand: boolean;
+  @State isExpand: boolean = false;
   // 当前展开元素
   @State curIndex: number = 0;
-  private listArray: Array<number> = [1, 2, 3, 4, 5, 6];
-
+  @State listArray: Array<number> = [1, 2, 3, 4, 5, 6];
   build() {
     Column() {
       List() {
@@ -183,7 +182,9 @@ import { share_transition_expand } from './utils';
 struct ShareTransitionDemo {
   @State isExpand: boolean = false;
   @State Tmp:Record<string,boolean> = { 'isExpand': false }
+  private scroller: Scroller = new Scroller();
   build() {
+    Scroll(this.scroller) {
     Column() {
       Text('兄弟节点出现消失')
         .fontWeight(FontWeight.Bold)
@@ -197,6 +198,7 @@ struct ShareTransitionDemo {
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Start)
+    }
   }
 }
 ```
@@ -229,8 +231,8 @@ import curves from '@ohos.curves';
 @Component
 export struct share_zIndex_expand {
   // 声明与父组件进行交互的是否展开状态变量
-  @Link isExpand: boolean;
-  @Link curIndex: number;
+  @State isExpand: boolean = false;
+  @State curIndex: number = 0;
   @State listArray: Array<number> = [1, 2, 3, 4, 5, 6];
   private parentScroller: Scroller = new Scroller(); // 上层滑动组件控制器
 
@@ -321,7 +323,7 @@ import { share_zIndex_expand } from './utils'
 struct ShareZIndexDemo {
   @State isExpand: boolean = false;
   @State curIndex: number = 0;
-  @State scroller: Scroller = new Scroller();
+  private scroller: Scroller = new Scroller();
   @State Sze:Record<string,boolean|number|Scroller> = { 'isExpand': this.isExpand, 'curIndex': this.curIndex, 'parentScroller': this.scroller }
 
   build() {
@@ -527,7 +529,9 @@ struct GeometryTransitionDemo {
 
 ```ts
 import curves from '@ohos.curves';
-
+class itTmp{
+  $rect:Array<number> = []
+}
 @Entry
 @Component
 struct AutoAchieveShareTransitionDemo {
@@ -585,8 +589,8 @@ struct AutoAchieveShareTransitionDemo {
             .onClick(() => {
               // 获取对应组件的位置、大小信息
               let strJson = getInspectorByKey(item);
-              let rect:string = JSON.parse(strJson);
-              let rectInfo:string = JSON.parse('[' + rect + ']');
+              let rect:itTmp = JSON.parse(strJson);
+              let rectInfo:Array<object> = JSON.parse('[' + rect.$rect + ']');
               let rect_left:string = JSON.parse('[' + rectInfo[0] + ']')[0];
               let rect_top:string = JSON.parse('[' + rectInfo[0] + ']')[1];
               let rect_right:string = JSON.parse('[' + rectInfo[1] + ']')[0];
@@ -642,6 +646,7 @@ struct AutoAchieveShareTransitionDemo {
             .fontSize(20)
             .fontColor(0xcccccc)
             .margin({ top: 20 })
+            .width(100)
 
         }
         .borderRadius(this.layoutWidth == '100%' ? 0 : 10)

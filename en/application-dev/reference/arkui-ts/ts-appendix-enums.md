@@ -83,7 +83,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Press   | The mouse button is pressed.|
 | Release | The mouse button is released.|
 | Move    | The mouse cursor moves.  |
-| Hover   | The mouse pointer is hovered on an element.  |
+| Hover   | The mouse pointer is hovered on an element.<br>**NOTE**<br>This value has no effect.  |
 
 ## Curve
 
@@ -564,4 +564,4 @@ This API is supported in ArkTS widgets.
 | Name   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | DEFAULT | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.|
-| INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.            |
+| INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>The **showError** attribute is not supported for this style.|

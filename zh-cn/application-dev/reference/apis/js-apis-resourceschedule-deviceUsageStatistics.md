@@ -774,6 +774,8 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
 ```ts
 // 无maxNum参数调用方式
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryModuleUsageRecords().then((res: Array<usageStatistics.HapModuleInfo>) => {
   console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
   for (let i = 0; i < res.length; i++) {
@@ -819,6 +821,8 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryModuleUsageRecords((err: BusinessError, res: Array<usageStatistics.HapModuleInfo>) => {
   if(err) {
     console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -872,6 +876,8 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryModuleUsageRecords(1000).then((res: Array<usageStatistics.HapModuleInfo>) => {
   console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
   for (let i = 0; i < res.length; i++) {
@@ -918,6 +924,8 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryModuleUsageRecords(1000, (err: BusinessError, res: Array<usageStatistics.HapModuleInfo>) => {
   if(err) {
     console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -973,6 +981,8 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 
 ```javascript
 //有bundleName的promise
+import { BusinessError } from '@ohos.base';
+
 let bundleName: string = "com.ohos.camera";
 usageStatistics.queryAppGroup(bundleName).then((res: number) => {
   console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
@@ -998,7 +1008,7 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 | 参数名        | 类型                    | 必填   | 说明                                       |
 | ---------- | --------------------- | ---- | ---------------------------------------- |
 | bundleName | string                | 是    | 查询指定bundleName对应应用的分组。 |
-| callback   | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回制指定bundleName的应用分组。|
+| callback   | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回指定bundleName的应用分组。|
 
 **错误码**：
 
@@ -1017,6 +1027,8 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let bundleName: string = "com.ohos.camera";
 usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
   if(err) {
@@ -1068,6 +1080,8 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let bundleName: string = "com.example.deviceUsageStatistics";
 let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
@@ -1114,6 +1128,8 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let bundleName: string = "com.example.deviceUsageStatistics";
 let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
@@ -1165,6 +1181,8 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 function onBundleGroupChanged(res: usageStatistics.AppGroupCallbackInfo) {
   console.log('BUNDLE_ACTIVE registerAppGroupCallBack RegisterGroupCallBack callback success.');
   console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
@@ -1215,6 +1233,8 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 function onBundleGroupChanged(res: usageStatistics.AppGroupCallbackInfo) {
   console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
   console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
@@ -1265,6 +1285,8 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.unregisterAppGroupCallBack().then( () => {
   console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
 }).catch((err: BusinessError) => {
@@ -1305,6 +1327,8 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.unregisterAppGroupCallBack((err: BusinessError) => {
   if(err) {
     console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -1355,6 +1379,8 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
   console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
   console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
@@ -1399,6 +1425,8 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryDeviceEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
   if(err) {
     console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -1450,6 +1478,8 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryNotificationEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
   console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
   console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
@@ -1494,6 +1524,8 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
   if(err) {
     console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -1562,7 +1594,6 @@ FA卡片的使用信息的属性集合。
 
 提供应用使用时长的具体信息。
 
-### 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 

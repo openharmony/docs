@@ -27,7 +27,7 @@
 
   媒体文件格式转换时，需要先对音视频流进行解封装，然后按需将音视频流封装至新的格式文件内。
 
-## 开发步骤
+## 开发指导
 详细的API说明参考[AVDemuxer](../reference/native-apis/_a_v_demuxer.md)和[AVSource](../reference/native-apis/_a_v_source.md)
 
 > **说明**
@@ -35,6 +35,14 @@
 > - 调用解封装能力解析网络播放路径，需要[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.INTERNET
 > - 调用解封装能力解析本地文件，需要[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.READ_MEDIA
 > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法请参考[ResourceManager API参考](../reference/apis/js-apis-resource-manager.md#getrawfd9)
+
+### 在 CMake 脚本中链接动态库
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
+target_link_libraries(sample PUBLIC libnative_media_avsource.so)
+```
+
+### 开发步骤
 
 1. 创建解封装器实例对象
 

@@ -18,6 +18,12 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     ```ts
     let soundPool: media.SoundPool;
+    let audioRendererInfo: audio.AudioRendererInfo = {
+        content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
+        usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+        rendererFlags : 1
+    }
+
     media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
       if (soundpool_ != null) {
         soundPool = soundpool_;
@@ -25,7 +31,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
       } else {
         console.error('create SoundPool fail');
       }
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       console.error(`soundpool catchCallback, error message:${error.message}`);
     });
     ```
@@ -52,7 +58,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```ts
     soundPool.on('loadComplete', (soundId_: number) => {
       console.info('loadComplete, soundId: ' + soundId_);
-    })
+    });
     ```
 
 4. 调用on('playFinished')方法，用于监听“播放完成”。
@@ -60,7 +66,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```ts
     soundPool.on('playFinished', () => {
       console.info("recive play finished message");
-    })
+    });
     ```
 
 5. 调用on('error')方法，设置错误类型监听。
@@ -68,7 +74,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```ts
     soundPool.on('error', (error) => {
       console.info('error happened,message is :' + error.message);
-    })
+    });
     ```
 
 6. 配置播放参数PlayParameters，并调用play方法播放音频。多次调用play播放同一个soundID，只会播放一次。
@@ -76,22 +82,22 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```ts
     let soundID: number;
     let streamID: number;
-    let PlayParameters: media.PlayParameters = {
-        loop: number = 0, // 循环0次
-        rate: AudioRendererRate = 2, // 2倍速
-        leftVolume: number = 0.5, // range = 0.0-1.0
-        rightVolume: number = 0.5, // range = 0.0-1.0
-        priority: number = 0 // 最低优先级
+    let playParameters: media.PlayParameters = {
+        loop = 0, // 循环0次
+        rate = 2, // 2倍速
+        leftVolume = 0.5, // range = 0.0-1.0
+        rightVolume = 0.5, // range = 0.0-1.0
+        priority = 0, // 最低优先级
         parallelPlayFlag: boolean = false // 不和其它正在播放的音频并行播放
       }
-    soundPool.play(soundID, PlayParameters, (error, streamId: number) => {
+    soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
       if (error) {
         console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         streamID = streamId;
         console.info('play success soundid:' + streamId);
       }
-    })
+    });
     ```
 
 7. 调用setLoop方法设置循环次数。
@@ -100,7 +106,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     let streamID: number;
     soundPool.setLoop(streamID, 1).then(() => {
       console.info('setLoop success streamID:' + streamID);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool setLoop failed and catch error is ' + err.message);
     });
     ```
@@ -121,7 +127,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     soundPool.setRate(streamID, selectedAudioRendererRate).then(() => {
       console.info('setRate success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool setRate failed and catch error is ' + err.message);
     });
     ```
@@ -134,7 +140,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     soundPool.setVolume(streamID, 0.5, 0.5).then(() => {
       console.info('setVolume success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool setVolume failed and catch error is ' + err.message);
     });
     ```
@@ -147,7 +153,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     soundPool.stop(streamID).then(() => {
       console.info('stop success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool load stop and catch error is ' + err.message);
     });
     ```
@@ -160,7 +166,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     soundPool.unload(soundID).then(() => {
       console.info('unload success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool unload failed and catch error is ' + err.message);
     });
     ```
@@ -188,7 +194,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```ts
     soundPool.release().then(() => {
       console.info('release success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool release failed and catch error is ' + err.message);
     });
     ```
@@ -216,7 +222,7 @@ struct Soundpool {
     rate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
     leftVolume: number = 0.5, // range = 0.0-1.0
     rightVolume: number = 0.5, // range = 0.0-1.0
-    priority: number = 0 // 最低优先级
+    priority: number = 0, // 最低优先级
     parallelPlayFlag: boolean = false // 不和其它正在播放的音频并行播放
   }
   private uri: string = "";
@@ -230,7 +236,7 @@ struct Soundpool {
     // 加载音频资源
     await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
       console.info("file fd: " + file.fd);
-      uri = 'fd://' + (file.fd).toString()
+      this.uri = 'fd://' + (file.fd).toString()
     }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
     this.soundId = await this.soundPool.load(this.uri);
   }

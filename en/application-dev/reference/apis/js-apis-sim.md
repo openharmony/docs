@@ -10,7 +10,6 @@ The **sim** module provides basic SIM card management functions. You can obtain 
 ## Modules to Import
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 ```
 
@@ -72,6 +71,33 @@ sim.isSimActive(0).then((data: boolean) => {
 }).catch((err: BusinessError) => {
     console.log(`isSimActive failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.isSimActiveSync<sup>10+</sup>
+
+isSimActiveSync\(slotId: number\): boolean
+
+Checks whether the SIM card in the specified slot is activated.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type                 | Description                              |
+| --------------------- | ---------------------------------- |
+| boolean | Boolean value indicating whether the SIM card in the specified slot is activated. The value **true** means yes and the value **false** means no.|
+
+**Example**
+
+```js
+let isSimActive = sim.isSimActiveSync(0);
+console.log(`the sim is active:` + isSimActive);
 ```
 
 
@@ -297,6 +323,34 @@ sim.getISOCountryCodeForSim(0).then((data: string) => {
 });
 ```
 
+## sim.getISOCountryCodeForSimSync<sup>10+</sup>
+
+getISOCountryCodeForSimSync\(slotId: number\): string
+
+Obtains the ISO country code of the SIM card in the specified slot.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type             | Description                                                        |
+| ----------------- | ------------------------------------------------------------ |
+| string | ISO country code of the SIM card in the specified card slot, for example, **CN** (China).|
+
+
+**Example**
+
+```js
+let countryCode = sim.getISOCountryCodeForSimSync(0);
+console.log(`the country ISO is:` + countryCode);
+```
+
 
 ## sim.getSimOperatorNumeric
 
@@ -311,7 +365,7 @@ Obtains the home public land mobile network \(PLMN\) ID of the SIM card in the s
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. Home PLMN number of the SIM card in the specified slot.                         |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                           |
 
 **Error codes**
 
@@ -384,6 +438,34 @@ sim.getSimOperatorNumeric(0).then((data: string) => {
 });
 ```
 
+## sim.getSimOperatorNumericSync<sup>10+</sup>
+
+getSimOperatorNumericSync\(slotId: number\): string
+
+Obtains the home PLMN ID of the SIM card in the specified slot. 
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type             | Description                                            |
+| ----------------- | ------------------------------------------------ |
+| string | Home PLMN number of the SIM card in the specified slot.|
+
+
+**Example**
+
+```js
+let numeric = sim.getSimOperatorNumericSync(0);
+console.log(`the sim operator numeric is:` + numeric);
+```
+
 
 ## sim.getSimSpn
 
@@ -398,7 +480,7 @@ Obtains the service provider name (SPN) of the SIM card in the specified slot. T
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. SPN of the SIM card in the specified slot.                            |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
@@ -469,6 +551,34 @@ sim.getSimSpn(0).then((data: string) => {
 }).catch((err: BusinessError) => {
     console.log(`getSimSpn failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.getSimSpnSync<sup>10+</sup>
+
+getSimSpnSync\(slotId: number\): string
+
+Obtains the SPN of the SIM card in the specified slot.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type             | Description                                     |
+| ----------------- | ----------------------------------------- |
+| string | SPN of the SIM card in the specified slot.|
+
+
+**Example**
+
+```js
+let spn = sim.getSimSpnSync(0);
+console.log(`the sim card spn is:` + spn);
 ```
 
 
@@ -554,6 +664,34 @@ sim.getSimState(0).then((data: sim.simstate) => {
 }).catch((err: BusinessError) => {
     console.log(`getSimState failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.getSimStateSync<sup>10+</sup>
+
+getSimStateSync\(slotId: number\): SimState
+
+Obtains the state of the SIM card in the specified slot.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type                        | Description                                      |
+| ---------------------------- | ------------------------------------------ |
+| [SimState](#simstate) | State of the SIM card in the specified slot.|
+
+
+**Example**
+
+```js
+let simState = sim.getSimStateSync(0);
+console.log(`The sim state is:` + simState);
 ```
 
 ## sim.getCardType<sup>7+</sup>
@@ -642,6 +780,34 @@ sim.getCardType(0).then((data: sim.CardType) => {
 });
 ```
 
+## sim.getCardTypeSync<sup>10+</sup>
+
+getCardTypeSync\(slotId: number\): CardType
+
+Obtains the type of the SIM card in the specified slot. 
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type             | Description                                                        |
+| ----------------- | ------------------------------------------------------------ |
+| [CardType](#cardtype7) | Type of the SIM card in the specified slot.|
+
+
+**Example**
+
+```js
+let cardType = sim.getCardTypeSync(0);
+console.log(`the card type is:` + cardType);
+```
+
 
 ## sim.hasSimCard<sup>7+</sup>
 
@@ -725,6 +891,33 @@ sim.hasSimCard(0).then((data: boolean) => {
 }).catch((err: BusinessError) => {
     console.log(`hasSimCard failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.hasSimCardSync<sup>10+</sup>
+
+hasSimCardSync\(slotId: number\): boolean
+
+Checks whether the SIM card in the specified slot is installed.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type                 | Description                              |
+| --------------------- | ---------------------------------- |
+| boolean | Boolean value indicating whether the SIM card in the specified slot is installed. The value **true** means yes and the value **false** means no.|
+
+**Example**
+
+```js
+let hasSimCard = sim.hasSimCardSync(0);
+console.log(`has sim card: ` + hasSimCard);
 ```
 
 ## sim.getSimAccountInfo<sup>10+</sup>
@@ -831,7 +1024,7 @@ sim.getSimAccountInfo(0).then((data: sim.IccAccountInfo) => {
 
 getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\): void
 
-Obtains the account information list of the active SIM card. This API uses an asynchronous callback to return the result.
+Obtains the list of activated SIM card accounts. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
 >
@@ -875,7 +1068,7 @@ sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountI
 
 getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
-Obtains the account information list of the active SIM card. This API uses a promise to return the result.
+Obtains the list of activated SIM card accounts. This API uses a promise to return the result.
 
 >**NOTE**
 >
@@ -4117,6 +4310,34 @@ try {
 }
 ```
 
+## sim.getOpKeySync<sup>10+</sup>
+
+getOpKeySync\(slotId: number\): string
+
+Obtains the opkey of the SIM card in the specified slot.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type            | Description                                     |
+| ---------------- | ----------------------------------------- |
+| string | opkey of the SIM card in the specified slot.|
+
+
+**Example**
+
+```js
+let data = sim.getOpKeySync(0);
+console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
+```
+
 ## sim.getOpName<sup>9+</sup>
 
 getOpName\(slotId: number, callback: AsyncCallback\<string\>\): void
@@ -4210,6 +4431,34 @@ try {
 } catch (error) {
     console.log(`getOpName failed, promise: err->${JSON.stringify(error)}`);
 }
+```
+
+## sim.getOpNameSync<sup>10+</sup>
+
+getOpNameSync\(slotId: number\): string
+
+Obtains the OpName of the SIM card in the specified slot.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type            | Description                                      |
+| ---------------- | ------------------------------------------ |
+| string | OpName of the SIM card in the specified slot.|
+
+
+**Example**
+
+```js
+let data = sim.getOpNameSync(0);
+console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
 ```
 
 ## sim.getDefaultVoiceSimId<sup>10+</sup>

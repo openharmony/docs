@@ -19,6 +19,15 @@ The figure below shows the call relationship of video decoding.
 
 ![Call relationship of video decoding](figures/video-decode.png)
 
+### Linking the Dynamic Library in the CMake Script
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+target_link_libraries(sample PUBLIC libnative_media_core.so)
+target_link_libraries(sample PUBLIC libnative_media_vdec.so)
+```
+
+### How to Develop
+
 1. Create a decoder instance.
 
    You can create a decoder by name or MIME type.
@@ -86,7 +95,7 @@ The figure below shows the call relationship of video decoding.
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
-        unique_lock<mutex> lock(signal_->inMutex_);
+        std::unique_lock<std::mutex> lock(signal_->inMutex_);
         // The ID of the input frame is sent to inQueue_.
         signal_->inQueue_.push(index);
         // The input frame data is sent to inBufferQueue_.
@@ -100,7 +109,7 @@ The figure below shows the call relationship of video decoding.
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
-        unique_lock<mutex> lock(signal_->outMutex_);
+        std::unique_lock<std::mutex> lock(signal_->outMutex_);
         // The index of the output buffer is sent to outQueue_.
         signal_->outQueue_.push(index);
         // The decoded data (specified by data) is sent to outBufferQueue_. (Note: data is empty in surface output mode.)
@@ -134,22 +143,13 @@ The figure below shows the call relationship of video decoding.
 
 4. (Optional) Set the surface.
 
-   This step is required only when the surface is used to send the data for display.
+   This step is required only when the surface is used to send the data for display. The application obtains the native window from the XComponent. For details about the process, see [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md).
 
    ``` c++
     // Set the parameters of the display window.
-    sptr<Rosen::Window> window = nullptr;
-    sptr<Rosen::WindowOption> option = new Rosen::WindowOption();
-    option->SetWindowRect({0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT});
-    option->SetWindowType(Rosen::WindowType::WINDOW_TYPE_APP_LAUNCHING);
-    option->SetWindowMode(Rosen::WindowMode::WINDOW_MODE_FLOATING);
-    window = Rosen::Window::Create("video-decoding", option);
-    window->Show();
-    sptr<Surface> ps = window->GetSurfaceNode()->GetSurface();
-    OHNativeWindow *nativeWindow = CreateNativeWindowFromSurface(&ps);
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window); // Obtain the window from the XComponent.
     bool isSurfaceMode = true;
-   ```  
+   ```
 
 5. (Optional) Configure the surface parameters of the decoder. This step is required only when the surface is used.
    
@@ -161,7 +161,7 @@ The figure below shows the call relationship of video decoding.
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_SCALING_MODE, SCALING_MODE_SCALE_CROP);
     int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
-   ``` 
+   ```
 
 6. Call **OH_VideoDecoder_Start()** to start the decoder.
 
@@ -196,14 +196,14 @@ The figure below shows the call relationship of video decoding.
     int32_t ret = OH_VideoDecoder_PushInputData(videoDec, index, info);
    ```
 
-8. Call **OH_VideoDecoder_FreeOutputData()** to output the decoded frames.
-
-   ``` c++
+8. In surface display mode, call **OH_VideoDecoder_RenderOutputData()** to display and release the decoded frames. In the surface no display mode or buffer mode, call **OH_VideoDecoder_FreeOutputData()** to the release decoded frames.
+   
+``` c++
     int32_t ret;
     // Write the decoded data (specified by data) to the output file.
     outFile->write(reinterpret_cast<char *>(OH_AVMemory_GetAddr(data)), data.size);
     // Free the buffer that stores the output data. The index is the subscript of the surface/buffer queue.
-    if (isSurfaceMode) {
+    if (isSurfaceMode && isRender) {
         ret = OH_VideoDecoder_RenderOutputData(videoDec, index);
     } else {
         ret = OH_VideoDecoder_FreeOutputData(videoDec, index);
@@ -212,11 +212,11 @@ The figure below shows the call relationship of video decoding.
         // Exception handling.
     }
    ```
-
+   
 9. (Optional) Call **OH_VideoDecoder_Flush()** to refresh the decoder.
    
    After **OH_VideoDecoder_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed.
-    
+   
    To continue decoding, you must call **OH_VideoDecoder_Start()** again.
 
    ``` c++
@@ -254,7 +254,6 @@ The figure below shows the call relationship of video decoding.
      if (ret != AV_ERR_OK) {
          // Exception handling.
      }
-     return AV_ERR_OK;
     ```
 
 12. Call **OH_VideoDecoder_Destroy()** to destroy the decoder instance and release resources.
@@ -266,5 +265,4 @@ The figure below shows the call relationship of video decoding.
      if (ret != AV_ERR_OK) {
          // Exception handling.
      }
-     return AV_ERR_OK;
     ```

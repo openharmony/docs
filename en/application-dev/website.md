@@ -24,7 +24,6 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [In-Application HSP Development](quick-start/in-app-hsp.md)
-          - [Inter-Application HSP Development](quick-start/cross-app-hsp.md)
       - Quick Fix
         - [Quick Fix Overview](quick-start/quickfix-principles.md)
         - [CLI-based Quick Fix Development](quick-start/quickfix-debug.md)
@@ -41,7 +40,9 @@
   - Learning ArkTS
     - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
     - [Introduction to ArkTS](quick-start/introduction-to-arkts.md)
-    - [TypeScript to ArkTS Migration](quick-start/typescript-to-arkts-migration-guide.md)
+    - TypeScript to ArkTS Migration Guide
+      - [ArkTS Migration Background](quick-start/arkts-migration-background.md)
+      - [TypeScript to ArkTS Cookbook](quick-start/typescript-to-arkts-migration-guide.md)
     - UI Paradigm
       - Basic Syntax
         - [Basic Syntax Overview](quick-start/arkts-basic-syntax-overview.md)
@@ -74,11 +75,13 @@
           - [\@Watch Decorator: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
           - [$$ Syntax: Two-Way Synchronization of Built-in Components](quick-start/arkts-two-way-sync.md)
         - [MVVM](quick-start/arkts-mvvm.md)
+        - [Best Practices for State Management](quick-start/arkts-state-management-best-practices.md)
       - Rendering Control
         - [Overview of Rendering Control](quick-start/arkts-rendering-control-overview.md)
         - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
+        - [Best Practices for Rendering Control](quick-start/arkts-rendering-control-best-practices.md)
 - Development
   - Application Models
     - Application Model Overview
@@ -143,7 +146,7 @@
         - Inter-Device Application Component Interaction (Continuation)
           - [Continuation Overview](application-models/inter-device-interaction-hop-overview.md)
           - [Cross-Device Migration](application-models/hop-cross-device-migration.md)
-          - [Multi-device Collaboration (for System Applications Only)](application-models/hop-multi-device-collaboration.md)
+          - [Multi-device Collaboration](application-models/hop-multi-device-collaboration.md)
         - [Subscribing to System Environment Variable Changes](application-models/subscribe-system-environment-variable-changes.md)
       - Process Model
         - [Process Model Overview](application-models/process-model-stage.md)
@@ -261,7 +264,6 @@
           - [Creating a List (List)](ui/arkts-layout-development-create-list.md)
           - [Creating a Grid (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
           - [Creating a Swiper (Swiper)](ui/arkts-layout-development-create-looping.md)
-        - [Improving Layout Performance](ui/arkts-layout-development-performance-boost.md)
       - Adding a Component
         - Adding a Common Component
           - [Button](ui/arkts-common-components-button.md)
@@ -318,7 +320,6 @@
           - [Gesture Binding](ui/arkts-gesture-events-binding.md)
           - [Single Gesture](ui/arkts-gesture-events-single-gesture.md)
           - [Combined Gestures](ui/arkts-gesture-events-combined-gestures.md)
-      - [Recommendations for Improving Performance](ui/arkts-performance-improvement-recommendation.md)
     - UI Development with JavaScript-compatible Web-like Development Paradigm
       - [UI Development with JavaScript-compatible Web-like Development Paradigm Overview](ui/ui-js-overview.md)
       - Framework
@@ -400,6 +401,7 @@
         - [Single I/O Task Development](arkts-utils/single-io-development.md)
       - Using Multithread Concurrency for Development
         - [Multithread Concurrency Overview](arkts-utils/multi-thread-concurrency-overview.md)
+        - [Comparison Between the Actor and Memory Sharing Models](arkts-utils/actor-model-development-samples.md)
         - [Comparison Between TaskPool and Worker](arkts-utils/taskpool-vs-worker.md)
         - [CPU Intensive Task Development](arkts-utils/cpu-intensive-task-development.md)
         - [I/O Intensive Task Development](arkts-utils/io-intensive-task-development.md)
@@ -510,6 +512,7 @@
         - [Camera Photographing Sample](media/camera-shooting-case.md)
         - [Camera Recording Sample](media/camera-recording-case.md)
         - [Implementation Solution for Portrait Mode] (media/camera-mode.md)
+        - [Dual-Channel Preview](media/camera-dual-channel-preview.md)
         - [Using Performance Improvement Features (for System Applications Only)](media/camera-performance-improvement.md)
     - Image
       - [Image Overview](media/image-overview.md)
@@ -527,6 +530,9 @@
       - [Verifying API Access Permissions](security/permission-verify-guidelines.md)
       - [Application Permission List](security/permission-list.md)
       - [Application Permission Group List](security/permission-group-list.md)
+    - Security Component
+      - [Security Component Overview](security/security-component-manager-overview.md)
+      - [Security Component Development](security/security-component-manager-guidelines.md)
     - User Authentication
       - [User Authentication Overview](security/userauth-overview.md)
       - [User Authentication Development](security/userauth-guidelines.md)
@@ -675,6 +681,8 @@
     - [Internationalization Overview](internationalization/international-overview.md)
     - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
     - [Internationalization Development (i18n)](internationalization/i18n-guidelines.md)
+  - Application services
+    - [OAID Service](ads-service/oaid/oaid-service.md)
   - Application Test
     - [arkXtest User Guide](application-test/arkxtest-guidelines.md)
     - [SmartPerf User Guide](application-test/smartperf-guidelines.md)
@@ -685,6 +693,7 @@
     - Graphics
       - [XComponent Development](napi/xcomponent-guidelines.md)
       - [Drawing Development](napi/drawing-guidelines.md)
+      - [Drawing and Display Sample](napi/drawing-sample.md)
       - [NativeBuffer Development](napi/native-buffer-guidelines.md)
       - [NativeImage Development](napi/native-image-guidelines.md)
       - [NativeVsync Development](napi/native-vsync-guidelines.md)
@@ -708,14 +717,14 @@
     - [Ability Assistant](tools/aa-tool.md)
     - [Bundle Manager](tools/bm-tool.md)
     - Packing and Unpacking Tools
-      - [Packing Tools](tools/packing-tool.md)
-      - [Unpacking Tools](tools/unpacking-tool.md)
+      - [Packing Tool](tools/packing-tool.md)
+      - [Unpacking Tool](tools/unpacking-tool.md)
     - [Common Event Manager](tools/cem-tool.md)
     - [Advanced Notification Manager](tools/anm-tool.md)
     - [restool](tools/restool.md)
-    - [LLDB Usage Guide](tools/lldb-tool.md)
+    - [LLDB](tools/lldb-tool.md)
 - Hands-On Tutorials
-  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
+  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Release/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/tree/master)
 - API References
   - [SystemCapability](reference/syscap.md)
@@ -728,12 +737,15 @@
         - [@ohos.app.ability.AbilityConstant (AbilityConstant)](reference/apis/js-apis-app-ability-abilityConstant.md)
         - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](reference/apis/js-apis-app-ability-abilityLifecycleCallback.md)
         - [@ohos.app.ability.AbilityStage (AbilityStage)](reference/apis/js-apis-app-ability-abilityStage.md)
+        - [@ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)](reference/apis/js-apis-app-ability-actionExtensionAbility.md)
         - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](reference/apis/js-apis-app-ability-applicationStateChangeCallback.md)
         - [@ohos.app.ability.common (Context)](reference/apis/js-apis-app-ability-common.md)
         - [@ohos.app.ability.contextConstant (ContextConstant)](reference/apis/js-apis-app-ability-contextConstant.md)
         - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](reference/apis/js-apis-app-ability-environmentCallback.md)
         - [@ohos.app.ability.ExtensionAbility (ExtensionAbility Base Class)](reference/apis/js-apis-app-ability-extensionAbility.md)
+        - [@ohos.app.ability.PrintExtensionAbility (Print Extension Ability)](reference/apis/js-apis-app-ability-PrintExtensionAbility.md)
         - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](reference/apis/js-apis-app-ability-serviceExtensionAbility.md)
+        - [@ohos.app.ability.ShareExtensionAbility (ExtensionAbility for Sharing)](reference/apis/js-apis-app-ability-shareExtensionAbility.md)
         - [@ohos.app.ability.StartOptions (StartOptions)](reference/apis/js-apis-app-ability-startOptions.md)
         - [@ohos.app.ability.UIAbility (UIAbility)](reference/apis/js-apis-app-ability-uiAbility.md)
         - [@ohos.app.ability.UIExtensionAbility (Base Class for ExtensionAbilities with UI)](reference/apis/js-apis-app-ability-uiExtensionAbility.md)
@@ -923,7 +935,6 @@
       - [@ohos.arkui.dragController (DragController)](reference/apis/js-apis-arkui-dragController.md)
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.inspector (Layout Callback)](reference/apis/js-apis-arkui-inspector.md)
-      - [@ohos.arkui.performanceMonitor (Performance Monitor)](reference/apis/js-apis-arkui-performancemonitor.md)
       - [@ohos.arkui.UIContext (UIContext)](reference/apis/js-apis-arkui-UIContext.md)
       - [@ohos.curves (Interpolation Calculation)](reference/apis/js-apis-curve.md)
       - [@ohos.font (Custom Font Registration)](reference/apis/js-apis-font.md)
@@ -992,6 +1003,7 @@
       - [@ohos.data.uniformTypeDescriptor (Standard Data Definition)](reference/apis/js-apis-data-uniformTypeDescriptor.md)
       - [@ohos.data.ValuesBucket (Value Bucket)](reference/apis/js-apis-data-valuesBucket.md)
     - File Management
+      - [@ohos.application.BackupExtensionAbility (BackupExtensionAbility)](reference/apis/js-apis-application-backupExtensionAbility.md)
       - [@ohos.file.backup (Backup and Restoration)](reference/apis/js-apis-file-backup.md)
       - [@ohos.file.cloudSync (Device-Cloud Synchronization)](reference/apis/js-apis-file-cloudsync.md)
       - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management)](reference/apis/js-apis-file-cloudsyncmanager.md)
@@ -1003,9 +1015,11 @@
       - [@ohos.file.hash (File Hash Processing)](reference/apis/js-apis-file-hash.md)
       - [@ohos.file.photoAccessHelper (Album Management)](reference/apis/js-apis-photoAccessHelper.md)
       - [@ohos.file.picker (File Picker)](reference/apis/js-apis-file-picker.md)
+      - [@ohos.file.recent (Recent File List)](reference/apis/js-apis-file-recent.md)
       - [@ohos.file.securityLabel (Data Label)](reference/apis/js-apis-file-securityLabel.md)
       - [@ohos.file.statvfs (File System Space Statistics)](reference/apis/js-apis-file-statvfs.md)
       - [@ohos.file.storageStatistics (Application Storage Statistics)](reference/apis/js-apis-file-storage-statistics.md)
+      - [@ohos.file.trash (Trash)](reference/apis/js-apis-file-trash.md)
       - [@ohos.file.volumeManager (Volume Management)](reference/apis/js-apis-file-volumemanager.md)
       - [@ohos.filemanagement.userFileManager (User Data Management)](reference/apis/js-apis-userFileManager.md)
       - [@ohos.fileshare (File Sharing)](reference/apis/js-apis-fileShare.md)
@@ -1080,6 +1094,7 @@
       - [@ohos.InputMethodSubtype (Input Method Subtype)](reference/apis/js-apis-inputmethod-subtype.md)
       - [@ohos.logLibrary (Log Library)](reference/apis/js-apis-loglibrary.md)
       - [@ohos.pasteboard (Pasteboard)](reference/apis/js-apis-pasteboard.md)
+      - [@ohos.print (Print)](reference/apis/js-apis-print.md)
       - [@ohos.screenLock (Screenlock)](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemDateTime (System Time and Time Zone)](reference/apis/js-apis-system-date-time.md)
       - [@ohos.systemTimer (System Timer)](reference/apis/js-apis-system-timer.md)
@@ -1108,7 +1123,6 @@
       - [@ohos.multimodalInput.gestureEvent (Gesture Input Event)](reference/apis/js-apis-multimodalinput-gestureevent.md)
       - [@ohos.multimodalInput.inputConsumer (Input Consumer)](reference/apis/js-apis-inputconsumer.md)
       - [@ohos.multimodalInput.inputDevice (Input Device)](reference/apis/js-apis-inputdevice.md)
-      - [@ohos.multimodalInput.inputDeviceCooperate (Screen Hopping) (To Be Deprecated Soon)](reference/apis/js-apis-cooperate.md)
       - [@ohos.multimodalInput.inputEvent (Input Event)](reference/apis/js-apis-inputevent.md)
       - [@ohos.multimodalInput.inputEventClient (Key Event Injection)](reference/apis/js-apis-inputeventclient.md)
       - [@ohos.multimodalInput.inputMonitor (Input Monitor)](reference/apis/js-apis-inputmonitor.md)
@@ -1179,6 +1193,8 @@
       - [@ohos.util.Vector (Linear Container Vector)](reference/apis/js-apis-vector.md)
       - [@ohos.worker (Worker Startup)](reference/apis/js-apis-worker.md)
       - [@ohos.xml (XML Parsing and Generation)](reference/apis/js-apis-xml.md)
+    - Application services
+      - [@ohos.identifier.oaid (OAID)](reference/apis/js-apis-oaid.md)
     - Test
       - [@ohos.application.testRunner (TestRunner)](reference/apis/js-apis-application-testRunner.md)
       - [@ohos.uitest (UiTest)](reference/apis/js-apis-uitest.md)
@@ -1197,6 +1213,7 @@
       - [@ohos.geolocation (Geolocation)](reference/apis/js-apis-geolocation.md)
       - [@ohos.hiAppEvent (Application Event Logging)](reference/apis/js-apis-hiappevent.md)
       - [@ohos.multimedia.medialibrary (Media Library Management)](reference/apis/js-apis-medialibrary.md)
+      - [@ohos.multimodalInput.inputDeviceCooperate (Screen Hopping)](reference/apis/js-apis-cooperate.md)
       - [@ohos.prompt (Prompt)](reference/apis/js-apis-prompt.md)
       - [@ohos.reminderAgent (Reminder Agent)](reference/apis/js-apis-reminderAgent.md)
       - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)
@@ -1292,6 +1309,8 @@
         - [Universal Text Attributes](reference/arkui-ts/ts-universal-attributes-text-style.md)
         - [Drag and Drop Control](reference/arkui-ts/ts-universal-attributes-drag-drop.md)
         - [Safe Area](reference/arkui-ts/ts-universal-attributes-expand-safe-area.md)
+        - [Special Effect Drawing Combination](reference/arkui-ts/ts-universal-attributes-use-effect.md)
+        - [Render Fit](reference/arkui-ts/ts-universal-attributes-renderfit.md)
       - Gesture Handling
         - [Gesture Binding Methods](reference/arkui-ts/ts-gesture-settings.md)
         - Basic Gestures
@@ -1356,6 +1375,7 @@
       - [Column](reference/arkui-ts/ts-container-column.md)
       - [ColumnSplit](reference/arkui-ts/ts-container-columnsplit.md)
       - [Counter](reference/arkui-ts/ts-container-counter.md)
+      - [EffectComponent](reference/arkui-ts/ts-container-effectcomponent.md)
       - [Flex](reference/arkui-ts/ts-container-flex.md)
       - [FlowItem](reference/arkui-ts/ts-container-flowitem.md)
       - [FormLink](reference/arkui-ts/ts-container-formlink.md)
@@ -1414,6 +1434,7 @@
         - [Transition of Shared Elements](reference/arkui-ts/ts-transition-animation-shared-elements.md)
         - [Implicit Shared Element Transition](reference/arkui-ts/ts-transition-animation-geometrytransition.md)
       - [Motion Path Animation](reference/arkui-ts/ts-motion-path-animation.md)
+      - [Particle Animation](reference/arkui-ts/ts-particle-animation.md)
     - Global UI Methods
       - Pop-up Window
         - [Alert Dialog Box](reference/arkui-ts/ts-methods-alert-dialog-box.md)
@@ -1430,7 +1451,7 @@
     - [Enums](reference/arkui-ts/ts-appendix-enums.md)
     - [Types](reference/arkui-ts/ts-types.md)
     - Components No Longer Maintained 
-      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)  
+      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
     - APIs No Longer Maintained
       - [Click Control](reference/arkui-ts/ts-universal-attributes-click.md)
@@ -1629,6 +1650,7 @@
       - [promptAction Error Codes](reference/errorcodes/errorcode-promptAction.md)
       - [Router Error Codes](reference/errorcodes/errorcode-router.md)
       - [UI Appearance Error Codes](reference/errorcodes/errorcode-uiappearance.md)
+      - [Drag Event Error Codes](reference/errorcodes/errorcode-drag-event.md)
     - Graphics
       - [colorSpaceManager Error Codes](reference/errorcodes/errorcode-colorspace-manager.md)
       - [Display Error Codes](reference/errorcodes/errorcode-display.md)
@@ -1713,6 +1735,8 @@
       - [Enterprise Device Management Error Codes](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - Common Library
       - [Common Library Error Codes](reference/errorcodes/errorcode-utils.md)
+    - Application services
+      - [OAID Error Codes](reference/errorcodes/errorcode-oaid.md)
     - Test
       - [UiTest Error Codes](reference/errorcodes/errorcode-uitest.md)
   - Native APIs
@@ -1729,7 +1753,7 @@
       - [Rawfile](reference/native-apis/rawfile.md)
       - [RDB](reference/native-apis/_r_d_b.md)
       - [MindSpore](reference/native-apis/_mind_spore.md)
-      - [NeuralNeworkRuntime](reference/native-apis/_neural_nework_runtime.md)
+      - [NeuralNetworkRuntime](reference/native-apis/_neural_nework_runtime.md)
       - [AVCapability](reference/native-apis/_a_v_capability.md)
       - [AVMuxer](reference/native-apis/_a_v_muxer.md)
       - [AudioDecoder](reference/native-apis/_audio_decoder.md)
@@ -1831,8 +1855,8 @@
       - [OH_NativeXComponent_TouchPoint](reference/native-apis/_o_h___native_x_component___touch_point.md)
       - [OHExtDataHandle](reference/native-apis/_o_h_ext_data_handle.md)
       - [OHHDRMetaData](reference/native-apis/_o_h_h_d_r_meta_data.md)
-      - [OhosImageComponent](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
-      - [OhosImageRect](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
+      - [OHOS::Media::OhosImageComponent](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
+      - [OHOS::Media::OhosImageRect](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
       - [OHOS::Media::OhosPixelMapInfo](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
       - [OhosImageDecodingOps](reference/native-apis/_ohos_image_decoding_ops.md)
       - [OhosImageReceiverInfo](reference/native-apis/_ohos_image_receiver_info.md)

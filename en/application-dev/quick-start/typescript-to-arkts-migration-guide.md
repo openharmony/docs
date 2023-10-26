@@ -1,4 +1,4 @@
-# TypeScript to ArkTS Migration Guide
+# TypeScript to ArkTS Cookbook
 
 Welcome to the "TypeScript to ArkTS" cookbook. This document gives you short
 recipes to rewrite your standard TypeScript code to ArkTS. Although ArkTS is
@@ -42,6 +42,15 @@ function addTen(x: number): number {
     return x + ten
 }
 ```
+**Severity Levels**
+
+Each recipe is marked with the the severity level. Supported values:
+
+- **Severity: error**: The recipe should be followed, otherwise the program
+  will fail to compile.
+- **Severity: warning**: It is highly recommended to follow the recipe. Although
+  violating the recipe does not currently affect the compilation, in future
+  versions, it will cause compilation to fail.
 
 **Status of Unsupported Features**
 
@@ -328,7 +337,6 @@ console.log(z.get(2))
 * Recipe: `delete` Operator Is Not Supported
 * Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
 * Recipe: `in` Operator Is Not Supported
-* Recipe: Property-based Runtime Type Checking Is Not Supported
 * Recipe: Usage of Standard Libraries Is Restricted
 
 ### Recipe: `Symbol()` Is Not Supported
@@ -343,51 +351,7 @@ because its most popular use cases make no sense in the statically typed
 environment. In particular, the object layout is defined at compile time
 and cannot be changed at runtime.
 
-`Symbol.iterator` and iterable interfaces are not supported either.
-Use arrays and library-level containers to iterate over data.
-
-**TypeScript**
-
-```typescript
-const sym = Symbol()
-let o = {
-   [sym]: "value"
-}
-
-let obj = {
-    data: ['a', 'b', 'c'],
-    [Symbol.iterator]() {
-        const this_ = this
-        let index = 0
-        return {
-            next() {
-                return {
-                    done: index >= this_.data.length,
-                    value: 'name_' + this_.data[index++]
-                }
-            }
-        }
-    }
-}
-
-for (let t of obj) {
-    console.log(t)
-}
-```
-
-**ArkTS**
-
-```typescript
-class SomeClass {
-    public someProperty : string = ""
-}
-let o = new SomeClass()
-
-let arr:string[] = ['a', 'b', 'c']
-for (let t of arr) {
-    console.log('name_' + t)
-}
-```
+Only `Symbol.iterator` is supported.
 
 **See also**
 
@@ -396,7 +360,6 @@ for (let t of arr) {
 * Recipe: `delete` Operator Is Not Supported
 * Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
 * Recipe: `in` Operator Is Not Supported
-* Recipe: Property-based Runtime Type Checking Is Not Supported
 * Recipe: Usage of Standard Libraries Is Restricted
 
 ### Recipe: Private `#` Identifiers Are Not Supported
@@ -514,6 +477,14 @@ scoped_let = 5 // Compile-time error
 ArkTS does not support the types `any` and `unknown`. Specify
 types explicitly.
 
+If your ArkTS code has to interoperate with the standard TypeScript or JavaScript code
+and no type information is available (or the type information is impossible
+to obtain), you can use a special `ESObject` type for working with dynamic
+objects. Please note that such objects reduce type checking (which means less
+stable and more error-prone code) and have severe runtime overhead and
+should be avoided at all cost. Using `ESObject` will still produce a warning
+message.
+
 **TypeScript**
 
 ```typescript
@@ -524,6 +495,11 @@ value1 = 42
 let value2 : unknown
 value2 = true
 value2 = 42
+
+// Let's assume that we have no information for external_function
+// because it is defined in JavaScript code:
+let something : any = external_function()
+console.log("someProperty of something:", something.someProperty)
 ```
 
 **ArkTS**
@@ -533,37 +509,16 @@ let value_b: boolean = true // OR: let value_b = true
 let value_n: number = 42 // OR: let value_n = 42
 let value_o1: Object = true
 let value_o2: Object = 42
+
+// Let's assume that we have no information for external_function
+// because it is defined in JavaScript code:
+let something : ESObject = external_function()
+console.log("someProperty of something:", something.someProperty)
 ```
 
 **See also**
 
-* Recipe: Use `Object[]` Instead of Tuples
 * Recipe: Strict Type Checking Is Enforced
-
-### Recipe: Use `Object[]` Instead of Tuples
-
-**Rule:** `arkts-no-tuples`
-
-**Severity: error**
-
-Currently, ArkTS does not support tuples. Use arrays of `Object`
-(`Object[]`) to emulate tuples.
-
-**TypeScript**
-
-```typescript
-var t: [number, string] = [3, "three"]
-var n = t[0]
-var s = t[1]
-```
-
-**ArkTS**
-
-```typescript
-let t: Object[] = [3, "three"]
-let n = t[0]
-let s = t[1]
-```
 
 ### Recipe: Use `class` Instead of a Type with a Call Signature
 
@@ -1196,7 +1151,7 @@ let regex: RegExp = /bc*d/
 **ArkTS**
 
 ```typescript
-let regex: RegExp = new RegExp("/bc*d/")
+let regex: RegExp = new RegExp('bc*d')
 ```
 
 ### Recipe: Object Literal Must Correspond to Some Explicitly Declared Class or Interface
@@ -1766,7 +1721,6 @@ p.y = null
 * Recipe: Indexed Access Is Not Supported for Fields
 * Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
 * Recipe: `in` Operator Is Not Supported
-* Recipe: Property-based Runtime Type Checking Is Not Supported
 
 ### Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
 
@@ -1806,7 +1760,6 @@ let s2: string
 * Recipe: Indexed Access Is Not Supported for Fields
 * Recipe: `delete` Operator Is Not Supported
 * Recipe: `in` Operator Is Not Supported
-* Recipe: Property-based Runtime Type Checking Is Not Supported
 * Recipe: Usage of Standard Libraries Is Restricted
 
 ### Recipe: `instanceof` Operator Is Partially Supported
@@ -1889,7 +1842,6 @@ let b = p instanceof Person // True. "name" is guaranteed to be present.
 * Recipe: Indexed Access Is Not Supported for Fields
 * Recipe: `delete` Operator Is Not Supported
 * Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
-* Recipe: Property-based Runtime Type Checking Is Not Supported
 * Recipe: Usage of Standard Libraries Is Restricted
 
 ### Recipe: Destructuring Assignment Is Not Supported
@@ -1938,6 +1890,10 @@ for (let i = 1; i < data.length; ++i) {
 
 ArkTS supports the comma operator `,` only in `for` loops. In other cases,
 the comma operator is useless as it makes the execution order harder to understand.
+
+Please note that this rule is applied only to the "comma operator". Other cases, when
+comma is used to delimit variable declarations or parameters of a function call, are
+of course allowed.
 
 **TypeScript**
 
@@ -2073,43 +2029,6 @@ for (let i = 0; i < a.length; ++i) {
 }
 ```
 
-**See also**
-
-* Recipe: `for-of` Is Supported Only for Arrays and Strings
-
-### Recipe: `for-of` Is Supported Only for Arrays and Strings
-
-**Rule `arkts-for-of-str-arr`**
-
-**Severity: error**
-
-ArkTS supports the iteration over arrays and strings by the `for .. of` loop,
-but does not support the iteration of objects content. All typed arrays from
-the standard library (for example, `Int32Array`) are also supported.
-
-**TypeScript**
-
-```typescript
-let a: Set<number> = new Set([1, 2, 3])
-for (let s of a) {
-    console.log(s)
-}
-```
-
-**ArkTS**
-
-```typescript
-let a: Set<number> = new Set([1, 2, 3])
-let numbers = Array.from(a.values())
-for (let n of numbers) {
-    console.log(n)
-}
-```
-
-**See also**
-
-* Recipe: `for ..` in Is Not Supported
-
 ### Recipe: Mapped Type Expression Is Not Supported
 
 **Rule:** `arkts-no-mapped-types`
@@ -2141,10 +2060,6 @@ class CFlags {
 }
 ```
 
-**See also**
-
-* Recipe: `keyof` Operator Is Not Supported
-
 ### Recipe: `with` Statement Is Not Supported
 
 **Rule:** `arkts-no-with`
@@ -2172,7 +2087,7 @@ console.log("Area: ", Math.PI * r * r)
 
 ### Recipe: `throw` Statements Do Not Accept Values of Arbitrary Types
 
-**Rule: `arkts-limited-throw`
+**Rule:** `arkts-limited-throw`
 
 **Severity: error**
 
@@ -2498,70 +2413,17 @@ function main(): void {
 }
 ```
 
-### Recipe: `keyof` Operator Is Not Supported
-
-**Rule:** `arkts-no-keyof`
-
-**Severity: error**
-
-ArkTS does not support the `keyof` operator, because the object layout is defined
-at compile time and cannot be changed at runtime. Object fields can only be
-accessed directly.
-
-**TypeScript**
-
-```typescript
-class Point {
-    x: number = 1
-    y: number = 2
-}
-
-type PointKeys = keyof Point  // The type of PointKeys is "x" | "y".
-
-function getPropertyValue(obj: Point, key: PointKeys) {
-    return obj[key]
-}
-
-let obj = new Point()
-console.log(getPropertyValue(obj, "x"))  // Prints "1".
-console.log(getPropertyValue(obj, "y"))  // Prints "2".
-```
-
-**ArkTS**
-
-```typescript
-class Point {
-    x: number = 1
-    y: number = 2
-}
-
-function getPropertyValue(obj: Point, key: string): number {
-    if (key == "x") {
-        return obj.x
-    }
-    if (key == "y") {
-        return obj.y
-    }
-    throw new Error()  // No such property.
-}
-
-function main(): void {
-    let obj = new Point()
-    console.log(getPropertyValue(obj, "x"))  // Prints "1".
-    console.log(getPropertyValue(obj, "y"))  // Prints "2".
-}
-```
-
-### Recipe: It Is Possible to Spread Only Arrays into the Rest Parameter
+### Recipe: It is possible to spread only arrays or classes derived from arrays into the rest parameter or array literals
 
 **Rule:** `arkts-no-spread`
 
 **Severity: error**
 
-The only supported scenario for the spread operator is to spread an array into
-the rest parameter. Otherwise, manually "unpack" data from arrays and objects,
-where necessary. All typed arrays from the standard library (for example,
-`Int32Array`) are also supported.
+The only supported scenario for the spread operator is to spread an array or
+class derived from array into the rest parameter or array literal.
+Otherwise, manually "unpack" data from arrays and objects, where necessary.
+All typed arrays from the standard library (for example, ``Int32Array``)
+are also supported.
 
 **TypeScript**
 
@@ -2615,6 +2477,13 @@ class Point3D {
 
 let p3d = new Point3D({x: 1, y: 2} as Point2D, 3)
 console.log(p3d.x, p3d.y, p3d.z)
+
+class DerivedFromArray extends Uint16Array {};
+
+let arr1 = [1, 2, 3];
+let arr2 = new Uint16Array([4, 5, 6]);
+let arr3 = new DerivedFromArray([7, 8, 9])
+let arr4 = [...arr1, 10, ...arr2, 11, ...arr3]
 ```
 
 ### Recipe: Interface Cannot Extend Interfaces with the Same Method
@@ -2786,72 +2655,6 @@ interface SelectableControl extends Control {
 }
 ```
 
-### Recipe: Property-based Runtime Type Checking Is Not Supported
-
-**Rule:** `arkts-no-prop-existence-check`
-
-**Severity: error**
-
-In ArkTS, the object layout must be determined at compile time and cannot
-be changed at runtime. Therefore, property-based runtime checking is not
-supported.
-If you need to do type casting, use the operator `as` with desired properties
-and methods.
-Reference to a property that does not exist causes a
-compile-time error.
-
-**TypeScript**
-
-```typescript
-class A {
-    foo() {}
-    bar() {}
-}
-
-function getSomeObject() {
-    return new A()
-}
-
-let obj: any = getSomeObject()
-if (obj && obj.foo && obj.bar) {
-    console.log("Yes")  // Prints "Yes" in this example.
-} else {
-    console.log("No")
-}
-```
-
-**ArkTS**
-
-```typescript
-class A {
-    foo(): void {}
-    bar(): void {}
-}
-
-function getSomeObject(): A {
-    return new A()
-}
-
-function main(): void {
-    let tmp: Object = getSomeObject()
-    let obj: A = tmp as A
-    obj.foo()       // OK
-    obj.bar()       // OK
-    obj.some_foo()  // Compile-time error: Method some_foo does not
-                    // exist on this type
-}
-```
-
-**See also**
-
-* Recipe: Objects with Property Names That Are Not Identifiers Are Not Supported
-* Recipe: `Symbol()` Is Not Supported
-* Recipe: Indexed Access Is Not Supported for Fields
-* Recipe: `delete` Operator Is Not Supported
-* Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
-* Recipe: `in` Operator Is Not Supported
-* Recipe: Usage of Standard Libraries Is Restricted
-
 ### Recipe: Constructor Function Type Is Not Supported
 
 **Rule:** `arkts-no-ctor-signatures-funcs`
@@ -2989,7 +2792,7 @@ enum Color {
 
 ### Recipe: Namespaces Cannot Be Used as Objects
 
-**Rule `arkts-no-ns-as-obj`**
+**Rule:** `arkts-no-ns-as-obj`
 
 **Severity: error**
 
@@ -3157,60 +2960,6 @@ import * as m from "mod"
 
 * Recipe: `export = ...` Is Not Supported
 
-### Recipe: Re-exporting Is Supported With Restrictions
-
-**Rule:** `arkts-limited-reexport`
-
-**Severity: error**
-
-ArkTS supports the re-exporting syntax that covers most common cases of re-export:
-re-exporting imported entities and re-exporting combined with renaming.
-Other syntax flavors like `export * as ...` are not supported.
-
-**TypeScript**
-
-```typescript
-// module1
-export class Class1 {
-    // ...
-}
-export class Class2 {
-    // ...
-}
-
-// module2
-export * as utilities from "module1"
-
-// consumer module
-import { utilities } from "module2"
-```
-
-**ArkTS**
-
-```typescript
-// module1
-export class Class1 {
-    // ...
-}
-export class C2 {
-    // ...
-}
-
-// module2
-export { Class1 } from "module1"
-export { C2 as Class2 } from "module1"
-
-// Re-exporting by wildcard is also supported.
-// Export * from "module1"
-
-// Consumer module
-import { Class1, Class2 } from "module2"
-```
-
-**See also**
-
-* Recipe: `export = ...` Is Not Supported
-
 ### Recipe: `export = ...` Is Not Supported
 
 **Rule:** `arkts-no-export-assignment`
@@ -3234,7 +2983,7 @@ class Point {
 // module2
 import Pt = require("module1")
 
-let p = Pt.origin
+let p = Pt.Point.origin
 ```
 
 **ArkTS**
@@ -3249,17 +2998,16 @@ export class Point {
 // module2
 import * as Pt from "module1"
 
-let p = Pt.origin
+let p = Pt.Point.origin
 ```
 
 **See also**
 
 * Recipe: `require` and `import` Assignment Are Not Supported
-* Recipe: Re-exporting Is Supported With Restrictions
 
 ### Recipe: Special `export type` Declarations Are Not Supported
 
-**Rule `arkts-no-special-exports`**
+**Rule:** `arkts-no-special-exports`
 
 **Severity: error**
 
@@ -3324,11 +3072,10 @@ import { normalize } from "someModule"
 **See also**
 
 * Recipe: Wildcards in Module Names Are Not Supported
-* Recipe: .js Extension Is Not Allowed in Module Identifiers
 
 ### Recipe: Wildcards in Module Names Are Not Supported
 
-**Rule `arkts-no-module-wildcards`**
+**Rule:** `arkts-no-module-wildcards`
 
 **Severity: error**
 
@@ -3366,7 +3113,6 @@ console.log("N.foo called: ", N.foo(42))
 
 * Recipe: Ambient Module Declaration Is Not Supported
 * Recipe: UMD Is Not Supported
-* Recipe: .js Extension Is Not Allowed in Module Identifiers
 
 ### Recipe: UMD Is Not Supported
 
@@ -3404,32 +3150,6 @@ mathLib.isPrime(2)
 
 **See also**
 
-* Recipe: Wildcards in Module Names Are Not Supported
-
-### Recipe: `.js` Extension Is Not Allowed in Module Identifiers
-
-**Rule:** `arkts-no-js-extension`
-
-**Severity: error**
-
-ArkTS does not support the `.js` extension in module identifiers, because
-it has its own mechanisms for interoperating with JavaScript.
-
-**TypeScript**
-
-```typescript
-import { something } from "module.js"
-```
-
-**ArkTS**
-
-```typescript
-import { something } from "module"
-```
-
-**See also**
-
-* Recipe: Ambient Module Declaration Is Not Supported
 * Recipe: Wildcards in Module Names Are Not Supported
 
 ### Recipe: `new.target` Is Not Supported
@@ -3478,7 +3198,7 @@ let ce = new CustomError()
 
 **Rule:** `arkts-no-definite-assignment`
 
-**Severity: error**
+**Severity: warning**
 
 ArkTS does not support definite assignment assertions `let v!: T` because
 they are considered an excessive compiler hint.
@@ -3508,40 +3228,6 @@ function initialize() : number {
 let x: number = initialize()
 
 console.log("x = " + x)
-```
-
-### Recipe: IIFEs as Namespace Declarations Are Not Supported
-
-**Rule:** `arkts-no-iife`
-
-**Severity: error**
-
-ArkTS does not support IIFEs as namespace declarations because anonymous
-functions in the language cannot serve as namespaces.
-Use regular syntax for namespaces instead.
-
-**TypeScript**
-
-```typescript
-const C = (function () {
-    class Cl {
-        static static_value = "static_value";
-        static any_value: any = "any_value";
-        string_field = "string_field";
-    }
-
-    return Cl;
-})();
-
-C.prop = 2;
-```
-
-**ArkTS**
-
-```typescript
-namespace C {
-    // ...
-}
 ```
 
 ### Recipe: Prototype Assignment Is Not Supported
@@ -3634,73 +3320,10 @@ M.abc = 200
 **Severity: error**
 
 Currently ArkTS does not support utility types from TypeScript extensions to the
-standard library. Exceptions are `Partial` and
-`Record`.
+standard library. Exceptions are `Partial`, `Required`, `Readonly` and `Record`.
 
 For the type *Record<K, V>*, the type of an indexing expression *rec[index]* is
 of the type *V | undefined*.
-
-**TypeScript**
-
-```typescript
-type Person = {
-    name: string
-    age: number
-    location: string
-}
-
-type QuantumPerson = Omit<Person, "location">
-
-let persons : Record<string, Person> = {
-    "Alice": {
-        name: "Alice",
-        age: 32,
-        location: "Shanghai"
-    },
-    "Bob": {
-        name: "Bob",
-        age: 48,
-        location: "New York"
-    }
-}
-console.log(persons["Bob"].age)
-console.log(persons["Rob"].age) // Runtime exception
-```
-
-**ArkTS**
-
-```typescript
-class Person {
-    name: string = ""
-    age: number = 0
-    location: string = ""
-}
-
-class QuantumPerson {
-    name: string = ""
-    age: number = 0
-}
-
-type OptionalPerson = Person | undefined
-let persons : Record<string, OptionalPerson> = {
-// Or:
-// let persons : Record<string, Person | undefined> = {
-    "Alice": {
-        name: "Alice",
-        age: 32,
-        location: "Shanghai"
-    },
-    "Bob": {
-        name: "Bob",
-        age: 48,
-        location: "New York"
-    }
-}
-console.log(persons["Bob"]!.age)
-if (persons["Rob"]) { // Explicit value check, no runtime exception
-    console.log(persons["Rob"].age)
-}
-```
 
 ### Recipe: Declaring Properties on Functions Is Not Supported
 
@@ -3776,75 +3399,9 @@ library to explicitly set the parameter `this` for the called function.
 In ArkTS, the semantics of `this` is restricted to the conventional OOP
 style, and the usage of `this` in stand-alone functions is prohibited.
 
-**TypeScript**
-
-```typescript
-const person = {
-    firstName: "aa",
-
-    fullName: function(): string {
-        return this.firstName
-    }
-}
-
-const person1 = {
-    firstName: "Mary"
-}
-
-// This will log "Mary".
-console.log(person.fullName.apply(person1))
-```
-
-**ArkTS**
-
-```typescript
-class Person {
-    firstName : string
-
-    constructor(firstName : string) {
-        this.firstName = firstName
-    }
-    fullName() : string {
-        return this.firstName
-    }
-}
-
-let person = new Person("")
-let person1 = new Person("Mary")
-
-// This will log "Mary".
-console.log(person1.fullName())
-```
-
 **See also**
 
 * Recipe: Using `this` Inside Stand-Alone Functions Is Not Supported
-
-### Recipe: `readonly T[]` Syntax Is Not Supported
-
-**Rule:** `arkts-no-readonly-params`
-
-**Severity: error**
-
-Currently, ArkTS supports `readonly` for properties, but not for parameters.
-
-**TypeScript**
-
-```typescript
-function foo(arr: readonly string[]) {
-    arr.slice()        // OK
-    arr.push("hello!") // Compile-time error
-}
-```
-
-**ArkTS**
-
-```typescript
-function foo(arr: string[]) {
-    arr.slice()        // OK
-    arr.push("hello!") // OK
-}
-```
 
 ### Recipe: `as const` Assertions Are Not Supported
 
@@ -3934,16 +3491,16 @@ Properties and functions of the global object: `eval`,
 
 `Object`: `__proto__`, `__defineGetter__`, `__defineSetter__`,
 `__lookupGetter__`, `__lookupSetter__`, `assign`, `create`,
-`defineProperties`, `defineProperty`, `entries`, `freeze`,
+`defineProperties`, `defineProperty`, `freeze`,
 `fromEntries`, `getOwnPropertyDescriptor`, `getOwnPropertyDescriptors`,
-`getOwnPropertyNames`, `getOwnPropertySymbols`, `getPrototypeOf`,
-`hasOwn`, `hasOwnProperty`, `is`, `isExtensible`, `isFrozen`,
-`isPrototypeOf`, `isSealed`, `keys`, `preventExtensions`,
-`propertyIsEnumerable`, `seal`, `setPrototypeOf`, `values`
+`getOwnPropertySymbols`, `getPrototypeOf`,
+`hasOwnProperty`, `is`, `isExtensible`, `isFrozen`,
+`isPrototypeOf`, `isSealed`, `preventExtensions`,
+`propertyIsEnumerable`, `seal`, `setPrototypeOf`
 
 `Reflect`: `apply`, `construct`, `defineProperty`, `deleteProperty`,
-`get`, `getOwnPropertyDescriptor`, `getPrototypeOf`, `has`,
-`isExtensible`, `ownKeys`, `preventExtensions`, `set`,
+`getOwnPropertyDescriptor`, `getPrototypeOf`,
+`isExtensible`, `preventExtensions`,
 `setPrototypeOf`
 
 `Proxy`: `handler.apply()`, `handler.construct()`,
@@ -3951,8 +3508,6 @@ Properties and functions of the global object: `eval`,
 `handler.getOwnPropertyDescriptor()`, `handler.getPrototypeOf()`,
 `handler.has()`, `handler.isExtensible()`, `handler.ownKeys()`,
 `handler.preventExtensions()`, `handler.set()`, `handler.setPrototypeOf()`
-
-`Array`: `isArray`
 
 `ArrayBuffer`: `isView`
 
@@ -3963,7 +3518,6 @@ Properties and functions of the global object: `eval`,
 * Recipe: Indexed Access Is Not Supported for Fields
 * Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
 * Recipe: `in` Operator Is Not Supported
-* Recipe: Property-based Runtime Type Checking Is Not Supported
 * Recipe: `globalThis` Is Not Supported
 
 ### Recipe: Strict Type Checking Is Enforced
@@ -4095,7 +3649,7 @@ import { C } from "lib1"
 
 **Rule:** `arkts-no-decorators-except-arkui`
 
-**Severity: error**
+**Severity: warning**
 
 Currently, only ArkUI decorators are allowed in ArkTS.
 Any other decorator will cause a compile-time error.

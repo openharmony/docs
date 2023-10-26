@@ -16,23 +16,23 @@ import buffer from '@ohos.buffer';
 
 ## BufferEncoding
 
-表示支持的编码格式字符串。
+表示支持的编码格式类型。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 编码格式    | 说明                 |
+| 类型    | 说明                 |
 | ------- | -------------------- |
-| 'ascii' | 表示ascii格式，不区分大小写。 |
-| 'utf8' | 表示utf8格式，不区分大小写。 |
-| 'utf-8' | 表示utf8格式，不区分大小写。 |
-| 'utf16le' | 表示utf16小端序格式，不区分大小写。 |
-| 'ucs2' | 表示utf16小端序格式，不区分大小写。 |
-| 'ucs-2' | 表示utf16小端序格式，不区分大小写。 |
-| 'base64' | 表示base64格式，不区分大小写。 |
-| 'base64url' | 表示base64格式，不区分大小写。 |
-| 'latin1' | 表示ascii格式，不区分大小写。 |
-| 'binary' | 表示二进制格式，不区分大小写。 |
-| 'hex' | 表示十六进制格式，不区分大小写。 |
+| 'ascii' | 表示ascii格式。 |
+| 'utf8' | 表示utf8格式。 |
+| 'utf-8' | 表示utf8格式。 |
+| 'utf16le' | 表示utf16小端序格式。 |
+| 'ucs2' | utf16le的别名。 |
+| 'ucs-2' | utf16le的别名。 |
+| 'base64' | 表示base64格式。 |
+| 'base64url' | 表示base64url格式。 |
+| 'latin1' | 表示ascii格式。 |
+| 'binary' | 表示二进制格式。 |
+| 'hex' | 表示十六进制格式。 |
 
 ## buffer.alloc
 

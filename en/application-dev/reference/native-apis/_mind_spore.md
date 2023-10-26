@@ -15,17 +15,17 @@ Provides APIs related to MindSpore Lite model inference.
 ## Summary
 
 
-### File
+### Files
 
 | Name                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| [context.h](context_8h.md)      | Provides **Context** APIs for configuring runtime information.<br>File to include: \<mindspore/context.h>|
-| [data_type.h](data__type_8h.md) | Declares tensor data types.<br>File to include: \<mindspore/data_type.h>|
-| [format.h](format_8h.md)        | Declares tensor data formats.<br>File to include: \<mindspore/format.h> |
-| [model.h](model_8h.md)          | Provides model-related APIs for model creation and inference.<br>File to include: \<mindspore/model.h>|
-| [status.h](status_8h.md)        | Provides the status codes of MindSpore Lite.<br>File to include: \<mindspore/status.h>|
-| [tensor.h](tensor_8h.md)        | Provides APIs for creating and modifying tensor information.<br>File to include: \<mindspore/tensor.h>|
-| [types.h](types_8h.md)          | Provides the model file types and device types supported by MindSpore Lite.<br>File to include: \<mindspore/types.h>|
+| [context.h](context_8h.md)      | Provides **Context** APIs for configuring runtime information.<br>File to include: \<mindspore/context.h><br>Library: libmindspore_lite_ndk.so|
+| [data_type.h](data__type_8h.md) | Declares tensor data types.<br>File to include: \<mindspore/data_type.h><br>Library: libmindspore_lite_ndk.so|
+| [format.h](format_8h.md)        | Declares tensor data formats.<br>File to include: \<mindspore/format.h><br>Library: libmindspore_lite_ndk.so|
+| [model.h](model_8h.md)          | Provides model-related APIs for model creation and inference.<br>File to include: \<mindspore/model.h><br>Library: libmindspore_lite_ndk.so|
+| [status.h](status_8h.md)        | Provides the status codes of MindSpore Lite.<br>File to include: \<mindspore/status.h><br>Library: libmindspore_lite_ndk.so|
+| [tensor.h](tensor_8h.md)        | Provides APIs for creating and modifying tensor information.<br>File to include: \<mindspore/tensor.h><br>Library: libmindspore_lite_ndk.so|
+| [types.h](types_8h.md)          | Provides the model file types and device types supported by MindSpore Lite.<br>File to include: \<mindspore/types.h><br>Library: libmindspore_lite_ndk.so|
 
 
 ### Structs
@@ -424,7 +424,7 @@ Declares data types supported by MSTensor.
 | OH_AI_DATATYPE_NUMBERTYPE_INT32   | Int32 data.   |
 | OH_AI_DATATYPE_NUMBERTYPE_INT64   | Int64 data.   |
 | OH_AI_DATATYPE_NUMBERTYPE_UINT8   | UInt8 data.   |
-| OH_AI_DATATYPE_NUMBERTYPE_UINT16  | UInt16 data .  |
+| OH_AI_DATATYPE_NUMBERTYPE_UINT16  | UInt16 data.  |
 | OH_AI_DATATYPE_NUMBERTYPE_UINT32  | UInt32 data.  |
 | OH_AI_DATATYPE_NUMBERTYPE_UINT64  | UInt64 data.  |
 | OH_AI_DATATYPE_NUMBERTYPE_FLOAT16 | Float16 data. |

@@ -21,7 +21,7 @@ Currently, the following encapsulation capabilities are supported:
 
 - Audio and video transcoding
 
-  After transcode audio and video, encapsulate them into files.
+  After you transcode audio and video, encapsulate them into files.
 
 ## How to Develop
 
@@ -30,6 +30,13 @@ Read [AVMuxer](../reference/native-apis/_a_v_muxer.md) for the API reference.
 > **NOTE**
 > 
 > To call the encapsulation APIs to write a local file, request the **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA** permissions by following the instructions provided in [Applying for Permissions](../security/accesstoken-guidelines.md).
+
+### Linking the Dynamic Library in the CMake Script
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_avmuxer.so)
+```
+
+### How to Develop
 
 The following walks you through how to implement the entire process of audio and video encapsulation. It uses the MP4 format as an example.
 
@@ -87,7 +94,7 @@ The following walks you through how to implement the entire process of audio and
 
    ``` c++
    int videoTrackId = -1;
-   char *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
+   uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
    size_t size =...; // Length of the encoding configuration data. Set this parameter based on project requirements.
    OH_AVFormat *formatVideo = OH_AVFormat_Create();
    OH_AVFormat_SetStringValue(formatVideo, OH_MD_KEY_CODEC_MIME, OH_AVCODEC_MIMETYPE_VIDEO_MPEG4); // Mandatory.
@@ -106,12 +113,12 @@ The following walks you through how to implement the entire process of audio and
    
    ``` c++
    int videoTrackId = -1;
-   char *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
+   uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
    size_t size =...; // Length of the encoding configuration data. Set this parameter based on project requirements.
    OH_AVFormat *formatVideo = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4, 1280, 720);
    OH_AVFormat_SetBuffer(formatVideo, OH_MD_KEY_CODEC_CONFIG, buffer, size); // Optional
    
-   ]
+   int ret = OH_AVMuxer_AddTrack(muxer, &videoTrackId, formatVideo);
    if (ret != AV_ERR_OK || videoTrackId < 0) {
        // Failure to add the video track.
    }

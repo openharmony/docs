@@ -3,7 +3,7 @@
 动画效果可以丰富界面的细节，提升UI界面的真实感和品质感。例如，模糊和阴影效果可以让物体看起来更加立体，使得动画更加生动。ArkUI提供了丰富的效果接口，开发者可快速打造出精致、个性化的效果。本章中主要对常用的模糊、阴影和色彩效果等效果接口进行了介绍。
 
 
-模糊可以用来体现界面空间的纵深感，区分前后元素的层级关系
+模糊可以用来体现界面空间的纵深感，区分前后元素的层级关系。
 
 
 | 接口                                       | 说明                     |
@@ -70,7 +70,7 @@ struct Index1 {
         .fontFamily("cursive")
         .fontStyle(FontStyle.Italic)
       Image($r("app.media.wall"))
-        .blur(this.radius) // 使用blur接口为照片组件添加背景模糊效果
+        .blur(this.radius) // 使用blur接口为照片组件添加内容模糊效果
         .height('100%')
         .width("100%")
         .objectFit(ImageFit.Cover)

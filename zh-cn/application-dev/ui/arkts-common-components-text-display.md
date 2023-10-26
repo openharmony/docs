@@ -1,7 +1,7 @@
 # 文本显示（Text/Span）
 
 
-Text是文本组件，通常用于展示用户的视图，如显示文章的文字。具体用法可参考[Text](../reference/arkui-ts/ts-basic-components-text.md)。
+Text是文本组件，通常用于展示用户视图，如显示文章的文字。具体用法请参考[Text](../reference/arkui-ts/ts-basic-components-text.md)。
 
 
 ## 创建文本
@@ -20,6 +20,7 @@ Text可通过以下两种方式来创建：
 
 
 - 引用Resource资源
+
   资源引用类型可以通过$r创建Resource类型对象，文件位置为/resources/base/element/string.json。
 
 
@@ -37,9 +38,10 @@ Text可通过以下两种方式来创建：
 
 ## 添加子组件
 
-[Span](../reference/arkui-ts/ts-basic-components-span.md)只能作为Text组件的子组件显示文本内容。可以在一个Text内添加多个Span来显示一段信息，例如产品说明书、承诺书等。
+[Span](../reference/arkui-ts/ts-basic-components-span.md)只能作为[Text](../reference/arkui-ts/ts-basic-components-text.md)和[RichEditor](../reference/arkui-ts/ts-basic-components-richeditor.md)组件的子组件显示文本内容。可以在一个Text内添加多个Span来显示一段信息，例如产品说明书、承诺书等。
 
 - 创建Span。
+
   Span组件需要写到Text组件内，单独写Span组件不会显示信息，Text与Span同时配置文本内容内容时，Span内容覆盖Text内容。
 
 
@@ -54,6 +56,7 @@ Text可通过以下两种方式来创建：
   ![zh-cn_image_0000001562700441](figures/zh-cn_image_0000001562700441.png)
 
 - 设置文本装饰线及颜色。
+
   通过decoration设置文本装饰线及颜色。
 
 
@@ -87,7 +90,8 @@ Text可通过以下两种方式来创建：
   ![zh-cn_image_0000001562940525](figures/zh-cn_image_0000001562940525.png)
 
 - 添加事件。
-  由于Span组件无尺寸信息，事件仅支持点击事件onClick。
+
+  由于Span组件无尺寸信息，事件仅支持添加点击事件onClick。
 
 
   ```ts
@@ -140,11 +144,15 @@ Text可通过以下两种方式来创建：
     .maxLines(1)
     .fontSize(12)
     .border({ width: 1 }).padding(10)
+  Text('当文本溢出其尺寸时，文本将滚动显示。When the text overflows its dimensions, the text will scroll for displaying.')       
+    .width(250)
+    .textOverflow({ overflow: TextOverflow.MARQUEE })                 
+    .maxLines(1)       
+    .fontSize(12)
+    .border({ width: 1 }).padding(10)                       
   ```
 
-  ![zh-cn_image_0000001563060693](figures/zh-cn_image_0000001563060693.png)
-
-  ![zh-cn_image_0000001563060701](figures/zh-cn_image_0000001563060701.png)
+  ![zh-cn_image_0000001563060701](figures/zh-cn_image_0000001563060701.gif)
 
 - 通过lineHeight属性设置文本行高。
 

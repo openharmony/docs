@@ -156,7 +156,7 @@ try {
     params: customizedParams
   };
   hiSysEvent.write(eventInfo).then(
-    (val: number) => {
+    () => {
       // do something here.
     }
   ).catch(

@@ -72,32 +72,38 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
+export default class EntryAbility extends UIAbility {
+  
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
 
-try {
-  this.context.startAbility(want, (err: BusinessError) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+    try {
+      this.context.startAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startAbility succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbility failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('startAbility succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbility failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbility
 
@@ -116,7 +122,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
@@ -144,37 +150,43 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbility(want, options, (err: BusinessError) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0
+    };
+
+    try {
+      this.context.startAbility(want, options, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startAbility succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbility failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('startAbility succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbility failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbility
 
@@ -193,7 +205,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
@@ -226,36 +238,42 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0,
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbility(want, options)
-    .then(() => {
-      // 执行正常业务
-      console.info('startAbility succeed');
-    })
-    .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbility failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0,
+    };
+
+    try {
+      this.context.startAbility(want, options)
+        .then(() => {
+          // 执行正常业务
+          console.info('startAbility succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbilityForResult
 
@@ -277,7 +295,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want |[Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
@@ -304,35 +322,40 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 **示例：**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityForResult(want, (err: BusinessError, result: common.AbilityResult) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    // 执行正常业务
-    console.info('startAbilityForResult succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+
+    try {
+      this.context.startAbilityForResult(want, (err: BusinessError, result: common.AbilityResult) => {
+        if (err.code) { 
+          // 处理业务逻辑错误
+          console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        } 
+        // 执行正常业务
+        console.info('startAbilityForResult succeed');
+      });
+    } catch (err) { 
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbilityForResult
 
@@ -354,7 +377,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want |[Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
 
@@ -382,40 +405,44 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 **示例：**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0,
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityForResult(want, options, (err: BusinessError, result: common.AbilityResult) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);  
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0,
+    };
+
+    try {
+      this.context.startAbilityForResult(want, options, (err: BusinessError, result: common.AbilityResult) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startAbilityForResult succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('startAbilityForResult succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 
 ## UIAbilityContext.startAbilityForResult
@@ -438,7 +465,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 
@@ -472,39 +499,43 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 **示例：**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0,
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityForResult(want, options)
-    .then((result: common.AbilityResult) => {
-      // 执行正常业务
-      console.info('startAbilityForResult succeed');
-    })
-    .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0,
+    };
+
+    try {
+      this.context.startAbilityForResult(want, options)
+        .then((result: common.AbilityResult) => {
+          // 执行正常业务
+          console.info('startAbilityForResult succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbilityForResultWithAccount
 
@@ -531,7 +562,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 启动Ability的回调函数，返回Ability结果。 |
 
@@ -559,37 +590,42 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 **示例：**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let accountId = 100;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityForResultWithAccount(want, accountId, (err: BusinessError, result: common.AbilityResult) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+
+    try {
+      this.context.startAbilityForResultWithAccount(want, accountId, (err: BusinessError, result: common.AbilityResult) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startAbilityForResultWithAccount succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('startAbilityForResultWithAccount succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 
 ## UIAbilityContext.startAbilityForResultWithAccount
@@ -617,7 +653,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability后，Ability被销毁时的回调函数。 |
@@ -646,38 +682,45 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let accountId = 100;
-let options: StartOptions = {
-  windowMode: 0
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityForResultWithAccount(want, accountId, options, (err: BusinessError) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+    let options: StartOptions = {
+      windowMode: 0
+    };
+
+    try {
+      this.context.startAbilityForResultWithAccount(want, accountId, options, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startAbilityForResultWithAccount succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('startAbilityForResultWithAccount succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 
 ## UIAbilityContext.startAbilityForResultWithAccount
@@ -705,7 +748,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
@@ -739,41 +782,45 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 **示例：**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let accountId = 100;
-let options: StartOptions = {
-  windowMode: 0
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityForResultWithAccount(want, accountId, options)
-    .then((result: common.AbilityResult) => {
-      // 执行正常业务
-      console.info('startAbilityForResultWithAccount succeed');
-    })
-    .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+    let options: StartOptions = {
+      windowMode: 0
+    };
+
+    try {
+      this.context.startAbilityForResultWithAccount(want, accountId, options)
+        .then((result: common.AbilityResult) => {
+          // 执行正常业务
+          console.info('startAbilityForResultWithAccount succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 ## UIAbilityContext.startServiceExtensionAbility
 
 startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
@@ -788,7 +835,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
 | callback | AsyncCallback\<void\> | 是 | 启动ServiceExtensionAbility的回调函数。 |
 
 **错误码：**
@@ -811,33 +858,39 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startServiceExtensionAbility(want)
-    .then(() => {
-      // 执行正常业务
-      console.info('startServiceExtensionAbility succeed');
-    })
-    .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+
+    try {
+      this.context.startServiceExtensionAbility(want)
+        .then(() => {
+          // 执行正常业务
+          console.info('startServiceExtensionAbility succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startServiceExtensionAbility
 
@@ -853,7 +906,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
 
 **错误码：**
 
@@ -875,33 +928,39 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startServiceExtensionAbility(want)
-    .then(() => {
-      // 执行正常业务
-      console.info('startServiceExtensionAbility succeed');
-    })
-    .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+
+    try {
+      this.context.startServiceExtensionAbility(want)
+        .then(() => {
+          // 执行正常业务
+          console.info('startServiceExtensionAbility succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startServiceExtensionAbilityWithAccount
 
@@ -923,7 +982,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动ServiceExtensionAbility的回调函数。 |
 
@@ -947,34 +1006,40 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
-let accountId = 100;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startServiceExtensionAbilityWithAccount(want, accountId, (err: BusinessError) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+    let accountId = 100;
+
+    try {
+      this.context.startServiceExtensionAbilityWithAccount(want, accountId, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startServiceExtensionAbilityWithAccount succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('startServiceExtensionAbilityWithAccount succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startServiceExtensionAbilityWithAccount
 
@@ -996,7 +1061,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 
 **错误码：**
@@ -1019,34 +1084,40 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
-let accountId = 100;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startServiceExtensionAbilityWithAccount(want, accountId)
-    .then(() => {
-      // 执行正常业务
-      console.info('startServiceExtensionAbilityWithAccount succeed');
-    })
-    .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+    let accountId = 100;
+
+    try {
+      this.context.startServiceExtensionAbilityWithAccount(want, accountId)
+        .then(() => {
+          // 执行正常业务
+          console.info('startServiceExtensionAbilityWithAccount succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 ## UIAbilityContext.stopServiceExtensionAbility
 
 stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
@@ -1061,7 +1132,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
 | callback | AsyncCallback\<void\> | 是 | 停止ServiceExtensionAbility的回调函数。 |
 
 **错误码：**
@@ -1084,30 +1155,36 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.stopServiceExtensionAbility(want, (err: BusinessError) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+
+    try {
+      this.context.stopServiceExtensionAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('stopServiceExtensionAbility succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`stopServiceExtensionAbility failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('stopServiceExtensionAbility succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`stopServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+  }
 }
   ```
 
@@ -1125,7 +1202,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
 
 **错误码：**
 
@@ -1145,30 +1222,36 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
   ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.stopServiceExtensionAbility(want)
-    .then(() => {
-      // 执行正常业务
-      console.info('stopServiceExtensionAbility succeed');
-    })
-    .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`stopServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+
+    try {
+      this.context.stopServiceExtensionAbility(want)
+        .then(() => {
+          // 执行正常业务
+          console.info('stopServiceExtensionAbility succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`stopServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
   ```
 
@@ -1192,7 +1275,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | callback | AsyncCallback\<void\> | 是 | 停止ServiceExtensionAbility的回调函数。 |
 
@@ -1213,34 +1296,40 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
-let accountId = 100;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (err: BusinessError) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+    let accountId = 100;
+
+    try {
+      this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('stopServiceExtensionAbilityWithAccount succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('stopServiceExtensionAbilityWithAccount succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.stopServiceExtensionAbilityWithAccount
 
@@ -1262,7 +1351,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 
 **错误码：**
@@ -1282,34 +1371,40 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
-let accountId = 100;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
-    .then(() => {
-      // 执行正常业务
-      console.info('stopServiceExtensionAbilityWithAccount succeed');
-    })
-    .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+    let accountId = 100;
+
+    try {
+      this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
+        .then(() => {
+          // 执行正常业务
+          console.info('stopServiceExtensionAbilityWithAccount succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.terminateSelf
 
@@ -1340,26 +1435,32 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-  try {
-    this.context.terminateSelf((err: BusinessError) => {
-      if (err.code) {
-        // 处理业务逻辑错误
-        console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
-        return;
-      }
-      // 执行正常业务
-      console.info('terminateSelf succeed');
-    });
-  } catch (err) {
-    // 捕获同步的参数错误
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    try {
+      this.context.terminateSelf((err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('terminateSelf succeed');
+      });
+    } catch (err) {
+      // 捕获同步的参数错误
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+    }
   }
-  ```
+}
+```
 
 
 ## UIAbilityContext.terminateSelf
@@ -1391,26 +1492,32 @@ terminateSelf(): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-  try {
-    this.context.terminateSelf()
-      .then(() => {
-        // 执行正常业务
-        console.info('terminateSelf succeed');
-      })
-      .catch((err: BusinessError) => {
-        // 处理业务逻辑错误
-        console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
-      });
-  } catch (err) {
-    // 捕获同步的参数错误
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    try {
+      this.context.terminateSelf()
+        .then(() => {
+          // 执行正常业务
+          console.info('terminateSelf succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 捕获同步的参数错误
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+    }
   }
-  ```
+}
+```
 
 
 ## UIAbilityContext.terminateSelfWithResult
@@ -1443,40 +1550,45 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 **示例：**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common'; 
+import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let resultCode = 100;
-// 返回给接口调用方AbilityResult信息
-let abilityResult: common.AbilityResult = {
-  want,
-  resultCode
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.terminateSelfWithResult(abilityResult, (err: BusinessError) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let resultCode = 100;
+    // 返回给接口调用方AbilityResult信息
+    let abilityResult = {
+      want,
+      resultCode
+    };
+
+    try {
+      this.context.terminateSelfWithResult(abilityResult, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('terminateSelfWithResult succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`terminateSelfWithResult failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('terminateSelfWithResult succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`terminateSelfWithResult failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 
 ## UIAbilityContext.terminateSelfWithResult
@@ -1514,40 +1626,45 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let resultCode = 100;
-// 返回给接口调用方AbilityResult信息
-let abilityResult: common.AbilityResult = {
-  want,
-  resultCode
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.terminateSelfWithResult(abilityResult)
-    .then(() => {
-      // 执行正常业务
-      console.info('terminateSelfWithResult succeed');
-    })
-    .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`terminateSelfWithResult failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let resultCode = 100;
+    // 返回给接口调用方AbilityResult信息
+    let abilityResult = {
+      want,
+      resultCode
+    };
+
+    try {
+      this.context.terminateSelfWithResult(abilityResult)
+        .then(() => {
+          // 执行正常业务
+          console.info('terminateSelfWithResult succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`terminateSelfWithResult failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.connectServiceExtensionAbility
 
@@ -1561,7 +1678,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 连接ServiceExtensionAbility的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 连接ServiceExtensionAbility的want信息。 |
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | 与ServiceExtensionAbility建立连接后回调函数的实例。 |
 
 **返回值：**
@@ -1589,41 +1706,46 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 **示例：**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
-let commRemote: rpc.IRemoteObject;
-let options: common.ConnectOptions = {
-  onConnect(elementName, remote) {
-    commRemote = remote;
-    console.info('onConnect...')
-  },
-  onDisconnect(elementName) {
-    console.info('onDisconnect...')
-  },
-  onFailed(code) {
-    console.info('onFailed...')
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+    let commRemote: rpc.IRemoteObject;
+    let options: common.ConnectOptions = {
+      onConnect(elementName, remote) {
+        commRemote = remote;
+        console.info('onConnect...')
+      },
+      onDisconnect(elementName) {
+        console.info('onDisconnect...')
+      },
+      onFailed(code) {
+        console.info('onFailed...')
+      }
+    };
+    let connection: number;
+    try {
+      connection = this.context.connectServiceExtensionAbility(want, options);
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`connectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
   }
-};
-let connection: number;
-try {
-  connection = this.context.connectServiceExtensionAbility(want, options);
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`connectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
 }
-  ```
+```
 
 
 ## UIAbilityContext.connectServiceExtensionAbilityWithAccount
@@ -1646,7 +1768,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | 与ServiceExtensionAbility建立连接后回调函数的实例。。 |
 
@@ -1675,42 +1797,47 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 **示例：**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
-let accountId = 100;
-let commRemote: rpc.IRemoteObject;
-let options: common.ConnectOptions = {
-  onConnect(elementName, remote) {
-    commRemote = remote;
-    console.info('onConnect...')
-  },
-  onDisconnect(elementName) {
-    console.info('onDisconnect...')
-  },
-  onFailed(code) {
-    console.info('onFailed...')
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+    let accountId = 100;
+    let commRemote: rpc.IRemoteObject;
+    let options: common.ConnectOptions = {
+      onConnect(elementName, remote) {
+        commRemote = remote;
+        console.info('onConnect...')
+      },
+      onDisconnect(elementName) {
+        console.info('onDisconnect...')
+      },
+      onFailed(code) {
+        console.info('onFailed...')
+      }
+    };
+    let connection: number;
+    try {
+      connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`connectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
   }
-};
-let connection: number;
-try {
-  connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`connectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
 }
-  ```
+```
 
 ## UIAbilityContext.disconnectServiceExtensionAbility
 
@@ -1743,30 +1870,37 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
+import rpc from '@ohos.rpc';
 
-// connection为connectServiceExtensionAbility中的返回值
-let connection = 1;
-let commRemote: rpc.IRemoteObject | null;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.disconnectServiceExtensionAbility(connection).then(() => {
-    commRemote = null;
-    // 执行正常业务
-    console.info('disconnectServiceExtensionAbility succeed');
-  }).catch((err: BusinessError) => {
-    // 处理业务逻辑错误
-    console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-  })
-} catch (err) {
-  commRemote = null;
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`disconnectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    // connection为connectServiceExtensionAbility中的返回值
+    let connection = 1;
+    let commRemote: rpc.IRemoteObject | null;
+
+    try {
+      this.context.disconnectServiceExtensionAbility(connection).then(() => {
+        commRemote = null;
+        // 执行正常业务
+        console.info('disconnectServiceExtensionAbility succeed');
+      }).catch((err: BusinessError) => {
+        // 处理业务逻辑错误
+        console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+      })
+    } catch (err) {
+      commRemote = null;
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`disconnectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.disconnectServiceExtensionAbility
 
@@ -1794,32 +1928,39 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
+import rpc from '@ohos.rpc';
 
-// connection为connectServiceExtensionAbility中的返回值
-let connection = 1;
-let commRemote: rpc.IRemoteObject | null;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.disconnectServiceExtensionAbility(connection, (err: BusinessError) => {
-    commRemote = null;
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    // connection为connectServiceExtensionAbility中的返回值
+    let connection = 1;
+    let commRemote: rpc.IRemoteObject | null;
+
+    try {
+      this.context.disconnectServiceExtensionAbility(connection, (err: BusinessError) => {
+        commRemote = null;
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('disconnectServiceExtensionAbility succeed');
+      });
+    } catch (err) {
+      commRemote = null;
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`disconnectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('disconnectServiceExtensionAbility succeed');
-  });
-} catch (err) {
-  commRemote = null;
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`disconnectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbilityByCall
 
@@ -1840,7 +1981,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
 
 **返回值：**
 
@@ -1868,78 +2009,90 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 **示例：**
 
-  后台启动：
+后台启动：
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { Caller } from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let caller: Caller;
+export default class EntryAbility extends UIAbility {
 
-// 后台启动Ability，不配置parameters
-let wantBackground: Want = {
-  bundleName: 'com.example.myapplication',
-  moduleName: 'entry',
-  abilityName: 'EntryAbility',
-  deviceId: ''
-};
+  onForeground() {
+    let caller: Caller;
 
-try {
-  this.context.startAbilityByCall(wantBackground)
-    .then((obj: Caller) => {
-      // 执行正常业务
-      caller = obj;
-      console.info('startAbilityByCall succeed');
-    }).catch((err: BusinessError) => {
-    // 处理业务逻辑错误
-    console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityByCall failed, code is ${code}, message is ${message}`);
+    // 后台启动Ability，不配置parameters
+    let wantBackground: Want = {
+      bundleName: 'com.example.myapplication',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility',
+      deviceId: ''
+    };
+
+    try {
+      this.context.startAbilityByCall(wantBackground)
+        .then((obj: Caller) => {
+          // 执行正常业务
+          caller = obj;
+          console.info('startAbilityByCall succeed');
+        }).catch((err: BusinessError) => {
+        // 处理业务逻辑错误
+        console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityByCall failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 前台启动：
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { Caller } from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let caller: Caller;
+export default class EntryAbility extends UIAbility {
 
-// 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
-let wantForeground: Want = {
-  bundleName: 'com.example.myapplication',
-  moduleName: 'entry',
-  abilityName: 'EntryAbility',
-  deviceId: '',
-  parameters: {
-    'ohos.aafwk.param.callAbilityToForeground': true
+  onForeground() {
+    let caller: Caller;
+
+    // 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
+    let wantForeground: Want = {
+      bundleName: 'com.example.myapplication',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility',
+      deviceId: '',
+      parameters: {
+        'ohos.aafwk.param.callAbilityToForeground': true
+      }
+    };
+
+    try {
+      this.context.startAbilityByCall(wantForeground)
+        .then((obj: Caller) => {
+          // 执行正常业务
+          caller = obj;
+          console.info('startAbilityByCall succeed');
+        }).catch((err: BusinessError) => {
+        // 处理业务逻辑错误
+        console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityByCall failed, code is ${code}, message is ${message}`);
+    }
   }
-};
-
-try {
-  this.context.startAbilityByCall(wantForeground)
-    .then((obj: Caller) => {
-      // 执行正常业务
-      caller = obj;
-      console.info('startAbilityByCall succeed');
-    }).catch((err: BusinessError) => {
-    // 处理业务逻辑错误
-    console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityByCall failed, code is ${code}, message is ${message}`);
 }
-  ```
+```
 
 ## UIAbilityContext.startAbilityWithAccount
 
@@ -1966,7 +2119,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
@@ -1994,34 +2147,40 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let accountId = 100;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityWithAccount(want, accountId, (err: BusinessError) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+
+    try {
+      this.context.startAbilityWithAccount(want, accountId, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startAbilityWithAccount succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('startAbilityWithAccount succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 
 ## UIAbilityContext.startAbilityWithAccount
@@ -2049,7 +2208,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
@@ -2078,38 +2237,44 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let accountId = 100;
-let options: StartOptions = {
-  windowMode: 0
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityWithAccount(want, accountId, options, (err: BusinessError) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+    let options: StartOptions = {
+      windowMode: 0
+    };
+
+    try {
+      this.context.startAbilityWithAccount(want, accountId, options, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startAbilityWithAccount succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('startAbilityWithAccount succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 
 ## UIAbilityContext.startAbilityWithAccount
@@ -2137,7 +2302,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
@@ -2165,38 +2330,44 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let accountId = 100;
-let options: StartOptions = {
-  windowMode: 0
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityWithAccount(want, accountId, options)
-    .then(() => {
-      // 执行正常业务
-      console.info('startAbilityWithAccount succeed');
-    })
-    .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+    let options: StartOptions = {
+      windowMode: 0
+    };
+
+    try {
+      this.context.startAbilityWithAccount(want, accountId, options)
+        .then(() => {
+          // 执行正常业务
+          console.info('startAbilityWithAccount succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.setMissionLabel
 
@@ -2224,13 +2395,19 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-  this.context.setMissionLabel('test', (result: BusinessError) => {
-    console.info(`setMissionLabel: ${JSON.stringify(result)}`);
-  });
-  ```
+export default class EntryAbility extends UIAbility {
+
+  onCreate(want, launchParam) {
+    this.context.setMissionLabel('test', (result: BusinessError) => {
+      console.info(`setMissionLabel: ${JSON.stringify(result)}`);
+    });
+  }
+}
+```
 
 ## UIAbilityContext.setMissionLabel
 
@@ -2264,15 +2441,21 @@ setMissionLabel(label: string): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-  this.context.setMissionLabel('test').then(() => {
-    console.info('success');
-  }).catch((err: BusinessError) => {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error(`setMissionLabel failed, code is ${code}, message is ${message}`);
-  });
+export default class EntryAbility extends UIAbility {
+
+  onCreate(want, launchParam) {
+    this.context.setMissionLabel('test').then(() => {
+      console.info('success');
+    }).catch((err: BusinessError) => {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`setMissionLabel failed, code is ${code}, message is ${message}`);
+    });
+  }
+}
   ```
 ## UIAbilityContext.setMissionIcon
 
@@ -2302,32 +2485,32 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import image from '@ohos.multimedia.image';
-  
-  export default class EntryAbility extends UIAbility {
-    onForeground() {
-      let imagePixelMap: image.PixelMap;
-      let color = new ArrayBuffer(0);
-      image.createPixelMap(color, {
-        size: {
-          height: 100,
-          width: 100
-        }
-      }).then((data) => {
-        imagePixelMap = data;
-        this.context.setMissionIcon(imagePixelMap, (err: BusinessError) => {
-          console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
-        })
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let imagePixelMap: image.PixelMap;
+    let color = new ArrayBuffer(0);
+    image.createPixelMap(color, {
+      size: {
+        height: 100,
+        width: 100
+      }
+    }).then((data) => {
+      imagePixelMap = data;
+      this.context.setMissionIcon(imagePixelMap, (err: BusinessError) => {
+        console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
       })
-        .catch((err: BusinessError) => {
-          console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
-        });
-    }
+    })
+      .catch((err: BusinessError) => {
+        console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
+      });
   }
-  ```
+}
+```
 
 
 ## UIAbilityContext.setMissionIcon
@@ -2420,14 +2603,19 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback:AsyncCall
 
 **示例：**
 
-  ```ts
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import { BusinessError } from '@ohos.base';
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
-  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
-    console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
-  });
-  ```
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
+      console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+    });
+  }
+}
+```
 
 ## UIAbilityContext.setMissionContinueState<sup>10+</sup>
 
@@ -2460,16 +2648,21 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 
 **示例：**
 
-  ```ts
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import { BusinessError } from '@ohos.base';
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
-  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE).then(() => {
-    console.info('success');
-  }).catch((err: BusinessError) => {
-    console.error(`setMissionContinueState failed, code is ${err.code}, message is ${err.message}`);
-  });
-  ```
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE).then(() => {
+      console.info('success');
+    }).catch((err: BusinessError) => {
+      console.error(`setMissionContinueState failed, code is ${err.code}, message is ${err.message}`);
+    });
+  }
+}
+```
 
 ## UIAbilityContext.restoreWindowStage
 
@@ -2496,10 +2689,16 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 
 **示例：**
 
-  ```ts
-  let storage = new LocalStorage();
-  this.context.restoreWindowStage(storage);
-  ```
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let storage = new LocalStorage();
+    this.context.restoreWindowStage(storage);
+  }
+}
+```
 
 ## UIAbilityContext.isTerminating
 
@@ -2525,10 +2724,16 @@ isTerminating(): boolean;
 
 **示例：**
 
-  ```ts
-  let isTerminating: boolean = this.context.isTerminating();
-  console.info(`ability state is ${isTerminating}`);
-  ```
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let isTerminating: boolean = this.context.isTerminating();
+    console.info(`ability state is ${isTerminating}`);
+  }
+}
+```
 
 ## UIAbilityContext.requestDialogService
 
@@ -2547,7 +2752,7 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
+| want |[Want](js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
 | result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
@@ -2574,34 +2779,39 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'AuthAccountServiceExtension'
-};
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'AuthAccountServiceExtension'
+    };
 
-try {
-  this.context.requestDialogService(want, (err: BusinessError, result: dialogRequest.RequestResult) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
-      return;
+    try {
+      this.context.requestDialogService(want, (err: BusinessError, result: dialogRequest.RequestResult) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info(`requestDialogService succeed, result = ${JSON.stringify(result)}`);
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`requestDialogService failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('requestDialogService succeed, result = ${JSON.stringify(result)}');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`requestDialogService failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
   ## UIAbilityContext.requestDialogService
 
@@ -2620,7 +2830,7 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
 
 
 **返回值：**
@@ -2653,33 +2863,39 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;;
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'AuthAccountServiceExtension'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.requestDialogService(want)
-    .then((result: dialogRequest.RequestResult) => {
-      // 执行正常业务
-      console.info('requestDialogService succeed, result = ${JSON.stringify(result)}');
-    })
-    .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`requestDialogService failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'AuthAccountServiceExtension'
+    };
+
+    try {
+      this.context.requestDialogService(want)
+        .then((result: dialogRequest.RequestResult) => {
+          // 执行正常业务
+          console.info(`requestDialogService succeed, result = ${JSON.stringify(result)}`);
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`requestDialogService failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
   ## UIAbilityContext.startRecentAbility
 
 startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
@@ -2699,7 +2915,7 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 需要启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
 | callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
 
 **错误码：**
@@ -2726,32 +2942,38 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startRecentAbility(want, (err: BusinessError) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+
+    try {
+      this.context.startRecentAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startRecentAbility succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('startRecentAbility succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 ## UIAbilityContext.startRecentAbility
 
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
@@ -2772,7 +2994,7 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 需要启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
 
@@ -2800,37 +3022,43 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startRecentAbility(want, options, (err: BusinessError) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0
+    };
+
+    try {
+      this.context.startRecentAbility(want, options, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startRecentAbility succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('startRecentAbility succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 ## UIAbilityContext.startRecentAbility
 
 startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
@@ -2851,7 +3079,7 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 需要启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **错误码：**
@@ -2878,36 +3106,42 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0,
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startRecentAbility(want, options)
-    .then(() => {
-      // 执行正常业务
-      console.info('startRecentAbility succeed');
-    })
-    .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0,
+    };
+
+    try {
+      this.context.startRecentAbility(want, options)
+        .then(() => {
+          // 执行正常业务
+          console.info('startRecentAbility succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbilityByCallWithAccount<sup>10+</sup>
 
@@ -2931,7 +3165,7 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
 | accountId | number | 是 | 系统帐号的帐号ID，-1表示当前活动用户，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
 **返回值：**
@@ -2960,18 +3194,22 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 **示例：**
 
-  ```ts
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { Caller } from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let caller: Caller;
+export default class EntryAbility extends UIAbility {
 
-  // 系统账号的账号ID, -1表示当前激活用户
-  let accountId = -1;
+  onForeground() {
+    let caller: Caller;
 
-  // 指定启动的Ability
-  let want: Want = {
+    // 系统账号的账号ID, -1表示当前激活用户
+    let accountId = -1;
+
+    // 指定启动的Ability
+    let want: Want = {
       bundleName: 'com.acts.actscalleeabilityrely',
       moduleName: 'entry',
       abilityName: 'EntryAbility',
@@ -2980,23 +3218,25 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
         // 'ohos.aafwk.param.callAbilityToForeground' 值设置为true时为前台启动, 设置false或不设置为后台启动
         'ohos.aafwk.param.callAbilityToForeground': true
       }
-  };
+    };
 
-  try {
-    this.context.startAbilityByCallWithAccount(want, accountId)
-      .then((obj: Caller) => {
-        // 执行正常业务
-        caller = obj;
-        console.log('startAbilityByCallWithAccount succeed');
-      }).catch((error: BusinessError) => {
+    try {
+      this.context.startAbilityByCallWithAccount(want, accountId)
+        .then((obj: Caller) => {
+          // 执行正常业务
+          caller = obj;
+          console.log('startAbilityByCallWithAccount succeed');
+        }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.error('startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
       });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
@@ -3017,7 +3257,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -3089,7 +3329,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
@@ -3165,7 +3405,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**

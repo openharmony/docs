@@ -14,6 +14,7 @@
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](js-apis-app-ability-environmentCallback.md)
     - [@ohos.app.ability.ExtensionAbility (ExtensionAbility Base Class)](js-apis-app-ability-extensionAbility.md)
+    - [@ohos.app.ability.PrintExtensionAbility (Print Extension Ability)](js-apis-app-ability-PrintExtensionAbility.md)
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-app-ability-serviceExtensionAbility.md)
     - [@ohos.app.ability.ShareExtensionAbility (ExtensionAbility for Sharing)](js-apis-app-ability-shareExtensionAbility.md)
     - [@ohos.app.ability.StartOptions (StartOptions)](js-apis-app-ability-startOptions.md)
@@ -218,7 +219,7 @@
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
   - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
-  
+
 - Graphics
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)
@@ -241,6 +242,7 @@
     - [MediaControlExtensionContext (ExtensionAbility Context for Media Playback Control)](js-apis-inner-application-MediaControlExtensionContext.md)
   - multimedia
     - [ringtonePlayer (Ringtone Player)](js-apis-inner-multimedia-ringtonePlayer.md)
+    - [soundPool (Sound Pool)](js-apis-inner-multimedia-soundPool.md)
 
 - Resource Management
   - [@ohos.i18n (Internationalization)](js-apis-i18n.md)
@@ -259,6 +261,7 @@
 
 - Security
   - [@ohos.abilityAccessCtrl (Ability Access Control)](js-apis-abilityAccessCtrl.md)
+  - [@ohos.dlpPermission (DLP)](js-apis-dlppermission.md)
   - [@ohos.privacyManager (Privacy Management)](js-apis-privacyManager.md)
   - [@ohos.security.cert (Certificate)](js-apis-cert.md)
   - [@ohos.security.cryptoFramework (Crypto Framework)](js-apis-cryptoFramework.md)
@@ -295,9 +298,11 @@
   - [@ohos.file.hash (File Hash Processing)](js-apis-file-hash.md)
   - [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md)
   - [@ohos.file.picker (File Picker)](js-apis-file-picker.md)
+  - [@ohos.file.recent (Recent File List)](js-apis-file-recent.md)
   - [@ohos.file.securityLabel (Data Label)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
+  - [@ohos.file.trash (Trash)](js-apis-file-trash.md)
   - [@ohos.file.volumeManager (Volume Management)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (User Data Management)](js-apis-userFileManager.md)
   - [@ohos.fileshare (File Sharing)](js-apis-fileShare.md)
@@ -377,6 +382,7 @@
   - [@ohos.InputMethodSubtype (Input Method Subtype)](js-apis-inputmethod-subtype.md)
   - [@ohos.logLibrary (Log Library)](js-apis-loglibrary.md)
   - [@ohos.pasteboard (Pasteboard)](js-apis-pasteboard.md)
+  - [@ohos.print (Print)](js-apis-print.md)
   - [@ohos.screenLock (Screenlock)](js-apis-screen-lock.md)
   - [@ohos.systemDateTime (System Time and Time Zone)](js-apis-system-date-time.md)
   - [@ohos.systemTimer (System Timer)](js-apis-system-timer.md)
@@ -480,6 +486,9 @@
   - [@ohos.util.Vector (Linear Container Vector)](js-apis-vector.md)
   - [@ohos.worker (Worker Startup)](js-apis-worker.md)
   - [@ohos.xml (XML Parsing and Generation)](js-apis-xml.md)
+
+- Application services
+  - [@ohos.identifier.oaid (OAID)](js-apis-oaid.md)
 
 - Test
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)

@@ -1,40 +1,18 @@
-# Cross-Device Synchronization of KV Stores
+# Cross-Device Synchronization of RDB Stores
 
 
 ## When to Use
 
-KV Stores are suitable for storing service data with simple relationships. It provides higher read and write performance than the SQL database. KV stores are widely used because the simplicity of the KV data model poses fewer database version compatibility issues in distributed scenarios and simplifies conflict handling in data synchronization.
+You can synchronize the application data in a local RDB store on a device to other divices that form a Super Device.
 
 
 ## Basic Concepts
 
-Before implementing cross-device synchronization of KV stores, understand the following concepts:
+OpenHamony supports synchronization of the relational data of an application across multiple devices.
 
+- Distributed table list<br>After a table is created for an application in an RDB store, you can set it as a distributed table. When querying the RDB store of a remote device, you can obtain the distributed table name of the remote device based on the local table name.
 
-### Single KV Store
-
-In a single KV store, data is saved in the unit of a single entry. When data is modified locally, the data entry is updated no matter whether it has been synchronized. Only one copy of data is retained globally for multiple devices. The data of the latest time is kept for the same entry (with the same primary code) of multiple devices. The data in single KV stores is not differentiated by device. If the data modified on multiple devices has the same key, the value will be overwritten. For the data written or modified locally, the data with the latest time is synchronized to other devices. Single KV stores are used to store information, such as the Contacts and weather application data.
-
-![singleKVStore](figures/singleKVStore.jpg)
-
-
-### Device KV Store
-
-In a device KV store, the local device ID is added before the key of the KV pair stored by an application. In this way, the data of different devices is isolated. Data is managed by device and can be queried by device.
-
-The underlying devices manage the data by device. The device KV stores support distributed data query by device, but do not support modification of the data synchronized from peer devices. Device KV stores are used to store the data that needs to be accessed by device, such as the Gallery thumbnails.
-
-![deviceKVStore](figures/deviceKVStore.jpg)
-
-
-## Synchronization Types
-
-The **DatamgrService** provides the following synchronization types:
-
-
-- Manual synchronization: The application calls **sync()** to trigger a synchronization. The list of devices to be synchronized and the synchronization mode must be specified. The synchronization mode can be **PULL_ONLY** (pulling remote data to the local end), **PUSH_ONLY** (pushing local data to the remote end), or **PUSH_PULL** (pushing local data to the remote end and pulling remote data to the local end). You can use the [**sync()** with the **query** parameter](../reference/apis/js-apis-distributedKVStore.md#sync-1) to synchronize the data that meets the specified conditions.
-
-- Automatic synchronization: The distributed database automatically pushes local data to the remote end and pulls remote data to the local end. An automatic synchronization is triggered when a device goes online or an application updates data.
+- Synchronization mode<br>Data can be synchronized between devices in either of the following ways: <br>- Pushing data from a local device to a remote device. <br>- Pulling data from a remote device to a local device.
 
 
 ## Working Principles
@@ -44,11 +22,11 @@ After completing device discovery and authentication, the underlying communicati
 
 ### Cross-Device Data Synchronization Mechanism
 
-![kvStore](figures/kvStore.jpg)
+![relationalStore_sync](figures/relationalStore_sync.jpg)
 
-When **put()** or **delete()** is called successfully, an automatic synchronization is triggered. The distributed data is sent to the peer device through the communication adaptation layer for synchronization.
+After writing data to an RDB store, the service sends a synchronization request to the **DatamgrService**.
 
-If **sync()** is called successfully, a manual synchronization is triggered to send distributed data to the peer device through the communication adaptation layer.
+The **DatamgrService** reads the data to be synchronized from the application sandbox and sends the data to the **DatamgrService** of the target device based on the **deviceId** of the peer device. Then, the **DatamgrService** writes the data to the RDB of the same application.
 
 
 ### Data Change Notification Mechanism
@@ -57,243 +35,162 @@ When data is added, deleted, or modified, a notification is sent to the subscrib
 
 - Local data change notification: subscription of the application data changes on the local device. When the data in the local KV store is added, deleted, or modified in the database, a notification is received.
 
-- Distributed data change notification: subscription of the application data changes of other devices in the network. When the data in the local KV store changes after being synchronized with data from another device in the same network, a notification is received.
+- Distributed data change notification: subscription of the application data changes of other devices in the network. When the data in the local RDB store changes after being synchronized with data from another device in the same network, a notification is received.
 
 
 ## Constraints
 
-- For each record in a device KV store, the key cannot exceed 896 bytes and the value cannot exceed 4 MB.
+- A maximum of 16 RDB stores can be opened simultaneously for an application.
 
-- For each record in a single KV store, the key cannot exceed 1 KB and the value cannot exceed 4 MB.
-
-- The KV stores do not support custom conflict resolution policies for applications.
-
-- A maximum of 16 KV stores can be opened simultaneously for an application.
-
-- Each KV store supports a maximum of eight callbacks for subscription of data change notifications.
+- Each RDB store supports a maximum of eight callbacks for subscription of data change notifications.
 
 
 ## Available APIs
 
-The following table lists the APIs for cross-device data synchronization of the single KV store. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed KV Store](../reference/apis/js-apis-distributedKVStore.md).
+Most of the APIs for cross-device data synchronization of RDB stores are executed asynchronously in callback or promise mode. The following table uses the callback-based APIs as an example. For more information about the APIs, see [RDB Store](../reference/apis/js-apis-data-relationalStore.md).
 
 | API| Description|
 | -------- | -------- |
-| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.|
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Creates and obtains a KV store of the specified type.|
-| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | Inserts and updates data.|
-| on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void | Subscribes to data changes in the KV store.|
-| get(key: string, callback: AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;): void | Queries the value of the specified key.|
-| sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void | Triggers a manual synchronization of the KV store.|
+| setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Sets the distributed tables to be synchronized.|
+| sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void | Synchronizes data across devices.|
+| on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void | Subscribes to changes in the distributed data.|
+| off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void | Unsubscribe from changes in the distributed data.|
+| obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void; | Obtains the table name on the specified device based on the local table name.|
+| remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void | Queries data from the RDB store of a remote device based on specified conditions.|
 
 
 ## How to Develop
-
-The following uses a single KV store as an example to describe how to implement cross-device data synchronization. The development process is as follows.
-
-![kvStore_development_process](figures/kvStore_development_process.png)
 
 > **NOTE**
 >
 > The data on a device can be synchronized only to the devices whose data security labels are not higher than the security level of the device. For details, see [Access Control Mechanism in Cross-Device Synchronization](sync-app-data-across-devices-overview.md#access-control-mechanism-in-cross-device-synchronization).
 
 1. Import the module.
-   
+
    ```ts
-   import distributedKVStore from '@ohos.data.distributedKVStore';
+   import relationalStore from '@ohos.data.relationalStore';
    ```
 
-2.  Apply for required permissions.
+2. Apply for required permissions.
 
    1. Apply for the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
    2. Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
 
-3. Create a **KvManager** instance based on the specified **KvManagerConfig** object.
+3. Create an RDB store and set a table for distributed synchronization.
 
-   1. Create a **kvManagerConfig** object based on the application context.
-   2. Create a **KvManager** instance.
-
-   
    ```ts
-   // Obtain the context of the stage model.
-   import window from '@ohos.window';
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
-   
-   let kvManager: distributedKVStore.KVManager | undefined = undefined;
-   
+   import window from '@ohos.window';
+   import { BusinessError } from "@ohos.base";
+
    class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage:window.WindowStage) {
-       let context = this.context;
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       const STORE_CONFIG: relationalStore.StoreConfig = {
+         name: "RdbTest.db",
+         securityLevel: relationalStore.SecurityLevel.S1
+       };
+
+       relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, store: relationalStore.RdbStore) => {
+         store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
+           // Set the table for distributed synchronization.
+           store.setDistributedTables(['EMPLOYEE']);
+           // Perform related operations.
+         })
+       })
      }
-   }
-    
-    // Obtain the context of the FA model.
-   import featureAbility from '@ohos.ability.featureAbility';
-   import { BusinessError } from '@ohos.base';
-    
-   let context = featureAbility.getContext();
-   
-   // Construct a kvManager instance.
-   try {
-     const kvManagerConfig: distributedKVStore.KVManagerConfig = {
-       bundleName: 'com.example.datamanagertest',
-       context: context
-     }
-     kvManager = distributedKVStore.createKVManager(kvManagerConfig);
-     console.info('Succeeded in creating KVManager.');
-     // Create and obtain the KV store.
-   } catch (e) {
-     let error = e as BusinessError;
-     console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
-   }
-   
-   if (kvManager !== undefined) {
-     kvManager = kvManager as distributedKVStore.KVManager;
-     // Perform subsequent operations.
-     //...
    }
    ```
 
-4. Obtain the KV store of the specified type.
+4. Synchronize data across devices. After **sync()** is called to trigger a synchronization, data is synchronized from the local device to all other devices on the network.
 
-   1. Declare the ID of the distributed KV store to create.
-   2. Disable the auto synchronization function (**autoSync:false**) to facilitate subsequent verification of the synchronization function. If synchronization is required, call the **sync()** interface.
-
-   
    ```ts
-   let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
-   try {
-     const options: distributedKVStore.Options = {
-       createIfMissing: true,
-       encrypt: false,
-       backup: false,
-       autoSync: false,
-       // If kvStoreType is left empty, a device KV store is created by default.
-       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-       // Device KV store: kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
-       securityLevel: distributedKVStore.SecurityLevel.S1
-     };
-     kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+   // Construct the predicate object for synchronizing the distributed table.
+   let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+   // Call sync() to synchronize data.
+   if(store != undefined)
+   {
+     (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) => {
+       // Check whether data synchronization is successful.
        if (err) {
-         console.error(`Failed to get KVStore: Code:${err.code},message:${err.message}`);
+         console.error(`Failed to sync data. Code:${err.code},message:${err.message}`);
          return;
        }
-       console.info('Succeeded in getting KVStore.');
-       kvStore = store;
-       // Before performing related data operations, obtain a KV store instance.
-     });
-   } catch (e) {
-     let error = e as BusinessError;
-     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
-   }
-   if (kvStore !== undefined) {
-     kvStore = kvStore as distributedKVStore.SingleKVStore;
-       // Perform subsequent operations.
-       //...
+       console.info('Succeeded in syncing data.');
+       for (let i = 0; i < result.length; i++) {
+         console.info(`device:${result[i][0]},status:${result[i][1]}`);
+       }
+     })
    }
    ```
 
-5. Subscribe to changes of distributed data.
-   
+5. Subscribe to changes in the distributed data. The data synchronization triggers the **observer** callback registered in **on()**. The input parameter of the callback is the ID of the device whose data changes.
+
    ```ts
+   let devices: string | undefined = undefined;
    try {
-     kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data) => {
-       console.info(`dataChange callback call data: ${data}`);
-     });
-   } catch (e) {
-     let error = e as BusinessError;
-     console.error(`An unexpected error occurred. code:${error.code},message:${error.message}`);
-   }
-   ```
-
-6. Write data to the single KV store.
-
-   1. Construct the key and value to be written to the single KV store.
-   2. Write KV pairs to the single KV store.
-
-   
-   ```ts
-   const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
-   try {
-     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
-       if (err !== undefined) {
-         console.error(`Failed to put data. Code:${err.code},message:${err.message}`);
-         return;
-       }
-       console.info('Succeeded in putting data.');
-     });
-   } catch (e) {
-     let error = e as BusinessError;
-     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
-   }
-   ```
-
-7. Query data in the single KV store.
-
-   1. Construct the key to be queried from the single KV store.
-   2. Query data from the single KV store.
-
-   
-   ```ts
-   const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
-   try {
-     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
-       if (err !== undefined) {
-         console.error(`Failed to put data. Code:${err.code},message:${err.message}`);
-         return;
-       }
-       console.info('Succeeded in putting data.');
-       kvStore = kvStore as distributedKVStore.SingleKVStore;
-       kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
-         if (err != undefined) {
-           console.error(`Failed to get data. Code:${err.code},message:${err.message}`);
-           return;
+     // Register an observer to listen for the changes of the distributed data.
+     // When data in the RDB store changes, the registered callback will be invoked to return the data changes.
+     if(store != undefined) {
+       (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver)=>{
+         if(devices != undefined){
+           for (let i = 0; i < devices.length; i++) {
+             console.info(`The data of device:${devices[i]} has been changed.`);
+           }
          }
-         console.info(`Succeeded in getting data. Data:${data}`);
        });
-     });
-   } catch (e) {
-     let error = e as BusinessError;
-     console.error(`Failed to get data. Code:${error.code},message:${error.message}`);
+     }
+   } catch (err) {
+     console.error('Failed to register observer. Code:${err.code},message:${err.message}');
+   }
+   // You can unsubscribe from the data changes if required.
+   try {
+     if(store != undefined) {
+       (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver)=>{
+       }
+     }
+   } catch (err) {
+     console.error('Failed to register observer. Code:${err.code},message:${err.message}');
    }
    ```
 
-8. Synchronize data to other devices.
-
-   Select the devices to be synchronized with data and the synchronization mode. The user needs to confirm the synchronization mode when the application is started for the first time.
+6. Query data across devices. If data synchronization is not complete or triggered, an application can call **remoteQuery()** to query data from a remote device.
 
    > **NOTE**
    >
-   > In manual synchronization mode, **deviceIds** can be obtained by [devManager.getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+   > The value of **deviceIds** can be obtained by [deviceManager.getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+
 
    ```ts
+   // Obtain device IDs.
    import deviceManager from '@ohos.distributedDeviceManager';
-    
-   let devManager: deviceManager.DeviceManager;
+   import { BusinessError } from '@ohos.base'
+
+   let dmInstance: deviceManager.DeviceManager;
+   let deviceId: string | undefined = undefined ;
+
    try {
-     // create deviceManager
-     devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
-     // deviceIds is obtained by devManager.getAvailableDeviceListSync.
-     let deviceIds: string[] = [];
-     if (devManager != null) {
-       let devices = devManager.getAvailableDeviceListSync();
-       for (let i = 0; i < devices.length; i++) {
-         deviceIds[i] = devices[i].networkId as string;
-       }
+     dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+     let devices = dmInstance.getAvailableDeviceListSync();
+
+     deviceId = devices[0].networkId;
+
+     // Construct a predicate object for querying the distributed table.
+     let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+     // Query data from the specified remote device and return the query result.
+     if(store != undefined && deviceId != undefined) {
+       (store as relationalStore.RdbStore).remoteQuery(deviceId, 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES'],
+         (err: BusinessError, resultSet: relationalStore.ResultSet) => {
+           if (err) {
+             console.error(`Failed to remoteQuery data. Code:${err.code},message:${err.message}`);
+             return;
+           }
+           console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+         }
+       )
      }
-     try {
-       // 1000 indicates the maximum delay, in ms.
-       kvStore.sync(deviceIds, distributedKVStore.SyncMode.PUSH_ONLY, 1000);
-     } catch (e) {
-       let error = e as BusinessError;
-       console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
-     }
-   
    } catch (err) {
-     let error = err as BusinessError;
-     console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
    }
    ```

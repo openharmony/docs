@@ -21,7 +21,7 @@
 | shortcuts | 标识应用的快捷方式信息 | shortcut_config.json文件 | 在开发视图的resources/base/profile下面定义配置文件shortcut_config.json。 |
 | reqPermissions | 标识应用运行时向系统申请的权限 | requestPermissions | 标签名称变更。 |
 | colorMode | 标识应用自身的颜色模式 | / | Stage模型不支持。 |
-| distributionFilter | 标识应用的分发规则 | distroFilter_config.json文件 | Stage模型在开发视图的resources/base/profile下面定义配置文件distroFilter_config.json。 |
+| distroFilter | 标识应用的分发规则 | distributionFilter_config.json文件 | Stage模型在开发视图的resources/base/profile下面定义配置文件distributionFilter_config.json。 |
 | reqCapabilities | 标识运行应用程序所需的设备能力 | / | Stage模型不支持。 |
 | commonEvents | 公共事件 | common_event_config.json文件 | Stage模型在开发视图的resources/base/profile下面定义配置文件common_event_config.json。 |
 | entryTheme | 此标签标识OpenHarmony内部主题的关键字 | / | Stage模型不支持。 |

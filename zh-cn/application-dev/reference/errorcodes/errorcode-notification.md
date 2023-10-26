@@ -168,7 +168,7 @@ Over max number notifications per second.
 
 降低通知发送频率。
 
-## 16000010 分布式操作失败
+## 1600010 分布式操作失败
 
 **错误信息**
 
@@ -186,7 +186,7 @@ Distributed operation failed.
 
 检查分布式连接是否正常。
 
-## 16000011 读模板配置文件错误
+## 1600011 读模板配置文件错误
 
 **错误信息**
 
@@ -204,7 +204,7 @@ Read template config failed.
 
 请检查系统中模板配置文件是否存在，配置文件路径：/system/etc/notification_template/external.json。
 
-## 16000012 内存空间不够
+## 1600012 内存空间不够
 
 **错误信息**
 
@@ -221,3 +221,22 @@ No memory space.
 **处理步骤**
 
 确认系统内存是否足够。
+
+## 17700001 包名不存在
+
+**错误信息**
+
+The specified bundle name was not found.
+
+**错误描述**
+
+当应用未安装或包名不正确时，系统会报此错误码。
+
+**可能原因**
+
+1. 包名不正确。
+2. 应用未安装。
+
+**处理步骤**
+
+1. 检查应用是否存在。

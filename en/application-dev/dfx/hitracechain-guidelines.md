@@ -64,8 +64,7 @@ The following example illustrates how to simulate one-time [system event logging
                     eventType: hiSysEvent.EventType.FAULT,
                     params: customizedParams
                   };
-                  hiSysEvent.write(eventInfo).then((val: number) => {
-                    console.info(`write result is ${val}`);
+                  hiSysEvent.write(eventInfo).then(() => {
                     // Disable distributed call chain tracing when the service ends.
                     hiTraceChain.end(traceId);
                   }).catch((err: BusinessError) => {

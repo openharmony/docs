@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.mouseEvent (鼠标输入事件)
 
-设备上报的鼠标事件。
+设备上报的鼠标事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
 >  **说明：**
 >
@@ -67,7 +67,7 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 | 名称    | 类型   | 可读   | 可写   | 说明   |
 | ----- | ------ | ---- | ---- | ---- |
-| axis  | Axis   | 是    | 否    | 轴类型  |
+| axis  | [Axis](#axis)   | 是    | 否    | 轴类型  |
 | value | number | 是    | 否    | 轴的值  |
 
 
@@ -79,17 +79,17 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 | 名称             | 类型        | 可读   | 可写   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| action         | Action      | 是    | 否    | 鼠标事件动作                                   |
+| action         | [Action](#action)      | 是    | 否    | 鼠标事件动作                                   |
 | screenX        | number      | 是    | 否    | 鼠标光标在屏幕中的横坐标                             |
 | screenY        | number      | 是    | 否    | 鼠标光标在屏幕中的纵坐标                             |
 | windowX        | number      | 是    | 否    | 鼠标所在窗口的横坐标                               |
 | windowY        | number      | 是    | 否    | 鼠标所在窗口的纵坐标                               |
 | rawDeltaX      | number      | 是    | 否    | 鼠标本次操作横坐标偏移值 |
 | rawDeltaY      | number      | 是    | 否    | 鼠标本次操作纵坐标偏移值                          |
-| button         | Button      | 是    | 否    | 鼠标按钮                               
-| pressedButtons | Button[]    | 是    | 否    | 当前处于按下状态的鼠标按钮                              |
-| axes           | AxisValue[] | 是    | 否    | 事件包含的所有轴数据                               |
-| pressedKeys    | KeyCode[]   | 是    | 否    | 当前处于按下状态的按键列表                            |
+| button         | [Button](#button)     | 是    | 否    | 鼠标按钮                               
+| pressedButtons | [Button](#button)[]    | 是    | 否    | 当前处于按下状态的鼠标按钮                              |
+| axes           | [AxisValue](#axisvalue)[] | 是    | 否    | 事件包含的所有轴数据                               |
+| pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | 是    | 否    | 当前处于按下状态的按键列表                            |
 | ctrlKey        | boolean     | 是    | 否    | 当前ctrlKey是否处于按下状态                        |
 | altKey         | boolean     | 是    | 否    | 当前altKey是否处于按下状态                         |
 | shiftKey       | boolean     | 是    | 否    | 当前shiftKey是否处于按下状态                       |

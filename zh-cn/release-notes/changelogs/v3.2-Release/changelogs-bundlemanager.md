@@ -223,22 +223,13 @@ module.json配置文件中的ability的[name](../../../application-dev/quick-sta
 **适配指导**<br>
 删除module.json中[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)的apiVersion标签
 
-## cl.bundlemanager.19 module.json配置文件中distroFilter修改为distributionFilter
-配置文件module.json中[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)标签修改为distributionFilter
-
-**变更影响**<br>
-删除配置文件module.json[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
-
-**适配指导**<br>
-删除module.json中[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)标签，使用distributionFilter替代
-
-## cl.bundlemanager.20 module.json配置文件中launchTypede标签standard模式修改为multiton
+## cl.bundlemanager.19 module.json配置文件中launchTypede标签standard模式修改为multiton
 删除module.json中[launchType](../../../application-dev/quick-start/module-configuration-file.md)标签的standard模式修改为multiton
 
 **适配指导**<br>
 删除module.json中[launchType](../../../application-dev/quick-start/module-configuration-file.md)标签的standard模式，使用multiton替代
 
-## cl.bundlemanager.21 app.json配置文件删除atomicService标签
+## cl.bundlemanager.20 app.json配置文件删除atomicService标签
 删除配置文件app.json中atomicService标签
 
 **变更影响**<br>
@@ -247,7 +238,7 @@ module.json配置文件中的ability的[name](../../../application-dev/quick-sta
 **适配指导**<br>
 删除atomicService标签
 
-## cl.bundlemanager.22 app.json配置文件新增bundleType标签
+## cl.bundlemanager.21 app.json配置文件新增bundleType标签
 配置文件app.json中新增bundleType标签
 
 **变更影响**<br>
@@ -258,7 +249,7 @@ module.json配置文件中的ability的[name](../../../application-dev/quick-sta
 - 当bundleType为app时，installationFree必须为false。
 - 当bundleType为atomicService时，installationFree必须为true。
 
-## cl.bundlemanager.23 包管理ApplicationInfo结构体中删除split字段。
+## cl.bundlemanager.22 包管理ApplicationInfo结构体中删除split字段。
 
 包管理[ApplicationInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ApplicationInfo.d.ts)结构体中删除split字段。
 
@@ -271,7 +262,7 @@ module.json配置文件中的ability的[name](../../../application-dev/quick-sta
 **适配指导**<br>
 删除ApplicationInfo结构体中的split字段。目前元服务中stage模型强制分包，不支持不分包。
 
-## cl.bundlemanager.24 包管理HapModuleInfo结构体中删除atomicServiceModuleType字段。
+## cl.bundlemanager.23 包管理HapModuleInfo结构体中删除atomicServiceModuleType字段。
 
 包管理[HapModuleInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts)结构体中删除atomicServiceModuleType字段。
 
@@ -284,7 +275,7 @@ module.json配置文件中的ability的[name](../../../application-dev/quick-sta
 **适配指导**<br>
 删除[HapModuleInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts)结构体中的atomicServiceModuleType字段。判断atomicServiceModuleType字段的部分，用[HapModuleInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts)结构体中的moduleType代替。
 
-## cl.bundlemanager.25 包管理删除AtomicServiceModuleType枚举值。
+## cl.bundlemanager.24 包管理删除AtomicServiceModuleType枚举值。
 
 包管理[HapModuleInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts)结构体中删除atomicServiceModuleType字段。
 

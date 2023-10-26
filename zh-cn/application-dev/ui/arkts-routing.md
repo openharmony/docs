@@ -1,9 +1,9 @@
 # 页面路由（router）
 
-页面路由指在应用程序中实现不同页面之间的跳转和数据传递。OpenHarmony提供了Router模块，通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)和[页面返回前增加一个询问框](#页面返回前增加一个询问框)几个方面介绍Router模块提供的功能。
+
+页面路由指在应用程序中实现不同页面之间的跳转和数据传递。OpenHarmony提供了Router模块，通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)几个方面介绍Router模块提供的功能。
 
 Router适应于模块间与模块内页面切换，通过每个页面的url实现模块间解耦。模块内页面跳转时，为了实现更好的转场动效场景不建议使用该模块，推荐使用[Navigation](./arkts-navigation-navigation.md)。
-
 
 ## 页面跳转
 
@@ -31,7 +31,7 @@ Router模块提供了两种跳转模式，分别是[router.pushUrl()](../referen
 
 - Single：单实例模式。如果目标页面的url已经存在于页面栈中，则会将离栈顶最近的同url页面移动到栈顶，该页面成为新建页。如果目标页面的url在页面栈中不存在同url页面，则按照默认的多实例模式进行跳转。
 
-在使用页面路由Router相关功能之前，需要在代码中先导入Router模块。
+在使用Router相关功能之前，需要在代码中先导入Router模块。
 
 
 ```ts
@@ -166,9 +166,16 @@ function onJumpClick(): void {
 
 ```ts
 import router from '@ohos.router';
-const params:Record<string,Object> = {'':router.getParams()}; // 获取传递过来的参数对象
-const id:Object = params['id']; // 获取id属性的值
-const age:Object = params['info'].age; // 获取age属性的值
+class infoTmp{
+  age:number = 0
+}
+class rouTmp{
+  id:object = ()=>{}
+  info:infoTmp = new infoTmp()
+}
+const params:rouTmp = router.getParams() as rouTmp; // 获取传递过来的参数对象
+const id:object = params.id // 获取id属性的值
+const age:number = params.info.age // 获取age属性的值
 ```
 
 
@@ -187,7 +194,7 @@ const age:Object = params['info'].age; // 获取age属性的值
 import router from '@ohos.router';
 ```
 
-可以使用以下几种方式进行页面返回：
+可以使用以下几种方式返回页面：
 
 - 方式一：返回到上一个页面。
 
@@ -369,16 +376,16 @@ import router from '@ohos.router';
 // library为新建共享包自定义的名字
 @Entry({ routeName : 'myPage' })
 @Component
-struct MyComponent {
+export struct MyComponent {
 }
 ```
 
-配置成功后需要在需要跳转的页面中引入命名路由的页面：
+配置成功后需要在跳转的页面中引入命名路由的页面：
 
 ```ts
 import router from '@ohos.router';
-const moudel = import('./Index')  // 引入共享包中的命名路由页面
 import { BusinessError } from '@ohos.base';
+const moudel = import('library/src/main/ets/pages/Index')  // 引入共享包中的命名路由页面
 @Entry
 @Component
 struct Index {

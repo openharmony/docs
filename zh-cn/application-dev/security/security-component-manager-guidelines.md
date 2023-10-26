@@ -23,7 +23,7 @@
 
 应用集成保存控件后，用户点击该控件，应用会获取5秒内单次访问媒体库特权接口的授权。
 
-开发者需要注意两点：
+开发者需要注意：
 
 1. 应用在onClick()触发回调到调用媒体库特权接口的时间间隔不大于5秒。
 
@@ -34,16 +34,13 @@
 
 ## 创建方式
 
-安全控件是由图标（icon）、文本（text）、背景（buttonType）组成的类似button的按钮，其中图标、文本两者至少有其一，背景是可选的。图标和文本不支持自定义，仅支持在已有的选项中选择。应用申明安全控件的接口时，分为传参和不传参两种，不传参默认创建图标+文字+背景的按钮，传参根据传入的参数创建，不包含没有配置的元素。
+安全控件是由图标、文本、背景组成的类似button的按钮，其中图标、文本两者至少有其一，背景是可选的。图标和文本不支持自定义，仅支持在已有的选项中选择。应用申明安全控件的接口时，分为传参和不传参两种，不传参默认创建图标+文字+背景的按钮，传参根据传入的参数创建，不包含没有配置的元素。
 
 例如保存控件：
 
 ```
 /* 默认样式 */
 SaveButton()
-
-/* 自定义样式 icon、text、buttonType都是可选项，配置即存在，不配置即不存在*/
-SaveButton(options: SaveButtonOptions)
 
 /* 只有图标的样式 */
 SaveButton({ icon:SaveIconStyle.FULL_FILLED })
@@ -74,7 +71,7 @@ SaveButton({ icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD })
 | borderStyle(value: BorderStyle) | 设置安全控件边框的样式 |
 | borderWidth(value: Dimension) | 设置安全控件边框的宽度 |
 | borderColor(value: ResourceColor) | 设置安全控件的边框颜色 |
-| borderColor(value: ResourceColor) | 设置安全控件的边框圆角半径 |
+| borderRadius(value: Dimension) | 设置安全控件的边框圆角半径 |
 | padding(value: Padding \| Dimension) | 设置安全控件的内边距 |
 | textIconSpace(value: Dimension) | 设置安全控件中图标和文字的间距 |
 

@@ -13,7 +13,7 @@
 
 gesture为通用的一种手势绑定方法，可以将手势绑定到对应的组件上。
 
-例如，可以将点击手势TapGesture通过gesture手势绑定方法绑定到Text组件上。
+例如，可以将点击手势TapGesture通过gesture手势将方法绑定到Text组件上。
 
 
 ```ts
@@ -114,7 +114,7 @@ struct Index {
       TapGesture()
         .onAction(() => {
           console.info('Column TapGesture is onAction');
-        }), GestureMask.IgnoreInternal)
+        }), GestureMask.Normal)
   }
 }
 ```

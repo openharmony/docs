@@ -231,7 +231,7 @@ function tokenFunc(name: xml.EventType, value: xml.ParseInfo): boolean {
 }
 
 let options: xml.ParseOptions = {
-  supportDocType: true,
+  supportDoctype: true,
   ignoreNameSpace: true,
   tagValueCallbackFunction: tagFunc,
   attributeValueCallbackFunction: attFunc,

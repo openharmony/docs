@@ -7,14 +7,14 @@ After obtaining the output stream capabilities supported by the camera, create a
 ![Photographing Development Process](figures/photographing-development-process.png)
 
 ## Sample Code
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+There are different [types of contexts](../application-models/application-context-stage.md).
 ```ts
 import camera from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
 import featureAbility from '@ohos.ability.featureAbility';
 
-async function cameraShootingCase(context: featureAbility.Context, surfaceId: string) {
+async function cameraShootingCase(context: featureAbility.Context, surfaceId: string): Promise<void> {
   // Create a CameraManager instance.
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   if (!cameraManager) {
@@ -236,8 +236,8 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
     console.error('Failed to set the zoom ratio value. errorCode = ' + err.code);
   }
   let photoCaptureSetting: camera.PhotoCaptureSetting = {
-    quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,                                     // Set the photo quality to high.
-    rotation: camera.ImageRotation.ROTATION_0                                            // Set the rotation angle of the photo to 0.
+    quality: camera.QualityLevel.QUALITY_LEVEL_HIGH, // Set the photo quality to high.
+    rotation: camera.ImageRotation.ROTATION_0 // Set the rotation angle of the photo to 0.
   }
   // Use the current photographing settings to take photos.
   photoOutput.capture(photoCaptureSetting, (err: BusinessError) => {

@@ -169,7 +169,7 @@ getSystemResourceManager(): ResourceManager
 
 | 类型                                       | 说明                 |
 | ---------------------------------------- | ------------------ |
-| Resourcemanager | 返回系统资源的管理对象 |
+| [Resourcemanager](#resourcemanager) | 返回系统资源的管理对象 |
 
 **错误码：**
 
@@ -296,6 +296,8 @@ import { BusinessError } from '@ohos.base';
 | bundleName | string | 是    | 否 | 应用的bundle名称 |
 | moduleName | string | 是    | 否 | 应用的module名称 |
 | id         | number | 是    | 否 | 资源的id值      |
+| params     | any[] | 是    | 否 | 其他资源参数（可选）      |
+| type       | number | 是    | 否 | 资源的类型（可选）      |
 
 
 ## ResourceManager
@@ -4591,7 +4593,7 @@ getConfigurationSync(): Configuration
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise&lt;[Configuration](#configuration)&gt; | 设备的Configuration |
+| [Configuration](#configuration) | 设备的Configuration |
 
 **示例：** 
   ```ts
@@ -4676,7 +4678,7 @@ getDeviceCapabilitySync(): DeviceCapability
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| DeviceCapability | 设备的DeviceCapability |
+| [DeviceCapability](#devicecapability) | 设备的DeviceCapability |
 
 **示例：** 
   ```ts

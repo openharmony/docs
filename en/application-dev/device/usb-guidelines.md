@@ -43,7 +43,7 @@ You can set a USB device as a host to connect to a device for data transfer. The
    // Import the USB API package.
    import usb from '@ohos.usbManager';
    // Obtain the USB device list.
-   let deviceList : Array<USBDevice> = usb.getDevices();
+   let deviceList : Array<usb.USBDevice> = usb.getDevices();
    /*
    Example deviceList structure:
    [
@@ -164,3 +164,4 @@ You can set a USB device as a host to connect to a device for data transfer. The
    usb.releaseInterface(pipe, interface1);
    usb.closePipe(pipe);
    ```
+

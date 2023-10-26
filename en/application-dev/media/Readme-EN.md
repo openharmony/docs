@@ -11,6 +11,7 @@
     - [Using OpenSL ES for Audio Playback](using-opensl-es-for-playback.md)
     - [Using TonePlayer for Audio Playback (for System Applications Only)](using-toneplayer-for-playback.md)
     - [Using OHAudio for Audio Playback](using-ohaudio-for-playback.md)
+    - [Using SoundPool for Audio Playback](using-soundpool-for-playback.md)
     - [Audio Playback Concurrency Policy](audio-playback-concurrency.md)
     - [Volume Management](volume-management.md)
     - [Audio Effect Management](audio-effect-management.md)
@@ -71,6 +72,7 @@
   - Image Processing
     - [Image Transformation (ArkTS)](image-transformation.md)
     - [Image Transformation (Native)](image-transformation-native.md)
-    - [Pixel Map Operation](image-pixelmap-operation.md)
+    - [PixelMap Data Processing (Native)](image-pixelmap-operation-native.md)
+    - [PixelMap Operation](image-pixelmap-operation.md)
   - [Image Encoding](image-encoding.md)
   - [Image Tool](image-tool.md)
