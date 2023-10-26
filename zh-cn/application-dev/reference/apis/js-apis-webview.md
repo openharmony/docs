@@ -1935,7 +1935,7 @@ struct WebComponent {
 
 zoom(factor: number): void
 
-调整当前网页的缩放比例。
+调整当前网页的缩放比例，需要保障接口zoomAccess配置为true状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1979,6 +1979,7 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
+        .zoomAccess(true)
     }
   }
 }

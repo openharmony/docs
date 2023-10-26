@@ -4869,7 +4869,7 @@ cancel(): void
 let webController: WebController = new WebController()
 ```
 
-### getCookieManager<sup>9+</sup>
+### getCookieManager<sup>9+</sup><sup>(deprecated)</sup>
 
 getCookieManager(): WebCookie
 
