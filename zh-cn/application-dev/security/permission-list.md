@@ -2998,6 +2998,30 @@
 
 **起始版本**：11
 
+## ohos.permission.SET_ADVANCED_SECURITY_MODE
+
+允许应用修改高级安全模式配置。
+
+**权限级别**: system_core
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
+
+## ohos.permission.SET_DEVELOPER_MODE
+
+允许应用修改开发者模式配置。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.COOPERATE_MANAGER
 
 允许系统应用使能键鼠穿越能力。
@@ -3025,6 +3049,30 @@
 ## ohos.permission.EXECUTE_INSIGHT_INTENT
 
 允许系统应用执行意图调用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_ACTIVATION_LOCK
+
+允许应用管理设备激活锁。
+
+**权限级别**: system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
+
+## ohos.permission.VERIFY_ACTIVATION_LOCK
+
+允许应用校验激活锁凭据合法性。
 
 **权限级别**：system_basic
 
