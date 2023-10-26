@@ -1,8 +1,7 @@
 # DFX开发常见问题
 
-## hilog日志如何落盘存储 
 
-适用于：OpenHarmony 3.2Beta API 9  
+## hilog日志如何落盘存储(API 9)
 
 **解决措施**
 
@@ -22,9 +21,8 @@
 更多参数含义请使用hilog --help查看。
 ```
 
-## Hilog日志如何设置为只打印当前应用的日志
 
-适用于：OpenHarmony 3.2Beta API 9  
+## Hilog日志如何设置为只打印当前应用的日志(API 9)
 
 **解决措施**
 
@@ -34,11 +32,10 @@ hilog -T xxx 按tag过滤;
 
 hilog –D xxx 按domain过滤;
 
-hilog  -e 对日志内容匹配，支持正则式tag, domain, pid都支持多重过滤,组合过滤以及反向过滤。
+hilog -e 对日志内容匹配，支持正则式tag, domain, pid都支持多重过滤,组合过滤以及反向过滤。
 
-## 程序打开直接崩溃了，如何定位问题
 
-适用于：OpenHarmony 3.2Beta API 9  
+## 程序打开直接崩溃了，如何定位问题(API 9)
 
 **解决措施**
 
@@ -46,25 +43,22 @@ hilog  -e 对日志内容匹配，支持正则式tag, domain, pid都支持多重
 
 方法2：通过Crash文件查看报错信息，Crash文件路径是：/data/log/faultlog/faultlogger/。
 
-## 应用如何打印日志是使用hilog还是console，hilog接口参数domain的设置范围是什么
 
-适用于：OpenHarmony 3.2Beta API 9  
+## 应用如何打印日志是使用hilog还是console，hilog接口参数domain的设置范围是什么(API 9)
 
 console是对hilog日志系统的封装，其采用默认参数，主要用于应用开发调试阶段。
 
-推荐使用hilog，可以对日志系统进行分类和统一处理，具体参考文档：[hilog日志系统](../reference/apis/js-apis-hilog.md#hilogisloggable)
+推荐使用hilog，可以对日志系统进行分类和统一处理，具体参考文档：[hilog日志系统](../reference/apis/js-apis-hilog.md)
 
-hilog接口参数domain的取值范围0x0\~0xFFFF，建议开发者在应用内根据需要自定义划分。
+hilog接口参数domain的取值范围0x0~0xFFFF，建议开发者在应用内根据需要自定义划分。
 
-## hilog日志打印长度限制是多少，是否可以配置 
 
-适用于：OpenHarmony 3.2Beta API 9  
+## hilog日志打印长度限制是多少，是否可以配置(API 9)
 
 日志打印的长度限制为1024个字符，该长度不能配置
 
-## 格式化日志打印时，使用private的作用是什么
 
-适用于：OpenHarmony 3.2 Beta API 9
+## 格式化日志打印时，使用private的作用是什么(API 9)
 
 **问题现象**
 
@@ -72,33 +66,29 @@ C++代码中hilog的格式参数类型为%d或者%s时，日志打印为何显�
 
 **解决措施**
 
-直接使用%d、%s等格式化参数时，标准系统默认使用private替换真实数据进行打印，防止数据泄露。如果需要打印出真实数据，需要使用%\{public\}d替换%d或者%\{public\}s替换%s。
+直接使用%d、%s等格式化参数时，标准系统默认使用private替换真实数据进行打印，防止数据泄露。如果需要打印出真实数据，需要使用%{public}d替换%d或者%{public}s替换%s。
 
-## 如何解决hilog.debug日志无法打印
 
-适用于：OpenHarmony 3.2 Beta API 9
+## 如何解决hilog.debug日志无法打印(API 9)
 
 **解决措施**
 
 通过hdc命令 hdc shell hilog -b D开启调试开关
 
-## hilog接口的tag参数是否支持用空格隔开的多个字符串
 
-适用于：OpenHarmony 3.2 Beta API 9
+## hilog接口的tag参数是否支持用空格隔开的多个字符串(API 9)
 
 支持。
 
-## hilog如何打印\{private\}隐私标志的内容
 
-适用于：OpenHarmony 3.2 Beta API 9
+## hilog如何打印{private}隐私标志的内容(API 9)
 
 **解决措施**
 
 使用命令关闭隐私模式即可。命令如下：hdc shell hilog -p off
 
-## 有关崩溃日志收集和性能问题排查的功能有哪些
 
-适用于：OpenHarmony 3.2 Beta API 9
+## 有关崩溃日志收集和性能问题排查的功能有哪些(API 9)
 
 **问题现象**
 
@@ -112,9 +102,8 @@ hichecker：问题检测，参考文档：[检测模式](../reference/apis/js-ap
 
 hiTraceMeter：性能打点，参考文档：[性能打点](../reference/apis/js-apis-hitracemeter.md)
 
-## 如何控制日志输出
 
-适用于：OpenHarmony 3.2 Beta API 9
+## 如何控制日志输出(API 9)
 
 **问题现象**
 
@@ -124,17 +113,15 @@ hiTraceMeter：性能打点，参考文档：[性能打点](../reference/apis/js
 
 通过hilog命令调整日志打印级别，输出不同级别的日志信息。命令如下：
 
-hdc shell hilog -L <D/I/W/E/F\>
+hdc shell hilog -L &lt;D/I/W/E/F&gt;
 
-## hilog的TAG长度有限制吗
 
-适用于：OpenHarmony 3.2 Beta API 9
+## hilog的TAG长度有限制吗(API 9)
 
 整个tag的长度是32。
 
-## 日志里面的appfreeze文件的怎么查看，要看哪些内容
 
-适用于：OpenHarmony 3.2 Beta API 9
+## 日志里面的appfreeze文件的怎么查看，要看哪些内容(API 9)
 
 主要查看方向：
 
@@ -147,4 +134,3 @@ hdc shell hilog -L <D/I/W/E/F\>
 4、看一下PeerBinderCatcher当前进程是否有对端的binder卡住，如果有跟当前进程相关的同步wait，则会有相应的PeerBinder Stacktrace信息——这个是卡住你当前进程的对端进程的栈信息。
 
 5、还有整机进程的cpu信息和当前进程的内存信息辅助定位。
-
