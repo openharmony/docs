@@ -12,7 +12,7 @@ Perform the following operations to switch a declarative paradigm-based applicat
 
   ![model-switch-overview2](figures/model-switch-overview2.png)
 
-- [Component switch](pageability-switch.md): Switch the PageAbility, ServiceAbility, and DataAbility components of the FA model to the UIAbility and ExtensionAbility components of the stage model. The figure below shows only the switching from PageAbility to UIAbility. The left part is the FA model, and **app.ets** is the PageAbility component. The right part is the stage model, and **EntryAbility.ts** is the UIAbility component.
+- [Component switch](pageability-switch.md): Switch the PageAbility, ServiceAbility, and DataAbility components of the FA model to the UIAbility and ExtensionAbility components of the stage model. The figure below shows only the switching from PageAbility to UIAbility. The left part is the FA model, and **app.ets** is the PageAbility component. The right part is the stage model, and **EntryAbility.ets** is the UIAbility component.
 
   ![model-switch-overview3](figures/model-switch-overview3.png)
 
