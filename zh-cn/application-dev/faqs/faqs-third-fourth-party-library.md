@@ -1,5 +1,16 @@
 # 三四方库使用常见问题
 
+## 针对Native开发，有哪些三方库可以用于实现ArkTS与C/C++跨语言通信(API 10)
+
+**解决措施**
+
+可以使用AKI开发框架来便捷实现OpenHarmony Native开发提供JS与C/C++跨语言访问场景解决方案。
+
+**参考链接**
+
+[AKI项目介绍](https://gitee.com/openharmony-sig/aki)
+
+
 ## 如何获取可用的三方库(API 9)
 
 通过ohpm可以获取的三四方库在Gitee上做了汇总（[OpenHarmony上可直接使用的三方组件汇总](https://gitee.com/openharmony-tpc/tpc_resource?_from=gitee_search#%E4%B8%89%E6%96%B9%E7%BB%84%E4%BB%B6%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB)），针对于不同功能三方库内容做了分类，开发者可以根据需要进行参考。
