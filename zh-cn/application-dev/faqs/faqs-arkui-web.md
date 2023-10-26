@@ -11,7 +11,7 @@
 
 对javaScriptProxy和runJavaScript封装，实现JSBridge通信方案。适用于H5调用原生侧函数。使用Web组件javaScriptProxy将原生侧接口注入到H5的window对象上，通过runJavaScript接口执行JS脚本到H5中，并在回调中获取脚本执行结果。具体调用流程如下图所示：
 
-![image5](figures/image5.PNG)
+![image5](figures/image5.png)
 
 - 首先通过Web组件的javaScriptProxy属性，将JSBridgeHandle对象注册到H5的window上，作为H5调用原生的通道。当H5开始加载时，在onPageBegin生命周期中调用initJSBridge()方法初始化JSBridge。
   ```
