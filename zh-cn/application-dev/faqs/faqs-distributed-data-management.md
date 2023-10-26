@@ -1,9 +1,7 @@
 # 数据管理开发常见问题
 
 
-## 关系型数据库rdb中如何进行加密
-
-适用于：Openharmony 3.1 Beta5  API 9
+## 关系型数据库rdb中如何进行加密(API 9)
 
 **解决措施**
 
@@ -13,9 +11,8 @@
 
 [关系型数据库](../reference/apis/js-apis-data-relationalStore.md#storeconfig)
 
-## 关系型数据库rdb中使用TRUNCATE TABLE语句无法清空表数据 
 
-适用于：OpenHarmony SDK 3.2.9.2版本，API9
+## 关系型数据库rdb中使用TRUNCATE TABLE语句无法清空表数据(API 9)
 
 **问题现象**
 
@@ -23,23 +20,23 @@
 
 **解决措施**
 
-关系型数据库rdb使用Sqlite数据库， 它不支持 TRUNCATE TABLE 语句，建议使用delete语句，如：DELETE FROM sqlite\_sequence WHERE name = 'table\_name' ，另外发生该错误会抛出空异常。
+关系型数据库rdb使用Sqlite数据库， 它不支持 TRUNCATE TABLE 语句，建议使用delete语句，如：DELETE FROM sqlite_sequence WHERE name = 'table_name' ，另外发生该错误会抛出空异常。
 
-## 关系型数据库rdb支持哪些数据类型
 
-适用于：OpenHarmony SDK 3.0版本以上，API 9 Stage模型
+## 关系型数据库rdb支持哪些数据类型(API 9)
+
+适用于Stage模型。
 
 **解决措施**
 
 关系型数据库rdb支持的数据类型有：number、string、boolean。其中number为数字类型，支持Double，Long，Float，Int，Int64，最大精度为十进制17位数字。
 
-## 如何实现应用数据持久化存储 
 
-适用于 OpenHarmony 3.2 Beta5 API 9
+## 如何实现应用数据持久化存储(API 9)
 
 **解决措施**
 
-通过PersistentStorage类实现管理应用持久化数据，可以将特定标记的持久化数据链接到AppStorage中，并由AppStorage接口访问对应持久化数据。PersistentStorage持久化后的数据会生成本地xml文件保存，文件路径为/data/app/el2/100/base/<bundleName\>/haps/<hapName\>/files/persistent\_storage。
+通过PersistentStorage类实现管理应用持久化数据，可以将特定标记的持久化数据链接到AppStorage中，并由AppStorage接口访问对应持久化数据。PersistentStorage持久化后的数据会生成本地xml文件保存，文件路径为/data/app/el2/100/base/&lt;bundleName&gt;/haps/&lt;hapName&gt;/files/persistent_storage。
 
 示例：
 
@@ -67,9 +64,8 @@ struct Index {
 
 [持久化数据管理\(OpenHarmony\)](../quick-start/arkts-persiststorage.md)
 
-## 如何将PixelMap的数据存储到数据库中  
 
-适用于：OpenHarmony 3.2 Beta5  API 9
+## 如何将PixelMap的数据存储到数据库中(API 9)
 
 **解决措施**
 
@@ -79,9 +75,8 @@ PixelMap应该被转换成相应的ArrayBuffer再放进数据库。
 
 [readPixelsToBuffer](../reference/apis/js-apis-image.md#readpixelstobuffer7-1)
 
-## 如何获取rdb关系型数据库文件 
 
-适用于：OpenHarmony 3.2 Beta5  API 9
+## 如何获取rdb关系型数据库文件(API 9)
 
 **问题现象**
 
@@ -97,9 +92,8 @@ PixelMap应该被转换成相应的ArrayBuffer再放进数据库。
  hdc file recv /data/app/el2/100/database/<bundleName>/entry/db/<tableName>  ./<path>
 ```
 
-## 数据库在系统层面是否有锁机制，开发过程中是否需要关系数据库加锁问题 
 
-适用于：OpenHarmony 3.2 Beta5  API 9
+## 数据库在系统层面是否有锁机制，开发过程中是否需要关系数据库加锁问题(API 9)
 
 **问题现象**
 
@@ -109,9 +103,8 @@ PixelMap应该被转换成相应的ArrayBuffer再放进数据库。
 
 系统提供的分布式数据服务、关系型数据库和首选项均有锁机制，开发者无需关注。
 
-## 在@ohos.data.storage轻量级存储中，调用put方法保存数据后，再重启应用后调用get方法为什么无法获取到保存的值
 
-适用于：OpenHarmony 3.2 Beta5  API 9
+## 在\@ohos.data.storage轻量级存储中，调用put方法保存数据后，再重启应用后调用get方法为什么无法获取到保存的值(API 9)
 
 **问题现象**
 
@@ -122,9 +115,7 @@ PixelMap应该被转换成相应的ArrayBuffer再放进数据库。
 在storage轻量级存储中，调用put方法，只是将数据保存在内存中，并不会持久化到硬盘中，在退出应用后会将内存中的数据清空。如果想持久化到硬盘中，则在调用put方法后需要再调用flush或flushSync接口才行。数据持久化后重启应用时就可以通过get方法获取到之前保存的数据。
 
 
-## rdb关系型数据库中TEXT类型保存超长文本失败
-
-适用于：OpenHarmony 3.2 Beta5  API 9
+## rdb关系型数据库中TEXT类型保存超长文本失败(API 9)
 
 **问题现象**
 
@@ -133,11 +124,11 @@ API8版本rdb关系型数据库中TEXT类型保存超长文本失败
 **解决措施**
 
 API9版本之前对TEXT文本存储长度限制在1024字节，所以会存在超长文本保存失败的情况。
+
 在API9的版本中已经放开了长度限制。
 
-## Preferences.put缓存成功，但get的结果一直是undefined
 
-适用于：OpenHarmony 3.2 Beta5  API 9
+## Preferences.put缓存成功，但get的结果一直是undefined(API 9)
 
 **问题现象**
 
@@ -147,13 +138,11 @@ API9版本之前对TEXT文本存储长度限制在1024字节，所以会存在�
 
 1. 使用put操作后，使用flush持久化数据，然后再使用get获取数据。
 
-2. 由于flush操作是异步执行，将Storage实例通过异步线程回写入文件中,  所以需要等待flush操作执行完成后，再执行get操作。
+2. 由于flush操作是异步执行，将Storage实例通过异步线程回写入文件中, 所以需要等待flush操作执行完成后，再执行get操作。
 
-## 使用RDB数据库时，能否指定内存数据库模式
 
-适用于：OpenHarmony 3.2 Beta5  API 9
+## 使用RDB数据库时，能否指定内存数据库模式(API 9)
 
 **解决措施**
 
 RDB数据库底层使用的是SQLite，默认的内存数据库模式是文件，不支持修改。
-
