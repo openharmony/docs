@@ -852,7 +852,11 @@ soundPool.setPriority(streamID, 1).then(() => {
 
 setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback\<void>): void
 
-设置音频流播放速率。使用callback方式异步获取返回值(目前仅提供接口，实际功能暂不支持)。
+设置音频流播放速率。使用callback方式异步获取返回值。
+
+**说明：**
+
+该接口在4.0版本仅提供接口定义，暂无功能实现。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -911,7 +915,11 @@ soundPool.setRate(streamID, selectedAudioRendererRate, (error: BusinessError) =>
 
 setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
-设置音频流的播放速率。使用Promise方式异步获取返回值(目前仅提供接口，实际功能暂不支持)。
+设置音频流的播放速率。使用Promise方式异步获取返回值。
+
+**说明：**
+
+该接口在4.0版本仅提供接口定义，暂无功能实现。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
