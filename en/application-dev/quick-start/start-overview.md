@@ -40,7 +40,7 @@ To help you better understand the preceding basic concepts and application devel
 
 ## Tool Preparation
 
-1. Download the latest version of [DevEco Studio](../../release-notes/OpenHarmony-v4.0-beta1.md#version-mapping).
+1. Download the latest version of [DevEco Studio](../../release-notes/OpenHarmony-v4.0-beta2.md#version-mapping).
 
 2. Install DevEco Studio and configure the development environment. For details, see [Setting Up the Development Environment](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/environment_config-0000001052902427-V3).
 
