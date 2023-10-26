@@ -1271,7 +1271,7 @@ struct WebComponent {
 
 zoom(factor: number): void
 
-调整当前网页的缩放比例，需要保障接口zoomAccess配置为true状态。
+调整当前网页的缩放比例，需要保障接口[zoomAccess](../arkui-ts/ts-basic-components-web.md#zoomaccess)配置为true状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
