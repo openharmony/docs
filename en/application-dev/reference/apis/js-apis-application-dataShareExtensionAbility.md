@@ -36,7 +36,7 @@ Called by the server to initialize service logic when the DataShare client conne
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
-| want | [Want](js-apis-application-want.md#want) | Yes | Want information, including the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md#want) | Yes | Want information, including the ability name and bundle name.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
