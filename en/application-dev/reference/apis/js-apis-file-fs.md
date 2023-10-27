@@ -526,7 +526,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   // Copy srcPath to destPath.
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.copyDir(srcPath, destPath, 0, (err: BusinessError, data: Array<ConflictFiles>) => {
+  fs.copyDir(srcPath, destPath, 0, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < data.length; i++) {
         console.info("copy directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
@@ -1059,7 +1059,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.unlink(filePath).then(() => {
     console.info("File deleted");
   }).catch((err: BusinessError) => {
-    console.info("remove file failed with error message: " + err.message + ", error code: " + err.codeor);
+    console.info("remove file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2417,7 +2417,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.moveDir(srcPath, destPath, 1, (err: BusinessError, data: Array<ConflictFiles>) => {
+  fs.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < data.length; i++) {
         console.info("move directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
@@ -2461,7 +2461,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     fs.moveDirSync(srcPath, destPath, 1);
     console.info("move directory succeed");
   } catch (err) {
-    let err: BusinessError = error as BusinessError;
     console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
@@ -2778,7 +2777,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
   randomaccessfile.close();
-  fs.closeSync(file);
   ```
 
 ## fs.createStream
@@ -4037,7 +4035,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   option.length = 5;
   let bytesWritten = randomaccessfile.writeSync("hello, world", option);
   randomaccessfile.close();
-  fs.closeSync(file);
   ```
 
 ### read<sup>10+</sup>
@@ -4083,8 +4080,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let arrayBuffer = new ArrayBuffer(bufferLength);
   randomaccessfile.read(arrayBuffer, option).then((readLength: number) => {
     console.info("randomAccessFile readLength: " + readLength);
-    randomaccessfile.close();
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
