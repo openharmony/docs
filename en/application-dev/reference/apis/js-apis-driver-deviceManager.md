@@ -10,7 +10,6 @@ The **deviceManager** module provides APIs for managing peripheral devices, incl
 
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
 ```
 
 ## deviceManager.queryDevices
@@ -44,14 +43,18 @@ Queries the list of peripheral devices. If the device has no peripheral device c
 
 **Example**
 
-```js
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+
+
 try {
-  let devices : Array<Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
-  for (let item : Device of devices : Array<Device>) {
-    console.info('Device id is ${item.deviceId}')
+  let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
+  for (let item of devices) {
+    let device : deviceManager.USBDevice = item as deviceManager.USBDevice;
+    console.info(`Device id is ${device.deviceId}`)
   }
 } catch (error) {
-  console.error('Failed to query device. Code is ${error.code}, message is ${error.message}');
+  console.error(`Failed to query device. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
@@ -85,20 +88,26 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 
 **Example**
 
-```js
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+import { BusinessError } from '@ohos.base';
+
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
-  deviceManager.bindDevice(12345678, (error : BusinessError, data : MessageSequence) => {
-    console.error('Device is disconnected');
-  }, (error, data) => {
+  deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
+    console.error(`Device is disconnected`);
+  }, (error : BusinessError, data: {
+      deviceId : number;
+      remote : rpc.IRemoteObject;
+  }) => {
     if (error) {
-      console.error('bindDevice async fail. Code is ${error.code}, message is ${error.message}');
+      console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
       return;
     }
-    console.info('bindDevice success');
+    console.info(`bindDevice success`);
   });
 } catch (error) {
-  console.error('bindDevice fail. Code is ${error.code}, message is ${error.message}');
+  console.error(`bindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
@@ -137,18 +146,22 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 
 **Example**
 
-```js
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+import { BusinessError } from '@ohos.base';
+
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
-  deviceManager.bindDevice(12345678, (error, data) => {
-    console.error('Device is disconnected');
+  deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
+    console.error(`Device is disconnected`);
   }).then(data => {
-    console.info('bindDevice success');
-  }, (error : BusinessError) => {
-    console.error('bindDevice async fail. Code is ${error.code}, message is ${error.message}');
+    console.info(`bindDevice success, Device_Id is ${data.deviceId}.
+    remote is ${data.remote != null ? data.remote.getDescriptor() : "null"}`);
+  }, (error: BusinessError) => {
+    console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
   });
 } catch (error) {
-  console.error('bindDevice fail. Code is ${error.code}, message is ${error.message}');
+  console.error(`bindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
@@ -178,18 +191,20 @@ Unbinds a peripheral device. This API uses an asynchronous callback to return th
 
 **Example**
 
-```js
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
-  deviceManager.unbindDevice(12345678, (error, data) => {
-  if (error) {
-    console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
-    return;
-  }
-  console.info('unbindDevice success');
+  deviceManager.unbindDevice(12345678, (error : BusinessError, data : number) => {
+    if (error) {
+      console.error(`unbindDevice async fail. Code is ${error.code}, message is ${error.message}`);
+      return;
+    }
+    console.info(`unbindDevice success`);
   });
 } catch (error) {
-  console.error('unbindDevice fail. Code is ${error.code}, message is ${error.message}');
+  console.error(`unbindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 ## deviceManager.unbindDevice
@@ -223,16 +238,19 @@ Unbinds a peripheral device. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+import { BusinessError } from '@ohos.base';
+
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
-  deviceManager.unbindDevice(12345678).then(data => {
-    console.info('unbindDevice success');
+  deviceManager.unbindDevice(12345678).then((data : number) => {
+    console.info(`unbindDevice success, Device_Id is ${data}.`);
   }, (error : BusinessError) => {
-    console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
+    console.error(`unbindDevice async fail. Code is ${error.code}, message is ${error.message}`);
   });
 } catch (error) {
-  console.error('unbindDevice fail. Code is ${error.code}, message is ${error.message}');
+  console.error(`unbindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
