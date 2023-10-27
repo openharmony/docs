@@ -1244,7 +1244,6 @@
       - [@ohos.util.Stack (线性容器Stack)](reference/apis/js-apis-stack.md)
       - [@ohos.util.TreeMap (非线性容器TreeMap)](reference/apis/js-apis-treemap.md)
       - [@ohos.util.TreeSet (非线性容器TreeSet)](reference/apis/js-apis-treeset.md)
-      - [@ohos.util.Vector (线性容器Vector)](reference/apis/js-apis-vector.md)
       - [@ohos.worker (启动一个Worker)](reference/apis/js-apis-worker.md)
       - [@ohos.xml (xml解析与生成)](reference/apis/js-apis-xml.md)
     - 应用服务
@@ -1274,6 +1273,7 @@
       - [@ohos.systemParameter (系统属性)](reference/apis/js-apis-system-parameter.md)
       - [@ohos.systemTime (系统时间、时区)](reference/apis/js-apis-system-time.md)
       - [@ohos.usb (USB管理)](reference/apis/js-apis-usb-deprecated.md)
+      - [@ohos.util.Vector (线性容器Vector)](reference/apis/js-apis-vector.md)
       - [@system.app (应用上下文)](reference/apis/js-apis-system-app.md)
       - [@system.battery (电量信息)](reference/apis/js-apis-system-battery.md)
       - [@system.bluetooth (蓝牙)](reference/apis/js-apis-system-bluetooth.md)
