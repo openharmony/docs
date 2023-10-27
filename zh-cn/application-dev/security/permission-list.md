@@ -352,6 +352,18 @@
 
 **起始版本**：7
 
+## ohos.permission.SYSTEM_LIGHT_CONTROL
+
+允许应用控制灯光的亮度、颜色、开关等功能。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.CONNECT_IME_ABILITY
 
 允许绑定输入法Ability（InputMethodAbility）。
