@@ -2,14 +2,16 @@
 
 ## OpenHarmony 4.x Releases
 
-- [OpenHarmony v4.0 Beta2 (2023-08-02)](OpenHarmony-v4.0-beta2.md)
+- [OpenHarmony v4.0 Release (2023-10-26)](OpenHarmony-v4.0-release.md)
+- [OpenHarmony v4.0 Beta2 (2023-08-03)](OpenHarmony-v4.0-beta2.md)
 - [OpenHarmony v4.0 Beta1 (2023-06-03)](OpenHarmony-v4.0-beta1.md)
 
 ## OpenHarmony 3.x Releases
 
 - [OpenHarmony v3.2 Release (2023-04-09)](OpenHarmony-v3.2-release.md)
-   - [OpenHarmony v3.2.1 Release (2023-05-22)](OpenHarmony-v3.2.1-release.md)
+   - [OpenHarmony v3.2.3 Release (2023-07-28)](OpenHarmony-v3.2.3-release.md)
    - [OpenHarmony v3.2.2 Release (2023-06-27)](OpenHarmony-v3.2.2-release.md)
+   - [OpenHarmony v3.2.1 Release (2023-05-22)](OpenHarmony-v3.2.1-release.md)
 - [OpenHarmony v3.2 Beta5 (2023-01-31)](OpenHarmony-v3.2-beta5.md)
 - [OpenHarmony v3.2 Beta4 (2022-11-30)](OpenHarmony-v3.2-beta4.md)
 - [OpenHarmony v3.2 Beta3 (2022-09-30)](OpenHarmony-v3.2-beta3.md)
@@ -35,15 +37,8 @@
 
 ## OpenHarmony 2.x Releases
 
-- [OpenHarmony v2.2 beta2 (2021-08-04)](OpenHarmony-v2.2-beta2.md)
-- [OpenHarmony 2.0 Canary (2021-06-01)](OpenHarmony-2-0-Canary.md)
+已停止维护
 
-## OpenHarmony 1.x Releases(停止维护)
+## OpenHarmony 1.x Releases
 
-- [OpenHarmony v1.0 (2020-09-10)](OpenHarmony-1-0.md)
-- [OpenHarmony v1.1.5 LTS (2022-08-24)](OpenHarmony-v1.1.5-LTS.md)
-- [OpenHarmony v1.1.4 LTS (2022-02-11)](OpenHarmony-v1-1-4-LTS.md)
-- [OpenHarmony v1.1.3 LTS (2021-09-30)](OpenHarmony-v1-1-3-LTS.md)
-- [OpenHarmony v1.1.2 LTS (2021-08-04)](OpenHarmony-v1.1.2-LTS.md)
-- [OpenHarmony v1.1.1 LTS (2021-06-22)](OpenHarmony-1-1-1-LTS.md)
-- [OpenHarmony v1.1.0 LTS (2021-04-01)](OpenHarmony-1-1-0-LTS.md)
+已停止维护
