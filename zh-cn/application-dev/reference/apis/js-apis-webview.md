@@ -1271,7 +1271,7 @@ struct WebComponent {
 
 zoom(factor: number): void
 
-调整当前网页的缩放比例。
+调整当前网页的缩放比例，[zoomAccess](../arkui-ts/ts-basic-components-web.md#zoomaccess)需为true。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1313,6 +1313,7 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
+        .zoomAccess(true)
     }
   }
 }
@@ -1562,7 +1563,7 @@ struct WebComponent {
 
 | 类型                   | 说明              |
 | ---------------------- | ----------------- |
-| Array\<WebMessagePort> | web消息端口列表。 |
+| Array\<[WebMessagePort](#webmessageport)> | web消息端口列表。 |
 
 **错误码：**
 
@@ -2767,7 +2768,7 @@ struct WebComponent {
 
 setNetworkAvailable(enable: boolean): void
 
-设置JavaScript中的window.navigator.onLine属性。
+设置JavaScript中的window.navigator.isOnline属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2775,7 +2776,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
+| enable | boolean | 是   | 是否使能window.navigator.isOnline。 |
 
 **错误码：**
 

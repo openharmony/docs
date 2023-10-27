@@ -758,13 +758,13 @@ textZoomRatio(textZoomRatio: number)
 
 initialScale(percent: number)
 
-设置整体页面的缩放百分比，默认为100%。
+设置整体页面的缩放百分比，默认为100。
 
 **参数：**
 
 | 参数名     | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------- | ------ | ---- | ---- | --------------- |
-| percent | number | 是    | 100%  | 要设置的整体页面的缩放百分比。 |
+| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。<br>取值范围：1-100 |
 
 **示例：**
 
@@ -780,7 +780,7 @@ initialScale(percent: number)
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .initialScale(this.percent)
+          .(this.percent)
       }
     }
   }
@@ -1251,19 +1251,19 @@ pinchSmooth(isEnabled: boolean)
 **示例：**
 
   ```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-        .pinchSmooth(true)
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .pinchSmooth(true)
+      }
     }
   }
-}
   ```
 
 ## 事件
@@ -2163,7 +2163,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
 | 参数名  | 参数类型                                     | 参数描述      |
 | ---- | ---------------------------------------- | --------- |
-| data | string / [WebResourceRequest](#webresourcerequest) | url的相关信息。 |
+| data | string \| [WebResourceRequest](#webresourcerequest) | url的相关信息。 |
 
 **返回值：**
 
@@ -2385,7 +2385,7 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
 
 ### onClientAuthenticationRequest<sup>9+</sup>
 
-onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string>, issuers : Array<string>}) => void)
+onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string\>, issuers : Array<string\>}) => void)
 
 通知用户收到SSL客户端证书请求事件。
 
@@ -4038,11 +4038,13 @@ cancel(): void
 webController: WebController = new WebController()
 ```
 
-### getCookieManager<sup>9+</sup>
+### getCookieManager<sup>(deprecated)</sup>
 
 getCookieManager(): WebCookie
 
 获取web组件cookie管理对象。
+
+从API version 9开始不再维护，建议使用[getCookie](../apis/js-apis-webview.md#getcookie)代替。
 
 **返回值：**
 
