@@ -31,13 +31,25 @@ The **\<Grid>** component accepts only **\<[GridItem](ts-container-griditem.md)>
 
 ## APIs
 
-Grid(scroller?: Scroller)
+Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description                                                    |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other [scrollable components](ts-container-list.md).|
+| layoutOptions<sup>10+</sup> | GridLayoutOptions | No| Layout options of a scrolling grid.|
+
+### GridLayoutOptions<sup>10+</sup>
+
+Defines grid layout options. This API can be used for the grid for which either **rowsTemplate** or **columnsTemplate** is set, and can take place of the combination of **columnStart** and **columnEnd** or of **rowStart** and **rowEnd** in setting columns or rows occupied by a grid item.
+
+**Parameters**
+| Name   | Type     | Mandatory  | Description                   |
+| ----- | ------- | ---- | --------------------- |
+| regularSize  | [number, number]  | Yes   | Number of rows and columns occupied by a grid item with regular size. The only supported value is **[1, 1]**, meaning that the grid item occupies one row and one column.  |
+| irregularIndexes | number[] | No   | Indexes of a grid item with irregular size in all subnodes of the grid. When **onGetIrregularSizeByIndex** is not set, the grid item specified in this parameter occupies an entire row of the grid that scrolls vertically or an entire column of the grid that scrolls horizontally.|
+| onGetIrregularSizeByIndex | (index: number) => [number, number] | No   | Callback used to obtain the number of rows and columns occupied by the grid item with irregular size. Its input parameter is the indexes of the grid item specified in **irregularIndexes**. A grid item cannot occupy multiple rows in vertical scrolling mode, or multiple columns in horizontal scrolling mode.|
 
 ## Attributes
 
@@ -310,3 +322,84 @@ Below shows how the grid looks when dragging of grid items is in progress.
 Below shows how the grid looks after grid item 1 and grid item 6 swap their positions.
 
 ![gridDrag](figures/gridDrag2.png)
+
+### Example 3
+
+This example shows how **GridLayoutOptions** works.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct GridExample {
+  @State Number: String[] = ['0', '1', '2', '3', '4']
+  scroller: Scroller = new Scroller()
+  layoutOptions1: GridLayoutOptions = {
+    regularSize: [1, 1],        // Only [1, 1] is supported.
+    irregularIndexes: [0, 6], // The grid item whose indexes are 0 and 6 occupies one row.
+  }
+
+  layoutOptions2: GridLayoutOptions = {
+    regularSize: [1, 1],
+    irregularIndexes: [0, 7], // The number of columns occupied by the grid item whose indexes are 0 and 7 is specified by onGetIrregularSizeByIndex.
+    onGetIrregularSizeByIndex: (index: number) => {
+      if (index === 0) {
+        return [1, 5]
+      }
+      return [1, index % 6 + 1]
+    }
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Grid(this.scroller, this.layoutOptions1) {
+        ForEach(this.Number, (day: string) => {
+          ForEach(this.Number, (day: string) => {
+            GridItem() {
+              Text(day)
+                .fontSize(16)
+                .backgroundColor(0xF9CF93)
+                .width('100%')
+                .height(80)
+                .textAlign(TextAlign.Center)
+            }
+          }, (day: string) => day)
+        }, (day: string) => day)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .scrollBar(BarState.Off)
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+
+      Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
+      // The grid does not scroll, and undefined is used to reserve space.
+      Grid(undefined, this.layoutOptions2) {
+        ForEach(this.Number, (day: string) => {
+          ForEach(this.Number, (day: string) => {
+            GridItem() {
+              Text(day)
+                .fontSize(16)
+                .backgroundColor(0xF9CF93)
+                .width('100%')
+                .height(80)
+                .textAlign(TextAlign.Center)
+            }
+          }, (day: string) => day)
+        }, (day: string) => day)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .scrollBar(BarState.Off)
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![gridLayoutOptions](figures/gridLayoutOptions.png)

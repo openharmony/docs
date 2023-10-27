@@ -132,8 +132,10 @@ struct StepperExample {
       // Define the processing logic for when Skip on the page is clicked, for example, dynamically changing the index of the <Stepper> to redirect to a specific step.
       console.info('onSkip')
     })
-    .onChange((prevIndex: number, index: number) => {
-      this.currentIndex = index
+    .onChange((prevIndex?: number, index?: number) => {
+      if(index){
+        this.currentIndex = index
+      }
     })
   }
 }

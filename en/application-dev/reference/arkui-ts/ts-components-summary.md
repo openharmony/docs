@@ -119,6 +119,9 @@
 - [CheckboxGroup](ts-basic-components-checkboxgroup.md)
 
     A component that is used to select or deselect all check boxes in a group.
+- [CalendarPicker](ts-basic-components-calendarpicker.md)
+
+    A component that provides a drop-down calendar for users to select a date.
 - [DatePicker](ts-basic-components-datepicker.md)
 
     A component that allows users to select a date from the given range.
@@ -324,3 +327,13 @@
 - [UIExtensionComponent](ts-container-ui-extension-component.md)
 
     A component that is used to embed UIs provided by other applications in the local application UI.
+
+- [LocationButton](ts-security-components-locationbutton.md)
+
+    A component that is used to obtain temporary precise location permission from the user by their touching the component, eliminating the need for a permission request dialog box.
+- [PasteButton](ts-security-components-pastebutton.md)
+
+    A component that is used to obtain temporary pasteboard permission from the user by their touching the component, eliminating the need for a permission request dialog box.
+- [SaveButton](ts-security-components-savebutton.md)
+
+    A component that is used to obtain temporary storage permission from the user by their touching the component, eliminating the need for a permission request dialog box.
