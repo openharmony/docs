@@ -1,6 +1,6 @@
 # @ohos.telephony.sim (SIM Management)
 
-The **sim** module provides basic SIM card management functions. You can obtain the name, number, ISO country code, home PLMN number, service provider name, SIM card status, type, installation status, activation status, and lock status of the SIM card in the specified slot. Besides, you can set the name, number, and lock status of the SIM card, activate or deactivate the SIM card, and change the PIN or unlock the PIN or PUK of the SIM card.
+The **sim** module provides basic SIM card management functions. You can obtain the name, number, ISO country code, home PLMN ID, service provider name, SIM card status, type, installation status, activation status, and lock status of the SIM card in the specified slot. Besides, you can set the name, number, and lock status of the SIM card, activate or deactivate the SIM card, and change the PIN or unlock the PIN or PUK of the SIM card.
 
 >**NOTE**
 >
@@ -26,7 +26,7 @@ Checks whether the SIM card in the specified slot is activated. This API uses an
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. Boolean value indicating whether the SIM card in the specified slot is activated. The value **true** means yes and the value **false** means no.                            |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result, which is a Boolean value indicating whether the SIM card in the specified slot is activated. The value **true** means yes and the value **false** means no.                            |
 
 **Example**
 
@@ -361,7 +361,7 @@ console.log(`the country ISO is:` + countryCode);
 
 getSimOperatorNumeric\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the home public land mobile network \(PLMN\) ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the home public land mobile network (PLMN) ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -670,7 +670,7 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-sim.getSimState(0).then((data: sim.simstate) => {
+sim.getSimState(0).then((data: sim.SimState) => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getSimState failed, promise: err->${JSON.stringify(err)}`);

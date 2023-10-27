@@ -1,7 +1,5 @@
 # Subscribing to State Changes of a Remote Object
 
-## Overview
-
 IPC/RPC allows you to subscribe to the state changes of a remote stub object. When the remote stub object dies, a death notification will be sent to your local proxy object. Such subscription and unsubscription are controlled by APIs. To be specific, you need to implement the **DeathRecipient** interface and the **onRemoteDied** API to clear resources. This callback is invoked when the process accommodating the remote stub object dies, or the device accommodating the remote stub object leaves the network. It is worth noting that these APIs should be called in the following order: The proxy object must first subscribe to death notifications of the stub object. If the stub object is in the normal state, the proxy object can cancel the subscription as required. If the process of the stub object exits or the device hosting the stub object goes offline, subsequent operations customized by the proxy object will be automatically triggered.
 
 ## Scenarios
@@ -77,7 +75,7 @@ void TestDeathRecipient::OnRemoteDied(const wptr<IRemoteObject>& remoteObject)
 
 ```c++
 sptr<IPCObjectProxy> object = new IPCObjectProxy(1, to_utf16(DESCRIPTOR));
-sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient());// Construct a death notification recipient.
+sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient()); // Construct a death notification recipient.
 bool result = object->AddDeathRecipient(deathRecipient); // Add a recipient for death notifications.
 result = object->RemoveDeathRecipient(deathRecipient); // Remove the recipient for death notifications.
 ```
@@ -189,7 +187,7 @@ Forward dead notification is a mechanism that allows the proxy to detect death n
 ### Sample Code
 
 ```c++
-//Proxy
+// Proxy
 int TestAbilityProxy::TestAnonymousStub()
 {
     MessageOption option;
@@ -201,7 +199,7 @@ int TestAbilityProxy::TestAnonymousStub()
     return result;
 }
 
-//Stub
+// Stub
 
 int TestAbilityStub::OnRemoteRequest(uint32_t code, MessageParcel &data, MessageParcel &reply, MessageOption &option)
 {

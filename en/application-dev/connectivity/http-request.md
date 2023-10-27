@@ -1,6 +1,6 @@
 # HTTP Data Request
 
-## Overview
+## When to Use
 
 An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
 
@@ -103,7 +103,7 @@ httpRequest.request(
 
 ```ts
 // Import the http namespace.
-import http from '@ohos.net.http'
+import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
@@ -124,8 +124,8 @@ httpRequest.on('dataEnd', () => {
 });
 // Subscribe to events indicating progress of receiving HTTP streaming responses.
 class Data {
-  receiveSize: number = 0
-  totalSize: number = 0
+  receiveSize: number = 0;
+  totalSize: number = 0;
 }
 httpRequest.on('dataReceiveProgress', (data: Data) => {
   console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);

@@ -15,7 +15,7 @@ import contact from '@ohos.contact';
 
 ## contact.addContact<sup>10+</sup>
 
-addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number&gt;>): void 
+addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number&gt;): void 
 
 Adds a contact. This API uses an asynchronous callback to return the result.
 
@@ -1238,6 +1238,8 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 >
 > This API is supported since API version 7 and deprecated since API version 10. You are advised to use [selectContacts](#contactselectcontacts10).
 
+**Permission required**: ohos.permission.READ_CONTACTS
+
 **System capability**: SystemCapability.Applications.Contacts
 
 **Parameters**
@@ -1269,6 +1271,8 @@ Selects a contact. This API uses a promise to return the result.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 10. You are advised to use [selectContacts](#contactselectcontacts10).
+
+**Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.Contacts
 

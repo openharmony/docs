@@ -45,7 +45,7 @@ For the complete list of APIs and example code, see [Ethernet Connection](../ref
 
 ```ts
 // Import the ethernet namespace from @ohos.net.ethernet.
-import ethernet from '@ohos.net.ethernet'
+import ethernet from '@ohos.net.ethernet';
 import { BusinessError } from '@ohos.base';
 
 // Call getAllActiveIfaces to obtain the list of all active network ports.
@@ -98,7 +98,7 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
 
 ```ts
 // Import the ethernet namespace from @ohos.net.ethernet.
-import ethernet from '@ohos.net.ethernet'
+import ethernet from '@ohos.net.ethernet';
 import { BusinessError } from '@ohos.base';
 
 // Call getAllActiveIfaces to obtain the list of all active network ports.
@@ -168,7 +168,7 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
 
 ```ts
 // Import the ethernet namespace from @ohos.net.ethernet.
-import ethernet from '@ohos.net.ethernet'
+import ethernet from '@ohos.net.ethernet';
 
 // Subscribe to interfaceStateChange events.
 class EthernetData{

@@ -392,7 +392,7 @@ Obtains all UIDs that match the specified network policy. This API uses an async
 
 ```ts
 import { BusinessError } from '@ohos.base';
-policy.getUidsByPolicy(11111, (error: BusinessError, data: object) => {
+policy.getUidsByPolicy(11111, (error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -564,26 +564,21 @@ Sets network quota policies. This API uses an asynchronous callback to return th
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
-let netQuotaPolicyList: Array<policy.NetQuotaPolicy>|null = null;
-class Netquotapolicy {
-  networkMatchRule: NetworkMatchRule = new NetworkMatchRule();
-  quotaPolicy: QuotaPolicy = new QuotaPolicy();
+let netQuotaPolicyList: Array<policy.NetQuotaPolicy> = [];
+let netquotapolicy: policy.NetQuotaPolicy = {
+  networkMatchRule: {
+    netType: connection.NetBearType.BEARER_CELLULAR,
+    identity: '',
+    simId: '1'
+  },
+  quotaPolicy: {
+    periodDuration: 'M1',
+    warningBytes: 40000,
+    limitBytes: 50000,
+    metered: true,
+    limitAction: policy.LimitAction.LIMIT_ACTION_NONE
+  }
 }
-class NetworkMatchRule {
-  netType: policy.NetBearType = connection.NetBearType.BEARER_CELLULAR;
-  identity: string = '';
-  simId: string = '1';
-}
-class QuotaPolicy {
-  periodDuration: string = 'M1';
-  warningBytes: number = 40000;
-  limitBytes: number = 50000;
-  metered: boolean = true;
-  limitAction: policy.LimitAction.LIMIT_ACTION_NONE;
-}
-
-let netquotapolicy = new Netquotapolicy();
-
 netQuotaPolicyList.push(netquotapolicy);
 
 policy.setNetQuotaPolicies(netQuotaPolicyList, (error: BusinessError) => {
@@ -632,26 +627,21 @@ Sets network quota policies. This API uses a promise to return the result.
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
-let netQuotaPolicyList: Array<policy.NetQuotaPolicy>|null = null;
-class Netquotapolicy {
-  networkMatchRule: NetworkMatchRule = new NetworkMatchRule();
-  quotaPolicy: QuotaPolicy = new QuotaPolicy();
+let netQuotaPolicyList: Array<policy.NetQuotaPolicy> = [];
+let netquotapolicy: policy.NetQuotaPolicy = {
+  networkMatchRule: {
+    netType: connection.NetBearType.BEARER_CELLULAR,
+    identity: '',
+    simId: '1'
+  },
+  quotaPolicy: {
+    periodDuration: 'M1',
+    warningBytes: 40000,
+    limitBytes: 50000,
+    metered: true,
+    limitAction: policy.LimitAction.LIMIT_ACTION_NONE
+  }
 }
-class NetworkMatchRule {
-  netType: policy.NetBearType = connection.NetBearType.BEARER_CELLULAR;
-  identity: string = '';
-  simId: string = '1';
-}
-class QuotaPolicy {
-  periodDuration: string = 'M1';
-  warningBytes: number = 40000;
-  limitBytes: number = 50000;
-  metered: boolean = true;
-  limitAction: policy.LimitAction.LIMIT_ACTION_NONE;
-}
-
-let netquotapolicy = new Netquotapolicy();
-
 netQuotaPolicyList.push(netquotapolicy);
 
 policy
@@ -1878,7 +1868,7 @@ Enumerates the background network policies.
 
 | Name                           | Value | Description                                      |
 | ------------------------------- | --- | ------------------------------------------ |
-| NET_BACKGROUND_POLICY_NONE      | 0   | Default policy.                                  |
+| NET_BACKGROUND_POLICY_NONE      | 0   | No background network policy is specified. This is the default value.                                  |
 | NET_BACKGROUND_POLICY_ENABLE    | 1   | Background applications are allowed to access a metered network.              |
 | NET_BACKGROUND_POLICY_DISABLE   | 2   | Applications running in the background are not allowed to access a metered network.            |
 | NET_BACKGROUND_POLICY_TRUSTLIST | 3   | Only applications on the allowlist are allowed to access metered networks when they are running in the background.|
