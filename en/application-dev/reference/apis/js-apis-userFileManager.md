@@ -625,7 +625,7 @@ Subscribes to changes of the file management library. This API uses a callback t
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the file change on the registered device.|
+| type     | [ChangeEvent](#changeevent)               | Yes  | Event type.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the file change on the registered device.|
 | callback | Callback&lt;void&gt; | Yes  | Callback that returns no value.                                                  |
 
 **Example**
@@ -646,7 +646,7 @@ async function example() {
   } catch (err) {
     console.error('createPhotoAsset failed, message = ' + err);
   }
-  //sleep 1s
+  // Sleep 1s.
   if (count > 0) {
     console.info("onDemo success");
   } else {
@@ -670,7 +670,7 @@ Unsubscribes from changes of the file management library. This API uses a callba
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the file change on the registered device.|
+| type     | [ChangeEvent](#changeevent)               | Yes  | Event type.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the file change on the registered device.|
 | callback | Callback&lt;void&gt; | No  | Callback that returns no value.                                                  |
 
 **Example**
@@ -696,7 +696,7 @@ async function example() {
   } catch (err) {
     console.error('createPhotoAsset failed, message = ' + err);
   }
-  //sleep 1s
+  // Sleep 1s.
   if (count == 0) {
     console.info("offDemo success");
   } else {
@@ -717,7 +717,7 @@ Obtains information about online peer devices. This API uses an asynchronous cal
 
 | Name  | Type                             | Mandatory| Description        |
 | -------- | --------------------------------- | ---- | ------------ |
-| callback | AsyncCallback&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Yes  | Callback invoked to return the online peer device list.|
+| callback | AsyncCallback&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Yes  | Callback invoked to return a list of online peer devices.|
 
 **Example**
 
@@ -749,7 +749,7 @@ Obtains information about online peer devices. This API uses a promise to return
 
 | Type                       | Description                         |
 | --------------------------- | ----------------------------- |
-| Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise used to return the online device list.|
+| Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise used to return a list of online peer devices.|
 
 **Example**
 
@@ -784,7 +784,7 @@ Obtains information about all peer devices. This API uses an asynchronous callba
 
 | Name  | Type                             | Mandatory| Description        |
 | -------- | --------------------------------- | ---- | ------------ |
-| callback | AsyncCallback&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Yes  | Callback invoked to return the online peer device list.|
+| callback | AsyncCallback&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Yes  | Callback invoked to return the peer device information obtained.|
 
 **Example**
 
@@ -816,7 +816,7 @@ Obtains information about all peer devices. This API uses a promise to return th
 
 | Type                       | Description                         |
 | --------------------------- | ----------------------------- |
-| Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise used to return the peer device list.|
+| Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise used to return the information obtained.|
 
 **Example**
 
@@ -925,7 +925,7 @@ Obtains the value of a **FileAsset** parameter.
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | Yes   | Name of the parameter to obtain, for example, **ImageVideoKey.URI**.|
+| member | string | Yes   | Name of the parameter, for example, **ImageVideoKey.DISPLAY_NAME**. You need to enter the **PhotoKeys** to be obtained in **fetchColumns** for all attributes except **uri**, **photoType**, and **displayName**. For example, **fetchColumns: ['title']**.|
 
 **Example**
 
@@ -937,7 +937,7 @@ async function example() {
   try {
     let predicates = new dataSharePredicates.DataSharePredicates();
     let fetchOption = {
-      fetchColumns: [],
+      fetchColumns: ['title'],
       predicates: predicates
     };
     let fetchResult = await mgr.getPhotoAssets(fetchOption);
@@ -963,8 +963,8 @@ Sets a **FileAsset** parameter.
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | Yes   | Name of the parameter to set, for example, **ImageVideoKey.URI**.|
-| value | string | Yes   | Value to set. Only the value of **ImageVideoKey.TITLE** can be changed.|
+| member | string | Yes   | Name of the parameter, for example, **ImageVideoKey.DISPLAY_NAME**.|
+| value | string | Yes   | Value to set. Only the values of **DISPLAY_NAME** and **TITLE** can be changed.|
 
 **Example**
 
@@ -976,7 +976,7 @@ async function example() {
   try {
     let predicates = new dataSharePredicates.DataSharePredicates();
     let fetchOption = {
-      fetchColumns: [],
+      fetchColumns: ['title'],
       predicates: predicates
     };
     let fetchResult = await mgr.getPhotoAssets(fetchOption);
@@ -1012,21 +1012,23 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('commitModifyDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  let fileAsset = await fetchResult.getFirstObject();
-  let title = userFileManager.ImageVideoKey.TITLE;
-  let fileAssetTitle = fileAsset.get(title.toString());
-  console.info('fileAsset Get fileAssetTitle = ', fileAssetTitle);
-  fileAsset.set(title.toString(), "newTitle");
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+  let displayName: string = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
+  let fileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
+  console.info('fileAsset get fileAssetDisplayName = ', fileAssetDisplayName);
+  let newFileAssetDisplayName = 'new' + fileAssetDisplayName;
+  console.info('fileAsset newFileAssetDisplayName = ', newFileAssetDisplayName);
+  fileAsset.set(displayName, newFileAssetDisplayName);
   fileAsset.commitModify((err) => {
     if (err == undefined) {
-      let newFileAssetTitle = fileAsset.get(title.toString());
-      console.info('fileAsset Get newFileAssetTitle = ', newFileAssetTitle);
+      let commitModifyDisplayName = fileAsset.get(displayName);
+      console.info('fileAsset commitModify successfully, commitModifyDisplayName = ', commitModifyDisplayName);
     } else {
       console.error('commitModify failed, message =', err);
     }
@@ -1057,23 +1059,25 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('commitModifyDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  let fileAsset = await fetchResult.getFirstObject();
-  let title = userFileManager.ImageVideoKey.TITLE;
-  let fileAssetTitle = fileAsset.get(title.toString());
-  console.info('fileAsset Get fileAssetTitle = ', fileAssetTitle);
-  fileAsset.set(title.toString(), "newTitle");
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+  let displayName = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
+  let fileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
+  console.info('fileAsset get fileAssetDisplayName = ', fileAssetDisplayName);
+  let newFileAssetDisplayName = 'new' + fileAssetDisplayName;
+  console.info('fileAsset newFileAssetDisplayName = ', newFileAssetDisplayName);
+  fileAsset.set(displayName, newFileAssetDisplayName);
   try {
     await fileAsset.commitModify();
-    let newFileAssetTitle = fileAsset.get(title.toString());
-    console.info('fileAsset Get newFileAssetTitle = ', newFileAssetTitle);
+    let commitModifyDisplayName = fileAsset.get(displayName);
+    console.info('fileAsset commitModify successfully, commitModifyDisplayName = ', commitModifyDisplayName);
   } catch (err) {
-    console.error('release failed. message = ', err);
+    console.error('commitModify failed. message = ', err);
   }
 }
 ```
@@ -1095,7 +1099,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor of the file opened.                           |
 
 **Example**
 
@@ -1137,7 +1141,7 @@ Opens this file asset. This API uses a promise to return the result.
 
 | Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise used to return the file descriptor.|
+| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
 
 **Example**
 
@@ -1164,7 +1168,7 @@ async function example() {
 
 close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
-Closes this file asset. This API uses an asynchronous callback to return the result.
+Closes a file asset. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1209,7 +1213,7 @@ async function example() {
 
 close(fd: number): Promise&lt;void&gt;
 
-Closes this file asset. This API uses a promise to return the result.
+Closes a file asset. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1217,7 +1221,7 @@ Closes this file asset. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| fd   | number | Yes   | File descriptor.|
+| fd   | number | Yes   | File descriptor of the file to close.|
 
 **Return value**
 
@@ -1264,7 +1268,7 @@ Obtains the thumbnail of this file asset. This API uses an asynchronous callback
 
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the pixel map of the thumbnail.|
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the PixelMap of the thumbnail.|
 
 **Example**
 
@@ -1305,8 +1309,8 @@ Obtains the file thumbnail of the given size. This API uses an asynchronous call
 
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| size     | [image.Size](js-apis-image.md#size) | Yes   | Size of the thumbnail to obtain.           |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the pixel map of the thumbnail.|
+| size     | [image.Size](js-apis-image.md#size) | Yes   | Size of the thumbnail.           |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the PixelMap of the thumbnail.|
 
 **Example**
 
@@ -1348,13 +1352,13 @@ Obtains the file thumbnail of the given size. This API uses a promise to return 
 
 | Name | Type            | Mandatory  | Description   |
 | ---- | -------------- | ---- | ----- |
-| size | [image.Size](js-apis-image.md#size) | No   | Size of the thumbnail to obtain.|
+| size | [image.Size](js-apis-image.md#size) | No   | Size of the thumbnail.|
 
 **Return value**
 
 | Type                           | Description                   |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise used to return the pixel map of the thumbnail.|
+| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise used to return the PixelMap of the thumbnail.|
 
 **Example**
 
@@ -1481,7 +1485,7 @@ Obtains the total number of files in the result set.
 
 | Type    | Description      |
 | ------ | -------- |
-| number | Total number of files.|
+| number | Total number of files obtained.|
 
 **Example**
 
@@ -1560,7 +1564,7 @@ async function example() {
   };
   try {
     let fetchResult = await mgr.getPhotoAssets(fetchOption);
-    await fetchResult.close();
+    fetchResult.close();
     console.info('close succeed.');
   } catch (err) {
     console.error('close fail. message = ' + err);
@@ -1665,7 +1669,7 @@ async function example() {
   };
   let fetchResult = await mgr.getPhotoAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     fetchResult.getNextObject((err, fileAsset) => {
       if (fileAsset != undefined) {
         console.info('fileAsset displayName: ', fileAsset.displayName);
@@ -1705,7 +1709,7 @@ async function example() {
   };
   let fetchResult = await mgr.getPhotoAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     let fileAsset = await fetchResult.getNextObject();
     console.info('fileAsset displayName: ', fileAsset.displayName);
   }
@@ -1865,7 +1869,7 @@ Provides APIs to manage albums.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
-| Name          | Type   | Readable  | Writable  | Description     |
+| Name          | Type   | Readable  | Writable | Description  |
 | ------------ | ------ | ---- | ---- | ------- |
 | albumName | string | Yes   | Yes   | Album name.   |
 | albumUri | string | Yes   | No   | Album URI.  |
@@ -2053,11 +2057,11 @@ Provides APIs for managing the system albums.
 
 | Name          | Type   | Readable  | Writable  | Description     |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumName | string | Yes   | Yes   | Album name.   |
-| albumUri | string | Yes   | No   | Album URI.  |
+| albumName | string | Yes   | Yes   | Name of the album.   |
+| albumUri | string | Yes   | No   | URI of the album.  |
 | dateModified | number | Yes   | No   | Date when the album was last modified.   |
 | count | number | Yes   | No   | Number of files in the album.|
-| coverUri | string | Yes   | No   | URI of the cover file of the album.
+| coverUri | string | Yes   | No   | URI of the cover file of the album.|
 
 ### getPhotoAssets
 
@@ -2148,7 +2152,7 @@ async function example() {
 
 delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
-Deletes files from a system album.
+Deletes a file from the system album. Only the files in the trash can be deleted.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.READ_AUDIO, and ohos.permission.WRITE_AUDIO
 
@@ -2158,7 +2162,7 @@ Deletes files from a system album.
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | Album URI.|
+| uri | string | Yes  | URI of the file to delete.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Example**
@@ -2192,7 +2196,7 @@ async function example() {
 
 delete(uri: string): Promise&lt;void&gt;;
 
-Deletes files from a system album.
+Deletes a file from the system album. Only the files in the trash can be deleted.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.READ_AUDIO, and ohos.permission.WRITE_AUDIO
 
@@ -2202,7 +2206,7 @@ Deletes files from a system album.
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | Album URI.|
+| uri | string | Yes  | URI of the file to delete.|
 
 **Return value**
 
@@ -2239,7 +2243,7 @@ async function example() {
 
 recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
-Recovers files in a system album.
+Recovers a file in the system album. Only the files in the trash can be recovered.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.READ_AUDIO, and ohos.permission.WRITE_AUDIO
 
@@ -2249,7 +2253,7 @@ Recovers files in a system album.
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | Album URI.|
+| uri | string | Yes  | URI of the file to recover.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Example**
@@ -2283,7 +2287,7 @@ async function example() {
 
 recover(uri: string): Promise&lt;void&gt;;
 
-Recovers files in a system album.
+Recovers a file in the system album. Only the files in the trash can be recovered.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.READ_AUDIO, and ohos.permission.WRITE_AUDIO
 
@@ -2293,7 +2297,7 @@ Recovers files in a system album.
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | Album URI.|
+| uri | string | Yes  | URI of the file to recover.|
 
 **Return value**
 
@@ -2346,12 +2350,12 @@ Enumerates the type of changes to observe.
 
 | Name |  Type|  Readable |  Writable |  Description|
 | ----- |  ---- |  ---- |  ---- |  ---- |
-| deviceChange |  string | Yes| Yes|  Device.|
-| albumChange |  string | Yes| Yes|  Album.|
-| imageChange |  string | Yes| Yes|  Image.|
-| audioChange |  string | Yes| Yes|  Audio.|
-| videoChange |  string | Yes| Yes|  Video.|
-| remoteFileChange |  string | Yes| Yes|  Remote file.|
+| deviceChange |  string | Yes| Yes|  Device change.|
+| albumChange |  string | Yes| Yes|  Album change.|
+| imageChange |  string | Yes| Yes|  Image change.|
+| audioChange |  string | Yes| Yes|  Audio change.|
+| videoChange |  string | Yes| Yes|  Video change.|
+| remoteFileChange |  string | Yes| Yes|  Remote file change.|
 
 ## PeerInfo
 
@@ -2386,7 +2390,7 @@ Enumerates the system album types.
 | Name   |  Value|   Description  |
 | -----   |  ----  |   ----  |
 | TYPE_FAVORITE |  0 |  Favorites.|
-| TYPE_TRASH |  1 |  Recycle bin.|
+| TYPE_TRASH |  1 |  Trash.|
 
 ## AudioKey
 
@@ -2396,12 +2400,12 @@ Defines the key information about an audio file.
 
 | Name         |   Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| URI           | uri                 | File URI.                                                  |
+| URI           | uri                 | URI of the file.                                                  |
 | DISPLAY_NAME  | display_name        | File name displayed.                                                  |
-| DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.            |
+| DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
 | DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
 | TITLE         | title               | Title in the file.                                                  |
-| ARTIST        | artist              | Author of the file.                                                  |
+| ARTIST        | artist              | Artist of the file.                                                  |
 | AUDIOALBUM    | audio_album         | Audio album.                                                  |
 | DURATION      | duration            | Duration, in ms.                                   |
 | FAVORITE      | favorite            | Whether the file is added to favorites.                                                  |
@@ -2414,12 +2418,12 @@ Defines the key information about an image or video file.
 
 | Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| URI           | uri                 | File URI.                                                  |
+| URI           | uri                 | URI of the file.                                                  |
 | FILE_TYPE     | file_type           | Type of the file.                                             |
 | DISPLAY_NAME  | display_name        | File name displayed.                                                  |
 | DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.            |
 | DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
-| TITLE         | title               | Title in the file.                                                  |
+| TITLE         | title               | Title of the file.                                                  |
 | DURATION      | duration            | Duration, in ms.                                   |
 | WIDTH         | width               | Image width, in pixels.                                   |
 | HEIGHT        | height              | Image height, in pixels.                                     |
@@ -2435,11 +2439,11 @@ Defines the key album information.
 
 | Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| URI           | uri                 | Album URI.                                                  |
+| URI           | uri                 | URI of the album.                                                  |
 | FILE_TYPE     | file_type           | Type of the file.                                             |
 | ALBUM_NAME    | album_name          | Name of the album.                                                  |
-| DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.            |
-| DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
+| DATE_ADDED    | date_added          | Date when the album was added. The value is the number of seconds elapsed since the Epoch time.            |
+| DATE_MODIFIED | date_modified       | Date when the album file content (not the album name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
 
 ## FetchOptions
 
@@ -2449,7 +2453,7 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Columns to fetch. If this parameter is left empty, data is fetched by URI, name, and file type by default. For example,<br>**fetchColumns: "uri"**.|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object.<br>Example: fetchColumns: ['uri', 'title']|
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## AlbumFetchOptions
