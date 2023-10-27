@@ -12,7 +12,6 @@ The **ble** module provides APIs for operating and managing Bluetooth.
 
 ```js
 import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -61,6 +60,7 @@ Creates a **GattClientDevice** instance.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -98,6 +98,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let result: Array<string> = ble.getConnectedBLEDevices();
 } catch (err) {
@@ -136,6 +137,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('BLE scan device find result = '+ JSON.stringify(data));
 }
@@ -181,6 +183,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     ble.stopBLEScan();
 } catch (err) {
@@ -220,6 +223,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -287,6 +291,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     ble.stopAdvertising();
 } catch (err) {
@@ -323,6 +328,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -362,6 +368,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -408,6 +415,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -471,6 +479,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let server: ble.GattServer = ble.createGattServer();
 try {
     server.removeService('00001810-0000-1000-8000-00805F9B34FB');
@@ -503,6 +512,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let server: ble.GattServer = ble.createGattServer();
 try {
     server.close();
@@ -543,6 +553,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferC = new ArrayBuffer(8);
 let notifyCharacter: ble.NotifyCharacteristic = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
@@ -601,6 +612,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferC = new ArrayBuffer(8);
 let notifyCharacter: ble.NotifyCharacteristic = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
@@ -648,6 +660,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 /* send response */
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
@@ -688,6 +701,7 @@ Subscribes to characteristic read request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
@@ -730,8 +744,13 @@ Unsubscribes from characteristic read request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('characteristicRead');
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -755,6 +774,7 @@ Subscribes to characteristic write request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 let gattServer: ble.GattServer = ble.createGattServer();
@@ -800,8 +820,13 @@ Unsubscribes from characteristic write request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('characteristicWrite');
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -825,6 +850,7 @@ Subscribes to descriptor read request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1101;
@@ -867,8 +893,13 @@ Unsubscribes from descriptor read request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('descriptorRead');
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -892,6 +923,7 @@ Subscribes to descriptor write request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 let gattServer: ble.GattServer = ble.createGattServer();
@@ -937,8 +969,13 @@ Unsubscribes from descriptor write request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('descriptorWrite');
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -962,13 +999,18 @@ Subscribes to BLE connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import constant from '@ohos.bluetooth.constant';
 function Connected(bleConnectionChangeState: ble.BLEConnectionChangeState) {
   let deviceId: string = bleConnectionChangeState.deviceId;
   let status: constant.ProfileConnectionState = bleConnectionChangeState.state;
 }
+try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.on('connectionStateChange', Connected);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -992,8 +1034,13 @@ Unsubscribes from BLE connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('connectionStateChange');
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -1017,6 +1064,7 @@ Subscribes to MTU status changes for the server.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.on('BLEMtuChange', (mtu: number) => {
@@ -1048,6 +1096,7 @@ Unsubscribes from MTU status changes for the server.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.off('BLEMtuChange');
@@ -1085,6 +1134,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
@@ -1117,6 +1167,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.disconnect();
@@ -1149,6 +1200,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.close();
@@ -1186,6 +1238,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // callback
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -1228,6 +1281,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // promise
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -1269,6 +1323,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Callback
 function getServices(code: BusinessError, gattServices: Array<ble.GattService>) {
   if (code.code == 0) {
@@ -1320,6 +1375,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Promise
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
@@ -1363,6 +1419,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function readCcc(code: BusinessError, BLECharacteristic: ble.BLECharacteristic) {
   if (code.code != 0) {
       return;
@@ -1432,6 +1489,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let descriptors: Array<ble.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -1487,6 +1545,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function readDesc(code: BusinessError, BLEDescriptor: ble.BLEDescriptor) {
     if (code.code != 0) {
         return;
@@ -1549,6 +1608,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
@@ -1598,6 +1658,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let descriptors: Array<ble.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -1664,6 +1725,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let descriptors: Array<ble.BLEDescriptor>  = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -1718,6 +1780,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
@@ -1771,6 +1834,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
@@ -1816,6 +1880,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // callback
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -1857,6 +1922,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // promise
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -1897,6 +1963,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setBLEMtuSize(128);
@@ -1936,6 +2003,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -1993,6 +2061,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -2051,6 +2120,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -2108,6 +2178,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create descriptors.
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -2150,6 +2221,7 @@ Subscribes to BLE characteristic changes. The client can receive a notification 
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function CharacteristicChange(characteristicChangeReq: ble.BLECharacteristic) {
     let serviceUuid: string = characteristicChangeReq.serviceUuid;
     let characteristicUuid: string = characteristicChangeReq.characteristicUuid;
@@ -2184,6 +2256,7 @@ Unsubscribes from BLE characteristic changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLECharacteristicChange');
@@ -2213,6 +2286,7 @@ Subscribes to BLE connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function ConnectStateChanged(state: ble.BLEConnectionChangeState) {
   console.log('bluetooth connect state changed');
   let connectState: ble.ProfileConnectionState = state.state;
@@ -2246,6 +2320,7 @@ Unsubscribes from BLE connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEConnectionStateChange');
@@ -2275,6 +2350,7 @@ Subscribes to MTU status changes for the client.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     gattClient.on('BLEMtuChange', (mtu: number) => {
@@ -2306,6 +2382,7 @@ Unsubscribes from MTU status changes for the client.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEMtuChange');

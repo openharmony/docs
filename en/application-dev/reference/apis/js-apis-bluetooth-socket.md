@@ -12,7 +12,6 @@ The **socket** module provides APIs for operating and managing Bluetooth sockets
 
 ```js
 import socket from '@ohos.bluetooth.socket';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## socket.sppListen<a name="sppListen"></a>
@@ -47,6 +46,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
 function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
@@ -94,6 +94,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
 function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
@@ -151,10 +152,11 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -196,6 +198,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
 function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
@@ -238,9 +241,10 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -282,9 +286,10 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -330,9 +335,10 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -370,9 +376,10 @@ Unsubscribes from SPP read request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
