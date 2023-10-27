@@ -420,7 +420,7 @@ The 3DES key can be generated based on a string parameter.
 >
 > SM2 keys can be randomly generated from API version 10.
 
-- The SM2 keys can be generated based on the string parameter.
+- The SM2 key can be generated based on a string parameter.
 
   |Asymmetric Key Algorithm|Key Length (Bit)|String Parameter|
   |---|---|---|
@@ -436,7 +436,7 @@ The 3DES key can be generated based on a string parameter.
 >
 > SM4 keys can be randomly generated from API version 10.
 
-- The SM4 keys can be generated based on the string parameter.
+- The SM4 key can be generated based on a string parameter.
 
   |Symmetric Key Algorithm|Key Length (Bit)|String Parameter|
   |---|---|---|
@@ -710,21 +710,21 @@ The Crypto Framework provides two padding modes for RSA signing and signature ve
   > **NOTE**
   > 
   > The APIs support specifications without the key length for ECDSA signing and signature verification from API version 10.
-- The following ECDSA parameters are supported.
+The following ECDSA parameters are supported.
 
-  |Asymmetric Key Type|Digest|String Parameter|
-  |---|---|---|
-  |ECC224|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC224\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
-  |ECC256|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC256\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
-  |ECC384|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC384\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
-  |ECC521|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC521\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
-  |ECC|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+|Asymmetric Key Type|Digest|String Parameter|
+|---|---|---|
+|ECC224|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC224\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+|ECC256|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC256\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+|ECC384|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC384\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+|ECC521|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC521\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+|ECC|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
 
-  > **NOTE**
-  >
-  > - The options included in the square brackets ([]) are mutually exclusive. The options outside the square brackets are fixed values.
-  > - As a combination of the asymmetric key type and digest with a vertical bar (|) in between, the string parameter specifies the asymmetric signing or signature verification algorithm specifications when an asymmetric signing or signature verification instance is created. For example, **ECC224|SHA256**.
-  > - The ECC key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The ECDSA signing or signature verification operation varies depending on the actual key length.
+> **NOTE**
+>
+> - The options included in the square brackets ([]) are mutually exclusive. The options outside the square brackets are fixed values.
+> - As a combination of the asymmetric key type and digest with a vertical bar (|) in between, the string parameter specifies the asymmetric signing or signature verification algorithm specifications when an asymmetric signing or signature verification instance is created. For example, **ECC224|SHA256**.
+> - The ECC key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The ECDSA signing or signature verification operation varies depending on the actual key length.
 
 ### DSA Signing and Signature Verification
 
@@ -732,20 +732,20 @@ The Crypto Framework provides two padding modes for RSA signing and signature ve
   >
   > DSA signing and signature verification specifications are supported from API version 10.
 
-- The following DSA parameters are supported.
+The following DSA parameters are supported.
 
-  |Asymmetric Key Type|Digest|String Parameter|
-  |---|---|---|
-  |DSA1024|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|DSA1024\|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
-  |DSA2048|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|DSA2048\|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
-  |DSA3072|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|DSA3072\|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
-  |DSA|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|DSA\|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+|Asymmetric Key Type|Digest|String Parameter|
+|---|---|---|
+|DSA1024|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|DSA1024\|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+|DSA2048|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|DSA2048\|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+|DSA3072|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|DSA3072\|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+|DSA|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|DSA\|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
 
-  > **NOTE**
-  >
-  > - The options included in the square brackets ([]) are mutually exclusive. The options outside the square brackets are fixed values.
-  > - As a combination of the asymmetric key type and digest with a vertical bar (|) in between, the string parameter specifies the asymmetric signing or signature verification algorithm specifications when an asymmetric signing or signature verification instance is created. For example, **DSA1024|SHA256**.
-  > - The DSA key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The signing or signature verification operation varies depending on the actual key length.
+> **NOTE**
+>
+> - The options included in the square brackets ([]) are mutually exclusive. The options outside the square brackets are fixed values.
+> - As a combination of the asymmetric key type and digest with a vertical bar (|) in between, the string parameter specifies the asymmetric signing or signature verification algorithm specifications when an asymmetric signing or signature verification instance is created. For example, **DSA1024|SHA256**.
+> - The DSA key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The signing or signature verification operation varies depending on the actual key length.
 
 
 ### SM2 Signature Verification
@@ -754,18 +754,18 @@ The Crypto Framework provides two padding modes for RSA signing and signature ve
 >
 > The APIs support SM2 signing and signature verification from API version 10.
 
-- The following SM2 parameters are supported.
+The following SM2 parameters are supported.
 
-  |Asymmetric Key Type|Digest|String Parameter|
-  |---|---|---|
-  |SM2_256|SM3|SM2_256\|SM3|
-  |SM2|SM3|SM2\|SM3|
+|Asymmetric Key Type|Digest|String Parameter|
+|---|---|---|
+|SM2_256|SM3|SM2_256\|SM3|
+|SM2|SM3|SM2\|SM3|
 
-  > **NOTE**
-  >
-  > - The options included in the square brackets ([]) are mutually exclusive. The options outside the square brackets are fixed values.
-  > - As a combination of the asymmetric key type and digest with a vertical bar (|) in between, the string parameter specifies the asymmetric signing or signature verification algorithm specifications when an asymmetric signing or signature verification instance is created.
-  > - SM2 digital signatures support only the SM3 digest.
+> **NOTE**
+>
+> - The options included in the square brackets ([]) are mutually exclusive. The options outside the square brackets are fixed values.
+> - As a combination of the asymmetric key type and digest with a vertical bar (|) in between, the string parameter specifies the asymmetric signing or signature verification algorithm specifications when an asymmetric signing or signature verification instance is created.
+> - SM2 digital signatures support only the SM3 digest.
 
 ## Key Agreement Specifications
 
@@ -775,69 +775,69 @@ The Crypto Framework provides two padding modes for RSA signing and signature ve
   >
   > The APIs support specifications without the key length for ECDH from API version 10.
 
-- The following ECDH parameters are supported.
+The following ECDH parameters are supported.
 
-  |Asymmetric Key Algorithm|String Parameter|
-  |---|---|
-  |ECC|ECC224|
-  |ECC|ECC256|
-  |ECC|ECC384|
-  |ECC|ECC521|
-  |ECC|ECC|
+|Asymmetric Key Algorithm|String Parameter|
+|---|---|
+|ECC|ECC224|
+|ECC|ECC256|
+|ECC|ECC384|
+|ECC|ECC521|
+|ECC|ECC|
 
-  > **NOTE**
-  >
-  > - The string parameter specifies the key agreement algorithm specifications when a key agreement instance is created.
-  > - The ECC key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The ECDH key agreement operation varies depending on the actual key length.
+> **NOTE**
+>
+> - The string parameter specifies the key agreement algorithm specifications when a key agreement instance is created.
+> - The ECC key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The ECDH key agreement operation varies depending on the actual key length.
 
 
 ## MD Algorithm Specifications
 
-- The Crypto Framework supports the following MD algorithm parameters.
+The Crypto Framework supports the following MD algorithm parameters.
 
-    > **NOTE**
-    >
-    > SM3 is supported since API version 10.
-  
-  |Digest Algorithm|Supported Type|
-  |---|---|
-  |HASH|SHA1|
-  |HASH|SHA224|
-  |HASH|SHA256|
-  |HASH|SHA384|
-  |HASH|SHA512|
-  |HASH|MD5|
-  |HASH|SM3|
-  
-  > **NOTE**
-  >
-  > **Supported Type** specifies the MD algorithm specifications when an MD instance is created.
+> **NOTE**
+>
+> SM3 is supported since API version 10.
+
+|Digest Algorithm|Supported Type|
+|---|---|
+|HASH|SHA1|
+|HASH|SHA224|
+|HASH|SHA256|
+|HASH|SHA384|
+|HASH|SHA512|
+|HASH|MD5|
+|HASH|SM3|
+
+> **NOTE**
+>
+> **Supported Type** specifies the MD algorithm specifications when an MD instance is created.
 
 ## HMAC Algorithm Specifications
 
-- The Crypto Framework supports the following HMAC algorithm parameters.
+The Crypto Framework supports the following HMAC algorithm parameters.
 
-    > **NOTE**
-    >
-    > SM3 is supported from API version 10.
-  
-  |Digest  Algorithm|Supported Type|
-  |---|---|
-  |HASH|SHA1|
-  |HASH|SHA224|
-  |HASH|SHA256|
-  |HASH|SHA384|
-  |HASH|SHA512|
-  |HASH|SM3|
-  
-  > **NOTE**
-  >
-  > **Supported Type** specifies the HMAC algorithm specifications when an HMAC instance is created.
+> **NOTE**
+>
+> SM3 is supported from API version 10.
 
-## Random Number
-- Currently, the Crypto Framework supports only the CTR_DRBG algorithm.
+|Digest  Algorithm|Supported Type|
+|---|---|
+|HASH|SHA1|
+|HASH|SHA224|
+|HASH|SHA256|
+|HASH|SHA384|
+|HASH|SHA512|
+|HASH|SM3|
 
-  > **NOTE**
-  >
-  > - Currently, only secure random numbers with length of 1 to **INT_MAX** bytes are supported.
-  > - The random number generation algorithm uses the **RAND_priv_bytes** interface of OpenSSL to generate secure random numbers.
+> **NOTE**
+>
+> **Supported Type** specifies the HMAC algorithm specifications when an HMAC instance is created.
+
+## Random Number Specifications
+Currently, the Crypto Framework supports only the CTR_DRBG algorithm.
+
+> **NOTE**
+>
+> - Currently, only secure random numbers with length of 1 to **INT_MAX** bytes are supported.
+> - The random number generation algorithm uses the **RAND_priv_bytes** interface of OpenSSL to generate secure random numbers.
