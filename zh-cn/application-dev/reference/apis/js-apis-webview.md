@@ -4692,6 +4692,56 @@ struct WebComponent {
 }
 ```
 
+### setConnectionTimeout<sup>11+</sup>
+
+static setConnectionTimeout(timeout: number): void
+
+设置网络连接超时时间，使用者可通过Web组件中的onErrorReceive方法获取超时错误码。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| timeout        | number  | 是   | socket连接超时时间，以秒为单位。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setConnectionTimeout')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.setConnectionTimeout(5);
+            console.log("setConnectionTimeout: 5s");
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onErrorReceive((event) => {
+          if (event) {
+            console.log('getErrorInfo:' + event.error.getErrorInfo())
+            console.log('getErrorCode:' + event.error.getErrorCode())
+          }
+        })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
