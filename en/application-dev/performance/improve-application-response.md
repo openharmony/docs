@@ -13,7 +13,7 @@ When the application responds to user input, its main thread should execute only
 
 The **\<Image>** component has the asynchronous loading feature enabled by default. When an application loads a batch of local images to be displayed on the page, blank placeholder icons are displayed first, and then replaced by the images when these images have finished loading in other threads. In this way, image loading does not block page display. The following code is recommended only when the image loading takes a short time.
 
-```javascript
+```typescript
 @Entry
 @Component
 struct ImageExample1 {
@@ -37,10 +37,10 @@ struct ImageExample1 {
 
 Recommendation: If it takes a short time to load an image, the benefits of asynchronous loading will be greatly undermined. In this case, change the value of the syncLoad attribute.
 
-```javascript
+```typescript
 @Entry
 @Component
-struct ImageExample1 {
+struct ImageExample2 {
   build() {
     Column() {
       Row() {
@@ -61,9 +61,9 @@ struct ImageExample1 {
 
 ### Using TaskPool for Asynchronous Processing
 
-Compared with the worker thread, [TaskPool](https://gitee.com/sqsyqqy/docs/blob/master/en/application-dev/reference/apis/js-apis-taskpool.md) provides the task priority setting and automatic thread pool management mechanism. The following is an example:
+Compared with the worker thread, [TaskPool](../reference/apis/js-apis-taskpool.md) provides the task priority setting and automatic thread pool management mechanism. The following is an example:
 
-```javascript
+```typescript
 import taskpool from '@ohos.taskpool';
 
 @Concurrent
@@ -78,7 +78,7 @@ function computeTask(arr: string[]): string[] {
 
 @Entry
 @Component
-struct AspectRatioExample {
+struct AspectRatioExample3 {
   @State children: string[] = ['1', '2', '3', '4', '5', '6'];
 
   aboutToAppear() {
@@ -88,8 +88,7 @@ struct AspectRatioExample {
   async computeTaskInTaskPool() {
     const param = this.children.slice();
     let task = new taskpool.Task(computeTask, param);
-    // @ts-ignore
-    this.children = await taskpool.execute(task);
+    await taskpool.execute(task);
   }
 
   build() {
@@ -102,12 +101,12 @@ struct AspectRatioExample {
 
 The following code shows how to declare a long-running non-UI task as an asynchronous task through **Promise**. This allows the main thread to first focus on providing user feedback and completing the initial render, and then execute the asynchronous task when it is idle. After the asynchronous task is complete, related components are redrawn to refresh the page.
 
-```javascript
+```typescript
 @Entry
 @Component
-struct AspectRatioExample {
+struct AspectRatioExample4 {
   @State private children: string[] = ['1', '2', '3', '4', '5', '6'];
-  private count: number = undefined;
+  private count: number = 0;
 
   aboutToAppear() {
     this.computeTaskAsync(); // Invoke the asynchronous compute function.
@@ -123,11 +122,9 @@ struct AspectRatioExample {
   }
 
   computeTaskAsync() {
-    new Promise((resolved, rejected) => {
-      setTimeout(() => {// setTimeout is used to implement asynchronous processing.
-        this.computeTask();
-      }, 1000)
-    })
+    setTimeout(() => {// setTimeout is used to implement asynchronous processing.
+      this.computeTask();
+    }, 1000)
   }
 
   build() {
@@ -146,10 +143,10 @@ Negative example: If a component in a container is included in the **if** condit
 
 In the following example, the **Text('New Page')** component is controlled by the state variable **isVisible**. When **isVisible** is set to **true**, the component is created. When **isVisible** is set to **false**, the component is destroyed. This means that, when the value of **isVisible** changes, all components in the **\<Stack>** container are refreshed.
 
-```javascript
+```typescript
 @Entry
 @Component
-struct StackExample {
+struct StackExample5 {
   @State isVisible : boolean = false;
 
   build() {
@@ -175,10 +172,10 @@ struct StackExample {
 
 Recommendation: For the component controlled by the state variable, add a container to the **if** statement to reduce the refresh scope.
 
-```javascript
+```typescript
 @Entry
 @Component
-struct StackExample {
+struct StackExample6 {
   @State isVisible : boolean = false;
 
   build() {
@@ -208,11 +205,11 @@ struct StackExample {
 
 Negative example: Each of the 10000 elements in **this.arr** is initialized and loaded. As a result, the execution of the main thread takes a long time.
 
-```javascript
+```typescript
 @Entry
 @Component
-struct MyComponent {
-  @State arr: number[] = Array.from(Array(10000), (v,k) =>k); 
+struct MyComponent7 {
+  @State arr: number[] = Array.from(Array<number>(10000), (v,k) =>k); 
   build() {
     List() {
       ForEach(this.arr, (item: number) => {
@@ -227,7 +224,7 @@ struct MyComponent {
 
 Recommendation: In similar cases, replace **ForEach** with **LazyForEach** so that only visible elements are loaded.
 
-```javascript
+```typescript
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
 
@@ -235,8 +232,8 @@ class BasicDataSource implements IDataSource {
     return 0
   }
 
-  public getData(index: number): any {
-    return undefined
+  public getData(index: number): string {
+    return ''
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -286,13 +283,13 @@ class BasicDataSource implements IDataSource {
 }
 
 class MyDataSource extends BasicDataSource {
-  private dataArray: string[] = Array.from(Array(10000), (v, k) => k.toString());
+  private dataArray: string[] = Array.from(Array<number>(10000), (v, k) => k.toString());
 
   public totalCount(): number {
     return this.dataArray.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string  {
     return this.dataArray[index]
   }
 
@@ -318,7 +315,7 @@ struct MyComponent {
         ListItem() {
             Text(item).fontSize(20).margin({ left: 10 })
         }
-      }, item => item)
+      }, (item:string) => item)
     }
   }
 }

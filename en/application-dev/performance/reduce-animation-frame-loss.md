@@ -1,4 +1,4 @@
-# Reducing Frame Loss
+# Reducing Animation Frame Loss
 
 Frame loss in the animation arena is a phenomenon where the frame rate of an animation drops when it is running or being created.
 
@@ -6,10 +6,10 @@ When playing an animation, the system needs to calculate the animation curve and
 
 Negative example: The application uses a custom animation, which involves animation curve calculation. This calculation process may cause high load of the UI thread and frame loss.
 
-```javascript
+```typescript
 @Entry
 @Component
-struct AttrAnimationExample {
+struct AttrAnimationExample0 {
   @State widthSize: number = 200
   @State heightSize: number = 100
   @State flag: boolean = true
@@ -17,8 +17,8 @@ struct AttrAnimationExample {
   computeSize() {
     let duration = 2000
     let period = 16
-    let widthSizeEnd = undefined
-    let heightSizeEnd = undefined
+    let widthSizeEnd = 0
+    let heightSizeEnd = 0
     if (this.flag) {
       widthSizeEnd = 100
       heightSizeEnd = 50
@@ -56,10 +56,10 @@ struct AttrAnimationExample {
 
 The following uses the system-provided attribute animation APIs to implement the preceding animation features:
 
-```javascript
+```typescript
 @Entry
 @Component
-struct AttrAnimationExample {
+struct AttrAnimationExample1 {
   @State widthSize: number = 200
   @State heightSize: number = 100
   @State flag: boolean = true
@@ -67,7 +67,7 @@ struct AttrAnimationExample {
   build() {
     Column() {
       Button('click me')
-        .onClick((event: ClickEvent) => {
+        .onClick((event?: ClickEvent | undefined) => {
           if (this.flag) {
             this.widthSize = 100
             this.heightSize = 50
@@ -90,16 +90,16 @@ struct AttrAnimationExample {
 }
 ```
 
-For more details, see [Property Animator](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-animatorproperty.md).
+For more details, see [Property Animation](../reference/arkui-ts/ts-animatorproperty.md).
 
 ## Using System-Provided Explicit Animation APIs
 
 The following uses the system-provided explicit animation APIs to implement the preceding animation features:
 
-```javascript
+```typescript
 @Entry
 @Component
-struct AnimateToExample {
+struct AnimateToExample2 {
   @State widthSize: number = 200;
   @State heightSize: number = 100;
   @State flag: boolean = true;
@@ -107,7 +107,7 @@ struct AnimateToExample {
   build() {
     Column() {
       Button('click me')
-        .onClick((event: ClickEvent) => {
+        .onClick((event?: ClickEvent | undefined) => {
           if (this.flag) {
             animateTo({
               duration: 2000, // Animation duration.
@@ -139,4 +139,4 @@ struct AnimateToExample {
 }
 ```
 
-For more details, see [Explicit Animation](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-explicit-animation.md).
+For more details, see [Explicit Animation](../reference/arkui-ts/ts-explicit-animation.md).
