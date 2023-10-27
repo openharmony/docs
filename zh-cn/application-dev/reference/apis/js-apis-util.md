@@ -1744,7 +1744,7 @@ intersect(range: ScopeHelper): ScopeHelper
 
 | 类型                           | 说明                           |
 | ------------------------------ | ------------------------------ |
-| [ScopeHelper9+](#scopehelper9) | 返回给定范围和当前范围的交集。 |
+| [ScopeHelper](#scopehelper9) | 返回给定范围和当前范围的交集。 |
 
 **示例：**
 
