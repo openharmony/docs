@@ -15,9 +15,11 @@ import zlib from '@ohos.zlib';
 ## zlib.zipFile<sup>(deprecated)</sup>
 zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
-压缩接口（Promise形式）。
+压缩接口，压缩完成后返回执行结果，使用Promise异步返回。
 
-> 从api9开始不再维护，建议使用[zlib.compressFile](#zlibcompressfile9)
+> **说明**
+>
+> 从API version 7 开始支持，从API 9 开始废弃。建议使用[zlib.compressFile](#zlibcompressfile9)
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -33,7 +35,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
 | 类型           | 说明                                                         |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | [ERROR_CODE_OK](#ziperrorcode)：压缩成功；<br />[ERROR_CODE_ERRNO](#ziperrorcode)：压缩失败。 |
+| Promise\<void> | Promise对象，无返回值。 |
 
 **示例1：**
 
@@ -49,9 +51,9 @@ let options = {
 };
 
 zlib.zipFile(inFile, outFile, options).then((data) => {
-    console.log('zipFile result is ' + JSON.stringify(data));
+    console.info('zipFile result is ' + JSON.stringify(data));
 }).catch((err) => {
-    console.log('error is ' + JSON.stringify(err));
+    console.error('error is ' + JSON.stringify(err));
 });
 ```
 
@@ -69,9 +71,9 @@ let options = {
 };
 
 zlib.zipFile(inFile , outFile, options).then((data) => {
-    console.log('zipFile result is ' + JSON.stringify(data));
+    console.info('zipFile result is ' + JSON.stringify(data));
 }).catch((err)=>{
-    console.log('error is ' + JSON.stringify(err));
+    console.error('error is ' + JSON.stringify(err));
 });
 ```
 
@@ -79,9 +81,11 @@ zlib.zipFile(inFile , outFile, options).then((data) => {
 
 unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
-解压文件，解压完成返回执行结果（Promise形式）。
+解压文件，解压完成后返回执行结果，使用Promise异步返回。
 
-> 从api9开始不再看护，建议使用[zlib.decompressFile](#zlibdecompressfile9)
+> **说明**
+>
+> 从API version 7 开始支持，从API 9 开始废弃。建议使用[zlib.decompressFile](#zlibdecompressfile9)
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -97,7 +101,7 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 | 类型           | 说明                                                         |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | [ERROR_CODE_OK](#ziperrorcode)：解压成功；<br />[ERROR_CODE_ERRNO](#ziperrorcode)：解压失败返回执行结果。 |
+| Promise\<void> | Promise对象，无返回值。 |
 
 **示例：**
 
@@ -113,17 +117,17 @@ let options = {
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 zlib.unzipFile(inFile, outFile, options).then((data) => {
-    console.log('unzipFile result is ' + JSON.stringify(data));
+    console.info('unzipFile result is ' + JSON.stringify(data));
 }).catch((err)=>{
-    console.log('error is ' + JSON.stringify(err));
+    console.error('error is ' + JSON.stringify(err));
 })
 ```
 
 ## zlib.compressFile<sup>9+</sup>
 
-compressFile(inFile: string, outFile: string, options: Options, callback: AsyncCallback\<void>): void;
+compressFile(inFile: string, outFile: string, options: Options, callback: AsyncCallback\<void>): void
 
-压缩文件，压缩的结果通过callback返回。成功时返回null，失败时返回错误码ID。
+压缩文件，压缩的结果，使用callback异步回调返回。成功返回null，失败返回错误码。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -134,7 +138,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 | inFile                  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-inner-app-context.md)，[stage模型](js-apis-inner-application-context.md)。 |
 | outFile                 | string              | 是   | 指定压缩结果的文件路径。                                           |
 | options                 | [Options](#options) | 是   | 压缩的配置参数。                                               |
-| AsyncCallback<**void**> | callback            | 否   | 压缩时的回调函数。                                             |
+| callback                | AsyncCallback\<void> | 是   | 异步获取压缩结果之后的回调。成功返回null，失败返回错误码。             |
 
 **相关错误码**
 
@@ -161,11 +165,11 @@ let options = {
 try {
     zlib.compressFile(inFile, outFile, options, (errData) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+            console.info(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -173,7 +177,7 @@ try {
 
 compressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
 
-压缩文件，压缩的结果通过promise返回，成功时返回null，失败时返回错误码。
+压缩文件，压缩的结果，使用Promise异步返回。成功时返回null，失败时返回错误码。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -208,12 +212,12 @@ let options = {
 
 try {
     zlib.compressFile(inFile, outFile, options).then((data) => {
-        console.info('compressFile success');
+        console.info('compressFile success. data: ' + JSON.stringify(data));
     }).catch((errData) => {
-        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+        console.info(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -221,9 +225,9 @@ try {
 
 ## zlib.decompressFile<sup>9+</sup>
 
-decompressFile(inFile: string, outFile: string, options: Options, callback: AsyncCallback\<void>): void;
+decompressFile(inFile: string, outFile: string, options: Options, callback: AsyncCallback\<void>): void
 
-解压文件，解压的结果通过callback返回，成功时返回null，失败时返回错误码。
+解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -234,7 +238,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 | inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，文件后缀需要以.zip结尾。对应的路径参考[FA模型](js-apis-inner-app-context.md)，[stage模型](js-apis-inner-application-context.md)。 |
 | outFile                 | string              | 是   | 指定的解压后的文件夹路径，文件夹目录路径需要在系统中存在，不存在则会解压失败。路径必须为沙箱路径，沙箱路径可以通过context获取，具体方法可参考[application/context（Stage模型）](js-apis-inner-application-context.md)或 [app/context（FA模型）](js-apis-inner-app-context.md)。 |
 | options                 | [Options](#options) | 是   | 解压的配置参数。                                             |
-| AsyncCallback<**void**> | callback            | 否   | 解压的回调函数。                                             |
+| callback                | AsyncCallback\<void> | 是   | 异步获取解压结果之后的回调。成功返回null，失败返回错误码。             |
 
 **相关错误码**
 
@@ -262,19 +266,19 @@ let options = {
 try {
     zlib.decompressFile(inFile, outFile, options, (errData) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+            console.info(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
 ## zlib.decompressFile<sup>9+</sup>
 
-decompressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
+decompressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
-解压文件，解压的结果通过promise返回，成功时返回null，失败时返回错误码。
+解压文件，解压的结果，使用Promise异步返回。成功时返回null，失败时返回错误码。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -295,6 +299,8 @@ decompressFile(inFile: string, outFile: string, options: Options): Promise\<void
 | 900001 | The Input source file is invalid.      |
 | 900002 | The Input destination file is invalid. |
 
+**示例**
+
 ```typescript
 // 【解压缩 例子2】
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
@@ -309,12 +315,12 @@ let options = {
 
 try {
     zlib.decompressFile(inFile, outFile, options).then((data) => {
-        console.info('decompressFile success');
+        console.info('decompressFile success. data: ' + JSON.stringify(data));
     }).catch((errData) => {
-        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+        console.info(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
