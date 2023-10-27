@@ -12,7 +12,6 @@ The **hid** module provides APIs for using the Bluetooth Human Interface Device 
 
 ```js
 import hid from '@ohos.bluetooth.hid';
-import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -33,6 +32,7 @@ Creates a **HidHostProfile** instance.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hidHostProfile = hid.createHidHostProfile();
     console.info('hidHost success');
@@ -79,6 +79,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hidHostProfile = hid.createHidHostProfile();
     hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
@@ -120,6 +121,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hidHostProfile = hid.createHidHostProfile();
     hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');

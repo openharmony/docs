@@ -12,7 +12,6 @@ The **pan** module provides APIs for accessing the Bluetooth personal area netwo
 
 ```js
 import pan from '@ohos.bluetooth.pan';
-import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -33,6 +32,7 @@ Creates a **PanProfile** instance.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile : pan.PanProfile= pan.createPanProfile();
     console.info('pan success');
@@ -79,6 +79,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile: pan.PanProfile = pan.createPanProfile();
     panProfile.disconnect('XX:XX:XX:XX:XX:XX');
@@ -120,6 +121,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile: pan.PanProfile = pan.createPanProfile();
     panProfile.setTethering(false);
@@ -150,6 +152,7 @@ Checks whether Bluetooth tethering is activated.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile: pan.PanProfile = pan.createPanProfile();
     panProfile.isTetheringOn();

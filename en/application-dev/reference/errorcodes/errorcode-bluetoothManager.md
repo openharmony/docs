@@ -58,6 +58,60 @@ The profile is not supported by the device.
 
 Check whether the device supports the profile. Use a profile supported by the device.
 
+## 2900005
+
+**Error Message**
+
+This device not connected.
+
+**Description**
+
+The device is not connected to Bluetooth.
+
+**Possible Causes**
+
+The device pairing fails.
+
+**Solution**
+
+Turn on Bluetooth again to start the pairing process.
+
+## 2900006
+
+**Error Message**
+
+Max connection has reached.
+
+**Description**
+
+The number of connections reaches the maximum.
+
+**Possible Causes**
+
+The number of connections reaches the limit.
+
+**Solution**
+
+Check whether the number of paired devices reaches the threshold.
+
+## 2900008
+
+**Error Message**
+
+Proxy is nullptr.
+
+**Description**
+
+**pimpl** or **proxy** is null.
+
+**Possible Causes**
+
+The device pairing fails.
+
+**Solution**
+
+Turn on Bluetooth again to start the pairing process.
+
 ## 2900099
 
 **Error Message**
@@ -76,6 +130,24 @@ The profile is not supported by the device.
 
 Perform this operation again.
 
+## 2900100
+
+**Error Message**
+
+IPC transmit failed.
+
+**Description**
+
+IPC data transmission fails.
+
+**Possible Causes**
+
+The input data is incorrect.
+
+**Solution**
+
+Check the input data.
+
 ## 2901000
 
 **Error Message**
@@ -92,7 +164,7 @@ The caller does not have the read permission.
 
 **Solution**
 
-Check whether the caller has the read permission.
+Check that the caller has the read permission.
 
 ## 2901001
 
@@ -110,7 +182,7 @@ The caller does not have the write permission.
 
 **Solution**
 
-Check whether the caller has the write permission.
+Check that the caller has the write permission.
 
 ## 2901054
 
@@ -128,4 +200,4 @@ The I/O transmission is abnormal.
 
 **Solution**
 
-Perform this operation again.
+Perform the operation again.
