@@ -698,7 +698,7 @@ import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
 let content: string = "long message";
-sms.splitMessage(content, (err: BusinessError, data: string) => {
+sms.splitMessage(content, (err: BusinessError, data: string[]) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1119,7 +1119,7 @@ import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-sms.getAllSimMessages(slotId, (err: BusinessError, data: sms.SimShortMessage) => {
+sms.getAllSimMessages(slotId, (err: BusinessError, data: sms.SimShortMessage[]) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1171,7 +1171,7 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 let promise = sms.getAllSimMessages(slotId);
-promise.then((data: sim.SimShortMessage) => {
+promise.then((data: sms.SimShortMessage) => {
     console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getAllSimMessages failed, promise: err->${JSON.stringify(err)}`);

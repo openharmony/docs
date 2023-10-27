@@ -38,42 +38,42 @@ The JS code is used to implement the service logic, such as creating a tunnel, e
 ```js
 import vpn from '@ohos.net.vpn';
 import common from '@ohos.app.ability.common';
-import vpn_client from "libvpn_client.so"
+import vpn_client from "libvpn_client.so";
 import { BusinessError } from '@ohos.base';
 
-let TunnelFd: number = -1
+let TunnelFd: number = -1;
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Test VPN'
+  @State message: string = 'Test VPN';
 
   private context = getContext(this) as common.UIAbilityContext;
-  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context)
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
   //1. Establish a VPN tunnel. The following uses the UDP tunnel as an example.
   CreateTunnel() {
-    TunnelFd = vpn_client.udpConnect("192.168.43.208", 8888)
+    TunnelFd = vpn_client.udpConnect("192.168.43.208", 8888);
   }
 
   // 2. Enable protection for the UDP tunnel.
   Protect() {
     this.VpnConnection.protect(TunnelFd).then(() => {
-      console.info("vpn Protect Success.")
+      console.info("vpn Protect Success.");
     }).catch((err: BusinessError) => {
-      console.info("vpn Protect Failed " + JSON.stringify(err))
+      console.info("vpn Protect Failed " + JSON.stringify(err));
     })
   }
 
   SetupVpn() {
-    let tunAddr : vpn.LinkAddress = {} as vpn.LinkAddress
-    tunAddr.address.address = "10.0.0.5"
-    tunAddr.address.family = 1
+    let tunAddr : vpn.LinkAddress = {} as vpn.LinkAddress;
+    tunAddr.address.address = "10.0.0.5";
+    tunAddr.address.family = 1;
 
-    let config : vpn.VpnConfig = {} as vpn.VpnConfig
-    config.addresses.push(tunAddr)
-    config.mtu = 1400
-    config.dnsAddresses = ["114.114.114.114"]
+    let config : vpn.VpnConfig = {} as vpn.VpnConfig;
+    config.addresses.push(tunAddr);
+    config.mtu = 1400;
+    config.dnsAddresses = ["114.114.114.114"];
 
     try {
       // 3. Create a VPN.
@@ -89,11 +89,11 @@ struct Index {
 
   // 5. Destroy the VPN.
   Destroy() {
-    vpn_client.stopVpn(TunnelFd)
+    vpn_client.stopVpn(TunnelFd);
     this.VpnConnection.destroy().then(() => {
-      console.info("vpn Destroy Success.")
+      console.info("vpn Destroy Success.");
     }).catch((err: BusinessError) => {
-      console.info("vpn Destroy Failed " + JSON.stringify(err))
+      console.info("vpn Destroy Failed " + JSON.stringify(err));
     })
   }
 

@@ -75,7 +75,7 @@ void TestDeathRecipient::OnRemoteDied(const wptr<IRemoteObject>& remoteObject)
 
 ```c++
 sptr<IPCObjectProxy> object = new IPCObjectProxy(1, to_utf16(DESCRIPTOR));
-sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient());// Construct a death notification recipient.
+sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient()); // Construct a death notification recipient.
 bool result = object->AddDeathRecipient(deathRecipient); // Add a recipient for death notifications.
 result = object->RemoveDeathRecipient(deathRecipient); // Remove the recipient for death notifications.
 ```
@@ -187,7 +187,7 @@ Forward dead notification is a mechanism that allows the proxy to detect death n
 ### Sample Code
 
 ```c++
-//Proxy
+// Proxy
 int TestAbilityProxy::TestAnonymousStub()
 {
     MessageOption option;
@@ -199,7 +199,7 @@ int TestAbilityProxy::TestAnonymousStub()
     return result;
 }
 
-//Stub
+// Stub
 
 int TestAbilityStub::OnRemoteRequest(uint32_t code, MessageParcel &data, MessageParcel &reply, MessageOption &option)
 {

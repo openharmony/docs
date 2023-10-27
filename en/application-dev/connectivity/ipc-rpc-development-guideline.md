@@ -182,7 +182,7 @@ Table 1 Native IPC APIs
    ```ts
    import rpc from '@ohos.rpc';
    // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-   // import featureAbility from "@ohos.ability.featureAbility";
+   // import featureAbility from '@ohos.ability.featureAbility';
    ```
 
    If you use the stage model, you need to obtain the context. The sample code is as follows:
@@ -369,7 +369,7 @@ Table 1 Native IPC APIs
    If you use the FA model, call the API provided by **featureAbility** to tear down the connection when the communication is over. If you use the stage model, obtain a service instance through **Context**, and then call the API provided by **featureAbility** to tear down the connection.
 
    ```ts
-   import rpc from "@ohos.rpc";
+   import rpc from '@ohos.rpc';
    import Want from '@ohos.app.ability.Want';
    import common from '@ohos.app.ability.common';
    // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
