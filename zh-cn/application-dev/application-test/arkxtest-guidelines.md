@@ -76,6 +76,7 @@ import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { BusinessError } from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -87,11 +88,13 @@ export default function abilityTest() {
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b '+ bundleName +' -a EntryAbility ').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
-        console.info('Uitest, start ability finished:' + result)
-      }).catch((err: BusinessError) => {
+      const want: Want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
+      }
+      await delegator.startAbility(want, (err: BusinessError, data: void) => {
         console.info('Uitest, start ability failed: ' + err)
-      })
+      });
       await sleep(1000);
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
@@ -151,6 +154,7 @@ import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest'
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
@@ -163,11 +167,13 @@ export default function abilityTest() {
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b '+ bundleName +' -a EntryAbility ').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
-        console.info('Uitest, start ability finished:' + result)
-      }).catch((err: BusinessError) => {
+      const want: Want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
+      }
+      await delegator.startAbility(want, (err: BusinessError, data: void) => {
         console.info('Uitest, start ability failed: ' + err)
-      })
+      });
       await sleep(1000);
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
