@@ -579,7 +579,7 @@ delete(uri: string): Promise&lt;void&gt;;
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;void&gt;| 回调返回空 |
+| Promise&lt;void&gt;| Promise返回空 |
 
 **示例**：
 
@@ -2212,7 +2212,7 @@ delete(uri: string): Promise&lt;void&gt;;
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;void&gt;| 回调返回空 |
+| Promise&lt;void&gt;| Promise返回空 |
 
 **示例**：
 
@@ -2303,7 +2303,7 @@ recover(uri: string): Promise&lt;void&gt;;
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;void&gt;| 回调返回空 |
+| Promise&lt;void&gt;| Promise返回空 |
 
 **示例**：
 
