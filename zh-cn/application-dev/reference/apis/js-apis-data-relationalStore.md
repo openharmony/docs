@@ -141,6 +141,7 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -163,9 +164,10 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let store: relationalStore.RdbStore;
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S1
@@ -216,6 +218,7 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
@@ -234,6 +237,8 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -289,6 +294,7 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
@@ -305,6 +311,8 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -355,6 +363,7 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -378,6 +387,8 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -440,6 +451,7 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -461,6 +473,8 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
