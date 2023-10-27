@@ -1039,7 +1039,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 
 | 参数名         | 类型                               | 必填 | 说明                       |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型。 |
+| authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型。从 API version 10 开始支持PIN查询，API version 9 支持FACE和FINGERPRINT查询。|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
 
 **错误码：**
