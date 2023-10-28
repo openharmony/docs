@@ -75,7 +75,7 @@ The thread that creates the worker thread is referred to as the host thread (not
 
 - Parameters of the ArrayBuffer type are transferred in **TaskPool** by default. You can set the transfer list by calling [setTransferList()](../reference/apis/js-apis-taskpool.md#settransferlist10).
 
-- The context objects in different threads are different. Therefore, **TaskPool** worker threads can use only thread-safe libraries, rather than UI-related non-thread-safe libraries.
+- Context objects vary in different threads. Therefore, the worker thread of **TaskPool** can use only a thread-safe library, rather than a non-thread-safe library, for example, UI-related non-thread-safe library.
 
 - A maximum of 16 MB data can be serialized.
 
@@ -90,7 +90,7 @@ The thread that creates the worker thread is referred to as the host thread (not
 
 - When creating a worker thread, the **Worker.ts** file of another module cannot be used. This means that a worker cannot be called across modules.
 
-- The context objects in different threads are different. Therefore, **Worker** threads can use only thread-safe libraries, rather than UI-related non-thread-safe libraries.
+- Context objects vary in different threads. Therefore, a worker thread of **Worker** can use only a thread-safe library, rather than a non-thread-safe library, for example, UI-related non-thread-safe library.
 
 - A maximum of 16 MB data can be serialized.
 
@@ -100,6 +100,9 @@ The thread that creates the worker thread is referred to as the host thread (not
 Before calling an API of the **Worker** module, you must create a **Worker** instance. The constructor function varies in different API versions.
 
 ```js
+// Import the module.
+import worker form '@ohos.worker';
+
 // Use the following function in API version 9 and later versions:
 const worker1 = new worker.ThreadWorker(scriptURL);
 // Use the following function in API version 8 and earlier versions:
@@ -114,6 +117,9 @@ The **Worker.ts** file path (specified by **scriptURL**) must be passed in the c
 The following is an example of **scriptURL** in the constructor function:
 
 ```js
+// Import the module.
+import worker form '@ohos.worker';
+
 // Method 1
 // In the stage model, the workers directory is at the same level as the pages directory in the entry module.
 const worker1 = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts', {name:"first worker in Stage model"});
@@ -147,6 +153,9 @@ const worker4 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/et
 The following is an example of **scriptURL** in the constructor function:
 
 ```js
+// Import the module.
+import worker form '@ohos.worker';
+
 // In the FA model, the workers directory is at the same level as the pages directory in the entry module.
 const worker1 = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});
 // In the FA model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
