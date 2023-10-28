@@ -29,7 +29,6 @@
 参考以下示例代码，完成音频编码的全流程，包括：创建编码器，设置编码参数（采样率/码率/声道数等），开始，刷新，重置，销毁资源。
 
 在应用开发过程中，开发者应按一定顺序调用方法，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
-完整代码请参考[示例程序](https://gitee.com/openharmony/multimedia_av_codec/blob/master/test/nativedemo/audio_demo/avcodec_audio_aac_encoder_demo.cpp)。
 
 如下为音频编码调用关系图：
 ![Invoking relationship of audio encode stream](figures/audio-encode.png)
@@ -340,20 +339,20 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    ```
 
 10. （可选）调用OH_AudioEncoder_Reset()重置编码器。
-   调用OH_AudioEncoder_Reset()后，编码器回到初始化的状态，需要调用OH_AudioEncoder_Configure()重新配置，然后调用OH_AudioEncoder_Start()重新开始编码。。
+   调用OH_AudioEncoder_Reset()后，编码器回到初始化的状态，需要调用OH_AudioEncoder_Configure()重新配置，然后调用OH_AudioEncoder_Start()重新开始编码。
 
-   ```c++
-   // 重置编码器 audioEnc
-   ret = OH_AudioEncoder_Reset(audioEnc);
-   if (ret != AV_ERR_OK) {
-       // 异常处理
-   }
-   // 重新配置编码器参数
-   ret = OH_AudioEncoder_Configure(audioEnc, format);
-   if (ret != AV_ERR_OK) {
-       // 异常处理
-   }
-   ```
+    ```c++
+    // 重置编码器 audioEnc
+    ret = OH_AudioEncoder_Reset(audioEnc);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    // 重新配置编码器参数
+    ret = OH_AudioEncoder_Configure(audioEnc, format);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    ```
 
 11. 调用OH_AudioEncoder_Stop()停止编码器。
 
@@ -377,3 +376,9 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
         audioEnc = NULL; //不可重复destroy
     }
     ```
+
+## 相关实例
+
+针对音频编码，有以下相关实例可供参考：
+
+- [音频编码](https://gitee.com/openharmony/multimedia_av_codec/blob/master/test/nativedemo/audio_demo/avcodec_audio_aac_encoder_demo.cpp)

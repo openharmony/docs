@@ -31,7 +31,6 @@
 参考以下示例代码，完成音频解码的全流程，包括：创建解码器，设置解码参数（采样率/码率/声道数等），开始，刷新，重置，销毁资源。
 
 在应用开发过程中，开发者应按一定顺序调用方法，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
-完整代码请参考[示例程序](https://gitee.com/openharmony/multimedia_av_codec/blob/master/test/nativedemo/audio_demo/avcodec_audio_decoder_demo.cpp)。
 
 如下为音频解码调用关系图：
 ![Invoking relationship of audio decode stream](figures/audio-decode.png)
@@ -313,3 +312,10 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
         audioDec = NULL; //不可重复destroy
     }
     ```
+
+## 相关实例
+
+针对音频解码，有以下相关实例可供参考：
+
+- [音频解码](https://gitee.com/openharmony/multimedia_av_codec/blob/master/test/nativedemo/audio_demo/avcodec_audio_decoder_demo.cpp)
+
