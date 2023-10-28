@@ -4385,15 +4385,15 @@ let store: relationalStore.RdbStore | undefined = undefined;
 predicates.in("id", ["id1", "id2"]);
 
 if (store != undefined) {
-    (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-        console.info(`progress: ${progressDetail}`);
-    }, (err) => {
-        if (err) {
-            console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
-            return;
-        }
-        console.info('Cloud sync succeeded');
-    });
+   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+     console.info(`progress: ${progressDetail}`);
+   }, (err) => {
+     if (err) {
+       console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
+         return;
+     }
+     console.info('Cloud sync succeeded');
+  });
 };
 ```
 
@@ -4434,13 +4434,13 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("id", ["id1", "id2"]);
 
 if (store != undefined) {
-    (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-        console.info(`progress: ${progressDetail}`);
-    }).then(() => {
-        console.info('Cloud sync succeeded');
-    }).catch((err: BusinessError) => {
-        console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
-    });
+   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+     console.info(`progress: ${progressDetail}`);
+   }).then(() => {
+     console.info('Cloud sync succeeded');
+   }).catch((err: BusinessError) => {
+     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
+   });
 };
 ```
 
@@ -4588,15 +4588,15 @@ import {BusinessError} from "@ohos.base";
 let store: relationalStore.RdbStore | undefined = undefined;
 
 try {
-    if (store != undefined) {
-        (store as relationalStore.RdbStore).on('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
-            console.info(`progress: ${progressDetail}`);
-        });
-    }
+  if (store != undefined) {
+     (store as relationalStore.RdbStore).on('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
+       console.info(`progress: ${progressDetail}`);
+     });
+  }
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message
-    console.error(`Register observer failed, code is ${code},message is ${message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 ```
 
@@ -4742,15 +4742,15 @@ import {BusinessError} from "@ohos.base";
 let store: relationalStore.RdbStore | undefined = undefined;
 
 try {
-    if (store != undefined) {
-        (store as relationalStore.RdbStore).off('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
-            console.info(`progress: ${progressDetail}`);
-        });
-    }
+  if (store != undefined) {
+     (store as relationalStore.RdbStore).off('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
+       console.info(`progress: ${progressDetail}`);
+     });
+  }
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error(`Unregister failed, code is ${code},message is ${message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Unregister failed, code is ${code},message is ${message}`);
 }
 ```
 
