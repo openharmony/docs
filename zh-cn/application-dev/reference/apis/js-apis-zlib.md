@@ -165,7 +165,7 @@ let options = {
 try {
     zlib.compressFile(inFile, outFile, options, (errData) => {
         if (errData !== null) {
-            console.info(`errData is errCode:${errData.code}  message:${errData.message}`);
+            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
     })
 } catch(errData) {
@@ -214,7 +214,7 @@ try {
     zlib.compressFile(inFile, outFile, options).then((data) => {
         console.info('compressFile success. data: ' + JSON.stringify(data));
     }).catch((errData) => {
-        console.info(`errData is errCode:${errData.code}  message:${errData.message}`);
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch(errData) {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
@@ -266,7 +266,7 @@ let options = {
 try {
     zlib.decompressFile(inFile, outFile, options, (errData) => {
         if (errData !== null) {
-            console.info(`errData is errCode:${errData.code}  message:${errData.message}`);
+            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
     })
 } catch(errData) {
@@ -317,7 +317,7 @@ try {
     zlib.decompressFile(inFile, outFile, options).then((data) => {
         console.info('decompressFile success. data: ' + JSON.stringify(data));
     }).catch((errData) => {
-        console.info(`errData is errCode:${errData.code}  message:${errData.message}`);
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch(errData) {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
