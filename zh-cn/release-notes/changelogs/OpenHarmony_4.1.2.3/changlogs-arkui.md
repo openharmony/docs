@@ -37,10 +37,10 @@ Button(){
 
 请查阅[Blank组件](../../../application-dev/reference/arkui-ts/ts-basic-components-blank.md)，[FlowItem组件](../../../application-dev/reference/arkui-ts/ts-container-flowitem.md)，[GridItem组件](../../../application-dev/reference/arkui-ts/ts-container-griditem.md)，[GridCol组件](../../../application-dev/reference/arkui-ts/ts-container-gridcol.md)，[ListItem组件](../../../application-dev/reference/arkui-ts/ts-container-listitem.md)，[ListItemGroup组件](../../../application-dev/reference/arkui-ts/ts-container-listitemgroup.md)，[Span组件](../../../application-dev/reference/arkui-ts/ts-basic-components-span.md)，[StepperItem组件](../../../application-dev/reference/arkui-ts/ts-basic-components-stepperitem.md)，[TabContent组件](../../../application-dev/reference/arkui-ts/ts-container-tabcontent.md)文档进行适配。
 
-## Scroll.d.ts声明文件中currentOffset函数的返回值由any变更为OffsetResult
+## Scroll组件中currentOffset接口的返回值由any变更为OffsetResult
 
 **变更影响**
 
-变更前，currentOffset函数的返回值为any，不利于在IDE中开发代码时自动提示。
+API version 10前 ，currentOffset接口的返回值为any，不利于在IDE中开发代码时自动提示。
 
-变更后，currentOffset函数的返回值为OffsetResult。
+API version 11及以后，currentOffset接口的返回值为OffsetResult。
