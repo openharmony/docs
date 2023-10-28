@@ -1,6 +1,6 @@
 # @ohos.data.uniformTypeDescriptor (标准化数据定义与描述)
 
-本模块描述OpenHarmony标准化数据类型的抽象定义与描述。
+本模块对OpenHarmony标准化数据类型进行了抽象定义与描述。
 
 > **说明：**
 >
@@ -20,8 +20,8 @@ OpenHarmony标准化数据类型的枚举定义。
 
 | 名称                         | 值                            |     说明 |
 |----------------------------|------------------------------|-------------------------------------------------------------------------|
-| TEXT                       | 'general.text'                   | 所有文本的基本类型， 归属类型为TEXT。|
-| PLAIN_TEXT                | 'general.plain-text'             | 未指定编码的文本类型，没有标记。等效于MIME类型text/plain, 归属类型为TEXT。|
+| TEXT                       | 'general.text'                   | 所有文本的基本类型。|
+| PLAIN_TEXT                | 'general.plain-text'             | 未指定编码的文本类型，没有标记。等效于MIME类型text/plain，归属类型为TEXT。|
 | HTML                  | 'general.html'                   | HTML文本类型， 归属类型为TEXT。|
 | HYPERLINK         | 'general.hyperlink'              | 超链接类型， 归属类型为TEXT。|
 | XML<sup>11+</sup>    | 'general.xml'                   | XML文本类型， 归属类型为TEXT。|
@@ -36,7 +36,7 @@ OpenHarmony标准化数据类型的枚举定义。
 | TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  |    TypeScript源代码类型， 归属类型为SOURCE_CODE。|
 | JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  |    JavaScript源代码类型， 归属类型为SOURCE_CODE。|
 | C_HEADER<sup>11+</sup>                        | 'general.c-header'                  |      C头文件类型， 归属类型为SOURCE_CODE。|
-| C_SOURCE<sup>11+</sup>                       | 'general.c-source'                 |     源代码类型， 归属类型为SOURCE_CODE。|
+| C_SOURCE<sup>11+</sup>                       | 'general.c-source'                 |     C源代码类型， 归属类型为SOURCE_CODE。|
 | C_PLUS_PLUS_HEADER<sup>11+</sup>             | 'general.c-plus-plus-header'               |      C++头文件类型， 归属类型为SOURCE_CODE。|
 | C_PLUS_PLUS_SOURCE<sup>11+</sup>         | 'general.c-plus-plus-source'           |     C++源代码类型， 归属类型为SOURCE_CODE。|
 | JAVA_SOURCE<sup>11+</sup>        | 'general.java-source'          |  Java源代码类型， 归属类型为SOURCE_CODE。|
@@ -104,31 +104,31 @@ OpenHarmony标准化数据类型的枚举定义。
 | VCARD<sup>11+</sup>             | 'general.vcard'               |      电子名片的基本类型。|
 | NAVIGATION<sup>11+</sup>         | 'general.navigation'           |      导航的基本类型。|
 | LOCATION<sup>11+</sup>        | 'general.location'          |  导航定位类型，归属类型为NAVIGATION。|
-| OPENHARMONY_FORM                         | 'openharmony.form'                   |      Openharmony系统定义的表单类型。|
-| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  |      Openharmony系统定义的应用项类型。|
-| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  |      Openharmony系统定义的像素映射类型。|
-| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  |      Openharmony系统定义的原子服务类型。|
+| OPENHARMONY_FORM                         | 'openharmony.form'                   |      OpenHarmony系统定义的表单类型。|
+| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  |      OpenHarmony系统定义的应用项类型。|
+| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  |      OpenHarmony系统定义的像素映射类型。|
+| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  |      OpenHarmony系统定义的原子服务类型。|
 
 
 ## TypeDescriptor<sup>11+</sup> 
 
-描述统一数据类型的类，它由描述统一数据类型及其与其他统一数据类型的关系的属性和方法组成。
+描述标准化数据类型的类，它描述了标准化数据类型以及与其他相关标准化数据类型的属性和方法
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称    | 类型                    | 可读 | 可写 | 说明                       |
 | ------- | ----------------------- | ---- | ---- | -------------------------- |
-| typeId<sup>11+</sup>     | string | 是   | 否   | 表示统一数据类型的类型 ID。           |
-| belongingToTypes<sup>11+</sup>  | Array\<string>          | 是   | 否   | 表示统一数据类型所属的统一数据类型 ID。 |
-| description<sup>11+</sup>     | string                  | 是   | 否   | 表示统一数据类型的文本说明。         |
-| referenceURL<sup>11+</sup>     | string                  | 是   | 否   | 统一数据类型的引用 URL，用于描述类型的详细信息。         |
-| iconFile<sup>11+</sup>     | string                  | 是   | 否   | 统一数据类型的默认图标文件路径。         |
+| typeId<sup>11+</sup>     | string | 是   | 否   | 表示标准化数据类型的ID（名称）。           |
+| belongingToTypes<sup>11+</sup>  | Array\<string>          | 是   | 否   | 表示标准化数据类型所归属类型的值。 |
+| description<sup>11+</sup>     | string                  | 是   | 否   | 表示标准化数据类型的简要说明。         |
+| referenceURL<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的详细描述，用于描述类型的详细信息。         |
+| iconFile<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型中默认图标文件的路径。         |
 
 ### equals<sup>11+</sup> 
 
 equals(typeDescriptor: TypeDescriptor): boolean
 
-检查统一类型描述符是否等于给定的统一类型描述符。
+通过描述标准化数据类型的对象[TypeDescriptor](#typedescriptor11)检查两个标准化数据类型是否相同。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -136,13 +136,13 @@ equals(typeDescriptor: TypeDescriptor): boolean
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| TypeDescriptor    | typeDescriptor  | 是    |要对比的统一类型描述对象。   |
+| typeDescriptor    | [TypeDescriptor](#typedescriptor11)  | 是    |比较两个标准化数据类型是否相同。   |
 
-**错误码：**
+**返回值：**
 
-| **错误码ID** | **错误信息**                             |
-| ------------ | ---------------------------------------- |
-|     401  | Parameter error.                      |
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示所比较的标准化数据类型相同；返回false则表示不同。 |
 
 **示例：**
 
@@ -164,9 +164,9 @@ try{
 
 ## uniformTypeDescriptor.getTypeDescriptor<sup>11+</sup>
 
-getTypeDescriptor(typeId: string): TypeDescriptor;
+getTypeDescriptor(typeId: string): TypeDescriptor
 
-按给定的统一数据类型 ID 查询并返回统一类型描述符。
+按给定的标准化数据类型ID查询并返回对应的标准化数据类型的属性描述信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -174,13 +174,13 @@ getTypeDescriptor(typeId: string): TypeDescriptor;
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| typeId    | string  | 是    |统一数据类型 ID。   |
+| typeId    | string  | 是    |标准化数据类型ID。   |
 
-**错误码：**
+**返回值：**
 
-| **错误码ID** | **错误信息**                             |
-| ------------ | ---------------------------------------- |
-|     401  | Parameter error.                      |
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [TypeDescriptor](#typedescriptor11) | 返回某标准化数据类型的属性描述信息。 |
 
 **示例：**
 
@@ -196,6 +196,8 @@ try {
     let referenceURL = typeObj.referenceURL;
     let iconFile = typeObj.iconFile;
     console.info('typeId: ' + typeId + ', ' + Object.prototype.toString.call(typeId) + ', belongingToTypes: ' + belongingToTypes + ', ' + Object.prototype.toString.call(belongingToTypes));
+    console.info(TAG, 'description: ' + description + ', ' + Object.prototype.toString.call(description));
+    console.info(TAG, 'referenceURL: ' + referenceURL + ', ' + Object.prototype.toString.call(referenceURL) + ', iconFile: ' + iconFile + ', ' + Object.prototype.toString.call(iconFile));
 } catch(e) {
     let error: BusinessError = e as BusinessError;
     console.error(`getTypeDescriptor throws an exception. code is ${error.code}, message is ${error.message} `);
