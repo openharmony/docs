@@ -180,7 +180,7 @@ getTypeDescriptor(typeId: string): TypeDescriptor
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [TypeDescriptor](#typedescriptor11) | 返回标准化数据类型描述类对象 |
+| [TypeDescriptor](#typedescriptor11) | 返回标准化数据类型描述类对象。 |
 
 **示例：**
 
