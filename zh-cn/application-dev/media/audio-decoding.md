@@ -37,6 +37,7 @@
 ![Invoking relationship of audio decode stream](figures/audio-decode.png)
 
 ### 在 CMake 脚本中链接动态库
+
 ``` cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
@@ -45,7 +46,16 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
 
 ### 开发步骤
 
-1. 创建解码器实例对象
+1. 添加头文件。
+
+   ```cpp
+   #include <multimedia/player_framework/native_avcodec_audiodecoder.h>
+   #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   ```
+
+2. 创建解码器实例对象。
 
     ```cpp
     //c++标准库命名空间
@@ -80,7 +90,7 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
     ADecSignal *signal_;
     ```
 
-2. 调用OH_AudioDecoder_SetCallback()设置回调函数。
+3. 调用OH_AudioDecoder_SetCallback()设置回调函数。
    注册回调函数指针集合OH_AVCodecAsyncCallback，包括：
    - OH_AVCodecOnError：解码器运行错误。
    - OH_AVCodecOnStreamChanged：码流信息变化，如声道变化等。
@@ -139,7 +149,8 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
        // 异常处理
    }
    ```
-3. 调用OH_AudioDecoder_Configure()配置解码器。
+
+4. 调用OH_AudioDecoder_Configure()配置解码器。
    配置必选项：采样率、码率、声道数；可选项：最大输入长度。
 
    - AAC解码 需要额外标识是否为adts类型否则会被认为是latm类型
@@ -170,7 +181,8 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
         // 异常处理
     }
     ```
-4. 调用OH_AudioDecoder_Prepare()，解码器就绪。
+
+5. 调用OH_AudioDecoder_Prepare()，解码器就绪。
 
     ```cpp
     ret = OH_AudioDecoder_Prepare(audioDec);
@@ -178,13 +190,14 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
         // 异常处理
     }
     ```
-5. 调用OH_AudioDecoder_Start()启动解码器，进入运行态。
+
+6. 调用OH_AudioDecoder_Start()启动解码器，进入运行态。
 
     ```c++
     unique_ptr<ifstream> inputFile_ = make_unique<ifstream>();
     unique_ptr<ofstream> outFile_ = make_unique<ofstream>();
     // 打开待解码二进制文件路径
-    inputFile_->open(inputFilePath.data(), ios::in | ios::binary);
+    inputFile_->open(inputFilePath.data(), ios::in | ios::binary); 
     //配置解码文件输出路径
     outFile_->open(outputFilePath.data(), ios::out | ios::binary);
     // 开始解码
@@ -193,8 +206,11 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
     // 异常处理
     }
     ```
-6. 调用OH_AudioDecoder_PushInputData()，写入待解码的数据。
-   如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
+
+7. 调用OH_AudioDecoder_PushInputData()，写入待解码的数据。
+
+   如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS。
+
     ```c++
     // 配置buffer info信息
     OH_AVCodecBufferAttr info;
@@ -221,7 +237,8 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
         // 异常处理
     }
     ```
-7. 调用OH_AudioDecoder_FreeOutputData()，输出解码后的PCM码流
+
+8. 调用OH_AudioDecoder_FreeOutputData()，输出解码后的PCM码流。
 
     ```c++
     OH_AVCodecBufferAttr attr = signal_->attrQueue_.front();
@@ -235,12 +252,15 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
         // 异常处理
     }
     ```
-8. （可选）调用OH_AudioDecoder_Flush()刷新解码器。
+
+9.  （可选）调用OH_AudioDecoder_Flush()刷新解码器。
     调用OH_AudioDecoder_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
     此时需要调用OH_AudioDecoder_Start()重新开始解码。
     使用情况：
+
     * 在文件EOS之后，需要调用刷新
     * 在执行过程中遇到可继续执行的错误时（即OH_AudioDecoder_IsValid 为true）调用
+
     ```c++
     // 刷新解码器 audioDec
     ret = OH_AudioDecoder_Flush(audioDec);
@@ -253,7 +273,8 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
         // 异常处理
     }
     ```
-9. （可选）调用OH_AudioDecoder_Reset()重置解码器。
+
+10. （可选）调用OH_AudioDecoder_Reset()重置解码器。
 调用OH_AudioDecoder_Reset()后，解码器回到初始化的状态，需要调用OH_AudioDecoder_Configure()重新配置，然后调用OH_AudioDecoder_Start()重新开始解码。
 
     ```c++
@@ -268,7 +289,8 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
     // 异常处理
     }
     ```
-10. 调用OH_AudioDecoder_Stop()停止解码器。
+
+11. 调用OH_AudioDecoder_Stop()停止解码器。
 
     ```c++
     // 终止解码器 audioDec
@@ -277,7 +299,9 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
         // 异常处理
     }
     ```
-11. 调用OH_AudioDecoder_Destroy()销毁解码器实例，释放资源。
+
+12. 调用OH_AudioDecoder_Destroy()销毁解码器实例，释放资源。
+
     **注意**：不要重复销毁解码器
 
     ```c++

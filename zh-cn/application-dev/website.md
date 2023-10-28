@@ -460,6 +460,7 @@
         - [使用OpenSL ES开发音频播放功能](media/using-opensl-es-for-playback.md)
         - [使用TonePlayer开发音频播放功能（仅对系统应用开放）](media/using-toneplayer-for-playback.md)
         - [使用OHAudio开发音频播放功能](media/using-ohaudio-for-playback.md)
+        - [使用SoundPool开发音频播放功能](media/using-soundpool-for-playback.md)
         - [多音频播放的并发策略](media/audio-playback-concurrency.md)
         - [播放音量管理](media/volume-management.md)
         - [音效管理](media/audio-effect-management.md)
@@ -520,6 +521,7 @@
       - 图片处理
         - [图像变换(ArkTS)](media/image-transformation.md)
         - [图像变换(Native)](media/image-transformation-native.md)
+        - [PixelMap数据处理(Native)](media/image-pixelmap-operation-native.md)
         - [位图操作](media/image-pixelmap-operation.md)
       - [图片编码](media/image-encoding.md)
       - [图片工具](media/image-tool.md)
@@ -533,6 +535,9 @@
     - 安全控件
       - [安全控件开发概述](security/security-component-manager-overview.md)
       - [安全控件开发指导](security/security-component-manager-guidelines.md)
+    - 数据防泄漏（DLP）
+      - [数据防泄漏（DLP）开发概述](security/dlp-overview.md)
+      - [数据防泄漏（DLP）开发指导](security/dlp-guidelines.md)
     - 用户认证
       - [用户认证开发概述](security/userauth-overview.md)
       - [用户认证开发指导](security/userauth-guidelines.md)
@@ -617,15 +622,16 @@
         - [应用触发数据备份/恢复（仅对系统应用开放）](file-management/app-file-backup.md)
     - 用户文件
       - [用户文件概述](file-management/user-file-overview.md)
+      - [用户文件uri介绍](file-management/user-file-uri-intro.md)
       - 选择与保存用户文件（FilePicker）
         - [选择用户文件](file-management/select-user-file.md)
         - [保存用户文件](file-management/save-user-file.md)
       - 相册管理（photoAccessHelper）
         - [相册管理模块开发概述](file-management/photoAccessHelper-overview.md)
-        - [媒体资源（图片、视频）相关](file-management/photoAccessHelper-resource-guidelines.md)
-        - [用户相册相关](file-management/photoAccessHelper-userAlbum-guidelines.md)
-        - [系统相册相关](file-management/photoAccessHelper-systemAlbum-guidelines.md)
-        - [媒体资源变更通知相关](file-management/photoAccessHelper-notify-guidelines.md)
+        - [媒体资源使用指导](file-management/photoAccessHelper-resource-guidelines.md)
+        - [用户相册资源使用指导](file-management/photoAccessHelper-userAlbum-guidelines.md)
+        - [系统相册资源使用指导](file-management/photoAccessHelper-systemAlbum-guidelines.md)
+        - [媒体资源变更通知相关指导](file-management/photoAccessHelper-notify-guidelines.md)
       - [开发用户文件管理器（仅对系统应用开放）](file-management/dev-user-file-manager.md)
       - [管理外置存储设备（仅对系统应用开放）](file-management/manage-external-storage.md)
     - 分布式文件系统
@@ -1019,6 +1025,7 @@
         - [MediaControlExtensionContext (播控扩展能力上下文)](reference/apis/js-apis-inner-application-MediaControlExtensionContext.md)
       - multimedia
         - [ringtonePlayer (铃声播放器)](reference/apis/js-apis-inner-multimedia-ringtonePlayer.md)
+        - [soundPool (音频池)](reference/apis/js-apis-inner-multimedia-soundPool.md)
     - 资源管理
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
@@ -1034,6 +1041,7 @@
         - [WorkSchedulerExtensionContext](reference/apis/js-apis-inner-application-WorkSchedulerExtensionContext.md)
     - 安全
       - [@ohos.abilityAccessCtrl (程序访问控制管理)](reference/apis/js-apis-abilityAccessCtrl.md)
+      - [@ohos.dlpPermission (数据防泄漏)](reference/apis/js-apis-dlppermission.md)
       - [@ohos.privacyManager (隐私管理)](reference/apis/js-apis-privacyManager.md)
       - [@ohos.security.cert (证书模块)](reference/apis/js-apis-cert.md)
       - [@ohos.security.cryptoFramework (加解密算法库框架)](reference/apis/js-apis-cryptoFramework.md)
@@ -1744,11 +1752,12 @@
       - [reminderAgentManager错误码](reference/errorcodes/errorcode-reminderAgentManager.md)
       - [workScheduler错误码](reference/errorcodes/errorcode-workScheduler.md)
     - 安全
-      - [AccessToken错误码](reference/errorcodes/errorcode-access-token.md)
+      - [访问控制错误码](reference/errorcodes/errorcode-access-token.md)
       - [HUKS错误码](reference/errorcodes/errorcode-huks.md)
       - [crypto framework错误码](reference/errorcodes/errorcode-crypto-framework.md)
       - [cert错误码](reference/errorcodes/errorcode-cert.md)
       - [用户认证错误码](reference/errorcodes/errorcode-useriam.md)
+      - [DLP服务错误码](reference/errorcodes/errorcode-dlp.md)
     - 数据管理
       - [关系型数据库错误码](reference/errorcodes/errorcode-data-rdb.md)
       - [数据共享错误码](reference/errorcodes/errorcode-datashare.md)
