@@ -2555,7 +2555,7 @@ isPanelShown(panelInfo: PanelInfo): boolean
 
 | 参数名    | 类型                                                  | 必填 | 说明                     |
 | --------- | ----------------------------------------------------- | ---- | ------------------------ |
-| panelInfo | [PanelInfo](./js-apis-inputmethod-panel.md#panelInfo) | 是   | 指定的输入法面板的属性。 |
+| panelInfo | [PanelInfo](./js-apis-inputmethod-panel.md#panelinfo) | 是   | 指定的输入法面板的属性。 |
 
 **返回值：**
 
