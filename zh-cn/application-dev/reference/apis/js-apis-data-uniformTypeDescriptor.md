@@ -118,9 +118,9 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 
 | 名称    | 类型                    | 可读 | 可写 | 说明                       |
 | ------- | ----------------------- | ---- | ---- | -------------------------- |
-| typeId<sup>11+</sup>     | string | 是   | 否   | 表示标准化数据类型的ID（即[UniformDataType](#uniformdatatype)中对应的枚举值。           |
-| belongingToTypes<sup>11+</sup>  | Array\<string>          | 是   | 否   | 表示标准化数据类型所归属类型typdId列表。 |
-| description<sup>11+</sup>     | string                  | 是   | 否   | 表示标准化数据类型的简要说明。         |
+| typeId<sup>11+</sup>     | string | 是   | 否   | 标准化数据类型的ID（即[UniformDataType](#uniformdatatype)中对应的枚举值。）           |
+| belongingToTypes<sup>11+</sup>  | Array\<string>          | 是   | 否   | 标准化数据类型所归属类型typdId列表。 |
+| description<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的简要说明。         |
 | referenceURL<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的详细描述网址链接，用于描述类型的详细信息。         |
 | iconFile<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型中默认图标文件的路径。         |
 
@@ -136,7 +136,7 @@ equals(typeDescriptor: TypeDescriptor): boolean
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| typeDescriptor    | [TypeDescriptor](#typedescriptor11)  | 是    |标准化数据类型的描述类。   |
+| typeDescriptor    | [TypeDescriptor](#typedescriptor11)  | 是    |待比较的标准化数据类型描述类对象。   |
 
 **返回值：**
 
@@ -166,7 +166,7 @@ try{
 
 getTypeDescriptor(typeId: string): TypeDescriptor
 
-按给定的标准化数据类型ID查询并返回对应的标准化数据类型的属性描述信息。
+按给定的标准化数据类型ID查询并返回对应的标准化数据类型描述类对象。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -180,7 +180,7 @@ getTypeDescriptor(typeId: string): TypeDescriptor
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [TypeDescriptor](#typedescriptor11) | 待比较的标准化数据类型描述类对象。 |
+| [TypeDescriptor](#typedescriptor11) | 返回标准化数据类型描述类对象 |
 
 **示例：**
 
