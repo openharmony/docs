@@ -383,6 +383,7 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<!DOCTYPE note [\n<!ENTITY foo "baa">]>' +
@@ -436,6 +437,7 @@ parse(option: ParseOptions): void
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -500,6 +502,7 @@ getColumnNumber(): number
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -540,6 +543,7 @@ getDepth(): number
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -583,6 +587,7 @@ getLineNumber(): number
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -623,6 +628,7 @@ getName(): string
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -662,6 +668,7 @@ getNamespace(): string
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -701,6 +708,7 @@ getPrefix(): string
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -741,6 +749,7 @@ getText(): string
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -780,6 +789,7 @@ isEmptyElementTag(): boolean
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -819,6 +829,7 @@ isWhitespace(): boolean
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -857,6 +868,7 @@ getAttributeCount(): number
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
