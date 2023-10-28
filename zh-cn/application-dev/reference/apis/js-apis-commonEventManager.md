@@ -490,11 +490,14 @@ try {
 }
 
 //取消订阅公共事件
-try {
-    CommonEventManager.unsubscribe(subscriber, unsubscribeCallBack);
-} catch (err) {
-    console.info("unsubscribe failed " + JSON.stringify(err));
-}
+//等待异步接口subscribe执行完毕，开发者根据实际业务选择是否需要添加setTimeout
+setTimeout(() => {
+    try {
+        CommonEventManager.unsubscribe(subscriber, unsubscribeCallBack);
+    } catch (err) {
+        console.info("unsubscribe failed " + JSON.stringify(err));
+    }
+}, 500);
 ```
 
 ## CommonEventData
