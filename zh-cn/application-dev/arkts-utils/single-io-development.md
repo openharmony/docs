@@ -9,6 +9,7 @@ Promise和async/await提供异步并发能力，适用于单次I/O任务的场�
     ```ts
     import fs from '@ohos.file.fs';
     import { BusinessError } from '@ohos.base';
+
     async function write(data: string, filePath: string): Promise<void> {
       let file: fs.File = await fs.open(filePath, fs.OpenMode.READ_WRITE);
       fs.write(file.fd, data).then((writeLen: number) => {
