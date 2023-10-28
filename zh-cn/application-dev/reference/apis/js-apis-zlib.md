@@ -177,7 +177,7 @@ let options: zlib.Options = {
 try {
     zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
         if (errData !== null) {
-            console.info(`errData is errCode:${errData.code}  message:${errData.message}`);
+            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
     })
 } catch(errData) {
@@ -232,7 +232,7 @@ try {
     zlib.compressFile(inFile, outFile, options).then((data: void) => {
         console.info('compressFile success. data: ' + JSON.stringify(data));
     }).catch((errData: BusinessError) => {
-        console.info(`errData is errCode:${errData.code}  message:${errData.message}`);
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch(errData) {
     let code = (errData as BusinessError).code;
@@ -285,7 +285,7 @@ let options: zlib.Options = {
 try {
     zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
         if (errData !== null) {
-            console.info(`errData is errCode:${errData.code}  message:${errData.message}`);
+            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
     })
 } catch(errData) {
@@ -337,7 +337,7 @@ try {
     zlib.decompressFile(inFile, outFileDir, options).then((data: void) => {
         console.info('decompressFile success. data: ' + JSON.stringify(data));
     }).catch((errData: BusinessError) => {
-        console.info(`errData is errCode:${errData.code}  message:${errData.message}`);
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch(errData) {
     let code = (errData as BusinessError).code;
@@ -385,7 +385,7 @@ let outFileDir = '/xxx';
 try {
     zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
         if (errData !== null) {
-            console.info(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
+            console.error(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
         }
     })
 } catch(errData) {
