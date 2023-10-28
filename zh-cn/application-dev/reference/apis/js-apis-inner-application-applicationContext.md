@@ -680,7 +680,11 @@ export default class MyAbility extends UIAbility {
         console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
       }
     };
-    applicationContext.on('abilityAutoStartup', autoStartupCallback);
+    try {
+      applicationContext.on('abilityAutoStartup', autoStartupCallback);
+    } catch (err) {
+      console.info('===> autostartupmanager on throw err: ' + JSON.stringify(err));
+    }
   }
 }
 ```
@@ -716,7 +720,11 @@ export default class MyAbility extends UIAbility {
         console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
       }
     };
-    applicationContext.off('abilityAutoStartup', autoStartupCallback);
+    try {
+      applicationContext.off('abilityAutoStartup', autoStartupCallback);
+    } catch (err) {
+      console.info('===> autostartupmanager off throw err: ' + JSON.stringify(err));
+    }
   }
 }
 ```
@@ -744,12 +752,16 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    applicationContext.setAutoStartup({
-      bundleName: 'com.example.autostartupapp',
-      abilityName: 'EntryAbility'
-    }, (err, data) => {
-      console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
-    });
+    try {
+      applicationContext.setAutoStartup({
+        bundleName: 'com.example.autostartupapp',
+        abilityName: 'EntryAbility'
+      }, (err, data) => {
+        console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+      });
+    } catch (err) {
+      console.info('===> autostartupmanager setAutoStartup throw err: ' + JSON.stringify(err));
+    }
   }
 }
 ```
@@ -782,14 +794,18 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    applicationContext.setAutoStartup({
-      bundleName: 'com.example.autostartupapp',
-      abilityName: 'EntryAbility'
-    }).then((data) => {
-      console.info('====> setAutoStartup UI OK + ' + JSON.stringify(data));
-    }).catch((err) => {
-      console.info('====> setAutoStartup UI ERR + ' + JSON.stringify(err));
-    });
+    try {
+      applicationContext.setAutoStartup({
+        bundleName: 'com.example.autostartupapp',
+        abilityName: 'EntryAbility'
+      }).then((data) => {
+        console.info('====> setAutoStartup data: ' + JSON.stringify(data));
+      }).catch((err) => {
+        console.info('====> setAutoStartup err: ' + JSON.stringify(err));
+      });
+    } catch (err) {
+      console.info('===> autostartupmanager setAutoStartup throw err: ' + JSON.stringify(err));
+    }
   }
 }
 ```
@@ -817,12 +833,16 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    applicationContext.cancelAutoStartup({
-      bundleName: 'com.example.autostartupapp',
-      abilityName: 'EntryAbility'
-    }, (err, data) => {
-      console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
-    });
+    try {
+      applicationContext.cancelAutoStartup({
+        bundleName: 'com.example.autostartupapp',
+        abilityName: 'EntryAbility'
+      }, (err, data) => {
+        console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+      });
+    } catch (err) {
+      console.info('===> autostartupmanager cancelAutoStartup throw err: ' + JSON.stringify(err));
+    }
   }
 }
 ```
@@ -855,14 +875,18 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    applicationContext.cancelAutoStartup({
-      bundleName: 'com.example.autostartupapp',
-      abilityName: 'EntryAbility'
-    }).then((data) => {
-        console.info('====> cancelAutoStartup UI OK + ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.info('====> cancelAutoStartup UI ERR + ' + JSON.stringify(err));
-    });
+    try {
+      applicationContext.cancelAutoStartup({
+        bundleName: 'com.example.autostartupapp',
+        abilityName: 'EntryAbility'
+      }).then((data) => {
+          console.info('====> cancelAutoStartup data: ' + JSON.stringify(data));
+      }).catch((err) => {
+          console.info('====> cancelAutoStartup err: ' + JSON.stringify(err));
+      });
+    } catch (err) {
+      console.info('===> autostartupmanager cancelAutoStartup throw err: ' + JSON.stringify(err));
+    }
   }
 }
 ```
@@ -890,12 +914,16 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    applicationContext.isAutoStartup({
-      bundleName: 'com.example.autostartupapp',
-      abilityName: 'EntryAbility'
-    }, (err, data) => {
-      console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
-    });
+    try {
+      applicationContext.isAutoStartup({
+        bundleName: 'com.example.autostartupapp',
+        abilityName: 'EntryAbility'
+      }, (err, data) => {
+        console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+      });
+    } catch (err) {
+      console.info('===> autostartupmanager isAutoStartup throw err: ' + JSON.stringify(err));
+    }
   }
 }
 ```
@@ -928,14 +956,18 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    applicationContext.isAutoStartup({
-      bundleName: 'com.example.autostartupapp',
-      abilityName: 'EntryAbility'
-    }).then((data) => {
-      console.info('====> isAutoStartup UI OK + ' + JSON.stringify(data));
-    }).catch((err) => {
-      console.info('====> isAutoStartup UI ERR + ' + JSON.stringify(err));
-    });
+    try {
+      applicationContext.isAutoStartup({
+        bundleName: 'com.example.autostartupapp',
+        abilityName: 'EntryAbility'
+      }).then((data) => {
+        console.info('====> isAutoStartup data: ' + JSON.stringify(data));
+      }).catch((err) => {
+        console.info('====> isAutoStartup err: ' + JSON.stringify(err));
+      });
+    } catch (err) {
+      console.info('===> autostartupmanager isAutoStartup throw err: ' + JSON.stringify(err));
+    }
   }
 }
 ```

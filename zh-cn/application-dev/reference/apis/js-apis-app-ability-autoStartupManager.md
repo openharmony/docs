@@ -42,7 +42,11 @@ let autoStartupCallback = {
   }
 }
 
-AutoStartupManager.on('systemAutoStartup', autoStartupCallback);
+try {
+  AutoStartupManager.on('systemAutoStartup', autoStartupCallback);
+} catch (err) {
+  console.info('====> autostartupmanager on throw err: ' + JSON.stringify(err));
+}
 ```
 
 ## off
@@ -74,7 +78,11 @@ let autoStartupCallback = {
   }
 }
 
-AutoStartupManager.off('systemAutoStartup', autoStartupCallback);
+try {
+  AutoStartupManager.off('systemAutoStartup', autoStartupCallback);
+} catch (err) {
+  console.info('====> autostartupmanager off throw err: ' + JSON.stringify(err));
+}
 ```
 
 ## setApplicationAutoStartup
@@ -97,12 +105,16 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 ```ts
 import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
 
-AutoStartupManager.setApplicationAutoStartup({
-  bundleName: 'com.example.autostartupapp',
-  abilityName: 'EntryAbility'
-}, (err, data) => {
-  console.info('====> setApplicationAutoStartup: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
-});
+try {
+  AutoStartupManager.setApplicationAutoStartup({
+    bundleName: 'com.example.autostartupapp',
+    abilityName: 'EntryAbility'
+  }, (err, data) => {
+    console.info('====> setApplicationAutoStartup: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+  });
+} catch (err) {
+  console.info('====> setApplicationAutoStartup throw err: ' + JSON.stringify(err));
+}
 ```
 
 ## setApplicationAutoStartup
@@ -130,14 +142,18 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 ```ts
 import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
 
-AutoStartupManager.setApplicationAutoStartup({
-  bundleName: 'com.example.autostartupapp',
-  abilityName: 'EntryAbility'
-}).then((data) => {
-  console.info('====> setApplicationAutoStartup UI OK + ' + JSON.stringify(data));
-}).catch((err) => {
-  console.info('====> setApplicationAutoStartup UI ERR + ' + JSON.stringify(err));
-});
+try {
+  AutoStartupManager.setApplicationAutoStartup({
+    bundleName: 'com.example.autostartupapp',
+    abilityName: 'EntryAbility'
+  }).then((data) => {
+    console.info('====> setApplicationAutoStartup data: ' + JSON.stringify(data));
+  }).catch((err) => {
+    console.info('====> setApplicationAutoStartup err: ' + JSON.stringify(err));
+  });
+} catch (err) {
+  console.info('====> setApplicationAutoStartup throw err: ' + JSON.stringify(err));
+}
 ```
 
 ## cancelApplicationAutoStartup
@@ -160,12 +176,16 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback<void
 ```ts
 import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
 
-AutoStartupManager.cancelApplicationAutoStartup({
-  bundleName: 'com.example.autostartupapp',
-  abilityName: 'EntryAbility'
-}, (err, data) => {
-  console.info('====> cancelApplicationAutoStartup UI OK + err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
-});
+try {
+  AutoStartupManager.cancelApplicationAutoStartup({
+    bundleName: 'com.example.autostartupapp',
+    abilityName: 'EntryAbility'
+  }, (err, data) => {
+    console.info('====> cancelApplicationAutoStartup err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+  });
+} catch (err) {
+  console.info('====> cancelApplicationAutoStartup throw err: ' + JSON.stringify(err));
+}
 ```
 
 ## cancelApplicationAutoStartup
@@ -193,14 +213,18 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 ```ts
 import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
 
-AutoStartupManager.cancelApplicationAutoStartup({
-  bundleName: 'com.example.autostartupapp',
-  abilityName: 'EntryAbility'
-}).then((data) => {
-  console.info('====> cancelApplicationAutoStartup UI OK + ' + JSON.stringify(data));
-}).catch((err) => {
-  console.info('====> cancelApplicationAutoStartup UI ERR + ' + JSON.stringify(err));
-});
+try {
+  AutoStartupManager.cancelApplicationAutoStartup({
+    bundleName: 'com.example.autostartupapp',
+    abilityName: 'EntryAbility'
+  }).then((data) => {
+    console.info('====> cancelApplicationAutoStartup data: ' + JSON.stringify(data));
+  }).catch((err) => {
+    console.info('====> cancelApplicationAutoStartup err: ' + JSON.stringify(err));
+  });
+} catch (err) {
+  console.info('====> cancelApplicationAutoStartup throw err: ' + JSON.stringify(err));
+}
 ```
 
 ## queryAllAutoStartupApplications
@@ -222,9 +246,13 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 ```ts
 import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
 
-AutoStartupManager.queryAllAutoStartupApplications((err, data) => {
-  console.info('====> queryAllAutoStartupApplications OK');
-});
+try {
+  AutoStartupManager.queryAllAutoStartupApplications((err, data) => {
+    console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+  });
+} catch (err) {
+  console.info('====> queryAllAutoStartupApplications throw err: ' + JSON.stringify(err));
+}
 ```
 
 ## queryAllAutoStartupApplications
@@ -246,9 +274,13 @@ AutoStartupManager.queryAllAutoStartupApplications((err, data) => {
 ```ts
 import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
 
-AutoStartupManager.queryAllAutoStartupApplications().then((data) => {
-  console.info('====> queryAllAutoStartupApplications OK');
-}).catch((err) => {
-  console.info('====> queryAllAutoStartupApplications ERR err: ' + JSON.stringify(err));
-});
+try {
+  AutoStartupManager.queryAllAutoStartupApplications().then((data) => {
+    console.info('====> queryAllAutoStartupApplications OK');
+  }).catch((err) => {
+    console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err));
+  });
+} catch (err) {
+  console.info('====> queryAllAutoStartupApplications throw err: ' + JSON.stringify(err));
+}
 ```

@@ -6,12 +6,6 @@
 > 
 > 本模块首批接口从API version 11 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## 导入模块
-
-```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
-```
-
 ## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -26,25 +20,18 @@ import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
 **示例：**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
 
-let autoStartupCallback = {
-  onAutoStartupOn(data) {
-    console.info('==> autostartupmanager onAutoStartupOn data.bundleName: ' + data.bundleName);
-    console.info('==> autostartupmanager onAutoStartupOn data.moduleName: ' + data.moduleName);
-    console.info('==> autostartupmanager onAutoStartupOn data.abilityName: ' + data.abilityName);
-    console.info('==> autostartupmanager onAutoStartupOn data.abilityTypeName: ' + data.abilityTypeName);
-  },
-  onAutoStartupOff(data) {
-    console.info('==> autostartupmanager onAutoStartupOff data.bundleName: ' + data.bundleName);
-    console.info('==> autostartupmanager onAutoStartupOff data.moduleName: ' + data.moduleName);
-    console.info('==> autostartupmanager onAutoStartupOff data.abilityName: ' + data.abilityName);
-    console.info('==> autostartupmanager onAutoStartupOff data.abilityTypeName: ' + data.abilityTypeName);
-  }
-}
+let applicationContext = this.context.getApplicationContext();
 try {
-  AutoStartupManager.on('systemAutoStartup', autoStartupCallback)
+  applicationContext.setAutoStartup({
+    bundleName: 'com.example.autostartupapp',
+    moduleName: 'entry',
+    abilityName: 'EntryAbility',
+    abilityTypeName: 'ServiceExtension'
+  }, (err, data) => {
+    console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+  });
 } catch (err) {
-  console.info('==> autostartupmanager on callback err: ' + JSON.stringify(err));
+  console.info('===> autostartupmanager setAutoStartup throw err: ' + JSON.stringify(err));
 }
 ```
