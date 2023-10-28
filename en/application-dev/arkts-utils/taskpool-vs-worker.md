@@ -101,6 +101,9 @@ The thread that creates the worker thread is referred to as the host thread (not
   Before calling an API of the **Worker** module, you must create a **Worker** instance. The constructor function varies in different API versions.
 
 ```ts
+// Import the module.
+import worker form '@ohos.worker';
+
 // Use the following function in API version 9 and later versions:
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
 // Use the following function in API version 8 and earlier versions:
@@ -115,6 +118,9 @@ The following is an example of **scriptURL** in the constructor function:
 
 
 ```ts
+// Import the module.
+import worker form '@ohos.worker';
+
 // Method 1
 // In the stage model, the workers directory is at the same level as the pages directory in the entry module.
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts', {name:"first worker in Stage model"});
@@ -148,6 +154,9 @@ const worker4: worker.ThreadWorker = new worker.ThreadWorker('@bundle:com.exampl
   The following is an example of **scriptURL** in the constructor function:
 
 ```ts
+// Import the module.
+import worker form '@ohos.worker';
+
 // In the FA model, the workers directory is at the same level as the pages directory in the entry module.
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});
 // In the FA model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
