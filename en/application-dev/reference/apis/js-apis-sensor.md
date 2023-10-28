@@ -53,7 +53,6 @@ try{
   }, { interval: 100000000 });
   setTimeout(() => {
         sensor.off(sensor.SensorId.COLOR);
-        done();
   }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
@@ -1511,8 +1510,8 @@ import sensor from "@ohos.sensor"
 import BusinessError from "@ohos.base"
 
 try {
-  sensor.once(sensor.SensorId.HUMIDITY, (data: sensor.HeartRateResponse) => {
-    console.info('Succeeded in invoking once. Heart rate: ' + data.heartRate);
+  sensor.once(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
+    console.info('Succeeded in invoking once. Humidity: ' + data.humidity);
   });
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
@@ -4087,6 +4086,18 @@ Enumerates the sensor types.
 | SENSOR_TYPE_ID_WEAR_DETECTION              | 280  | Wear detection sensor.      |
 | SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED  | 281  | Uncalibrated acceleration sensor.|
 
+## SensorAccuracy<sup>11+</sup>
+
+Enumerates the accuracy levels of sensor data.
+
+**System capability**: SystemCapability.Sensors.Sensor
+| Name     | Type  | Value| Description                    |
+| --------- | ------ | ---- | ------------------------ |
+| ACCURACY_UNRELIABLE | number | 0   | The sensor data is unreliable.|
+| ACCURACY_LOW | number | 1   | The sensor data is at a low accuracy level.|
+| ACCURACY_MEDIUM | number | 2   | The sensor data is at a medium accuracy level.|
+| ACCURACY_HIGH | number | 3   | The sensor data is at a high accuracy level.|
+
 ## Response
 
 Describes the timestamp of the sensor data.
@@ -4096,6 +4107,7 @@ Describes the timestamp of the sensor data.
 | Name     | Type  | Readable| Writable| Description                    |
 | --------- | ------ | ---- | ---- | ------------------------ |
 | timestamp | number | Yes  | Yes  | Timestamp when the sensor reports data.|
+| accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11) | Yes  | No  | Accuracy of the sensor data.|
 
 ## Sensor<sup>9+</sup>
 
@@ -4396,9 +4408,9 @@ Describes the barometer sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable| Writable| Description                    |
-| -------- | ------ | ---- | ---- | ------------------------ |
-| pressure | number | Yes  | Yes  | Atmospheric pressure, in pascal.|
+| Name    | Type  | Readable| Writable| Description                  |
+| -------- | ------ | ---- | ---- | ---------------------- |
+| pressure | number | Yes  | Yes  | Atmospheric pressure, in units of hPa.|
 
 
 ## HeartRateResponse
