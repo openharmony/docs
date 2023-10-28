@@ -716,7 +716,7 @@
     - 图形图像
       - [XComponent开发指导](napi/xcomponent-guidelines.md)
       - [Drawing开发指导](napi/drawing-guidelines.md)
-      - [图形显示与绘制实例](napi/drawing-sample.md)
+      - [图形绘制与显示实例](napi/drawing-sample.md)
       - [NativeBuffer开发指导](napi/native-buffer-guidelines.md)
       - [NativeImage开发指导](napi/native-image-guidelines.md)
       - [NativeVsync开发指导](napi/native-vsync-guidelines.md)
