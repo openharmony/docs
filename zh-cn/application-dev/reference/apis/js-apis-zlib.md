@@ -1,6 +1,6 @@
 # @ohos.zlib (Zip模块)
 
-本模块提供压缩解压缩文件的能力
+本模块提供压缩解压缩文件的能力。
 
 > **说明：**
 >
@@ -17,9 +17,9 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
 压缩接口，压缩完成后返回执行结果，使用Promise异步返回。
 
-> **说明**
+> **说明：**
 >
-> 从API version 7 开始支持，从API 9 开始废弃。建议使用[zlib.compressFile](#zlibcompressfile9)
+> 从API version 7 开始支持，从API 9 开始废弃。建议使用[zlib.compressFile](#zlibcompressfile9)。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -40,8 +40,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 **示例1：**
 
 ```typescript
-//【压缩文件 例子1】
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
 
@@ -63,8 +62,7 @@ zlib.zipFile(inFile, outFile, options).then((data: void) => {
 **示例2：**
 
 ```typescript
-// 【压缩文件夹 例子2】
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
 
@@ -89,9 +87,9 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 解压文件，解压完成后返回执行结果，使用Promise异步返回。
 
-> **说明**
+> **说明：**
 >
-> 从API version 7 开始支持，从API 9 开始废弃。建议使用[zlib.decompressFile](#zlibdecompressfile9)
+> 从API version 7 开始支持，从API 9 开始废弃。建议使用[zlib.decompressFile](#zlibdecompressfile9)。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -112,8 +110,7 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 **示例：**
 
 ```typescript
-// 【解压缩 例子1】
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
 
@@ -161,8 +158,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 **示例**
 
 ```typescript
-// 【压缩文件 例子1】
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
 
@@ -215,8 +211,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 **示例**
 
 ```typescript
-// 【压缩文件 例子2】
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
 
@@ -271,8 +266,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 **示例**
 
 ```typescript
-// 【解压缩 例子1】
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
 
@@ -322,8 +316,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 | 900003 | The input source file is not ZIP format or damaged. |
 
 ```typescript
-// 【解压缩 例子2】
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
 
@@ -375,8 +368,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 **示例**
 
 ```typescript
-// 【解压缩 例子3】
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
 let inFile = '/xx/xxx.zip';
