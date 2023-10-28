@@ -38,7 +38,7 @@ It is necessary to understand the reason for each rule or recommendation and try
 
 **[Description]**
 
-Strict mode is a way to opt in to a restricted variant of JavaScript, thereby implicitly opting out of sloppy mode.
+Strict mode is a way to opt in to a restricted variant of JavaScript, thereby implicitly opting out of sloppy mode. Strict mode is introduced in ECMAScript 5 and enabled by using the **use strict** syntax.)
 
 1. Strict mode eliminates some JavaScript silent errors by throwing errors.
 1. Strict mode fixes defects that make it difficult for JavaScript engines to perform optimizations. Sometimes, the same code can run faster in strict mode than in non-strict mode.
