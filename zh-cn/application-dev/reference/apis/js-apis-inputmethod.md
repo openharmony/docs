@@ -2543,6 +2543,50 @@ off(type: 'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
 inputMethodSetting.off('imeHide');
 ```
 
+### isPanelShown<sup>11+</sup>
+
+isPanelShown(panelInfo: PanelInfo): boolean
+
+查询指定类型的输入法面板是否处于显示状态。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名    | 类型                                                  | 必填 | 说明                     |
+| --------- | ----------------------------------------------------- | ---- | ------------------------ |
+| panelInfo | [PanelInfo](./js-apis-inputmethod-panel.md#panelInfo) | 是   | 指定的输入法面板的属性。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 面板状态查询结果。<br/>- true表示被查询的输入法面板处于显示状态。<br/>- false表示被查询的输入法面板处于隐藏状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 12800008 | input method manager service error. |
+
+**示例：**
+
+```ts
+import panel from '@ohos.inputMethod.Panel';
+let info: panelInfo.PanelInfo = {
+  type: panel.PanelType.SOFT_KEYBOARD,
+  flag: panel.PanelFlag.FLG_FIXED
+}
+try {
+  let result = inputMethodSetting.isPanelShown(info);
+  console.log('Succeeded in querying isPanelShown, result: ' + result);
+} catch (err) {
+  console.error(`Failed to query isPanelShown: ${JSON.stringify(err)}`);
+}
+```
+
 ### listInputMethodSubtype<sup>9+</sup>
 
 listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: AsyncCallback&lt;Array&lt;InputMethodSubtype&gt;&gt;): void
