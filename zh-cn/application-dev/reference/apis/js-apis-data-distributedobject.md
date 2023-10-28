@@ -319,9 +319,9 @@ g_object.off("change");
 
 ### on('status')<sup>9+</sup>
 
-on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void): void
+on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' \| 'restored' ) => void): void
 
-监听分布式数据对象的上下线。
+监听分布式数据对象的上下线和恢复。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -329,13 +329,13 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-| callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| type | string | 是 | 事件类型，固定为'status'，表示对象上下线和恢复。 |
+| callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备； <br>status：标识对象为'online'(上线)、'offline'(下线)或'restored'(恢复)的状态。 |
 
 **示例：**
 
 ```ts
-g_object.on("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
+g_object.on("status", (sessionId: string, networkId: string, status: 'online' | 'offline' | 'restored') => {
     console.info("status changed " + sessionId + " " + status + " " + networkId);
 });
 ```
