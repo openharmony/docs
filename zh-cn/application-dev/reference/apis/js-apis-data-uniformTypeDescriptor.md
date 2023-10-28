@@ -14,7 +14,7 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 ## UniformDataType
 
-OpenHarmony标准化数据类型的枚举定义。
+OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存在归属关系，例如JPEG图片类型归属于IMAGE类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -112,23 +112,23 @@ OpenHarmony标准化数据类型的枚举定义。
 
 ## TypeDescriptor<sup>11+</sup> 
 
-描述标准化数据类型的类，它描述了标准化数据类型以及与其他相关标准化数据类型的属性和方法
+标准化数据类型的描述类，它包含了一些属性和方法用于描述标准化数据类型自身以及和其他标准化数据类型之间的归属与层级关系。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称    | 类型                    | 可读 | 可写 | 说明                       |
 | ------- | ----------------------- | ---- | ---- | -------------------------- |
-| typeId<sup>11+</sup>     | string | 是   | 否   | 表示标准化数据类型的ID（名称）。           |
-| belongingToTypes<sup>11+</sup>  | Array\<string>          | 是   | 否   | 表示标准化数据类型所归属类型的值。 |
+| typeId<sup>11+</sup>     | string | 是   | 否   | 表示标准化数据类型的ID（即[UniformDataType](#uniformdatatype)中对应的枚举值。           |
+| belongingToTypes<sup>11+</sup>  | Array\<string>          | 是   | 否   | 表示标准化数据类型所归属类型typdId列表。 |
 | description<sup>11+</sup>     | string                  | 是   | 否   | 表示标准化数据类型的简要说明。         |
-| referenceURL<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的详细描述，用于描述类型的详细信息。         |
+| referenceURL<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的详细描述网址链接，用于描述类型的详细信息。         |
 | iconFile<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型中默认图标文件的路径。         |
 
 ### equals<sup>11+</sup> 
 
 equals(typeDescriptor: TypeDescriptor): boolean
 
-通过描述标准化数据类型的对象[TypeDescriptor](#typedescriptor11)检查两个标准化数据类型是否相同。
+判断指定的标准化数据类型描述类对象的类型ID和当前标准化数据类型描述类对象的类型ID是否相同，即[TypeDescriptor](#typedescriptor11)对象的typeId。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -136,7 +136,7 @@ equals(typeDescriptor: TypeDescriptor): boolean
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| typeDescriptor    | [TypeDescriptor](#typedescriptor11)  | 是    |比较两个标准化数据类型是否相同。   |
+| typeDescriptor    | [TypeDescriptor](#typedescriptor11)  | 是    |标准化数据类型的描述类。   |
 
 **返回值：**
 
@@ -180,7 +180,7 @@ getTypeDescriptor(typeId: string): TypeDescriptor
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [TypeDescriptor](#typedescriptor11) | 返回某标准化数据类型的属性描述信息。 |
+| [TypeDescriptor](#typedescriptor11) | 待比较的标准化数据类型描述类对象。 |
 
 **示例：**
 
@@ -195,9 +195,7 @@ try {
     let description = typeObj.description;
     let referenceURL = typeObj.referenceURL;
     let iconFile = typeObj.iconFile;
-    console.info('typeId: ' + typeId + ', ' + Object.prototype.toString.call(typeId) + ', belongingToTypes: ' + belongingToTypes + ', ' + Object.prototype.toString.call(belongingToTypes));
-    console.info(TAG, 'description: ' + description + ', ' + Object.prototype.toString.call(description));
-    console.info(TAG, 'referenceURL: ' + referenceURL + ', ' + Object.prototype.toString.call(referenceURL) + ', iconFile: ' + iconFile + ', ' + Object.prototype.toString.call(iconFile));
+    console.info('typeId: ' + typeId + ', belongingToTypes: ' + belongingToTypes + ', description: ' + description + ', referenceURL: ' + referenceURL + ', iconFile: ' + iconFile);
 } catch(e) {
     let error: BusinessError = e as BusinessError;
     console.error(`getTypeDescriptor throws an exception. code is ${error.code}, message is ${error.message} `);
