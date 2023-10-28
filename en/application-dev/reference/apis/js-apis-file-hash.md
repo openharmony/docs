@@ -34,7 +34,7 @@ FA Model
 
   ```js
   import featureAbility from '@ohos.ability.featureAbility';
-  
+
   let context = featureAbility.getContext();
   context.getFilesDir().then((data) => {
     let pathDir = data;

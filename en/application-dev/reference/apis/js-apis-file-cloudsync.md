@@ -496,7 +496,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   let download = new cloudSync.Download();
 
   let callback = (pg: cloudSync.DownloadProgress) => {
-    console.info("download state: " + pg.state + "error type:" + pg.error);
+    console.info("download state: " + pg.state);
   }
 
   download.on('progress', callback);
