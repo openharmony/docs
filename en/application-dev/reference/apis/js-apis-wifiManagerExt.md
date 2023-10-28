@@ -28,7 +28,7 @@ Enables the WLAN hotspot.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2701000  | Operation failed.|
 
 ## wifiext.disableHotspot<sup>9+</sup>
@@ -46,7 +46,7 @@ Disables the WLAN hotspot.
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2701000  | Operation failed.|
 
 ## wifiext.getSupportedPowerMode<sup>9+</sup>
@@ -61,23 +61,23 @@ Obtains the supported power modes. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[PowerMode](#powermode)&gt;&gt; | Promise used to return the power modes obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;[PowerMode](#powermode)&gt;&gt; | Promise used to return the power modes obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2701000  | Operation failed.|
 
 ## PowerMode<sup>9+</sup>
 
 Enumerates the power modes.
 
-**System capability**: SystemCapability.Communication.WiFi.AP.Extension
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
@@ -98,16 +98,16 @@ Obtains the supported power modes. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power modes obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power modes obtained. If **err** is not **0**, an error has occurred.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2701000  | Operation failed.|
 
 ## wifiext.getPowerMode<sup>9+</sup>
@@ -122,16 +122,16 @@ Obtains the power mode. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[PowerMode](#powermode)&gt; | Promise used to return the power modes obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[PowerMode](#powermode)&gt; | Promise used to return the power modes obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2701000  | Operation failed.|
 
 ## wifiext.getPowerMode<sup>9+</sup>
@@ -146,16 +146,16 @@ Obtains the power mode. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[PowerMode](#powermode)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power mode obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[PowerMode](#powermode)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power mode obtained. If **err** is not **0**, an error has occurred.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2701000  | Operation failed.|
 
 ## wifiext.setPowerMode<sup>9+</sup>
@@ -170,14 +170,14 @@ setPowerMode(mode: PowerMode) : void;
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | model | [PowerMode](#powermode) | Yes| Power mode to set.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| model | [PowerMode](#powermode) | Yes| Power mode to set.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-  | -------- | -------- |
+| -------- | -------- |
 | 2701000  | Operation failed.|

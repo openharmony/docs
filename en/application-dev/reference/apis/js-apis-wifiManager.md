@@ -397,7 +397,7 @@ Represents WLAN hotspot information.
 
 ## DeviceAddressType <sup>10+</sup>
 
-Enumerates the Wi-Fi device address (MAC/BISSID) types.
+Enumerates the Wi-Fi device address (MAC/BSSID) types.
 
 **System capability**: SystemCapability.Communication.WiFi.Core
 
@@ -1652,7 +1652,7 @@ Represents the IPv6 information.
 | -------- | -------- | -------- | -------- | -------- |
 | linkIpv6Address | string | Yes| No| IPv6 address of the link.|
 | globalIpv6Address | string | Yes| No| Global IPv6 address.|
-| randomGlobalIpv6Address | number | Yes| No| Random global IPv6 address.|
+| randomGlobalIpv6Address | string | Yes| No| Random global IPv6 address.|
 | gateway | string | Yes| No| Gateway IP address.|
 | netmask | string | Yes| No| Subnet mask.|
 | primaryDNS | string | Yes| No| IPv6 address of the preferred DNS server.|
@@ -3692,7 +3692,7 @@ Subscribes to the connection of an STA to a Wi-Fi hotspot.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **hotspotStaJoin**.|
-| callback | Callback&lt;StationInfo&gt; | Yes| Callback invoked immediately after an STA is connected to a Wi-Fi hotspot.|
+| callback | Callback&lt;StationInfo&gt; | No| Callback invoked immediately after an STA is connected to a Wi-Fi hotspot.|
 
 **Error codes**
 
@@ -3762,7 +3762,7 @@ Subscribes to the disconnection of an STA from a Wi-Fi hotspot.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
-| callback | Callback&lt;StationInf]&gt; | Yes| Callback invoked immediately after an STA is disconnected from a Wi-Fi hotspot.|
+| callback | Callback&lt;StationInf]&gt; | No| Callback invoked immediately after an STA is disconnected from a Wi-Fi hotspot.|
 
 **Error codes**
 
@@ -3772,7 +3772,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 | -------- | -------- |
 | 2601000  | Operation failed.|
 
-## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
+## wifiManager.off('hotspotStaLeave')<sup>7+</sup>
 
 off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 
@@ -4101,7 +4101,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
   wifiManager.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
 ```
 
-## wifiManager.on('p2pPersistentGroupChange')<sup>9</sup>
+## wifiManager.on('p2pPersistentGroupChange')<sup>9+</sup>
 
 on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 
@@ -4126,7 +4126,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 | -------- | -------- |
 | 2801000  | Operation failed.|
 
-## wifiManager.off('p2pPersistentGroupChange')<sup>9</sup>
+## wifiManager.off('p2pPersistentGroupChange')<sup>9+</sup>
 
 off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 
