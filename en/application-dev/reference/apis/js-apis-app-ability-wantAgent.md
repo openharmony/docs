@@ -1351,11 +1351,11 @@ try {
 | CANCEL_PRESENT_FLAG | 2 | The existing **WantAgent** object should be canceled before a new object is generated.                               |
 | UPDATE_PRESENT_FLAG | 3 | Extra information of the existing **WantAgent** object is replaced with that of the new object.                              |
 | CONSTANT_FLAG       | 4 | The **WantAgent** object is immutable.                                                       |
-| REPLACE_ELEMENT     | 5 | The **element** attribute in the current Want can be replaced by the **element** attribute in the Want passed in **WantAgent.trigger()**.      |
-| REPLACE_ACTION      | 6 | The **action** attribute in the current Want can be replaced by the **action** attribute in the Want passed in **WantAgent.trigger()**.       |
-| REPLACE_URI         | 7 | The **uri** attribute in the current Want can be replaced by the **uri** attribute in the Want passed in **WantAgent.trigger()**.             |
-| REPLACE_ENTITIES    | 8 | The **entities** attribute in the current Want can be replaced by the **entities** attribute in the Want passed in **WantAgent.trigger()**.   |
-| REPLACE_BUNDLE      | 9 | The **bundleName** attribute in the current Want can be replaced by the **bundleName** attribute in the Want passed in **WantAgent.trigger()**. |
+| REPLACE_ELEMENT     | 5 | The **element** attribute in the current Want can be replaced by the **element** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.     |
+| REPLACE_ACTION      | 6 | The **action** attribute in the current Want can be replaced by the **action** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.       |
+| REPLACE_URI         | 7 | The **uri** attribute in the current Want can be replaced by the **uri** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.             |
+| REPLACE_ENTITIES    | 8 | The **entities** attribute in the current Want can be replaced by the **entities** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.   |
+| REPLACE_BUNDLE      | 9 | The **bundleName** attribute in the current Want can be replaced by the **bundleName** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.|
 
 
 
