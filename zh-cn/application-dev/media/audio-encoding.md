@@ -35,6 +35,7 @@
 ![Invoking relationship of audio encode stream](figures/audio-encode.png)
 
 ### 在 CMake 脚本中链接动态库
+
 ``` cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
@@ -43,7 +44,16 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
 
 ### 开发步骤
 
-1. 创建编码器实例对象
+1. 添加头文件。
+
+   ```cpp
+   #include <multimedia/player_framework/native_avcodec_audioencoder.h>
+   #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   ```
+
+2. 创建编码器实例对象
 
    应用可以通过名称或媒体类型创建编码器。
 
@@ -55,10 +65,12 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    const char *name = OH_AVCapability_GetName(capability);
    OH_AVCodec *audioEnc = OH_AudioEncoder_CreateByName(name);
    ```
+
    ```cpp
    //通过媒体类型创建编码器
    OH_AVCodec *audioEnc = OH_AudioEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC); 
    ```
+
    ```cpp
    // 初始化队列
    class AEncSignal {
@@ -77,7 +89,8 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    };
    AEncSignal *signal_ = new AEncSignal();
    ```
-2. 调用OH_AudioEncoder_SetCallback()设置回调函数。
+
+3. 调用OH_AudioEncoder_SetCallback()设置回调函数。
 
    注册回调函数指针集合OH_AVCodecAsyncCallback，包括：
 
@@ -137,11 +150,13 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
-3. 调用OH_AudioEncoder_Configure设置编码器
+
+4. 调用OH_AudioEncoder_Configure设置编码器
    设置必选项：采样率，码率，以及声道数，声道类型、位深；可选项：最大输入长度
    flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度
-   
+
    例AAC调用流程：
+
    ```cpp
    #include "avcodec_audio_channel_layout.h"
    #include "native_avcodec_base.h"
@@ -177,7 +192,9 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
+
    例FLAC调用流程：
+
    ```cpp
    #include "avcodec_audio_channel_layout.h"
    #include "native_avcodec_base.h"
@@ -212,12 +229,14 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
-4. 调用OH_AudioEncoder_Prepare()，编码器就绪。
+
+5. 调用OH_AudioEncoder_Prepare()，编码器就绪。
 
    ```c++
    OH_AudioEncoder_Prepare(audioEnc);
    ```
-5. 调用OH_AudioEncoder_Start()启动编码器，进入运行态。
+
+6. 调用OH_AudioEncoder_Start()启动编码器，进入运行态。
 
    ```c++
    unique_ptr<ifstream> inputFile_ = make_unique<ifstream>();
@@ -232,7 +251,8 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
-6. 调用OH_AudioEncoder_PushInputData()，写入待编码器的数据。
+
+7. 调用OH_AudioEncoder_PushInputData()，写入待编码器的数据。
    如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
 
    aac： 样点数(FRAME_SIZE)固定为1024
@@ -252,7 +272,6 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    | 96000 |  8192  |
 
    **注意**：aac的样点数固定为1024，其他值会直接返回错误码，flac的样点数建议根据采样率按照表格传入，大于这个值也会返回错误码，如果小于有可能出现编码文件损坏问题。
-
 
    ```c++
    constexpr int32_t FRAME_SIZE = 1024; //aac
@@ -278,7 +297,8 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
-7. 调用OH_AudioEncoder_FreeOutputData()，输出编码格式码流
+
+8. 调用OH_AudioEncoder_FreeOutputData()，输出编码格式码流
 
    ```c++
    OH_AVCodecBufferAttr attr = signal_->attrQueue_.front();
@@ -297,7 +317,8 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        break;
    }
    ```
-8. （可选）调用OH_AudioEncoder_Flush()刷新编码器。
+
+9. （可选）调用OH_AudioEncoder_Flush()刷新编码器。
    调用OH_AudioEncoder_Flush()后，编码器处于Flush状态，会将当前编码队列清空。
    此时需要调用OH_AudioEncoder_Start()重新开始编码。
    使用情况：
@@ -317,7 +338,8 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
-9. （可选）调用OH_AudioEncoder_Reset()重置编码器。
+
+10. （可选）调用OH_AudioEncoder_Reset()重置编码器。
    调用OH_AudioEncoder_Reset()后，编码器回到初始化的状态，需要调用OH_AudioEncoder_Configure()重新配置，然后调用OH_AudioEncoder_Start()重新开始编码。。
 
    ```c++
@@ -332,7 +354,8 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
-10. 调用OH_AudioEncoder_Stop()停止编码器。
+
+11. 调用OH_AudioEncoder_Stop()停止编码器。
 
     ```c++
     // 终止编码器 audioEnc
@@ -341,7 +364,8 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
         // 异常处理
     }
     ```
-11. 调用OH_AudioEncoder_Destroy()销毁编码器实例，释放资源。
+
+12. 调用OH_AudioEncoder_Destroy()销毁编码器实例，释放资源。
     **注意**：资源不能重复销毁
 
     ```c++
