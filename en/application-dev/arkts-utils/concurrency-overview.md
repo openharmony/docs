@@ -6,7 +6,7 @@ Concurrency refers to the capability of processing multiple tasks in the same pe
 
 - Multithread concurrency allows multiple segments of code to be executed at a time. When the main thread continues to respond to user operations and update the UI, time-consuming operations are performed in the background to avoid application freezing.
 
-Concurrency is used in a variety of scenarios, including a single I/O task, CPU intensive task, I/O intensive task, synchronous task, and the like. You can select a concurrency policy based on your scenario.
+Concurrency is used in a variety of scenarios, including a [single I/O task](single-io-development.md), [CPU intensive task](cpu-intensive-task-development.md), [I/O intensive task](io-intensive-task-development.md), [synchronous task](sync-task-development.md), and the like. You can select a concurrency policy based on your scenario.
 
 ArkTS provides the following mechanisms to support asynchronous concurrency and multithread concurrency:
 
