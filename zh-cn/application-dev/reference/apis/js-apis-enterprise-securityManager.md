@@ -70,7 +70,7 @@ try {
 
 getDeviceEncryptionStatus(admin: Want): EncryptionStatus;
 
-以同步方法查询设备文件系统加密状态。成功返回设备文件系统加密状态，失败跑出对应异常。
+以同步方法查询设备文件系统加密状态。成功返回设备文件系统加密状态，失败抛出对应异常。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANGE_SECURITY
 
