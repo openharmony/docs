@@ -610,7 +610,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 ### getAtomicServiceBar<sup>11+</sup>
 
-getAtomicServiceBar(): Nullable<[AtomicServiceBar](#atomicservicebar)>
+getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 
 获取AtomicServiceBar对象，通过该对象设置原子化服务menuBar的属性。
 
@@ -620,7 +620,7 @@ getAtomicServiceBar(): Nullable<[AtomicServiceBar](#atomicservicebar)>
 
 |类型|说明|
 |----|----|
-|Nullable<[AtomicServiceBar](#atomicservicebar)>| 如果是原子化服务则返回AtomicServerBar类型，否则返回undefined |
+|Nullable<[AtomicServiceBar](#atomicservicebar)>| 如果是原子化服务则返回AtomicServerBar类型，否则返回undefined。|
 
 **示例：**
 
@@ -2135,7 +2135,7 @@ try {
 
 以下接口需要先使用UIContext中的getAtomicServiceBar方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
 
-### setVisible
+### setVisible<sup>11+</sup>
 
 setVisible(visible: boolean): void
 
@@ -2172,7 +2172,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
-### setBackgroundColor
+### setBackgroundColor<sup>11+</sup>
 
 setBackgroundColor(color:Nullable<Color | number | string>): void
 
@@ -2184,7 +2184,7 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| color | color:Nullable\<Color \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。|
+| color | color:Nullable\<[Color](../arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。|
 
 **示例：**
 
@@ -2208,7 +2208,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
-### setTitleContent
+### setTitleContent<sup>11+</sup>
 
 setTitleContent(content:string): void
 
@@ -2244,7 +2244,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
-### setTitleFontStyle
+### setTitleFontStyle<sup>11+</sup>
 
 setTitleFontStyle(font:FontStyle):void
 
@@ -2256,7 +2256,7 @@ setTitleFontStyle(font:FontStyle):void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| font | FontStyle | 是 | 原子化服务menuBar中的字体样式。 |
+| font | [FontStyle](../arkui-ts/ts-appendix-enums.md#fontstyle) | 是 | 原子化服务menuBar中的字体样式。 |
 
 **示例：**
 
@@ -2280,9 +2280,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
-### setAtomicServiceIconColor
+### setIconColor<sup>11+</sup>
 
-setAtomicServiceIconColor(color:Nullable<Color | number | string>): void
+setIconColor(color:Nullable<Color | number | string>): void
 
 通过该方法设置原子化服务图标的颜色。
 
@@ -2292,7 +2292,7 @@ setAtomicServiceIconColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| color | Nullable\<Color \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。 |
+| color | Nullable\<[Color](../arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。 |
 
 
 **示例：**
@@ -2309,7 +2309,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
     if (atomicServiceBar != undefined) {
       hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
-      atomicServiceBar.setAtomicServiceIconColor(0x12345678);
+      atomicServiceBar.setIconColor(0x12345678);
     } else {
       hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
     }
