@@ -259,8 +259,10 @@
      console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
      // 可以根据Caller端发送的序列化数据的str值，执行不同的方法。
      if (receivedData.str === 'start_bgtask') {
+       // 申请长时
        startContinuousTask();
      } else if (receivedData.str === 'stop_bgtask') {
+       // 取消长时
        stopContinuousTask();
      }
      return new MyParcelable(10, 'Callee test');
@@ -298,7 +300,7 @@
      onWindowStageDestroy() {
        console.info('[Demo] BgTaskAbility onWindowStageDestroy');
      }
-
+      
      onForeground() {
        console.info('[Demo] BgTaskAbility onForeground');
      }
