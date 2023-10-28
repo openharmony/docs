@@ -1708,21 +1708,21 @@ compareTo(other: ScopeComparable): boolean;
 构造新类，实现compareTo方法。后续示例代码中，均以此Temperature类为例。
 
 ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 ```
 
 ## ScopeType<sup>8+</sup>
@@ -1757,27 +1757,26 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  ```
-
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+```
 
 ### toString<sup>9+</sup>
 
@@ -1795,29 +1794,28 @@ toString(): string
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.toString();
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.toString();
+```
 
 ### intersect<sup>9+</sup>
 
@@ -1841,32 +1839,31 @@ intersect(range: ScopeHelper): ScopeHelper
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-  range.intersect(rangeFir);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+range.intersect(rangeFir);
+```
 
 ### intersect<sup>9+</sup>
 
@@ -1891,31 +1888,30 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.intersect(tempMiDF, tempMidS);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.intersect(tempMiDF, tempMidS);
+```
 
 ### getUpper<sup>9+</sup>
 
@@ -1933,29 +1929,28 @@ getUpper(): ScopeType
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.getUpper();
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.getUpper();
+```
 
 ### getLower<sup>9+</sup>
 
@@ -1973,29 +1968,28 @@ getLower(): ScopeType
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.getLower();
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.getLower();
+```
 
 ### expand<sup>9+</sup>
 
@@ -2020,31 +2014,30 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.expand(tempMiDF, tempMidS);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.expand(tempMiDF, tempMidS);
+```
 
 ### expand<sup>9+</sup>
 
@@ -2068,32 +2061,31 @@ expand(range: ScopeHelper): ScopeHelper
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-  let result = range.expand(rangeFir);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+let result = range.expand(rangeFir);
+```
 
 ### expand<sup>9+</sup>
 
@@ -2117,30 +2109,29 @@ expand(value: ScopeType): ScopeHelper
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.expand(tempMiDF);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.expand(tempMiDF);
+```
 
 ### contains<sup>9+</sup>
 
@@ -2164,30 +2155,29 @@ contains(value: ScopeType): boolean
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.contains(tempMiDF);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.contains(tempMiDF);
+```
 
 ### contains<sup>9+</sup>
 
@@ -2211,32 +2201,31 @@ contains(range: ScopeHelper): boolean
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let tempLess = new Temperature(20);
-  let tempMore = new Temperature(45);
-  let rangeSec = new util.ScopeHelper(tempLess, tempMore);
-  let result = range.contains(rangeSec);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let tempLess = new Temperature(20);
+let tempMore = new Temperature(45);
+let rangeSec = new util.ScopeHelper(tempLess, tempMore);
+let result = range.contains(rangeSec);
+```
 
 ### clamp<sup>9+</sup>
 
@@ -2260,29 +2249,29 @@ clamp(value: ScopeType): ScopeType
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.clamp(tempMiDF);
-  ```
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.clamp(tempMiDF);
+```
 
 ## Base64Helper<sup>9+</sup>
 
