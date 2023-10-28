@@ -48,6 +48,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
 
    ```cpp
    #include <multimedia/player_framework/native_avcodec_audioencoder.h>
+   #include <multimedia/player_framework/avcodec_audio_channel_layout.h>
    #include <multimedia/player_framework/native_avcapability.h>
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
@@ -158,9 +159,6 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    例AAC调用流程：
 
    ```cpp
-   #include "avcodec_audio_channel_layout.h"
-   #include "native_avcodec_base.h"
-   
    int32_t ret;
    // 配置音频采样率（必须）
    constexpr uint32_t DEFAULT_SAMPLERATE = 44100; 
@@ -196,9 +194,6 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    例FLAC调用流程：
 
    ```cpp
-   #include "avcodec_audio_channel_layout.h"
-   #include "native_avcodec_base.h"
-   
    int32_t ret;
    // 配置音频采样率（必须）
    constexpr uint32_t DEFAULT_SMAPLERATE = 44100; 
