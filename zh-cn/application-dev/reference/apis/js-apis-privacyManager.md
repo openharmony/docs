@@ -59,7 +59,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0).then(() => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
         console.log('addPermissionUsedRecord success');
     }).catch((err: BusinessError) => {
         console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
@@ -110,7 +110,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0, (err: BusinessError, data: void) => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
@@ -285,7 +285,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
         console.log('startUsingPermission success');
     }).catch((err: BusinessError) => {
         console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -334,7 +334,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -390,7 +390,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
         console.log('stopUsingPermission success');
     }).catch((err: BusinessError) => {
         console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -439,7 +439,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
