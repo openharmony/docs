@@ -50,6 +50,7 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
 
    ```cpp
    #include <multimedia/player_framework/native_avcodec_audiodecoder.h>
+   #include <multimedia/player_framework/avcodec_audio_channel_layout.h>
    #include <multimedia/player_framework/native_avcapability.h>
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
