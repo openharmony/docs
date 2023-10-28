@@ -1205,7 +1205,7 @@ try {
 
 queryAbilityInfoSync(want: Want, abilityFlags: [number](#abilityflag), userId?: number): Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>;
 
-Obtains the ability information based on the given want, ability flags, and user ID. This API is a synchronous API.
+Obtains the ability information based on the given want, ability flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -1498,7 +1498,7 @@ try {
 
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: [ExtensionAbilityType](#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
 
-Obtains the ExtensionAbility information based on the given want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API is a synchronous API.
+Obtains the ExtensionAbility information based on the given want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -1681,7 +1681,7 @@ try {
 
 getBundleNameByUidSync(uid: number): string;
 
-Obtains the bundle name based on the given UID. This API is a synchronous API.
+Obtains the bundle name based on the given UID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -1834,7 +1834,7 @@ try {
 
 getBundleArchiveInfoSync(hapFilePath: string, bundleFlags: number): BundleInfo;
 
-Obtains the bundle information based on the given HAP file path and bundle flags. This API is a synchronous API.
+Obtains the bundle information based on the given HAP file path and bundle flags. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2091,7 +2091,7 @@ try {
 
 setApplicationEnabledSync(bundleName: string, isEnabled: boolean): void;
 
-Enables or disables an application. This API is a synchronous API.
+Enables or disables an application. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2266,7 +2266,7 @@ try {
 
 setAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean): void;
 
-Enables or disables an ability. This API is a synchronous API.
+Enables or disables an ability. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2279,7 +2279,7 @@ Enables or disables an ability. This API is a synchronous API.
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.             |
-| isEnabled| boolean     | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means to disable the application.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability.|
 
 **Error codes**
 
@@ -2426,7 +2426,7 @@ try {
 
 isApplicationEnabledSync(bundleName: string): boolean;
 
-Checks whether an application is enabled. This API is a synchronous API.
+Checks whether an application is enabled. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2598,7 +2598,7 @@ try {
 
 isAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): boolean;
 
-Checks whether an ability is enabled. This API is a synchronous API.
+Checks whether an ability is enabled. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2824,7 +2824,7 @@ try {
 
 getLaunchWantForBundleSync(bundleName: string, userId?: number): Want;
 
-Obtains the Want used to launch the bundle based on the given bundle name and user ID. This API is a synchronous API.
+Obtains the Want used to launch the bundle based on the given bundle name and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3030,7 +3030,7 @@ try {
 
 getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: string): Array\<string\>;
 
-Obtains the JSON strings of the profile based on the given module name, ability name, and metadata name. This API is a synchronous API.
+Obtains the JSON strings of the profile based on the given module name, ability name, and metadata name. This API returns the result synchronously.
 
 > **NOTE**
 > 
@@ -3228,7 +3228,7 @@ try {
 
 getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: string, metadataName?: string): Array\<string\>;
 
-Obtains the JSON strings of the profile based on the given module name, ExtensionAbility name, and metadata name. This API is a synchronous API.
+Obtains the JSON strings of the profile based on the given module name, ExtensionAbility name, and metadata name. This API returns the result synchronously.
 
 > **NOTE**
 > 
@@ -3391,7 +3391,7 @@ try {
 
 getPermissionDefSync(permissionName: string): [PermissionDef](js-apis-bundleManager-permissionDef.md);
 
-Obtains the **PermissionDef** struct based on the given permission name. This API is a synchronous API.
+Obtains the **PermissionDef** struct based on the given permission name. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3556,7 +3556,7 @@ try {
 
 getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string): string;
 
-Obtains the ability label based on the given bundle name, module name, and ability name. This API is a synchronous API.
+Obtains the ability label based on the given bundle name, module name, and ability name. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3613,7 +3613,7 @@ try {
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
 
-Obtains the application information based on the given bundle name, application flags, and user ID. This API is a synchronous API.
+Obtains the application information based on the given bundle name, application flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3668,7 +3668,7 @@ try {
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
 
-Obtains the application information based on the given bundle name and application flags. This API is a synchronous API.
+Obtains the application information based on the given bundle name and application flags. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3720,7 +3720,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId: number): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
 
-Obtains the bundle information based on the given bundle name, bundle flags, and user ID. This API is a synchronous API.
+Obtains the bundle information based on the given bundle name, bundle flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3775,7 +3775,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
 
-Obtains the bundle information based on the given bundle name and bundle flags. This API is a synchronous API.
+Obtains the bundle information based on the given bundle name and bundle flags. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -4178,7 +4178,7 @@ try {
 
 getAppProvisionInfoSync(bundleName: string, userId?: number): AppProvisionInfo;
 
-Obtains the provision profile based on the given bundle name and user ID. This API is a synchronous API.
+Obtains the provision profile based on the given bundle name and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
