@@ -1,4 +1,4 @@
-# @ohos.worker (Worker Startup)
+# @ohos.worker (Starting the Worker)
 
 The worker thread is an independent thread running in parallel with the main thread. The thread that creates the worker thread is referred to as the host thread. The URL file passed in during worker creation is executed in the worker thread. The worker thread can process time-consuming operations, but cannot directly operate the UI.
 
@@ -21,10 +21,10 @@ import worker from '@ohos.worker';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name                             | Type                                                     | Readable| Writable| Description                                                        |
-| --------------------------------- | --------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)      | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.                        |
-| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscope) | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.<br>This attribute is supported since API version 7 and deprecated since API version 9.<br>You are advised to use **workerPort<sup>9+</sup>** instead.|
+| Name                             | Type                                                        | Readable| Writable| Description                                                        |
+| --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.                        |
+| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.<br>This attribute is supported since API version 7 and deprecated since API version 9.<br>You are advised to use **workerPort<sup>9+</sup>** instead.|
 
 
 ## WorkerOptions
@@ -1157,7 +1157,7 @@ Holds the data transferred between worker threads.
 ## Worker<sup>(deprecated)</sup>
 
 
-Before using the following APIs, you must create a **Worker** instance. The **Worker** class inherits from [EventTarget](#eventtarget).
+Before using the following APIs, you must create a **Worker** instance. The **Worker** class inherits from [EventTarget](#eventtargetdeprecated).
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker<sup>9+</sup>](#threadworker9) instead.
@@ -1324,10 +1324,10 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Parameters**
 
-| Name  | Type                           | Mandatory| Description            |
-| -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | Yes  | Type of the event to listen for.|
-| listener | [EventListener](#eventlistener) | Yes  | Callback to invoke when an event of the specified type occurs.      |
+| Name  | Type                                     | Mandatory| Description            |
+| -------- | ----------------------------------------- | ---- | ---------------- |
+| type     | string                                    | Yes  | Type of the event to listen for.|
+| listener | [EventListener](#eventlistenerdeprecated) | Yes  | Callback to invoke when an event of the specified type occurs.      |
 
 **Example**
 
@@ -1352,10 +1352,10 @@ Adds an event listener for the worker thread and removes the event listener afte
 
 **Parameters**
 
-| Name  | Type                           | Mandatory| Description            |
-| -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | Yes  | Type of the event to listen for.|
-| listener | [EventListener](#eventlistener) | Yes  | Callback to invoke when an event of the specified type occurs.      |
+| Name  | Type                                     | Mandatory| Description            |
+| -------- | ----------------------------------------- | ---- | ---------------- |
+| type     | string                                    | Yes  | Type of the event to listen for.|
+| listener | [EventListener](#eventlistenerdeprecated) | Yes  | Callback to invoke when an event of the specified type occurs.      |
 
 **Example**
 
@@ -1380,10 +1380,10 @@ Removes an event listener for the worker thread. This API provides the same func
 
 **Parameters**
 
-| Name  | Type                           | Mandatory| Description                |
-| -------- | ------------------------------- | ---- | -------------------- |
-| type     | string                          | Yes  | Type of the event for which the event listener is to be removed.|
-| listener | [EventListener](#eventlistener) | No  | Callback of the event listener to remove.    |
+| Name  | Type                                     | Mandatory| Description                |
+| -------- | ----------------------------------------- | ---- | -------------------- |
+| type     | string                                    | Yes  | Type of the event for which the event listener is to be removed.|
+| listener | [EventListener](#eventlistenerdeprecated) | No  | Callback of the event listener to remove.    |
 
 **Example**
 
@@ -1487,9 +1487,9 @@ Defines the event handler to be called when the host thread receives a message s
 
 **Parameters**
 
-| Name| Type                          | Mandatory| Description                  |
-| ------ | ------------------------------ | ---- | ---------------------- |
-| event  | [MessageEvent](#messageeventt)| Yes  | Message received.|
+| Name| Type                              | Mandatory| Description                  |
+| ------ | ---------------------------------- | ---- | ---------------------- |
+| event  | [MessageEvent\<T>](#messageeventt) | Yes  | Message received.|
 
 **Example**
 
@@ -1516,9 +1516,9 @@ Defines the event handler to be called when the worker thread receives a message
 
 **Parameters**
 
-| Name| Type                          | Mandatory| Description      |
-| ------ | ------------------------------ | ---- | ---------- |
-| event  | [MessageEvent](#messageeventt)| Yes  | Error data.|
+| Name| Type                              | Mandatory| Description      |
+| ------ | ---------------------------------- | ---- | ---------- |
+| event  | [MessageEvent\<T>](#messageeventt) | Yes  | Error data.|
 
 **Example**
 
@@ -1547,10 +1547,10 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Parameters**
 
-| Name  | Type                           | Mandatory| Description            |
-| -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | Yes  | Type of the event to listen for.|
-| listener | [EventListener](#eventlistener) | Yes  | Callback to invoke when an event of the specified type occurs.    |
+| Name  | Type                                     | Mandatory| Description            |
+| -------- | ----------------------------------------- | ---- | ---------------- |
+| type     | string                                    | Yes  | Type of the event to listen for.|
+| listener | [EventListener](#eventlistenerdeprecated) | Yes  | Callback to invoke when an event of the specified type occurs.    |
 
 **Example**
 
@@ -1575,10 +1575,10 @@ Removes an event listener for the worker thread. This API provides the same func
 
 **Parameters**
 
-| Name  | Type                           | Mandatory| Description                    |
-| -------- | ------------------------------- | ---- | ------------------------ |
-| type     | string                          | Yes  | Type of the event for which the event listener is to be removed.|
-| callback | [EventListener](#eventlistener) | No  | Callback of the event listener to remove.        |
+| Name  | Type                                     | Mandatory| Description                    |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | Yes  | Type of the event for which the event listener is to be removed.|
+| callback | [EventListener](#eventlistenerdeprecated) | No  | Callback of the event listener to remove.        |
 
 **Example**
 
@@ -1687,7 +1687,7 @@ workerInstance.removeAllListener();
 
 ## DedicatedWorkerGlobalScope<sup>(deprecated)</sup>
 
-Implements communication between the worker thread and the host thread. The **postMessage** API is used to send messages to the host thread, and the **close** API is used to terminate the worker thread. This class inherits from [WorkerGlobalScope](#workerglobalscope).
+Implements communication between the worker thread and the host thread. The **postMessage** API is used to send messages to the host thread, and the **close** API is used to terminate the worker thread. This class inherits from [WorkerGlobalScope](#workerglobalscopedeprecated).
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9) instead.
@@ -1836,7 +1836,7 @@ Defines the event handler to be called when the worker thread receives a message
 | Name| Type                                                        | Mandatory| Description                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.        |
-| ev     | [MessageEvent](#messageeventt)                              | Yes  | Message received.|
+| ev     | [MessageEvent\<T>](#messageeventt)                           | Yes  | Message received.|
 
 **Example**
 
@@ -1869,10 +1869,10 @@ Defines the event handler to be called when the worker thread receives a message
 
 **Parameters**
 
-| Name| Type                          | Mandatory| Description      |
-| ------ | ------------------------------ | ---- | ---------- |
+| Name| Type                                                        | Mandatory| Description            |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.|
-| ev     | [MessageEvent](#messageeventt)| Yes  | Error data.|
+| ev     | [MessageEvent\<T>](#messageeventt)                           | Yes  | Error data.      |
 
 **Example**
 
@@ -1975,7 +1975,7 @@ Holds the data transferred between worker threads.
 
 ## WorkerGlobalScope<sup>(deprecated)</sup>
 
-Implements the running environment of the worker thread. The **WorkerGlobalScope** class inherits from [EventTarget](#eventtarget).
+Implements the running environment of the worker thread. The **WorkerGlobalScope** class inherits from [EventTarget](#eventtargetdeprecated).
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [GlobalScope<sup>9+</sup>](#globalscope9) instead.
@@ -1987,7 +1987,7 @@ Implements the running environment of the worker thread. The **WorkerGlobalScope
 | Name| Type                                                        | Readable| Writable| Description                                 |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | Yes  | No  | **Worker** instance specified when there is a new **Worker** instance.|
-| self | [WorkerGlobalScope](#workerglobalscope)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | Yes  | No  | **WorkerGlobalScope**.              |
+| self | [WorkerGlobalScope](#workerglobalscopedeprecated)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | Yes  | No  | **WorkerGlobalScope**.              |
 
 
 ### onerror<sup>(deprecated)</sup>
@@ -2029,7 +2029,7 @@ parentPort.onerror = function(e){
 ### Sequenceable Data Types
 | Type               | Remarks                                  | Supported|
 | ------------------ | -------------------------------------- | -------- |
-| All primitive types| The Symbol type is not included.                          | Yes      |
+| All primitive types | The Symbol type is not included.                          | Yes      |
 | Date               |                                        | Yes      |
 | String             |                                        | Yes      |
 | RegExp             |                                        | Yes      |

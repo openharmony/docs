@@ -26,7 +26,7 @@ A constructor used to create an **XmlSerializer** instance.
 
 | Name  | Type                             | Mandatory| Description                                            |
 | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | Yes  | **ArrayBuffer** or **DataView** for storing the XML information to write.|
+| buffer   | ArrayBuffer \| DataView | Yes  | **ArrayBuffer** or **DataView** for storing the XML information to set.|
 | encoding | string                            | No  | Encoding format. The default value is **'utf-8'** (the only format currently supported).              |
 
 **Example**
@@ -41,7 +41,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<?xml version="1.0" encoding="utf-8"?>
+console.log(view1) // <?xml version="1.0" encoding="utf-8"?>
 ```
 
 
@@ -75,7 +75,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<note importance1="high1"/>
+console.log(view1) // <note importance1="high1"/>
 ```
 
 
@@ -106,7 +106,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<d/>
+console.log(view1) // <d/>
 ```
 
 
@@ -134,7 +134,9 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<?xml version="1.0" encoding="utf-8"?>
+console.log(view1)
+// <?xml version="1.0" encoding="utf-8"?>
+// <h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 
@@ -168,7 +170,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 ### endElement
@@ -195,7 +197,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 
@@ -230,14 +232,14 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 ### setComment
 
 setComment(text: string): void
 
-Sets the comment.
+Sets a comment.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -260,7 +262,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<!--Hello, World!-->'
+console.log(view1) // <!--Hello, World!-->
 ```
 
 
@@ -268,7 +270,7 @@ console.log(view1) //<!--Hello, World!-->'
 
 setCDATA(text: string): void
 
-Sets CDATA attributes.
+Sets CDATA data.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -276,7 +278,7 @@ Sets CDATA attributes.
 
 | Name| Type  | Mandatory| Description             |
 | ------ | ------ | ---- | ----------------- |
-| text   | string | Yes  | CDATA attribute to set.|
+| text   | string | Yes  | CDATA data to set.|
 
 **Example**
 
@@ -291,7 +293,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //'<![CDATA[root SYSTEM]]>''
+console.log(view1) // <![CDATA[root SYSTEM]]>
 ```
 
 
@@ -299,7 +301,7 @@ console.log(view1) //'<![CDATA[root SYSTEM]]>''
 
 setText(text: string): void
 
-Sets **Text**.
+Sets a tag value.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -307,7 +309,7 @@ Sets **Text**.
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| text   | string | Yes  | Content of the **Text** to set.|
+| text   | string | Yes  | Tag value to set, which is the content of the **text** attribute.|
 
 **Example**
 
@@ -325,7 +327,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) // '<note importance="high">Happy1</note>'
+console.log(view1) // <note importance="high">Happy1</note>
 ```
 
 
@@ -333,7 +335,7 @@ console.log(view1) // '<note importance="high">Happy1</note>'
 
 setDocType(text: string): void
 
-Sets **DocType**.
+Sets a document type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -356,7 +358,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //'<!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">'
+console.log(view1) // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 ```
 
 
@@ -406,12 +408,13 @@ let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer, 'UTF-8');
 let str1 = '';
 function func1(name, value){
-    str1 += name+':'+value;
+    str1 += name+value;
     return true;
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func1}
 that.parse(options);
-console.log(str1) //'note:company:title:title:lens:lens:a:b:h:table:h:tr:h:td:h:td:'
+console.log(str1)
+//  note [<!ENTITY foo "baa">]note    funcrion matchwo(a,6){return 1;}    Hello, World!    companyJohn amp;amp; Hanscompany    titleHappytitle    titleHappytitle    lensWorklens    lensPlaylens    go there    abba    h:table        h:tr            h:tdApplesh:td            h:tdBananash:td        h:tr    h:tablenote
 ```
 
 
@@ -471,8 +474,8 @@ Defines the XML parsing options.
 
 | Name                          | Type                                                        | Mandatory| Description                                   |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | No  | Whether to ignore **Doctype**. The default value is **false**.|
-| ignoreNameSpace                | boolean                                                      | No  | Whether to ignore **Namespace**. The default value is **false**.         |
+| supportDoctype                 | boolean                                                      | No  | Whether to ignore the document type. The default value is **false**.|
+| ignoreNameSpace                | boolean                                                      | No  | Whether to ignore the namespace. The default value is **false**.         |
 | tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | No  | Callback used to return **tagValue**. The default value is **null**.                 |
 | attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No  | Callback used to return **attributeValue**. The default value is **null**.           |
 | tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | No  | Callback used to return **tokenValue**. The default value is **null**.    |
@@ -911,20 +914,20 @@ console.log(str);
 
 ## EventType
 
-Enumerates the events.
+Enumerates the event types.
 
 **System capability**: SystemCapability.Utils.Lang
 
 | Name            | Value  | Description                 |
 | ---------------- | ---- | --------------------- |
-| START_DOCUMENT   | 0    | Indicates a start document event.       |
-| END_DOCUMENT     | 1    | Indicates an end document event.       |
-| START_TAG        | 2    | Indicates a start tag event.       |
-| END_TAG          | 3    | Indicates an end tag event.       |
-| TEXT             | 4    | Indicates a text event.           |
-| CDSECT           | 5    | Indicates a CDATA section event.          |
-| COMMENT          | 6    | Indicates an XML comment event.        |
-| DOCDECL          | 7    | Indicates an XML document type declaration event.|
-| INSTRUCTION      | 8    | Indicates an XML processing instruction event.|
-| ENTITY_REFERENCE | 9    | Indicates an entity reference event.       |
-| WHITESPACE       | 10   | Indicates a whitespace character event.           |
+| START_DOCUMENT   | 0    | Start document event.       |
+| END_DOCUMENT     | 1    | End document event.       |
+| START_TAG        | 2    | Start tag event.       |
+| END_TAG          | 3    | End tag event.       |
+| TEXT             | 4    | Text event.           |
+| CDSECT           | 5    | CDATA section event.          |
+| COMMENT          | 6    | XML comment event.        |
+| DOCDECL          | 7    | XML document type declaration event.|
+| INSTRUCTION      | 8    | XML processing instruction event.|
+| ENTITY_REFERENCE | 9    | Entity reference event.       |
+| WHITESPACE       | 10   | Whitespace character event.           |
