@@ -32,7 +32,146 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
 | OH_Drawing_TypographyPaint (OH_Drawing_Typography *, OH_Drawing_Canvas *, double, double) | 显示文本。 |
 
 详细的接口说明请参考[Drawing](../reference/native-apis/_drawing.md)。
+## 前言
 
+以下步骤描述了在**OpenHarmony**中如何使用`NativeDrawing`模块的画布画笔绘制一个基本的2D图形，并将图形内容写入`NativeWindow`提供的图形`Buffer`，提交`Buffer`到图形队列，并利用`XComponent`将C++代码层与ArkTS层对接，实现在ArkTS层调用绘制和显示逻辑，最终能在应用上显示图形。
+
+## Native Drawing开发依赖
+
+### 添加动态链接库
+
+CMakeLists.txt中添加以下lib。
+
+```txt
+libace_napi.z.so
+libace_ndk.z.so
+libnative_window.so
+libnative_drawing.so
+```
+
+### 头文件
+```c++
+#include <ace/xcomponent/native_interface_xcomponent.h>
+#include "napi/native_api.h"
+#include <native_window/external_window.h>
+#include <native_drawing/drawing_bitmap.h>
+#include <native_drawing/drawing_color.h>
+#include <native_drawing/drawing_canvas.h>
+#include <native_drawing/drawing_pen.h>
+#include <native_drawing/drawing_brush.h>
+#include <native_drawing/drawing_path.h>
+#include <cmath>
+#include <algorithm>
+#include <stdint.h>
+#include <sys/mman.h>
+```
+
+**2D** 图形无法直接在屏幕上绘制，需要借用 **XComponent** 以及 **Native Window** 的能力支持，将绘制的内容给 **Native Window** 拿去送显。
+
+1. 在 **Index.ets** 文件中添加 **XComponent** 控件
+    ```ts
+    XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry' })
+    ```
+2. 在 **native c++** 层获取 **NativeXComponent**。建议使用单例模式保存 **XComponent**。此步骤需要在 **napi_init** 的过程中处理。
+    ```c++
+    void PluginManager::Export(napi_env env, napi_value exports) {
+        if ((env == nullptr) || (exports == nullptr)) {
+            DRAWING_LOGE("Export: env or exports is null");
+            return;
+        }
+
+        napi_value exportInstance = nullptr;
+        if (napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok) {
+            DRAWING_LOGE("Export: napi_get_named_property fail");
+            return;
+        }
+
+        OH_NativeXComponent *nativeXComponent = nullptr;
+        if (napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent)) != napi_ok) {
+            DRAWING_LOGE("Export: napi_unwrap fail");
+            return;
+        }
+
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
+        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+        if (OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+            DRAWING_LOGE("Export: OH_NativeXComponent_GetXComponentId fail");
+            return;
+        }
+
+        std::string id(idStr);
+        auto context = PluginManager::GetInstance();
+        if ((context != nullptr) && (nativeXComponent != nullptr)) {
+            context->SetNativeXComponent(id, nativeXComponent);
+            auto render = context->GetRender(id);
+            if (render != nullptr) {
+                render->RegisterCallback(nativeXComponent);
+                render->Export(env, exports);
+            } else {
+                DRAWING_LOGE("render is nullptr");
+            }
+        }
+    }
+    ```
+3. 注册回调函数。通过 **OnSurfaceCreated** 回调函数获取 **Native Window**，建议将 **native window** 同样存储在单例中。
+    ```c++
+    // 定义回调函数
+    void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
+    {
+        // 可获取 OHNativeWindow 实例
+        OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
+        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+        if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+            DRAWING_LOGE("OnSurfaceCreatedCB: Unable to get XComponent id");
+            return;
+        }
+        std::string id(idStr);
+        auto render = SampleBitMap::GetInstance(id);
+        OHNativeWindow *nativeWindow = static_cast<OHNativeWindow *>(window);
+        render->SetNativeWindow(nativeWindow);
+
+        uint64_t width;
+        uint64_t height;
+        int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
+        if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
+            render->SetHeight(height);
+            render->SetWidth(width);
+            DRAWING_LOGI("xComponent width = %{public}llu, height = %{public}llu", width, height);
+        }
+    }
+    void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
+    {
+        // 可获取 OHNativeWindow 实例
+        OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
+        // ...
+    }
+    void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
+    {
+        // 可获取 OHNativeWindow 实例
+        OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
+        // ...
+    }
+    void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
+    {
+        // 可获取 OHNativeWindow 实例
+        OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
+        // ...
+    }
+    ```
+    ```c++
+    // 初始化 OH_NativeXComponent_Callback
+    OH_NativeXComponent_Callback callback;
+    callback.OnSurfaceCreated = OnSurfaceCreatedCB;
+    callback.OnSurfaceChanged = OnSurfaceChangedCB;
+    callback.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
+    callback.DispatchTouchEvent = DispatchTouchEventCB;
+    ```
+4. 将 **OH_NativeXComponent_Callback** 注册给 **NativeXComponent**。
+    ```c++
+    // 注册回调函数
+    OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback);
+    ```
 ## 2D图形绘制开发步骤
 
 以下步骤描述了如何使用 **Native Drawing** 模块的画布画笔绘制一个基本的2D图形：
@@ -117,10 +256,6 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
     ```c++
     // 在画布上画path的形状，五角星的边框样式为pen设置，颜色填充为Brush设置
     OH_Drawing_CanvasDrawPath(cCanvas, cPath);
-    // 销毁创建的对象
-    OH_Drawing_BrushDestroy(cBrush);
-    OH_Drawing_PenDestroy(cPen);
-    OH_Drawing_PathDestroy(cPath);
     ```
 
 6. **获取像素数据**。使用 **drawing_bitmap.h** 的 **OH_Drawing_BitmapGetPixels** 接口获取到画布绑定bitmap实例的像素地址，该地址指向的内存包含画布刚刚绘制的像素数据。
@@ -129,10 +264,6 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
     // 画完后获取像素地址，地址指向的内存包含画布画的像素数据
     void* bitmapAddr = OH_Drawing_BitmapGetPixels(cBitmap);
     std::copy(addr, addr + addrSize, static_cast<uint8_t*>(bitmapAddr));
-    // 销毁canvas对象
-    OH_Drawing_CanvasDestroy(cCanvas);
-    // 销毁bitmap对象
-    OH_Drawing_BitmapDestroy(cBitmap);
     ```
 
 ## 文本绘制开发步骤
@@ -186,7 +317,7 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
         OH_Drawing_CreateFontCollection());
     OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
     // 设置文字内容
-    const char* text = "Hello World\n";
+    const char* text = "Hello World Drawing\n";
     OH_Drawing_TypographyHandlerAddText(handler, text);
     OH_Drawing_TypographyHandlerPopTextStyle(handler);
     OH_Drawing_Typography* typography = OH_Drawing_CreateTypography(handler);
@@ -198,4 +329,129 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
     // 将文本绘制到画布上
     OH_Drawing_TypographyPaint(typography, cCanvas, position[0], position[1]);
     ```
+## 绘制内容送显
 
+前面我们已经通过 **Drawing API** 实现了 **Path** 绘制以及文字绘制。现在需要将其呈现在 **native window** 上。
+
+1. 通过前面 **OnSurfaceCreatedCB** 回调保存的 **native window** 指针，来申请 **native window buffer**。
+    ```c++
+    // 这里的nativeWindow是从上一步骤中的回调函数中获得的
+    int32_t code = SET_BUFFER_GEOMETRY;
+    int ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, width_, height_);
+    // 设置 OHNativeWindowBuffer 的步长
+    code = SET_STRIDE;
+    int32_t stride = 0x8;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, stride);
+    // 通过 OH_NativeWindow_NativeWindowRequestBuffer 获取 OHNativeWindowBuffer 实例
+    ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer_, &fenceFd_);
+    ```
+2. 通过 **OH_NativeWindow_GetBufferHandleFromNative** 获取 **bufferHandle**。
+    ```c++
+    bufferHandle_ = OH_NativeWindow_GetBufferHandleFromNative(buffer_);
+    ```
+3. 使用系统 **mmap** 接口拿到 **bufferHandle** 的内存虚拟地址。
+    ```c++
+    mappedAddr_ = static_cast<uint32_t *>(
+        mmap(bufferHandle_->virAddr, bufferHandle_->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle_->fd, 0));
+    if (mappedAddr_ == MAP_FAILED) {
+        DRAWING_LOGE("mmap failed");
+    }
+    ```
+4. 使用 **drawing_bitmap.h** 的 **OH_Drawing_BitmapGetPixels** 接口获取到画布绑定bitmap实例的像素地址，该地址指向的内存包含画布刚刚绘制的像素数据。将绘制内容填充到申请的 **native window buffer** 中。
+    ```c++
+    // 画完后获取像素地址，地址指向的内存包含画布画的像素数据
+    void *bitmapAddr = OH_Drawing_BitmapGetPixels(cBitmap_);
+    uint32_t *value = static_cast<uint32_t *>(bitmapAddr);
+
+    // 使用mmap获取到的地址来访问内存
+    uint32_t *pixel = static_cast<uint32_t *>(mappedAddr_); 
+    for (uint32_t x = 0; x < width_; x++) {
+        for (uint32_t y = 0; y < height_; y++) {
+            *pixel++ = *value++;
+        }
+    }
+    ```
+5. 设置刷新区域，并将其送显
+    ```c++
+    // 如果Region中的Rect为nullptr,或者rectNumber为0，则认为OHNativeWindowBuffer全部有内容更改。
+    Region region{nullptr, 0};
+    // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
+    OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer_, fenceFd_, region);
+    ```
+6. 内存释放
+    ```c++
+    // 去掉内存映射
+    int result = munmap(mappedAddr_, bufferHandle_->size);
+    if (result == -1) {
+        DRAWING_LOGE("munmap failed!");
+    }
+    // 销毁创建的对象
+    OH_Drawing_BrushDestroy(cBrush_);
+    cBrush_ = nullptr;
+    OH_Drawing_PenDestroy(cPen_);
+    cPen_ = nullptr;
+    OH_Drawing_PathDestroy(cPath_);
+    cPath_ = nullptr;
+    OH_Drawing_CanvasDestroy(cCanvas_);
+    cCanvas_ = nullptr;
+    OH_Drawing_BitmapDestroy(cBitmap_);
+    cBitmap_ = nullptr;
+    ```
+    ```c++
+    void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
+        DRAWING_LOGI("OnSurfaceDestroyedCB");
+        if ((component == nullptr) || (window == nullptr)) {
+            DRAWING_LOGE("OnSurfaceDestroyedCB: component or window is null");
+            return;
+        }
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
+        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+        if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+            DRAWING_LOGE("OnSurfaceDestroyedCB: Unable to get XComponent id");
+            return;
+        }
+        std::string id(idStr);
+        SampleBitMap::Release(id);
+    }
+    ```
+## 用户调用
+
+以上为 **native** 层 **c++** 代码，用户想要调用还需要通过 **ArkTS** 侧代码对接。
+1. 定义 **TS** 接口，用来对接 **napi** 侧代码。
+    ```ts
+    export default interface XComponentContext {
+      drawPattern(): void;
+      drawText(): void;
+    };
+    ```
+    ```c++
+    void SampleBitMap::Export(napi_env env, napi_value exports) {
+        if ((env == nullptr) || (exports == nullptr)) {
+            DRAWING_LOGE("Export: env or exports is null");
+            return;
+        }
+        napi_property_descriptor desc[] = {
+            {"drawPattern", nullptr, SampleBitMap::NapiDrawPattern, nullptr, nullptr, nullptr, napi_default, nullptr},
+            {"drawText", nullptr, SampleBitMap::NapiDrawText, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+        if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
+            DRAWING_LOGE("Export: napi_define_properties failed");
+        }
+    }
+    ```
+2. 添加 **button** 控件供用户点击，并调用已定义的接口。
+    ```ts
+    Button()
+        .onClick(() => {
+          if (this.xComponentContext) {
+            console.log(TAG, "draw star");
+            this.xComponentContext.drawPattern();
+          }
+        })
+    ```
+
+##  相关实例
+
+针对Native Drawing的使用，有以下相关实例可供参考：
+
+- [Native Drawing（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkDrawing)

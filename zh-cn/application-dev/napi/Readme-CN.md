@@ -4,7 +4,6 @@
 - 图形图像
   - [XComponent开发指导](xcomponent-guidelines.md)
   - [Drawing开发指导](drawing-guidelines.md)
-  - [图形绘制与显示实例](drawing-sample.md)
   - [NativeBuffer开发指导](native-buffer-guidelines.md)
   - [NativeImage开发指导](native-image-guidelines.md)
   - [NativeVsync开发指导](native-vsync-guidelines.md)
