@@ -113,7 +113,7 @@ libnative_drawing.so
         }
     }
     ```
-3. 注册回调函数。通过 **OnSurfaceCreated** 回调函数获取 **Native Window**，建议将 **native window** 同样存储在单例中。
+3. 注册回调函数。通过 **OnSurfaceCreated** 回调函数获取 **Native Window**，建议将 **Native Window** 同样存储在单例中。
     ```c++
     // 定义回调函数
     void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
@@ -201,20 +201,15 @@ libnative_drawing.so
 3. **构造Path形状**。使用 **drawing_path.h** 提供的接口完成一个五角星形状的构造 **cPath**。
 
     ```c++
-    int len = 300;
-
-    float aX = 500;
-    float aY = 500;
-
+    int len = height_ / 4;
+    float aX = width_ / 2;
+    float aY = height_ / 4;
     float dX = aX - len * std::sin(18.0f);
     float dY = aY + len * std::cos(18.0f);
-
     float cX = aX + len * std::sin(18.0f);
     float cY = dY;
-
     float bX = aX + (len / 2.0);
     float bY = aY + std::sqrt((cX - dX) * (cX - dX) + (len / 2.0) * (len / 2.0));
-
     float eX = aX - (len / 2.0);
     float eY = bY;
 
@@ -251,19 +246,11 @@ libnative_drawing.so
     OH_Drawing_CanvasAttachBrush(cCanvas, cBrush);
     ```
 
-5. **绘制Path形状**。使用 **drawing_canvas.h** 的 **OH_Drawing_CanvasDrawPath** 接口将五角星绘制到画布上，绘制完毕后不再使用的实例需要调用对应的接口进行销毁。
+5. **绘制Path形状**。使用 **drawing_canvas.h** 的 **OH_Drawing_CanvasDrawPath** 接口将五角星绘制到画布上。
 
     ```c++
     // 在画布上画path的形状，五角星的边框样式为pen设置，颜色填充为Brush设置
     OH_Drawing_CanvasDrawPath(cCanvas, cPath);
-    ```
-
-6. **获取像素数据**。使用 **drawing_bitmap.h** 的 **OH_Drawing_BitmapGetPixels** 接口获取到画布绑定bitmap实例的像素地址，该地址指向的内存包含画布刚刚绘制的像素数据。
-
-    ```c++
-    // 画完后获取像素地址，地址指向的内存包含画布画的像素数据
-    void* bitmapAddr = OH_Drawing_BitmapGetPixels(cBitmap);
-    std::copy(addr, addr + addrSize, static_cast<uint8_t*>(bitmapAddr));
     ```
 
 ## 文本绘制开发步骤
