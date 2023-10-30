@@ -269,6 +269,7 @@
    }
 
    export default class BgTaskAbility extends UIAbility {
+     // Ability创建
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
        console.info("[Demo] BgTaskAbility onCreate");
        this.callee.on('test', sendMsgCallback);
