@@ -69,6 +69,7 @@ export default class DemoProcess extends ChildProcess {
 
 // 使用childProcessManager.startChildProcess方法启动子进程:
 import childProcessManager from '@ohos.app.ability.childProcessManager';
+import DemoProcess from '../process/DemoProcess';
 
 try {
   DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被编译器优化掉
