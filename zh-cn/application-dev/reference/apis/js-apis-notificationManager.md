@@ -4489,9 +4489,9 @@ let buttonOptions = {
     buttonName: "buttonName1",
 }
 notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
-	console.info("triggerSysLiveView success");
+	console.info("triggerSystemLiveView success");
 }).catch((error: Base.BusinessError) => {
-    console.error(`triggerSysLiveView fail: ${JSON.stringify(error)}`);
+    console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
 });
 ```
 
