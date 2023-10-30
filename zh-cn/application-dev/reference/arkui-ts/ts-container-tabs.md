@@ -43,7 +43,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 | barMode           | BarMode                                 | TabBar布局模式，具体描述见BarMode枚举说明。<br/>默认值：BarMode.Fixed |
 | barWidth                 | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的宽度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为Tabs的宽度。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为56vp。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为96vp。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>**说明：** <br/>设置为小于0或大于Tabs宽度值时，按默认值显示。 |
 | barHeight                | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>**说明：** <br/>设置为小于0或大于Tabs高度值时，按默认值显示。|
-| animationDuration | number                                  | TabContent滑动动画时长。不设置时，点击切换页签无动画，滑动切换有动画；设置时，点击切换和滑动切换都有动画。<br/>默认值：300<br/>**说明：** <br/>设置为小于0或百分比时，按默认值显示。 |
+| animationDuration | number                                  | 点击TabBar页签切换TabContent的动画时长。不设置时，点击TabBar页签切换TabContent无动画。<br/>默认值：300<br/>**说明：** <br/>设置为小于0或百分比时，按默认值显示。 |
 
 ## BarMode枚举说明
 
