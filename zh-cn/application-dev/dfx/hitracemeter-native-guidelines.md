@@ -75,7 +75,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
   ```shell
   capturing trace...
   ```
-5. 手机上重复点击几次新安装的hap，然后在shell窗口dump trace查看结果，命令是：hitrace --trace_dump | grep hitraceTest。
+5. 设备上重复点击几次新安装的hap，然后在shell窗口dump trace查看结果，命令是：hitrace --trace_dump | grep hitraceTest。
   ```shell
   <...>-2477    (-------) [001] ....   396.427165: tracing_mark_write: S|2477|H:hitraceTest 123
   <...>-2477    (-------) [001] ....   396.427196: tracing_mark_write: F|2477|H:hitraceTest 123
