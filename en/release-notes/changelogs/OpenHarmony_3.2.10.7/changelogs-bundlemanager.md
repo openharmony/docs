@@ -223,16 +223,7 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.19 Changed distroFilter to distributionFilter in the module.json File
-The [distroFilter](../../../application-dev/quick-start/module-configuration-file.md) tag in the **module.json** file is changed to **distributionFilter**.
-
-**Change Impact**<br>
-If the **distroFilter** tag is used, an error is reported during compilation on DevEco Studio.
-
-**Adaptation Guide**<br>
-Replace **distroFilter** with **distributionFilter** in the configuration file.
-
-## cl.bundlemanager.20 Changed standard of launchType to multiton in the module.json File
+## cl.bundlemanager.19 Changed standard of launchType to multiton in the module.json File
 The **standard** mode of the [launchType](../../../application-dev/quick-start/module-configuration-file.md) tag in the **module.json** file is changed to **multiton**.
 
 **Adaptation Guide**<br>

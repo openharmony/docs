@@ -18,12 +18,12 @@ When switching an application from the FA model to the stage model, migrate the 
 | metaData | Metadata of the HAP file.| metadata | For details, see Table 2.|
 | abilities | All abilities in the current module.| abilities | For details, see Table 5.|
 | js | A set of JS modules developed using ArkUI. Each element in the set represents the information about a JS module.| pages | The stage model retains **pages** under the **module** tag. The window configuration is the lower level of **pages**.|
-| shortcuts | Shortcuts of the application.| shortcut_config.json| In the stage model, the **shortcut_config.json** file is defined in **resources/base/profile** in the development view.|
+| shortcuts | Shortcuts of the application.| shortcut_config.json| In the stage model, the **shortcut_config.json** file is defined in **resources/base/profile** in the developer view.|
 | reqPermissions | Permissions that the application requests from the system when it is running.| requestPermissions | The field name is changed.|
 | colorMode | Color mode of the application.| / | This configuration is not supported in the stage model.|
-| distributionFilter | Distribution rules of the application.| distroFilter_config.json| In the stage model, the **distroFilter_config.json** file is defined in **resources/base/profile** in the development view.|
+| distroFilter | Distribution rules of the application.| distributionFilter_config.json| In the stage model, the **distributionFilter_config.json** file is defined in **resources/base/profile** in the developer view.|
 | reqCapabilities | Device capabilities required for running the application.| / | This configuration is not supported in the stage model.|
-| commonEvents | Common events.| common_event_config.json| In the stage model, the **common_event_config.json** file is defined in **resources/base/profile** in the development view.|
+| commonEvents | Common events.| common_event_config.json| In the stage model, the **common_event_config.json** file is defined in **resources/base/profile** in the developer view.|
 | entryTheme | Keyword of an OpenHarmony internal theme.| / | This configuration is not supported in the stage model.|
 
 
@@ -69,7 +69,7 @@ When switching an application from the FA model to the stage model, migrate the 
 | multiUserShared | Whether the ability supports data sharing among multiple users. This field applies only to the ability using the Data template.| / | This configuration is not supported in the stage model.|
 | supportPipMode | Whether the ability allows the user to enter the Picture in Picture (PiP) mode. The PiP mode enables the user to watch a video in a small window that hovers on top of a full screen window (main window).| / | This configuration is not supported in the stage model.|
 | formsEnabled | Whether the ability can provide widgets.| / | This configuration is not supported in the stage model.|
-| forms | Information about the widgets used by the ability. This field is valid only when **formsEnabled** is set to **true**.| form_config.json| In the stage model, the **form_config.json** file is defined in **resources/base/profile** in the development view.|
+| forms | Information about the widgets used by the ability. This field is valid only when **formsEnabled** is set to **true**.| form_config.json| In the stage model, the **form_config.json** file is defined in **resources/base/profile** in the developer view.|
 | srcLanguage | Programming language used to develop the ability.| / | This configuration is not supported in the stage model.|
 | srcPath | Path of the JS component code corresponding to the ability.| srcEntry | Path of the JS code corresponding to the ability.|
 | uriPermission | Application data that the ability can access.| / | This configuration is not supported in the stage model.|

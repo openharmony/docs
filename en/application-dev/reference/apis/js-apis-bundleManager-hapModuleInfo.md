@@ -29,6 +29,7 @@ The **HapModuleInfo** module defines the HAP module information. A system applic
 | moduleType                        | [ModuleType](js-apis-bundleManager.md#moduletype)            | Yes  | No  | Type of the module.     |
 | preloads                          | Array\<[PreloadItem](#preloaditem)>                          | Yes  | No  | Preloaded modules in the atomic service.|
 | dependencies                      | Array\<[Dependency](#dependency)>                            | Yes  | No  | Dynamic shared libraries on which the module depends. |
+| fileContextMenu                   | string                                                       | Yes  | No  | Shortcut menu configuration of the module.     |
 
 ## PreloadItem
 
