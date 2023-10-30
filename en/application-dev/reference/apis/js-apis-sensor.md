@@ -53,7 +53,6 @@ try{
   }, { interval: 100000000 });
   setTimeout(() => {
         sensor.off(sensor.SensorId.COLOR);
-        done();
   }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
@@ -1511,8 +1510,8 @@ import sensor from "@ohos.sensor"
 import BusinessError from "@ohos.base"
 
 try {
-  sensor.once(sensor.SensorId.HUMIDITY, (data: sensor.HeartRateResponse) => {
-    console.info('Succeeded in invoking once. Heart rate: ' + data.heartRate);
+  sensor.once(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
+    console.info('Succeeded in invoking once. Humidity: ' + data.humidity);
   });
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
@@ -4105,7 +4104,7 @@ Describes the sensor information.
 
 | Name           | Type| Readable| Writable| Description                  |
 | --------------- | -------- | ---------------------- | ---------------------- | ---------------------- |
-| sensorName      | string   | Yes | No | Sensor name.          |
+| sensorName      | string   | Yes | No | Sensor name.           |
 | vendorName      | string   | Yes | No | Vendor of the sensor.        |
 | firmwareVersion | string   | Yes | No | Firmware version of the sensor.      |
 | hardwareVersion | string   | Yes | No | Hardware version of the sensor.      |
@@ -4396,9 +4395,9 @@ Describes the barometer sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable| Writable| Description                    |
-| -------- | ------ | ---- | ---- | ------------------------ |
-| pressure | number | Yes  | Yes  | Atmospheric pressure, in pascal.|
+| Name    | Type  | Readable| Writable| Description                  |
+| -------- | ------ | ---- | ---- | ---------------------- |
+| pressure | number | Yes  | Yes  | Atmospheric pressure, in units of hPa.|
 
 
 ## HeartRateResponse
