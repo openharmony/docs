@@ -36,16 +36,46 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
   ```c++
   #include "hitrace/trace.h"
   ```
-3. 打开hdc shell，使能trace，命令是：hitrace --trace_begin app。
+3. 在需要打点的地方进行性能打点，以异步打点为例（示例代码为默认的hello.cpp的一部分，使用时只需要按照示例的使用方法将接口-参看接口说明，放在需要的地方即可）
+  ```c++
+#include "napi/native_api.h"
+#include "hitrace/trace.h"
+static napi_value Add(napi_env env, napi_callback_info info)
+{
+    // 需要开启异步时间片跟踪的地方
+    OH_HiTrace_StartAsyncTrace("hitraceTest", 123);
+    // 需要结束异步时间片跟踪的地方（此处为示例，开启点和结束点按实际需求放在需要的地方）
+    OH_HiTrace_FinishAsyncTrace("hitraceTest", 123);
+    size_t requireArgc = 2;
+    size_t argc = 2;
+    napi_value args[2] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
+
+    napi_valuetype valuetype0;
+    napi_typeof(env, args[0], &valuetype0);
+
+    napi_valuetype valuetype1;
+    napi_typeof(env, args[1], &valuetype1);
+
+    double value0;
+    napi_get_value_double(env, args[0], &value0);
+
+    double value1;
+    napi_get_value_double(env, args[1], &value1);
+
+    napi_value sum;
+    napi_create_double(env, value0 + value1, &sum);
+
+    return sum;
+
+}
+  ```
+4. 将编译好的hap包推送到设备上安装，cmd窗口执行hdc shell连上设备后执行命令：hitrace --trace_begin app。
   ```shell
   capturing trace...
   ```
-4. 进行性能打点，以异步打点为例。
-  ```c++
-  OH_HiTrace_StartAsyncTrace("hitraceTest", 123);
-  OH_HiTrace_FinishAsyncTrace("hitraceTest", 123);
-  ```
-5. dump trace查看结果，命令是：hitrace --trace_dump | grep hitraceTest。
+5. 设备上重复点击几次新安装的hap，然后在shell窗口dump trace查看结果，命令是：hitrace --trace_dump | grep hitraceTest。
   ```shell
   <...>-2477    (-------) [001] ....   396.427165: tracing_mark_write: S|2477|H:hitraceTest 123
   <...>-2477    (-------) [001] ....   396.427196: tracing_mark_write: F|2477|H:hitraceTest 123
