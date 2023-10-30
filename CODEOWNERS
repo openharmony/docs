@@ -82,6 +82,12 @@ zh-cn/application-dev/security/cryptoFramework-guidelines.md @zengyawen @gaoyong
 zh-cn/application-dev/security/hapsigntool-overview.md @zengyawen @gaoyong @niejiteng @jumozhanjiang
 zh-cn/application-dev/security/hapsigntool-guidelines.md @zengyawen @gaoyong @niejiteng @jumozhanjiang
 zh-cn/application-dev/security/app-provision-structure.md @zengyawen @gaoyong @niejiteng @jumozhanjiang
+zh-cn/application-dev/task-management/background-task-overview.md @chenmingJay @ningningW @very0228 @iceice1001
+zh-cn/application-dev/task-management/transient-task.md @chenmingJay @ningningW @very0228 @iceice1001
+zh-cn/application-dev/task-management/continuous-task.md @chenmingJay @ningningW @very0228 @iceice1001
+zh-cn/application-dev/task-management/work-scheduler.md @chenmingJay @ningningW @very0228 @iceice1001
+zh-cn/application-dev/task-management/agent-powered-reminder.md @chenmingJay @ningningW @very0228 @iceice1001
+zh-cn/application-dev/task-management/efficiency-resource-request.md @chenmingJay @ningningW @very0228 @iceice1001
 zh-cn/application-dev/connectivity/net-mgmt-overview.md @zhang_yixin13 @zhang-hai-feng @jyh926 @gaoxi785
 zh-cn/application-dev/connectivity/http-request.md @zhang_yixin13 @zhang-hai-feng @jyh926 @gaoxi785
 zh-cn/application-dev/connectivity/websocket-connection.md @zhang_yixin13 @zhang-hai-feng @jyh926 @gaoxi785
