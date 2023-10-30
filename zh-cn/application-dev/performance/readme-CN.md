@@ -18,6 +18,7 @@
     - [提升应用响应速度](improve-application-response.md)
     - [Flex布局性能提升使用指导](flex-development-performance-boost.md)
     - [优化布局性能](reduce-view-nesting-levels.md)
+    - [合理选择条件渲染和显隐控制](proper-choice-between-if-and-visibility.md)
     - [合理使用IPC通信](reasonable-using-ipc.md)
     - [减少首帧绘制时的冗余操作](reduce-redundant-operations-when-render-first-frame.md)
     - [列表场景性能提升实践](list-perf-improvment.md)
