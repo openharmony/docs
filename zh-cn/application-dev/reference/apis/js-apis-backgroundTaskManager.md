@@ -323,8 +323,10 @@ export default class EntryAbility extends UIAbility {
           abilityName: "EntryAbility"
         }
       ],
+      // 点击通知后，动作类型
       operationType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
+      // 点击通知后，动作执行属性
       wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
 
