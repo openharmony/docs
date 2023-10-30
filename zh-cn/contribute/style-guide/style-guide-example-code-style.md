@@ -26,8 +26,12 @@ API参考中，每个接口（包括方法和组件）均需要提供示例代�
 【正例】
 
 ```ts
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import fs from '@ohos.file.fs';
+
 // 正例1：
-let want = {
+let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
@@ -37,23 +41,27 @@ this.context.startAbility(want)
     // 执行正常业务
     console.info('Succeeded in starting ability.');
   })
-  .catch((err) => {
+  .catch((err: BusinessError) => {
     // 处理业务逻辑错误
     console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
   });
 
 // 正例2：
-let pathDir = ...; // 应用文件路径
-let filePath = pathDir + '/test.txt';
-let str = fs.readTextSync(filePath, { offset: 1, length: 3 });
-console.info(`Succeed in reading text, str is ${str}`);
+let pathDir = '<pathDir>'; // 应用文件路径
+let filePath: string = pathDir + '/test.txt';
+let str: string = fs.readTextSync(filePath, { offset: 1, length: 3 });
+console.info(`Succeeded in reading text, str is ${str}`);
 ```
 
 【反例】
 
 ```ts
-// 反例1：
-let want = {
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import fs from '@ohos.file.fs';
+
+// 反例1：在API示例代码中，异步场景，无须增加`try...catch...`
+let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
@@ -64,22 +72,24 @@ try {
       // 执行正常业务
       console.info('Succeeded in starting ability.');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
     });
-} catch (err) {
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
   // 处理入参错误异常
   console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
 }
 
-// 反例2：
-let pathDir = ...; // 应用文件路径
-let filePath = pathDir + '/test.txt';
+// 反例2：在API示例代码中，同步场景，无须增加`try...catch...`
+let pathDir: string = '<pathDir>'; // 应用文件路径
+let filePath: string = pathDir + '/test.txt';
 try {
-  let str = fs.readTextSync(filePath, { offset: 1, length: 3 });
-  console.info(`Succeed in reading text, str is ${str}`);
-} catch (err) {
+  let str: string = fs.readTextSync(filePath, { offset: 1, length: 3 });
+  console.info(`Succeeded in reading text, str is ${str}`);
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
   console.error(`Failed to read text. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -95,8 +105,12 @@ try {
 示例中的context的获取方式请参见[获取UIAbility的上下文信息](../../application-dev/application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
-let context = ...; // UIAbilityContext
-let want = {
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+
+const context: common.UIAbilityContext = this.context; // UIAbilityContext
+let want: Want = {
   deviceId: '', // deviceId为空表示本设备
   bundleName: 'com.example.myapplication',
   abilityName: 'FuncAbility',
@@ -107,8 +121,8 @@ let want = {
 }
 // context为调用方UIAbility的UIAbilityContext
 context.startAbilityForResult(want).then((data) => {
-  ...
-}).catch((err) => {
+  // ...
+}).catch((err: BusinessError) => {
   console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
 })
 ```
@@ -116,29 +130,11 @@ context.startAbilityForResult(want).then((data) => {
 【反例】
 
 ```ts
-// 反例1：使用到的context和want变量未进行定义
+// 反例：使用到的context和want变量未进行定义
 // context为调用方UIAbility的UIAbilityContext
 context.startAbilityForResult(want).then((data) => {
-  ...
-}).catch((err) => {
-  console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
-})
-
-// 反例2：UIAbilityContext的使用来源不止this.context这一种，这里列举出来就会有展示不全的问题
-let context = this.context; // UIAbilityContext
-let want = {
-  deviceId: '', // deviceId为空表示本设备
-  bundleName: 'com.example.myapplication',
-  abilityName: 'FuncAbility',
-  moduleName: 'func', // moduleName非必选
-  parameters: { // 自定义信息
-    info: '来自EntryAbility Index页面',
-  },
-}
-// context为调用方UIAbility的UIAbilityContext
-context.startAbilityForResult(want).then((data) => {
-  ...
-}).catch((err) => {
+  // ...
+}).catch((err: BusinessError) => {
   console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
 })
 ```
@@ -168,12 +164,12 @@ import prompt from '@ohos.promptAction';
 
 【描述】
 
-为了保持代码的一致性和简洁性，在设置组件的宽度、高度等属性时，应该尽量避免添加单位，因为组件的宽度、高度等属性默认以像素为单位。同时，避免添加单位也可以提高代码的可读性和便于维护。
+为了保持代码的一致性和简洁性，在设置组件的宽度、高度等属性时，应该尽量避免添加单位（例如`vp`/`fp`/`px`），因为组件的宽度、高度等属性默认以像素为单位。同时，避免添加单位也可以提高代码的可读性和便于维护。
 
 【正例】
 
 ```ts
-Image('test.png')
+Text('Hello World')
   .width(100)
   .height(100)
 
@@ -184,9 +180,13 @@ Text('Hello World')
 【反例】
 
 ```ts
-Image('test.png')
+Text('Hello World')
   .width('100vp')
   .height('100vp')
+
+Text('Hello World')
+  .width('300px')
+  .height('400px')
 
 Text('Hello World')
   .fontSize('50fp')
@@ -231,10 +231,11 @@ Text('Hello World')
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    windowStage.loadContent('pages/Index', (err, data) => {
+    windowStage.loadContent('pages/Index', (err: BusinessError, data) => {
     });
   }
 }
@@ -245,11 +246,12 @@ export default class EntryAbility extends UIAbility {
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
   // 代码未格式化，没有缩进
-  windowStage.loadContent('pages/Index', (err, data) => {
+  windowStage.loadContent('pages/Index', (err: BusinessError, data) => {
   });
   }
 }
@@ -265,7 +267,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // 正例1：
-...
+// ...
 
 // 正例2：
 // To do sthing.
@@ -275,7 +277,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // 反例1：
-// ...
+...
 
 // 反例2：
 ....
@@ -319,7 +321,7 @@ let abilityLifecycleCallback = {};
 // 反例2：注释符与注释内容之间没有添加空格
 let abilityLifecycleCallback = {}; //定义生命周期回调对象
 
-// 反例3：注释符与注释内容之间添加了多个空格
+// 反例3：注释符与代码行之间添加了多个空格
 let abilityLifecycleCallback = {};       // 定义生命周期回调对象
 ```
 
@@ -336,12 +338,12 @@ let abilityLifecycleCallback = {};       // 定义生命周期回调对象
 ```ts
 // 情形1：err为undefined的场景
 if (err) {
-  ...
+  // ...
 }
 
 // 情形2：err.code为非0的场景
 if (err.code) {
-  ...
+  // ...
 }
 ```
 
@@ -350,27 +352,27 @@ if (err.code) {
 ```ts
 // 反例1：
 if (err == null) {
-  ...
+  // ...
 }
 
 // 反例2：
 if (err != null) {
-  ...
+  // ...
 }
 
 // 反例3：
 if (err == undefined) {
-  ...
+  // ...
 }
 
 // 反例4：
 if (err === undefined) {
-  ...
+  // ...
 }
 
 // 反例5：
 if (err !== undefined) {
-  ...
+  // ...
 }
 ```
 
@@ -390,38 +392,59 @@ if (err !== undefined) {
 // 模板：
 console.error(`Failed to do sthing. Code: ${err.code}, message: ${err.message}`);
 
-// 正例：
-notificationManager.publish(notificationRequest, (err) => {
+// 正例1：
+notificationManager.publish(notificationRequest, (err: BusinessError) => {
   if (err) {
     // 异常分支打印
     console.error(`Failed to publish notification. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  ...
+  // ...
 });
+
+// 正例2：
+notificationManager.publish(notificationRequest)
+  .then(() => {
+    // ...
+  })
+  .catch((err: BusinessError) => {
+    // 异常分支打印
+    console.error(`Failed to publish notification. Code: ${err.code}, message: ${err.message}`);
+  })
+
+// 正例3：
+let pathDir: string = '<pathDir>'; // 应用文件路径
+let filePath: string = pathDir + '/test.txt';
+try {
+  let str: string = fs.readTextSync(filePath, { offset: 1, length: 3 });
+  console.info(`Succeeded in reading text, str is ${str}`);
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`Failed to read text. Code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 【反例】
 
 ```ts
 // 反例1：错误日志使用console.log输出，不足以让开发者在调试时快速找到问题
-notificationManager.publish(notificationRequest, (err) => {
+notificationManager.publish(notificationRequest, (err: BusinessError) => {
   if (err) {
     // 异常分支打印
     console.log(`Failed to publish notification. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  ...
+  // ...
 });
 
 // 反例2：错误日志使用console.info输出，而非console.error，不利于开发者区分日志级别，快速找到问题
-notificationManager.publish(notificationRequest, (err) => {
+notificationManager.publish(notificationRequest, (err: BusinessError) => {
   if (err) {
     // 异常分支打印
     console.info(`Failed to publish notification. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  ...
+  // ...
 });
 
 // 反例3：异常信息缺乏具体的code和message参数，不利于开发者定位和解决问题
@@ -451,9 +474,9 @@ console.error('Failed to publish notification, err: ' + JSON.stringify(err));
 console.info('Succeeded in doing sthing.');
 
 // 正例：
-notificationManager.publish(notificationRequest, (err) => {
+notificationManager.publish(notificationRequest, (err: BusinessError) => {
   if (err) {
-    ...
+    // ...
     return;
   }
   console.info('Succeeded in publishing notification.');
@@ -464,18 +487,18 @@ notificationManager.publish(notificationRequest, (err) => {
 
 ```ts
 // 反例1：使用console.log(...)可能会让程序员产生困惑，无法明确该日志信息是正常日志还是错误日志
-notificationManager.publish(notificationRequest, (err) => {
+notificationManager.publish(notificationRequest, (err: BusinessError) => {
   if (err) {
-    ...
+    // ...
     return;
   }
   console.log('Succeeded in publishing notification.');
 });
 
 // 反例2：使用了console.error(...)而不是console.info(...)来打印正常日志信息。console.error通常用于打印错误信息，而不是正常的日志信息
-notificationManager.publish(notificationRequest, (err) => {
+notificationManager.publish(notificationRequest, (err: BusinessError) => {
   if (err) {
-    ...
+    // ...
     return;
   }
   console.error('Succeeded in publishing notification.');
@@ -495,9 +518,9 @@ notificationManager.publish(notificationRequest, (err) => {
 console.info('Succeeded in doing sthing.');
 
 // 正例：
-notificationManager.publish(notificationRequest, (err) => {
+notificationManager.publish(notificationRequest, (err: BusinessError) => {
   if (err) {
-    ...
+    // ...
     return;
   }
   console.info('Succeeded in publishing.');
@@ -508,27 +531,27 @@ notificationManager.publish(notificationRequest, (err) => {
 
 ```ts
 // 反例1：
-notificationManager.publish(notificationRequest, (err) => {
+notificationManager.publish(notificationRequest, (err: BusinessError) => {
   if (err) {
-    ...
+    // ...
     return;
   }
   console.info('Invoke publish success.');
 });
 
 // 反例2：
-notificationManager.publish(notificationRequest, (err) => {
+notificationManager.publish(notificationRequest, (err: BusinessError) => {
   if (err) {
-    ...
+    // ...
     return;
   }
   console.info('Invoke publish successful.');
 });
 
 // 反例3：
-notificationManager.publish(notificationRequest, (err) => {
+notificationManager.publish(notificationRequest, (err: BusinessError) => {
   if (err) {
-    ...
+    // ...
     return;
   }
   console.info('Invoke publish successfully.');
@@ -546,9 +569,9 @@ notificationManager.publish(notificationRequest, (err) => {
 【正例】
 
 ```ts
-notificationManager.publish(notificationRequest, (err) => {
+notificationManager.publish(notificationRequest, (err: BusinessError) => {
   if (err) {
-    ...
+    // ...
     return;
   }
   console.info('Succeeded in publishing notification.');
@@ -558,9 +581,9 @@ notificationManager.publish(notificationRequest, (err) => {
 【反例】
 
 ```ts
-notificationManager.publish(notificationRequest, function (err) {
+notificationManager.publish(notificationRequest, function (err: BusinessError) {
   if (err) {
-    ...
+    // ...
     return;
   }
   console.info('Succeeded in publishing notification.');
@@ -581,22 +604,25 @@ notificationManager.publish(notificationRequest, function (err) {
 
 ```ts
 import fs from '@ohos.file.fs';
+import common from '@ohos.app.ability.common';
 
-function createFile() {
-  // 获取应用文件路径
-  let context = ...; // UIAbilityContext
-  let filesDir = context.filesDir;
+/**
+ * 获取应用文件路径
+ **/
+const context: common.UIAbilityContext = this.context; // UIAbilityContext
+let filesDir: string = context.filesDir;
 
-  // 新建并打开文件
-  let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  // 写入一段内容至文件
-  let writeLen = fs.writeSync(file.fd, 'Try to write str.');
-  // 从文件读取一段内容
-  let buf = new ArrayBuffer(1024);
-  let readLen = fs.readSync(file.fd, buf, { offset: 0 });
-  // 关闭文件
-  fs.closeSync(file);
-}
+// 新建并打开文件
+let file: fs.File = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+// 写入一段内容至文件
+let writeLen: number = fs.writeSync(file.fd, 'Try to write str.');
+// 从文件读取一段内容
+let buf: ArrayBuffer = new ArrayBuffer(1024);
+let readLen: number = fs.readSync(file.fd, buf, {
+  offset: 0
+});
+// 关闭文件
+fs.closeSync(file);
 ```
 
 【反例】
@@ -604,20 +630,19 @@ function createFile() {
 ```ts
 // 使用了废弃的fileio接口，而不是推荐的fs接口
 import fileio from '@ohos.fileio';
+import common from '@ohos.app.ability.common';
 
-function createFile() {
-  // 获取应用文件路径
-  let context = ...; // UIAbilityContext
-  let filesDir = context.filesDir;
+// 获取应用文件路径
+const context: common.UIAbilityContext = this.context; // UIAbilityContext
+let filesDir: string = context.filesDir;
 
-  // 新建并打开文件
-  let fileFD = fileio.openSync(filesDir + '/test.txt', 0o102, 0o640);
-  // 写入一段内容至文件
-  let writeLen = fileio.writeSync(fileFD, 'Try to write str.');
-  // 从文件读取一段内容
-  let buf = new ArrayBuffer(1024);
-  let readLen = fileio.readSync(fileFD, buf, { offset: 0 });
-  // 关闭文件
-  fileio.closeSync(fileFD);
-}
+// 新建并打开文件
+let fileFD: number = fileio.openSync(filesDir + '/test.txt', 0o102, 0o640);
+// 写入一段内容至文件
+let writeLen: number = fileio.writeSync(fileFD, 'Try to write str.');
+// 从文件读取一段内容
+let buf: ArrayBuffer = new ArrayBuffer(1024);
+let readLen: number = fileio.readSync(fileFD, buf, { offset: 0 });
+// 关闭文件
+fileio.closeSync(fileFD);
 ```
