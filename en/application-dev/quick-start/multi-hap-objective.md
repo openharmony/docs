@@ -5,4 +5,4 @@
 
 - Flexible deployment: You can flexibly combine HAP files for device-specific deployment. Assume that an application contains one entry-type HAP file (**entry.hap**) and two feature-type HAP files (**Feature1.hap** and **Feature2.hap**). The **Entry.hap** file can be deployed on device A and device B, the **Feature1.hap** file can be deployed only on device A, and the **Feature2.hap** can be deployed only on device B. This means that you can combine the **Entry.hap** and **Feature1.hap** files and deploy them on device A, and combine the **Entry.hap** and **Feature2.hap** files and deploy them on device B.
 
-- On-demand loading: You can load modules only when they are needed, reducing the package size. Specifically, you can configure some HAP files of your application to be loaded on demand. For example, if some features are not used during application startup, you can configure them to be loaded only when they are needed, rather than being loaded at startup. This can reduce the size of the application package to some extent.
+
