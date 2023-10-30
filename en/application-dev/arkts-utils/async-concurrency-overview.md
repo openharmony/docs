@@ -1,7 +1,7 @@
 # Asynchronous Concurrency Overview
 
 
-Promise and async/await are standard JavaScript syntax that provides asynchronous concurrency. Asynchronous code ensures that actions initiated now finish later. It allows the execution of only one segment of code at a time and is therefore applicable to the development of a single I/O task, for example, a network request or a file read/write operation.
+Promise and async/await are standard JavaScript syntax that provides asynchronous concurrency. Asynchronous code ensures that actions initiated now finish later. It allows the execution of only one segment of code at a time and is therefore applicable to the development of a [single I/O task](single-io-development.md), for example, a network request or a file read/write operation.
 
 
 Promise and async/await allow an application to perform other operations without waiting for the completion of certain actions.

@@ -91,6 +91,9 @@ The thread that creates the worker thread is referred to as the host thread (not
   Before calling an API of the **Worker** module, you must create a **Worker** instance. The constructor function varies in different API versions.
 
 ```js
+// Import the module.
+import worker form '@ohos.worker';
+
 // Use the following function in API version 9 and later versions:
 const worker1 = new worker.ThreadWorker(scriptURL);
 // Use the following function in API version 8 and earlier versions:
@@ -101,10 +104,12 @@ The **Worker.ts** file path (specified by **scriptURL**) must be passed in the c
 
 **Stage Model**
 
-
 The following is an example of **scriptURL** in the constructor function:
 
 ```js
+// Import the module.
+import worker form '@ohos.worker';
+
 // Method 1
 // In the stage model, the workers directory is at the same level as the pages directory in the entry module.
 const worker1 = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts', {name:"first worker in Stage model"});
@@ -118,7 +123,6 @@ const worker3 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/et
 const worker4 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/pages/workers/worker');
 ```
 
-
 - Based on the directory structure of the stage model project, the field meanings in method 1 are as follows:
   - **entry**: value of the **name** attribute under **module** in the **module.json5** file.
   - **ets**: directory for storing the ArkTS source code. It is fixed.
@@ -131,24 +135,23 @@ const worker4 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/et
   - **ets**: directory for storing the ArkTS source code. It is fixed.
   - **workerdir/workerfile**: path of the worker source file in the **ets** directory.
 
-
 **FA Model**
-
 
 The following is an example of **scriptURL** in the constructor function:
 
 ```js
+// Import the module.
+import worker form '@ohos.worker';
+
 // In the FA model, the workers directory is at the same level as the pages directory in the entry module.
 const worker1 = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});
 // In the FA model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
 const worker2 = new worker.ThreadWorker('../workers/worker.js');
 ```
 
-
 ### Lifecycle Precautions
 
 - Creating and terminating worker threads consume performance. Therefore, you are advised to manage available workers and reuse them. The worker threads keep running even when they are idle. Therefore, when a worker thread is not required, call [terminate()](../reference/apis/js-apis-worker.md#terminate9) interface or [parentPort.close()](../reference/apis/js-apis-worker.md#close9) to destroy it. If a worker thread is destroyed or being destroyed, an error is thrown when it is called.
-
 
 - A maximum of eight worker threads can co-exist.
   - In API version 8 and earlier versions, when the number of worker threads exceeds the upper limit, the error "Too many workers, the number of workers exceeds the maximum." is thrown.
