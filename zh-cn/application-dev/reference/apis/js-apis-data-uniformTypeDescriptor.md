@@ -122,7 +122,7 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | belongingToTypes<sup>11+</sup>  | Array\<string>          | 是   | 否   | 标准化数据类型所归属的类型typeId列表。                                   |
 | description<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的简要说明。                                            |
 | referenceURL<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的参考链接URL，用于描述类型的详细信息。                            |
-| iconFile<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的默认图标文件路径。                                        |
+| iconFile<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的默认图标文件路径，可能为空字符串（即没有默认图标），应用可以自行决定是否使用该默认图标。                                        |
 
 ### equals<sup>11+</sup> 
 
