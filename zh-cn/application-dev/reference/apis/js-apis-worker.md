@@ -670,6 +670,8 @@ workerInstance.removeAllListener();
 
 ## WorkerEventTarget<sup>9+</sup>
 
+处理Worker监听事件。
+
 ### addEventListener<sup>9+</sup>
 
 addEventListener(type: string, listener: WorkerEventListener): void
