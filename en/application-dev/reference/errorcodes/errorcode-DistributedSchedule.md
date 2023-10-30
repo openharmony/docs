@@ -27,13 +27,13 @@ Try again later or restart the device.
 
 ## 16600002 The specified token or callback is not registered.
 
-**Description**
-
-This error code is reported if the token or callback used in an API of **continuationManager** is not registered when the API is called.
-
 **Error Message**
 
 The specified token or callback is not registered.
+
+**Description**
+
+This error code is reported if the token or callback used in an API of **continuationManager** is not registered when the API is called.
 
 **Possible Causes**
 
@@ -45,13 +45,13 @@ Register the token or callback before calling the API.
 
 ## 16600003 The number of token registration times has reached the upper limit.
 
-**Description**
-
-This error code is reported when the number of times that the **continuationManager.registerContinuation** API is called has reached the upper limit.
-
 **Error Message**
 
 The number of token registration times has reached the upper limit.
+
+**Description**
+
+This error code is reported when the number of times that the **continuationManager.registerContinuation** API is called has reached the upper limit.
 
 **Possible Causes**
 
@@ -63,13 +63,13 @@ Use a registered token. Do not register the token too frequently.
 
 ## 16600004 The specified callback has been registered.
 
-**Description**
-
-This error code is reported when the **continuationManager.on** API is called with a callback the same as a previous one.
-
 **Error Message**
 
 The specified callback has been registered.
+
+**Description**
+
+This error code is reported when the **continuationManager.on** API is called with a callback the same as a previous one.
 
 **Possible Causes**
 
@@ -81,13 +81,13 @@ Use a different callback for registration.
 
 ## 16300501 The system ability works abnormally.
 
-**Description**
-
-This error code is reported when the system ability is abnormal.
-
 **Error Message**
 
 The system ability works abnormally.
+
+**Description**
+
+This error code is reported when the system ability is abnormal.
 
 **Possible Causes**
 
@@ -102,13 +102,13 @@ Try again later or restart the device.
 
 ## 16300502 Failed to get the missionInfo of the specified missionId.
 
-**Description**
-
-This error code is reported when calling the **distributedMissionManager.continueMission** API fails.
-
 **Error Message**
 
 Failed to get the missionInfo of the specified missionId.
+
+**Description**
+
+This error code is reported when calling the **distributedMissionManager.continueMission** API fails.
 
 **Possible Causes**
 
@@ -122,13 +122,13 @@ Verify the mission ID.
 
 ## 16300503 The application is not installed on the remote end and installation-free is not supported.
 
-**Description**
-
-This error code is reported if the application is not installed on the remote end and the installation-free feature is not supported when the **distributedMissionManager.continueMission** API is called.
-
 **Error Message**
 
 The application is not installed on the remote end and installation-free is not supported.
+
+**Description**
+
+This error code is reported if the application is not installed on the remote end and the installation-free feature is not supported when the **distributedMissionManager.continueMission** API is called.
 
 **Possible Causes**
 
@@ -141,13 +141,13 @@ The application to continue is not installed on the remote end, and the installa
 
 ## 16300504 The application is not installed on the remote end and installation-free is supported. Try again with the freeInstall flag.
 
-**Description**
-
-This error code is reported if the application is not installed on the remote end and installation-free is supported when the **distributedMissionManager.continueMission** API is called.
-
 **Error Message**
 
 The application is not installed on the remote end and installation-free is supported. Try again with the freeInstall flag.
+
+**Description**
+
+This error code is reported if the application is not installed on the remote end and installation-free is supported when the **distributedMissionManager.continueMission** API is called.
 
 **Possible Causes**
 
@@ -159,13 +159,13 @@ Try again with the **freeInstall** flag.
 
 ## 16300505 The operation device must be the device where the application to be continued is currently located or the target device.
 
-**Description**
-
-This error code is reported if the operation device is not the device where the application to be continued is currently located (source device) or the target device when the **distributedMissionManager.continueMission** API is called.
-
 **Error Message**
 
 The operation device must be the device where the application to be continued is currently located or the target device.
+
+**Description**
+
+This error code is reported if the operation device is not the device where the application to be continued is currently located (source device) or the target device when the **distributedMissionManager.continueMission** API is called.
 
 **Possible Causes**
 
@@ -177,13 +177,13 @@ Use the source or target device for the operation.
 
 ## 16300506 The local continuation task is already in progress.
 
-**Description**
-
-This error code is reported if the local continuation task is in progress when the **distributedMissionManager.continueMission** API is called.
-
 **Error Message**
 
 The local continuation task is already in progress.
+
+**Description**
+
+This error code is reported if the local continuation task is in progress when the **distributedMissionManager.continueMission** API is called.
 
 **Possible Causes**
 
@@ -195,13 +195,13 @@ Wait until the continuation task is complete.
 
 ## 16300507 Failed to get the missionInfo of the specified bundleName.
 
-**Description**
-
-This error code is reported when calling the **distributedMissionManager.continueMission** API with **bundleName** specified fails.
-
 **Error Message**
 
 Failed to get the missionInfo of the specified bundle name.
+
+**Description**
+
+This error code is reported when calling the **distributedMissionManager.continueMission** API with **bundleName** specified fails.
 
 **Possible Causes**
 
@@ -215,13 +215,13 @@ Verify the bundle name.
 
 ## 3 Failed to flatten the object.
 
-**Description**
-
-This error code is reported if the system parameter **DMS_PROXY_INTERFACE_TOKEN** fails flattening when an API of **continuationManager** is called.
-
 **Error Message**
 
 Failed to flatten the object.
+
+**Description**
+
+This error code is reported if the system parameter **DMS_PROXY_INTERFACE_TOKEN** fails flattening when an API of **continuationManager** is called.
 
 **Possible Causes**
 
@@ -256,13 +256,13 @@ The possible causes are as follows:
 
 ## 29360207 The number of registrations has reached the upper limit.
 
-**Description**
-
-This error code is reported when the number of times that the **continuationManager.register** API is called exceeds the upper limit.
-
 **Error Message**
 
 The number of registrations has reached the upper limit.
+
+**Description**
+
+This error code is reported when the number of times that the **continuationManager.register** API is called exceeds the upper limit.
 
 **Possible Causes**
 
@@ -274,13 +274,13 @@ Restart the service and avoid frequent registration.
 
 ## 29360208 The token is not registered.
 
-**Description**
-
-This error code is reported when an API of **continuationManager** is called with an unregistered token.
-
 **Error Message**
 
 The token is not registered.
+
+**Description**
+
+This error code is reported when an API of **continuationManager** is called with an unregistered token.
 
 **Possible Causes**
 
@@ -292,13 +292,13 @@ Register a token and use it in the API.
 
 ## 29360209 The callback has been registered.
 
-**Description**
-
-This error code is reported when the **continuationManager.on** API is called with a callback the same as a previous one.
-
 **Error Message**
 
 The callback has been registered.
+
+**Description**
+
+This error code is reported when the **continuationManager.on** API is called with a callback the same as a previous one.
 
 **Possible Causes**
 
@@ -310,13 +310,13 @@ Do not use the same callback for repeated registration.
 
 ## 29360210 The callback is not registered.
 
-**Description**
-
-This error code is reported when the **off**, **updateConnectStatus**, or **startDeviceManager** API of **continuationManager** is called with a callback that has been not registered by calling **on**.
-
 **Error Message**
 
 The callback is not registered.
+
+**Description**
+
+This error code is reported when the **off**, **updateConnectStatus**, or **startDeviceManager** API of **continuationManager** is called with a callback that has been not registered by calling **on**.
 
 **Possible Causes**
 
@@ -328,13 +328,13 @@ Register a callback and use it in the API.
 
 ## 29360211 Failed to connect to the ability.
 
-**Description**
-
-This error code is reported if connection to the specified ability fails when the **startDeviceManager** API of **continuationManager** is called.
-
 **Error Message**
 
 Failed to connect to the ability.
+
+**Description**
+
+This error code is reported if connection to the specified ability fails when the **startDeviceManager** API of **continuationManager** is called.
 
 **Possible Causes**
 
@@ -346,13 +346,13 @@ Check whether the token is valid and whether the corresponding ability is normal
 
 ## 29360214 The type of callback is not supported.
 
-**Description**
-
-This error code is reported when the **callback** parameter in the **on** or **off** API of **continuationManager** is set to an incorrect type.
-
 **Error Message**
 
 The type of callback is not supported.
+
+**Description**
+
+This error code is reported when the **callback** parameter in the **on** or **off** API of **continuationManager** is set to an incorrect type.
 
 **Possible Causes**
 
@@ -364,13 +364,13 @@ Pass a supported type for the **callback** parameter.
 
 ## 29360215 Invalid connection state.
 
-**Description**
-
-This error code is reported when the **status** parameter in the **updateConnectStatus** API of **continuationManager** is invalid.
-
 **Error Message**
 
 Invalid connection state.
+
+**Description**
+
+This error code is reported when the **status** parameter in the **updateConnectStatus** API of **continuationManager** is invalid.
 
 **Possible Causes**
 
