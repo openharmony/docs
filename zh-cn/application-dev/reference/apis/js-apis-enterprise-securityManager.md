@@ -76,7 +76,7 @@ getDeviceEncryptionStatus(admin: Want): EncryptionStatus;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**系统API**: 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
