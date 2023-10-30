@@ -160,7 +160,7 @@ addContact(contact: Contact): Promise&lt;number&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[addContact](#contactaddcontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[addContact](#contactaddcontact10-1)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -330,7 +330,7 @@ deleteContact(key: string): Promise&lt;void&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10-1)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -509,7 +509,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-1)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -607,7 +607,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-2)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -779,7 +779,7 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 判断当前联系人id是否在电话簿中，使用Promise方式作为异步方法。
 
 > **说明**
->从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10)
+>从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -945,7 +945,7 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1107,7 +1107,7 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1194,7 +1194,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1268,7 +1268,7 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1564,7 +1564,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1651,7 +1651,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1741,7 +1741,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10-3)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1840,7 +1840,7 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10-4)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2011,7 +2011,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2096,7 +2096,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2184,7 +2184,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-3)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2280,7 +2280,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-4)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2455,7 +2455,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2542,7 +2542,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2632,7 +2632,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-3)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2731,7 +2731,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-4)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2906,7 +2906,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2993,7 +2993,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3083,7 +3083,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-3)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3182,7 +3182,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-4)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3354,7 +3354,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3445,7 +3445,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3612,7 +3612,7 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3773,7 +3773,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3866,7 +3866,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
