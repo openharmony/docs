@@ -41,7 +41,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
 2. 新增元数据资源配置文件
 
-   在元数据资源配置文件中，定义备份恢复时需要传输的文件。元数据资源配置文件名称需要与`module.json5`中`"metadata.resource"`名称保持一致，其保存位置在工程的`resource/profile`文件夹下。
+   在元数据资源配置文件中，定义备份恢复时需要传输的文件。元数据资源配置文件名称需要与`module.json5`中`"metadata.resource"`名称保持一致，其保存位置在工程的`resources/profile`文件夹下。
 
    元数据资源配置文件示例：
 
