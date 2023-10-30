@@ -21,6 +21,7 @@
 | Scroll    | 9    | 迁移距顶部滚动的绝对距离。两端设备显示规格不同等原因导致布局不一致，会影响迁移效果。 |
 | TextArea  | 9    | 迁移输入的文本内容和光标位置。                          |
 | TextInput | 9    | 迁移输入的文本内容和光标位置。                          |
+| WaterFlow | 11   | 迁移当前设备显示在顶部FlowItem的索引值，迁移后在对端设备上，将迁移索引值对应的FlowItem在WaterFlow顶部显示。同时迁移顶部FlowItem相对WaterFlow的主轴偏移值（vp单位）。 |
 
 ## 示例
 

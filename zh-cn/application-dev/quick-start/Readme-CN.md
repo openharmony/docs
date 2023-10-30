@@ -38,7 +38,10 @@
 - 学习ArkTS语言
   - [初识ArkTS语言](arkts-get-started.md)
   - [ArkTS语言介绍](introduction-to-arkts.md)
-  - [从TypeScript到ArkTS的迁移指导](typescript-to-arkts-migration-guide.md)
+  - 从TypeScript到ArkTS的适配指导
+    - [ArkTS语法适配背景](arkts-migration-background.md)
+    - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
+    - [适配指导案例](arkts-more-cases.md)
   - UI范式
     - 基本语法
       - [基本语法概述](arkts-basic-syntax-overview.md)
@@ -77,4 +80,3 @@
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
-      - [渲染控制优秀实践](arkts-rendering-control-best-practices.md)

@@ -41,6 +41,44 @@ import display from '@ohos.display';
 | PORTRAIT_INVERTED | 2 | 表示设备当前以反向竖屏方式显示。|
 | LANDSCAPE_INVERTED | 3 | 表示设备当前以反向横屏方式显示。|
 
+## FoldStatus<sup>10+</sup>
+
+当前可折叠设备的折叠状态枚举。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| FOLD_STATUS_UNKNOWN | 0 | 表示设备当前折叠状态未知。|
+| FOLD_STATUS_EXPANDED | 1 | 表示设备当前折叠状态为完全展开。|
+| FOLD_STATUS_FOLDED | 2 | 表示设备当前折叠状态为折叠。|
+| FOLD_STATUS_HALF_FOLDED | 3 | 表示设备当前折叠状态为半折叠。半折叠指完全展开和折叠之间的状态。|
+
+## FoldDisplayMode<sup>10+</sup>
+
+可折叠设备的显示模式枚举。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| FOLD_DISPLAY_MODE_UNKNOWN | 0 | 表示设备当前折叠显示模式未知。|
+| FOLD_DISPLAY_MODE_FULL | 1 | 表示设备当前全屏显示。 |
+| FOLD_DISPLAY_MODE_MAIN | 2 | 表示设备当前主屏幕显示。|
+| FOLD_DISPLAY_MODE_SUB | 3 | 表示设备当前子屏幕显示。|
+| FOLD_DISPLAY_MODE_COORDINATION | 4 | 表示设备当前双屏协同显示。|
+
+## FoldCreaseRegion<sup>10+</sup>
+
+折叠折痕区域。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 可读 | 可写 | 说明               |
+| ------ | -------- | ---- | ---- | ------------------ |
+| displayId   | number   | 是   | 否   | 显示器ID，用于识别折痕所在的屏幕。 |
+| creaseRects    | Array\<[Rect](#rect9)>   | 是   | 否   | 折痕区域。 |
+
 ## Rect<sup>9+</sup>
 
 矩形区域。
@@ -103,6 +141,8 @@ getDefaultDisplaySync(): Display
 **示例：**
 
 ```ts
+import display from '@ohos.display';
+
 let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
@@ -137,9 +177,10 @@ getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import display from '@ohos.display';
 
 let displayClass: Array<display.Display> = [];
-display.getAllDisplays((err: BusinessError, data: AsyncCallback<Array<Display>>) => {
+display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
   displayClass = data;
   const errCode: number = err.code;
   if (errCode) {
@@ -176,10 +217,11 @@ getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import display from '@ohos.display';
 
 let displayClass: Array<display.Display> =[];
-let promise: Promise<Array<Display>> = display.getAllDisplays();
-promise.then((data: Promise<Array<Display>>) => {
+let promise: Promise<Array<display.Display>> = display.getAllDisplays();
+promise.then((data: Array<display.Display>) => {
   displayClass = data;
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
@@ -220,7 +262,7 @@ hasPrivateWindow(displayId: number): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import display from '@ohos.display';
 
 let displayClass: display.Display | null = null;
 try {
@@ -263,7 +305,9 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
-let callback: Callback<number> = (data: Callback<number>) => {
+import { Callback } from '@ohos.base';
+
+let callback: Callback<number> = (data: number) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
@@ -318,7 +362,9 @@ on(type: 'privateModeChange', callback: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-let callback: Callback<boolean> = (data: Callback<boolean>) => {
+import { Callback } from '@ohos.base';
+
+let callback: Callback<boolean> = (data: boolean) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
@@ -355,6 +401,332 @@ try {
 }
 ```
 
+## display.isFoldable<sup>10+</sup>
+isFoldable(): boolean
+
+检查设备是否可折叠。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型 | 说明 |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| boolean | boolean对象，返回当前设备是否可折叠的结果。false表示不可折叠，true表示可折叠。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import display from '@ohos.display';
+
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+
+  let ret: boolean = false;
+  try {
+    ret = display.isFoldable();
+  } catch (exception) {
+    console.error('Failed to check is foldable or not. Code: ' + JSON.stringify(exception));
+  }
+  if (ret == undefined) {
+    console.log("Failed to check is foldable or not.");
+  }
+  if (ret) {
+    console.log("The device is foldable.");
+  } else if (!ret) {
+    console.log("The device is not foldable.");
+  }
+} catch (exception) {
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.setFoldDisplayMode<sup>10+</sup>
+setFoldDisplayMode(mode: FoldDisplayMode): void
+
+更改可折叠设备的显示模式。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| mode     | [FoldDisplayMode](#folddisplaymode10)    | 是   | 可折叠设备的显示模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import display from '@ohos.display';
+
+try {
+  let mode: display.FoldDisplayMode = display.FoldDisplayMode.FOLD_DISPLAY_MODE_FULL;
+  display.setFoldDisplayMode(mode);
+} catch (exception) {
+  console.error('Failed to change the fold display mode. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.getFoldStatus<sup>10+</sup>
+getFoldStatus(): FoldStatus
+
+获取可折叠设备的当前折叠状态。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型 | 说明 |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| [FoldStatus](#foldstatus10) | FoldStatus对象，返回当前可折叠设备的折叠状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import display from '@ohos.display';
+
+try {
+  display.getFoldStatus();
+} catch (exception) {
+  console.error('Failed to obtain the fold status. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.getFoldDisplayMode<sup>10+</sup>
+getFoldDisplayMode(): FoldDisplayMode
+
+获取可折叠设备的显示模式。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型 | 说明 |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| [FoldDisplayMode](#folddisplaymode10) | FoldDisplayMode对象，返回当前可折叠设备的显示模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import display from '@ohos.display';
+
+try {
+  display.getFoldDisplayMode();
+} catch (exception) {
+  console.error('Failed to obtain the fold display mode. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.getCurrentFoldCreaseRegion<sup>10+</sup>
+getCurrentFoldCreaseRegion(): FoldCreaseRegion
+
+在当前显示模式下获取折叠折痕区域。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型 | 说明 |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| [FoldCreaseRegion](#foldcreaseregion10) | FoldCreaseRegion对象，返回设备在当前显示模式下的折叠折痕区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import display from '@ohos.display';
+
+try {
+  display.getCurrentFoldCreaseRegion();
+} catch (exception) {
+  console.error('Failed to obtain the current fold crease region. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.on('foldStatusChange')<sup>10+</sup>
+
+on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
+
+开启折叠设备折叠状态变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'foldStatusChange'，表示折叠设备折叠状态发生变化。 |
+| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | 是   | 回调函数。表示折叠设备折叠状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { Callback } from '@ohos.base';
+
+let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+try {
+  display.on('foldStatusChange', callback);
+} catch (exception) {
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.off('foldStatusChange')<sup>10+</sup>
+
+off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
+
+关闭折叠设备折叠状态变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'foldStatusChange'，表示折叠设备折叠状态发生变化。 |
+| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | 否   | 回调函数。表示折叠设备的折叠状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  display.off('foldStatusChange');
+} catch (exception) {
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.on('foldDisplayModeChange')<sup>10+</sup>
+
+on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): void
+
+开启折叠设备屏幕显示模式变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'foldDisplayModeChange'，表示折叠设备屏幕显示模式发生变化。 |
+| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | 是   | 回调函数。表示折叠设备屏幕显示模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { Callback } from '@ohos.base';
+
+let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+try {
+  display.on('foldDisplayModeChange', callback);
+} catch (exception) {
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.off('foldDisplayModeChange')<sup>10+</sup>
+
+off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): void
+
+关闭折叠设备屏幕显示模式变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'foldDisplayModeChange'，表示折叠设备屏幕显示模式发生变化。 |
+| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | 否   | 回调函数。表示折叠设备屏幕显示模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  display.off('foldDisplayModeChange');
+} catch (exception) {
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+}
+```
+
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
 
 getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
@@ -379,7 +751,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-display.getDefaultDisplay((err: BusinessError, data: AsyncCallback<Display>) => {
+display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
@@ -414,8 +786,8 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-let promise: Promise<Display> = display.getDefaultDisplay();
-promise.then((data: Promise<Display>) => {
+let promise: Promise<display.Display> = display.getDefaultDisplay();
+promise.then((data: display.Display) => {
   displayClass = data;
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
@@ -446,7 +818,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-display.getAllDisplay((err: BusinessError, data: AsyncCallback<Array<Display>>) => {
+display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
@@ -479,8 +851,8 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise: Promise<Array<Display>> = display.getAllDisplay();
-promise.then((data: Promise<Array<Display>>) => {
+let promise: Promise<Array<display.Display>> = display.getAllDisplay();
+promise.then((data: Array<display.Display>) => {
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
   console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
@@ -543,7 +915,7 @@ let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
 
-  displayClass.getCutoutInfo((err: BusinessError, data: AsyncCallback<CutoutInfo>) => {
+  displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
@@ -585,8 +957,8 @@ let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
 
-  let promise: Promise<CutoutInfo> = displayClass.getCutoutInfo();
-  promise.then((data: Promise<CutoutInfo>) => {
+  let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
+  promise.then((data: display.CutoutInfo) => {
     console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));

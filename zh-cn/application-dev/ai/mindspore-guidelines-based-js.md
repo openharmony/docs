@@ -71,8 +71,8 @@ let globalContext = GlobalContext.getContext().getObject("value") as common.UIAb
 let inputBuffer : ArrayBuffer | null = null;
 let inputName: string = 'mnet_caffemodel_nhwc.bin';
 
-globalContext.resourceManager.getRawFileContent(inputName).then((buffer : ArrayBuffer) => {
-  inputBuffer = buffer;
+globalContext.resourceManager.getRawFileContent(inputName).then((buffer : Uint8Array) => {
+  inputBuffer = buffer.buffer;
   console.log('=========input bin byte length: ' + buffer.byteLength)
 })
 // 1.创建上下文
@@ -95,7 +95,7 @@ if (inputBuffer != null) {
 
 // 4.执行推理并打印输出
 console.log('=========MSLITE predict start=====')
-msLiteModel.predict(modelInputs).then((modelOutputs : mindSporeLite.MSTensor) => {
+msLiteModel.predict(modelInputs).then((modelOutputs : mindSporeLite.MSTensor[]) => {
   let output0 = new Float32Array(modelOutputs[0].getData());
   for (let i = 0; i < output0.length; i++) {
     console.log(output0[i].toString());

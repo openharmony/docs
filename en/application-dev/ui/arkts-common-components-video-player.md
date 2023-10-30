@@ -13,7 +13,7 @@ You can create a **\<Video>** component by calling the following API:
 Video(value: {src?: string | Resource, currentProgressRate?: number | string | PlaybackSpeed, previewUri?: string | PixelMap | Resource, controller?: VideoController})
 ```
 
-Creates a **\<Video>** component. In this API, **src** indicates the path of the video source, **currentProgressRate** indicates the video playback speed, **previewUri** indicates the path of the preview image, and **controller** indicates the video controller . For details about how to load a video, see [Loading Video](#loading-video).
+In this API, **src** indicates the path of the video source, **currentProgressRate** indicates the video playback speed, **previewUri** indicates the path of the preview image, and **controller** indicates the video controller . For details about how to load a video, see [Loading Video](#loading-video).
 
 
 ## Loading Video
@@ -72,7 +72,7 @@ The **\<Video>** component supports both local and online videos.
 
 ### Loading a Video in the Application Sandbox
 
-To load a video in the application sandbox, use a string with the **file:///data/storage** prefix. Ensure that the application has the read permission to the files in the specified path.
+To load a video in the application sandbox, use a string with the **file:///data/storage** prefix. Ensure that there are files in the specified path and the application has the read permission to the files.
 
 ```ts
 @Component

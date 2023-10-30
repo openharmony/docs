@@ -16,15 +16,16 @@
     - [应用触发数据备份/恢复（仅对系统应用开放）](app-file-backup.md)
 - 用户文件
   - [用户文件概述](user-file-overview.md)
+  - [用户文件uri介绍](user-file-uri-intro.md)
   - 选择与保存用户文件（FilePicker）
     - [选择用户文件](select-user-file.md)
     - [保存用户文件](save-user-file.md)
   - 相册管理（photoAccessHelper）
     - [相册管理模块开发概述](photoAccessHelper-overview.md)
-    - [媒体资源（图片、视频）相关](photoAccessHelper-resource-guidelines.md)
-    - [用户相册相关](photoAccessHelper-userAlbum-guidelines.md)
-    - [系统相册相关](photoAccessHelper-systemAlbum-guidelines.md)
-    - [媒体资源变更通知相关](photoAccessHelper-notify-guidelines.md)
+    - [媒体资源使用指导](photoAccessHelper-resource-guidelines.md)
+    - [用户相册资源使用指导](photoAccessHelper-userAlbum-guidelines.md)
+    - [系统相册资源使用指导](photoAccessHelper-systemAlbum-guidelines.md)
+    - [媒体资源变更通知相关指导](photoAccessHelper-notify-guidelines.md)
   - [开发用户文件管理器（仅对系统应用开放）](dev-user-file-manager.md)
   - [管理外置存储设备（仅对系统应用开放）](manage-external-storage.md)
 - 分布式文件系统

@@ -12,14 +12,16 @@
 
 [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)提供了onCreate()和onDestroy()生命周期回调，根据需要重写对应的回调方法。InputMethodExtensionAbility的生命周期如下：
 
-- **onCreate**
+- **onCreate()**
+
   服务被首次创建时触发该回调，开发者可以在此进行一些初始化的操作，例如注册公共事件监听等。
 
   > **说明：**
   >
   > 如果服务已创建，再次启动该InputMethodExtensionAbility不会触发onCreate()回调。
 
-- **onDestroy**
+- **onDestroy()**
+
   当不再使用服务且准备将该实例销毁时，触发该回调。开发者可以在该回调中清理资源，如注销监听等。
 
 
@@ -27,15 +29,9 @@
 
 开发者在实现一个输入法应用时，需要在DevEco Studio工程中新建一个InputMethodExtensionAbility，具体步骤如下：
 
-在工程Module对应的ets目录下，右键选择“New &gt; Extention Ability > InputMethod”，即可创建出InputMethodExtensionAbility的最小化模板。
+1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录，并命名为InputMethodExtensionAbility。
 
-> **说明：**
-> 在编译输入法应用时，要使用system_basic级别的签名，否则无法拉起输入法键盘。
-> [签名指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)
-
-最小化模板为一个最基本的输入法应用，包含软键盘拉起以及输入删除功能。后续开发者可在此基础上添加功能，如隐藏键盘等，实现自己的输入法应用。
-
-最小化模板主要包含四个文件，分别为KeyboardController.ts、InputMethodService.ts、Index.ets以及KeyboardKeyData.ts。目录如下：
+2. 在InputMethodExtensionAbility目录下，右键选择“New > TypeScript File”，新建四个TypeScript文件，分别为KeyboardController.ts、InputMethodService.ts、Index.ets以及KeyboardKeyData.ts。目录如下：
 
 ```
 /src/main/
@@ -47,6 +43,12 @@
 │      └── KeyboardKeyData.ts			    # 键盘属性定义
 ├── resources/base/profile/main_pages.json   
 ```
+
+> **说明：**
+> 
+> 在编译输入法应用时，要使用system_basic级别的签名，否则无法拉起输入法键盘。
+> 
+> [签名指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)。
 
 ## 文件介绍
 
@@ -352,9 +354,7 @@
    }
    ```
 
-
-
-## 限制
+## 约束与限制
 
 为了降低InputMethodExtensionAbility能力被三方应用滥用的风险，在InputMethodExtensionAbility中限制调用以下模块中的接口。
 
@@ -366,7 +366,7 @@
 >   - 仅允许InputMethodExtensionAbility处于前台时开展与录音相关的业务。如仅允许软键盘在前台且用户主动操作语音输入法时，才进行录音；应用切换到后台时，应主动停止录音；
 >   - 系统会逐步增加对违反以上约定的行为进行管控和识别，因此未遵守此约定可能会造成业务功能异常。
 
-**禁用列表：**
+**模块列表：** 
 
 - [@ohos.ability.featureAbility (FeatureAbility模块)](../reference/apis/js-apis-ability-featureAbility.md)
 - [@ohos.ability.particleAbility (ParticleAbility模块)](../reference/apis/js-apis-ability-particleAbility.md)

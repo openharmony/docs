@@ -69,7 +69,7 @@ Data sources of the archived type can be classified into local resources, online
   API:
 
   ```
-  Image($rawfile('snap'))
+  Image($rawfile('example1'))
   ```
 
 - Media library **file://data/storage**
@@ -79,7 +79,8 @@ Data sources of the archived type can be classified into local resources, online
   1. Call the API to obtain the image URL in the media library.
       ```ts
       import picker from '@ohos.file.picker';
-      
+      import { BusinessError } from '@ohos.base';
+
       @Entry
       @Component
       struct Index {
@@ -96,11 +97,13 @@ Data sources of the archived type can be classified into local resources, online
               this.imgDatas = PhotoSelectResult.photoUris;
               console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
             }).catch((err:Error) => {
-              console.error(`PhotoViewPicker.select failed with. Code: ${err.code}, message: ${err.message}`);
+              let message = (err as BusinessError).message;
+              let code = (err as BusinessError).code;
+              console.error(`PhotoViewPicker.select failed with. Code: ${code}, message: ${message}`);
             });
           } catch (err) {
-            let message:BusinessError = (err as BusinessError).message;
-            let code:BusinessError = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            let code = (err as BusinessError).code;
             console.error(`PhotoViewPicker failed with. Code: ${code}, message: ${message}`);    }
         }
       
@@ -117,7 +120,7 @@ Data sources of the archived type can be classified into local resources, online
                   Image(item)
                     .width(200)
                 }
-              }, ((item:string):string => JSON.stringify(item)))
+              }, (item:string):string => JSON.stringify(item))
             }
           }.width('100%').height('100%')
         }
@@ -156,45 +159,53 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
        import http from '@ohos.net.http';
        import ResponseCode from '@ohos.net.http';
        import image from '@ohos.multimedia.image';
+       import { BusinessError } from '@ohos.base';
        ```
    2. Enter the online image address.
        ```ts
+       let OutData: http.HttpResponse
        http.createHttp().request("https://www.example.com/xxx.png",
-         (error:Error) => {
-           if (error){
+         (error: BusinessError, data: http.HttpResponse) => {
+           if (error) {
              console.error(`http reqeust failed with. Code: ${error.code}, message: ${error.message}`);
            } else {
+             OutData = data
            }
          }
        )
        ```
    3. Transcode the data returned by the online image address to a pixel map.  
        ```ts
-       let code:object = data.responseCode;
+       let code: http.ResponseCode | number = OutData.responseCode
        if (ResponseCode.ResponseCode.OK === code) {
-         let imageSource:image = image.createImageSource(data.result);
-         class tmp{
-           height:number = 100
-           width:number = 100
+         let imageSource: image.ImageSource = image.createImageSource(OutData.result.toString());
+       
+         class tmp {
+           height: number = 100
+           width: number = 100
          }
-         let si:tmp = new tmp()
-         let options:Record<string,number|boolean|tmp> = {
+       
+         let si: tmp = new tmp()
+         let options: Record<string, number | boolean | tmp> = {
            'alphaType': 0, // Alpha type.
            'editable': false, // Whether the image is editable.
            'pixelFormat': 3, // Pixel format.
            'scaleMode': 1, // Scale mode.
            'size': { height: 100, width: 100 }
          }  // Image size.
-         class imagetmp{
-           image:image
-           set(val:PixelMap){
+       
+         class imagetmp {
+           image: PixelMap
+       
+           set(val: PixelMap) {
              this.image = val
            }
          }
-          imageSource.createPixelMap(options).then((pixelMap:PixelMap) => {
-          let im = new imagetmp()
-            im.set(pixelMap)
-       })
+       
+         imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
+           let im = new imagetmp()
+           im.set(pixelMap)
+         })
        }
        ```
    4. Display the image.
@@ -432,7 +443,7 @@ struct MyComponent {
 
 You can use the **sourceSize** attribute to set the image decoding size. By setting the decoding size to lower than the source size, you can decrease the image resolution.
 
-In this example, the source image size is 1280 x 960, and the decoding size is 150 x 100 and 400 x 400.
+In this example, the source image size is 1280 x 960, and the decoding sizes are 40 x 40 and 90 x 90.
 
 
 ```ts
@@ -441,29 +452,28 @@ In this example, the source image size is 1280 x 960, and the decoding size is 1
 struct Index {
   build() {
     Column() {
-      Row({ space: 20 }) {
+      Row({ space: 50 }) {
         Image($r('app.media.example'))
           .sourceSize({
-            width: 150,
-            height: 150
+            width: 40,
+            height: 40
+          })
+          .objectFit(ImageFit.ScaleDown)
+          .aspectRatio(1)
+          .width('25%')
+          .border({ width: 1 })
+          .overlay('width:40 height:40', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
+        Image($r('app.media.example'))
+          .sourceSize({
+            width: 90,
+            height: 90
           })
           .objectFit(ImageFit.ScaleDown)
           .width('25%')
           .aspectRatio(1)
           .border({ width: 1 })
-          .overlay('width:150 height:150', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
-        Image($r('app.media.example'))
-          .sourceSize({
-            width: 400,
-            height: 400
-          })
-          .objectFit(ImageFit.ScaleDown)
-          .width('25%')
-          .aspectRatio(1)
-          .border({ width: 1 })
-          .overlay('width:400 height:400', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
+          .overlay('width:90 height:90', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
       }.height(150).width('100%').padding(20)
-
     }
   }
 }
@@ -522,14 +532,6 @@ By binding the **onComplete** event to the **\<Image>** component, you can obtai
 
 
 ```ts
-class tmp{
-  width: number = 0
-  height: number = 0
-  componentWidth: number = 0
-  componentHeight: number = 0
-}
-
-let msg:tmp = new tmp()
 @Entry
 @Component
 struct MyComponent {

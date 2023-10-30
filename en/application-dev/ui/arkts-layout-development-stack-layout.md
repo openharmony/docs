@@ -3,11 +3,11 @@
 
 ## Overview
 
-The stack layout reserves an area on the screen to display elements in a component and allows the elements to be stacked. You can implement a stack layout through the [\<Stack>](../reference/arkui-ts/ts-container-stack.md) component, which provides a stack container where positioned or non-positioned child components are pushed successively and the latter one sits on top of the previous one.
+The stack layout reserves an area on the screen to display elements in a component and allows the elements to be stacked. You can implement a stack layout through the [\<Stack>](../reference/arkui-ts/ts-container-stack.md) component, which provides a stack container where positioned or non-positioned child elements are pushed successively and the latter one sits on top of the previous one.
 
-The stack layout excels at page stacking and positioning, and is widely used in ads and widget arrangement.
+The stack layout excels at page stacking and positioning, and is widely used in ad and widget arrangement.
 
-In the **\<Stack>** component shown in Figure 1, the sequence of child elements (child components) is Item1 -> Item2 -> Item3.
+In the **\<Stack>** component shown in Figure 1, the sequence of child elements is Item1 -> Item2 -> Item3.
 
 
   **Figure 1** Stack layout 
@@ -17,7 +17,7 @@ In the **\<Stack>** component shown in Figure 1, the sequence of child elements 
 
 ## How to Develop
 
-The **\<Stack>** component can contain a wide variety of child components, which are stacked in the center by default based on their sizes. While respecting the constraints of **\<Stack>**, child components are laid out in their respective style.
+The **\<Stack>** component can contain various child elements, which are stacked in the center by default. While respecting the constraints of **\<Stack>**, child elements are laid out in their respective style.
 
 
 
@@ -38,7 +38,7 @@ Column(){
 
 ## Alignment
 
-Alignment of child components in the **\<Stack>** component is set through the [alignContent](../reference/arkui-ts/ts-appendix-enums.md#alignment) parameter. As shown in Figure 2, nine alignment modes are supported.
+Alignment of elements in the **\<Stack>** component is set through the [alignContent](../reference/arkui-ts/ts-appendix-enums.md#alignment) parameter. As shown in Figure 2, nine alignment modes are supported.
 
   **Figure 2** Alignment modes in the \<Stack> component 
 
@@ -47,45 +47,45 @@ Alignment of child components in the **\<Stack>** component is set through the [
 
 ## Z-order Control
 
-The stacking order of child components in the **\<Stack>** component is set through the **[zIndex](../reference/arkui-ts/ts-universal-attributes-z-order.md)** attribute. A larger **zIndex** value indicates a higher display level.
+The stacking order of child elements in the **\<Stack>** component is set through the **[zIndex](../reference/arkui-ts/ts-universal-attributes-z-order.md)** attribute. A larger **zIndex** value indicates a higher display level.
 
-  In the stack layout, if the size of a component is greater than that of the one before it, the one before it is hidden.
+  In the stack layout, if the size of an element is greater than that of the one before it, the one before it is hidden.
 
 ```ts
 let MTopM1:Record<string,number> = { 'top': 100 }
 Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
-    Text ('Stacked component 1').textAlign (TextAlign.End).fontSize (20)
+    Text ('Stacked element 1').textAlign (TextAlign.End).fontSize (20)
   }.width(100).height(100).backgroundColor(0xffd306)
 
   Column() {
-    Text ('Stacked component 2').fontSize (20)
+    Text ('Stacked element 2').fontSize (20)
   }.width(150).height(150).backgroundColor(Color.Pink)
 
   Column() {
-    Text ('Stacked component 3').fontSize (20)
+    Text ('Stacked element 3').fontSize (20)
   }.width(200).height(200).backgroundColor(Color.Grey)
 }.margin(MTopM1).width(350).height(350).backgroundColor(0xe0e0e0)
 ```
 
 ![en-us_image_0000001511900544](figures/en-us_image_0000001511900544.png)
 
-In the following figure, the size of the stacked component 3 is greater than that of all the components before it. Therefore, the first two components are completely hidden. To show these components, modify their **zIndex** attribute settings.
+In the following figure, the size of the stacked element 3 is greater than that of all the elements before it. Therefore, the first two elements are completely hidden. To show these elements, modify their **zIndex** attribute settings.
 
 
 ```ts
 let MTopM:Record<string,number> = { 'top': 100 }
 Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
-    Text ('Stacked component 1').fontSize (20)
+    Text ('Stacked element 1').fontSize (20)
   }.width(100).height(100).backgroundColor(0xffd306).zIndex(2)
 
   Column() {
-    Text ('Stacked component 2').fontSize (20)
+    Text ('Stacked element 2').fontSize (20)
   }.width(150).height(150).backgroundColor(Color.Pink).zIndex(1)
 
   Column() {
-    Text ('Stacked component 3').fontSize (20)
+    Text ('Stacked element 3').fontSize (20)
   }.width(200).height(200).backgroundColor(Color.Grey)
 }.margin(MTopM).width(350).height(350).backgroundColor(0xe0e0e0)
 ```
@@ -95,7 +95,7 @@ Stack({ alignContent: Alignment.BottomStart }) {
 
 ## Example Scenario
 
-In this example, the stack layout is used to quickly set up a page display model.
+In this example, the stack layout is used to quickly set up a page.
 
 
 ```ts
@@ -116,7 +116,7 @@ struct StackSample {
             .textAlign(TextAlign.Center)
             .borderRadius(10)
             .backgroundColor(0xFFFFFF)
-        }, ((item:string):string => item))
+        }, (item:string):string => item)
       }.width('100%').height('100%')
 
       Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {

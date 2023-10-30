@@ -120,7 +120,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbilityStage extends AbilityStage {
     onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-        console.log('onMemoryLevel, level: ${JSON.stringify(level)}');
+        console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
     } 
 }
 ```

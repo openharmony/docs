@@ -16,7 +16,7 @@
 
 >  **说明：**
 >
->  WaterFlow子组件的visibility属性设置为None时不显示，但依然会占用子组件对应的网格。
+>  WaterFlow子组件的visibility属性设置为None时不显示，但该子组件周围的gap还会生效。
 
 ## 接口
 

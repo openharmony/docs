@@ -10,11 +10,13 @@
     - [@ohos.app.ability.AbilityStage (AbilityStage)](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](js-apis-app-ability-actionExtensionAbility.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](js-apis-app-ability-applicationStateChangeCallback.md)
+    - [@ohos.app.ability.ChildProcess](js-apis-app-ability-childProcess.md)
+    - [@ohos.app.ability.childProcessManager (childProcessManager)](js-apis-app-ability-childProcessManager.md)
     - [@ohos.app.ability.common (应用上下文Context)](js-apis-app-ability-common.md)
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](js-apis-app-ability-environmentCallback.md)
     - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](js-apis-app-ability-extensionAbility.md)
-    - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](js-apis-app-ability-printExtensionAbility.md)
+    - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](js-apis-app-ability-PrintExtensionAbility.md)
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-app-ability-serviceExtensionAbility.md)
     - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](js-apis-app-ability-shareExtensionAbility.md)
     - [@ohos.app.ability.StartOptions (StartOptions)](js-apis-app-ability-startOptions.md)
@@ -87,6 +89,7 @@
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
       - [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)
       - [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)
+      - [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)
       - [AbilityStateData](js-apis-inner-application-abilityStateData.md)
       - [abilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md)
       - [ApplicationContext](js-apis-inner-application-applicationContext.md)
@@ -391,7 +394,7 @@
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
   - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)](js-apis-WallpaperExtensionAbility.md)
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
-  - [console (控制台)](js-apis-logs.md)
+  - [Console (控制台)](js-apis-logs.md)
   - [Timer (定时器)](js-apis-timer.md)
   - [syscap (系统能力)](js-apis-syscap.md)
   - application
@@ -463,6 +466,8 @@
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)](js-apis-EnterpriseAdminExtensionAbility.md)
   - [@ohos.enterprise.networkManager (网络管理)](js-apis-enterprise-networkManager.md)
   - [@ohos.enterprise.restrictions (限制类策略)](js-apis-enterprise-restrictions.md)
+  - [@ohos.enterprise.securityManager (安全管理)](js-apis-enterprise-securityManager.md)
+  - [@ohos.enterprise.systemManager (系统管理)](js-apis-enterprise-systemManager.md)
   - [@ohos.enterprise.usbManager (USB管理)](js-apis-enterprise-usbManager.md)
   - [@ohos.enterprise.wifiManager (WiFi管理)](js-apis-enterprise-wifiManager.md)
 
@@ -487,9 +492,11 @@
   - [@ohos.util.Stack (线性容器Stack)](js-apis-stack.md)
   - [@ohos.util.TreeMap (非线性容器TreeMap)](js-apis-treemap.md)
   - [@ohos.util.TreeSet (非线性容器TreeSet)](js-apis-treeset.md)
-  - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
   - [@ohos.worker (启动一个Worker)](js-apis-worker.md)
   - [@ohos.xml (xml解析与生成)](js-apis-xml.md)
+
+- 应用服务
+  - [@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
 
 - 测试
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)
@@ -516,6 +523,7 @@
   - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
   - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
   - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
+  - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)

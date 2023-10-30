@@ -59,9 +59,9 @@ featureAbility.startAbility(
     },
     (error, data) => {
         if (error && error.code !== 0) {
-            console.error('startAbility fail, error: ${JSON.stringify(error)}');
+            console.error(`startAbility fail, error: ${JSON.stringify(error)}`);
         } else {
-            console.log('startAbility success, data: ${JSON.stringify(data)}');
+            console.log(`startAbility success, data: ${JSON.stringify(data)}`);
         }
     }
 );
@@ -115,7 +115,7 @@ featureAbility.startAbility(
         },
     }
 ).then((data) => {
-    console.info('startAbility data: ${JSON.stringify(data)}');
+    console.info(`startAbility data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -199,9 +199,9 @@ featureAbility.startAbilityForResult(
     },
     (error, data) => {
         if (error && error.code !== 0) {
-            console.error('startAbilityForResult fail, error: ${JSON.stringify(error)}');
+            console.error(`startAbilityForResult fail, error: ${JSON.stringify(error)}`);
         } else {
-            console.log('startAbilityForResult success, data: ${JSON.stringify(data)}');
+            console.log(`startAbilityForResult success, data: ${JSON.stringify(data)}`);
         }
     }
 );
@@ -267,7 +267,7 @@ featureAbility.startAbilityForResult(
         },
     },
 ).then((data) => {
-    console.info('startAbilityForResult data: ${JSON.stringify(data)}');
+    console.info(`startAbilityForResult data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -318,7 +318,7 @@ featureAbility.terminateSelfWithResult(
         },
     },
     (error) => {
-        console.error('error: ${JSON.stringify(error)}');
+        console.error(`error: ${JSON.stringify(error)}`);
     }
 );
 ```
@@ -399,9 +399,9 @@ Checks whether the main window of this ability has the focus. This API uses an a
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus((error, data) => {
     if (error && error.code !== 0) {
-        console.error('hasWindowFocus fail, error: ${JSON.stringify(error)}');
+        console.error(`hasWindowFocus fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('hasWindowFocus success, data: ${JSON.stringify(data)}');
+        console.log(`hasWindowFocus success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -425,7 +425,7 @@ Checks whether the main window of this ability has the focus. This API uses a pr
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
-    console.info('hasWindowFocus data: ${JSON.stringify(data)}');
+    console.info(`hasWindowFocus data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -449,9 +449,9 @@ Obtains the Want corresponding to the ability to start. This API uses an asynchr
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant((error, data) => {
     if (error && error.code !== 0) {
-        console.error('getWant fail, error: ${JSON.stringify(error)}');
+        console.error(`getWant fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('getWant success, data: ${JSON.stringify(data)}');
+        console.log(`getWant success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -475,7 +475,7 @@ Obtains the Want corresponding to the ability to start. This API uses a promise 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant().then((data) => {
-    console.info('getWant data: ${JSON.stringify(data)}');
+    console.info(`getWant data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -500,9 +500,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 context.getBundleName((error, data) => {
     if (error && error.code !== 0) {
-        console.error('getBundleName fail, error: ${JSON.stringify(error)}');
+        console.error(`getBundleName fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('getBundleName success, data: ${JSON.stringify(data)}');
+        console.log(`getBundleName success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -527,7 +527,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf(
     (error) => {
-        console.error('error: ${JSON.stringify(error)}');
+        console.error(`error: ${JSON.stringify(error)}`);
     }
 )
 ```
@@ -649,9 +649,9 @@ let connectId = featureAbility.connectAbility(
 
 featureAbility.disconnectAbility(connectId, (error) => {
     if (error && error.code !== 0) {
-        console.error('disconnectAbility fail, connectId: ${connectId}, error: ${JSON.stringify(error)}');
+        console.error(`disconnectAbility fail, connectId: ${connectId}, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('disconnectAbility success, connectId: ${connectId}');
+        console.log(`disconnectAbility success, connectId: ${connectId}`);
     }
 });
 ```
@@ -732,9 +732,9 @@ import window from '@ohos.window';
 
 featureAbility.getWindow((error: BusinessError, data: window.Window) => {
     if (error && error.code !== 0) {
-        console.error('getWindow fail, error: ${JSON.stringify(error)}');
+        console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('getWindow success, data: ${JSON.stringify(data)}');
+        console.log(`getWindow success, data: ${JSON.stringify(data)}`);
     }
 });
 ```

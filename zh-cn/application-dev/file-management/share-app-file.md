@@ -8,6 +8,14 @@
 
 开发者可以使用相关接口，[分享文件给其他应用](#分享文件给其他应用)或[使用其他应用分享的文件](#使用其他应用分享的文件)。
 
+## 应用可分享目录
+
+| 沙箱路径                             | 物理路径                                                                             | 说明 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; |
+| -------                              | -------                                                                             | ---- |
+| /data/storage/el1/base               | /data/app/el1/\<currentUserId\>/base/\<PackageName\>                                | 应用el1级别加密数据目录 |
+| /data/storage/el2/base               | /data/app/el2/\<currentUserId\>/base/\<PackageName\>                                | 应用el2级别加密数据目录 |
+| /data/storage/el2/distributedfiles   | /mnt/hmdfs/\<currentUserId\>/account/device_view/\<networkId\>/data/\<PackageName\> | 应用el2加密级别有帐号分布式数据融合目录 |
+
 ## 文件URI规范
 
 文件URI的格式为：

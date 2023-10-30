@@ -18,21 +18,54 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview'
+
+  //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  @CustomDialog
+  struct NewWebViewComp {
+  controller?: CustomDialogController
+  webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+      Column() {
+        Web({ src: "", controller: this.webviewController1 })
+          .javaScriptAccess(true)
+          .multiWindowAccess(false)
+          .onWindowExit(()=> {
+            console.info("NewWebViewComp onWindowExit")
+            if (this.controller) {
+              this.controller.close()
+            }
+          })
+        }
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    dialogController: CustomDialogController | null = null
     build() {
       Column() {
         Web({ src:$rawfile("window.html"), controller: this.controller })
-        .multiWindowAccess(true)
-        .onWindowNew((event) => {
-          console.info("onWindowNew...");
-          let popController: web_webview.WebviewController = new web_webview.WebviewController();
-          // 开发者需要在此处新建窗口,跟popController关联，并且将popController返回给Web组件。如果不需要打开新窗口请将返回值设置为event.handler.setWebController(null);
-          event.handler.setWebController(popController);
-        })
+          .javaScriptAccess(true)
+          //需要使能multiWindowAccess
+          .multiWindowAccess(true)
+          .allowWindowOpenMethod(true)
+          .onWindowNew((event) => {
+            if (this.dialogController) {
+              this.dialogController.close()
+            }
+            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            this.dialogController = new CustomDialogController({
+              builder: NewWebViewComp({webviewController1: popController})
+            })
+            this.dialogController.open()
+            //将新窗口对应WebviewController返回给Web内核。
+            //如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
+            //若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            event.handler.setWebController(popController)
+          })
       }
     }
   }
@@ -48,18 +81,15 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
       <meta charset="utf-8">
       <title>WindowEvent</title>
   </head>
-
   <body>
   <input type="button" value="新窗口中打开网页" onclick="OpenNewWindow()">
   <script type="text/javascript">
       function OpenNewWindow()
       {
           let openedWindow = window.open("about:blank", "", "location=no,status=no,scrollvars=no");
-          if (openedWindow) {
-              openedWindow.document.body.write("<p>这是我的窗口</p>");
-          } else {
-              log.innerHTML = "window.open failed";
-          }
+          openedWindow.document.write("<p>这是我的窗口</p>");
+          openedWindow.focus();
+
       }
   </script>
   </body>

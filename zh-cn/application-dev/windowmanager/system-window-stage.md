@@ -178,7 +178,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
       // 1. 获取窗口属性转换控制器
       let controller: window.TransitionController = windowClass.getTransitionController();
       // 2. 配置窗口显示时的动画
-      controller.animationForShown = (context: window.TransitionContext) => {
+      (context: window.TransitionContext) => {
         let toWindow: window.Window = context.toWindow
         // 配置动画参数
         animateTo({
@@ -202,6 +202,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
           console.info('toWindow translate end');
         })
         console.info('complete transition end');
+        controller.animationForHidden(context);
       }
 
       windowClass.loadContent("pages/page_volume", (err: BusinessError) => {
@@ -235,7 +236,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
     // 1. 获取窗口属性转换控制器
     let controller: window.TransitionController = (windowClass as window.Window).getTransitionController();
     // 2. 配置窗口显示时的动画
-    controller.animationForHidden = (context: window.TransitionContext) => {
+    (context: window.TransitionContext) => {
       let toWindow: window.Window = context.toWindow
       // 配置动画参数
       animateTo({
@@ -262,6 +263,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
         console.info('toWindow opacity end');
       })
       console.info('complete transition end');
+      controller.animationForHidden(context);
     }
       // 4.隐藏当前窗口，过程中播放动画
     (windowClass as window.Window).hideWithAnimation((err: BusinessError) => {

@@ -12,7 +12,7 @@ import camera from '@ohos.multimedia.camera';
 
 ## camera.getCameraManager
 
-getCameraManager(context: featureAbility.Context): CameraManager
+getCameraManager(context: BaseContext): CameraManager
 
 获取相机管理器实例，同步返回结果。
 
@@ -22,7 +22,7 @@ getCameraManager(context: featureAbility.Context): CameraManager
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [Context](js-apis-inner-app-context.md)      | 是   | 应用上下文。                   |
+| context  | [BaseContext](js-apis-inner-application-baseContext.md)      | 是   | 应用上下文。                   |
 
 **返回值：**
 
@@ -42,10 +42,10 @@ getCameraManager(context: featureAbility.Context): CameraManager
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
-function getCameraManager(context: featureAbility.Context): camera.CameraManager | undefined {
+function getCameraManager(context: common.BaseContext): camera.CameraManager | undefined {
   let cameraManager: camera.CameraManager | undefined = undefined;
   try {
     cameraManager = camera.getCameraManager(context);
@@ -58,7 +58,7 @@ function getCameraManager(context: featureAbility.Context): camera.CameraManager
 ```
 ## camera.getModeManager
 
-getModeManager(context: featureAbility.Context): ModeManager
+getModeManager(context: BaseContext): ModeManager
 
 获取模式化管理器实例，同步返回结果。
 
@@ -72,7 +72,7 @@ getModeManager(context: featureAbility.Context): ModeManager
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [Context](js-apis-inner-app-context.md)      | 是   | 应用上下文。                   |
+| context  | [BaseContext](js-apis-inner-application-baseContext.md)      | 是   | 应用上下文。                   |
 
 **返回值：**
 
@@ -92,10 +92,10 @@ getModeManager(context: featureAbility.Context): ModeManager
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
-function getModeManager(context: featureAbility.Context): camera.ModeManager | undefined {
+function getModeManager(context: common.BaseContext): camera.ModeManager | undefined {
   let modeManager: camera.ModeManager | undefined = undefined;
   try {
     modeManager = camera.getModeManager(context);
@@ -150,7 +150,7 @@ function getModeManager(context: featureAbility.Context): camera.ModeManager | u
 
 | 名称                       | 类型                                      | 必填 | 说明        |
 | ------------------------- | ----------------------------------------- | --- |----------- |
-| frameRateRange            | [FrameRateRange](#frameraterange)         | 是  | 帧率范围。   |
+| frameRateRange            | [FrameRateRange](#frameraterange)         | 是  | 帧率范围，fps(frames per second)。 |
 
 ## CameraOutputCapability
 
@@ -830,7 +830,8 @@ function unregisterCameraMute(cameraManager: camera.CameraManager): void {
 
 isPrelaunchSupported(camera: CameraDevice): boolean
 
-在setPrelaunchConfig接口使用前调用，用于判断指定cameraDevice是否支持预热启动。
+检查指定cameraDevice是否支持预热启动。
+
 
 **系统接口：** 此接口为系统接口。
 
@@ -859,9 +860,9 @@ isPrelaunchSupported(camera: CameraDevice): boolean
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-function isPreLaunchSupported(context: featureAbility.Context): boolean {
+function isPreLaunchSupported(context: common.BaseContext): boolean {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   let isSupported: boolean = false;
@@ -877,6 +878,8 @@ function isPreLaunchSupported(context: featureAbility.Context): boolean {
 ### setPrelaunchConfig
 
 setPrelaunchConfig(prelaunchConfig: PrelaunchConfig): void
+
+在调用setPrelaunchConfig接口前，需要先检查设备是否支持预热启动，使用[isPrelaunchSupported](#isprelaunchsupported)判断指定cameraDevice是否支持预热启动。
 
 **系统接口：** 此接口为系统接口。
 
@@ -902,10 +905,10 @@ setPrelaunchConfig(prelaunchConfig: PrelaunchConfig): void
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
-function setPrelaunchConfig(context: featureAbility.Context): void {
+function setPrelaunchConfig(context: common.BaseContext): void {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   if (cameras && cameras.length >= 1) {
@@ -935,10 +938,10 @@ prelaunch(): void
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
-function preLaunch(context: featureAbility.Context): void {
+function preLaunch(context: common.BaseContext): void {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   try {
     cameraManager.prelaunch();
@@ -982,9 +985,9 @@ createDeferredPreviewOutput(profile: Profile): PreviewOutput
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-function getDeferredPreviewOutput(context: featureAbility.Context, previewProfile: camera.Profile): camera.PreviewOutput {
+function getDeferredPreviewOutput(context: common.BaseContext, previewProfile: camera.Profile): camera.PreviewOutput {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
   const output: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
   return output;
@@ -2302,7 +2305,7 @@ function getExposureMode(captureSession: camera.CaptureSession): camera.Exposure
 
 setExposureMode(aeMode: ExposureMode): void
 
-设置曝光模式。
+设置曝光模式。进行设置之前，需要先检查设备是否支持指定的曝光模式，可使用方法[isExposureModeSupported](#isexposuremodesupported)。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3034,7 +3037,7 @@ function getActiveVideoStabilizationMode(captureSession: camera.CaptureSession):
 
 setVideoStabilizationMode(mode: VideoStabilizationMode): void
 
-设置视频防抖模式。
+设置视频防抖模式。需要先检查设备是否支持对应的防抖模式，可以通过[isVideoStabilizationModeSupported](#isvideostabilizationmodesupported)方法判断所设置的模式是否支持。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3109,7 +3112,7 @@ function getSupportedFilters(portraitSession: camera.PortraitSession): Array<cam
 
 setFilter(filter: number): void
 
-设置滤镜效果。
+设置滤镜效果。需要先检查设备是否支持对应的滤镜效果，可以通过[getSupportedFilters](#getsupportedfilters)方法获取所支持的类型。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3425,7 +3428,7 @@ function registerCaptureSessionError(captureSession: camera.CaptureSession): voi
 
 off(type: 'error', callback?: ErrorCallback): void
 
-监听拍照会话的错误事件，通过注册回调函数获取结果。
+注销监听拍照会话的错误事件，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3483,7 +3486,7 @@ function getSupportedPortraitEffects(portraitSession: camera.PortraitSession): A
 
 setPortraitEffect(effect: PortraitEffect): void
 
-设置人像虚化效果。
+设置人像虚化效果。需要先检查设备是否支持人像虚化模式，可以通过[getSupportedPortraitEffects](#getsupportedportraiteffects)获取当前设备所支持的PortraitEffect。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3940,9 +3943,9 @@ addDeferredSurface(surfaceId: string): void
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function preview(context: featureAbility.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
+async function preview(context: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo)
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
@@ -4524,9 +4527,9 @@ isQuickThumbnailSupported(): boolean
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function isQuickThumbnailSupported(context: featureAbility.Context, photoProfile: camera.Profile, surfaceId: string): Promise<boolean> {
+async function isQuickThumbnailSupported(context: common.BaseContext, photoProfile: camera.Profile, surfaceId: string): Promise<boolean> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   // 创建CaptureSession实例
@@ -4574,10 +4577,10 @@ enableQuickThumbnail(enabled: boolean): void
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
-async function enableQuickThumbnail(context: featureAbility.Context, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
+async function enableQuickThumbnail(context: common.BaseContext, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   // 创建CaptureSession实例
@@ -4627,10 +4630,10 @@ on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
-async function registerQuickThumbnail(context: featureAbility.Context, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
+async function registerQuickThumbnail(context: common.BaseContext, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   // 创建CaptureSession实例

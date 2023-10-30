@@ -42,10 +42,14 @@ import Want from '@ohos.app.ability.Want';
     abilityName: 'EntryAbility',
     moduleName: 'entry' // moduleName非必选
   };
-  this.context.startAbility(want, (error: BusinessError) => {
-      // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-      console.error('error.code = ${error.code}');
-  });
+  class MyAbility extends UIAbility{
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam){
+      this.context.startAbility(want, (error: BusinessError) => {
+        // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+        console.error(`error.code = ${error.code}`);
+      });
+    }
+  }
   ```
 
 - 传递FD(文件描述符)数据(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)
@@ -54,26 +58,35 @@ import Want from '@ohos.app.ability.Want';
   import fs from '@ohos.file.fs';
   import Want from '@ohos.app.ability.Want';
   import { BusinessError } from '@ohos.base';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
   // ...
   let fd: number = 0;
   try {
-      fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
+    fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
   } catch(e) {
-      console.error(`openSync fail: ${JSON.stringify(e)}`);
+    console.error(`openSync fail: ${JSON.stringify(e)}`);
   }
+
+
   let want: Want = {
     deviceId: '', // deviceId为空表示本设备
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility',
     moduleName: 'entry', // moduleName非必选
     parameters: {
-          'keyFd':{'type':'FD', 'value':fd}
-      }
+      'keyFd':{'type':'FD', 'value':fd}
+    }
   };
-  this.context.startAbility(want, (error: BusinessError) => {
-      // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-      console.error(`error.code = ${error.code}`);
-  });
+  class MyAbility extends UIAbility{
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam){
+      this.context.startAbility(want, (error: BusinessError) => {
+        // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+        console.error(`error.code = ${error.code}`);
+      });
+    }
+  }
   // ...
   ```
   

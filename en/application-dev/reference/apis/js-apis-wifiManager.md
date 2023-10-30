@@ -31,7 +31,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 | **ID**| **Error Message**|
 | -------- | -------- |
 | 2501000  | Operation failed.|
-| 2501003  | Failed to disable Wi-Fi.|
+| 2501003  | Failed to enable Wi-Fi.|
 
 **Example**
 
@@ -64,7 +64,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 | **ID**| **Error Message**|
 | -------- | -------- |
 | 2501000  | Operation failed.|
-| 2501004  | Failed to enable Wi-Fi.|
+| 2501004  | Failed to disable Wi-Fi.|
 
 **Example**
 
@@ -401,7 +401,7 @@ Represents WLAN hotspot information.
 
 ## DeviceAddressType <sup>10+</sup>
 
-Enumerates the Wi-Fi device address (MAC/BISSID) types.
+Enumerates the Wi-Fi device address (MAC/BSSID) types.
 
 **System capability**: SystemCapability.Communication.WiFi.Core
 
@@ -1249,7 +1249,7 @@ Obtains WLAN connection information. This API uses a promise to return the resul
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_LOCAL_MAC (if **macAddress** needs to be obtained; otherwise, **macAddress** is an empty string.)
 
-**System capability**: SystemCapability.Communication.WiFi.STA
+ **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
 
@@ -1656,7 +1656,7 @@ Represents the IPv6 information.
 | -------- | -------- | -------- | -------- | -------- |
 | linkIpv6Address | string | Yes| No| IPv6 address of the link.|
 | globalIpv6Address | string | Yes| No| Global IPv6 address.|
-| randomGlobalIpv6Address | number | Yes| No| Random global IPv6 address.|
+| randomGlobalIpv6Address | string | Yes| No| Random global IPv6 address.|
 | gateway | string | Yes| No| Gateway IP address.|
 | netmask | string | Yes| No| Subnet mask.|
 | primaryDNS | string | Yes| No| IPv6 address of the preferred DNS server.|
@@ -2750,7 +2750,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 			groupName: "****",
 			goBand: 0
 		}
-		wifiManager.createP2pGroup(config);	
+		wifiManager.createGroup(config);	
 		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -2859,12 +2859,12 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
   }
   wifiManager.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
   
-  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
+  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice) => {
       console.info("p2p device change receive event: " + JSON.stringify(result));
   }
   wifiManager.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
   
-  let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
+  let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("p2p peer device change receive event: " + JSON.stringify(result));
       wifiManager.getP2pPeerDevices((err, data) => {
           if (err) {
@@ -2938,23 +2938,6 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
-## wifiManager.startDiscoverDevices<sup>10+</sup>
-
-startDiscoverDevices(): void
-
-Starts to discover devices.
-
-**Required permissions**: ohos.permission.GET_WIFI_INFO
-
-**System capability**: SystemCapability.Communication.WiFi.P2P
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 2801000  | Operation failed.|
 
 ## wifiManager.startDiscoverDevices<sup>9+</sup>
 
@@ -3597,7 +3580,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 **Example**
 ```ts
-import wifi from '@ohos.wifi';
+import wifi from '@ohos.wifiManager';
 
 let recvDeviceConfigChangeFunc = (result:number) => {
     console.info("Receive device config change event: " + result);
@@ -3702,7 +3685,7 @@ Subscribes to the connection of an STA to a Wi-Fi hotspot.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **hotspotStaJoin**.|
-| callback | Callback&lt;StationInfo&gt; | Yes| Callback invoked immediately after an STA is connected to a Wi-Fi hotspot.|
+| callback | Callback&lt;StationInfo&gt; | No| Callback invoked immediately after an STA is connected to a Wi-Fi hotspot.|
 
 **Error codes**
 
@@ -3710,7 +3693,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2501000  | Operation failed.|
+| 2601000  | Operation failed.|
 
 ## wifiManager.off('hotspotStaJoin')<sup>9+</sup>
 
@@ -3737,21 +3720,21 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2501000  | Operation failed.|
+| 2601000  | Operation failed.|
 
 **Example**
 ```ts
-import wifi from '@ohos.wifi';
+import wifiManager from '@ohos.wifiManager';
 
-let recvHotspotStaJoinFunc = (result:number) => {
+let recvHotspotStaJoinFunc = (result:wifiManager.StationInfo) => {
     console.info("Receive hotspot sta join event: " + result);
 }
 
 // Register an event.
-wifi.on("hotspotStaJoin", recvHotspotStaJoinFunc);
+wifiManager.on("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 // Unregister an event.
-wifi.off("hotspotStaJoin", recvHotspotStaJoinFunc);
+wifiManager.off("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 ```
 
@@ -3772,7 +3755,7 @@ Subscribes to the disconnection of an STA from a Wi-Fi hotspot.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
-  | callback | Callback&lt;StationInf]&gt; | Yes| Callback invoked immediately after an STA is disconnected from a Wi-Fi hotspot.|
+| callback | Callback&lt;StationInf]&gt; | No| Callback invoked immediately after an STA is disconnected from a Wi-Fi hotspot.|
 
 **Error codes**
 
@@ -3780,9 +3763,9 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2501000  | Operation failed.|
+| 2601000  | Operation failed.|
 
-## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
+## wifiManager.off('hotspotStaLeave')<sup>7+</sup>
 
 off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 
@@ -3811,17 +3794,17 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 **Example**
 ```ts
-import wifi from '@ohos.wifi';
+import wifiManager from '@ohos.wifiManager';
 
-let recvHotspotStaLeaveFunc = (result:number) => {
+let recvHotspotStaLeaveFunc = (result:wifiManager.StationInfo) => {
     console.info("Receive hotspot sta leave event: " + result);
 }
 
 // Register an event.
-wifi.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
+wifiManager.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
 
 // Unregister an event.
-wifi.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
+wifiManager.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
 
 ```
 
@@ -3954,7 +3937,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pConnectionChangeFunc = (result:number) => {
+  let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("Receive p2p connection change event: " + result);
   }
   
@@ -4027,7 +4010,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pDeviceChangeFunc = (result:number) => {
+  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice) => {
       console.info("Receive p2p device change event: " + result);
   }
   
@@ -4100,7 +4083,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pPeerDeviceChangeFunc = (result:number) => {
+  let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("Receive p2p peer device change event: " + result);
   }
   
@@ -4111,7 +4094,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
   wifiManager.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
 ```
 
-## wifiManager.on('p2pPersistentGroupChange')<sup>9</sup>
+## wifiManager.on('p2pPersistentGroupChange')<sup>9+</sup>
 
 on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 
@@ -4136,7 +4119,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 | -------- | -------- |
 | 2801000  | Operation failed.|
 
-## wifiManager.off('p2pPersistentGroupChange')<sup>9</sup>
+## wifiManager.off('p2pPersistentGroupChange')<sup>9+</sup>
 
 off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 
@@ -4165,7 +4148,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pPersistentGroupChangeFunc = (result:number) => {
+  let recvP2pPersistentGroupChangeFunc = (result:void) => {
       console.info("Receive p2p persistent group change event: " + result);
   }
   

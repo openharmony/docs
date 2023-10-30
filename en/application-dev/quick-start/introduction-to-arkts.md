@@ -33,8 +33,8 @@ Declarations in ArkTS introduce:
 A declaration starting with the keyword `let` introduces a variable which can have different values during program execution.
 
 ```typescript
-let hi: string = "hello"
-hi = "hello, world"
+let hi: string = 'hello'
+hi = 'hello, world'
 ```
 
 ### Constant Declaration
@@ -42,7 +42,7 @@ hi = "hello, world"
 A declaration starting with the keyword `const` introduces a read-only constant that can be assigned only once.
 
 ```typescript
-const hello: string = "hello"
+const hello: string = 'hello'
 ```
 
 A compile-time error occurs if a new value is assigned to a constant.
@@ -58,8 +58,8 @@ All cases that allow the type to be inferred automatically are specified in the 
 Both variable declarations are valid, and both variables are of the `string` type:
 
 ```typescript
-let hi1: string = "hello"
-let hi2 = "hello, world"
+let hi1: string = 'hello'
+let hi2 = 'hello, world'
 ```
 
 ## Types
@@ -95,11 +95,11 @@ let n2 = 3.141592
 let n3 = .5
 let n4 = 1e10
 
-function factorial(n: number) : number {
-    if (n <= 1) {
-        return 1
-    }
-    return n * factorial(n - 1)
+function factorial(n: number): number {
+  if (n <= 1) {
+    return 1
+  }
+  return n * factorial(n - 1)
 }
 ```
 
@@ -115,7 +115,7 @@ let isDone: boolean = false
 // ...
 
 if (isDone) {
-    console.log ("Done!")
+  console.log ('Done!')
 }
 ```
 
@@ -126,7 +126,7 @@ A `string` is a sequence of characters; some characters can be set by using esca
 A `string` literal consists of zero or more characters enclosed in single (') or double quotes ("). The special form of string literals are template literals enclosed in backtick quotes (\`).
 
 ```typescript
-let s1 = "Hello, world!\n"
+let s1 = 'Hello, world!\n'
 let s2 = 'this is a string'
 let a = 'Success'
 let s3 = `The result is ${a}`
@@ -140,7 +140,7 @@ a reference type, it can be used as type argument for generic types.
 
 ```typescript
 class Class<T> {
-    //...
+  //...
 }
 let instance: Class <void>
 ```
@@ -157,7 +157,7 @@ A value of an `array` is set by using *array composite literal*, that is a list 
 The following example creates the `array` with three elements:
 
 ```typescript
-let names: string[] = ["Alice", "Bob", "Carol"]
+let names: string[] = ['Alice', 'Bob', 'Carol']
 ```
 
 ### `Enum` Type
@@ -213,10 +213,10 @@ type Animal = Cat | Dog | Frog | number
 
 let animal: Animal = new Cat()
 if (animal instanceof Frog) {
-    let frog: Frog = animal // animal is of type Frog here
-    animal.leap()
-    frog.leap()
-    // As a result frog leaps twice
+  let frog: Frog = animal as Frog // animal is of type Frog here
+  animal.leap()
+  frog.leap()
+  // As a result frog leaps twice
 }
 
 animal.sleep () // Any animal can sleep
@@ -284,7 +284,7 @@ Binary operators are as follows:
 | `a && b`   | Logical AND  |
 | `a \|\| b`   | Logical OR   |
 | `! a`      | Logical NOT  |
-## Control Flow
+## Statements
 
 ### `If` Statements
 
@@ -296,25 +296,25 @@ An `if` statement looks as follows:
 
 ```typescript
 if (condition1) {
-    // statements1
+  // statements1
 } else if (condition2) {
-    // statements2
+  // statements2
 } else {
-    // else_statements
+  // else_statements
 }
 ```
 
 All conditional expressions must be of the type `boolean` or other types (`string`, `number`, etc.). For types other than `boolean`, implicit conversion rules apply:
 
 ```typescript
-let s1 = "Hello"
+let s1 = 'Hello'
 if (s1) {
-    console.log(s1) // prints "Hello"
+  console.log(s1) // prints 'Hello'
 }
 
-let s2 = "World"
+let s2 = 'World'
 if (s2.length != 0) {
-    console.log(s2) // prints "World"
+  console.log(s2) // prints 'World'
 }
 ```
 
@@ -326,18 +326,18 @@ A `switch` statement looks as follows:
 
 ```typescript
 switch (expression) {
-case label1: // will be executed if label1 is matched
+  case label1: // will be executed if label1 is matched
     // ...
     // statements1
     // ...
     break; // Can be omitted
-case label2:
-case label3: // will be executed if label2 or label3 is matched
+  case label2:
+  case label3: // will be executed if label2 or label3 is matched
     // ...
     // statements23
     // ...
     break; // Can be omitted
-default:
+  default:
     // default_statements
 }
 ```
@@ -381,7 +381,7 @@ A `for` statement looks as follows:
 
 ```typescript
 for ([init]; [condition]; [update]) {
-    statements
+  statements
 }
 ```
 
@@ -398,7 +398,7 @@ Example:
 ```typescript
 let sum = 0
 for (let i = 0; i < 10; i += 2) {
-    sum += i
+  sum += i
 }
 ```
 
@@ -410,14 +410,14 @@ A `for-of` statement looks as follows:
 
 ```typescript
 for (forVar of expression) {
-    statements
+  statements
 }
 ```
 
 Example:
 
 ```typescript
-for (let ch of "a string object") { /* process ch */ }
+for (let ch of 'a string object') { /* process ch */ }
 ```
 
 ### `While` Statements
@@ -428,7 +428,7 @@ A `while` statement looks as follows:
 
 ```typescript
 while (condition) {
-    statements
+  statements
 }
 ```
 
@@ -440,8 +440,8 @@ Example:
 let n = 0
 let x = 0
 while (n < 3) {
-    n++
-    x += n
+  n++
+  x += n
 }
 ```
 
@@ -453,7 +453,7 @@ A `do-while` statement looks as follows:
 
 ```typescript
 do {
-    statements
+  statements
 } while (condition)
 ```
 
@@ -464,7 +464,7 @@ Example:
 ```typescript
 let i = 0
 do {
-    i += 1
+  i += 1
 } while (i < 10)
 ```
 
@@ -477,10 +477,10 @@ Example:
 ```typescript
 let x = 0
 while (true) {
-    x++;
-    if (x > 5) {
-        break;
-    }
+  x++;
+  if (x > 5) {
+    break;
+  }
 }
 ```
 
@@ -491,11 +491,11 @@ Example:
 ```typescript
 let x = 1
 label: while (true) {
-    switch (x) {
+  switch (x) {
     case 1:
-        // statements
-        break label // breaks the while
-    }
+      // statements
+      break label // breaks the while
+  }
 }
 ```
 
@@ -508,10 +508,10 @@ Example:
 ```typescript
 let sum = 0
 for (let x = 0; x < 100; x++) {
-    if (x % 2 == 0) {
-        continue
-    }
-    sum += x
+  if (x % 2 == 0) {
+    continue
+  }
+  sum += x
 }
 ```
 
@@ -520,16 +520,16 @@ for (let x = 0; x < 100; x++) {
 A `throw` statement is used to throw an exception or an error:
 
 ```typescript
-throw new Error("this error")
+throw new Error('this error')
 ```
 
 A `try` statement is used to catch and handle an exception or an error:
 
 ```typescript
 try {
-    // try block
+  // try block
 } catch (e) {
-    // handle the situation
+  // handle the situation
 }
 ```
 
@@ -539,17 +539,17 @@ The example below shows the `throw` and `try` statements  used to handle the zer
 class ZeroDivisor extends Error {}
 
 function divide (a: number, b: number): number{
-    if (b == 0) throw new ZeroDivisor()
-    return a / b
+  if (b == 0) throw new ZeroDivisor()
+  return a / b
 }
 
 function process (a: number, b: number) {
-    try {
-        let res = divide(a, b)
-        console.log(res)
-    } catch (x) {
-        console.log("some error")
-    }
+  try {
+    let res = divide(a, b)
+    console.log(res)
+  } catch (x) {
+    console.log('some error')
+  }
 }
 ```
 
@@ -557,23 +557,23 @@ function process (a: number, b: number) {
 
 ```typescript
 function processData(s: string) {
-    let error : Error | null = null
+  let error: Error | null = null
 
-    try {
-        console.log("Data processed: ", s)
-        // ...
-        // Throwing operations
-        // ...
-    } catch (e) {
-        error = e as Error
-        // ...
-        // More error handling
-        // ...
-    } finally {
-        if (error != null) {
-            console.log(`Error caught: input='${s}', message='${error.message}'`)
-        }
+  try {
+    console.log('Data processed: ', s)
+    // ...
+    // Throwing operations
+    // ...
+  } catch (e) {
+    error = e as Error
+    // ...
+    // More error handling
+    // ...
+  } finally {
+    if (error != null) {
+      console.log(`Error caught: input='${s}', message='${error.message}'`)
     }
+  }
 }
 ```
 
@@ -587,8 +587,8 @@ Below is a simple function with two string parameters and string return type:
 
 ```typescript
 function add(x: string, y: string): string {
-    let z : string = `${x} ${y}`
-    return z
+  let z: string = `${x} ${y}`
+  return z
 }
 ```
 
@@ -601,11 +601,11 @@ An optional parameter has the form `name?: Type`.
 
 ```typescript
 function hello(name?: string) {
-    if (name == undefined) {
-        console.log("Hello, ${name}!")
-    } else {
-        console.log("Hello!")
-    }
+  if (name == undefined) {
+    console.log('Hello!')
+  } else {
+    console.log(`Hello, ${name}!`)
+  }
 }
 ```
 
@@ -614,9 +614,9 @@ If the corresponding argument to such parameter is omitted in a function call, t
 
 ```typescript
 function multiply(n: number, coeff: number = 2): number {
-    return n * coeff
+  return n * coeff
 }
-multiply(2)    // returns 2*2
+multiply(2)  // returns 2*2
 multiply(2, 3) // returns 2*3
 ```
 
@@ -626,10 +626,10 @@ The last parameter of a function can be a rest parameter. It allows functions or
 
 ```typescript
 function sum(...numbers: number[]): number {
-    let res = 0
-    for (let n of numbers)
-        res += n
-    return res
+  let res = 0
+  for (let n of numbers)
+    res += n
+  return res
 }
 
 sum() // returns 0
@@ -642,10 +642,10 @@ If function return type can be inferred from its body content, then it can be om
 
 ```typescript
 // Explicit return type
-function foo(): string { return "foo" }
+function foo(): string { return 'foo' }
 
 // Implicit return type inferred as string
-function goo() { return "goo" }
+function goo() { return 'goo' }
 ```
 
 The return type of a function that does not need to return a value can be explicitly specified as `void` or omitted altogether. No return statement is needed for such functions.
@@ -653,8 +653,8 @@ The return type of a function that does not need to return a value can be explic
 Both notations below are valid:
 
 ```typescript
-function hi1() { console.log("hi") }
-function hi2(): void { console.log("hi") }
+function hi1() { console.log('hi') }
+function hi2(): void { console.log('hi') }
 ```
 
 ## Function Scope
@@ -670,16 +670,16 @@ Calling a function actually leads to the execution of its body, while the argume
 If the function is defined as follows:
 
 ```typescript
-function join(x :string, y :string) :string {
-    let z: string = `${x} ${y}`
-    return z
+function join(x: string, y: string): string {
+  let z: string = `${x} ${y}`
+  return z
 }
 ```
 
 then it is called with two arguments of the type `string`:
 
 ```typescript
-let x = join("hello", "world")
+let x = join('hello', 'world')
 console.log(x)
 ```
 
@@ -691,7 +691,7 @@ Function types are commonly used as follows to define callbacks:
 type trigFunc = (x: number) => number // this is a function type
 
 function do_action(f: trigFunc) {
-     f(3.141592653589) // call the function
+   f(3.141592653589) // call the function
 }
 
 do_action(Math.sin) // pass the function as the parameter
@@ -703,7 +703,7 @@ A function can be defined as an arrow function, for example:
 
 ```typescript
 let sum = (x: number, y: number): number => {
-    return x + y
+  return x + y
 }
 ```
 
@@ -725,8 +725,8 @@ The closure allows accessing such an inner function outside its own environment.
 
 ```typescript
 function f(): () => number {
-    let count = 0
-    return (): number => { count++; return count }
+  let count = 0
+  return (): number => { count++; return count }
 }
 
 let z = f()
@@ -741,14 +741,14 @@ In the sample above, the arrow function closure captures the `count` variable.
 A function can be specified to be called in different ways by writing overload signatures. To do so, several functions' headers that have the same name but different signatures are written and immediately followed by the single implementation function.
 
 ```typescript
-function foo(): void;            /* 1st signature */
+function foo(): void;      /* 1st signature */
 function foo(x: string): void;   /* 2nd signature */
 function foo(x?: string): void { /* Implementation signature */
-    console.log(x)
+  console.log(x)
 }
 
-foo()     // ok, 1st signature is used
-foo("aa") // ok, 2nd signature is used
+foo()   // ok, 1st signature is used
+foo('aa') // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have identical parameter lists.
@@ -761,22 +761,22 @@ In the following example, class `Person` is defined, which has fields **name** a
 
 ```typescript
 class Person {
-    name: string = ""
-    surname: string = ""
-    constructor (n: string, sn: string) {
-        this.name = n
-        this.surname = sn
-    }
-    fullName(): string {
-        return this.name + " " + this.surname
-    }
+  name: string = ''
+  surname: string = ''
+  constructor (n: string, sn: string) {
+    this.name = n
+    this.surname = sn
+  }
+  fullName(): string {
+    return this.name + ' ' + this.surname
+  }
 }
 ```
 
 After the class is defined, its instances can be created by using the keyword `new`:
 
 ```typescript
-let p = new Person("John", "Smith")
+let p = new Person('John', 'Smith')
 console.log(p.fullName())
 ```
 
@@ -784,8 +784,8 @@ or an instance can be created by using object literals:
 
 ```typescript
 class Point {
-    x: number = 0
-    y: number = 0
+  x: number = 0
+  y: number = 0
 }
 let p: Point = {x: 42, y: 42}
 ```
@@ -800,21 +800,27 @@ Classes may have instance fields, static fields or both.
 
 Instance fields exist on every instance of a class. Each instance has its own set of instance fields.
 
+An instance of the class is used to access an instance field.
+
 ```typescript
 class Person {
-    name: string = ""
-    age: number = 0
-    constructor(n: string, a: number) {
-        this.name = n
-        this.age = a
-    }
+  name: string = ''
+  age: number = 0
+  constructor(n: string, a: number) {
+    this.name = n
+    this.age = a
+  }
+
+  GetName(): string {
+    return this.name
+  }
 }
 
-let p1 = new Person("Alice", 25)
-let p2 = new Person("Bob", 28)
+let p1 = new Person('Alice', 25)
+console.log(p1.name)
+let p2 = new Person('Bob', 28)
+console.log(p2.GetName())
 ```
-
-An instance of the class is used to access an instance field:
 
 ```typescript
 p1.name
@@ -829,15 +835,105 @@ The class name is used to access a static field:
 
 ```typescript
 class Person {
-    static numberOfPersons = 0
-    constructor() {
-       // ...
-       Person.numberOfPersons++
-       // ...
-    }
+  static numberOfPersons = 0
+  constructor() {
+     // ...
+     Person.numberOfPersons++
+     // ...
+  }
 }
 
 console.log(Person.numberOfPersons)
+```
+
+### Field Initializers
+
+ArkTS requires that all fields are explicitly initialized with some values
+either when the field is declared or in the `constructor`. This is similar
+to `strictPropertyInitialization` mode of the standard TypeScript. Such behavior
+is enforced to minimize the number of unexpected runtime errors and achieve
+better performance.
+
+The following code (invalid in ArkTS) is error-prone:
+
+```typescript
+class Person {
+  name: string // The compiler automatically sets to undefined
+
+  setName(n:string): void {
+    this.name = n
+  }
+
+  getName(): string {
+  // Return type "string" hides from the developers the fact
+  // that name can be undefined. The most correct would be
+  // to write the return type as "string | undefined". By doing so
+  // we tell the users of our API about all possible return values.
+    return this.name
+  }
+}
+
+let jack = new Person()
+// Let's assume that the developer forgets to call setName:
+// jack.setName('Jack')
+console.log(jack.getName().length); // runtime exception: name is undefined
+```
+
+Here is how it should look in ArkTS:
+
+```typescript
+class Person {
+  name: string = '' // The field is always defined
+
+  setName(n:string): void {
+    this.name = n
+  }
+
+  // The type is always string, no other "hidden options".
+  getName(): string {
+    return this.name
+  }
+}
+
+let jack = new Person()
+// Let's assume that the developer forgets to call setName:
+// jack.setName('Jack')
+console.log(jack.getName().length); // 0, no runtime error
+```
+
+And here how our code behaves if the field `name` can be `undefined`
+
+```typescript
+class Person {
+  name ?: string // The field may be undefined, great
+  // More explicit syntax may also be used:
+  // name: string | undefined = undefined
+
+  setName(n:string): void {
+    this.name = n
+  }
+
+  // Compile-time error:
+  // name can be "undefined", so we cannot say to those who use this API
+  // that it returns only strings:
+  getNameWrong(): string {
+    return this.name
+  }
+
+  getName(): string | undefined { // Return type matches the type of name
+    return this.name
+  }
+}
+
+let jack = new Person()
+// Let's assume that the developer forgets to call setName:
+// jack.setName('Jack')
+
+// Compile-time(!) error: Compiler suspects that we
+// may possibly access something undefined and won't build the code:
+console.log(jack.getName().length); // The code won't build and run
+
+console.log(jack.getName()?.length); // Builds ok, no runtime error
 ```
 
 ### Getters and Setters
@@ -848,15 +944,15 @@ In the following example, a setter is used to forbid setting invalid values of t
 
 ```typescript
 class Person {
-    name: string = ""
-    private _age: number = 0
-    get age(): number { return this._age }
-    set age(x: number) {
-        if (x < 0) {
-            throw Error("Invalid age argument")
-        }
-        this._age = x
+  name: string = ''
+  private _age: number = 0
+  get age(): number { return this._age }
+  set age(x: number) {
+    if (x < 0) {
+      throw Error('Invalid age argument')
     }
+    this._age = x
+  }
 }
 
 let p = new Person()
@@ -880,14 +976,14 @@ The `calculateArea` method calculates the area of a rectangle by multiplying the
 
 ```typescript
 class Rectangle {
-    private height: number = 0
-    private width: number = 0
-    constructor(height: number, width: number) {
-        // ...
-    }
-    calculateArea(): number {
-        return this.height * this.width;
-    }
+  private height: number = 0
+  private width: number = 0
+  constructor(height: number, width: number) {
+    // ...
+  }
+  calculateArea(): number {
+    return this.height * this.width;
+  }
 }
 ```
 
@@ -908,42 +1004,49 @@ The class name is used to call a static method:
 
 ```typescript
 class Cl {
-    static staticMethod(): string {
-        return "this is a static method."
-    }
+  static staticMethod(): string {
+    return 'this is a static method.'
+  }
 }
 console.log(Cl.staticMethod())
 ```
 
 ### Inheritance
 
-A class can extend another class (called base class) and implement several interfaces by using the following syntax:
+A class can extend another class.
+The class that is being extended by another class is called ‘*base class*’,
+‘parent class’, or ‘superclass’.
+The class that extends another class is called ‘*extended class*’, ‘derived
+class’ or ‘subclass’.
+
+An extended class can implement several interfaces by using the
+following syntax:
 
 ```typescript
 class [extends BaseClassName] [implements listOfInterfaces] {
-    // ...
+  // ...
 }
 ```
 
-The extended class inherits fields and methods from the base class, but not constructors, and can add its own fields and methods as well as override methods defined by the base class.
-
-The base class is also called 'parent class' or 'superclass'. The extended class also called 'derived class' or 'subclass'.
+An extended class inherits fields and methods, but not constructors from
+the base class, and can add its own fields and methods, as well as override
+methods defined by the base class.
 
 Example:
 
 ```typescript
 class Person {
-    name: string = ""
-    private _age = 0
-    get age(): number {
-      return this._age
-    }
+  name: string = ''
+  private _age = 0
+  get age(): number {
+    return this._age
+  }
 }
 class Employee extends Person {
-    salary: number = 0
-    calculateTaxes(): number {
-      return this.salary * 0.42
-    }
+  salary: number = 0
+  calculateTaxes(): number {
+    return this.salary * 0.42
+  }
 }
 ```
 
@@ -951,13 +1054,13 @@ A class containing the `implements` clause must implement all methods defined in
 
 ```typescript
 interface DateInterface {
-    now(): string;
+  now(): string;
 }
 class MyDate implements DateInterface {
-    now(): string {
-        // implementation is here
-        return "now is now"
-    }
+  now(): string {
+    // implementation is here
+    return 'now is now'
+  }
 }
 ```
 
@@ -969,30 +1072,30 @@ It is often used to extend basic functionality of subclass with the required beh
 
 ```typescript
 class Rectangle {
-    protected height: number = 0
-    protected width: number = 0
+  protected height: number = 0
+  protected width: number = 0
 
-    constructor (h: number, w: number) {
-        this.height = h
-        this.width = w
-    }
+  constructor (h: number, w: number) {
+    this.height = h
+    this.width = w
+  }
 
-    draw() {
-        /* draw bounds */
-    }
+  draw() {
+    /* draw bounds */
+  }
 }
 class FilledRectangle extends Rectangle {
-    color = ""
-    constructor (h: number, w: number, c: string) {
-        super(h, w) // call of super constructor
-        this.color = c
-    }
+  color = ''
+  constructor (h: number, w: number, c: string) {
+    super(h, w) // call of super constructor
+    this.color = c
+  }
 
-    override draw() {
-        super.draw() // call of super methods
-        // super.height - can be used here
-        /* fill rectangle */
-    }
+  override draw() {
+    super.draw() // call of super methods
+    // super.height - can be used here
+    /* fill rectangle */
+  }
 }
 ```
 
@@ -1004,17 +1107,17 @@ An overridden method must have the same types of parameters, and same or derived
 
 ```typescript
 class Rectangle {
-    // ...
-    area(): number {
-        // implementation
-        return 0
-    }
+  // ...
+  area(): number {
+    // implementation
+    return 0
+  }
 }
 class Square extends Rectangle {
-    private side: number = 0
-    override area(): number {
-        return this.side * this.side
-    }
+  private side: number = 0
+  override area(): number {
+    return this.side * this.side
+  }
 }
 ```
 
@@ -1024,15 +1127,15 @@ A method can be specified to be called in different ways by writing overload sig
 
 ```typescript
 class C {
-    foo(): void;            /* 1st signature */
-    foo(x: string): void;   /* 2nd signature */
-    foo(x?: string): void { /* implementation signature */
-        console.log(x)
-    }
+  foo(): void;            /* 1st signature */
+  foo(x: string): void;   /* 2nd signature */
+  foo(x?: string): void { /* implementation signature */
+    console.log(x)
+  }
 }
 let c = new C()
 c.foo()     // ok, 1st signature is used
-c.foo("aa") // ok, 2nd signature is used
+c.foo('aa') // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have the same name and identical parameter lists.
@@ -1045,7 +1148,7 @@ A constructor is defined as follows:
 
 ```typescript
 constructor ([parameters]) {
-    // ...
+  // ...
 }
 ```
 
@@ -1053,8 +1156,8 @@ If no constructor is defined, then a default constructor with an empty parameter
 
 ```typescript
 class Point {
-    x: number = 0
-    y: number = 0
+  x: number = 0
+  y: number = 0
 }
 let p = new Point()
 ```
@@ -1067,14 +1170,14 @@ The first statement of a constructor body can use the keyword `super` to explici
 
 ```typescript
 class Rectangle {
-    constructor(width: number, height: number) {
-        // ...
-    }
+  constructor(width: number, height: number) {
+    // ...
+  }
 }
 class Square extends Rectangle {
-    constructor(side: number) {
-        super(side, side)
-    }
+  constructor(side: number) {
+    super(side, side)
+  }
 }
 ```
 
@@ -1086,14 +1189,14 @@ A constructor can be specified to be called in different ways by writing overloa
 
 ```typescript
 class C {
-    constructor()             /* 1st signature */
-    constructor(x: string)    /* 2nd signature */
-    constructor(x?: string) { /* Implementation signature */
-        console.log(x)
-    }
+  constructor()             /* 1st signature */
+  constructor(x: string)    /* 2nd signature */
+  constructor(x?: string) { /* Implementation signature */
+    console.log(x)
+  }
 }
 let c1 = new C()      // ok, 1st signature is used
-let c2 = new C("abc") // ok, 2nd signature is used
+let c2 = new C('abc') // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have the same name and identical parameter lists.
@@ -1104,9 +1207,9 @@ Both methods and properties of a class can have visibility modifiers.
 
 There are several visibility modifiers:
 
-- `private`,
-- `protected`,
-- `public`.
+- `private`
+- `protected`
+- `public`
 
 The default visibility is `public`.
 
@@ -1121,15 +1224,15 @@ Example:
 
 ```typescript
 class C {
-    public x: string = ""
-    private y: string = ""
-    set_y (new_y: string) {
-        this.y = new_y // ok, as y is accessible within the class itself
-    }
+  public x: string = ''
+  private y: string = ''
+  set_y (new_y: string) {
+    this.y = new_y // ok, as y is accessible within the class itself
+  }
 }
 let c = new C()
-c.x = "a" // ok, the field is public
-c.y = "b" // compile-time error: 'y' is not visible
+c.x = 'a' // ok, the field is public
+c.y = 'b' // compile-time error: 'y' is not visible
 ```
 
 ### Protected Visibility
@@ -1139,14 +1242,14 @@ Example:
 
 ```typescript
 class Base {
-    protected x: string = ""
-    private y: string = ""
+  protected x: string = ''
+  private y: string = ''
 }
 class Derived extends Base {
-    foo() {
-        this.x = "a" // ok, access to protected member
-        this.y = "b" // compile-time error, 'y' is not visible, as it is private
-    }
+  foo() {
+    this.x = 'a' // ok, access to protected member
+    this.y = 'b' // compile-time error, 'y' is not visible, as it is private
+  }
 }
 ```
 
@@ -1158,30 +1261,30 @@ A class composite is written as a comma-separated list of name-value pairs enclo
 
 ```typescript
 class C {
-    n: number = 0
-    s: string = ""
+  n: number = 0
+  s: string = ''
 }
 
-let c: C = {n: 42, s: "foo"}
+let c: C = {n: 42, s: 'foo'}
 ```
 
 Due to the static typing of the ArkTS, object literals can be used in a context where the class or interface type of the object literal can be inferred as in the example above. Other valid cases are illustrated below:
 
 ```typescript
 class C {
-    n: number = 0
-    s: string = ""
+  n: number = 0
+  s: string = ''
 }
 
 function foo(c: C) {}
 
 let c: C
 
-c = {n: 42, s: "foo"}  // type of the variable is used
-foo({n: 42, s: "foo"}) // type of the parameter is used
+c = {n: 42, s: 'foo'}  // type of the variable is used
+foo({n: 42, s: 'foo'}) // type of the parameter is used
 
 function bar(): C {
-    return {n: 42, s: "foo"} // return type is used
+  return {n: 42, s: 'foo'} // return type is used
 }
 ```
 
@@ -1189,10 +1292,10 @@ The type of an array element or of a class field can also be used:
 
 ```typescript
 class C {
-    n: number = 0
-    s: string = ""
+  n: number = 0
+  s: string = ''
 }
-let cc: C[] = [{n: 1, s: "a"}, {n: 2, s: "b"}]
+let cc: C[] = [{n: 1, s: 'a'}, {n: 2, s: 'b'}]
 ```
 
 ### Object Literals of Record Type
@@ -1203,23 +1306,23 @@ A special form of object literal is used to initialize the value of such type:
 
 ```typescript
 let map: Record<string, number> = {
-    "John": 25,
-    "Mary": 21,
+  'John': 25,
+  'Mary': 21,
 }
 
-console.log(map["John"]) // prints 25
+console.log(map['John']) // prints 25
 ```
 
 The K type can be either string or number, while V can be any type.
 
 ```typescript
 interface PersonInfo {
-    age: number
-    salary: number
+  age: number
+  salary: number
 }
 let map: Record<string, PersonInfo> = {
-    "John": { age: 25, salary: 10},
-    "Mary": { age: 21, salary: 20}
+  'John': { age: 25, salary: 10},
+  'Mary': { age: 21, salary: 20}
 }
 ```
 
@@ -1235,11 +1338,11 @@ Examples:
 
 ```typescript
 interface Style {
-    color: string // property
+  color: string // property
 }
 interface Area {
-    calculateArea(): number // method header
-    someMethod() : void;    // method header
+  calculateArea(): number // method header
+  someMethod(): void;    // method header
 }
 ```
 
@@ -1248,21 +1351,21 @@ Examples of a class implementing an interface:
 ```typescript
 // Interface:
 interface Area {
-    calculateArea(): number // method header
-    someMethod() : void;    // method header
+  calculateArea(): number // method header
+  someMethod(): void;    // method header
 }
 
 // Implementation:
 class Rectangle implements Area {
-    private width: number = 0
-    private height: number = 0
-    someMethod() : void {
-        console.log("someMethod called")
-    }
-    calculateArea(): number {
-        this.someMethod() // calls another method and returns result
-        return this.width * this.height
-    }
+  private width: number = 0
+  private height: number = 0
+  someMethod(): void {
+    console.log('someMethod called')
+  }
+  calculateArea(): number {
+    this.someMethod() // calls another method and returns result
+    return this.width * this.height
+  }
 }
 ```
 
@@ -1274,12 +1377,12 @@ A property field is just a shortcut notation of a getter/setter pair, and the fo
 
 ```typescript
 interface Style {
-    color: string
+  color: string
 }
 
 interface Style {
-    get color(): string
-    set color(x: string)
+  get color(): string
+  set color(x: string)
 }
 ```
 
@@ -1287,11 +1390,11 @@ A class that implements an interface may also use a short or a long notation:
 
 ```typescript
 interface Style {
-    color: string
+  color: string
 }
 
 class StyledRectangle implements Style {
-    color: string = ""
+  color: string = ''
 }
 ```
 
@@ -1299,13 +1402,13 @@ The short notation implicitly defines a private field and getter and setter:
 
 ```typescript
 interface Style {
-    color: string
+  color: string
 }
 
 class StyledRectangle implements Style {
-    private _color: string = ""
-    get color(): string { return this._color }
-    set color(x: string) { this._color = x }
+  private _color: string = ''
+  get color(): string { return this._color }
+  set color(x: string) { this._color = x }
 }
 ```
 
@@ -1315,11 +1418,11 @@ An interface may extend other interfaces like in the example below:
 
 ```typescript
 interface Style {
-    color: string
+  color: string
 }
 
 interface ExtendedStyle extends Style {
-    width: number
+  width: number
 }
 ```
 
@@ -1341,12 +1444,12 @@ A class and an interface can be defined as generics, adding parameters to the ty
 
 ```typescript
 class Stack<Element> {
-    public pop(): Element {
-        // ...
-    }
-    public push(e: Element): void {
-        // ...
-    }
+  public pop(): Element {
+    // ...
+  }
+  public push(e: Element): void {
+    // ...
+  }
 }
 ```
 
@@ -1354,7 +1457,7 @@ To use type Stack, the type argument must be specified for each type parameter:
 
 ```typescript
 let s = new Stack<string>
-s.push("hello")
+s.push('hello')
 ```
 
 Compiler ensures type safety while working with generic types and functions.
@@ -1362,7 +1465,8 @@ See below:
 
 ```typescript
 let s = new Stack<string>
-s.push(55) // That will be a compile-time error
+s.push(55) /* That will be a compile-time error as 55 is not compatible
+  with type string */
 ```
 
 ## Generic Constraints
@@ -1371,13 +1475,13 @@ Type parameters of generic types can be bounded. For example, the `Key` type par
 
 ```typescript
 interface Hashable {
-    hash(): number
+  hash(): number
 }
 class HasMap<Key extends Hashable, Value> {
-    public set(k: Key, v: Value) {
-        let h = k.hash()
-        // ... other code ...
-    }
+  public set(k: Key, v: Value) {
+    let h = k.hash()
+    // ... other code ...
+  }
 }
 ```
 
@@ -1389,7 +1493,7 @@ Use a generic function to create a more universal code. Consider a function that
 
 ```typescript
 function last(x: number[]): number {
-    return x[x.length -1]
+  return x[x.length - 1]
 }
 console.log(last([1, 2, 3])) // output: 3
 ```
@@ -1398,7 +1502,7 @@ If the same function needs to be defined for any array, then define it as a gene
 
 ```typescript
 function last<T>(x: T[]): T {
-    return x[x.length - 1]
+  return x[x.length - 1]
 }
 ```
 
@@ -1408,7 +1512,7 @@ In a function call, type argument can be set explicitly or implicitly:
 
 ```typescript
 // Explicit type argument
-console.log(last<string>(["aa", "bb"]))
+console.log(last<string>(['aa', 'bb']))
 console.log(last<number>([1, 2, 3]))
 
 // Implicit type argument:
@@ -1430,7 +1534,7 @@ class Derived1 extends Base implements Interface { }
 class Derived2 extends Base<SomeType> implements Interface<SomeType> { }
 
 function foo<T = number>(): T {
-    // ...
+  // ...
 }
 foo()
 // such function is semantically equivalent to the call below
@@ -1446,8 +1550,8 @@ In the example below, all lines cause a compile-time error:
 
 ```typescript
 let x: number = null    // Compile-time error
-let y: string = null    // ditto
-let z: number[] = null  // ditto
+let y: string = null    // Compile-time error
+let z: number[] = null  // Compile-time error
 ```
 
 A variable that can have a null value is defined with a union type `T | null`.
@@ -1483,11 +1587,11 @@ In the following example, the method `getNick` returns a nickname if it is set; 
 
 ```typescript
 class Person {
-    // ...
-    nick: string | null = null
-    getNick(): string {
-        return this.nick ?? ""
-    }
+  // ...
+  nick: string | null = null
+  getNick(): string {
+    return this.nick ?? ''
+  }
 }
 ```
 
@@ -1497,25 +1601,25 @@ Optional chaining operator `?.` allows writing code where the evaluation stops a
 
 ```typescript
 class Person {
-    nick    : string | null = null
-    spouse ?: Person
+  nick: string | null = null
+  spouse?: Person
 
-    setSpouse(spouse: Person) : void {
-        this.spouse = spouse
-    }
+  setSpouse(spouse: Person): void {
+    this.spouse = spouse
+  }
 
-    getSpouseNick(): string | null | undefined {
-        return this.spouse?.nick
-    }
+  getSpouseNick(): string | null | undefined {
+    return this.spouse?.nick
+  }
 
-    constructor(nick: string) {
-        this.nick = nick
-        this.spouse = undefined
-    }
+  constructor(nick: string) {
+    this.nick = nick
+    this.spouse = undefined
+  }
 }
 ```
 
-**Note**: The return type of `getSpouseNick` must be `string | null | undefined`, as the method can return null or undefined.
+**Note**: The return type of `getSpouseNick` must be `string | null | undefined`, as the method can return `null` or `undefined`.
 
 An optional chain can be of any length and contain any number of `?.` operators.
 
@@ -1525,16 +1629,16 @@ Otherwise, the output is `undefined`:
 
 ```typescript
 class Person {
-    nick    : string | null = null
-    spouse ?: Person
+  nick: string | null = null
+  spouse?: Person
 
-    constructor(nick: string) {
-        this.nick = nick
-        this.spouse = undefined
-    }
+  constructor(nick: string) {
+    this.nick = nick
+    this.spouse = undefined
+  }
 }
 
-let p: Person = new Person("Alice")
+let p: Person = new Person('Alice')
 console.log(p.spouse?.nick) // print: undefined
 ```
 
@@ -1554,16 +1658,16 @@ A declared name that is not exported is considered private and can be used only 
 
 ```typescript
 export class Point {
-    x: number = 0
-    y: number = 0
-    constructor(x: number, y: number) {
-      this.x = x
-      this.y = y
-    }
+  x: number = 0
+  y: number = 0
+  constructor(x: number, y: number) {
+    this.x = x
+    this.y = y
+  }
 }
 export let Origin = new Point(0, 0)
 export function Distance(p1: Point, p2: Point): number {
-    return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y))
+  return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y))
 }
 ```
 
@@ -1583,7 +1687,7 @@ An import binding of the form `* as A` binds the name 'A', and all entities expo
 the qualified name `A.name`:
 
 ```typescript
-import * as Utils from "./utils"
+import * as Utils from './utils'
 Utils.X // denotes X from Utils
 Utils.Y // denotes Y from Utils
 ```
@@ -1591,7 +1695,7 @@ Utils.Y // denotes Y from Utils
 An import binding of the form `{ ident1, ..., identN }` binds an exported entity with a specified name, which can be used as a simple name:
 
 ```typescript
-import { X, Y } from "./utils"
+import { X, Y } from './utils'
 X // denotes X from Utils
 Y // denotes Y from Utils
 ```
@@ -1599,7 +1703,7 @@ Y // denotes Y from Utils
 If a list of identifiers contains aliasing of the form `ident as alias`, then entity `ident` is bound under the name `alias`:
 
 ```typescript
-import { X as Z, Y } from "./utils"
+import { X as Z, Y } from './utils'
 Z // denotes X from Utils
 Y // denotes Y from Utils
 X // Compile-time error: 'X' is not visible
@@ -1619,7 +1723,7 @@ The `main` function must have either an empty parameter list or a single paramet
 
 ```typescript
 function main() {
-    console.log("this is the program entry")
+  console.log('this is the program entry')
 }
 ```
 
@@ -1629,311 +1733,6 @@ This section demonstrates mechanisms that ArkTS provides for creating graphical 
 
 ## ArkUI Example
 
-The following example provides a complete ArkUI-based application as an illustration of GUI programming capabilities. For more details of the ArkUI features, refer to the ArkUI [tutorial](arkts-get-started.md).
+The [Example](arkts-mvvm.md#example) provides a complete ArkUI-based application as an illustration of GUI programming capabilities.
 
-```typescript
-// ViewModel classes ---------------------------
-
-let nextId: number = 0
-
-@Observed class ObservedArray<T> extends Array<T> {
-    constructor(arr: T[]) {
-        super(arr)
-    }
-}
-
-@Observed class Address {
-    street : string
-    zip    : number
-    city   : string
-
-    constructor(street: string, zip: number, city: string) {
-        this.street = street
-        this.zip = zip
-        this.city = city
-    }
-}
-
-@Observed class Person {
-    id_     : string
-    name    : string
-    address : Address
-    phones  : ObservedArray<string>
-
-    constructor(
-        name   : string,
-        street : string,
-        zip    : number,
-        city   : string,
-        phones : string[]
-    ) {
-        this.id_ = nextId.toString()
-        nextId++
-
-        this.name = name
-        this.address = new Address(street, zip, city)
-        this.phones = new ObservedArray<string>(phones)
-    }
-}
-
-class AddressBook {
-    me       : Person
-    contacts : ObservedArray<Person>
-
-    constructor(me: Person, contacts: Person[]) {
-        this.me = me
-        this.contacts = new ObservedArray<Person>(contacts)
-    }
-}
-
-// @Components -----------------------
-
-// Renders the name of a Person object and the first number in the phones
-// ObservedArray<string>
-// For also the phone number to update we need two @ObjectLink here,
-// person and phones, can not use this.person.phones.
-// Changes of inner Array not observed.
-// onClick updates selectedPerson also in AddressBookView, PersonEditView
-@Component
-struct PersonView {
-
-    @ObjectLink person   : Person
-    @ObjectLink phones   : ObservedArray<string>
-    @Link selectedPerson : Person
-
-    build() {
-        Flex({
-          direction: FlexDirection.Row,
-          justifyContent: FlexAlign.SpaceBetween
-        }) {
-            Text(this.person.name)
-            Select(this.phones.length != 0, Text(this.phones[0]), null)
-        }
-        .height(55)
-        .backgroundColor(
-            this.selectedPerson.name == this.person.name ?
-               "#ffa0a0" : "#ffffff"
-        )
-        .onClick(() => {
-            this.selectedPerson = this.person
-        })
-    }
-}
-
-// Renders all details
-// @Prop get initialized from parent AddressBookView, TextInput onChange
-// modifies local copies only on "Save Changes" copy all data from @Prop
-// to @ObjectLink, syncs to selectedPerson in other @Components.
-@Component
-struct PersonEditView {
-
-    @Consume addrBook: AddressBook
-
-    /* Person object and sub-objects owned by the parent Component */
-    @Link selectedPerson: Person
-
-    /* editing on local copy until save is handled */
-    @Prop name    : string
-    @Prop address : Address
-    @Prop phones  : ObservedArray<string>
-
-    selectedPersonIndex() : number {
-        return this.addrBook.contacts.findIndex(
-            (person) => person.id_ == this.selectedPerson.id_
-        )
-    }
-
-    build() {
-        Column() {
-            TextInput({text: this.name})
-                .onChange((value) => {
-                    this.name = value
-                })
-
-            TextInput({text: this.address.street})
-                .onChange((value) => {
-                    this.address.street = value
-                })
-
-            TextInput({text: this.address.city})
-                .onChange((value) => {
-                    this.address.city = value
-                })
-
-            TextInput({text: this.address.zip.toString()})
-                .onChange((value) => {
-                    const result = Number.parseInt(value)
-                    this.address.zip = Number.isNaN(result) ? 0 : result
-                })
-
-            Select(this.phones.length > 0,
-                ForEach(this.phones, (phone, index) => {
-                    TextInput({text: phone})
-                        .width(150)
-                        .onChange((value) => {
-                            console.log(
-                              `${index}.${value} value has changed`
-                            )
-                            this.phones[index] = value
-                        })
-                }, (phone, index) => `${index}-${phone}`),
-                null)
-
-            Flex({
-                direction: FlexDirection.Row,
-                justifyContent: FlexAlign.SpaceBetween
-            }) {
-                Text("Save Changes")
-                    .onClick(() => {
-                        // copy values from local copy to the provided ref
-                        // to Person object owned by parent Component.
-                        // Avoid creating new Objects, modify properties of
-                        // the existing ones:
-                        this.selectedPerson.name           = this.name
-                        this.selectedPerson.address.street =
-                                                   this.address.street
-                        this.selectedPerson.address.city   =
-                                                     this.address.city
-                        this.selectedPerson.address.zip    =
-                                                      this.address.zip
-                        this.phones.forEach(
-                            (phone : string, index : number) => {
-                            this.selectedPerson.phones[index] = phone
-                        })
-                    })
-                Select(this.selectedPersonIndex() != -1,
-                    Text("Delete Contact")
-                        .onClick(() => {
-                            let index = this.selectedPersonIndex()
-                            console.log(`delete contact at index ${index}`)
-
-                            // delete found contact
-                            this.addrBook.contacts.splice(index, 1)
-
-                            // determine new selectedPerson
-                            index = (index < this.addrBook.contacts.length)
-                                ? index
-                                : index - 1
-
-                            // if no contact left, set me as selectedPerson
-                            this.selectedPerson = (index >= 0)
-                                ? this.addrBook.contacts[index]
-                                : this.addrBook.me
-                        }),
-                    null)
-            }
-        }
-    }
-}
-
-@Component
-struct AddressBookView {
-
-    @ObjectLink me        : Person
-    @ObjectLink contacts  : ObservedArray<Person>
-    @State selectedPerson : Person = null
-
-    aboutToAppear() {
-        this.selectedPerson = this.me
-    }
-
-    build() {
-        Flex({
-          direction: FlexDirection.Column,
-          justifyContent: FlexAlign.Start
-        }) {
-            Text("Me:")
-            PersonView({
-                person: this.me,
-                phones: this.me.phones,
-                selectedPerson: this.$selectedPerson})
-
-            Divider().height(8)
-
-            Flex({
-                direction: FlexDirection.Row,
-                justifyContent: FlexAlign.SpaceBetween
-            }) {
-                Text("Contacts:")
-                Text("Add")
-                    .onClick(() => {
-                        this.selectedPerson = new Person (
-                          "", "", 0, "", ["+86"]
-                        )
-                        this.contacts.push(this.selectedPerson)
-                    })
-            }.height(50)
-
-            ForEach(this.contacts,
-                contact => {
-                    PersonView({
-                        person: contact,
-                        phones: contact.phones,
-                        selectedPerson: this.$selectedPerson
-                    })
-                },
-                contact => contact.id_
-            )
-
-            Divider().height(8)
-
-            Text("Edit:")
-            PersonEditView({
-                selectedPerson: this.$selectedPerson,
-                name: this.selectedPerson.name,
-                address: this.selectedPerson.address,
-                phones: this.selectedPerson.phones
-            })
-        }
-            .borderStyle(BorderStyle.Solid)
-            .borderWidth(5)
-            .borderColor(0xAFEEEE)
-            .borderRadius(5)
-    }
-}
-
-@Entry
-@Component
-struct PageEntry {
-    @Provide addrBook : AddressBook = new AddressBook(
-        new Person(
-            "Mighty Panda",
-            "Wonder str., 8",
-            888,
-            "Shanghai",
-            ["+8611122223333", "+8677788889999", "+8655566667777"]
-        ),
-        [
-            new Person(
-                "Curious Squirrel",
-                "Wonder str., 8",
-                888,
-                "Hangzhou",
-                ["+8611122223332", "+8677788889998", "+8655566667776"]
-            ),
-            new Person(
-                "Wise Tiger",
-                "Wonder str., 8",
-                888,
-                "Nanjing",
-                ["+8610101010101", "+8620202020202", "+8630303030303"]
-            ),
-            new Person(
-                "Mysterious Dragon",
-                "Wonder str., 8",
-                888,
-                "Suzhou",
-                [ "+8610000000000", "+8680000000000"]
-            ),
-        ]);
-
-    build() {
-        AddressBookView({
-            me: this.addrBook.me,
-            contacts: this.addrBook.contacts,
-            selectedPerson: this.addrBook.me
-        })
-    }
-}
-```
-
+For more details of the ArkUI features, refer to the ArkUI [tutorial](arkts-get-started.md).

@@ -128,7 +128,7 @@ import Want from '@ohos.application.Want';
             try {
                 fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
             } catch(e) {
-                console.error('openSync fail: ${JSON.stringify(e)}');
+                console.error(`openSync fail: ${JSON.stringify(e)}`);
             }
             let want: Want = {
                 deviceId: '', // An empty deviceId indicates the local device.

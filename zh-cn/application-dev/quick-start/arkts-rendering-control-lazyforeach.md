@@ -38,7 +38,7 @@ interface IDataSource {
 | 接口声明                                                     | 参数类型                                          | 说明                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------- | ----------------------------------------------------------- |
 | totalCount():&nbsp;number                                    | -                                                 | 获得数据总数。                                              |
-| getData(index:&nbsp;number):&nbsp;any                        | number                                            | 获取索引值index对应的数据。<br/>index：获取数据对应的索引值 |
+| getData(index:&nbsp;number):&nbsp;any                        | number                                            | 获取索引值index对应的数据。<br/>index：获取数据对应的索引值。 |
 | registerDataChangeListener(listener:[DataChangeListener](#datachangelistener类型说明)):&nbsp;void | [DataChangeListener](#datachangelistener类型说明) | 注册数据改变的监听器。<br/>listener：数据变化监听器         |
 | unregisterDataChangeListener(listener:[DataChangeListener](#datachangelistener类型说明)):&nbsp;void | [DataChangeListener](#datachangelistener类型说明) | 注销数据改变的监听器。<br/>listener：数据变化监听器         |
 
@@ -109,7 +109,7 @@ class BasicDataSource implements IDataSource {
     return 0;
   }
 
-  public getData(index: number): undefined {
+  public getData(index: number): Object {
     return undefined;
   }
 

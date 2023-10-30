@@ -42,6 +42,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | GET_BUNDLE_INFO_WITH_METADATA             | 0x00000020 | 用于获取applicationInfo、moduleInfo和abilityInfo中包含的metadata。它不能单独使用，它需要与GET_BUNDLE_INFO_WITH_APPLICATION、GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。 |
 | GET_BUNDLE_INFO_WITH_DISABLE              | 0x00000040 | 用于获取application被禁用的BundleInfo和被禁用的Ability信息。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。 |
 | GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | 用于获取包含signatureInfo的bundleInfo。获取的bundleInfo不包含applicationInfo、hapModuleInfo、extensionAbility、ability和permission的信息。 |
+| GET_BUNDLE_INFO_WITH_MENU                 | 0x00000100 | 用于获取包含fileContextMenu的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。当调用GetBundleInfo或GetBundleInfoForSelf方法时传入此flag，返回的hapModulesInfo中将仅包含配置了fileContextMenu的Module信息。当调用GetAllBundleInfo方法时传入此flag，返回的bundleInfo列表中将仅包含配置了fileContextMenu的应用的bundleInfo。 |
 
 ### ApplicationFlag
 
@@ -223,6 +224,18 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | -------------- | ---- | --------------- |
 | APP            | 0    | 该Bundle是普通应用程序。    |
 | ATOMIC_SERVICE | 1    | 该Bundle是原子化服务。 |
+
+### ProfileType<sup>11+</sup>
+
+标识配置文件类型。
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称           | 值   | 说明            |
+| -------------- | ---- | --------------- |
+| INTENT_PROFILE  | 1    | 意图框架配置文件。    |
 
 ## 接口
 
@@ -1240,7 +1253,7 @@ let want: Want = {
 };
 
 try {
-    
+
     let infos = bundleManager.queryAbilityInfoSync(want, abilityFlags, userId);
     hilog.info(0x0000, 'testTag', 'queryAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(infos));
 } catch (err) {
@@ -2883,6 +2896,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 以异步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，使用callback形式返回结果。
 
+>如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -2935,6 +2950,8 @@ try {
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
 
 以异步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，使用Promise形式返回结果。
+
+>如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3010,6 +3027,8 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 以同步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，返回对象为string数组。
 
+>如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -3078,6 +3097,8 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 以异步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，使用callback形式返回结果。
 
+>如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -3129,6 +3150,8 @@ try {
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
 
 以异步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，使用Promise形式返回结果。
+
+>如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3195,6 +3218,8 @@ try {
 getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: string, metadataName?: string): Array\<string\>;
 
 以同步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，返回对象为string数组。
+
+>如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3389,7 +3414,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let permissionName = "ohos.permission.GET_BUNDLE_INFO";
 try {
-    let PermissionDef = bundleManager.getPermissionDefSync(permission);
+    let PermissionDef = bundleManager.getPermissionDefSync(permissionName);
     hilog.info(0x0000, 'testTag', 'getPermissionDefSync successfully. Data: %{public}s', JSON.stringify(PermissionDef));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -4328,11 +4353,11 @@ try {
 }
 ```
 
-### bundleManager.queryExtensionAbilityInfoSync<sup>11</sup>
+### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
 
-queryExtensionAbilityInfoSync(want: Want, extensionAbilityTypeName: string, extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
+queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
 
-根据给定的want、extensionAbilityTypeName、extensionAbilityFlags和userId获取ExtensionAbilityInfo，使用同步方式返回结果。
+根据给定的want、extensionAbilityType、extensionAbilityFlags和userId获取ExtensionAbilityInfo，使用同步方式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4345,7 +4370,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityTypeName: string, exte
 | 参数名                | 类型                            | 必填 | 说明                                                      |
 | --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | Want                            | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
-| extensionAbilityTypeName  | string                          | 是   | 表示自定义extensionAbility的类型。                        |
+| extensionAbilityType  | string                          | 是   | 表示自定义extensionAbility的类型。                        |
 | extensionAbilityFlags | [number](#extensionabilityflag) | 是   | 表示返回的ExtensionInfo对象中需要包含的信息标志。 |
 | userId                | number                          | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。 |
 
@@ -4373,7 +4398,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityTypeName: string, exte
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 
-let extensionAbilityTypeName = "form";
+let extensionAbilityType = "form";
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
@@ -4382,7 +4407,7 @@ let want = {
 };
 
 try {
-    var data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityTypeName, extensionFlags, userId)
+    var data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags, userId)
     hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
     hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
@@ -4394,7 +4419,7 @@ try {
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 
-let extensionAbilityTypeName = "form";
+let extensionAbilityType = "form";
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let want = {
     bundleName : "com.example.myapplication",
@@ -4402,9 +4427,66 @@ let want = {
 };
 
 try {
-    let data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityTypeName, extensionFlags);
+    let data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags);
     hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
     hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
+}
+```
+
+### bundleManager.getJsonProfile<sup>11+</sup>
+
+getJsonProfile(profileType: [ProfileType](#profiletype11), bundleName: string, moduleName?: string): string;
+
+以同步的方法根据给定的profileType、bundleName和moduleName查询相应配置文件的JSON字符串。
+
+获取调用方自己的配置文件时不需要权限。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名                | 类型                            | 必填 | 说明                                                      |
+| --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
+| profileType           | [ProfileType](#profiletype11)     | 是   | 表示要查询的配置文件类型。                                   |
+| bundleName            | string                          | 是   | 表示要查询应用程序的bundleName。                                  |
+| moduleName            | string                          | 否   | 表示要查询应用程序的moduleName，缺省时在入口模块中查找。            |
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------ |
+| string | 返回配置文件的JSON字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 17700001 | The specified bundleName is not found.       |
+| 17700002 | The specified moduleName is not found.       |
+| 17700024 | Failed to get the profile because the specified profile is not found in the HAP. |
+| 17700026 | The specified bundle is disabled.            |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+
+let bundleName = 'com.example.myapplication';
+let moduleName = 'entry';
+let profileType = bundleManager.ProfileType.INTENT_PROFILE;
+
+try {
+    let data = bundleManager.getJsonProfile(profileType, bundleName, moduleName)
+    hilog.info(0x0000, 'testTag', 'getJsonProfile successfully. Data: %{public}s', data);
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getJsonProfile failed.');
 }
 ```

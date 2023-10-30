@@ -144,7 +144,7 @@ getAllSessionDescriptors(): Promise\<Array\<Readonly\<AVSessionDescriptor>>>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avSession.getAllSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor) => {
+avSession.getAllSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor[]) => {
   console.info(`getAllSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
   if(descriptors.length > 0 ){
     console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
@@ -187,7 +187,7 @@ getAllSessionDescriptors(callback: AsyncCallback\<Array\<Readonly\<AVSessionDesc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avSession.getAllSessionDescriptors((err: BusinessError, descriptors: avSession.AVSessionDescriptor) => {
+avSession.getAllSessionDescriptors((err: BusinessError, descriptors: avSession.AVSessionDescriptor[]) => {
   if (err) {
     console.error(`GetAllSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
@@ -238,7 +238,7 @@ getHistoricalSessionDescriptors(maxSize?: number): Promise\<Array\<Readonly\<AVS
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avSession.getHistoricalSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor) => {
+avSession.getHistoricalSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor[]) => {
   console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
   if(descriptors.length > 0 ){
     console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
@@ -284,17 +284,17 @@ getHistoricalSessionDescriptors(maxSize: number, callback: AsyncCallback\<Array\
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avSession.getHistoricalSessionDescriptors(1, (err: BusinessError, descriptors: avSession.AVSessionDescriptor) => {
+avSession.getHistoricalSessionDescriptors(1, (err: BusinessError, descriptors: avSession.AVSessionDescriptor[]) => {
   if (err) {
     console.error(`getHistoricalSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
     if(descriptors.length > 0 ){
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionId : ${descriptors[0].sessionId}`);
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].elementName.bundleName : ${descriptors[0].elementName.bundleName}`);
+      console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
+      console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
+      console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
+      console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionId : ${descriptors[0].sessionId}`);
+      console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].elementName.bundleName : ${descriptors[0].elementName.bundleName}`);
     }
   }
 });
@@ -2707,7 +2707,7 @@ import { BusinessError } from '@ohos.base';
 let aVCastController: avSession.AVCastController;
 currentAVSession.getAVCastController().then((avcontroller: avSession.AVCastController) => {
   aVCastController = avcontroller;
-  console.info(`getAVCastController : SUCCESS : sessionid : ${aVCastController.sessionId}`);
+  console.info(`getAVCastController : SUCCESS`);
 }).catch((err: BusinessError) => {
   console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -2747,7 +2747,7 @@ currentAVSession.getAVCastController((err: BusinessError, avcontroller: avSessio
     console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     aVCastController = avcontroller;
-    console.info(`getAVCastController : SUCCESS : sessionid : ${aVCastController.sessionId}`);
+    console.info(`getAVCastController : SUCCESS`);
   }
 });
 ```
@@ -2781,7 +2781,7 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 import { BusinessError } from '@ohos.base';
 
 currentAVSession.getOutputDevice().then((outputDeviceInfo: avSession.OutputDeviceInfo) => {
-  console.info(`GetOutputDevice : SUCCESS : isRemote : ${outputDeviceInfo.isRemote}`);
+  console.info(`GetOutputDevice : SUCCESS : devices length : ${outputDeviceInfo.devices.length}`);
 }).catch((err: BusinessError) => {
   console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
 })
@@ -2819,7 +2819,7 @@ currentAVSession.getOutputDevice((err: BusinessError, outputDeviceInfo: avSessio
   if (err) {
     console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`GetOutputDevice : SUCCESS : isRemote : ${outputDeviceInfo.isRemote}`);
+    console.info(`GetOutputDevice : SUCCESS : devices length : ${outputDeviceInfo.devices.length}`);
   }
 });
 ```
@@ -4079,10 +4079,10 @@ getOutputDeviceSync(): OutputDeviceInfo
 
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
+| 错误码ID   | 错误信息 |
+|---------| --------------------------------------- |
+| 6600101 | Session service exception. |
+| 6600102 | The session does not exist. |
 
 **示例：**
 
@@ -4159,7 +4159,19 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 **示例：**
 
 ```ts
-aVCastController.setDisplaySurface().then(() => {
+import media from '@ohos.multimedia.media';
+let surfaceID: string = '';
+media.createAVRecorder().then((avRecorder) => {
+  avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
+    if (err == null) {
+      console.info('getInputSurface success');
+      surfaceID = surfaceId;
+    } else {
+      console.error('getInputSurface failed and error is ' + err.message);
+    }
+  });
+})
+aVCastController.setDisplaySurface(surfaceID).then(() => {
   console.info(`setDisplaySurface : SUCCESS`);
 });
 ```
@@ -4192,8 +4204,19 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-aVCastController.setDisplaySurface((err: BusinessError) => {
+import media from '@ohos.multimedia.media';
+let surfaceID: string = '';
+media.createAVRecorder().then((avRecorder) => {
+  avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
+    if (err == null) {
+      console.info('getInputSurface success');
+      surfaceID = surfaceId;
+    } else {
+      console.error('getInputSurface failed and error is ' + err.message);
+    }
+  });
+})
+aVCastController.setDisplaySurface(surfaceID, (err: BusinessError) => {
   if (err) {
     console.info(`setDisplaySurface BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
@@ -6175,7 +6198,7 @@ getValidCommands(): Promise\<Array\<AVControlCommandType>>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avsessionController.getValidCommands.then((validCommands: avSession.AVControlCommandType[]) => {
+avsessionController.getValidCommands().then((validCommands: avSession.AVControlCommandType[]) => {
   console.info(`GetValidCommands : SUCCESS : size : ${validCommands.length}`);
 }).catch((err: BusinessError) => {
   console.error(`GetValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -6355,7 +6378,6 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 | args | {[key: string]: any} | 是   | 需要传递的控制命令键值对 |
 
 > **说明：**
->
 > 参数args支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md)。
 
 **返回值：**
@@ -6431,7 +6453,6 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。                     |
 
 > **说明：**
->
 > 参数args支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md)。
 
 **错误码：**
@@ -7294,7 +7315,7 @@ getAVPlaybackStateSync(): AVPlaybackState;
 
 使用同步方法获取当前会话的播放状态。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **返回值：**
 
@@ -7308,7 +7329,9 @@ getAVPlaybackStateSync(): AVPlaybackState;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -7395,7 +7418,7 @@ try {
 
 ### getAVQueueItemsSync<sup>10+</sup>
 
-getAVQueueItemsSync(): \<Array\<AVQueueItem\>\>
+getAVQueueItemsSync(): Array\<AVQueueItem\>
 
 使用同步方法获取当前会话播放列表相关信息。
 

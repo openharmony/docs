@@ -242,7 +242,7 @@ The preinstalled app cannot be uninstalled.
 
 **处理步骤**<br/>
 1. 确认bundleName是否拼写正确。
-1. 确认对应的预置应用是否可卸载。
+2. 确认对应的预置应用是否可卸载。
 
 ## 17700021 指定的uid无效
 
@@ -293,7 +293,7 @@ The specified default app does not exist.
 ## 17700024 没有相应的配置文件
 
 **错误信息**<br/>
-Failed to get the profile because there is no profile in the HAP.
+Failed to get the profile because the specified profile is not found in the HAP.
 
 **错误描述**<br/>
 调用查询profile文件的相关接口时，没有相应的配置文件。
@@ -301,10 +301,12 @@ Failed to get the profile because there is no profile in the HAP.
 **可能原因**<br/>
 1. 输入的metadata name在配置文件中不存在。
 2. 配置文件的内容不是json格式。
+3. 查询的配置文件类型不存在。
 
 **处理步骤**<br/>
 1. 确认要查询的ability或者extensionAbility中的metadata name是否存在。
 2. 确认指定查询的profile文件的内容是否为json格式。
+3. 确认应用中是否存在与查询的profileType类型相符的配置文件。
 
 ## 17700025 输入的type无效
 
@@ -389,8 +391,8 @@ The specified bundle does not support clearing of cache files.
 指定的应用为系统应用且在签名证书中配置了不能清除数据(AllowAppDataNotCleared)的字段。
 
 **处理步骤**<br/>
-1.确认指定的应用是否为系统应用，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看isSystemApp是否为true。
-2.确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看userDataClearable是否为true。
+1. 确认指定的应用是否为系统应用，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看isSystemApp是否为true。
+2. 确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看userDataClearable是否为true。
 
 ## 17700031 Overlay特性校验失败导致HAP安装失败
 
@@ -552,10 +554,10 @@ Failed to install because enterprise device management disallow install.
 安装应用时，企业设备管理不允许安装。
 
 **可能原因**<br/>
-1. 企业设备管理不允许安装该应用。
+企业设备管理不允许安装该应用。
 
 **处理步骤**<br/>
-1. 请在设备中检查应用是否被企业设备管理禁止安装。
+请在设备中检查应用是否被企业设备管理禁止安装。
 
 ## 17700042 数据代理中的uri配置错误
 **错误信息**<br/>
@@ -581,7 +583,7 @@ Failed to install the HAP because of low APL in the non-system data proxy (requi
 
 **可能原因**<br/>
 1. 非系统应用的数据代理未配置权限。
-1. 非系统应用的数据代理的权限等级过低。
+2. 非系统应用的数据代理的权限等级过低。
 
 **处理步骤**<br/>
 1. 在数据代理中配置读权限和写权限。
@@ -599,7 +601,7 @@ Failed to install the HAP because the isolationMode configured is not supported.
 2. 设备不支持隔离模式，即persist.bms.supportIsolationMode为false时，HAP配置的isolationMode为isolationOnly。
 
 **处理步骤**<br/>
-1. 按照设备的隔离模式正确配置HAP字段isolationMode。
+按照设备的隔离模式正确配置HAP字段isolationMode。
 
 ## 17700045 企业设备管理不允许卸载该应用
 **错误信息**<br/>
@@ -609,10 +611,10 @@ Failed to uninstall because enterprise device management disallow uninstall.
 卸载应用时，企业设备管理不允许卸载。
 
 **可能原因**<br/>
-1. 企业设备管理不允许安装该应用。
+企业设备管理不允许安装该应用。
 
 **处理步骤**<br/>
-1. 请在设备中检查应用是否被企业设备管理禁止卸载安装。
+请在设备中检查应用是否被企业设备管理禁止卸载安装。
 
 ## 17700047 要更新的应用版本没有大于当前版本
 **错误信息**<br/>
@@ -654,10 +656,10 @@ Failed to install the HAP because the bundleName is different from the bundleNam
 企业mdm应用自升级时，安装的应用与调用方包名不同。
 
 **可能原因**<br/>
-1. 要安装的hap或hsp不属于当前应用。
+要安装的hap或hsp不属于当前应用。
 
 **处理步骤**<br/>
-1. 检查要安装的hap或hsp是否属于当前应用。
+检查要安装的hap或hsp是否属于当前应用。
 
 ## 17700050 企业设备校验失败
 **错误信息**<br/>
@@ -667,7 +669,7 @@ Failed to install the HAP because enterprise normal/MDM bundle cannot be install
 安装应用时，企业normal应用或企业mdm应用无法在非企业设备上安装。
 
 **可能原因**<br/>
-1. 安装设备不是企业设备。
+安装设备不是企业设备。
 
 **处理步骤**<br/>
 1. 检查安装设备是否为企业设备。
@@ -681,7 +683,20 @@ Failed to install the HAP because the distribution type of caller application is
 企业mdm应用自升级时，调用方的分发类型不是企业mdm。
 
 **可能原因**<br/>
-1. 调用方的分发类型不是企业mdm。
+调用方的分发类型不是企业mdm。
 
 **处理步骤**<br/>
-1. 检查应用的签名文件是否正确配置。
+检查应用的签名文件是否正确配置。
+
+## 17700052 非开发者模式下不允许安装调试应用
+**错误信息**<br/>
+Failed to install the HAP because debug bundle cannot be installed under non-developer mode.
+
+**错误描述**<br/>
+安装调试应用时，设备处于非开发者模式，不允许安装。
+
+**可能原因**<br/>
+应用为调试应用，而设备处于非开发者模式。
+
+**处理步骤**<br/>
+执行hdc shell param get const.security.developermode.state，若返回结果为false，说明该设备无法安装调试应用。

@@ -363,7 +363,8 @@ class MyMath implements MyMathInterface {
 }
         
 class MyMathProxy implements MyMathInterface {
-  constructor(math: any) {
+  private myMath: MyMath;
+  constructor(math: MyMath) {
     this.myMath = new MyMath(math.a, math.b);
   }  
   // 代理MyMath类的compute方法

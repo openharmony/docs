@@ -1,4 +1,4 @@
-# OpenHarmony IDL工具规格及使用说明书
+# OpenHarmony IDL工具规格及使用说明书（仅对系统应用开放）
 
 ## IDL接口描述语言简介
 在OpenHarmony中，当客户端和服务器进行IPC通信时，需要定义双方都认可的接口，以保障双方可以成功通信，OpenHarmony IDL（OpenHarmony Interface Definition Language）则是一种定义此类接口的工具。OpenHarmony IDL先把需要传递的对象分解成操作系统能够理解的基本类型，并根据开发者的需要封装跨边界的对象。

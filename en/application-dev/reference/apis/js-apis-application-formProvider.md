@@ -36,7 +36,7 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
   let formId: string = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5, (error: Base.BusinessError) => {
     if (error.code) {
-      console.error('formProvider setFormNextRefreshTime, error: ${JSON.stringify(error)}');
+      console.error(`formProvider setFormNextRefreshTime, error: ${JSON.stringify(error)}`);
     }
   });
   ```

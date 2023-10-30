@@ -17,9 +17,9 @@
 
 | 文件名称                                     | 描述                 |
 | ---------------------------------------- | ------------------ |
-| [raw_dir.h](raw__dir_8h.md)              | 提供rawfile目录相关功能。<br>引用文件：\<rawfile/raw_dir.h>   |
-| [raw_file.h](raw__file_8h.md)            | 提供rawfile文件相关功能。<br>引用文件：\<rawfile/raw_file.h>  |
-| [raw_file_manager.h](raw__file__manager_8h.md) | 提供资源管理rawfile相关功能。<br>引用文件：\<rawfile/raw_file_manager.h> |
+| [raw_dir.h](raw__dir_8h.md)              | 提供rawfile目录相关功能。<br>**引用文件**：\<rawfile/raw_dir.h><br>**库**：librawfile.z.so |
+| [raw_file.h](raw__file_8h.md)            | 提供rawfile文件相关功能。<br>**引用文件**：\<rawfile/raw_file.h><br>**库**：librawfile.z.so |
+| [raw_file_manager.h](raw__file__manager_8h.md) | 提供资源管理rawfile相关功能。<br>**引用文件**：\<rawfile/raw_file_manager.h><br>**库**：librawfile.z.so |
 
 
 ### 结构体
@@ -421,9 +421,7 @@ int OH_ResourceManager_ReadRawFile (const RawFile * rawFile, void * buf, size_t 
 
 **描述：**
 
-读取rawfile。
-
-从当前位置读取**指定长度**的数据。
+读取当前rawfile的文件数据。
 
 **参数：**
 
@@ -431,11 +429,11 @@ int OH_ResourceManager_ReadRawFile (const RawFile * rawFile, void * buf, size_t 
 | ------- | --------------------------- |
 | rawFile | 表示指向[RawFile](#rawfile)的指针。 |
 | buf     | 用于接收读取数据的缓冲区指针。             |
-| length  | 读取数据的字节长度。                  |
+| length  | rawfile文件的长度。                 |
 
 **返回：**
 
-返回读取的字节数，如果读取长度超过文件末尾长度，则返回**0**。
+返回rawfile文件的长度，如果length小于文件长度，则返回**0**。
 
 **起始版本：**
 
@@ -513,7 +511,7 @@ int OH_ResourceManager_SeekRawFile (const RawFile * rawFile, long offset, int wh
 
 **返回：**
 
-如果搜索成功返回新的读写位置，如果发生错误返回 **(long) -1**。
+如果搜索成功返回**0**,rawFile指针更新到新的读写位置。如果发生错误返回 **(long) -1**。
 
 **起始版本：**
 

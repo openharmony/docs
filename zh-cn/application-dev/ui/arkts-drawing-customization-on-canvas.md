@@ -98,20 +98,14 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
 onReady(event: () =&gt; void)是Canvas组件初始化完成时的事件回调，调用该事件后，可获取Canvas组件的确定宽高，进一步使用CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象调用相关API进行图形绘制。
 
 ```ts
-class Contextset{
-  settings: RenderingContextSettings = new RenderingContextSettings(true)
-  context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
-}
 Canvas(this.context)
   .width('100%')
   .height('100%')
   .backgroundColor('#F5DC62')
   .onReady(() => {
-    let con:Contextset = new Contextset()
-    con.context.fillStyle = '#0097D4';
-    con.context.fillRect(50, 50, 100, 100);
+    this.context.fillStyle = '#0097D4';
+    this.context.fillRect(50, 50, 100, 100);
   })
-
 ```
 
 ![2023022793350(1)](figures/2023022793350(1).jpg)
@@ -124,20 +118,15 @@ Canvas(this.context)
 - 通过CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象直接调用相关API进行绘制。
 
   ```ts
-  class Contextset{
-    settings: RenderingContextSettings = new RenderingContextSettings(true)
-    context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
-  }
   Canvas(this.context)
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
     .onReady(() =>{
-      let con:Contextset = new Contextset()
-      con.context.beginPath();
-      con.context.moveTo(50, 50);
-      con.context.lineTo(280, 160);
-      con.context.stroke();
+      this.context.beginPath();
+      this.context.moveTo(50, 50);
+      this.context.lineTo(280, 160);
+      this.context.stroke();
      })
   ```
 
@@ -146,19 +135,14 @@ Canvas(this.context)
 - 先单独定义path2d对象构造理想的路径，再通过调用CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象的stroke接口或者fill接口进行绘制，具体使用可以参考[Path2D对象](../reference/arkui-ts/ts-components-canvas-path2d.md)。
 
   ```ts
-  class Contextset{
-    settings: RenderingContextSettings = new RenderingContextSettings(true)
-    context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
-  }
   Canvas(this.context)
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
     .onReady(() =>{
-       let con:Contextset = new Contextset()
        let region = new Path2D();
        region.arc(100, 75, 50, 0, 6.28);
-       con.context.stroke(region);
+       this.context.stroke(region);
     })
   ```
 
@@ -167,36 +151,30 @@ Canvas(this.context)
 
 ## 画布组件常用方法
 
-OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供了大量的属性和方法，可以用来绘制文本、图形，处理像素等，是Canvas组件的核心。常用接口有[fill](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fill)(对封闭路径进行填充）、[clip](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#clip)(设置当前路径为剪切路径)、[stroke](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroke)（进行边框绘制操作）等等，同时提供了[fillStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fillstyle)（指定绘制的填充色）、[globalAlpha](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#globalalpha)（设置透明度）与[strokeStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#strokestyle)（设置描边的颜色）等属性修改绘制内容的样式。将通过以下几个方面简单介绍画布组件常见使用方法：
+OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供了大量的属性和方法，可以用来绘制文本、图形，处理像素等，是Canvas组件的核心。常用接口有[fill](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fill)（对封闭路径进行填充）、[clip](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#clip)（设置当前路径为剪切路径）、[stroke](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroke)（进行边框绘制操作）等等，同时提供了[fillStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fillstyle)（指定绘制的填充色）、[globalAlpha](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#globalalpha)（设置透明度）与[strokeStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#strokestyle)（设置描边的颜色）等属性修改绘制内容的样式。将通过以下几个方面简单介绍画布组件常见使用方法：
 
 - 基础形状绘制。
   可以通过[arc](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#arc)（绘制弧线路径）、 [ellipse](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#ellipse)（绘制一个椭圆）、[rect](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#rect)（创建矩形路径）等接口绘制基础形状。
 
   ```ts
-  class Contextset{
-    settings: RenderingContextSettings = new RenderingContextSettings(true)
-    context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
-  }
   Canvas(this.context)
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
     .onReady(() =>{
-        let con:Contextset = new Contextset()
        //绘制矩形
-       con.context.beginPath();
-       con.context.rect(100, 50, 100, 100);
-       con.context.stroke();
+       this.context.beginPath();
+       this.context.rect(100, 50, 100, 100);
+       this.context.stroke();
        //绘制圆形
-       con.context.beginPath();
-       con.context.arc(150, 250, 50, 0, 6.28);
-       con.context.stroke();
+       this.context.beginPath();
+       this.context.arc(150, 250, 50, 0, 6.28);
+       this.context.stroke();
        //绘制椭圆
-       con.context.beginPath();
-       con.context.ellipse(150, 450, 50, 100, Math.PI * 0.25, Math.PI * 0, Math.PI * 2);
-       con.context.stroke();
+       this.context.beginPath();
+       this.context.ellipse(150, 450, 50, 100, Math.PI * 0.25, Math.PI * 0, Math.PI * 2);
+       this.context.stroke();
     })
-
   ```
 
   ![2023022794521(1)](figures/2023022794521(1).jpg)
@@ -206,22 +184,17 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
   可以通过[fillText](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#filltext)（绘制填充类文本）、[strokeText](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext)（绘制描边类文本）等接口进行文本绘制。
 
   ```ts
-  class Contextset{
-    settings: RenderingContextSettings = new RenderingContextSettings(true)
-    context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
-  }
   Canvas(this.context)
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
     .onReady(() =>{
-        let con:Contextset = new Contextset()
        //绘制填充类文本
-       con.context.font = '50px sans-serif';
-       con.context.fillText("Hello World!", 50, 100);
+       this.context.font = '50px sans-serif';
+       this.context.fillText("Hello World!", 50, 100);
        //绘制描边类文本
-       con.context.font = '55px sans-serif';
-       con.context.strokeText("Hello World!", 50, 150);
+       this.context.font = '55px sans-serif';
+       this.context.strokeText("Hello World!", 50, 150);
     })
   ```
 
@@ -272,27 +245,20 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
   Canvas中还提供其他类型的方法。渐变（[CanvasGradient对象](../reference/arkui-ts/ts-components-canvas-canvasgradient.md)）相关的方法：[createLinearGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createlineargradient)（创建一个线性渐变色）、[createRadialGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createradialgradient)（创建一个径向渐变色）等。
 
   ```ts
-  class Contextset{
-    settings: RenderingContextSettings = new RenderingContextSettings(true)
-    context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
-  }
-  Canvas(this.context)
+    Canvas(this.context)
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
     .onReady(() =>{
-      let con:Contextset = new Contextset()
        //创建一个径向渐变色的CanvasGradient对象
-       let grad:CanvasGradient|undefined = con.context.createRadialGradient(200,200,50, 200,200,200)
+       let grad = this.context.createRadialGradient(200,200,50, 200,200,200)
        //为CanvasGradient对象设置渐变断点值，包括偏移和颜色
-       if(grad){
-        grad.addColorStop(0.0, '#E87361');
-        grad.addColorStop(0.5, '#FFFFF0');
-        grad.addColorStop(1.0, '#BDDB69');
-        con.context.fillStyle = grad;
-       }
+       grad.addColorStop(0.0, '#E87361');
+       grad.addColorStop(0.5, '#FFFFF0');
+       grad.addColorStop(1.0, '#BDDB69');
        //用CanvasGradient对象填充矩形
-      con.context.fillRect(0, 0, 400, 400);
+       this.context.fillStyle = grad;
+       this.context.fillRect(0, 0, 400, 400);
     })
   ```
 

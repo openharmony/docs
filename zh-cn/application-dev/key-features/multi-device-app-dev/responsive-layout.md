@@ -63,7 +63,7 @@
      // 根据当前窗口尺寸更新断点
      private updateBreakpoint(windowWidth: number) :void{
        // 将长度的单位由px换算为vp
-       let windowWidthVp = windowWidth / (display.getDefaultDisplaySync().densityDPI / 160)
+       let windowWidthVp = windowWidth / display.getDefaultDisplaySync().densityPixels
        let newBp: string = ''
        if (windowWidthVp < 320) {
          newBp = 'xs'

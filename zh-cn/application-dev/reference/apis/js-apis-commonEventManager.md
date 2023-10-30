@@ -329,7 +329,7 @@ CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:C
 
 ```
 
-## CommonEventManager.createSubscriberSync
+## CommonEventManager.createSubscriberSync<sup>10+</sup>
 
 createSubscriberSync(subscribeInfo: CommonEventSubscribeInfo): CommonEventSubscriber
 
@@ -400,7 +400,6 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 ```ts
 import Base from '@ohos.base';
 
-//订阅者信息
 let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
@@ -519,12 +518,15 @@ try {
 }
 
 //取消订阅公共事件
-try {
+//等待异步接口subscribe执行完毕，开发者根据实际业务选择是否需要添加setTimeout
+setTimeout(() => {
+  try {
     CommonEventManager.unsubscribe(subscriber, unsubscribeCB);
-} catch (error) {
+  } catch (error) {
     let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
-}
+  }
+}, 500);
 ```
 
 ## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>

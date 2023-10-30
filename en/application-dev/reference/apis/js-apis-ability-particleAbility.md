@@ -59,9 +59,9 @@ particleAbility.startAbility(
     },
     (error, data) => {
         if (error && error.code !== 0) {
-            console.error('startAbility fail, error: ${JSON.stringify(error)}');
+            console.error(`startAbility fail, error: ${JSON.stringify(error)}`);
         } else {
-            console.log('startAbility success, data: ${JSON.stringify(data)}');
+            console.log(`startAbility success, data: ${JSON.stringify(data)}`);
         }
     },
 );
@@ -139,9 +139,9 @@ import particleAbility from '@ohos.ability.particleAbility';
 particleAbility.terminateSelf(
     (error, data) => {
         if (error && error.code !== 0) {
-            console.error('terminateSelf fail, error: ${JSON.stringify(error)}');
+            console.error(`terminateSelf fail, error: ${JSON.stringify(error)}`);
         } else {
-            console.log('terminateSelf success, data: ${JSON.stringify(data)}');
+            console.log(`terminateSelf success, data: ${JSON.stringify(data)}`);
         }
     }
 );
@@ -237,9 +237,9 @@ import { BusinessError } from '@ohos.base';
 
 function callback(error: BusinessError, data: void) {
     if (error && error.code !== 0) {
-        console.error('Operation failed error: ${JSON.stringify(error)}');
+        console.error(`Operation failed error: ${JSON.stringify(error)}`);
     } else {
-        console.info('Operation succeeded, data: ${data}');
+        console.info(`Operation succeeded, data: ${data}`);
     }
 }
 
@@ -332,7 +332,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     }).then(() => {
         console.info('Operation succeeded');
     }).catch((err: BusinessError) => {
-        console.error('Operation failed cause: ${JSON.stringify(err)}');
+        console.error(`Operation failed cause: ${JSON.stringify(err)}`);
     });
 });
 
@@ -360,9 +360,9 @@ import { BusinessError } from '@ohos.base';
 
 function callback(error: BusinessError, data: void) {
     if (error && error.code !== 0) {
-        console.error('Operation failed error: ${JSON.stringify(error)}');
+        console.error(`Operation failed error: ${JSON.stringify(error)}`);
     } else {
-        console.info('Operation succeeded, data: ${data}');
+        console.info(`Operation succeeded, data: ${data}`);
     }
 }
 
@@ -392,7 +392,7 @@ import particleAbility from '@ohos.ability.particleAbility';
 particleAbility.cancelBackgroundRunning().then(() => {
     console.info('Operation succeeded');
 }).catch((err: BusinessError) => {
-    console.error('Operation failed cause: ${JSON.stringify(err)}');
+    console.error(`Operation failed cause: ${JSON.stringify(err)}`);
 });
 
 ```
@@ -432,21 +432,21 @@ let connId = particleAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId: ${element.deviceId}');
+            console.log(`ConnectAbility onDisconnect element.deviceId: ${element.deviceId}`);
         },
         onFailed: (code) => {
-            console.error('particleAbilityTest ConnectAbility onFailed errCode: ${code}');
+            console.error(`particleAbilityTest ConnectAbility onFailed errCode: ${code}`);
         },
     },
 );
 
 particleAbility.disconnectAbility(connId).then((data) => {
-    console.log('data: ${data}');
+    console.log(`data: ${data}`);
 }).catch((error: BusinessError) => {
-    console.error('particleAbilityTest result errCode: ${error.code}');
+    console.error(`particleAbilityTest result errCode: ${error.code}`);
 });
 ```
 
@@ -477,19 +477,19 @@ let connId = particleAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId: ${element.deviceId}');
+            console.log(`ConnectAbility onDisconnect element.deviceId: ${element.deviceId}`);
         },
         onFailed: (code) => {
-            console.error('particleAbilityTest ConnectAbility onFailed errCode: ${code}');
+            console.error(`particleAbilityTest ConnectAbility onFailed errCode: ${code}`);
         },
     },
 );
 
 particleAbility.disconnectAbility(connId, (err) => {
-    console.error('particleAbilityTest disconnectAbility err: ${JSON.stringify(err)}');
+    console.error(`particleAbilityTest disconnectAbility err: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -522,21 +522,21 @@ let connId = particleAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId: ${element.deviceId}');
+            console.log(`ConnectAbility onDisconnect element.deviceId: ${element.deviceId}`);
         },
         onFailed: (code) => {
-            console.error('particleAbilityTest ConnectAbility onFailed errCode: ${code}');
+            console.error(`particleAbilityTest ConnectAbility onFailed errCode: ${code}`);
         },
     },
 );
 
 particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(' data: ${data}');
+    console.log(`data: ${data}`);
 }).catch((error: BusinessError) => {
-    console.error('particleAbilityTest result errCode : ${error.code}');
+    console.error(`particleAbilityTest result errCode : ${error.code}`);
 });
 ```
 

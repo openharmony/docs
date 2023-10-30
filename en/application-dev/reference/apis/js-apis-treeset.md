@@ -574,7 +574,6 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");

@@ -53,8 +53,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 
 **Example**
 
-```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts 
 import { BusinessError } from '@ohos.base';
 
 let myReason = 'test requestSuspendDelay';
@@ -103,8 +102,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 
 **Example**
 
-```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts 
 import { BusinessError } from '@ohos.base';
 
 let id = 1;
@@ -153,8 +151,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 
 **Example**
 
-```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts 
 import { BusinessError } from '@ohos.base';
 
 let id = 1;
@@ -196,7 +193,6 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
   ```js
-  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
   import { BusinessError } from '@ohos.base';
 
   let id = 1;
@@ -261,18 +257,23 @@ function callback(error: BusinessError, data: void) {
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         let wantAgentInfo: wantAgent.WantAgentInfo = {
+            // List of operations to be executed after the notification is clicked.
             wants: [
                 {
                     bundleName: "com.example.myapplication",
                     abilityName: "EntryAbility"
                 }
             ],
+            // Type of the operation to perform after the notification is clicked.
             operationType: wantAgent.OperationType.START_ABILITY,
+            // Custom request code.
             requestCode: 0,
+            // Execution attribute of the operation to perform after the notification is clicked.
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
         try {
+            // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
             wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
                 try {
                     backgroundTaskManager.startBackgroundRunning(this.context,
@@ -339,18 +340,23 @@ import { BusinessError } from '@ohos.base';
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         let wantAgentInfo: wantAgent.WantAgentInfo = {
+            // List of operations to be executed after the notification is clicked.
             wants: [
                 {
                     bundleName: "com.example.myapplication",
                     abilityName: "EntryAbility"
                 }
             ],
+            // Type of the operation to perform after the notification is clicked.
             operationType: wantAgent.OperationType.START_ABILITY,
+            // Custom request code.
             requestCode: 0,
+            // Execution attribute of the operation to perform after the notification is clicked.
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
         try {
+            // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
             wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
                 try {
                     backgroundTaskManager.startBackgroundRunning(this.context,
@@ -517,7 +523,6 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
 ```js
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import { BusinessError } from '@ohos.base';
 
 let request: backgroundTaskManager.EfficiencyResourcesRequest = {
@@ -561,7 +566,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
 ```js
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { BusinessError } from '@ohos.base';
 
 try {
     backgroundTaskManager.resetAllEfficiencyResources();

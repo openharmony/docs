@@ -1,8 +1,7 @@
 # ArkTS语法使用常见问题
 
-## ArkUI如何通过代码动态创建组件
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## ArkUI如何通过代码动态创建组件(API 9)
 
 **解决措施**
 
@@ -25,40 +24,36 @@ ForEach(this.nums,(item) => {
 
 [渲染控制语法](../quick-start/arkts-rendering-control-overview.md)
 
-## 使用@Builder装饰器包含自定义组件的方法与普通方法的区别是什么
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 使用\@Builder装饰器包含自定义组件的方法与普通方法的区别是什么(API 9)
 
 **解决措施**
 
-@Builder装饰的方法中使用了自定义组件，那么该方法每次被调用时，对应的自定义组件均会重新创建，普通方法中不使用@builder装饰，无法容纳自定义组件。
+\@Builder装饰的方法中使用了自定义组件，那么该方法每次被调用时，对应的自定义组件均会重新创建，普通方法中不使用\@builder装饰，无法容纳自定义组件。
 
 **参考链接**
 
 [@BuilderParam](../quick-start/arkts-builderparam.md)
 
-## 如何使用@BuilderParam装饰器进行组件传参
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 如何使用\@BuilderParam装饰器进行组件传参(API 9)
 
 **解决措施**
 
--   不带参数
+- 不带参数
 
-    对@BuilderParam修饰的属性进行赋值时不带参数（如：content: this.specificParam），则此属性的类型需定义成无返回值的函数（如：@BuilderParam content: \(\) =\> void）。
+  对\@BuilderParam修饰的属性进行赋值时不带参数（如：content: this.specificParam），则此属性的类型需定义成无返回值的函数（如：\@BuilderParam content: () =&gt; void）。
 
--   带参数
+- 带参数
 
-    对@BuilderParam修饰的属性进行赋值时带参数（如：callContent: this.specificParam1\("111"\)），则此属性的类型需定义成any（如：@BuilderParam callContent: any）。
-
+  对\@BuilderParam修饰的属性进行赋值时带参数（如：callContent: this.specificParam1("111")），则此属性的类型需定义成any（如：\@BuilderParam callContent: any）。
 
 **参考链接**
 
 [@BuilderParam](../quick-start/arkts-builderparam.md)
 
-## 如何监听数组内对象属性变化
 
-适用于：OpenHarmony 3.2 Beta5 API9 
+## 如何监听数组内对象属性变化(API 9)
 
 **问题现象**
 
@@ -66,259 +61,247 @@ ForEach(this.nums,(item) => {
 
 **解决措施**
 
-通过@Observed配合@ObjectLink装饰符实现。@Observed用于类，@ObjectLink用于变量。
+通过\@Observed配合\@ObjectLink装饰符实现。\@Observed用于类，\@ObjectLink用于变量。
 
 **代码示例**
 
-1.  在类上使用@Observed。
+1. 在类上使用\@Observed。
 
-    ```
-    @Observed
-    class ClassA {
-      public name: string
-      public c: number
-      public id: number
-    
-      constructor(c: number, name: string = 'OK') {
-        this.name = name
-        this.c = c
-      }
-    }
-    ```
+   ```
+   @Observed
+   class ClassA {
+     public name: string
+     public c: number
+     public id: number
+   
+     constructor(c: number, name: string = 'OK') {
+       this.name = name
+       this.c = c
+     }
+   }
+   ```
 
-2.  在组件变量使用@ObjectLink。
+2. 在组件变量使用\@ObjectLink。
 
-    ```
-    @Component
-    struct ViewA {
-      label: string = 'ViewA1'
-      @ObjectLink a: ClassA
-    
-      build() {
-        Row() {
-          Button(`ViewA [${this.label}] this.a.c= ${this.a.c} +1`)
-            .onClick(() => {
-              this.a.c += 1
-            })
-        }.margin({ top: 10 })
-      }
-    }
-    ```
-
+   ```
+   @Component
+   struct ViewA {
+     label: string = 'ViewA1'
+     @ObjectLink a: ClassA
+   
+     build() {
+       Row() {
+         Button(`ViewA [${this.label}] this.a.c= ${this.a.c} +1`)
+           .onClick(() => {
+             this.a.c += 1
+           })
+       }.margin({ top: 10 })
+     }
+   }
+   ```
 
 **参考链接**
 
 [Observed和ObjectLink数据管理](../quick-start/arkts-observed-and-objectlink.md)
 
-## 子组件使用@Link修饰成员变量时，如何通过父组件传值
 
-适用于：OpenHarmony 3.2 Beta5 API 9 
+## 子组件使用\@Link修饰成员变量时，如何通过父组件传值(API 9)
 
 **解决措施**
 
-子组件使用@Link接受父组件的值时，需要使用'$'建立变量之间的引用关系。才能实现同步。
+子组件使用\@Link接受父组件的值时，需要使用'$'建立变量之间的引用关系。才能实现同步。
 
 **代码示例**
 
-\@Link语义是从'$'操作符引出，即\$isPlaying是this.isPlaying内部状态的双向数据绑定。当单击子组件PlayButton中的按钮时，\@Link变量更改，PlayButton与父组件中的Text和Button将同时进行刷新，同样地，当点击父组件中的Button修改this.isPlaying时，子组件PlayButton与父组件中的Text和Button也将同时刷新。
+\@Link语义是从'$'操作符引出，即$isPlaying是this.isPlaying内部状态的双向数据绑定。当单击子组件PlayButton中的按钮时，\@Link变量更改，PlayButton与父组件中的Text和Button将同时进行刷新，同样地，当点击父组件中的Button修改this.isPlaying时，子组件PlayButton与父组件中的Text和Button也将同时刷新。
 
-1.  在父组件使用\@State装饰器，传递数据使用\$符创建引用。
+1. 在父组件使用\@State装饰器，传递数据使用$符创建引用。
 
-    ```
-    @Entry
-    @Component
-    struct Player {
-      @State isPlaying: boolean = false
-      build() {
-        Column() {
-          PlayButton({ buttonPlaying: $isPlaying })
-          Text(`Player is ${this.isPlaying ? '' : 'not'} playing`).fontSize(18)
-          Button('Parent:' + this.isPlaying)
-            .margin(15)
-            .onClick(() => {
-              this.isPlaying = !this.isPlaying
-            })
-        }
-      }
-    }
-    
-    
-    ```
+   ```
+   @Entry
+   @Component
+   struct Player {
+     @State isPlaying: boolean = false
+     build() {
+       Column() {
+         PlayButton({ buttonPlaying: $isPlaying })
+         Text(`Player is ${this.isPlaying ? '' : 'not'} playing`).fontSize(18)
+         Button('Parent:' + this.isPlaying)
+           .margin(15)
+           .onClick(() => {
+             this.isPlaying = !this.isPlaying
+           })
+       }
+     }
+   }
+   
+   ```
 
-2.  在子组件使用\@Link接受数据。
+2. 在子组件使用\@Link接受数据。
 
-    ```
-    @Component
-    struct PlayButton {
-      @Link buttonPlaying: boolean
-    
-      build() {
-        Column() {
-          Button(this.buttonPlaying ? 'pause' : 'play')
-            .margin(20)
-            .onClick(() => {
-              this.buttonPlaying = !this.buttonPlaying
-            })
-        }
-      }
-    }
-    ```
-
+   ```
+   @Component
+   struct PlayButton {
+     @Link buttonPlaying: boolean
+   
+     build() {
+       Column() {
+         Button(this.buttonPlaying ? 'pause' : 'play')
+           .margin(20)
+           .onClick(() => {
+             this.buttonPlaying = !this.buttonPlaying
+           })
+       }
+     }
+   }
+   ```
 
 **参考链接**
 
 [@Link](../quick-start/arkts-link.md)
 
-## 父组件如何与孙子组件进行状态同步
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 父组件如何与孙子组件进行状态同步(API 9)
 
 **解决措施**
 
--   方式一（推荐）：使用@Provide和@Consume装饰器。在父组件使用@Provide，在孙子组件使用@Consume，可以实现父组件和孙子组件进行双向数据绑定。
+- 方式一（推荐）：使用\@Provide和\@Consume装饰器。在父组件使用\@Provide，在孙子组件使用\@Consume，可以实现父组件和孙子组件进行双向数据绑定。
 
--   方式二：使用@State和@Link装饰器。在父组件使用@State，在每一层子组件（子组件和孙子组件）都使用@Link。
+- 方式二：使用\@State和\@Link装饰器。在父组件使用\@State，在每一层子组件（子组件和孙子组件）都使用\@Link。
 
 **代码示例一**
 
-1.  父组件中使用子组件，通过Provide提供reviewVote参数，供跨级传递给孙子组件。
+1. 父组件中使用子组件，通过Provide提供reviewVote参数，供跨级传递给孙子组件。
 
-    ```
-    @Entry
-    @Component
-    struct Father{
-      @Provide("reviewVote") reviewVotes: number = 0;
-    
-      build() {
-        Column() {
-          Son()
-          Button(`Father: ${this.reviewVotes}`)
-            ...
-        }
-      }
-    }
-    ```
+   ```
+   @Entry
+   @Component
+   struct Father{
+     @Provide("reviewVote") reviewVotes: number = 0;
+   
+     build() {
+       Column() {
+         Son()
+         Button(`Father: ${this.reviewVotes}`)
+           ...
+       }
+     }
+   }
+   ```
 
-2.  子组件中使用孙组件。
+2. 子组件中使用孙组件。
 
-    ```
-    @Component
-    struct Son{
-      build() {
-        Column() {
-          GrandSon()
-        }
-      }
-    }
-    ```
+   ```
+   @Component
+   struct Son{
+     build() {
+       Column() {
+         GrandSon()
+       }
+     }
+   }
+   ```
 
-3.  孙子组件中使用Consume来接受reviewVote的参数。
+3. 孙子组件中使用Consume来接受reviewVote的参数。
 
-    ```
-    @Component
-    struct GrandSon{
-      @Consume("reviewVote") reviewVotes: number
-    
-      build() {
-        Column() {
-          Button(`GrandSon: ${this.reviewVotes}`)
-            ...
-        }.width('100%')
-      }
-    }
-    ```
-
+   ```
+   @Component
+   struct GrandSon{
+     @Consume("reviewVote") reviewVotes: number
+   
+     build() {
+       Column() {
+         Button(`GrandSon: ${this.reviewVotes}`)
+           ...
+       }.width('100%')
+     }
+   }
+   ```
 
 **代码示例二**
 
-1.  父组件Father使用@State绑定数据reviewVote。
+1. 父组件Father使用\@State绑定数据reviewVote。
 
-    ```
-    @Entry
-    @Component
-    struct Father {
-      @State reviewVotes: number = 0;
-    
-      build() {
-        Column() {
-          Son({reviewVotes:$reviewVotes})
-          Button(`Father: ${this.reviewVotes}`)
-            ...
-        }
-      }
-    }
-    ```
+   ```
+   @Entry
+   @Component
+   struct Father {
+     @State reviewVotes: number = 0;
+   
+     build() {
+       Column() {
+         Son({reviewVotes:$reviewVotes})
+         Button(`Father: ${this.reviewVotes}`)
+           ...
+       }
+     }
+   }
+   ```
 
-2.  子组件Son中使用@Link接受由父组件Father传递的参数reviewVote。
+2. 子组件Son中使用\@Link接受由父组件Father传递的参数reviewVote。
 
-    ```
-    @Component
-    struct Son{
-      @Link reviewVotes: number;
-      build() {
-        Column() {
-          Grandson({reviewVotes:$reviewVotes})
-        }
-      }
-    }
-    
-    
-    ```
+   ```
+   @Component
+   struct Son{
+     @Link reviewVotes: number;
+     build() {
+       Column() {
+         Grandson({reviewVotes:$reviewVotes})
+       }
+     }
+   }
+   
+   ```
 
-3.  孙子组件GrandSon使用@Link接受由Son组件传递的参数reviewVote。
+3. 孙子组件GrandSon使用\@Link接受由Son组件传递的参数reviewVote。
 
-    ```
-    @Component
-    struct Grandson{
-      @Link reviewVotes: number;
-    
-      build() {
-        Column() {
-          Button(`Grandson: ${this.reviewVotes}`)
-            ...
-        }.width('100%')
-      }
-    }
-    ```
+   ```
+   @Component
+   struct Grandson{
+     @Link reviewVotes: number;
+   
+     build() {
+       Column() {
+         Button(`Grandson: ${this.reviewVotes}`)
+           ...
+       }.width('100%')
+     }
+   }
+   ```
 
 
-## Js如何定义callback函数
-
-适用于：OpenHarmony 3.2 Beta5 API 9 
+## Js如何定义callback函数(API 9)
 
 **解决措施**
 
 定义个callback函数的样例，**示例如下：**
 
-1.  定义回调函数
+1. 定义回调函数
 
-    ```
-    // 页面中定义个2个参数,空返回的callback函数
-    myCallback: (a:number,b:string) => void
-    ```
+   ```
+   // 页面中定义个2个参数,空返回的callback函数
+   myCallback: (a:number,b:string) => void
+   ```
 
-2.  在使用时进行初始化赋值
+2. 在使用时进行初始化赋值
 
-    ```
-    aboutToAppear() {
-      // callback函数初始化
-      this.myCallback= (a,b)=>{
-        console.info(`handle myCallback a=${a},b=${b}`)
-      }}
-    ```
+   ```
+   aboutToAppear() {
+     // callback函数初始化
+     this.myCallback= (a,b)=>{
+       console.info(`handle myCallback a=${a},b=${b}`)
+     }}
+   ```
 
 
-## 组件需要多次更新时如何优化性能
-
-适用于：OpenHarmony 3.2 Beta5 API 9 
+## 组件需要多次更新时如何优化性能(API 9)
 
 **解决措施**
 
 使用状态管理模块，目前已经支持最小化更新，当数据依赖变化时，不再是重新刷新整个自定义组件，而是只更新依赖数据的视图内容。
 
-## 对象中函数的this如何指向外层
 
-适用于：Openharmony 3.2 Beta5 API 9
+## 对象中函数的this如何指向外层(API 9)
 
 **解决措施**
 
@@ -334,9 +317,8 @@ const obj = {
 }
 ```
 
-## 如何实现页面加载前从接口获取数据
 
-适用于：Openharmony 3.2 Beta5 API 9
+## 如何实现页面加载前从接口获取数据(API 9)
 
 **问题现象**
 
@@ -344,7 +326,7 @@ const obj = {
 
 **解决措施**
 
-在声明周期函数aboutToAppear中使用异步接口获取页面数据，数据变量使用@State修饰，数据获取完成后根据变量自动刷新页面。
+在声明周期函数aboutToAppear中使用异步接口获取页面数据，数据变量使用\@State修饰，数据获取完成后根据变量自动刷新页面。
 
 **代码示例**
 
@@ -374,17 +356,15 @@ struct Test6Page {
 }
 ```
 
-## 如何将传感器的数据实时显示在UI的Text中
 
-适用于：Openharmony 3.2 Beta5 API9
+## 如何将传感器的数据实时显示在UI的Text中(API 9)
 
 **解决措施**
 
 传感器返回数据类型为double，可将double转为string，再显示在text中。
 
-## 如何监听屏幕旋转
 
-适用于：Openharmony 3.2 Beta5 API 9
+## 如何监听屏幕旋转(API 9)
 
 **解决措施**
 
@@ -408,9 +388,8 @@ listener.off('change', onPortrait) // 去注册回调
 
 [媒体查询](../reference/apis/js-apis-mediaquery.md)
 
-## 创建的单例换了页面后不生效问题
 
-适用于：Openharmony 3.2 Beta5 API 9
+## 创建的单例换了页面后不生效问题(API 9)
 
 **问题现象**
 
@@ -422,13 +401,12 @@ listener.off('change', onPortrait) // 去注册回调
 
 如果想共享一个实例，创建范围需要提升至UIAbility或者App级别。
 
-## 如何将时间格式的字符串string转换为Date对象
 
-适用于：Openharmony 3.2 Beta5 API 9
+## 如何将时间格式的字符串string转换为Date对象(API 9)
 
 **解决措施**
 
-如果字符string满足格式“yyyy-MM-dd”格式，则可直接使用函数new Date\("yyyy-MM-dd"\)来获取对应的Date对象。
+如果字符string满足格式“yyyy-MM-dd”格式，则可直接使用函数new Date("yyyy-MM-dd")来获取对应的Date对象。
 
 ```
 new Date("2021-05-23");
@@ -437,7 +415,7 @@ new Date("2020-14-03");
 new Date("14-02-2021");
 ```
 
-其他格式字符串可使用new Date\(year:number,month:number,day?:number,hour?:number,mintue?:number,second?:number,ms?:number\)方法来获取Date对象。
+其他格式字符串可使用new Date(year:number,month:number,day?:number,hour?:number,mintue?:number,second?:number,ms?:number)方法来获取Date对象。
 
 ```
 // 根据参数创建日期的语法：
@@ -446,16 +424,20 @@ new Date(yearValue, IndexOfMonth, dayValue, hours, minutes, seconds)
 
 其中每一个参数换算为对应时间参数传入即可。
 
--   yearValue：应符合 ISO 8061 YYYY 格式。例如 2021。如果我们以 YY 格式指定一个值，它将会被错误地接受。例如，仅将 2021 提到 21 会被认为是 1921 年而不是 2021 年。
--   IndexOfMonth：从索引 0 开始。因此，从 Month 值中减去 1。例如，对于 3 月，该值为 3，但 monthIndex 将为 2（即 3-1 = 2）。本月指数通常应在 0-11 范围内
--   dayValue：表示一个月中的某天。它应在 1-31 范围内，具体取决于一个月中的天数。例如：对于 21-05-2021，日期值为 21
--   hours：一天中的小时。例如 10 点。
--   minutes：过去一个小时的分钟数
--   seconds：保留超过一分钟的秒数。
+- yearValue：应符合 ISO 8061 YYYY 格式。例如 2021。如果我们以 YY 格式指定一个值，它将会被错误地接受。例如，仅将 2021 提到 21 会被认为是 1921 年而不是 2021 年。
 
-## ArkTS如何把string转为byte数组
+- IndexOfMonth：从索引 0 开始。因此，从 Month 值中减去 1。例如，对于 3 月，该值为 3，但 monthIndex 将为 2（即 3-1 = 2）。本月指数通常应在 0-11 范围内
 
-适用于：Openharmony 3.2 Beta5 API 9
+- dayValue：表示一个月中的某天。它应在 1-31 范围内，具体取决于一个月中的天数。例如：对于 21-05-2021，日期值为 21
+
+- hours：一天中的小时。例如 10 点。
+
+- minutes：过去一个小时的分钟数
+
+- seconds：保留超过一分钟的秒数。
+
+
+## ArkTS如何把string转为byte数组(API 9)
 
 **解决措施**
 
@@ -471,9 +453,8 @@ stringToArray(str:string) {
 }
 ```
 
-## ArkTS如何实现字符串编解码
 
-适用于：Openharmony 3.2 Beta5 API 9
+## ArkTS如何实现字符串编解码(API 9)
 
 **解决措施**
 
@@ -483,54 +464,51 @@ stringToArray(str:string) {
 
 [TextEncoder](../reference/apis/js-apis-util.md#textencoder)、[TextDecoder](../reference/apis/js-apis-util.md#textdecoder)
 
-## 如何导入和导出namespace命名空间
 
-适用于：Openharmony 3.2 Beta5 API 9
+## 如何导入和导出namespace命名空间(API 9)
 
 **解决措施**
 
 通过export和import导入导出
 
--   namespace导数据库出
+- namespace导数据库出
 
-    ```
-    namespace Util{
-        export function getTime(){
-            return Date.now()
-        }
-    }
-    export default Util
-    ```
+  ```
+  namespace Util{
+      export function getTime(){
+          return Date.now()
+      }
+  }
+  export default Util
+  ```
 
--   namespace导入
+- namespace导入
 
-    ```
-    import Util from './util'
-    Util.getTime()
-    ```
+  ```
+  import Util from './util'
+  Util.getTime()
+  ```
 
-## worker线程中能否进行关系型数据库的操作
 
-适用于：Openharmony 3.2 Beta5 API 9
+## worker线程中能否进行关系型数据库的操作(API 9)
 
 当前不支持将UI主线程中的rdb数据库对象发送给Worker线程后进行操作。Worker线程中使用rdb数据库，需要重新获取rdb数据库的对象。
 
-## 如何获取应用resource目录下的文件
 
-适用于：Openharmony 3.2 Beta5 API 9
+## 如何获取应用resource目录下的文件(API 9)
 
 **解决措施**
 
--   方式一：使用\$r或者\$rawfile访问。适合静态访问，程序运行时不改变资源路径。
--   方式二：使用ResourceManage访问。适合动态访问，程序运行时可动态改变资源路径。
+- 方式一：使用$r或者$rawfile访问。适合静态访问，程序运行时不改变资源路径。
+
+- 方式二：使用ResourceManage访问。适合动态访问，程序运行时可动态改变资源路径。
 
 **参考链接**
 
-[资源访问](../quick-start/resource-categories-and-access.md)与[资源管理](../reference/apis/js-apis-resource-manager.md#getstring)
+[资源访问](../quick-start/resource-categories-and-access.md)与[资源管理](../reference/apis/js-apis-resource-manager.md)
 
-## XML格式如何转为JSON格式
 
-适用于：Openharmony 3.2 Beta5 API 9
+## XML格式如何转为JSON格式(API 9)
 
 **问题现象**
 
@@ -609,23 +587,23 @@ struct Faq_4_31 {
 }
 ```
 
-## 在生成器函数中编译TS语言有哪些使用限制
 
-适用于：Openharmony 3.2 Beta5 API 9
+## 在生成器函数中编译TS语言有哪些使用限制(API 9)
 
 **解决措施**
 
 TS语言的使用在生成器函数中存在以下限制：
 
--   表达式仅允许在字符串\(\$\{expression\}\)、if条件、ForEach的参数和组件的参数中使用。
--   这些表达式中的任何一个都不能导致任何应用程序状态变量（@State、@Link、@Prop）的改变，否则会导致未定义和潜在不稳定的框架行为。
--   生成器函数内部不能有局部变量。
+- 表达式仅允许在字符串(${expression})、if条件、ForEach的参数和组件的参数中使用。
+
+- 这些表达式中的任何一个都不能导致任何应用程序状态变量（\@State、\@Link、\@Prop）的改变，否则会导致未定义和潜在不稳定的框架行为。
+
+- 生成器函数内部不能有局部变量。
 
 上述限制都不适用于事件处理函数（例如onClick）的匿名函数实现。
 
-## 如何设置一张图片上面四个角都分别有一个角标
 
-适用于 OpenHarmony 3.2 Beta5
+## 如何设置一张图片上面四个角都分别有一个角标(API 9)
 
 **问题现象**
 
@@ -661,19 +639,19 @@ struct PositionExample2 {
 }
 ```
 
-## util.generateRandomUUID参数问题
 
-适用于 OpenHarmony 3.2 Beta5
+## util.generateRandomUUID参数问题(API 9)
 
 **解决措施**
 
-generateRandomUUID底层使用Node.js crypto.randomUUID\(\)接口，传递参数为false时会生成uuid，并缓存到系统里，参数为true时使用系统已缓存的UUID。
+generateRandomUUID底层使用Node.js crypto.randomUUID()接口，传递参数为false时会生成uuid，并缓存到系统里，参数为true时使用系统已缓存的UUID。
+
+**参考链接**
 
 参考文档：[util.generateRandomUUID](../reference/apis/js-apis-util.md#utilgeneraterandomuuid9)
 
-## worker线程与主线程是否运行在相同的全局上下文中
 
-适用于 OpenHarmony 3.2 Beta5
+## worker线程与主线程是否运行在相同的全局上下文中(API 9)
 
 **解决措施**
 
@@ -683,9 +661,8 @@ worker线程与主线程不在同一个上下文中，它们使用数据通信�
 
 worker：[启动一个Worker](../reference/apis/js-apis-worker.md)
 
-## 应用图标一多设置
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 应用图标一多设置(API 9)
 
 **问题现象**
 
@@ -730,9 +707,8 @@ worker：[启动一个Worker](../reference/apis/js-apis-worker.md)
 
 [资源使用](../key-features/multi-device-app-dev/resource-usage.md)
 
-## 调用方法的时候，如何解决方法内部的this变成undefined？ 
 
-适用于：OpenHarmony SDK 3.2，API 9
+## 调用方法的时候，如何解决方法内部的this变成undefined(API 9)
 
 **问题现象**
 
@@ -740,31 +716,30 @@ ArkTS里的this指向
 
 **解决措施**
 
-方式一：在调用方法的时候加上.bind\(this\)；
+方式一：在调用方法的时候加上.bind(this)；
 
 方式二：使用箭头函数。
 
-## OpenHarmony的systemTime.getCurrentTime\(\)接口和JS的new Date\(\).getTime\(\)有区别吗
 
-适用于：OpenHarmony SDK 3.2，API 9
-
-**解决措施**
-
-systemTime.getCurrentTime\(false\)和new Date\(\).getTime\(\)一样，都是返回1970年1月1日至今的毫秒数；systemTime.getCurrentTime\(true\)返回1970年1月1日至今的纳秒数。两种方式都是系统时间。
-
-## 如何实现类似js中的slot插槽功能
-
-适用于：OpenHarmony SDK 3.2，API 9
+## systemTime.getCurrentTime()接口和JS的new Date().getTime()有区别吗(API 9)
 
 **解决措施**
 
-适用于：OpenHarmony SDK3.2.5.5, API9 Stage模型
+systemTime.getCurrentTime(false)和new Date().getTime()一样，都是返回1970年1月1日至今的毫秒数；systemTime.getCurrentTime(true)返回1970年1月1日至今的纳秒数。两种方式都是系统时间。
 
-该功能在ArkTS中使用@Build和@BuilderParam方式来实现，具体可参考文档：[@BuilderParam：引用@Builder函数](../quick-start/arkts-builderparam.md)
 
-## 加上lineHeight，Text垂直不居中的原因
+## 如何实现类似js中的slot插槽功能(API 9)
 
-适用于 OpenHarmony 3.2 Beta5  API 9
+**解决措施**
+
+该功能在ArkTS中使用\@Build和\@BuilderParam方式来实现。
+
+**参考链接**
+
+[@BuilderParam装饰器：引用@Builder函数](../quick-start/arkts-builderparam.md)
+
+
+## 加上lineHeight，Text垂直不居中的原因(API 9)
 
 **原因分析**
 
@@ -775,9 +750,7 @@ Text组件不用设置lineHeight属性，默认就是居中的。绘制文本是
 [Text](../reference/arkui-ts/ts-basic-components-text.md#示例1)
 
 
-## 使用什么接口进行url编码
-
-适用于：OpenHarmony 3.2 Beta5，API9
+## 使用什么接口进行url编码(API 9)
 
 **解决措施**
 
@@ -788,19 +761,19 @@ let a = encodeURI(" ")
 console.log(a) // %20
 ```
 
-## 如何解析xml
 
-适用于：OpenHarmony 3.2 Beta5，API9
+## 如何解析xml(API 9)
 
 **解决措施**
 
 使用ConvertXML的convert接口可以将xml文本解析为JavaScript对象。
 
-参考文档：[转换xml](../reference/apis/js-apis-convertxml.md)
+**参考链接**
 
-## 使用Styles装饰器，编译报错.stateStyles doesn't conform standard
+[转换xml](../reference/apis/js-apis-convertxml.md)
 
-适用于：OpenHarmony 3.2 Beta5，API9
+
+## 使用Styles装饰器，编译报错.stateStyles doesn't conform standard(API 9)
 
 **原因分析**
 
@@ -810,21 +783,20 @@ Styles装饰器内部只支持通用属性，使用了非通用属性作为Style
 
 去掉非通用属性，或者使用Builder来提取公共组件。
 
-## Radio组件\$\$双向绑定
 
-适用于：OpenHarmony 3.2 Beta5，API9
+## Radio组件$$双向绑定(API 9)
 
 **解决措施**
 
-Radio组件使用\$\$绑定的变量变更时，仅渲染当前组件，提高渲染速度。
+Radio组件使用$$绑定的变量变更时，仅渲染当前组件，提高渲染速度。
 
 当Radio组件的状态发生改变时，不会自动修改绑定的变量。
 
-参考：[内置组件双向绑定](../quick-start/arkts-two-way-sync.md)
+**参考链接**
 
-## ForEach组件在真机上无法执行
+[内置组件双向同步](../quick-start/arkts-two-way-sync.md)
 
-适用于：OpenHarmony 3.2 beta5，API9
+## ForEach组件在真机上无法执行(API 9)
 
 **问题现象**
 
@@ -847,7 +819,7 @@ module.json5添加"metadata"配置项：
       {
         "name": "ArkTSPartialUpdate",
         "value": "true"
-      }
+      } ]
   }
 }
 ```

@@ -130,30 +130,46 @@ The following table describes the APIs for notification publishing. You specify 
    - In addition to the parameters in the normal text notification, the picture-attached text notification provides the **picture**, **briefText**, and **expandedTitle** parameters. The value of **picture** is a [PixelMap](../reference/apis/js-apis-image.md#pixelmap7) object that does not exceed 2 MB.
      
       ```ts
-      let imagePixelMap: PixelMap; // Obtain the PixelMap information.
-      let notificationRequest: notificationManager.NotificationRequest = {
-        id: 1,
-        content: {
-          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
-          picture: {
-            title: 'test_title',
-            text: 'test_text',
-            additionalText: 'test_additionalText',
-            briefText: 'test_briefText',
-            expandedTitle: 'test_expandedTitle',
-            picture: imagePixelMap
-          }
+      import image from '@ohos.multimedia.image';
+
+      let imagePixelMap: image.PixelMap | undefined = undefined; // Obtain the PixelMap information.
+      let color = new ArrayBuffer(0);
+      image.createPixelMap(color, {
+        size: {
+          height: 0,
+          width: 0
         }
-      };
+      }).then((data: image.PixelMap) => {
+        imagePixelMap = data;
+      }).catch((err: Base.BusinessError) => {
+        console.log(`createPixelMap failed, error: ${err}`);
+      })
       
-      // Publish the notification.
-      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
-        if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in publishing notification.');
-      });
+      if (imagePixelMap !== undefined) {
+        let notificationRequest: notificationManager.NotificationRequest = {
+          id: 1,
+          content: {
+            contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
+            picture: {
+              title: 'test_title',
+              text: 'test_text',
+              additionalText: 'test_additionalText',
+              briefText: 'test_briefText',
+              expandedTitle: 'test_expandedTitle',
+              picture: imagePixelMap
+            }
+          }
+        };
+
+        // Publish the notification.
+        notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+          if (err) {
+            console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in publishing notification.');
+        });
+      }
       ```
    
       Below is an example of the picture-attached notification. 

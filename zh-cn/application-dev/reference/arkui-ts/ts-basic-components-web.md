@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述    |
 | ---------- | ---------------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md)               | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
+| src        | [ResourceStr](ts-types.md#resourcestr)               | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 
 **示例：**
@@ -114,7 +114,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  import { GlobalContext } from '../GlobalContext'
+  import { GlobalContext } from '../GlobalContext.ts'
 
   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
 
@@ -262,7 +262,7 @@ imageAccess(imageAccess: boolean)
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
     controller: WebviewController | WebController})
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy)。
 
 **参数：**
 
@@ -661,7 +661,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 | 参数名         | 参数类型    | 必填   | 默认值   | 参数描述         |
 | ----------- | ------- | ---- | ----- | ------------ |
-| verticalScrollBarAccess | boolean | 是    | true | 设置是否显示纵向滚动条。 |
+| verticalScrollBar | boolean | 是    | true | 设置是否显示纵向滚动条。 |
 
 **示例：**
 
@@ -815,13 +815,13 @@ textZoomRatio(textZoomRatio: number)
 
 initialScale(percent: number)
 
-设置整体页面的缩放百分比，默认为100%。
+设置整体页面的缩放百分比，默认为100。
 
 **参数：**
 
 | 参数名     | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------- | ------ | ---- | ---- | --------------- |
-| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。 |
+| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。<br>取值范围：1-100 |
 
 **示例：**
 
@@ -1319,19 +1319,19 @@ pinchSmooth(isEnabled: boolean)
 **示例：**
 
   ```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-        .pinchSmooth(true)
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .pinchSmooth(true)
+      }
     }
   }
-}
   ```
 
 ### allowWindowOpenMethod<sup>10+</sup>
@@ -1869,7 +1869,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 | userAgent          | string        | 用于下载的用户代理。                           |
 | contentDisposition | string        | 服务器返回的 Content-Disposition响应头，可能为空。 |
 | mimetype           | string        | 服务器返回内容媒体类型（MIME）信息。                |
-| contentLength      | contentLength | 服务器返回文件的长度。                         |
+| contentLength      | number | 服务器返回文件的长度。                         |
 
 **示例：**
 
@@ -2305,7 +2305,9 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
   <body>
     <form id="upload-form" enctype="multipart/form-data">
       <input type="file" id="upload" name="upload"/>
+      </form>
   </body>
+  </html>
   ```
 
 ### onResourceLoad<sup>9+</sup>
@@ -2388,7 +2390,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
 | 参数名  | 参数类型                                     | 参数描述      |
 | ---- | ---------------------------------------- | --------- |
-| data | string / [WebResourceRequest](#webresourcerequest) | url的相关信息。 |
+| data | string \| [WebResourceRequest](#webresourcerequest) | url的相关信息。 |
 
 **返回值：**
 
@@ -2615,7 +2617,7 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
 
 ### onClientAuthenticationRequest<sup>9+</sup>
 
-onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string>, issuers : Array<string>}) => void)
+onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string\>, issuers : Array<string\>}) => void)
 
 通知用户收到SSL客户端证书请求事件。
 
@@ -2626,8 +2628,8 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 | handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | 通知Web组件用户操作行为。  |
 | host     | string                                   | 请求证书服务器的主机名。    |
 | port     | number                                   | 请求证书服务器的端口号。    |
-| keyTypes | Array<string>                            | 可接受的非对称秘钥类型。    |
-| issuers  | Array<string>                            | 与私钥匹配的证书可接受颁发者。 |
+| keyTypes | Array<string\>                            | 可接受的非对称秘钥类型。    |
+| issuers  | Array<string\>                            | 与私钥匹配的证书可接受颁发者。 |
 
   **示例：**
   未对接证书管理的双向认证
@@ -4867,11 +4869,13 @@ cancel(): void
 let webController: WebController = new WebController()
 ```
 
-### getCookieManager<sup>9+</sup>
+### getCookieManager<sup>(deprecated)</sup>
 
 getCookieManager(): WebCookie
 
 获取web组件cookie管理对象。
+
+从API version 9开始不再维护，建议使用[getCookie](../apis/js-apis-webview.md#getcookie)代替。
 
 **返回值：**
 
@@ -5487,7 +5491,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
         Text(this.webResult).fontSize(20)
         Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(e => {
+        .onPageEnd(() => {
           this.controller.runJavaScript({
             script: 'test()',
             callback: (result: string)=> {

@@ -72,6 +72,7 @@
   - Image Processing
     - [Image Transformation (ArkTS)](image-transformation.md)
     - [Image Transformation (Native)](image-transformation-native.md)
-    - [Pixel Map Operation](image-pixelmap-operation.md)
+    - [PixelMap Data Processing (Native)](image-pixelmap-operation-native.md)
+    - [PixelMap Operation](image-pixelmap-operation.md)
   - [Image Encoding](image-encoding.md)
   - [Image Tool](image-tool.md)

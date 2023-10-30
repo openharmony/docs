@@ -13,7 +13,9 @@ You can create a radio button by calling the following API:
 Radio(options: {value: string, group: string})
 ```
 
-  Creates a radio button. In this API, **value** indicates the name of the radio button, and **group** indicates the name of the group to which the radio button belongs. You can use the **checked** attribute of the radio button to specify whether it is selected. The value **true** means that the radio button is selected. The color and shape cannot be customized for the radio button.
+In this API, **value** indicates the name of the radio button, and **group** indicates the name of the group to which the radio button belongs. You can use the **checked** attribute of the radio button to specify whether it is selected. The value **true** means that the radio button is selected.
+
+The color and shape cannot be customized for the radio button.
 
 ```ts
 Radio({ value: 'Radio1', group: 'radioGroup' })
@@ -59,6 +61,9 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 struct RadioExample {
+  @State Rst:promptAction.ShowToastOptions = {'message': 'Ringing mode.'}
+  @State Vst:promptAction.ShowToastOptions = {'message': 'Vibration mode.'}
+  @State Sst:promptAction.ShowToastOptions = {'message': 'Silent mode.'}
   build() {
     Row() {
       Column() {
@@ -68,8 +73,7 @@ struct RadioExample {
           .onChange((isChecked: boolean) => {
             if(isChecked) {
               // Switch to the ringing mode.
-              let st:Record<string,string> = {'message': 'Ringing mode.'}
-              promptAction.showToast(st)
+              promptAction.showToast(this.Rst)
             }
           })
         Text('Ringing')
@@ -81,8 +85,7 @@ struct RadioExample {
           .onChange((isChecked: boolean) => {
             if(isChecked) {
               // Switch to the vibration mode.
-              let st:Record<string,string> = {'message': 'Vibration mode.'}
-              promptAction.showToast(st)
+              promptAction.showToast(this.Vst)
             }
           })
         Text('Vibration')
@@ -94,8 +97,7 @@ struct RadioExample {
           .onChange((isChecked: boolean) => {
             if(isChecked) {
               // Switch to the silent mode.
-              let st:Record<string,string> = {'message': 'Silent mode.'}
-              promptAction.showToast(st)
+              promptAction.showToast(this.Sst)
             }
           })
         Text('Silent')

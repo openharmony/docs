@@ -51,6 +51,15 @@ The following description is provided for each API in the reference document to 
 
 You can use the [SystemCapability List](../syscap-list.md) to query the devices supported by a specific capability set.
 
+## Deprecated API Description
+
+A deprecated API is an API no longer recommended and is marked with the <sup>deprecated</sup> superscript.
+
+While deprecated APIs can still be implemented in the five API levels immediately following the version when the API is deprecated, this is not recommended.
+
+- Do not use deprecated APIs in new code. If possible, rewrite old code by replacing the deprecated APIs with their substitutes.
+- If no substitute is available, change the implementation mode by referring to the deprecation description and changelog.
+
 ## Sample Code Language Description
 
 OpenHarmony supports two development languages: JS and TS.

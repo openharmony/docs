@@ -392,7 +392,7 @@ getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>):
 
 ```ts
 import { BusinessError } from '@ohos.base';
-policy.getUidsByPolicy(11111, (error: BusinessError, data: object) => {
+policy.getUidsByPolicy(11111, (error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -564,26 +564,21 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallba
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
-let netQuotaPolicyList: Array<policy.NetQuotaPolicy>|null = null;
-class Netquotapolicy {
-  networkMatchRule: NetworkMatchRule = new NetworkMatchRule();
-  quotaPolicy: QuotaPolicy = new QuotaPolicy();
+let netQuotaPolicyList: Array<policy.NetQuotaPolicy> = [];
+let netquotapolicy: policy.NetQuotaPolicy = {
+  networkMatchRule: {
+    netType: connection.NetBearType.BEARER_CELLULAR,
+    identity: '',
+    simId: '1'
+  },
+  quotaPolicy: {
+    periodDuration: 'M1',
+    warningBytes: 40000,
+    limitBytes: 50000,
+    metered: true,
+    limitAction: policy.LimitAction.LIMIT_ACTION_NONE
+  }
 }
-class NetworkMatchRule {
-  netType: policy.NetBearType = connection.NetBearType.BEARER_CELLULAR;
-  identity: string = '';
-  simId: string = '1';
-}
-class QuotaPolicy {
-  periodDuration: string = 'M1';
-  warningBytes: number = 40000;
-  limitBytes: number = 50000;
-  metered: boolean = true;
-  limitAction: policy.LimitAction.LIMIT_ACTION_NONE;
-}
-
-let netquotapolicy = new Netquotapolicy();
-
 netQuotaPolicyList.push(netquotapolicy);
 
 policy.setNetQuotaPolicies(netQuotaPolicyList, (error: BusinessError) => {
@@ -632,26 +627,21 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
-let netQuotaPolicyList: Array<policy.NetQuotaPolicy>|null = null;
-class Netquotapolicy {
-  networkMatchRule: NetworkMatchRule = new NetworkMatchRule();
-  quotaPolicy: QuotaPolicy = new QuotaPolicy();
+let netQuotaPolicyList: Array<policy.NetQuotaPolicy> = [];
+let netquotapolicy: policy.NetQuotaPolicy = {
+  networkMatchRule: {
+    netType: connection.NetBearType.BEARER_CELLULAR,
+    identity: '',
+    simId: '1'
+  },
+  quotaPolicy: {
+    periodDuration: 'M1',
+    warningBytes: 40000,
+    limitBytes: 50000,
+    metered: true,
+    limitAction: policy.LimitAction.LIMIT_ACTION_NONE
+  }
 }
-class NetworkMatchRule {
-  netType: policy.NetBearType = connection.NetBearType.BEARER_CELLULAR;
-  identity: string = '';
-  simId: string = '1';
-}
-class QuotaPolicy {
-  periodDuration: string = 'M1';
-  warningBytes: number = 40000;
-  limitBytes: number = 50000;
-  metered: boolean = true;
-  limitAction: policy.LimitAction.LIMIT_ACTION_NONE;
-}
-
-let netquotapolicy = new Netquotapolicy();
-
 netQuotaPolicyList.push(netquotapolicy);
 
 policy

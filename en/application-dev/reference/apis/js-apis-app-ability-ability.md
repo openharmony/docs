@@ -35,7 +35,7 @@ import { Configuration } from '@ohos.app.ability.Configuration';
 
 class MyUIAbility extends UIAbility {
     onConfigurationUpdate(config: Configuration) {
-        console.log('onConfigurationUpdate, config: ${JSON.stringify(config)}');
+        console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
     }
 }
   ```
@@ -63,7 +63,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyUIAbility extends UIAbility {
     onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-        console.log('onMemoryLevel, level: ${JSON.stringify(level)}');
+        console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
     } 
 }
   ```

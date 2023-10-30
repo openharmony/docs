@@ -20,15 +20,15 @@ import common from '@ohos.app.ability.common';
 在使用ServiceExtensionContext的功能前，需要通过ServiceExtensionAbility子类实例获取。
 
 ```ts
-  import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-  import rpc from '@ohos.rpc';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import rpc from '@ohos.rpc';
 
-  let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
-  class EntryAbility extends ServiceExtensionAbility {
-    onCreate() {
-        let context = this.context; // 获取ServiceExtensionContext
-    }
+let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+      let context = this.context; // 获取ServiceExtensionContext
   }
+}
 ```
 
 ## ServiceExtensionContext.startAbility
@@ -45,7 +45,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
@@ -72,30 +72,35 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    bundleName: 'com.example.myapp',
-    abilityName: 'MyAbility'
-  };
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      bundleName: 'com.example.myapp',
+      abilityName: 'MyAbility'
+    };
 
-  try {
-    this.context.startAbility(want, (error: BusinessError) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
-        return;
-      }
-      // 执行正常业务
-      console.log('startAbility succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.startAbility(want, (error: BusinessError) => {
+        if (error.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.log('startAbility succeed');
+      });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.startAbility
 
@@ -111,7 +116,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
@@ -144,34 +149,39 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import StartOptions from '@ohos.app.ability.StartOptions';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    bundleName: 'com.example.myapp',
-    abilityName: 'MyAbility'
-  };
-  let options: StartOptions = {
-  	windowMode: 0,
-  };
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      bundleName: 'com.example.myapp',
+      abilityName: 'MyAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0,
+    };
 
-  try {
-    this.context.startAbility(want, options)
-      .then((data: void) => {
-        // 执行正常业务
-        console.log('startAbility succeed');
-      })
-      .catch((error: BusinessError) => {
-        // 处理业务逻辑错误
-        console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.startAbility(want, options)
+        .then((data: void) => {
+          // 执行正常业务
+          console.log('startAbility succeed');
+        })
+        .catch((error: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+        });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.startAbility
 
@@ -187,7 +197,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
@@ -215,35 +225,40 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import StartOptions from '@ohos.app.ability.StartOptions';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    deviceId: '',
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
-  };
-  let options: StartOptions = {
-    windowMode: 0
-  };
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0
+    };
 
-  try {
-    this.context.startAbility(want, options, (error: BusinessError) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
-        return;
-      }
-      // 执行正常业务
-      console.log('startAbility succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.startAbility(want, options, (error: BusinessError) => {
+        if (error.code) {
+          // 处理业务逻辑错误
+          console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          return;
+        }
+        // 执行正常业务
+        console.log('startAbility succeed');
+      });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.startAbilityWithAccount
 
@@ -266,7 +281,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
@@ -294,32 +309,37 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    deviceId: '',
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
-  };
-  let accountId = 100;
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
 
-  try {
-    this.context.startAbilityWithAccount(want, accountId, (error: BusinessError) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
-        return;
-      }
-      // 执行正常业务
-      console.log('startAbilityWithAccount succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.startAbilityWithAccount(want, accountId, (error: BusinessError) => {
+        if (error.code) {
+          // 处理业务逻辑错误
+          console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          return;
+        }
+        // 执行正常业务
+        console.log('startAbilityWithAccount succeed');
+      });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.startAbilityWithAccount
 
@@ -342,7 +362,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
@@ -371,36 +391,41 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import StartOptions from '@ohos.app.ability.StartOptions';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    deviceId: '',
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
-  };
-  let accountId = 100;
-  let options: StartOptions = {
-    windowMode: 0
-  };
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+    let options: StartOptions = {
+      windowMode: 0
+    };
 
-  try {
-    this.context.startAbilityWithAccount(want, accountId, options, (error: BusinessError) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
-        return;
-      }
-      // 执行正常业务
-      console.log('startAbilityWithAccount succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.startAbilityWithAccount(want, accountId, options, (error: BusinessError) => {
+        if (error.code) {
+          // 处理业务逻辑错误
+          console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          return;
+        }
+        // 执行正常业务
+        console.log('startAbilityWithAccount succeed');
+      });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 
 ## ServiceExtensionContext.startAbilityWithAccount
@@ -424,7 +449,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
@@ -458,36 +483,41 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import StartOptions from '@ohos.app.ability.StartOptions';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    deviceId: '',
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
-  };
-  let accountId = 100;
-  let options: StartOptions = {
-    windowMode: 0
-  };
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+    let options: StartOptions = {
+      windowMode: 0
+    };
 
-  try {
-    this.context.startAbilityWithAccount(want, accountId, options)
-      .then((data: void) => {
-        // 执行正常业务
-        console.log('startAbilityWithAccount succeed');
-      })
-      .catch((error: BusinessError) => {
-        // 处理业务逻辑错误
-        console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.startAbilityWithAccount(want, accountId, options)
+        .then((data: void) => {
+          // 执行正常业务
+          console.log('startAbilityWithAccount succeed');
+        })
+        .catch((error: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+        });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.startServiceExtensionAbility
 
@@ -503,7 +533,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
@@ -526,31 +556,36 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    deviceId: '',
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
-  };
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
 
-  try {
-    this.context.startServiceExtensionAbility(want, (error: BusinessError) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.error('startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
-        return;
-      }
-      // 执行正常业务
-      console.log('startServiceExtensionAbility succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.startServiceExtensionAbility(want, (error: BusinessError) => {
+        if (error.code) {
+          // 处理业务逻辑错误
+          console.error('startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          return;
+        }
+        // 执行正常业务
+        console.log('startServiceExtensionAbility succeed');
+      });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.startServiceExtensionAbility
 
@@ -566,7 +601,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 
 **返回值：**
 
@@ -594,31 +629,36 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    deviceId: '',
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
-  };
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
 
-  try {
-    this.context.startServiceExtensionAbility(want)
-      .then((data: void) => {
-        // 执行正常业务
-        console.log('startServiceExtensionAbility succeed');
-      })
-      .catch((error: BusinessError) => {
-        // 处理业务逻辑错误
-        console.error('startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.startServiceExtensionAbility(want)
+        .then((data: void) => {
+          // 执行正常业务
+          console.log('startServiceExtensionAbility succeed');
+        })
+        .catch((error: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error('startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+        });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.startServiceExtensionAbilityWithAccount
 
@@ -640,7 +680,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
@@ -665,32 +705,37 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    deviceId: '',
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
-  };
-  let accountId = 100;
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
 
-  try {
-    this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error: BusinessError) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
-        return;
-      }
-      // 执行正常业务
-      console.log('startServiceExtensionAbilityWithAccount succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error: BusinessError) => {
+        if (error.code) {
+          // 处理业务逻辑错误
+          console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          return;
+        }
+        // 执行正常业务
+        console.log('startServiceExtensionAbilityWithAccount succeed');
+      });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.startServiceExtensionAbilityWithAccount
 
@@ -712,7 +757,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
 **返回值：**
@@ -741,32 +786,37 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    deviceId: '',
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
-  };
-  let accountId = 100;
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
 
-  try {
-    this.context.startServiceExtensionAbilityWithAccount(want, accountId)
-      .then((data: void) => {
-        // 执行正常业务
-        console.log('startServiceExtensionAbilityWithAccount succeed');
-      })
-      .catch((error: BusinessError) => {
-        // 处理业务逻辑错误
-        console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.startServiceExtensionAbilityWithAccount(want, accountId)
+        .then((data: void) => {
+          // 执行正常业务
+          console.log('startServiceExtensionAbilityWithAccount succeed');
+        })
+        .catch((error: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+        });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
 
@@ -787,7 +837,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -858,7 +908,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
@@ -933,7 +983,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
@@ -1011,7 +1061,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 停止Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
 | callback | AsyncCallback\<void\> | 是 | 停止Ability的回调函数。 |
 
 **错误码：**
@@ -1031,31 +1081,36 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    deviceId: '',
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
-  };
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
 
-  try {
-    this.context.stopServiceExtensionAbility(want, (error: BusinessError) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.error('stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
-        return;
-      }
-      // 执行正常业务
-      console.log('stopServiceExtensionAbility succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.stopServiceExtensionAbility(want, (error: BusinessError) => {
+        if (error.code) {
+          // 处理业务逻辑错误
+          console.error('stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          return;
+        }
+        // 执行正常业务
+        console.log('stopServiceExtensionAbility succeed');
+      });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.stopServiceExtensionAbility
 
@@ -1071,7 +1126,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 停止Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
 
 **返回值：**
 
@@ -1096,31 +1151,36 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    deviceId: '',
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
-  };
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
 
-  try {
-    this.context.stopServiceExtensionAbility(want)
-      .then(() => {
-        // 执行正常业务
-        console.log('stopServiceExtensionAbility succeed');
-      })
-      .catch((error: BusinessError) => {
-        // 处理业务逻辑错误
-        console.error('stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.stopServiceExtensionAbility(want)
+        .then(() => {
+          // 执行正常业务
+          console.log('stopServiceExtensionAbility succeed');
+        })
+        .catch((error: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error('stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+        });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.stopServiceExtensionAbilityWithAccount
 
@@ -1142,7 +1202,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 停止Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
 | accountId | number | 是 | 需要停止的系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<void\> | 是 | 停止Ability的回调函数。 |
 
@@ -1163,32 +1223,37 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    deviceId: '',
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
-  };
-  let accountId = 100;
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
 
-  try {
-    this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error: BusinessError) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code, error.message: ${error.message}');
-        return;
-      }
-      // 执行正常业务
-      console.log('stopServiceExtensionAbilityWithAccount succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error: BusinessError) => {
+        if (error.code) {
+          // 处理业务逻辑错误
+          console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code, error.message: ${error.message}');
+          return;
+        }
+        // 执行正常业务
+        console.log('stopServiceExtensionAbilityWithAccount succeed');
+      });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.stopServiceExtensionAbilityWithAccount
 
@@ -1210,7 +1275,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 停止Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
 | accountId | number | 是 | 需要停止的系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
 **返回值：**
@@ -1236,32 +1301,37 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 **示例：**
 
-  ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    deviceId: '',
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
-  };
-  let accountId = 100;
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
 
-  try {
-    this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
-      .then(() => {
-        // 执行正常业务
-        console.log('stopServiceExtensionAbilityWithAccount succeed');
-      })
-      .catch((error: BusinessError) => {
-        // 处理业务逻辑错误
-        console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    try {
+      this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
+        .then(() => {
+          // 执行正常业务
+          console.log('stopServiceExtensionAbilityWithAccount succeed');
+        })
+        .catch((error: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+        });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.terminateSelf
 
@@ -1294,19 +1364,24 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import { BusinessError } from '@ohos.base';
 
-  this.context.terminateSelf((error: BusinessError) => {
-    if (error.code) {
-      // 处理业务逻辑错误
-      console.error('terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}');
-      return;
-    }
-    // 执行正常业务
-    console.log('terminateSelf succeed');
-  });
-  ```
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    this.context.terminateSelf((error: BusinessError) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.error('terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}');
+        return;
+      }
+      // 执行正常业务
+      console.log('terminateSelf succeed');
+    });
+  }
+}
+```
 
 ## ServiceExtensionContext.terminateSelf
 
@@ -1339,17 +1414,22 @@ terminateSelf(): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import { BusinessError } from '@ohos.base';
 
-  this.context.terminateSelf().then(() => {
-    // 执行正常业务
-    console.log('terminateSelf succeed');
-  }).catch((error: BusinessError) => {
-    // 处理业务逻辑错误
-    console.error('terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}');
-  });
-  ```
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    this.context.terminateSelf().then(() => {
+      // 执行正常业务
+      console.log('terminateSelf succeed');
+    }).catch((error: BusinessError) => {
+      // 处理业务逻辑错误
+      console.error('terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}');
+    });
+  }
+}
+```
 
 ## ServiceExtensionContext.connectServiceExtensionAbility
 
@@ -1365,7 +1445,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、断开或连接失败后的信息。 |
 
 **返回值：**
@@ -1393,32 +1473,38 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 **示例：**
 
-  ```ts
-  import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-  import common from '@ohos.app.ability.common';
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import rpc from '@ohos.rpc';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    bundleName: 'com.example.myapp',
-    abilityName: 'MyAbility'
-  };
-  let options: common.ConnectOptions = {
-    onConnect(elementName, remote) {
-      commRemote = remote;
-      console.log('----------- onConnect -----------');
-    },
-    onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-    onFailed(code) { console.error('----------- onFailed -----------') }
-  };
-  let connection: number;
-  try {
-    connection = this.context.connectServiceExtensionAbility(want, options);
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      bundleName: 'com.example.myapp',
+      abilityName: 'MyAbility'
+    };
+    let options: common.ConnectOptions = {
+      onConnect(elementName, remote) {
+        commRemote = remote;
+        console.log('----------- onConnect -----------');
+      },
+      onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
+      onFailed(code) { console.error('----------- onFailed -----------') }
+    };
+    let connection: number;
+    try {
+      connection = this.context.connectServiceExtensionAbility(want, options);
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.connectServiceExtensionAbilityWithAccount
 
@@ -1436,7 +1522,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | options | ConnectOptions | 是 | 远端对象实例。 |
 
@@ -1465,34 +1551,40 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 **示例：**
 
-  ```ts
-  import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-  import common from '@ohos.app.ability.common';
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import rpc from '@ohos.rpc';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    deviceId: '',
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
-  };
-  let accountId = 100;
-  let options: common.ConnectOptions = {
-    onConnect(elementName, remote) { 
-      commRemote = remote;
-      console.log('----------- onConnect -----------');
-    },
-    onDisconnect(elementName) { console.log('----------- onDisconnect -----------'); },
-    onFailed(code) { console.log('----------- onFailed -----------'); }
-  };
-  let connection: number;
-  try {
-    connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+    let options: common.ConnectOptions = {
+      onConnect(elementName, remote) {
+        commRemote = remote;
+        console.log('----------- onConnect -----------');
+      },
+      onDisconnect(elementName) { console.log('----------- onDisconnect -----------'); },
+      onFailed(code) { console.log('----------- onFailed -----------'); }
+    };
+    let connection: number;
+    try {
+      connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.disconnectServiceExtensionAbility
 
@@ -1522,29 +1614,35 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 
 **示例：**
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import rpc from '@ohos.rpc';
+import { BusinessError } from '@ohos.base';
 
-  // connection为connectServiceExtensionAbility中的返回值
-  let connection = 1;
-
-  try {
-    this.context.disconnectServiceExtensionAbility(connection, (error: BusinessError) => {
+let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    // connection为connectServiceExtensionAbility中的返回值
+    let connection = 1;
+    try {
+      this.context.disconnectServiceExtensionAbility(connection, (error: BusinessError) => {
+        commRemote = null;
+        if (error.code) {
+          // 处理业务逻辑错误
+          console.error('disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          return;
+        }
+        // 执行正常业务
+        console.log('disconnectServiceExtensionAbility succeed');
+      });
+    } catch (paramError) {
       commRemote = null;
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.error('disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
-        return;
-      }
-      // 执行正常业务
-      console.log('disconnectServiceExtensionAbility succeed');
-    });
-  } catch (paramError) {
-    commRemote = null;
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.disconnectServiceExtensionAbility
 
@@ -1579,30 +1677,36 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import rpc from '@ohos.rpc';
+import { BusinessError } from '@ohos.base';
 
-  // connection为connectServiceExtensionAbility中的返回值
-  let connection = 1;
-
-  try {
-    this.context.disconnectServiceExtensionAbility(connection)
-      .then(() => {
-        commRemote = null;
-        // 执行正常业务
-        console.log('disconnectServiceExtensionAbility succeed');
-      })
-      .catch((error: BusinessError) => {
-        commRemote = null;
-        // 处理业务逻辑错误
-        console.error('disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
-      });
-  } catch (paramError) {
-    commRemote = null;
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    // connection为connectServiceExtensionAbility中的返回值
+    let connection = 1;
+    try {
+      this.context.disconnectServiceExtensionAbility(connection)
+        .then(() => {
+          commRemote = null;
+          // 执行正常业务
+          console.log('disconnectServiceExtensionAbility succeed');
+        })
+        .catch((error: BusinessError) => {
+          commRemote = null;
+          // 处理业务逻辑错误
+          console.error('disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+        });
+    } catch (paramError) {
+      commRemote = null;
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## ServiceExtensionContext.startAbilityByCall
 
@@ -1625,7 +1729,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
 
 **返回值：**
 
@@ -1651,50 +1755,58 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 **示例：**
 
-  后台启动：
+后台启动：
 
-  ```ts
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import { Caller } from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let caller: Caller;
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let caller: Caller;
 
-  // 后台启动Ability，不配置parameters
-  let wantBackground: Want = {
+    // 后台启动Ability，不配置parameters
+    let wantBackground: Want = {
       bundleName: 'com.example.myservice',
       moduleName: 'entry',
       abilityName: 'EntryAbility',
       deviceId: ''
-  };
+    };
 
-  try {
-    this.context.startAbilityByCall(wantBackground)
-      .then((obj: Caller) => {
-        // 执行正常业务
-        caller = obj;
-        console.log('startAbilityByCall succeed');
-      }).catch((error: BusinessError) => {
+    try {
+      this.context.startAbilityByCall(wantBackground)
+        .then((obj: Caller) => {
+          // 执行正常业务
+          caller = obj;
+          console.log('startAbilityByCall succeed');
+        }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.error('startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}');
       });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
-  前台启动：
+前台启动：
 
-  ```ts
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import { Caller } from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let caller: Caller;
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let caller: Caller;
 
-  // 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
-  let wantForeground: Want = {
+    // 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
+    let wantForeground: Want = {
       bundleName: 'com.example.myservice',
       moduleName: 'entry',
       abilityName: 'EntryAbility',
@@ -1702,23 +1814,25 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
       parameters: {
         'ohos.aafwk.param.callAbilityToForeground': true
       }
-  };
+    };
 
-  try {
-    this.context.startAbilityByCall(wantForeground)
-      .then((obj: Caller) => {
-        // 执行正常业务
-        caller = obj;
-        console.log('startAbilityByCall succeed');
-      }).catch((error: BusinessError) => {
+    try {
+      this.context.startAbilityByCall(wantForeground)
+        .then((obj: Caller) => {
+          // 执行正常业务
+          caller = obj;
+          console.log('startAbilityByCall succeed');
+        }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.error('startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}');
       });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 ## ServiceExtensionContext.startRecentAbility
 
 startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
@@ -1738,7 +1852,7 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 需要启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
 | callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
 
 **错误码：**
@@ -1763,32 +1877,37 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-  ```ts
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
 
-try {
-  this.context.startRecentAbility(want, (err: BusinessError) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+    try {
+      this.context.startRecentAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startRecentAbility succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('startRecentAbility succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 ## ServiceExtensionContext.startRecentAbility
 
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
@@ -1809,7 +1928,7 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 需要启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
 
@@ -1835,37 +1954,42 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 
 **示例：**
 
-  ```ts
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0
-};
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0
+    };
 
-try {
-  this.context.startRecentAbility(want, options, (err: BusinessError) => {
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+    try {
+      this.context.startRecentAbility(want, options, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startRecentAbility succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
     }
-    // 执行正常业务
-    console.info('startRecentAbility succeed');
-  });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 ## ServiceExtensionContext.startRecentAbility
 
 startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
@@ -1886,7 +2010,7 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 需要启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **错误码：**
@@ -1911,36 +2035,41 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 **示例：**
 
-  ```ts
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0,
-};
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0,
+    };
 
-try {
-  this.context.startRecentAbility(want, options)
-    .then(() => {
-      // 执行正常业务
-      console.info('startRecentAbility succeed');
-    })
-    .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // 处理入参错误异常
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
+    try {
+      this.context.startRecentAbility(want, options)
+        .then(() => {
+          // 执行正常业务
+          console.info('startRecentAbility succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## ServiceExtensionContext.startAbilityByCallWithAccount<sup>10+</sup>
 
@@ -1964,7 +2093,7 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
 | accountId | number | 是 | 系统帐号的帐号ID，-1表示当前活动用户，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
 **返回值：**
@@ -1993,17 +2122,20 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 **示例：**
 
-  ```ts
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import StartOptions from '@ohos.app.ability.StartOptions';
-  import { BusinessError } from '@ohos.base';
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import { Caller } from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
 
-  let caller: Caller;
-  // 系统账号的账号ID, -1表示当前激活用户
-  let accountId = -1;
-  // 指定启动的Ability
-  let want: Want = {
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+    let caller: Caller;
+    // 系统账号的账号ID, -1表示当前激活用户
+    let accountId = -1;
+    // 指定启动的Ability
+    let want: Want = {
       bundleName: 'com.acts.actscalleeabilityrely',
       moduleName: 'entry',
       abilityName: 'EntryAbility',
@@ -2012,20 +2144,22 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
         // 'ohos.aafwk.param.callAbilityToForeground' 值设置为true时为前台启动, 设置false或不设置为后台启动
         'ohos.aafwk.param.callAbilityToForeground': true
       }
-  };
+    };
 
-  try {
-    this.context.startAbilityByCallWithAccount(want, accountId)
-      .then((obj: Caller) => {
-        // 执行正常业务
-        caller = obj;
-        console.log('startAbilityByCallWithAccount succeed');
-      }).catch((error: BusinessError) => {
+    try {
+      this.context.startAbilityByCallWithAccount(want, accountId)
+        .then((obj: Caller) => {
+          // 执行正常业务
+          caller = obj;
+          console.log('startAbilityByCallWithAccount succeed');
+        }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.error('startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
       });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```

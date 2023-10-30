@@ -11,7 +11,7 @@
 
 ## 权限
 
-ohos.permission.REQUIRE_FORM
+ohos.permission.REQUIRE_FORM, ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 
 ## 子组件

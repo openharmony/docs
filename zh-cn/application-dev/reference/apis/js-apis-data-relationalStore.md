@@ -79,6 +79,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -139,6 +141,7 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -161,9 +164,10 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let store: relationalStore.RdbStore;
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S1
@@ -185,7 +189,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 删除数据库文件，使用callback异步回调。
 
-删除成功后，建议将数据库对象置为null。
+删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore<sup>10+</sup>](#relationalstoredeleterdbstore10) 接口进行删库。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -214,6 +218,7 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
@@ -232,6 +237,8 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -253,7 +260,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
-删除成功后，建议将数据库对象置为null。
+删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore<sup>10+</sup>](#relationalstoredeleterdbstore10-1) 接口进行删库。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -287,6 +294,7 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
@@ -303,6 +311,8 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -322,7 +332,7 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 
 使用指定的数据库文件配置删除数据库，使用callback异步回调。
 
-删除成功后，建议将数据库对象置为null。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口，当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。
+删除成功后，建议将数据库对象置为null。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口，当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则必须调用此接口进行删库。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -353,6 +363,7 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -376,6 +387,8 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -402,7 +415,7 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
-删除成功后，建议将数据库对象置为null。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口，当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。
+删除成功后，建议将数据库对象置为null。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口，当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则必须调用此接口进行删库。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -438,6 +451,7 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -459,6 +473,8 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -487,7 +503,8 @@ class EntryAbility extends UIAbility {
 | name          | string        | 是   | 数据库文件名。                                            |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。 |
-| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建relationalStore实例，当此参数不填时，默认在本应用沙箱目录下创建relationalStore实例。 |
+| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。 |
+| customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为1024字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。 |
 
 ## SecurityLevel
 
@@ -4632,6 +4649,8 @@ if(store != undefined) {
 
 首先需要获取resultSet对象。
 
+**示例：**
+
 ```ts
 let resultSet: relationalStore.ResultSet | undefined = undefined;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -4691,14 +4710,14 @@ getColumnIndex(columnName: string): number
 
 **示例：**
 
-  ```ts
+```ts
 if(resultSet != undefined) {
   const id = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("ID"));
   const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
   const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
   const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
 }
-  ```
+```
 
 ### getColumnName
 

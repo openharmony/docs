@@ -66,7 +66,7 @@ import display from '@ohos.display';
 import mediaquery from '@ohos.mediaquery';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class GlobalContext extends UIAbility{
+export default class GlobalContext extends AppStorage{
   static mainWin: window.Window|undefined = undefined;
   static mainWindowSize:window.Size|undefined = undefined;
 }

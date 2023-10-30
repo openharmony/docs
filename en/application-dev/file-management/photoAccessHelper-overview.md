@@ -18,8 +18,8 @@
   - Deleting a user album.
 - [Manage system albums](photoAccessHelper-systemAlbum-guidelines.md), including:
   - Favorites
-  - Videos
-  - Screenshots
+  - Video album
+  - Screenshot album
 - [Manage media asset (image, video, and album) change notifications](photoAccessHelper-notify-guidelines.md), including:
   - Registering listening for the specified URI.
   - Unregistering the listening for the specified URI.
@@ -32,8 +32,8 @@ An application needs to obtain a **PhotoAccessHelper** instance before accessing
 
 Before using the **PhotoAccessHelper** APIs, you need to:
 
-- [Obtain a **PhotoAccessHelper** instance](#obtaining-a-photoaccesshelper-instance).
-- [Apply for permissions](#applying-for-permissions).
+  - [Obtain a **PhotoAccessHelper** instance](#obtaining-a-photoaccesshelper-instance).
+  - [Apply for permissions](#applying-for-permissions).
 
 ## Obtaining a PhotoAccessHelper Instance
 
@@ -64,59 +64,11 @@ Before applying for permission, ensure that the [basic principles for permission
 
 The required permissions must be authorized by the user (user_grant). After adding the permissions in the **module.json5** file, use [abilityAccessCtrl.requestPermissionsFromUser](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to check whether the required permissions are granted by the user. If yes, the application can access the data. Otherwise, a dialog box will be displayed to request user authorization.
 
-> **NOTE**<br>Even if the user has granted the permission, the permission will still be checked before an API protected by the permission is called. The permission granted status should not be persisted, because the user can revoke the permission through the system application **Settings**.
-
 **How to Develop**
 
-1. Declare the required permissions in the **module.json5** file.<br>Add **requestPermissions** under **module** in the file, and add the required permissions. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md).
+1. [Declare the required permissions in the **module.json5** file](../security/accesstoken-guidelines.md#stage-model).
+2. [Request user authorization](../security/accesstoken-guidelines.md#stage-model-1).
 
-  ```json
-  {
-    "module": {
-      "requestPermissions": [
-        {
-          "name": "ohos.permission.READ_IMAGEVIDEO",
-          "reason": "Permissions required for photoAccessHelper related operations",
-          "usedScene": {
-            "abilities": [
-              "EntryAbility"
-            ],
-            "when": "always"
-          }
-        },
-        {
-          "name": "ohos.permission.WRITE_IMAGEVIDEO",
-          "reason": "Permissions required for photoAccessHelper related operations",
-          "usedScene": {
-            "abilities": [
-              "EntryAbility"
-            ],
-            "when": "always"
-          }
-        },
-      ]
-    }
-  }    
-  ```
-
-2. Call **requestPermissionsFromUser** in the **onWindowStageCreate** callback of **Ability.ts** to check the required permissions. If the permissions are not granted, display a dialog box to request user authorization dynamically.
-
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
-  import window from '@ohos.window';
-
-  export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage:window.WindowStage) {
-      let list : Array<Permissions> = ['ohos.permission.READ_IMAGEVIDEO', 'ohos.permission.WRITE_IMAGEVIDEO'];
-      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-      atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
-        if (err) {
-          console.error('requestPermissionsFromUserError: ' + JSON.stringify(err));
-        } else {
-          console.info('permissionRequestResult: ' + JSON.stringify(result));
-        }
-      });
-    }
-  }
-  ```
+> **NOTE**
+>
+> Even if the user has granted the permission, the permission will still be checked before an API protected by the permission is called. The permission granted status should not be persisted, because the user can revoke the permission through the system application **Settings**.

@@ -103,7 +103,7 @@ try {
 
 > **NOTE**
 >
-> Only the context of other modules in the current application and the context of the [intra-application HSP](../../../application-dev/quick-start/in-app-hsp.md) can be obtained.
+> Only the context of other modules in the current application and the context of the [intra-application HSP](../../../application-dev/quick-start/in-app-hsp.md) can be obtained. The context of other applications cannot be obtained.
 
 ## Context.createModuleContext
 
@@ -244,9 +244,9 @@ let getGroupDirContext: common.Context = this.context;
 
 getGroupDirContext.getGroupDir("1", (err, data) => {
   if (err) {
-    console.error('getGroupDir faile, err: ${JSON.stringify(err)}');
+    console.error(`getGroupDir faile, err: ${JSON.stringify(err)}`);
   } else {
-    console.log('getGroupDir result is: ${JSON.stringify(data)}');
+    console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
   }
 });
 ```

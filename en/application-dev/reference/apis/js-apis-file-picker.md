@@ -1,6 +1,6 @@
 # @ohos.file.picker (File Picker)
 
-**Picker** encapsulates the system applications such as **PhotoViewPicker**, **DocumentViewPicker** and **AudioViewPicker** to provide capabilities of selecting and saving files of different types. The application can select the picker as required.
+**Picker** encapsulates the system applications such as **PhotoViewPicker**, **DocumentViewPicker** and **AudioViewPicker** to provide capabilities of selecting and saving files of different types. The application can select the picker as required. The APIs of this module must be called in UIAbility. Otherwise, the **photoPicker** or **FilePicker** cannot be started.
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@ import picker from '@ohos.file.picker';
 
 ## PhotoViewPicker
 
-Provides APIs for selecting and saving images and videos. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
+Provides APIs for selecting and saving images and videos. You are advised to use [PhotoViewPicker of PhotoAccessHelper](js-apis-photoAccessHelper.md) to select files. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -28,7 +28,9 @@ let photoPicker = new picker.PhotoViewPicker();
 
 select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
-Selects one or more images or videos in a **photoPicker** page. This API uses a promise to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
+Starts a **photoPicker** page for the user to select one or more images or videos. This API uses a promise to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
+
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets()](js-apis-photoAccessHelper.md#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -70,7 +72,9 @@ async function example01() {
 
 select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 
-Selects one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
+Starts a **photoPicker** page for the user to select one or more images or videos. This API uses an asynchronous callback to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
+
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets()](js-apis-photoAccessHelper.md#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -109,7 +113,9 @@ async function example02() {
 
 select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 
-Selects one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result.
+Starts a **photoPicker** page for the user to select one or more images or videos. This API uses an asynchronous callback to return the result.
+
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets()](js-apis-photoAccessHelper.md#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -144,7 +150,9 @@ async function example03() {
 
 save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
-Saves one or more images or videos in a **photoPicker** page. This API uses a promise to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save. The **save()** API saves the file in the file manager, not in the Gallery.
+Starts a **photoPicker** page for the user to save one or more images or videos. This API uses a promise to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save.
+
+> **NOTE**<br>This API saves files in **fileManager**, not in **Gallery**. For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -185,7 +193,9 @@ async function example04() {
 
 save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save. The **save()** API saves the file in the file manager, not in the Gallery.
+Starts a **photoPicker** page for the user to save one or more images or videos. This API uses an asynchronous callback to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save.
+
+> **NOTE**<br>This API saves files in **fileManager**, not in **Gallery**. For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -223,7 +233,9 @@ async function example05() {
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. The **save()** API saves the file in the file manager, not in the Gallery.
+Starts a **photoPicker** page for the user to save one or more images or videos. This API uses an asynchronous callback to return the result.
+
+> **NOTE**<br>This API saves files in **fileManager**, not in **Gallery**. For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -270,7 +282,9 @@ let documentPicker = new picker.DocumentViewPicker();
 
 select(option?: DocumentSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
-Selects one or more documents in a **documentPicker** page. This API uses a promise to return the result. You can pass in **DocumentSelectOptions**.
+Starts a **documentPicker** page for the user to select one or more documents. This API uses a promise to return the result. You can pass in **DocumentSelectOptions**.
+
+> **NOTE**<br>For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -278,7 +292,7 @@ Selects one or more documents in a **documentPicker** page. This API uses a prom
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [DocumentSelectOptions](#documentselectoptions) | No  | Options for select documents. If this parameter is not specified, the **documentPicker** page is displayed by default.|
+| option | [DocumentSelectOptions](#documentselectoptions) | No  | Options for selecting documents. If this parameter is not specified, the **documentPicker** page is displayed by default.|
 
 **Return value**
 
@@ -310,7 +324,9 @@ async function example07() {
 
 select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Selects one or more documents in a **documentPicker** page. This API uses an asynchronous callback to return the result. You can pass in **DocumentSelectOptions**.
+Starts a **documentPicker** page for the user to select one or more documents. This API uses an asynchronous callback to return the result. You can pass in **DocumentSelectOptions**.
+
+> **NOTE**<br>For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -347,7 +363,9 @@ async function example08() {
 
 select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Selects one or more documents in a **documentPicker** page. This API uses an asynchronous callback to return the result.
+Starts a **documentPicker** page for the user to select one or more documents. This API uses an asynchronous callback to return the result.
+
+> **NOTE**<br>For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -383,7 +401,9 @@ async function example09() {
 
 save(option?: DocumentSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
-Saves one or more documents in a **documentPicker** page. This API uses a promise to return the result. You can pass in **DocumentSaveOptions** to specify the file names to save.
+Starts a **documentPicker** page for the user to save one or more documents. This API uses a promise to return the result. You can pass in **DocumentSaveOptions** to specify the file names to save.
+
+> **NOTE**<br>For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -424,7 +444,9 @@ async function example10() {
 
 save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Saves one or more documents in a **documentPicker** page. This API uses an asynchronous callback to return the result. You can pass in **DocumentSaveOptions** to specify the file names to save.
+Starts a **documentPicker** page for the user to save one or more documents. This API uses an asynchronous callback to return the result. You can pass in **DocumentSaveOptions** to specify the file names to save.
+
+> **NOTE**<br>For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -462,7 +484,9 @@ async function example11() {
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Saves one or more documents in a **documentPicker** page. This API uses an asynchronous callback to return the result.
+Starts a **documentPicker** page for the user to save one or more documents. This API uses an asynchronous callback to return the result.
+
+> **NOTE**<br>For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -509,7 +533,9 @@ let audioPicker = new picker.AudioViewPicker();
 
 select(option?: AudioSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
-Selects one or more audio files in an **audioPicker** page (currently, a **documentPicker** page is displayed). This API uses a promise to return the result. You can pass in **AudioSelectOptions**.
+Starts an **audioPicker** page (currently, a **documentPicker** page is displayed) for the user to select one or more audio files. This API uses a promise to return the result. You can pass in **AudioSelectOptions**.
+
+> **NOTE**<br>For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -517,7 +543,7 @@ Selects one or more audio files in an **audioPicker** page (currently, a **docum
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [AudioSelectOptions](#audioselectoptions) | No  | Options for selecting the audio files. If this parameter is not specified, the **audioPicker** page is displayed by default. |
+| option | [AudioSelectOptions](#audioselectoptions) | No  | Options for selecting the audio clips. If this parameter is not specified, the **audioPicker** page is displayed by default. |
 
 **Return value**
 
@@ -549,7 +575,9 @@ async function example13() {
 
 select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Selects one or more audio files in an **audioPicker** page (currently, a **documentPicker** page is displayed). This API uses an asynchronous callback to return the result. You can pass in **AudioSelectOptions**.
+Starts an **audioPicker** page (currently, a **documentPicker** page is displayed) for the user to select one or more audio files. This API uses an asynchronous callback to return the result. You can pass in **AudioSelectOptions**.
+
+> **NOTE**<br>For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -586,7 +614,9 @@ async function example14() {
 
 select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Selects one or more audio files in an **audioPicker** page (currently, a **documentPicker** page is displayed). This API uses an asynchronous callback to return the result.
+Starts an **audioPicker** page (currently, a **documentPicker** page is displayed) for the user to select one or more audio files. This API uses an asynchronous callback to return the result.
+
+> **NOTE**<br>For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -621,7 +651,9 @@ async function example15() {
 
 save(option?: AudioSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
-Saves one or more audio files in an **audioPicker** page (currently, a **documentPicker** page is displayed). This API uses a promise to return the result. You can pass in **AudioSaveOptions** to specify the names of the audio files to save.
+Starts an **audioPicker** page (currently, a **documentPicker** page is displayed) for the user to save one or more audio files. This API uses a promise to return the result. You can pass in **AudioSaveOptions** to specify the file names of the audio files to save.
+
+> **NOTE**<br>For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -629,7 +661,7 @@ Saves one or more audio files in an **audioPicker** page (currently, a **documen
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [AudioSaveOptions](#audiosaveoptions) | No  | Options for saving audio files. If this parameter is not specified, an **audioPicker** page will be displayed for the user to enter the names of the files to save.|
+| option | [AudioSaveOptions](#audiosaveoptions) | No  | Options for saving audio clips. If this parameter is not specified, an **audioPicker** page will be displayed for the user to enter the names of the files to save.|
 
 **Return value**
 
@@ -662,7 +694,9 @@ async function example16() {
 
 save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Saves one or more audio files in an **audioPicker** page (currently, a **documentPicker** page is displayed). This API uses an asynchronous callback to return the result. You can pass in **AudioSaveOptions** to specify the names of the audio files to save.
+Starts an **audioPicker** page (currently, a **documentPicker** page is displayed) for the user to save one or more audio files. This API uses an asynchronous callback to return the result. You can pass in **AudioSaveOptions** to specify the file names of the audio files to save.
+
+> **NOTE**<br>For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -700,7 +734,9 @@ async function example17() {
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Saves one or more audio files in an **audioPicker** page (currently, a **documentPicker** page is displayed). This API uses an asynchronous callback to return the result.
+Starts an **audioPicker** page (currently, a **documentPicker** page is displayed) for the user to save one or more audio files. This API uses an asynchronous callback to return the result.
+
+> **NOTE**<br>For details about how to use the returned URIs, see [Using a File URI](../../file-management/user-file-uri-intro.md#using-a-file-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -762,7 +798,7 @@ Defines information about the images or videos selected.
 
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the media files selected.|
+| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](js-apis-photoAccessHelper.md#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
 | isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media file is the original image.|
 
 ## PhotoSaveOptions
@@ -813,4 +849,4 @@ Defines the options for saving audio files.
 
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames              | Array&lt;string&gt;    | No | Name of the audio files to save. If this parameter is not specified, the user needs to enter the file names.|
+| newFileNames              | Array&lt;string&gt;    | No | Names of the audio files to save. If this parameter is not specified, the user needs to enter the file names.|

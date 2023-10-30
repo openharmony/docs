@@ -39,13 +39,11 @@ Provides the detailed information of the permissions to request from the system.
 | moduleName<sup>10+</sup>            | string                  | Yes  | Yes  | Name of the module that requests the permission.  |
 | reason                | string                  | Yes  | Yes  | Reason for requesting the permission. |
 | reasonId              | number                  | Yes  | Yes  | ID of the reason for requesting the permission.|
-| usedScene             | [UsedScene](#usedscene) | Yes  | Yes  | Application scenario and timing for using the permission.|
-
-
+| usedScene             | [UsedScene](#usedscene) | Yes  | Yes  | Use scenario and timing for using the permission. |
 
 ## UsedScene
 
-Describes the application scenario and timing for using the permission.
+Describes the use scenario and timing for using the permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -64,3 +62,4 @@ Describes the signature information of the bundle.
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | appId     | string         | Yes  | No  | Application ID.                |
 |fingerprint| string         | Yes  | No  | Fingerprint information of the bundle.           |
+|appIdentifier<sup>11</sup>| string         | Yes  | No  | Unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.           |

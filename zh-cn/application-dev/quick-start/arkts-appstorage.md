@@ -145,7 +145,7 @@ AppStorage是单例，它的所有API都是静态的，使用方法类似于中L
 AppStorage.setOrCreate('PropA', 47);
 
 let storage: LocalStorage = new LocalStorage();
-storage['PropA'] = 17;
+storage.setOrCreate('PropA',17);
 let propA: number | undefined = AppStorage.get('PropA') // propA in AppStorage == 47, propA in LocalStorage == 17
 let link1: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link1.get() == 47
 let link2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link2.get() == 47
@@ -174,7 +174,7 @@ prop.get() // == 49
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let storage = new LocalStorage();
-storage['PropA'] = 48;
+storage.setOrCreate('PropA',48);
 
 @Entry(storage)
 @Component
@@ -464,5 +464,5 @@ AppStorage与[PersistentStorage](arkts-persiststorage.md)以及[Environment](ark
 
 - 如果在AppStorage中已经创建属性后，再调用Environment.envProp()创建同名的属性，会调用失败。因为AppStorage已经有同名属性，Environment环境变量不会再写入AppStorage中，所以建议AppStorage中属性不要使用Environment预置环境变量名。
 
-- 状态装饰器装饰的变量，改变会引起UI的渲染更新，如果改变的变量不是用于UI更新，只是用于消息传递，推荐使用 emitter方式。例子可见[以持久化方式订阅某个事件并接收事件回调](#以持久化方式订阅某个事件并接收事件回调)。
+- 状态装饰器装饰的变量，改变会引起UI的渲染更新，如果改变的变量不是用于UI更新，只是用于消息传递，推荐使用 emitter方式。例子可见[不建议借助@StorageLink的双向同步机制实现事件通知](#不建议借助storagelink的双向同步机制实现事件通知)。
 <!--no_check-->

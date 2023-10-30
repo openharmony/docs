@@ -27,23 +27,23 @@ By default, the grid system provides four breakpoints: xs, sm, md, and lg.
 
 | Breakpoint| Value Range (vp)       | Device Description     |
 | ---- | --------------- | --------- |
-| xs   | [0, 320)  | Device of the minimum size.|
-| sm   | [320,&nbsp;520) | Small-sized device. |
-| md   | [520,&nbsp;840) | Medium-sized device.|
-| lg   | [840,&nbsp;+∞)  | Large-sized device. |
+| xs   | [0, 320)  | Minimum-width device.|
+| sm   | [320,&nbsp;520) | Small-width device. |
+| md   | [520,&nbsp;840) | Medium-width device.|
+| lg   | [840,&nbsp;+∞)  | Large-width device. |
 
 In the **\<GridRow>** component, you can use **breakpoints** to customize the value range of breakpoints. A maximum of six breakpoints are supported. In addition to the four default breakpoints, you can also enable the xl and xxl breakpoints for your application window layout.
 
 | Breakpoint| Device Description     |
 | ---- | --------- |
-| xs   | Device of the minimum size.|
-| sm   | Small-sized device. |
-| md   | Medium-sized device.|
-| lg   | Large-sized device. |
-| xl   | Extra-large-sized device.|
-| xxl  | Ultra-large-sized device.|
+| xs   | Minimum-width device.|
+| sm   | Small-width device. |
+| md   | Medium-width device.|
+| lg   | Large-width device. |
+| xl   | Extra-large-width device.|
+| xxl  | Extra-extra-large-width device.|
 
-- Set **breakpoints** with a monotonically increasing array based on the use case. Because **breakpoints** supports a maximum of six breakpoints, the maximum length of the monotonically increasing array is 5.
+- Set **breakpoints** with a monotonically increasing array based on the use case. As **breakpoints** supports a maximum of six breakpoints, the maximum length of the monotonically increasing array is 5.
 
 
   ```ts
@@ -57,11 +57,11 @@ In the **\<GridRow>** component, you can use **breakpoints** to customize the va
   breakpoints: {value: ['320vp', '520vp', '840vp', '1080vp']}
   ```
 
-  Enables five breakpoints: xs, sm, md, lg, and xl. If the value is less than 320 vp, the breakpoint is xs. If the value is 320–520 vp, the breakpoint is sm. If the value is 520–840 vp, the breakpoint is md. If the value is 840–1080vp, the breakpoint is lg. If the value is greater than 1080 vp, the breakpoint is xl.
+  Enables five breakpoints: xs, sm, md, lg, and xl. If the value is less than 320 vp, the breakpoint is xs. If the value is 320–520 vp, the breakpoint is sm. If the value is 520–840 vp, the breakpoint is md. If the value is 840–1080 vp, the breakpoint is lg. If the value is greater than 1080 vp, the breakpoint is xl.
 
-- The grid system implements breakpoints by listening for the changes in the window or container size, and sets the breakpoint references through **reference**. Considering that the application may be displayed in non-full-screen mode, design the breakpoints with the application window width as the reference.
+- The grid system implements breakpoints by listening for the changes in the window or container size, and sets the breakpoint references through **reference**. Since the application may be displayed in non-full-screen mode, it is better to design the breakpoints with the application window width as the reference.
 
-In the following example, the default number of columns of a grid is 12. Breakpoints are used to divide the application window width into six ranges, where different grid items occupy a different number of columns.
+In the following example, the default number of grid columns is 12. Breakpoints are used to divide the application window width into six ranges. In different ranges, the **\<GridCol>** child component occupies a different number of columns.
 
 
 ```ts
@@ -76,12 +76,12 @@ GridRow({
    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
      GridCol({
        span: {
-         xs: 2,
-         sm: 3,
-         md: 4,
-         lg: 6,
-         xl: 8,
-         xxl: 12
+         xs: 2, // The <GridCol> component occupies two grid columns on the minimum-width device.
+         sm: 3, // The <GridCol> component occupies three grid columns on the small-width device.
+         md: 4, // The <GridCol> component occupies four grid columns on the medium-width device.
+         lg: 6, // The <GridCol> component occupies six grid columns on the large-width device.
+         xl: 8, // The <GridCol> component occupies eight grid columns on the extra-large-width device.
+         xxl: 12 // The <GridCol> component occupies 12 grid columns on the extra-extra-large-width device.
        }
      }) {
        Row() {
@@ -452,7 +452,7 @@ If **order** is not set for all child components, those that have **order** set 
 
 Responsive grid components can be contained in other responsive grid components.
 
-In the following example, the responsive grid divides the entire space into 12 parts. **\<GridCol>** is nested in **\<GridRow>** at the first layer, which is divided into the large area in the center and the footer area. **\<GridCol>** is nested in **\<GridRow>** at the second layer, which is divided into the left and right areas. The child component space is divided based on the space allocation of the parent component at the upper layer. For example, the pink area is made up of 12 columns of the screen space, and the green and blue areas are made up of 12 columns of the **\<GridRow>** parent component.
+In the following example, the responsive grid divides the entire space into 12 parts. At the first layer, **\<GridCol>** is nested in **\<GridRow>**, and the space is divided into the large area in the center and the footer area. At the second layer, **\<GridCol>** is nested in **\<GridRow>**, and the space is divided into the left and right areas. The child components take up the space allocated by the parent component at the upper layer. In this example, the pink area is made up of 12 columns of the screen space, and the green and blue areas take up the 12 columns of the parent component proportionally.
 
 
 

@@ -33,7 +33,7 @@ Called to notify the widget provider that a **Form** instance (widget) is being 
 
 | Name| Type                                  | Mandatory| Description                                                        |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](js-apis-application-want.md) | Yes  | Want information related to the FormExtensionAbility, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
+| want   | [Want](js-apis-app-ability-want.md) | Yes  | Want information related to the FormExtensionAbility, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
 
 **Return value**
 
@@ -270,7 +270,7 @@ Called to notify the widget provider that the widget host is requesting the widg
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.|
 
 **Example**
 

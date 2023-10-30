@@ -58,7 +58,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
    class ITestAbility : public IRemoteBroker {
    public:
-       // DECLARE_INTERFACE_DESCRIPTOR是必需的，入参需使用std::u16string；
+       // DECLARE_INTERFACE_DESCRIPTOR是必需的，入参需使用std::u16string;
        DECLARE_INTERFACE_DESCRIPTOR(to_utf16(DESCRIPTOR));
        virtual int TestPingAbility(const std::u16string &dummy) = 0; // 定义业务函数
    };
@@ -182,7 +182,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    ```ts
    import rpc from '@ohos.rpc';
    // 仅FA模型需要导入@ohos.ability.featureAbility
-   // import featureAbility from "@ohos.ability.featureAbility";
+   // import featureAbility from '@ohos.ability.featureAbility';
    ```
 
    Stage模型需要获取context
@@ -369,7 +369,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    IPC通信结束后，FA模型使用featureAbility的接口断开连接，Stage模型在获取context后用提供的接口断开连接。
 
    ```ts
-   import rpc from "@ohos.rpc";
+   import rpc from '@ohos.rpc';
    import Want from '@ohos.app.ability.Want';
    import common from '@ohos.app.ability.common';
    // 仅FA模型需要导入@ohos.ability.featureAbility

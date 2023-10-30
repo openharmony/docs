@@ -96,7 +96,7 @@ Creates a video decoder instance based on a MIME type. This function is recommen
 
 | Name| Description| 
 | -------- | -------- |
-| mime | Pointer to a string that describes the MIME type. For details, see **AVCODEC_MIME_TYPE**.| 
+| mime | Pointer to a string that describes the MIME type. For details, see [AVCODEC_MIMETYPE](_codec_base.md#variables).| 
 
 **Returns**
 
@@ -424,7 +424,7 @@ This function must be called prior to **Prepare**.
 | Name| Description| 
 | -------- | -------- |
 | codec | Pointer to an **OH_AVCodec** instance.| 
-| callback | Callback function to set. For details, see **OH_AVCodecAsyncCallback**.| 
+| callback | Callback function to set. For details, see [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md).| 
 | userData | User-specific data.| 
 
 **Returns**

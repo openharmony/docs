@@ -69,10 +69,10 @@ function executeBatchOperation() {
                 console.log('dataAbilityResult.count: ${dataAbilityResult.count}');
             }
         }).catch((err: BusinessError) => {
-            console.error('executeBatch error: ${JSON.stringify(err)}');
+            console.error(`executeBatch error: ${JSON.stringify(err)}`);
         });
     } catch (err) {
-        console.error('executeBatch error: ${JSON.stringify(err)}');
+        console.error(`executeBatch error: ${JSON.stringify(err)}`);
     }
 }
 ```

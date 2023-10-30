@@ -28,7 +28,7 @@
     "abilities": [
       {
         "name": "EntryAbility",
-        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
         "label": "$string:EntryAbility_label",
@@ -98,6 +98,7 @@ module.json5配置文件包含以下标签。
 | generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的versionCode保持不变时，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。**<br/>注：该字段仅对预置应用生效。**|布尔值|该标签可缺省, 缺省值为false。|
 | compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储，HAP在安装时无需解压libs，运行时会直接从HAP内加载libs库。 | 布尔值 | 可缺省，缺省值为true。 |
 | libIsolation | 用于区分同应用不同hap下的so文件，以防止so冲突。<br/>-&nbsp;true：当前hap的so会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前hap的so会直接储存在libs目录中。 | 布尔值 | 该标签可缺省, 缺省值为false。 |
+| fileContextMenu | 标识当前HAP的右键菜单配置项。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
 ## deviceTypes标签
 
@@ -246,7 +247,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | [skills](#skills标签) | 标识当前UIAbility组件或ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征集，为数组格式。<br/>配置规则：<br/>-&nbsp;对于Entry类型的HAP，OpenHarmony应用可以配置多个具有入口能力的skills标签（即配置了ohos.want.action.home和entity.system.home）。<br/>-&nbsp;对于Feature类型的HAP，只有OpenHarmony应用可以配置具有入口能力的skills标签，OpenHarmony服务不允许配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | backgroundModes | 标识当前UIAbility组件的长时任务集合。指定用于满足特定类型的长时任务。<br/>长时任务类型有如下：<br/>-&nbsp;dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等业务。<br/>-&nbsp;audioPlayback：音频输出业务。<br/>-&nbsp;audioRecording：音频输入业务。<br/>-&nbsp;location：定位、导航业务。<br/>-&nbsp;bluetoothInteraction：蓝牙扫描、连接、传输业务（穿戴）。<br/>-&nbsp;multiDeviceConnection：多设备互联业务。<br/>-&nbsp;wifiInteraction：Wi-Fi扫描、连接、传输业务（克隆多屏）。<br/>-&nbsp;voip：音视频电话，VoIP业务。<br/>-&nbsp;taskKeeping：计算业务。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | startWindowIcon | 标识当前UIAbility组件启动页面图标资源文件的索引。取值示例：$media:icon。<br/>该标签最大字节长度为255。 | 字符串 | 不可缺省。 |
-| startWindowBackground | 标识当前UIAbility组件启动页面背景颜色资源文件的索引。取值示例：$color:red。<br/>改标签最大字节长度为255。 | 字符串 | 不可缺省。 |
+| startWindowBackground | 标识当前UIAbility组件启动页面背景颜色资源文件的索引。取值示例：$color:red。<br/>该标签最大字节长度为255。 | 字符串 | 不可缺省。 |
 | removeMissionAfterTerminate | 标识当前UIAbility组件销毁后是否从任务列表中移除任务，为布尔类型：<br/>-&nbsp;true表示销毁后移除任务。<br/>-&nbsp;false表示销毁后不移除任务。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | orientation | 标识当前UIAbility组件启动时的方向。该方向的取值范围包括：<br/>-&nbsp;unspecified：未指定方向，由系统自动判断显示方向。<br/>-&nbsp;landscape：横屏。<br/>-&nbsp;portrait：竖屏。<br/>-&nbsp;landscape_inverted：反向横屏。<br/>-&nbsp;portrait_inverted：反向竖屏。<br/>-&nbsp;auto_rotation：随传感器旋转。<br/>-&nbsp;auto_rotation_landscape：传感器横屏旋转，包括了横屏和反向横屏。<br/>-&nbsp;auto_rotation_portrait：传感器竖屏旋转，包括了竖屏和反向竖屏。<br/>-&nbsp;auto_rotation_restricted：传感器开关打开，方向可随传感器旋转。<br/>-&nbsp;auto_rotation_landscape_restricted：传感器开关打开，方向可随传感器旋转为横屏，&nbsp;包括了横屏和反向横屏。<br/>-&nbsp;auto_rotation_portrait_restricted：传感器开关打开，方向随可传感器旋转为竖屏，&nbsp;包括了横屏和反向横屏。<br/>-&nbsp;locked：传感器开关关闭，方向锁定。 | 字符串 | 该标签可缺省，缺省值为unspecified。 |
 | supportWindowMode | 标识当前UIAbility组件所支持的窗口模式，包含：<br/>-&nbsp;fullscreen：全屏模式。<br/>-&nbsp;split：分屏模式。<br/>-&nbsp;floating：悬浮窗模式。 | 字符串数组 | 该标签可缺省，缺省值为<br/>["fullscreen",&nbsp;"split",&nbsp;"floating"]。 |
@@ -268,7 +269,7 @@ abilities示例：
 {
   "abilities": [{
     "name": "EntryAbility",
-    "srcEntry": "./ets/entryability/EntryAbility.ts",
+    "srcEntry": "./ets/entryability/EntryAbility.ets",
     "launchType":"singleton",
     "description": "$string:description_main_ability",
     "icon": "$media:icon",
@@ -508,7 +509,7 @@ metadata中指定shortcut信息，其中：
        "abilities": [
          {
            "name": "EntryAbility",
-           "srcEntry": "./ets/entryability/EntryAbility.ts",
+           "srcEntry": "./ets/entryability/EntryAbility.ets",
            // ...
            "skills": [
              {
@@ -535,7 +536,9 @@ metadata中指定shortcut信息，其中：
 
 ## distributionFilter标签
 
-该标签下的子标签均为可选字段，在应用市场云端分发时做精准匹配使用，distributionFilter标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码。在进行分发时，通过deviceType与这五个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。
+该标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。可配置的属性包括屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码四个维度。在分发应用包时，通过deviceType与这四个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。并在metadata的resource字段中引用。
+
+该字段从API10及以后版本开始生效，API9及以前版本使用distroFilter字段。
 
   **表12** **distributionFilter标签标签配置说明**
 
@@ -575,7 +578,7 @@ metadata中指定shortcut信息，其中：
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示需要排除的value属性。<br/>-&nbsp;include：表示需要包含的value属性。 | 字符串 | 该标签不可缺省。 |
 | value | 标识应用需要分发的国家地区码。 | 字符串数组 | 该标签不可缺省。 |
 
-在开发视图的resources/base/profile下面定义配置文件distro_filter_config.json，文件名可以自定义。
+在开发视图的resources/base/profile下面定义配置文件distributionFilter_config.json，文件名可以自定义。
 
 
 ```json
@@ -622,8 +625,8 @@ metadata中指定shortcut信息，其中：
     // ...
     "metadata": [
       {
-        "name": "ohos.module.distro",
-        "resource": "$profile:distro_filter_config",
+        "name": "ohos.module.distribution",
+        "resource": "$profile:distributionFilter_config",
       }
     ]
   }

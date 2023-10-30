@@ -105,41 +105,46 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
 3. In the **ShareExtAbility.ts** file, import the ShareExtensionAbility module. Customize a class that inherits from **ShareExtensionAbility** and implement the lifecycle callbacks.
 
    ```ts
-   import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
-   const TAG: string = "[ShareExtAbility]";
+  import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
+  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+  import Want from '@ohos.app.ability.Want';
 
-   export default class ShareExtAbility extends ShareExtensionAbility {
-     onCreate() {
-       console.info(TAG, `onCreate`);
-     }
+  const TAG: string = "[ShareExtAbility]";
 
-     onForeground() {
-       console.info(TAG, `ononForeground`);
-     }
-   
-     onBackground() {
-       console.info(TAG, `onBackground`);
-     }
-   
-     onSessionCreate(want, session) {
-       console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
-       this.message = want.parameters.shareMessages;
-       this.storage = new LocalStorage(
-        {
+  export default class ShareExtAbility extends ShareExtensionAbility {
+    onCreate() {
+      console.info(TAG, `onCreate`);
+    }
+
+    onForeground() {
+      console.info(TAG, `ononForeground`);
+    }
+
+    onBackground() {
+      console.info(TAG, `onBackground`);
+    }
+
+    onSessionCreate(want: Want, session: UIExtensionContentSession) {
+      console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
+      if (want.parameters) {
+        let obj: Record<string, UIExtensionContentSession | object> = {
           'session': session,
-          'messages': this.message
-        });
-       session.loadContent('pages/Index', this.storage);
-     }
+          'messages': want.parameters.shareMessages
+        }
+        let storage: LocalStorage = new LocalStorage(obj);
+        session.loadContent('pages/Index', storage);
+        session.loadContent('pages/Index', storage);
+      }
+    }
 
-     onSessionDestroy(session) {
-       console.info(TAG, `onSessionDestroy`);
-     }
- 
-     onDestroy() {
-       console.info(TAG, `onDestroy`);
-     }
-   }
+    onSessionDestroy() {
+      console.info(TAG, `onSessionDestroy`);
+    }
+
+    onDestroy() {
+      console.info(TAG, `onDestroy`);
+    }
+  }
    ```
 
 4. Register the ShareExtensionAbility in the [**module.json5** file](../../quick-start/module-configuration-file.md) of the module in the project. Set **type** to **share** and **srcEntry** to the code path of the ShareExtensionAbility component.

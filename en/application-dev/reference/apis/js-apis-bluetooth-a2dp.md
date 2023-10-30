@@ -14,7 +14,6 @@ The **a2dp** module provides APIs for using the Bluetooth Advanced Audio Distrib
 import a2dp from '@ohos.bluetooth.a2dp';
 ```
 
-
 ## a2dp.createA2dpSrcProfile<a name="createA2dpSrcProfile"></a>
 
 createA2dpSrcProfile(): A2dpSourceProfile
@@ -32,6 +31,7 @@ Creates an **A2dpSrcProfile** instance.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpProfile = a2dp.createA2dpSrcProfile();
     console.info('a2dp success');
@@ -78,6 +78,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
@@ -119,6 +120,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
@@ -164,6 +166,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');

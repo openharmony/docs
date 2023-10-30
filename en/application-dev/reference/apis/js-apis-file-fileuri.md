@@ -135,6 +135,6 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 **Example**
 
   ```ts
-  let filePath = pathDir + "test.txt";
+  let filePath = pathDir + "/test";
   let uri = fileuri.getUriFromPath(filePath);
   ```

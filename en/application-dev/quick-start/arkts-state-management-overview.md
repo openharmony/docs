@@ -59,7 +59,7 @@ Custom components have variables. A variable must be decorated by a decorator wh
   }
   ```
 
-- Subnode initialization: a capability to pass state variables to the child component to initialize the corresponding state variables therein. The example is the same as above.
+- Child component initialization: a capability to pass state variables to the child component to initialize the corresponding state variables therein. The example is the same as above.
 
 - Local initialization: a process where a value is assigned to a variable in its declaration as the default value for initialization. Example: \@State count: number = 0.
 

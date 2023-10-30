@@ -49,7 +49,7 @@ On the widget page, the **postCardAction** API can be used to trigger a message 
   export default class EntryFormAbility extends FormExtensionAbility {
     onFormEvent(formId: string, message: string) {
       // Called when a specified message event defined by the form provider is triggered.
-      console.info(`FormAbility onEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
+      console.info(`FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
       let formData = new Map<Object, string>();
       formData.set('title', 'Title Update.'); // It matches the widget layout.
       formData.set('detail', 'Description update success.'); // It matches the widget layout.

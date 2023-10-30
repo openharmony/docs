@@ -400,7 +400,7 @@ WLAN热点信息。
 
 ## DeviceAddressType <sup>10+</sup>
 
-wifi 设备地址（mac/bissid）类型。
+wifi 设备地址（mac/bssid）类型。
 
 **系统能力：** SystemCapability.Communication.WiFi.Core
 
@@ -1246,7 +1246,9 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
 获取WLAN连接信息，使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 。 获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
+**需要权限：** ohos.permission.GET_WIFI_INFO 。 
+
+ 获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1271,7 +1273,9 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 获取WLAN连接信息，使用callback异步回调。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 。 获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
+**需要权限：** ohos.permission.GET_WIFI_INFO 。 
+
+获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1655,7 +1659,7 @@ Ipv6信息。
 | -------- | -------- | -------- | -------- | -------- |
 | linkIpv6Address | string | 是 | 否 | 链路Ipv6地址。 |
 | globalIpv6Address | string | 是 | 否 | 全局Ipv6地址。 |
-| randomGlobalIpv6Address | number | 是 | 否 | 随机全局Ipv6地址。 |
+| randomGlobalIpv6Address | string | 是 | 否 | 随机全局Ipv6地址。 |
 | gateway | string | 是 | 否 | 网关。 |
 | netmask | string | 是 | 否 | 网络掩码。 |
 | primaryDNS | string | 是 | 否 | 主DNS服务器Ipv6地址。 |
@@ -2858,12 +2862,12 @@ API 10起：ohos.permission.GET_WIFI_INFO
   }
   wifiManager.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
   
-  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
+  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice) => {
       console.info("p2p device change receive event: " + JSON.stringify(result));
   }
   wifiManager.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
   
-  let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
+  let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("p2p peer device change receive event: " + JSON.stringify(result));
       wifiManager.getP2pPeerDevices((err, data) => {
           if (err) {
@@ -2937,23 +2941,6 @@ p2pCancelConnect(): void
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
-## wifiManager.startDiscoverDevices<sup>10+</sup>
-
-startDiscoverDevices(): void
-
-开始发现设备。
-
-**需要权限：** ohos.permission.GET_WIFI_INFO 
-
-**系统能力：** SystemCapability.Communication.WiFi.P2P
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2801000  | Operation failed.|
 
 ## wifiManager.startDiscoverDevices<sup>9+</sup>
 
@@ -3596,7 +3583,7 @@ off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
 
 **示例：**
 ```ts
-import wifi from '@ohos.wifi';
+import wifi from '@ohos.wifiManager';
 
 let recvDeviceConfigChangeFunc = (result:number) => {
     console.info("Receive device config change event: " + result);
@@ -3701,7 +3688,7 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
-| callback | Callback&lt;StationInfo&gt; | 是 | 状态改变回调函数。 |
+| callback | Callback&lt;StationInfo&gt; | 否 | 状态改变回调函数。 |
 
 **错误码：**
 
@@ -3709,7 +3696,7 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-| 2501000  | Operation failed.|
+| 2601000  | Operation failed.|
 
 ## wifiManager.off('hotspotStaJoin')<sup>9+</sup>
 
@@ -3736,21 +3723,21 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-| 2501000  | Operation failed.|
+| 2601000  | Operation failed.|
 
 **示例：**
 ```ts
-import wifi from '@ohos.wifi';
+import wifiManager from '@ohos.wifiManager';
 
-let recvHotspotStaJoinFunc = (result:number) => {
+let recvHotspotStaJoinFunc = (result:wifiManager.StationInfo) => {
     console.info("Receive hotspot sta join event: " + result);
 }
 
 // Register event
-wifi.on("hotspotStaJoin", recvHotspotStaJoinFunc);
+wifiManager.on("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 // Unregister event
-wifi.off("hotspotStaJoin", recvHotspotStaJoinFunc);
+wifiManager.off("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 ```
 
@@ -3771,7 +3758,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
-  | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
+  | callback | Callback&lt;StationInf]&gt; | 否 | 状态改变回调函数。 |
 
 **错误码：**
 
@@ -3779,9 +3766,9 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-| 2501000  | Operation failed.|
+| 2601000  | Operation failed.|
 
-## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
+## wifiManager.off('hotspotStaLeave')<sup>7+</sup>
 
 off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 
@@ -3810,17 +3797,17 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 
 **示例：**
 ```ts
-import wifi from '@ohos.wifi';
+import wifiManager from '@ohos.wifiManager';
 
-let recvHotspotStaLeaveFunc = (result:number) => {
+let recvHotspotStaLeaveFunc = (result:wifiManager.StationInfo) => {
     console.info("Receive hotspot sta leave event: " + result);
 }
 
 // Register event
-wifi.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
+wifiManager.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
 
 // Unregister event
-wifi.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
+wifiManager.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
 
 ```
 
@@ -3953,7 +3940,7 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pConnectionChangeFunc = (result:number) => {
+  let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("Receive p2p connection change event: " + result);
   }
   
@@ -4026,7 +4013,7 @@ API 10起：无
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pDeviceChangeFunc = (result:number) => {
+  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice) => {
       console.info("Receive p2p device change event: " + result);
   }
   
@@ -4099,7 +4086,7 @@ API 10起：无
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pPeerDeviceChangeFunc = (result:number) => {
+  let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("Receive p2p peer device change event: " + result);
   }
   
@@ -4110,7 +4097,7 @@ API 10起：无
   wifiManager.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
 ```
 
-## wifiManager.on('p2pPersistentGroupChange')<sup>9</sup>
+## wifiManager.on('p2pPersistentGroupChange')<sup>9+</sup>
 
 on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 
@@ -4135,7 +4122,7 @@ on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
   | -------- | -------- |
 | 2801000  | Operation failed.|
 
-## wifiManager.off('p2pPersistentGroupChange')<sup>9</sup>
+## wifiManager.off('p2pPersistentGroupChange')<sup>9+</sup>
 
 off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 
@@ -4164,7 +4151,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pPersistentGroupChangeFunc = (result:number) => {
+  let recvP2pPersistentGroupChangeFunc = (result:void) => {
       console.info("Receive p2p persistent group change event: " + result);
   }
   

@@ -1,7 +1,7 @@
 # PageAbility切换
 
 
-FA模型中PageAbility对应Stage模型中的UIAbility。切换步骤如下。
+FA模型中PageAbility对应Stage模型中的UIAbility，PageAbility切换为UIAbility的方法如下。
 
 
 1. 在Stage应用中[创建UIAbility](uiability-usage.md)。
@@ -56,3 +56,11 @@ FA模型中PageAbility对应Stage模型中的UIAbility。切换步骤如下。
       }
     }
    ```
+  2、在resources/base/profile/main_pages.json中配置页面，以"pages/Index"为例:
+  ```json
+  {
+    "src": [
+      "pages/Index"
+    ]
+  }
+  ```

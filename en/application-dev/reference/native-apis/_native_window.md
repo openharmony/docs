@@ -19,7 +19,7 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 
 | Name| Description|
 | -------- | -------- |
-| [external_window.h](external__window_8h.md) | Declares the functions for obtaining and using **NativeWindow**.<br>File to include: &lt;native_window/external_window.h&gt; |
+| [external_window.h](external__window_8h.md) | Declares the functions for obtaining and using **NativeWindow**.<br>File to include: &lt;native_window/external_window.h&gt; <br>Library: libnative_window.so|
 
 
 ### Structs

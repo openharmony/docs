@@ -75,7 +75,7 @@ void TestDeathRecipient::OnRemoteDied(const wptr<IRemoteObject>& remoteObject)
 
 ```c++
 sptr<IPCObjectProxy> object = new IPCObjectProxy(1, to_utf16(DESCRIPTOR));
-sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient());// 构造一个消亡通知对象
+sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient()); // 构造一个消亡通知对象
 bool result = object->AddDeathRecipient(deathRecipient); // 注册消亡通知
 result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 ```
@@ -187,7 +187,7 @@ proxy.unregisterDeathRecipient(deathRecipient, 0);
 ### 参考代码
 
 ```c++
-//Proxy
+// Proxy
 int TestAbilityProxy::TestAnonymousStub()
 {
     MessageOption option;
@@ -199,7 +199,7 @@ int TestAbilityProxy::TestAnonymousStub()
     return result;
 }
 
-//Stub
+// Stub
 
 int TestAbilityStub::OnRemoteRequest(uint32_t code, MessageParcel &data, MessageParcel &reply, MessageOption &option)
 {

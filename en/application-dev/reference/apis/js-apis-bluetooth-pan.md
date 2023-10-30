@@ -32,6 +32,7 @@ Creates a **PanProfile** instance.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile : pan.PanProfile= pan.createPanProfile();
     console.info('pan success');
@@ -78,6 +79,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile: pan.PanProfile = pan.createPanProfile();
     panProfile.disconnect('XX:XX:XX:XX:XX:XX');
@@ -119,6 +121,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile: pan.PanProfile = pan.createPanProfile();
     panProfile.setTethering(false);
@@ -149,9 +152,10 @@ Checks whether Bluetooth tethering is activated.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile: pan.PanProfile = pan.createPanProfile();
-    let ret = panProfile.isTetheringOn();
+    panProfile.isTetheringOn();
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }

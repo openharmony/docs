@@ -160,7 +160,7 @@ try {
 
 try {
     let ret: boolean = false;
-    // refer to newSEService for this.nfcSEService 
+    // Refer to newSEService for this.nfcSEService.
     if (nfcSEService != null) {
         ret = nfcSEService.isConnected();
     }
@@ -204,7 +204,7 @@ try {
 }
 
 try {
-    // refer to newSEService for this.nfcSEService 
+    // Refer to newSEService for this.nfcSEService.
     if (nfcSEService != null) {
         nfcSEService.shutdown();
     }
@@ -250,7 +250,7 @@ try {
 }
 
 try {
-    // refer to newSEService for this.nfcSEService 
+    // Refer to newSEService for this.nfcSEService.
     if (nfcSEService != null) {
         console.log("version: " + nfcSEService.getVersion());
     }
@@ -1218,6 +1218,7 @@ try {
     });
 } catch (e) {
     console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
 
 try {
     if(nfcSEService != null) {
@@ -1788,7 +1789,7 @@ try {
         getPromise = omaSession.openLogicalChannel(aidArray, p2);
         getPromise.then((channel) => {
             let command: number[] = [100, 200];
-            // See Session.openBasicChannel for this.nfcOmaChannel.
+            // Refer to Session.openBasicChannel for this.nfcOmaChannel.
             responseArray = channel.transmit(command);
         })
     }
@@ -1865,7 +1866,7 @@ try {
         getPromise = omaSession.openLogicalChannel(aidArray, p2);
         getPromise.then((channel) => {
             let command: number[] = [100, 200];
-            // See Session.openBasicChannel for this.nfcOmaChannel.
+            // Refer to Session.openBasicChannel for this.nfcOmaChannel.
             channel.transmit(command, (error, data) => {
                 if (error) {
                     console.log("transmit2 exception:" + JSON.stringify(error));

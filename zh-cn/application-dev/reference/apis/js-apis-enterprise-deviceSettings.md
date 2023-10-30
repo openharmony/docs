@@ -16,6 +16,50 @@
 import deviceSettings from '@ohos.enterprise.deviceSettings';
 ```
 
+## deviceSettings.setScreenOffTime<sup>11+</sup>
+
+setScreenOffTime(admin: Want, time: number): void
+
+以同步方法指定设备管理应用设置设备息屏时间。成功返回null，失败抛出对应异常。
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| time | number            | 是    | 设备息屏时间(单位：毫秒，建议参数与设备可选息屏时间保持一致)       |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  deviceSettings.setScreenOffTime(wantTemp, 30000);
+  console.info(`Succeeded in setting screen off time`);
+} catch(err) {
+  console.error(`Failed to set screen off time. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## deviceSettings.getScreenOffTime
 
 getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
@@ -342,3 +386,144 @@ deviceSettings.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.error(`Failed to uninstall user certificate. Code is ${err.code}, message is ${err.message}`);
 });
 ```
+
+## deviceSettings.setPowerPolicy<sup>11+</sup>
+
+setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): void
+
+以同步方法指定设备管理应用设置电源策略。成功返回null，失败抛出对应异常。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SETTINGS
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| powerScene | [PowerScene](#powerscene11) | 是    | 电源策略场景，当前只支持超时场景。       |
+| powerPolicy | [PowerPolicy](#powerpolicy11) | 是    | 电源策略。       |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  let delayTime = 0;
+  let powerScene: deviceSettings.PowerScene = deviceSettings.PowerScene.TIME_OUT;
+  let powerPolicyAction: deviceSettings.PowerPolicyAction = deviceSettings.PowerPolicyAction.AUTO_SUSPEND;
+  let powerPolicy: deviceSettings.PowerPolicy = {powerPolicyAction, delayTime};
+  deviceSettings.setPowerPolicy(wantTemp, powerScene, powerPolicy);
+  console.info(`Succeeded in setting power polilcy`);
+} catch (error) {
+  console.error(`Failed to set power policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## deviceSettings.getPowerPolicy<sup>11+</sup>
+
+getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
+
+以同步方法指定设备管理应用获取电源策略。成功返回电源策略，失败抛出对应异常。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SETTINGS
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| powerScene | [PowerScene](#powerscene11) | 是    | 电源策略场景，当前只支持超时场景。       |
+
+**返回值：**
+
+| 类型   | 说明                                  | 说明                       |
+| ----- | ----------------------------------- |------------------------------- |
+| PowerPolicy | [PowerPolicy](#powerpolicy11) |   电源策略。       |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  let powerScene: deviceSettings.PowerScene = deviceSettings.PowerScene.TIME_OUT;
+  let powerPolicy: deviceSettings.PowerPolicy = deviceSettings.getPowerPolicy(wantTemp, powerScene);
+  console.info(`Succeeded in getting power polilcy ${JSON.stringify(powerPolicy)}`);
+} catch (error) {
+  console.error(`Failed to get power policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## PowerPolicy<sup>11+</sup>
+
+电源策略。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+| 名称         | 类型     | 必填 | 说明                            |
+| ----------- | --------| ----- | ------------------------------- |
+| powerPolicyAction | [PowerPolicyAction](#powerpolicyaction11) | 是 | 执行电源策略的动作。 |
+| delayTime | number | 是 | 延迟时间。 |
+
+## PowerScene<sup>11+</sup>
+
+执行电源策略的场景。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| TIME_OUT | 0 | 超时场景。 |
+
+## PowerPolicyAction<sup>11+</sup>
+
+执行电源策略的动作。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| NONE | 0 | 不执行动作。 |
+| AUTO_SUSPEND | 1 | 自动进入睡眠。 |
+| FORCE_SUSPEND | 2 | 强制进入睡眠。 |
+| HIBERNATE | 3 | 进入休眠。（当前电源子系统暂不支持） |
+| SHUTDOWN | 4 | 关机。 |

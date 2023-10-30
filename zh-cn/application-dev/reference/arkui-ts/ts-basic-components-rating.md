@@ -31,7 +31,7 @@ Rating(options?: { rating: number, indicator?: boolean })
 | 名称      | 参数类型                                                     | 描述                                                         |
 | --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | stars     | number                                                       | 设置评分总数。<br/>默认值：5 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于等于0的值时，按默认值显示。 |
-| stepSize  | number                                                       | 操作评级的步长。<br/>默认值：0.5 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。<br/>取值范围为[0.1, stars]。 |
+| stepSize  | number                                                       | 操作评级的步长。<br/>默认值：0.5 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于0.1的值时，按默认值显示。<br/>取值范围为[0.1, stars]。 |
 | starStyle | {<br/>backgroundUri:&nbsp;string,<br/>foregroundUri:&nbsp;string,<br/>secondaryUri?:&nbsp;string<br/>} | backgroundUri：未选中的星级的图片链接，可由用户自定义或使用系统默认图片。<br/>foregroundUri：选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>secondaryUri：部分选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>startStyle属性所支持的图片类型能力参考[Image](ts-basic-components-image.md)组件。<br/>支持加载本地图片和网络图片，暂不支持PixelMap类型和Resource资源。<br/>默认图片加载方式为异步，暂不支持同步加载。<br/>设置值为undefined或者空字符串时，rating会选择加载系统默认星型图源。 |
 
 >  **说明：**

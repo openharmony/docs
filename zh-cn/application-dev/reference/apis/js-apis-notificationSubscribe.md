@@ -28,7 +28,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 | 参数名       | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber)    | 是   | 通知订阅对象。     |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | 是   | 通知订阅对象。     |
 | info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | 是   | 通知订阅信息。 |
 | callback   | AsyncCallback\<void\>     | 是   | 订阅动作回调函数。 |
 
@@ -62,6 +62,7 @@ let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
 let subscriber: notificationSubscribe.NotificationSubscriber = {
   onConsume: onConsumeCallback
 };
+//不会对bundleNames进行校验，开发者自己确定需要订阅哪些bundleName
 let info: notificationSubscribe.NotificationSubscribeInfo = {
   bundleNames: ["bundleName1","bundleName2"]
 };
@@ -84,7 +85,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 | 参数名       | 类型                   | 必填 | 说明             |
 | ---------- | ---------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber) | 是   | 通知订阅对象。     |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | 是   | 通知订阅对象。     |
 | callback   | AsyncCallback\<void\>  | 是   | 订阅动作回调函数。 |
 
 **错误码：**
@@ -137,8 +138,14 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
 | info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空。   |
+
+**返回值：**
+
+| 类型     | 说明               | 
+| ------- |------------------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -187,7 +194,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 | 参数名       | 类型                   | 必填 | 说明                 |
 | ---------- | ---------------------- | ---- | -------------------- |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber) | 是   | 通知订阅对象。         |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | 是   | 通知订阅对象。         |
 | callback   | AsyncCallback\<void\>  | 是   | 取消订阅动作回调函数。 |
 
 **错误码：**
@@ -237,7 +244,13 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 | 参数名       | 类型                   | 必填 | 说明         |
 | ---------- | ---------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber) | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | 是   | 通知订阅对象。 |
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -346,6 +359,12 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | notificationKey | [NotificationKey](#notificationkey) | 是   | 通知键值。   |
 | reason          | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
@@ -447,6 +466,12 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 | hashCode | string | 是   | 通知唯一ID。 |
 | reason   | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 
+**返回值：**
+
+| 类型     | 说明 | 
+| ------- |--|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
@@ -537,6 +562,12 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
 |-----------|-------------------------------| ---- |-------------|
 | hashCodes | Array\<String\>               | 是   | 通知唯一ID数组集合。 |
 | reason    | [RemoveReason](#removereason) | 是   | 通知删除原因。     |
+
+**返回值：**
+
+| 类型     | 说明               | 
+| ------- |------------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **错误码：**
 
@@ -671,6 +702,12 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否   | 指定应用的包信息。默认为空，表示删除所有通知。 |
+
+**返回值：**
+
+| 类型     | 说明         | 
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |  
 
 **错误码：**
 

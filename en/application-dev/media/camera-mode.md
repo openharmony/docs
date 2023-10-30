@@ -9,22 +9,22 @@ Mode management, as an enhancement to **CameraManager**, is used to manage advan
 ![portraitgraphing Development Process](figures/portrait-capture-development-process.png)
 
 ## Sample Code
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function cameraModeCase(context: common.Context, surfaceId: string): Promise<void> {
+async function cameraModeCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
   // Create a CameraManager instance.
-  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
     return;
   }
   // Create a ModeManager instance.
-  let modeManager: camera.ModeManager = camera.getModeManager(context);
+  let modeManager: camera.ModeManager = camera.getModeManager(baseContext);
   if (!cameraManager) {
     console.error("camera.getModeManager error");
     return;
@@ -252,7 +252,8 @@ async function cameraModeCase(context: common.Context, surfaceId: string): Promi
   // Obtain the supported portrait types.
   let portraitTypes: Array<camera.PortraitEffect> = [];
   try {
-    portraitTypes = portraitSession.getSupportedPortraitEffects();
+    let portraitSession1: camera.PortraitSession = portraitSession as camera.PortraitSession;
+    portraitTypes = portraitSession1.getSupportedPortraitEffects();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the portrait effects types. errorCode = ' + err.code);
@@ -262,7 +263,8 @@ async function cameraModeCase(context: common.Context, surfaceId: string): Promi
   }
   // Set a portrait type.
   try {
-    portraitSession.setPortraitEffect(portraitTypes[0]);
+    let portraitSession1: camera.PortraitSession = portraitSession as camera.PortraitSession;
+    portraitSession1.setPortraitEffect(portraitTypes[0]);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to set the portrait effects value. errorCode = ' + err.code);
@@ -270,7 +272,8 @@ async function cameraModeCase(context: common.Context, surfaceId: string): Promi
   // Obtain the portrait type in use.
   let effect: camera.PortraitEffect | undefined = undefined;
   try {
-    effect = portraitSession.getPortraitEffect();
+    let portraitSession1: camera.PortraitSession = portraitSession as camera.PortraitSession;
+    effect = portraitSession1.getPortraitEffect();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the portrait effects value. errorCode = ' + err.code);

@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-@ohos.web.webview提供web控制能力，[web](../arkui-ts/ts-basic-components-web.md)组件提供具有网页显示能力。
+@ohos.web.webview提供web控制能力，[web](../arkui-ts/ts-basic-components-web.md)组件提供网页显示的能力。
 
 > **说明：**
 >
@@ -33,7 +33,7 @@ once(type: string, callback: Callback\<void\>): void
 | 参数名  | 类型              | 必填 | 说明                  |
 | ------- | ---------------- | ---- | -------------------- |
 | type     | string          | 是   | Web事件的类型，目前支持："webInited"（Web初始化完成）。      |
-| headers | Callback\<void\> | 是   | 所订阅的回调函数。 |
+| callback | Callback\<void\> | 是   | 所订阅的回调函数。 |
 
 **示例：**
 
@@ -121,7 +121,7 @@ struct WebComponent {
 
 onMessageEvent(callback: (result: WebMessage) => void): void
 
-注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)。
+注册回调函数，接收HTML侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -267,13 +267,13 @@ struct WebComponent {
             }
           }
           catch (error) {
-            let e: business_error.BusinessError = resError as business_error.BusinessError;
+            let e: business_error.BusinessError = error as business_error.BusinessError;
             console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
           }
         })
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .onPageEnd((e) => {
+        .onPageEnd(() => {
           console.log("In ArkTS side message onPageEnd init mesaage channel");
           // 1. 创建消息端口
           this.ports = this.controller.createWebMessagePorts(true);
@@ -324,8 +324,8 @@ struct WebComponent {
                 }
               }
             }
-            catch (resError) {
-              let e: business_error.BusinessError = resError as business_error.BusinessError;
+            catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
               console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           });
@@ -757,10 +757,10 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| data       | string | 是   | 按照”Base64“或者”URL"编码后的一段字符串。                    |
+| data       | string | 是   | 按照"Base64"或者"URL"编码后的一段字符串。                    |
 | mimeType   | string | 是   | 媒体类型（MIME）。                                           |
-| encoding   | string | 是   | 编码类型，具体为“Base64"或者”URL编码。                       |
-| baseUrl    | string | 否   | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
+| encoding   | string | 是   | 编码类型，具体为"Base64"或者"URL"编码。                       |
+| baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给window.origin。 |
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
 > **说明：**
@@ -1359,6 +1359,7 @@ class testObj {
   }
 
   test(): string {
+    console.log('ArkUI Web Component');
     return "ArkUI Web Component";
   }
 
@@ -1367,11 +1368,26 @@ class testObj {
   }
 }
 
+class webObj {
+  constructor() {
+  }
+
+  webTest(): string {
+    console.log('Web test');
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString');
+  }
+}
+
 @Entry
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   @State testObjtest: testObj = new testObj();
+  @State webTestObj: webObj = new webObj();
   build() {
     Column() {
       Button('refresh')
@@ -1387,6 +1403,7 @@ struct Index {
         .onClick(() => {
           try {
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -1408,12 +1425,19 @@ struct Index {
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
+      <p id="webDemo"></p>
     </body>
     <script type="text/javascript">
     function htmlTest() {
+      // This function call expects to return "ArkUI Web Component"
       let str=objName.test();
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
+
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
     }
 </script>
 </html>
@@ -1759,7 +1783,7 @@ struct WebComponent {
       Text(this.msg2).fontSize(20)
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(e => {
+        .onPageEnd(() => {
           this.controller.runJavaScriptExt('test()')
             .then((result) => {
               try {
@@ -1935,7 +1959,7 @@ struct WebComponent {
 
 zoom(factor: number): void
 
-调整当前网页的缩放比例。
+调整当前网页的缩放比例，[zoomAccess](../arkui-ts/ts-basic-components-web.md#zoomaccess)需为true。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1979,6 +2003,7 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
+        .zoomAccess(true)
     }
   }
 }
@@ -2261,7 +2286,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 | 类型                   | 说明              |
 | ---------------------- | ----------------- |
-| Array\<WebMessagePort> | web消息端口列表。 |
+| Array\<[WebMessagePort](#webmessageport)> | web消息端口列表。 |
 
 **错误码：**
 
@@ -2306,7 +2331,7 @@ struct WebComponent {
 
 postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
-发送Web消息端口到HTML5。
+发送Web消息端口到HTML。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3510,9 +3535,7 @@ struct WebComponent {
 
 setNetworkAvailable(enable: boolean): void
 
-设置JavaScript中的window.navigator.onLine属性。
-
-**需要权限：** ohos.permission.GET_NETWORK_INFO
+设置JavaScript中的window.navigator.isOnline属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3520,7 +3543,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
+| enable | boolean | 是   | 是否使能window.navigator.isOnline。 |
 
 **错误码：**
 
@@ -3567,9 +3590,15 @@ struct WebComponent {
 <body>
 <h1>online 属性</h1>
 <p id="demo"></p>
+<button onclick="func()">click</button>
 <script>
     let online = navigator.onLine;
     document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+
+    function func(){
+      var online = navigator.onLine;
+      document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+    }
 </script>
 </body>
 </html>
@@ -3958,7 +3987,6 @@ struct WebComponent {
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
@@ -4045,7 +4073,6 @@ struct WebComponent {
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
@@ -4114,7 +4141,7 @@ struct WebComponent {
 
 getCertificate(): Promise<Array<cert.X509Cert>>
 
-获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert定义](./js-apis-cert.md)），便于开发者展示网站证书信息。
+获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert](./js-apis-cert.md#x509cert)定义），便于开发者展示网站证书信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6462,7 +6489,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 类型           | 说明          |
 | --------------| ------------- |
-| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+| Array\<string \| number \| boolean\> | 返回数组类型的数据。 |
 
 **错误码：**
 
@@ -6589,7 +6616,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 类型           | 说明          |
 | --------------| ------------- |
-| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+| Array\<string \| number \| boolean\> | 返回数组类型的数据。 |
 
 **错误码：**
 
@@ -6865,7 +6892,7 @@ struct WebComponent {
 
 ## SecureDnsMode<sup>10+</sup>
 
-Web組件使用HTTPDNS的模式。
+Web组件使用HTTPDNS的模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

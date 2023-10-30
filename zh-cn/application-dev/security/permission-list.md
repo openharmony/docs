@@ -1290,6 +1290,18 @@
 
 **起始版本**：10
 
+## ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+允许设备设置安全管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
 允许设备管理应用安装和卸载包。
@@ -1338,6 +1350,18 @@
 
 **起始版本**：10
 
+## ohos.permission.ENTERPRISE_MANAGE_SETTINGS
+
+允许设备管理应用管理设置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.ENTERPRISE_MANAGE_USB
 
 允许设备管理应用管理USB。
@@ -1373,6 +1397,18 @@
 **ACL使能**：TRUE
 
 **起始版本**：10
+
+## ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+允许设备管理系统的设置参数。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
 
 ## ohos.permission.NFC_TAG
 
@@ -2334,9 +2370,9 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
-**起始版本**：10
+**起始版本**：11
 
 ## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
 
@@ -2829,6 +2865,7 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
 ## ohos.permission.ENABLE_DISTRIBUTED_HARDWARE
 
 允许系统服务使能分布式硬件资源。
@@ -2840,9 +2877,226 @@
 **ACL使能**：FALSE
 
 **起始版本**：11
+
+## ohos.permission.DISABLE_PERMISSION_DIALOG
+
+允许系统应用去设置指定应用能否拉起权限弹窗。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
 
 允许系统服务或系统应用访问分布式硬件资源。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.INSTANTSHARE_SWITCH_CONTROL
+
+允许系统服务或系统应用变更近场分享开关状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_INSTANTSHARE_SERVICE
+
+允许系统服务或系统应用访问近场分享服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_INSTANTSHARE_PRIVATE_ABILITY
+
+允许系统服务或系统应用使用近场分享私有应用能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_MCP_AUTHORIZATION
+
+允许MCP宿主应用代理其子应用进行用户帐号授权登录。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.GET_BUNDLE_RESOURCES
+
+允许查询应用的资源信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.SET_CODE_PROTECT_INFO
+
+允许系统应用设置云侧公钥以及工作秘钥密文，并协商代码保护秘钥信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.SECURE_PASTE
+
+允许应用静默读取剪贴板。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.READ_PASTEBOARD
+
+允许应用读取剪贴板。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.SET_ADVANCED_SECURITY_MODE
+
+允许应用修改高级安全模式配置。
+
+**权限级别**: system_core
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
+
+## ohos.permission.SET_DEVELOPER_MODE
+
+允许应用修改开发者模式配置。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.COOPERATE_MANAGER
+
+允许系统应用使能键鼠穿越能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.PERCEIVE_TRAIL
+
+允许系统应用使用MSDP足迹感知功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.EXECUTE_INSIGHT_INTENT
+
+允许系统应用执行意图调用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_ACTIVATION_LOCK
+
+允许应用管理设备激活锁。
+
+**权限级别**: system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
+
+## ohos.permission.VERIFY_ACTIVATION_LOCK
+
+允许应用校验激活锁凭据合法性。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+允许应用访问系统预置隐藏相册及相册内文件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_OUC
+
+允许系统应用拉起软件更新能力。
 
 **权限级别**：system_basic
 

@@ -60,22 +60,23 @@ httpRequest.request(
     caPath: "", // 可选，默认使用系统预设CA证书，自API 10开始支持该属性
   },
   (err: BusinessError, data: http.HttpResponse ) => {
-    if (!err) {
-      // data.result为HTTP响应内容，可根据业务需要进行解析
-      console.info('Result:' + JSON.stringify(data.result));
-      console.info('code:' + JSON.stringify(data.responseCode));
-      // data.header为HTTP响应头，可根据业务需要进行解析
-      console.info('header:' + JSON.stringify(data.header));
-      console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-      // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
-      httpRequest.destroy();
-    } else {
-      console.info('error:' + JSON.stringify(err));
-      // 取消订阅HTTP响应头事件
-      httpRequest.off('headersReceive');
-      // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
-      httpRequest.destroy();
-    }
+  if (!err) {
+    // data.result为HTTP响应内容，可根据业务需要进行解析
+    console.info('Result:' + JSON.stringify(data.result));
+    console.info('code:' + JSON.stringify(data.responseCode));
+    // data.header为HTTP响应头，可根据业务需要进行解析
+    console.info('header:' + JSON.stringify(data.header));
+    console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
+    // 取消订阅HTTP响应头事件
+    httpRequest.off('headersReceive');
+    // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
+    httpRequest.destroy();
+  } else {
+    console.info('error:' + JSON.stringify(err));
+    // 取消订阅HTTP响应头事件
+    httpRequest.off('headersReceive');
+    // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
+    httpRequest.destroy();
   }
 );
 ```
@@ -966,18 +967,15 @@ httpRequest.off('dataReceiveProgress');
 | 名称         | 类型                                          | 必填 | 说明                                                         |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。                                                   |
-| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | 否   | 发送请求的额外数据，默认无此字段。<br />-
-当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'Content-Type'为'application/x-www-form-urlencoded'时，
-请求提交的信息主体数据应在key和value进行URL转码后按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String；
-当'Content-Type'为'text/xml'时，该字段对应的类型通常为String；当'Content-Type'为'application/json'时，该字段对应的类型通常为Object；当'Content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer；当'Content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。以上信息仅供参考，并可能根据具体情况有所不同。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。|
-| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |
+| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | 否   | 发送请求的额外数据，默认无此字段。<br />当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'Content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据应在key和value进行URL转码后按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String；当'Content-Type'为'text/xml'时，该字段对应的类型通常为String；当'Content-Type'为'application/json'时，该字段对应的类型通常为Object；当'Content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer；当'Content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。以上信息仅供参考，并可能根据具体情况有所不同。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。 |
+| <span name="expectDataType">[expectDataType<sup>9+</sup>](#result)</span>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |
 | usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true。   |
 | priority<sup>9+</sup>        | number                          | 否   | 优先级，范围[1,1000]，默认是1。                           |
 | header                       | Object                          | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。   |
 | readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。<br />设置为0表示不会出现超时情况。 |
 | connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。                             |
-| usingProxy<sup>10+</sup>     | boolean \| Object               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为object类型时，使用指定网络代理。 
+| usingProxy<sup>10+</sup>     | boolean \| Object               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为object类型时，使用指定网络代理。 |
 | caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持后缀名为.pem的文本格式证书。                             |
 
 ## RequestMethod<sup>6+</sup>
@@ -1049,7 +1047,7 @@ request方法回调函数的返回值类型。
 
 | 名称               | 类型                                         | 必填 | 说明                                                         |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| result               | string<sup>6+</sup> \| Object<sup>deprecated 8+</sup> \| ArrayBuffer<sup>8+</sup> | 是   | HTTP请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需HTTP响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
+| <span name="result">[result](#expectDataType)</span>               | string<sup>6+</sup> \| Object<sup>deprecated 8+</sup> \| ArrayBuffer<sup>8+</sup> | 是   | HTTP请求根据响应头中Content-type类型返回对应的响应格式内容，若HttpRequestOptions无expectDataType字段，按如下规则返回：<br />- application/json：返回JSON格式的字符串；<br />- application/octet-stream：ArrayBuffer；<br />- image：ArrayBuffer；<br />- 其他：string。<br /> 若HttpRequestOption有expectDataType字段，开发者需传入与服务器返回类型相同的数据类型。 |
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | 是   | 返回值类型。                           |
 | responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。 |
 | header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- content-type：header['content-type']；<br />- status-line：header['status-line']；<br />- date：header.date/header['date']；<br />- server：header.server/header['server']； |

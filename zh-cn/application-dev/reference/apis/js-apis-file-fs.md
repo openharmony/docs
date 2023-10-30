@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import fs, { Filter, ConflictFiles } from '@ohos.file.fs';
+import fs from '@ohos.file.fs';
 ```
 
 ## 使用说明
@@ -323,7 +323,6 @@ close(file: number|File, callback: AsyncCallback&lt;void&gt;): void
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("close file success");
-      fs.closeSync(file);
     }
   });
   ```
@@ -523,10 +522,11 @@ copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void,
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { ConflictFiles } from '@ohos.file.fs';
   // copy directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.copyDir(srcPath, destPath, 0, (err: BusinessError, data: Array<ConflictFiles>) => {
+  fs.copyDir(srcPath, destPath, 0, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < data.length; i++) {
         console.info("copy directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
@@ -646,6 +646,43 @@ mkdir(path: string): Promise&lt;void&gt;
   });
   ```
 
+## fs.mkdir<sup>11+</sup>
+
+mkdir(path: string, recursion: boolean): Promise<void>
+
+创建目录，使用Promise异步回调。当recursion指定为true，可多层级创建目录。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | 是   | 目录的应用沙箱路径。                                   |
+| recursion   | string | 是   | 是否多层级创建目录。recursion指定为true时，可多层级创建目录。recursion指定为false时，仅可创建单层目录。   |
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let dirPath = pathDir + "/testDir1/testDir2/testDir3";
+  fs.mkdir(dirPath, true).then(() => {
+    console.info("mkdir succeed");
+  }).catch((err: BusinessError) => {
+    console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
 ## fs.mkdir
 
 mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
@@ -679,6 +716,40 @@ mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
+## fs.mkdir<sup>11+</sup>
+
+mkdir(path: string, recursion: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+创建目录，使用callback异步回调。当recursion指定为true，可多层级创建目录。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| path     | string                    | 是   | 目录的应用沙箱路径。                                   |
+| recursion   | string | 是   | 是否多层级创建目录。recursion指定为true时，可多层级创建目录。recursion指定为false时，仅可创建单层目录。   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步创建目录操作完成之后的回调。                             |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let dirPath = pathDir + "/testDir1/testDir2/testDir3";
+  fs.mkdir(dirPath, true, (err: BusinessError) => {
+    if (err) {
+      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("mkdir success");
+    }
+  });
+  ```
+
 ## fs.mkdirSync
 
 mkdirSync(path: string): void
@@ -702,6 +773,32 @@ mkdirSync(path: string): void
   ```ts
   let dirPath = pathDir + "/testDir";
   fs.mkdirSync(dirPath);
+  ```
+
+## fs.mkdirSync<sup>11+</sup>
+
+mkdirSync(path: string): void
+
+以同步方法创建目录。当recursion指定为true，可多层级创建目录。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | 是   | 目录的应用沙箱路径。                                   |
+| recursion   | string | 是   | 是否多层级创建目录。recursion指定为true时，可多层级创建目录。recursion指定为false时，仅可创建单层目录。   |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  let dirPath = pathDir + "/testDir1/testDir2/testDir3";
+  fs.mkdirSync(dirPath, true);
   ```
 
 ## fs.open
@@ -736,10 +833,9 @@ open(path: string, mode?: number): Promise&lt;File&gt;
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file: fs.File) => {
     console.info("file fd: " + file.fd);
+    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
-  }).finally(() => {
-    fs.closeSync(file);
   });
   ```
 
@@ -850,7 +946,6 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
     console.info("read file data succeed");
     let buf = buffer.from(arrayBuffer, 0, readLen);
     console.info(`The content of file: ${buf.toString()}`);
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
@@ -1061,7 +1156,7 @@ unlink(path: string): Promise&lt;void&gt;
   fs.unlink(filePath).then(() => {
     console.info("remove file succeed");
   }).catch((err: BusinessError) => {
-    console.info("remove file failed with error message: " + err.message + ", error code: " + err.codeor);
+    console.info("remove file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1341,6 +1436,179 @@ truncateSync(file: string|number, len?: number): void
   fs.truncateSync(filePath, len);
   ```
 
+## fs.readLines<sup>11+</sup>
+
+readLines(filePath: string, options?: Options): Promise&lt;ReaderIterator&gt;
+
+逐行读取文件文本内容，使用Promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filePath | string | 是   | 文件的应用沙箱路径。                                   |
+| options | [Options](#options11) | 否   | 可选项。支持以下选项：<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。|
+
+**返回值：**
+
+  | 类型                    | 说明         |
+  | --------------------- | ---------- |
+  | Promise&lt;[ReaderIterator](#readeriterator11)&gt; | Promise对象。返回文件读取迭代器。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { Options } from '@ohos.file.fs';
+  let filePath = pathDir + "/test.txt";
+  let options: Options = {
+    encoding: 'utf-8'
+  };
+  fs.readLines(filePath, options).then((readerIterator: fs.ReaderIterator) => {
+    for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
+      console.info("content: " + it.value);
+    }
+  }).catch((err: BusinessError) => {
+    console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## fs.readLines<sup>11+</sup>
+
+readLines(filePath: string, options?: Options, callback: AsyncCallback&lt;ReaderIterator&gt;): void
+
+逐行读取文件文本内容，使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filePath | string | 是   | 文件的应用沙箱路径。                                   |
+| options | [Options](#options11) | 否   | 可选项。支持以下选项：<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。|
+| callback | AsyncCallback&lt;[ReaderIterator](#readeriterator11)&gt; | 是   | 逐行读取文件文本内容回调。                                   |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { Options } from '@ohos.file.fs';
+  let filePath = pathDir + "/test.txt";
+  let options: Options = {
+    encoding: 'utf-8'
+  };
+  fs.readLines(filePath, options, (err: BusinessError, readerIterator: fs.ReaderIterator) => {
+    if (err) {
+      console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
+        console.info("content: " + it.value);
+      }
+    }
+  })
+  ```
+
+## fs.readLinesSync
+
+readLinesSync(filePath: string, options?: Options): ReaderIterator
+
+以同步方式逐行读取文件文本内容。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filePath | string | 是   | 文件的应用沙箱路径。                                   |
+| options | [Options](#options11) | 否   | 可选项。支持以下选项：<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。|
+
+**返回值：**
+
+  | 类型                    | 说明         |
+  | --------------------- | ---------- |
+  | [ReaderIterator](#readeriterator11) | 返回文件读取迭代器。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { Options } from '@ohos.file.fs';
+  let filePath = pathDir + "/test.txt";
+  let options: Options = {
+    encoding: 'utf-8'
+  };
+  let readerIterator = fs.readLines(filePath, options);
+  for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
+    console.info("content: " + it.value);
+  }
+  ```
+
+## ReaderIterator<sup>11+</sup>
+
+文件读取迭代器。在调用ReaderIterator的方法前，需要先通过readLines方法（同步或异步）来构建一个ReaderIterator实例。
+
+### next
+
+next(): ReaderIteratorResult
+
+获取迭代器下一项内容。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**返回值：**
+
+  | 类型                    | 说明         |
+  | --------------------- | ---------- |
+  | ReaderIteratorResult | 文件读取迭代器返回结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { Options } from '@ohos.file.fs';
+  let filePath = pathDir + "/test.txt";
+  let options: Options = {
+    encoding: 'utf-8'
+  };
+  fs.readLines(filePath, options).then((readerIterator: fs.ReaderIterator) => {
+    for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
+      console.info("content: " + it.value);
+    }
+  }).catch((err: BusinessError) => {
+    console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## ReaderIteratorResult
+
+文件读取迭代器返回结果，支持ReaderIterator接口使用。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称        | 类型       | 说明                |
+| ----------- | --------------- | ------------------ |
+| done | boolean     |  迭代器是否已完成迭代。          |
+| value    | string     | 逐行读取的文件文本内容。 |
+
 ## fs.readText
 
 readText(filePath: string, options?: { offset?: number; length?: number; encoding?: string; }): Promise&lt;string&gt;
@@ -1524,11 +1792,11 @@ lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   fs.lstat(filePath, (err: BusinessError, stat: fs.Stat) => {
-      if (err) {
-        console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
-      } else {
-        console.info("get link status succeed, the size of file is" + stat.size);
-      }
+    if (err) {
+      console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("get link status succeed, the size of file is" + stat.size);
+    }
   });
   ```
 
@@ -2006,6 +2274,7 @@ listFile(path: string, options?: {
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { Filter } from '@ohos.file.fs';
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
@@ -2015,7 +2284,7 @@ listFile(path: string, options?: {
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
   option.filter.displayName = ["*abc", "efg*"];
   option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date(0).getTime();
+  option.filter.lastModifiedAfter = new Date().getTime();
   fs.listFile(pathDir, option).then((filenames: Array<string>) => {
     console.info("listFile succeed");
     for (let i = 0; i < filenames.length; i++) {
@@ -2061,6 +2330,7 @@ listFile(path: string, options?: {
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { Filter } from '@ohos.file.fs';
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
@@ -2070,7 +2340,7 @@ listFile(path: string, options?: {
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
   option.filter.displayName = ["*abc", "efg*"];
   option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date(0).getTime();
+  option.filter.lastModifiedAfter = new Date().getTime();
   fs.listFile(pathDir, option, (err: BusinessError, filenames: Array<string>) => {
     if (err) {
       console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
@@ -2123,6 +2393,7 @@ listFileSync(path: string, options?: {
 **示例：**
 
   ```ts
+  import fs, { Filter } from '@ohos.file.fs';
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
@@ -2132,12 +2403,46 @@ listFileSync(path: string, options?: {
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
   option.filter.displayName = ["*abc", "efg*"];
   option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date(0).getTime();
+  option.filter.lastModifiedAfter = new Date().getTime();
   let filenames = fs.listFileSync(pathDir, option);
   console.info("listFile succeed");
   for (let i = 0; i < filenames.length; i++) {
     console.info("filename: %s", filenames[i]);
   }
+  ```
+
+## fs.lseek<sup>11+</sup>
+
+lseek(fd: number, offset: number, whence?: WhenceType): number
+
+调整文件偏置指针位置。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名    | 类型     | 必填   | 说明                          |
+  | ------ | ------ | ---- | --------------------------- |
+  | fd | number | 是    | 文件描述符。 |
+  | offset | number | 是    | 相对偏移位置。 |
+  | whence | [WhenceType](#whencetype11) | 否    | 偏移指针相对位置类型。 |
+
+**返回值：**
+
+  | 类型                   | 说明         |
+  | --------------------- | ---------- |
+  | number | 当前文件偏置指针位置（相对于文件头的偏移量）。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  console.info('The current offset is at ' + fs.lseek(file.fd, 5, fs.WhenceType.SEEK_SET));
+  fs.closeSync(file);
   ```
 
 ## fs.moveDir<sup>10+</sup>
@@ -2205,10 +2510,11 @@ moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void,
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { ConflictFiles } from '@ohos.file.fs';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.moveDir(srcPath, destPath, 1, (err: BusinessError, data: Array<ConflictFiles>) => {
+  fs.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < data.length; i++) {
         console.info("move directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
@@ -2252,7 +2558,6 @@ moveDirSync(src: string, dest: string, mode?: number): void
     fs.moveDirSync(srcPath, destPath, 1);
     console.info("move directory succeed");
   } catch (err) {
-    let err: BusinessError = error as BusinessError;
     console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
@@ -2458,6 +2763,33 @@ mkdtempSync(prefix: string): string
   let res = fs.mkdtempSync(pathDir + "/XXXXXX");
   ```  
 
+## fs.utimes<sup>11+</sup>
+
+utimes(path: string, mtime: number): void
+
+修改文件最近访问时间属性。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+|    参数名    | 类型     | 必填   | 说明                          |
+| ------------ | ------ | ------ | ------------------------------------------------------------ |
+| path  | string  |  是    | 文件的应用沙箱路径。 |
+| mtime  | number  |  是   | 待更新的时间戳。自1970年1月1日起至目标时间的毫秒数。仅支持修改文件最近访问时间属性。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  fs.writeSync(file.fd, 'test data');
+  fs.closeSync(file);
+  fs.utimes(filePath, new Date().getTime());
+  ```
 
 ## fs.createRandomAccessFile<sup>10+</sup>
 
@@ -2471,7 +2803,7 @@ createRandomAccessFile(file: string|File, mode?: number): Promise&lt;RandomAcces
 |    参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
 |     file     | string\|[File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
-|     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
+|     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
 
 **返回值：**
 
@@ -2513,7 +2845,7 @@ createRandomAccessFile(file: string|File, mode?: number, callback: AsyncCallback
 |  参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
 |     file     | string\|[File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
-|     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
+|     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
 | callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
 
 **错误码：**
@@ -2550,7 +2882,7 @@ createRandomAccessFileSync(file: string|File, mode?: number): RandomAccessFile
 |  参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
 |     file     | string\|[File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
-|     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
+|     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
 
 **返回值：**
 
@@ -2569,7 +2901,6 @@ createRandomAccessFileSync(file: string|File, mode?: number): RandomAccessFile
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
   randomaccessfile.close();
-  fs.closeSync(file);
   ```
 
 ## fs.createStream
@@ -2819,9 +3150,10 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 **示例：**
 
   ```ts
+  import fs, { WatchEvent } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: fs.WatchEventListener) => {
+  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: WatchEvent) => {
     if (watchEvent.event == 0x2) {
       console.info(watchEvent.fileName + 'was modified');
     } else if (watchEvent.event == 0x10) {
@@ -3490,7 +3822,8 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
   let option = new Option();
   option.offset = 5;
   option.length = 5;
-  let num = ss.readSync(new ArrayBuffer(4096), option);
+  let buf = new ArrayBuffer(4096);
+  let num = ss.readSync(buf, option);
   ```
 
 ## File
@@ -3506,6 +3839,33 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
 | fd | number | 是    | 否    | 打开的文件描述符。 |
 | path<sup>10+</sup> | string | 是    | 否    | 文件路径。 |
 | name<sup>10+</sup> | string | 是    | 否    | 文件名。 |
+
+### getParent<sup>11+</sup>
+
+getParent(): string
+
+获取File对象对应文件父目录。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**返回值：**
+
+  | 类型                                 | 说明     |
+  | ---------------------------------- | ------ |
+  | string | 返回父目录路径。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  console.info('The parent path is: ' + file.getParent());
+  fs.closeSync(file);
+  ```
 
 ### lock
 
@@ -3826,7 +4186,6 @@ writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: numb
   option.length = 5;
   let bytesWritten = randomaccessfile.writeSync("hello, world", option);
   randomaccessfile.close();
-  fs.closeSync(file);
   ```
 
 ### read<sup>10+</sup>
@@ -3857,6 +4216,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
@@ -3871,10 +4231,11 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
   let arrayBuffer = new ArrayBuffer(bufferLength);
   randomaccessfile.read(arrayBuffer, option).then((readLength: number) => {
     console.info("randomAccessFile readLength: " + readLength);
+  }).catch((err: BusinessError) => {
+    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
     randomaccessfile.close();
     fs.closeSync(file);
-  }).catch((err) => {
-    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3920,10 +4281,10 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
     } else {
       if (readLength) {
         console.info("read succeed and size is:" + readLength);
-        randomaccessfile.close();
-        fs.closeSync(file);
       }
     }
+    randomAccessFile.close();
+    fs.closeSync(file);
   });
   ```
 
@@ -4033,9 +4394,9 @@ open接口flags参数常量。文件打开标签。
 
 ## Filter<sup>10+</sup>
 
-**系统能力**：SystemCapability.FileManagement.File.FileIO
-
 文件过滤配置项类型，支持listFile接口使用。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 | 名称        | 类型       | 说明                |
 | ----------- | --------------- | ------------------ |
@@ -4048,11 +4409,33 @@ open接口flags参数常量。文件打开标签。
 
 ## ConflictFiles<sup>10+</sup>
 
-**系统能力**：SystemCapability.FileManagement.File.FileIO
-
 冲突文件信息，支持copyDir及moveDir接口使用。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 | 名称        | 类型       | 说明                |
 | ----------- | --------------- | ------------------ |
 | srcFile | string     | 源冲突文件路径。           |
 | destFile    | string     | 目标冲突文件路径。 |
+
+## Options<sup>11+</sup>
+
+可选项类型，支持readLines接口使用。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称        | 类型       | 说明                |
+| ----------- | --------------- | ------------------ |
+| encoding | string     | 文件编码方式。可选项。           |
+
+## WhenceType<sup>11+</sup>
+
+枚举，文件偏移指针相对偏移位置类型，支持lseek接口使用。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称        | 值       | 说明                |
+| ----------- | --------------- | ------------------ |
+| SEEK_SET | 0     | 文件起始位置处。           |
+| SEEK_CUR    | 1     | 当前文件偏置指针位置处。 |
+| SEEK_END    | 2     | 文件末尾位置处。 |

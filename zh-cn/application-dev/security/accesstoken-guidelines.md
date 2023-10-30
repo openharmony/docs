@@ -66,7 +66,7 @@
 
 ### FA模型
 
-使用FA模型的应用，需要在config.json配置文件中声明权限。
+使用FA模型的应用，需要在[config.json配置文件](../quick-start/application-configuration-file-overview-fa.md#配置文件的内部结构)中声明权限。
 
 ```json
 {
@@ -132,7 +132,7 @@
 
 ## ACL方式声明
 
-当应用需要申请`system_basic`和`system_core`等级的权限时，比应用默认权限等级`normal`更高。如果需要申请的权限等级高于应用默认的等级，需要使用ACL方式声明使用。
+应用的默认权限等级为`normal`，当应用需要申请`system_basic`和`system_core`等级的权限时，由于需要申请的权限等级高于应用默认的等级，需要使用ACL方式声明使用。
 
 例如，如果应用需要访问用户公共目录中的音乐文件，需要申请`ohos.permission.WRITE_AUDIO`权限，该权限属于`system_basic`等级。如果应用需要截取屏幕图像，则需要申请`ohos.permission.CAPTURE_SCREEN`权限，该权限属于`system_core`等级。此时，需要将相关权限项配置到[HarmonyAppProvision配置文件](app-provision-structure.md)的`acl`字段中。
 
@@ -368,7 +368,7 @@
 
 ### FA模型
 
-通过调用[requestPermissionsFromUser()](../reference/apis/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7)接口向用户动态申请授权。
+通过调用[context.requestPermissionsFromUser()](../reference/apis/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7)接口向用户动态申请授权。
 
 ```ts
 import { BusinessError } from '@ohos.base';
