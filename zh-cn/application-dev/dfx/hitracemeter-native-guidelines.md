@@ -71,7 +71,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
 
 }
   ```
-4. 将编译好的hap包推送到手机上安装，cmd窗口执行hdc shell连上手机后执行命令：hitrace --trace_begin app。
+4. 将编译好的hap包推送到设备上安装，cmd窗口执行hdc shell连上设备后执行命令：hitrace --trace_begin app。
   ```shell
   capturing trace...
   ```
