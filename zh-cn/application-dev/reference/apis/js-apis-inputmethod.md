@@ -2575,9 +2575,9 @@ isPanelShown(panelInfo: PanelInfo): boolean
 
 ```ts
 import panel from '@ohos.inputMethod.Panel';
-let info: panelInfo.PanelInfo = {
+let info: panel.PanelInfo = {
   type: panel.PanelType.SOFT_KEYBOARD,
-  flag: panel.PanelFlag.FLG_FIXED
+  flag: panel.PanelFlag.FLAG_FIXED
 }
 try {
   let result = inputMethodSetting.isPanelShown(info);
