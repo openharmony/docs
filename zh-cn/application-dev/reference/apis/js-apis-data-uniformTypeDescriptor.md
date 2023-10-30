@@ -119,9 +119,9 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | 名称    | 类型                    | 可读 | 可写 | 说明                                                       |
 | ------- | ----------------------- | ---- | ---- |----------------------------------------------------------|
 | typeId<sup>11+</sup>     | string | 是   | 否   | 标准化数据类型的ID（即[UniformDataType](#uniformdatatype)中对应的枚举值）。 |
-| belongingToTypes<sup>11+</sup>  | Array\<string>          | 是   | 否   | 标准化数据类型所归属的类型typdId列表。                                   |
+| belongingToTypes<sup>11+</sup>  | Array\<string>          | 是   | 否   | 标准化数据类型所归属的类型typeId列表。                                   |
 | description<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的简要说明。                                            |
-| referenceURL<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的详细描述网址链接，用于描述类型的详细信息。                            |
+| referenceURL<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的参考链接URL，用于描述类型的详细信息。                            |
 | iconFile<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的默认图标文件路径。                                        |
 
 ### equals<sup>11+</sup> 
