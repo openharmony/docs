@@ -768,6 +768,7 @@
       - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
+      - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
