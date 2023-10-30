@@ -4360,9 +4360,7 @@ if(store != undefined) {
 
 cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-手动执行端云条件同步，使用callback异步回调。使用该接口需要实现云服务功能。
-
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+手动执行端云条件同步，使用callback异步回调。使用该接口需要实现云同步功能。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -4400,9 +4398,7 @@ if (store != undefined) {
 
 cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
-手动执行端云条件同步，使用Promise异步处理。使用该接口需要实现云服务功能。
-
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+手动执行端云条件同步，使用Promise异步处理。使用该接口需要实现云同步功能。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
