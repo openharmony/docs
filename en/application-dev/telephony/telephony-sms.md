@@ -51,7 +51,7 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
 3. Send an SMS message.
 
 ```ts
-import sms from '@ohos.telephony.sms'
+import sms from '@ohos.telephony.sms';
 import { AsyncCallback } from '@ohos.base';
 import { BusinessError } from '@ohos.base';
 
