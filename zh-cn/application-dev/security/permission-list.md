@@ -3081,3 +3081,27 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+允许应用访问系统预置隐藏相册及相册内文件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_OUC
+
+允许系统应用拉起软件更新能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11

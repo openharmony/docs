@@ -12,7 +12,7 @@ import camera from '@ohos.multimedia.camera';
 
 ## camera.getCameraManager
 
-getCameraManager(context: featureAbility.Context): CameraManager
+getCameraManager(context: BaseContext): CameraManager
 
 Obtains a **CameraManager** instance. This API returns the result synchronously.
 
@@ -22,7 +22,7 @@ Obtains a **CameraManager** instance. This API returns the result synchronously.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [Context](js-apis-inner-app-context.md)      | Yes  | Application context.                  |
+| context  | [BaseContext](js-apis-inner-application-baseContext.md)      | Yes  | Application context.                  |
 
 **Return value**
 
@@ -42,10 +42,10 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
-function getCameraManager(context: featureAbility.Context): camera.CameraManager | undefined {
+function getCameraManager(context: common.BaseContext): camera.CameraManager | undefined {
   let cameraManager: camera.CameraManager | undefined = undefined;
   try {
     cameraManager = camera.getCameraManager(context);
@@ -58,7 +58,7 @@ function getCameraManager(context: featureAbility.Context): camera.CameraManager
 ```
 ## camera.getModeManager
 
-getModeManager(context: featureAbility.Context): ModeManager
+getModeManager(context: BaseContext): ModeManager
 
 Obtains a **ModeManager** instance. This API returns the result synchronously.
 
@@ -72,7 +72,7 @@ Mode management, as an enhancement to **CameraManager**, is used to manage advan
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [Context](js-apis-inner-app-context.md)      | Yes  | Application context.                  |
+| context  | [BaseContext](js-apis-inner-application-baseContext.md)      | Yes  | Application context.                  |
 
 **Return value**
 
@@ -92,10 +92,10 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
-function getModeManager(context: featureAbility.Context): camera.ModeManager | undefined {
+function getModeManager(context: common.BaseContext): camera.ModeManager | undefined {
   let modeManager: camera.ModeManager | undefined = undefined;
   try {
     modeManager = camera.getModeManager(context);
@@ -150,7 +150,7 @@ Defines the video profile.
 
 | Name                      | Type                                     | Mandatory| Description       |
 | ------------------------- | ----------------------------------------- | --- |----------- |
-| frameRateRange            | [FrameRateRange](#frameraterange)         | Yes | Frame rate range.  |
+| frameRateRange            | [FrameRateRange](#frameraterange)         | Yes | Frame rate range, in units of frames per second (FPS).|
 
 ## CameraOutputCapability
 
@@ -830,7 +830,7 @@ function unregisterCameraMute(cameraManager: camera.CameraManager): void {
 
 isPrelaunchSupported(camera: CameraDevice): boolean
 
-Checks whether a camera supports prelaunch. This API is called in prior to **setPrelaunchConfig**.
+Checks whether a camera supports prelaunch.
 
 **System API**: This is a system API.
 
@@ -859,9 +859,9 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-function isPreLaunchSupported(context: featureAbility.Context): boolean {
+function isPreLaunchSupported(context: common.BaseContext): boolean {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   let isSupported: boolean = false;
@@ -877,6 +877,10 @@ function isPreLaunchSupported(context: featureAbility.Context): boolean {
 ### setPrelaunchConfig
 
 setPrelaunchConfig(prelaunchConfig: PrelaunchConfig): void
+
+Sets prelaunch configuration.
+
+Before the setting, use [isPrelaunchSupported](#isprelaunchsupported) to check whether the device supports prelaunch.
 
 **System API**: This is a system API.
 
@@ -902,10 +906,10 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
-function setPrelaunchConfig(context: featureAbility.Context): void {
+function setPrelaunchConfig(context: common.BaseContext): void {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   if (cameras && cameras.length >= 1) {
@@ -935,10 +939,10 @@ Prelaunches the camera. This API is called when a user clicks the system camera 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
-function preLaunch(context: featureAbility.Context): void {
+function preLaunch(context: common.BaseContext): void {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   try {
     cameraManager.prelaunch();
@@ -982,9 +986,9 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-function getDeferredPreviewOutput(context: featureAbility.Context, previewProfile: camera.Profile): camera.PreviewOutput {
+function getDeferredPreviewOutput(context: common.BaseContext, previewProfile: camera.Profile): camera.PreviewOutput {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
   const output: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
   return output;
@@ -2304,6 +2308,8 @@ setExposureMode(aeMode: ExposureMode): void
 
 Sets an exposure mode for the device.
 
+Before the setting, use [isExposureModeSupported](#isexposuremodesupported) to check whether the target exposure mode is supported.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -3034,6 +3040,8 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): void
 
 Sets a video stabilization mode for the device.
 
+Before the setting, use [isVideoStabilizationModeSupported](#isvideostabilizationmodesupported) to check whether the target video stabilization mode is supported.
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
@@ -3108,6 +3116,8 @@ function getSupportedFilters(portraitSession: camera.PortraitSession): Array<cam
 setFilter(filter: number): void
 
 Sets a filter type.
+
+Before the setting, use [getSupportedFilters](#getsupportedfilters) to obtain the supported filter types and check whether the target filter type is supported.
 
 **System API**: This is a system API.
 
@@ -3482,6 +3492,8 @@ function getSupportedPortraitEffects(portraitSession: camera.PortraitSession): A
 setPortraitEffect(effect: PortraitEffect): void
 
 Sets a portrait effect.
+
+Before the setting, use [getSupportedPortraitEffects](#getsupportedportraiteffects) to obtain the supported portrait effects and check whether the target portrait effect is supported.
 
 **System API**: This is a system API.
 
@@ -3938,9 +3950,9 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function preview(context: featureAbility.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
+async function preview(context: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo)
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
@@ -4522,9 +4534,9 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function isQuickThumbnailSupported(context: featureAbility.Context, photoProfile: camera.Profile, surfaceId: string): Promise<boolean> {
+async function isQuickThumbnailSupported(context: common.BaseContext, photoProfile: camera.Profile, surfaceId: string): Promise<boolean> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   // Create a CaptureSession instance.
@@ -4572,10 +4584,10 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
-async function enableQuickThumbnail(context: featureAbility.Context, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
+async function enableQuickThumbnail(context: common.BaseContext, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   // Create a CaptureSession instance.
@@ -4625,10 +4637,10 @@ The listening takes effect after **enableQuickThumbnail(true)** is called.
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
-async function registerQuickThumbnail(context: featureAbility.Context, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
+async function registerQuickThumbnail(context: common.BaseContext, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   // Create a CaptureSession instance.

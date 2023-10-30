@@ -66,7 +66,7 @@ export default class MyAbility extends UIAbility {
         // 1.获取applicationContext
         let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册监听应用内生命周期
-        callbackId = applicationContext.on('environmentEvent', environmentCallback);
+        callbackId = applicationContext.on('environment', environmentCallback);
         console.log(`registerEnvironmentCallback number: ${JSON.stringify(callbackId)}`);
     }
     onDestroy() {

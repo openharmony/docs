@@ -518,12 +518,15 @@ try {
 }
 
 //取消订阅公共事件
-try {
+//等待异步接口subscribe执行完毕，开发者根据实际业务选择是否需要添加setTimeout
+setTimeout(() => {
+  try {
     CommonEventManager.unsubscribe(subscriber, unsubscribeCB);
-} catch (error) {
+  } catch (error) {
     let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
-}
+  }
+}, 500);
 ```
 
 ## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>

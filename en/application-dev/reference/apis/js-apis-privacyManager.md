@@ -42,7 +42,7 @@ The permission usage record includes the application identity (token ID) of the 
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -86,14 +86,14 @@ The permission usage record includes the application identity (token ID) of the 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID of the invoker. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).             |
-| permissionName | Permissions | Yes  | Name of the permission.|
+| permissionName | Permissions | Yes  | Application permission name. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 | successCount | number | Yes  | Number of successful accesses.|
 | failCount | number | Yes  | Number of failed accesses.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -147,7 +147,7 @@ Obtains historical permission usage records. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -203,7 +203,7 @@ Obtains historical permission usage records. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -257,7 +257,7 @@ Starts to use a permission and flushes the permission usage record. This API is 
 | Name         | Type  | Mandatory| Description                                 |
 | -------------- | ------ | ---- | ------------------------------------ |
 | tokenID        | number | Yes  | Application token ID of the invoker. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to use.                    |
+| permissionName | Permissions | Yes  | Name of the permission to use. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
 
@@ -267,7 +267,7 @@ Starts to use a permission and flushes the permission usage record. This API is 
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -311,12 +311,12 @@ Starts to use a permission and flushes the permission usage record. This API is 
 | Name         | Type                 | Mandatory| Description                                 |
 | -------------- | --------------------- | ---- | ------------------------------------ |
 | tokenID        | number                | Yes  | Application token ID of the invoker. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).|
-| permissionName | Permissions                | Yes  | Permission to use.                    |
+| permissionName | Permissions                | Yes  | Name of the permission to use. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 | callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -362,7 +362,7 @@ Stops using a permission. This API is called by a system application and uses a 
 | Name         | Type  | Mandatory| Description                                 |
 | -------------- | ------ | ---- | ------------------------------------ |
 | tokenID        | number | Yes  | Application token ID of the invoker. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to use.                    |
+| permissionName | Permissions | Yes  | Name of the permission to use. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
 
@@ -372,7 +372,7 @@ Stops using a permission. This API is called by a system application and uses a 
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -416,12 +416,12 @@ Stops using a permission. This API is called by a system application and uses a 
 | Name         | Type                 | Mandatory| Description                                 |
 | -------------- | --------------------- | ---- | ------------------------------------ |
 | tokenID        | number                | Yes  | Application token ID of the invoker. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).|
-| permissionName | Permissions                | Yes  | Permission to use.                     |
+| permissionName | Permissions                | Yes  | Name of the permission to use. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 | callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -470,13 +470,13 @@ The same callback cannot be registered for the **permissionList**s with common v
 
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| type               | string                | Yes  | Event type to subscribe to. The value is **'activeStateChange'**, which indicates the permission usage change event.  |
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions to be observed. If this parameter is left empty, the usage changes of all permissions are observed.          |
+| type               | string                | Yes  | Event type. The value is **'activeStateChange'**, which indicates the permission usage change.  |
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of the permissions to be observed. If this parameter is left empty, this API subscribes to the permission usage status change of all permissions. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | Yes| Callback invoked to return a change in the permission usage.|
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -504,7 +504,7 @@ try {
 
 ## privacyManager.off
 
-off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
+off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void
 
 Unsubscribes from the permission usage status changes of the specified permissions.
 
@@ -518,13 +518,13 @@ If no callback is passed in **privacyManager.off**, all callbacks of **permissio
 
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| type               | string                | Yes  | Event type to subscribe to. The value is **'activeStateChange'**, which indicates the permission usage change event.  |
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions to be observed. If this parameter is left blank, the usage changes of all permissions are unsubscribed from. The value must be the same as that specified in **on()**.|
+| type               | string                | Yes  | Event type. The value is **'activeStateChange'**, which indicates the permission usage change.  |
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions. The value must be the same as that of **on()**. If this parameter is left empty, this API unsubscribes from the permission usage change of all permissions. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | No| Callback for the permission usage change event.|
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -565,11 +565,11 @@ Represents the request for querying permission usage records.
 
 | Name      | Type            | Mandatory  | Description                                      |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | No   | Token ID of the application (invoker).<br>By default, all applications are queried.        |
-| isRemote | boolean         | No   | Whether to query the permission usage records of the remote device.<br>The default value is **false**, which means the permission usage records of the local device are queried by default.|
-| deviceId  | string         | No   | ID of the device hosting the target application.<br>The default value is the local device ID.  |
-| bundleName | string         | No   | Bundle name of the target application.<br>By default, all applications are queried.|
-| permissionNames  | Array&lt;Permissions&gt;         | No   | Permissions to query.<br>By default, the usage records of all permissions are queried.              |
+| tokenId  | number         | No   | Token ID of the application (invoker).<br> By default, all applications are queried.        |
+| isRemote | boolean         | No   | Whether to query the permission usage records of the remote device.<br> The default value is **false**, which means the permission usage records of the local device are queried by default.|
+| deviceId  | string         | No   | ID of the device hosting the target application.<br> The default value is the local device ID.  |
+| bundleName | string         | No   | Bundle name of the target application.<br> By default, all applications are queried.|
+| permissionNames  | Array&lt;Permissions&gt;         | No   | Permissions to query.<br> By default, the usage records of all permissions are queried.              |
 | beginTime | number         | No   | Start time of the query, in ms.<br>The default value is **0**, which means the start time is not set.|
 | endTime | number         | No   | End time of the query, in ms.<br>The default value is **0**, which means the end time is not set.|
 | flag | [PermissionUsageFlag](#permissionusageflag)         | Yes   | Query mode.|
@@ -626,10 +626,10 @@ Represents the details of a single access record.
 | Name      | Type            | Mandatory  | Description                                      |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | status  | number         | Yes   | Access status.                                |
-| lockScreenStatus<sup>11+</sup>  | number         | No   | Screen lock status during the access.                                |
+| lockScreenStatus<sup>11+</sup>  | number         | No   | Status of the screen during the access.<br> - **1**: The screen is not locked when the permission is used.<br> - **2**: The screen is locked when the permission is used.                                |
 | timestamp | number         | Yes   | Access timestamp, in ms.|
 | accessDuration  | number         | Yes   | Access duration, in ms.                                |
-| count<sup>11+</sup> | number | No| Number of successful or failed accesses.
+| count<sup>11+</sup> | number | No| Number of successful or failed accesses.|
 
 ## PermissionActiveStatus
 
@@ -642,17 +642,6 @@ Enumerates the permission usage statuses.
 | PERM_INACTIVE             | 0      | The permission is not used.  |
 | PERM_ACTIVE_IN_FOREGROUND | 1      | The permission is being used by an application running in the foreground.|
 | PERM_ACTIVE_IN_BACKGROUND | 2      | The permission is being used by an application running in the background.|
-
-## LockScreenChangeType<sup>11+</sup>
-
-Enumerates the permission usage statuses.
-
-**System capability**: SystemCapability.Security.AccessToken
-
-| Name                     | Value    | Description             |
-| ------------------------- | ------ | ---------------- |
-| PERM_ACTIVE_IN_UNLOCKED | 1      | Permission to use when the screen is unlocked.|
-| PERM_ACTIVE_IN_LOCKED | 2      | Permission to use when the screen is locked.|
 
 ## ActiveChangeResponse
 

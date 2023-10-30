@@ -5,8 +5,7 @@
 A virtual private network (VPN) is a dedicated network established on a public network. On a VPN, the connection between any two nodes does not have an end-to-end physical link required by the traditional private network. Instead, user data is transmitted over a logical link because a VPN is a logical network deployed over the network platform (such as the Internet) provided by the public network service provider.
 
 > **NOTE**
-> 
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [Traffic Management](../reference/apis/js-apis-net-vpn.md).
+> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [sms API Reference](../reference/apis/js-apis-net-vpn.md).
 
 The following describes the development procedure specific to each application scenario.
 
@@ -14,11 +13,11 @@ The following describes the development procedure specific to each application s
 
 For the complete list of APIs and example code, see [VPN Management](../reference/apis/js-apis-net-vpn.md).
 
-| Type| API| Description|
-| ---- | ---- | ---- |
+| Type        | API                                                             | Description                                           |
+| ------------ | ----------------------------------------------------------------- | --------------------------------------------------- |
 | ohos.net.vpn | setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void | Establishes a VPN. This API uses an asynchronous callback to return the result.|
-| ohos.net.vpn | protect(socketFd: number, callback: AsyncCallback\<void\>): void | Enables VPN tunnel protection. This API uses an asynchronous callback to return the result.|
-| ohos.net.vpn | destroy(callback: AsyncCallback\<void\>): void | Destroys a VPN. This API uses an asynchronous callback to return the result.|
+| ohos.net.vpn | protect(socketFd: number, callback: AsyncCallback\<void\>): void  | Enables VPN tunnel protection. This API uses an asynchronous callback to return the result.  |
+| ohos.net.vpn | destroy(callback: AsyncCallback\<void\>): void                    | Destroys a VPN. This API uses an asynchronous callback to return the result.|
 
 ## Starting a VPN
 
@@ -33,63 +32,52 @@ This example shows how to develop an application using native C++ code. For deta
 The sample application consists of two parts: JS code and C++ code.
 
 ## JS Code
+
 The JS code is used to implement the service logic, such as creating a tunnel, establishing a VPN, enabling VPN protection, and destroying a VPN.
 
 ```js
-import hilog from '@ohos.hilog';
 import vpn from '@ohos.net.vpn';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import vpn_client from "libvpn_client.so"
+import common from '@ohos.app.ability.common';
+import vpn_client from "libvpn_client.so";
+import { BusinessError } from '@ohos.base';
 
-class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage) {
-    globalThis.context = this.context;
-  }
-}
-
-let TunnelFd = -1
-let VpnConnection = vpn.createVpnConnection(globalThis.context)
+let TunnelFd: number = -1;
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Test VPN'
+  @State message: string = 'Test VPN';
+
+  private context = getContext(this) as common.UIAbilityContext;
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
   //1. Establish a VPN tunnel. The following uses the UDP tunnel as an example.
   CreateTunnel() {
-    TunnelFd = vpn_client.udpConnect("192.168.43.208", 8888)
+    TunnelFd = vpn_client.udpConnect("192.168.43.208", 8888);
   }
 
   // 2. Enable protection for the UDP tunnel.
   Protect() {
-    VpnConnection.protect(TunnelFd).then(function () {
-      console.info("vpn Protect Success.")
-    }).catch(function (err) {
-      console.info("vpn Protect Failed " + JSON.stringify(err))
+    this.VpnConnection.protect(TunnelFd).then(() => {
+      console.info("vpn Protect Success.");
+    }).catch((err: BusinessError) => {
+      console.info("vpn Protect Failed " + JSON.stringify(err));
     })
   }
 
   SetupVpn() {
-    let config = {
-      addresses: [{
-        address: {
-          address: "10.0.0.5",
-          family: 1
-        },
-        prefixLength: 24,
-      }],
-      routes: [],
-      mtu: 1400,
-      dnsAddresses: [
-        "114.114.114.114"
-      ],
-      acceptedApplications: [],
-      refusedApplications: []
-    }
+    let tunAddr : vpn.LinkAddress = {} as vpn.LinkAddress;
+    tunAddr.address.address = "10.0.0.5";
+    tunAddr.address.family = 1;
+
+    let config : vpn.VpnConfig = {} as vpn.VpnConfig;
+    config.addresses.push(tunAddr);
+    config.mtu = 1400;
+    config.dnsAddresses = ["114.114.114.114"];
 
     try {
       // 3. Create a VPN.
-      VpnConnection.setUp(config, (error, data) => {
+      this.VpnConnection.setUp(config, (error: BusinessError, data: number) => {
         console.info("tunfd: " + JSON.stringify(data));
         // 4. Process data of the virtual vNIC, such as reading or writing data.
         vpn_client.startVpn(data, TunnelFd)
@@ -101,11 +89,11 @@ struct Index {
 
   // 5. Destroy the VPN.
   Destroy() {
-    vpn_client.stopVpn(TunnelFd)
-    VpnConnection.destroy().then(function () {
-      console.info("vpn Destroy Success.")
-    }).catch(function (err) {
-      console.info("vpn Destroy Failed " + JSON.stringify(err))
+    vpn_client.stopVpn(TunnelFd);
+    this.VpnConnection.destroy().then(() => {
+      console.info("vpn Destroy Success.");
+    }).catch((err: BusinessError) => {
+      console.info("vpn Destroy Failed " + JSON.stringify(err));
     })
   }
 
@@ -139,6 +127,7 @@ struct Index {
 ```
 
 ## C++ Code
+
 The C++ code is used for underlying service implementation, such as UDP tunnel client implementation and vNIC data read and write.
 
 ```c++
@@ -180,7 +169,7 @@ The C++ code is used for underlying service implementation, such as UDP tunnel c
 struct FdInfo {
     int32_t tunFd = 0;
     int32_t tunnelFd = 0;
-    struct sockaddr_in serverAddr; 
+    struct sockaddr_in serverAddr;
 };
 
 static FdInfo fdInfo;

@@ -1,4 +1,4 @@
-# Swiper High-Performance Development
+# High-Performance Swiper Development
 
 ## Background
 
