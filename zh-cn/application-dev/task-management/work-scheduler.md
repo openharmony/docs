@@ -196,6 +196,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 3. 取消延迟任务。
    
    ```ts
+   // 创建workinfo
    const workInfo: workScheduler.WorkInfo = {
      workId: 1,
      networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
