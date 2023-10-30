@@ -40,7 +40,7 @@ FA模型和Stage模型的整体架构和设计思想等更多区别，请见[应
 
 ## 工具准备
 
-1. 安装最新版[DevEco Studio](../../release-notes/OpenHarmony-v4.0-beta1.md#配套关系)。
+1. 安装最新版[DevEco Studio](../../release-notes/OpenHarmony-v4.0-release.md#配套关系)。
 
 2. 请参考[配置开发环境](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/environment_config-0000001052902427-V3)，完成**DevEco Studio**的安装和开发环境配置。
 
