@@ -80,8 +80,8 @@ The component binds gesture objects of different **GestureType**s through gestur
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | id | number | Index of a finger.|
-| globalX | number | X-coordinate relative to the upper left corner of the application window.|
-| globalY | number | Y-coordinate relative to the upper left corner of the application window.|
+| globalX | number | X coordinate relative to the upper left corner of the application window.|
+| globalY | number | Y coordinate relative to the upper left corner of the application window.|
 | localX | number | X coordinate relative to the upper left corner of the current component.|
 | localY | number | Y coordinate relative to the upper left corner of the current component.|
 
