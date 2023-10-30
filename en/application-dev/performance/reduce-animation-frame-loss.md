@@ -1,4 +1,4 @@
-# Reducing Frame Loss
+# Reducing Animation Frame Loss
 
 Frame loss in the animation arena is a phenomenon where the frame rate of an animation drops when it is running or being created.
 
