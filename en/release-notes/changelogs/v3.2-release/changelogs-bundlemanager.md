@@ -124,8 +124,8 @@ The **visible** field in the [ModuleAbilityInfo](https://gitee.com/openharmony/i
 **Adaptation Guide**<br>
 Change **visible** to **exported** for your application.
 
-## cl.bundlemanager.8 Deleted the distributedNotificationEnabled Tag from the app.json Configuration File
-The [distributedNotificationEnabled](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** configuration file.
+## cl.bundlemanager.8 Deleted the distributedNotificationEnabled Tag from the app.json File
+The [distributedNotificationEnabled](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -133,8 +133,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.9 Deleted the entityType Tag from the app.json Configuration File
-The [entityType](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** configuration file.
+## cl.bundlemanager.9 Deleted the entityType Tag from the app.json File
+The [entityType](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -142,8 +142,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.10 Deleted the keepAlive Tag from the app.json Configuration File
-The [keepAlive](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** configuration file.
+## cl.bundlemanager.10 Deleted the keepAlive Tag from the app.json File
+The [keepAlive](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -151,8 +151,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.11 Deleted the removable Tag from the app.json Configuration File
-The [removable](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** configuration file.
+## cl.bundlemanager.11 Deleted the removable Tag from the app.json File
+The [removable](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -160,8 +160,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.12 Deleted the singleton Tag from the app.json Configuration File
-The [singleton](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** configuration file.
+## cl.bundlemanager.12 Deleted the singleton Tag from the app.json File
+The [singleton](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -169,8 +169,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.13 Deleted the userDataClearable Tag from the app.json Configuration File
-The [userDataClearable](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** configuration file.
+## cl.bundlemanager.13 Deleted the userDataClearable Tag from the app.json File
+The [userDataClearable](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -178,8 +178,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.14 No Longer Chinese Characters for the name Tag under module in the module.json Configuration File
-The value of [name](../../../application-dev/quick-start/module-configuration-file.md) under **module** in the **module.json** configuration file does not support Chinese characters.
+## cl.bundlemanager.14 No Longer Chinese Characters for the name Tag under module in the module.json File
+The value of [name](../../../application-dev/quick-start/module-configuration-file.md) under **module** in the **module.json** file does not support Chinese characters.
 
 **Change Impact**<br>
 If the tag is set to Chinese, an error is reported during compilation on DevEco Studio.
@@ -187,8 +187,8 @@ If the tag is set to Chinese, an error is reported during compilation on DevEco 
 **Adaptation Guide**<br>
 Set this tag to English.
 
-## cl.bundlemanager.15 No Longer Chinese Characters for the name Tag under ability in the module.json Configuration File
-The value of [name](../../../application-dev/quick-start/module-configuration-file.md) under **ability** in the **module.json** configuration file does not support Chinese characters.
+## cl.bundlemanager.15 No Longer Chinese Characters for the name Tag under ability in the module.json File
+The value of [name](../../../application-dev/quick-start/module-configuration-file.md) under **ability** in the **module.json** file does not support Chinese characters.
 
 **Change Impact**<br>
 If the tag is set to Chinese, an error is reported during compilation on DevEco Studio.
@@ -196,8 +196,8 @@ If the tag is set to Chinese, an error is reported during compilation on DevEco 
 **Adaptation Guide**<br>
 Set this tag to English.
 
-## cl.bundlemanager.16 Deleted the uiSyntax Tag from the module.json Configuration File
-The [uiSyntax](../../../application-dev/quick-start/module-configuration-file.md) tag is deleted from the **module.json** configuration file.
+## cl.bundlemanager.16 Deleted the uiSyntax Tag from the module.json File
+The [uiSyntax](../../../application-dev/quick-start/module-configuration-file.md) tag is deleted from the **module.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -205,8 +205,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.17 Changed srcEntrance to srcEntry in the module.json Configuration File
-The [srcEntrance](../../../application-dev/quick-start/module-configuration-file.md) tag under **module** and **ability** in the **module.json** configuration file is changed to **srcEntry**.
+## cl.bundlemanager.17 Changed srcEntrance to srcEntry in the module.json File
+The [srcEntrance](../../../application-dev/quick-start/module-configuration-file.md) tag under **module** and **ability** in the **module.json** file is changed to **srcEntry**.
 
 **Change Impact**<br>
 If the **srcEntrance** tag is used, an error is reported during compilation on DevEco Studio.
@@ -214,8 +214,8 @@ If the **srcEntrance** tag is used, an error is reported during compilation on D
 **Adaptation Guide**<br>
 Replace the **srcEntrance** tag with **srcEntry** in the configuration file.
 
-## cl.bundlemanager.18 Deleted the apiVersion Tag Under distroFilter from the module.json Configuration File
-The **apiVersion** tag under [distroFilter](../../../application-dev/quick-start/module-configuration-file.md) is deleted from the **module.json** configuration file.
+## cl.bundlemanager.18 Deleted the apiVersion Tag Under distroFilter from the module.json File
+The **apiVersion** tag under [distroFilter](../../../application-dev/quick-start/module-configuration-file.md) is deleted from the **module.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -223,22 +223,13 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.19 Changed distroFilter to distributionFilter in the module.json Configuration File
-The [distroFilter](../../../application-dev/quick-start/module-configuration-file.md) tag in the **module.json** configuration file is changed to **distributionFilter**.
-
-**Change Impact**<br>
-If the **distroFilter** tag is used, an error is reported during compilation on DevEco Studio.
-
-**Adaptation Guide**<br>
-Replace **distroFilter** with **distributionFilter** in the configuration file.
-
-## cl.bundlemanager.20 Changed standard of launchType to multiton in the module.json Configuration File
+## cl.bundlemanager.19 Changed standard of launchType to multiton in the module.json Configuration File
 The **standard** mode of the [launchType](../../../application-dev/quick-start/module-configuration-file.md) tag in the **module.json** file is changed to **multiton**.
 
 **Adaptation Guide**<br>
-Replace **standard** of **launchType** to **multiton** in the configuration file.
+Replace **standard** of **launchType** with **multiton** in the configuration file.
 
-## cl.bundlemanager.21 Deleted the atomicService Tag from the app.json File
+## cl.bundlemanager.20 Deleted the atomicService Tag from the app.json File
 The **atomicService** tag is deleted from the **app.json** file.
 
 **Change Impact**<br>
@@ -247,7 +238,7 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete the **atomicService** tag from your code.
 
-## cl.bundlemanager.22 Added the bundleType Tag to the app.json File
+## cl.bundlemanager.21 Added the bundleType Tag to the app.json File
 The **bundleType** tag is added to the **app.json** file.
 
 **Change Impact**<br>
@@ -258,7 +249,7 @@ Add the [bundleType](../../../application-dev/quick-start/app-configuration-file
 - If **bundleType** is **app**, **installationFree** must be set to **false**.
 - If **bundleType** is **atomicService**, **installationFree** must be set to **true**.
 
-## cl.bundlemanager.23 Deleted the split Field from the ApplicationInfo Struct
+## cl.bundlemanager.22 Deleted the split Field from the ApplicationInfo Struct
 
 The **split** field is deleted from the [ApplicationInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ApplicationInfo.d.ts) struct.
 
@@ -271,7 +262,7 @@ The **split** field is deleted from the [ApplicationInfo](https://gitee.com/open
 **Adaptation Guide**<br>
 Delete the **split** field from the **ApplicationInfo** struct of your code. The stage model always forcibly splits bundles.
 
-## cl.bundlemanager.24 Deleted the atomicServiceModuleType Field from the HapModuleInfo Struct
+## cl.bundlemanager.23 Deleted the atomicServiceModuleType Field from the HapModuleInfo Struct
 
 The **atomicServiceModuleType** field is deleted from the [HapModuleInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts) struct.
 
@@ -284,7 +275,7 @@ The **atomicServiceModuleType** field is deleted from the [HapModuleInfo](https:
 **Adaptation Guide**<br>
 Record the setting of the **atomicServiceModuleType** field, delete it from the [HapModuleInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts) struct, and set the **moduleType** field in the [HapModuleInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts) struct to the recorded value.
 
-## cl.bundlemanager.25 Deleted the AtomicServiceModuleType Enumerated Value
+## cl.bundlemanager.24 Deleted the AtomicServiceModuleType Enumerated Value
 
 The **atomicServiceModuleType** field is deleted from the [HapModuleInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts) struct.
 
