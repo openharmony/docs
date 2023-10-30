@@ -119,7 +119,7 @@ Places a task group in the internal task queue of the task pool. The task group 
 
 | Name    | Type                       | Mandatory| Description                                                          |
 | --------- | --------------------------- | ---- | -------------------------------------------------------------- |
-| group     | [TaskGroup](#taskgroup)     | Yes  | Task group to be executed.                                     |
+| group     | [TaskGroup](#taskgroup10)     | Yes  | Task group to be executed.                                     |
 | priority  | [Priority](#priority)       | No  | Priority of the task group. The default value is **taskpool.Priority.MEDIUM**.|
 
 **Return value**
@@ -229,7 +229,8 @@ taskpool.execute(task5);
 taskpool.execute(task6);
 // Cancel the task 1s later.
 setTimeout(()=>{
-  taskpool.cancel(task1);}, 1000);
+  taskpool.cancel(task1);
+}, 1000);
 ```
 
 ## taskpool.cancel<sup>10+</sup>
@@ -244,7 +245,7 @@ Cancels a task group in the task pool.
 
 | Name  | Type                   | Mandatory| Description                |
 | ------- | ----------------------- | ---- | -------------------- |
-| group   | [TaskGroup](#taskgroup) | Yes  | Task group to cancel.|
+| group   | [TaskGroup](#taskgroup10) | Yes  | Task group to cancel.|
 
 **Error codes**
 
@@ -272,10 +273,10 @@ taskGroup1.addTask(printArgs, 10); // 10: test number
 let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
 taskGroup2.addTask(printArgs, 100); // 100: test number
 taskpool.execute(taskGroup1).then((res: Array<number>)=>{
-  console.info("taskGroup1 res is:" + res)
+  console.info("taskGroup1 res is:" + res);
 });
 taskpool.execute(taskGroup2).then((res: Array<number>)=>{
-  console.info("taskGroup2 res is:" + res)
+  console.info("taskGroup2 res is:" + res);
 });
 setTimeout(()=>{
   try {
