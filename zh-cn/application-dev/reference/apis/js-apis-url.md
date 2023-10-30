@@ -11,6 +11,8 @@ import Url from '@ohos.url'
 ```
 ## URLParams<sup>9+</sup>
 
+URLParams接口定义了一些处理URL查询字符串的实用方法。
+
 ### constructor<sup>9+</sup>
 
 constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLParams)
@@ -367,6 +369,8 @@ console.log(params.toString());
 
 ## URL
 
+用于解析、构造、编码对应的URL字符串。
+
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -505,6 +509,8 @@ let result = url.toJSON();
 ```
 
 ## URLSearchParams<sup>(deprecated)</sup>
+
+URLSearchParams接口定义了一些处理URL查询字符串的实用方法，从API version 9开始废弃，建议使用[URLParams](#urlparams9)。
 
 ### constructor<sup>(deprecated)</sup>
 
