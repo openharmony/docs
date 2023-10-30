@@ -106,9 +106,11 @@ Creates an **X509Cert** instance. This API uses an asynchronous callback to retu
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message     |
 | -------- | ------------- |
-| 19020001 | Memory error. |
+| 19020001 | memory error. |
 
 **Example**
 
@@ -153,9 +155,11 @@ Creates an **X509Cert** instance. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message     |
 | -------- | ------------- |
-| 19020001 | Memory error. |
+| 19020001 | memory error. |
 
 **Example**
 
@@ -197,9 +201,11 @@ Verifies the certificate signature. This API uses an asynchronous callback to re
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
-| 19030001 | Crypto operation error.      |
+| 19030001 | crypto operation error.      |
 
 **Example**
 
@@ -218,7 +224,7 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
         console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
         console.log("createX509Cert success");
-        // The service needs to call getPublicKey() of the upper-level X509Cert object to obtain the public key.
+        // Obtain the public key by using getPublicKey() of the upper-level X509Cert object.
 		let pubKey = null;
         x509Cert.verify(pubKey, function (error, data) {
             if (error != null) {
@@ -253,9 +259,11 @@ Verifies the certificate signature. This API uses a promise to return the result
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
-| 19030001 | Crypto operation error.      |
+| 19030001 | crypto operation error.      |
 
 **Example**
 
@@ -271,7 +279,7 @@ let encodingBlob = {
 };
 cryptoCert.createX509Cert(encodingBlob).then(x509Cert => {
     console.log("createX509Cert success");
-    // The service can call getPublicKey() of the upper-level X509Cert object to obtain the public key.
+    // Obtain the public key by using getPublicKey() of the upper-level X509Cert object.
 	let pubKey = null;
     x509Cert.verify(pubKey).then(result => {
         console.log("verify success");
@@ -299,11 +307,13 @@ Obtains the serialized X.509 certificate data. This API uses an asynchronous cal
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -349,11 +359,13 @@ Obtains the serialized X.509 certificate data. This API uses a promise to return
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -395,10 +407,12 @@ Obtains the public key of this X.509 certificate. This API uses an asynchronous 
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -444,12 +458,14 @@ Checks the validity period of this X.509 certificate. This API uses an asynchron
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19030001 | Crypto operation error.|
-| 19030003 | The certificate has not taken effect.                                     |
-| 19030004 | The certificate has expired.|
+| 19020001 | memory error.                                     |
+| 19030001 | crypto operation error.|
+| 19030003 | the certificate has not taken effect.                                     |
+| 19030004 | the certificate has expired.|
 
 **Example**
 
@@ -568,11 +584,13 @@ Obtains the X.509 certificate issuer.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -612,11 +630,13 @@ Obtains the subject of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -656,11 +676,13 @@ Obtains the start time of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -700,11 +722,13 @@ Obtains the expiration time of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -744,11 +768,13 @@ Obtains the signature data of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -788,11 +814,13 @@ Obtains the signing algorithm of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -832,11 +860,13 @@ Obtains the object identifier (OID) of the X.509 certificate signing algorithm. 
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -876,11 +906,13 @@ Obtains the signing algorithm parameters of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -920,10 +952,12 @@ Obtains the key usage of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -963,11 +997,13 @@ Obtains the usage of the extended key of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -1043,11 +1079,13 @@ Obtains the Subject Alternative Names (SANs) of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -1087,11 +1125,13 @@ Obtains the Issuer Alternative Names (IANs) of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **Example**
 
@@ -1132,9 +1172,11 @@ Creates an **X509Crl** instance. This API uses an asynchronous callback to retur
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message     |
 | -------- | ------------- |
-| 19020001 | Memory error. |
+| 19020001 | memory error. |
 
 **Example**
 
@@ -1179,9 +1221,11 @@ Creates an **X509Crl** instance. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message     |
 | -------- | ------------- |
-| 19020001 | Memory error. |
+| 19020001 | memory error. |
 
 **Example**
 
@@ -1306,11 +1350,13 @@ Obtains the serialized X.509 CRL data. This API uses an asynchronous callback to
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -1356,11 +1402,13 @@ Obtains the serialized X.509 CRL data. This API uses a promise to return the res
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -1403,9 +1451,11 @@ Verifies the signature of the X.509 CRL. This API uses an asynchronous callback 
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19030001 | Crypto operation error. |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -1425,7 +1475,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
         console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
         console.log("createX509Crl success");
-        // Generate the public key by AsyKeyGenerator.
+        // Generate the public key by using AsyKeyGenerator.
         let pubKey = null;
         x509Crl.verify(pubKey, function (error, data) {
            if (error != null) {
@@ -1460,9 +1510,11 @@ Verifies the signature of the X.509 CRL. This API uses a promise to return the r
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19030001 | Crypto operation error. |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -1479,7 +1531,7 @@ let encodingBlob = {
 };
 cryptoCert.createX509Crl(encodingBlob).then(x509Crl => {
     console.log("createX509Crl success");
-    // Generate the public key by AsyKeyGenerator.
+    // Generate the public key by using AsyKeyGenerator.
     let pubKey = null;
     x509Crl.verify(pubKey).then(result => {
         console.log("verify success");
@@ -1543,11 +1595,13 @@ Obtains the issuer of the X.509 CRL.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -1587,11 +1641,13 @@ Obtains the date when the X.509 CRL was last updated.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -1631,11 +1687,13 @@ Obtains the date when the CRL will be updated the next time.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -1681,10 +1739,12 @@ Obtains the revoked X.509 certificate based on the specified serial number of th
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -1703,7 +1763,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
         console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
         console.log("createX509Crl success");
-        // Set the serial number of the corresponding certificate.
+        // Set the serial number of the certificate.
         let serialNumber = 1000;
         try {
             let entry = x509Crl.getRevokedCert(serialNumber);
@@ -1736,10 +1796,12 @@ Obtains the revoked X.509 certificate based on the specified certificate. This A
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -1785,10 +1847,12 @@ Obtains all the revoked X.509 certificates. This API uses an asynchronous callba
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -1834,10 +1898,12 @@ Obtains all the revoked X.509 certificates. This API uses a promise to return th
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -1879,11 +1945,13 @@ Obtains the DER-encoded CRL information, the **tbsCertList** from this CRL. This
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -1927,11 +1995,13 @@ Obtains the signature data of the X.509 CRL.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -1971,11 +2041,13 @@ Obtains the signing algorithm of the X.509 CRL.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -2015,11 +2087,13 @@ Obtains the OID of the X.509 CRL signing algorithm. OIDs are allocated by the In
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -2059,11 +2133,13 @@ Obtains the parameters of the X.509 CRL signing algorithm.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -2109,11 +2185,13 @@ Creates a **CertChainValidator** object.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -2155,17 +2233,19 @@ The certificate chain validator does not verify the certificate validity period 
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.                           |
-| 19030002 | The certificate signature verification failed.   |
-| 19030003 | The certificate has not taken effect.             |
-| 19030004 | The certificate has expired.                      |
-| 19030005 | Failed to obtain the certificate issuer.          |
-| 19030006 | The key cannot be used for signing a certificate. |
-| 19030007 | The key cannot be used for digital signature.     |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.                           |
+| 19030002 | the certificate signature verification failed.    |
+| 19030003 | the certificate has not taken effect.             |
+| 19030004 | the certificate has expired.                      |
+| 19030005 | failed to obtain the certificate issuer.          |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature.     |
 
 **Example**
 
@@ -2215,17 +2295,19 @@ The certificate chain validator does not verify the certificate validity period 
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
-| 19020001 | Memory error.                                     |
-| 19020002 | Runtime error.                                    |
-| 19030001 | Crypto operation error.                           |
-| 19030002 | The certificate signature verification failed.   |
-| 19030003 | The certificate has not taken effect.             |
-| 19030004 | The certificate has expired.                      |
-| 19030005 | Failed to obtain the certificate issuer.          |
-| 19030006 | The key cannot be used for signing a certificate. |
-| 19030007 | The key cannot be used for digital signature.     |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.                           |
+| 19030002 | the certificate signature verification failed.    |
+| 19030003 | the certificate has not taken effect.             |
+| 19030004 | the certificate has expired.                      |
+| 19030005 | failed to obtain the certificate issuer.          |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature.     |
 
 **Example**
 
@@ -2293,11 +2375,13 @@ Obtains the serialized data of this revoked certificate. This API uses an asynch
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -2331,11 +2415,13 @@ Obtains the serialized data of this revoked certificate. This API uses a promise
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
@@ -2391,10 +2477,12 @@ Obtains the issuer of this revoked certificate. This API uses an asynchronous ca
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message      |
 | -------- | -------------- |
-| 19020001 | Memory error.  |
-| 19020002 | Runtime error. |
+| 19020001 | memory error.  |
+| 19020002 | runtime error. |
 
 **Example**
 
@@ -2426,11 +2514,13 @@ Obtains the date when the certificate was revoked. This API uses an asynchronous
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 19020001 | Memory error.           |
-| 19020002 | Runtime error.          |
-| 19030001 | Crypto operation error. |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **Example**
 
