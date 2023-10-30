@@ -51,7 +51,7 @@
    | scheduledUpdateTime | 表示卡片的定点刷新的时刻，采用24小时制，精确到分钟。<br/>&gt;&nbsp;**说明：**<br/>&gt;&nbsp;updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 字符串 | 可缺省，缺省时不进行定点刷新。 |
    | updateDuration | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br/>当取值为0时，表示该参数不生效。<br/>当取值为正整数N时，表示刷新周期为30\*N分钟。<br/>&gt;&nbsp;**说明：**<br/>&gt;&nbsp;updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 数值 | 可缺省，缺省值为“0”。 |
    | formConfigAbility | 表示卡片的配置跳转链接，采用URI格式。 | 字符串 | 可缺省，缺省值为空。 |
-   | formVisibleNotify | 标识是否允许卡片使用卡片可见性通知。 | 字符串 | 可缺省，缺省值为空。 |
+   | formVisibleNotify | 表示是否允许卡片使用卡片可见性通知。<br/>-&nbsp;true：表示允许卡片使用卡片可见性通知。<br/>-&nbsp;false：表示不允许卡片使用卡片可见性通知。 | 布尔类型 | 可缺省，缺省值为false。|
    | metadata | 表示卡片的自定义信息，包含customizeData数组标签。 | 对象 | 可缺省，缺省值为空。 |
 
    配置示例如下：
