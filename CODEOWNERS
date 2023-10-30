@@ -151,7 +151,7 @@ zh-cn/application-dev/quick-start/application-configuration-file-overview-fa.md 
 zh-cn/application-dev/quick-start/app-structure.md @huipeizi
 zh-cn/application-dev/quick-start/deviceconfig-structure.md @huipeizi
 zh-cn/application-dev/quick-start/module-structure.md @huipeizi
-zh-cn/application-dev/quick-start/resource-categories-and-access.md @huipeizi
+zh-cn/application-dev/quick-start/resource-categories-and-access.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/napi/napi-guidelines.md @RayShih @niulihua @tomatodevboy
 zh-cn/application-dev/napi/drawing-guidelines.md @zengyawen @zhangqiang183  @wind_zj @zxg-gitee
 zh-cn/application-dev/napi/rawfile-guidelines.md @ningningW @Buda-Liu @budda-wang @yangqing3
