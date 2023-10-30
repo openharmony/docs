@@ -53,48 +53,51 @@
    ```
 
 2. 打开DLP文件，系统会自动安装应用的DLP沙箱分身应用。
-  ```ts
-  async OpenDlpFile(dlpUri: string, fileName: string, fd: number) {
-    let want:Want = {
-      "action": "ohos.want.action.viewData",
-      "bundleName": "com.example.example_bundle_name",
-      "abilityName": "exampleAbility",
-      "uri": dlpUri,
-      "parameters": {
-        "fileName": {
-          "name": fileName
-        },
-        "keyFd": {
-          "type": "FD",
-          "value": fd
+
+    ```ts
+    async OpenDlpFile(dlpUri: string, fileName: string, fd: number) {
+      let want:Want = {
+        "action": "ohos.want.action.viewData",
+        "bundleName": "com.example.example_bundle_name",
+        "abilityName": "exampleAbility",
+        "uri": dlpUri,
+        "parameters": {
+          "fileName": {
+            "name": fileName
+          },
+          "keyFd": {
+            "type": "FD",
+            "value": fd
+          }
         }
       }
-    }
-    
-    try {
-      console.log("openDLPFile:" + JSON.stringify(want));
-      console.log("openDLPFile: delegator:" + JSON.stringify(CustomGlobal.context));
-      CustomGlobal.context.startAbility(want);
-    } catch (err) {
-      console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
-      return;
-    }
-  }
-  ```
-  以上代码需要在module.json5文件中增加ohos.want.action.viewData：
-  ```ts
-    "skills":[
-      {
-        "entities":[
-          ...
-        ],
-        "actions":[
-          ...
-          "ohos.want.action.viewData"
-        ]
+      
+      try {
+        console.log("openDLPFile:" + JSON.stringify(want));
+        console.log("openDLPFile: delegator:" + JSON.stringify(CustomGlobal.context));
+        CustomGlobal.context.startAbility(want);
+      } catch (err) {
+        console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
+        return;
       }
-    ]
-  ```
+    }
+    ```
+    
+    以上代码需要在module.json5文件中增加ohos.want.action.viewData：
+
+    ```json
+      "skills":[
+        {
+          "entities":[
+            ...
+          ],
+          "actions":[
+            ...
+            "ohos.want.action.viewData"
+          ]
+        }
+      ]
+    ```
 
 3. 查询当前应用是否在沙箱中。
 
