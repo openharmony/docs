@@ -1860,6 +1860,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 | 401      | Parameter error. Return by callback.    |
 | 5400102  | Operate not permit. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
+| 5400106  | Unsupport format. Return by callback.   |
 
 **示例：**
 
@@ -1872,7 +1873,7 @@ let avRecorderProfile: media.AVRecorderProfile = {
   audioSampleRate : 48000,
   fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 2000000,
-  videoCodec : media.CodecMimeType.VIDEO_AVC,
+  videoCodec : media.CodecMimeType.VIDEO_MPEG4,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
@@ -1931,6 +1932,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 | 401      | Parameter error. Return by promise.    |
 | 5400102  | Operate not permit. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
+| 5400106  | Unsupport format. Return by callback.   |
 
 **示例：**
 
@@ -1943,7 +1945,7 @@ let avRecorderProfile: media.AVRecorderProfile = {
   audioSampleRate : 48000,
   fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 2000000,
-  videoCodec : media.CodecMimeType.VIDEO_AVC,
+  videoCodec : media.CodecMimeType.VIDEO_MPEG4,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
