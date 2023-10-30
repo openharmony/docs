@@ -92,10 +92,8 @@ class C1 {
 let stack : Stack<number | string | C1> = new Stack();
 let result = stack.push("a");
 let result1 = stack.push(1);
-let b = [1, 2, 3];
-let result2 = stack.push(b);
 let c : C1  = {name : "Dylon", age : "13"};
-let result3 = stack.push(c);
+let result2 = stack.push(c);
 ```
 
 ### pop
@@ -287,6 +285,10 @@ let result = stack.isEmpty();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 Obtains an iterator, each item of which is a JavaScript object.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **System capability**: SystemCapability.Utils.Lang
 
