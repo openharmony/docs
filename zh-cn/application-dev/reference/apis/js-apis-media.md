@@ -7,12 +7,13 @@
 
 媒体子系统包含了音视频相关媒体业务，提供以下常用功能：
 
-- 音视频播放（[AVPlayer](#avplayer9)<sup>9+</sup>），[AudioPlayer](#audioplayerdeprecated)<sup>6+</sup>和[VideoPlayer](#videoplayerdeprecated)<sup>8+</sup>整合，升级了状态机和错误码，推荐使用
-- 音视频录制（[AVRecorder](#avrecorder9)<sup>9+</sup>），[AudioRecorder](#audiorecorderdeprecated)<sup>6+</sup>和[VideoRecorder](#videorecorder9)<sup>9+</sup>整合，推荐使用
-- 音频播放（[AudioPlayer](#audioplayerdeprecated)<sup>6+</sup>），[AVPlayer](#avplayer9)<sup>9+</sup>发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
-- 视频播放（[VideoPlayer](#videoplayerdeprecated)<sup>8+</sup>），[AVPlayer](#avplayer9)<sup>9+</sup>发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
-- 音频录制（[AudioRecorder](#audiorecorderdeprecated)<sup>6+</sup>），[AVRecorder](#avrecorder9)<sup>9+</sup>发布后停止维护，请使用[AVRecorder](#avrecorder9)<sup>9+</sup>
-- 视频录制（[VideoRecorder](#videorecorder9)<sup>9+</sup>），[AVRecorder](#avrecorder9)<sup>9+</sup>发布后停止维护，请使用[AVRecorder](#avrecorder9)<sup>9+</sup>
+- 音视频播放（[AVPlayer](#avplayer9)<sup>9+</sup>）
+
+  由[AudioPlayer](#audioplayerdeprecated)<sup>6+</sup>和[VideoPlayer](#videoplayerdeprecated)<sup>8+</sup>整合，升级了状态机和错误码，推荐使用。
+  
+- 音视频录制（[AVRecorder](#avrecorder9)<sup>9+</sup>）
+
+  由[AudioRecorder](#audiorecorderdeprecated)<sup>6+</sup>和[VideoRecorder](#videorecorder9)<sup>9+</sup>整合，推荐使用。
 
 ## 导入模块
 
@@ -3641,7 +3642,7 @@ let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 
 音频播放管理类，用于管理和播放音频媒体。在调用AudioPlayer的方法前，需要先通过[createAudioPlayer()](#mediacreateaudioplayerdeprecated)构建一个AudioPlayer实例。
 
-### 属性
+### 属性<sup>(deprecated)</sup>
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3655,11 +3656,14 @@ let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 | duration                        | number                                                 | 是   | 否   | 音频时长，单位为毫秒（ms）。                                 |
 | state                           | [AudioState](#audiostatedeprecated)                              | 是   | 否   | 可以查询音频播放的状态，该状态不可作为调用play/pause/stop等状态切换的触发条件。 |
 
-### play
+### play<sup>(deprecated)</sup>
 
 play(): void
 
 开始播放音频资源，需在'dataLoad'事件成功触发后，才能调用。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.play](#play9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3672,11 +3676,14 @@ audioPlayer.on('play', () => {    //设置'play'事件回调
 audioPlayer.play();
 ```
 
-### pause
+### pause<sup>(deprecated)</sup>
 
 pause(): void
 
 暂停播放音频资源。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.pause](#pause9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3689,11 +3696,14 @@ audioPlayer.on('pause', () => {    //设置'pause'事件回调
 audioPlayer.pause();
 ```
 
-### stop
+### stop<sup>(deprecated)</sup>
 
 stop(): void
 
 停止播放音频资源。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.stop](#stop9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3706,11 +3716,14 @@ audioPlayer.on('stop', () => {    //设置'stop'事件回调
 audioPlayer.stop();
 ```
 
-### reset<sup>7+</sup>
+### reset<sup>(deprecated)</sup>
 
 reset(): void
 
 重置播放音频资源。
+
+> **说明：**
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[AVPlayer.reset](#reset9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3723,11 +3736,14 @@ audioPlayer.on('reset', () => {    //设置'reset'事件回调
 audioPlayer.reset();
 ```
 
-### seek
+### seek<sup>(deprecated)</sup>
 
 seek(timeMs: number): void
 
 跳转到指定播放位置。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.seek](#seek9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3750,11 +3766,14 @@ audioPlayer.on('timeUpdate', (seekDoneTime: number) => {    //设置'timeUpdate'
 audioPlayer.seek(30000);    //seek到30000ms的位置
 ```
 
-### setVolume
+### setVolume<sup>(deprecated)</sup>
 
 setVolume(vol: number): void
 
 设置音量。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.setVolume](#setvolume9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3773,11 +3792,14 @@ audioPlayer.on('volumeChange', () => {    //设置'volumeChange'事件回调
 audioPlayer.setVolume(1);    //设置音量到100%
 ```
 
-### release
+### release<sup>(deprecated)</sup>
 
 release(): void
 
 释放音频资源。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.release](#release9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3788,11 +3810,14 @@ audioPlayer.release();
 audioPlayer = undefined;
 ```
 
-### getTrackDescription<sup>8+</sup>
+### getTrackDescription<sup>(deprecated)</sup>
 
 getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 通过回调方式获取音频轨道信息。需在'dataLoad'事件成功触发后，才能调用。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.getTrackDescription](#gettrackdescription9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3814,11 +3839,14 @@ audioPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.Medi
 });
 ```
 
-### getTrackDescription<sup>8+</sup>
+### getTrackDescription<sup>(deprecated)</sup>
 
 getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 通过Promise方式获取音频轨道信息。需在'dataLoad'事件成功触发后，才能调用。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.getTrackDescription](#gettrackdescription9-1)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3838,11 +3866,14 @@ audioPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) 
 });
 ```
 
-### on('bufferingUpdate')<sup>8+</sup>
+### on('bufferingUpdate')<sup>(deprecated)</sup>
 
 on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
 开始订阅音频缓存更新事件。仅网络播放支持该订阅事件。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('bufferingUpdate')](#onbufferingupdate9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3862,11 +3893,14 @@ audioPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: num
 });
 ```
 
-### on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')
+### on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')<sup>(deprecated)</sup>
 
 on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange', callback: () => void): void
 
 开始订阅音频播放事件。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('stateChange')](#onstatechange9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3936,11 +3970,14 @@ fs.open(path).then((file) => {
 });
 ```
 
-### on('timeUpdate')
+### on('timeUpdate')<sup>(deprecated)</sup>
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
 开始订阅音频播放时间更新事件。处于播放状态时，每隔1s上报一次该事件。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('timeUpdate')](#ontimeupdate9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3964,11 +4001,14 @@ audioPlayer.on('timeUpdate', (newTime: number) => {    //设置'timeUpdate'事�
 audioPlayer.play();    //开始播放后，自动触发时间戳更新事件
 ```
 
-### on('error')
+### on('error')<sup>(deprecated)</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
 开始订阅音频播放错误事件，当上报error错误事件后，用户需处理error事件，退出播放操作。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('error')](#onerror9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -4029,13 +4069,16 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 | width<sup>8+</sup>              | number                                                 | 是   | 否   | 视频宽，单位为像素（px）。                                   |
 | height<sup>8+</sup>             | number                                                 | 是   | 否   | 视频高，单位为像素（px）。                                   |
 
-### setDisplaySurface<sup>8+</sup>
+### setDisplaySurface<sup>(deprecated)</sup>
 
 setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 通过回调方式设置SurfaceId。
 
 *注意：SetDisplaySurface需要在设置url和Prepare之间，无音频的视频流必须设置Surface否则Prepare失败。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.surfaceId](#属性)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4059,13 +4102,16 @@ videoPlayer.setDisplaySurface(surfaceId, (err: BusinessError) => {
 });
 ```
 
-### setDisplaySurface<sup>8+</sup>
+### setDisplaySurface<sup>(deprecated)</sup>
 
 setDisplaySurface(surfaceId: string): Promise\<void>
 
 通过Promise方式设置SurfaceId。
 
 *注意：SetDisplaySurface需要在设置url和Prepare之间，无音频的视频流必须设置Surface否则Prepare失败。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.surfaceId](#属性)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4092,11 +4138,14 @@ videoPlayer.setDisplaySurface(surfaceId).then(() => {
 });
 ```
 
-### prepare<sup>8+</sup>
+### prepare<sup>(deprecated)</sup>
 
 prepare(callback: AsyncCallback\<void>): void
 
 通过回调方式准备播放视频。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.prepare](#prepare9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4118,11 +4167,14 @@ videoPlayer.prepare((err: BusinessError) => {
 });
 ```
 
-### prepare<sup>8+</sup>
+### prepare<sup>(deprecated)</sup>
 
 prepare(): Promise\<void>
 
 通过Promise方式准备播放视频。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.prepare](#prepare9-1)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4142,11 +4194,14 @@ videoPlayer.prepare().then(() => {
 });
 ```
 
-### play<sup>8+</sup>
+### play<sup>(deprecated)</sup>
 
 play(callback: AsyncCallback\<void>): void
 
 通过回调方式开始播放视频。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.play](#play9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4168,11 +4223,14 @@ videoPlayer.play((err: BusinessError) => {
 });
 ```
 
-### play<sup>8+</sup>
+### play<sup>(deprecated)</sup>
 
 play(): Promise\<void>
 
 通过Promise方式开始播放视频。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.play](#play9-1)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4192,11 +4250,14 @@ videoPlayer.play().then(() => {
 });
 ```
 
-### pause<sup>8+</sup>
+### pause<sup>(deprecated)</sup>
 
 pause(callback: AsyncCallback\<void>): void
 
 通过回调方式暂停播放视频。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.pause](#pause9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4218,11 +4279,14 @@ videoPlayer.pause((err: BusinessError) => {
 });
 ```
 
-### pause<sup>8+</sup>
+### pause<sup>(deprecated)</sup>
 
 pause(): Promise\<void>
 
 通过Promise方式暂停播放视频。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.pause](#pause9-1)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4242,11 +4306,14 @@ videoPlayer.pause().then(() => {
 });
 ```
 
-### stop<sup>8+</sup>
+### stop<sup>(deprecated)</sup>
 
 stop(callback: AsyncCallback\<void>): void
 
 通过回调方式停止播放视频。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.stop](#stop9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4268,11 +4335,14 @@ videoPlayer.stop((err: BusinessError) => {
 });
 ```
 
-### stop<sup>8+</sup>
+### stop<sup>(deprecated)</sup>
 
 stop(): Promise\<void>
 
 通过Promise方式停止播放视频。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.stop](#stop9-1)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4292,11 +4362,14 @@ videoPlayer.stop().then(() => {
 });
 ```
 
-### reset<sup>8+</sup>
+### reset<sup>(deprecated)</sup>
 
 reset(callback: AsyncCallback\<void>): void
 
 通过回调方式重置播放视频。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.reset](#reset9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4318,11 +4391,14 @@ videoPlayer.reset((err: BusinessError) => {
 });
 ```
 
-### reset<sup>8+</sup>
+### reset<sup>(deprecated)</sup>
 
 reset(): Promise\<void>
 
 通过Promise方式重置播放视频。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.reset](#reset9-1)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4342,11 +4418,14 @@ videoPlayer.reset().then(() => {
 });
 ```
 
-### seek<sup>8+</sup>
+### seek<sup>(deprecated)</sup>
 
 seek(timeMs: number, callback: AsyncCallback\<number>): void
 
 通过回调方式跳转到指定播放位置，默认跳转到指定时间点的上一个关键帧。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.seek](#seek9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4370,11 +4449,14 @@ videoPlayer.seek(seekTime, (err: BusinessError, result: number) => {
 });
 ```
 
-### seek<sup>8+</sup>
+### seek<sup>(deprecated)</sup>
 
 seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
 通过回调方式跳转到指定播放位置。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.seek](#seek9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4400,11 +4482,14 @@ videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, r
 });
 ```
 
-### seek<sup>8+</sup>
+### seek<sup>(deprecated)</sup>
 
 seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
 通过Promise方式跳转到指定播放位置，如果没有设置mode则跳转到指定时间点的上一个关键帧。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.seek](#seek9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4439,11 +4524,14 @@ videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime: nu
 });
 ```
 
-### setVolume<sup>8+</sup>
+### setVolume<sup>(deprecated)</sup>
 
 setVolume(vol: number, callback: AsyncCallback\<void>): void
 
 通过回调方式设置音量。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.setVolume](#setvolume9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4467,11 +4555,14 @@ videoPlayer.setVolume(vol, (err: BusinessError) => {
 });
 ```
 
-### setVolume<sup>8+</sup>
+### setVolume<sup>(deprecated)</sup>
 
 setVolume(vol: number): Promise\<void>
 
 通过Promise方式设置音量。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.setVolume](#setvolume9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4498,11 +4589,14 @@ videoPlayer.setVolume(vol).then(() => {
 });
 ```
 
-### release<sup>8+</sup>
+### release<sup>(deprecated)</sup>
 
 release(callback: AsyncCallback\<void>): void
 
 通过回调方式释放视频资源。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.release](#release9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4524,11 +4618,14 @@ videoPlayer.release((err: BusinessError) => {
 });
 ```
 
-### release<sup>8+</sup>
+### release<sup>(deprecated)</sup>
 
 release(): Promise\<void>
 
 通过Promise方式释放视频资源。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.release](#release9-1)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4548,11 +4645,14 @@ videoPlayer.release().then(() => {
 });
 ```
 
-### getTrackDescription<sup>8+</sup>
+### getTrackDescription<sup>(deprecated)</sup>
 
 getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 通过回调方式获取视频轨道信息。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.getTrackDescription](#gettrackdescription9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4574,11 +4674,14 @@ videoPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.Medi
 });
 ```
 
-### getTrackDescription<sup>8+</sup>
+### getTrackDescription<sup>(deprecated)</sup>
 
 getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 通过Promise方式获取视频轨道信息。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.getTrackDescription](#gettrackdescription9-1)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4602,11 +4705,14 @@ videoPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) 
 });
 ```
 
-### setSpeed<sup>8+</sup>
+### setSpeed<sup>(deprecated)</sup>
 
 setSpeed(speed:number, callback: AsyncCallback\<number>): void
 
 通过回调方式设置播放速度。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.setSpeed](#setspeed9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4632,11 +4738,14 @@ videoPlayer.setSpeed(speed, (err: BusinessError, result: number) => {
 });
 ```
 
-### setSpeed<sup>8+</sup>
+### setSpeed<sup>(deprecated)</sup>
 
 setSpeed(speed:number): Promise\<number>
 
 通过Promise方式设置播放速度。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.setSpeed](#setspeed9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4665,11 +4774,14 @@ videoPlayer.setSpeed(speed).then((result: number) => {
 });
 ```
 
-### on('playbackCompleted')<sup>8+</sup>
+### on('playbackCompleted')<sup>(deprecated)</sup>
 
 on(type: 'playbackCompleted', callback: Callback\<void>): void
 
 开始监听视频播放完成事件。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('stateChange')](#onstatechange9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4688,11 +4800,14 @@ videoPlayer.on('playbackCompleted', () => {
 });
 ```
 
-### on('bufferingUpdate')<sup>8+</sup>
+### on('bufferingUpdate')<sup>(deprecated)</sup>
 
 on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
 开始监听视频缓存更新事件。仅网络播放支持该订阅事件。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('bufferingUpdate')](#onbufferingupdate9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4712,11 +4827,14 @@ videoPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: num
 });
 ```
 
-### on('startRenderFrame')<sup>8+</sup>
+### on('startRenderFrame')<sup>(deprecated)</sup>
 
 on(type: 'startRenderFrame', callback: Callback\<void>): void
 
 开始监听视频播放首帧送显上报事件。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('startRenderFrame')](#onstartrenderframe9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4735,11 +4853,14 @@ videoPlayer.on('startRenderFrame', () => {
 });
 ```
 
-### on('videoSizeChanged')<sup>8+</sup>
+### on('videoSizeChanged')<sup>(deprecated)</sup>
 
 on(type: 'videoSizeChanged', callback: (width: number, height: number) => void): void
 
 开始监听视频播放宽高变化事件。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('videoSizeChange')](#onvideosizechange9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4759,11 +4880,14 @@ videoPlayer.on('videoSizeChanged', (width: number, height: number) => {
 });
 ```
 
-### on('error')<sup>8+</sup>
+### on('error')<sup>(deprecated)</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
 开始监听视频播放错误事件，当上报error错误事件后，用户需处理error事件，退出播放操作。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('error')](#onerror9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4808,11 +4932,14 @@ videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'�
 
 音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#mediacreateaudiorecorderdeprecated) 构建一个AudioRecorder实例。
 
-### prepare
+### prepare<sup>(deprecated)</sup>
 
 prepare(config: AudioRecorderConfig): void
 
 录音准备。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.prepare](#prepare9-2)替代。
 
 **需要权限：** ohos.permission.MICROPHONE
 
@@ -4842,12 +4969,14 @@ audioRecorder.on('prepare', () => {    //设置'prepare'事件回调
 audioRecorder.prepare(audioRecorderConfig);
 ```
 
-
-### start
+### start<sup>(deprecated)</sup>
 
 start(): void
 
 开始录制，需在'prepare'事件成功触发后，才能调用start方法。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.start](#start9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4860,11 +4989,14 @@ audioRecorder.on('start', () => {    //设置'start'事件回调
 audioRecorder.start();
 ```
 
-### pause
+### pause<sup>(deprecated)</sup>
 
 pause():void
 
 暂停录制，需要在'start'事件成功触发后，才能调用pause方法。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.pause](#pause9-2)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4877,11 +5009,14 @@ audioRecorder.on('pause', () => {    //设置'pause'事件回调
 audioRecorder.pause();
 ```
 
-### resume
+### resume<sup>(deprecated)</sup>
 
 resume():void
 
 恢复录制，需要在'pause'事件成功触发后，才能调用resume方法。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.resume](#resume9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4894,11 +5029,14 @@ audioRecorder.on('resume', () => {    //设置'resume'事件回调
 audioRecorder.resume();
 ```
 
-### stop
+### stop<sup>(deprecated)</sup>
 
 stop(): void
 
 停止录音。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.stop](#stop9-2)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4911,11 +5049,14 @@ audioRecorder.on('stop', () => {    //设置'stop'事件回调
 audioRecorder.stop();
 ```
 
-### release
+### release<sup>(deprecated)</sup>
 
 release(): void
 
 释放录音资源。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.release](#release9-2)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4929,13 +5070,16 @@ audioRecorder.release();
 audioRecorder = undefined;
 ```
 
-### reset
+### reset<sup>(deprecated)</sup>
 
 reset(): void
 
 重置录音。
 
 进行重置录音之前，需要先调用stop()停止录音。重置录音之后，需要调用prepare()设置录音参数项，才能再次进行录音。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.reset](#reset9-2)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4948,11 +5092,14 @@ audioRecorder.on('reset', () => {    //设置'reset'事件回调
 audioRecorder.reset();
 ```
 
-### on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset')
+### on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset')<sup>(deprecated)</sup>
 
 on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset', callback: () => void): void
 
 开始订阅音频录制事件。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.on('stateChange')](#onstatechange9-1)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -5004,11 +5151,14 @@ audioRecorder.on('reset', () => {                                               
 audioRecorder.prepare(audioRecorderConfig)                                        // 设置录制参数 ，并触发'prepare'事件回调      
 ```
 
-### on('error')
+### on('error')<sup>(deprecated)</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
 开始订阅音频录制错误事件，当上报error错误事件后，用户需处理error事件，退出录制操作。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.on('error')](#onerror9-1)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
