@@ -1,9 +1,10 @@
 # Worker Startup
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-A Worker thread is an independent thread running in parallel with the main thread. The thread that creates the Worker thread is referred to as a host thread. The URL file passed in during Worker creation is executed in the Worker thread. The Worker thread can process time-consuming operations, but cannot directly operate the UI.
+The worker thread is an independent thread running in parallel with the main thread. The thread that creates the worker thread is referred to as the host thread. The URL file passed in during worker creation is executed in the worker thread. The worker thread can process time-consuming operations, but cannot directly operate the UI.
 
 ## Modules to Import
 
@@ -18,7 +19,7 @@ import worker from '@ohos.worker';
 
 | Name      | Type                                                 | Readable| Writable| Description                                |
 | ---------- | --------------------------------------------------------- | ---- | ---- | ------------------------------------ |
-| parentPort | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscope) | Yes  | Yes  | Object of the Worker thread used to communicate with the host thread.|
+| parentPort | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscope) | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.|
 
 
 ## WorkerOptions
@@ -29,13 +30,13 @@ Provides options that can be set for the **Worker** instance to create.
 
 | Name| Type | Readable| Writable| Description                  |
 | ---- | --------- | ---- | ---- | ---------------------- |
-| type | "classic" | Yes  | Yes  | Mode in which the Worker thread executes the script.|
-| name | string    | Yes  | Yes  | Name of the Worker thread.        |
+| type | "classic" | Yes  | Yes  | Mode in which the worker thread executes the script.|
+| name | string    | Yes  | Yes  | Name of the worker thread.        |
 
 
 ## Worker
 
-Before using the following APIs, you must construct a **Worker** instance. The **Worker** class inherits from [EventTarget](#eventtarget).
+Before using the following APIs, you must create a **Worker** instance. The **Worker** class inherits from [EventTarget](#eventtarget).
 
 
 ### constructor
@@ -70,7 +71,7 @@ const workerInstance = new worker.Worker("workers/worker.js", {name:"first worke
 
 postMessage(message: Object, options?: PostMessageOptions): void
 
-Sends a message to the Worker thread. The data is transferred using the structured clone algorithm.
+Sends a message to the worker thread. The message data is transferred using the structured clone algorithm.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -78,7 +79,7 @@ Sends a message to the Worker thread. The data is transferred using the structur
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Data to be sent to the Worker thread.                                        |
+| message | Object                                    | Yes  | Message to be sent to the worker thread.                                        |
 | options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The **transferList** array cannot contain **null**.|
 
 **Example**
@@ -99,7 +100,7 @@ workerInstance.postMessage(buffer, [buffer]);
 
 on(type: string, listener: EventListener): void
 
-Adds an event listener for the Worker instance.
+Adds an event listener for the worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -124,7 +125,7 @@ workerInstance.on("alert", (e)=>{
 
 once(type: string, listener: EventListener): void
 
-Adds an event listener for the Worker thread and removes the event listener after it is invoked once.
+Adds an event listener for the worker thread and removes the event listener after it is invoked once.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -149,7 +150,7 @@ workerInstance.once("alert", (e)=>{
 
 off(type: string, listener?: EventListener): void
 
-Removes an event listener for the Worker thread.
+Removes an event listener for the worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -172,7 +173,7 @@ workerInstance.off("alert");
 
 terminate(): void
 
-Terminates the Worker thread to stop it from receiving messages.
+Terminates the worker thread to stop it from receiving messages.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -188,7 +189,7 @@ workerInstance.terminate()
 
 onexit?: (code: number) =&gt; void
 
-Defines the event handler to be called when the Worker thread exits. The handler is executed in the host thread.
+Defines the event handler to be called when the worker thread exits. The handler is executed in the host thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -196,7 +197,7 @@ Defines the event handler to be called when the Worker thread exits. The handler
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| code   | number | No  | Code indicating the Worker thread exit state.|
+| code   | number | No  | Code indicating the worker thread exit state.|
 
 **Example**
 
@@ -212,7 +213,7 @@ workerInstance.onexit = function(e) {
 
 onerror?: (err: ErrorEvent) =&gt; void
 
-Defines the event handler to be called when an exception occurs during Worker execution. The event handler is executed in the host thread.
+Defines the event handler to be called when an exception occurs during worker execution. The event handler is executed in the host thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -236,7 +237,7 @@ workerInstance.onerror = function(e) {
 
 onmessage?: (event: MessageEvent) =&gt; void
 
-Defines the event handler to be called when the host thread receives a message created by itself and sent by the Worker thread through the **parentPort.postMessage**. The event handler is executed in the host thread.
+Defines the event handler to be called when the host thread receives a message sent by the worker thread through **parentPort.postMessage**. The event handler is executed in the host thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -260,7 +261,7 @@ workerInstance.onmessage = function(e) {
 
 onmessageerror?: (event: MessageEvent) =&gt; void
 
-Defines the event handler to be called when the Worker thread receives a message that cannot be serialized. The event handler is executed in the host thread.
+Defines the event handler to be called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -287,7 +288,7 @@ workerInstance.onmessageerror= function(e) {
 
 addEventListener(type: string, listener: EventListener): void
 
-Adds an event listener for the Worker thread.
+Adds an event listener for the worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -312,7 +313,7 @@ workerInstance.addEventListener("alert", (e)=>{
 
 removeEventListener(type: string, callback?: EventListener): void
 
-Removes an event listener for the Worker thread.
+Removes an event listener for the worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -335,7 +336,7 @@ workerInstance.removeEventListener("alert")
 
 dispatchEvent(event: Event): boolean
 
-Dispatches the event defined for the Worker thread.
+Dispatches the event defined for the worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -363,7 +364,7 @@ workerInstance.dispatchEvent({type:"alert"})
 
 removeAllListener(): void
 
-Removes all event listeners for the Worker thread.
+Removes all event listeners for the worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -377,14 +378,14 @@ workerInstance.removeAllListener({type:"alert"})
 
 ## DedicatedWorkerGlobalScope
 
-Implements communication between the Worker thread and the host thread. The **postMessage** API is used to send messages to the host thread, and the **close** API is used to terminate the Worker thread. The **DedicatedWorkerGlobalScope** class inherits from [WorkerGlobalScope](#workerglobalscope).
+Implements communication between the worker thread and the host thread. The **postMessage** API is used to send messages to the host thread, and the **close** API is used to terminate the worker thread. The **DedicatedWorkerGlobalScope** class inherits from [WorkerGlobalScope](#workerglobalscope).
 
 
 ### postMessage
 
 postMessage(message: Object, options?: PostMessageOptions): void
 
-Sends a message to the host thread from the Worker thread.
+Sends a message to the host thread from the worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -392,7 +393,7 @@ Sends a message to the host thread from the Worker thread.
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Data to be sent to the Worker thread.                                        |
+| message | Object                                    | Yes  | Message to be sent to the worker thread.                                        |
 | options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The **transferList** array cannot contain **null**.|
 
 **Example**
@@ -421,7 +422,7 @@ parentPort.onmessage = function(e){
 
 close(): void
 
-Terminates the Worker thread to stop it from receiving messages.
+Terminates the worker thread to stop it from receiving messages.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -447,7 +448,7 @@ parentPort.onmessage = function(e) {
 
 onmessage?: (event: MessageEvent) =&gt; void
 
-Defines the event handler to be called when the Worker thread receives a message sent by the host thread through **worker.postMessage**. The event handler is executed in the Worker thread.
+Defines the event handler to be called when the worker thread receives a message sent by the host thread through **worker.postMessage**. The event handler is executed in the worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -480,7 +481,7 @@ parentPort.onmessage = function(e) {
 
 onmessageerror?: (event: MessageEvent) =&gt; void
 
-Defines the event handler to be called when the Worker thread receives a message that cannot be deserialized. The event handler is executed in the Worker thread.
+Defines the event handler to be called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -566,7 +567,7 @@ workerInstance.addEventListener("alert", (e)=>{
 
 ## ErrorEvent
 
-Provides detailed information about the exception occurred during Worker execution. The **ErrorEvent** class inherits from [Event](#event).
+Provides detailed information about the exception that occurs during worker execution. The **ErrorEvent** class inherits from [Event](#event).
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -574,14 +575,14 @@ Provides detailed information about the exception occurred during Worker executi
 | -------- | -------- | ---- | ---- | -------------------- |
 | message  | string   | Yes  | No  | Information about the exception.|
 | filename | string   | Yes  | No  | File where the exception is located.|
-| lineno   | number   | Yes  | No  | Number of the line where the exception is located.    |
-| colno    | number   | Yes  | No  | Number of the column where the exception is located.    |
+| lineno   | number   | Yes  | No  | Serial number of the line where the exception is located.    |
+| colno    | number   | Yes  | No  | Serial number of the column where the exception is located.    |
 | error    | Object   | Yes  | No  | Type of the exception.          |
 
 
 ## MessageEvent
 
-Holds the data transferred between Worker threads.
+Holds the data transferred between worker threads.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -592,7 +593,7 @@ Holds the data transferred between Worker threads.
 
 ## WorkerGlobalScope
 
-Defines the running environment of the Worker thread. The **WorkerGlobalScope** class inherits from [EventTarget](#eventtarget).
+Implements the running environment of the worker thread. The **WorkerGlobalScope** class inherits from [EventTarget](#eventtarget).
 
 ### Attributes
 
@@ -601,14 +602,14 @@ Defines the running environment of the Worker thread. The **WorkerGlobalScope** 
 | Name| Type                                                    | Readable| Writable| Description                                   |
 | ---- | ------------------------------------------------------------ | ---- | ---- | --------------------------------------- |
 | name | string                                                       | Yes  | No  | **Worker** instance specified when there is a new **Worker** instance.|
-| self | [WorkerGlobalScope](#workerglobalscope)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | Yes  | No  | WorkerGlobalScope.                |
+| self | [WorkerGlobalScope](#workerglobalscope)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | Yes  | No  | **WorkerGlobalScope**.                |
 
 
 ### onerror
 
 onerror?: (ev: ErrorEvent) =&gt; void
 
-Defines the event handler to be called when an exception occurs during Worker execution. The event handler is executed in the Worker thread.
+Defines the event handler to be called when an exception occurs during worker execution. The event handler is executed in the worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -620,17 +621,79 @@ Defines the event handler to be called when an exception occurs during Worker ex
 
 **Example**
 
-```
+```js
 // main.js
 import worker from '@ohos.worker';
 const workerInstance = new worker.Worker("workers/worker.js")
 ```
 
-```
+```js
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort
 parentPort.onerror = function(e){
     console.log("worker.js onerror")
 }
+```
+## Sample Code
+
+```js
+// Main thread (The following assumes that the workers directory and pages directory are at the same level.)
+import worker from '@ohos.worker';
+// Create a Worker instance in the main thread.
+const workerInstance = new worker.Worker("workers/worker.ts");
+
+// The main thread transfers information to the worker thread.
+workerInstance.postMessage("123");
+
+// The main thread receives information from the worker thread.
+workerInstance.onmessage = function(e) {
+    // data carries the information sent by the worker thread.
+    let data = e.data;
+    console.log("main thread onmessage");
+
+    // Terminate the Worker instance.
+    workerInstance.terminate();
+}
+
+// Call onexit().
+workerInstance.onexit = function() {
+    console.log("main thread terminate");
+}
+```
+
+```js
+// worker.ts
+import worker from '@ohos.worker';
+
+// Create an object in the worker thread for communicating with the main thread.
+const parentPort = worker.parentPort
+
+// The worker thread receives information from the main thread.
+parentPort.onmessage = function(e) {
+    // data carries the information sent by the main thread.
+    let data = e.data;
+    console.log("worker.ts onmessage");
+
+    // The worker thread sends information to the main thread.
+    parentPort.postMessage("123")
+}
+
+// Trigger a callback when an error occurs in the worker thread.
+parentPort.onerror= function(e) {
+    console.log("worker.ts onerror");
+}
+```
+
+Configuration of the **build-profile.json5** file:
+
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/entryability/workers/worker.ts"
+      ]
+    }
+  }
+
 ```
