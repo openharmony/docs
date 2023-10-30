@@ -69,14 +69,14 @@ let options: systemTimer.TimerOptions = {
 try {
   systemTimer.createTimer(options, (error: BusinessError, timerId: Number) => {
     if (error) {
-      console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
+      console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
       return;
     }
-    console.info(`Succeeded in creating timer. timerId: ${timerId}`);
+    console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
+  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -112,13 +112,13 @@ let options: systemTimer.TimerOptions = {
 };
 try {
   systemTimer.createTimer(options).then((timerId: Number) => {
-    console.info(`Succeeded in creating timer. timerId: ${timerId}`);
+    console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
+    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
+  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -147,20 +147,25 @@ let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
   repeat:false
 }
-let timerId = await systemTimer.createTimer(options);
 let triggerTime = new Date().getTime();
 triggerTime += 3000;
+
 try {
-  systemTimer.startTimer(timerId, triggerTime, (error: BusinessError) => {
-    if (error) {
-      console.info(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
-      return;
-    }
-    console.info(`Succeeded in starting timer.`);
+  systemTimer.createTimer(options).then((timerId: number) => {
+    systemTimer.startTimer(timerId, triggerTime, (error: BusinessError) => {
+      if (error) {
+        console.info(`Failed to start the timer. Message: ${error.message}, code: ${error.code}`);
+        return;
+      }
+      console.info(`Succeeded in starting the timer.`);
+    });
+    console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
+  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -194,18 +199,23 @@ let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
   repeat:false
 }
-let timerId = await systemTimer.createTimer(options);
 let triggerTime = new Date().getTime();
 triggerTime += 3000;
+
 try {
-  systemTimer.startTimer(timerId, triggerTime).then(() => {
-    console.info(`Succeeded in starting timer.`);
-      }).catch((error: BusinessError) => {
-    console.info(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
+  systemTimer.createTimer(options).then((timerId: number) => {
+    systemTimer.startTimer(timerId, triggerTime).then(() => {
+      console.info(`Succeeded in starting the timer.`);
+    }).catch((error: BusinessError) => {
+      console.info(`Failed to start the timer. Message: ${error.message}, code: ${error.code}`);
+    });
+    console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
+  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -233,21 +243,26 @@ let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
   repeat:false
 }
-let timerId = await systemTimer.createTimer(options);
 let triggerTime = new Date().getTime();
 triggerTime += 3000;
-systemTimer.startTimer(timerId, triggerTime);
+
 try {
-  systemTimer.stopTimer(timerId, (error: BusinessError) => {
-    if (error) {
-      console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
-      return;
-    }
-    console.info(`Succeeded in stopping timer.`);
+  systemTimer.createTimer(options).then((timerId: number) => {
+    systemTimer.startTimer(timerId, triggerTime);
+    systemTimer.stopTimer(timerId, (error: BusinessError) => {
+      if (error) {
+        console.info(`Failed to stop the timer. Message: ${error.message}, code: ${error.code}`);
+        return;
+      }
+    console.info(`Succeeded in stopping the timer.`);
+    });
+    console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
+  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -280,19 +295,24 @@ let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
   repeat:false
 }
-let timerId = await systemTimer.createTimer(options);
 let triggerTime = new Date().getTime();
 triggerTime += 3000;
-systemTimer.startTimer(timerId, triggerTime);
+
 try {
-  systemTimer.stopTimer(timerId).then(() => {
-    console.info(`Succeeded in stopping timer.`);
+  systemTimer.createTimer(options).then((timerId: number) => {
+    systemTimer.startTimer(timerId, triggerTime);
+    systemTimer.stopTimer(timerId).then(() => {
+      console.info(`Succeeded in stopping the timer.`);
+    }).catch((error: BusinessError) => {
+      console.info(`Failed to stop the timer. Message: ${error.message}, code: ${error.code}`);
+    });
+    console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
+    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
+  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -320,22 +340,27 @@ let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
   repeat:false
 }
-let timerId = await systemTimer.createTimer(options);
 let triggerTime = new Date().getTime();
 triggerTime += 3000;
-systemTimer.startTimer(timerId, triggerTime);
-systemTimer.stopTimer(timerId);
+
 try {
-  systemTimer.destroyTimer(timerId, (error: BusinessError) => {
-    if (error) {
-      console.info(`Failed to destroy timer. message: ${error.message}, code: ${error.code}`);
-      return;
-    }
-    console.info(`Succeeded in destroying timer.`);
+  systemTimer.createTimer(options).then((timerId: number) => {
+    systemTimer.startTimer(timerId, triggerTime);
+    systemTimer.stopTimer(timerId);
+    systemTimer.destroyTimer(timerId, (error: BusinessError) => {
+      if (error) {
+        console.info(`Failed to destroy the timer. Message: ${error.message}, code: ${error.code}`);
+        return;
+      }
+    console.info(`Succeeded in destroying the timer.`);
+    });
+    console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to destroying timer. message: ${error.message}, code: ${error.code}`);
+  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -368,19 +393,24 @@ let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
   repeat:false
 }
-let timerId = await systemTimer.createTimer(options);
 let triggerTime = new Date().getTime();
 triggerTime += 3000;
-systemTimer.startTimer(timerId, triggerTime);
-systemTimer.stopTimer(timerId);
+
 try {
-  systemTimer.destroyTimer(timerId).then(() => {
-      console.info(`Succeeded in destroying timer.`);
+  systemTimer.createTimer(options).then((timerId: number) => {
+    systemTimer.startTimer(timerId, triggerTime);
+    systemTimer.stopTimer(timerId);
+    systemTimer.destroyTimer(timerId).then(() => {
+      console.info(`Succeeded in destroying the timer.`);
+    }).catch((error: BusinessError) => {
+      console.info(`Failed to destroy the timer. Message: ${error.message}, code: ${error.code}`);
+    });
+    console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to destroy timer. message: ${error.message}, code: ${error.code}`);
+    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to destroying timer. message: ${error.message}, code: ${error.code}`);
+  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
 }
 ```
