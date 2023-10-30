@@ -4383,13 +4383,13 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("id", ["id1", "id2"]);
 
-if (store != undefined) {
-   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-     console.info(`progress: ${progressDetail}`);
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`progress: ${progressDetail}`);
    }, (err) => {
      if (err) {
        console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
-         return;
+       return;
      }
      console.info('Cloud sync succeeded');
   });
@@ -4430,14 +4430,14 @@ import {BusinessError} from "@ohos.base";
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("id", ["id1", "id2"]);
 
-if (store != undefined) {
-   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-     console.info(`progress: ${progressDetail}`);
-   }).then(() => {
-     console.info('Cloud sync succeeded');
-   }).catch((err: BusinessError) => {
-     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
-   });
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`progress: ${progressDetail}`);
+  }).then(() => {
+    console.info('Cloud sync succeeded');
+  }).catch((err: BusinessError) => {
+    console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
+  });
 };
 ```
 
@@ -4583,10 +4583,10 @@ on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
 import {BusinessError} from "@ohos.base";
 
 try {
-  if (store != undefined) {
-     (store as relationalStore.RdbStore).on('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
-       console.info(`progress: ${progressDetail}`);
-     });
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).on('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
+      console.info(`progress: ${progressDetail}`);
+    });
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -4735,10 +4735,10 @@ off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
 import {BusinessError} from "@ohos.base";
 
 try {
-  if (store != undefined) {
-     (store as relationalStore.RdbStore).off('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
-       console.info(`progress: ${progressDetail}`);
-     });
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
+      console.info(`progress: ${progressDetail}`);
+    });
   }
 } catch (err) {
   let code = (err as BusinessError).code;
