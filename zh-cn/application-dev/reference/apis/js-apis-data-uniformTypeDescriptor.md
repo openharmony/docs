@@ -26,7 +26,7 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | HYPERLINK         | 'general.hyperlink'              | 超链接类型， 归属类型为TEXT。                  |
 | XML<sup>11+</sup>    | 'general.xml'                   | XML文本类型， 归属类型为TEXT。                |
 | SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | 所有源代码的基类型， 归属类型为PLAIN_TEXT。        |
-| SCRIPT<sup>11+</sup>    | 'general.script'                  | 脚本语言源代码基类型， 归属类型为SOURCE_CODE。      |
+| SCRIPT<sup>11+</sup>    | 'general.script'                  | 所有脚本语言源代码的基类型， 归属类型为SOURCE_CODE。   |
 | SHELL_SCRIPT<sup>11+</sup>               | 'general.shell-script'                  | shell脚本类型， 归属类型为SCRIPT。            |    
 | CSH_SCRIPT<sup>11+</sup>      | 'general.csh-script'                 | C-shell脚本类型， 归属类型为SHELL_SCRIPT。    |
 | PERL_SCRIPT<sup>11+</sup> |'general.perl-script'               | Perl脚本类型， 归属类型为SHELL_SCRIPT。       |
