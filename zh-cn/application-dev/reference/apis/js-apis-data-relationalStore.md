@@ -4381,7 +4381,6 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let store: relationalStore.RdbStore | undefined = undefined;
 predicates.in("id", ["id1", "id2"]);
 
 if (store != undefined) {
@@ -4427,8 +4426,6 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 ```ts
 import {BusinessError} from "@ohos.base";
-
-let store: relationalStore.RdbStore | undefined = undefined;
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("id", ["id1", "id2"]);
@@ -4585,8 +4582,6 @@ on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
 ```ts
 import {BusinessError} from "@ohos.base";
 
-let store: relationalStore.RdbStore | undefined = undefined;
-
 try {
   if (store != undefined) {
      (store as relationalStore.RdbStore).on('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
@@ -4738,8 +4733,6 @@ off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
 
 ```ts
 import {BusinessError} from "@ohos.base";
-
-let store: relationalStore.RdbStore | undefined = undefined;
 
 try {
   if (store != undefined) {
