@@ -988,7 +988,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 | 参数名         | 类型                                     | 必填 | 说明                     |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | 是   | 挑战值，最大长度为32字节，可以传Uint8Array([])。 |
-| authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE。 |
+| authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE和FINGERPRINT。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | 是   | 认证信任等级。               |
 
 **返回值：**
@@ -1039,7 +1039,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 
 | 参数名         | 类型                               | 必填 | 说明                       |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型。 |
+| authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型。从 API version 11 开始支持PIN查询。|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
 
 **错误码：**
@@ -1163,7 +1163,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 
 | 参数名         | 类型                               | 必填 | 说明                       |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
+| authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前支持FACE和FINGERPRINT。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
 
 **返回值：**
@@ -1204,7 +1204,7 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 | 参数名         | 类型                                     | 必填 | 说明                     |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | 是   | 挑战值，可以传Uint8Array([])。 |
-| authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE。 |
+| authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE和FINGERPRINT。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | 是   | 认证信任等级。             |
 | callback       | [IUserAuthCallback](#iuserauthcallbackdeprecated) | 是   | 回调函数。        |
 
