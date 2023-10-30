@@ -684,7 +684,7 @@ g_object.on("change", (sessionId: string, fields: Array<string>) => {
 
 ### off('change')<sup>(deprecated)</sup>
 
-off(type: 'change', callback:? (sessionId: string, fields: Array&lt;string&gt;) => void): void
+off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void
 
 Unsubscribes from the data changes of this distributed data object.
 
