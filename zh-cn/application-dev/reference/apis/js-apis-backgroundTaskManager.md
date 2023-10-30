@@ -429,6 +429,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 
+// 取消长时任务
 backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
   console.info("Operation stopBackgroundRunning succeeded");
 }).catch((err: BusinessError) => {
@@ -448,6 +449,7 @@ import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // 取消长时任务
     backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
       console.info("Operation stopBackgroundRunning succeeded");
     }).catch((err: BusinessError) => {
