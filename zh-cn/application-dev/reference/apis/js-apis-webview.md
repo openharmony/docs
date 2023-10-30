@@ -3535,7 +3535,7 @@ struct WebComponent {
 
 setNetworkAvailable(enable: boolean): void
 
-设置JavaScript中的window.navigator.isOnline属性。
+设置JavaScript中的window.navigator.onLine属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3543,7 +3543,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.isOnline。 |
+| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
 
 **错误码：**
 

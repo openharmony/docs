@@ -16,7 +16,7 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         // 加载本地local.html页面

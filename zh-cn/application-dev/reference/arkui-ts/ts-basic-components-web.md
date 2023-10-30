@@ -1455,7 +1455,7 @@ mediaOptions(options: WebMediaOptions)
 
 ## 事件
 
-不支持通用事件。
+不支持[通用事件](ts-universal-events-click.md)。
 
 ### onAlert
 

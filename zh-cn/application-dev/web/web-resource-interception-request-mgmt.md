@@ -7,17 +7,16 @@ Web组件支持在应用拦截到页面请求后自定义响应请求能力。�
 Web网页上发起资源加载请求，应用层收到资源请求消息。应用层构造本地资源响应消息发送给Web内核。Web内核解析应用层响应信息，根据此响应信息进行页面资源加载。
 
 
-在下面的示例中，Web组件通过拦截页面请求“https://www.intercept.com/test.html”， 在应用侧代码构建响应资源，实现自定义页面响应场景。
+在下面的示例中，Web组件通过拦截index.html网页拦截页面请求“https://www.intercept.com/test.html”， 在应用侧代码构建响应资源，实现自定义页面响应场景。
 
 
-- 前端页面example.html代码。
+- 前端页面index.html代码。
 
   ```html
   <!DOCTYPE html>
   <html>
   <head>
       <meta charset="utf-8">
-      <title>example</title>
   </head>
   <body>
   <!-- 页面资源请求 -->
@@ -49,7 +48,7 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
     "</html>"
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onInterceptRequest((event) => {
             if (event) {
               console.log('url:' + event.request.getRequestUrl())
@@ -62,8 +61,6 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
               headerKey:"Cache-Control",
               headerValue:"no-cache"
             }
-            let length = this.heads.push(head1)
-            length = this.heads.push(head2)
             this.responseweb.setResponseHeader(this.heads)
             this.responseweb.setResponseData(this.webdata)
             this.responseweb.setResponseEncoding('utf-8')
