@@ -50,12 +50,14 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
   ```ts
   import backgroundTaskManager from '@ohos.backgroundTaskManager';
   import { BusinessError } from '@ohos.base';
-
+  
+  // 设置延迟任务挂起的原因
   let myReason = 'test requestSuspendDelay';
+  // 申请延迟任务
   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
       console.info("Request suspension delay will time out.");
   })
-
+  // 打印延迟任务信息
   let id = delayInfo.requestId;
   let time = delayInfo.actualDelayTime;
   console.info("The requestId is: " + id);
