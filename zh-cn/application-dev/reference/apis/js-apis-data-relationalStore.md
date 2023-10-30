@@ -4362,7 +4362,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 手动执行端云条件同步，使用callback异步回调。使用该接口需要实现云同步功能。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -4402,7 +4402,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 手动执行端云条件同步，使用Promise异步处理。使用该接口需要实现云同步功能。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
