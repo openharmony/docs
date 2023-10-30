@@ -12,6 +12,7 @@ import xml from '@ohos.xml';
 
 ## XmlSerializer
 
+XmlSerializer接口用于生成XML文件。
 
 ### constructor
 
@@ -363,6 +364,7 @@ console.log(view1) // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 
 ## XmlPullParser
 
+XmlPullParser接口用于解析现有的XML文件。
 
 ### constructor
 
