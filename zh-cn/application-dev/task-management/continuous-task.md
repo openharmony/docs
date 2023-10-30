@@ -281,7 +281,8 @@
        }
        mContext = this.context;
      }
-
+     
+     // Ability销毁
      onDestroy() {
        console.info('[Demo] BgTaskAbility onDestroy');
      }
