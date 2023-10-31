@@ -1,10 +1,10 @@
 # UIAbility组件与UI的数据同步
 
 
-基于OpenHarmony的应用模型，可以通过以下几种方式来实现UIAbility组件与UI之间的数据同步。
+基于当前的应用模型，可以通过以下几种方式来实现UIAbility组件与UI之间的数据同步。
 
 - [使用EventHub进行数据通信](#使用eventhub进行数据通信)：在基类Context中提供了EventHub对象，可以通过发布订阅方式来实现事件的传递。在事件传递前，订阅者需要先进行订阅，当发布者发布事件时，订阅者将接收到事件并进行相应处理。
-- [使用AppStorage/LocalStorage进行数据同步](#使用appstorage/localstorage进行数据同步)：ArkUI提供了AppStorage和LocalStorage两种应用级别的状态管理方案，可用于实现应用级别和UIAbility级别的数据同步。
+- [使用AppStorage/LocalStorage进行数据同步](#使用appstoragelocalstorage进行数据同步)：ArkUI提供了AppStorage和LocalStorage两种应用级别的状态管理方案，可用于实现应用级别和UIAbility级别的数据同步。
 
 
 ## 使用EventHub进行数据通信

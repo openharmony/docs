@@ -1,6 +1,6 @@
 # 共享包概述
 
-OpenHarmony提供了两种共享包，[HAR（Harmony Archive）](har-package.md)静态共享包，和HSP（Harmony Shared Package）动态共享包。
+当前系统提供了两种共享包，[HAR（Harmony Archive）](har-package.md)静态共享包，和HSP（Harmony Shared Package）动态共享包。
 
 HAR与HSP都是为了实现代码和资源的共享，都可以包含代码、C++库、资源和配置文件，最大的不同之处在于：HAR中的代码和资源跟随使用方编译，如果有多个使用方，它们的编译产物中会存在多份相同拷贝；而HSP中的代码和资源可以独立编译，运行时在一个进程中代码也只会存在一份。
 
