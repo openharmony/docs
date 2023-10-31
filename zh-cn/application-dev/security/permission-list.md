@@ -1410,6 +1410,18 @@
 
 **起始版本**：11
 
+## ohos.permission.ENTERPRISE_LOCK_DEVICE
+
+允许设备管理系统的设置参数。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
