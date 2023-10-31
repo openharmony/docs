@@ -53,7 +53,7 @@
 
 - HAPs
 
-  HAPs（OpenHarmony Ability Packages），广义上指可以安装在OpenHarmony上的应用包，本章节中仅代表Face_auth驱动的上层应用。
+  HAPs（Harmony Ability Packages），广义上指可以安装在OpenHarmony上的应用包，本章节中仅代表Face_auth驱动的上层应用。
 
 - IDL接口
 
