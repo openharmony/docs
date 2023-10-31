@@ -36,9 +36,8 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    // 开发者自定义响应数据
     responseResource: WebResourceResponse = new WebResourceResponse()
-    heads:Header[] = new Array()
+    // 开发者自定义响应数据
     @State webdata: string = "<!DOCTYPE html>\n" +
     "<html>\n"+
     "<head>\n"+
