@@ -1085,6 +1085,7 @@ addFirewallRule(admin: Want, firewallRule: Firewall): void
 
 ```ts
 import Want from '@ohos.app.ability.Want';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1135,6 +1136,7 @@ removeFirewallRule(admin: Want, firewallRule?: Firewall): void
 
 ```ts
 import Want from '@ohos.app.ability.Want';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1193,6 +1195,7 @@ getFirewallRule(admin: Want): Array\<FirewallRule>
 
 ```ts
 import Want from '@ohos.app.ability.Want';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1233,6 +1236,7 @@ addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
 ```ts
 import Want from '@ohos.app.ability.Want';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1278,6 +1282,7 @@ removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
 ```ts
 import Want from '@ohos.app.ability.Want';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1331,6 +1336,7 @@ getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 
 ```ts
 import Want from '@ohos.app.ability.Want';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
