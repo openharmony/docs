@@ -1165,4 +1165,4 @@ adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
 | MANAGED_EVENT_BUNDLE_REMOVED | 1  | 应用卸载事件。 |
 | MANAGED_EVENT_APP_START<sup>10+</sup> | 2    | 应用启动事件。 |
 | MANAGED_EVENT_APP_STOP<sup>10+</sup> | 3  | 应用停止事件。 |
-
+| MANAGED_EVENT_SYSTEM_UPDATE<sup>11+</sup> | 4   | 系统更新事件。 |
