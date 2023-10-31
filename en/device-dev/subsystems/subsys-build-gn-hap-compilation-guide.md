@@ -5,7 +5,7 @@
 ### Basic Concepts
 | Term| Description|
 | -------------- | ---------------------- |
-| HAP            | OpenHarmony Ability Package, released as a HAP file, with the file name extension .hap. One HAP file describes all content of an application, including code, resources, third-party libraries, and an application configuration file.|
+| HAP            | Harmony Ability Package, released as a HAP file, with the file name extension .hap. One HAP file describes all content of an application, including code, resources, third-party libraries, and an application configuration file.|
 | Ability        | An abstraction of a functionality that an application can provide. It is the minimum unit for the system to schedule the application. An application can contain one or more **Ability** instances.|
 | FA             | Feature Ability, an ability that provides a UI for user interaction in the ability framework of the FA model. The FA supports only the Page ability template.|
 | PA             | Particle Ability, an ability that does not have a UI in the ability framework of the FA model. It provides services and support for FAs. For example, a PA can function as a background service to provide computing power or as a data store to provide data access capabilities. The PA supports three types of templates: Service, Data, and Form ability templates.|
