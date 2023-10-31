@@ -145,7 +145,7 @@
 
    ```ts
    event(info: dlpPermission.AccessedDLPFileInfo) {
-     console.info('openDlpFile event', info.uri, info.recentOpenTime)
+     console.info('openDlpFile event', info.uri, info.lastOpenTime)
    }
    unSubscribe() {
      try {
