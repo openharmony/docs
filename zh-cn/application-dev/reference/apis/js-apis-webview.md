@@ -4723,11 +4723,15 @@ struct WebComponent {
 >
 > 目前调用WebCookieManager下的方法，都需要先加载Web组件。
 
-### getCookie
+### getCookie<sup>(deprecated)</sup>
 
 static getCookie(url: string): string
 
 获取指定url对应cookie的值。
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 11开始废弃。建议使用[fetchCookieSync](###fetchCookieSync11)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4781,11 +4785,178 @@ struct WebComponent {
 }
 ```
 
-### setCookie
+### fetchCookieSync<sup>11+</sup>
+
+static fetchCookieSync(url: string): string
+
+获取指定url对应cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 指定url对应的cookie的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 17100002 | Invalid url.                                           |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('fetchCookieSync')
+        .onClick(() => {
+          try {
+            let value = web_webview.WebCookieManager.fetchCookieSync('https://www.example.com');
+            console.log("fetchCookieSync cookie = " + value);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### fetchCookie<sup>11+</sup>
+
+static fetchCookie(url: string, callback: AsyncCallback<string>): void
+
+异步callback方式获取指定url对应cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+| callback | AsyncCallback<string> | 是 | callback回调，用于获取cookie |
+
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('fetchCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.fetchCookie('https://www.example.com', (cookie) => {
+              if (cookie) {
+                console.log("fetchCookie cookie = " + cookie);
+              }
+            })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### fetchCookie<sup>11+</sup>
+
+static fetchCookie(url: string): Promise\<string>
+
+以Promise方式异步获取指定url对应cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Promise\<string> | Promise实例，用于获取指定url对应的cookie值。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('fetchCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.fetchCookie('https://www.example.com')
+              .then(cookie => {
+                console.log("fetchCookie cookie = " + cookie);
+              })
+              .catch((error:business_error.BusinessError) => {
+                console.log('error: ' + JSON.stringify(error));
+              })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+
+### setCookie<sup>(deprecated)</sup>
 
 static setCookie(url: string, value: string): void
 
 为指定url设置单个cookie的值。
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 11开始废弃。建议使用[configCookieSync](###configCookieSync11+)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4823,6 +4994,165 @@ struct WebComponent {
         .onClick(() => {
           try {
             web_webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookieSync<sup>11+</sup>
+
+static configCookieSync(url: string, value: string): void
+
+为指定url设置单个cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要设置的cookie所属的url，建议使用完整的url。 |
+| value  | string | 是   | 要设置的cookie的值。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookieSync')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookie<sup>11+</sup>
+
+static configCookie(url: string, value: string, AsyncCallback\<void>): void
+
+异步callback方式为指定url设置单个cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+| value  | string | 是   | 要设置的cookie的值。      |
+| callback | AsyncCallback\<void> | 是 | callback回调，用于获取设置cookie的结果 |
+
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.configCookie('https://www.example.com', "a=b", (error) => {
+              if (error) {
+                console.log("error: " + JSON.stringify(error));
+              }
+            })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookie<sup>11+</sup>
+
+static configCookie(url: string, value: string): Promise\<void>
+
+以异步Promise方式为指定url设置单个cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+| value  | string | 是   | 要设置的cookie的值。      |
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Promise\<string> | Promise实例，用于获取指定url设置单个cookie值是否成功。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.configCookie('https://www.example.com', 'a=b')
+              .then(() => {
+                console.log('configCookie success!');
+              })
+              .catch((error:business_error.BusinessError) => {
+                console.log('error: ' + JSON.stringify(error));
+              })
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -5130,11 +5460,15 @@ struct WebComponent {
 }
 ```
 
-### deleteEntireCookie
+### deleteEntireCookie<sup>(deprecated)</sup>
 
 static deleteEntireCookie(): void
 
 清除所有cookie。
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 11开始废弃。建议使用[clearAllCookiesSync](###clearAllCookiesSync11+)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5161,11 +5495,142 @@ struct WebComponent {
 }
 ```
 
-### deleteSessionCookie
+### clearAllCookiesSync<sup>11+</sup>
+
+static clearAllCookiesSync(): void
+
+清除所有cookie。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearAllCookiesSync')
+        .onClick(() => {
+          web_webview.WebCookieManager.clearAllCookiesSync();
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearAllCookies<sup>11+</sup>
+
+static clearAllCookies(callback: AsyncCallback\<void>): void
+
+异步callback方式清除所有cookie。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                               |
+| -------- | ---------------------- | ---- | :------------------------------------------------- |
+| callback | AsyncCallback\<void> | 是   | callback回调，用于获取清除所有cookie是否成功。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearAllCookies')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.clearAllCookies((error) => {
+              if (error) {
+                console.log("error: " + error);
+              }
+            })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearAllCookies<sup>11+</sup>
+
+static clearAllCookies(): Promise\<void>
+
+异步promise方式清除所有cookie。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型             | 说明                                      |
+| ---------------- | ----------------------------------------- |
+| Promise\<void> | Promise实例，用于获取清除所有cookie是否成功。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearAllCookies')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.clearAllCookies()
+              .then(() => {
+                console.log("clearAllCookies success!");
+              })
+              .catch((error:business_error.BusinessError) => {
+                console.error("error: " + error);
+              });
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### deleteSessionCookie<sup>(deprecated)</sup>
 
 static deleteSessionCookie(): void
 
 清除所有会话cookie。
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 11开始废弃。建议使用[clearSessionCookiesync](###clearSessionCookieSync11+)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5185,6 +5650,133 @@ struct WebComponent {
       Button('deleteSessionCookie')
         .onClick(() => {
           web_webview.WebCookieManager.deleteSessionCookie();
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearSessionCookieSync<sup>11+</sup>
+
+static clearSessionCookieSync(): void
+
+清除所有会话cookie。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearSessionCookieSync')
+        .onClick(() => {
+          web_webview.WebCookieManager.clearSessionCookieSync();
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearSessionCookie<sup>11+</sup>
+
+static clearSessionCookie(callback: AsyncCallback\<void>): void
+
+异步callback方式清除所有会话cookie。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                               |
+| -------- | ---------------------- | ---- | :------------------------------------------------- |
+| callback | AsyncCallback\<void> | 是   | callback回调，用于获取清除所有会话cookie是否成功。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearSessionCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.clearSessionCookie((error) => {
+              if (error) {
+                console.log("error: " + error);
+              }
+            })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearSessionCookie<sup>11+</sup>
+
+static clearSessionCookie(): Promise\<void>
+
+异步promise方式清除所有会话cookie。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型             | 说明                                      |
+| ---------------- | ----------------------------------------- |
+| Promise\<void> | Promise实例，用于获取清除所有会话cookie是否成功。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearSessionCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.clearSessionCookie()
+              .then(() => {
+                console.log("clearSessionCookie success!");
+              })
+              .catch((error:business_error.BusinessError) => {
+                console.error("error: " + error);
+              });
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
