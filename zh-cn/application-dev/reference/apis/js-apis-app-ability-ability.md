@@ -16,7 +16,7 @@ import Ability from '@ohos.app.ability.Ability';
 
 ## Ability.onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
 当系统配置更新时调用。
 
@@ -40,7 +40,7 @@ onConfigurationUpdate(newConfig: Configuration): void;
 
 ## Ability.onMemoryLevel
 
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
 
