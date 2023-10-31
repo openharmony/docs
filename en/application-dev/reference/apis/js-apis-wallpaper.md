@@ -76,7 +76,7 @@ Sets a video resource as the home screen wallpaper or lock screen wallpaper. Thi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | source | string | Yes| URI of an MP4 file.|
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is set, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -116,7 +116,7 @@ Sets a video resource as the home screen wallpaper or lock screen wallpaper. Thi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | source | string | Yes| URI of an MP4 file.|
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
 
@@ -158,7 +158,7 @@ Sets the content from a specified URI as the wallpaper. This API works only when
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | source | string | Yes| URI of the custom wallpaper.|
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is set, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -198,7 +198,7 @@ Sets the content from a specified URI as the wallpaper. This API works only when
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | source | string | Yes| URI of the custom wallpaper.|
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
 
@@ -311,13 +311,13 @@ Obtains the main color information of the wallpaper of the specified type.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Array&lt;[RgbaColor](#rgbacolor)&gt; | Promise used to return the main color information of the wallpaper.|
+| Array&lt;[RgbaColor](#rgbacolordeprecated)&gt; | Promise used to return the main color information of the wallpaper.|
 
 **Example**
 
@@ -390,7 +390,7 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is reset, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -423,7 +423,7 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
 
@@ -460,7 +460,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| URI of a JPEG or PNG file, or pixel map of a PNG file.|
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is set, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -517,7 +517,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| URI of a JPEG or PNG file, or pixel map of a PNG file.|
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
 
@@ -574,13 +574,14 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses an 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes| Callback used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: image.PixelMap) => {
     if (error) {
@@ -608,7 +609,7 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses a p
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
 
@@ -620,6 +621,7 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses a p
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
     console.log(`success to getImage: ${JSON.stringify(data)}`);
@@ -645,7 +647,7 @@ Subscribes to the wallpaper color change event.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to subscribe to. The value **'colorChange'** indicates subscribing to the wallpaper color change event.|
-| callback | function | Yes| Callback triggered when the wallpaper color changes. The wallpaper type and main colors are returned.<br>- colors<br>  Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolor).<br>- wallpaperType<br>  Wallpaper type.|
+| callback | function | Yes| Callback triggered when the wallpaper color changes. The wallpaper type and main colors are returned.<br>- colors<br>  Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolordeprecated).<br>- wallpaperType<br>  Wallpaper type.|
 
 **Example**
 
@@ -677,7 +679,7 @@ Unsubscribes from the wallpaper color change event.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to unsubscribe from. The value **'colorChange'** indicates unsubscribing from the wallpaper color change event.|
-| callback | function | No|   Callback used for unsubscription. If this parameter is not set, this API unsubscribes from all callbacks of the specified event type.<br>- colors<br>  Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolor).<br>- wallpaperType<br>  Wallpaper type.|
+| callback | function | No|   Callback used for unsubscription. If this parameter is not set, this API unsubscribes from all callbacks of the specified event type.<br>- colors<br>  Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolordeprecated).<br>- wallpaperType<br>  Wallpaper type.|
 
 **Example**
 
@@ -722,8 +724,8 @@ Obtains the main color information of the wallpaper of the specified type. This 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
-| callback | AsyncCallback&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | Yes| Callback used to return the main color information of the wallpaper.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
+| callback | AsyncCallback&lt;Array&lt;[RgbaColor](#rgbacolordeprecated)&gt;&gt; | Yes| Callback used to return the main color information of the wallpaper.|
 
 **Example**
 
@@ -755,13 +757,13 @@ Obtains the main color information of the wallpaper of the specified type. This 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | Promise used to return the main color information of the wallpaper.|
+| Promise&lt;Array&lt;[RgbaColor](#rgbacolordeprecated)&gt;&gt; | Promise used to return the main color information of the wallpaper.|
 
 **Example**
 
@@ -791,7 +793,7 @@ Obtains the ID of the wallpaper of the specified type. This API uses an asynchro
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the wallpaper ID. If the wallpaper of the specified type is configured, a number greater than or equal to **0** is returned. Otherwise, **-1** is returned. The value ranges from -1 to (2^31-1).|
 
 **Example**
@@ -824,7 +826,7 @@ Obtains the ID of the wallpaper of the specified type. This API uses a promise t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
 
@@ -1110,7 +1112,7 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is reset, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -1145,7 +1147,7 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
 
@@ -1184,7 +1186,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| URI of a JPEG or PNG file, or pixel map of a PNG file.|
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is set, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -1243,7 +1245,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| URI of a JPEG or PNG file, or pixel map of a PNG file.|
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
 
@@ -1303,7 +1305,7 @@ Obtains the wallpaper of the specified type. This API uses an asynchronous callb
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned.|
 
 **Example**
@@ -1338,7 +1340,7 @@ Obtains the wallpaper of the specified type. This API uses a promise to return t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
 
@@ -1378,13 +1380,14 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses an 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;image.PixelMap&gt; | Yes| Callback used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: image.PixelMap) => {
     if (error) {
@@ -1415,7 +1418,7 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses a p
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
 
@@ -1427,6 +1430,7 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses a p
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
     console.log(`success to getPixelMap : ${JSON.stringify(data)}`);
