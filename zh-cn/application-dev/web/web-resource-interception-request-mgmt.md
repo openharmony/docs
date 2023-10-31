@@ -10,14 +10,13 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
 在下面的示例中，Web组件通过拦截页面请求“https://www.intercept.com/test.html”， 在应用侧代码构建响应资源，实现自定义页面响应场景。
 
 
-- 前端页面example.html代码。
+- 前端页面index.html代码。
 
   ```html
   <!DOCTYPE html>
   <html>
   <head>
       <meta charset="utf-8">
-      <title>example</title>
   </head>
   <body>
   <!-- 页面资源请求 -->
