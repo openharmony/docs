@@ -471,7 +471,7 @@ Obtains the NDEF message from this NDEF tag.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| [tag.NdefMessage](#ndefmessage9)  | NDEF message created. For details, see *NFCForum-TS-NDEF_1.0*.|
+| [NdefMessage](#ndefmessage9)  | NDEF message created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
 **Example**
 ```js
@@ -520,7 +520,7 @@ Reads the NDEF message from this tag. This API uses a promise to return the resu
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| Promise\<[tag.NdefMessage](#ndefmessage9)> | Promise used to return the message read.|
+| Promise\<[NdefMessage](#ndefmessage9)> | Promise used to return the message read.|
 
 **Error codes**
 
@@ -1179,7 +1179,7 @@ if (!mifareClassic.isTagConnected()) {
 try {
     let blockIndex = 1; // Change it as required.
     let rawData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
-        0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, Change it as required.
+        0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // It must be 16 bytes.
     mifareClassic.writeSingleBlock(blockIndex, rawData).then(() => {
         console.log("mifareClassic writeSingleBlock Promise success.");
     }).catch((err : BusinessError)=> {
@@ -1236,7 +1236,7 @@ if (!mifareClassic.isTagConnected()) {
 try {
     let blockIndex = 1; // Change it as required.
     let rawData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
-        0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, Change it as required.
+        0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // It must be 16 bytes.
     mifareClassic.writeSingleBlock(blockIndex, rawData, (err : BusinessError)=> {
         if (err) {
             console.log("mifareClassic writeSingleBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
@@ -2190,7 +2190,7 @@ Formats this tag as an NDEF tag, and writes an NDEF message to it. This API uses
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [tag.NdefMessage](#ndefmessage9) | Yes  | NDEF message to write. If this parameter is **null**, the tag is formatted only (no data will be written).|
+| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write. If this parameter is **null**, the tag is formatted only (no data will be written).|
 
 **Error codes**
 
