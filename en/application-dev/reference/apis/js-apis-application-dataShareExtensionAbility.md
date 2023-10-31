@@ -6,8 +6,9 @@ The **DataShareExtensionAbility** module provides data share services based on t
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs provided by this module are system APIs and can be used only in the stage model.
+> - The APIs provided by this module are system APIs.
 >
+> - The APIs of this module can be used only in the stage model.
 
 
 ## Modules to Import
@@ -36,7 +37,7 @@ Called by the server to initialize service logic when the DataShare client conne
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
-| want | [Want](js-apis-application-want.md#want) | Yes | Want information, including the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md#want) | Yes | Want information, including the ability name and bundle name.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
