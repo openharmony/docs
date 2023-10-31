@@ -6,7 +6,7 @@
 
 - **ArkTS**
 
-  ArkTS是UI开发语言，基于TypeScript（简称TS）语言扩展而来，是TS的超集。扩展能力包含各种装饰器、自定义组件、UI描述机制。状态数据管理作为基于ArkTS的声明式开发范式的特色，通过功能不同的装饰器给开发者提供了清晰的页面更新渲染流程和管道。状态管理包括UI组件状态和应用程序状态，两者协作可以使开发者完整地构建整个应用的数据更新和UI渲染。ArkTS语言的基础知识请参考[学习ArkTS语言](../quick-start/arkts-get-started.md)。
+  ArkTS是OpenHarmony优选的主力应用开发语言，围绕应用开发在[TypeScript](https://www.typescriptlang.org/)（简称TS）生态基础上做了进一步扩展。扩展能力包含声明式UI描述、自定义组件、动态扩展UI元素、状态管理和渲染控制。状态管理作为基于ArkTS的声明式开发范式的特色，通过功能不同的装饰器给开发者提供了清晰的页面更新渲染流程和管道。状态管理包括UI组件状态和应用程序状态，两者协作可以使开发者完整地构建整个应用的数据更新和UI渲染。ArkTS语言的基础知识请参考[初识ArkTS语言](../quick-start/arkts-get-started.md)。
 
 - **布局**
 
