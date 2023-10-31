@@ -201,7 +201,7 @@
        console.error(`Failed to backup data. Code:${err.code},message:${err.message}`);
        return;
      }
-     console.info(`Succeeded in backuping data.`);
+     console.info('Succeeded in backuping data.');
    })
    ```
 
@@ -226,6 +226,6 @@
        console.error(`Failed to restore data. Code:${err.code},message:${err.message}`);
        return;
      }
-     console.info(`Succeeded in restoring data.`);
+     console.info('Succeeded in restoring data.');
    })
    ```
