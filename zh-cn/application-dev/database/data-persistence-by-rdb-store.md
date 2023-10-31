@@ -195,7 +195,7 @@
          console.error(`Failed to insert data. Code:${err.code}, message:${err.message}`);
          return;
        }
-       console.info('Succeeded in inserting data. rowId:${rowId}');
+       console.info(`Succeeded in inserting data. rowId:${rowId}`);
      })
    }
    ```
@@ -234,7 +234,7 @@
          console.error(`Failed to update data. Code:${err.code}, message:${err.message}`);
         return;
       }
-      console.info('Succeeded in updating data. row count: ${rows}');
+      console.info(`Succeeded in updating data. row count: ${rows}`);
      })
    }
 
