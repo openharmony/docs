@@ -7,7 +7,7 @@ Web组件支持在应用拦截到页面请求后自定义响应请求能力。�
 Web网页上发起资源加载请求，应用层收到资源请求消息。应用层构造本地资源响应消息发送给Web内核。Web内核解析应用层响应信息，根据此响应信息进行页面资源加载。
 
 
-在下面的示例中，Web组件通过拦截index.html网页拦截页面请求“https://www.intercept.com/test.html”， 在应用侧代码构建响应资源，实现自定义页面响应场景。
+在下面的示例中，Web组件通过拦截页面请求“https://www.intercept.com/test.html”， 在应用侧代码构建响应资源，实现自定义页面响应场景。
 
 
 - 前端页面index.html代码。
@@ -49,25 +49,23 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
-          .onInterceptRequest((event) => {
-            if (event) {
-              console.log('url:' + event.request.getRequestUrl())
+          .onInterceptRequest((event?: Record<string, WebResourceRequest>): WebResourceResponse => {
+            if (!event) {
+              return new WebResourceResponse();
             }
-            let head1:Header = {
-              headerKey:"Connection",
-              headerValue:"keep-alive"
+            let mRequest: WebResourceRequest = event.request as WebResourceRequest;
+            console.info('TAGLee: url:'+ mRequest.getRequestUrl());
+            //拦截页面请求，如果加载的url判断与目标url一致则返回自定义加载结果webData
+            if(mRequest.getRequestUrl() === 'https://www.intercept.com/test.html'){
+              this.responseResource.setResponseData(this.heads)
+              this.responseResource.setResponseData(this.webdata)
+              this.responseResource.setResponseEncoding('utf-8')
+              this.responseResource.setResponseMimeType('text/html')
+              this.responseResource.setResponseCode(200)
+              this.responseResource.setReasonMessage('OK')
+              return this.responseweb
             }
-            let head2:Header = {
-              headerKey:"Cache-Control",
-              headerValue:"no-cache"
-            }
-            this.responseweb.setResponseHeader(this.heads)
-            this.responseweb.setResponseData(this.webdata)
-            this.responseweb.setResponseEncoding('utf-8')
-            this.responseweb.setResponseMimeType('text/html')
-            this.responseweb.setResponseCode(200)
-            this.responseweb.setReasonMessage('OK')
-            return this.responseweb
+            return;
           })
       }
     }
