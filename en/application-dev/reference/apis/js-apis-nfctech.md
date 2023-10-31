@@ -1179,7 +1179,7 @@ if (!mifareClassic.isTagConnected()) {
 try {
     let blockIndex = 1; // Change it as required.
     let rawData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
-        0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, Change it as required.
+        0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // It must be 16 bytes.
     mifareClassic.writeSingleBlock(blockIndex, rawData).then(() => {
         console.log("mifareClassic writeSingleBlock Promise success.");
     }).catch((err : BusinessError)=> {
@@ -1236,7 +1236,7 @@ if (!mifareClassic.isTagConnected()) {
 try {
     let blockIndex = 1; // Change it as required.
     let rawData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
-        0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, Change it as required.
+        0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // It must be 16 bytes.
     mifareClassic.writeSingleBlock(blockIndex, rawData, (err : BusinessError)=> {
         if (err) {
             console.log("mifareClassic writeSingleBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
