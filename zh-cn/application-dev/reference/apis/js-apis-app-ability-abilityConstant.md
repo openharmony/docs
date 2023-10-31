@@ -238,7 +238,7 @@ class MyAbility extends UIAbility {
 
 ## AbilityConstant.ContinueState<sup>10+</sup>
 
-ContinueState说明枚举值。用于表示当前应用任务流转的状态。可配合[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)方法进行设置。
+流转状态枚举值。用于表示当前应用任务流转的状态。可配合[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)方法进行设置。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
