@@ -99,8 +99,8 @@ Ability迁移结果，该类型为枚举，可配合[Ability](js-apis-app-abilit
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | AGREE           | 0    | 表示同意。 |
-| REJECT           | 1    | 表示拒绝：如应用在onContinue中异常会导致迁移以后数据恢复时显示异常，则可以建议REJECT。 |
-| MISMATCH  | 2    | 表示版本不匹配：迁移发起端应用可以在onContinue中获取到迁移目标端应用的版本号，进行协商后，如果版本不匹配导致无法迁移，可以返回该错误。|
+| REJECT           | 1    | 表示拒绝：如应用在[onContinue](js-apis-app-ability-uiAbility.md#uiabilityoncontinue)中异常会导致迁移以后数据恢复时显示异常，则可以建议REJECT。 |
+| MISMATCH  | 2    | 表示版本不匹配：迁移发起端应用可以在[onContinue](js-apis-app-ability-uiAbility.md#uiabilityoncontinue)中获取到迁移目标端应用的版本号，进行协商后，如果版本不匹配导致无法迁移，可以返回该错误。|
 
 **示例：**
 
