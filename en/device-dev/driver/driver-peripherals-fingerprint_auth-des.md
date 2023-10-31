@@ -53,7 +53,7 @@ The identity authentication consists of the User_auth framework and basic authen
 
 - HAPs
 
-  OpenHarmony Ability Packages (HAPs) represent the upper-layer applications of the Fingerprint_auth driver in this document.
+  Harmony Ability Packages (HAPs) represent the upper-layer applications of the Fingerprint_auth driver in this document.
 
 - IDL interface
 
