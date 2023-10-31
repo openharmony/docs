@@ -493,3 +493,155 @@ try {
     console.error("getBundleInfo failed " + message);
 }
 ```
+
+## appControl.getDisposedRule<sup>11+</sup>
+
+getDisposedRule(appId: string): DisposedRule
+
+以同步方法获取指定应用已设置的处置状态。
+
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+**系统API：**  此接口为系统接口。
+
+**参数：**
+
+| 参数名       | 类型     | 必填   | 说明                                    |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appId  | string | 是    | 要删除处置状态的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| [DisposedRule](#disposedrule11) | 指示何时拦截指定的应用程序。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| ------ | -------------------------------------- |
+| 17700005 |  The specified app ID is an empty string.  |
+
+**示例：**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appId = "com.example.myapplication_xxxxx";
+let disposedRule: DisposedRule;
+
+try {
+  disposedRule = appControl.getDisposedRule(appId);
+  console.info('getDisposedRule successfully. Data: ' + JSON.stringify(disposedRule));
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('getDisposedRule failed ' + message);
+}
+```
+
+## appControl.setDisposedRule<sup>11+</sup>
+
+setDisposedRule(appId: string, rule: DisposedRule): void
+
+以同步方法设置指定应用的处置状态。
+
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+**系统API：**  此接口为系统接口。
+
+**参数：**
+
+| 参数名       | 类型     | 必填   | 说明                                    |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appId  | string | 是    | 要删除处置状态的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
+| rule | [DisposedRule](#disposedrule11) | 是 | 指示何时拦截指定的应用程序。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| ------ | -------------------------------------- |
+| 17700005 |  The specified app ID is an empty string.  |
+
+**示例：**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appId = "com.example.myapplication_xxxxx";
+let disposedRule: DisposedRule;
+
+try {
+  disposedRule = appControl.setDisposedRule(appId, disposedRule);
+  console.info('setDisposedRule successfully. Data: ' + JSON.stringify(disposedRule));
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('setDisposedRule failed ' + message);
+}
+```
+
+## DisposedRule<sup>11+</sup>
+
+标识拦截规则。
+
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.AppControl。
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+| want | [Want](js-apis-app-ability-want.md)     | 是   | 否   | 拦截时想要提升的能力。 |
+| componentType | [ComponentType](#componenttype11)  | 是   | 否   | 拦截时将提升的能力的类型。 |
+| disposedType | [DisposedType](#disposedrule11) | 是 | 否 | 指示何时拦截指定的应用程序。 |
+| controlType | [ControlType](#controltype11) | 是 | 否 | 拦截指定应用程序的不同策略。 |
+| elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | 是 | 否 | 拦截指定应用程序能力的列表。 |
+| priority | number | 是 | 否 | 拦截规则的优先级。 |
+
+### ComponentType<sup>11+</sup>
+
+标识功能组件类型。
+
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.AppControl。
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称    | 值   | 说明                 |
+| ------- | ---- | -------------------- |
+| UI_ABILITY | 1    | UI基础功能类型。 |
+| UI_EXTENSION | 2    | UI扩展能力类型。 |
+
+### DisposedType<sup>11+</sup>
+
+标识何时拦截指定的应用程序。
+
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.AppControl。
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称    | 值   | 说明                 |
+| ------- | ---- | -------------------- |
+| BLOCK_APPLICATION | 1    | 应用所有能力都将被禁用。 |
+| BLOCK_ABILITY | 2    | 应用指定的能力才会被禁用。 |
+| NON_BLOCK | 3 | 应用所有能力不会被禁用。 |
+
+### ControlType<sup>11+</sup>
+
+标识拦截指定应用程序的不同策略。
+
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.AppControl。
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称    | 值   | 说明                 |
+| ------- | ---- | -------------------- |
+| ALLOWED_LIST | 1    | 只允许运行指定功能的列表。 |
+| DISALLOWED_LIST | 2    | 不允许运行指定功能的列表。 |
