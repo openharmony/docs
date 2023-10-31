@@ -80,6 +80,6 @@ relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
     console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
     return;
   }
-  console.info(`Succeeded in getting RdbStore.`);
+  console.info('Succeeded in getting RdbStore.');
 })
 ```
