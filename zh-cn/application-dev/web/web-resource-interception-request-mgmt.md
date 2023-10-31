@@ -10,13 +10,14 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
 在下面的示例中，Web组件通过拦截页面请求“https://www.intercept.com/test.html”， 在应用侧代码构建响应资源，实现自定义页面响应场景。
 
 
-- 前端页面index.html代码。
+- 前端页面example.html代码。
 
   ```html
   <!DOCTYPE html>
   <html>
   <head>
       <meta charset="utf-8">
+      <title>example</title>
   </head>
   <body>
   <!-- 页面资源请求 -->
@@ -35,7 +36,8 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    responseweb: WebResourceResponse = new WebResourceResponse()
+    // 开发者自定义响应数据
+    responseResource: WebResourceResponse = new WebResourceResponse()
     heads:Header[] = new Array()
     @State webdata: string = "<!DOCTYPE html>\n" +
     "<html>\n"+
@@ -57,12 +59,13 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
             console.info('TAGLee: url:'+ mRequest.getRequestUrl());
             //拦截页面请求，如果加载的url判断与目标url一致则返回自定义加载结果webData
             if(mRequest.getRequestUrl() === 'https://www.intercept.com/test.html'){
-              this.responseweb.setResponseData(this.webdata);
-              this.responseweb.setResponseEncoding('utf-8');
-              this.responseweb.setResponseMimeType('text/html');
-              this.responseweb.setResponseCode(200);
-              this.responseweb.setReasonMessage('OK');
-              return this.responseweb;
+              // 构造响应数据
+              this.responseResource.setResponseData(this.webdata);
+              this.responseResource.setResponseEncoding('utf-8');
+              this.responseResource.setResponseMimeType('text/html');
+              this.responseResource.setResponseCode(200);
+              this.responseResource.setReasonMessage('OK');
+              return this.responseResource;
             }
             return;
           })
