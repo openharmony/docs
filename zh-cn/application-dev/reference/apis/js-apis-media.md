@@ -370,7 +370,7 @@ media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) =
   } else {
     console.error('create SoundPool fail');
   }
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`soundpool catchCallback, error message:${error.message}`);
 });
 ```
