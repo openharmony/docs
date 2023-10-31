@@ -60,8 +60,8 @@
     handleFormRouterEvent(want: Want) {
       console.info('Want:' + JSON.stringify(want));
       if (want.parameters && want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
-        let curFormId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
-        let message: string = JSON.parse(JSON.stringify(want.parameters.params)).detail;
+        let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY].toString();
+        let message: string = JSON.parse(want.parameters.params.toString()).detail;
         console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData: Record<string, string> = {
           "detail": message + ': UIAbility.', // 和卡片布局中对应
@@ -78,8 +78,8 @@
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
       console.info('onNewWant Want:' + JSON.stringify(want));
       if (want.parameters && want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
-        let curFormId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
-        let message: string = JSON.parse(JSON.stringify(want.parameters.params)).detail;
+        let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY].toString();
+        let message: string = JSON.parse(want.parameters.params.toString()).detail;
         console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData: Record<string, string> = {
           "detail": message + ': onNewWant UIAbility.', // 和卡片布局中对应
