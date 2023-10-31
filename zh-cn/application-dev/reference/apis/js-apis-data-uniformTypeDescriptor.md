@@ -20,7 +20,10 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 
 | 名称                         | 值                            | 说明                                 |
 |----------------------------|------------------------------|------------------------------------|
-| TEXT                       | 'general.text'                   | 所有文本的基类型。                          |
+| ENTITY<sup>11+</sup>                       | 'general.entity'                   | 物理层面结构的基本类型。                          |
+| OBJECT<sup>11+</sup>                       | 'general.object'                   | 逻辑层面结构的基本类型。                          |
+| COMPOSITE_OBJECT<sup>11+</sup>                       | 'general.composite-object'                   | 混合对象的基类型，例如：PDF文件包含文本和特殊格式数据，归属类型为OBJECT。                          |
+| TEXT                       | 'general.text'                   | 所有文本的基类型，归属类型为OBJECT。                          |
 | PLAIN_TEXT                | 'general.plain-text'             | 未指定编码的文本类型，没有标识符，归属类型为TEXT。        |
 | HTML                  | 'general.html'                   | HTML文本类型， 归属类型为TEXT。               |
 | HYPERLINK         | 'general.hyperlink'              | 超链接类型， 归属类型为TEXT。                  |
@@ -33,20 +36,20 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | PHP_SCRIPT<sup>11+</sup>         | 'general.php-script'           | PHP脚本类型， 归属类型为SHELL_SCRIPT。        |
 | PYTHON_SCRIPT<sup>11+</sup>        | 'general.python-script'          | Python脚本类型， 归属类型为SHELL_SCRIPT。     |
 | RUBY_SCRIPT<sup>11+</sup>                         | 'general.ruby-script'                   | Ruby脚本类型， 归属类型为SHELL_SCRIPT。       |
-| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript源代码类型， 归属类型为SOURCE_CODE。 |
-| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript源代码类型， 归属类型为SOURCE_CODE。 |
+| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript源代码类型， 归属类型为SCRIPT。 |
+| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript源代码类型， 归属类型为SCRIPT。 |
 | C_HEADER<sup>11+</sup>                        | 'general.c-header'                  | C头文件类型， 归属类型为SOURCE_CODE。          |
 | C_SOURCE<sup>11+</sup>                       | 'general.c-source'                 | C源代码类型， 归属类型为SOURCE_CODE。          |
 | C_PLUS_PLUS_HEADER<sup>11+</sup>             | 'general.c-plus-plus-header'               | C++头文件类型， 归属类型为SOURCE_CODE。        |
 | C_PLUS_PLUS_SOURCE<sup>11+</sup>         | 'general.c-plus-plus-source'           | C++源代码类型， 归属类型为SOURCE_CODE。        |
 | JAVA_SOURCE<sup>11+</sup>        | 'general.java-source'          | Java源代码类型， 归属类型为SOURCE_CODE。       |
-| EBOOK<sup>11+</sup>                         | 'general.ebook'                   | 所有电子书文件格式的基类型。                     |
+| EBOOK<sup>11+</sup>                         | 'general.ebook'                   | 所有电子书文件格式的基类型， 归属类型为COMPOSITE_OBJECT。                     |
 | EPUB<sup>11+</sup>                        | 'general.epub'                  | 电子出版物（EPUB）文件格式类型， 归属类型为EBOOK。     |
 | AZW<sup>11+</sup>                        | 'com.amazon.azw'                  | AZW电子书文件格式类型， 归属类型为EBOOK。          |
 | AZW3<sup>11+</sup>                        | 'com.amazon.azw3'                  | AZW3电子书文件格式类型， 归属类型为EBOOK。         |
 | KFX<sup>11+</sup>                       | 'com.amazon.kfx'                 | KFX电子书文件格式类型， 归属类型为EBOOK。          |
 | MOBI<sup>11+</sup>             | 'com.amazon.mobi'               | MOBI电子书文件格式类型， 归属类型为EBOOK。         |
-| MEDIA<sup>11+</sup>         | 'general.media'           | 所有媒体的基类型。                          |
+| MEDIA<sup>11+</sup>         | 'general.media'           | 所有媒体的基类型，归属类型为OBJECT。                          |
 | IMAGE        | 'general.image'          | 所有图片的基类型， 归属类型为MEDIA。              |
 | JPEG<sup>11+</sup>                         | 'general.jpeg'                   | JPEG图片类型， 归属类型为IMAGE。              |
 | PNG<sup>11+</sup>                        | 'general.png'                  | PNG图片类型， 归属类型为IMAGE。               |
@@ -56,12 +59,12 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | ICO<sup>11+</sup>             | 'com.microsoft.ico'               | WINDOWS图标图像类型， 归属类型为IMAGE。         |
 | PHOTOSHOP_IMAGE<sup>11+</sup>         | 'com.adobe.photoshop-image'           | Adobe Photoshop图片类型， 归属类型为IMAGE。   |
 | AI_IMAGE<sup>11+</sup>        | 'com.adobe.illustrator.ai-image'          | Adobe Illustrator图片类型， 归属类型为IMAGE。 |
-| WORD_DOC<sup>11+</sup>                         | 'com.microsoft.word.doc'                   | Microsoft Word数据类型。                |
-| EXCEL<sup>11+</sup>                        | 'com.microsoft.excel.xls'                  | Microsoft Excel数据类型。               |
-| PPT<sup>11+</sup>                        | 'com.microsoft.powerpoint.ppt'                  | Microsoft PowerPoint演示文稿类型。        |
-| PDF<sup>11+</sup>                        | 'com.adobe.pdf'                  | PDF数据类型。                           |
-| POSTSCRIPT<sup>11+</sup>                       | 'com.adobe.postscript'                 | PostScript数据类型。                    |
-| ENCAPSULATED_POSTSCRIPT<sup>11+</sup>             | 'com.adobe.encapsulated-postscript'               | Encapsulated PostScript类型。         |
+| WORD_DOC<sup>11+</sup>                         | 'com.microsoft.word.doc'                   | Microsoft Word数据类型， 归属类型为COMPOSITE_OBJECT。                |
+| EXCEL<sup>11+</sup>                        | 'com.microsoft.excel.xls'                  | Microsoft Excel数据类型， 归属类型为COMPOSITE_OBJECT。               |
+| PPT<sup>11+</sup>                        | 'com.microsoft.powerpoint.ppt'                  | Microsoft PowerPoint演示文稿类型， 归属类型为COMPOSITE_OBJECT。        |
+| PDF<sup>11+</sup>                        | 'com.adobe.pdf'                  | PDF数据类型，归属类型为COMPOSITE_OBJECT。                           |
+| POSTSCRIPT<sup>11+</sup>                       | 'com.adobe.postscript'                 | PostScript数据类型，归属类型为COMPOSITE_OBJECT。                    |
+| ENCAPSULATED_POSTSCRIPT<sup>11+</sup>             | 'com.adobe.encapsulated-postscript'               | Encapsulated PostScript类型，归属类型为POSTSCRIPT。         |
 | VIDEO       | 'general.video'           | 所有视频的基类型， 归属类型为MEDIA。              |
 | AVI<sup>11+</sup>        | 'general.avi'          | AVI视频类型， 归属类型为VIDEO。               |
 | MPEG<sup>11+</sup>                         | 'general.mpeg'                   | MPGE-1或MPGE-2视频类型， 归属类型为VIDEO。     |
@@ -84,11 +87,11 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | WINDOWS_MEDIA_WMX<sup>11+</sup>                        | 'com.microsoft.windows-media-wmx'                  | WINDOWS WMX音频类型， 归属类型为AUDIO。       |
 | WINDOWS_MEDIA_WVX<sup>11+</sup>                        | 'com.microsoft.windows-media-wvx'                  | WINDOWS WVX音频类型， 归属类型为AUDIO。       |
 | WINDOWS_MEDIA_WAX<sup>11+</sup>                        | 'com.microsoft.windows-media-wax'                  | WINDOWS WAX音频类型， 归属类型为AUDIO。       |
-| FILE                       | 'general.file'                 | 所有文件的基类型。                          |
-| DIRECTORY<sup>11+</sup>             | 'general.directory'               | 所有目录的基类型。                          |
-| FOLDER        | 'general.folder'           | 所有文件夹的基类型。                         |
-| SYMLINK<sup>11+</sup>        | 'general.symlink'          | 所有符号链接的基类型。                        |
-| ARCHIVE<sup>11+</sup>                         | 'general.archive'                   | 所有文件和目录存档文件的基类型。                   |
+| FILE                       | 'general.file'                 | 所有文件的基类型， 归属类型为ENTITY。                          |
+| DIRECTORY<sup>11+</sup>             | 'general.directory'               | 所有目录的基类型， 归属类型为ENTITY。                          |
+| FOLDER        | 'general.folder'           | 所有文件夹的基类型， 归属类型为DIRECTORY。                         |
+| SYMLINK<sup>11+</sup>        | 'general.symlink'          | 所有符号链接的基类型，归属类型为ENTITY。                        |
+| ARCHIVE<sup>11+</sup>                         | 'general.archive'                   | 所有文件和目录存档文件的基类型，归属类型为OBJECT。                   |
 | BZ2_ARCHIVE<sup>11+</sup>                        | 'general.bz2-archive'                  | BZ2存档文件类型， 归属类型为ARCHIVE。           |
 | DISK_IMAGE<sup>11+</sup>                        | 'general.disk-image'                  | 所有可作为卷装载项的文件类型的基类型， 归属类型为ARCHIVE。  |
 | TAR_ARCHIVE<sup>11+</sup>                        | 'general.tar-archive'                  | TAR存档文件类型， 归属类型为ARCHIVE。           |
@@ -97,18 +100,19 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | GNU_TAR_ARCHIVE<sup>11+</sup>         | 'org.gnu.gnu-tar-archive'           | GUN存档文件类型， 归属类型为ARCHIVE。           |
 | GNU_ZIP_ARCHIVE<sup>11+</sup>        | 'org.gnu.gnu-zip-archive'          | GZIP存档文件类型， 归属类型为ARCHIVE。          |
 | GNU_ZIP_TAR_ARCHIVE<sup>11+</sup>                         | 'org.gnu.gnu-zip-tar-archive'                   | GZIP TAR存档文件类型，归属类型为ARCHIVE。       |
-| CALENDAR<sup>11+</sup>                        | 'general.calendar'                  | 所有日程类数据的基类型。                       |
-| CONTACT<sup>11+</sup>                        | 'general.contact'                  | 所有联系人类数据的基类型。                      |
-| DATABASE<sup>11+</sup>                        | 'general.database'                  | 所有数据库文件的基类型。                       |
-| MESSAGE<sup>11+</sup>                       | 'general.message'                 | 所有消息类数据的基类型。                       |
-| VCARD<sup>11+</sup>             | 'general.vcard'               | 所有电子名片类数据的基类型。                     |
-| NAVIGATION<sup>11+</sup>         | 'general.navigation'           | 所有导航类数据的基类型。                       |
+| CALENDAR<sup>11+</sup>                        | 'general.calendar'                  | 所有日程类数据的基类型，归属类型为OBJECT。                       |
+| CONTACT<sup>11+</sup>                        | 'general.contact'                  | 所有联系人类数据的基类型，归属类型为OBJECT。                      |
+| DATABASE<sup>11+</sup>                        | 'general.database'                  | 所有数据库文件的基类型，归属类型为OBJECT。                       |
+| MESSAGE<sup>11+</sup>                       | 'general.message'                 | 所有消息类数据的基类型，归属类型为OBJECT。                       |
+| VCARD<sup>11+</sup>             | 'general.vcard'               | 所有电子名片类数据的基类型，归属类型为OBJECT。                     |
+| NAVIGATION<sup>11+</sup>         | 'general.navigation'           | 所有导航类数据的基类型，归属类型为OBJECT。                       |
 | LOCATION<sup>11+</sup>        | 'general.location'          | 导航定位类型，归属类型为NAVIGATION。            |
-| OPENHARMONY_FORM                         | 'openharmony.form'                   | OpenHarmony系统定义的卡片类型。              |
-| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | OpenHarmony系统定义的桌面图标类型。            |
-| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | OpenHarmony系统定义的像素图类型。             |
-| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | OpenHarmony系统定义的元服务类型。             |
-
+| OPENHARMONY_FORM                         | 'openharmony.form'                   | OpenHarmony系统定义的卡片类型，归属类型为OBJECT。              |
+| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | OpenHarmony系统定义的桌面图标类型，归属类型为OBJECT。            |
+| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | OpenHarmony系统定义的像素图类型，归属类型为IMAGE。             |
+| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | OpenHarmony系统定义的元服务类型，归属类型为OBJECT。             |
+| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | OpenHarmony系统定义的包，即将目录作为文件呈现给用户，归属类型为DIRECTORY。             |
+| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | OpenHarmony系统定义的能力包，归属类型为OPENHARMONY_PACKAGE。             |
 
 ## TypeDescriptor<sup>11+</sup> 
 
@@ -122,7 +126,85 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | belongingToTypes<sup>11+</sup>  | Array\<string>          | 是   | 否   | 标准化数据类型所归属的类型typeId列表。                                   |
 | description<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的简要说明。                                            |
 | referenceURL<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的参考链接URL，用于描述类型的详细信息。                            |
-| iconFile<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的默认图标文件路径，可能为空字符串（即没有默认图标），应用可以自行决定是否使用该默认图标。                                        |
+| iconFile<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的默认图标文件路径，可能为空字符串（即没有默认图标），应用可以自行决定是否使用该默认图标。                                   |
+
+### belongsTo<sup>11+</sup> 
+
+belongsTo(type: string): boolean
+
+判断当前标准化数据类型是否归属于指定的标准化数据类型。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| type    | string  | 是    |所指定的标准化数据类型。   |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示当前的标准化数据类型归属于所指定的标准化数据类型，包括所指定类型与当前类型相同的情况；返回false则表示无归属关系。 |
+
+**示例：**
+
+```ts
+
+```
+
+### isLowerLevelType<sup>11+</sup> 
+
+isLowerLevelType(type: string): boolean
+
+判断当前标准化数据类型是否归属于指定的标准化数据类型。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| type    | string  | 是    |所指定的标准化数据类型。   |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示当前的标准化数据类型归属于所指定的标准化数据类型，不包括所指定标准化数据类型与当前标准化数据类型相同的情况；返回false则表示不归属于指定标准化数据类型。 |
+
+**示例：**
+
+```ts
+
+```
+
+### isHigherLevelType<sup>11+</sup> 
+
+isHigherLevelType(type: string): boolean
+
+判断指定的标准化数据类型是否归属于当前标准化数据类型。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| type    | string  | 是    |所指定的标准化数据类型。   |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示所指定的标准化数据类型归属于当前的标准化数据类型，不包括所指定标准化数据类型与当前标准化数据类型相同的情况；返回false则表示不归属于当前标准化数据类型。 |
+
+**示例：**
+
+```ts
+
+```
 
 ### equals<sup>11+</sup> 
 
@@ -160,6 +242,60 @@ try{
     let error: BusinessError = e as BusinessError;
     console.error(`throws an exception. code is ${error.code}, message is ${error.message} `);
 }
+```
+
+## uniformTypeDescriptor.getUniformDataTypeByFilenameExtension<sup>11+</sup>
+
+getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: string): string
+
+根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型的ID。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| filenameExtension    | string  | 是    |文件后缀名称。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。   |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| string | 返回与给定文件后缀名以及归属类型ID匹配的标准化数据类型ID（如果设置了belongsTo参数），如果要查询的标准化数据类型不存在，则返回null。 |
+
+**示例：**
+
+```ts
+
+```
+
+## uniformTypeDescriptor.getUniformDataTypeByMIMEType<sup>11+</sup>
+
+getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
+
+根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型的ID。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| mimeType    | string  | 是    |MIME类型名称。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。   |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| string | 返回与MIME类型名称以及归属类型ID匹配的标准化数据类型ID（如果设置了belongsTo参数），如果要查询的标准化数据类型不存在，则返回null。 |
+
+**示例：**
+
+```ts
+
 ```
 
 ## uniformTypeDescriptor.getTypeDescriptor<sup>11+</sup>
