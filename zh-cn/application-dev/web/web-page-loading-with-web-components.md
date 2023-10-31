@@ -9,10 +9,10 @@
 
 ## 加载网络页面
 
-开发者可以在Web组件创建的时候指定默认加载的网络页面 。在默认页面加载完成后，如果开发者需要变更此Web组件显示的网络页面，可以通过调用[loadUrl()](../reference/apis/js-apis-webview.md#loadurl)接口加载指定网络网页。
+开发者可以在Web组件创建时，指定默认加载的网络页面 。在默认页面加载完成后，如果开发者需要变更此Web组件显示的网络页面，可以通过调用[loadUrl()](../reference/apis/js-apis-webview.md#loadurl)接口加载指定的网页。
 
 
-在下面的示例中，在Web组件加载完“www.example.com”页面后，开发者可通过loadUrl接口将此Web组件显示页面变更为“www.example1.com”。
+在下面的示例中，在Web组件加载完“www\.example.com”页面后，开发者可通过loadUrl接口将此Web组件显示页面变更为“www\.example1.com”。
 
 
 

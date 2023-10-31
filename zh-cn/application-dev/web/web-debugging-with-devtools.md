@@ -18,7 +18,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
    struct WebComponent {
      controller: web_webview.WebviewController = new web_webview.WebviewController();
      aboutToAppear() {
-       // 配置web开启调试模式
+       // 配置Web开启调试模式
        web_webview.WebviewController.setWebDebuggingAccess(true);
      }
      build() {
@@ -28,7 +28,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
      }
    }
    ```
-2. 开启调试功能需要在DevEco Studio应用工程的module.json5中增加权限, 具体如下：
+2. 开启调试功能需要在DevEco Studio应用工程的module.json5文件中增加权限, 具体如下：
 
    ```
    "requestPermissions":[
@@ -47,7 +47,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
    hdc fport ls
    ```
 
-4. 在电脑端chrome浏览器地址栏中输入chrome://inspect/\#devices，页面识别到设备后，就可以开始页面调试。调试效果如下：
+4. 在电脑端Chrome浏览器地址栏中输入chrome://inspect/\#devices，页面识别到设备后，就可以开始页面调试。调试效果如下：
 
      **图1** 页面调试效果图  
 
