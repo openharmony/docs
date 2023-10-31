@@ -57,13 +57,12 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
             console.info('TAGLee: url:'+ mRequest.getRequestUrl());
             //拦截页面请求，如果加载的url判断与目标url一致则返回自定义加载结果webData
             if(mRequest.getRequestUrl() === 'https://www.intercept.com/test.html'){
-              this.responseResource.setResponseData(this.heads)
-              this.responseResource.setResponseData(this.webdata)
-              this.responseResource.setResponseEncoding('utf-8')
-              this.responseResource.setResponseMimeType('text/html')
-              this.responseResource.setResponseCode(200)
-              this.responseResource.setReasonMessage('OK')
-              return this.responseweb
+              this.responseweb.setResponseData(this.webdata);
+              this.responseweb.setResponseEncoding('utf-8');
+              this.responseweb.setResponseMimeType('text/html');
+              this.responseweb.setResponseCode(200);
+              this.responseweb.setReasonMessage('OK');
+              return this.responseweb;
             }
             return;
           })
