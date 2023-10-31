@@ -63,6 +63,10 @@ The identity authentication consists of the User_auth framework and basic authen
 
   Inter-Process Communication (IPC) is a mechanism that allows processes to communicate with each other.
 
+- HDI
+
+  The hardware device interface (HDI) is located between the basic system service layer and the device driver layer. It provides APIs for abstracting hardware device functions, which shields underlying hardware device differences for system services. For details, see [HDI Specifications](../../design/hdi-design-specifications.md).
+
 ### Working Principles
 
 The fingerprint_auth driver provides stable basic fingerprint authentication capabilities for the upper-layer User_auth framework and Fingerprint_auth service to ensure successful fingerprint authentication on devices. 
