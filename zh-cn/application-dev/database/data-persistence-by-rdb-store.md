@@ -72,7 +72,7 @@
            console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
            return;
          }
-         console.info(`Succeeded in getting RdbStore.`);
+         console.info('Succeeded in getting RdbStore.');
          store.executeSql(SQL_CREATE_TABLE); // 创建数据表
    
          // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
@@ -104,7 +104,7 @@
        console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
        return;
      }
-     console.info(`Succeeded in getting RdbStore.`);
+     console.info('Succeeded in getting RdbStore.');
      store.executeSql(SQL_CREATE_TABLE); // 创建数据表
    
      // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
@@ -132,7 +132,7 @@
        console.error(`Failed to insert data. Code:${err.code}, message:${err.message}`);
        return;
      }
-     console.info(`Succeeded in inserting data. rowId:${rowId}`);
+     console.info('Succeeded in inserting data. rowId:${rowId}');
    })
    ```
 
@@ -159,7 +159,7 @@
        console.error(`Failed to update data. Code:${err.code}, message:${err.message}`);
        return;
      }
-     console.info(`Succeeded in updating data. row count: ${rows}`);
+     console.info('Succeeded in updating data. row count: ${rows}');
    })
    
    // 删除数据
