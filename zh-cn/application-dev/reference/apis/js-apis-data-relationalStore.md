@@ -4360,7 +4360,7 @@ if(store != undefined) {
 
 cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-手动执行端云条件同步，使用callback异步回调。使用该接口需要实现云同步功能。
+手动执行按条件进行端云同步，使用callback异步回调。使用该接口需要实现云同步功能。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 
 
@@ -4373,7 +4373,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 | 参数名         | 类型                             | 必填 | 说明                            |
 |-------------|--------------------------------| ---- |-------------------------------|
 | mode        | [SyncMode](#syncmode)          | 是   | 表示数据库的同步模式。                   |
-| predicates  | [RdbPredicates](#rdbpredicates)                  | 是   | 表示同步条件。                       |
+| predicates  | [RdbPredicates](#rdbpredicates)                  | 是   | 表示同步数据的谓词条件。                  |
 | progress    | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。           |
 | callback    | AsyncCallback&lt;void&gt;      | 是   | 指定的callback回调函数，用于向调用者发送同步结果。 |
 
@@ -4400,7 +4400,7 @@ if(store != undefined) {
 
 cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
-手动执行端云条件同步，使用Promise异步处理。使用该接口需要实现云同步功能。
+手动执行按条件进行端云同步，使用Promise异步处理。使用该接口需要实现云同步功能。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 
 
@@ -4413,7 +4413,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 | 参数名        | 类型                              | 必填 | 说明                  |
 |------------|---------------------------------| ---- |---------------------|
 | mode       | [SyncMode](#syncmode)           | 是   | 表示数据库的同步模式。         |
-| predicates | [RdbPredicates](#rdbpredicates)                   | 是   | 表示同步条件。                |
+| predicates | [RdbPredicates](#rdbpredicates)                   | 是   | 表示同步数据的谓词条件。                |
 | progress   | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。 |
 
 **返回值**：
@@ -4718,16 +4718,16 @@ try {
 
 off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
 
-在已打开端云同步，并且网络状态正常的条件下，取消自动同步进度的通知。
+取消自动同步进度的通知。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
-| 参数名       | 类型                              | 必填 | 说明                              |
-| ------------ |---------------------------------| ---- |-----------------------------------|
-| event        | string                          | 是   | 取值为'autoSyncProgress'，表示自动同步进度通知。|
-| observer     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 否   | 指已注册的自动同步进度观察者。该参数存在，则取消指定回调，否则取消所有回调。|
+| 参数名       | 类型                              | 必填 | 说明                                                           |
+| ------------ |---------------------------------| ---- |--------------------------------------------------------------|
+| event        | string                          | 是   | 取值为'autoSyncProgress'，表示自动同步进度通知。                            |
+| observer     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 否   | 指已注册的自动同步进度观察者。该参数存在，则取消指定回调，该参数为null或undefined或不存在，则取消所有回调。 |
 
 **示例：**
 
