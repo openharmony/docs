@@ -1341,7 +1341,7 @@ domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 
 ## AddFilterRule
 
-添加网络包过滤规则。
+添加网络包过滤规则
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
