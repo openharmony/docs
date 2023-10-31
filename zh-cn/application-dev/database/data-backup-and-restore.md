@@ -197,11 +197,11 @@
    ```ts
    import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-   let key1 = "NAME";
-   let key2 = "AGE";
-   let key3 = "SALARY";
-   let key4 = "CODES";
-   let value1 = "Rose";
+   let key1 = 'NAME';
+   let key2 = 'AGE';
+   let key3 = 'SALARY';
+   let key4 = 'CODES';
+   let value1 = 'Rose';
    let value2 = 22;
    let value3 = 200.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
@@ -231,7 +231,7 @@
          console.error(`Failed to backup data. Code:${err.code},message:${err.message}`);
          return;
        }
-       console.info(`Succeeded in backuping data.`);
+       console.info('Succeeded in backuping data.');
      })
    }
    ```
@@ -259,7 +259,7 @@
          console.error(`Failed to restore data. Code:${err.code},message:${err.message}`);
          return;
        }
-       console.info(`Succeeded in restoring data.`);
+       console.info('Succeeded in restoring data.');
      })
    }
    ```
