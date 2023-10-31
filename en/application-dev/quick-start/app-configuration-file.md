@@ -1,7 +1,7 @@
 # app.json5 Configuration File
 
 
-This document gives an overview of the **app.json5** configuration file. To start with, let's go through an example of what this file contains.
+This topic gives an overview of the **app.json5** configuration file. To start with, let's go through an example of what this file contains.
 
 ```json
 {

@@ -4,7 +4,7 @@ During application development, you may need to use different resources, such as
 
 - Application resources: Configure device- or configuration-specific resources in the resource files.
 
-- System resources: Use the preset resource definitions (that is, [layered parameters](../../design/ux-design/design-resources.md), with which a resource with the same ID has different values under different configurations, including device types and color modes).
+- System resources: Use the preset resource definitions (that is, layered parameters), with which a resource with the same ID has different values under different configurations, including device types and color modes).
 
 ## Resource Categories
 
@@ -284,14 +284,13 @@ System resources include colors, rounded corners, fonts, spacing, character stri
 
 To reference a system resource, use the **"$r('sys.type.resource_id')"** format. Wherein: **sys** indicates a system resource; **type** indicates the resource type, which can be **color**, **float**, **string**, or **media**; **resource_id** indicates the resource ID.
 
-For details about the supported system resource IDs and their values under different configurations, see [Resources in Application UX Design](../../design/ux-design/design-resources.md).
 
 > **NOTE**
 >
 > - The use of system resources is supported in the declarative development paradigm, but not in the web-like development paradigm.
 >
 > - For details about the implementation of preconfigured resources, visit the [OpenHarmony/resources repository](https://gitee.com/openharmony/resources/tree/master/systemres/main/resources). The directory structure there is similar to that of the **resources** directory in the project. Resource qualifiers are used to match resources with different devices and device states.
-> - For details about the use cases, IDs, and parameters of system resources, see [OpenHarmony System Resource Layer Design V1.0.xlsm](../../design/ux-design/design-resources.md).
+
 
 ```ts
 Text('Hello')
@@ -312,4 +311,3 @@ Image($r('sys.media.ohos_app_icon'))
   .height(200)
   .width(300)
 ```
-<!--no_check-->

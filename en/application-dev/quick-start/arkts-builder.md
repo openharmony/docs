@@ -66,7 +66,7 @@ There are two types of parameter passing for custom builder functions: [by-value
 
 - The parameter type must be the same as the declared parameter type. The **undefined** or **null** constants as well as expressions evaluating to these values are not allowed.
 
-- All parameters are immutable inside the@Builder decorated function.
+- All parameters are immutable inside the @Builder decorated function.
 
 - The \@Builder function body follows the same [syntax rules](arkts-create-custom-components.md#build-function) as the **build** function.
 

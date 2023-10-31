@@ -13,65 +13,48 @@ LazyForEach(
     itemGenerator: (item: Object) => void,  // Data source to iterate over.
     keyGenerator?: (item: Object): string => string // Data source to iterate over.
 ): void
-interface IDataSource {
-    totalCount(): number;                                             // Obtain the total number of data records.
-    getData(index: number): any;                                      // Obtain the data that matches the specified index.
-    registerDataChangeListener(listener: DataChangeListener): void;   // Register a data change listener.
-    unregisterDataChangeListener(listener: DataChangeListener): void; // Deregister the data change listener.
-}
-interface DataChangeListener {
-    onDataReloaded(): void;                      // Invoked when all data is reloaded.
-    onDataAdd(index: number): void;            // Invoked when data is added.
-    onDataMove(from: number, to: number): void; // Invoked when data is moved.
-    onDataDelete(index: number): void;          // Invoked when data is deleted.
-    onDataChange(index: number): void;          // Invoked when data is deleted
-}
 ```
 
 **Parameters**
 
 
-| Name          | Type                                   | Mandatory  | Description                                    |
-| ------------- | --------------------------------------- | ---- | ---------------------------------------- |
-| dataSource    | IDataSource                             | Yes   | **LazyForEach** data source. You need to implement related APIs.             |
-| itemGenerator | (item: any) =&gt; void   | Yes   | Child component generation function, which generates a child component for each data item in the array.<br>**NOTE**<br>The function body of **itemGenerator** must be included in braces {...}. **itemGenerator** can and must generate only one child component for each iteration. The **if** statement is allowed in **itemGenerator**, but you must ensure that each branch of the **if** statement creates a child component of the same type. **ForEach** and **LazyForEach** statements are not allowed in **itemGenerator**.|
-| keyGenerator  | (item: any) =&gt; string | No   | ID generation function, which generates a unique and fixed ID for each data item in the data source. This ID must remain unchanged for the data item even when the item is relocated in the array. When the item is replaced by a new item, the ID of the new item must be different from that of the replaced item. This ID generation function is optional. However, for performance reasons, it is strongly recommended that the ID generation function be provided, so that the framework can better identify array changes. For example, if no ID generation function is provided, a reverse of an array will result in rebuilding of all nodes in **LazyForEach**.<br>**NOTE**<br>The ID generated for each data item in the data source must be unique.|
-
+| Name       | Type                               | Mandatory| Description                                                    |
+| ------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| dataSource    | [IDataSource](#description-of-idatasource)     | Yes  | **LazyForEach** data source. You need to implement related APIs.                 |
+| itemGenerator | (item: any) =&gt; void   | Yes  | Child component generation function, which generates a child component for each data item in the array.<br>**NOTE**<br>The function body of **itemGenerator** must be included in braces {...}. **itemGenerator** can and must generate only one child component for each iteration. The **if** statement is allowed in **itemGenerator**, but you must ensure that each branch of the **if** statement creates a child component of the same type. **ForEach** and **LazyForEach** statements are not allowed in **itemGenerator**.|
+| keyGenerator  | (item: any) =&gt; string | No  | ID generation function, which generates a unique and fixed ID for each data item in the data source. This ID must remain unchanged for the data item even when the item is relocated in the array. When the item is replaced by a new item, the ID of the new item must be different from that of the replaced item. This ID generation function is optional. However, for performance reasons, it is strongly recommended that the ID generation function be provided, so that the framework can better identify array changes. For example, if no ID generation function is provided, a reverse of an array will result in rebuilding of all nodes in **LazyForEach**.<br>**NOTE**<br>The ID generated for each data item in the data source must be unique.|
 
 ## Description of IDataSource
 
-
 ```ts
 interface IDataSource {
-    totalCount(): number;
-    getData(index: number): Object;
-    registerDataChangeListener(listener: DataChangeListener): void;
-    unregisterDataChangeListener(listener: DataChangeListener): void;
+    totalCount(): number; // Obtain the total number of data records.
+    getData(index: number): Object; // Obtain the data that matches the specified index.
+    registerDataChangeListener(listener: DataChangeListener): void; // Register a data change listener.
+    unregisterDataChangeListener(listener: DataChangeListener): void; // Deregister the data change listener.
 }
 ```
 
-| Declaration                                    | Parameter Type              | Description                                   |
-| ---------------------------------------- | ------------------ | ------------------------------------- |
-| totalCount(): number                | -                  | Obtains the total number of data records.                              |
-| getData(index: number): any    | number             | Obtains the data record corresponding to the specified index.<br>**index**: index of the data record to obtain.|
-| registerDataChangeListener(listener:DataChangeListener): void | DataChangeListener | Registers a listener for data changes.<br>**listener**: listener for data changes.     |
-| unregisterDataChangeListener(listener:DataChangeListener): void | DataChangeListener | Deregisters the listener for data changes.<br>**listener**: listener for data changes.     |
-
+| Declaration                                                    | Parameter Type                                         | Description                                                       |
+| ------------------------------------------------------------ | ------------------------------------------------- | ----------------------------------------------------------- |
+| totalCount(): number                                    | -                                                 | Obtains the total number of data records.                                             |
+| getData(index: number): any                        | number                                            | Obtains the data record corresponding to the specified index.<br>**index**: index of the data record to obtain.|
+| registerDataChangeListener(listener:[DataChangeListener](#description-of-datachangelistener)): void | [DataChangeListener](#description-of-datachangelistener) | Registers a listener for data changes.<br>**listener**: listener for data changes.        |
+| unregisterDataChangeListener(listener:[DataChangeListener](#description-of-datachangelistener)): void | [DataChangeListener](#description-of-datachangelistener) | Deregisters the listener for data changes.<br>**listener**: listener for data changes.        |
 
 ## Description of DataChangeListener
 
-
 ```ts
 interface DataChangeListener {
-    onDataReloaded(): void;
-    onDataAdded(index: number): void;
-    onDataMoved(from: number, to: number): void;
-    onDataDeleted(index: number): void;
-    onDataChanged(index: number): void;
-    onDataAdd(index: number): void;
-    onDataMove(from: number, to: number): void;
-    onDataDelete(index: number): void;
-    onDataChange(index: number): void;
+    onDataReloaded(): void; // Invoked when data is reloaded.
+    onDataAdded(index: number): void; // Invoked when data is added.
+    onDataMoved(from: number, to: number): void; // Invoked when data is moved.
+    onDataDeleted(index: number): void; // Invoked when data is deleted.
+    onDataChanged(index: number): void; // Invoked when data is changed.
+    onDataAdd(index: number): void; // Invoked when data is added.
+    onDataMove(from: number, to: number): void; // Invoked when data is moved.
+    onDataDelete(index: number): void; // Invoked when data is deleted.
+    onDataChange(index: number): void; // Invoked when data is deleted
 }
 ```
 
@@ -90,7 +73,7 @@ interface DataChangeListener {
 
 ## Restrictions
 
-- LazyForEach must be used in the container component. Only the [\<List>](../reference/arkui-ts/ts-container-list.md), [\<Grid>](../reference/arkui-ts/ts-container-grid.md), and [\<Swiper>](../reference/arkui-ts/ts-container-swiper.md) components support lazy loading (that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at the same time.
+- LazyForEach must be used in the container component. Only the [\<List>](../reference/arkui-ts/ts-container-list.md), [\<Grid>](../reference/arkui-ts/ts-container-grid.md), [\<Swiper>](../reference/arkui-ts/ts-container-swiper.md), and [\<WaterFlow>](../reference/arkui-ts/ts-container-waterflow.md) components support lazy loading (that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at the same time.
 
 - **LazyForEach** must create one and only one child component in each iteration.
 
@@ -126,7 +109,7 @@ class BasicDataSource implements IDataSource {
     return 0;
   }
 
-  public getData(index: number): undefined {
+  public getData(index: number): Object {
     return undefined;
   }
 
