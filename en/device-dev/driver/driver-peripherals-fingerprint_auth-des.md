@@ -53,7 +53,7 @@ The identity authentication consists of the User_auth framework and basic authen
 
 - HAPs
 
-  OpenHarmony Ability Packages (HAPs) represent the upper-layer applications of the Fingerprint_auth driver in this document.
+  Harmony Ability Packages (HAPs) represent the upper-layer applications of the Fingerprint_auth driver in this document.
 
 - IDL interface
 
@@ -62,6 +62,10 @@ The identity authentication consists of the User_auth framework and basic authen
 - IPC
 
   Inter-Process Communication (IPC) is a mechanism that allows processes to communicate with each other.
+
+- HDI
+
+  The hardware device interface (HDI) is located between the basic system service layer and the device driver layer. It provides APIs for abstracting hardware device functions, which shields underlying hardware device differences for system services. For details, see [HDI Specifications](../../design/hdi-design-specifications.md).
 
 ### Working Principles
 

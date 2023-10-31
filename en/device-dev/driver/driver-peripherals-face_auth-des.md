@@ -51,6 +51,22 @@ The identity authentication consists of User_auth and basic authentication servi
 
   User_auth manages the mappings between user identities and credential IDs in a unified manner. When connecting to User_auth, the executor obtains the template ID list from User_auth and updates its template ID list based on the template ID list obtained.
 
+- HAPs
+
+  OpenHarmony Ability Packages (HAPs) represent the upper-layer applications of the Fingerprint_auth driver in this document.
+
+- IDL interface
+
+  An Interface Definition Language (IDL) is a language that lets a program or object written in one language communicate with another program written in an unknown language. An IDL compiler generates client stub files and server framework files. In this document, the IDL interface implements communication between the Fingerprint_auth service and the driver.
+
+- IPC
+
+  Inter-Process Communication (IPC) is a mechanism that allows processes to communicate with each other.
+
+- HDI
+
+  The hardware device interface (HDI) is located between the basic system service layer and the device driver layer. It provides APIs for abstracting hardware device functions, which shields underlying hardware device differences for system services. For details, see [HDI Specifications](../../design/hdi-design-specifications.md).
+
 ### Working Principles
 
 The Face_auth driver provides basic facial authentication capabilities for the User_auth and Face_auth service to ensure successful facial authentication.
