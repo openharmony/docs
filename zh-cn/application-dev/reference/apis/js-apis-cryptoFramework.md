@@ -1974,7 +1974,7 @@ Sign类暂不支持重复init。
 | 参数名   | 类型                 | 必填 | 说明             |
 | -------- | -------------------- | ---- | ---------------- |
 | priKey   | [PriKey](#prikey)    | 是   | 用于Sign的初始化。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。      |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当初始化成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2006,7 +2006,7 @@ Sign类暂不支持重复init。
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2039,7 +2039,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                  | 必填 | 说明         |
 | -------- | --------------------- | ---- | ------------ |
 | data     | [DataBlob](#datablob) | 是   | 传入的消息。 |
-| callback | AsyncCallback\<void>  | 是   | 回调函数。   |
+| callback | AsyncCallback\<void>  | 是   | 回调函数。当更新成功，err为undefined，否则为错误对象。|
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2077,7 +2077,7 @@ update(data: DataBlob): Promise\<void>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2102,7 +2102,7 @@ sign(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | data     | [DataBlob](#datablob) \| null<sup>10+</sup>              | 是   | 传入的消息。API 10之前只支持DataBlob， API 10之后增加支持null。 |
-| callback | AsyncCallback\<[DataBlob](#datablob) > | 是   | 回调函数。  |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取DataBlob数据。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2132,7 +2132,7 @@ sign(data: DataBlob | null): Promise\<DataBlob>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2361,7 +2361,7 @@ init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
 | pubKey   | [PubKey](#pubkey)    | 是   | 公钥对象，用于Verify的初始化。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。                     |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当初始化成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2391,7 +2391,7 @@ init(pubKey: PubKey): Promise\<void>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2424,7 +2424,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                  | 必填 | 说明         |
 | -------- | --------------------- | ---- | ------------ |
 | data     | [DataBlob](#datablob) | 是   | 传入的消息。 |
-| callback | AsyncCallback\<void>  | 是   | 回调函数。   |
+| callback | AsyncCallback\<void>  | 是   | 回调函数。当更新成功，err为undefined，否则为错误对象。|
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2462,7 +2462,7 @@ update(data: DataBlob): Promise\<void>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2488,7 +2488,7 @@ verify(data: DataBlob | null, signatureData: DataBlob, callback: AsyncCallback\<
 | ------------- | -------------------- | ---- | ---------- |
 | data          | [DataBlob](#datablob) \| null<sup>10+</sup>             | 是   | 传入的消息。API 10之前只支持DataBlob， API 10之后增加支持null。 |
 | signatureData | [DataBlob](#datablob)              | 是   | 签名数据。  |
-| callback      | AsyncCallback\<boolean> | 是   | 回调函数。  |
+| callback      | AsyncCallback\<boolean> | 是   | 回调函数，用于获取以boolean值表示的验签结果。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2851,7 +2851,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                  | 必填 | 说明         |
 | -------- | --------------------- | ---- | ------------ |
 | input    | [DataBlob](#datablob) | 是   | 传入的消息。 |
-| callback | AsyncCallback\<void>  | 是   | 回调函数。   |
+| callback | AsyncCallback\<void>  | 是   | 回调函数。当更新成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2897,7 +2897,7 @@ update(input: DataBlob): Promise\<void>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2934,7 +2934,7 @@ digest(callback: AsyncCallback\<DataBlob>): void
 
 | 参数名   | 类型                     | 必填 | 说明       |
 | -------- | ------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<DataBlob> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取DataBlob数据。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -3125,7 +3125,7 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明           |
 | -------- | -------------------- | ---- | -------------- |
 | key      | [SymKey](#symkey)    | 是   | 共享对称密钥。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。     |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当初始化成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -3173,7 +3173,7 @@ init(key: SymKey): Promise\<void>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -3220,7 +3220,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                  | 必填 | 说明         |
 | -------- | --------------------- | ---- | ------------ |
 | input    | [DataBlob](#datablob) | 是   | 传入的消息。 |
-| callback | AsyncCallback\<void>  | 是   | 回调函数。   |
+| callback | AsyncCallback\<void>  | 是   | 回调函数。当更新成功，err为undefined，否则为错误对象。|
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -3278,7 +3278,7 @@ update(input: DataBlob): Promise\<void>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -3324,7 +3324,7 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 
 | 参数名   | 类型                     | 必填 | 说明     |
 | -------- | ------------------------ | ---- | -------- |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取DataBlob数据。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -3527,7 +3527,7 @@ generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 | 参数名   | 类型                     | 必填 | 说明                 |
 | -------- | ------------------------ | ---- | -------------------- |
 | len      | number                   | 是   | 表示生成随机数的长度，单位为byte，范围在[1, INT_MAX]。 |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。            |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取DataBlob数据。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
