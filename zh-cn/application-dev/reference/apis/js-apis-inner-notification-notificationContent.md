@@ -29,7 +29,7 @@
 | -------------- | ------ | ---- |-----| ---------------------------------- |
 | title          | string |  否  |  是  | 通知标题。                         |
 | text           | string |  否  |  是  | 通知内容。                         |
-| additionalText | string |  否  |  是  | 通知附加内容，是对通知内容的补充。   |
+| additionalText | string |  否  |  否  | 通知附加内容，是对通知内容的补充。   |
 
 
 ## NotificationLongTextContent
