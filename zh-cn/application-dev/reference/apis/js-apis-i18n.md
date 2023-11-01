@@ -805,7 +805,7 @@ getCalendar(locale: string, type? : string): Calendar
 
 ### constructor<sup>11+</sup>
 
-constructor(locale: string)
+constructor(locale?: string)
 
 创建实体识别对象。
 
@@ -815,7 +815,15 @@ constructor(locale: string)
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| locale | string | 是    | 区域ID。 |
+| locale | string | 否    | 区域ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
 
 **示例：**
   ```ts
@@ -828,6 +836,8 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 识别文本中的实体信息。
 
+**系统能力**：SystemCapability.Global.I18n
+
 **参数：**
 
 | 参数名  | 类型   | 必填   | 说明                |
@@ -839,14 +849,6 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 | 类型   | 说明                |
 | ---- | ----------------- |
 | Array&lt;[EntityInfoItem](#entityinfoitem11)&gt; | 识别的实体对象列表。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
 
 **示例：**
   ```ts
