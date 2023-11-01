@@ -160,13 +160,14 @@ libnative_drawing.so
     }
     ```
     ```c++
-    // 初始化 OH_NativeXComponent_Callback
+    // OH_NativeXComponent_Callback是个struct，必须初始化 OH_NativeXComponent_Callback的所有callback
     OH_NativeXComponent_Callback callback;
     callback.OnSurfaceCreated = OnSurfaceCreatedCB;
     callback.OnSurfaceChanged = OnSurfaceChangedCB;
     callback.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
     callback.DispatchTouchEvent = DispatchTouchEventCB;
     ```
+    也可以将不需要的callback定义为空指针，但一定要初始化。
 4. 将 **OH_NativeXComponent_Callback** 注册给 **NativeXComponent**。
     ```c++
     // 注册回调函数
@@ -322,13 +323,6 @@ libnative_drawing.so
 
 1. 通过前面 **OnSurfaceCreatedCB** 回调保存的 **native window** 指针，来申请 **native window buffer**。
     ```c++
-    // 这里的nativeWindow是从上一步骤中的回调函数中获得的
-    int32_t code = SET_BUFFER_GEOMETRY;
-    int ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, width_, height_);
-    // 设置 OHNativeWindowBuffer 的步长
-    code = SET_STRIDE;
-    int32_t stride = 0x8;
-    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, stride);
     // 通过 OH_NativeWindow_NativeWindowRequestBuffer 获取 OHNativeWindowBuffer 实例
     ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer_, &fenceFd_);
     ```
@@ -431,7 +425,7 @@ libnative_drawing.so
     Button()
         .onClick(() => {
           if (this.xComponentContext) {
-            console.log(TAG, "draw star");
+            console.log(TAG, "Draw Path");
             this.xComponentContext.drawPattern();
           }
         })
