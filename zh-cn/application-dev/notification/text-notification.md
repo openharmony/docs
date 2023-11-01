@@ -251,7 +251,7 @@
          console.info("subscriber success");
         }
       };
-      // subscriber通知回调
+      // subscriber取消通知回调
       let onCancelCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
         console.info("Cancel callback: " + JSON.stringify(data));
       }
