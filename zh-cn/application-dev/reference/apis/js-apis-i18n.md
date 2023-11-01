@@ -854,7 +854,7 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
   ```ts
   let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
   let text: string = "如有疑问，请联系158****2312";
-  let result: Array<EntityInfoItem> = entityRecognizer.findEntityInfo(text); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
+  let result: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
   ```
 
 ## EntityInfoItem<sup>11+</sup>
