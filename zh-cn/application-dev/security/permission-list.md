@@ -1302,6 +1302,90 @@
 
 **起始版本**：11
 
+## ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
+
+允许设备管理应用设置和查询蓝牙信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+允许设备管理应用设置和查询WIFI信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+允许设备管理应用管理限制策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+允许设备管理应用管理应用策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_LOCATION
+
+允许设备管理应用设置和查询位置信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_REBOOT
+
+允许设备管理应用进行关机重启操作。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_LOCK_DEVICE
+
+允许设备管理应用锁定设备。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
 允许设备管理应用安装和卸载包。
