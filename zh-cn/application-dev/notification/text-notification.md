@@ -196,7 +196,7 @@
         slotType: LIVE_VIEW, // 实况窗类型
         id: 0, // 通知id，默认为0
         content: {
-          contentType = notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW，
+          contentType = notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
           systemLiveView: {
             title: "test_title",
             text:"test_text",
@@ -252,11 +252,11 @@
         }
       };
       // subscriber通知回调
-      let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
-      console.info("Consume callback: " + JSON.stringify(data));
+      let onCancelCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
+        console.info("Cancel callback: " + JSON.stringify(data));
       }
       let subscriber: notificationSubscribe.NotificationSubscriber = {
-        onConsume: onConsumeCallback
+        onCancel: onCancelCallback
       };
       let info: notificationSubscribe.NotificationSubscribeInfo = {
         bundleNames: ["bundleName1"],
@@ -264,7 +264,7 @@
       };
       // 订阅通知，此接口为系统接口，三方应用不支持调用。
       notificationSubscribe.subscribe(subscriber, info, subscribeCallback);
-      // 订阅系统实况窗(按钮),此接口为系统接口，三方应用不支持调用。
+      // 订阅系统实况窗(按钮)，此接口为系统接口，三方应用不支持调用。
       notificationManager.subscribeSystemLiveView(subscriber);
       // 发布通知
       notificationManager.publish(notificationRequest, publishCallback);
