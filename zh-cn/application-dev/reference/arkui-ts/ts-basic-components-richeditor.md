@@ -931,8 +931,8 @@ struct listChild {
   }
 }
 ```
-**说明：**
-
-系统暂未预置加粗、斜体等图标，示例代码使用系统默认图标，开发者使用时需自行替换iconArr中的资源。
+> **说明：**
+>
+> 系统暂未预置加粗、斜体等图标，示例代码使用系统默认图标，开发者使用时需自行替换iconArr中的资源。
 
 ![selectionMenu](figures/richEditorSelectionMenu.png)
