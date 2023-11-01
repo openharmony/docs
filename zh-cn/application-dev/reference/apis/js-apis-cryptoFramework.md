@@ -1490,7 +1490,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 
 | 类型           | 说明                                   |
 | -------------- | -------------------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2006,7 +2006,7 @@ Sign类暂不支持重复init。
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2077,7 +2077,7 @@ update(data: DataBlob): Promise\<void>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2132,7 +2132,7 @@ sign(data: DataBlob | null): Promise\<DataBlob>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2391,7 +2391,7 @@ init(pubKey: PubKey): Promise\<void>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2462,7 +2462,7 @@ update(data: DataBlob): Promise\<void>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2897,7 +2897,7 @@ update(input: DataBlob): Promise\<void>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -3173,7 +3173,7 @@ init(key: SymKey): Promise\<void>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -3278,7 +3278,7 @@ update(input: DataBlob): Promise\<void>
 
 | 类型           | 说明          |
 | -------------- | ------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
