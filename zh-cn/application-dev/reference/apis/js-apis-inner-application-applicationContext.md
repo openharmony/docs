@@ -691,7 +691,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.off<sup>11+</sup>
 
-off(type: 'abilityAutoStartup', callback: AutoStartupCallback): void;
+off(type: 'abilityAutoStartup', callback?: AutoStartupCallback): void;
 
 应用注销对自身开机自启动状态变化的监听。
 
@@ -702,7 +702,7 @@ off(type: 'abilityAutoStartup', callback: AutoStartupCallback): void;
 | 参数名   | 类型                | 必填 | 说明                                            |
 | -------- | ------------------- | ---- | ----------------------------------------------- |
 | type     | string              | 是   | 注册监听事件的类型,必须为"abilityAutoStartup"。 |
-| callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | 是   | 注销监听应用开机自启动状态变化的回调对象。 |
+| callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | 否   | 注销监听应用开机自启动状态变化的回调对象。 |
 
 **示例：**
 
