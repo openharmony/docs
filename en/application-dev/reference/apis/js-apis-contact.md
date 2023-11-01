@@ -346,7 +346,7 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 
 | Type               | Description                                         |
 | ------------------- | --------------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -565,7 +565,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 
 | Type               | Description                                             |
 | ------------------- | ------------------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -623,7 +623,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 **Return Value**
 | Type               | Description                                             |
 | ------------------- | ------------------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1236,6 +1236,8 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 >
 > This API is supported since API version 7 and deprecated since API version 10. You are advised to use [selectContacts](#contactselectcontacts10).
 
+**Permission required**: ohos.permission.READ_CONTACTS
+
 **System capability**: SystemCapability.Applications.Contacts
 
 **Parameters**
@@ -1267,6 +1269,8 @@ Selects a contact. This API uses a promise to return the result.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 10. You are advised to use [selectContacts](#contactselectcontacts10).
+
+**Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.Contacts
 

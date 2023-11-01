@@ -131,13 +131,13 @@ The development process consists of the following main steps:
     }
     // Preferentially use NNRT inference.
     // Use the NNRT hardware of the first ACCELERATORS class to create the NNRT device information and configure the high-performance inference mode for the NNRT hardware. You can also use OH_AI_GetAllNNRTDeviceDescs() to obtain the list of NNRT devices in the current environment, search for a specific device by device name or type, and use the device as the NNRT inference hardware.
-    OH_AI_DeviceInfoHandle nnrt_device_info = OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDEVICE_ACCELERATORS);
+    OH_AI_DeviceInfoHandle nnrt_device_info = OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDEVICE_ACCELERATOR);
     if (nnrt_device_info == NULL) {
       printf("OH_AI_DeviceInfoCreate failed.\n");
       OH_AI_ContextDestroy(&context);
       return OH_AI_STATUS_LITE_ERROR;
     }
-    OH_AI_DeviceInfoSetPerformaceMode(nnrt_device_info, OH_AI_PERFORMANCE_HIGH);
+    OH_AI_DeviceInfoSetPerformanceMode(nnrt_device_info, OH_AI_PERFORMANCE_HIGH);
     OH_AI_ContextAddDeviceInfo(context, nnrt_device_info);
 
     // Configure CPU inference.
