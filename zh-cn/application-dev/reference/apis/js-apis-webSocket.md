@@ -683,6 +683,59 @@ let ws = webSocket.createWebSocket();
 ws.off('error');
 ```
 
+### on('dataEnd')<sup>11+</sup>
+
+on(type: 'dataEnd', callback: Callback\<void\>): void
+
+订阅WebSocket的数据接收结束事件，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   |       类型        | 必填 |                  说明                   |
+| -------- | ---------------- | ---- | --------------------------------------- |
+| type     | string           | 是   | 'dataEnd'：WebSocket的数据接收结束事件。 |
+| callback | Callback\<void\> | 是   | 回调函数。                              |
+
+**示例：**
+
+```js
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+ws.on('dataEnd', (err: BusinessError) => {
+  console.log("on dataEnd, error:" + JSON.stringify(err))
+});
+```
+
+### off('dataEnd')<sup>11+</sup>
+
+off(type: 'dataEnd', callback?: Callback\<void\>): void
+
+取消订阅WebSocket的数据接收结束事件，使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   |        类型       | 必填 |                说明                    |
+| -------- | ---------------- | ---- | -------------------------------------- |
+| type     | string           | 是   | 'dataEnd'：WebSocket的数据接收结束事件。|
+| callback | Callback\<void\> | 否   | 回调函数。                             |
+
+**示例：**
+
+```js
+import webSocket from '@ohos.net.webSocket';
+let ws = webSocket.createWebSocket();
+ws.off('dataEnd');
+```
+
 ## WebSocketRequestOptions
 
 建立WebSocket连接时，可选参数的类型和说明。
