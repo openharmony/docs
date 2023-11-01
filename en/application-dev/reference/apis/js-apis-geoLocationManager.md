@@ -1,6 +1,6 @@
 # @ohos.geoLocationManager (Geolocation Manager)
 
-The **geoLocationManager** module provides a wide array of location services, including GNSS positioning, network positioning, geocoding, reverse geocoding, and geofencing.
+The **geoLocationManager** module provides location services such as Global Navigation Satellite System (GNSS)-based positioning, network positioning, geofencing, as well as geocoding and reverse geocoding.
 
 > **NOTE**
 >
@@ -21,14 +21,14 @@ If your application needs to access the device location information, it must fir
 
 API versions earlier than 9: Apply for **ohos.permission.LOCATION**.
 
-API version 9 and later: Apply for **ohos.permission.APPROXIMATELY_LOCATION**, or apply for **ohos.permission.APPROXIMATELY_LOCATION** and **ohos.permission.LOCATION**. Note that **ohos.permission.LOCATION** cannot be applied for separately.
+API version 9 and later: Apply for **ohos.permission.APPROXIMATELY\_LOCATION**, or apply for **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION**. Note that **ohos.permission.LOCATION** cannot be applied for separately.
 
 | API Version| Location Permission| Permission Application Result| Location Accuracy|
 | -------- | -------- | -------- | -------- |
-| Earlier than 9| ohos.permission.LOCATION | Successful| Location accurate to meters.|
-| 9 and later| ohos.permission.LOCATION | Failed| No location obtained.|
-| 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Successful| Location accurate to 5 kilometers.|
-| 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Successful| Location accurate to meters.|
+| Earlier than 9| ohos.permission.LOCATION | Success| Location accurate to meters|
+| 9 and later| ohos.permission.LOCATION | Failure| No location obtained|
+| 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Success| Location accurate to 5 kilometers|
+| 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Success| Location accurate to meters|
 
 If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION_IN_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
 
@@ -53,7 +53,7 @@ Defines a reverse geocoding request.
 | locale | string | Yes| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
 | latitude | number | Yes| Yes| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
 | longitude | number | Yes| Yes| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
-| maxItems | number | Yes| Yes| Maximum number of location records to be returned. The value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
+| maxItems | number | Yes| Yes| Maximum number of location records to be returned. The specified value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
 
 
 ## GeoCodeRequest
@@ -66,7 +66,7 @@ Defines a geocoding request.
 | -------- | -------- | -------- | -------- | -------- |
 | locale | string | Yes| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
 | description | string | Yes| Yes| Location description, for example, **No. xx, xx Road, Pudong New District, Shanghai**.|
-| maxItems | number | Yes| Yes| Maximum number of location records to be returned. The value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
+| maxItems | number | Yes| Yes| Maximum number of location records to be returned. The specified value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
 | minLatitude | number | Yes| Yes| Minimum latitude. This parameter is used with **minLongitude**, **maxLatitude**, and **maxLongitude** to specify the latitude and longitude ranges. The value ranges from **-90** to **90**.|
 | minLongitude | number | Yes| Yes| Minimum longitude. The value ranges from **-180** to **180**.|
 | maxLatitude | number | Yes| Yes| Maximum latitude. The value ranges from **-90** to **90**.|
@@ -98,8 +98,8 @@ Defines a geographic location.
 | phoneNumber | string | Yes| No| Phone number.|
 | addressUrl | string | Yes| No| Website URL.|
 | descriptions | Array&lt;string&gt; | Yes| No| Additional descriptions.|
-| descriptionsSize | number | Yes| No| Total number of additional descriptions. The value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
-| isFromMock | Boolean | Yes| No| Whether the geographic address is obtained from the mock reverse geocoding function.<br>**System API**: This is a system API.|
+| descriptionsSize | number | Yes| No| Total number of additional descriptions. The specified value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
+| isFromMock | Boolean | Yes| No| Whether the geographical name is from the mock reverse geocoding function.<br>**System API**: This is a system API.|
 
 
 ## LocationRequest
@@ -110,11 +110,11 @@ Defines a location request.
 
 | Name| Type| Readable|Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | Yes| Yes| Priority of the location request. For details about the value range, see [LocationRequestPriority](#locationrequestpriority).|
-| scenario | [LocationRequestScenario](#locationrequestscenario) | Yes| Yes| Scenario of the location request. For details about the value range, see [LocationRequestScenario](#locationrequestscenario).|
-| timeInterval | number | Yes| Yes| Time interval at which location information is reported, in seconds. The value must be greater than **0**.|
-| distanceInterval | number | Yes| Yes| Distance interval at which location information is reported. The value must be greater than **0**, in meters.|
-| maxAccuracy | number | Yes| Yes| Location accuracy. This parameter is valid only when the precise location function is enabled, and is invalid when the approximate location function is enabled. The value must be greater than **0**.|
+| priority | [LocationRequestPriority](#locationrequestpriority) | Yes| Yes| Priority of the location request. This parameter is effective only when **scenario** is set to **UNSET**. If this parameter and **scenario** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestPriority](#locationrequestpriority).|
+| scenario | [LocationRequestScenario](#locationrequestscenario) | Yes| Yes| Scenario of the location request. The **priority** parameter is effective only when this parameter is set to **UNSET**. If this parameter and **priority** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestScenario](#locationrequestscenario).|
+| timeInterval | number | Yes| Yes| Time interval at which location information is reported, in seconds. The specified value must be greater than or equal to **0**. The default value is **1**.|
+| distanceInterval | number | Yes| Yes| Distance interval at which location information is reported, in meters. The specified value must be greater than or equal to **0**. The default value is **0**.|
+| maxAccuracy | number | Yes| Yes| Location accuracy, in meters. This parameter is valid only when the precise location function is enabled, and is invalid when the approximate location function is enabled. The specified value must be greater than or equal to **0**. The default value is **0**.|
 
 
 ## CurrentLocationRequest
@@ -127,8 +127,8 @@ Defines the current location request.
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestpriority) | Yes| Yes| Priority of the location request. For details about the value range, see [LocationRequestPriority](#locationrequestpriority).|
 | scenario | [LocationRequestScenario](#locationrequestscenario) | Yes| Yes| Scenario of the location request. For details about the value range, see [LocationRequestScenario](#locationrequestscenario).|
-| maxAccuracy | number | Yes| Yes| Location accuracy, in meters. This parameter is valid only when the precise location function is enabled, and is invalid when the approximate location function is enabled. The value must be greater than **0**.|
-| timeoutMs | number | Yes| Yes| Timeout duration, in milliseconds. The minimum value is **1000**. The value must be greater than or equal to **1000**.|
+| maxAccuracy | number | Yes| Yes| Location accuracy, in meters. This parameter is valid only when the precise location function is enabled, and is invalid when the approximate location function is enabled. The specified value must be greater than **0**.|
+| timeoutMs | number | Yes| Yes| Timeout duration, in milliseconds. The minimum value is **1000**. The specified value must be greater than or equal to **1000**.|
 
 
 ## SatelliteStatusInfo
@@ -139,23 +139,23 @@ Defines the satellite status information.
 
 | Name| Type| Readable|Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| satellitesNumber | number | Yes| No| Number of satellites. The value must be greater than or equal to **0**.|
-| satelliteIds | Array&lt;number&gt; | Yes| No| Array of satellite IDs. The value must be greater than or equal to **0**.|
-| carrierToNoiseDensitys | Array&lt;number&gt; | Yes| No| Carrier-to-noise density ratio, that is, **cn0**. The value must be greater than **0**.|
+| satellitesNumber | number | Yes| No| Number of satellites. The specified value must be greater than or equal to **0**.|
+| satelliteIds | Array&lt;number&gt; | Yes| No| Array of satellite IDs. The specified value must be greater than or equal to **0**.|
+| carrierToNoiseDensitys | Array&lt;number&gt; | Yes| No| Carrier-to-noise density ratio, that is, **cn0**. The specified value must be greater than **0**.|
 | altitudes | Array&lt;number&gt; | Yes| No| Satellite altitude angle information. The value ranges from **-90** to **90**, in degrees.|
 | azimuths | Array&lt;number&gt; | Yes| No| Azimuth information. The value ranges from **0** to **360**, in degrees.|
-| carrierFrequencies | Array&lt;number&gt; | Yes| No| Carrier frequency. The value must be greater than or equal to **0**, in Hz.|
+| carrierFrequencies | Array&lt;number&gt; | Yes| No| Carrier frequency, in Hz. The specified value must be greater than or equal to **0**.|
 
 
 ## CachedGnssLocationsRequest
 
-Represents a request for reporting cached GNSS locations.
+Defines a request for reporting cached GNSS locations.
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
 | Name| Type| Readable|Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| reportingPeriodSec | number | Yes| Yes| Interval for reporting the cached GNSS locations, in milliseconds. The value must be greater than **0**.|
+| reportingPeriodSec | number | Yes| Yes| Interval for reporting the cached GNSS locations, in milliseconds. The specified value must be greater than **0**.|
 | wakeUpCacheQueueFull | boolean | Yes| Yes | **true**: reports the cached GNSS locations to the application when the cache queue is full.<br>**false**: discards the cached GNSS locations when the cache queue is full.|
 
 
@@ -169,13 +169,13 @@ Defines a GNSS geofence. Currently, only circular geofences are supported.
 | -------- | -------- | -------- | -------- | -------- |
 | latitude | number | Yes| Yes|Latitude information. The value ranges from **-90** to **90**.|
 | longitude | number | Yes|Yes| Longitude information. The value ranges from **-180** to **180**.|
-| radius | number | Yes|Yes| Radius of a circular geofence. The value must be greater than **0**, in meters.|
-| expiration | number | Yes|Yes| Expiration period of a geofence, in milliseconds. The value must be greater than **0**.|
+| radius | number | Yes|Yes| Radius of a circular geofence, in meters. The specified value must be greater than **0**.|
+| expiration | number | Yes|Yes| Expiration period of a geofence, in milliseconds. The specified value must be greater than **0**.|
 
 
 ## GeofenceRequest
 
-Represents a GNSS geofencing request.
+Defines a GNSS geofencing request.
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
@@ -214,13 +214,13 @@ Defines a location.
 | direction | number | Yes| No| Direction information. The value ranges from **0** to **360**, in degrees.|
 | timeSinceBoot | number | Yes| No| Location timestamp since boot.|
 | additions | Array&lt;string&gt; | Yes| No| Additional description.|
-| additionSize | number | Yes| No| Number of additional descriptions. The value must be greater than or equal to **0**. |
+| additionSize | number | Yes| No| Number of additional descriptions. The specified value must be greater than or equal to **0**. |
 | isFromMock | Boolean | Yes| No| Whether the location information is from the mock location function.<br>**System API**: This is a system API.|
 
 
 ## ReverseGeocodingMockInfo
 
-Represents information of the mock reverse geocoding function.
+Defines the configuration of the mock reverse geocoding function.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -229,12 +229,12 @@ Represents information of the mock reverse geocoding function.
 | Name| Type| Readable|Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | location |  [ReverseGeoCodeRequest](#reversegeocoderequest) | Yes| Yes| Latitude and longitude information.|
-| geoAddress |  [GeoAddress](#geoaddress) | Yes| Yes|Geographic address.|
+| geoAddress |  [GeoAddress](#geoaddress) | Yes| Yes|Geographical name.|
 
 
 ## LocationMockConfig
 
-Represents the mock location configuration.
+Defines the configuration of the mock location function.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -242,13 +242,13 @@ Represents the mock location configuration.
 
 | Name| Type| Readable|Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| timeInterval | number | Yes| Yes| Interval at which mock locations are reported, in seconds.|
+| timeInterval | number | Yes| Yes| Time interval at which mock locations are reported, in seconds.|
 | locations | Array&lt;[Location](#location)&gt; | Yes| Yes| Array of mocked locations.|
 
 
 ## CountryCode
 
-Represents country code information.
+Defines the country code information.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -267,8 +267,8 @@ Sets the priority of the location request.
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | UNSET | 0x200 | Priority unspecified.<br>If this option is used, [LocationRequestPriority](#locationrequestpriority) is invalid.|
-| ACCURACY | 0x201 | Location accuracy preferred.<br>This policy mainly uses the GNSS positioning technology. In an open area, the technology can achieve the meter-level location accuracy, depending on the hardware performance of the device. However, in a shielded environment, the location accuracy may significantly decrease.|
-| LOW_POWER | 0x202 | Power efficiency preferred.<br>This policy mainly uses the base station positioning, WLAN positioning, and Bluetooth positioning technologies to obtain device location in both indoor and outdoor scenarios. The location accuracy depends on the distribution of surrounding base stations, visible WLANs, and Bluetooth devices and therefore may fluctuate greatly. This policy is recommended and can reduce power consumption when your application does not require high location accuracy or when base stations, visible WLANs, and Bluetooth devices are densely distributed.|
+| ACCURACY | 0x201 | Location accuracy.<br>This policy mainly uses the GNSS positioning technology. In an open area, the technology can achieve the meter-level location accuracy, depending on the hardware performance of the device. However, in a shielded environment, the location accuracy may significantly decrease.|
+| LOW_POWER | 0x202 | Power efficiency.<br>This policy mainly uses the base station positioning, WLAN positioning, and Bluetooth positioning technologies to obtain device location in both indoor and outdoor scenarios. The location accuracy depends on the distribution of surrounding base stations, visible WLANs, and Bluetooth devices and therefore may fluctuate greatly. This policy is recommended and can reduce power consumption when your application does not require high location accuracy or when base stations, visible WLANs, and Bluetooth devices are densely distributed.|
 | FIRST_FIX | 0x203 | Fast location preferred. Use this option if you want to obtain a location as fast as possible.<br>This policy uses the GNSS positioning, base station positioning, WLAN positioning, and Bluetooth positioning technologies simultaneously to obtain the device location in both the indoor and outdoor scenarios. When all positioning technologies provide a location result, the system provides the most accurate location result for your application. It can lead to significant hardware resource consumption and power consumption.|
 
 
@@ -281,11 +281,11 @@ Sets the priority of the location request.
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | UNSET | 0x300 | Scenario unspecified.<br>If this option is used, [LocationRequestScenario](#locationrequestscenario) is invalid.|
-| NAVIGATION | 0x301 | Navigation scenario.<br>This option is applicable when your application needs to obtain the real-time location of a mobile device outdoors, such as navigation for driving or walking.<br>In this scenario, GNSS positioning is used to provide location services to ensure the optimal location accuracy of the system.<br>The location result is reported at a minimum interval of 1 second by default.|
-| TRAJECTORY_TRACKING | 0x302 | Trajectory tracking scenario.<br>This option is applicable when your application needs to record user trajectories, for example, the track recording function of sports applications. In this scenario, the GNSS positioning technology is mainly used to ensure the location accuracy.<br>The location result is reported at a minimum interval of 1 second by default.|
-| CAR_HAILING | 0x303 | Ride hailing scenario.<br>This option is applicable when your application needs to obtain the current location of a user who is hailing a taxi.<br>The location result is reported at a minimum interval of 1 second by default.|
-| DAILY_LIFE_SERVICE | 0x304 | Daily life service scenario.<br>This option is applicable when your application only needs the approximate user location for recommendations and push notifications in scenarios such as when the user is browsing news, shopping online, and ordering food.<br>The location result is reported at a minimum interval of 1 second by default.|
-| NO_POWER | 0x305 | Power efficiency scenario.<br>This option is applicable when your application does not proactively start the location service. When responding to another application requesting the same location service, the system marks a copy of the location result to your application. In this way, your application will not consume extra power for obtaining the user location.|
+| NAVIGATION | 0x301 | Navigation.<br>This option is applicable when your application needs to obtain the real-time location of a mobile device outdoors, such as navigation for driving or walking.<br>In this scenario, GNSS positioning is used to provide location services to ensure the optimal location accuracy of the system.<br>The location result is reported at a minimum interval of 1 second by default.|
+| TRAJECTORY_TRACKING | 0x302 | Trajectory tracking.<br>This option is applicable when your application needs to record user trajectories, for example, the track recording function of sports applications. In this scenario, the GNSS positioning technology is mainly used to ensure the location accuracy.<br>The location result is reported at a minimum interval of 1 second by default.|
+| CAR_HAILING | 0x303 | Ride hailing.<br>This option is applicable when your application needs to obtain the current location of a user who is hailing a taxi.<br>The location result is reported at a minimum interval of 1 second by default.|
+| DAILY_LIFE_SERVICE | 0x304 | Daily life services.<br>This option is applicable when your application only needs the approximate user location for recommendations and push notifications in scenarios such as when the user is browsing news, shopping online, and ordering food.<br>The location result is reported at a minimum interval of 1 second by default.|
+| NO_POWER | 0x305 | Power efficiency. Your application does not proactively start the location service. When responding to another application requesting the same location service, the system marks a copy of the location result to your application. In this way, your application will not consume extra power for obtaining the user location.|
 
 
 ## LocationPrivacyType
@@ -299,13 +299,13 @@ Defines the privacy statement type.
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | OTHERS | 0 | Other scenarios. Reserved field.|
-| STARTUP | 1 | Privacy statement displayed in the startup wizard.  |
+| STARTUP | 1 | Privacy statement displayed in the startup wizard. The user needs to choose whether to agree with the statement.|
 | CORE_LOCATION | 2 | Privacy statement displayed when enabling the location service.|
 
 
 ## CountryCodeType
 
-Represents the country code source type.
+Defines the country code source type.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -321,9 +321,9 @@ Represents the country code source type.
 
 on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
 
-Registers a listener for location changes with a location request initiated.
+Subscribes to location change events with a location request initiated.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -331,13 +331,13 @@ Registers a listener for location changes with a location request initiated.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value **locationChange** indicates a location change event.|
+  | type | string | Yes| Event type. The value **locationChange** indicates a location change.|
   | request |  [LocationRequest](#locationrequest) | Yes| Location request.|
-  | callback | Callback&lt;[Location](#location)&gt; | Yes| Callback used to return the location change event.|
+  | callback | Callback&lt;[Location](#location)&gt; | Yes| Callback used to receive location change events.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -349,7 +349,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let requestInfo = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location) => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
@@ -366,9 +366,9 @@ For details about the following error codes, see [Location Error Codes](../error
 
 off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
-Unregisters the listener for location changes with the corresponding location request deleted.
+Unsubscribes from location change events with the corresponding location request deleted.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -376,12 +376,12 @@ Unregisters the listener for location changes with the corresponding location re
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value **locationChange** indicates a location change event.|
+  | type | string | Yes| Event type. The value **locationChange** indicates a location change.|
   | callback | Callback&lt;[Location](#location)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -393,7 +393,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let requestInfo = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location) => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
@@ -410,7 +410,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 on(type: 'locationEnabledChange', callback: Callback&lt;boolean&gt;): void
 
-Registers a listener for location service status change events.
+Subscribes to location service status change events.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -418,12 +418,12 @@ Registers a listener for location service status change events.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value **locationEnabledChange** indicates a location service status change event.|
-  | callback | Callback&lt;boolean&gt; | Yes| Callback used to return the location service status change event.|
+  | type | string | Yes| Event type. The value **locationEnabledChange** indicates a location service status change.|
+  | callback | Callback&lt;boolean&gt; | Yes| Callback used to receive location service status change events.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -448,7 +448,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
 
-Unregisters the listener for location service status change events.
+Unsubscribes from location service status change events.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -456,12 +456,12 @@ Unregisters the listener for location service status change events.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value **locationEnabledChange** indicates a location service status change event.|
+  | type | string | Yes| Event type. The value **locationEnabledChange** indicates a location service status change.|
   | callback | Callback&lt;boolean&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -487,9 +487,9 @@ For details about the following error codes, see [Location Error Codes](../error
 
 on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
-Registers a listener for cached GNSS location reports.
+Subscribes to cached GNSS location reports. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -499,11 +499,11 @@ Registers a listener for cached GNSS location reports.
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **cachedGnssLocationsChange** indicates reporting of cached GNSS locations.|
   | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | Yes| Request for reporting cached GNSS location.|
-  | callback | Callback&lt;boolean&gt; | Yes| Callback used to return cached GNSS locations.|
+  | callback | Callback&lt;boolean&gt; | Yes| Callback used to receive cached GNSS locations.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -531,9 +531,9 @@ For details about the following error codes, see [Location Error Codes](../error
 
 off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
-Unregisters the listener for cached GNSS location reports.
+Unsubscribes from cached GNSS location reports. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -546,7 +546,7 @@ Unregisters the listener for cached GNSS location reports.
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -575,9 +575,9 @@ For details about the following error codes, see [Location Error Codes](../error
 
 on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void;
 
-Registers a listener for GNSS satellite status change events.
+Subscribes to GNSS satellite status change events.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -585,12 +585,12 @@ Registers a listener for GNSS satellite status change events.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value **satelliteStatusChange** indicates a GNSS satellite status change event.|
-  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfo)&gt; | Yes| Callback used to return GNSS satellite status changes.|
+  | type | string | Yes| Event type. The value **satelliteStatusChange** indicates a GNSS satellite status change.|
+  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfo)&gt; | Yes| Callback used to receive GNSS satellite status change events.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -617,9 +617,9 @@ For details about the following error codes, see [Location Error Codes](../error
 
 off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void;
 
-Unregisters the listener for GNSS satellite status change events.
+Unsubscribes from GNSS satellite status change events.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -627,12 +627,12 @@ Unregisters the listener for GNSS satellite status change events.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value **satelliteStatusChange** indicates a GNSS satellite status change event.|
+  | type | string | Yes| Event type. The value **satelliteStatusChange** indicates a GNSS satellite status change.|
   | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfo)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -660,9 +660,9 @@ For details about the following error codes, see [Location Error Codes](../error
 
 on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
 
-Registers a listener for GNSS NMEA message change events.
+Subscribes to GNSS NMEA message change events.
 
-**Permission required**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -670,12 +670,12 @@ Registers a listener for GNSS NMEA message change events.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value **nmeaMessage** indicates a GNSS NMEA message change event.|
-  | callback | Callback&lt;string&gt; | Yes| Callback used to return GNSS NMEA message changes.|
+  | type | string | Yes| Event type. The value **nmeaMessage** indicates a GNSS NMEA message change.|
+  | callback | Callback&lt;string&gt; | Yes| Callback used to receive GNSS NMEA message change events.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -703,9 +703,9 @@ For details about the following error codes, see [Location Error Codes](../error
 
 off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
 
-Unregisters the listener for GNSS NMEA message change events.
+Unsubscribes from GNSS NMEA message change events.
 
-**Permission required**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -713,12 +713,12 @@ Unregisters the listener for GNSS NMEA message change events.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value **nmeaMessage** indicates a GNSS NMEA message change event.|
+  | type | string | Yes| Event type. The value **nmeaMessage** indicates a GNSS NMEA message change.|
   | callback | Callback&lt;string&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -747,9 +747,9 @@ For details about the following error codes, see [Location Error Codes](../error
 
 on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
-Registers a listener for status change events of the specified geofence.
+Subscribes to status change events of the specified geofence. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
@@ -757,13 +757,13 @@ Registers a listener for status change events of the specified geofence.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value **gnssFenceStatusChange** indicates a geofence status change event.|
+  | type | string | Yes| Event type. The value **gnssFenceStatusChange** indicates a geofence status change.|
   | request |  [GeofenceRequest](#geofencerequest) | Yes| Geofencing request.|
-  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to return geofence (entrance or exit) events.|
+  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to receive geofence (entrance or exit) events.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -805,9 +805,9 @@ For details about the following error codes, see [Location Error Codes](../error
 
 off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
-Unregisters the listener for status change events of the specified geofence.
+Unsubscribes from status change events of the specified geofence. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
@@ -815,13 +815,13 @@ Unregisters the listener for status change events of the specified geofence.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value **gnssFenceStatusChange** indicates a geofence status change event.|
+  | type | string | Yes| Event type. The value **gnssFenceStatusChange** indicates a geofence status change.|
   | request | [GeofenceRequest](#geofencerequest) | Yes| Geofencing request.|
-  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to return geofence (entrance or exit) events.|
+  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to receive geofence (entrance or exit) events.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -840,7 +840,7 @@ For details about the following error codes, see [Location Error Codes](../error
           {
               bundleName: "com.example.myapplication",
               abilityName: "EntryAbility",
-              action: "action1"
+              action: "action1",
           }
       ],
       operationType: wantAgent.OperationType.START_ABILITY,
@@ -864,7 +864,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
 
-Registers a listener for country code change events.
+Subscribes to country code change events.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -872,12 +872,12 @@ Registers a listener for country code change events.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value **countryCodeChange** indicates a country code change event.|
-  | callback | Callback&lt;[CountryCode](#countrycode)&gt; | Yes| Callback used to return the country code change event.|
+  | type | string | Yes| Event type. The value **countryCodeChange** indicates a country code change.|
+  | callback | Callback&lt;[CountryCode](#countrycode)&gt; | Yes| Callback used to receive country code change events.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -905,7 +905,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
 
-Unregisters the listener for country code change events.
+Unsubscribes from country code change events.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -913,12 +913,12 @@ Unregisters the listener for country code change events.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value **countryCodeChange** indicates a country code change event.|
+  | type | string | Yes| Event type. The value **countryCodeChange** indicates a country code change.|
   | callback | Callback&lt;[CountryCode](#countrycode)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -949,7 +949,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
 Obtains the current location. This API uses an asynchronous callback to return the result. 
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -958,11 +958,11 @@ Obtains the current location. This API uses an asynchronous callback to return t
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [CurrentLocationRequest](#currentlocationrequest) | Yes| Location request.|
-  | callback | AsyncCallback&lt;[Location](#location)&gt; | Yes| Callback used to return the current location.|
+  | callback | AsyncCallback&lt;[Location](#location)&gt; | Yes| Callback used to receive the current location.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -974,7 +974,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  let requestInfo = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   let locationChange = (err, location) => {
       if (err) {
           console.log('locationChanger: err=' + JSON.stringify(err));
@@ -997,7 +997,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
 Obtains the current location. This API uses an asynchronous callback to return the result. 
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -1005,11 +1005,11 @@ Obtains the current location. This API uses an asynchronous callback to return t
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Location](#location)&gt; | Yes| Callback used to return the current location.|
+  | callback | AsyncCallback&lt;[Location](#location)&gt; | Yes| Callback used to receive the current location.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1043,7 +1043,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
 Obtains the current location. This API uses a promise to return the result. 
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -1061,7 +1061,7 @@ Obtains the current location. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1073,7 +1073,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  let requestInfo = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   try {
       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {
           console.log('current location: ' + JSON.stringify(result));
@@ -1093,7 +1093,7 @@ getLastLocation(): Location
 
 Obtains the last location.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -1105,7 +1105,7 @@ Obtains the last location.
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1141,7 +1141,7 @@ Checks whether the location service is enabled.
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1175,11 +1175,11 @@ Enables the location service. This API uses an asynchronous callback to return t
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the error message.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to receive the error message.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1221,7 +1221,7 @@ Enables the location service. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1257,7 +1257,7 @@ Disables the location service.
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1280,7 +1280,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
-Converts coordinates into geographic descriptions through reverse geocoding. This API uses an asynchronous callback to return the result. 
+Converts coordinates into geographic description through reverse geocoding. This API uses an asynchronous callback to return the result. 
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
@@ -1289,11 +1289,11 @@ Converts coordinates into geographic descriptions through reverse geocoding. Thi
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | Yes| Reverse geocoding request.|
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Yes| Callback used to return the reverse geocoding result.|
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Yes| Callback used to receive the reverse geocoding result.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1324,7 +1324,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;;
 
-Converts coordinates into geographic descriptions through reverse geocoding. This API uses a promise to return the result. 
+Converts coordinates into geographic description through reverse geocoding. This API uses a promise to return the result. 
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
@@ -1342,7 +1342,7 @@ Converts coordinates into geographic descriptions through reverse geocoding. Thi
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1371,7 +1371,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
-Converts geographic descriptions into coordinates through geocoding. This API uses an asynchronous callback to return the result. 
+Converts geographic description into coordinates through geocoding. This API uses an asynchronous callback to return the result. 
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
@@ -1380,11 +1380,11 @@ Converts geographic descriptions into coordinates through geocoding. This API us
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [GeoCodeRequest](#geocoderequest) | Yes| Geocoding request.|
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Yes| Callback used to return the geocoding result.|
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Yes| Callback used to receive the geocoding result.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1415,7 +1415,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;
 
-Converts geographic descriptions into coordinates through geocoding. This API uses a promise to return the result. 
+Converts geographic description into coordinates through geocoding. This API uses a promise to return the result. 
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
@@ -1433,7 +1433,7 @@ Converts geographic descriptions into coordinates through geocoding. This API us
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1473,7 +1473,7 @@ Obtains the (reverse) geocoding service status.
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1495,9 +1495,9 @@ For details about the following error codes, see [Location Error Codes](../error
 
 getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
-Obtains the number of cached GNSS locations. 
+Obtains the number of cached GNSS locations. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -1505,11 +1505,11 @@ Obtains the number of cached GNSS locations.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of cached GNSS locations. |
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to receive the number of cached GNSS locations. |
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1539,9 +1539,9 @@ For details about the following error codes, see [Location Error Codes](../error
 
 getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
-Obtains the number of cached GNSS locations. 
+Obtains the number of cached GNSS locations. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -1553,7 +1553,7 @@ Obtains the number of cached GNSS locations.
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1581,9 +1581,9 @@ For details about the following error codes, see [Location Error Codes](../error
 
 flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
-Obtains all cached GNSS locations and clears the GNSS cache queue. 
+Obtains all cached GNSS locations and clears the GNSS cache queue. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -1591,11 +1591,11 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the error message.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to receive the error message.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1623,9 +1623,9 @@ For details about the following error codes, see [Location Error Codes](../error
 
 flushCachedGnssLocations(): Promise&lt;void&gt;;
 
-Obtains all cached GNSS locations and clears the GNSS cache queue. 
+Obtains all cached GNSS locations and clears the GNSS cache queue. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -1633,11 +1633,11 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | Promise&lt;void&gt;  | void | NA | Promise used to return the error code.|
+  | Promise&lt;void&gt;  | void | NA | Promise used to receive the error code.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1675,11 +1675,11 @@ Sends an extended command to the location subsystem.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | command |  [LocationCommand](#locationcommand) | Yes| Extended command (string) to be sent.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the error code.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to receive the error code.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1720,11 +1720,11 @@ Sends an extended command to the location subsystem.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | Promise&lt;void&gt;  | void | NA | Promise used to return the error code.|
+  | Promise&lt;void&gt;  | void | NA | Promise used to receive the error code.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1760,11 +1760,11 @@ Obtains the current country code.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[CountryCode](#countrycode)&gt; | Yes| Callback used to return the country code.|
+  | callback | AsyncCallback&lt;[CountryCode](#countrycode)&gt; | Yes| Callback used to receive the country code.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1802,11 +1802,11 @@ Obtains the current country code.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | Promise&lt;[CountryCode](#countrycode)&gt; | [CountryCode](#countrycode) | NA | Promise used to return the country code.|
+  | Promise&lt;[CountryCode](#countrycode)&gt; | [CountryCode](#countrycode) | NA | Promise used to receive the country code.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1843,7 +1843,7 @@ Enables the mock location function.
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1874,7 +1874,7 @@ Disables the mock location function.
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1913,7 +1913,7 @@ This API can be invoked only after [geoLocationManager.enableLocationMock](#geol
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1953,7 +1953,7 @@ Enables the mock reverse geocoding function.
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1983,7 +1983,7 @@ Disables the mock geocoding function.
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2005,7 +2005,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): void;
 
-Sets information of the mock reverse geocoding function, including the mapping between a location and geographic name. If the location is contained in the configurations during reverse geocoding query, the corresponding geographic name will be returned.
+Sets information of the mock reverse geocoding function, including the mapping between a location and geographical name. If the location is contained in the configurations during reverse geocoding query, the corresponding geographical name will be returned.
 
 This API can be invoked only after [geoLocationManager.enableReverseGeocodingMock](#geolocationmanagerenablereversegeocodingmock) is called.
 
@@ -2017,11 +2017,11 @@ This API can be invoked only after [geoLocationManager.enableReverseGeocodingMoc
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | mockInfos | Array&lt;[ReverseGeocodingMockInfo](#reversegeocodingmockinfo)&gt; | Yes| Array of information of the mock reverse geocoding function, including a location and a geographic address.|
+  | mockInfos | Array&lt;[ReverseGeocodingMockInfo](#reversegeocodingmockinfo)&gt; | Yes| Array of information of the mock reverse geocoding function, including a location and a geographical name.|
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2071,7 +2071,7 @@ Checks whether a user agrees with the privacy statement of the location service.
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2110,7 +2110,7 @@ Sets the user confirmation status for the privacy statement of the location serv
 
 **Error codes**
 
-For details about the following error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
+For details about the error codes, see [Location Error Codes](../errorcodes/errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
