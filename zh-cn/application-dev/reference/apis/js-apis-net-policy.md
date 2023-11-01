@@ -303,7 +303,7 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-policy.getPolicyByUid(11111, (error: BusinessError, data: object) => {
+policy.getPolicyByUid(11111, (error: BusinessError, data: policy.NetUidPolicy) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });

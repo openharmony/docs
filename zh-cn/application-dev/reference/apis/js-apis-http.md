@@ -46,15 +46,15 @@ httpRequest.request(
   "EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
-    // 开发者根据自身业务需要添加header字段
-    header: new Header('application/json'),
     // 当使用POST请求时此字段用于传递内容
     extraData: new ExtraData('data to send'),
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
-    connectTimeout: 60000, // 可选，默认为60000ms
+    // 开发者根据自身业务需要添加header字段
+    header: new Header('application/json'),
     readTimeout: 60000, // 可选，默认为60000ms
+    connectTimeout: 60000, // 可选，默认为60000ms
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
     usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
     caPath: "", // 可选，默认使用系统预设CA证书，自API 10开始支持该属性
@@ -77,8 +77,7 @@ httpRequest.request(
     httpRequest.off('headersReceive');
     // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
     httpRequest.destroy();
-  }
-);
+  }});
 ```
 
 > **说明：**
