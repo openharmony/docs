@@ -1804,6 +1804,14 @@ isRemoteData(): boolean
 | ------- | ------------------------------------- |
 | boolean | 是来自其他设备返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
+
 **示例：**
 
 ```ts
@@ -1831,6 +1839,14 @@ getDataSource(): string
 | 类型   | 说明   |
 | ------ | ------ |
 | string | 数据来源。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
 
 **示例：**
 
@@ -1866,6 +1882,15 @@ hasDataType(mimeType: string): boolean
 | ------- | ------------------------------------------- |
 | boolean | 有指定类型的数据返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Type is not string. |
+| 12900005 | Request time out. |
+
 **示例：**
 
 ```ts
@@ -1887,6 +1912,14 @@ clearDataSync(): void
 清空系统剪贴板内容, 此接口为同步接口。
 
 **系统能力：** SystemCapability.MiscServices
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
 
 **示例：**
 
@@ -1916,6 +1949,14 @@ getDataSync(): PasteData
 | ----------------------- | -------------------- |
 | [PasteData](#pastedata) | 返回系统剪贴板数据。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
+
 **示例：**
 
 ```ts
@@ -1943,6 +1984,15 @@ setDataSync(data: PasteData): void
 | 参数名 | 类型                    | 必填 | 说明             |
 | ------ | ----------------------- | ---- | ---------------- |
 | data   | [PasteData](#pastedata) | 是   | 需要写入剪贴板中的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Type of data is not PasteData. |
+| 12900005 | Request time out. |
 
 **示例：**
 
@@ -1972,6 +2022,14 @@ hasDataSync(): boolean
 | 类型    | 说明                                                                    |
 | ------- | ----------------------------------------------------------------------- |
 | boolean | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
 
 **示例：**
 
