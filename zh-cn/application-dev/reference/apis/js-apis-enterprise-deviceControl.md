@@ -154,7 +154,7 @@ let wantTemp: Want = {
 };
 
 try {
-  deviceControl.lockScreen(admin);
+  deviceControl.lockScreen(wantTemp);
 } catch (err) {
   console.error(`Failed to lock screen. Code is ${err.code}, message is ${err.message}`);
 }
