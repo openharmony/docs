@@ -199,7 +199,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
 当系统配置更新时调用。
 
@@ -223,7 +223,7 @@ class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onAcquireFormState
 
-onAcquireFormState?(want: Want): formInfo.FormState;
+onAcquireFormState?(want: Want): formInfo.FormState
 
 卡片提供方接收查询卡片状态通知接口。默认返回卡片初始状态。
 
@@ -267,7 +267,7 @@ onShareForm?(formId: string): { [key: string]: Object }
 
 | 类型                                                         | 说明                                                        |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| {[key: string]: any} | 卡片要分享的数据，由开发者自行决定传入的键值对。 |
+| {[key: string]: Object} | 卡片要分享的数据，由开发者自行决定传入的键值对。 |
 
 **示例：**
 

@@ -1783,7 +1783,7 @@ try {
 
 ## notifyFormsPrivacyProtected
 
-notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>;
+notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>
 
 通知指定卡片隐私保护状态改变。使用Promise异步回调。
 
