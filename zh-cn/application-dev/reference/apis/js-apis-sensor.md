@@ -4091,12 +4091,12 @@ try {
 传感器数据的精度。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-| 名称      | 类型   | 值 | 说明                     |
-| --------- | ------ | ---- | ------------------------ |
-| ACCURACY_UNRELIABLE | number | 0   | 传感器数据不可信 |
-| ACCURACY_LOW | number | 1   | 传感器低挡位精度 |
-| ACCURACY_MEDIUM | number | 2   | 传感器中挡位精度 |
-| ACCURACY_HIGH | number | 3   | 传感器高挡位精度 |
+| 名称      | 类型   | 值 | 可读 | 可写 | 说明                     |
+| --------- | ------ | ---- | ------------------------ | ------------------------ | ------------------------ |
+| ACCURACY_UNRELIABLE | number | 0   | 是  | 否 | 传感器数据不可信 |
+| ACCURACY_LOW | number | 1   | 是  | 否 | 传感器低挡位精度 |
+| ACCURACY_MEDIUM | number | 2   | 是  | 否 | 传感器中挡位精度 |
+| ACCURACY_HIGH | number | 3   | 是  | 否 | 传感器高挡位精度 |
 
 ## Response
 
