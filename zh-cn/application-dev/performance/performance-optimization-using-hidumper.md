@@ -3,7 +3,7 @@
 
 ## 简介
 
-HiDumper是OpenHarmony为开发、测试人员、IDE工具提供的系统信息获取工具，帮助开发者分析、定位问题。在应用开发过程中，开发者可以使用Hidumper命令行工具获取UI界面组件树信息，配合ArkUI Inspector等图形化工具定位布局性能问题；还可以使用该命令行工具获取如内存和CPU使用情况等各项系统数据，对应用性能进行评估。本文通过一些示例介绍在优化应用性能过程中如何使用Hidumper命令行工具。
+HiDumper是系统为开发、测试人员、IDE工具提供的系统信息获取工具，帮助开发者分析、定位问题。在应用开发过程中，开发者可以使用Hidumper命令行工具获取UI界面组件树信息，配合ArkUI Inspector等图形化工具定位布局性能问题；还可以使用该命令行工具获取如内存和CPU使用情况等各项系统数据，对应用性能进行评估。本文通过一些示例介绍在优化应用性能过程中如何使用Hidumper命令行工具。
 
 开发者可参考下面步骤，通过使用HiDumper提供的-s、--mem、--cpuusage等命令进行性能分析。有关HiDumper其他功能的详细介绍可查看[《HiDumper概述》](../../device-dev/subsystems/subsys-dfx-hidumper.md)。
 
