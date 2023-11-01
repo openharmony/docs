@@ -1070,7 +1070,7 @@ addFirewallRule(admin: Want, firewallRule: Firewall): void
 | 参数名          | 类型                                  | 必填   | 说明         |
 |--------------|-------------------------------------| ---- |------------|
 | admin        | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。    |
-| firewallRule | [FirewallRule](#firewallRule)       | 是    | 添加防火墙过滤规则。 |
+| firewallRule | [FirewallRule](#firewallrule)       | 是    | 添加防火墙过滤规则。 |
 
 **错误码**：
 
@@ -1121,7 +1121,7 @@ removeFirewallRule(admin: Want, firewallRule?: Firewall): void
 | 参数名          | 类型                                  | 必填 | 说明                          |
 |--------------|-------------------------------------|----|-----------------------------|
 | admin        | [Want](js-apis-app-ability-want.md) | 是  | 设备管理应用。                     |
-| firewallRule | [FirewallRule](#firewallRule)       | 否  | 移除防火墙过滤规则。值为空时，清空所有的防火墙规则。 |
+| firewallRule | [FirewallRule](#firewallrule)       | 否  | 移除防火墙过滤规则。值为空时，清空所有的防火墙规则。 |
 
 **错误码**：
 
@@ -1180,7 +1180,7 @@ getFirewallRule(admin: Want): Array\<FirewallRule>
 
 | 类型                                    | 说明                                |
 |---------------------------------------|-----------------------------------|
-| Array\<[FirewallRule](#firewallRule)> | 返回当前设备配置的防火墙过滤规则列表，当方法调用错误时会抛出异常。 |
+| Array\<[FirewallRule](#firewallrule)> | 返回当前设备配置的防火墙过滤规则列表，当方法调用错误时会抛出异常。 |
 
 **错误码**：
 
@@ -1218,10 +1218,10 @@ addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
 **参数：**
 
-| 参数名          | 类型                                  | 必填   | 说明         |
-|--------------|-------------------------------------| ---- |------------|
-| admin        | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。    |
-| domainFilterRule | [DomainFilterRule](#domainFilterRule)       | 是    | 添加域名过滤规则。 |
+| 参数名          | 类型                                    | 必填   | 说明         |
+|--------------|---------------------------------------| ---- |------------|
+| admin        | [Want](js-apis-app-ability-want.md)   | 是    | 设备管理应用。    |
+| domainFilterRule | [DomainFilterRule](#domainfilterrule) | 是    | 添加域名过滤规则。 |
 
 **错误码**：
 
@@ -1264,10 +1264,10 @@ removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
 **参数：**
 
-| 参数名          | 类型                                  | 必填 | 说明                       |
-|--------------|-------------------------------------|----|--------------------------|
-| admin        | [Want](js-apis-app-ability-want.md) | 是  | 设备管理应用。                  |
-| domainFilterRule | [DomainFilterRule](#domainFilterRule)       | 否  | 移除域名过滤规则。值为空时，清空所有的域名规则。 |
+| 参数名          | 类型                                    | 必填 | 说明                       |
+|--------------|---------------------------------------|----|--------------------------|
+| admin        | [Want](js-apis-app-ability-want.md)   | 是  | 设备管理应用。                  |
+| domainFilterRule | [DomainFilterRule](#domainfilterrule) | 否  | 移除域名过滤规则。值为空时，清空所有的域名规则。 |
 
 **错误码**：
 
@@ -1321,7 +1321,7 @@ getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 
 | 类型                                            | 说明                               |
 |-----------------------------------------------|----------------------------------|
-| Array\<[DomainFilterRule](#domainFilterRule)> | 返回当前设备配置的域名过滤规则列表，当方法调用错误时会抛出异常。 |
+| Array\<[DomainFilterRule](#domainfilterrule)> | 返回当前设备配置的域名过滤规则列表，当方法调用错误时会抛出异常。 |
 
 **错误码**：
 
