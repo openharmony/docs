@@ -1,7 +1,7 @@
 # 进程模型概述
 
 
-OpenHarmony的进程模型如下图所示：
+当前的进程模型如下图所示：
 
 
 - 应用中（同一包名）的所有PageAbility、ServiceAbility、DataAbility、FormAbility运行在同一个独立进程中，即图中绿色部分的“Main Process”。
@@ -12,7 +12,7 @@ OpenHarmony的进程模型如下图所示：
 ![process-model-fa](figures/process-model-fa.png)
 
 
-基于OpenHarmony的进程模型，应用间存在多个进程的情况，因此系统提供了如下两种进程间通信机制：
+基于当前的进程模型，应用间存在多个进程的情况，因此系统提供了如下两种进程间通信机制：
 
 
 - [公共事件机制](common-event-fa.md)：多用于一对多的通信场景，公共事件发布者可能存在多个订阅者同时接收事件。
