@@ -1438,7 +1438,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCal
 | opMode   | [CryptoMode](#cryptomode) | 是   | 加密或者解密模式。                                           |
 | key      | [Key](#key)               | 是   | 指定加密或解密的密钥。                                       |
 | params   | [ParamsSpec](#paramsspec) \| null<sup>10+</sup> | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。API 10之前只支持ParamsSpec， API 10之后增加支持null。 |
-| callback | AsyncCallback\<void>      | 是   | 回调函数。当初始化成功，err为undefined，否则为错误对象。     |
+| callback | AsyncCallback\<void>      | 是   | 回调函数。当加解密初始化成功，err为undefined，否则为错误对象。     |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -1974,7 +1974,7 @@ Sign类暂不支持重复init。
 | 参数名   | 类型                 | 必填 | 说明             |
 | -------- | -------------------- | ---- | ---------------- |
 | priKey   | [PriKey](#prikey)    | 是   | 用于Sign的初始化。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当初始化成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当签名初始化成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2039,7 +2039,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                  | 必填 | 说明         |
 | -------- | --------------------- | ---- | ------------ |
 | data     | [DataBlob](#datablob) | 是   | 传入的消息。 |
-| callback | AsyncCallback\<void>  | 是   | 回调函数。当更新成功，err为undefined，否则为错误对象。|
+| callback | AsyncCallback\<void>  | 是   | 回调函数。当签名更新成功，err为undefined，否则为错误对象。|
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2361,7 +2361,7 @@ init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
 | pubKey   | [PubKey](#pubkey)    | 是   | 公钥对象，用于Verify的初始化。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当初始化成功，err为undefined，否则为错误对象。  |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当验签初始化成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2424,7 +2424,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                  | 必填 | 说明         |
 | -------- | --------------------- | ---- | ------------ |
 | data     | [DataBlob](#datablob) | 是   | 传入的消息。 |
-| callback | AsyncCallback\<void>  | 是   | 回调函数。当更新成功，err为undefined，否则为错误对象。|
+| callback | AsyncCallback\<void>  | 是   | 回调函数。当验签更新成功，err为undefined，否则为错误对象。|
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2851,7 +2851,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                  | 必填 | 说明         |
 | -------- | --------------------- | ---- | ------------ |
 | input    | [DataBlob](#datablob) | 是   | 传入的消息。 |
-| callback | AsyncCallback\<void>  | 是   | 回调函数。当更新成功，err为undefined，否则为错误对象。  |
+| callback | AsyncCallback\<void>  | 是   | 回调函数。当摘要更新成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -3125,7 +3125,7 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明           |
 | -------- | -------------------- | ---- | -------------- |
 | key      | [SymKey](#symkey)    | 是   | 共享对称密钥。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当初始化成功，err为undefined，否则为错误对象。  |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当HMAC初始化成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -3220,7 +3220,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                  | 必填 | 说明         |
 | -------- | --------------------- | ---- | ------------ |
 | input    | [DataBlob](#datablob) | 是   | 传入的消息。 |
-| callback | AsyncCallback\<void>  | 是   | 回调函数。当更新成功，err为undefined，否则为错误对象。|
+| callback | AsyncCallback\<void>  | 是   | 回调函数。当HMAC更新成功，err为undefined，否则为错误对象。|
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
