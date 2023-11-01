@@ -4370,6 +4370,91 @@ if(store != undefined) {
 };
 ```
 
+### cloudSync<sup>11+</sup>
+
+cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+手动执行按条件进行端云同步，使用callback异步回调。使用该接口需要实现云同步功能。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名         | 类型                             | 必填 | 说明                            |
+|-------------|--------------------------------| ---- |-------------------------------|
+| mode        | [SyncMode](#syncmode)          | 是   | 表示数据库的同步模式。                   |
+| predicates  | [RdbPredicates](#rdbpredicates)                  | 是   | 表示同步数据的谓词条件。                  |
+| progress    | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。           |
+| callback    | AsyncCallback&lt;void&gt;      | 是   | 指定的callback回调函数，用于向调用者发送同步结果。 |
+
+**示例：**
+
+```ts
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.in("id", ["id1", "id2"]);
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`progress: ${progressDetail}`);
+   }, (err) => {
+     if (err) {
+       console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
+       return;
+     }
+     console.info('Cloud sync succeeded');
+  });
+};
+```
+
+### cloudSync<sup>11+</sup>
+
+cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
+
+手动执行按条件进行端云同步，使用Promise异步处理。使用该接口需要实现云同步功能。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名        | 类型                              | 必填 | 说明                  |
+|------------|---------------------------------| ---- |---------------------|
+| mode       | [SyncMode](#syncmode)           | 是   | 表示数据库的同步模式。         |
+| predicates | [RdbPredicates](#rdbpredicates)                   | 是   | 表示同步数据的谓词条件。                |
+| progress   | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。 |
+
+**返回值**：
+
+| 类型                | 说明                                    |
+| ------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | Promise对象，用于向调用者发送同步结果。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from "@ohos.base";
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.in("id", ["id1", "id2"]);
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`progress: ${progressDetail}`);
+  }).then(() => {
+    console.info('Cloud sync succeeded');
+  }).catch((err: BusinessError) => {
+    console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
+  });
+};
+```
+
 ### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
@@ -4482,6 +4567,39 @@ try {
   if(store != undefined) {
     (store as relationalStore.RdbStore).on('storeObserver', false, (storeObserver) => {
       console.info(`storeObserver`);
+    });
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+```
+
+### on('autoSyncProgress')<sup>11+</sup>
+
+on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
+
+在已打开端云同步，并且网络状态正常的条件下，注册自动同步进度通知，自动同步进行时调用回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名       | 类型                              | 必填 | 说明                                |
+| ------------ |---------------------------------| ---- |-----------------------------------|
+| event        | string                          | 是   | 取值为'autoSyncProgress'，表示自动同步进度通知。 |
+| progress     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 回调函数。                             |
+
+**示例：**
+
+```ts
+import {BusinessError} from "@ohos.base";
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).on('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
+      console.info(`progress: ${progressDetail}`);
     });
   }
 } catch (err) {
@@ -4606,7 +4724,40 @@ try {
 } catch (err) {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message
-  console.error(`Register observer failed, code is ${code},message is ${message}`);
+  console.error(`Unregister observer failed, code is ${code},message is ${message}`);
+}
+```
+
+### off('autoSyncProgress')<sup>11+</sup>
+
+off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
+
+取消订阅自动同步进度的通知。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名       | 类型                              | 必填 | 说明                                                               |
+| ------------ |---------------------------------| ---- |------------------------------------------------------------------|
+| event        | string                          | 是   | 取值为'autoSyncProgress'，表示自动同步进度通知。                                |
+| observer     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 否   | 指已注册的自动同步进度观察者。该参数存在，则取消订阅指定回调，该参数为null或undefined或不存在，则取消订阅所有回调。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from "@ohos.base";
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
+      console.info(`progress: ${progressDetail}`);
+    });
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Unregister failed, code is ${code},message is ${message}`);
 }
 ```
 
