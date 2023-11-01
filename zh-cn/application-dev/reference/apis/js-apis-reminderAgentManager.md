@@ -549,8 +549,10 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | title | string | 是 | 按钮显示的标题。 |
+| titleResource<sup>11+</sup> | string | 否 | 标题的资源ID，用于切换系统语言后读取对应标题信息。 |
 | type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
 | wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | 否 | 点击按钮跳转的ability信息。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
+| dataShareUpdate<sup>11+</sup> | [DataShareUpdate](#datashareupdate) | 否 | 点击按钮将更新应用数据库。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 
 
 ## WantAgent
@@ -565,6 +567,20 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 | pkgName | string | 是 | 指明跳转目标的包名。 |
 | abilityName | string | 是 | 指明跳转目标的ability名称。 |
 | uri<sup>10+</sup> | string | 否 | 指明跳转目标的uri信息。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
+
+## DataShareUpdate<sup>11+</sup>
+
+更新数据库需要的参数信息。<br/>
+数据提供方需要在module.json5中的proxyDatas节点定义要共享的表的标识，读写权限和基本信息。配置方式请见[数据代理](../../database/share-data-by-silent-access.md)。
+
+**系统能力**：SystemCapability.Notification.ReminderAgent
+
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| uri | string | 是 | 数据使用的URI，是跨应用数据访问的唯一标识。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
+| equalTo | [key: string]: number \| string \| boolean | 是 | 指示筛选条件，当前仅支持通过等于筛选。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
+| value | [ValueBucket](js-apis-data-valuesBucket.md#valuesbucket) | 是 | 指示要更新的数据。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 
 
 ## MaxScreenWantAgent
@@ -588,7 +604,7 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | 是 | 指明代理提醒类型。 |
-| actionButton<sup></sup> | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
+| actionButton<sup>10+</sup> | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知框。 <br> 说明：该接口为预留接口，暂不支持使用。|
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
@@ -599,6 +615,7 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 | expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
 | snoozeContent | string | 否 | 指明延迟提醒时需要显示的内容。 |
 | notificationId | number | 否 | 指明提醒使用的通知的id号，相同id号的提醒会覆盖。 |
+| groupId<sup>11+</sup> | string | 否 | 指明提醒使用相同的组id。相同组id中，一个提醒被点击不在提醒后，组内其他提醒也会被取消。 |
 | slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。 |
 | tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，具体请参考[NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest)。  |
 | autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，具体请参考[NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
@@ -617,6 +634,7 @@ ReminderRequestCalendar extends ReminderRequest
 | dateTime | [LocalDateTime](#localdatetime) | 是 | 指明提醒的目标时间。 |
 | repeatMonths | Array\<number> | 否 | 指明重复提醒的月份。 |
 | repeatDays | Array\<number> | 否 | 指明重复提醒的日期。 |
+| daysOfWeek<sup>11+</sup> | Array\<number> | 否 | 指明每周哪几天需要重复提醒。范围为周一到周日，对应数字为1到7。 |
 
 
 ## ReminderRequestAlarm
@@ -631,7 +649,7 @@ ReminderRequestAlarm extends ReminderRequest
 | -------- | -------- | -------- | -------- |
 | hour | number | 是 | 指明提醒的目标时刻。 |
 | minute | number | 是 | 指明提醒的目标分钟。 |
-| daysOfWeek | Array\<number> | 否 | 指明每周哪几天需要重复提醒。范围为周一到周末，对应数字为1到7。 |
+| daysOfWeek | Array\<number> | 否 | 指明每周哪几天需要重复提醒。范围为周一到周日，对应数字为1到7。 |
 
 
 ## ReminderRequestTimer

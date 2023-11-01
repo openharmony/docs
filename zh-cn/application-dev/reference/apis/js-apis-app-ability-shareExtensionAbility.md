@@ -95,7 +95,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 
 2. 在ShareExtAbility目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为ShareExtAbility.ts。
 
-    ```
+    ```text
     ├── ets
     │ ├── ShareExtAbility
     │ │   ├── ShareExtAbility.ts

@@ -190,6 +190,48 @@ ScrollState枚举变更如下。
 >
 >  - 绑定onDragStart事件，且事件回调中返回浮动UI布局。
 
+## ListScroller<sup>11+</sup>
+
+List组件的滚动控制器，通过它控制List组件的滚动，仅支持一对一绑定到List组件。
+
+
+>  **说明：**
+>
+>  ListScroller继承自[Scroller](ts-container-scroll.md#scroller)，具有[Scroller](ts-container-scroll.md#scroller)的全部方法。
+
+### 导入对象
+
+```
+listScroller: ListScroller = new ListScroller()
+```
+
+
+### getItemRectInGroup<sup>11+</sup>
+
+getItemRectInGroup(index: number, indexInGroup: number): RectResult
+
+获取[ListItemGroup](ts-container-listitemgroup.md)中的[ListItem](ts-container-listitem.md)的大小和相对于List的位置。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 参数描述              |
+| ----- | ------ | ---- | ----------------- |
+| index | number | 是    | ListItemGroup在List中的索引值。 |
+| indexInGroup | number | 是    | ListItem在ListItemGroup中的索引值。 |
+
+> **说明：**
+>
+> - index必须是当前显示区域显示的子组件的索引值，否则视index为非法值。
+> - 索引值为index的子组件必须是ListItemGroup，否则视index为非法值。
+> - indexInGroup必须是当前显示区域内ListItemGroup中显示的ListItem的索引值，否则视indexInGroup为非法值。
+> - index或者indexInGroup为非法值时返回的大小和位置均为0。
+
+**返回值：**
+
+| 类型       | 说明       |
+| -------------------  | -------- |
+| [RectResult](ts-types.md#rectresult10) | ListItemGroup中的ListItem的大小和相对于List的位置。 |
+
 ## 示例
 
 ### 示例1

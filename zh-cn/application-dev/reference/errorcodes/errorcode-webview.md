@@ -286,3 +286,74 @@ New failed, out of memeory.
 
 检查需要发送的数据的长度。
 
+## 17100016 下载任务没有处于暂停状态
+
+**错误信息**
+
+The download is not paused.
+
+**错误描述**
+
+下载任务没有处于暂停状态。
+
+**可能原因**
+
+在下载没有暂停的情况下调用了WebDownloadItem.resume。
+
+**处理步骤**
+
+下载并没有被暂停，不需要恢复。
+
+## 17100017 当前的WebviewController是无效的
+
+**错误信息**
+
+No valid WebviewController is associated.
+
+**错误描述**
+
+当前的WebviewController是无效的。
+
+**可能原因**
+
+当前的WebviewController没有关联一个有效的Web组件。
+
+**处理步骤**
+
+使用关联有效web的WebviewController。
+
+## 17100018 没有设置一个委托类来接收下载状态
+
+**错误信息**
+
+No WebDownloadDelegate has been set yet.
+
+**错误描述**
+
+没有设置一个委托类来接收下载状态。
+
+**可能原因**
+
+没有设置委托类就调用了WebDownloadManager.resumeDownload。
+
+**处理步骤**
+
+先通过WebDownloadManager.setDownloadDelegate设置一个委托类。
+
+## 17100019 下载还没开始
+
+**错误信息**
+
+The download has not been started yet.
+
+**错误描述**
+
+下载任务还未开始。
+
+**可能原因**
+
+下载任务还没开始，此时调用pause/resume是无效的。
+
+**处理步骤**
+
+需要在WebDownloadDelegate.onBeforeDownload中调用start('xxx')并指定下载路径。

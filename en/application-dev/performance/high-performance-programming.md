@@ -602,5 +602,3 @@ This tool supports the following collection modes:
 - CLI-based collection with hdc shell
 
 With CPU Profiler, you can collect information about hotspot functions executed in TypeScript and JavaScript. Based on the collected information, you can then conduct further analysis.
-
-<!--no_check-->

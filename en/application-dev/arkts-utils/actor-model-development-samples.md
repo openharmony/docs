@@ -92,7 +92,7 @@ async function produce() {
 }
 
 class Consumer {
-    public consume(value) {
+    public consume(value : number) {
         // Add consumption logic.
         console.log("consuming value: " + value)
     }
@@ -116,10 +116,10 @@ struct Index {
             let consumer = new Consumer()
             for (let index = 0; index < 10; index++) {
                 // Execute the asynchronous concurrent production task.
-                taskpool.execute(produceTask).then((res) => {
+                taskpool.execute(produceTask).then((res : number) => {
                     consumer.consume(res)
-                }).catch((e) => {
-                    console.log(e)
+                }).catch((e : Error) => {
+                    console.error(e.message)
                 })
             }
         })

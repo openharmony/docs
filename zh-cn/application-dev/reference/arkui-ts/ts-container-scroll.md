@@ -188,6 +188,33 @@ isAtEnd(): boolean
 | ------- | -------- |
 | boolean | true表示组件已经滚动到底部，false表示组件还没滚动到底部。 |
 
+### getItemRect<sup>11+</sup>
+
+getItemRect(index: number): RectResult
+
+获取子组件的大小位置。
+
+>  **说明：**
+>
+>  支持Scroll、List、Grid、WaterFlow组件。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 参数描述              |
+| ----- | ------ | ---- | ----------------- |
+| index | number | 是    | 子组件的索引值。 |
+
+> **说明：**
+>
+> - index必须是当前显示区域显示的子组件的索引值，否则视为非法值。
+> - 非法值返回的大小和位置均为0。
+
+**返回值：**
+
+| 类型       | 说明       |
+| -------------------  | -------- |
+| [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。 |
+
 ## ScrollAlign枚举说明<sup>10+ </sup>
 
 | 名称     | 描述                             |

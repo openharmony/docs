@@ -120,7 +120,8 @@ struct Index {
                 w.postMessage({'type': 0, 'data': 'data'})
                 // 向Worker子线程发送Get消息
                 w.postMessage({'type': 1})
-                // 销毁线程
+                // ...
+                // 根据实际业务，选择时机以销毁线程
                 w.terminate()
               })
           }

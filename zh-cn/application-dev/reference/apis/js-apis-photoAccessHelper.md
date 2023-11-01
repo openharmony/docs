@@ -55,7 +55,7 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 ### getAssets
 
-getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void;
+getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void
 
 获取图片和视频资源，使用callback方式返回结果。
 
@@ -110,7 +110,7 @@ async function example() {
 
 ### getAssets
 
-getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;;
+getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 获取图片和视频资源，使用Promise方式返回结果。
 
@@ -170,7 +170,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): void;
+createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): void
 
 指定待创建的图片或者视频的文件名，创建图片或视频资源，使用callback方式返回结果。
 
@@ -219,7 +219,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(displayName: string): Promise&lt;PhotoAsset&gt;;
+createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 
 指定待创建的图片或者视频的文件名，创建图片或视频资源，使用Promise方式返回结果。
 
@@ -272,7 +272,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCallback&lt;PhotoAsset&gt;): void;
+createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCallback&lt;PhotoAsset&gt;): void
 
 指定待创建的图片或者视频的文件名和创建选项，创建图片或视频资源，使用callback方式返回结果。
 
@@ -325,7 +325,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoAsset&gt;;
+createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoAsset&gt;
 
 指定待创建的图片或者视频的文件名和创建选项，创建图片或视频资源，使用Promise方式返回结果。
 
@@ -382,7 +382,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(photoType: PhotoType, extension: string, options: CreateOptions, callback: AsyncCallback&lt;string&gt;): void;
+createAsset(photoType: PhotoType, extension: string, options: CreateOptions, callback: AsyncCallback&lt;string&gt;): void
 
 指定待创建的文件类型、后缀和创建选项，创建图片或视频资源，使用callback方式返回结果。
 
@@ -435,7 +435,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;string&gt;): void;
+createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;string&gt;): void
 
 指定待创建的文件类型和后缀，创建图片或视频资源，使用callback方式返回结果。
 
@@ -484,7 +484,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): Promise&lt;string&gt;;
+createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): Promise&lt;string&gt;
 
 指定待创建的文件类型、后缀和创建选项，创建图片或视频资源，使用Promise方式返回结果。
 
@@ -541,7 +541,7 @@ async function example() {
 
 ### createAlbum
 
-createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void;
+createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 
 创建相册，使用callback方式返回结果。
 
@@ -595,7 +595,7 @@ async function example() {
 
 ### createAlbum
 
-createAlbum(name: string): Promise&lt;Album&gt;;
+createAlbum(name: string): Promise&lt;Album&gt;
 
 创建相册，使用Promise方式返回结果。
 
@@ -654,7 +654,7 @@ async function example() {
 
 ### deleteAlbums
 
-deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 删除相册，使用callback方式返回结果。
 
@@ -714,7 +714,7 @@ async function example() {
 
 ### deleteAlbums
 
-deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;;
+deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 
 删除相册，使用Promise方式返回结果。
 
@@ -778,7 +778,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 根据检索选项和相册类型获取相册，使用callback方式返回结果。
 
@@ -840,7 +840,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 根据相册类型获取相册，使用callback方式返回结果。
 
@@ -893,7 +893,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
+getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 根据检索选项和相册类型获取相册，使用Promise方式返回结果。
 
@@ -959,7 +959,7 @@ async function example() {
 
 ### deleteAssets
 
-deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 删除媒体文件，删除的文件进入到回收站，使用callback方式返回结果。
 
@@ -1023,7 +1023,7 @@ async function example() {
 
 ### deleteAssets
 
-deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;;
+deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 删除媒体文件，删除的文件进入到回收站，使用Promise方式返回结果。
 
@@ -1217,7 +1217,7 @@ async function example() {
 
 ### createDeleteRequest
 
-createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
+createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 创建一个弹出框来删除照片，删除的文件进入到回收站，使用callback方式返回结果。
 
@@ -1277,7 +1277,7 @@ async function example() {
 
 ### createDeleteRequest
 
-createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;;
+createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 创建一个弹出框来删除照片，删除的文件进入到回收站，使用Promise方式返回结果。
 
@@ -1638,7 +1638,7 @@ async function example() {
 
 ### set
 
-set(member: string, value: string): void;
+set(member: string, value: string): void
 
 设置PhotoAsset成员参数。
 
@@ -3615,7 +3615,7 @@ async function example() {
 
 ### getAssets
 
-getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void;
+getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void
 
 获取相册中的文件。该方法使用callback形式来返回文件。
 
@@ -3671,7 +3671,7 @@ async function example() {
 
 ### getAssets
 
-getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;;
+getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 获取相册中的文件。该方法使用Promise来返回文件。
 
@@ -3732,7 +3732,7 @@ async function example() {
 
 ### commitModify
 
-commitModify(callback: AsyncCallback&lt;void&gt;): void;
+commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 更新相册属性修改到数据库中。该方法使用callback形式来返回结果。
 
@@ -3784,7 +3784,7 @@ async function example() {
 
 ### commitModify
 
-commitModify(): Promise&lt;void&gt;;
+commitModify(): Promise&lt;void&gt;
 
 更新相册属性修改到数据库中。该方法使用Promise来返回结果。
 
@@ -3835,7 +3835,7 @@ async function example() {
 
 ### addAssets
 
-addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
 
@@ -3893,7 +3893,7 @@ async function example() {
 
 ### addAssets
 
-addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
+addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
 
@@ -3955,7 +3955,7 @@ async function example() {
 
 ### removeAssets
 
-removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
 
@@ -4013,7 +4013,7 @@ async function example() {
 
 ### removeAssets
 
-removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
+removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
 
@@ -4075,7 +4075,7 @@ async function example() {
 
 ### recoverAssets
 
-recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从回收站中恢复图片或者视频，需要先在回收站中预置文件资源。该方法使用callback形式来返回结果。
 
@@ -4136,7 +4136,7 @@ async function example() {
 
 ### recoverAssets
 
-recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
+recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 从回收站中恢复图片或者视频，需要先在回收站中预置文件资源。该方法使用Promise来返回结果。
 
@@ -4201,7 +4201,7 @@ async function example() {
 
 ### deleteAssets
 
-deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源。该方法使用callback形式来返回结果。
 
@@ -4264,7 +4264,7 @@ async function example() {
 
 ### deleteAssets
 
-deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
+deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源。该方法使用Promise来返回结果。
 
@@ -4331,7 +4331,7 @@ async function example() {
 
 ### setCoverUri
 
-setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 设置相册封面，该方法使用callback形式来返回结果。
 
@@ -4394,7 +4394,7 @@ async function example() {
 
 ### setCoverUri
 
-setCoverUri(uri: string): Promise&lt;void&gt;;
+setCoverUri(uri: string): Promise&lt;void&gt;
 
 设置相册封面，该方法使用Promise来返回结果。
 

@@ -48,7 +48,7 @@ Allows an application to access Bluetooth and use Bluetooth capabilities, such a
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 10
 
@@ -84,7 +84,7 @@ Allows an application to access the notification policy on the device.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 7
 
@@ -830,7 +830,7 @@ Allows an application to start or stop the VPN.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 10
 
@@ -854,7 +854,7 @@ Allows an application to obtain historical traffic information and listen for tr
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 10
 
@@ -866,7 +866,7 @@ Allows an SA to call the network management, Wi-Fi, network adapter listening, a
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 10
 
@@ -890,7 +890,7 @@ Allows an application to access the system identity credential information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 8
 
@@ -902,7 +902,7 @@ Allows an application to enroll and manage user identity authentication credenti
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 8
 
@@ -926,7 +926,7 @@ Allows an application to call internal system interfaces of IAM.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 8
 
@@ -938,7 +938,7 @@ Allows an application to register the callback for obtaining the PIN during the 
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 8
 
@@ -1106,7 +1106,7 @@ Allows an application to obtain all application account information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 7
 
@@ -1290,6 +1290,18 @@ Allows a device administrator application to set the screen-off time.
 
 **Start version**: 10
 
+## ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+Allows a device administrator application to set security policies for devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
 ## ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
 Allows a device administrator application to install and uninstall applications.
@@ -1338,6 +1350,18 @@ Allows a device administrator application to deliver and obtain restriction poli
 
 **Start version**: 10
 
+## ohos.permission.ENTERPRISE_MANAGE_SETTINGS
+
+Allows a device administrator application to manage settings.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
 ## ohos.permission.ENTERPRISE_MANAGE_USB
 
 Allows a device administrator application to manage the USB.
@@ -1374,6 +1398,18 @@ Allows a device administrator application to set or delete browser policies.
 
 **Start version**: 10
 
+## ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+Allows a device administrator application to manage system parameters.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
 ## ohos.permission.NFC_TAG
 
 Allows an application to read NFC tag information.
@@ -1382,7 +1418,7 @@ Allows an application to read NFC tag information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 7
 
@@ -1394,7 +1430,7 @@ Allows an application to implement card emulation.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 8
 
@@ -1622,7 +1658,7 @@ Allows an application running in the background to obtain the device location.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 7
 
@@ -1650,7 +1686,7 @@ Allows an application to obtain the approximate location information of a device
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 9
 
@@ -1794,7 +1830,7 @@ Allows networking between different devices.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 9
 
@@ -1962,7 +1998,7 @@ Allows an application to read the accessibility configuration.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 9
 
@@ -1974,7 +2010,7 @@ Allows an application to set the accessibility configuration.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 9
 
@@ -1998,7 +2034,7 @@ Allows an application to query certificates and private credentials.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 9
 
@@ -2022,7 +2058,7 @@ Allows the push service to read data from an application.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 10
 
@@ -2034,7 +2070,7 @@ Allows the push service to write data to an application.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 10
 
@@ -2046,7 +2082,7 @@ Allows an application to subscribe to the startup broadcast.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 9
 
@@ -2310,7 +2346,7 @@ Allows a system service to access the cellular call SA.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 10
 
@@ -2322,7 +2358,7 @@ Allows a system service to access the IMS SA.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 10
 
@@ -2334,9 +2370,9 @@ Allows an application to use ultrasonic sensing.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: TRUE
 
-**Start version**: 10
+**Start version**: 11
 
 ## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
 
@@ -2502,7 +2538,7 @@ Allows a standby component to publish a customized network limit event.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 10
 
@@ -2598,7 +2634,7 @@ Allows an application to access OpenHarmony Security Detection and Response Fram
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 10
 
@@ -2610,7 +2646,7 @@ Allows an application to interact with the user authentication framework and reg
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 10
 
@@ -2706,7 +2742,7 @@ Allows an application to call interfaces of the DeviceAuthCredMgr application.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 10
 
@@ -2829,6 +2865,7 @@ Allows an application to access the AI Voice vision component.
 **Enable via ACL**: TRUE
 
 **Start version**: 11
+
 ## ohos.permission.ENABLE_DISTRIBUTED_HARDWARE
 
 Allows a system service to enable distributed hardware resources.
@@ -2837,9 +2874,22 @@ Allows a system service to enable distributed hardware resources.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Start version**: 11
+
+## ohos.permission.DISABLE_PERMISSION_DIALOG
+
+Allows a system application to set whether an application can start the permission dialog box.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
 ## ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
 
 Allows a system service or system application to access distributed hardware resources.
@@ -2917,6 +2967,114 @@ Allows an application to obtain resource information of another application.
 Allows a system application to set the public key and working secret ciphertext in the cloud and agrees on a key for code protection.
 
 **Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.SECURE_PASTE
+
+Allows an application to read the pasteboard via silent access.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.READ_PASTEBOARD
+
+Allows an application to read the pasteboard.
+
+**Permission level**: system_basic
+
+**Authorization mode**: user_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.SET_ADVANCED_SECURITY_MODE
+
+Allows an application to set the advanced security mode configuration.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.SET_DEVELOPER_MODE
+
+Allows an application to set the developer mode configuration.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.COOPERATE_MANAGER
+
+Allows a system application to enable the ScreenHop feature, which allows the user to use a mouse across multiple devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.PERCEIVE_TRAIL
+
+Allows a system application to use the Multimodal Sensor Data Platform (MSDP) trail perception function.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.EXECUTE_INSIGHT_INTENT
+
+Allows a system application to execute intent calls.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.MANAGE_ACTIVATION_LOCK
+
+Allows an application to manage the activation lock of a device.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.VERIFY_ACTIVATION_LOCK
+
+Allows an application to verify the validity of activation lock credentials.
+
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 

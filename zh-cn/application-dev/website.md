@@ -459,6 +459,7 @@
         - [使用OpenSL ES开发音频播放功能](media/using-opensl-es-for-playback.md)
         - [使用TonePlayer开发音频播放功能（仅对系统应用开放）](media/using-toneplayer-for-playback.md)
         - [使用OHAudio开发音频播放功能](media/using-ohaudio-for-playback.md)
+        - [使用SoundPool开发音频播放功能](media/using-soundpool-for-playback.md)
         - [多音频播放的并发策略](media/audio-playback-concurrency.md)
         - [播放音量管理](media/volume-management.md)
         - [音效管理](media/audio-effect-management.md)
@@ -510,7 +511,8 @@
       - 相机最佳实践
         - [拍照实现方案](media/camera-shooting-case.md)
         - [录像实现方案](media/camera-recording-case.md)
-        - [人像模式拍照实现方案](media/camera-mode.md)
+        - [使用人像模式拍照](media/camera-mode.md)
+        - [双路预览](media/camera-dual-channel-preview.md)
         - [性能提升方案（仅对系统应用开放）](media/camera-performance-improvement.md)
     - 图片
       - [图片开发概述](media/image-overview.md)
@@ -518,6 +520,7 @@
       - 图片处理
         - [图像变换(ArkTS)](media/image-transformation.md)
         - [图像变换(Native)](media/image-transformation-native.md)
+        - [PixelMap数据处理(Native)](media/image-pixelmap-operation-native.md)
         - [位图操作](media/image-pixelmap-operation.md)
       - [图片编码](media/image-encoding.md)
       - [图片工具](media/image-tool.md)
@@ -528,6 +531,12 @@
       - [访问控制权限校验指导](security/permission-verify-guidelines.md)
       - [应用权限列表](security/permission-list.md)
       - [应用权限组列表](security/permission-group-list.md)
+    - 安全控件
+      - [安全控件开发概述](security/security-component-manager-overview.md)
+      - [安全控件开发指导](security/security-component-manager-guidelines.md)
+    - 数据防泄漏（DLP）
+      - [数据防泄漏（DLP）开发概述](security/dlp-overview.md)
+      - [数据防泄漏（DLP）开发指导](security/dlp-guidelines.md)
     - 用户认证
       - [用户认证开发概述](security/userauth-overview.md)
       - [用户认证开发指导](security/userauth-guidelines.md)
@@ -612,15 +621,16 @@
         - [应用触发数据备份/恢复（仅对系统应用开放）](file-management/app-file-backup.md)
     - 用户文件
       - [用户文件概述](file-management/user-file-overview.md)
+      - [用户文件uri介绍](file-management/user-file-uri-intro.md)
       - 选择与保存用户文件（FilePicker）
         - [选择用户文件](file-management/select-user-file.md)
         - [保存用户文件](file-management/save-user-file.md)
       - 相册管理（photoAccessHelper）
         - [相册管理模块开发概述](file-management/photoAccessHelper-overview.md)
-        - [媒体资源（图片、视频）相关](file-management/photoAccessHelper-resource-guidelines.md)
-        - [用户相册相关](file-management/photoAccessHelper-userAlbum-guidelines.md)
-        - [系统相册相关](file-management/photoAccessHelper-systemAlbum-guidelines.md)
-        - [媒体资源变更通知相关](file-management/photoAccessHelper-notify-guidelines.md)
+        - [媒体资源使用指导](file-management/photoAccessHelper-resource-guidelines.md)
+        - [用户相册资源使用指导](file-management/photoAccessHelper-userAlbum-guidelines.md)
+        - [系统相册资源使用指导](file-management/photoAccessHelper-systemAlbum-guidelines.md)
+        - [媒体资源变更通知相关指导](file-management/photoAccessHelper-notify-guidelines.md)
       - [开发用户文件管理器（仅对系统应用开放）](file-management/dev-user-file-manager.md)
       - [管理外置存储设备（仅对系统应用开放）](file-management/manage-external-storage.md)
     - 分布式文件系统
@@ -748,6 +758,7 @@
       - [提升应用响应速度](performance/improve-application-response.md)
       - [Flex布局性能提升使用指导](performance/flex-development-performance-boost.md)
       - [优化布局性能](performance/reduce-view-nesting-levels.md)
+      - [合理选择条件渲染和显隐控制](performance/proper-choice-between-if-and-visibility.md)
       - [合理使用IPC通信](performance/reasonable-using-ipc.md)
       - [减少首帧绘制时的冗余操作](performance/reduce-redundant-operations-when-render-first-frame.md)
       - [列表场景性能提升实践](performance/list-perf-improvment.md)
@@ -755,6 +766,7 @@
       - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
+      - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
@@ -1011,6 +1023,7 @@
         - [MediaControlExtensionContext (播控扩展能力上下文)](reference/apis/js-apis-inner-application-MediaControlExtensionContext.md)
       - multimedia
         - [ringtonePlayer (铃声播放器)](reference/apis/js-apis-inner-multimedia-ringtonePlayer.md)
+        - [soundPool (音频池)](reference/apis/js-apis-inner-multimedia-soundPool.md)
     - 资源管理
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
@@ -1026,6 +1039,7 @@
         - [WorkSchedulerExtensionContext](reference/apis/js-apis-inner-application-WorkSchedulerExtensionContext.md)
     - 安全
       - [@ohos.abilityAccessCtrl (程序访问控制管理)](reference/apis/js-apis-abilityAccessCtrl.md)
+      - [@ohos.dlpPermission (数据防泄漏)](reference/apis/js-apis-dlppermission.md)
       - [@ohos.privacyManager (隐私管理)](reference/apis/js-apis-privacyManager.md)
       - [@ohos.security.cert (证书模块)](reference/apis/js-apis-cert.md)
       - [@ohos.security.cryptoFramework (加解密算法库框架)](reference/apis/js-apis-cryptoFramework.md)
@@ -1048,6 +1062,7 @@
       - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](reference/apis/js-apis-data-uniformTypeDescriptor.md)
       - [@ohos.data.ValuesBucket (数据集)](reference/apis/js-apis-data-valuesBucket.md)
     - 文件管理
+      - [@ohos.application.BackupExtensionAbility (BackupExtensionAbility)](reference/apis/js-apis-application-backupExtensionAbility.md)
       - [@ohos.file.backup (备份恢复)](reference/apis/js-apis-file-backup.md)
       - [@ohos.file.cloudSync (端云同步能力)](reference/apis/js-apis-file-cloudsync.md)
       - [@ohos.file.cloudSyncManager (端云同步管理)](reference/apis/js-apis-file-cloudsyncmanager.md)
@@ -1059,9 +1074,11 @@
       - [@ohos.file.hash (文件哈希处理)](reference/apis/js-apis-file-hash.md)
       - [@ohos.file.photoAccessHelper (相册管理模块)](reference/apis/js-apis-photoAccessHelper.md)
       - [@ohos.file.picker (选择器)](reference/apis/js-apis-file-picker.md)
+      - [@ohos.file.recent(最近访问列表)](reference/apis/js-apis-file-recent.md)
       - [@ohos.file.securityLabel (数据标签)](reference/apis/js-apis-file-securityLabel.md)
       - [@ohos.file.statvfs (文件系统空间统计)](reference/apis/js-apis-file-statvfs.md)
       - [@ohos.file.storageStatistics (应用空间统计)](reference/apis/js-apis-file-storage-statistics.md)
+      - [@ohos.file.trash (回收站)](reference/apis/js-apis-file-trash.md)
       - [@ohos.file.volumeManager (卷管理)](reference/apis/js-apis-file-volumemanager.md)
       - [@ohos.filemanagement.userFileManager (用户数据管理)](reference/apis/js-apis-userFileManager.md)
       - [@ohos.fileshare (文件分享)](reference/apis/js-apis-fileShare.md)
@@ -1477,6 +1494,11 @@
       - [@ohos.arkui.advanced.ToolBar (工具栏)](reference/arkui-ts/ts-composite-components-toolbar.md)
       - [@ohos.arkui.advanced.TreeView (树视图)](reference/arkui-ts/ts-composite-components-treeview.md)
       - [@ohos.multimedia.avcastpicker (投播组件)](reference/arkui-ts/ohos-multimedia-avcastpicker.md)
+    - 安全控件
+      - [安全控件通用属性](reference/arkui-ts/ts-securitycomponent-attributes.md)
+      - [LocationButton](reference/arkui-ts/ts-security-components-locationbutton.md)
+      - [PasteButton](reference/arkui-ts/ts-security-components-pastebutton.md)
+      - [SaveButton](reference/arkui-ts/ts-security-components-savebutton.md)
     - 动画
       - [属性动画](reference/arkui-ts/ts-animatorproperty.md)
       - [显式动画](reference/arkui-ts/ts-explicit-animation.md)
@@ -1722,11 +1744,12 @@
       - [reminderAgentManager错误码](reference/errorcodes/errorcode-reminderAgentManager.md)
       - [workScheduler错误码](reference/errorcodes/errorcode-workScheduler.md)
     - 安全
-      - [AccessToken错误码](reference/errorcodes/errorcode-access-token.md)
+      - [访问控制错误码](reference/errorcodes/errorcode-access-token.md)
       - [HUKS错误码](reference/errorcodes/errorcode-huks.md)
       - [crypto framework错误码](reference/errorcodes/errorcode-crypto-framework.md)
       - [cert错误码](reference/errorcodes/errorcode-cert.md)
       - [用户认证错误码](reference/errorcodes/errorcode-useriam.md)
+      - [DLP服务错误码](reference/errorcodes/errorcode-dlp.md)
     - 数据管理
       - [关系型数据库错误码](reference/errorcodes/errorcode-data-rdb.md)
       - [数据共享错误码](reference/errorcodes/errorcode-datashare.md)
@@ -1907,8 +1930,8 @@
       - [OH_NativeXComponent_TouchPoint](reference/native-apis/_o_h___native_x_component___touch_point.md)
       - [OHExtDataHandle](reference/native-apis/_o_h_ext_data_handle.md)
       - [OHHDRMetaData](reference/native-apis/_o_h_h_d_r_meta_data.md)
-      - [OHOS::Media::OhosImageComponent](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
-      - [OHOS::Media::OhosImageRect](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
+      - [OhosImageComponent](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
+      - [OhosImageRect](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
       - [OHOS::Media::OhosPixelMapInfo](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
       - [OhosImageDecodingOps](reference/native-apis/_ohos_image_decoding_ops.md)
       - [OhosImageReceiverInfo](reference/native-apis/_ohos_image_receiver_info.md)

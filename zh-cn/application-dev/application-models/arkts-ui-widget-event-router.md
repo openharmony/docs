@@ -70,7 +70,7 @@
       // 获取router事件中传递的targetPage参数
       console.info("onCreate want:" + JSON.stringify(want));
       if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters?.params));
+        let params: Record<string, string> = JSON.parse(want.parameters?.params.toString());
         console.info("onCreate router targetPage:" + params.targetPage);
         selectPage = params.targetPage;
       }
@@ -79,7 +79,7 @@
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
       console.info("onNewWant want:" + JSON.stringify(want));
       if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters?.params));
+        let params: Record<string, string> = JSON.parse(want.parameters?.params.toString());
         console.info("onNewWant router targetPage:" + params.targetPage);
         selectPage = params.targetPage;
       }

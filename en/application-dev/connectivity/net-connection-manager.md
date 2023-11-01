@@ -82,7 +82,7 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 
 ```ts
 // Import the connection namespace.
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 let netSpecifier: connection.NetSpecifier = {
@@ -129,8 +129,8 @@ conn.unregister((err: BusinessError, data: void) => {
 
 ```ts
 // Import the connection namespace.
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 // Construct a singleton object.
 export class GlobalContext {
@@ -178,7 +178,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 4. Call **getConnectionProperties** to obtain the connection information of the data network specified by **NetHandle**.
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 // Construct a singleton object.
@@ -298,9 +298,9 @@ for (let item of dataNumber) {
 2. Call **getAddressesByName** to use the default network to resolve the host name to obtain the list of all IP addresses.
 
 ```ts
-    // Import the connection namespace.
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+// Import the connection namespace.
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 // Use the default network to resolve the host name to obtain the list of all IP addresses.
 connection.getAddressesByName(this.host, (err: BusinessError, data: connection.NetAddress[]) => {

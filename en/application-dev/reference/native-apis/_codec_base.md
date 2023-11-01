@@ -118,7 +118,7 @@ The **CodecBase** module provides the common structs, character constants, and e
 | \*[OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame) | Defines the pointer to the request for immediate encoding of I-frames. The value type is Boolean.| 
 | \*[OH_MD_KEY_QUALITY](#oh_md_key_quality) | Defines the pointer to the required encoding quality. The value type is uint32_t. This key applies only to encoders configured in constant quality mode.| 
 | \*[OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout) | Defines the pointer to the required encoding channel layout. The value type is int64_t. This key applies only to encoders.| 
-| \*[OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | Defines the pointer to the number of bits for each coded sample. The value type is uint32_t. This key applies to FLAC encoders. For details, see **\@OH_BitsPerSample**.| 
+| \*[OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | Defines the pointer to the number of bits for each coded sample. The value type is uint32_t. This key applies to FLAC encoders. For details, see [OH_BitsPerSample](#oh_bitspersample).| 
 | \*[OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts) | Defines the pointer to the AAC format. The value type is uint32_t. This key applies to AAC decoders.| 
 | \*[OH_MD_KEY_SBR](#oh_md_key_sbr) | Defines the pointer to the AAC SBR format. The value type is uint32_t. This key applies to AAC encoders.| 
 | \*[OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level) | Defines the pointer to the FLAC compliance level. The value type is int32_t.| 

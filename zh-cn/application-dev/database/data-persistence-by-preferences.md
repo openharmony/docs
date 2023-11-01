@@ -60,20 +60,20 @@
    import UIAbility from '@ohos.app.ability.UIAbility';
    import { BusinessError } from '@ohos.base';
    import window from '@ohos.window';
-   
+
    let preferences: dataPreferences.Preferences | null = null;
-   
+
    class EntryAbility extends UIAbility {
-       onWindowStageCreate(windowStage: window.WindowStage) {
-           try {
-               let options: dataPreferences.Options = { name: 'myStore' };
-               preferences = dataPreferences.getPreferencesSync(this.context, options);
-           } catch (err) {
-               let code = (err as BusinessError).code;
-         		let message = (err as BusinessError).message;
-         		console.error(`Failed to get preferences. Code:${code},message:${message}`);
-           }
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       try {
+         let options: dataPreferences.Options = { name: 'myStore' };
+         preferences = dataPreferences.getPreferencesSync(this.context, options);
+       } catch (err) {
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to get preferences. Code:${code},message:${message}`);
        }
+     }
    }
    ```
 
