@@ -72,6 +72,7 @@ libnative_drawing.so
     ```ts
     XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry' })
     ```
+    若要改变 **XComponent** 的宽，值需为 **64** 的倍数，例如 **640px**。
 2. 在 **native c++** 层获取 **NativeXComponent**。建议使用单例模式保存 **XComponent**。此步骤需要在 **napi_init** 的过程中处理。
     ```c++
     void PluginManager::Export(napi_env env, napi_value exports) {
@@ -184,7 +185,7 @@ libnative_drawing.so
     OH_Drawing_Bitmap* cBitmap = OH_Drawing_BitmapCreate();
     // 定义bitmap的像素格式
     OH_Drawing_BitmapFormat cFormat {COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
-    // 构造对应格式的bitmap
+    // 构造对应格式的bitmap，width的值必须为 bufferHandle->stride / 4
     OH_Drawing_BitmapBuild(cBitmap, width, height, &cFormat);
     ```
 
@@ -263,6 +264,7 @@ libnative_drawing.so
     // 创建bitmap
     OH_Drawing_Bitmap* cBitmap = OH_Drawing_BitmapCreate();
     OH_Drawing_BitmapFormat cFormat {COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
+    // width的值必须为bufferHandle->stride / 4
     OH_Drawing_BitmapBuild(cBitmap, width, height, &cFormat);
     // 创建canvas
     OH_Drawing_Canvas* cCanvas = OH_Drawing_CanvasCreate();
