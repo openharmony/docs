@@ -11,7 +11,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
 | 类/接口 | 方法 | 功能说明 |
 | -------- | -------- | -------- |
-| [IRemoteBroker](../reference/apis/js-apis-rpc.md#iremotebroker) | sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 |
+| IRemoteBroker | sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 |
 | IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 |
 | IRemoteProxy | Remote()->SendRequest(code, data, reply, option)             | 消息发送方法，业务的Proxy类需要从IRemoteProxy类派生，该方法用来向对端发送消息。 |
 
@@ -195,27 +195,27 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
    export default class MainAbility extends UIAbility {
        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-           console.log("[Demo] MainAbility onCreate");
+           hilog.info("[Demo] MainAbility onCreate");
            let context = this.context;
        }
        onDestroy() {
-           console.log("[Demo] MainAbility onDestroy");
+           hilog.info("[Demo] MainAbility onDestroy");
        }
        onWindowStageCreate(windowStage: window.WindowStage) {
            // Main window is created, set main page for this ability
-           console.log("[Demo] MainAbility onWindowStageCreate");
+           hilog.info("[Demo] MainAbility onWindowStageCreate");
        }
        onWindowStageDestroy() {
            // Main window is destroyed, release UI related resources
-           console.log("[Demo] MainAbility onWindowStageDestroy");
+           hilog.info("[Demo] MainAbility onWindowStageDestroy");
        }
        onForeground() {
            // Ability has brought to foreground
-           console.log("[Demo] MainAbility onForeground");
+           hilog.info("[Demo] MainAbility onForeground");
        }
        onBackground() {
            // Ability has back to background
-           console.log("[Demo] MainAbility onBackground");
+           hilog.info("[Demo] MainAbility onBackground");
        }
    }
    ```
@@ -261,17 +261,17 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    // 跨设备绑定 
    let deviceManagerCallback = (err: BusinessError, data: deviceManager.DeviceManager) => {
        if (err) {
-           console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+          hilog.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
            return;
        }
-       console.info("createDeviceManager success");
+       hilog.info("createDeviceManager success");
        dmInstance = data;
    }
    try{
        deviceManager.createDeviceManager("ohos.rpc.test", deviceManagerCallback);
    } catch(error) {
        let err: BusinessError = error as BusinessError;
-       console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+      hilog.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
    }
 
    // 使用deviceManager获取目标设备NetworkId
@@ -324,20 +324,20 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    import rpc from '@ohos.rpc';
    // 使用期约
    let option = new rpc.MessageOption();
-   let data = rpc.MessageParcel.create();
-   let reply = rpc.MessageParcel.create();
+   let data = rpc.MessageSequence.create();
+   let reply = rpc.MessageSequence.create();
    // 往data里写入参数
    let proxy: rpc.IRemoteObject | undefined = undefined;
-   proxy.sendRequest(1, data, reply, option)
-       .then((result: rpc.SendRequestResult) => {
+   proxy.sendMessageRequest(1, data, reply, option)
+       .then((result: rpc.RequestResult) => {
            if (result.errCode != 0) {
-               console.error("send request failed, errCode: " + result.errCode);
+              hilog.error("sendMessageRequest failed, errCode: " + result.errCode);
                return;
            }
            // 从result.reply里读取结果
        })
        .catch((e: Error) => {
-           console.error("send request got exception: " + e);
+          hilog.error("sendMessageRequest got exception: " + e);
        })
        .finally(() => {
            data.reclaim();
@@ -345,10 +345,10 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
        })
 
    // 使用回调函数
-   function sendRequestCallback(result: rpc.SendRequestResult) {
+   function sendRequestCallback(err: Error, result: rpc.SendRequestResult) {
        try {
            if (result.errCode != 0) {
-               console.error("send request failed, errCode: " + result.errCode);
+              hilog.error("sendMessageRequest failed, errCode: " + result.errCode);
                return;
            }
            // 从result.reply里读取结果
@@ -358,10 +358,10 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
        }
    }
    let options = new rpc.MessageOption();
-   let datas = rpc.MessageParcel.create();
-   let replys = rpc.MessageParcel.create();
+   let datas = rpc.MessageSequence.create();
+   let replys = rpc.MessageSequence.create();
    // 往data里写入参数
-   proxy.sendRequest(1, datas, replys, options, sendRequestCallback);
+   proxy.sendMessageRequest(1, datas, replys, options, sendRequestCallback);
    ```
 
 5. 断开连接
@@ -376,7 +376,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    // import featureAbility from "@ohos.ability.featureAbility";
 
    function disconnectCallback() {
-     console.info("disconnect ability done");
+     hilog.info("disconnect ability done");
    }
    // FA模型使用此方法断开连接
    // featureAbility.disconnectAbility(connectId, disconnectCallback);
