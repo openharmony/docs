@@ -1400,7 +1400,6 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occured in crypto engine. |
-| 12000011 | The entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
@@ -1463,7 +1462,6 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occured in crypto engine. |
-| 12000011 | The entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
