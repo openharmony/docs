@@ -7,7 +7,7 @@ HAR与HSP都是为了实现代码和资源的共享，都可以包含代码、C+
 **图1** `HAR`和`HSP`在`APP`包中的形态示意图
 ![in-app-hsp-har](figures/in-app-hsp-har.png)
 
-HSP旨在解决多个`HAP`引用相同的`HAR`，导致的`APP`包大小膨胀问题。
+HSP旨在解决多个模块引用相同的`HAR`，导致的`APP`包大小膨胀问题。
 
 **HSP的一些约束：**
 - `HSP`及其使用方都必须是`Stage`模型。
