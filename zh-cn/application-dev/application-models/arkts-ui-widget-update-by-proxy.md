@@ -64,7 +64,7 @@
         "scheduledUpdateTime": "10:30",
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"],
-        "dataProxyEnabled": true // 使能数据代理功能
+        "dataProxyEnabled": true
       }
     ]
   }
@@ -139,7 +139,7 @@
         "scheduledUpdateTime": "10:30",
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"],
-        "dataProxyEnabled": true // 使能数据代理功能
+        "dataProxyEnabled": true
       }
     ]
   }
