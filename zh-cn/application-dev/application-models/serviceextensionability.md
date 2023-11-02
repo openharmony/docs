@@ -20,7 +20,7 @@
 
 > **说明：**
 >
-> 1. OpenHarmony当前不支持三方应用实现ServiceExtensionAbility。如果三方开发者想要实现后台处理相关事务的功能，可以使用后台任务，具体请参见[后台任务](../task-management/background-task-overview.md)。
+> 1. 当前不支持三方应用实现ServiceExtensionAbility。如果三方开发者想要实现后台处理相关事务的功能，可以使用后台任务，具体请参见[后台任务](../task-management/background-task-overview.md)。
 > 2. 三方应用的UIAbility组件可以通过Context连接系统提供的ServiceExtensionAbility。
 > 3. 三方应用需要在前台获焦的情况下才能连接系统提供的ServiceExtensionAbility。
 
@@ -432,7 +432,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 
 - **通过callerTokenId对客户端进行鉴权**
 
-  通过调用[getCallingTokenId()](../reference/apis/js-apis-rpc.md#getcallingtokenid)接口获取客户端的tokenID，再调用[verifyAccessTokenSync()](../reference/apis/js-apis-abilityAccessCtrl.md#verifyaccesstokensync)接口判断客户端是否有某个具体权限，由于OpenHarmony当前不支持自定义权限，因此只能校验当前[系统所定义的权限](../security/permission-list.md)。示例代码如下：
+  通过调用[getCallingTokenId()](../reference/apis/js-apis-rpc.md#getcallingtokenid)接口获取客户端的tokenID，再调用[verifyAccessTokenSync()](../reference/apis/js-apis-abilityAccessCtrl.md#verifyaccesstokensync)接口判断客户端是否有某个具体权限，由于当前不支持自定义权限，因此只能校验当前[系统所定义的权限](../security/permission-list.md)。示例代码如下：
 
   ```ts
   import rpc from '@ohos.rpc';
