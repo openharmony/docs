@@ -493,7 +493,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCal
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import bundleManager from '@ohos.bundle.bundleManager';
+import bundleManager from '@ohos.bundle';
 let context: featureAbility.Context = featureAbility.getContext();
 let orientation = bundleManager.DisplayOrientation.LANDSCAPE;
 context.setDisplayOrientation(orientation, (error) => {
@@ -520,7 +520,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>;
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import bundleManager from '@ohos.bundle.bundleManager';
+import bundleManager from '@ohos.bundle';
 let context: featureAbility.Context = featureAbility.getContext();
 let orientation = bundleManager.DisplayOrientation.UNSPECIFIED;
 context.setDisplayOrientation(orientation).then((data) => {
