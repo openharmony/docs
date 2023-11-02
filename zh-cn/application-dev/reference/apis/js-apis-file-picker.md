@@ -26,7 +26,7 @@ let photoPicker = new picker.PhotoViewPicker();
 
 ### select
 
-select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
+select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 
 通过选择模式拉起photoPicker界面，用户可以选择一个或多个图片/视频。接口采用promise异步返回形式，传入可选参数PhotoSelectOptions对象，返回PhotoSelectResult对象。
 
@@ -38,7 +38,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| option | [PhotoSelectOptions](#photoselectoptions) | 否   | photoPicker选择选项，若无此参数，则默认选择媒体文件类型为图片和视频类型，选择媒体文件数量的最大值为50 |
+| option | [PhotoSelectOptions](#photoselectoptions) | 否   | photoPicker选择选项，若无此参数，则默认选择媒体文件类型为图片和视频类型，选择媒体文件数量的默认最大值为50 |
 
 **返回值：**
 
@@ -70,7 +70,7 @@ async function example01() {
 
 ### select
 
-select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
+select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
 通过选择模式拉起photoPicker界面，用户可以选择一个或多个图片/视频。接口采用callback异步返回形式，传入参数PhotoSelectOptions对象，返回PhotoSelectResult对象。
 
@@ -111,7 +111,7 @@ async function example02() {
 
 ### select
 
-select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
+select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
 通过选择模式拉起photoPicker界面，用户可以选择一个或多个图片/视频。接口采用callback异步返回形式，返回PhotoSelectResult对象。
 
@@ -148,7 +148,7 @@ async function example03() {
 
 ### save
 
-save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
+save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用promise异步返回形式，传入可选参数PhotoSaveOptions对象，返回保存文件的uri数组。
 
@@ -191,7 +191,7 @@ async function example04() {
 
 ### save
 
-save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用callback异步返回形式，传入参数PhotoSaveOptions对象，返回保存文件的uri数组。
 
@@ -231,7 +231,7 @@ async function example05() {
 
 ### save
 
-save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用callback异步返回形式，返回保存文件的uri数组。
 
@@ -280,7 +280,7 @@ let documentPicker = new picker.DocumentViewPicker();
 
 ### select
 
-select(option?: DocumentSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
+select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用promise异步返回形式，传入可选参数DocumentSelectOptions对象，返回选择文件的uri数组。
 
@@ -322,7 +322,7 @@ async function example07() {
 
 ### select
 
-select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用callback异步返回形式，传入参数DocumentSelectOptions对象，返回选择文件的uri数组。
 
@@ -361,7 +361,7 @@ async function example08() {
 
 ### select
 
-select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用callback异步返回形式，返回选择文件的uri数组。
 
@@ -399,7 +399,7 @@ async function example09() {
 
 ### save
 
-save(option?: DocumentSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
+save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用promise异步返回形式，传入可选参数DocumentSaveOptions对象，返回保存文件的uri数组。
 
@@ -442,7 +442,7 @@ async function example10() {
 
 ### save
 
-save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用callback异步返回形式，传入参数DocumentSaveOptions对象，返回保存文件的uri数组。
 
@@ -482,7 +482,7 @@ async function example11() {
 
 ### save
 
-save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用callback异步返回形式，返回保存文件的uri数组。
 
@@ -531,7 +531,7 @@ let audioPicker = new picker.AudioViewPicker();
 
 ### select
 
-select(option?: AudioSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
+select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 通过选择模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以选择一个或多个音频文件。接口采用promise异步返回形式，传入可选参数AudioSelectOptions对象，返回选择音频文件的uri数组。
 
@@ -573,7 +573,7 @@ async function example13() {
 
 ### select
 
-select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过选择模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以选择一个或多个音频文件。接口采用callback异步返回形式，传入参数AudioSelectOptions对象，返回选择音频文件的uri数组。
 
@@ -612,7 +612,7 @@ async function example14() {
 
 ### select
 
-select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过选择模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以选择一个或多个音频文件。接口采用callback异步返回形式，返回选择音频文件的uri数组。
 
@@ -649,7 +649,7 @@ async function example15() {
 
 ### save
 
-save(option?: AudioSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
+save(option?: AudioSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用promise异步返回形式，传入可选参数AudioSaveOptions对象，返回保存音频文件的uri数组。
 
@@ -692,7 +692,7 @@ async function example16() {
 
 ### save
 
-save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用callback异步返回形式，传入参数AudioSaveOptions对象，返回保存音频文件的uri数组。
 
@@ -732,7 +732,7 @@ async function example17() {
 
 ### save
 
-save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用callback异步返回形式，返回保存音频文件的uri数组。
 
