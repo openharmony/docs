@@ -4543,7 +4543,11 @@ let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) =
 let subscriber: notificationManager.SystemLiveViewSubscriber  = {
     onResponse: onResponseCallback，
 };
-notificationManager.subscribeSystemLiveView(subscriber);
+notificationManager.subscribeSystemLiveView(subscriber).then(() => {
+	console.info("subscribeSystemLiveView success");
+}).catch((error: Base.BusinessError) => {
+    console.error(`subscribeSystemLiveView fail: ${JSON.stringify(error)}`);
+});
 ```
 
 
