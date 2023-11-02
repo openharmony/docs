@@ -105,15 +105,15 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | If transaction operation failed|
+| 62980096 | If the operation failed|
 | 62980097 | If the ipc error|
-| 62980115 | If the input parameter invalid|
-| 62980105 | Get data error|
-| 62980177 | Napi environmental abnormality|
-| 62980178 | Pixelmap create failed|
-| 62980179 | Unmarshalling bufferSize parcelling error|
-| 62980180 | Fd acquisition failed|
-| 62980246 | Read pixelmap failed|
+| 62980115 | Invalid input parameter|
+| 62980105 | Failed to get the data|
+| 62980177 | Abnormal API environment|
+| 62980178 | Failed to create the PixelMap|
+| 62980179 | Abnormal buffer size|
+| 62980180 | FD mapping failed|
+| 62980246 | Failed to read the PixelMap|
 
 **示例：**
 
