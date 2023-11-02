@@ -1,7 +1,7 @@
 # 发布基础类型通知
 
 
-基础类型通知主要应用于发送短信息、提示信息、广告推送等，支持普通文本类型、长文本类型、多行文本类型、图片类型和系统实况窗类型。
+基础类型通知主要应用于发送短信息、提示信息、广告推送等，支持普通文本类型、长文本类型、多行文本类型、图片类型和实况窗类型。
 
 **表1** 基础类型通知中的内容分类
 
@@ -11,7 +11,7 @@
 | NOTIFICATION_CONTENT_LONG_TEXT | 长文本类型。 |
 | NOTIFICATION_CONTENT_MULTILINE | 多行文本类型。 |
 | NOTIFICATION_CONTENT_PICTURE | 图片类型。 |
-| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | 系统实况窗类型。|
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | 实况窗类型（仅对系统应用开放）。|
 
 
 目前，系统仅支持通知栏订阅通知，将通知显示在通知栏中。基本类型通知的效果示意如下图所示。
