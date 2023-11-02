@@ -213,3 +213,98 @@ struct DirectiveMenuExample {
 ```
 
 ![zh-cn_image_0000001689126950](figures/zh-cn_image_0000001689126950.png)
+
+### 示例5
+
+长按悬浮菜单（预览内容为截图形式）
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  private iconStr: ResourceStr = $r("app.media.icon")
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+    }
+  }
+
+  build() {
+    Column({ space: 50 }) {
+      Column() {
+        Column() {
+          Text('preview-image')
+            .width(200)
+            .height(100)
+            .textAlign(TextAlign.Center)
+            .margin(100)
+            .fontSize(30)
+            .bindContextMenu(this.MyMenu, ResponseType.LongPress,
+              { preview: MenuPreviewMode.IMAGE })
+            .backgroundColor("#ff3df2f5")
+        }
+      }.width('100%')
+    }
+  }
+}
+```
+
+![preview-image](figures/preview-image.png)
+
+### 示例6
+
+长按悬浮菜单（自定义预览内容）
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  private iconStr: ResourceStr = $r("app.media.icon")
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+    }
+  }
+
+  @Builder
+  MyPreview() {
+    Column() {
+      Image($r('app.media.icon'))
+        .width(200)
+        .height(200)
+    }
+  }
+
+  build() {
+    Column({ space: 50 }) {
+      Column() {
+        Column() {
+          Text('preview-builder')
+            .width(200)
+            .height(100)
+            .textAlign(TextAlign.Center)
+            .margin(100)
+            .fontSize(30)
+            .bindContextMenu(this.MyMenu, ResponseType.LongPress,
+              {
+                preview: this.MyPreview
+              })
+        }
+      }.width('100%')
+    }
+  }
+}
+```
+
+![preview-builder](figures/preview-builder.png)
+
