@@ -550,7 +550,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 | 参数名      | 类型         | 必填   | 说明   |
 | -------- | ---------- | ---- | ---- |
-| value | [KeyboardAvoidMode](../arkui-ts/ts-types.md#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
+| value | [KeyboardAvoidMode](../apis/js-apis-arkui-UIContext.md#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
 
 **示例：**
 
@@ -584,7 +584,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 | 类型         | 说明   |
 | ---------- | ---- |
-| [KeyboardAvoidMode](../arkui-ts/ts-types.md#keyboardavoidmode11)| 返回当前的页面避让模式。|
+| [KeyboardAvoidMode](../apis/js-apis-arkui-UIContext.md#keyboardavoidmode11)| 返回当前的页面避让模式。|
 
 **示例：**
 
@@ -2094,3 +2094,12 @@ try {
   console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
+
+## KeyboardAvoidMode<sup>11+</sup>
+
+配置键盘避让时页面的避让模式。
+
+| 名称   | 描述       |
+| ------ | ---------- |
+| OFFSET | 上抬模式。 |
+| RESIZE | 压缩模式。 |
