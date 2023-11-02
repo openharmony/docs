@@ -4690,7 +4690,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 ## SystemLiveViewSubscriber<sup>11+</sup>
 
-描述系统实况窗订阅者。
+系统实况窗订阅者。
 
 **系统能力**：SystemCapability.Notification.Notification
 
