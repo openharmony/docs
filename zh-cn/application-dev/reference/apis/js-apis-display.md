@@ -988,7 +988,6 @@ hasImmersiveWindow(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -1019,7 +1018,7 @@ try {
 }
 ```
 ### hasImmersiveWindow<sup>11+</sup>
-hasImmersiveWindow(): Promise&lt;[boolean]&gt;
+hasImmersiveWindow(): Promise&lt;boolean&gt;
 
 判断当前屏幕是否包含沉浸式窗口，使用Promise异步回调。
 
@@ -1027,11 +1026,11 @@ hasImmersiveWindow(): Promise&lt;[boolean]&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**参数：**
+**返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[boolean]&gt; | Promise对象。返回true表示当前屏幕包含沉浸式窗口，false表示不包含。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前屏幕包含沉浸式窗口，false表示不包含。 |
 
 **错误码：**
 
@@ -1039,7 +1038,6 @@ hasImmersiveWindow(): Promise&lt;[boolean]&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
