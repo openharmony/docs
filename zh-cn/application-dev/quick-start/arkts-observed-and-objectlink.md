@@ -22,7 +22,9 @@
 
 ## 限制条件
 
-使用\@Observed装饰class会改变class原始的原型链，\@Observed和其他类装饰器装饰同一个class可能会带来问题。
+- 使用\@Observed装饰class会改变class原始的原型链，\@Observed和其他类装饰器装饰同一个class可能会带来问题。
+
+- \@ObjectLink装饰器不能在\@Entry装饰的自定义组件中使用。
 
 ## 装饰器说明
 
