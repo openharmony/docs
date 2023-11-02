@@ -4446,20 +4446,20 @@ try{
 
 triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOptions: ButtonOptions): Promise\<void>;
 
-触发系统实况窗（Promise形式）。
+触发系统实况窗。使用Promise异步回调。
 
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 
+
+**系统能力**：SystemCapability.Notification.Notification
 
 **参数：**
 
 | 参数名 | 类型                   | 必填 | 说明           |
 | -------------- | ------------- | ---- | -------------- |
 | bundle         | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | 是   |指定应用的包信息。 |
-| notificationId | number        | 是   | 通知id。 |
+| notificationId | number        | 是   | 通知ID。 |
 | buttonOptions  | [ButtonOptions](#buttonoptions11) | 是   | 按钮信息。 |
 
 **返回值：**
@@ -4487,7 +4487,7 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 let bundle = {
     bundle: "bundleName1",
 };
-// 通知id
+// 通知ID
 let notificationId = 1;
 // 按钮信息
 let buttonOptions = {
@@ -4505,11 +4505,11 @@ notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions)
 
 subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 
-订阅系统实况窗（Promise形式）。
+订阅系统实况窗。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -4676,11 +4676,12 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 ## ButtonOptions<sup>11+</sup>
 
+描述触发按钮信息。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 | 名称    | 类型                                  | 必填 | 说明                   |
 | ------- | ------------------------------------ | ---- | ---------------------- |
@@ -4688,6 +4689,8 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 
 ## SystemLiveViewSubscriber<sup>11+</sup>
+
+描述系统实况窗订阅者。
 
 **系统能力**：SystemCapability.Notification.Notification
 
