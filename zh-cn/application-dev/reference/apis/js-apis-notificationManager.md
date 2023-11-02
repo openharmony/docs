@@ -4505,7 +4505,7 @@ notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions)
 
 subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 
-订阅系统实况窗。
+订阅系统实况窗（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4517,6 +4517,11 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 | -------------- | ------------- | ---- | -------------- |
 | subscriber | [SystemLiveViewSubscriber](#systemliveviewsubscriber11)  | 是   | 系统实况窗订阅者。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| ---- | ----|
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
