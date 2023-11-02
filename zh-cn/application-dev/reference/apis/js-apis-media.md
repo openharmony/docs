@@ -1871,7 +1871,6 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 | 401      | Parameter error. Return by callback.    |
 | 5400102  | Operate not permit. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
-| 5400106  | Unsupport format. Return by callback.   |
 
 **示例：**
 
@@ -1943,7 +1942,6 @@ prepare(config: AVRecorderConfig): Promise\<void>
 | 401      | Parameter error. Return by promise.    |
 | 5400102  | Operate not permit. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
-| 5400106  | Unsupport format. Return by callback.   |
 
 **示例：**
 
