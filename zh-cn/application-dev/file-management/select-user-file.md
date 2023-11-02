@@ -208,4 +208,4 @@
 
 针对用户文件的选择，有以下相关实例可供参考：
 
-- [选择并查看文档与媒体文件（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/Picker)
+- [选择并查看文档与媒体文件（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/Picker) 
