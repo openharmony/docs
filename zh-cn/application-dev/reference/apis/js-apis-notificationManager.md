@@ -4446,7 +4446,7 @@ try{
 
 triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOptions: ButtonOptions): Promise\<void>;
 
-触发系统实况窗。
+触发系统实况窗（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4462,6 +4462,11 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 | notificationId | number        | 是   | 通知id。 |
 | buttonOptions  | [ButtonOptions](#buttonoptions11) | 是   | 按钮信息。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| ---- | ----|
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
