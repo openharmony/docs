@@ -17,7 +17,7 @@
 | longText       | [NotificationLongTextContent](#notificationlongtextcontent)                | 否  | 否  | 长文本类型通知内容。 |
 | multiLine      | [NotificationMultiLineContent](#notificationmultilinecontent)              | 否  | 否  | 多行类型通知内容。   |
 | picture        | [NotificationPictureContent](#notificationpicturecontent)                  | 否  | 否  | 图片类型通知内容。   |
-| systemLiveView | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent11)    | 否  | 否  | 系统实况窗类型通知内容。|
+| systemLiveView | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent11)    | 否  | 否  | 实况窗类型通知内容（仅对系统应用开放）。|
 
 ## NotificationBasicContent
 
