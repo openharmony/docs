@@ -19,7 +19,6 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```ts
     let soundPool: media.SoundPool;
     let audioRendererInfo: audio.AudioRendererInfo = {
-        content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
         usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
         rendererFlags : 1
     }
@@ -199,7 +198,6 @@ struct Soundpool {
   private streamId: number = 0;
   private soundId: number = 0;
   private audioRendererInfo: audio.AudioRendererInfo = {
-    content: audio.ContentType.CONTENT_TYPE_SPEECH,
     usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags: 1
   }
