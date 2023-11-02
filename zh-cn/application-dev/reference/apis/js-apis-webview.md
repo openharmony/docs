@@ -4972,6 +4972,13 @@ static fetchCookie(url: string, callback: AsyncCallback<string>): void
 | url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
 | callback | AsyncCallback<string> | 是 | callback回调，用于获取cookie |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 17100002 | Invalid url.                                           |
 
 **示例：**
 
@@ -4990,9 +4997,13 @@ struct WebComponent {
       Button('fetchCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.fetchCookie('https://www.example.com', (cookie) => {
+            web_webview.WebCookieManager.fetchCookie('https://www.example.com', (error, cookie) => {
+              if (error) {
+                console.log('error: ' + JSON.stringify(error));
+                return;
+              }
               if (cookie) {
-                console.log("fetchCookie cookie = " + cookie);
+                console.log('fetchCookie cookie = ' + cookie);
               }
             })
           } catch (error) {
@@ -5025,6 +5036,14 @@ static fetchCookie(url: string): Promise\<string>
 | 类型   | 说明                      |
 | ------ | ------------------------- |
 | Promise\<string> | Promise实例，用于获取指定url对应的cookie值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 17100002 | Invalid url.                                           |
 
 **示例：**
 
@@ -5188,6 +5207,14 @@ static configCookie(url: string, value: string, AsyncCallback\<void>): void
 | value  | string | 是   | 要设置的cookie的值。      |
 | callback | AsyncCallback\<void> | 是 | callback回调，用于获取设置cookie的结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
 
 **示例：**
 
@@ -5242,6 +5269,15 @@ static configCookie(url: string, value: string): Promise\<void>
 | 类型   | 说明                      |
 | ------ | ------------------------- |
 | Promise\<string> | Promise实例，用于获取指定url设置单个cookie值是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
 
 **示例：**
 
