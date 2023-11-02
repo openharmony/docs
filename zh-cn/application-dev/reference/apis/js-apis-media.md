@@ -306,13 +306,11 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 **示例：**
 
 ```js
-import media from '@ohos.multimedia.media'
 import audio from '@ohos.multimedia.audio'
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
   rendererFlags : 1
 }
 
@@ -359,13 +357,11 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 **示例：**
 
 ```js
-import media from '@ohos.multimedia.media'
 import audio from '@ohos.multimedia.audio'
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
   rendererFlags : 1
 }
 
@@ -376,7 +372,7 @@ media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) =
   } else {
     console.error('create SoundPool fail');
   }
-}).catch((error: BusinessError) => {
+}, (error: BusinessError) => {
   console.error(`soundpool catchCallback, error message:${error.message}`);
 });
 ```
