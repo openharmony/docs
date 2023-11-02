@@ -1319,14 +1319,9 @@ off(type: 'printerStateChange', callback?: Callback&lt;boolean&gt;): void
 
 ```ts
 import print from '@ohos.print';
-import { BusinessError } from '@ohos.base';
 
-print.off('printerStateChange', (err: BusinessError, data: boolean) => {
-    if (err) {
-        console.log('off printerStateChange failed, because : ' + JSON.stringify(err));
-    } else {
-        console.log('off printerStateChange data : ' + JSON.stringify(data));
-    }
+print.off('printerStateChange', (data: boolean) => {
+    console.log('off printerStateChange data : ' + JSON.stringify(data));
 })
 ```
 
@@ -1380,14 +1375,9 @@ off(type: 'jobStateChange', callback?: Callback&lt;boolean&gt;): void
 
 ```ts
 import print from '@ohos.print';
-import { BusinessError } from '@ohos.base';
 
-print.off('jobStateChange', (err: BusinessError, data: boolean) => {
-    if (err) {
-        console.log('offJobStateChanged failed, because : ' + JSON.stringify(err));
-    } else {
-        console.log('offJobStateChanged data : ' + JSON.stringify(data));
-    }
+print.off('jobStateChange', (data: boolean) => {
+    console.log('offJobStateChanged data : ' + JSON.stringify(data));
 })
 ```
 
@@ -1441,14 +1431,9 @@ off(type: 'extInfoChange', callback?: Callback&lt;boolean&gt;): void
 
 ```ts
 import print from '@ohos.print';
-import { BusinessError } from '@ohos.base';
 
-print.off('extInfoChange', (err: BusinessError, data: boolean) => {
-    if (err) {
-        console.log('offExtInfoChange failed, because : ' + JSON.stringify(err));
-    } else {
-        console.log('offExtInfoChange data : ' + JSON.stringify(data));
-    }
+print.off('extInfoChange', (data: boolean) => {
+    console.log('offExtInfoChange data : ' + JSON.stringify(data));
 })
 ```
 
@@ -1972,8 +1957,8 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 print.queryAllPrintJobs().then((data : void) => {
-    console.log('update print job state data : ' + JSON.stringify(data));
+    console.log('queryAllPrintJobs success, data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('update print job state error : ' + JSON.stringify(error));
+    console.log('queryAllPrintJobs failed, error : ' + JSON.stringify(error));
 })
 ```
