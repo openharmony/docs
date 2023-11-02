@@ -18,25 +18,29 @@
    
    export default class EntryFormAbility extends FormExtensionAbility {
      ...
-     // 在添加卡片时，打开一个本地图片并将图片内容传递给卡片页面显示
+    // 在添加卡片时，打开一个本地图片并将图片内容传递给卡片页面显示
     onAddForm(want: Want) {
       // 假设在当前卡片应用的tmp目录下有一个本地图片：head.PNG
       let tempDir = this.context.getApplicationContext().tempDir;
       // 打开本地图片并获取其打开后的fd
       let file: fileFs.File;
-      let formData = new Map<string, Object>();
-      formData.set('text', 'Image: Bear');
-      formData.set('imgName', 'imgBear');
-      formData.set('loaded', true);
+      let imgBear: Record<string, number>;
       try {
         file = fs.openSync(tempDir + '/' + 'head.PNG');
-        let imgBear: Record<string, number> = {
+        imgBear = {
           'imgBear': file.fd
         }
-        formData.set('formImages', imgBear);
       } catch (e) {
         console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
       }
+      class FormDataClass{
+        text: string = 'Image: Bear'
+        imgName: string = 'imgBear'
+        loaded: boolean = true
+        formImages: Record<string, number> = imgBear
+      }
+      let formData = new FormDataClass();
+
       // 将fd封装在formData中并返回至卡片页面
       return formBindingData.createFormBindingData(formData);
     }
@@ -55,7 +59,7 @@
   import fs from '@ohos.file.fs';
   import Base from '@ohos.base';
   import fileFs from '@ohos.file.fs';
-   
+
   export default class EntryFormAbility extends FormExtensionAbility {
     // 在卡片页面触发message事件时，下载一个网络图片，并将网络图片内容传递给卡片页面显示
     onFormEvent(formId: string, message: string) {
@@ -76,19 +80,23 @@
         task.on('complete', () => {
           console.info('ArkTSCard download complete:' + tmpFile);
           let file: fileFs.File;
-          let formData = new Map<string, Object>();
+          let imgBear: Record<string, number>;
           try {
             file = fs.openSync(tmpFile);
-            formData.set('text', 'Image: Bear' + fileName);
-            formData.set('imgName', 'imgBear' + fileName);
-            formData.set('loaded', true);
-            let imgBear: Record<string, number> = {
+            imgBear = {
               'imgBear': file.fd
-            };
-            formData.set('formImages', imgBear);
+            }
           } catch (e) {
             console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
           }
+          class FormDataClass{
+            text: string = 'Image: Bear' + fileName
+            imgName: string = 'imgBear' + fileName
+            loaded: boolean = true
+            formImages: Record<string, number> = imgBear
+          }
+          let formData = new FormDataClass();
+
           let formInfo = formBindingData.createFormBindingData(formData);
           formProvider.updateForm(formId, formInfo).then(() => {
             console.info('FormAbility updateForm success.');
