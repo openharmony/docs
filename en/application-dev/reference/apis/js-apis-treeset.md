@@ -555,6 +555,10 @@ while(!t.done) {
 
 Obtains an iterator, each item of which is a JavaScript object.
 
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
