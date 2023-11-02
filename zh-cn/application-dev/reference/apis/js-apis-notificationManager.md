@@ -4541,7 +4541,7 @@ let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) =
     console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
 }
 let subscriber: notificationManager.SystemLiveViewSubscriber  = {
-    onResponse: onResponseCallback，
+    onResponse: onResponseCallback,
 };
 notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 	console.info("subscribeSystemLiveView success");
