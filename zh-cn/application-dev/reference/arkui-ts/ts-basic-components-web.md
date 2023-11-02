@@ -124,6 +124,8 @@ domStorageAccess(domStorageAccess: boolean)
 
 设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。
 
+**系统能力：** SystemCapability.Web.Webview.Core
+
 **参数：**
 
 | 参数名              | 参数类型    | 必填   | 默认值   | 参数描述                                 |
@@ -1268,7 +1270,7 @@ pinchSmooth(isEnabled: boolean)
 
 ## 事件
 
-不支持通用事件。
+不支持[通用事件](ts-universal-events-click.md)。
 
 ### onAlert
 
