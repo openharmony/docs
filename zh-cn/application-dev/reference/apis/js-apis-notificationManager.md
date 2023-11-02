@@ -4575,7 +4575,7 @@ notificationManager.subscribeSystemLiveView(subscriber);
 | NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | 图片类型通知。          |
 | NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | 社交类型通知（暂不支持该类型）。 |
 | NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | 多行文本类型通知。        |
-| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW    | NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | 系统实况窗类型通知。        |
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW    | NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | 实况窗类型通知（仅对系统应用开放）。        |
 
 ## SlotLevel
 
@@ -4600,7 +4600,7 @@ notificationManager.subscribeSystemLiveView(subscriber);
 | SOCIAL_COMMUNICATION | 1 | 社交类型。 |
 | SERVICE_INFORMATION  | 2 | 服务类型。 |
 | CONTENT_INFORMATION  | 3 | 内容类型。 |
-| LIVE_VIEW            | 4 | 实况窗类型。 |
+| LIVE_VIEW            | 4 | 实况窗类型（仅对系统应用开放）。 |
 | OTHER_TYPES          | 0xFFFF | 其他类型。 |
 
 
