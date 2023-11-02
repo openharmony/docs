@@ -59,8 +59,10 @@ import rpc from '@ohos.rpc';
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageSequence.create();
-  hilog.info("RpcClient: data is " + data);
+  hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
   ```
 
 ### reclaim
@@ -104,6 +106,7 @@ writeRemoteObject(object: IRemoteObject): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
@@ -117,8 +120,8 @@ writeRemoteObject(object: IRemoteObject): void
     data.writeRemoteObject(testRemoteObject);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("Rpc write remote object fail, errorCode " + e.code);
-    hilog.error("Rpc write remote object fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorMessage ' + e.message);
   }
   ```
 
@@ -148,6 +151,7 @@ readRemoteObject(): IRemoteObject
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
@@ -160,11 +164,11 @@ readRemoteObject(): IRemoteObject
   try {
     data.writeRemoteObject(testRemoteObject);
     let proxy = data.readRemoteObject();
-    hilog.info("RpcClient: readRemoteObject is " + proxy);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObject is ' + proxy);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("Rpc write remote object fail, errorCode " + e.code);
-    hilog.error("Rpc write remote object fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorMessage ' + e.message);
   }
   ```
 
@@ -193,6 +197,7 @@ writeInterfaceToken(token: string): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -200,8 +205,8 @@ writeInterfaceToken(token: string): void
     data.writeInterfaceToken("aaa");
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write interface fail, errorCode " + e.code);
-    hilog.error("rpc write interface fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write interface fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write interface fail, errorMessage ' + e.message);
   }
   ```
 
@@ -230,17 +235,18 @@ readInterfaceToken(): string
 **示例：**
 
 ```ts
+import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
 
 class Stub extends rpc.RemoteObject {
   onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
     try {
       let interfaceToken = data.readInterfaceToken();
-      hilog.info("RpcServer: interfaceToken is " + interfaceToken);
+      hilog.info(0x0000, 'testTag', 'RpcServer: interfaceToken is ' + interfaceToken);
     } catch(error) {
       let e: BusinessError = error as BusinessError;
-      hilog.error("RpcServer: read interfaceToken failed, errorCode " + e.code);
-      hilog.error("RpcServer: read interfaceToken failed, errorMessage " + e.message);
+      hilog.error(0x0000, 'testTag', 'RpcServer: read interfaceToken failed, errorCode ' + e.code);
+      hilog.error(0x0000, 'testTag', 'RpcServer: read interfaceToken failed, errorMessage ' + e.message);
     }
     return true;
   }
@@ -264,9 +270,11 @@ getSize(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageSequence.create();
   let size = data.getSize();
-  hilog.info("RpcClient: size is " + size);
+  hilog.info(0x0000, 'testTag', 'RpcClient: size is ' + size);
   ```
 
 ### getCapacity
@@ -286,9 +294,11 @@ getCapacity(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageSequence.create();
   let result = data.getCapacity();
-  hilog.info("RpcClient: capacity is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: capacity is ' + result);
   ```
 
 ### setSize
@@ -308,6 +318,7 @@ setSize(size: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -315,8 +326,8 @@ setSize(size: number): void
     data.setSize(16);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc set size of MessageSequence fail, errorCode " + e.code);
-    hilog.error("rpc set size of MessageSequence fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc set size of MessageSequence fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc set size of MessageSequence fail, errorMessage ' + e.message);
   }
   ```
 
@@ -345,6 +356,7 @@ setCapacity(size: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -352,8 +364,8 @@ setCapacity(size: number): void
     data.setCapacity(100);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc memory alloc fail, errorCode " + e.code);
-    hilog.error("rpc memory alloc fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc memory alloc fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc memory alloc fail, errorMessage ' + e.message);
   }
   ```
 
@@ -374,10 +386,12 @@ getWritableBytes(): number
 **示例：**
 
 ```ts
+import hilog from '@ohos.hilog';
+
 class Stub extends rpc.RemoteObject {
   onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
     let getWritableBytes = data.getWritableBytes();
-    hilog.info("RpcServer: getWritableBytes is " + getWritableBytes);
+    hilog.info(0x0000, 'testTag', 'RpcServer: getWritableBytes is ' + getWritableBytes);
     return true;
   }
 }
@@ -400,10 +414,12 @@ getReadableBytes(): number
 **示例：**
 
 ```ts
+import hilog from '@ohos.hilog';
+
 class Stub extends rpc.RemoteObject {
   onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
     let result = data.getReadableBytes();
-    hilog.info("RpcServer: getReadableBytes is " + result);
+    hilog.info(0x0000, 'testTag', 'RpcServer: getReadableBytes is ' + result);
     return true;
   }
 }
@@ -426,9 +442,11 @@ getReadPosition(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageSequence.create();
   let readPos = data.getReadPosition();
-  hilog.info("RpcClient: readPos is " + readPos);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readPos is ' + readPos);
   ```
 
 ### getWritePosition
@@ -448,10 +466,12 @@ getWritePosition(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageSequence.create();
   data.writeInt(10);
   let bwPos = data.getWritePosition();
-  hilog.info("RpcClient: bwPos is " + bwPos);
+  hilog.info(0x0000, 'testTag', 'RpcClient: bwPos is ' + bwPos);
   ```
 
 ### rewindRead
@@ -471,22 +491,23 @@ rewindRead(pos: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(12);
   data.writeString("sequence");
   let number = data.readInt();
-  hilog.info("RpcClient: number is " + number);
+  hilog.info(0x0000, 'testTag', 'RpcClient: number is ' + number);
   try {
     data.rewindRead(0);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc rewind read data fail, errorCode " + e.code);
-    hilog.error("rpc rewind read data fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc rewind read data fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc rewind read data fail, errorMessage ' + e.message);
   }
   let number2 = data.readInt();
-  hilog.info("RpcClient: rewindRead is " + number2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: rewindRead is ' + number2);
   ```
 
 ### rewindWrite
@@ -506,6 +527,7 @@ rewindWrite(pos: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -514,12 +536,12 @@ rewindWrite(pos: number): void
     data.rewindWrite(0);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc rewindWrite fail, errorCode " + e.code);
-    hilog.error("rpc rewindWrite fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc rewindWrite fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc rewindWrite fail, errorMessage ' + e.message);
   }
   data.writeInt(5);
   let number = data.readInt();
-  hilog.info("RpcClient: rewindWrite is: " + number);
+  hilog.info(0x0000, 'testTag', 'RpcClient: rewindWrite is: ' + number);
   ```
 
 ### writeByte
@@ -547,6 +569,7 @@ writeByte(val: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -554,8 +577,8 @@ writeByte(val: number): void
     data.writeByte(2);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write byte fail, errorCode " + e.code);
-    hilog.error("rpc write byte fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorMessage ' + e.message);
   }
   ```
 
@@ -584,6 +607,7 @@ readByte(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -591,16 +615,16 @@ readByte(): number
     data.writeByte(2);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write byte fail, errorCode " + e.code);
-    hilog.error("rpc write byte fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorMessage ' + e.message);
   }
   try {
     let ret = data.readByte();
-    hilog.info("RpcClient: readByte is: " + ret);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readByte is: ' +  ret);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read byte fail, errorCode " + e.code);
-    hilog.error("rpc read byte fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read byte fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read byte fail, errorMessage ' + e.message);
   }
   ```
 
@@ -629,6 +653,7 @@ writeShort(val: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -636,8 +661,8 @@ writeShort(val: number): void
     data.writeShort(8);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write short fail, errorCode " + e.code);
-    hilog.error("rpc write short fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write short fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write short fail, errorMessage ' + e.message);
   }
   ```
 
@@ -666,6 +691,7 @@ readShort(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -673,16 +699,16 @@ readShort(): number
     data.writeShort(8);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write short fail, errorCode " + e.code);
-    hilog.error("rpc write short fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write short fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write short fail, errorMessage ' + e.message);
   }
   try {
     let ret = data.readShort();
-    hilog.info("RpcClient: readByte is: " + ret);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readByte is ' + ret);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read short fail, errorCode " + e.code);
-    hilog.error("rpc read short fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read short fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read short fail, errorMessage ' + e.message);
   }
   ```
 
@@ -711,6 +737,7 @@ writeInt(val: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -718,8 +745,8 @@ writeInt(val: number): void
     data.writeInt(10);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write int fail, errorCode " + e.code);
-    hilog.error("rpc write int fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write int fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write int fail, errorMessage ' + e.message);
   }
   ```
 
@@ -748,6 +775,7 @@ readInt(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -755,16 +783,16 @@ readInt(): number
     data.writeInt(10);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write int fail, errorCode " + e.code);
-    hilog.error("rpc write int fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write int fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write int fail, errorMessage ' + e.message);
   }
   try {
     let ret = data.readInt();
-    hilog.info("RpcClient: readInt is " + ret);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + ret);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read int fail, errorCode " + e.code);
-    hilog.error("rpc read int fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read int fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read int fail, errorMessage ' + e.message);
   }
   ```
 
@@ -793,6 +821,7 @@ writeLong(val: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -800,8 +829,8 @@ writeLong(val: number): void
     data.writeLong(10000);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write long fail, errorCode " + e.code);
-    hilog.error("rpc write long fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write long fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write long fail, errorMessage ' + e.message);
   }
   ```
 
@@ -830,6 +859,7 @@ readLong(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -837,16 +867,16 @@ readLong(): number
     data.writeLong(10000);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write long fail, errorCode " + e.code);
-    hilog.error("rpc write long fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write long fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write long fail, errorMessage ' + e.message);
   }
   try {
     let ret = data.readLong();
-    hilog.info("RpcClient: readLong is " + ret);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readLong is ' + ret);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read long fail, errorCode " + e.code);
-    hilog.error("rpc read long fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read long fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read long fail, errorMessage ' + e.message);
   }
   ```
 
@@ -875,6 +905,7 @@ writeFloat(val: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -882,8 +913,8 @@ writeFloat(val: number): void
     data.writeFloat(1.2);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write float fail, errorCode " + e.code);
-    hilog.error("rpc write float fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write float fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write float fail, errorMessage ' + e.message);
   }
   ```
 
@@ -912,6 +943,7 @@ readFloat(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -919,16 +951,16 @@ readFloat(): number
     data.writeFloat(1.2);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write float fail, errorCode " + e.code);
-    hilog.error("rpc write float fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write float fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write float fail, errorMessage ' + e.message);
   }
   try {
     let ret = data.readFloat();
-    hilog.info("RpcClient: readFloat is " + ret);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readFloat is ' + ret);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read float fail, errorCode " + e.code);
-    hilog.error("rpc read float fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read float fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read float fail, errorMessage ' + e.message);
   }
   ```
 
@@ -957,6 +989,7 @@ writeDouble(val: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -964,8 +997,8 @@ writeDouble(val: number): void
     data.writeDouble(10.2);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write double fail, errorCode " + e.code);
-    hilog.error("rpc write double fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write double fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write double fail, errorMessage ' + e.message);
   }
   ```
 
@@ -994,6 +1027,7 @@ readDouble(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1001,16 +1035,16 @@ readDouble(): number
     data.writeDouble(10.2);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write double fail, errorCode " + e.code);
-    hilog.error("rpc write double fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write double fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write double fail, errorMessage ' + e.message);
   }
   try {
     let ret = data.readDouble();
-    hilog.info("RpcClient: readDouble is " + ret);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readDouble is ' +  ret);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read double fail, errorCode " + e.code);
-    hilog.error("rpc read double fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read double fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read double fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1039,6 +1073,7 @@ writeBoolean(val: boolean): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1046,8 +1081,8 @@ writeBoolean(val: boolean): void
     data.writeBoolean(false);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write boolean fail, errorCode " + e.code);
-    hilog.error("rpc write boolean fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1076,6 +1111,7 @@ readBoolean(): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1083,16 +1119,16 @@ readBoolean(): boolean
     data.writeBoolean(false);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write boolean fail, errorCode " + e.code);
-    hilog.error("rpc write boolean fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorMessage ' + e.message);
   }
   try {
     let ret = data.readBoolean();
-    hilog.info("RpcClient: readBoolean is " + ret);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readBoolean is ' + ret);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read boolean fail, errorCode " + e.code);
-    hilog.error("rpc read boolean fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read boolean fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read boolean fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1121,6 +1157,7 @@ writeChar(val: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1128,8 +1165,8 @@ writeChar(val: number): void
     data.writeChar(97);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write char fail, errorCode " + e.code);
-    hilog.error("rpc write char fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write char fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write char fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1158,6 +1195,7 @@ readChar(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1165,16 +1203,16 @@ readChar(): number
     data.writeChar(97);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write char fail, errorCode " + e.code);
-    hilog.error("rpc write char fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write char fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write char fail, errorMessage ' + e.message);
   }
   try {
     let ret = data.readChar();
-    hilog.info("RpcClient: readChar is " + ret);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readChar is ' + ret);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read char fail, errorCode " + e.code);
-    hilog.error("rpc read char fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read char fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read char fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1203,6 +1241,7 @@ writeString(val: string): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1210,8 +1249,8 @@ writeString(val: string): void
     data.writeString('abc');
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write string fail, errorCode " + e.code);
-    hilog.error("rpc write string fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write string fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write string fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1240,6 +1279,7 @@ readString(): string
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1247,16 +1287,16 @@ readString(): string
     data.writeString('abc');
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write string fail, errorCode " + e.code);
-    hilog.error("rpc write string fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write string fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write string fail, errorMessage ' + e.message);
   }
   try {
     let ret = data.readString();
-    hilog.info("RpcClient: readString is " + ret);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readString is ' + ret);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read string fail, errorCode " + e.code);
-    hilog.error("rpc read string fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read string fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read string fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1285,6 +1325,7 @@ writeParcelable(val: Parcelable): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyParcelable implements rpc.Parcelable {
@@ -1311,8 +1352,8 @@ writeParcelable(val: Parcelable): void
     data.writeParcelable(parcelable);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write parcelable fail, errorCode " + e.code);
-    hilog.error("rpc write parcelable fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write parcelable fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write parcelable fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1342,6 +1383,7 @@ readParcelable(dataIn: Parcelable): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyParcelable implements rpc.Parcelable {
@@ -1370,8 +1412,8 @@ readParcelable(dataIn: Parcelable): void
     data.readParcelable(ret);
   }catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read parcelable fail, errorCode " + e.code);
-    hilog.error("rpc read parcelable fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read parcelable fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read parcelable fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1400,6 +1442,7 @@ writeByteArray(byteArray: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1408,8 +1451,8 @@ writeByteArray(byteArray: number[]): void
     data.writeByteArray(ByteArrayVar);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write byteArray fail, errorCode " + e.code);
-    hilog.error("rpc write byteArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1438,6 +1481,7 @@ readByteArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1446,16 +1490,16 @@ readByteArray(dataIn: number[]): void
     data.writeByteArray(ByteArrayVar);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write byteArray fail, errorCode " + e.code);
-    hilog.error("rpc write byteArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorMessage ' + e.message);
   }
   try {
     let array: Array<number> = new Array(5);
     data.readByteArray(array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read byteArray fail, errorCode " + e.code);
-    hilog.error("rpc read byteArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1484,6 +1528,7 @@ readByteArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1492,16 +1537,16 @@ readByteArray(): number[]
     data.writeByteArray(byteArrayVar);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write byteArray fail, errorCode " + e.code);
-    hilog.error("rpc write byteArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorMessage ' + e.message);
   }
   try {
     let array = data.readByteArray();
-    hilog.info("RpcClient: readByteArray is " + array);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readByteArray is ' +  array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read byteArray fail, errorCode " + e.code);
-    hilog.error("rpc read byteArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1530,6 +1575,7 @@ writeShortArray(shortArray: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1537,8 +1583,8 @@ writeShortArray(shortArray: number[]): void
     data.writeShortArray([11, 12, 13]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write shortArray fail, errorCode " + e.code);
-    hilog.error("rpc write shortArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1567,6 +1613,7 @@ readShortArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1574,16 +1621,16 @@ readShortArray(dataIn: number[]): void
     data.writeShortArray([11, 12, 13]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write shortArray fail, errorCode " + e.code);
-    hilog.error("rpc write shortArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorMessage ' + e.message);
   }
   try {
     let array: Array<number> = new Array(3);
     data.readShortArray(array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read shortArray fail, errorCode " + e.code);
-    hilog.error("rpc read shortArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1612,6 +1659,7 @@ readShortArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1619,16 +1667,16 @@ readShortArray(): number[]
     data.writeShortArray([11, 12, 13]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write shortArray fail, errorCode " + e.code);
-    hilog.error("rpc write shortArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorMessage ' + e.message);
   }
   try {
     let array = data.readShortArray();
-    hilog.info("RpcClient: readShortArray is " + array);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readShortArray is ' + array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read shortArray fail, errorCode " + e.code);
-    hilog.error("rpc read shortArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1657,6 +1705,7 @@ writeIntArray(intArray: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1664,8 +1713,8 @@ writeIntArray(intArray: number[]): void
     data.writeIntArray([100, 111, 112]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write intArray fail, errorCode " + e.code);
-    hilog.error("rpc write intArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1694,6 +1743,7 @@ readIntArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1701,16 +1751,16 @@ readIntArray(dataIn: number[]): void
     data.writeIntArray([100, 111, 112]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write intArray fail, errorCode " + e.code);
-    hilog.error("rpc write intArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorMessage ' + e.message);
   }
   let array: Array<number> = new Array(3);
   try {
     data.readIntArray(array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read intArray fail, errorCode " + e.code);
-    hilog.error("rpc read intArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1739,6 +1789,7 @@ readIntArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1746,16 +1797,16 @@ readIntArray(): number[]
     data.writeIntArray([100, 111, 112]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write intArray fail, errorCode " + e.code);
-    hilog.error("rpc write intArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorMessage ' + e.message);
   }
   try {
     let array = data.readIntArray();
-    hilog.info("RpcClient: readIntArray is " + array);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readIntArray is ' + array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read intArray fail, errorCode " + e.code);
-    hilog.error("rpc read intArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1784,6 +1835,7 @@ writeLongArray(longArray: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1791,8 +1843,8 @@ writeLongArray(longArray: number[]): void
     data.writeLongArray([1111, 1112, 1113]);
   }catch(error){
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write longArray fail, errorCode " + e.code);
-    hilog.error("rpc write longArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1821,6 +1873,7 @@ readLongArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1828,16 +1881,16 @@ readLongArray(dataIn: number[]): void
     data.writeLongArray([1111, 1112, 1113]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write longArray fail, errorCode " + e.code);
-    hilog.error("rpc write longArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorMessage ' + e.message);
   }
   let array: Array<number> = new Array(3);
   try {
     data.readLongArray(array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read longArray fail, errorCode " + e.code);
-    hilog.error("rpc read longArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1866,6 +1919,7 @@ readLongArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1873,16 +1927,16 @@ readLongArray(): number[]
     data.writeLongArray([1111, 1112, 1113]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write longArray fail, errorCode " + e.code);
-    hilog.error("rpc write longArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorMessage ' + e.message);
   }
   try {
     let array = data.readLongArray();
-    hilog.info("RpcClient: readLongArray is " + array);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readLongArray is ' + array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read longArray fail, errorCode " + e.code);
-    hilog.error("rpc read longArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1911,6 +1965,7 @@ writeFloatArray(floatArray: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1918,8 +1973,8 @@ writeFloatArray(floatArray: number[]): void
     data.writeFloatArray([1.2, 1.3, 1.4]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write floatArray fail, errorCode " + e.code);
-    hilog.error("rpc write floatArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1948,6 +2003,7 @@ readFloatArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -1955,16 +2011,16 @@ readFloatArray(dataIn: number[]): void
     data.writeFloatArray([1.2, 1.3, 1.4]);
   }catch(error){
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write floatArray fail, errorCode " + e.code);
-    hilog.error("rpc write floatArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorMessage ' + e.message);
   }
   let array: Array<number> = new Array(3);
   try {
     data.readFloatArray(array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read floatArray fail, errorCode " + e.code);
-    hilog.error("rpc read floatArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1993,6 +2049,7 @@ readFloatArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -2000,16 +2057,16 @@ readFloatArray(): number[]
     data.writeFloatArray([1.2, 1.3, 1.4]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write floatArray fail, errorCode " + e.code);
-    hilog.error("rpc write floatArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorMessage ' + e.message);
   }
   try {
     let array = data.readFloatArray();
-    hilog.info("RpcClient: readFloatArray is " + array);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readFloatArray is ' + array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read floatArray fail, errorCode " + e.code);
-    hilog.error("rpc read floatArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2038,6 +2095,7 @@ writeDoubleArray(doubleArray: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -2045,8 +2103,8 @@ writeDoubleArray(doubleArray: number[]): void
     data.writeDoubleArray([11.1, 12.2, 13.3]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write doubleArray fail, errorCode " + e.code);
-    hilog.error("rpc write doubleArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2075,6 +2133,7 @@ readDoubleArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -2082,16 +2141,16 @@ readDoubleArray(dataIn: number[]): void
     data.writeDoubleArray([11.1, 12.2, 13.3]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write doubleArray fail, errorCode " + e.code);
-    hilog.error("rpc write doubleArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorMessage ' + e.message);
   }
   let array: Array<number> = new Array(3);
   try {
     data.readDoubleArray(array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read doubleArray fail, errorCode " + e.code);
-    hilog.error("rpc read doubleArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2120,6 +2179,7 @@ readDoubleArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -2127,16 +2187,16 @@ readDoubleArray(): number[]
     data.writeDoubleArray([11.1, 12.2, 13.3]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write doubleArray fail, errorCode " + e.code);
-    hilog.error("rpc write doubleArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorMessage ' + e.message);
   }
   try {
     let array = data.readDoubleArray();
-    hilog.info("RpcClient: readDoubleArray is " + array);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readDoubleArray is ' + array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read doubleArray fail, errorCode " + e.code);
-    hilog.error("rpc read doubleArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2165,6 +2225,7 @@ writeBooleanArray(booleanArray: boolean[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -2172,8 +2233,8 @@ writeBooleanArray(booleanArray: boolean[]): void
     data.writeBooleanArray([false, true, false]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write booleanArray fail, errorCode " + e.code);
-    hilog.error("rpc write booleanArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2202,6 +2263,7 @@ readBooleanArray(dataIn: boolean[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -2209,16 +2271,16 @@ readBooleanArray(dataIn: boolean[]): void
     data.writeBooleanArray([false, true, false]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write booleanArray fail, errorCode " + e.code);
-    hilog.error("rpc write booleanArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorMessage ' + e.message);
   }
   let array: Array<boolean> = new Array(3);
   try {
     data.readBooleanArray(array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read booleanArray fail, errorCode " + e.code);
-    hilog.error("rpc read booleanArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2247,6 +2309,7 @@ readBooleanArray(): boolean[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -2254,16 +2317,16 @@ readBooleanArray(): boolean[]
     data.writeBooleanArray([false, true, false]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write booleanArray fail, errorCode " + e.code);
-    hilog.error("rpc write booleanArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorMessage ' + e.message);
   }
   try {
     let array = data.readBooleanArray();
-    hilog.info("RpcClient: readBooleanArray is " + array);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readBooleanArray is ' + array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read booleanArray fail, errorCode " + e.code);
-    hilog.error("rpc read booleanArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2292,6 +2355,7 @@ writeCharArray(charArray: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -2299,8 +2363,8 @@ writeCharArray(charArray: number[]): void
     data.writeCharArray([97, 98, 88]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write charArray fail, errorCode " + e.code);
-    hilog.error("rpc write charArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2329,6 +2393,7 @@ readCharArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -2336,16 +2401,16 @@ readCharArray(dataIn: number[]): void
     data.writeCharArray([97, 98, 88]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write charArray fail, errorCode " + e.code);
-    hilog.error("rpc write charArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorMessage ' + e.message);
   }
   let array: Array<number> = new Array(3);
   try {
     data.readCharArray(array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read charArray fail, errorCode " + e.code);
-    hilog.error("rpc read charArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2374,6 +2439,7 @@ readCharArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -2381,16 +2447,16 @@ readCharArray(): number[]
     data.writeCharArray([97, 98, 88]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write charArray fail, errorCode " + e.code);
-    hilog.error("rpc write charArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorMessage ' + e.message);
   }
   try {
     let array = data.readCharArray();
-    hilog.info("RpcClient: readCharArray is " + array);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readCharArray is ' + array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read charArray fail, errorCode " + e.code);
-    hilog.error("rpc read charArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2419,6 +2485,7 @@ writeStringArray(stringArray: string[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -2426,8 +2493,8 @@ writeStringArray(stringArray: string[]): void
     data.writeStringArray(["abc", "def"]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write stringArray fail, errorCode " + e.code);
-    hilog.error("rpc write stringArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2456,6 +2523,7 @@ readStringArray(dataIn: string[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -2463,16 +2531,16 @@ readStringArray(dataIn: string[]): void
     data.writeStringArray(["abc", "def"]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write stringArray fail, errorCode " + e.code);
-    hilog.error("rpc write stringArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorMessage ' + e.message);
   }
   let array: Array<string> = new Array(2);
   try {
     data.readStringArray(array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read stringArray fail, errorCode " + e.code);
-    hilog.error("rpc read stringArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2501,6 +2569,7 @@ readStringArray(): string[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
@@ -2508,16 +2577,16 @@ readStringArray(): string[]
     data.writeStringArray(["abc", "def"]);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write stringArray fail, errorCode " + e.code);
-    hilog.error("rpc write stringArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorMessage ' + e.message);
   }
   try {
     let array = data.readStringArray();
-    hilog.info("RpcClient: readStringArray is " + array);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readStringArray is ' + array);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read stringArray fail, errorCode " + e.code);
-    hilog.error("rpc read stringArray fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2540,6 +2609,7 @@ writeNoException(): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
@@ -2548,17 +2618,17 @@ writeNoException(): void
     }
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
       if (code === 1) {
-        hilog.info("RpcServer: onRemoteMessageRequest called");
+        hilog.info(0x0000, 'testTag', 'RpcServer: onRemoteMessageRequest called');
         try {
           reply.writeNoException();
         } catch(error) {
           let e: BusinessError = error as BusinessError;
-          hilog.error("rpc write no exception fail, errorCode " + e.code);
-          hilog.error("rpc write no exception fail, errorMessage" + e.message);
+          hilog.error(0x0000, 'testTag', 'rpc write no exception fail, errorCode ' + e.code);
+          hilog.error(0x0000, 'testTag', 'rpc write no exception fail, errorMessage ' + e.message);
         }
         return true;
       } else {
-        hilog.error("RpcServer: unknown code: " + code);
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
         return false;
       }
     }
@@ -2590,18 +2660,19 @@ readException(): void
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -2619,6 +2690,7 @@ readException(): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import hilog from '@ohos.hilog';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
@@ -2628,23 +2700,23 @@ readException(): void
   proxy.sendMessageRequest(1, data, reply, option)
     .then((result: rpc.RequestResult) => {
       if (result.errCode === 0) {
-        hilog.info("sendMessageRequest got result");
+        hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
         try {
           result.reply.readException();
         } catch(error) {
           let e: BusinessError = error as BusinessError;
-          hilog.error("rpc read exception fail, errorCode " + e.code);
-          hilog.error("rpc read exception fail, errorMessage" + e.message);
+          hilog.error(0x0000, 'testTag', 'rpc read exception fail, errorCode ' + e.code);
+          hilog.error(0x0000, 'testTag', 'rpc read exception fail, errorMessage ' + e.message);
         }
         let msg = result.reply.readString();
-        hilog.info("RPCTest: reply msg: " + msg);
+        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
       } else {
-        hilog.error("RPCTest: sendMessageRequest failed, errCode: " + result.errCode);
+        hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
       }
     }).catch((e: Error) => {
-      hilog.error("RPCTest: sendMessageRequest got exception: " + e.message);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest got exception: ' + e.message);
     }).finally (() => {
-      hilog.info("RPCTest: sendMessageRequest ends, reclaim parcel");
+      hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
       data.reclaim();
       reply.reclaim();
     });
@@ -2675,6 +2747,7 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyParcelable implements rpc.Parcelable {
@@ -2704,8 +2777,8 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
     data.writeParcelableArray(a);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write parcelable array fail, errorCode " + e.code);
-    hilog.error("rpc write parcelable array fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write parcelable array fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write parcelable array fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2735,6 +2808,7 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyParcelable implements rpc.Parcelable {
@@ -2766,8 +2840,8 @@ readParcelableArray(parcelableArray: Parcelable[]): void
     data.readParcelableArray(b);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read parcelable array fail, errorCode " + e.code);
-    hilog.error("rpc read parcelable array fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read parcelable array fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read parcelable array fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2796,6 +2870,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
@@ -2814,8 +2889,8 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
     data.writeRemoteObjectArray(a);
   } catch(error) {
      let e: BusinessError = error as BusinessError;
-     hilog.error("rpc write remote object array fail, errorCode " + e.code);
-     hilog.error("rpc write remote object array fail, errorMessage" + e.message);
+     hilog.error(0x0000, 'testTag', 'rpc write remote object array fail, errorCode ' + e.code);
+     hilog.error(0x0000, 'testTag', 'rpc write remote object array fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2844,6 +2919,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
@@ -2864,8 +2940,8 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
     data.readRemoteObjectArray(b);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read remote object array fail, errorCode " + e.code);
-    hilog.error("rpc read remote object array fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2894,6 +2970,7 @@ readRemoteObjectArray(): IRemoteObject[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
@@ -2911,11 +2988,11 @@ readRemoteObjectArray(): IRemoteObject[]
   data.writeRemoteObjectArray(a);
   try {
     let b = data.readRemoteObjectArray();
-    hilog.info("RpcClient: readRemoteObjectArray is " + b);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObjectArray is ' + b);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read remote object array fail, errorCode " + e.code);
-    hilog.error("rpc read remote object array fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2937,6 +3014,7 @@ static closeFileDescriptor(fd: number): void
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let filePath = "path/to/file";
@@ -2945,8 +3023,8 @@ static closeFileDescriptor(fd: number): void
     rpc.MessageSequence.closeFileDescriptor(file.fd);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc close file descriptor fail, errorCode " + e.code);
-    hilog.error("rpc close file descriptor fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc close file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc close file descriptor fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2982,6 +3060,7 @@ static dupFileDescriptor(fd: number) :number
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let filePath = "path/to/file";
@@ -2990,8 +3069,8 @@ static dupFileDescriptor(fd: number) :number
     rpc.MessageSequence.dupFileDescriptor(file.fd);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc dup file descriptor fail, errorCode " + e.code);
-    hilog.error("rpc dup file descriptor fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc dup file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc dup file descriptor fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3013,6 +3092,7 @@ containFileDescriptors(): boolean
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
@@ -3022,16 +3102,16 @@ containFileDescriptors(): boolean
     sequence.writeFileDescriptor(file.fd);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write file descriptor fail, errorCode " + e.code);
-    hilog.error("rpc write file descriptor fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorMessage ' + e.message);
   }
   try {
     let containFD = sequence.containFileDescriptors();
-    hilog.info("RpcTest: sequence after write fd containFd result is : " + containFD);
+    hilog.info(0x0000, 'testTag', 'RpcTest: sequence after write fd containFd result is ' + containFD);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc contain file descriptor fail, errorCode " + e.code);
-    hilog.error("rpc contain file descriptor fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc contain file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc contain file descriptor fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3061,6 +3141,7 @@ writeFileDescriptor(fd: number): void
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
@@ -3070,8 +3151,8 @@ writeFileDescriptor(fd: number): void
     sequence.writeFileDescriptor(file.fd);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write file descriptor fail, errorCode " + e.code);
-    hilog.error("rpc write file descriptor fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3101,6 +3182,7 @@ readFileDescriptor(): number
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
@@ -3110,16 +3192,16 @@ readFileDescriptor(): number
     sequence.writeFileDescriptor(file.fd);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write file descriptor fail, errorCode " + e.code);
-    hilog.error("rpc write file descriptor fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorMessage ' + e.message);
   }
   try {
     let readFD = sequence.readFileDescriptor();
-    hilog.info("RpcClient: readFileDescriptor is: " + readFD);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readFileDescriptor is ' + readFD);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read file descriptor fail, errorCode " + e.code);
-    hilog.error("rpc read file descriptor fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read file descriptor fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3148,6 +3230,7 @@ writeAshmem(ashmem: Ashmem): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
@@ -3158,13 +3241,13 @@ writeAshmem(ashmem: Ashmem): void
       sequence.writeAshmem(ashmem);
     } catch(error) {
       let e: BusinessError = error as BusinessError;
-      hilog.error("rpc write ashmem fail, errorCode " + e.code);
-      hilog.error("rpc write ashmem fail, errorMessage" + e.message);
+      hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorCode ' + e.code);
+      hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorMessage ' + e.message);
     }
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc create ashmem fail, errorCode " + e.code);
-    hilog.error("rpc create ashmem fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3193,6 +3276,7 @@ readAshmem(): Ashmem
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
@@ -3203,20 +3287,20 @@ readAshmem(): Ashmem
       sequence.writeAshmem(ashmem);
     } catch(error) {
       let e: BusinessError = error as BusinessError;
-      hilog.error("rpc write ashmem fail, errorCode " + e.code);
-      hilog.error("rpc write ashmem fail, errorMessage" + e.message);
+      hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorCode ' + e.code);
+      hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorMessage ' + e.message);
     }
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc create ashmem fail, errorCode " + e.code);
-    hilog.error("rpc create ashmem fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorMessage ' + e.message);
   }
   try {
     sequence.readAshmem();
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read ashmem fail, errorCode " + e.code);
-    hilog.error("rpc read ashmem fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read ashmem fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3237,9 +3321,11 @@ getRawDataCapacity(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let sequence = new rpc.MessageSequence();
   let result = sequence.getRawDataCapacity();
-  hilog.info("RpcTest: sequence get RawDataCapacity result is : " + result);
+  hilog.info(0x0000, 'testTag', 'RpcTest: sequence get RawDataCapacity result is ' + result);
   ```
 
 ### writeRawData
@@ -3268,6 +3354,7 @@ writeRawData(rawData: number[], size: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
@@ -3276,8 +3363,8 @@ writeRawData(rawData: number[], size: number): void
     sequence.writeRawData(arr, arr.length);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write rawdata fail, errorCode " + e.code);
-    hilog.error("rpc write rawdata fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3312,6 +3399,7 @@ readRawData(size: number): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
@@ -3320,16 +3408,16 @@ readRawData(size: number): number[]
     sequence.writeRawData(arr, arr.length);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc write rawdata fail, errorCode " + e.code);
-    hilog.error("rpc write rawdata fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
   }
   try {
     let result = sequence.readRawData(5);
-    hilog.info("RpcTest: sequence read raw data result is : " + result);
+    hilog.info(0x0000, 'testTag', 'RpcTest: sequence read raw data result is ' + result);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc read rawdata fail, errorCode " + e.code);
-    hilog.error("rpc read rawdata fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3356,8 +3444,10 @@ static create(): MessageParcel
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
-  hilog.info("RpcClient: data is " + data);
+  hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
   ```
 
 ### reclaim
@@ -3398,9 +3488,11 @@ writeRemoteObject(object: IRemoteObject): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3439,9 +3531,11 @@ readRemoteObject(): IRemoteObject
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3462,7 +3556,7 @@ readRemoteObject(): IRemoteObject
   let testRemoteObject = new TestRemoteObject("testObject");
   data.writeRemoteObject(testRemoteObject);
   let proxy = data.readRemoteObject();
-  hilog.info("readRemoteObject is " + proxy);
+  hilog.info(0x0000, 'testTag', 'readRemoteObject is ' + proxy);
   ```
 
 ### writeInterfaceToken
@@ -3488,9 +3582,11 @@ writeInterfaceToken(token: string): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeInterfaceToken("aaa");
-  hilog.info("RpcServer: writeInterfaceToken is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcServer: writeInterfaceToken is ' + result);
   ```
 
 ### readInterfaceToken
@@ -3510,10 +3606,12 @@ readInterfaceToken(): string
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
       let interfaceToken = data.readInterfaceToken();
-      hilog.info("RpcServer: interfaceToken is " + interfaceToken);
+      hilog.info(0x0000, 'testTag', 'RpcServer: interfaceToken is ' + interfaceToken);
       return true;
     }
   }
@@ -3536,9 +3634,11 @@ getSize(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let size = data.getSize();
-  hilog.info("RpcClient: size is " + size);
+  hilog.info(0x0000, 'testTag', 'RpcClient: size is ' + size);
   ```
 
 ### getCapacity
@@ -3558,9 +3658,11 @@ getCapacity(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.getCapacity();
-  hilog.info("RpcClient: capacity is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: capacity is ' + result);
   ```
 
 ### setSize
@@ -3586,9 +3688,11 @@ setSize(size: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let setSize = data.setSize(16);
-  hilog.info("RpcClient: setSize is " + setSize);
+  hilog.info(0x0000, 'testTag', 'RpcClient: setSize is ' + setSize);
   ```
 
 ### setCapacity
@@ -3614,9 +3718,11 @@ setCapacity(size: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.setCapacity(100);
-  hilog.info("RpcClient: setCapacity is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: setCapacity is ' + result);
   ```
 
 ### getWritableBytes
@@ -3636,10 +3742,12 @@ getWritableBytes(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
       let getWritableBytes = data.getWritableBytes();
-      hilog.info("RpcServer: getWritableBytes is " + getWritableBytes);
+      hilog.info(0x0000, 'testTag', 'RpcServer: getWritableBytes is ' + getWritableBytes);
       return true;
     }
   }
@@ -3662,10 +3770,12 @@ getReadableBytes(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
       let result = data.getReadableBytes();
-      hilog.info("RpcServer: getReadableBytes is " + result);
+      hilog.info(0x0000, 'testTag', 'RpcServer: getReadableBytes is ' + result);
       return true;
     }
   }
@@ -3688,9 +3798,11 @@ getReadPosition(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let readPos = data.getReadPosition();
-  hilog.info("RpcClient: readPos is " + readPos);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readPos is ' + readPos);
   ```
 
 ### getWritePosition
@@ -3710,10 +3822,12 @@ getWritePosition(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   data.writeInt(10);
   let bwPos = data.getWritePosition();
-  hilog.info("RpcClient: bwPos is " + bwPos);
+  hilog.info(0x0000, 'testTag', 'RpcClient: bwPos is ' + bwPos);
   ```
 
 ### rewindRead
@@ -3739,14 +3853,16 @@ rewindRead(pos: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   data.writeInt(12);
   data.writeString("parcel");
   let number = data.readInt();
-  hilog.info("RpcClient: number is " + number);
+  hilog.info(0x0000, 'testTag', 'RpcClient: number is ' + number);
   data.rewindRead(0);
   let number2 = data.readInt();
-  hilog.info("RpcClient: rewindRead is " + number2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: rewindRead is ' + number2);
   ```
 
 ### rewindWrite
@@ -3772,12 +3888,14 @@ rewindWrite(pos: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   data.writeInt(4);
   data.rewindWrite(0);
   data.writeInt(5);
   let number = data.readInt();
-  hilog.info("RpcClient: rewindWrite is: " + number);
+  hilog.info(0x0000, 'testTag', 'RpcClient: rewindWrite is ' + number);
   ```
 
 ### writeByte
@@ -3803,9 +3921,11 @@ writeByte(val: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
-  hilog.info("RpcClient: writeByte is: " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeByte is ' + result);
   ```
 
 ### readByte
@@ -3825,11 +3945,13 @@ readByte(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
-  hilog.info("RpcClient: writeByte is: " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeByte is ' + result);
   let ret = data.readByte();
-  hilog.info("RpcClient: readByte is: " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readByte is ' + ret);
   ```
 
 ### writeShort
@@ -3855,9 +3977,11 @@ writeShort(val: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
-  hilog.info("RpcClient: writeShort is: " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeShort is ' + result);
   ```
 
 ### readShort
@@ -3877,11 +4001,13 @@ readShort(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
-  hilog.info("RpcClient: writeShort is: " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeShort is ' + result);
   let ret = data.readShort();
-  hilog.info("RpcClient: readShort is: " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readShort is ' + ret);
   ```
 
 ### writeInt
@@ -3907,9 +4033,11 @@ writeInt(val: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
-  hilog.info("RpcClient: writeInt is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeInt is ' + result);
   ```
 
 ### readInt
@@ -3929,11 +4057,13 @@ readInt(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
-  hilog.info("RpcClient: writeInt is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeInt is ' + result);
   let ret = data.readInt();
-  hilog.info("RpcClient: readInt is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + ret);
   ```
 
 ### writeLong
@@ -3959,9 +4089,11 @@ writeLong(val: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
-  hilog.info("RpcClient: writeLong is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeLong is ' + result);
   ```
 
 ### readLong
@@ -3981,11 +4113,13 @@ readLong(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
-  hilog.info("RpcClient: writeLong is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeLong is ' + result);
   let ret = data.readLong();
-  hilog.info("RpcClient: readLong is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readLong is ' + ret);
   ```
 
 ### writeFloat
@@ -4011,9 +4145,11 @@ writeFloat(val: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
-  hilog.info("RpcClient: writeFloat is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloat is ' + result);
   ```
 
 ### readFloat
@@ -4033,11 +4169,13 @@ readFloat(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
-  hilog.info("RpcClient: writeFloat is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloat is ' + result);
   let ret = data.readFloat();
-  hilog.info("RpcClient: readFloat is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readFloat is ' + ret);
   ```
 
 ### writeDouble
@@ -4063,9 +4201,11 @@ writeDouble(val: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
-  hilog.info("RpcClient: writeDouble is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeDouble is ' + result);
   ```
 
 ### readDouble
@@ -4085,11 +4225,13 @@ readDouble(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
-  hilog.info("RpcClient: writeDouble is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeDouble is ' + result);
   let ret = data.readDouble();
-  hilog.info("RpcClient: readDouble is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readDouble is ' + ret);
   ```
 
 ### writeBoolean
@@ -4115,9 +4257,11 @@ writeBoolean(val: boolean): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
-  hilog.info("RpcClient: writeBoolean is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeBoolean is ' + result);
   ```
 
 ### readBoolean
@@ -4137,11 +4281,13 @@ readBoolean(): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
-  hilog.info("RpcClient: writeBoolean is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeBoolean is ' + result);
   let ret = data.readBoolean();
-  hilog.info("RpcClient: readBoolean is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readBoolean is ' + ret);
   ```
 
 ### writeChar
@@ -4167,9 +4313,11 @@ writeChar(val: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
-  hilog.info("RpcClient: writeChar is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeChar is ' + result);
   ```
 
 ### readChar
@@ -4189,11 +4337,13 @@ readChar(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
-  hilog.info("RpcClient: writeChar is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeChar is ' + result);
   let ret = data.readChar();
-  hilog.info("RpcClient: readChar is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readChar is ' + ret);
   ```
 
 ### writeString
@@ -4219,9 +4369,11 @@ writeString(val: string): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
-  hilog.info("RpcClient: writeString  is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeString is ' + result);
   ```
 
 ### readString
@@ -4241,11 +4393,13 @@ readString(): string
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
-  hilog.info("RpcClient: writeString  is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeString is ' + result);
   let ret = data.readString();
-  hilog.info("RpcClient: readString is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readString is ' + ret);
   ```
 
 ### writeSequenceable
@@ -4271,6 +4425,8 @@ writeSequenceable(val: Sequenceable): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
     str: string = '';
@@ -4292,7 +4448,7 @@ writeSequenceable(val: Sequenceable): boolean
   let sequenceable = new MySequenceable(1, "aaa");
   let data = rpc.MessageParcel.create();
   let result = data.writeSequenceable(sequenceable);
-  hilog.info("RpcClient: writeSequenceable is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceable is ' + result);
   ```
 
 ### readSequenceable
@@ -4318,6 +4474,8 @@ readSequenceable(dataIn: Sequenceable): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
     str: string = '';
@@ -4339,10 +4497,10 @@ readSequenceable(dataIn: Sequenceable): boolean
   let sequenceable = new MySequenceable(1, "aaa");
   let data = rpc.MessageParcel.create();
   let result = data.writeSequenceable(sequenceable);
-  hilog.info("RpcClient: writeSequenceable is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceable is ' + result);
   let ret = new MySequenceable(0, "");
   let result2 = data.readSequenceable(ret);
-  hilog.info("RpcClient: readSequenceable is " + result2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readSequenceable is ' + result2);
   ```
 
 ### writeByteArray
@@ -4368,10 +4526,12 @@ writeByteArray(byteArray: number[]): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
-  hilog.info("RpcClient: writeByteArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeByteArray is ' + result);
   ```
 
 ### readByteArray
@@ -4391,10 +4551,12 @@ readByteArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
-  hilog.info("RpcClient: writeByteArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeByteArray is ' + result);
   let array: Array<number> = new Array(5);
   data.readByteArray(array);
   ```
@@ -4416,12 +4578,14 @@ readByteArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
-  hilog.info("RpcClient: writeByteArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeByteArray is ' + result);
   let array = data.readByteArray();
-  hilog.info("RpcClient: readByteArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readByteArray is ' + array);
   ```
 
 ### writeShortArray
@@ -4447,9 +4611,11 @@ writeShortArray(shortArray: number[]): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
-  hilog.info("RpcClient: writeShortArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeShortArray is ' + result);
   ```
 
 ### readShortArray
@@ -4469,9 +4635,11 @@ readShortArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
-  hilog.info("RpcClient: writeShortArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeShortArray is ' + result);
   let array: Array<number> = new Array(3);
   data.readShortArray(array);
   ```
@@ -4493,11 +4661,13 @@ readShortArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
-  hilog.info("RpcClient: writeShortArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeShortArray is ' + result);
   let array = data.readShortArray();
- hilog.info("RpcClient: readShortArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readShortArray is ' + array);
   ```
 
 ### writeIntArray
@@ -4523,9 +4693,11 @@ writeIntArray(intArray: number[]): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
-  hilog.info("RpcClient: writeIntArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeIntArray is ' + result);
   ```
 
 ### readIntArray
@@ -4545,9 +4717,11 @@ readIntArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
-  hilog.info("RpcClient: writeIntArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeIntArray is ' + result);
   let array: Array<number> = new Array(3);
   data.readIntArray(array);
   ```
@@ -4569,11 +4743,13 @@ readIntArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
-  hilog.info("RpcClient: writeIntArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeIntArray is ' + result);
   let array = data.readIntArray();
-  hilog.info("RpcClient: readIntArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readIntArray is ' + array);
   ```
 
 ### writeLongArray
@@ -4599,9 +4775,11 @@ writeLongArray(longArray: number[]): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
-  hilog.info("RpcClient: writeLongArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeLongArray is ' + result);
   ```
 
 ### readLongArray
@@ -4621,9 +4799,11 @@ readLongArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
-  hilog.info("RpcClient: writeLongArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeLongArray is ' + result);
   let array: Array<number> = new Array(3);
   data.readLongArray(array);
   ```
@@ -4645,11 +4825,13 @@ readLongArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
-  hilog.info("RpcClient: writeLongArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeLongArray is ' + result);
   let array = data.readLongArray();
-  hilog.info("RpcClient: readLongArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readLongArray is ' + array);
   ```
 
 ### writeFloatArray
@@ -4675,9 +4857,11 @@ writeFloatArray(floatArray: number[]): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
-  hilog.info("RpcClient: writeFloatArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloatArray is ' + result);
   ```
 
 ### readFloatArray
@@ -4697,9 +4881,11 @@ readFloatArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
-  hilog.info("RpcClient: writeFloatArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloatArray is ' + result);
   let array: Array<number> = new Array(3);
   data.readFloatArray(array);
   ```
@@ -4721,11 +4907,13 @@ readFloatArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
-  hilog.info("RpcClient: writeFloatArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloatArray is ' + result);
   let array = data.readFloatArray();
-  hilog.info("RpcClient: readFloatArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readFloatArray is ' + array);
   ```
 
 ### writeDoubleArray
@@ -4751,9 +4939,11 @@ writeDoubleArray(doubleArray: number[]): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
-  hilog.info("RpcClient: writeDoubleArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeDoubleArray is ' + result);
   ```
 
 ### readDoubleArray
@@ -4773,9 +4963,11 @@ readDoubleArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
-  hilog.info("RpcClient: writeDoubleArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeDoubleArray is ' + result);
   let array: Array<number> = new Array(3);
   data.readDoubleArray(array);
   ```
@@ -4797,11 +4989,13 @@ readDoubleArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
-  hilog.info("RpcClient: writeDoubleArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeDoubleArray is ' + result);
   let array = data.readDoubleArray();
-  hilog.info("RpcClient: readDoubleArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readDoubleArray is ' + array);
   ```
 
 ### writeBooleanArray
@@ -4827,9 +5021,11 @@ writeBooleanArray(booleanArray: boolean[]): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
-  hilog.info("RpcClient: writeBooleanArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeBooleanArray is ' + result);
   ```
 
 ### readBooleanArray
@@ -4849,9 +5045,11 @@ readBooleanArray(dataIn: boolean[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
-  hilog.info("RpcClient: writeBooleanArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeBooleanArray is ' + result);
   let array: Array<boolean> = new Array(3);
   data.readBooleanArray(array);
   ```
@@ -4873,11 +5071,13 @@ readBooleanArray(): boolean[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
-  hilog.info("RpcClient: writeBooleanArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeBooleanArray is ' + result);
   let array = data.readBooleanArray();
-  hilog.info("RpcClient: readBooleanArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readBooleanArray is ' + array);
   ```
 
 ### writeCharArray
@@ -4903,9 +5103,11 @@ writeCharArray(charArray: number[]): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 88]);
-  hilog.info("RpcClient: writeCharArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeCharArray is ' + result);
   ```
 
 ### readCharArray
@@ -4925,9 +5127,11 @@ readCharArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
-  hilog.info("RpcClient: writeCharArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeCharArray is ' + result);
   let array: Array<number> = new Array(3);
   data.readCharArray(array);
   ```
@@ -4949,11 +5153,13 @@ readCharArray(): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
-  hilog.info("RpcClient: writeCharArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeCharArray is ' + result);
   let array = data.readCharArray();
-  hilog.info("RpcClient: readCharArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readCharArray is ' + array);
   ```
 
 ### writeStringArray
@@ -4979,9 +5185,11 @@ writeStringArray(stringArray: string[]): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
-  hilog.info("RpcClient: writeStringArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeStringArray is ' + result);
   ```
 
 ### readStringArray
@@ -5001,9 +5209,11 @@ readStringArray(dataIn: string[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
-  hilog.info("RpcClient: writeStringArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeStringArray is ' + result);
   let array: Array<string> = new Array(2);
   data.readStringArray(array);
   ```
@@ -5025,11 +5235,13 @@ readStringArray(): string[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
-  hilog.info("RpcClient: writeStringArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeStringArray is ' + result);
   let array = data.readStringArray();
-  hilog.info("RpcClient: readStringArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readStringArray is ' + array);
   ```
 
 ### writeNoException<sup>8+</sup>
@@ -5043,9 +5255,11 @@ writeNoException(): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -5063,11 +5277,11 @@ writeNoException(): void
     }
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
       if (code === 1) {
-        hilog.info("RpcServer: onRemoteRequest called");
+        hilog.info(0x0000, 'testTag', 'RpcServer: onRemoteRequest called');
         reply.writeNoException();
         return true;
       } else {
-        hilog.error("RpcServer: unknown code: " + code);
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
         return false;
       }
     }
@@ -5091,18 +5305,19 @@ readException(): void
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -5119,6 +5334,8 @@ readException(): void
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -5127,17 +5344,17 @@ readException(): void
   proxy.sendRequest(1, data, reply, option)
       .then((result: rpc.SendRequestResult) => {
           if (result.errCode === 0) {
-              hilog.info("sendRequest got result");
+              hilog.info(0x0000, 'testTag', 'sendRequest got result');
               result.reply.readException();
               let msg = result.reply.readString();
-              hilog.info("RPCTest: reply msg: " + msg);
+              hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
           } else {
-              hilog.error("RPCTest: sendRequest failed, errCode: " + result.errCode);
+              hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
           }
       }).catch((e: Error) => {
-          hilog.error("RPCTest: sendRequest got exception: " + e.message);
+          hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest got exception: ' + e.message);
       }).finally (() => {
-          hilog.info("RPCTest: sendRequest ends, reclaim parcel");
+          hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
           data.reclaim();
           reply.reclaim();
       });
@@ -5166,6 +5383,8 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
     str: string = '';
@@ -5190,7 +5409,7 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
   let a = [sequenceable, sequenceable2, sequenceable3];
   let data = rpc.MessageParcel.create();
   let result = data.writeSequenceableArray(a);
-  hilog.info("RpcClient: writeSequenceableArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceableArray is ' + result);
   ```
 
 ### readSequenceableArray<sup>8+</sup>
@@ -5210,6 +5429,8 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
     str: string = '';
@@ -5234,7 +5455,7 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
   let a = [sequenceable, sequenceable2, sequenceable3];
   let data = rpc.MessageParcel.create();
   let result = data.writeSequenceableArray(a);
-  hilog.info("RpcClient: writeSequenceableArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceableArray is ' + result);
   let b = [new MySequenceable(0, ""), new MySequenceable(0, ""), new MySequenceable(0, "")];
   data.readSequenceableArray(b);
   ```
@@ -5262,9 +5483,11 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -5288,7 +5511,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
   let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
   let data = rpc.MessageParcel.create();
   let result = data.writeRemoteObjectArray(a);
-  hilog.info("RpcClient: writeRemoteObjectArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeRemoteObjectArray is ' + result);
   ```
 
 ### readRemoteObjectArray<sup>8+</sup>
@@ -5308,9 +5531,11 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -5355,9 +5580,11 @@ readRemoteObjectArray(): IRemoteObject[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -5381,9 +5608,9 @@ readRemoteObjectArray(): IRemoteObject[]
   let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
   let data = rpc.MessageParcel.create();
   let result = data.writeRemoteObjectArray(a);
-  hilog.info("RpcClient: readRemoteObjectArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObjectArray is ' + result);
   let b = data.readRemoteObjectArray();
-  hilog.info("RpcClient: readRemoteObjectArray is " + b);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObjectArray is ' + b);
   ```
 
 ### closeFileDescriptor<sup>8+</sup>
@@ -5460,14 +5687,15 @@ containFileDescriptors(): boolean
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let writeResult = parcel.writeFileDescriptor(file.fd);
-  hilog.info("RpcTest: parcel writeFd result is : " + writeResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel writeFd result is ' + writeResult);
   let containFD = parcel.containFileDescriptors();
-  hilog.info("RpcTest: parcel after write fd containFd result is : " + containFD);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel after write fd containFd result is ' + containFD);
   ```
 
 ### writeFileDescriptor<sup>8+</sup>
@@ -5494,12 +5722,13 @@ writeFileDescriptor(fd: number): boolean
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let writeResult = parcel.writeFileDescriptor(file.fd);
-  hilog.info("RpcTest: parcel writeFd result is : " + writeResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel writeFd result is ' + writeResult);
   ```
 
 ### readFileDescriptor<sup>8+</sup>
@@ -5520,13 +5749,14 @@ readFileDescriptor(): number
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   parcel.writeFileDescriptor(file.fd);
   let readFD = parcel.readFileDescriptor();
-  hilog.info("RpcTest: parcel read fd is : " + readFD);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel read fd is ' + readFD);
   ```
 
 ### writeAshmem<sup>8+</sup>
@@ -5552,10 +5782,12 @@ writeAshmem(ashmem: Ashmem): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
   let isWriteSuccess = parcel.writeAshmem(ashmem);
-  hilog.info("RpcTest: write ashmem to result is : " + isWriteSuccess);
+  hilog.info(0x0000, 'testTag', 'RpcTest: write ashmem to result is ' + isWriteSuccess);
   ```
 
 ### readAshmem<sup>8+</sup>
@@ -5575,12 +5807,14 @@ readAshmem(): Ashmem
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
   let isWriteSuccess = parcel.writeAshmem(ashmem);
-  hilog.info("RpcTest: write ashmem to result is : " + isWriteSuccess);
+  hilog.info(0x0000, 'testTag', 'RpcTest: write ashmem to result is ' + isWriteSuccess);
   let readAshmem = parcel.readAshmem();
-  hilog.info("RpcTest: read ashmem to result is : " + readAshmem);
+  hilog.info(0x0000, 'testTag', 'RpcTest: read ashmem to result is ' + readAshmem);
   ```
 
 ### getRawDataCapacity<sup>8+</sup>
@@ -5600,9 +5834,11 @@ getRawDataCapacity(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let parcel = new rpc.MessageParcel();
   let result = parcel.getRawDataCapacity();
-  hilog.info("RpcTest: parcel get RawDataCapacity result is : " + result);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel get RawDataCapacity result is ' + result);
   ```
 
 ### writeRawData<sup>8+</sup>
@@ -5629,10 +5865,12 @@ writeRawData(rawData: number[], size: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
   let isWriteSuccess = parcel.writeRawData(arr, arr.length);
-  hilog.info("RpcTest: parcel write raw data result is : " + isWriteSuccess);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel write raw data result is ' + isWriteSuccess);
   ```
 
 ### readRawData<sup>8+</sup>
@@ -5658,12 +5896,14 @@ readRawData(size: number): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
   let isWriteSuccess = parcel.writeRawData(arr, arr.length);
-  hilog.info("RpcTest: parcel write raw data result is : " + isWriteSuccess);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel write raw data result is ' + isWriteSuccess);
   let result = parcel.readRawData(5);
-  hilog.info("RpcTest: parcel read raw data result is : " + result);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel read raw data result is ' + result);
   ```
 
 ## Parcelable<sup>9+</sup>
@@ -5693,6 +5933,8 @@ marshalling(dataOut: MessageSequence): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
     str: string = '';
@@ -5714,10 +5956,10 @@ marshalling(dataOut: MessageSequence): boolean
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
   let result = data.writeParcelable(parcelable);
-  hilog.info("RpcClient: writeParcelable is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
   let ret = new MyParcelable(0, "");
   let result2 = data.readParcelable(ret);
-  hilog.info("RpcClient: readParcelable is " + result2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
   ```
 
 ### unmarshalling
@@ -5743,6 +5985,8 @@ unmarshalling(dataIn: MessageSequence): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
     str: string = '';
@@ -5764,10 +6008,10 @@ unmarshalling(dataIn: MessageSequence): boolean
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
   let result = data.writeParcelable(parcelable);
-  hilog.info("RpcClient: writeParcelable is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
   let ret = new MyParcelable(0, "");
   let result2 = data.readParcelable(ret);
-  hilog.info("RpcClient: readParcelable is " + result2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
   ```
 
 ## Sequenceable<sup>(deprecated)</sup>
@@ -5799,6 +6043,8 @@ marshalling(dataOut: MessageParcel): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
     str: string = '';
@@ -5820,10 +6066,10 @@ marshalling(dataOut: MessageParcel): boolean
   let sequenceable = new MySequenceable(1, "aaa");
   let data = rpc.MessageParcel.create();
   let result = data.writeSequenceable(sequenceable);
-  hilog.info("RpcClient: writeSequenceable is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceable is ' + result);
   let ret = new MySequenceable(0, "");
   let result2 = data.readSequenceable(ret);
-  hilog.info("RpcClient: readSequenceable is " + result2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readSequenceable is ' + result2);
   ```
 
 ### unmarshalling
@@ -5849,6 +6095,8 @@ unmarshalling(dataIn: MessageParcel): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
     str: string = '';
@@ -5870,10 +6118,10 @@ unmarshalling(dataIn: MessageParcel): boolean
   let sequenceable = new MySequenceable(1, "aaa");
   let data = rpc.MessageParcel.create();
   let result = data.writeSequenceable(sequenceable);
-  hilog.info("RpcClient: writeSequenceable is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceable is ' + result);
   let ret = new MySequenceable(0, "");
   let result2 = data.readSequenceable(ret);
-  hilog.info("RpcClient: readSequenceable is " + result2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readSequenceable is ' + result2);
   ```
 
 ## IRemoteBroker
@@ -5915,18 +6163,19 @@ asObject(): IRemoteObject
 
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want  = {
@@ -5970,9 +6219,11 @@ onRemoteDied(): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   ```
@@ -6355,18 +6606,19 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
      onConnect: (elementName, remoteProxy) => {
-        hilog.info("RpcClient: js onConnect called.");
+        hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
         proxy = remoteProxy;
      },
      onDisconnect: (elementName) => {
-        hilog.info("RpcClient: onDisconnect");
+        hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
      },
      onFailed: () => {
-        hilog.info("RpcClient: onFailed");
+        hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
      }
   };
   let want: Want = {
@@ -6383,6 +6635,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -6390,13 +6644,13 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   data.writeString("hello");
   let ret: boolean = proxy.sendRequest(1, data, reply, option);
   if (ret) {
-    hilog.info("sendRequest got result");
+    hilog.info(0x0000, 'testTag', 'sendRequest got result');
     let msg = reply.readString();
-    hilog.info("RPCTest: reply msg: " + msg);
+    hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
   } else {
-    hilog.error("RPCTest: sendRequest failed");
+    hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed');
   }
-  hilog.info("RPCTest: sendRequest ends, reclaim parcel");
+  hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
   data.reclaim();
   reply.reclaim();
   ```
@@ -6433,18 +6687,19 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -6461,6 +6716,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
@@ -6469,17 +6726,17 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   proxy.sendMessageRequest(1, data, reply, option)
     .then((result: rpc.RequestResult) => {
       if (result.errCode === 0) {
-        hilog.info("sendMessageRequest got result");
+        hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
         result.reply.readException();
         let msg = result.reply.readString();
-        hilog.info("RPCTest: reply msg: " + msg);
+        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
       } else {
-        hilog.error("RPCTest: sendMessageRequest failed, errCode: " + result.errCode);
+        hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
       }
     }).catch((e: Error) => {
-      hilog.error("RPCTest: sendMessageRequest got exception: " + e.message);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest got exception: ' + e.message);
     }).finally (() => {
-      hilog.info("RPCTest: sendMessageRequest ends, reclaim parcel");
+      hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
       data.reclaim();
       reply.reclaim();
     });
@@ -6519,18 +6776,19 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -6547,6 +6805,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -6555,17 +6815,17 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   proxy.sendRequest(1, data, reply, option)
     .then((result: rpc.SendRequestResult) => {
       if (result.errCode === 0) {
-        hilog.info("sendRequest got result");
+        hilog.info(0x0000, 'testTag', 'sendRequest got result');
         result.reply.readException();
         let msg = result.reply.readString();
-        hilog.info("RPCTest: reply msg: " + msg);
+        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
       } else {
-        hilog.error("RPCTest: sendRequest failed, errCode: " + result.errCode);
+        hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
       }
     }).catch((e: Error) => {
-      hilog.error("RPCTest: sendRequest got exception: " + e.message);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest got exception: ' + e.message);
     }).finally (() => {
-      hilog.info("RPCTest: sendRequest ends, reclaim parcel");
+      hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
       data.reclaim();
       reply.reclaim();
     });
@@ -6598,19 +6858,20 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base'; 
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -6619,14 +6880,14 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   };
   function sendMessageRequestCallback(err: BusinessError, result: rpc.RequestResult) {
     if (result.errCode === 0) {
-      hilog.info("sendMessageRequest got result");
+      hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
       result.reply.readException();
       let msg = result.reply.readString();
-      hilog.info("RPCTest: reply msg: " + msg);
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
-      hilog.error("RPCTest: sendMessageRequest failed, errCode: " + result.errCode);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
     }
-    hilog.info("RPCTest: sendMessageRequest ends, reclaim parcel");
+    hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
     result.data.reclaim();
     result.reply.reclaim();
 }
@@ -6640,6 +6901,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let option = new rpc.MessageOption();
@@ -6651,8 +6913,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
     proxy.sendMessageRequest(1, data, reply, option, sendMessageRequestCallback);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc sendMessageRequest fail, errorCode " + e.code);
-    hilog.error("rpc sendMessageRequest fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorMessage ' + e.message);
   }
   ```
 
@@ -6685,19 +6947,20 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -6706,14 +6969,14 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   };
   function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
     if (result.errCode === 0) {
-      hilog.info("sendRequest got result");
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
       result.reply.readException();
       let msg = result.reply.readString();
-      hilog.info("RPCTest: reply msg: " + msg);
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
-      hilog.error("RPCTest: sendRequest failed, errCode: " + result.errCode);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
     }
-    hilog.info("RPCTest: sendRequest ends, reclaim parcel");
+    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
     result.data.reclaim();
     result.reply.reclaim();
 }
@@ -6772,18 +7035,19 @@ getLocalInterface(interface: string): IRemoteBroker
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -6800,15 +7064,16 @@ getLocalInterface(interface: string): IRemoteBroker
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getLocalInterface接口方法查询接口对象
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   try {
     let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
-    hilog.info("RpcClient: getLocalInterface is " + broker);
+    hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc get local interface fail, errorCode " + e.code);
-    hilog.error("rpc get local interface fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorMessage ' + e.message);
   }
   ```
 
@@ -6843,18 +7108,19 @@ queryLocalInterface(interface: string): IRemoteBroker
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -6871,8 +7137,10 @@ queryLocalInterface(interface: string): IRemoteBroker
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的queryLocalInterface接口获取接口对象
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let broker: rpc.IRemoteBroker  = proxy.queryLocalInterface("testObject");
-  hilog.info("RpcClient: queryLocalInterface is " + broker);
+  hilog.info(0x0000, 'testTag', 'RpcClient: queryLocalInterface is ' + broker);
   ```
 
 ### registerDeathRecipient<sup>9+</sup>
@@ -6907,18 +7175,19 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -6935,11 +7204,12 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的registerDeathRecipient接口注册死亡回调
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   let deathRecipient = new MyDeathRecipient();
@@ -6947,8 +7217,8 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
     proxy.registerDeathRecipient(deathRecipient, 0);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("proxy register deathRecipient fail, errorCode " + e.code);
-    hilog.error("proxy register deathRecipient fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'proxy register deathRecipient fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'proxy register deathRecipient fail, errorMessage ' + e.message);
   }
   ```
 
@@ -6984,18 +7254,19 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -7012,9 +7283,11 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecipient接口方法新增死亡回调
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   let deathRecipient = new MyDeathRecipient();
@@ -7053,18 +7326,19 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -7081,11 +7355,12 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的unregisterDeathRecipient接口方法注销死亡回调
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   let deathRecipient = new MyDeathRecipient();
@@ -7094,8 +7369,8 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
     proxy.unregisterDeathRecipient(deathRecipient, 0);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("proxy unregister deathRecipient fail, errorCode " + e.code);
-    hilog.error("proxy unregister deathRecipient fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'proxy unregister deathRecipient fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'proxy unregister deathRecipient fail, errorMessage ' + e.message);
   }
   ```
 
@@ -7131,18 +7406,19 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -7159,9 +7435,11 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的removeDeathRecipient接口方法去注册死亡回调
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   let deathRecipient = new MyDeathRecipient();
@@ -7201,18 +7479,19 @@ getDescriptor(): string
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -7228,15 +7507,16 @@ getDescriptor(): string
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getDescriptor接口方法获取对象的接口描述符
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   try {
     let descriptor: string = proxy.getDescriptor();
-    hilog.info("RpcClient: descriptor is " + descriptor);
+    hilog.info(0x0000, 'testTag', 'RpcClient: descriptor is ' + descriptor);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc get interface descriptor fail, errorCode " + e.code);
-    hilog.error("rpc get interface descriptor fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc get interface descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc get interface descriptor fail, errorMessage ' + e.message);
   }
   ```
 
@@ -7265,18 +7545,19 @@ getInterfaceDescriptor(): string
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -7293,8 +7574,10 @@ getInterfaceDescriptor(): string
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getInterfaceDescriptor接口方法查询当前代理对象接口的描述符
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let descriptor: string = proxy.getInterfaceDescriptor();
-  hilog.info("RpcClient: descriptor is " + descriptor);
+  hilog.info(0x0000, 'testTag', 'RpcClient: descriptor is ' + descriptor);
   ```
 
 ### isObjectDead
@@ -7320,18 +7603,19 @@ isObjectDead(): boolean
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info("RpcClient: js onConnect called.");
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info("RpcClient: onDisconnect");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
     },
     onFailed: () => {
-      hilog.info("RpcClient: onFailed");
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
     }
   };
   let want: Want = {
@@ -7348,8 +7632,10 @@ isObjectDead(): boolean
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的isObjectDead接口方法判断当前对象是否已经死亡
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let isDead: boolean = proxy.isObjectDead();
-  hilog.info("RpcClient: isObjectDead is " + isDead);
+  hilog.info(0x0000, 'testTag', 'RpcClient: isObjectDead is ' + isDead);
   ```
 
 ## MessageOption
@@ -7451,9 +7737,11 @@ setAsync(async: boolean): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let option = new rpc.MessageOption();
   option.setAsync(true);
-  hilog.info("Set asynchronization flag");
+  hilog.info(0x0000, 'testTag', 'Set asynchronization flag');
   ```
 
 ### getFlags
@@ -7473,17 +7761,19 @@ getFlags(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   try {
     let option = new rpc.MessageOption();
-    hilog.info("create object successfully.");
+    hilog.info(0x0000, 'testTag', 'create object successfully');
     let flog = option.getFlags();
-    hilog.info("run getFlags success, flog is " + flog);
+    hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
     option.setFlags(1)
-    hilog.info("run setFlags success");
+    hilog.info(0x0000, 'testTag', 'run setFlags success');
     let flog2 = option.getFlags();
-    hilog.info("run getFlags success, flog2 is " + flog2);
+    hilog.info(0x0000, 'testTag', 'run getFlags success, flog2 is ' + flog2);
   } catch (error) {
-    hilog.error("error " + error);
+    hilog.error(0x0000, 'testTag', 'error ' + error);
   }
   ```
 
@@ -7504,14 +7794,16 @@ setFlags(flags: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   try {
     let option = new rpc.MessageOption();
     option.setFlags(1)
-    hilog.info("run setFlags success");
+    hilog.info(0x0000, 'testTag', 'run setFlags success');
     let flog = option.getFlags();
-    hilog.info("run getFlags success, flog is " + flog);
+    hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
   } catch (error) {
-    hilog.error("error " + error);
+    hilog.error(0x0000, 'testTag', 'error ' + error);
   }
   ```
 
@@ -7532,15 +7824,17 @@ getWaitTime(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   try {
     let option = new rpc.MessageOption();
     let time = option.getWaitTime();
-    hilog.info("run getWaitTime success, time is " + time);
+    hilog.info(0x0000, 'testTag', 'run getWaitTime success, time is ' + time);
     option.setWaitTime(16);
     let time2 = option.getWaitTime();
-    hilog.info("run getWaitTime success, time is " + time2);
+    hilog.info(0x0000, 'testTag', 'run getWaitTime success, time is ' + time2);
   } catch (error) {
-    hilog.error("error " + error);
+    hilog.error(0x0000, 'testTag', 'error ' + error);
   }
   ```
 
@@ -7561,13 +7855,15 @@ setWaitTime(waitTime: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   try {
     let option = new rpc.MessageOption();
     option.setWaitTime(16);
     let time = option.getWaitTime();
-    hilog.info("run getWaitTime success, time is " + time);
+    hilog.info(0x0000, 'testTag', 'run getWaitTime success, time is ' + time);
   } catch (error) {
-    hilog.error("error " + error);
+    hilog.error(0x0000, 'testTag', 'error ' + error);
   }
   ```
 
@@ -7592,8 +7888,10 @@ static getContextObject(): IRemoteObject
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let samgr = rpc.IPCSkeleton.getContextObject();
-  hilog.info("RpcServer: getContextObject result: " + samgr);
+  hilog.info(0x0000, 'testTag', 'RpcServer: getContextObject result: ' + samgr);
   ```
 
 ### getCallingPid
@@ -7613,10 +7911,12 @@ static getCallingPid(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
       let callerPid = rpc.IPCSkeleton.getCallingPid();
-      hilog.info("RpcServer: getCallingPid result: " + callerPid);
+      hilog.info(0x0000, 'testTag', 'RpcServer: getCallingPid result: ' + callerPid);
       return true;
     }
  }
@@ -7639,10 +7939,12 @@ static getCallingUid(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
       let callerUid = rpc.IPCSkeleton.getCallingUid();
-      hilog.info("RpcServer: getCallingUid result: " + callerUid);
+      hilog.info(0x0000, 'testTag', 'RpcServer: getCallingUid result: ' + callerUid);
       return true;
     }
   }
@@ -7665,10 +7967,12 @@ static getCallingTokenId(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
       let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
-      hilog.info("RpcServer: getCallingTokenId result: " + callerTokenId);
+      hilog.info(0x0000, 'testTag', 'RpcServer: getCallingTokenId result: ' + callerTokenId);
       return true;
     }
   }
@@ -7691,10 +7995,12 @@ static getCallingDeviceID(): string
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
       let callerDeviceID = rpc.IPCSkeleton.getCallingDeviceID();
-      hilog.info("RpcServer: callerDeviceID is: " + callerDeviceID);
+      hilog.info(0x0000, 'testTag', 'RpcServer: callerDeviceID is ' + callerDeviceID);
       return true;
     }
   }
@@ -7717,10 +8023,12 @@ static getLocalDeviceID(): string
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
       let localDeviceID = rpc.IPCSkeleton.getLocalDeviceID();
-      hilog.info("RpcServer: localDeviceID is: " + localDeviceID);
+      hilog.info(0x0000, 'testTag', 'RpcServer: localDeviceID is ' + localDeviceID);
       return true;
     }
   }
@@ -7743,10 +8051,12 @@ static isLocalCalling(): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
       let isLocalCalling = rpc.IPCSkeleton.isLocalCalling();
-      hilog.info("RpcServer: isLocalCalling is: " + isLocalCalling);
+      hilog.info(0x0000, 'testTag', 'RpcServer: isLocalCalling is ' + isLocalCalling);
       return true;
     }
   }
@@ -7769,6 +8079,7 @@ static flushCmdBuffer(object: IRemoteObject): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
@@ -7781,8 +8092,8 @@ static flushCmdBuffer(object: IRemoteObject): void
     rpc.IPCSkeleton.flushCmdBuffer(remoteObject);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("proxy flushCmdBuffer fail, errorCode " + e.code);
-    hilog.error("proxy flushCmdBuffer fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'proxy flushCmdBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'proxy flushCmdBuffer fail, errorMessage ' + e.message);
   }
   ```
 
@@ -7811,9 +8122,11 @@ static flushCommands(object: IRemoteObject): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -7832,7 +8145,7 @@ static flushCommands(object: IRemoteObject): number
   }
   let remoteObject = new TestRemoteObject("aaa");
   let ret = rpc.IPCSkeleton.flushCommands(remoteObject);
-  hilog.info("RpcServer: flushCommands result: " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcServer: flushCommands result: ' + ret);
   ```
 
 ### resetCallingIdentity
@@ -7852,10 +8165,12 @@ static resetCallingIdentity(): string
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
       let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
-      hilog.info("RpcServer: callingIdentity is: " + callingIdentity);
+      hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
       return true;
     }
   }
@@ -7878,12 +8193,14 @@ static restoreCallingIdentity(identity: string): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
       let callingIdentity: rpc.IPCSkeleton | undefined = undefined;
       try {
         callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
-        hilog.info("RpcServer: callingIdentity is: " + callingIdentity);
+        hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
       } finally {
         rpc.IPCSkeleton.restoreCallingIdentity(callingIdentity);
       }
@@ -7917,15 +8234,17 @@ static setCallingIdentity(identity: string): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
       let callingIdentity: rpc.IPCSkeleton | undefined = undefined;
       try {
         callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
-        hilog.info("RpcServer: callingIdentity is: " + callingIdentity);
+        hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
       } finally {
         let ret = rpc.IPCSkeleton.setCallingIdentity("callingIdentity ");
-        hilog.info("RpcServer: setCallingIdentity is: " + ret);
+        hilog.info(0x0000, 'testTag', 'RpcServer: setCallingIdentity is ' + ret);
       }
       return true;
     }
@@ -7978,9 +8297,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -8005,13 +8326,13 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   data.writeString("hello");
   let ret: boolean = testRemoteObject.sendRequest(1, data, reply, option);
   if (ret) {
-    hilog.info("sendRequest got result");
+    hilog.info(0x0000, 'testTag', 'sendRequest got result');
     let msg = reply.readString();
-    hilog.info("RPCTest: reply msg: " + msg);
+    hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
   } else {
-    hilog.error("RPCTest: sendRequest failed");
+    hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed');
   }
-  hilog.info("RPCTest: sendRequest ends, reclaim parcel");
+  hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
   data.reclaim();
   reply.reclaim();
   ```
@@ -8042,6 +8363,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
@@ -8056,17 +8379,17 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   testRemoteObject.sendMessageRequest(1, data, reply, option)
     .then((result: rpc.RequestResult) => {
       if (result.errCode === 0) {
-        hilog.info("sendMessageRequest got result");
+        hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
         result.reply.readException();
         let msg = result.reply.readString();
-        hilog.info("RPCTest: reply msg: " + msg);
+        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
       } else {
-        hilog.error("RPCTest: sendMessageRequest failed, errCode: " + result.errCode);
+        hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
       }
     }).catch((e: Error) => {
-      hilog.error("RPCTest: sendMessageRequest got exception: " + e.message);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest got exception: ' + e.message);
     }).finally (() => {
-      hilog.info("RPCTest: sendMessageRequest ends, reclaim parcel");
+      hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
       data.reclaim();
       reply.reclaim();
     });
@@ -8100,9 +8423,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -8129,17 +8454,17 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   let b = a as Promise<rpc.SendRequestResult>;
   b.then((result: rpc.SendRequestResult) => {
     if (result.errCode === 0) {
-      hilog.info("sendRequest got result");
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
       result.reply.readException();
       let msg = result.reply.readString();
-      hilog.info("RPCTest: reply msg: " + msg);
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
-      hilog.error("RPCTest: sendRequest failed, errCode: " + result.errCode);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
     }
   }).catch((e: Error) => {
-    hilog.error("RPCTest: sendRequest got exception: " + e.message);
+    hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest got exception: ' + e.message);
   }).finally (() => {
-    hilog.info("RPCTest: sendRequest ends, reclaim parcel");
+    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
     data.reclaim();
     reply.reclaim();
   });
@@ -8166,6 +8491,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
@@ -8175,14 +8501,14 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   }
   function sendRequestCallback(err: BusinessError, result: rpc.RequestResult) {
     if (result.errCode === 0) {
-      hilog.info("sendRequest got result");
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
       result.reply.readException();
       let msg = result.reply.readString();
-      hilog.info("RPCTest: reply msg: " + msg);
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
-      hilog.error("RPCTest: sendRequest failed, errCode: " + result.errCode);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
     }
-    hilog.info("RPCTest: sendRequest ends, reclaim parcel");
+    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
     result.data.reclaim();
     result.reply.reclaim();
   }
@@ -8218,11 +8544,12 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -8241,14 +8568,14 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   }
   function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
     if (result.errCode === 0) {
-      hilog.info("sendRequest got result");
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
       result.reply.readException();
       let msg = result.reply.readString();
-      hilog.info("RPCTest: reply msg: " + msg);
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
-      hilog.error("RPCTest: sendRequest failed, errCode: " + result.errCode);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
     }
-    hilog.info("RPCTest: sendRequest ends, reclaim parcel");
+    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
     result.data.reclaim();
     result.reply.reclaim();
   }
@@ -8293,6 +8620,8 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 **重载onRemoteMessageRequest方法同步处理请求示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
@@ -8300,10 +8629,10 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
       if (code === 1) {
-        hilog.info("RpcServer: sync onRemoteMessageRequest is called");
+        hilog.info(0x0000, 'testTag', 'RpcServer: sync onRemoteMessageRequest is called');
         return true;
       } else {
-        hilog.error("RpcServer: unknown code: " + code);
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
         return false;
       }
     }
@@ -8313,6 +8642,8 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   **重载onRemoteMessageRequest方法异步处理请求示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
@@ -8320,9 +8651,9 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
     async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): Promise<boolean> {
       if (code === 1) {
-        hilog.info("RpcServer: async onRemoteMessageRequest is called");
+        hilog.info(0x0000, 'testTag', 'RpcServer: async onRemoteMessageRequest is called');
       } else {
-        hilog.error("RpcServer: unknown code: " + code);
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
         return false;
       }
       await new Promise((resolve: (data: rpc.RequestResult) => void) => {
@@ -8336,6 +8667,8 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 **同时重载onRemoteMessageRequest和onRemoteRequest方法同步处理请求示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
@@ -8343,19 +8676,19 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
        if (code === 1) {
-          hilog.info("RpcServer: sync onRemoteMessageRequest is called");
+          hilog.info(0x0000, 'testTag', 'RpcServer: sync onRemoteMessageRequest is called');
           return true;
        } else {
-          hilog.error("RpcServer: unknown code: " + code);
+          hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
           return false;
        }
     }
       // 同时调用仅会执行onRemoteMessageRequest
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
       if (code === 1) {
-        hilog.info("RpcServer: async onRemoteMessageRequest is called");
+        hilog.info(0x0000, 'testTag', 'RpcServer: async onRemoteMessageRequest is called');
       } else {
-        hilog.error("RpcServer: unknown code: " + code);
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
         return false;
       }
       return true;
@@ -8366,6 +8699,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   **同时重载onRemoteMessageRequest和onRemoteRequest方法异步处理请求示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
@@ -8373,19 +8707,19 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
       if (code === 1) {
-        hilog.info("RpcServer: sync onRemoteRequest is called");
+        hilog.info(0x0000, 'testTag', 'RpcServer: sync onRemoteRequest is called');
         return true;
       } else {
-        hilog.error("RpcServer: unknown code: " + code);
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
         return false;
       }
     }
     // 同时调用仅会执行onRemoteMessageRequest
     async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): Promise<boolean> {
       if (code === 1) {
-        hilog.info("RpcServer: async onRemoteMessageRequest is called");
+        hilog.info(0x0000, 'testTag', 'RpcServer: async onRemoteMessageRequest is called');
       } else {
-        hilog.error("RpcServer: unknown code: " + code);
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
         return false;
       }
       await new Promise((resolve: (data: rpc.RequestResult) => void) => {
@@ -8424,9 +8758,11 @@ sendRequest请求的响应处理函数，服务端在该函数里处理请求，
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -8444,10 +8780,10 @@ sendRequest请求的响应处理函数，服务端在该函数里处理请求，
     }
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
       if (code === 1) {
-        hilog.info("RpcServer: onRemoteRequest called");
+        hilog.info(0x0000, 'testTag', 'RpcServer: onRemoteRequest called');
         return true;
       } else {
-        hilog.error("RpcServer: unknown code: " + code);
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
         return false;
       }
     }
@@ -8470,13 +8806,15 @@ getCallingUid(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
     }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
-  hilog.info("RpcServer: getCallingUid: " + testRemoteObject.getCallingUid());
+  hilog.info(0x0000, 'testTag', 'RpcServer: getCallingUid: ' + testRemoteObject.getCallingUid());
   ```
 
 ### getCallingPid
@@ -8496,13 +8834,15 @@ getCallingPid(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
     }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
-  hilog.info("RpcServer: getCallingPid: " + testRemoteObject.getCallingPid());
+  hilog.info(0x0000, 'testTag', 'RpcServer: getCallingPid: ' + testRemoteObject.getCallingPid());
   ```
 
 ### getLocalInterface<sup>9+</sup>
@@ -8528,11 +8868,12 @@ getLocalInterface(descriptor: string): IRemoteBroker
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -8558,8 +8899,8 @@ getLocalInterface(descriptor: string): IRemoteBroker
     testRemoteObject.getLocalInterface("testObject");
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc get local interface fail, errorCode " + e.code);
-    hilog.error("rpc get local interface fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorMessage ' + e.message);
   }
   ```
 
@@ -8588,9 +8929,11 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -8640,11 +8983,12 @@ getDescriptor(): string
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -8664,11 +9008,11 @@ getDescriptor(): string
   let testRemoteObject = new TestRemoteObject("testObject");
   try {
     let descriptor = testRemoteObject.getDescriptor();
-    hilog.info("RpcServer: descriptor is: " + descriptor);
+    hilog.info(0x0000, 'testTag', 'RpcServer: descriptor is ' + descriptor);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("rpc get local interface fail, errorCode " + e.code);
-    hilog.error("rpc get local interface fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorMessage ' + e.message);
   }
   ```
 
@@ -8691,9 +9035,11 @@ getInterfaceDescriptor(): string
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -8712,7 +9058,7 @@ getInterfaceDescriptor(): string
   }
   let testRemoteObject = new TestRemoteObject("testObject");
   let descriptor = testRemoteObject.getInterfaceDescriptor();
-  hilog.info("RpcServer: descriptor is: " + descriptor);
+  hilog.info(0x0000, 'testTag', 'RpcServer: descriptor is: ' + descriptor);
   ```
 
 ### modifyLocalInterface<sup>9+</sup>
@@ -8733,11 +9079,12 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -8747,8 +9094,8 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
         this.modifyLocalInterface(this, descriptor);
       } catch(error) {
         let e: BusinessError = error as BusinessError;
-        hilog.error(" rpc attach local interface fail, errorCode " + e.code);
-        hilog.error(" rpc attach local interface fail, errorMessage " + e.message);
+        hilog.error(0x0000, 'testTag', ' rpc attach local interface fail, errorCode ' + e.code);
+        hilog.error(0x0000, 'testTag', ' rpc attach local interface fail, errorMessage ' + e.message);
       }
     }
     registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
@@ -8787,9 +9134,11 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info("server died");
+      hilog.info(0x0000, 'testTag', 'server died');
     }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -8852,17 +9201,18 @@ static create(name: string, size: number): Ashmem
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let ashmem: rpc.Ashmem | undefined = undefined;
   try {
     ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
     let size = ashmem.getAshmemSize();
-    hilog.info("RpcTest: get ashemm by create : " + ashmem + " size is : " + size);
+    hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by create: ' + ashmem + ' size is ' + size);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("Rpc creat ashmem fail, errorCode " + e.code);
-    hilog.error("Rpc creat ashmem  fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'Rpc creat ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc creat ashmem  fail, errorMessage ' + e.message);
   }
   ```
 
@@ -8892,9 +9242,11 @@ static createAshmem(name: string, size: number): Ashmem
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
-  hilog.info("RpcTest: get ashemm by createAshmem : " + ashmem + " size is : " + size);
+  hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by createAshmem: ' + ashmem + ' size is ' + size);
   ```
 
 ### create<sup>9+</sup>
@@ -8920,17 +9272,18 @@ static create(ashmem: Ashmem): Ashmem
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   try {
     let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
     let ashmem2 = rpc.Ashmem.create(ashmem);
     let size = ashmem2.getAshmemSize();
-    hilog.info("RpcTest: get ashemm by create : " + ashmem2 + " size is : " + size);
+    hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by create: ' + ashmem2 + ' size is ' + size);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("Rpc creat ashmem from existing fail, errorCode " + e.code);
-    hilog.error("Rpc creat ashmem from existing  fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'Rpc creat ashmem from existing fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc creat ashmem from existing fail, errorMessage ' + e.message);
   }
   ```
 
@@ -8959,10 +9312,12 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let ashmem2 = rpc.Ashmem.createAshmemFromExisting(ashmem);
   let size = ashmem2.getAshmemSize();
-  hilog.info("RpcTest: get ashemm by createAshmemFromExisting : " + ashmem2 + " size is : " + size);
+  hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by createAshmemFromExisting: ' + ashmem2 + ' size is ' + size);
   ```
 
 ### closeAshmem<sup>8+</sup>
@@ -9012,9 +9367,11 @@ getAshmemSize(): number
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
-  hilog.info("RpcTest: get ashmem is " + ashmem + " size is : " + size);
+  hilog.info(0x0000, 'testTag', 'RpcTest: get ashmem is ' + ashmem + ' size is ' + size);
   ```
 
 ### mapTypedAshmem<sup>9+</sup>
@@ -9042,6 +9399,7 @@ mapTypedAshmem(mapType: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -9049,8 +9407,8 @@ mapTypedAshmem(mapType: number): void
     ashmem.mapTypedAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("Rpc map ashmem fail, errorCode " + e.code);
-    hilog.error("Rpc map ashmem fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'Rpc map ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc map ashmem fail, errorMessage ' + e.message);
   }
   ```
 
@@ -9079,9 +9437,11 @@ mapAshmem(mapType: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
-  hilog.info("RpcTest: map ashmem result is  : " + mapReadAndWrite);
+  hilog.info(0x0000, 'testTag', 'RpcTest: map ashmem result is ' + mapReadAndWrite);
   ```
 
 ### mapReadWriteAshmem<sup>9+</sup>
@@ -9103,6 +9463,7 @@ mapReadWriteAshmem(): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -9110,8 +9471,8 @@ mapReadWriteAshmem(): void
     ashmem.mapReadWriteAshmem();
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("Rpc map read and write ashmem fail, errorCode " + e.code);
-    hilog.error("Rpc map read and write ashmem fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorMessage ' + e.message);
   }
   ```
 
@@ -9134,9 +9495,11 @@ mapReadAndWriteAshmem(): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
-  hilog.info("RpcTest: map ashmem result is  : " + mapResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: map ashmem result is ' + mapResult);
   ```
 
 ### mapReadonlyAshmem<sup>9+</sup>
@@ -9158,6 +9521,7 @@ mapReadonlyAshmem(): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -9165,8 +9529,8 @@ mapReadonlyAshmem(): void
     ashmem.mapReadonlyAshmem();
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("Rpc map read and write ashmem fail, errorCode " + e.code);
-    hilog.error("Rpc map read and write ashmem fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorMessage ' + e.message);
   }
   ```
 
@@ -9189,9 +9553,11 @@ mapReadOnlyAshmem(): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadOnlyAshmem();
-  hilog.info("RpcTest: Ashmem mapReadOnlyAshmem result is : " + mapResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem mapReadOnlyAshmem result is ' + mapResult);
   ```
 
 ### setProtectionType<sup>9+</sup>
@@ -9219,6 +9585,7 @@ setProtectionType(protectionType: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -9226,8 +9593,8 @@ setProtectionType(protectionType: number): void
     ashmem.setProtection(ashmem.PROT_READ);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("Rpc set protection type fail, errorCode " + e.code);
-    hilog.error("Rpc set protection type fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'Rpc set protection type fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc set protection type fail, errorMessage ' + e.message);
   }
   ```
 
@@ -9256,9 +9623,11 @@ setProtection(protectionType: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let result = ashmem.setProtection(ashmem.PROT_READ);
-  hilog.info("RpcTest: Ashmem setProtection result is : " + result);
+  hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem setProtection result is ' + result);
   ```
 
 ### writeAshmem<sup>9+</sup>
@@ -9288,6 +9657,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -9297,8 +9667,8 @@ writeAshmem(buf: number[], size: number, offset: number): void
     ashmem.writeAshmem(ByteArrayVar, 5, 0);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("Rpc write to ashmem fail, errorCode " + e.code);
-    hilog.error("Rpc write to ashmem fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorMessage ' + e.message);
   }
   ```
 
@@ -9329,12 +9699,14 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
-  hilog.info("RpcTest map ashmem result is " + mapResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest map ashmem result is ' + mapResult);
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
-  hilog.info("RpcTest: write to Ashmem result is  : " + writeResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: write to Ashmem result is ' + writeResult);
   ```
 
 ### readAshmem<sup>9+</sup>
@@ -9369,6 +9741,7 @@ readAshmem(size: number, offset: number): number[]
 **示例：**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -9377,11 +9750,11 @@ readAshmem(size: number, offset: number): number[]
   ashmem.writeAshmem(ByteArrayVar, 5, 0);
   try {
     let readResult = ashmem.readAshmem(5, 0);
-    hilog.info("RpcTest: read from Ashmem result is  : " + readResult);
+    hilog.info(0x0000, 'testTag', 'RpcTest: read from Ashmem result is ' + readResult);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error("Rpc read from ashmem fail, errorCode " + e.code);
-    hilog.error("Rpc read from ashmem fail, errorMessage " + e.message);
+    hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorMessage ' + e.message);
   }
   ```
 
@@ -9411,14 +9784,16 @@ readFromAshmem(size: number, offset: number): number[]
 **示例：**
 
  ``` ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
-  hilog.info("RpcTest map ashmem result is " + mapResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest map ashmem result is ' + mapResult);
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
-  hilog.info("RpcTest: write to Ashmem result is  : " + writeResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: write to Ashmem result is ' + writeResult);
   let readResult = ashmem.readFromAshmem(5, 0);
-  hilog.info("RpcTest: read to Ashmem result is  : " + readResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: read to Ashmem result is ' + readResult);
  ```
 
 ## 获取context
@@ -9426,35 +9801,36 @@ readFromAshmem(size: number, offset: number): number[]
 **示例：**
 此处只介绍一种获取context的方式，更多获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
  ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import Want from '@ohos.app.ability.Want';
+  import hilog from '@ohos.hilog';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   import window from '@ohos.window';
-
-  export default class MainAbility extends Ability {
+  
+  export default class MainAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      hilog.info("[Demo] MainAbility onCreate");
+      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onCreate');
       let context = this.context;
     }
     onDestroy() {
-      hilog.info("[Demo] MainAbility onDestroy");
+      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onDestroy');
     }
     onWindowStageCreate(windowStage: window.WindowStage) {
       // Main window is created, set main page for this ability
-      hilog.info("[Demo] MainAbility onWindowStageCreate");
+  	  hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageCreate');
     }
     onWindowStageDestroy() {
       // Main window is destroyed, release UI related resources
-      hilog.info("[Demo] MainAbility onWindowStageDestroy");
+  	  hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageDestroy');
     }
     onForeground() {
       // Ability has brought to foreground
-      hilog.info("[Demo] MainAbility onForeground");
+      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onForeground');
     }
     onBackground() {
       // Ability has back to background
-      hilog.info("[Demo] MainAbility onBackground");
-    }  
-  };
+      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onBackground');
+    }
+  }
  ```
 
