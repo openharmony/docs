@@ -82,7 +82,7 @@
 
 ## NotificationSystemLiveViewContent<sup>11+</sup>
 
-描述系统实况通知。
+描述实况通知（仅对系统应用开放）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
