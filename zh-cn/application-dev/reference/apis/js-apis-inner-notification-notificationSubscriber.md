@@ -293,6 +293,48 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
+### onDoNotDisturbChanged<sup>11+</sup>
+
+onDoNotDisturbChanged?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
+
+免打扰时间选项发生变更时的回调函数。
+
+**系统接口**: 此接口为系统接口。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------ | ------------------------ | ---- | -------------------------- |
+| mode | notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate) | 是 | 回调返回免打扰时间选项变更。 |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
+};
+
+let onDoNotDisturbChangedCallback = (mode: NotificationManager.DoNotDisturbDate) => {
+  console.info('===> onDoNotDisturbChanged:' + mode);
+}
+
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onDoNotDisturbChanged: onDoNotDisturbChangedCallback
+};
+
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
+```
+
+
 
 ### onEnabledNotificationChanged<sup>8+</sup>
 
