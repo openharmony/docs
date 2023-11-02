@@ -175,7 +175,7 @@
    
       运行效果如下图所示。  
      ![zh-cn_image_0000001466582045](figures/zh-cn_image_0000001466582045.png)
-   - 实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，类型描述参考[NotificationSystemLiveViewContent](../../application-dev/reference/apis/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent)。
+   - 实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，类型描述参考[NotificationSystemLiveViewContent](../../application-dev/reference/apis/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent11)。
      
       ```ts
       import image from '@ohos.multimedia.image';
