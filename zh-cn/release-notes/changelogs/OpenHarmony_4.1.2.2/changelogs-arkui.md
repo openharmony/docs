@@ -9,7 +9,7 @@
 
 变更前，二维码默认颜色是Color.Black，默认背景颜色是Color.White，组件默认宽高是父组件大小。
 
-变更后，API version 9以前，二维码默认颜色是Color.Black，默认背景颜色是Color.White，组件默认宽高是父组件大小；API version 10开始，二维码默认颜色是系统资源中的ohos_id_color_foreground，默认背景颜色是系统资源中的ohos_id_color_background，组件默认宽度和高度都是240vp。
+变更后，API version 10以前，二维码默认颜色是Color.Black，默认背景颜色是Color.White，组件默认宽高是父组件大小；API version 11开始，二维码默认颜色是系统资源中的ohos_id_color_foreground，默认背景颜色是系统资源中的ohos_id_color_background，组件默认宽度和高度都是240vp。
 
 **适配指导**
 
