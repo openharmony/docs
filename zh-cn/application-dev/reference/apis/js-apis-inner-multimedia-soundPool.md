@@ -162,7 +162,7 @@ fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
 soundPool.load(uri).then((soundId: number) => {
   console.info('soundPool load uri success');
   soundID = soundId;
-}).catch((err: BusinessError) => {
+},(err: BusinessError) => {
   console.error('soundPool load failed and catch error is ' + err.message);
 });
 
@@ -301,7 +301,7 @@ fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
 soundPool.load(file.fd, 0, fileSize).then((soundId: number) => {
   console.info('load success');
   soundID = soundId;
-}).catch((err: BusinessError) => {
+}, (err: BusinessError) => {
   console.error('soundpool load failed and catch error is ' + err.message);
 });
 ```
@@ -488,7 +488,7 @@ let playParameters: media.PlayParameters = {
 soundPool.play(soundID, playParameters).then((streamId: number) => {
   console.info('play success');
   streamID = streamId;
-}).catch((err: BusinessError) => {
+},(err: BusinessError) => {
   console.error('soundpool play failed and catch error is ' + err.message);
 });
 ```
@@ -600,7 +600,7 @@ let streamID: number;
 //先调用play方法给拿到对应的streamID
 soundPool.stop(streamID).then(() => {
   console.info('stop success');
-}).catch((err: BusinessError) => {
+}, (err: BusinessError) => {
   console.error('soundpool load stop and catch error is ' + err.message);
 });
 ```
@@ -832,7 +832,7 @@ let streamID: number;
 
 soundPool.setPriority(streamID, 1).then(() => {
   console.info('setPriority success');
-}).catch((err: BusinessError) => {
+}, (err: BusinessError) => {
   console.error('soundpool setPriority failed and catch error is ' + err.message);
 });
 ```
@@ -958,7 +958,7 @@ let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate
 
 soundPool.setRate(streamID, selectedAudioRendererRate).then(() => {
   console.info('setRate success');
-}).catch((err: BusinessError) => {
+}, (err: BusinessError) => {
   console.error('soundpool setRate failed and catch error is ' + err.message);
 });
 ```
@@ -1076,7 +1076,7 @@ let streamID: number;
 
 soundPool.setVolume(streamID, 0.5, 0.5).then(() => {
   console.info('setVolume success');
-}).catch((err: BusinessError) => {
+}, (err: BusinessError) => {
   console.error('soundpool setVolume failed and catch error is ' + err.message);
 });
 ```
@@ -1191,7 +1191,7 @@ let soundID: number;
 
 soundPool.unload(soundID).then(() => {
   console.info('unload success');
-}).catch((err: BusinessError) => {
+}, (err: BusinessError) => {
   console.error('soundpool unload failed and catch error is ' + err.message);
 });
 ```
@@ -1290,7 +1290,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 soundPool.release().then(() => {
   console.info('release success');
-}).catch((err: BusinessError) => {
+}, (err: BusinessError) => {
   console.error('soundpool release failed and catch error is ' + err.message);
 });
 ```
