@@ -595,7 +595,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
   });
   ```
 
-## UploadConfig
+## UploadConfig<sup>6+</sup>
 上传任务的配置信息。
 
 **需要权限**：ohos.permission.INTERNET
@@ -607,11 +607,21 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | url | string | 是 | 资源地址。 |
 | header | Object | 是 | 添加要包含在上传请求中的HTTP或HTTPS标志头。 |
 | method | string | 是 | 请求方法：POST、PUT。缺省为POST。 |
+| files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
+| data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
+
+## UploadConfig<sup>11+</sup>
+上传任务的配置信息。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
 | index | number | 否 | 任务的路径索引，默认值为0。 |
 | begins | number | 否 | 在上传开始时读取的文件起点。默认值为0，取值为闭区间。|
 | ends | number | 否 | 在上传结束时读取的文件终点。默认值为-1，取值为闭区间。 |
-| files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
-| data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
 ## TaskState<sup>9+</sup>
 上传任务信息，[on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9)和[off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9)接口的回调参数。
@@ -1691,6 +1701,19 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | WIFI | 1 |表示无线网络。 |
 | CELLULAR | 2 |表示蜂窝数据网络。 |
 
+## BroadcastEvent<sup>11+</sup>
+
+定义自定义系统事件。用户可以使用公共事件接口获取该事件。
+上传下载 SA 具有 'ohos.permission.SEND_TASK_COMPLETE_EVENT' 该权限，用户可以配置事件的 metadata 指向的二级配置文件来拦截其他事件发送者。
+
+事件配置信息请参考[静态订阅公共事件](../../application-models/common-event-static-subscription.md)。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 值 | 说明        |
+| -------- | ------- |-----------|
+| COMPLETE | 'ohos.request.event.COMPLETE' | 表示任务完成事件。 |
+
 ## FileSpec<sup>10+</sup> 
 表单项的文件信息。
 
@@ -2063,6 +2086,206 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+### on('pause')<sup>11+</sup>
+
+on(event: 'pause', callback: (progress: Progress) =&gt; void): void
+
+订阅任务暂停的监听。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'pause'，表示任务暂停。 |
+  | callback | function | 是 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+**示例：**
+
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOnTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOnCallback = (progress: request.agent.Progress) => {
+    console.info('upload task pause.');
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.on('pause', createOnCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+### on('resume')<sup>11+</sup>
+
+on(event: 'resume', callback: (progress: Progress) =&gt; void): void
+
+订阅任务恢复的监听。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'resume'，表示任务恢复。 |
+  | callback | function | 是 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+**示例：**
+
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOnTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOnCallback = (progress: request.agent.Progress) => {
+    console.info('upload task resume.');
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.on('resume', createOnCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+### on('remove')<sup>11+</sup>
+
+on(event: 'remove', callback: (progress: Progress) =&gt; void): void
+
+订阅任务删除的监听。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'remove'，表示任务删除。 |
+  | callback | function | 是 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+**示例：**
+
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOnTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOnCallback = (progress: request.agent.Progress) => {
+    console.info('upload task remove.');
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.on('remove', createOnCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ### off('progress')<sup>10+</sup>
 
@@ -2280,6 +2503,210 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+### off('pause')<sup>11+</sup>
+
+off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
+
+取消订阅任务暂停的监听。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'pause'，表示任务暂停。 |
+  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+**示例：**
+
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOffTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOffCallback = (progress: request.agent.Progress) => {
+    console.info('upload task pause.');
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.on('pause', createOffCallback);
+    task.off('pause', createOffCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+### off('resume')<sup>11+</sup>
+
+off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
+
+取消订阅任务恢复的监听。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'resume'，表示任务恢复。 |
+  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+**示例：**
+
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOffTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOffCallback = (progress: request.agent.Progress) => {
+    console.info('upload task resume.');
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.on('resume', createOffCallback);
+    task.off('resume', createOffCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+### off('remove')<sup>11+</sup>
+
+off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
+
+取消订阅任务删除的监听。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'remove'，表示任务删除。 |
+  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+**示例：**
+
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOffTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOffCallback = (progress: request.agent.Progress) => {
+    console.info('upload task remove.');
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.on('remove', createOffCallback);
+    task.off('remove', createOffCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ### start<sup>10+</sup>
 
 start(callback: AsyncCallback&lt;void&gt;): void
@@ -2477,6 +2904,9 @@ pause(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
+> **说明：**
+>
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### pause<sup>10+</sup>
 
@@ -2539,6 +2969,9 @@ pause(): Promise&lt;void&gt;
   });
   ```
 
+> **说明：**
+>
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### resume<sup>10+</sup>
 
@@ -2605,6 +3038,10 @@ resume(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
+> **说明：**
+>
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
+
 
 ### resume<sup>10+</sup>
 
@@ -2668,6 +3105,10 @@ resume(): Promise&lt;void&gt;
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
+
+> **说明：**
+>
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 
 ### stop<sup>10+</sup>
