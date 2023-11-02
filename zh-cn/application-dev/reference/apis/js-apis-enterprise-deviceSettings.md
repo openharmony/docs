@@ -431,7 +431,7 @@ try {
   let powerPolicy: deviceSettings.PowerPolicy = {powerPolicyAction, delayTime};
   deviceSettings.setPowerPolicy(wantTemp, powerScene, powerPolicy);
   console.info(`Succeeded in setting power polilcy`);
-} catch (error) {
+} catch (err) {
   console.error(`Failed to set power policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -482,7 +482,7 @@ try {
   let powerScene: deviceSettings.PowerScene = deviceSettings.PowerScene.TIME_OUT;
   let powerPolicy: deviceSettings.PowerPolicy = deviceSettings.getPowerPolicy(wantTemp, powerScene);
   console.info(`Succeeded in getting power polilcy ${JSON.stringify(powerPolicy)}`);
-} catch (error) {
+} catch (err) {
   console.error(`Failed to get power policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
