@@ -5245,7 +5245,7 @@ struct WebComponent {
 
 ### configCookie<sup>11+</sup>
 
-static configCookie(url: string, value: string, callback: AsyncCallback<void>): void
+static configCookie(url: string, value: string, callback: AsyncCallback\<void>): void
 
 异步callback方式为指定url设置单个cookie的值。
 
