@@ -1171,7 +1171,7 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 let promise = sms.getAllSimMessages(slotId);
-promise.then((data: sms.SimShortMessage) => {
+promise.then((data: sms.SimShortMessage[]) => {
     console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getAllSimMessages failed, promise: err->${JSON.stringify(err)}`);
