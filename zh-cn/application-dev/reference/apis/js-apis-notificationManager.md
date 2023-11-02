@@ -4680,7 +4680,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 
 | 名称    | 类型                                  | 必填 | 说明                   |
@@ -4694,7 +4694,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 
 | 名称    | 类型                                  | 必填 | 说明                   |
