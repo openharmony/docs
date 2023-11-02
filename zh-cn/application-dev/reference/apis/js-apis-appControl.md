@@ -20,11 +20,11 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
 以异步方法设置应用的处置状态。使用Promise异步回调。成功返回null，失败返回对应错误信息。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
-
-**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -77,11 +77,11 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 
 以异步方法设置应用的处置状态。使用callback异步回调。成功返回null，失败返回对应错误信息。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
-
-**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -130,11 +130,12 @@ setDisposedStatusSync(appId: string, disposedWant: Want): void;
 
 以同步方法设置应用的处置状态。成功返回null，失败抛出对应异常。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
 
-**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -175,11 +176,11 @@ getDisposedStatus(appId: string): Promise\<Want>;
 
 以异步方法获取指定应用已设置的处置状态。使用Promise异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
-
-**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -229,11 +230,11 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 
 以异步方法获取指定应用的处置状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
-
-**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -279,11 +280,11 @@ getDisposedStatusSync(appId: string): Want;
 
 以同步方法获取指定应用已设置的处置状态。成功返回应用的处置状态，失败抛出对应异常。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
-
-**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -329,11 +330,11 @@ deleteDisposedStatus(appId: string): Promise\<void>
 
 以异步方法删除应用的处置状态。使用promise异步回调，成功返回null，失败返回对应错误信息。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
-
-**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -383,11 +384,11 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 
 以异步方法删除应用的处置状态。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
-
-**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -431,11 +432,11 @@ deleteDisposedStatusSync(appId: string) : void
 
 以同步方法删除应用的处置状态。成功返回null，失败抛出对应异常。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
-
-**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -498,25 +499,25 @@ try {
 
 getDisposedRule(appId: string): DisposedRule
 
-以同步方法获取指定应用已设置的处置状态。
+获取指定应用已设置的拦截规则。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
 
-**系统API：**  此接口为系统接口。
-
 **参数：**
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要删除处置状态的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
+| appId  | string | 是    | 要获取拦截规则的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
 
 **返回值：**
 
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
-| [DisposedRule](#disposedrule11) | 指示对应用的拦截规则。 |
+| [DisposedRule](#disposedrule11) | 对应用的拦截规则。 |
 
 **错误码：**
 
@@ -548,19 +549,19 @@ try {
 
 setDisposedRule(appId: string, rule: DisposedRule): void
 
-以同步方法设置指定应用的处置状态。
+设置指定应用的拦截规则。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
 
-**系统API：**  此接口为系统接口。
-
 **参数：**
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要删除处置状态的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
+| appId  | string | 是    | 要设置拦截规则的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
 | rule | [DisposedRule](#disposedrule11) | 是 | 指示对应用的拦截规则。 |
 
 **错误码：**
@@ -620,7 +621,7 @@ try {
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | want | [Want](js-apis-app-ability-want.md)     | 是   | 否   | 拦截时想要提升的能力。 |
 | componentType | [ComponentType](#componenttype11)  | 是   | 否   | 拦截时将提升的能力的类型。 |
-| disposedType | [DisposedType](#disposedrule11) | 是 | 否 | 指示对应用的拦截规则。 |
+| disposedType | [DisposedType](#disposedrule11) | 是 | 否 | 对应用的拦截规则。 |
 | controlType | [ControlType](#controltype11) | 是 | 否 | 拦截指定应用程序的不同策略。 |
 | elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | 是 | 否 | 拦截指定应用程序能力的列表。 |
 | priority | number | 是 | 是 | 拦截规则的优先级。 |
@@ -640,7 +641,7 @@ try {
 
 ### DisposedType<sup>11+</sup>
 
-标识何时拦截指定的应用程序。
+标识拦截应用程序的方式，例如禁用应用的全部能力、禁用应用的指定能力、或者不禁用。
 
  **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.AppControl。
 
@@ -662,5 +663,5 @@ try {
 
 | 名称    | 值   | 说明                 |
 | ------- | ---- | -------------------- |
-| ALLOWED_LIST | 1    | 只允许运行指定功能的列表。 |
+| ALLOWED_LIST | 1    | 允许运行指定功能的列表。 |
 | DISALLOWED_LIST | 2    | 不允许运行指定功能的列表。 |
