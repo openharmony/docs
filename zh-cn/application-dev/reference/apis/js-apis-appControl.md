@@ -516,7 +516,7 @@ getDisposedRule(appId: string): DisposedRule
 
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
-| [DisposedRule](#disposedrule11) | 指示何时拦截指定的应用程序。 |
+| [DisposedRule](#disposedrule11) | 指示对应用的拦截规则。 |
 
 **错误码：**
 
@@ -531,13 +531,13 @@ getDisposedRule(appId: string): DisposedRule
 ```ts
 import appControl from '@ohos.bundle.appControl';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
 
 let appId = "com.example.myapplication_xxxxx";
-let disposedRule: DisposedRule;
 
 try {
-  disposedRule = appControl.getDisposedRule(appId);
-  console.info('getDisposedRule successfully. Data: ' + JSON.stringify(disposedRule));
+  let data = appControl.getDisposedRule(appId);
+  console.info('getDisposedRule successfully. Data: ' + JSON.stringify(data));
 } catch (error) {
   let message = (error as BusinessError).message;
   console.error('getDisposedRule failed ' + message);
@@ -561,7 +561,7 @@ setDisposedRule(appId: string, rule: DisposedRule): void
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要删除处置状态的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
-| rule | [DisposedRule](#disposedrule11) | 是 | 指示何时拦截指定的应用程序。 |
+| rule | [DisposedRule](#disposedrule11) | 是 | 指示对应用的拦截规则。 |
 
 **错误码：**
 
@@ -576,13 +576,32 @@ setDisposedRule(appId: string, rule: DisposedRule): void
 ```ts
 import appControl from '@ohos.bundle.appControl';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
 
 let appId = "com.example.myapplication_xxxxx";
-let disposedRule: DisposedRule;
+let want: Want = {
+  "bundleName": "com.example.myapplication",
+  "moduleName": "entry",
+  "abilityName": "EntryAbility"
+};
+let elementName: ElementName = {
+  "bundleName": "com.example.myapplication",
+  "moduleName": "entry",
+  "abilityName": "EntryAbility"
+};
+let rule: DisposedRule = {
+  "want": want,
+  "componentType": appControl.ComponentType.UI_ABILITY,
+  "disposedType": appControl.DisposedType.BLOCK_APPLICATION,
+  "controlType": appControl.ControlType.ALLOWED_LIST,
+  "elementList": [
+    elementName
+  ],
+  "priority": 100
+};
 
 try {
-  disposedRule = appControl.setDisposedRule(appId, disposedRule);
-  console.info('setDisposedRule successfully. Data: ' + JSON.stringify(disposedRule));
+  appControl.setDisposedRule(appId, rule);
 } catch (error) {
   let message = (error as BusinessError).message;
   console.error('setDisposedRule failed ' + message);
@@ -601,10 +620,10 @@ try {
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | want | [Want](js-apis-app-ability-want.md)     | 是   | 否   | 拦截时想要提升的能力。 |
 | componentType | [ComponentType](#componenttype11)  | 是   | 否   | 拦截时将提升的能力的类型。 |
-| disposedType | [DisposedType](#disposedrule11) | 是 | 否 | 指示何时拦截指定的应用程序。 |
+| disposedType | [DisposedType](#disposedrule11) | 是 | 否 | 指示对应用的拦截规则。 |
 | controlType | [ControlType](#controltype11) | 是 | 否 | 拦截指定应用程序的不同策略。 |
 | elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | 是 | 否 | 拦截指定应用程序能力的列表。 |
-| priority | number | 是 | 否 | 拦截规则的优先级。 |
+| priority | number | 是 | 是 | 拦截规则的优先级。 |
 
 ### ComponentType<sup>11+</sup>
 
