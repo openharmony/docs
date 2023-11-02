@@ -1349,7 +1349,8 @@ createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
 ```ts
 const data : ArrayBuffer= new ArrayBuffer(112);
-const imageSourceApi : image.ImageSource = image.createImageSource(data);
+let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
+const imageSourceApi : image.ImageSource = image.createImageSource(data, sourceOptions);
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
