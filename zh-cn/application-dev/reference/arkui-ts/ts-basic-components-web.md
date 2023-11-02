@@ -5687,7 +5687,7 @@ saveCookie(): boolean
 
 ## ScriptItem<sup>11+</sup>
 
-通过[javaScriptOnDocumentStart](#javaScriptOnDocumentStart11)属性注入到Web组件的ScriptItem对象。
+通过[javaScriptOnDocumentStart](#javascriptondocumentstart11)属性注入到Web组件的ScriptItem对象。
 
 | 名称        | 类型           | 必填 | 描述                             |
 | ----------- | -------------- | ---- | -------------------------------- |
