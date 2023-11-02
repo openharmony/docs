@@ -162,7 +162,7 @@ fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
 soundPool.load(uri).then((soundId: number) => {
   console.info('soundPool load uri success');
   soundID = soundId;
-},(err: BusinessError) => {
+}, (err: BusinessError) => {
   console.error('soundPool load failed and catch error is ' + err.message);
 });
 
