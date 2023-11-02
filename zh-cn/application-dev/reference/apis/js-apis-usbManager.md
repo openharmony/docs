@@ -714,7 +714,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 ```ts
 import {BusinessError} from '@ohos.base';
-let funcs: string = usb.FunctionType.HDC;
+let funcs: number = usb.FunctionType.HDC;
 usb.setCurrentFunctions(funcs).then(() => {
     console.info('usb setCurrentFunctions successfully.');
 }).catch((err: BusinessError) => {
@@ -763,7 +763,7 @@ getPorts(): Array\<USBPort\>
 **示例：**
 
 ```ts
-let ret: Array<USBPort> = usb.getPorts();
+let ret: Array<usb.USBPort> = usb.getPorts();
 ```
 
 ## usb.getSupportedModes
