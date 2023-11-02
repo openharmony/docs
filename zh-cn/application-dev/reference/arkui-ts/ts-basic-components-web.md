@@ -1467,7 +1467,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 | 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
 | ------ | ----------- | ---- | --------------- | ------------------ |
-| scripts | Array\<[ScriptItem](#ScriptItem11)> | 是   | - | 需要注入的的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是   | - | 需要注入的的ScriptItem数组 |
 
 **ets示例：**
 
@@ -1508,7 +1508,7 @@ struct Index {
   <head>
     <meta charset="utf-8">
   </head>
-  <body style="font-size: 30px;" onload='bodyOnLoadSessionStorage()'>
+  <body style="font-size: 30px;" onload='bodyOnLoadLocalStorage()'>
       Hello world!
       <div id="result"></div>
   </body>
