@@ -27,6 +27,7 @@
 | lightUpEffect<sup>10+</sup>      | number                                   | -      | 设置组件图像亮起程度。<br/>取值范围：[0,1]。<br/>如果value等于0则图像为全黑，如果value等于1则图像为全亮效果。0到1之间数值越大，表示图像亮度越高。`value < 0` 或者 `value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。 <br>**系统接口：** 此接口为系统接口。 |
 | pixelStretchEffect<sup>10+</sup> | [PixelStretchEffectOptions](ts-types.md#pixelstretcheffectoptions10) | -      | 设置组件的图像边缘像素扩展距离。<br/>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br/>**说明：**<br/>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br/>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br/>内缩方式：<br/>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br/>图像用边缘像素扩展到原来大小。<br/>3. 对`options`的输入约束：<br/>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br/>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br/>所有异常情况下，显示为{0，0，0，0}效果，即跟原图保持一致。<br>**系统接口：** 此接口为系统接口。 |
 | linearGradientBlur<sup>10+</sup> | <br/>value: number,<br/>{<br/>fractionStops:Array<FractionStop>,<br/>direction:[GradientDirection](ts-appendix-enums.md#gradientdirection)<br/>} <br/> | -      | 为当前组件添加内容线性渐变模糊效果，<br/>-value为模糊半径，模糊半径越大越模糊，为0时不模糊。取值范围：[0, 60]<br/>线性梯度模糊包含两个部分fractionStops和direction<br/>-fractionStops数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效  <br/> -direction为渐变模糊方向，默认值为[GradientDirection](ts-appendix-enums.md#gradientdirection).Bottom <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| blendMode<sup>11+</sup>          | value: [BlendMode](#blendmode枚举说明)    |BlendMode.NORMAL| 将当前控件背景与子节点内容进行混合，<br/> **说明：** <br/> -value为混合模式，不同的模式控制不同的混合方式从而产生不同的效果，默认值为BlendMode.NORMAL<br/>**注意事项：** <br/> 1、实现效果只需要一层blend，不推荐blendMode嵌套使用，会影响性能且效果可能不正常 <br/> 2、SOURCE_IN和DESTINATION_IN混合模式只适用于alpha通道存在的图像，即包含透明度信息的图像。如果图像没有alpha通道，则无法使用这两种混合模式。<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
 
 ## ShadowOptions对象说明
 
@@ -52,6 +53,14 @@
 | OUTER_DEFAULT_LG  | 大阴影。   |
 | OUTER_FLOATING_SM | 浮动小阴影。 |
 | OUTER_FLOATING_MD | 浮动中阴影。 |
+
+## BlendMode枚举说明
+
+| 名称           | 描述                                                              |
+| ---------------| ------                                                            |
+| NORMAL         | 将上层图像直接覆盖到下层图像上，不进行任何混合操作。                  |
+| SOURCE_IN      | r = s * da,以上层图像的透明度作为权重，将其与下层图像的颜色值进行混合。|
+| DESTINATION_IN | r = d * sa,以下层图像的透明度作为权重，将其与上层图像的颜色值进行混合。|
 
 ## 示例
 
@@ -357,3 +366,112 @@ struct ImageExample1 {
 ```
 
 ![testlinearGradientBlur](figures/testlinearGradientBlur.png)
+
+### 示例9
+单独使用blendMode
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Text("test")
+        .fontSize(144)
+        .fontWeight(FontWeight.Bold)
+        .fontColor('#ffff0101')
+    }
+    .blendMode(BlendMode.NORMAL)
+    .height('100%')
+    .width('100%')
+    .backgroundColor('#ff08ff00')
+  }
+}
+```
+BlendMode.NORMAL<br/>
+![testNormal](figures/testNormal.jpeg)
+<br/>BlendMode.SOURCE_IN<br/>
+![testSourceIn](figures/testSourceIn.jpeg)
+<br/>BlendMode.DESTINATION_IN<br/>
+![testDestinationIn](figures/testDestinationIn.jpeg)
+<br/>当前控件下有多个子节点（所有子组件放到一个离屏buffer上绘制，将绘制结果进行blend）
+
+### 示例10
+blendMode搭配backgroundEffect实现文字图形异形渐变效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State shColor: Color = Color.White;
+  @State sizeDate: number = 20;
+  @State rVal: number = 255;
+  @State gVal: number = 255;
+  @State bVal: number = 255;
+  @State aVal: number = 0.1;
+  @State rad: number = 40;
+  @State satVal: number = 0.8;
+  @State briVal: number = 1.5;
+  build() {
+    Stack() {
+      Image($r('app.media.lock'))
+      Column() {
+        Column({ space: 0}) {
+          Text('11')
+            .fontSize(144)
+            .fontWeight(FontWeight.Bold)
+            .fontColor('rgba(255,255,255,1)')
+            .fontFamily('HarmonyOS-Sans-Digit')
+            .maxLines(1)
+            .lineHeight(120*1.25)
+            .height(120*1.25)
+            .letterSpacing(4*1.25)
+          Text('42')
+            .fontSize(144)
+            .fontWeight(FontWeight.Bold)
+            .fontColor('rgba(255,255,255,1)')
+            .fontFamily('HarmonyOS-Sans-Digit')
+            .maxLines(1)
+            .lineHeight(120*1.25)
+            .height(120*1.25)
+            .letterSpacing(4*1.25)
+            .shadow({
+              color: 'rgba(0,0,0,0)',
+              radius: 20,
+              offsetX: 0,
+              offsetY: 0
+            })
+          Row() {
+            Text('10月16日')
+              .fontSize(this.sizeDate)
+              .height(22)
+              .fontWeight('medium')
+              .fontColor('rgba(255,255,255,1)')
+            Text('星期一')
+              .fontSize(this.sizeDate)
+              .height(22)
+              .fontWeight('medium')
+              .fontColor('rgba(255,255,255,1)')
+          }
+        }
+        .blendMode(BlendMode.DESTINATION_IN)
+        // @ts-ignore
+        .backgroundEffect({
+          radius: this.rad,
+          saturation: this.satVal,
+          brightness: this.briVal,
+          color: this.getVolumeDialogWindowColor()
+        })
+        .justifyContent(FlexAlign.Center)
+      }
+    }
+  }
+  getVolumeDialogWindowColor(): ResourceColor|string {
+    return `rgba(${this.rVal.toFixed(0)}, ${this.gVal.toFixed(0)}, ${this.bVal.toFixed(0)}, ${this.gVal.toFixed(0)})`;
+  }
+}
+
+```
+
+![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
