@@ -619,11 +619,11 @@ try {
 
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| want | [Want](js-apis-app-ability-want.md)     | 是   | 否   | 拦截时想要提升的能力。 |
-| componentType | [ComponentType](#componenttype11)  | 是   | 否   | 拦截时将提升的能力的类型。 |
-| disposedType | [DisposedType](#disposedrule11) | 是 | 否 | 对应用的拦截规则。 |
-| controlType | [ControlType](#controltype11) | 是 | 否 | 拦截指定应用程序的不同策略。 |
-| elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | 是 | 否 | 拦截指定应用程序能力的列表。 |
+| want | [Want](js-apis-app-ability-want.md)     | 是   | 是   | 指定应用被拦截时，跳转到的页面。 |
+| componentType | [ComponentType](#componenttype11)  | 是   | 是   | 拦截时将提升的能力的类型。 |
+| disposedType | [DisposedType](#disposedrule11) | 是 | 是 | 对应用的拦截规则。 |
+| controlType | [ControlType](#controltype11) | 是 | 是 | 拦截指定应用程序的不同策略。 |
+| elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | 是 | 是 | 拦截指定应用程序能力的列表。 |
 | priority | number | 是 | 是 | 拦截规则的优先级。 |
 
 ### ComponentType<sup>11+</sup>
