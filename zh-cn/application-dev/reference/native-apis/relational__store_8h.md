@@ -5,13 +5,11 @@
 
 提供管理关系数据库（RDB）方法的接口。
 
-**起始版本：**
+**库：** libnative_rdb_ndk.z.so
 
-10
+**起始版本：** 10
 
-**相关模块：**
-
-[RDB](_r_d_b.md)
+**相关模块：**[RDB](_r_d_b.md)
 
 
 ## 汇总
@@ -23,6 +21,22 @@
 | -------- | -------- |
 | [OH_Rdb_Config](_o_h___rdb___config.md) | 管理关系数据库配置。 |
 | [OH_Rdb_Store](_o_h___rdb___store.md) | 表示数据库类型。 |
+| [Rdb_DistributedConfig](_rdb___distributed_config.md) | 记录表的分布式配置信息。 |
+| [Rdb_KeyInfo](_rdb___key_info.md) | 描述发生变化的行的主键或者行号。 |
+| [Rdb_KeyInfo::Rdb_KeyData](union_rdb___key_info_1_1_rdb___key_data.md) | 存放变化的具体数据 |
+| [Rdb_ChangeInfo](_rdb___change_info.md) | 记录端云同步过程详情。 |
+| [Rdb_Statistic](_rdb___statistic.md) | 描述数据库表的端云同步过程的统计信息。 |
+| [Rdb_TableDetails](_rdb___table_details.md) | 描述数据库表执行端云同步任务上传和下载的统计信息。 |
+| [Rdb_ProgressDetails](_rdb___progress_details.md) | 描述数据库整体执行端云同步任务上传和下载的统计信息。 |
+
+
+### 宏定义
+
+| 名称 | 描述 |
+| -------- | -------- |
+| [DISTRIBUTED_CONFIG_VERSION](_r_d_b.md#distributed_config_version)&nbsp;&nbsp;&nbsp;1 | 描述[Rdb_DistributedConfig](_rdb___distributed_config.md)的版本。 |
+| [DISTRIBUTED_CHANGE_INFO_VERSION](_r_d_b.md#distributed_change_info_version)&nbsp;&nbsp;&nbsp;1 | 描述[Rdb_ChangeInfo](_rdb___change_info.md)的版本。 |
+| [DISTRIBUTED_PROGRESS_DETAIL_VERSION](_r_d_b.md#distributed_progress_detail_version)&nbsp;&nbsp;&nbsp;1 | 描述[Rdb_ProgressDetails](_rdb___progress_details.md)的版本。 |
 
 
 ### 类型定义
@@ -30,13 +44,34 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel) | 数据库的安全级别枚举。 |
+| [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea) | 描述数据库的安全区域等级。 |
+| [Rdb_DistributedType](_r_d_b.md#rdb_distributedtype) | 描述表的分布式类型的枚举。 |
+| [Rdb_DistributedConfig](_r_d_b.md#rdb_distributedconfig) | 记录表的分布式配置信息。 |
+| [Rdb_ChangeType](_r_d_b.md#rdb_changetype) | 描述数据变更类型。 |
+| [Rdb_KeyInfo](_r_d_b.md#rdb_keyinfo) | 描述发生变化的行的主键或者行号。 |
+| [Rdb_ChangeInfo](_r_d_b.md#rdb_changeinfo) | 记录端云同步过程详情。 |
+| [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) | 描述订阅类型。 |
+| [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) | 表示数据库的同步模式 |
+| [Rdb_Statistic](_r_d_b.md#rdb_statistic) | 描述数据库表的端云同步过程的统计信息。 |
+| [Rdb_TableDetails](_r_d_b.md#rdb_tabledetails) | 描述数据库表执行端云同步任务上传和下载的统计信息。 |
+| [Rdb_Progress](_r_d_b.md#rdb_progress) | 描述端云同步过程。 |
+| [Rdb_ProgressCode](_r_d_b.md#rdb_progresscode) | 表示端云同步过程的状态。 |
+| [Rdb_ProgressDetails](_r_d_b.md#rdb_progressdetails) | 描述数据库整体执行端云同步任务上传和下载的统计信息。 |
+| [Rdb_SyncCallback](_r_d_b.md#rdb_synccallback) | 数据库端云同步的回调函数。 |
 
 
 ### 枚举
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel) { S1 = 1, S2, S3, S4 } | 数据库的安全级别枚举。 |
+| [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel) { S1 = 1, S2, S3, S4} | 数据库的安全级别枚举。 |
+| [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | 描述数据库的安全区域等级。 |
+| [Rdb_DistributedType](_r_d_b.md#rdb_distributedtype) { RDB_DISTRIBUTED_CLOUD } | 描述表的分布式类型的枚举。 |
+| [Rdb_ChangeType](_r_d_b.md#rdb_changetype) { RDB_DATA_CHANGE, RDB_ASSET_CHANGE } | 描述数据变更类型。 |
+| [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) { RDB_SUBSCRIBE_TYPE_CLOUD, RDB_SUBSCRIBE_TYPE_CLOUD_DETAILS } | 描述订阅类型。 |
+| [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) { RDB_SYNC_MODE_TIME_FIRST, RDB_SYNC_MODE_NATIVE_FIRST, RDB_SYNC_MODE_CLOUD_FIRST } | 表示数据库的同步模式 |
+| [Rdb_Progress](_r_d_b.md#rdb_progress) { RDB_SYNC_BEGIN, RDB_SYNC_IN_PROGRESS, RDB_SYNC_FINISH } | 描述端云同步过程。 |
+| [Rdb_ProgressCode](_r_d_b.md#rdb_progresscode) {<br/>RDB_SUCCESS, RDB_UNKNOWN_ERROR, RDB_NETWORK_ERROR, RDB_CLOUD_DISABLED,<br/>RDB_LOCKED_BY_OTHERS, RDB_RECORD_LIMIT_EXCEEDED, RDB_NO_SPACE_FOR_ASSET<br/>} | 表示端云同步过程的状态。 |
 
 
 ### 函数
@@ -62,3 +97,7 @@
 | [OH_Rdb_Restore](_r_d_b.md#oh_rdb_restore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | 从指定的数据库备份文件恢复数据库。 |
 | [OH_Rdb_GetVersion](_r_d_b.md#oh_rdb_getversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int \*version) | 获取数据库版本。 |
 | [OH_Rdb_SetVersion](_r_d_b.md#oh_rdb_setversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int version) | 设置数据库版本。 |
+| [OH_Rdb_SetDistributedTables](_r_d_b.md#oh_rdb_setdistributedtables) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tables[], uint32_t count, [Rdb_DistributedType](_r_d_b.md#rdb_distributedtype) type, const [Rdb_DistributedConfig](_rdb___distributed_config.md) \*config) | 设置分布式数据库表。 |
+| [OH_Rdb_FindModifyTime](_r_d_b.md#oh_rdb_findmodifytime) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tableName, const char \*columnName, [OH_VObject](_o_h___v_object.md) \*values) | 获取数据库表中数据的最后修改时间。 |
+| [OH_Rdb_GetTableDetails](_r_d_b.md#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | 从端云同步任务的统计信息中获取数据库表的统计信息。 |
+| [OH_Rdb_CloudSync](_r_d_b.md#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) mode, const char \*tables, int count, [Rdb_SyncCallback](_r_d_b.md#rdb_synccallback) \*progress) | 进行端云同步。 |
