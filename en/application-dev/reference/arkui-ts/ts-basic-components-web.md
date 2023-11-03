@@ -5491,7 +5491,7 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
         Text(this.webResult).fontSize(20)
         Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(e => {
+        .onPageEnd(() => {
           this.controller.runJavaScript({
             script: 'test()',
             callback: (result: string)=> {

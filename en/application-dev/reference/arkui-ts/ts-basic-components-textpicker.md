@@ -24,7 +24,7 @@ Creates a text picker based on the selection range specified by **range**.
 | -------- | -------- | -------- | -------- |
 | range | string[] \| string[][]<sup>10+</sup> \| [Resource](ts-types.md#resource) \|<br>[TextPickerRangeContent](#textpickerrangecontent10)[]<sup>10+</sup> \| [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[]<sup>10+</sup> | Yes| Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed. If it is dynamically changed to an empty array, the current value remains displayed.<br>**NOTE**<br>For a single-column picker, use a value of the string[], Resource, or TextPickerRangeContent[] type.<br>For a multi-column picker, use a value of the string[] type.<br>For a multi-column linked picker, use a value of the TextCascadePickerRangeContent[] type.<br>The Resource type supports only [strarray.json](../../quick-start/resource-categories-and-access.md#resource-group-subdirectories).|
 | selected | number \| number[]<sup>10+</sup> | No| Index of the default item in the range.<br>Default value: **0**<br>**NOTE**<br>For a single-column picker, use a value of the number type.<br>For a multi-column (linked) picker, use a value of the number[] type.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
-| value | string \| string[]<sup>10+</sup> | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only when the picker contains text only.  <br>For a single-column picker, use a value of the string type.<br>For a multi-column (linked) picker, use a value of the string[] type.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables. |
+| value | string \| string[]<sup>10+</sup> | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only when the picker contains text only.  <br>For a single-column picker, use a value of the string type.<br>For a multi-column (linked) picker, use a value of the string[] type.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 
 ## TextPickerRangeContent<sup>10+</sup>
 
@@ -68,6 +68,10 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ```ts
 // xxx.ets
+class bottom {
+  bottom:number = 50
+}
+let bott:bottom = new bottom()
 @Entry
 @Component
 struct TextPickerExample {
@@ -79,18 +83,18 @@ struct TextPickerExample {
   private cascade: TextCascadePickerRangeContent[] = [
     {
       text: 'Category 1',
-      children: [{ text: 'Subcategory 1', children: [{ text: 'Subcategory 2' }, { text: 'Subcategory 3' }, { text: 'Subcategory 4' }] },
-        { text: 'Item 1', children: [{ text: ''Item 2' }, { text: ''Item 3' }, { text: ''Item 4' }] }]
+      children: [{ text: 'China', children: [{ text: 'Beijing' }, { text: 'Shanghai' }, { text: 'Chongqing' }] },
+        { text: 'Japan', children: [{ text: 'Tokyo' }, { text: 'Hokkaido' }, { text: 'Osaka' }] }]
     },
     {
-      text: 'Category 2',
-      children: [{ text: 'Subcategory 1', children: [{ text: 'Subcategory 2' }, { text: 'Subcategory 3' }, { text: 'Subcategory 4' }] },
-        { text: 'Item 1', children: [{ text: ''Item 2' }, { text: ''Item 3' }, { text: ''Item 4' }] }]
+      text: 'Europe',
+      children: [{ text: 'Germany', children: [{ text: 'Berlin' }, { text: 'Munich' }, { text: 'Nuremberg' }] },
+        { text: 'France', children: [{ text: 'Paris' }, { text: 'Lille' }, { text: 'Orleans' }] }]
     },
     {
-      text: 'Category 3',
-      children: [{ text: 'Subcategory 1', children: [{ text: 'Subcategory 2' }, { text: 'Subcategory 3' }, { text: 'Subcategory 4' }] },
-        { text: 'Item 1', children: [{ text: ''Item 2' }, { text: ''Item 3' }, { text: ''Item 4' }] }]
+      text: 'Africa',
+      children: [{ text: 'Egypt', children: [{ text: 'Cairo' }, { text: 'Damietta' }, { text: 'Girga' }] },
+        { text: 'Algeria', children: [{ text: 'Alger' }, { text: 'Oran' }, { text: 'Adrar' }] }]
     }
   ]
 
@@ -98,14 +102,14 @@ struct TextPickerExample {
     Column() {
 
       TextPicker({ range: this.apfruits, selected: this.select })
-        .onChange((value: string, index: number) => {
+        .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
-        }).margin({ bottom: 50 })
+        }).margin(bott)
 
       TextPicker({ range: this.multi })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker multi-column: onChange' + JSON.stringify(value) + ',' + 'index:' + JSON.stringify(index))
-        }).margin({ bottom: 50 })
+        }).margin(bott)
 
       TextPicker({ range: this.cascade })
         .onChange((value: string | string[], index: number | number[]) => {
@@ -129,7 +133,7 @@ struct TextPickerExample {
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
-        .onChange((value: string, index: number) => {
+        .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})

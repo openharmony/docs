@@ -26,7 +26,7 @@ The size attributes set the width, height, and margin of a component.
 | / | max(minWidth/minHeight, min(maxWidth/maxHeight, width/height))       |
 | maxWidth/maxHeight | max(minWidth/minHeight, width/height) |
 | minWidth/minHeight | min(maxWidth/maxHeight, width/height)       |
-|width/height|In the case of maxWidth/maxHeight > minWidth/minHeight, the layout logic of the component is used,<br>and the result is between maxWidth/maxHeight and minWidth/minHeight.<br> In other cases, the result is max(minWidth/minHeight, maxWidth, maxHeight).|
+|width/height|In the case of maxWidth/maxHeight > minWidth/minHeight, the layout logic of the component is used,<br>and the result is between maxWidth/maxHeight and minWidth/minHeight.<br> In other cases, the result is max(minWidth/minHeight, maxWidth/maxHeight).|
 |maxWidth/maxHeight && width/height| minWidth/minHeight |
 |minWidth/minHeight && width/height| The layout logic of the component is used. The final result does not exceed maxWidth/maxHeight.|
 |maxWidth/maxHeight && minWidth/minHeight| Width/Height, which may be stretched or compressed based on other layout attributes.|
