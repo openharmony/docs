@@ -11,8 +11,8 @@
 | 名称           | 参数                           | 参数描述                                |
 | -------------- | ----------------------------- | --------------------------------------- |
 | expandSafeArea | type?: Array <[SafeAreaType](ts-types.md#safeareatype10)>,<br />edges?: Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | 控制组件扩展其安全区域。<br />默认值: <br />type: [SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD],<br />edges: [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM, SafeAreaEdge.START, SafeAreaEdge.END]<br />扩展至所有非安全区域。<br />type: 非必填，配置扩展安全区域的类型。<br />edges: 非必填，配置扩展安全区域的方向。 |
-| setKeyboardAvoidMode | value?: [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | 控制虚拟键盘抬起时页面的避让模式。<br />默认值: KeyboardAvoidMode.OFFSET <br />键盘抬起时默认页面避让模式为上抬模式。<br />必填，配置虚拟键盘避让时的页面避让模式。 |
-| getKeyboardAvoidMode | NULL| 返回虚拟键盘抬起时的页面避让模式。 |
+| setKeyboardAvoidMode<sup>11+</sup> | value?: [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | 控制虚拟键盘抬起时页面的避让模式。<br />默认值: KeyboardAvoidMode.OFFSET <br />键盘抬起时默认页面避让模式为上抬模式。<br />必填，配置虚拟键盘避让时的页面避让模式。 |
+| getKeyboardAvoidMode<sup>11+</sup> | NULL| 返回虚拟键盘抬起时的页面避让模式。 |
 
 ## 示例
 
