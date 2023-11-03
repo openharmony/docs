@@ -288,18 +288,20 @@ zh-cn/application-dev/reference/apis/js-apis-http.md @zhang-hai-feng @zhang_yixi
 zh-cn/application-dev/reference/apis/js-apis-huks.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
 zh-cn/application-dev/reference/apis/js-apis-i18n.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-image.md @zhangqiang183  @zengyawen @chenyuheng @zxg-gitee
-zh-cn/application-dev/reference/apis/js-apis-inputconsumer.md @yuanxinying @ningningW @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-inputdevice.md @yuanxinying @ningningW @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-inputevent.md @yuanxinying @ningningW @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-inputeventclient.md @yuanxinying @ningningW @cococoler @alien0208
+zh-cn/application-dev/reference/apis/js-apis-inputconsumer.md @yuanxinying @ningningW @houchengyu
+zh-cn/application-dev/reference/apis/js-apis-inputdevice.md @yuanxinying @ningningW @houchengyu
+zh-cn/application-dev/reference/apis/js-apis-inputevent.md @yuanxinying @ningningW @houchengyu
+zh-cn/application-dev/reference/apis/js-apis-inputeventclient.md @yuanxinying @ningningW @houchengyu
+zh-cn/application-dev/reference/apis/js-apis-multimodalinput-gestureevent.md @yuanxinying @ningningW @houchengyu
 zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-ability.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @feng-aiwen @illybyy @murphy1984 @hu-zhiqiong @SuperShrimp @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @illybyy @murphy1984 @feng-aiwen @hu-zhiqiong @SuperShrimp @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-inputmonitor.md @yuanxinying @ningningW @cococoler @alien0208
+zh-cn/application-dev/reference/apis/js-apis-inputmonitor.md @yuanxinying @ningningW @houchengyu
+zh-cn/application-dev/reference/apis/js-apis-intentioncode.md @yuanxinying @ningningW @houchengyu
 zh-cn/application-dev/reference/apis/js-apis-intl.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-keycode.md @yuanxinying @ningningW @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-keyevent.md @yuanxinying @ningningW @cococoler @alien0208
+zh-cn/application-dev/reference/apis/js-apis-keycode.md @yuanxinying @ningningW @houchengyu
+zh-cn/application-dev/reference/apis/js-apis-keyevent.md @yuanxinying @ningningW @houchengyu
 zh-cn/application-dev/reference/apis/js-apis-lightweightmap.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-lightweightset.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-linkedlist.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
@@ -309,7 +311,7 @@ zh-cn/application-dev/reference/apis/js-apis-media.md @liuyuehua1 @zengyawen @cu
 zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @panqinxu @zengyawen @bubble_mao @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-mediaquery.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-missionManager.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-mouseevent.md @yuanxinying @ningningW @cococoler @alien0208
+zh-cn/application-dev/reference/apis/js-apis-mouseevent.md @yuanxinying @ningningW @houchengyu
 zh-cn/application-dev/reference/apis/js-apis-net-connection.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-nfcController.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-nfcTag.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
@@ -320,7 +322,7 @@ zh-cn/application-dev/reference/apis/js-apis-particleAbility.md @littlejerry1 @h
 zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @han-zhengshi @HelloCrease @logic42
 zh-cn/application-dev/reference/apis/js-apis-permissionrequestresult.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-plainarray.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
-zh-cn/application-dev/reference/apis/js-apis-pointer.md @yuanxinying @ningningW @cococoler @alien0208
+zh-cn/application-dev/reference/apis/js-apis-pointer.md @yuanxinying @ningningW @houchengyu
 zh-cn/application-dev/reference/apis/js-apis-power.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-privacyManager.md @nianCode @zengyawen @shuqinglin2 @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-process.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
@@ -376,8 +378,8 @@ zh-cn/application-dev/reference/apis/js-apis-telephony-data.md @zhang-hai-feng @
 zh-cn/application-dev/reference/apis/js-apis-testRunner.md @inter515 @littlejerry1 @RayShih @inter515 @jiyong
 zh-cn/application-dev/reference/apis/js-apis-thermal.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-timer.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
-zh-cn/application-dev/reference/apis/js-apis-touchevent.md @mayunteng_1 @ningningW @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-shortKey.md @mayunteng_1 @ningningW @cococoler @alien0208
+zh-cn/application-dev/reference/apis/js-apis-touchevent.md @yuanxinying @ningningW @houchengyu
+zh-cn/application-dev/reference/apis/js-apis-shortKey.md @yuanxinying @ningningW @houchengyu
 zh-cn/application-dev/reference/apis/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-deviceStatus-dragInteraction.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-treemap.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
