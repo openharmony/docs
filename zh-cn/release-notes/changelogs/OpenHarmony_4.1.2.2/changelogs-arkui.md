@@ -1,15 +1,11 @@
 # arkui子系统ChangeLog
-## QRCode组件的二维码默认颜色、默认背景颜色和默认尺寸变更
-
-**变更原因**
-
-二维码的UX默认规格变更
+## cl.arkui.1 QRCode组件的默认颜色、默认背景颜色和默认尺寸变更
 
 **变更影响**
 
-变更前，二维码默认颜色是Color.Black，默认背景颜色是Color.White，组件默认宽高是父组件大小。
+API 11前，二维码默认颜色是Color.Black，默认背景颜色是Color.White，组件默认宽高是父组件大小。
 
-变更后，API version 10以前，二维码默认颜色是Color.Black，默认背景颜色是Color.White，组件默认宽高是父组件大小；API version 11开始，二维码默认颜色是系统资源中的ohos_id_color_foreground，默认背景颜色是系统资源中的ohos_id_color_background，组件默认宽度和高度都是240vp。
+API 11及以后，二维码默认颜色是系统资源中的`ohos_id_color_foreground`，默认背景颜色是系统资源中的`ohos_id_color_background`，组件默认宽度和高度都是240vp。
 
 **适配指导**
 
