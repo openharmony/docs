@@ -109,6 +109,15 @@ struct Index {
   @State videoSrc: string = 'resource://RAWFILE/02.mp4';
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
+  @Builder
+  pixelMapBuilder() {
+    Column() {
+      Image($r('app.media.icon'))
+        .width(120)
+        .height(120)
+        .backgroundColor(Color.Yellow)
+    }
+  }
 
   getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
   {
@@ -185,6 +194,9 @@ struct Index {
           video.videoUri = '/resources/rawfile/01.mp4';
           let data: UDC.UnifiedData = new UDC.UnifiedData(video);
           (event as DragEvent).setData(data);
+          return { builder: () => {
+            this.pixelMapBuilder()
+          }, extraInfo: 'extra info' };
         })
         Column() {
           Text('this is abstract')
