@@ -95,33 +95,34 @@ Stage模型在连接服务前需要先获取context
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
+import hilog from '@ohos.hilog';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import window from '@ohos.window';
 
 export default class MainAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        hilog.info("[Demo] MainAbility onCreate");
-        let context = this.context;
-    }
-    onDestroy() {
-        hilog.info("[Demo] MainAbility onDestroy");
-    }
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        // Main window is created, set main page for this ability
-        hilog.info("[Demo] MainAbility onWindowStageCreate");
-    }
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        hilog.info("[Demo] MainAbility onWindowStageDestroy");
-    }
-    onForeground() {
-        // Ability has brought to foreground
-        hilog.info("[Demo] MainAbility onForeground");
-    }
-    onBackground() {
-        // Ability has back to background
-        hilog.info("[Demo] MainAbility onBackground");
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onCreate');
+    let context = this.context;
+  }
+  onDestroy() {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onDestroy');
+  }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+  	hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageCreate');
+  }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+  	hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageDestroy');
+  }
+  onForeground() {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onForeground');
+  }
+  onBackground() {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onBackground');
+  }
 }
 ```
 
@@ -133,18 +134,19 @@ export default class MainAbility extends UIAbility {
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import rpc from '@ohos.rpc';
+import hilog from '@ohos.hilog';
 
 let proxy: rpc.IRemoteObject | undefined = undefined;
 let connect: common.ConnectOptions = {
   onConnect: (elementName, remoteProxy) => {
-   hilog.info("RpcClient: js onConnect called.");
+    hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called.');
     proxy = remoteProxy;
   },
   onDisconnect: (elementName) => {
-   hilog.info("RpcClient: onDisconnect");
+    hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
   },
   onFailed: () => {
-   hilog.info("RpcClient: onFailed");
+    hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
   }
 };
 let want: Want = {
@@ -163,10 +165,12 @@ this.context.connectServiceExtensionAbility(want, connect);
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import rpc from '@ohos.rpc';
+import hilog from '@ohos.hilog';
+
 class MyDeathRecipient implements rpc.DeathRecipient{
-    onRemoteDied() {
-       hilog.info("server died");
-    }
+  onRemoteDied() {
+    hilog.info(0x0000, 'testTag', 'server died');
+  }
 }
 let deathRecipient = new MyDeathRecipient();
 proxy.registerDeathRecipient(deathRecipient, 0);
