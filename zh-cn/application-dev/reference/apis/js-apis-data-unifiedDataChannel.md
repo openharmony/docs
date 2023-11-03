@@ -347,6 +347,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(sdr);
 ## SystemDefinedForm
 
 卡片类型数据，是[SystemDefinedRecord](#systemdefinedrecord)的子类。
+描述系统定义的卡片类型数据（此类数据被提供并绑定到OpenHarmony，也可以通过系统提供的 API 进行解析）。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
