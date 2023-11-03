@@ -920,7 +920,7 @@
 
 ## ohos.permission.ACCESS_USER_AUTH_INTERNAL
 
-允许调用统一身份认证服务的系统内部接口。
+允许调用系统级用户身份认证接口。
 
 **权限级别**：system_basic
 
@@ -3181,6 +3181,18 @@
 ## ohos.permission.ACCESS_OUC
 
 允许系统应用拉起软件更新能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_FINGERPRINT_AUTH
+
+允许调用配置和管理指纹认证模块的接口。
 
 **权限级别**：system_basic
 
