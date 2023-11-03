@@ -15,7 +15,7 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
   | 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                           |
   | ------- | ---------------------------------------- | ---- | ---- | ------------------------------ |
   | mode    | [GestureMode](#gesturemode枚举说明)          | 是    | -    | 设置组合手势识别模式。                    |
-  | gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br/>\|&nbsp;[LongPressGesture](ts-basic-gestures-longpressgesture.md)<br/>\|&nbsp;[PanGesture](ts-basic-gestures-pangesture.md)<br/>\|&nbsp;[PinchGesture](ts-basic-gestures-pinchgesture.md)<br/>\|&nbsp;[RotationGesture](ts-basic-gestures-rotationgesture.md) | 是    | -    | 可变长参数，1个或者多个基础手势类型，这些手势会被组合识别。 |
+  | gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br/>\|&nbsp;[LongPressGesture](ts-basic-gestures-longpressgesture.md)<br/>\|&nbsp;[PanGesture](ts-basic-gestures-pangesture.md)<br/>\|&nbsp;[PinchGesture](ts-basic-gestures-pinchgesture.md)<br/>\|&nbsp;[RotationGesture](ts-basic-gestures-rotationgesture.md) | 否    | -    | 可变长参数，1个或者多个基础手势类型，这些手势会被组合识别。若此参数不填则组合手势识别功能不生效。 |
 
 ## GestureMode枚举说明
 | 名称        | 描述                                       |
