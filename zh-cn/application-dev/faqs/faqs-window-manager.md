@@ -19,7 +19,7 @@ import window from '@ohos.window';
  * @param mainWindow 主窗口对象
  */
 async function enterImmersion(mainWindow: window.Window) { 
-  mainWindow.on("systemBarTintChange", (data) => {
+  window.on("systemBarTintChange", (data) => {
     let avoidAreaRect = data.regionTint[0].region; //data.regionTint是个数组，包含状态栏、导航栏的矩形区域坐标。
   })
   await mainWindow.setFullScreen(true)
