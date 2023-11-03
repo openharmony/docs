@@ -845,7 +845,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 
 **说明：**
 
-该接口在4.0版本仅提供接口定义，暂无功能实现。
+该接口在4.0版本仅提供接口定义，功能实现暂不完整，针对不同设备效果不同(蓝区设备支持倍速，黄区设备暂不支持)。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -907,7 +907,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 **说明：**
 
-该接口在4.0版本仅提供接口定义，暂无功能实现。
+该接口在4.0版本仅提供接口定义，功能实现暂不完整，针对不同设备效果不同(蓝区设备支持倍速，黄区设备暂不支持)。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
