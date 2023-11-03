@@ -266,7 +266,7 @@ constructor(name: string, param: unknown)
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
-| value  | string        | 是    | 菜单栏单个选项的显示文本。   |
+| value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  |
 | icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 |
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   |
 
