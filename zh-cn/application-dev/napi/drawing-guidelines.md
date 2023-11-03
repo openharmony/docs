@@ -8,7 +8,7 @@ Drawing绘制的内容无法直接在屏幕上显示，需要借用XComponent以
 
 ## 接口说明
 
-Drawing常用接口入下表所示，详细的接口说明请参考[Drawing](../reference/native-apis/_drawing.md)。
+Drawing常用接口如下表所示，详细的接口说明请参考[Drawing](../reference/native-apis/_drawing.md)。
 
 | 接口名 | 描述 | 
 | -------- | -------- |
@@ -37,7 +37,7 @@ Drawing常用接口入下表所示，详细的接口说明请参考[Drawing](../
 
 ### 开发流程
 
-使用Drawing进行图形绘制与显示时，需要使用Native Drawing模块的画布画笔绘制一个基本的2D图形，并将图形内容写入Native Window提供的图形Buffer，提交Buffer到图形队列，并利用XComponent将C++代码层与ArkTS层对接，实现在ArkTS层调用绘制和显示逻辑，最终能在应用上显示图形。
+使用Drawing进行图形绘制与显示时，需要使用Native Drawing模块的画布画笔绘制一个基本的2D图形，并将图形内容写入Native Window提供的图形Buffer，提交Buffer到图形队列，并利用XComponent将C++代码层与ArkTS层对接，实现在ArkTS层调用绘制和显示逻辑，最终能在应用上显示图形。使用Drawing进行图形绘制与显示时，需要使用Native Drawing模块的画布画笔绘制一个基本的2D图形；并将图形内容写入Native Window提供的图形Buffer，将Buffer提交到图形队列；再利用XComponent将C++代码层与ArkTS层对接，实现在ArkTS层调用绘制和显示的逻辑，最终在应用上显示图形。
 
 本文以实现2D图形和文本的绘制与显示为例，给出具体的开发指导。
 ### 添加开发依赖
@@ -72,9 +72,28 @@ libnative_drawing.so
 
 ### 使用XComponent构建绘制环境
 
-1. 在Index.ets文件中添加XComponent控件
+1. 在Index.ets文件中添加XComponent组件。
     ```ts
-    XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry' })
+    import XComponentContext from "../interface/XComponentContext";
+
+    const TAG = '[Sample_DrawingAPI]';
+
+    @Entry
+    @Component
+    struct Index {
+      private xComponentContext: XComponentContext | undefined = undefined;
+
+      build() {
+          Column() {
+          Row() {
+              XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry' })
+              .onLoad((xComponentContext) => {
+                  this.xComponentContext = xComponentContext as XComponentContext;
+              }).width('640px') // Multiples of 64
+          }.height('88%')
+        }
+      }
+    }
     ```
     若要改变XComponent的宽，值需为64的倍数，例如640px。
 2. 在 Native C++层获取NativeXComponent。建议使用单例模式保存XComponent。此步骤需要在napi_init的过程中处理。
@@ -164,6 +183,7 @@ libnative_drawing.so
         // ...
     }
     ```
+    也可以将不需要的callback定义为空指针，但一定要初始化。
     ```c++
     // OH_NativeXComponent_Callback是个struct，必须初始化 OH_NativeXComponent_Callback的所有callback
     OH_NativeXComponent_Callback callback;
@@ -172,12 +192,14 @@ libnative_drawing.so
     callback.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
     callback.DispatchTouchEvent = DispatchTouchEventCB;
     ```
-    也可以将不需要的callback定义为空指针，但一定要初始化。
 4. 将``OH_NativeXComponent_Callback``注册给NativeXComponent。
     ```c++
     // 注册回调函数
     OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback);
     ```
+
+经过以上步骤，绘制环境已搭建完成，接下来介绍如何使用Drawing接口进行内容绘制。
+
 ### 绘制2D图形
 
 以下步骤描述了如何使用Native Drawing模块的画布画笔绘制一个基本的2D图形：
@@ -358,16 +380,16 @@ libnative_drawing.so
         }
     }
     ```
-5. 设置刷新区域，并将其送显
+5. 设置刷新区域，并将其送显。
     ```c++
     // 如果Region中的Rect为nullptr,或者rectNumber为0，则认为OHNativeWindowBuffer全部有内容更改。
     Region region {nullptr, 0};
     // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
     OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer_, fenceFd_, region);
     ```
-6. 内存释放
+6. 内存释放。
 
-    Drawing内存释放
+    Drawing内存释放。
 
     ```c++
     // 去掉内存映射
@@ -387,7 +409,7 @@ libnative_drawing.so
     OH_Drawing_BitmapDestroy(cBitmap_);
     cBitmap_ = nullptr;
     ```
-    Surface内存释放
+    Surface内存释放。
 
     ```c++
     void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
@@ -409,13 +431,14 @@ libnative_drawing.so
 ### 用户调用
 
 以上为Native层C++代码，用户想要调用还需要通过ArkTS层代码对接。
-1. 定义ArkTS接口，用来对接Native代码。
+1. 定义ArkTS接口文件，命名XComponentContext.ts，用来对接Native代码。
     ```ts
     export default interface XComponentContext {
       drawPattern(): void;
       drawText(): void;
     };
     ```
+    在Drawing相关文件中添加初始化函数以及代码。
     ```c++
     void SampleBitMap::Export(napi_env env, napi_value exports) {
         if ((env == nullptr) || (exports == nullptr)) {
@@ -433,26 +456,57 @@ libnative_drawing.so
     ```
 2. 添加button控件供用户点击，并调用已定义的接口。
     ```ts
-    Button('Draw Path')
-        .onClick(() => {
-          if (this.xComponentContext) {
-            console.log(TAG, "Draw Path");
-            this.xComponentContext.drawPattern();
+    build() {
+      Column() {
+        Row() {
+          XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry' })
+            .onLoad((xComponentContext) => {
+              this.xComponentContext = xComponentContext as XComponentContext;
+            }).width('640px') // Multiples of 64
+          }.height('88%')
+          Row() {
+            Button('Draw Path')
+              .fontSize('16fp')
+              .fontWeight(500)
+              .margin({ bottom: 24, right: 12 })
+              .onClick(() => {
+                console.log(TAG, "Draw Path click");
+                if (this.xComponentContext) {
+                  console.log(TAG, "Draw Path");
+                  this.xComponentContext.drawPattern();
+                  }
+              })
+              .width('33.6%')
+              .height(40)
+              .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+            Button('Draw Text')
+              .fontSize('16fp')
+              .fontWeight(500)
+              .margin({ bottom: 24, left: 12 })
+              .onClick(() => {
+                  console.log(TAG, "draw text click");
+                  if (this.xComponentContext) {
+                    console.log(TAG, "draw text");
+                    this.xComponentContext.drawText();
+                  }
+              })
+              .width('33.6%')
+              .height(40)
+              .shadow(ShadowStyle.OUTER_DEFAULT_LG)
           }
-        })
-    Button('Draw Text')
-        .onClick(() => {
-          if (this.xComponentContext) {
-            console.log(TAG, "Draw Text");
-            this.xComponentContext.drawText();
-          }
-        })
+          .width('100%')
+          .justifyContent(FlexAlign.Center)
+          .shadow(ShadowStyle.OUTER_DEFAULT_SM)
+          .alignItems(VerticalAlign.Bottom)
+          .layoutWeight(1)
+        }
+    }
     ```
-3. 绘制与显示的效果图如下
+3. 绘制与显示的效果图如下：
 
-| 主页                                 | 绘制五角星                                         | 绘制文字                                            |
-| ------------------------------------ |-----------------------------------------------| --------------------------------------------------- |
-| ![main](./figures/drawIndex.jpg) | ![Draw Path](./figures/drawPath.jpg) | ![Draw Text](./figures/drawText.jpg) |
+    | 主页                                 | 绘制五角星                                         | 绘制文字                                            |
+    | ------------------------------------ |-----------------------------------------------| --------------------------------------------------- |
+    | ![main](./figures/drawIndex.jpg) | ![Draw Path](./figures/drawPath.jpg) | ![Draw Text](./figures/drawText.jpg) |
 
 ##  相关实例
 
