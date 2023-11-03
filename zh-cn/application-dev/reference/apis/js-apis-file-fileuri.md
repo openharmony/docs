@@ -105,6 +105,45 @@ toString(): string
   console.info("The uri of FileUri is " + fileUriObject.toString());
   ```
 
+### getDirectoryUri<sup>11+</sup>
+
+getDirectoryUri(): string;
+
+以同步方法通过URI获取获取所在路径URI,文件获取所在路劲URI，目录获取当前路径URI。
+
+**系统能力**：SystemCapability.FileManagement.AppFileService
+
+**返回值：**
+
+| 类型                  | 说明             |
+| --------------------- |----------------|
+| string | 获取所在路径URI,文件获取所在路劲URI，目录获取当前路径URI  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息                      |
+| ---------------------------- |---------------------------|
+| 801 | Capability not supported  |
+| 13900002 | No such file or directory |
+| 13900012 | Permission denied         |
+| 13900042 | Unknown error             |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  try {
+    let path = pathDir + '/test.txt';
+    let fileUriObject = new fileuri.FileUri(path);
+    let directoryUri = fileUriObject.getDirectoryUri();
+    console.log(`success to getDirectoryUri: ${JSON.stringify(directoryUri)}`);
+} catch (error) {
+    console.error(`failed to getDirectoryUri because: ${JSON.stringify(error)}`);
+}
+  ```
+
 ## fileuri.getUriFromPath
 
 getUriFromPath(path: string): string
