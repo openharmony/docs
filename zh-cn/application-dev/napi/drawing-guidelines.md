@@ -1,12 +1,14 @@
-# Drawing开发指导
+# 使用Drawing实现图形绘制与显示
 
 ## 场景介绍
 
-Native Drawing模块提供了一系列的接口用于基本图形和字体的绘制。常见的应用场景举例：
-* 2D图形绘制。
-* 文本绘制。
+Native Drawing模块提供了一系列的接口用于基本图形和字体的绘制。
+
+Drawing绘制的内容无法直接在屏幕上显示，需要借用XComponent以及Native Window的能力支持，将绘制的内容通过Native Window送显。
 
 ## 接口说明
+
+Drawing常用接口入下表所示，详细的接口说明请参考[Drawing](../reference/native-apis/_drawing.md)。
 
 | 接口名 | 描述 | 
 | -------- | -------- |
@@ -31,14 +33,16 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
 | OH_Drawing_TypographyHandlerAddText (OH_Drawing_TypographyCreate *, const char *) | 设置文本内容。 |
 | OH_Drawing_TypographyPaint (OH_Drawing_Typography *, OH_Drawing_Canvas *, double, double) | 显示文本。 |
 
-详细的接口说明请参考[Drawing](../reference/native-apis/_drawing.md)。
-## 前言
+## 图形绘制与显示开发步骤
 
-以下步骤描述了在**OpenHarmony**中如何使用`NativeDrawing`模块的画布画笔绘制一个基本的2D图形，并将图形内容写入`NativeWindow`提供的图形`Buffer`，提交`Buffer`到图形队列，并利用`XComponent`将C++代码层与ArkTS层对接，实现在ArkTS层调用绘制和显示逻辑，最终能在应用上显示图形。
+### 开发流程
 
-## Native Drawing开发依赖
+使用Drawing进行图形绘制与显示时，需要使用Native Drawing模块的画布画笔绘制一个基本的2D图形，并将图形内容写入Native Window提供的图形Buffer，提交Buffer到图形队列，并利用XComponent将C++代码层与ArkTS层对接，实现在ArkTS层调用绘制和显示逻辑，最终能在应用上显示图形。
 
-### 添加动态链接库
+本文以实现2D图形和文本的绘制与显示为例，给出具体的开发指导。
+### 添加开发依赖
+
+**添加动态链接库**
 
 CMakeLists.txt中添加以下lib。
 
@@ -49,7 +53,7 @@ libnative_window.so
 libnative_drawing.so
 ```
 
-### 头文件
+**头文件**
 ```c++
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include "napi/native_api.h"
@@ -66,14 +70,14 @@ libnative_drawing.so
 #include <sys/mman.h>
 ```
 
-**2D** 图形无法直接在屏幕上绘制，需要借用 **XComponent** 以及 **Native Window** 的能力支持，将绘制的内容给 **Native Window** 拿去送显。
+### 使用XComponent构建绘制环境
 
-1. 在 **Index.ets** 文件中添加 **XComponent** 控件
+1. 在Index.ets文件中添加XComponent控件
     ```ts
     XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry' })
     ```
-    若要改变 **XComponent** 的宽，值需为 **64** 的倍数，例如 **640px**。
-2. 在 **native c++** 层获取 **NativeXComponent**。建议使用单例模式保存 **XComponent**。此步骤需要在 **napi_init** 的过程中处理。
+    若要改变XComponent的宽，值需为64的倍数，例如640px。
+2. 在 Native C++层获取NativeXComponent。建议使用单例模式保存XComponent。此步骤需要在napi_init的过程中处理。
     ```c++
     void PluginManager::Export(napi_env env, napi_value exports) {
         if ((env == nullptr) || (exports == nullptr)) {
@@ -114,7 +118,7 @@ libnative_drawing.so
         }
     }
     ```
-3. 注册回调函数。通过 **OnSurfaceCreated** 回调函数获取 **Native Window**，建议将 **Native Window** 同样存储在单例中。
+3. 注册回调函数。通过``OnSurfaceCreated``回调函数获取Native Window，建议将Native Window同样存储在单例中。
     ```c++
     // 定义回调函数
     void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
@@ -169,16 +173,16 @@ libnative_drawing.so
     callback.DispatchTouchEvent = DispatchTouchEventCB;
     ```
     也可以将不需要的callback定义为空指针，但一定要初始化。
-4. 将 **OH_NativeXComponent_Callback** 注册给 **NativeXComponent**。
+4. 将``OH_NativeXComponent_Callback``注册给NativeXComponent。
     ```c++
     // 注册回调函数
     OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback);
     ```
-## 2D图形绘制开发步骤
+### 绘制2D图形
 
-以下步骤描述了如何使用 **Native Drawing** 模块的画布画笔绘制一个基本的2D图形：
+以下步骤描述了如何使用Native Drawing模块的画布画笔绘制一个基本的2D图形：
 
-1. **创建Bitmap实例**。使用 **drawing_bitmap.h** 的 **OH_Drawing_BitmapCreate** 接口创建一个Bitmap实例 **cBitmap**，并使用 **OH_Drawing_BitmapBuild** 指定其长宽大小和像素格式。
+1. **创建Bitmap实例**。使用drawing_bitmap.h的``OH_Drawing_BitmapCreate``接口创建一个Bitmap实例cBitmap并使用``OH_Drawing_BitmapBuild``指定其长宽大小和像素格式。
 
     ```c++
     // 创建一个bitmap对象
@@ -189,7 +193,7 @@ libnative_drawing.so
     OH_Drawing_BitmapBuild(cBitmap, width, height, &cFormat);
     ```
 
-2. **创建画布实例**。使用 **drawing_canvas.h** 的 **OH_Drawing_CanvasCreate** 接口创建一个画布实例 **cCanvas**，并使用 **OH_Drawing_CanvasBind** 接口将 **cBitmap** 实例绑定到 **cCanvas** 上，后续在画布上绘制的内容会输出到绑定的 **cBitmap** 实例中。
+2. **创建画布实例**。使用drawing_canvas.h的 ``OH_Drawing_CanvasCreate`` 接口创建一个画布实例cCanvas，并使用 ``OH_Drawing_CanvasBind`` 接口将cBitmap实例绑定到cCanvas上，后续在画布上绘制的内容会输出到绑定的cBitmap实例中。
 
     ```c++
     // 创建一个canvas对象
@@ -200,7 +204,7 @@ libnative_drawing.so
     OH_Drawing_CanvasClear(cCanvas, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
     ```
 
-3. **构造Path形状**。使用 **drawing_path.h** 提供的接口完成一个五角星形状的构造 **cPath**。
+3. **构造Path形状**。使用drawing_path.h提供的接口完成一个五角星形状的构造cPath。
 
     ```c++
     int len = height_ / 4;
@@ -228,7 +232,7 @@ libnative_drawing.so
     OH_Drawing_PathClose(cPath);
     ```
 
-4. **设置画笔和画刷样式**。使用 **drawing_pen.h** 的 **OH_Drawing_PenCreate** 接口创建一个画笔实例 **cPen**, 并设置抗锯齿、颜色、线宽等属性，画笔用于形状边框线的绘制。使用**drawing_brush.h** 的 **OH_Drawing_BrushCreate** 接口创建一个画刷实例 **cBrush**, 并设置填充颜色， 画刷用于形状内部的填充。使用 **drawing_canvas.h** 的 **OH_Drawing_CanvasAttachPen** 和 **OH_Drawing_CanvasAttachBrush** 接口将画笔画刷的实例设置到画布实例中。
+4. **设置画笔和画刷样式**。使用drawing_pen.h的``OH_Drawing_PenCreate``接口创建一个画笔实例cPen, 并设置抗锯齿、颜色、线宽等属性，画笔用于形状边框线的绘制。使用drawing_brush.h的``OH_Drawing_BrushCreate``接口创建一个画刷实例cBrush，并设置填充颜色， 画刷用于形状内部的填充。使用drawing_canvas.h的``OH_Drawing_CanvasAttachPen``和``OH_Drawing_CanvasAttachBrush``接口将画笔画刷的实例设置到画布实例中。
 
     ```c++
     // 创建一个画笔Pen对象，Pen对象用于形状的边框线绘制
@@ -248,16 +252,16 @@ libnative_drawing.so
     OH_Drawing_CanvasAttachBrush(cCanvas, cBrush);
     ```
 
-5. **绘制Path形状**。使用 **drawing_canvas.h** 的 **OH_Drawing_CanvasDrawPath** 接口将五角星绘制到画布上。
+5. **绘制Path形状**。使用drawing_canvas.h的``OH_Drawing_CanvasDrawPath``接口将五角星绘制到画布上。
 
     ```c++
     // 在画布上画path的形状，五角星的边框样式为pen设置，颜色填充为Brush设置
     OH_Drawing_CanvasDrawPath(cCanvas, cPath);
     ```
 
-## 文本绘制开发步骤
+### 文本绘制开发步骤
 
-以下步骤描述了如何使用**Native Drawing**模块的文字显示功能：
+以下步骤描述了如何使用Native Drawing模块的文字显示功能：
 1. **创建画布和bitmap实例**。
 
     ```c++
@@ -288,7 +292,7 @@ libnative_drawing.so
     OH_Drawing_TextStyle* txtStyle = OH_Drawing_CreateTextStyle();
     OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
     // 设置文字大小、字重等属性
-    double fontSize = 30;
+    double fontSize = width_ / 15;
     OH_Drawing_SetTextStyleFontSize(txtStyle, fontSize);
     OH_Drawing_SetTextStyleFontWeight(txtStyle, FONT_WEIGHT_400);
     OH_Drawing_SetTextStyleBaseLine(txtStyle, TEXT_BASELINE_ALPHABETIC);
@@ -312,27 +316,27 @@ libnative_drawing.so
     OH_Drawing_TypographyHandlerPopTextStyle(handler);
     OH_Drawing_Typography* typography = OH_Drawing_CreateTypography(handler);
     // 设置页面最大宽度
-    double maxWidth = 800.0;
+    double maxWidth = width_;
     OH_Drawing_TypographyLayout(typography, maxWidth);
     // 设置文本在画布上绘制的起始位置
-    double position[2] = {10.0, 15.0};
+    double position[2] = {width_ / 5.0, height_ / 2.0};
     // 将文本绘制到画布上
     OH_Drawing_TypographyPaint(typography, cCanvas, position[0], position[1]);
     ```
-## 绘制内容送显
+### 绘制内容送显
 
-前面我们已经通过 **Drawing API** 实现了 **Path** 绘制以及文字绘制。现在需要将其呈现在 **native window** 上。
+前面我们已经通过Drawing API实现了Path绘制以及文字绘制。现在需要将其呈现在Native Window上。
 
-1. 通过前面 **OnSurfaceCreatedCB** 回调保存的 **native window** 指针，来申请 **native window buffer**。
+1. 通过前面``OnSurfaceCreatedCB``回调保存的Native Window指针，来申请Native Window Buffer。
     ```c++
     // 通过 OH_NativeWindow_NativeWindowRequestBuffer 获取 OHNativeWindowBuffer 实例
-    ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer_, &fenceFd_);
+    int32_t ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer_, &fenceFd_);
     ```
-2. 通过 **OH_NativeWindow_GetBufferHandleFromNative** 获取 **bufferHandle**。
+2. 通过``OH_NativeWindow_GetBufferHandleFromNative``获取bufferHandle。
     ```c++
     bufferHandle_ = OH_NativeWindow_GetBufferHandleFromNative(buffer_);
     ```
-3. 使用系统 **mmap** 接口拿到 **bufferHandle** 的内存虚拟地址。
+3. 使用系统mmap接口拿到bufferHandle的内存虚拟地址。
     ```c++
     mappedAddr_ = static_cast<uint32_t *>(
         mmap(bufferHandle_->virAddr, bufferHandle_->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle_->fd, 0));
@@ -340,7 +344,7 @@ libnative_drawing.so
         DRAWING_LOGE("mmap failed");
     }
     ```
-4. 使用 **drawing_bitmap.h** 的 **OH_Drawing_BitmapGetPixels** 接口获取到画布绑定bitmap实例的像素地址，该地址指向的内存包含画布刚刚绘制的像素数据。将绘制内容填充到申请的 **native window buffer** 中。
+4. 使用drawing_bitmap.h的``OH_Drawing_BitmapGetPixels``接口获取到画布绑定bitmap实例的像素地址，该地址指向的内存包含画布刚刚绘制的像素数据。将绘制内容填充到申请的Native Window Buffer中。
     ```c++
     // 画完后获取像素地址，地址指向的内存包含画布画的像素数据
     void *bitmapAddr = OH_Drawing_BitmapGetPixels(cBitmap_);
@@ -357,11 +361,14 @@ libnative_drawing.so
 5. 设置刷新区域，并将其送显
     ```c++
     // 如果Region中的Rect为nullptr,或者rectNumber为0，则认为OHNativeWindowBuffer全部有内容更改。
-    Region region{nullptr, 0};
+    Region region {nullptr, 0};
     // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
     OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer_, fenceFd_, region);
     ```
 6. 内存释放
+
+    Drawing内存释放
+
     ```c++
     // 去掉内存映射
     int result = munmap(mappedAddr_, bufferHandle_->size);
@@ -380,6 +387,8 @@ libnative_drawing.so
     OH_Drawing_BitmapDestroy(cBitmap_);
     cBitmap_ = nullptr;
     ```
+    Surface内存释放
+
     ```c++
     void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
         DRAWING_LOGI("OnSurfaceDestroyedCB");
@@ -397,10 +406,10 @@ libnative_drawing.so
         SampleBitMap::Release(id);
     }
     ```
-## 用户调用
+### 用户调用
 
-以上为 **native** 层 **c++** 代码，用户想要调用还需要通过 **ArkTS** 侧代码对接。
-1. 定义 **TS** 接口，用来对接 **napi** 侧代码。
+以上为Native层C++代码，用户想要调用还需要通过ArkTS层代码对接。
+1. 定义ArkTS接口，用来对接Native代码。
     ```ts
     export default interface XComponentContext {
       drawPattern(): void;
@@ -422,16 +431,28 @@ libnative_drawing.so
         }
     }
     ```
-2. 添加 **button** 控件供用户点击，并调用已定义的接口。
+2. 添加button控件供用户点击，并调用已定义的接口。
     ```ts
-    Button()
+    Button('Draw Path')
         .onClick(() => {
           if (this.xComponentContext) {
             console.log(TAG, "Draw Path");
             this.xComponentContext.drawPattern();
           }
         })
+    Button('Draw Text')
+        .onClick(() => {
+          if (this.xComponentContext) {
+            console.log(TAG, "Draw Text");
+            this.xComponentContext.drawText();
+          }
+        })
     ```
+3. 绘制与显示的效果图如下
+
+| 主页                                 | 绘制五角星                                         | 绘制文字                                            |
+| ------------------------------------ |-----------------------------------------------| --------------------------------------------------- |
+| ![main](./figures/drawIndex.jpg) | ![Draw Path](./figures/drawPath.jpg) | ![Draw Text](./figures/drawText.jpg) |
 
 ##  相关实例
 
