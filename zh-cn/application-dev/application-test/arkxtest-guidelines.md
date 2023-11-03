@@ -117,7 +117,7 @@ export default function abilityTest() {
 import { Driver, ON } from '@ohos.UiTest'
 ```
 
-2.编写具体测试代码。
+2.编写index.ets页面代码。
 
 ```ts
 @Entry
