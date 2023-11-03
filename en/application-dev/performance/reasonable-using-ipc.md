@@ -1,4 +1,4 @@
-# Proper IPC Usage
+# IPC Usage
 
 # **Background**
 
