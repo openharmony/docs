@@ -39,7 +39,7 @@ Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 | optionFontColor         | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单项的文本颜色。<br/>默认值：'\#ff182431' |
 | space<sup>10+</sup>         | [Length](ts-types.md#length)               | 设置下拉菜单项的文本与箭头之间的间距。<br/>**说明：** <br/>不支持设置百分比。 |
 | arrowPosition<sup>10+</sup> | [ArrowPosition](#arrowposition10枚举说明)                  | 设置下拉菜单项的文本与箭头之间的对齐方式。<br/>默认值：ArrowPosition.END |
-| menuAlign<sup>10+</sup> | alignType: [MenuAlignType](#menualigntype10枚举说明),<br/> offset?: [Offset](ts-types.md#offset)    | 设置下拉按钮与下拉菜单间的对齐方式。<br/> -alignType: 对齐方式类型，必填。 <br/> -offset: 按照对齐类型对齐后，下拉菜单相对下拉按钮的偏移量。<br/> 默认值：{dx: 0, dy: 0}|
+| menuAlign<sup>10+</sup> | alignType: [MenuAlignType](#menualigntype10枚举说明),<br/> offset?: [Offset](ts-types.md#offset)    | 设置下拉按钮与下拉菜单间的对齐方式。<br/> -alignType: 对齐方式类型，必填。<br/>默认值：MenuAlignType.START <br/> -offset: 按照对齐类型对齐后，下拉菜单相对下拉按钮的偏移量。<br/> 默认值：{dx: 0, dy: 0}|
 
 ## ArrowPosition<sup>10+</sup>枚举说明
 
