@@ -793,7 +793,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   ```ts
   import { BusinessError } from '@ohos.base';
   import buffer from '@ohos.buffer';
-  import { ReadOut } from '@ohos.fileio';
+  import ReadOut from '@ohos.fileio';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
   let arrayBuffer = new ArrayBuffer(4096);
@@ -833,7 +833,7 @@ read(fd: number, buffer: ArrayBuffer, options: { offset?: number; length?: numbe
   ```ts
   import { BusinessError } from '@ohos.base';
   import buffer from '@ohos.buffer';
-  import { ReadOut } from '@ohos.fileio';
+  import ReadOut from '@ohos.fileio';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
   let arrayBuffer = new ArrayBuffer(4096);
@@ -2992,11 +2992,10 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 **示例：**
 
   ```ts
-  let filePath = pathDir +"/test.txt";
-  fileio.createWatcher(filePath, 1, (event: number) => {
+  let filePath = pathDir + "/test.txt";
+  fileio.createWatcher(filePath, 1, async (event: number) => {
     console.info("event: " + event);
   });
-  
   ```
 
 
@@ -3244,7 +3243,7 @@ stop(): Promise&lt;void&gt;
 
   ```ts
   let filePath = pathDir + "/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, (event: number) => {
+  fileio.createWatcher(filePath, 1, async (event: number) => {
     console.info("event: " + event);
   });
   watcher.stop().then(() => {
@@ -3270,8 +3269,8 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  let filePath = pathDir +"/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, (event: number) => {
+  let filePath = pathDir + "/test.txt";
+  fileio.createWatcher(filePath, 1, async (event: number) => {
     console.info("event: " + event);
   });
   watcher.stop(() => {
@@ -3622,7 +3621,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
   ```ts
   import { BusinessError } from '@ohos.base';
   import buffer from '@ohos.buffer';
-  import { ReadOut } from '@ohos.fileio';
+  import ReadOut from '@ohos.fileio';
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
   let arrayBuffer = new ArrayBuffer(4096);
@@ -3670,7 +3669,7 @@ read(buffer: ArrayBuffer, options: { position?: number; offset?: number; length?
   ```ts
   import { BusinessError } from '@ohos.base';
   import buffer from '@ohos.buffer';
-  import { ReadOut } from '@ohos.fileio';
+  import ReadOut from '@ohos.fileio';
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
   let arrayBuffer = new ArrayBuffer(4096);
