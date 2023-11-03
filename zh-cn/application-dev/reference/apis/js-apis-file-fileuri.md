@@ -109,7 +109,7 @@ toString(): string
 
 getDirectoryUri(): string;
 
-以同步方法通过URI获取获取所在路径URI,文件获取所在路劲URI，目录获取当前路径URI。
+以同步方法通过URI获取获取所在路径URI,文件获取所在路径URI，目录获取当前路径URI。该接口仅支持PC场景。
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
