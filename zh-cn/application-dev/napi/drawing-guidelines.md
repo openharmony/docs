@@ -37,7 +37,7 @@ Drawing常用接口如下表所示，详细的接口说明请参考[Drawing](../
 
 ### 开发流程
 
-使用Drawing进行图形绘制与显示时，需要使用Native Drawing模块的画布画笔绘制一个基本的2D图形，并将图形内容写入Native Window提供的图形Buffer，提交Buffer到图形队列，并利用XComponent将C++代码层与ArkTS层对接，实现在ArkTS层调用绘制和显示逻辑，最终能在应用上显示图形。使用Drawing进行图形绘制与显示时，需要使用Native Drawing模块的画布画笔绘制一个基本的2D图形；并将图形内容写入Native Window提供的图形Buffer，将Buffer提交到图形队列；再利用XComponent将C++代码层与ArkTS层对接，实现在ArkTS层调用绘制和显示的逻辑，最终在应用上显示图形。
+使用Drawing进行图形绘制与显示时，需要使用Native Drawing模块的画布画笔绘制一个基本的2D图形；并将图形内容写入Native Window提供的图形Buffer，将Buffer提交到图形队列；再利用XComponent将C++代码层与ArkTS层对接，实现在ArkTS层调用绘制和显示的逻辑，最终在应用上显示图形。
 
 本文以实现2D图形和文本的绘制与显示为例，给出具体的开发指导。
 ### 添加开发依赖
@@ -183,9 +183,9 @@ libnative_drawing.so
         // ...
     }
     ```
-    也可以将不需要的callback定义为空指针，但一定要初始化。
+    可以将不需要的callback定义为空指针，但一定要初始化。
     ```c++
-    // OH_NativeXComponent_Callback是个struct，必须初始化 OH_NativeXComponent_Callback的所有callback
+    // OH_NativeXComponent_Callback是个struct
     OH_NativeXComponent_Callback callback;
     callback.OnSurfaceCreated = OnSurfaceCreatedCB;
     callback.OnSurfaceChanged = OnSurfaceChangedCB;
