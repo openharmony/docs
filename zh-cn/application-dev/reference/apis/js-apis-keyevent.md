@@ -44,7 +44,7 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 | 名称        | 类型 | 可读 | 可写 | 说明                           |
 | ----------- | -------- | ---- | ---- | ------------------------------ |
-| action      | Action   | 是   | 否   | 按键动作                       |
+| action      | [Action](#action)   | 是   | 否   | 按键动作                       |
 | key         | [Key](#key)      | 是   | 否   | 当前上报的按键             |
 | unicodeChar | number   | 是   | 否   | 按键对应的uniCode字符          |
 | keys        | [Key](#key)[]    | 是   | 否   | 当前处于按下状态的按键列表     |
