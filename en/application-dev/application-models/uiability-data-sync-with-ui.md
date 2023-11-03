@@ -63,7 +63,14 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
      // UI page display.
      build() {
-       ...
+       Button ('Button')
+         .onClick(() => {
+           this.eventHubFunc();
+         })
+       Button ('Close')
+         .onClick(() => {
+           this.context.eventHub.off('event1');
+         })
      }
    }
    ```
@@ -71,11 +78,12 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 3. Obtain the event trigger result from the subscription callback of the UIAbility. The run log result is as follows:
 
    ```json
-   []
-
-   [1]
-
-   [2,'test']
+   [Example].[Entry].[EntryAbility] 1. []
+   [Example].[Entry].[EntryAbility] 2. []
+   [Example].[Entry].[EntryAbility] 1. [1]
+   [Example].[Entry].[EntryAbility] 2. [1]
+   [Example].[Entry].[EntryAbility] 1. [2,"test"]
+   [Example].[Entry].[EntryAbility] 2. [2,"test"]
    ```
 
 4. When **event1** is not needed, call [eventHub.off()](../reference/apis/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.

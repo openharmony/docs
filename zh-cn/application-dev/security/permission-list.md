@@ -3170,7 +3170,7 @@
 
 允许应用访问系统预置隐藏相册及相册内文件。
 
-**权限级别**：system_basic
+**权限级别**：system_core
 
 **授权方式**：system_grant
 

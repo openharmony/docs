@@ -372,7 +372,7 @@ media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) =
   } else {
     console.error('create SoundPool fail');
   }
-}).catch((error: BusinessError) => {
+}, (error: BusinessError) => {
   console.error(`soundpool catchCallback, error message:${error.message}`);
 });
 ```
@@ -522,34 +522,34 @@ let avPlayer = await media.createAVPlayer();
 avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
   switch (state) {
     case 'idle':
-      console.info('state idle called')
+      console.info('state idle called');
       break;
     case 'initialized':
-      console.info('initialized prepared called')
+      console.info('initialized prepared called');
       break;
     case 'prepared':
-      console.info('state prepared called')
+      console.info('state prepared called');
       break;
     case 'playing':
-      console.info('state playing called')
+      console.info('state playing called');
       break;
     case 'paused':
-      console.info('state paused called')
+      console.info('state paused called');
       break;
     case 'completed':
-      console.info('state completed called')
+      console.info('state completed called');
       break;
     case 'stopped':
-      console.info('state stopped called')
+      console.info('state stopped called');
       break;
     case 'released':
-      console.info('state released called')
+      console.info('state released called');
       break;
     case 'error':
-      console.info('state error called')
+      console.info('state error called');
       break;
     default:
-      console.info('unkown state :' + state)
+      console.info('unkown state :' + state);
       break;
   }
 })
@@ -994,7 +994,7 @@ release(callback: AsyncCallback\<void>): void
 ```ts
 avPlayer.release((err: BusinessError) => {
   if (err == null) {
-    console.info('reset success');
+    console.info('release success');
   } else {
     console.error('release filed,error message is :' + err.message)
   }
