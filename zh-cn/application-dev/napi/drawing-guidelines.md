@@ -509,7 +509,6 @@ libnative_drawing.so
     | ![main](./figures/drawIndex.jpg) | ![Draw Path](./figures/drawPath.jpg) | ![Draw Text](./figures/drawText.jpg) |
 
 ##  相关实例
-
-针对Native Drawing的使用，有以下相关实例可供参考：
+以上代码为Drawing绘制关键代码，完整代码请参考下面sample。
 
 - [Native Drawing（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkDrawing)
