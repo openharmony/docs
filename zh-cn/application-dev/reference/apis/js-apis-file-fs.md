@@ -528,8 +528,8 @@ copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void,
   let destPath = pathDir + "/destDir/";
   fs.copyDir(srcPath, destPath, 0, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
-      for (let i = 0; i < data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
+      for (let i = 0; i < err.data.length; i++) {
+        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
       console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
@@ -1508,6 +1508,14 @@ readLines(filePath: string, options?: Options, callback: AsyncCallback&lt;Reader
   let options: Options = {
     encoding: 'utf-8'
   };
+  let readerIteratorPromise = fs.readLines(filePath, options);
+  readerIteratorPromise.then((readerIterator: fs.ReaderIterator) => {
+    for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
+      console.info("content: " + it.value);
+    }
+  }).catch((err: BusinessError) => {
+    console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+  });
   fs.readLines(filePath, options, (err: BusinessError, readerIterator: fs.ReaderIterator) => {
     if (err) {
       console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
@@ -2440,6 +2448,8 @@ lseek(fd: number, offset: number, whence?: WhenceType): number
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   console.info('The current offset is at ' + fs.lseek(file.fd, 5, fs.WhenceType.SEEK_SET));
   fs.closeSync(file);
@@ -2784,6 +2794,8 @@ utimes(path: string, mtime: number): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.writeSync(file.fd, 'test data');
@@ -2897,6 +2909,8 @@ createRandomAccessFileSync(file: string|File, mode?: number): RandomAccessFile
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
@@ -4283,7 +4297,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
         console.info("read succeed and size is:" + readLength);
       }
     }
-    randomAccessFile.close();
+    randomaccessfile.close();
     fs.closeSync(file);
   });
   ```
@@ -4316,6 +4330,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
