@@ -5009,7 +5009,7 @@ struct WebComponent {
 
 ### fetchCookie<sup>11+</sup>
 
-static fetchCookie(url: string, callback: AsyncCallback<string>): void
+static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 
 异步callback方式获取指定url对应cookie的值。
 
@@ -5020,7 +5020,7 @@ static fetchCookie(url: string, callback: AsyncCallback<string>): void
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
 | url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
-| callback | AsyncCallback<string> | 是 | callback回调，用于获取cookie |
+| callback | AsyncCallback\<string> | 是 | callback回调，用于获取cookie |
 
 **错误码：**
 
@@ -5028,6 +5028,7 @@ static fetchCookie(url: string, callback: AsyncCallback<string>): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
+| 401 | Invalid input parameter.                                           |
 | 17100002 | Invalid url.                                           |
 
 **示例：**
@@ -5093,6 +5094,7 @@ static fetchCookie(url: string): Promise\<string>
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
+| 401 | Invalid input parameter.                                           |
 | 17100002 | Invalid url.                                           |
 
 **示例：**
@@ -5243,7 +5245,7 @@ struct WebComponent {
 
 ### configCookie<sup>11+</sup>
 
-static configCookie(url: string, value: string, AsyncCallback\<void>): void
+static configCookie(url: string, value: string, callback: AsyncCallback\<void>): void
 
 异步callback方式为指定url设置单个cookie的值。
 
@@ -5263,6 +5265,7 @@ static configCookie(url: string, value: string, AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
+| 401      | Invalid input parameter.                               |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
@@ -5326,6 +5329,7 @@ static configCookie(url: string, value: string): Promise\<void>
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
+| 401      | Invalid input parameter.                               |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
