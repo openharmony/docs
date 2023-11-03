@@ -71,26 +71,30 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 如下示例代码实现的场景是：启动测试页面，检查设备当前显示的页面是否为预期页面。
 
-```js
+```ts
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { BusinessError } from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
 export default function abilityTest() {
-    describe('ActsAbilityTest', () =>{
+  describe('ActsAbilityTest', () =>{
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
-        console.info('Uitest, start ability finished:' + result)
-      }).catch((err: BusinessError) => {
+      const want: Want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
+      }
+      await delegator.startAbility(want, (err: BusinessError, data: void) => {
         console.info('Uitest, start ability failed: ' + err)
-      })
+      });
       await sleep(1000);
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
@@ -109,20 +113,52 @@ export default function abilityTest() {
 
 1.增加依赖导包。
 
-```js
-import {Driver,ON,Component,MatchPattern} from '@ohos.uitest'
+```ts
+import { Driver, ON } from '@ohos.UiTest'
 ```
 
 2.编写具体测试代码。
 
-```js
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Text("Next")
+          .fontSize(50)
+          .margin({top:20})
+          .fontWeight(FontWeight.Bold)
+        Text("after click")
+          .fontSize(50)
+          .margin({top:20})
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+3.编写具体测试代码。
+
+```ts
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest'
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
@@ -131,11 +167,13 @@ export default function abilityTest() {
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
-        console.info('Uitest, start ability finished:' + result)
-      }).catch((err: BusinessError) => {
+      const want: Want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
+      }
+      await delegator.startAbility(want, (err: BusinessError, data: void) => {
         console.info('Uitest, start ability failed: ' + err)
-      })
+      });
       await sleep(1000);
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
@@ -159,6 +197,7 @@ export default function abilityTest() {
   })
 }
 ```
+
 
 ## 执行测试脚本
 
