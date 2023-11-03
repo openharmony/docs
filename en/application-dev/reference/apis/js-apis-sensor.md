@@ -3742,7 +3742,7 @@ Describes the barometer sensor data. It extends from [Response](#response).
 
 | Name    | Type  | Readable| Writable| Description                    |
 | -------- | ------ | ---- | ---- | ------------------------ |
-| pressure | number | Yes  | Yes  | Atmospheric pressure, in pascal.|
+| pressure | number | Yes  | Yes  | Atmospheric pressure, in hPa. |
 
 
 ## HeartRateResponse

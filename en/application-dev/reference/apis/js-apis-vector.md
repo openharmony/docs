@@ -304,15 +304,15 @@ Replaces all elements in this container with new elements, and returns the new o
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
 
-callbackfn
+callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
 | index | number | No| Position index of the element that is currently traversed.|
-| vector | Vector&lt;T&gt; | No| Instance that invokes the **replaceAllElements** API.|
+| vector | Vector&lt;T&gt; | No| Instance that calls the **replaceAllElements** API.|
 
 **Example**
 
@@ -342,15 +342,15 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
 
-callbackfn
+callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
 | index | number | No| Position index of the element that is currently traversed.|
-| vector | Vector&lt;T&gt; | No| Instance that invokes the **forEach** API.|
+| vector | Vector&lt;T&gt; | No| Instance that calls the **forEach** API.|
 
 **Example**
 
@@ -578,7 +578,7 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.increaseCapacityTo(2);
-vector.increaseCapacityTo(8);
+vector.increaseCapacityTo(12);
 ```
 
 ### trimToCurrentLength
