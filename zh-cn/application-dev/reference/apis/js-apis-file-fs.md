@@ -2063,7 +2063,7 @@ fdatasync(fd: number): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdatasync(file.fd).then((err: BusinessError) => {
+  fs.fdatasync(file.fd).then(() => {
     console.info("sync data succeed");
   }).catch((err: BusinessError) => {
     console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
@@ -2278,7 +2278,7 @@ listFile(path: string, options?: {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter;
+    public filter: Filter = {};
   }
   let option = new ListFileOption();
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
@@ -2334,7 +2334,7 @@ listFile(path: string, options?: {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter;
+    public filter: Filter = {};
   }
   let option = new ListFileOption();
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
@@ -2397,7 +2397,7 @@ listFileSync(path: string, options?: {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter;
+    public filter: Filter = {};
   }
   let option = new ListFileOption();
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
