@@ -3214,18 +3214,6 @@
 
 **起始版本**：11
 
-## ohos.permission.QUERY_TRUSTED_RING_USER_INFO
-
-允许关键资产信任环服务获取用户信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：FALSE
-
-**起始版本**：11
-
 ## ohos.permission.MANAGE_TRUSTED_RING
 
 允许使用关键资产信任环服务提供的能力。
