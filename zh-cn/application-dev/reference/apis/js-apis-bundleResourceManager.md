@@ -145,7 +145,7 @@ try {
 
 getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md)>>): void;
 
-以异步方法根据给定的resourceFlags获取所有应用的BundleResourceInfo，以callback的形式返回结果。
+以异步方法根据给定的resourceFlags获取所有应用的BundleResourceInfo。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -185,7 +185,7 @@ try {
 
 getAllBundleResourceInfo(resourceFlags: [number](#resourceflag)): Promise<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md)>>;
 
-以异步方法根据给定的resourceFlags获取所有应用的BundleResourceInfo，以promise的形式返回结果。
+以异步方法根据给定的resourceFlags获取所有应用的BundleResourceInfo。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -228,7 +228,7 @@ try {
 
 getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>>): void;
 
-以异步方法根据给定的resourceFlags获取当前所有应用的LauncherAbilityResourceInfo，以callback形式返回。
+以异步方法根据给定的resourceFlags获取当前所有应用的LauncherAbilityResourceInfo。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -269,7 +269,7 @@ try {
 
 getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Promise<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>>;
 
-以异步方法根据给定的resourceFlags获取当前所有应用的LauncherAbilityResourceInfo，以promise形式返回。
+以异步方法根据给定的resourceFlags获取当前所有应用的LauncherAbilityResourceInfo。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
