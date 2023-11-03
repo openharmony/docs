@@ -258,7 +258,7 @@ zh-cn/application-dev/reference/apis/js-apis-distributedMissionManager.md @chenm
 zh-cn/application-dev/reference/apis/js-apis-document.md @panqinxu @zengyawen @bubble_mao @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-effectKit.md @zhangqiang183  @ge-yafang @liuchao92 @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-emitter.md @jayleehw @huipeizi @li-weifeng2 @currydavids
-zh-cn/application-dev/reference/apis/js-apis-EnterpriseAdminExtensionAbility.md @liuzuming @ningningW @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-EnterpriseAdminExtensionAbility.md @liuzuming @ningningW @yangqing3 @caiminggang
 zh-cn/application-dev/reference/apis/js-apis-environment.md @panqinxu @zengyawen @bubble_mao @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-errorManager.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-eventhub.md @jayleehw @huipeizi @li-weifeng2 @currydavids
@@ -456,20 +456,20 @@ zh-cn/application-dev/reference/apis/js-apis-curve.md @HelloCrease @niulihua @to
 zh-cn/application-dev/reference/apis/js-apis-defaultAppManager.md @shuaytao @huipeizi @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-distributedBundle.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-distributedKVStore.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-enterprise-applicationManager.md @liuzuming @ningningW @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-enterprise-accountManager.md @liuzuming @ningningW @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-enterprise-adminManager.md @liuzuming @ningningW @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-enterprise-bundleManager.md @liuzuming @ningningW @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-enterprise-browser.md @liuzuming @ningningW @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-enterprise-dateTimeManager.md @liuzuming @ningningW @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-enterprise-deviceControl.md @liuzuming @ningningW @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-enterprise-deviceInfo.md @liuzuming @ningningW @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-enterprise-networkManager.md @liuzuming @ningningW @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-EnterpriseAdminExtensionAbility.md @liuzuming @ningningW @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-enterprise-restrictions.md @liuzuming @ningningW @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-enterprise-usbManager.md @liuzuming @ningningW @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-enterprise-wifiManager.md @liuzuming @ningningW @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-fileAccess.md @panqinxu @zengyawen @bubble_mao @jinhaihw
+zh-cn/application-dev/reference/apis/js-apis-enterprise-applicationManager.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-enterprise-accountManager.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-enterprise-adminManager.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-enterprise-bundleManager.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-enterprise-browser.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-enterprise-dateTimeManager.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-enterprise-deviceControl.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-enterprise-deviceInfo.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-enterprise-networkManager.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-EnterpriseAdminExtensionAbility.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-enterprise-restrictions.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-enterprise-usbManager.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-enterprise-wifiManager.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-fileAccess.md @panqinxu @zengyawen @bubble_mao @jinhaihw 
 zh-cn/application-dev/reference/apis/js-apis-fileExtensionInfo.md @panqinxu @zengyawen @bubble_mao @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-freeInstall.md @shuaytao @huipeizi @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-geoLocationManager.md @cheng_guohong @RayShih @cheng_guohong @xiangkejin123
