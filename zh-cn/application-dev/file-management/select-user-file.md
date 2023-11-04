@@ -20,7 +20,7 @@
    import { BusinessError } from '@ohos.base';
    ```
 
-2. 创建图片-音频类型文件选择选项实例。
+2. 创建图片-视频类型文件选择选项实例。
 
    ```ts
    import picker from '@ohos.file.picker';
