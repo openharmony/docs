@@ -26,7 +26,7 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**系统API**: 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
@@ -35,7 +35,7 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
 
@@ -74,7 +74,7 @@ resetFactory(admin: Want): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**系统API**: 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
@@ -88,7 +88,7 @@ resetFactory(admin: Want): Promise\<void>
 | ----- | ----------------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。当恢复出厂设置失败时抛出错误对象。|
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
 
@@ -119,13 +119,13 @@ deviceControl.resetFactory(wantTemp).then(() => {
 
 lockScreen(admin: Want): void
 
-锁屏功能。同步调用。
+指定设备管理应用使设备屏幕锁定。同步调用。
 
 **需要权限：** ohos.permission.ENTERPRISE_LOCK_DEVICE
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**系统API**: 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
@@ -133,7 +133,7 @@ lockScreen(admin: Want): void
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
 
@@ -164,13 +164,13 @@ try {
 
 shutDownDevice(admin: Want): void
 
-锁屏功能。同步调用。
+指定设备管理应用使设备关机。同步调用。
 
 **需要权限：** ohos.permission.ENTERPRISE_REBOOT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**系统API**: 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
@@ -178,7 +178,7 @@ shutDownDevice(admin: Want): void
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
 
@@ -209,13 +209,13 @@ try {
 
 reBootDevice(admin: Want): void
 
-锁屏功能。同步调用。
+指定设备管理应用使设备重启。同步调用。
 
-**需要权限：** ohos.permission.ENTERPRISE_LOCK_DEVICE
+**需要权限：** ohos.permission.ENTERPRISE_REBOOT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**系统API**: 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
@@ -223,7 +223,7 @@ reBootDevice(admin: Want): void
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
 
