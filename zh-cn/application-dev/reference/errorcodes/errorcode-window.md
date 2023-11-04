@@ -136,3 +136,81 @@ WindowExtension拉起应用的参数异常。
 **处理步骤**<br>
 1. 不要对全屏窗口进行move操作。<br>
 2. 不要对全屏窗口进行resize操作。
+
+## 1001 窗口空指针异常<sup>(deprecated)</sup>
+**错误信息**<br>
+This window nullptr occurs.
+
+**错误描述**<br>
+窗口空指针异常，如出现空指针时，操作该窗口，会报此错误码。
+
+**可能原因**<br>
+操作窗口时，出现空指针。
+
+**处理步骤**<br>
+在对窗口进行操作前，检查该窗口是否存在空指针，确保其不存在空指针，再进行相关操作。
+
+## 1002 无效的窗口类型<sup>(deprecated)</sup>
+**错误信息**<br>
+This window type is invalid.
+
+**错误描述**<br>
+窗口类型无效。
+
+**可能原因**<br>
+使用了无效的窗口类型，有效的窗口类型见[WindowType](../apis/js-apis-window.md#windowtype7)。
+
+**处理步骤**<br>
+请使用WindowType支持的窗口类型，再进行相关操作。
+
+## 1003 无效的窗口参数<sup>(deprecated)</sup>
+**错误信息**<br>
+This window parameter is invalid.
+
+**错误描述**<br>
+当窗口参数无效时，操作该窗口，会报此错误码。
+
+**可能原因**<br>
+操作窗口时，该窗口参数无效。
+
+**处理步骤**<br>
+在对窗口进行操作前，检查该窗口参数是否有效，确保其参数有效，再进行相关操作。
+
+## 1004 元能力服务异常<sup>(deprecated)</sup>
+**错误信息**<br>
+This system ability service works abnormally.
+
+**错误描述**<br>
+当元能力服务工作异常时，会报此错误码。
+
+**可能原因**<br>
+当销毁窗口时，如初始化proxy失败。
+
+**处理步骤**<br>
+元能力服务异常，重启设备尝试。
+
+## 1005 IPC通信失败<sup>(deprecated)</sup>
+**错误信息**<br>
+This window IPC failed.
+
+**错误描述**<br>
+当IPC通信失败时，会报此错误码。
+
+**可能原因**<br>
+操作窗口时，该窗口参数IPC传输失败。
+
+**处理步骤**<br>
+在对窗口进行操作前，检查该窗口客户端和服务端服务正常，再进行相关操作。
+
+## 1007 WindowExtension拉起应用失败<sup>(deprecated)</sup>
+**错误信息**<br>
+Start ability failed.
+
+**错误描述**<br>
+WindowExtension拉起应用失败。
+
+**可能原因**<br>
+WindowExtension拉起应用的参数异常。
+
+**处理步骤**<br>
+检查WindowExtension参数是否被异常修改，确保其参数合法，再进行相关操作。
