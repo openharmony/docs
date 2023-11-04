@@ -18,7 +18,7 @@ ohos.permission.MANAGE_MISSIONS
 
 ## missionManager.on
 
-on(type:'mission', listener: MissionListener): number;
+on(type:'mission', listener: MissionListener): number
 
 注册系统任务状态监听器。
 
@@ -32,6 +32,7 @@ on(type:'mission', listener: MissionListener): number;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
+  | type     | string   | 是       | 监听的任务名称。 |
   | listener | [MissionListener](js-apis-inner-application-missionListener.md) | 是 | 系统任务监听器。 |
 
 **返回值：**
@@ -112,7 +113,7 @@ export default class EntryAbility extends UIAbility {
 
 ## missionManager.off
 
-off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): void;
+off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): void
 
 解注册任务状态监听器。
 
@@ -126,6 +127,7 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
+  | type     | string   | 是       | 取消监听的任务名称。 |
   | listenerId | number | 是 | 系统任务状态监器法的index值，和监听器一一对应，由on方法返回。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
@@ -209,7 +211,7 @@ export default class EntryAbility extends UIAbility {
 
 ## missionManager.off
 
-off(type: 'mission', listenerId: number): Promise&lt;void&gt;;
+off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 
 解注册任务状态监听，以promise方式返回执行结果。
 
@@ -223,6 +225,7 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
+  | type     | string   | 是       | 取消监听的任务名称。 |
   | listenerId | number | 是 | 系统任务状态监听器的index值，和监听器一一对应，由on方法返回。 |
 
 **返回值：**
@@ -310,7 +313,7 @@ export default class EntryAbility extends UIAbility {
 
 ## missionManager.getMissionInfo
 
-getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void;
+getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void
 
 获取任务信息，以异步回调的方式返回任务信息。
 
@@ -366,7 +369,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
 ## missionManager.getMissionInfo
 
-getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
+getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
 获取任务信息，以promise方式返回任务信息。
 
@@ -409,7 +412,7 @@ try {
 
 ## missionManager.getMissionInfos
 
-getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void;
+getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void
 
 获取所有任务信息，以回调函数的方式返回任务信息数组。
 
@@ -452,7 +455,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 
 ## missionManager.getMissionInfos
 
-getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;;
+getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;
 
 获取所有任务信息，以promise的方式返回任务信息数组。
 
@@ -494,7 +497,7 @@ try {
 
 ## missionManager.getMissionSnapShot
 
-getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void;
+getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void
 
 获取任务快照，以回调函数的方式返回快照内容。
 
@@ -532,7 +535,7 @@ try {
 
 ## missionManager.getMissionSnapShot
 
-getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;;
+getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;
 
 获取任务快照，以promise的方式返回快照内容。
 
@@ -574,7 +577,7 @@ try {
 
 ## missionManager.getLowResolutionMissionSnapShot
 
-getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback\<MissionSnapshot>): void;
+getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback\<MissionSnapshot>): void
 
 获取任务低分辨率快照。
 
@@ -612,7 +615,7 @@ try {
 
 ## missionManager.getLowResolutionMissionSnapShot
 
-getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<MissionSnapshot>;
+getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<MissionSnapshot>
 
 获取任务低分辨率快照。
 
@@ -656,7 +659,7 @@ try {
 
 ## missionManager.lockMission
 
-lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 锁定指定任务id的任务，以回调函数的方式返回。
 
@@ -702,7 +705,7 @@ try {
 
 ## missionManager.lockMission
 
-lockMission(missionId: number): Promise&lt;void&gt;;
+lockMission(missionId: number): Promise&lt;void&gt;
 
 锁定指定任务id的任务，以promise方式返回。
 
@@ -751,7 +754,7 @@ try {
 
 ## missionManager.unlockMission
 
-unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 解锁指定任务id的任务，以回调函数的方式返回。
 
@@ -796,7 +799,7 @@ try {
 
 ## missionManager.unlockMission
 
-unlockMission(missionId: number): Promise&lt;void&gt;;
+unlockMission(missionId: number): Promise&lt;void&gt;
 
 解锁指定任务id的任务，以promise的方式返回。
 
@@ -846,7 +849,7 @@ try {
 
 ## missionManager.clearMission
 
-clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 清理指定任务id的任务，无论该任务是否被锁定，以回调函数的方式返回。
 
@@ -885,7 +888,7 @@ try {
 
 ## missionManager.clearMission
 
-clearMission(missionId: number): Promise&lt;void&gt;;
+clearMission(missionId: number): Promise&lt;void&gt;
 
 清理指定任务id的任务，无论该任务是否被锁定，以promise的方式返回。
 
@@ -927,7 +930,7 @@ try {
 
 ## missionManager.clearAllMissions
 
-clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
+clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
 清理所有未锁定的任务，以回调函数的方式返回。
 
@@ -957,7 +960,7 @@ try {
 
 ## missionManager.clearAllMissions
 
-clearAllMissions(): Promise&lt;void&gt;;
+clearAllMissions(): Promise&lt;void&gt;
 
 清理所有未锁定的任务，以promise的方式返回。
 
@@ -992,7 +995,7 @@ try {
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 把指定任务id的任务切到前台，以回调函数的方式返回。
 
@@ -1038,7 +1041,7 @@ try {
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以回调函数的方式返回。
 
@@ -1085,7 +1088,7 @@ try {
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;;
+moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;
 
 把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以promise的方式返回。
 
@@ -1136,7 +1139,7 @@ try {
 
 ## missionManager.moveMissionsToForeground<sup>10+</sup>
 
-moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 将指定任务批量切到前台，以回调函数的方式返回。
 
@@ -1202,7 +1205,7 @@ try {
 
 ## missionManager.moveMissionsToForeground<sup>10+</sup>
 
-moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, callback: AsyncCallback&lt;void&gt;): void
 
 将指定任务批量切换到前台，并将任务ID等于topMission的任务移动到最顶层，以回调函数的方式返回。
 
@@ -1269,7 +1272,7 @@ try {
 
 ## missionManager.moveMissionsToForeground<sup>10+</sup>
 
-moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): Promise&lt;void&gt;；
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): Promise&lt;void&gt;
 
 将指定任务批量切到前台，并将任务ID等于topMission的任务移动到最顶层，以promise的方式返回。
 
@@ -1337,7 +1340,7 @@ try {
 
 ## missionManager.moveMissionsToBackground<sup>10+</sup>
 
-moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void;
+moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 将指定任务批量切到后台，以回调函数的方式返回, 返回的结果任务ID按被隐藏时的任务层级排序。
 
@@ -1399,7 +1402,7 @@ try {
 
 ## missionManager.moveMissionsToBackground<sup>10+</sup>
 
-moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;;
+moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 将指定任务批量切到后台，以promise的方式返回, 返回的结果按被隐藏时的任务层级排序。
 
