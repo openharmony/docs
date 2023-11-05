@@ -384,10 +384,6 @@ scoped_let = 5 //编译时错误
 
 ArkTS不支持`any`和`unknown`类型。显式指定具体类型。
 
-在ArkTS的跨语言调用TS/JS代码的场景中，如果无法标注类型，那么可以使用`ESObject`来标注动态对象（来自TS/JS代码的对象）的类型。
-使用`ESObject`会消除类型检查，增加代码错误的风险，增加额外的运行时开销，所以应尽可能避免使用`ESObject`。
-使用`ESObject`将会产生一条*警告*。
-
 **TypeScript**
 
 ```typescript
@@ -398,10 +394,6 @@ value1 = 42
 let value2: unknown
 value2 = true
 value2 = 42
-
-// 由于external_function定义在JS代码中，无法获知其返回值类型信息
-let something: any = external_function()
-console.log('someProperty of something:', something.someProperty)
 ```
 
 **ArkTS**
@@ -411,10 +403,6 @@ let value_b: boolean = true // 或者 let value_b = true
 let value_n: number = 42 // 或者 let value_n = 42
 let value_o1: Object = true
 let value_o2: Object = 42
-
-// 由于external_function定义在JS代码中，无法获知其返回值类型信息
-let something: ESObject = external_function()
-console.log('someProperty of something:', something.someProperty)
 ```
 
 **相关约束**
@@ -2662,36 +2650,6 @@ namespace A {
 A.init()
 ```
 
-### 不支持`import type`
-
-**规则：**`arkts-no-special-imports`
-
-**级别：错误**
-
-ArkTS不支持`import type`。改为`import`。
-
-**TypeScript**
-
-```typescript
-// 通用导入语法
-import { APIResponseType } from 'api'
-
-// 导入类型
-import type { APIResponseType } from 'api'
-```
-
-**ArkTS**
-
-```typescript
-import { APIResponseType } from 'api'
-```
-
-**相关约束**
-
-* 不支持仅为副作用而导入一个模块
-* 不支持import default as ...
-* 不支持require和import赋值表达式
-
 ### 不支持仅为副作用而导入一个模块
 
 **规则：**`arkts-no-side-effects-imports`
@@ -2806,44 +2764,6 @@ let p = Pt.Point.origin
 **相关约束**
 
 不支持require和import赋值表达式
-
-### 不支持`export type`
-**规则：**`arkts-no-special-exports`
-
-**级别：错误**
-
-ArkTS不支持`export type`。改用`export`。
-
-**TypeScript**
-
-```typescript
-// 显式导出class：
-export class Class1 {
-  // ...
-}
-
-// 声明一个类，之后通过`export type`导出
-class Class2 {
-  // ...
-}
-
-// 不支持
-export type { Class2 }
-```
-
-**ArkTS**
-
-```typescript
-// 显式导出class：
-export class Class1 {
-  // ...
-}
-
-// 显式导出class：
-export class Class2 {
-  // ...
-}
-```
 
 ### 不支持ambient module声明
 
@@ -3052,19 +2972,19 @@ class C {
 var abc = 100
 
 // 从上面引用'abc'
-globalThis.abc = 200
+let x = globalThis.abc
 ```
 
 **ArkTS**
 
 ```typescript
 // file1
-export let abc: number = 0
+export let abc: number = 100
 
 // file2
 import * as M from 'file1'
 
-M.abc = 200
+let x = M.abc
 ```
 
 **相关约束**
@@ -3148,7 +3068,7 @@ let z: Label = {
 
 ### 不支持导入断言
 
-**规则：** `arkts-no-import-assertions`
+**规则：**`arkts-no-import-assertions`
 
 **级别：错误**
 
@@ -3181,8 +3101,7 @@ import { something } from 'module'
 
 ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部分接口与动态特性有关。ArkTS中禁止使用以下接口：
 
-全局对象的属性和方法：`eval`、
-`Infinity`、`NaN`、`isFinite`、`isNaN`、`parseFloat`、`parseInt`
+全局对象的属性和方法：`eval`
 
 `Object`：`__proto__`、`__defineGetter__`、`__defineSetter__`、
 `__lookupGetter__`、`__lookupSetter__`、`assign`、`create`、
@@ -3203,8 +3122,6 @@ ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部�
 `handler.getOwnPropertyDescriptor()`、`handler.getPrototypeOf()`、
 `handler.has()`、`handler.isExtensible()`、`handler.ownKeys()`、
 `handler.preventExtensions()`、`handler.set()`、`handler.setPrototypeOf()`
-
-`ArrayBuffer`：`isView`
 
 **相关约束**
 
@@ -3406,3 +3323,45 @@ class C {
   n: number = 0
 }
 ```
+
+### 限制使用`ESObject`类型
+
+**规则：**`arkts-limited-esobj`
+
+**级别：警告**
+
+为了防止动态对象（来自.ts/.js文件）在静态代码（.ets文件）中的滥用，`ESObject`类型在ArkTS中的使用是受限的。唯一允许使用`ESObject`类型的场景是将其用在局部变量的声明中。`ESObject`类型变量的赋值也是受限的，只能被来自跨语言调用的对象赋值，例如：`ESObject`、`any`、`unknown`、匿名类型等类型的变量。禁止使用静态类型的值（在.ets文件中定义的）初始化`ESObject`类型变量。`ESObject`类型变量只能用在跨语言调用的函数里或者赋值给另一个`ESObject`类型变量。
+
+**ArkTS**
+
+```typescript
+// lib.d.ts
+declare function foo(): any;
+declare function bar(a: any): number;
+
+// main.ets
+let e0: ESObject = foo(); // 编译时错误：ESObject类型只能用于局部变量
+
+function f() {
+  let e1 = foo();        // 编译时错误：e1的类型是any
+  let e2: ESObject = 1;  // 编译时错误：不能用非动态值初始化ESObject类型变量
+  let e3: ESObject = {}; // 编译时错误：不能用非动态值初始化ESObject类型变量
+  let e4: ESObject = []; // 编译时错误：不能用非动态值初始化ESObject类型变量
+  let e5: ESObject = ''; // 编译时错误：不能用非动态值初始化ESObject类型变量
+  e5['prop']             // 编译时错误：不能访问ESObject类型变量的属性
+  e5[1]                  // 编译时错误：不能访问ESObject类型变量的属性
+  e5.prop                // 编译时错误：不能访问ESObject类型变量的属性
+
+  let e6: ESObject = foo(); // OK，显式标注ESObject类型
+  let e7 = e6;              // OK，使用ESObject类型赋值
+  bar(e7)                   // OK，ESObject类型变量传给跨语言调用的函数
+}
+
+**相关约束**
+
+* 对象的属性名必须是合法的标识符
+* 不支持Symbol() API
+* 不支持通过索引访问字段
+* 仅允许在表达式中使用typeof运算符
+* 不支持in运算符
+* 不支持globalThis
