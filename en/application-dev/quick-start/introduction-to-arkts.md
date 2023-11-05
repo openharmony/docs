@@ -1428,12 +1428,6 @@ interface ExtendedStyle extends Style {
 
 An extended interface contains all properties and methods of the interface it extends, and can also add its own properties and methods.
 
-## Interface Visibility Modifiers
-
-Properties and methods are `public`.
-
-Only methods with default implementation can be defined as `private`.
-
 # Generic Types and Functions
 
 Generic types and functions allow creating the code capable to work over a variety of types rather than a single type.

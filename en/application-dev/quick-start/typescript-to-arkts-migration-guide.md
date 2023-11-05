@@ -227,7 +227,7 @@ class U {
 Can we assign a value of `T` to a variable of `U`?
 
 ```typescript
-let u : U = new T() // Is this allowed?
+let u: U = new T() // Is this allowed?
 ```
 
 Can we pass a value of `T` to a function that accepts a parameter of `U`?
@@ -448,14 +448,6 @@ scoped_let = 5 // Compile-time error
 
 ArkTS does not support the types `any` and `unknown`. Specify types explicitly.
 
-If your ArkTS code has to interoperate with the standard TypeScript or JavaScript code
-and no type information is available (or the type information is impossible
-to obtain), you can use a special `ESObject` type for working with dynamic
-objects. Please note that such objects reduce type checking (which means less
-stable and more error-prone code) and have severe runtime overhead and
-should be avoided at all cost. Using `ESObject` will still produce a warning
-message.
-
 **TypeScript**
 
 ```typescript
@@ -466,10 +458,6 @@ value1 = 42
 let value2: unknown
 value2 = true
 value2 = 42
-
-// Let's assume that we have no information for external_function because it is defined in JavaScript code:
-let something: any = external_function()
-console.log('someProperty of something:', something.someProperty)
 ```
 
 **ArkTS**
@@ -479,10 +467,6 @@ let value_b: boolean = true // OR: let value_b = true
 let value_n: number = 42 // OR: let value_n = 42
 let value_o1: Object = true
 let value_o2: Object = 42
-
-// Let's assume that we have no information for external_function because it is defined in JavaScript code:
-let something: ESObject = external_function()
-console.log('someProperty of something:', something.someProperty)
 ```
 
 **See also**
@@ -2788,36 +2772,6 @@ namespace A {
 A.init()
 ```
 
-### Recipe: Special `import type` Declarations Are Not Supported
-
-**Rule:** `arkts-no-special-imports`
-
-**Severity: error**
-
-ArkTS does not have a special notation for import types. Use the ordinary `import` syntax instead.
-
-**TypeScript**
-
-```typescript
-// Re-using the same import.
-import { APIResponseType } from 'api'
-
-// Explicitly use the import type.
-import type { APIResponseType } from 'api'
-```
-
-**ArkTS**
-
-```typescript
-import { APIResponseType } from 'api'
-```
-
-**See also**
-
-* Recipe: Importing a Module for Side-Effects Only Is Not Supported
-* Recipe: `import default as ...` Is Not Supported
-* Recipe: `require` and `import` Assignment Are Not Supported
-
 ### Recipe: Importing a Module for Side-Effects Only Is Not Supported
 
 **Rule:** `arkts-no-side-effects-imports`
@@ -2937,44 +2891,6 @@ let p = Pt.Point.origin
 **See also**
 
 * Recipe: `require` and `import` Assignment Are Not Supported
-
-### Recipe: Special `export type` Declarations Are Not Supported
-**Rule:** `arkts-no-special-exports`
-
-**Severity: error**
-
-ArkTS does not have a special notation for exporting types through `export type ...`. Use the ordinary `export`syntax  instead.
-
-**TypeScript**
-
-```typescript
-// Explicitly exported class:
-export class Class1 {
-  // ...
-}
-
-// Declared class later exported through the export type ...
-class Class2 {
-  // ...
-}
-
-// This is not supported.
-export type { Class2 }
-```
-
-**ArkTS**
-
-```typescript
-// Explicitly exported class:
-export class Class1 {
-  // ...
-}
-
-// Explicitly exported class:
-export class Class2 {
-  // ...
-}
-```
 
 ### Recipe: Ambient Module Declaration Is Not Supported
 
@@ -3194,19 +3110,19 @@ objects with dynamically changed layout are not supported.
 var abc = 100
 
 // Refers to 'abc' from above.
-globalThis.abc = 200
+let x = globalThis.abc
 ```
 
 **ArkTS**
 
 ```typescript
 // File 1
-export let abc: number = 0
+export let abc: number = 100
 
 // File 2
 import * as M from 'file1'
 
-M.abc = 200
+let x = M.abc
 ```
 
 **See also**
@@ -3336,8 +3252,7 @@ Most of these restricted APIs are used to manipulate objects in a
 dynamic manner, which is not compatible with static typing. The usage of
 the following APIs is prohibited:
 
-Properties and functions of the global object: `eval`,
-`Infinity`, `NaN`, `isFinite`, `isNaN`, `parseFloat`, `parseInt`,
+Properties and functions of the global object: `eval`
 
 `Object`: `__proto__`, `__defineGetter__`, `__defineSetter__`,
 `__lookupGetter__`, `__lookupSetter__`, `assign`, `create`,
@@ -3358,8 +3273,6 @@ Properties and functions of the global object: `eval`,
 `handler.getOwnPropertyDescriptor()`, `handler.getPrototypeOf()`,
 `handler.has()`, `handler.isExtensible()`, `handler.ownKeys()`,
 `handler.preventExtensions()`, `handler.set()`, `handler.setPrototypeOf()`
-
-`ArrayBuffer`: `isView`
 
 **See also**
 
@@ -3566,3 +3479,55 @@ class C {
   n: number = 0
 }
 ```
+
+### Recipe: Usage of `ESObject` Type Is Restricted
+
+**Rule:** `arkts-limited-esobj`
+
+**Severity: warning**
+
+ArkTS does not allow using `ESObject` type in some cases. The most part of
+limitations are put in place in order to prevent spread of dynamic objects in
+the static codebase. The only scenario where it is permited to use `ESObject`
+as type specifier is in local variable declaration. Initialization of variables
+with `ESObject` type is also limited. Such variables can only be initialized
+with values that originate from interop: other `ESObject` typed variables,
+any, unknown, variables with anonymous type, etc. It is prohibited to
+initialize `ESObject` typed variable with statically typed value. Varaible
+of type `ESObject` can only be passed to interop calls and assigned to other
+variables of type `ESObject`.
+
+**ArkTS**
+
+```typescript
+// lib.d.ts
+declare function foo(): any;
+declare function bar(a: any): number;
+
+// main.ets
+let e0: ESObject = foo(); // Compile-time error: 'ESObject' typed variable can only be local
+
+function f() {
+  let e1 = foo();        // Compile-time error: type of e1 is 'any'
+  let e2: ESObject = 1;  // Compile-time error: can't initialize 'ESObject' with not dynamic values
+  let e3: ESObject = {}; // Compile-time error: can't initialize 'ESObject' with not dynamic values
+  let e4: ESObject = []; // Compile-time error: can't initialize 'ESObject' with not dynamic values
+  let e5: ESObject = ""; // Compile-time error: can't initialize 'ESObject' with not dynamic values
+  e5['prop']             // Compile-time error: can't access dynamic properties of 'ESObject'
+  e5[1]                  // Compile-time error: can't access dynamic properties of 'ESObject'
+  e5.prop                // Compile-time error: can't access dynamic properties of 'ESObject'
+
+  let e6: ESObject = foo(); // OK - explicitly annotated as 'ESObject'
+  let e7 = e6;              // OK - initialize 'ESObject' with 'ESObject'
+  bar(e7)                   // OK - 'ESObject' is passed to interop call
+}
+```
+
+**See also**
+
+* Recipe: Objects with Property Names That Are Not Identifiers Are Not Supported
+* Recipe: `Symbol()` Is Not Supported
+* Recipe: Indexed Access Is Not Supported for Fields
+* Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
+* Recipe: `in` Operator Is Not Supported
+* Recipe: `globalThis` Is Not Supported
