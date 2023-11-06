@@ -3202,9 +3202,45 @@
 
 **起始版本**：11
 
+## ohos.permission.TRUSTED_RING_HASH_DATA_PERMISSION
+
+允许应用向关键资产信任环发送数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.INPUT_CONTROL_DISPATCHING
 
 允许系统应用控制事件分发流程
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_TRUSTED_RING
+
+允许使用关键资产信任环服务提供的能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.USE_TRUSTED_RING
+
+允许应用或服务使用关键资产信任环加环能力。
 
 **权限级别**：system_basic
 
