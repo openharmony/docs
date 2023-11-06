@@ -3204,7 +3204,7 @@
 
 ## ohos.permission.INPUT_CONTROL_DISPATCHING
 
-允许系统应用控制事件分发流程。
+允许系统应用屏蔽快捷键分发逻辑。
 
 **权限级别**：system_basic
 
