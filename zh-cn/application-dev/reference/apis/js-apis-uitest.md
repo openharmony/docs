@@ -32,7 +32,6 @@ struct Index {
   @State message: string = 'Hello World'
   scroller: Scroller = new Scroller();
   private arr: string[] = ['java', 'c++', 'JavaScript', 'python', 'next page'];
-  private ListArr: String[] = ["test1", "test2", "test3", "test4", "test5", "test6","test7", "test8", "test9", "test10", "test11"];
   build() {
     Row() {
         Column()
@@ -40,7 +39,9 @@ struct Index {
           Row(){
             Text('hello world')
               .fontSize(10)
+              .id('t1')
               .fontWeight(FontWeight.Bold)
+            Button("b11");
             Text("123")
               .fontSize(10)
               .fontWeight(FontWeight.Bold)
@@ -121,6 +122,11 @@ struct Index {
             Image($r('app.media.icon'))
               .width(110).height(110).margin(15)
 
+          }.margin({top: 10})
+          Row(){
+            TextInput({
+              text:'inputText'
+            })
           }.margin({top: 10})
         }
         .width('100%')
