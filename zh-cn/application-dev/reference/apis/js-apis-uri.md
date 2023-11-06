@@ -15,6 +15,8 @@ import uri from '@ohos.uri'
 
 ## URI
 
+构造URI对象，提供判断对象相等、规范路径等方法。
+
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
