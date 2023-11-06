@@ -243,7 +243,8 @@ zh-cn/application-dev/reference/apis/js-apis-data-DataShareResultSet.md @feng-ai
 zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-data-preferences.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-data-rdb.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-udmf.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
+zh-cn/application-dev/reference/apis/js-apis-data-unifiedDataChannel.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
+zh-cn/application-dev/reference/apis/js-apis-data-uniformTypeDescriptor.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-data-cloudData.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-data-relationalStore.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-data-resultset.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
