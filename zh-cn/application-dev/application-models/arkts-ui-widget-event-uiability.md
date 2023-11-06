@@ -108,7 +108,7 @@
    
    export default class EntryFormAbility extends FormExtensionAbility {
     onAddForm(want: Want) {
-      Class DataObj1 {
+      class DataObj1 {
         formId: string = ""
       }
       let dataObj1 = new DataObj1();
