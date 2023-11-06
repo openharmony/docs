@@ -327,10 +327,10 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 事件类型，固定为'status'，表示对象上下线和恢复。 |
-| callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备； <br>status：标识对象为'online'(上线)、'offline'(下线)或'restored'(恢复)的状态。 |
+| 参数名 | 类型 | 必填 | 说明                                                                                                                                                 |
+| -------- | -------- | -------- |----------------------------------------------------------------------------------------------------------------------------------------------------|
+| type | string | 是 | 事件类型，固定为'status'，表示对象上下线和恢复。                                                                                                                       |
+| callback | Function | 是 | 监听上下线回调实例。sessionId：标识变更对象的sessionId；networkId：标识对象设备；status：标识对象状态。<br>'online'表示上线状态<br>'offline'表示下线状态<br>'restored'表示恢复状态，从API version 11开始支持。 |
 
 **示例：**
 
