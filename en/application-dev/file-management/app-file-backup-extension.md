@@ -1,22 +1,22 @@
-# Backup and Restoration Accessed by Applications
+# Accessing Backup and Restore
 
-You can use BackupExtensionAbility to enable an application to access the backup and restoration framework.
+You can use BackupExtensionAbility to enable an application to access the backup and restore framework.
 
-BackupExtensionAbility is a class derived from the [ExtensionAbility](../application-models/extensionability-overview.md) based on the [stage model](../application-models/stage-model-development-overview.md). You can modify the configuration file to customize the backup and restoration framework behavior, including whether to allow backup and restoration and specifying the files to be backed up.
+BackupExtensionAbility is a class derived from [ExtensionAbility](../application-models/extensionability-overview.md) in the [stage model](../application-models/stage-model-development-overview.md). The application that has accessed the backup and restore framework can customize the backup and restore behavior, including whether to enable backup and restore and specifying the data to be backed up, in a profile.
 
 ## Constraints
 
-- The paths of all files and directories to be backed up cannot exceed 4095 bytes. Otherwise, undefined behavior may occur.
+- The path of the file or directory to be backed up or restored cannot exceed 4095 bytes. Otherwise, undefined behavior may occur.
 - If a directory needs to be backed up, the application process must have the permission to read the directory and all its subdirectories (**r** in DAC). Otherwise, the backup fails.
-- If a file needs to be backed up, the application process must have the permission to retrieve the grandparent directory of the file (**x** in DAC). Otherwise, the backup fails.
+- If a file needs to be backed up, the application process must have the permission to retrieve all the ancestor directories of the file (**x** in DAC). Otherwise, the backup fails.
 
 ## How to Develop
 
 1. Add **extensionAbilities** to the application's **module.json5** file.
 
-   Add the **extensionAbilities** field, set **type** to **backup**, and add a record with **name** of **ohos.extension.backup** to **[metadata](../reference/apis/js-apis-bundleManager-metadata.md)**.
+   In **module.json5**, add the **extensionAbilities** field, set **type** to **backup**, and add a record with **name** set to **ohos.extension.backup** under **[metadata](../reference/apis/js-apis-bundleManager-metadata.md)**.
 
-   BackupExtensionAbility configuration example:
+   Example:
 
    ```json
    {
@@ -39,11 +39,11 @@ BackupExtensionAbility is a class derived from the [ExtensionAbility](../applica
    }
    ```
 
-2. Add a metadata resource profile.
+2. Add a metadata profile.
 
-   The metadata resource profile defines the files to be transferred during the backup and restoration process. The file is located in the **resource/profile** directory of the project, and the file name must be the same as **metadata.resource** in the **module.json5** file.
+   The metadata profile defines the files to be transferred during the backup and restore process. The profile is located in the **resources/profile** directory of the project, and the file name must be the same as the value of **metadata.resource** in the **module.json5** file.
 
-   Metadata resource profile example:
+   Example:
 
    ```json
    {
@@ -57,15 +57,15 @@ BackupExtensionAbility is a class derived from the [ExtensionAbility](../applica
    }
    ```
 
-### Description of the Metadata Resource Configuration File
+### Description of the Metadata Profile
 
-| Name            | Type  | Mandatory| Description    |
+| Field            | Type  | Mandatory| Description    |
 | -------------------- | ---------- | ---- | ----------------------- |
-| allowToBackupRestore | Boolean    | Yes  | Whether to allow backup and restoration. The default value is **false**. |
-| includes             | String array| No  | Files and directories to be backed up in the application sandbox.<br>Each item in the array is a pattern string, which can contain shell-style wildcards such as `*`, `?`, `[`.<br>The pattern string that does not start with a slash (/) indicates a relative path.<br>If **includes** is configured, the backup and restoration framework uses the pattern strings configured. Otherwise, the backup and restoration framework uses the **includes** default value (see the following code segment). |
-| excludes             | String array| No  | Items in **includes** that do not need to be backed up. The value is in the same format as **includes**.<br>If **excludes** is configured, the backup and restoration framework uses the pattern strings configured. Otherwise, the backup and restoration framework uses an empty array as the default value. |
+| allowToBackupRestore | Boolean    | Yes  | Whether to enable backup and restore. The default value is **false**. |
+| includes             | String array| No  | Files and directories to be backed up in the application sandbox directory.<br>The value is an array of pattern strings, which can contain shell-style wildcards such as *, ?, and [.<br>The pattern string that does not start with a slash (/) indicates a relative path.<br>If **includes** is not specified, the backup and restore framework uses the **includes** default (as listed in the code snippet below). |
+| excludes             | String array| No  | Items in **includes** that do not need to be backed up. The value is in the same format as **includes**.<br>If **excludes** is not configured, the backup and restore framework uses an empty array by default. |
 
-**includes** default value:
+**includes** default:
 
 ```json
 {
@@ -79,6 +79,4 @@ BackupExtensionAbility is a class derived from the [ExtensionAbility](../applica
     ]
 }
 ```
-
-
 

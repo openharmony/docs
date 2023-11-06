@@ -9,7 +9,7 @@ For details about the APIs used to develop a file manager application, see [User
 ## How to Develop
 
 1. Apply for permissions required.
-
+   
    Apply for the **ohos.permission.FILE_ACCESS_MANAGER** and **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permissions. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md).
 
    > **NOTE**
@@ -36,10 +36,10 @@ For details about the APIs used to develop a file manager application, see [User
    import common from '@ohos.app.ability.common';
    import { BusinessError } from '@ohos.base';
    import { Filter } from '@ohos.file.fs';
-
+   
    // Obtain the application context.
    let context = getContext(this) as common.UIAbilityContext;
-
+   
    // Create a helper object for connecting to all file management servers in the system.
    let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
    function createFileAccessHelper(): void {
@@ -82,18 +82,19 @@ For details about the APIs used to develop a file manager application, see [User
    In the user file access framework, **FileInfo** indicates basic information about a file (directory). You can use **listfile()** to obtain a **FileIterator** object that traverses all files (directories) of the next level or use **scanfile()** to obtain a **FileIterator** object that meets the specified conditions.
 
    Currently, **listfile()** and **scanfile()** can be called by the **RootInfo** object to traverse the next-level files or filter the entire directory tree. In addition, **listfile()** and **scanfile()** can be called by the **FileInfo** object to traverse the next-level files or filter the specified directories.
+
    ```ts
    import { BusinessError } from '@ohos.base';
    import { Filter } from '@ohos.file.fs';
-
+   
    // Start from the root directory.
    let rootInfo: Array<fileAccess.RootInfo> = rootInfos[0];
    let fileInfos: Array<fileAccess.FileInfo> = [];
    let isDone: boolean = false;
    let filter: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // Set the filter.
-   try {
-     let fileIterator: string = rootInfo.listFile();          // Traverse the root directory of rootinfos[0] and return an iterator object.
-     // let fileIterator = rootInfo.scanFile(filter);         // Filter device rootinfos[0] files that meet the specified conditions and return an iteration object.
+   try {  
+     let fileIterator: string = rootInfo.listFile();          // Traverse the root directory of rootinfos[0] and return a FileIterator object.
+     // let fileIterator = rootInfo.scanFile(filter);         // Filter device rootinfos[0] files that meet the specified conditions and return a FileIterator object.
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
      }
@@ -108,15 +109,15 @@ For details about the APIs used to develop a file manager application, see [User
     let error: BusinessError = err as BusinessError;
      console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
    }
-
+   
    // Start from the specified directory.
    let fileInfoDir: Array<fileAccess.FileInfo> = fileInfos[0];  // fileInfoDir indicates the information about a directory.
    let subFileInfos: Array<fileAccess.FileInfo> = [];
    let isDone02: boolean = false;
    let filter02: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // Set the filter.
    try {
-     let fileIterator: string = fileInfoDir.listFile();         // Traverse files in the specified directory and return an iterator object.
-     // let fileIterator = rootInfo.scanFile(filter02);         // Filter the files in the specified directory and return an iterator object.
+     let fileIterator: string = fileInfoDir.listFile();         // Traverse files in the specified directory and return a FileIterator object.
+     // let fileIterator = rootInfo.scanFile(filter02);         // Filter the files in the specified directory and return a FileIterator object.
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
      }
@@ -139,7 +140,7 @@ For details about the APIs used to develop a file manager application, see [User
 
    ```ts
    import { BusinessError } from '@ohos.base';
-
+   
    // The local device is used as an example.
    // Create a file.
    // sourceUri is the URI in fileinfo of the Download directory.
