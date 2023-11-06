@@ -162,7 +162,7 @@ try{
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
-    console.error(`throws an exception. code is ${error.code}, message is ${error.message} `);
+    console.error(`belongsTo throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```
 
@@ -200,7 +200,7 @@ try{
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
-    console.error(`throws an exception. code is ${error.code}, message is ${error.message} `);
+    console.error(`isLowerLevelType throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```
 
@@ -238,7 +238,7 @@ try{
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
-    console.error(`throws an exception. code is ${error.code}, message is ${error.message} `);
+    console.error(`isHigherLevelType throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```
 
@@ -312,7 +312,7 @@ try {
     console.info(`typeId is general.type-script`);
 } catch(e) {
     let error: BusinessError = e as BusinessError;
-    console.error(`getTypeDescriptor throws an exception. code is ${error.code}, message is ${error.message} `);
+    console.error(`getUniformDataTypeByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```
 
@@ -348,7 +348,7 @@ try {
     console.info(`typeId is com.microsoft.excel.xls`);
 } catch(e) {
     let error: BusinessError = e as BusinessError;
-    console.error(`getTypeDescriptor throws an exception. code is ${error.code}, message is ${error.message} `);
+    console.error(`getUniformDataTypeByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```
 
