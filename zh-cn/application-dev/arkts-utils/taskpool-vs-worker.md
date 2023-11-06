@@ -58,11 +58,7 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
 ## TaskPool注意事项
 
-- 实现任务的函数需要使用装饰器\@Concurrent标注，且仅支持在.ets文件中使用。
-
-- 实现任务的函数只支持普通函数或者async函数，不支持类成员函数或者匿名函数。
-
-- 实现任务的函数仅支持在Stage模型的工程中使用import的变量和入参变量，否则只能使用入参变量。
+- 实现任务的函数需要使用装饰器[\@Concurrent](arkts-concurrent.md)标注，且仅支持在.ets文件中使用。
 
 - 实现任务的函数入参需满足序列化支持的类型，详情请参见[普通对象传输](multi-thread-concurrency-overview.md#普通对象)。
 
