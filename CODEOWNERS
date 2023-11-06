@@ -158,7 +158,7 @@ zh-cn/application-dev/quick-start/arkts-dynamic-ui-elememt-building.md @gaoyong 
 zh-cn/application-dev/quick-start/arkts-rendering-control.md @gaoyong @niejiteng @jumozhanjiang @HelloCrease
 zh-cn/application-dev/quick-start/arkts-restrictions-and-extensions.md @gaoyong @niejiteng @jumozhanjiang @HelloCrease
 zh-cn/application-dev/napi/napi-guidelines.md @RayShih @niulihua @tomatodevboy
-zh-cn/application-dev/napi/drawing-guidelines.md @zengyawen @zhangqiang183  @wind_zj @zxg-gitee
+zh-cn/application-dev/napi/drawing-guidelines.md @ge-yafang @zhangqiang183  @wind_zj @zxg-gitee
 zh-cn/application-dev/napi/rawfile-guidelines.md @ningningW @Buda-Liu @budda-wang @yangqing3
 zh-cn/application-dev/reference/js-service-widget-ui/ @HelloCrease
 zh-cn/application-dev/faqs/ @zengyawen
