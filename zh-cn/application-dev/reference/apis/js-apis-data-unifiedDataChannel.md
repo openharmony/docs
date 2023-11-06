@@ -346,7 +346,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(sdr);
 
 ## SystemDefinedForm
 
-OpenHarmony系统定义的桌面卡片类型数据，是SystemDefinedRecord的子类。
+系统定义的桌面卡片类型数据，是[SystemDefinedRecord](#systemdefinedrecord)的子类。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
