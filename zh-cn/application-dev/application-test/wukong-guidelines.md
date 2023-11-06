@@ -3,13 +3,13 @@
 
 ## 概述
 
-为支撑OpenHarmony操作系统或者单应用稳定性、健壮性的测试，我们向用户提供了符合功能需求并且可靠、易用的稳定性测试工具。支持开发者针对应用进行相应的稳定性测试。
+为支撑操作系统或者单应用稳定性、健壮性的测试，我们向用户提供了符合功能需求并且可靠、易用的稳定性测试工具。支持开发者针对应用进行相应的稳定性测试。
 
 本指南重点介绍wukong稳定性工具的主要功能，同时介绍wukong命令行的使用方法。
 
 ## 简介
 
-OpenHarmony稳定性测试工具wukong，作为OpenHarmony工具集的重要组成部分，实现了Ability的随机事件注入、控件注入、异常捕获、报告生成以及对Ability的数据遍历截图等应用稳定性测试基础能力。
+稳定性测试工具wukong，作为工具集的重要组成部分，实现了Ability的随机事件注入、控件注入、异常捕获、报告生成以及对Ability的数据遍历截图等应用稳定性测试基础能力。
 
 ## 实现原理
 
@@ -33,13 +33,12 @@ OpenHarmony稳定性测试工具wukong，作为OpenHarmony工具集的重要组�
 
   ![](figures/wukongSpecialTest.png)
 
-随机测试、专项测试相关命令可具体参考[对应使用说明。](https://gitee.com/openharmony/ostest_wukong/blob/master/README_zh.md)
-
 ## 约束与限制
 
 1. wukong在3.2系统版本后开始预置使用。
 
-2. wukong在3.2系统版本之前的版本不随版本编译，使用时需自行编译后推送至被测OpenHarmony设备，步骤如下：        
+2. wukong在3.2系统版本之前的版本不随版本编译，使用时需自行编译后推送至被测硬件设备，步骤如下：      
+ 
     构建方式
     ```
     ./build.sh --product-name rk3568 --build-target wukong
@@ -54,7 +53,7 @@ OpenHarmony稳定性测试工具wukong，作为OpenHarmony工具集的重要组�
 
 ## 环境准备
 
-命令行执行需要PC连接OpenHarmony设备，如RK3568开发板等。
+命令行执行需要PC连接硬件设备，如开发板等。
 
 ## 执行稳定性测试
 

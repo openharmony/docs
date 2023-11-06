@@ -1,9 +1,9 @@
-# 自动化测试框架使用指导
+# 自动化测试框架使用指导 
 
 
 ## 概述
 
-OpenHarmony的自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架(JsUnit)及UI测试框架(UiTest)。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行等内容。
+自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架(JsUnit)及UI测试框架(UiTest)。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行等内容。
 
 
 ## 实现原理
@@ -20,9 +20,6 @@ OpenHarmony的自动化测试框架arkxtest，作为工具集的重要组成部�
 
   ![](figures/TestFlow.PNG)
 
-> **说明：**
->
-> 单元测试框架中的函数具体含义请参考[函数定义](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
 
 ### UI测试框架
 
@@ -35,16 +32,13 @@ OpenHarmony的自动化测试框架arkxtest，作为工具集的重要组成部�
 
 - UI测试框架的能力在OpenHarmony 3.1 release版本之后方可使用，历史版本不支持使用。
 
-- 单元测试框架的部分能力与其版本有关，具体能力与版本匹配信息可见代码仓中的[文档介绍](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md)。
-
-
 ## 环境准备
 
 ### 环境要求
 
-OpenHarmony自动化脚本的编写主要基于DevEco Studio，并建议使用3.0之后的版本进行脚本编写。
+自动化脚本的编写主要基于DevEco Studio，并建议使用3.0之后的版本进行脚本编写。
 
-脚本执行需要PC连接OpenHarmony设备，如RK3568开发板等。
+脚本执行需要PC连接硬件设备，如开发板等。
 
 ### 搭建环境
 
@@ -220,7 +214,7 @@ export default function abilityTest() {
 
 **查看测试用例覆盖率**
 
-执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[OpenHarmony Test代码覆盖率统计](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section1989615417457)
+执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[Test代码覆盖率统计](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section1989615417457)
 
 ### CMD执行
 
