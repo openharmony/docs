@@ -36,8 +36,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| { [OHOS_IMAGE_FORMAT_YCBCR_422_SP](image.md) = 1000,<br/>[OHOS_IMAGE_FORMAT_JPEG](image.md) = 2000, } | 图像格式枚举值。 | 
-| { [OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y](image.md) = 1,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_U](image.md) = 2,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_V](image.md) = 3,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_JPEG](image.md) = 4, } | 图像组成类型枚举值。 | 
+| { [OHOS_IMAGE_FORMAT_YCBCR_422_SP](image.md#枚举类型说明) = 1000,<br/>[OHOS_IMAGE_FORMAT_JPEG](image.md#枚举类型说明) = 2000, } | 图像格式枚举值。 | 
+| { [OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y](image.md#枚举类型说明) = 1,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_U](image.md#枚举类型说明) = 2,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_V](image.md#枚举类型说明) = 3,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_JPEG](image.md#枚举类型说明) = 4, } | 图像组成类型枚举值。 | 
 
 
 ### 函数
