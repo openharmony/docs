@@ -213,7 +213,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context;  
+  let context = getContext(this) as Context;
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
       if (err) {
           console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
@@ -549,7 +549,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   let promise = contact.updateContact(context, {
       id: 1,
       name: {fullName: 'xxx'},
@@ -639,7 +639,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
       globalThis.context = this.context;
@@ -723,7 +723,7 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   let promise = contact.isLocalContact(context, /*id*/1);
   promise.then((data) => {
       console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
@@ -799,7 +799,7 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.isMyCard(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
@@ -878,7 +878,7 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   let promise = contact.isMyCard(context, /*id*/1);
   promise.then((data) => {
       console.log(`isMyCard success: data->${JSON.stringify(data)}`);
@@ -954,7 +954,7 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryMyCard(context, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
@@ -1027,7 +1027,7 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryMyCard(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -1110,7 +1110,7 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   let promise = contact.queryMyCard(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
@@ -1391,7 +1391,7 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
@@ -1467,7 +1467,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', {
       holderId: 0,
       bundleName: "",
@@ -1551,7 +1551,7 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -1632,7 +1632,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', {
       holderId: 0,
       bundleName: "",
@@ -1727,7 +1727,7 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   let promise = contact.queryContact(context, 'xxx', {
       holderId: 0,
       bundleName: "",
@@ -1816,7 +1816,7 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContacts(context, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
@@ -1889,7 +1889,7 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContacts(context, {
       holderId: 0,
       bundleName: "",
@@ -1971,7 +1971,7 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContacts(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -2050,7 +2050,7 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContacts(context, {
       holderId: 0,
       bundleName: "",
@@ -2142,7 +2142,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   let promise = contact.queryContacts(context, {
       holderId: 0,
       bundleName: "",
@@ -2232,7 +2232,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
@@ -2308,7 +2308,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
@@ -2392,7 +2392,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -2473,7 +2473,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
@@ -2568,7 +2568,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   let promise = contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
@@ -2659,7 +2659,7 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -2734,7 +2734,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 0,
       bundleName: "",
@@ -2818,7 +2818,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
@@ -2899,7 +2899,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 0,
       bundleName: "",
@@ -2994,7 +2994,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   let promise = contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 0,
       bundleName: "",
@@ -3084,7 +3084,7 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryGroups(context, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
@@ -3157,7 +3157,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryGroups(context, {
       holderId: 0,
       bundleName: "",
@@ -3244,7 +3244,7 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   let promise = contact.queryGroups(context, {
       holderId: 0,
       bundleName: "",
@@ -3328,7 +3328,7 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryHolders(context, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
@@ -3405,7 +3405,7 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   let promise = contact.queryHolders(context);
   promise.then((data) => {
       console.log(`queryHolders success: data->${JSON.stringify(data)}`);
@@ -3476,7 +3476,7 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryKey callback: err->${JSON.stringify(err)}`);
@@ -3551,7 +3551,7 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   contact.queryKey(context, /*id*/1, {
       holderId: 0,
       bundleName: "",
@@ -3640,7 +3640,7 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
   ```js
   import { BusinessError } from '@ohos.base';
   // 获取context
-  let context = getContext(this) as Context
+  let context = getContext(this) as Context;
   let promise = contact.queryKey(context, /*id*/1, {
       holderId: 0,
       bundleName: "",
@@ -3750,8 +3750,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 
 ```js
-// 当前示例代码仅使用与js源文件
-let myContact = {
+let myContact: contact.Contact = {
     phoneNumbers: [{
         phoneNumber: "138xxxxxxxx"
     }],
@@ -3769,7 +3768,6 @@ let myContact = {
   或使用new一个Contact对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let myContact = new contact.Contact();
 let name = new contact.Name();
 name.fullName = "fullName";
@@ -3798,8 +3796,7 @@ myContact.phoneNumbers = [phoneNumber];
 
 
 ```js
-// 当前示例代码仅使用与js源文件
-let contactAttributes = {
+let contactAttributes: contact.ContactAttributes = {
     attributes: [
         contact.Attribute.ATTR_EMAIL,
         contact.Attribute.ATTR_NAME,
@@ -3812,7 +3809,6 @@ let contactAttributes = {
 
 
 ```js
-// 当前示例代码仅使用与js源文件
 let contactAttributes = new contact.ContactAttributes();
 contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 ```
@@ -3847,7 +3843,6 @@ contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE];
 ```
 
@@ -3884,8 +3879,7 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let email = {
+let email: contact.Email = {
     email: "xxx@email.com",
     displayName: "displayName"
 }
@@ -3895,7 +3889,6 @@ let email = {
   或使用new一个Email对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let email = new contact.Email();
 email.email = "xxx@email.com";
 ```
@@ -3919,8 +3912,7 @@ email.email = "xxx@email.com";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let holder = {
+let holder: contact.Holder = {
   holderId: 0
 };
 ```
@@ -3928,7 +3920,6 @@ let holder = {
   或使用new一个Holder对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let holder = new contact.Holder();
 holder.holderId = 0;
 ```
@@ -3965,8 +3956,7 @@ holder.holderId = 0;
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let event = {
+let event: contact.Event = {
     eventDate: "xxxxxx"
 };
 ```
@@ -3974,7 +3964,6 @@ let event = {
   或使用new一个Event对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let event = new contact.Event();
 event.eventDate = "xxxxxx";
 ```
@@ -3997,8 +3986,7 @@ event.eventDate = "xxxxxx";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let group = {
+let group: contact.Group = {
     groupId: 1,
     title: "title"
 };
@@ -4007,7 +3995,6 @@ let group = {
   或使用new一个Group对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let group = new contact.Group();
 group.title = "title";
 ```
@@ -4048,8 +4035,7 @@ group.title = "title";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let imAddress = {
+let imAddress: contact.ImAddress = {
     imAddress: "imAddress",
     labelName: "labelName"
 };
@@ -4059,7 +4045,6 @@ let imAddress = {
   或使用new一个ImAddress对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let imAddress = new contact.ImAddress();
 imAddress.imAddress = "imAddress";
 ```
@@ -4089,8 +4074,7 @@ imAddress.imAddress = "imAddress";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let name = {
+let name: contact.Name = {
     familyName: "familyName",
     fullName: "fullName"
 };
@@ -4099,7 +4083,6 @@ let name = {
   或使用new一个name对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let name = new contact.Name();
 name.familyName = "familyName";
 name.fullName = "fullName";
@@ -4122,8 +4105,7 @@ name.fullName = "fullName";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let nickName = {
+let nickName: contact.NickName = {
     nickName: "nickName"
 };
 ```
@@ -4131,7 +4113,6 @@ let nickName = {
   或使用new一个NickName对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let nickName = new contact.NickName();
 nickName.nickName = "nickName";
 ```
@@ -4153,8 +4134,7 @@ nickName.nickName = "nickName";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let note = {
+let note: contact.Note() = {
     noteContent: "noteContent"
 };
 ```
@@ -4162,7 +4142,6 @@ let note = {
   或使用new一个Note对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let note = new contact.Note();
 note.noteContent = "noteContent";
 ```
@@ -4185,8 +4164,7 @@ note.noteContent = "noteContent";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let organization = {
+let organization: contact.Organization = {
     name: "name",
     title: "title"
 };
@@ -4195,7 +4173,6 @@ let organization = {
   或使用new一个Organization对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let organization = new contact.Organization();
 organization.name = "name";
 organization.title = "title";
@@ -4250,8 +4227,7 @@ organization.title = "title";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let phoneNumber = {
+let phoneNumber: contact.PhoneNumber = {
     phoneNumber: "138xxxxxxxx",
     labelId: contact.PhoneNumber.NUM_HOME
 };
@@ -4260,7 +4236,6 @@ let phoneNumber = {
   或使用new一个PhoneNumber对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let phoneNumber = new contact.PhoneNumber();
 phoneNumber.phoneNumber = "138xxxxxxxx";
 ```
@@ -4282,8 +4257,7 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let portrait = {
+let portrait: contact.Portrait = {
     uri: "uri"
 };
 ```
@@ -4291,7 +4265,6 @@ let portrait = {
   或使用new一个Portrait对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let portrait = new contact.Portrait();
 portrait.uri = "uri";
 ```
@@ -4335,8 +4308,7 @@ portrait.uri = "uri";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let postalAddress = {
+let postalAddress: contact.PostalAddress = {
     city: "city"
 };
 ```
@@ -4344,7 +4316,6 @@ let postalAddress = {
   或使用new一个PostalAddress对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let postalAddress = new contact.PostalAddress();
 postalAddress.city = "city";
 ```
@@ -4392,8 +4363,7 @@ postalAddress.city = "city";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let relation = {
+let relation: contact.Relation = {
     relationName: "relationName",
     labelId: contact.Relation.RELATION_ASSISTANT
 };
@@ -4402,7 +4372,6 @@ let relation = {
   或使用new一个Relation对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let relation = new contact.Relation();
 relation.relationName = "relationName";
 relation.labelId = contact.Relation.RELATION_ASSISTANT;
@@ -4439,8 +4408,7 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-var sipAddress = {
+let sipAddress: contact.SipAddress = {
     sipAddress: "sipAddress"
 };
 ```
@@ -4448,7 +4416,6 @@ var sipAddress = {
   或使用new一个SipAddress对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let sipAddress = new contact.SipAddress();
 sipAddress.sipAddress = "sipAddress";
 ```
@@ -4470,8 +4437,7 @@ sipAddress.sipAddress = "sipAddress";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let website = {
+let website: contact.Website = {
     website: "website"
 };
 ```
@@ -4479,7 +4445,6 @@ let website = {
   或使用new一个Website对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let website = new contact.Website();
 website.website = "website";
 ```
