@@ -158,7 +158,7 @@ try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
     let ret = typeObj.belongsTo("general.plain-text");
     if(ret) {
-        console.info(`general.type-script is belongsTo general.plain-text`);
+        console.info(`type general.type-script belongs to type general.plain-text`);
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
