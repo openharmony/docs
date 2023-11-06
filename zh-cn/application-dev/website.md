@@ -403,6 +403,7 @@
         - [多线程并发概述](arkts-utils/multi-thread-concurrency-overview.md)
         - [Actor并发模型对比内存共享并发模型](arkts-utils/actor-model-development-samples.md)
         - [TaskPool和Worker的对比](arkts-utils/taskpool-vs-worker.md)
+        - [@Concurrent装饰器：校验并发函数](arkts-utils/arkts-concurrent.md)
         - [CPU密集型任务开发指导](arkts-utils/cpu-intensive-task-development.md)
         - [I/O密集型任务开发指导](arkts-utils/io-intensive-task-development.md)
         - [同步任务开发指导](arkts-utils/sync-task-development.md)
