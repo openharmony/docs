@@ -9,6 +9,7 @@
   - 使用多线程并发能力进行开发
     - [多线程并发概述](multi-thread-concurrency-overview.md)
     - [TaskPool和Worker的对比](taskpool-vs-worker.md)
+    - [\@Concurrent装饰器：校验并发函数](arkts-concurrent.md)
     - [CPU密集型任务开发指导](cpu-intensive-task-development.md)
     - [I/O密集型任务开发指导](io-intensive-task-development.md)
     - [同步任务开发指导](sync-task-development.md)
