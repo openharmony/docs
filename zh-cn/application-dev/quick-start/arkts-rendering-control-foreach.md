@@ -44,8 +44,7 @@ ArkUI框架对于`ForEach`的键值生成有一套特定的判断规则，这主
 
 > **说明：**
 >
-> - 即使在`itemGenerator`函数中声明了`index`参数，但并未在函数体中使用，也被视为对`index`参数进行了处理。
-> - ArkUI框架会对重复的键值发出警告。在UI更新的场景下，如果出现重复的键值，框架可能无法正常工作，具体请参见[渲染结果非预期](#渲染结果非预期)。
+> ArkUI框架会对重复的键值发出警告。在UI更新的场景下，如果出现重复的键值，框架可能无法正常工作，具体请参见[渲染结果非预期](#渲染结果非预期)。
 
 ## 组件创建规则
 
@@ -187,11 +186,9 @@ struct ChildItem {
 
 从本例可以看出`@State` 能够监听到简单数据类型数组数据源 `simpleList` 数组项的变化。
 
-当 `simpleList` 数组项发生变化时，会触发 `ForEach` 进行重新渲染。
-
-`ForEach` 遍历新的数据源 `['one', 'two', 'new three']`，并生成对应的键值`one`、`two`和`new three`。
-
-其中，键值`one`和`two`在上次渲染中已经存在，所以 `ForEach` 复用了对应的组件并进行了渲染。对于第三个数组项 "new three"，由于其通过键值生成规则 `item` 生成的键值`new three`在上次渲染中不存在，因此 `ForEach` 为该数组项创建了一个新的组件。
+1. 当 `simpleList` 数组项发生变化时，会触发 `ForEach` 进行重新渲染。
+2. `ForEach` 遍历新的数据源 `['one', 'two', 'new three']`，并生成对应的键值`one`、`two`和`new three`。
+3. 其中，键值`one`和`two`在上次渲染中已经存在，所以 `ForEach` 复用了对应的组件并进行了渲染。对于第三个数组项 "new three"，由于其通过键值生成规则 `item` 生成的键值`new three`在上次渲染中不存在，因此 `ForEach` 为该数组项创建了一个新的组件。
 
 ## 使用场景
 
@@ -366,7 +363,10 @@ struct ArticleCard {
 **图6**  数据源数组项变化案例运行效果图  
 ![ForEach-DataSourceArrayChange](figures/ForEach-DataSourceArrayChange.png)
 
-本示例中，ArticleCard组件是ArticleListView组件的子组件，通过@Prop传入Article对象渲染展示文章卡片。
+在本示例中，`ArticleCard`组件作为`ArticleListView`组件的子组件，通过`@Prop`装饰器接收一个`Article`对象，用于渲染文章卡片。
+
+1. 当列表滚动到底部时，如果手势滑动距离超过指定的80，将触发`loadMoreArticle()`函数。此函数会在`articleList`数据源的尾部添加一个新的数据项，从而增加数据源的长度。
+2. 数据源被`@State`装饰器修饰，ArkUI框架能够感知到数据源长度的变化，并触发`ForEach`进行重新渲染。
 
 ### 数据源数组项子属性变化
 
@@ -476,11 +476,11 @@ struct ArticleCard {
 
 在本示例中，`Article`类被`@Observed`装饰器修饰。父组件`ArticleListView`传入`Article`对象实例给子组件`ArticleCard`，子组件使用`@ObjectLink`装饰器接收该实例。
 
-- 当点击第1个文章卡片上的点赞图标时，会触发`ArticleCard`组件的`handleLiked`函数。该函数修改第1个卡片对应组件里`article`实例的`isLiked`和`likesCount`属性值。
-- 由于子组件`ArticleCard`中的`article`使用了`@ObjectLink`装饰器，父子组件共享同一份`article`数据。因此，父组件中`articleList`的第1个数组项的`isLiked`和`likedCounts`数值也会同步修改。
-- 当父组件监听到数据源数组项属性值变化时，会触发`ForEach`重新渲染。
-- 在此处，`ForEach`键值生成规则为数组项的`id`属性值。当`ForEach`遍历新数据源时，数组项的`id`均没有变化，不会新建组件。
-- 渲染第1个数组项对应的`ArticleCard`组件时，读取到的`isLiked`和`likesCount`为修改后的新值。
+1. 当点击第1个文章卡片上的点赞图标时，会触发`ArticleCard`组件的`handleLiked`函数。该函数修改第1个卡片对应组件里`article`实例的`isLiked`和`likesCount`属性值。
+2. 由于子组件`ArticleCard`中的`article`使用了`@ObjectLink`装饰器，父子组件共享同一份`article`数据。因此，父组件中`articleList`的第1个数组项的`isLiked`和`likedCounts`数值也会同步修改。
+3. 当父组件监听到数据源数组项属性值变化时，会触发`ForEach`重新渲染。
+4. 在此处，`ForEach`键值生成规则为数组项的`id`属性值。当`ForEach`遍历新数据源时，数组项的`id`均没有变化，不会新建组件。
+5. 渲染第1个数组项对应的`ArticleCard`组件时，读取到的`isLiked`和`likesCount`为修改后的新值。
 
 ## 使用建议
 
