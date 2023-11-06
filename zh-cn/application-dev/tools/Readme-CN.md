@@ -9,4 +9,4 @@
 - [anm工具](anm-tool.md)
 - [restool工具](restool.md)
 - [LLDB工具](lldb-tool.md)
-- [suap工具](suap-tool.md)
+- [OpenHarmony SDK升级助手](openharmony_sdk_upgrade_assistant.md)

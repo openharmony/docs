@@ -780,7 +780,7 @@
     - [anm工具](tools/anm-tool.md)
     - [restool工具](tools/restool.md)
     - [LLDB工具](tools/lldb-tool.md)
-    - [suap工具](tools/suap-tool.md)
+    - [OpenHarmony SDK 升级助手](tools/openharmony_sdk_upgrade_assistant.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Release/README_zh.md)
