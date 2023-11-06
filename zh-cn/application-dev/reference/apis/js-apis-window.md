@@ -5557,9 +5557,10 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 // 将windowClass调整到targetWindow之上
+let windowClass: window.Window = window.findWindow("test");
+let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
-let windowClass: window.Window = window.findWindow("test");
 windowClass.raiseAboveTarget(targetId, (err) => {
     if (err.code) {
         console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
@@ -5606,6 +5607,8 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 ```ts
 // 将windowClass调整到targetWindow之上
+let windowClass: window.Window = window.findWindow("test");
+let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
 let promise = windowClass.raiseAboveTarget(targetId);
