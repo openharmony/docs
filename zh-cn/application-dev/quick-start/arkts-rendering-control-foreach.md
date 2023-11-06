@@ -39,7 +39,7 @@ ForEach(
 
 ArkUI框架对于`ForEach`的键值生成有一套特定的判断规则，这主要与`itemGenerator`函数的第二个参数`index`以及`keyGenerator`函数的返回值有关。总的来说，只有当开发者在`itemGenerator`函数中声明了`index`参数，并且自定义的`keyGenerator`函数返回值中不包含`index`参数时，ArkUI框架才会在开发者自定义的`itemGenerator`函数返回值前添加`index`参数，作为最终的键值。在其他情况下，系统将直接使用开发者自定义的`keyGenerator`函数返回值作为最终的键值。如果`keyGenerator`函数未定义，系统将使用上述默认的键值生成函数。具体的键值生成规则判断逻辑如下图所示。
 
-图1 ForEach键值生成规则  
+**图1** ForEach键值生成规则  
 ![ForEach-Key-Generation-Rules](figures/ForEach-Key-Generation-Rules.png)
 
 > **说明：**
@@ -89,7 +89,7 @@ struct ChildItem {
 
 运行效果如下图所示。
 
-图2  ForEach数据源不存在相同值案例首次渲染运行效果图  
+**图2**  ForEach数据源不存在相同值案例首次渲染运行效果图  
 ![ForEach-CaseStudy-1stRender-NoDup](figures/ForEach-CaseStudy-1stRender-NoDup.png)
 
 在上述代码中，键值生成规则是`keyGenerator`函数的返回值`item`。在ForEach渲染循环时，为数据源数组项依次生成键值`one`、`two`和`three`，并创建对应的`ChildItem`组件渲染到界面上。
@@ -130,7 +130,7 @@ struct ChildItem {
 
 运行效果如下图所示。
 
-图3  ForEach数据源存在相同值案例首次渲染运行效果图  
+**图3**  ForEach数据源存在相同值案例首次渲染运行效果图  
 ![ForEach-CaseStudy-1stRender-Dup](figures/ForEach-CaseStudy-1stRender-Dup.png)
 
 在该示例中，最终键值生成规则为`item`。当ForEach遍历数据源`simpleList`，遍历到索引为1的`two`时，按照最终键值生成规则生成键值为`two`的组件并进行标记。当遍历到索引为2的`two`时，按照最终键值生成规则当前项的键值也为`two`，此时不再创建新的组件。
@@ -182,7 +182,7 @@ struct ChildItem {
 
 运行效果如下图所示。
 
-图4  ForEach非首次渲染案例运行效果图  
+**图4**  ForEach非首次渲染案例运行效果图  
 ![ForEach-Non-Initial-Render-Case-Effect](figures/ForEach-Non-Initial-Render-Case-Effect.gif)
 
 从本例可以看出`@State` 能够监听到简单数据类型数组数据源 `simpleList` 数组项的变化。
@@ -257,7 +257,7 @@ struct ArticleSkeletonView {
 
 运行效果如下图所示。
 
-图5 骨架屏运行效果图  
+**图5** 骨架屏运行效果图  
 ![ForEach-SkeletonScreen](figures/ForEach-SkeletonScreen.png)
 
 在本示例中，采用数据项item作为键值生成规则，由于数据源simpleList的数组项各不相同，因此能够保证键值的唯一性。
@@ -363,7 +363,7 @@ struct ArticleCard {
 
 初始运行效果（左图）和手势上滑加载后效果（右图）如下图所示。
 
-图6  数据源数组项变化案例运行效果图  
+**图6**  数据源数组项变化案例运行效果图  
 ![ForEach-DataSourceArrayChange](figures/ForEach-DataSourceArrayChange.png)
 
 本示例中，ArticleCard组件是ArticleListView组件的子组件，通过@Prop传入Article对象渲染展示文章卡片。
@@ -471,7 +471,7 @@ struct ArticleCard {
 
 上述代码的初始运行效果（左图）和点击第1个文章卡片上的点赞图标后的运行效果（右图）如下图所示。
 
-图7 数据源数组项子属性变化案例运行效果图  
+**图7** 数据源数组项子属性变化案例运行效果图  
 ![ForEach-DataSourceArraySubpropertyChange](figures/ForEach-DataSourceArraySubpropertyChange.png)
 
 在本示例中，`Article`类被`@Observed`装饰器修饰。父组件`ArticleListView`传入`Article`对象实例给子组件`ArticleCard`，子组件使用`@ObjectLink`装饰器接收该实例。
