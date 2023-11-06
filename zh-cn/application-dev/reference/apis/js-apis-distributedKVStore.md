@@ -3906,13 +3906,22 @@ closeResultSet(resultSet: KVStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 ```ts
 import { BusinessError } from '@ohos.base';
 
+let resultSet: distributedKVStore.KVStoreResultSet;
 try {
-  kvStore.closeResultSet(resultSet, (err) => {
-    if (err == undefined) {
-      console.info('Succeeded in closing result set');
-    } else {
-      console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+  kvStore.getResultSet('batch_test_string_key', async (err, result) => {
+    if (err != undefined) {
+      console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+      return;
     }
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+    kvStore.closeResultSet(resultSet, (err) => {
+      if (err != undefined) {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in closing result set');
+    })
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -3945,7 +3954,14 @@ closeResultSet(resultSet: KVStoreResultSet): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
+let resultSet: distributedKVStore.KVStoreResultSet;
 try {
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+  });
   kvStore.closeResultSet(resultSet).then(() => {
     console.info('Succeeded in closing result set');
   }).catch((err: BusinessError) => {
@@ -4874,42 +4890,48 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 ```ts
 import deviceManager from '@ohos.distributedDeviceManager';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 let devManager: deviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
-try {
-  devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
-  let deviceIds: string[] = [];
-  if (devManager != null) {
-    let devices = devManager.getAvailableDeviceListSync();
-    for (let i = 0; i < devices.length; i++) {
-      deviceIds[i] = devices[i].networkId as string;
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    let context = this.context;
+    try {
+      devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+      let deviceIds: string[] = [];
+      if (devManager != null) {
+        let devices = devManager.getAvailableDeviceListSync();
+        for (let i = 0; i < devices.length; i++) {
+          deviceIds[i] = devices[i].networkId as string;
+        }
+      }
+      try {
+        kvStore.on('syncComplete', (data) => {
+          console.info('Sync dataChange');
+        });
+        kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+          if (err != undefined) {
+            console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in putting data');
+          const mode = distributedKVStore.SyncMode.PULL_ONLY;
+          kvStore.sync(deviceIds, mode, 1000);
+        });
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`Failed to sync.code is ${error.code},message is ${error.message}`);
+      }
+
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
     }
   }
-  try {
-    kvStore.on('syncComplete', (data) => {
-      console.info('Sync dataChange');
-    });
-    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
-      if (err != undefined) {
-        console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in putting data');
-      const mode = distributedKVStore.SyncMode.PULL_ONLY;
-      kvStore.sync(deviceIds, mode, 1000);
-    });
-  } catch (e) {
-    let error = e as BusinessError;
-    console.error(`Failed to sync.code is ${error.code},message is ${error.message}`);
-  }
-
-} catch (err) {
-  let error = err as BusinessError;
-  console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
 }
 ```
 
@@ -4948,45 +4970,51 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
 ```ts
 import deviceManager from '@ohos.distributedDeviceManager';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 let devManager: deviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
-try {
-  let devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
-  let deviceIds: string[] = [];
-  if (devManager != null) {
-    let devices = devManager.getAvailableDeviceListSync();
-    for (let i = 0; i < devices.length; i++) {
-      deviceIds[i] = devices[i].networkId as string;
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    let context = this.context;
+    try {
+      let devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+      let deviceIds: string[] = [];
+      if (devManager != null) {
+        let devices = devManager.getAvailableDeviceListSync();
+        for (let i = 0; i < devices.length; i++) {
+          deviceIds[i] = devices[i].networkId as string;
+        }
+      }
+      try {
+        kvStore.on('syncComplete', (data) => {
+          console.info('Sync dataChange');
+        });
+        kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+          if (err != undefined) {
+            console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in putting data');
+          const mode = distributedKVStore.SyncMode.PULL_ONLY;
+          const query = new distributedKVStore.Query();
+          query.prefixKey("batch_test");
+          query.deviceId(devManager.getLocalDeviceNetworkId());
+          kvStore.sync(deviceIds, query, mode, 1000);
+        });
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`Failed to sync.code is ${error.code},message is ${error.message}`);
+      }
+
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
     }
   }
-  try {
-    kvStore.on('syncComplete', (data) => {
-      console.info('Sync dataChange');
-    });
-    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
-      if (err != undefined) {
-        console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in putting data');
-      const mode = distributedKVStore.SyncMode.PULL_ONLY;
-      const query = new distributedKVStore.Query();
-      query.prefixKey("batch_test");
-      query.deviceId(devManager.getLocalDeviceNetworkId());
-      kvStore.sync(deviceIds, query, mode, 1000);
-    });
-  } catch (e) {
-    let error = e as BusinessError;
-    console.error(`Failed to sync.code is ${error.code},message is ${error.message}`);
-  }
-
-} catch (err) {
-  let error = err as BusinessError;
-  console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
 }
 ```
 

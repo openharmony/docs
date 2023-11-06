@@ -735,7 +735,7 @@ sharing
 
 ## sharing.getSharingState<sup>9+</sup>
 
-getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceState>): void
+getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceState\>): void
 
 获取指定类型网络共享状态，使用 callback 方式作为异步方法。
 
@@ -770,7 +770,7 @@ import sharing from '@ohos.net.sharing';
 import { BusinessError } from '@ohos.base';
 
 let SHARING_WIFI = 0;
-sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: object) => {
+sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: sharing.SharingIfaceState) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -778,7 +778,7 @@ sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: object) => {
 
 ## sharing.getSharingState<sup>9+</sup>
 
-getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
+getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState\>
 
 获取指定类型网络共享状态，使用 Promise 方式作为异步方法。
 
@@ -820,7 +820,7 @@ import { BusinessError } from '@ohos.base';
 let SHARING_WIFI = 0;
 sharing
   .getSharingState(SHARING_WIFI)
-  .then((data: object) => {
+  .then((data: sharing.SharingIfaceState) => {
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
@@ -830,7 +830,7 @@ sharing
 
 ## sharing.getSharableRegexes<sup>9+</sup>
 
-getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string>>): void
+getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string\>\>): void
 
 获取指定类型网卡名称正则表达式列表，使用 callback 方式作为异步方法。
 

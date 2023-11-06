@@ -18,10 +18,10 @@ import panel from '@ohos.inputMethod.Panel';
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- | -------- | -------- |
-| type | [PanelType](#paneltype) | 是 | 是 | 是 | 输入法面板类型。 |
-| flag | [PanelFlag](#panelflag) | 是 | 是 | 否 | 输入法面板状态类型。<br/>- 默认值为固定态。<br/>- 当前仅用于描述软键盘类型的面板的状态。 |
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | [PanelType](#paneltype) | 是 | 输入法面板类型。 |
+| flag | [PanelFlag](#panelflag) | 否 | 输入法面板状态类型。<br/>- 默认值为固定态。<br/>- 当前仅用于描述软键盘类型的面板的状态。 |
 
 ##  PanelType
 

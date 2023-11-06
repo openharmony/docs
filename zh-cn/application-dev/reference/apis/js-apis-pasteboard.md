@@ -1796,13 +1796,21 @@ isRemoteData(): boolean
 
 判断剪贴板中的数据是否来自其他设备。
 
-**系统能力：** SystemCapability.MiscServices
+**系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
 
 | 类型    | 说明                                  |
 | ------- | ------------------------------------- |
 | boolean | 是来自其他设备返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
 
 **示例：**
 
@@ -1824,13 +1832,21 @@ getDataSource(): string
 
 获取数据来源。
 
-**系统能力：** SystemCapability.MiscServices
+**系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
 
 | 类型   | 说明   |
 | ------ | ------ |
 | string | 数据来源。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
 
 **示例：**
 
@@ -1852,7 +1868,7 @@ hasDataType(mimeType: string): boolean
 
 检查剪贴板内容中是否有指定类型的数据。
 
-**系统能力：** SystemCapability.MiscServices
+**系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
 
@@ -1865,6 +1881,15 @@ hasDataType(mimeType: string): boolean
 | 类型    | 说明                                        |
 | ------- | ------------------------------------------- |
 | boolean | 有指定类型的数据返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Type is not string. |
+| 12900005 | Request time out. |
 
 **示例：**
 
@@ -1886,7 +1911,15 @@ clearDataSync(): void
 
 清空系统剪贴板内容, 此接口为同步接口。
 
-**系统能力：** SystemCapability.MiscServices
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
 
 **示例：**
 
@@ -1908,13 +1941,21 @@ getDataSync(): PasteData
 
 读取系统剪贴板内容, 此接口为同步接口。
 
-**系统能力：** SystemCapability.MiscServices
+**系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
 
 | 类型                    | 说明                 |
 | ----------------------- | -------------------- |
 | [PasteData](#pastedata) | 返回系统剪贴板数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
 
 **示例：**
 
@@ -1936,13 +1977,22 @@ setDataSync(data: PasteData): void
 
 将数据写入系统剪贴板, 此接口为同步接口。
 
-**系统能力：** SystemCapability.MiscServices
+**系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
 
 | 参数名 | 类型                    | 必填 | 说明             |
 | ------ | ----------------------- | ---- | ---------------- |
 | data   | [PasteData](#pastedata) | 是   | 需要写入剪贴板中的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Type of data is not PasteData. |
+| 12900005 | Request time out. |
 
 **示例：**
 
@@ -1965,13 +2015,21 @@ hasDataSync(): boolean
 
 判断系统剪贴板中是否有内容, 此接口为同步接口。
 
-**系统能力：** SystemCapability.MiscServices
+**系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
 
 | 类型    | 说明                                                                    |
 | ------- | ----------------------------------------------------------------------- |
 | boolean | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
 
 **示例：**
 

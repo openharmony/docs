@@ -306,10 +306,11 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 **示例：**
 
 ```js
+import audio from '@ohos.multimedia.audio'
+
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
   rendererFlags : 1
 }
 
@@ -356,10 +357,11 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 **示例：**
 
 ```js
+import audio from '@ohos.multimedia.audio'
+
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
   rendererFlags : 1
 }
 
@@ -370,7 +372,7 @@ media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) =
   } else {
     console.error('create SoundPool fail');
   }
-}).catch((error: BusinessError) => {
+}, (error: BusinessError) => {
   console.error(`soundpool catchCallback, error message:${error.message}`);
 });
 ```
@@ -520,34 +522,34 @@ let avPlayer = await media.createAVPlayer();
 avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
   switch (state) {
     case 'idle':
-      console.info('state idle called')
+      console.info('state idle called');
       break;
     case 'initialized':
-      console.info('initialized prepared called')
+      console.info('initialized prepared called');
       break;
     case 'prepared':
-      console.info('state prepared called')
+      console.info('state prepared called');
       break;
     case 'playing':
-      console.info('state playing called')
+      console.info('state playing called');
       break;
     case 'paused':
-      console.info('state paused called')
+      console.info('state paused called');
       break;
     case 'completed':
-      console.info('state completed called')
+      console.info('state completed called');
       break;
     case 'stopped':
-      console.info('state stopped called')
+      console.info('state stopped called');
       break;
     case 'released':
-      console.info('state released called')
+      console.info('state released called');
       break;
     case 'error':
-      console.info('state error called')
+      console.info('state error called');
       break;
     default:
-      console.info('unkown state :' + state)
+      console.info('unkown state :' + state);
       break;
   }
 })
@@ -992,7 +994,7 @@ release(callback: AsyncCallback\<void>): void
 ```ts
 avPlayer.release((err: BusinessError) => {
   if (err == null) {
-    console.info('reset success');
+    console.info('release success');
   } else {
     console.error('release filed,error message is :' + err.message)
   }
@@ -1796,6 +1798,10 @@ avPlayer.off('audioInterrupt')
 
 ```ts
 import media from '@ohos.multimedia.media'
+
+// 创建avPlayer实例对象
+let avPlayer = await media.createAVPlayer();
+
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
   console.info('audio key is ' + key); // 通过key值获取对应的value。key值具体可见[MediaDescriptionKey]
@@ -1862,7 +1868,6 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 | 401      | Parameter error. Return by callback.    |
 | 5400102  | Operate not permit. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
-| 5400106  | Unsupport format. Return by callback.   |
 
 **示例：**
 
@@ -1934,7 +1939,6 @@ prepare(config: AVRecorderConfig): Promise\<void>
 | 401      | Parameter error. Return by promise.    |
 | 5400102  | Operate not permit. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
-| 5400106  | Unsupport format. Return by callback.   |
 
 **示例：**
 
@@ -2755,11 +2759,11 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
-  audioCodec : 'audio/mp4a-latm',
+  audioCodec : 'audio/mp4a-latm' as media.CodecMimeType,
   audioSampleRate : 48000,
-  fileFormat : 'mp4',
+  fileFormat : 'mp4' as media.ContainerFormatType,
   videoBitrate : 2000000,
-  videoCodec : 'video/avc',
+  videoCodec : 'video/avc' as media.CodecMimeType,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
@@ -2770,7 +2774,7 @@ let videoConfig: media.VideoRecorderConfig = {
   videoSourceType : 0,
   profile : videoProfile,
   url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
-  orientationHint : 0,
+  rotation : 0,
   location : { latitude : 30, longitude : 130 },
 }
 
@@ -2826,11 +2830,11 @@ prepare(config: VideoRecorderConfig): Promise\<void>
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
-  audioCodec : 'audio/mp4a-latm',
+  audioCodec : 'audio/mp4a-latm' as media.CodecMimeType,
   audioSampleRate : 48000,
-  fileFormat : 'mp4',
+  fileFormat : 'mp4' as media.ContainerFormatType,
   videoBitrate : 2000000,
-  videoCodec : 'video/avc',
+  videoCodec : 'video/avc' as media.CodecMimeType,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
@@ -2841,7 +2845,7 @@ let videoConfig: media.VideoRecorderConfig = {
   videoSourceType : 0,
   profile : videoProfile,
   url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
-  orientationHint : 0,
+  rotation : 0,
   location : { latitude : 30, longitude : 130 },
 }
 
@@ -4440,6 +4444,18 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
+import media from '@ohos.multimedia.media'
+
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
+
 let seekTime: number = 5000;
 videoPlayer.seek(seekTime, (err: BusinessError, result: number) => {
   if (err == null) {
@@ -4473,6 +4489,16 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
 ```ts
 import media from '@ohos.multimedia.media'
+
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
 let seekTime: number = 5000;
 videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, result: number) => {
   if (err == null) {
@@ -4511,6 +4537,16 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
 ```ts
 import media from '@ohos.multimedia.media'
+
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
 let seekTime: number = 5000;
 videoPlayer.seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime表示seek完成后的时间点
   console.info('seek success');
@@ -4728,8 +4764,17 @@ setSpeed(speed:number, callback: AsyncCallback\<number>): void
 
 ```ts
 import media from '@ohos.multimedia.media'
-let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
+let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 videoPlayer.setSpeed(speed, (err: BusinessError, result: number) => {
   if (err == null) {
     console.info('setSpeed success!');
@@ -4766,8 +4811,17 @@ setSpeed(speed:number): Promise\<number>
 
 ```ts
 import media from '@ohos.multimedia.media'
-let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
+let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 videoPlayer.setSpeed(speed).then((result: number) => {
   console.info('setSpeed success');
 }).catch((error: BusinessError) => {

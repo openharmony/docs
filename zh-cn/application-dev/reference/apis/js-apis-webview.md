@@ -3535,7 +3535,7 @@ struct WebComponent {
 
 setNetworkAvailable(enable: boolean): void
 
-设置JavaScript中的window.navigator.isOnline属性。
+设置JavaScript中的window.navigator.onLine属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3543,7 +3543,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.isOnline。 |
+| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
 
 **错误码：**
 
@@ -4829,6 +4829,56 @@ struct WebComponent {
 }
 ```
 
+### setConnectionTimeout<sup>11+</sup>
+
+static setConnectionTimeout(timeout: number): void
+
+设置网络连接超时时间，使用者可通过Web组件中的onErrorReceive方法获取超时错误码。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| timeout        | number  | 是   | socket连接超时时间，以秒为单位。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setConnectionTimeout')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.setConnectionTimeout(5);
+            console.log("setConnectionTimeout: 5s");
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onErrorReceive((event) => {
+          if (event) {
+            console.log('getErrorInfo:' + event.error.getErrorInfo())
+            console.log('getErrorCode:' + event.error.getErrorCode())
+          }
+        })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
@@ -4959,7 +5009,7 @@ struct WebComponent {
 
 ### fetchCookie<sup>11+</sup>
 
-static fetchCookie(url: string, callback: AsyncCallback<string>): void
+static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 
 异步callback方式获取指定url对应cookie的值。
 
@@ -4970,8 +5020,16 @@ static fetchCookie(url: string, callback: AsyncCallback<string>): void
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
 | url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
-| callback | AsyncCallback<string> | 是 | callback回调，用于获取cookie |
+| callback | AsyncCallback\<string> | 是 | callback回调，用于获取cookie |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 401 | Invalid input parameter.                                           |
+| 17100002 | Invalid url.                                           |
 
 **示例：**
 
@@ -4990,9 +5048,13 @@ struct WebComponent {
       Button('fetchCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.fetchCookie('https://www.example.com', (cookie) => {
+            web_webview.WebCookieManager.fetchCookie('https://www.example.com', (error, cookie) => {
+              if (error) {
+                console.log('error: ' + JSON.stringify(error));
+                return;
+              }
               if (cookie) {
-                console.log("fetchCookie cookie = " + cookie);
+                console.log('fetchCookie cookie = ' + cookie);
               }
             })
           } catch (error) {
@@ -5025,6 +5087,15 @@ static fetchCookie(url: string): Promise\<string>
 | 类型   | 说明                      |
 | ------ | ------------------------- |
 | Promise\<string> | Promise实例，用于获取指定url对应的cookie值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 401 | Invalid input parameter.                                           |
+| 17100002 | Invalid url.                                           |
 
 **示例：**
 
@@ -5174,7 +5245,7 @@ struct WebComponent {
 
 ### configCookie<sup>11+</sup>
 
-static configCookie(url: string, value: string, AsyncCallback\<void>): void
+static configCookie(url: string, value: string, callback: AsyncCallback\<void>): void
 
 异步callback方式为指定url设置单个cookie的值。
 
@@ -5188,6 +5259,15 @@ static configCookie(url: string, value: string, AsyncCallback\<void>): void
 | value  | string | 是   | 要设置的cookie的值。      |
 | callback | AsyncCallback\<void> | 是 | callback回调，用于获取设置cookie的结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Invalid input parameter.                               |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
 
 **示例：**
 
@@ -5242,6 +5322,16 @@ static configCookie(url: string, value: string): Promise\<void>
 | 类型   | 说明                      |
 | ------ | ------------------------- |
 | Promise\<string> | Promise实例，用于获取指定url设置单个cookie值是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Invalid input parameter.                               |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
 
 **示例：**
 

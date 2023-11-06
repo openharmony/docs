@@ -19,7 +19,7 @@ import common from '@ohos.app.ability.common';
 
 ## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
 
-on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): **number**;
+on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): **number**
 
 注册监听应用内生命周期
 
@@ -93,7 +93,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**
 
 取消监听应用内生命周期
 
@@ -131,7 +131,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number)
 
-off(type: 'abilityLifecycle', callbackId: number): Promise\<void>;
+off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
 取消监听应用内生命周期
 
@@ -162,7 +162,7 @@ export default class MyAbility extends Ability {
 
 ## ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)
 
-on(type: 'environment', callback: EnvironmentCallback): **number**;
+on(type: 'environment', callback: EnvironmentCallback): **number**
 
 注册对系统环境变化的监听。使用callback异步回调。
 
@@ -211,7 +211,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**
 
 取消对系统环境变化的监听。使用callback异步回调。
 
@@ -248,7 +248,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**
 
 取消对系统环境变化的监听。使用callback异步回调。
 
@@ -278,7 +278,7 @@ export default class MyAbility extends Ability {
 
 ## ApplicationContext.on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback)<sup>10+</sup>
 
-on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **void**;
+on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **void**
 
 注册对当前应用前后台变化的监听。使用callback异步回调。
 
@@ -320,7 +320,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
 
-off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback):  **void**;
+off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback):  **void**
 
 取消当前应用注册的前后台变化的全部监听。
 
@@ -348,7 +348,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
 
-getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
+getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 获取有关运行进程的信息。
 
@@ -389,7 +389,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
 
-getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
+getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
 获取有关运行进程的信息。
 
@@ -431,7 +431,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.killAllProcesses<sup>9+</sup>
 
-killAllProcesses(): Promise\<void\>;
+killAllProcesses(): Promise\<void\>
 
 杀死应用所在的进程。
 
@@ -466,7 +466,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.killAllProcesses<sup>9+</sup>
 
-killAllProcesses(callback: AsyncCallback\<void\>);
+killAllProcesses(callback: AsyncCallback\<void\>)
 
 杀死应用所在的进程。
 
@@ -500,11 +500,11 @@ export default class MyAbility extends UIAbility {
             }
         });
     }
-});
+}
 ```
 ## ApplicationContext.setColorMode<sup>11+</sup>
 
-setColorMode(colorMode: ConfigurationConstant.ColorMode): void;
+setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 设置应用的颜色模式。
 
@@ -541,7 +541,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.setLanguage<sup>11+</sup>
 
-setLanguage(language: string): void;
+setLanguage(language: string): void
 
 设置应用的语言。
 
@@ -575,9 +575,9 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.clearUpApplicationData<sup>11</sup>
+## ApplicationContext.clearUpApplicationData<sup>11+</sup>
 
-clearUpApplicationData(): Promise\<void\>;
+clearUpApplicationData(): Promise\<void\>
 
 清理应用本身的数据。使用Promise异步回调。
 
@@ -611,9 +611,9 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.clearUpApplicationData<sup>11</sup>
+## ApplicationContext.clearUpApplicationData<sup>11+</sup>
 
-clearUpApplicationData(callback: AsyncCallback<void>): void;
+clearUpApplicationData(callback: AsyncCallback\<void\>): void
 
 清理应用本身的数据。使用callback异步回调。
 
@@ -651,7 +651,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.on<sup>11+</sup>
 
-on(type: 'abilityAutoStartup', callback: AutoStartupCallback): void;
+on(type: 'abilityAutoStartup', callback: AutoStartupCallback): void
 
 应用注册对自身开机自启动状态变化的监听。
 
@@ -691,7 +691,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.off<sup>11+</sup>
 
-off(type: 'abilityAutoStartup', callback?: AutoStartupCallback): void;
+off(type: 'abilityAutoStartup', callback?: AutoStartupCallback): void
 
 应用注销对自身开机自启动状态变化的监听。
 
@@ -731,7 +731,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.setAutoStartup<sup>11+</sup>
 
-setAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void;
+setAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 
 应用设置为开机自启动。使用callback异步回调。
 
@@ -768,7 +768,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.setAutoStartup<sup>11+</sup>
 
-setAutoStartup(info: AutoStartupInfo): Promise\<void\>;
+setAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 应用设置为开机自启动。使用Promise异步回调。
 
@@ -812,7 +812,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.cancelAutoStartup<sup>11+</sup>
 
-cancelAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void;
+cancelAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 
 应用取消开机自启动。使用callback异步回调。
 
@@ -849,7 +849,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.cancelAutoStartup<sup>11+</sup>
 
-cancelAutoStartup(info: AutoStartupInfo): Promise\<void\>;
+cancelAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 应用取消开机自启动。使用Promise异步回调。
 
@@ -893,7 +893,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.isAutoStartup<sup>11+</sup>
 
-isAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<boolean\>): void;
+isAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<boolean\>): void
 
 应用查询自身组件是否开机自启动。使用callback异步回调。
 
@@ -930,7 +930,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.isAutoStartup<sup>11+</sup>
 
-isAutoStartup(info: AutoStartupInfo): Promise\<boolean\>;
+isAutoStartup(info: AutoStartupInfo): Promise\<boolean\>
 
 应用查询自身组件是否开机自启动。使用Promise异步回调。
 
