@@ -170,7 +170,7 @@ try{
 
 isLowerLevelType(type: string): boolean
 
-判断当前标准化数据类型是否归属于指定的标准化数据类型。
+判断当前标准化数据类型是否是指定标准化数据类型的低层级类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -184,7 +184,7 @@ isLowerLevelType(type: string): boolean
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 返回true表示当前的标准化数据类型归属于所指定的标准化数据类型，不包括所指定标准化数据类型与当前标准化数据类型相同的情况；返回false则表示不归属于指定标准化数据类型。 |
+| boolean | 返回true表示当前的标准化数据类型是所指定标准化数据类型的低层级类型，否则返回false。|
 
 **示例：**
 
@@ -196,7 +196,7 @@ try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
     let ret = typeObj.isLowerLevelType("general.plain-text");
     if(ret) {
-        console.info(`general.type-script is lower level than general.plain-text`);
+        console.info(`type general.type-script is lower level type of type general.plain-text`);
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -208,7 +208,7 @@ try{
 
 isHigherLevelType(type: string): boolean
 
-判断指定的标准化数据类型是否归属于当前标准化数据类型。
+判断当前标准化数据类型是否是指定标准化数据类型的高层级类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -222,7 +222,7 @@ isHigherLevelType(type: string): boolean
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 返回true表示所指定的标准化数据类型归属于当前的标准化数据类型，不包括所指定标准化数据类型与当前标准化数据类型相同的情况；返回false则表示不归属于当前标准化数据类型。 |
+| boolean | 返回true表示当前的标准化数据类型是所指定标准化数据类型的高层级类型，否则返回false。|
 
 **示例：**
 
@@ -234,7 +234,7 @@ try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.plain-text');
     let ret = typeObj.isHigherLevelType("general.type-script");
     if(ret) {
-        console.info(`general.type-script is higher level than general.plain-text`);
+        console.info(`type general.plain-text is higher level type of type general.type-script`);
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -299,7 +299,7 @@ getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: str
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| string | 返回与给定文件后缀名以及归属类型ID匹配的标准化数据类型ID（如果设置了belongsTo参数），如果要查询的标准化数据类型不存在，则返回null。 |
+| string | 返回与给定文件后缀名以及归属类型ID（如果设置了belongsTo参数）匹配的标准化数据类型ID，如果要查询的标准化数据类型不存在则返回null。|
 
 **示例：**
 
@@ -309,7 +309,9 @@ import { BusinessError } from '@ohos.base';
 
 try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
-    console.info(`typeId is general.type-script`);
+    if(typeId != null) {
+        console.info(`typeId is general.type-script`);
+    }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
     console.error(`getUniformDataTypeByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
@@ -335,7 +337,7 @@ getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| string | 返回与MIME类型名称以及归属类型ID匹配的标准化数据类型ID（如果设置了belongsTo参数），如果要查询的标准化数据类型不存在，则返回null。 |
+| string | 返回与MIME类型名称以及归属类型ID（如果设置了belongsTo参数）匹配的标准化数据类型ID，如果要查询的标准化数据类型不存在则返回null。|
 
 **示例：**
 
@@ -344,8 +346,10 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 import { BusinessError } from '@ohos.base';
 
 try {
-    let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('application/vnd.ms-excel', 'general.object');
-    console.info(`typeId is com.microsoft.excel.xls`);
+    let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('image/jpeg', 'general.image');
+    if(typeId != null) {
+        console.info(`typeId is general.jpeg`);
+    }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
     console.error(`getUniformDataTypeByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
@@ -370,7 +374,7 @@ getTypeDescriptor(typeId: string): TypeDescriptor
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [TypeDescriptor](#typedescriptor11) | 返回标准化数据类型描述类对象。 |
+| [TypeDescriptor](#typedescriptor11) | 返回标准化数据类型描述类对象，如果要查询的标准化数据类型不存在则返回null。|
 
 **示例：**
 
@@ -380,12 +384,14 @@ import { BusinessError } from '@ohos.base';
 
 try {
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('com.adobe.photoshop-image');
-    let typeId = typeObj.typeId;
-    let belongingToTypes = typeObj.belongingToTypes;
-    let description = typeObj.description;
-    let referenceURL = typeObj.referenceURL;
-    let iconFile = typeObj.iconFile;
-    console.info('typeId: ' + typeId + ', belongingToTypes: ' + belongingToTypes + ', description: ' + description + ', referenceURL: ' + referenceURL + ', iconFile: ' + iconFile);
+    if (typeObj != null) {
+        let typeId = typeObj.typeId;
+        let belongingToTypes = typeObj.belongingToTypes;
+        let description = typeObj.description;
+        let referenceURL = typeObj.referenceURL;
+        let iconFile = typeObj.iconFile;
+        console.info('typeId: ' + typeId + ', belongingToTypes: ' + belongingToTypes + ', description: ' + description + ', referenceURL: ' + referenceURL + ', iconFile: ' + iconFile);
+    }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
     console.error(`getTypeDescriptor throws an exception. code is ${error.code}, message is ${error.message} `);
