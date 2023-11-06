@@ -27,7 +27,7 @@ The device must be equipped with a vibrator.
 
 The following uses the RK3568 development board as an example to illustrate battery charging vibration customization.
 
-1. Write the custom `battery_vibrator.json` file by referring to the [battery_vibrator.json](https://gitee.com/openharmony/powermgr_battery_manager/tree/master/services/native/profile/battery_vibrator.json) file in the default folder of battery vibrator configuration. 
+1. Write the custom `battery_vibrator.json` file by referring to the [battery_vibrator.json](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_vibrator.json) file in the default folder of battery vibrator configuration. 
 
     ```text
     profile
@@ -69,4 +69,4 @@ Upon device restarting, connect a charger to the device and check whether the de
 
 During development, you can refer to the default battery vibrator configuration:
 
-[Default Battery Vibrator Configuration](https://gitee.com/openharmony/powermgr_battery_manager/tree/master/services/native/profile)
+[Default Battery Vibrator Configuration](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile)
