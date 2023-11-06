@@ -3279,7 +3279,7 @@ PixelMap的初始化选项。
 | GPS_LONGITUDE_REF                         | "GPSLongitudeRef"            | 经度引用，例如W或E                         |
 | DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"           | 拍摄时间，例如2022:09:06 15:48:00          |
 | EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"               | 曝光时间，例如1/33 sec                     |
-| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                  | 拍摄场景模式，例如人像、风光、运动、夜景等。 |
+| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                  | 拍摄场景模式，例如人像、风光、运动、夜景等 |
 | ISO_SPEED_RATINGS<sup>9+</sup>            | "ISOSpeedRatings"            | ISO感光度，例如400                         |
 | F_NUMBER<sup>9+</sup>                     | "FNumber"                    | 光圈值，例如f/1.8                          |
 | DATE_TIME<sup>10+</sup>                   | "DateTime"                   | 日期时间                                   |
@@ -3313,10 +3313,10 @@ PixelMap的初始化选项。
 | SCENE_BLUESKY_CONF<sup>11+</sup>          | "HwMnoteSceneBlueSkyConf"    | 拍照场景：蓝天，当前为只读属性             |
 | SCENE_GREENPLANT_CONF<sup>11+</sup>       | "HwMnoteSceneGreenPlantConf" | 拍照场景：綠植，当前为只读属性             |
 | SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"      | 拍照场景：沙滩，当前为只读属性             |
-| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"       | 拍照场景：下雪，当前为只读属性。             |
+| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"       | 拍照场景：下雪，当前为只读属性             |
 | SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"     | 拍照场景：日落，当前为只读属性             |
 | SCENE_FLOWERS_CONF<sup>11+</sup>          | "HwMnoteSceneFlowersConf"    | 拍照场景：花，当前为只读属性               |
-| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"      | 拍照场景：夜晚，当前为只读属性。             |
+| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"      | 拍照场景：夜晚，当前为只读属性             |
 | SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"       | 拍照场景：文本，当前为只读属性             |
 | FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"           | 人脸数量，当前为只读属性                   |
 | FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"           | 对焦模式，当前为只读属性                   |
