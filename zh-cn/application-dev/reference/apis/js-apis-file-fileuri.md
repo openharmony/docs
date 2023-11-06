@@ -109,15 +109,15 @@ toString(): string
 
 getDirectoryUri(): string;
 
-以同步方法通过URI获取获取所在路径URI,文件获取所在路径URI，目录获取当前路径URI。该接口仅支持PC场景。
+以同步方法通过URI获取获取所在路径URI，文件获取所在路径URI，目录获取当前路径URI，该接口仅支持特定设备。
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
 **返回值：**
 
-| 类型                  | 说明             |
-| --------------------- |----------------|
-| string | 获取所在路径URI,文件获取所在路劲URI，目录获取当前路径URI  |
+| 类型                  | 说明                                |
+| --------------------- |-----------------------------------|
+| string | 获取所在路径URI，文件获取所在路径URI，目录获取当前路径URI |
 
 **错误码：**
 
@@ -139,9 +139,9 @@ getDirectoryUri(): string;
     let fileUriObject = new fileuri.FileUri(path);
     let directoryUri = fileUriObject.getDirectoryUri();
     console.log(`success to getDirectoryUri: ${JSON.stringify(directoryUri)}`);
-} catch (error) {
+  } catch (error) {
     console.error(`failed to getDirectoryUri because: ${JSON.stringify(error)}`);
-}
+  }
   ```
 
 ## fileuri.getUriFromPath
