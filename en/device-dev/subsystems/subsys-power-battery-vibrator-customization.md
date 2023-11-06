@@ -23,7 +23,7 @@ The device must be equipped with a vibrator.
 
   For details about the requirements on the Linux environment, see [Quick Start](../quick-start/quickstart-overview.md).
 
-### Procedure
+### Getting Started with Development
 
 The following uses the RK3568 development board as an example to illustrate battery charging vibration customization.
 
