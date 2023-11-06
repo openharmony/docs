@@ -310,8 +310,7 @@
         console.info('[Demo] BgTaskAbility onBackground');
       }
     };
-  ```
-
+   ```
 
 ### FA模型
 
@@ -325,7 +324,7 @@
 
    在config.json文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING，配置方式请参见[配置文件声明](../security/accesstoken-guidelines.md#配置文件权限声明)。同时，为需要使用长时任务的ServiceAbility声明相应的长时任务类型。
    
-  ```json
+   ```json
    "module": {
        "package": "com.example.myapplication",
        "abilities": [
@@ -342,22 +341,22 @@
            }
        ]
    }
-  ```
+   ```
 
 3. 导入模块。
    
-  ```js
+   ```js
     import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
     import featureAbility from '@ohos.ability.featureAbility';
     import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
     import rpc from "@ohos.rpc";
     import { BusinessError } from '@ohos.base';
     import Want from '@ohos.app.ability.Want';
-  ```
+   ```
 
 4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 startBackgroundRunning() 接口实现长时任务的申请和取消，通过js代码实现。
-   
-  ```js
+  
+   ```js
     function startContinuousTask() {
       let wantAgentInfo: wantAgent.WantAgentInfo = {
         // 点击通知后，将要执行的动作列表
@@ -457,7 +456,7 @@
     }
 
     export default new ServiceAbility();
-  ```
+    ```
 
 
 ## 相关实例
