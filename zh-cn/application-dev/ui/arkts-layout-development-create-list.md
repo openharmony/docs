@@ -121,10 +121,6 @@ List() {
 
 - 当List组件宽度变化至400vp时，符合两倍的minLength，则此时列表自适应为两列。
 
->**说明：**
->
->当lanes为LengthConstrain类型时，仅用于计算当前列表的行或列数，不影响列表项本身的尺寸。
-
 同样以垂直列表为例，当alignListItem属性设置为ListItemAlign.Center表示列表项在水平方向上居中对齐。alignListItem的默认值是ListItemAlign.Start，即列表项在列表交叉轴方向上默认按首部对齐。
 
 
