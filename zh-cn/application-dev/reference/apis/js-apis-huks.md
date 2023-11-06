@@ -335,7 +335,7 @@ getSdkVersion(options: HuksOptions) : string
 
 > **说明：**
 >
-> 从API version 9开始废弃。
+> 从API version 11开始废弃。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
