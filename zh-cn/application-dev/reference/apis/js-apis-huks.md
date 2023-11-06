@@ -327,11 +327,15 @@ try {
 }
 ```
 
-## huks.getSdkVersion
+## huks.getSdkVersion<sup>(deprecated)</sup>
 
 getSdkVersion(options: HuksOptions) : string
 
 获取当前系统sdk版本。
+
+> **说明：**
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -1381,10 +1385,10 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                                    |
-| -------- | --------------------------- | ---- | --------------------------------------- |
-| keyAlias | string                      | 是   | 所需查找的密钥的别名。                  |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。                |
+| 参数名   | 类型                        | 必填 | 说明                                                      |
+| -------- | --------------------------- | ---- |---------------------------------------------------------|
+| keyAlias | string                      | 是   | 所需查找的密钥的别名。                                             |
+| options  | [HuksOptions](#huksoptions) | 是   | 空对象（用于查询时指定密钥的属性TAG，比如查询的密钥范围（全量，还是单个），当查询单个时，TAG字段可选）。 |
 | callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，则error中会输出密钥不存在的error code。 |
 
 **错误码：**
@@ -2250,7 +2254,7 @@ async function huksAbort() {
 | HUKS_AES_KEY_SIZE_128              | 128  | 表示使用AES算法的密钥长度为128bit。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
 | HUKS_AES_KEY_SIZE_192              | 192  | 表示使用AES算法的密钥长度为192bit。  <br> **系统能力：** SystemCapability.Security.Huks.Core|
 | HUKS_AES_KEY_SIZE_256              | 256  | 表示使用AES算法的密钥长度为256bit。  <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_AES_KEY_SIZE_512              | 512  | 表示使用AES算法的密钥长度为512bit。  <br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_AES_KEY_SIZE_512<sup>(deprecated)</sup>               | 512  | 表示使用AES算法的密钥长度为512bit。  <br> **系统能力：** SystemCapability.Security.Huks.Core|
 | HUKS_CURVE25519_KEY_SIZE_256       | 256  | 表示使用CURVE25519算法的密钥长度为256bit。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
 | HUKS_DH_KEY_SIZE_2048              | 2048 | 表示使用DH算法的密钥长度为2048bit。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
 | HUKS_DH_KEY_SIZE_3072              | 3072 | 表示使用DH算法的密钥长度为3072bit。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
@@ -2671,11 +2675,11 @@ deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                                               |
-| -------- | ----------------------------------------- | ---- | -------------------------------------------------- |
-| keyAlias | string                                    | 是   | 密钥别名，应为生成key时传入的别名。                |
-| options  | [HuksOptions](#huksoptions)               | 是   | 空对象（此处传空即可）。                           |
-| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | 是   | 回调函数。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
+| 参数名   | 类型                                      | 必填 | 说明                                                      |
+| -------- | ----------------------------------------- | ---- |---------------------------------------------------------|
+| keyAlias | string                                    | 是   | 密钥别名，应为生成key时传入的别名。                                     |
+| options  | [HuksOptions](#huksoptions)               | 是   | 空对象（用于删除时指定密钥的属性TAG，比如删除的密钥范围（全量，还是单个），当删除单个时，TAG字段可选）。 |
+| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | 是   | 回调函数。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。                    |
 
 **示例：**
 
