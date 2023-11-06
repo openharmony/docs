@@ -167,14 +167,14 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 
 
 ```ts
-let storage = new LocalStorage(); // Create a new instance and initialize it with the given object.
-storage['PropA'] = 47
-let propA = storage.get<number>('PropA') // propA == 47
-let link1 = storage.link<number>('PropA'); // link1.get() == 47
-let link2 = storage.link<number>('PropA'); // link2.get() == 47
-let prop = storage.prop<number>('PropA'); // prop.get() = 47
+let para: Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para); // Create an instance and initialize it with the given object.
+let propA: number | undefined = storage.get('PropA') // propA == 47
+let link1: SubscribedAbstractProperty<number> = storage.link('PropA'); // link1.get() == 47
+let link2: SubscribedAbstractProperty<number> = storage.link('PropA'); // link2.get() == 47
+let prop: SubscribedAbstractProperty<number> = storage.prop('PropA'); // prop.get() == 47
 link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
-prop.set(1); // one-way sync: prop.get()=1; but link1.get() == link2.get() == 48
+prop.set(1); // one-way sync: prop.get() == 1; but link1.get() == link2.get() == 48
 link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 ```
 
@@ -183,7 +183,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 The two decorators \@LocalStorageProp and \@LocalStorageLink can work together to obtain the state variable stored in a LocalStorage instance in the UI component.
 
-This example uses \@LocalStorage as an example to show how to:
+This example uses \@LocalStorageLink to show how to:
 
 - Use the **build** function to create a LocalStorage instance named **storage**.
 
@@ -193,8 +193,8 @@ This example uses \@LocalStorage as an example to show how to:
 
   ```ts
   // Create a new instance and initialize it with the given object.
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
+  let para:Record<string,number> = { 'PropA': 47 };
+  let storage: LocalStorage = new LocalStorage(para);
 
   @Component
   struct Child {
@@ -236,9 +236,8 @@ In this example, the **CompA** and **Child** components create local data that i
 
   ```ts
   // Create a new instance and initialize it with the given object.
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
-
+  let para:Record<string,number> = { 'PropA': 47 };
+  let storage: LocalStorage = new LocalStorage(para);
   // Make LocalStorage accessible from the @Component decorated component.
   @Entry(storage)
   @Component
@@ -278,10 +277,10 @@ This example shows how to create a two-way data synchronization between an \@Loc
 
 ```ts
 // Create a LocalStorage instance.
-let storage = new LocalStorage();
-storage['PropA'] = 47;
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 // Invoke the link9+ API to create a two-way data synchronization with PropA. linkToPropA is a global variable.
-let linkToPropA = storage.link<number>('PropA');
+let linkToPropA: SubscribedAbstractProperty<object> = storage.link('PropA');
 
 @Entry(storage)
 @Component
@@ -305,7 +304,7 @@ struct CompA {
 ```
 
 
-### Example of Syncing State Variable Between Sibling Components
+### Example of Syncing State Variables Between Sibling Components
 
 This example shows how to use \@LocalStorageLink to create a two-way synchronization for the state between sibling components.
 
@@ -321,73 +320,65 @@ Changes in the **Child** custom component:
 
 1. The update of **playCountLink** is synchronized to LocalStorage, and the parent and sibling child custom components are re-rendered accordingly.
 
-   ```ts
-   class Data {
-     countStorage: number = 0;
-   }
-   let data: Data = { countStorage: 1 }
-   let storage = new LocalStorage(data);
+```ts
+let ls:Record<string,number> = { 'countStorage': 1}
+let storage:LocalStorage = new LocalStorage(ls);
+@Component
+struct Child {
+  // Name the child component instance.
+  label: string = 'no name';
+  // Two-way synchronization with countStorage in LocalStorage.
+  @LocalStorageLink('countStorage') playCountLink: number = 0;
 
-   @Component
-   struct Child {
-     // Name the child component instance.
-     label: string = 'no name';
-     // Two-way synchronization with countStorage in LocalStorage.
-     @LocalStorageLink('countStorage') playCountLink: number = 0;
+  build() {
+    Row() {
+      Text(this.label)
+        .width(50).height(60).fontSize(12)
+      Text(`playCountLink ${this.playCountLink}: inc by 1`)
+        .onClick(() => {
+          this.playCountLink += 1;
+        })
+        .width(200).height(60).fontSize(12)
+    }.width(300).height(60)
+  }
+}
 
-     build() {
-       Row() {
-         Text(this.label)
-           .width(50).height(60).fontSize(12)
-         Text(`playCountLink ${this.playCountLink}: inc by 1`)
-           .onClick(() => {
-             this.playCountLink += 1;
-           })
-           .width(200).height(60).fontSize(12)
-       }.width(300).height(60)
-     }
-   }
+@Entry(storage)
+@Component
+struct Parent {
+  @LocalStorageLink('countStorage') playCount: number = 0;
 
-   @Entry(storage)
-   @Component
-   struct Parent {
-     @LocalStorageLink('countStorage') playCount: number = 0;
+  build() {
+    Column() {
+      Row() {
+        Text('Parent')
+          .width(50).height(60).fontSize(12)
+        Text(`playCount ${this.playCount} dec by 1`)
+          .onClick(() => {
+            this.playCount -= 1;
+          })
+          .width(250).height(60).fontSize(12)
+      }.width(300).height(60)
 
-     build() {
-       Column() {
-         Row() {
-           Text('Parent')
-             .width(50).height(60).fontSize(12)
-           Text(`playCount ${this.playCount} dec by 1`)
-             .onClick(() => {
-               this.playCount -= 1;
-             })
-             .width(250).height(60).fontSize(12)
-         }.width(300).height(60)
+      Row() {
+        Text('LocalStorage')
+          .width(50).height(60).fontSize(12)
+        Text(`countStorage ${this.playCount} incr by 1`)
+          .onClick(() => {
+            storage.set<number|undefined>('countStorage', Number(storage.get<number>('countStorage')) + 1);
+          })
+          .width(250).height(60).fontSize(12)
+      }.width(300).height(60)
 
-         Row() {
-           Text('LocalStorage')
-             .width(50).height(60).fontSize(12)
-           Text(`countStorage ${this.playCount} incr by 1`)
-             .onClick(() => {
-               let countStorage: number | undefined = storage.get<number>('countStorage');
-              if (countStorage != undefined){
-                 countStorage += 1;
-                 storage.set<number>('countStorage', countStorage);
-               }
-             })
-             .width(250).height(60).fontSize(12)
-         }.width(300).height(60)
+      Child({ label: 'ChildA' })
+      Child({ label: 'ChildB' })
 
-         Child({ label: 'ChildA' })
-         Child({ label: 'ChildB' })
-
-         Text(`playCount in LocalStorage for debug ${storage.get<number>('countStorage')}`)
-           .width(300).height(60).fontSize(12)
-       }
-     }
-   }
-   ```
+      Text(`playCount in LocalStorage for debug ${storage.get<number>('countStorage')}`)
+        .width(300).height(60).fontSize(12)
+    }
+  }
+}
+```
 
 
 ### Example of Sharing a LocalStorage Instance from UIAbility to One or More Pages
@@ -399,14 +390,14 @@ In the preceding examples, the LocalStorage instance is shared only in an \@Entr
 // EntryAbility.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-
+let para:Record<string,number> = { 'PropA': 47 };
+let localStorage: LocalStorage = new LocalStorage(para);
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage = new LocalStorage();
+storage: LocalStorage = localStorage
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    this.storage['PropA'] = 47;
-    windowStage.loadContent('pages/Index', this.storage);
-  }
+onWindowStageCreate(windowStage: window.WindowStage) {
+windowStage.loadContent('pages/Index', this.storage);
+}
 }
 ```
 

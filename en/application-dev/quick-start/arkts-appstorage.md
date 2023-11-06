@@ -44,7 +44,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | ---------- | ---------------------------------------- |
 | Initialization and update from the parent component| Forbidden.|
 | Subnode initialization    | Supported; can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Access | None.                                      |
+| Access | Not supported.                                      |
 
 
   **Figure 1** \@StorageProp initialization rule 
@@ -102,7 +102,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | ---------- | ---------------------------------------- |
 | Initialization and update from the parent component| Forbidden.                                     |
 | Subnode initialization    | Supported; can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Access | None.                                      |
+| Access | Not supported.                                      |
 
 
   **Figure 2** \@StorageLink initialization rule 
@@ -145,14 +145,14 @@ Since AppStorage is a singleton, its APIs are all static ones. How these APIs wo
 AppStorage.setOrCreate('PropA', 47);
 
 let storage: LocalStorage = new LocalStorage();
-storage['PropA'] = 17;
+storage.setOrCreate('PropA',17);
 let propA: number | undefined = AppStorage.get('PropA') // propA in AppStorage == 47, propA in LocalStorage == 17
 let link1: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link1.get() == 47
 let link2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link2.get() == 47
-let prop: SubscribedAbstractProperty<number> = AppStorage.prop('PropA'); // prop.get() = 47
+let prop: SubscribedAbstractProperty<number> = AppStorage.prop('PropA'); // prop.get() == 47
 
 link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
-prop.set(1); // one-way sync: prop.get()=1; but link1.get() == link2.get() == 48
+prop.set(1); // one-way sync: prop.get() == 1; but link1.get() == link2.get() == 48
 link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 storage.get<number>('PropA') // == 17
@@ -174,7 +174,7 @@ prop.get() // == 49
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let storage = new LocalStorage();
-storage['PropA'] = 48;
+storage.setOrCreate('PropA',48);
 
 @Entry(storage)
 @Component

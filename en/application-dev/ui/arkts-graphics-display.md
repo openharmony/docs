@@ -1,7 +1,7 @@
 # Displaying Images (Image)
 
 
-More often than not, you may need to display images in your application, for example, logos in buttons, online images, and local images. This is where the **\<Image>** component comes in handy. The **\<Image>** component supports a wide range of image formats, including PNG, JPG, BMP, SVG, and GIF. For details, see [Image](../reference/arkui-ts/ts-basic-components-image.md).
+More often than not, you may need to display images in your application, for example, icons in buttons, online images, and local images. This is where the **\<Image>** component comes in handy. The **\<Image>** component supports a wide range of image formats, including PNG, JPG, BMP, SVG, and GIF. For details, see [Image](../reference/arkui-ts/ts-basic-components-image.md).
 
 
 To use the **\<Image>** component, call the following API:
@@ -74,7 +74,7 @@ Data sources of the archived type can be classified into local resources, online
 
 - Media library **file://data/storage**
 
-  To load images from the media library, use a path string that starts with **file://**.
+  To load images from the [media library](../reference/apis/js-apis-file-picker.md), use a path string that starts with **file://**.
 
   1. Call the API to obtain the image URL in the media library.
       ```ts
@@ -159,45 +159,53 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
        import http from '@ohos.net.http';
        import ResponseCode from '@ohos.net.http';
        import image from '@ohos.multimedia.image';
+       import { BusinessError } from '@ohos.base';
        ```
    2. Enter the online image address.
        ```ts
+       let OutData: http.HttpResponse
        http.createHttp().request("https://www.example.com/xxx.png",
-         (error:Error) => {
-           if (error){
+         (error: BusinessError, data: http.HttpResponse) => {
+           if (error) {
              console.error(`http reqeust failed with. Code: ${error.code}, message: ${error.message}`);
            } else {
+             OutData = data
            }
          }
        )
        ```
    3. Transcode the data returned by the online image address to a pixel map.  
        ```ts
-       let code:object = data.responseCode;
+       let code: http.ResponseCode | number = OutData.responseCode
        if (ResponseCode.ResponseCode.OK === code) {
-         let imageSource:image = image.createImageSource(data.result);
-         class tmp{
-           height:number = 100
-           width:number = 100
+         let imageSource: image.ImageSource = image.createImageSource(OutData.result.toString());
+       
+         class tmp {
+           height: number = 100
+           width: number = 100
          }
-         let si:tmp = new tmp()
-         let options:Record<string,number|boolean|tmp> = {
+       
+         let si: tmp = new tmp()
+         let options: Record<string, number | boolean | tmp> = {
            'alphaType': 0, // Alpha type.
            'editable': false, // Whether the image is editable.
            'pixelFormat': 3, // Pixel format.
            'scaleMode': 1, // Scale mode.
            'size': { height: 100, width: 100 }
          }  // Image size.
-         class imagetmp{
-           image:image
-           set(val:PixelMap){
+       
+         class imagetmp {
+           image: PixelMap
+       
+           set(val: PixelMap) {
              this.image = val
            }
          }
-          imageSource.createPixelMap(options).then((pixelMap:PixelMap) => {
-          let im = new imagetmp()
-            im.set(pixelMap)
-       })
+       
+         imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
+           let im = new imagetmp()
+           im.set(pixelMap)
+         })
        }
        ```
    4. Display the image.
@@ -216,7 +224,7 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
            sethtp.set()
          })
        Image(this.image).height(100).width(100)
-       ```
+      ```
 
 
 ## Displaying Vector Images

@@ -268,7 +268,7 @@ router.pushUrl({
 
 replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
-Replaces the current page with another one in the application and destroys the current page.
+Replaces the current page with another one in the application and destroys the current page. This API cannot be used to configure page transition effects. To configure page transition effects, use the [\<Navigation>](../../ui/arkts-navigation-navigation.md) component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 

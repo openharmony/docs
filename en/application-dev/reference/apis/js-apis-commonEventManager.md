@@ -329,6 +329,47 @@ CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:C
 
 ```
 
+## CommonEventManager.createSubscriberSync<sup>10+</sup>
+
+createSubscriberSync(subscribeInfo: CommonEventSubscribeInfo): CommonEventSubscriber
+
+Creates a subscriber. The API returns the result synchronously.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Parameters**
+
+| Name         | Type                                                 | Mandatory| Description          |
+| ------------- | ----------------------------------------------------- | ---- | -------------- |
+| subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | Yes  | Subscriber information.|
+
+**Return value**
+| Type                                                     | Description            |
+| --------------------------------------------------------- | ---------------- |
+| [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | Promise used to return the subscriber object.|
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+
+let subscriber: CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
+
+// Subscriber information.
+let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = {
+  events: ["event"]
+};
+
+// Create a subscriber.
+try {
+    subscriber = CommonEventManager.createSubscriberSync(subscribeInfo);
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
+    console.error(`createSubscriberSync failed, code is ${err.code}, message is ${err.message}`);
+}
+
+```
+
 ## CommonEventManager.subscribe
 
 subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
@@ -478,12 +519,15 @@ try {
 }
 
 // Unsubscribe from the common event.
-try {
+// Wait until execution of the asynchronous API subscribe is completed. Add setTimeout when necessary.
+setTimeout(() => {
+  try {
     CommonEventManager.unsubscribe(subscriber, unsubscribeCB);
-} catch (error) {
+  } catch (error) {
     let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
-}
+  }
+}, 500);
 ```
 
 ## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>
@@ -583,6 +627,8 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 Enables or disables static subscription for the current application. This API uses an asynchronous callback to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -627,6 +673,8 @@ CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
 setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 Enables or disables static subscription for the current application. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 

@@ -35,7 +35,7 @@ Using \@Observed to decorate a class changes the original prototype chain of the
 | ----------------- | ---------------------------------------- |
 | Decorator parameters            | None.                                       |
 | Synchronization type             | No synchronization with the parent component.                        |
-| Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>Simple type variables are not supported. Use [\@Prop](arkts-prop.md) instead.<br>Instances of classes that inherit **Date** or **Array** are supported. For details, see [Observed Changes](#observed-changes).<br>An \@ObjectLink decorated variable accepts changes to its attributes, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed.|
+| Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>Simple type variables are not supported. Use [\@Prop](arkts-prop.md) instead.<br>Instances of classes that inherit **Date** or **Array** are supported. For details, see [Observed Changes](#observed-changes).<br>Union type of @Observed decorated classes and **undefined** or **null**, for example, ClassA \| ClassB, ClassA \| undefined, or ClassA \| null. For details, see [Union Type @ObjectLink](#union-type-objectlink).<br>An \@ObjectLink decorated variable accepts changes to its attributes, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed. |
 | Initial value for the decorated variable        | Not allowed.                                    |
 
 Example of a read-only \@ObjectLink decorated variable:
@@ -246,7 +246,7 @@ class ClassC extends ClassA {
 ```
 
 
-  The following component hierarchy presents this data structure.
+  The following component hierarchy presents the data structure of a nested class object.
 
 ```ts
 @Component
@@ -296,7 +296,7 @@ struct ViewB {
 The @Observed decorated **ClassC** class can observe changes in attributes inherited from the base class.
 
 
-Event handlers in **ViewB**:
+Event handles in **ViewB**:
 
 
 - this.child.c = new ClassA(0) and this.b = new ClassB(new ClassA(0)): Change to the \@State decorated variable **b** and its attributes.
@@ -470,3 +470,84 @@ struct IndexPage {
   }
 }
 ```
+
+## Union Type @ObjectLink
+
+@ObjectLink supports union types of @Observed decorated classes and **undefined** or **null**. In the following example, the type of **count** is ClassA | ClassB | undefined. If the attribute or type of **count** is changed when the button in the parent component **Page2** is clicked, the change will be synced to the child component.
+
+```ts
+class ClassA {
+  public a: number;
+
+  constructor(a: number) {
+    this.a = a;
+  }
+}
+
+class ClassB {
+  public b: number;
+
+  constructor(b: number) {
+    this.b = b;
+  }
+}
+
+@Entry
+@Component
+struct Page2 {
+  @State count: ClassA | ClassB | undefined = new ClassA(10)
+
+  build() {
+    Column() {
+      Child({ count: this.count })
+
+      Button('change count property')
+        .onClick(() => {
+          // Determine the count type and update the attribute.
+          if (this.count instanceof ClassA) {
+            this.count.a += 1
+          } else if (this.count instanceof ClassB) {
+            this.count.b += 1
+          } else {
+            console.info('count is undefined, cannot change property')
+          }
+        })
+
+      Button('change count to ClassA')
+        .onClick(() => {
+          // Assign the value of an instance of ClassA.
+          this.count = new ClassA(100)
+        })
+
+      Button('change count to ClassB')
+        .onClick(() => {
+          // Assign the value of an instance of ClassA.
+          this.count = new ClassB(100)
+        })
+
+      Button('change count to undefined')
+        .onClick(() => {
+          // Assign the value undefined.
+          this.count = undefined
+        })
+    }.width('100%')
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink count: ClassA | ClassB | undefined
+
+  build() {
+    Column() {
+      Text(`count is instanceof ${this.count instanceof ClassA ? 'ClassA' : this.count instanceof ClassB ? 'ClassB' : 'undefined'}`)
+        .fontSize(30)
+
+      Text(`count's property is  ${this.count instanceof ClassA ? this.count.a : this.count?.b}`).fontSize(15)
+
+    }.width('100%')
+  }
+}
+```
+
+<!--no_check-->
