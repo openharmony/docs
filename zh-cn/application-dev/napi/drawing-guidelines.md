@@ -507,3 +507,10 @@ libnative_drawing.so
     | 主页                                 | 绘制五角星                                         | 绘制文字                                            |
     | ------------------------------------ |-----------------------------------------------| --------------------------------------------------- |
     | ![main](./figures/drawIndex.jpg) | ![Draw Path](./figures/drawPath.jpg) | ![Draw Text](./figures/drawText.jpg) |
+
+##  相关实例
+
+以上代码为Drawing绘制关键代码，完整代码请参考下面sample。
+
+- [Native Drawing（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Native/NdkDrawing)
+
