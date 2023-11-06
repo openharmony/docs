@@ -2817,7 +2817,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -2854,7 +2854,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContactsByEmail('xxx@email.com', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -2902,7 +2902,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -2944,7 +2944,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -2997,7 +2997,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
@@ -3043,7 +3043,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
