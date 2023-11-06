@@ -45,7 +45,7 @@ ArkUI框架对于`ForEach`的键值生成有一套特定的判断规则，这主
 > **说明：**
 >
 > - 即使在`itemGenerator`函数中声明了`index`参数，但并未在函数体中使用，也被视为对`index`参数进行了处理。
-> - ArkUI框架会对重复的键值发出警告。在UI更新的场景下，如果出现重复的键值，框架可能无法正常工作。
+> - ArkUI框架会对重复的键值发出警告。在UI更新的场景下，如果出现重复的键值，框架可能无法正常工作，具体请参见[渲染结果非预期](#渲染结果非预期)。
 
 ## 组件创建规则
 
@@ -217,16 +217,40 @@ struct ArticleList {
     .padding(20)
     .width('100%')
     .height('100%')
-    .backgroundColor(0xF1F3F5)
   }
+}
+
+@Builder
+function textArea(width: number | Resource | string = '100%', height: number | Resource | string = '100%') {
+  Row()
+    .width(width)
+    .height(height)
+    .backgroundColor('#FFF2F3F4')
 }
 
 @Component
 struct ArticleSkeletonView {
   build() {
     Row() {
-      // ...
+      Column() {
+        textArea(80, 80)
+      }
+      .margin({ right: 20 })
+
+      Column() {
+        textArea('60%', 20)
+        textArea('50%', 20)
+      }
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.SpaceAround)
+      .height('100%')
     }
+    .padding(20)
+    .borderRadius(12)
+    .backgroundColor('#FFECECEC')
+    .height(120)
+    .width('100%')
+    .justifyContent(FlexAlign.SpaceBetween)
   }
 }
 ```
@@ -282,27 +306,57 @@ struct ArticleListView {
           }
         }, (item: Article) => item.id)
       }
-
-      Button('Refresh Data')
-        .onClick(() => {
-          this.loadMoreArticles();
-        })
+      .onReachEnd(() => {
+        this.isListReachEnd = true;
+      })
+      .parallelGesture(
+        PanGesture({ direction: PanDirection.Up, distance: 80 })
+          .onActionStart(() => {
+            if (this.isListReachEnd) {
+              this.loadMoreArticles();
+              this.isListReachEnd = false;
+            }
+          })
+      )
+      .padding(20)
+      .scrollBar(BarState.Off)
     }
+    .width('100%')
+    .height('100%')
     .backgroundColor(0xF1F3F5)
   }
 }
-
 
 @Component
 struct ArticleCard {
   @Prop article: Article;
 
   build() {
-    Column() {
-      Text(this.article.title)
-      Text(this.article.brief)
-      // ...
-    }.backgroundColor(Color.Yellow).width('100%').height(100)
+    Row() {
+      Image($r('app.media.icon'))
+        .width(80)
+        .height(80)
+        .margin({ right: 20 })
+
+      Column() {
+        Text(this.article.title)
+          .fontSize(20)
+          .margin({ bottom: 8 })
+        Text(this.article.brief)
+          .fontSize(16)
+          .fontColor(Color.Gray)
+          .margin({ bottom: 8 })
+      }
+      .alignItems(HorizontalAlign.Start)
+      .width('80%')
+      .height('100%')
+    }
+    .padding(20)
+    .borderRadius(12)
+    .backgroundColor('#FFECECEC')
+    .height(120)
+    .width('100%')
+    .justifyContent(FlexAlign.SpaceBetween)
   }
 }
 ```
@@ -376,20 +430,41 @@ struct ArticleCard {
 
   build() {
     Row() {
-      // ...
-      Row() {
-        Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnLiked'))
-          .width(24)
-          .height(24)
-          .margin({ right: 8 })
-        Text(this.article.likesCount.toString())
-          .fontSize(16)
-      }
-      .onClick(() => this.handleLiked())
-      .justifyContent(FlexAlign.Center)
+      Image($r('app.media.icon'))
+        .width(80)
+        .height(80)
+        .margin({ right: 20 })
 
-      // ...
+      Column() {
+        Text(this.article.title)
+          .fontSize(20)
+          .margin({ bottom: 8 })
+        Text(this.article.brief)
+          .fontSize(16)
+          .fontColor(Color.Gray)
+          .margin({ bottom: 8 })
+
+        Row() {
+          Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnLiked'))
+            .width(24)
+            .height(24)
+            .margin({ right: 8 })
+          Text(this.article.likesCount.toString())
+            .fontSize(16)
+        }
+        .onClick(() => this.handleLiked())
+        .justifyContent(FlexAlign.Center)
+      }
+      .alignItems(HorizontalAlign.Start)
+      .width('80%')
+      .height('100%')
     }
+    .padding(20)
+    .borderRadius(12)
+    .backgroundColor('#FFECECEC')
+    .height(120)
+    .width('100%')
+    .justifyContent(FlexAlign.SpaceBetween)
   }
 }
 ```
@@ -409,15 +484,15 @@ struct ArticleCard {
 
 ## 使用建议
 
-- 尽量避免在最终的键值生成规则中包含数据项索引`index`，以防止出现[非预期的渲染结果](#非预期的渲染结果)和[较差的性能体验](#较差的性能体验)。如果业务确实需要使用`index`，例如列表需要通过`index`进行条件渲染，开发者需要接受`ForEach`在改变数据源后重新创建组件所带来的性能损耗。
+- 尽量避免在最终的键值生成规则中包含数据项索引`index`，以防止出现[渲染结果非预期](#渲染结果非预期)和[渲染性能降低](#渲染性能降低)。如果业务确实需要使用`index`，例如列表需要通过`index`进行条件渲染，开发者需要接受`ForEach`在改变数据源后重新创建组件所带来的性能损耗。
 - 为满足键值的唯一性，对于对象数据类型，建议使用对象数据中的唯一`id`作为键值。
 - 基本数据类型的数据项没有唯一`ID`属性。如果使用基本数据类型本身作为键值，必须确保数组项无重复。因此，对于数据源会发生变化的场景，建议将基本数据类型数组转化为具备唯一`ID`属性的对象数据类型数组，再使用`ID`属性作为键值生成规则。
 
 ## 不推荐案例
 
-开发者在使用ForEach的过程中，若对于键值生成规则的理解不够充分，可能会出现错误的使用方式。错误使用一方面会导致功能层面问题，例如[渲染结果非预期](#错误渲染)，另一方面会导致性能层面问题，例如[渲染性能降低](#性能体验)。
+开发者在使用ForEach的过程中，若对于键值生成规则的理解不够充分，可能会出现错误的使用方式。错误使用一方面会导致功能层面问题，例如[渲染结果非预期](#渲染结果非预期)，另一方面会导致性能层面问题，例如[渲染性能降低](#渲染性能降低)。
 
-### 非预期的渲染结果
+### 渲染结果非预期
 
 在本示例中，通过设置`ForEach`的第三个参数`KeyGenerator`函数，自定义键值生成规则为数据源的索引`index`的字符串类型值。当点击父组件`Parent`中“在第1项后插入新项”文本组件后，界面会出现非预期的结果。
 
@@ -471,7 +546,7 @@ struct ChildItem {
 
 从以上可以看出，当最终键值生成规则包含`index`时，期望的界面渲染结果为`['one', 'new item', 'two', 'three']`，而实际的渲染结果为`['one', 'two', 'three', 'three']`，渲染结果不符合开发者预期。因此，开发者在使用`ForEach`时应尽量避免最终键值生成规则中包含`index`。
 
-### 较差的性能体验
+### 渲染性能降低
 
 在本示例中，`ForEach`的第三个参数`KeyGenerator`函数处于缺省状态。根据上述[键值生成规则](#键值生成规则)，此例使用框架默认的键值生成规则，即最终键值为字符串`index + '__' + JSON.stringify(item)`。当点击“在第1项后插入新项”文本组件后，`ForEach`将需要为第2个数组项以及其后的所有项重新创建组件。
 
