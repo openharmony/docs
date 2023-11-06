@@ -16,6 +16,10 @@
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](js-apis-app-ability-environmentCallback.md)
     - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](js-apis-app-ability-extensionAbility.md)
+    - [@ohos.app.ability.insightIntent (insightIntent)](js-apis-app-ability-insightIntent.md)
+    - [@ohos.app.ability.InsightIntentContext (意图调用执行上下文)](js-apis-app-ability-insightIntentContext.md)
+    - [@ohos.app.ability.insightIntentDriver (执行意图调用)](js-apis-app-ability-insightIntentDriver.md)
+    - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](js-apis-app-ability-insightIntentExecutor.md)
     - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](js-apis-app-ability-PrintExtensionAbility.md)
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-app-ability-serviceExtensionAbility.md)
     - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](js-apis-app-ability-shareExtensionAbility.md)
@@ -567,4 +571,4 @@
     - [remoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
   - data/rdb
-    - [resultSet (结果集)](js-apis-data-resultset.md) 
+    - [resultSet (结果集)](js-apis-data-resultset.md)
