@@ -308,7 +308,7 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 import { BusinessError } from '@ohos.base';
 
 try {
-    let typeId : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
+    let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
     console.info(`typeId is general.type-script`);
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -344,7 +344,7 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 import { BusinessError } from '@ohos.base';
 
 try {
-    let typeId : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getUniformDataTypeByMIMEType('application/vnd.ms-excel', 'general.object');
+    let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('application/vnd.ms-excel', 'general.object');
     console.info(`typeId is com.microsoft.excel.xls`);
 } catch(e) {
     let error: BusinessError = e as BusinessError;
