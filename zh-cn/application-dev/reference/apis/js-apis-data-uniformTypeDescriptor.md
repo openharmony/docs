@@ -25,80 +25,80 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | COMPOSITE_OBJECT<sup>11+</sup>                       | 'general.composite-object'                   | 混合对象的基类型，例如：PDF文件包含文本和特殊格式数据，归属类型为OBJECT。                          |
 | TEXT                       | 'general.text'                   | 所有文本的基类型，归属类型为OBJECT。                          |
 | PLAIN_TEXT                | 'general.plain-text'             | 未指定编码的文本类型，没有标识符，归属类型为TEXT。        |
-| HTML                  | 'general.html'                   | HTML文本类型， 归属类型为TEXT。               |
-| HYPERLINK         | 'general.hyperlink'              | 超链接类型， 归属类型为TEXT。                  |
-| XML<sup>11+</sup>    | 'general.xml'                   | XML文本类型， 归属类型为TEXT。                |
-| SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | 所有源代码的基类型， 归属类型为PLAIN_TEXT。        |
-| SCRIPT<sup>11+</sup>    | 'general.script'                  | 所有脚本语言源代码的基类型， 归属类型为SOURCE_CODE。   |
-| SHELL_SCRIPT<sup>11+</sup>               | 'general.shell-script'                  | shell脚本类型， 归属类型为SCRIPT。            |    
-| CSH_SCRIPT<sup>11+</sup>      | 'general.csh-script'                 | C-shell脚本类型， 归属类型为SHELL_SCRIPT。    |
-| PERL_SCRIPT<sup>11+</sup> |'general.perl-script'               | Perl脚本类型， 归属类型为SHELL_SCRIPT。       |
-| PHP_SCRIPT<sup>11+</sup>         | 'general.php-script'           | PHP脚本类型， 归属类型为SHELL_SCRIPT。        |
-| PYTHON_SCRIPT<sup>11+</sup>        | 'general.python-script'          | Python脚本类型， 归属类型为SHELL_SCRIPT。     |
-| RUBY_SCRIPT<sup>11+</sup>                         | 'general.ruby-script'                   | Ruby脚本类型， 归属类型为SHELL_SCRIPT。       |
-| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript源代码类型， 归属类型为SCRIPT。 |
-| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript源代码类型， 归属类型为SCRIPT。 |
-| C_HEADER<sup>11+</sup>                        | 'general.c-header'                  | C头文件类型， 归属类型为SOURCE_CODE。          |
-| C_SOURCE<sup>11+</sup>                       | 'general.c-source'                 | C源代码类型， 归属类型为SOURCE_CODE。          |
-| C_PLUS_PLUS_HEADER<sup>11+</sup>             | 'general.c-plus-plus-header'               | C++头文件类型， 归属类型为SOURCE_CODE。        |
-| C_PLUS_PLUS_SOURCE<sup>11+</sup>         | 'general.c-plus-plus-source'           | C++源代码类型， 归属类型为SOURCE_CODE。        |
-| JAVA_SOURCE<sup>11+</sup>        | 'general.java-source'          | Java源代码类型， 归属类型为SOURCE_CODE。       |
-| EBOOK<sup>11+</sup>                         | 'general.ebook'                   | 所有电子书文件格式的基类型， 归属类型为COMPOSITE_OBJECT。                     |
-| EPUB<sup>11+</sup>                        | 'general.epub'                  | 电子出版物（EPUB）文件格式类型， 归属类型为EBOOK。     |
-| AZW<sup>11+</sup>                        | 'com.amazon.azw'                  | AZW电子书文件格式类型， 归属类型为EBOOK。          |
-| AZW3<sup>11+</sup>                        | 'com.amazon.azw3'                  | AZW3电子书文件格式类型， 归属类型为EBOOK。         |
-| KFX<sup>11+</sup>                       | 'com.amazon.kfx'                 | KFX电子书文件格式类型， 归属类型为EBOOK。          |
-| MOBI<sup>11+</sup>             | 'com.amazon.mobi'               | MOBI电子书文件格式类型， 归属类型为EBOOK。         |
+| HTML                  | 'general.html'                   | HTML文本类型，归属类型为TEXT。               |
+| HYPERLINK         | 'general.hyperlink'              | 超链接类型，归属类型为TEXT。                  |
+| XML<sup>11+</sup>    | 'general.xml'                   | XML文本类型，归属类型为TEXT。                |
+| SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | 所有源代码的基类型，归属类型为PLAIN_TEXT。        |
+| SCRIPT<sup>11+</sup>    | 'general.script'                  | 所有脚本语言源代码的基类型，归属类型为SOURCE_CODE。   |
+| SHELL_SCRIPT<sup>11+</sup>               | 'general.shell-script'                  | shell脚本类型，归属类型为SCRIPT。            |    
+| CSH_SCRIPT<sup>11+</sup>      | 'general.csh-script'                 | C-shell脚本类型，归属类型为SHELL_SCRIPT。    |
+| PERL_SCRIPT<sup>11+</sup> |'general.perl-script'               | Perl脚本类型，归属类型为SHELL_SCRIPT。       |
+| PHP_SCRIPT<sup>11+</sup>         | 'general.php-script'           | PHP脚本类型，归属类型为SHELL_SCRIPT。        |
+| PYTHON_SCRIPT<sup>11+</sup>        | 'general.python-script'          | Python脚本类型，归属类型为SHELL_SCRIPT。     |
+| RUBY_SCRIPT<sup>11+</sup>                         | 'general.ruby-script'                   | Ruby脚本类型，归属类型为SHELL_SCRIPT。       |
+| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript源代码类型，归属类型为SCRIPT。 |
+| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript源代码类型，归属类型为SCRIPT。 |
+| C_HEADER<sup>11+</sup>                        | 'general.c-header'                  | C头文件类型，归属类型为SOURCE_CODE。          |
+| C_SOURCE<sup>11+</sup>                       | 'general.c-source'                 | C源代码类型，归属类型为SOURCE_CODE。          |
+| C_PLUS_PLUS_HEADER<sup>11+</sup>             | 'general.c-plus-plus-header'               | C++头文件类型，归属类型为SOURCE_CODE。        |
+| C_PLUS_PLUS_SOURCE<sup>11+</sup>         | 'general.c-plus-plus-source'           | C++源代码类型，归属类型为SOURCE_CODE。        |
+| JAVA_SOURCE<sup>11+</sup>        | 'general.java-source'          | Java源代码类型，归属类型为SOURCE_CODE。       |
+| EBOOK<sup>11+</sup>                         | 'general.ebook'                   | 所有电子书文件格式的基类型，归属类型为COMPOSITE_OBJECT。                     |
+| EPUB<sup>11+</sup>                        | 'general.epub'                  | 电子出版物（EPUB）文件格式类型，归属类型为EBOOK。     |
+| AZW<sup>11+</sup>                        | 'com.amazon.azw'                  | AZW电子书文件格式类型，归属类型为EBOOK。          |
+| AZW3<sup>11+</sup>                        | 'com.amazon.azw3'                  | AZW3电子书文件格式类型，归属类型为EBOOK。         |
+| KFX<sup>11+</sup>                       | 'com.amazon.kfx'                 | KFX电子书文件格式类型，归属类型为EBOOK。          |
+| MOBI<sup>11+</sup>             | 'com.amazon.mobi'               | MOBI电子书文件格式类型，归属类型为EBOOK。         |
 | MEDIA<sup>11+</sup>         | 'general.media'           | 所有媒体的基类型，归属类型为OBJECT。                          |
-| IMAGE        | 'general.image'          | 所有图片的基类型， 归属类型为MEDIA。              |
-| JPEG<sup>11+</sup>                         | 'general.jpeg'                   | JPEG图片类型， 归属类型为IMAGE。              |
-| PNG<sup>11+</sup>                        | 'general.png'                  | PNG图片类型， 归属类型为IMAGE。               |
-| RAW_IMAGE<sup>11+</sup>                        | 'general.raw-image'                  | 所有原始图像格式的基类型， 归属类型为IMAGE。          |
-| TIFF<sup>11+</sup>                        | 'general.tiff'                  | TIFF图片类型， 归属类型为IMAGE。              |
-| BMP<sup>11+</sup>                       | 'com.microsoft.bmp'                 | WINDOWS位图图像类型， 归属类型为IMAGE。         |
-| ICO<sup>11+</sup>             | 'com.microsoft.ico'               | WINDOWS图标图像类型， 归属类型为IMAGE。         |
-| PHOTOSHOP_IMAGE<sup>11+</sup>         | 'com.adobe.photoshop-image'           | Adobe Photoshop图片类型， 归属类型为IMAGE。   |
-| AI_IMAGE<sup>11+</sup>        | 'com.adobe.illustrator.ai-image'          | Adobe Illustrator图片类型， 归属类型为IMAGE。 |
-| WORD_DOC<sup>11+</sup>                         | 'com.microsoft.word.doc'                   | Microsoft Word数据类型， 归属类型为COMPOSITE_OBJECT。                |
-| EXCEL<sup>11+</sup>                        | 'com.microsoft.excel.xls'                  | Microsoft Excel数据类型， 归属类型为COMPOSITE_OBJECT。               |
-| PPT<sup>11+</sup>                        | 'com.microsoft.powerpoint.ppt'                  | Microsoft PowerPoint演示文稿类型， 归属类型为COMPOSITE_OBJECT。        |
+| IMAGE        | 'general.image'          | 所有图片的基类型，归属类型为MEDIA。              |
+| JPEG<sup>11+</sup>                         | 'general.jpeg'                   | JPEG图片类型，归属类型为IMAGE。              |
+| PNG<sup>11+</sup>                        | 'general.png'                  | PNG图片类型，归属类型为IMAGE。               |
+| RAW_IMAGE<sup>11+</sup>                        | 'general.raw-image'                  | 所有原始图像格式的基类型，归属类型为IMAGE。          |
+| TIFF<sup>11+</sup>                        | 'general.tiff'                  | TIFF图片类型，归属类型为IMAGE。              |
+| BMP<sup>11+</sup>                       | 'com.microsoft.bmp'                 | WINDOWS位图图像类型，归属类型为IMAGE。         |
+| ICO<sup>11+</sup>             | 'com.microsoft.ico'               | WINDOWS图标图像类型，归属类型为IMAGE。         |
+| PHOTOSHOP_IMAGE<sup>11+</sup>         | 'com.adobe.photoshop-image'           | Adobe Photoshop图片类型，归属类型为IMAGE。   |
+| AI_IMAGE<sup>11+</sup>        | 'com.adobe.illustrator.ai-image'          | Adobe Illustrator图片类型，归属类型为IMAGE。 |
+| WORD_DOC<sup>11+</sup>                         | 'com.microsoft.word.doc'                   | Microsoft Word数据类型，归属类型为COMPOSITE_OBJECT。                |
+| EXCEL<sup>11+</sup>                        | 'com.microsoft.excel.xls'                  | Microsoft Excel数据类型，归属类型为COMPOSITE_OBJECT。               |
+| PPT<sup>11+</sup>                        | 'com.microsoft.powerpoint.ppt'                  | Microsoft PowerPoint演示文稿类型，归属类型为COMPOSITE_OBJECT。        |
 | PDF<sup>11+</sup>                        | 'com.adobe.pdf'                  | PDF数据类型，归属类型为COMPOSITE_OBJECT。                           |
 | POSTSCRIPT<sup>11+</sup>                       | 'com.adobe.postscript'                 | PostScript数据类型，归属类型为COMPOSITE_OBJECT。                    |
 | ENCAPSULATED_POSTSCRIPT<sup>11+</sup>             | 'com.adobe.encapsulated-postscript'               | Encapsulated PostScript类型，归属类型为POSTSCRIPT。         |
-| VIDEO       | 'general.video'           | 所有视频的基类型， 归属类型为MEDIA。              |
-| AVI<sup>11+</sup>        | 'general.avi'          | AVI视频类型， 归属类型为VIDEO。               |
-| MPEG<sup>11+</sup>                         | 'general.mpeg'                   | MPGE-1或MPGE-2视频类型， 归属类型为VIDEO。     |
-| MPEG4<sup>11+</sup>                        | 'general.mpeg-4'                  | MPGE-4视频类型， 归属类型为VIDEO。            |
-| VIDEO_3GPP<sup>11+</sup>                        | 'general.3gpp'                  | 3GPP视频类型， 归属类型为VIDEO。              |
-| VIDEO_3GPP2<sup>11+</sup>                        | 'general.3gpp2'                  | 3GPP2视频类型， 归属类型为VIDEO。             |
-| WINDOWS_MEDIA_WM<sup>11+</sup>                       | 'com.microsoft.windows-media-wm'                 | WINDOWS WM视频类型， 归属类型为VIDEO。        |
-| WINDOWS_MEDIA_WMV<sup>11+</sup>             | 'com.microsoft.windows-media-wmv'               | WINDOWS WMV视频类型， 归属类型为VIDEO。       |
-| WINDOWS_MEDIA_WMP<sup>11+</sup>         | 'com.microsoft.windows-media-wmp'           | WINDOWS WMP视频类型， 归属类型为VIDEO。       |
-| AUDIO       | 'general.audio'          | 所有音频的基类型， 归属类型为MEDIA。              |
-| AAC<sup>11+</sup>                         | 'general.aac'                   | AAC音频类型， 归属类型为AUDIO。               |
-| AIFF<sup>11+</sup>                        | 'general.aiff'                  | AIFF音频类型， 归属类型为AUDIO。              |
-| ALAC<sup>11+</sup>                        | 'general.alac'                  | ALAC音频类型， 归属类型为AUDIO。              |
-| FLAC<sup>11+</sup>                        | 'general.flac'                  | FLAC音频类型， 归属类型为AUDIO。              |
-| MP3<sup>11+</sup>                       | 'general.mp3'                 | MP3音频类型， 归属类型为AUDIO。               |
-| OGG<sup>11+</sup>              | 'general.ogg'               | OGG音频类型， 归属类型为AUDIO。               |
-| PCM<sup>11+</sup>         | 'general.pcm'           | PCM音频类型， 归属类型为AUDIO。               |
-| WINDOWS_MEDIA_WMA<sup>11+</sup>        | 'com.microsoft.windows-media-wma'          | WINDOWS WMA音频类型， 归属类型为AUDIO。       |
-| WAVEFORM_AUDIO<sup>11+</sup>                         | 'com.microsoft.waveform-audio'                   | WINDOWS波形音频类型， 归属类型为AUDIO。         |
-| WINDOWS_MEDIA_WMX<sup>11+</sup>                        | 'com.microsoft.windows-media-wmx'                  | WINDOWS WMX音频类型， 归属类型为AUDIO。       |
-| WINDOWS_MEDIA_WVX<sup>11+</sup>                        | 'com.microsoft.windows-media-wvx'                  | WINDOWS WVX音频类型， 归属类型为AUDIO。       |
-| WINDOWS_MEDIA_WAX<sup>11+</sup>                        | 'com.microsoft.windows-media-wax'                  | WINDOWS WAX音频类型， 归属类型为AUDIO。       |
-| FILE                       | 'general.file'                 | 所有文件的基类型， 归属类型为ENTITY。                          |
-| DIRECTORY<sup>11+</sup>             | 'general.directory'               | 所有目录的基类型， 归属类型为ENTITY。                          |
-| FOLDER        | 'general.folder'           | 所有文件夹的基类型， 归属类型为DIRECTORY。                         |
+| VIDEO       | 'general.video'           | 所有视频的基类型，归属类型为MEDIA。              |
+| AVI<sup>11+</sup>        | 'general.avi'          | AVI视频类型，归属类型为VIDEO。               |
+| MPEG<sup>11+</sup>                         | 'general.mpeg'                   | MPGE-1或MPGE-2视频类型，归属类型为VIDEO。     |
+| MPEG4<sup>11+</sup>                        | 'general.mpeg-4'                  | MPGE-4视频类型，归属类型为VIDEO。            |
+| VIDEO_3GPP<sup>11+</sup>                        | 'general.3gpp'                  | 3GPP视频类型，归属类型为VIDEO。              |
+| VIDEO_3GPP2<sup>11+</sup>                        | 'general.3gpp2'                  | 3GPP2视频类型，归属类型为VIDEO。             |
+| WINDOWS_MEDIA_WM<sup>11+</sup>                       | 'com.microsoft.windows-media-wm'                 | WINDOWS WM视频类型，归属类型为VIDEO。        |
+| WINDOWS_MEDIA_WMV<sup>11+</sup>             | 'com.microsoft.windows-media-wmv'               | WINDOWS WMV视频类型，归属类型为VIDEO。       |
+| WINDOWS_MEDIA_WMP<sup>11+</sup>         | 'com.microsoft.windows-media-wmp'           | WINDOWS WMP视频类型，归属类型为VIDEO。       |
+| AUDIO       | 'general.audio'          | 所有音频的基类型，归属类型为MEDIA。              |
+| AAC<sup>11+</sup>                         | 'general.aac'                   | AAC音频类型，归属类型为AUDIO。               |
+| AIFF<sup>11+</sup>                        | 'general.aiff'                  | AIFF音频类型，归属类型为AUDIO。              |
+| ALAC<sup>11+</sup>                        | 'general.alac'                  | ALAC音频类型，归属类型为AUDIO。              |
+| FLAC<sup>11+</sup>                        | 'general.flac'                  | FLAC音频类型，归属类型为AUDIO。              |
+| MP3<sup>11+</sup>                       | 'general.mp3'                 | MP3音频类型，归属类型为AUDIO。               |
+| OGG<sup>11+</sup>              | 'general.ogg'               | OGG音频类型，归属类型为AUDIO。               |
+| PCM<sup>11+</sup>         | 'general.pcm'           | PCM音频类型，归属类型为AUDIO。               |
+| WINDOWS_MEDIA_WMA<sup>11+</sup>        | 'com.microsoft.windows-media-wma'          | WINDOWS WMA音频类型，归属类型为AUDIO。       |
+| WAVEFORM_AUDIO<sup>11+</sup>                         | 'com.microsoft.waveform-audio'                   | WINDOWS波形音频类型，归属类型为AUDIO。         |
+| WINDOWS_MEDIA_WMX<sup>11+</sup>                        | 'com.microsoft.windows-media-wmx'                  | WINDOWS WMX音频类型，归属类型为AUDIO。       |
+| WINDOWS_MEDIA_WVX<sup>11+</sup>                        | 'com.microsoft.windows-media-wvx'                  | WINDOWS WVX音频类型，归属类型为AUDIO。       |
+| WINDOWS_MEDIA_WAX<sup>11+</sup>                        | 'com.microsoft.windows-media-wax'                  | WINDOWS WAX音频类型，归属类型为AUDIO。       |
+| FILE                       | 'general.file'                 | 所有文件的基类型，归属类型为ENTITY。                          |
+| DIRECTORY<sup>11+</sup>             | 'general.directory'               | 所有目录的基类型，归属类型为ENTITY。                          |
+| FOLDER        | 'general.folder'           | 所有文件夹的基类型，归属类型为DIRECTORY。                         |
 | SYMLINK<sup>11+</sup>        | 'general.symlink'          | 所有符号链接的基类型，归属类型为ENTITY。                        |
 | ARCHIVE<sup>11+</sup>                         | 'general.archive'                   | 所有文件和目录存档文件的基类型，归属类型为OBJECT。                   |
-| BZ2_ARCHIVE<sup>11+</sup>                        | 'general.bz2-archive'                  | BZ2存档文件类型， 归属类型为ARCHIVE。           |
-| DISK_IMAGE<sup>11+</sup>                        | 'general.disk-image'                  | 所有可作为卷装载项的文件类型的基类型， 归属类型为ARCHIVE。  |
-| TAR_ARCHIVE<sup>11+</sup>                        | 'general.tar-archive'                  | TAR存档文件类型， 归属类型为ARCHIVE。           |
-| ZIP_ARCHIVE<sup>11+</sup>                       | 'general.zip-archive'                 | ZIP存档文件类型， 归属类型为ARCHIVE。           |
-| JAVA_ARCHIVE<sup>11+</sup>             | 'com.sun.java-archive'               | JAVA存档文件类型， 归属类型为ARCHIVE。          |
-| GNU_TAR_ARCHIVE<sup>11+</sup>         | 'org.gnu.gnu-tar-archive'           | GUN存档文件类型， 归属类型为ARCHIVE。           |
-| GNU_ZIP_ARCHIVE<sup>11+</sup>        | 'org.gnu.gnu-zip-archive'          | GZIP存档文件类型， 归属类型为ARCHIVE。          |
+| BZ2_ARCHIVE<sup>11+</sup>                        | 'general.bz2-archive'                  | BZ2存档文件类型，归属类型为ARCHIVE。           |
+| DISK_IMAGE<sup>11+</sup>                        | 'general.disk-image'                  | 所有可作为卷装载项的文件类型的基类型，归属类型为ARCHIVE。  |
+| TAR_ARCHIVE<sup>11+</sup>                        | 'general.tar-archive'                  | TAR存档文件类型，归属类型为ARCHIVE。           |
+| ZIP_ARCHIVE<sup>11+</sup>                       | 'general.zip-archive'                 | ZIP存档文件类型，归属类型为ARCHIVE。           |
+| JAVA_ARCHIVE<sup>11+</sup>             | 'com.sun.java-archive'               | JAVA存档文件类型，归属类型为ARCHIVE。          |
+| GNU_TAR_ARCHIVE<sup>11+</sup>         | 'org.gnu.gnu-tar-archive'           | GUN存档文件类型，归属类型为ARCHIVE。           |
+| GNU_ZIP_ARCHIVE<sup>11+</sup>        | 'org.gnu.gnu-zip-archive'          | GZIP存档文件类型，归属类型为ARCHIVE。          |
 | GNU_ZIP_TAR_ARCHIVE<sup>11+</sup>                         | 'org.gnu.gnu-zip-tar-archive'                   | GZIP TAR存档文件类型，归属类型为ARCHIVE。       |
 | CALENDAR<sup>11+</sup>                        | 'general.calendar'                  | 所有日程类数据的基类型，归属类型为OBJECT。                       |
 | CONTACT<sup>11+</sup>                        | 'general.contact'                  | 所有联系人类数据的基类型，归属类型为OBJECT。                      |
@@ -151,7 +151,19 @@ belongsTo(type: string): boolean
 **示例：**
 
 ```ts
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
 
+try{
+    let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
+    let ret = typeObj.belongsTo("general.plain-text");
+    if(ret) {
+        console.info(`general.type-script is belongsTo general.plain-text`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`throws an exception. code is ${error.code}, message is ${error.message} `);
+}
 ```
 
 ### isLowerLevelType<sup>11+</sup> 
@@ -177,7 +189,19 @@ isLowerLevelType(type: string): boolean
 **示例：**
 
 ```ts
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
 
+try{
+    let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
+    let ret = typeObj.isLowerLevelType("general.plain-text");
+    if(ret) {
+        console.info(`general.type-script is lower level than general.plain-text`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`throws an exception. code is ${error.code}, message is ${error.message} `);
+}
 ```
 
 ### isHigherLevelType<sup>11+</sup> 
@@ -203,7 +227,19 @@ isHigherLevelType(type: string): boolean
 **示例：**
 
 ```ts
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
 
+try{
+    let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.plain-text');
+    let ret = typeObj.isHigherLevelType("general.type-script");
+    if(ret) {
+        console.info(`general.type-script is higher level than general.plain-text`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`throws an exception. code is ${error.code}, message is ${error.message} `);
+}
 ```
 
 ### equals<sup>11+</sup> 
@@ -237,7 +273,7 @@ try{
     let typeB : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.python-script');
     if(!typeA.equals(typeB)) {
       console.info(`typeA is not equal to typeB`);
-  }
+    }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
     console.error(`throws an exception. code is ${error.code}, message is ${error.message} `);
@@ -268,7 +304,16 @@ getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: str
 **示例：**
 
 ```ts
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
 
+try {
+    let typeId : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
+    console.info(`typeId is general.type-script`);
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getTypeDescriptor throws an exception. code is ${error.code}, message is ${error.message} `);
+}
 ```
 
 ## uniformTypeDescriptor.getUniformDataTypeByMIMEType<sup>11+</sup>
@@ -295,7 +340,16 @@ getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
 **示例：**
 
 ```ts
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
 
+try {
+    let typeId : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getUniformDataTypeByMIMEType('application/vnd.ms-excel', 'general.object');
+    console.info(`typeId is com.microsoft.excel.xls`);
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getTypeDescriptor throws an exception. code is ${error.code}, message is ${error.message} `);
+}
 ```
 
 ## uniformTypeDescriptor.getTypeDescriptor<sup>11+</sup>
