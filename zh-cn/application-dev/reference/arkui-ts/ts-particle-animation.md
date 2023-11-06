@@ -154,7 +154,7 @@ interface ImageParticleParameters {
 ```
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
-| src      | [ResourceStr](ts-types.md#resourcestr) | 是    | 图片路径。暂不支持svg、gif图片类型。 |
+| src      | [ResourceStr](ts-types.md#resourcestr) | 是    | 图片路径。暂不支持svg图片类型。 |
 | size     | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\]| 是    | 图像尺寸。 |
 | objectFit| [ImageFit](ts-appendix-enums.md#imagefit)| 否    | 图片显示模式。 |
 
