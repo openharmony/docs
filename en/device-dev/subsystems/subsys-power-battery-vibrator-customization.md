@@ -17,7 +17,7 @@ The device must be equipped with a vibrator.
 
 - **Hardware requirements:**
 
-  Development board running the standard system, for example, the DAYU200 or RK3568 open source suite and connected to a vibrator
+  Development board running the standard system, for example, the DAYU200 open source suite, and connected to a vibrator
 
 - **Environment requirements:**
 
@@ -27,7 +27,7 @@ The device must be equipped with a vibrator.
 
 The following uses the RK3568 development board as an example to illustrate battery charging vibration customization.
 
-1. Write the custom `battery_vibrator.json` file by referring to the [battery_vibrator.json](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_vibrator.json) file in the default folder of battery vibrator configuration. 
+1. Write the custom `battery_vibrator.json` file by referring to the [battery_vibrator.json](https://gitee.com/openharmony/powermgr_battery_manager/tree/master/services/native/profile/battery_vibrator.json) file in the default folder of battery vibrator configuration. 
 
     ```text
     profile
@@ -39,9 +39,11 @@ The following uses the RK3568 development board as an example to illustrate batt
     Example configuration:
 
     ```json
-    "start_charge": {
-        "enable": true, 
-        "type": "haptic.charging"
+    {
+        "start_charge": {
+            "enable": true, 
+            "type": "haptic.charging"
+        }
     }
     ```
    - **start_charge**: name of the vibration scenario, which cannot be changed.
@@ -67,4 +69,4 @@ Upon device restarting, connect a charger to the device and check whether the de
 
 During development, you can refer to the default battery vibrator configuration:
 
-[Default Battery Vibrator Configuration](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_vibrator.json)
+[Default Battery Vibrator Configuration](https://gitee.com/openharmony/powermgr_battery_manager/tree/master/services/native/profile)
