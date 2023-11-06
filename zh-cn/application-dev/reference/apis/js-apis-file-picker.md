@@ -811,7 +811,7 @@ async function example18() {
 | ----------------------- | ------------------- | ---- | ---------------------------- |
 | newFileNames              | Array&lt;string&gt;    | 否  | 拉起photoPicker进行保存图片或视频资源的文件名，若无此参数，则默认需要用户自行输入 |
 
-## SelectMode<sup>11+</sup>
+## DocumentSelectMode<sup>11+</sup>
 
 枚举，picker选择的文档类型。
 
@@ -834,7 +834,7 @@ async function example18() {
 | maxSelectNumber<sup>10+</sup>       | number  | 否   | 选择文件/目录最大个数，上限500，有效值范围1-500             |
 | defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定选择的文件或者目录路径                            |
 | fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt; | 否   | 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔 |
-| selectMode<sup>11+</sup>         | SelectMode          | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅支持特定设备         |
+| selectMode<sup>11+</sup>         | DocumentSelectMode          | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅支持特定设备         |
 
 
 ## DocumentSaveOptions
