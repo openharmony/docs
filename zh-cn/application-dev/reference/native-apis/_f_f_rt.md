@@ -1,16 +1,16 @@
-﻿## FFRT 用户编程指南
+﻿# FFRT
 
+## 概述
 > Function Flow编程模型是一种基于任务和数据驱动的并发编程模型，允许开发者通过任务及其依赖关系描述的方式进行应用开发。FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运行时库，用于调度执行开发者基于Function Flow编程模型开发的应用。通过Function Flow编程模型和FFRT，开发者可专注于应用功能开发，由FFRT在运行时根据任务依赖状态和可用执行资源自动并发调度和执行任务。
 >
-> 本文用于指导开发者基于Function Flow编程模型和FFRT实现并行编程。
+
 
 <hr/>
-# 版本
+## 版本
 
-| 版本 | 编辑                                                         | 主要变更                                                     | 日期       |
-| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------- |
-| V0.1 | linjiashu <br />zhangguowei <br />huangyouzhong  | 发布以下API：<br />1. task 管理，包括：submit，wait，task_attr, task_handle/submit_h<br />2. 同步原语，包括：mutex，condition_variable<br />3. Deadline 调度<br />4. 杂项：sleep，yield<br /> | 2022/09/26 |
-
+| 版本 | 
+| ---- |
+| V0.1 |
 
 <br/>
 
