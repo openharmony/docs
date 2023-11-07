@@ -300,7 +300,7 @@
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
 
 - 文件管理
-  - [@ohos.application.BackupExtensionAbility (BackupExtensionAbility)](js-apis-application-backupExtensionAbility.md)
+  - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](js-apis-application-backupExtensionAbility.md)
   - [@ohos.file.backup (备份恢复)](js-apis-file-backup.md)
   - [@ohos.file.cloudSync (端云同步能力)](js-apis-file-cloudsync.md)
   - [@ohos.file.cloudSyncManager (端云同步管理)](js-apis-file-cloudsyncmanager.md)
