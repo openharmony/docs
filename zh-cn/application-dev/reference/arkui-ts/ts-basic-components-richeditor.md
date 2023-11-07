@@ -596,7 +596,7 @@ struct SelectionMenu {
   options: RichEditorOptions = { controller: this.controller }
   private iconArr: Array<Resource> =
     [$r('app.media.icon'), $r("app.media.icon"), $r('app.media.icon'),
-    $r("app.media.icon"), $r('app.media.icon')]
+      $r("app.media.icon"), $r('app.media.icon')]
   private listArr: Array<Object> =
     [{ imageSrc: $r('sys.media.ohos_ic_public_cut'), id: '剪切', label: "Ctrl+X" } as info,
       { imageSrc: $r('sys.media.ohos_ic_public_copy'), id: '复制', label: "Ctrl+C" } as info,
@@ -620,6 +620,9 @@ struct SelectionMenu {
             this.controller.addTextSpan(this.message, { style: { fontColor: Color.Orange, fontSize: 30 } })
           })
           .onSelect((value: RichEditorSelection) => {
+            if (value.selection[0] == -1 && value.selection[1] == -1) {
+              return
+            }
             this.start = value.selection[0]
             this.end = value.selection[1]
           })
@@ -630,26 +633,20 @@ struct SelectionMenu {
           .borderColor(Color.Red)
           .width(200)
           .height(200)
-          .position({ x: 150, y: 100 })
-      }.width('100').backgroundColor(Color.White)
-    }.height('100')
+      }.width('100%').backgroundColor(Color.White)
+    }.height('100%')
   }
 
   @Builder
   panel() {
     Column() {
-      Menu() {
-        MenuItem({ builder: this.iconPanel() })
-      }.shadow(ShadowStyle.OUTER_DEFAULT_MD).margin({ bottom: 8 }).height(56).width(256)
-
-      Menu() {
-        if (!this.sliderShow) {
-          MenuItem({ builder: this.listPanel() })
-        } else {
-          MenuItem({ builder: this.sliderPanel() })
-        }
-      }.width(256).shadow(ShadowStyle.OUTER_DEFAULT_MD)
-    }.width(256).backgroundColor(Color.Transparent)
+      this.iconPanel()
+      if (!this.sliderShow) {
+        this.listPanel()
+      } else {
+        this.sliderPanel()
+      }
+    }.width(256)
   }
 
   @Builder iconPanel() {
@@ -708,7 +705,7 @@ struct SelectionMenu {
             if(isHover != undefined) {
               this.iconBgColor[index as number] = $r('sys.color.ohos_id_color_hover')
             }else{
-                this.listBgColor[index as number] = this.colorTransparent
+              this.listBgColor[index as number] = this.colorTransparent
             }
           })
           .onFocus(() => {
@@ -721,10 +718,11 @@ struct SelectionMenu {
         })
       }
     }
-    .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
     .width(248)
     .height(48)
+    .margin({ bottom: 8 })
+    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
   }
 
   @Builder listPanel() {
@@ -740,7 +738,6 @@ struct SelectionMenu {
             })
               .onClick(() => {
                 let sysBoard = pasteboard.getSystemPasteboard()
-                this.controller.closeSelectionMenu()
                 let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, '')
                 this.controller.getSpans({ start: this.start, end: this.end })
                   .forEach((item, i) => {
@@ -855,6 +852,7 @@ struct SelectionMenu {
     .width(248)
     .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
   }
 
   @Builder sliderPanel() {
