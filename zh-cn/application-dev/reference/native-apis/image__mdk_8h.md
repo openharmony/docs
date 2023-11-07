@@ -36,8 +36,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| { [OHOS_IMAGE_FORMAT_YCBCR_422_SP](image.md) = 1000,<br/>[OHOS_IMAGE_FORMAT_JPEG](image.md) = 2000, } | 图像格式枚举值。 | 
-| { [OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y](image.md) = 1,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_U](image.md) = 2,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_V](image.md) = 3,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_JPEG](image.md) = 4, } | 图像组成类型枚举值。 | 
+| { [OHOS_IMAGE_FORMAT_YCBCR_422_SP](image.md#anonymous-enum-13) = 1000,<br/>[OHOS_IMAGE_FORMAT_JPEG](image.md#anonymous-enum-13) = 2000, } | 图像格式枚举值。 | 
+| { [OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y](image.md#anonymous-enum-13-1) = 1,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_U](image.md#anonymous-enum-13-1) = 2,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_V](image.md#anonymous-enum-13-1) = 3,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_JPEG](image.md#anonymous-enum-13-1) = 4, } | 图像组成类型枚举值。 | 
 
 
 ### 函数
@@ -50,3 +50,4 @@
 | [OH_Image_Format](image.md#oh_image_format) (const [ImageNative](image.md#imagenative) \*native, int32_t \*format) | 获取native **ImageNative** 对象的图像格式。 | 
 | [OH_Image_GetComponent](image.md#oh_image_getcomponent) (const [ImageNative](image.md#imagenative) \*native, int32_t componentType, struct [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) \*componentNative) | 从 native **ImageNative** 对象中获取 [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)。 | 
 | [OH_Image_Release](image.md#oh_image_release) ([ImageNative](image.md#imagenative) \*native) | 释放 **ImageNative** native对象。 | 
+<!--no_check-->
