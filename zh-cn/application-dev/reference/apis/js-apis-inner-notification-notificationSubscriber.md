@@ -252,11 +252,15 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onDoNotDisturbDateChange<sup>8+</sup>
+### onDoNotDisturbDateChange<sup>8+</sup>(deprecated)
 
 onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
 
 免打扰时间选项发生变更时的回调函数。
+
+> **说明：**
+>
+> 此接口从API version 8开始支持，从API version 11开始不再维护，建议使用[onDoNotDisturbChanged](js-apis-inner-notification-notificationSubscriber.md#ondonotdisturbchanged11)代替。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -333,8 +337,6 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
-
-
 
 ### onEnabledNotificationChanged<sup>8+</sup>
 
