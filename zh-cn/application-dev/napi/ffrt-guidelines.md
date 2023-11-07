@@ -95,7 +95,7 @@ task4(OUT A);
 task5(OUT A);
 ```
 
-<img src="images/2023-11-03 101720.png" style="zoom:60%" />
+<img src="figures/ffrtfigure3.png" style="zoom:60%" />
 
 > 为表述方便，本文中的数据流图均以圆圈表示 Task，方块表示数据。
 
@@ -379,7 +379,7 @@ int main(int narg, char** argv)
 
 2)   虽然单个Task 只能拆分成2个SubTask 但是子Task 可以继续拆分，因此，整个计算图的并行度是非常高的，Task 之间在FFRT 内部形成了一颗调用树；
 
-<img src="images/2023-11-02 195629.png" style="zoom:100%" />
+<img src="figures/ffrtfigure2.png" style="zoom:100%" />
 
 > 以上实现，逻辑上虽与C++ API中的实现类似，但是用户显式管理数据生命周期和函数入参打包两个因素将使代码异常复杂
 
@@ -1356,7 +1356,7 @@ void ffrt_yield();
 # 部署
 
 ## 部署方式
-<img src="images/2023-11-02 115530.png" alt="2023-11-02 115530" style="zoom:67%;" />
+<img src="figures/ffrtfigure1.png" alt="ffrtfigure1" style="zoom:67%;" />
 
 * FFRT的部署依赖FFRT动态库libffrt.so和一组header头文件
 
@@ -1442,7 +1442,7 @@ void ffrt_yield();
 
 使用 Task 梳理应用的流程，并且尽可能使用数据来表达 Task 之间的依赖。当然如果两个 Task 之间如无数据依赖，仅存在控制依赖，您也可以创建一个虚拟的（或者逻辑上的）数据依赖。
 
-<img src="images/image-20220926152831526.png" style="zoom:70%" />
+<img src="figures/image-20220926152831526.png" style="zoom:70%" />
 
 <center>AIRAW 的数据流图</center>
 
@@ -1456,7 +1456,7 @@ void ffrt_yield();
 
 下图中，第一次画数据流图时，可以不将 FaceDirection 和 UpdateExistFaceImageInfo 两个 Task 展开，可以逐步细化。
 
-<img src="images/image-20220926153003884.png" style="zoom:70%" />
+<img src="figures/image-20220926153003884.png" style="zoom:70%" />
 
 <center>某拍照业务的数据流图</center>
 
@@ -1469,7 +1469,7 @@ FFRT 允许动态提交 Task ，在编程界面上不体现图的概念，FFRT �
 
 如果是对存量代码的 FFRT 化改造，那么，使用 System Trace 这类工具能帮助您聚焦在性能热点上，比如下图可以很容易知道当前的性能Bound，在分析数据流图时，可以重点关注这些热点任务。
 
-<img src="images/image-20220926153030993.png" style="zoom:70%" />
+<img src="figures/image-20220926153030993.png" style="zoom:70%" />
 
 <center>某业务的System Trace</center>
 
@@ -1519,7 +1519,7 @@ FFRT 允许动态提交 Task ，在编程界面上不体现图的概念，FFRT �
 
 FFRT 已经内置 SysTrace 支持，默认以txx.xx表示，非常有利于分析 Task 粒度和并发度。未来，在性能分析和维测方面将继续增强。
 
-<img src="images/image-20220926153209875.png" style="zoom:70%" />
+<img src="figures/image-20220926153209875.png" style="zoom:70%" />
 
 【建议2】：对于耗时的 Task，尝试提交 SubTask，提升应用的并行度
 
@@ -1534,7 +1534,7 @@ FFRT 已经内置 SysTrace 支持，默认以txx.xx表示，非常有利于分�
 
 ### 步骤1: 分析应用
 
-<img src="images/image-20220926153255824.png" style="zoom:70%" />
+<img src="figures/image-20220926153255824.png" style="zoom:70%" />
 
 1)   QuickThumb 是 CameraHal 中实现的对一张图片进行缩小的功能，整体运行时间约30 us；
 
@@ -1543,7 +1543,7 @@ FFRT 已经内置 SysTrace 支持，默认以txx.xx表示，非常有利于分�
 3)   在划分 Task 时，一种简单的做法是1行的处理就是1个Task。
 
 ### 步骤2: 并行化应用
-<img src="images/image-20220926153509205.png" style="zoom:100%" />
+<img src="figures/image-20220926153509205.png" style="zoom:100%" />
 
  1)   根据纯函数的定义，该 Task 的输入输出的数据是非常之多的，因此，这个场景下使用更宽泛的纯函数的定义，只需要考虑在 Task 内部会被写，但是却被定义在 Task 外部的变量即可；
 
@@ -1557,18 +1557,18 @@ FFRT 已经内置 SysTrace 支持，默认以txx.xx表示，非常有利于分�
 
 通过System Trace，会发现上述改造方案的Task 粒度较小，大约单个Task 耗时在5us左右，因此，扩大Task的粒度为32行处理，得到最终的并行结果，下图为使用4小核和3中核的结果。
 
-<img src="images/image-20220926153603572.png" style="zoom:100%" />
+<img src="figures/image-20220926153603572.png" style="zoom:100%" />
 
 
 
 ## 样例: Camera AIRAW
 
 ### 步骤1: 分析应用
-<img src="images/image-20220926153611121.png" style="zoom:70%" />
+<img src="figures/image-20220926153611121.png" style="zoom:70%" />
 
 AIRAW 的处理包括了3个处理步骤，在数据面上，可以按slice 进行切分，在不考虑pre_outbuf和npu_outbuf 在slice间复用的情况下，数据流图如上图所示。
 
-<img src="images/image-20220926152831526.png" style="zoom:70%" />
+<img src="figures/image-20220926152831526.png" style="zoom:70%" />
 
 为了节省运行过程中的内存占用，但不影响整体性能，可以只保留2个pre_outbuf和2个npu_outbuf。
 
@@ -1597,7 +1597,7 @@ ffrt::wait();
 
 ### 步骤3: 优化应用
 
-<img src="images/image-20220926153825527.png" style="zoom:100%" />
+<img src="figures/image-20220926153825527.png" style="zoom:100%" />
 
 基于以上实现，从上面的Trace中我们看到，NPU 的硬件时间被完全用满，系统端到端性能达到最优，而付出的开发代价将会比GCD 或多线程小的多。
 
@@ -1607,13 +1607,13 @@ ffrt::wait();
 
 ### 步骤1: 分析应用
 
-<img src="images/image-20220926153003884.png" style="zoom:70%" />
+<img src="figures/image-20220926153003884.png" style="zoom:70%" />
 
  
 
 ### 步骤2: 并行化应用
 
-<img src="images/image-20220926153906692.png" style="zoom:100%" />
+<img src="figures/image-20220926153906692.png" style="zoom:100%" />
 
 代码改造样例
 
@@ -1627,11 +1627,11 @@ ffrt::wait();
 
 ### 步骤3: 优化应用
 
-<img src="images/image-20220926153030993.png" style="zoom:100%" />
+<img src="figures/image-20220926153030993.png" style="zoom:100%" />
 
 <center>原始System Trace</center>
 
-<img src="images/image-20220926153925963.png" style="zoom:100%" />
+<img src="figures/image-20220926153925963.png" style="zoom:100%" />
 
 
 
