@@ -1,6 +1,6 @@
 # Development of Performance Tracing (Native)
 
-## Overview
+## Introduction
 
 hiTraceMeter provides APIs for system performance tracing. You can call the APIs provided by the hiTraceMeter module in your own service logic to effectively track service processes and check the system performance.
 > **NOTE**
@@ -36,16 +36,46 @@ hiTraceMeter provides APIs for system performance tracing. You can call the APIs
   ```c++
   #include "hitrace/trace.h"
   ```
-3. Open the hdc shell and run the **hitrace --trace_begin app** command to enable the trace function.
+3. Perform a performance trace. The following uses an asynchronous trace as an example. (The sample code is a part of the default **hello.cpp** file. You only need to put related APIs at the required positions according to the usage instruction.)
+  ```c++
+#include "napi/native_api.h"
+#include "hitrace/trace.h"
+static napi_value Add(napi_env env, napi_callback_info info)
+{
+    // Start of an asynchronous time slice trace
+    OH_HiTrace_StartAsyncTrace("hitraceTest", 123);
+    // End of the asynchronous time slice trace (The start and end points are for reference only. Change them as needed during practice.)
+    OH_HiTrace_FinishAsyncTrace("hitraceTest", 123);
+    size_t requireArgc = 2;
+    size_t argc = 2;
+    napi_value args[2] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
+
+    napi_valuetype valuetype0;
+    napi_typeof(env, args[0], &valuetype0);
+
+    napi_valuetype valuetype1;
+    napi_typeof(env, args[1], &valuetype1);
+
+    double value0;
+    napi_get_value_double(env, args[0], &value0);
+
+    double value1;
+    napi_get_value_double(env, args[1], &value1);
+
+    napi_value sum;
+    napi_create_double(env, value0 + value1, &sum);
+
+    return sum;
+
+}
+  ```
+4. Push the compiled HAP to the device for installation. In the **cmd** window, run **hdc shell** to connect to the device, and run **hitrace --trace_begin app** to start trace.
   ```shell
   capturing trace...
   ```
-4. Perform a performance trace. The following uses asynchronous trace as an example.
-  ```c++
-  OH_HiTrace_StartAsyncTrace("hitraceTest", 123);
-  OH_HiTrace_FinishAsyncTrace("hitraceTest", 123);
-  ```
-5. Run the **hitrace --trace_dump | grep hitraceTest** command to view the trace result.
+5. Click the newly installed HAP several times on the device, and then run **hitrace --trace_dump | grep hitraceTest** in the **shell** window to view the trace result.
   ```shell
   <...>-2477    (-------) [001] ....   396.427165: tracing_mark_write: S|2477|H:hitraceTest 123
   <...>-2477    (-------) [001] ....   396.427196: tracing_mark_write: F|2477|H:hitraceTest 123
