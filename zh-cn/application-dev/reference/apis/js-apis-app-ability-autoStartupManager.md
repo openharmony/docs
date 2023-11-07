@@ -20,6 +20,8 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 
 注册监听应用组件开机自启动状态变化。
 
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
@@ -55,6 +57,8 @@ try {
 off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 
 注销监听应用组件开机自启动状态变化。
+
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -92,6 +96,8 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 
 设置应用组件开机自启动。使用callback异步回调。
 
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
@@ -123,6 +129,8 @@ try {
 setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 设置应用组件开机自启动。使用Promise异步回调。
+
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -163,6 +171,8 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 
 取消应用组件开机自启动。使用callback异步回调。
 
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
@@ -194,6 +204,8 @@ try {
 cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 取消应用组件开机自启动。使用Promise异步回调。
+
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -234,6 +246,8 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 
 查询自启动应用组件信息。使用callback异步回调。
 
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
@@ -261,6 +275,8 @@ try {
  queryAllAutoStartupApplications(): Promise\<Array\<AutoStartupInfo\>\>
 
 查询自启动应用组件信息。使用Promise异步回调。
+
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
