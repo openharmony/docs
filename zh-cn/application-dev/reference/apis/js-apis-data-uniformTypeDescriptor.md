@@ -156,9 +156,9 @@ import { BusinessError } from '@ohos.base';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
-    let ret = typeObj.belongsTo("general.plain-text");
+    let ret = typeObj.belongsTo('general.plain-text');
     if(ret) {
-        console.info(`type general.type-script belongs to type general.plain-text`);
+        console.info('type general.type-script belongs to type general.plain-text');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -170,7 +170,7 @@ try{
 
 isLowerLevelType(type: string): boolean
 
-判断当前标准化数据类型是否是指定标准化数据类型的低层级类型。
+判断当前标准化数据类型是否是指定标准化数据类型的低层级类型。例如TYPE_SCRIPT为SOURCE_CODE的低层级类型，TYPE_SCRIPT和SOURCE_CODE为PLAIN_TEXT的低层级类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -178,7 +178,7 @@ isLowerLevelType(type: string): boolean
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| type    | string  | 是    |所指定的标准化数据类型。   |
+| type    | string  | 是    |所指定的标准化数据类型（即[UniformDataType](#uniformdatatype)中对应的枚举值）。   |
 
 **返回值：**
 
@@ -194,9 +194,9 @@ import { BusinessError } from '@ohos.base';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
-    let ret = typeObj.isLowerLevelType("general.plain-text");
+    let ret = typeObj.isLowerLevelType('general.plain-text');
     if(ret) {
-        console.info(`type general.type-script is lower level type of type general.plain-text`);
+        console.info('type general.type-script is lower level type of type general.plain-text');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -208,7 +208,7 @@ try{
 
 isHigherLevelType(type: string): boolean
 
-判断当前标准化数据类型是否是指定标准化数据类型的高层级类型。
+判断当前标准化数据类型是否是指定标准化数据类型的高层级类型。例如SOURCE_CODE为TYPE_SCRIPT的高层级类型，PLAIN_TEXT为SOURCE_CODE和TYPE_SCRIPT的高层级类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -216,7 +216,7 @@ isHigherLevelType(type: string): boolean
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| type    | string  | 是    |所指定的标准化数据类型。   |
+| type    | string  | 是    |所指定的标准化数据类型（即[UniformDataType](#uniformdatatype)中对应的枚举值）。   |
 
 **返回值：**
 
@@ -232,9 +232,9 @@ import { BusinessError } from '@ohos.base';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.plain-text');
-    let ret = typeObj.isHigherLevelType("general.type-script");
+    let ret = typeObj.isHigherLevelType('general.type-script');
     if(ret) {
-        console.info(`type general.plain-text is higher level type of type general.type-script`);
+        console.info('type general.plain-text is higher level type of type general.type-script');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -272,87 +272,11 @@ try{
     let typeA : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
     let typeB : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.python-script');
     if(!typeA.equals(typeB)) {
-      console.info(`typeA is not equal to typeB`);
+      console.info('typeA is not equal to typeB');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
     console.error(`throws an exception. code is ${error.code}, message is ${error.message} `);
-}
-```
-
-## uniformTypeDescriptor.getUniformDataTypeByFilenameExtension<sup>11+</sup>
-
-getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: string): string
-
-根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型的ID。
-
-**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
-
-**参数：**
-
-| 参数名  | 类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| filenameExtension    | string  | 是    |文件后缀名称。   |
-| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。   |
-
-**返回值：**
-
-| 类型    | 说明                                                         |
-| ------- | ------------------------------------------------------------ |
-| string | 返回与给定文件后缀名以及归属类型ID（如果设置了belongsTo参数）匹配的标准化数据类型ID，如果要查询的标准化数据类型不存在则返回null。|
-
-**示例：**
-
-```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
-
-try {
-    let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
-    if(typeId) {
-        console.info(`typeId is general.type-script`);
-    }
-} catch(e) {
-    let error: BusinessError = e as BusinessError;
-    console.error(`getUniformDataTypeByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
-}
-```
-
-## uniformTypeDescriptor.getUniformDataTypeByMIMEType<sup>11+</sup>
-
-getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
-
-根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型的ID。
-
-**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
-
-**参数：**
-
-| 参数名  | 类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| mimeType    | string  | 是    |MIME类型名称。   |
-| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。   |
-
-**返回值：**
-
-| 类型    | 说明                                                         |
-| ------- | ------------------------------------------------------------ |
-| string | 返回与MIME类型名称以及归属类型ID（如果设置了belongsTo参数）匹配的标准化数据类型ID，如果要查询的标准化数据类型不存在则返回null。|
-
-**示例：**
-
-```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
-
-try {
-    let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('image/jpeg', 'general.image');
-    if(typeId) {
-        console.info(`typeId is general.jpeg`);
-    }
-} catch(e) {
-    let error: BusinessError = e as BusinessError;
-    console.error(`getUniformDataTypeByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```
 
@@ -390,12 +314,88 @@ try {
         let description = typeObj.description;
         let referenceURL = typeObj.referenceURL;
         let iconFile = typeObj.iconFile;
-        console.info('typeId: ' + typeId + ', belongingToTypes: ' + belongingToTypes + ', description: ' + description + ', referenceURL: ' + referenceURL + ', iconFile: ' + iconFile);
+        console.info(`typeId: ${typeId}, belongingToTypes: ${belongingToTypes}, description: ${description}, referenceURL: ${referenceURL}, iconFile: ${iconFile}`);
     } else {
         console.info('type does not exist');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
     console.error(`getTypeDescriptor throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+```
+
+## uniformTypeDescriptor.getUniformDataTypeByFilenameExtension<sup>11+</sup>
+
+getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: string): string
+
+根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型的ID。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| filenameExtension    | string  | 是    |文件后缀名称。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID，无默认值，若*********************只按照文件后缀名称查询标准化数据类型ID。   |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| string | 返回与给定文件后缀名以及归属类型ID（如果设置了belongsTo参数）匹配的标准化数据类型ID，如果要查询的标准化数据类型不存在则返回null。|
+
+**示例：**
+
+```ts
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
+    if(typeId) {
+        console.info('typeId is general.type-script');
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypeByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+```
+
+## uniformTypeDescriptor.getUniformDataTypeByMIMEType<sup>11+</sup>
+
+getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
+
+根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型的ID。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| mimeType    | string  | 是    |MIME类型名称。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。无默认值，若*********************只按照MIME类型名称查询标准化数据类型ID。   |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| string | 返回与MIME类型名称以及归属类型ID（如果设置了belongsTo参数）匹配的标准化数据类型ID，如果要查询的标准化数据类型不存在则返回null。|
+
+**示例：**
+
+```ts
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('image/jpeg', 'general.image');
+    if(typeId) {
+        console.info('typeId is general.jpeg');
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypeByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```
