@@ -816,7 +816,7 @@ import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('Button'));
-    let num = await button.getId();
+    let id = await button.getId();
 }
 ```
 
@@ -3858,7 +3858,7 @@ import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let button = await driver.findComponent(BY.type('Button'));
-    let num = await button.getId();
+    let id = await button.getId();
 }
 ```
 
