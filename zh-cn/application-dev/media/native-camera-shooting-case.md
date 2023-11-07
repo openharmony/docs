@@ -4,7 +4,7 @@
 
 在获取到相机支持的输出流能力后，开始创建拍照流，开发流程如下。
 
-![Photographing Development Process](figures/photographing-development-process.png)
+![Photographing Development Process](figures/photographing-ndk-development-process.png)
 
 ## 完整示例
 
@@ -360,6 +360,14 @@ int main()
       OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetZoomRatio success. zoom：%{public}f ", maxZoom);
   } else {
       OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetZoomRatio failed. %{public}d ", ret);
+  }
+
+  // 无拍照设置进行拍照
+  ret = OH_PhotoOutput_Capture(photoOutput);
+  if (ret == CAMERA_OK) {
+      OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture success ");
+  } else {
+      OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed. %d ", ret);
   }
 
   Camera_PhotoCaptureSetting* photoSetting = nullptr;
