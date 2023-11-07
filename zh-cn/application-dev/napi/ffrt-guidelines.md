@@ -95,7 +95,7 @@ task4(OUT A);
 task5(OUT A);
 ```
 
-<img src="figures/ffrtfigure3.png" style="zoom:60%" />
+<img src="figures/ffrtfigure3.png" style="zoom:40%" />
 
 > 为表述方便，本文中的数据流图均以圆圈表示 Task，方块表示数据。
 
@@ -816,20 +816,20 @@ int ffrt_queue_attr_init(ffrt_queue_attr_t* attr);
 void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 ```
 
-### 参数
+#### 参数
 
 `attr`
 * 该参数是指向未初始化的ffrt_queue_attr_t
 
-### 返回值
+#### 返回值
 * 若成功返回0，否则返回-1
 
-### 描述
+#### 描述
 * ffrt_queue_attr_t用于创建ffrt_queue_t且不单独使用，因此必须在创建队列前先创建好队列属性
 * ffrt_queue_attr_t对象的置空和销毁由用户完成，对同一个ffrt_queue_t仅能调用一次`ffrt_queue_attr_destroy`，重复对同一个ffrt_queue_t调用`ffrt_queue_attr_destroy`，其行为是未定义的
 * 在`ffrt_queue_attr_destroy`之后再对ffrt_queue_t进行访问，其行为是未定义的
 
-### 样例
+#### 样例
 将ffrt_queue_t章节的样例
 
 ### ffrt_queue_t
@@ -843,7 +843,7 @@ ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const f
 void ffrt_queue_destroy(ffrt_queue_t queue)
 ```
 
-### 参数
+#### 参数
 
 `type`
 * 该参数用于描述创建的队列类型
@@ -854,15 +854,15 @@ void ffrt_queue_destroy(ffrt_queue_t queue)
 `attr`
 * 该参数用于描述queue的属性，详见ffrt_queue_attr_t章节
 
-### 返回值
+#### 返回值
 * 若成功则返回新创建的队列，否则返回空指针
 
-### 描述
+#### 描述
 * 提交至该队列的任务将按照顺序执行，如果某个提交的任务中发生阻塞，则无法保证该任务的执行顺序
 * ffrt_queue_t对象的置空和销毁由用户完成，对同一个ffrt_queue_t仅能调用一次`ffrt_queue_t`，重复对同一个ffrt_queue_t调用`ffrt_queue_destroy`，其行为是未定义的
 * 在`ffrt_queue_destroy`之后再对ffrt_queue_t进行访问，其行为是未定义的
 
-### 样例
+#### 样例
 ```
 #include <stdio.h>
 #include "ffrt.h"
