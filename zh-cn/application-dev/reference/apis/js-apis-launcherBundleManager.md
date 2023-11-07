@@ -13,7 +13,7 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 ```
 
 
-## launcherBundlemanager.getLauncherAbilityInfo<sup>9+</sup>
+## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
 getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>) : void;
 
@@ -64,7 +64,7 @@ try {
 }
 ```
 
-## launcherBundlemanager.getLauncherAbilityInfo<sup>9+</sup>
+## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
 getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>;
 
@@ -114,7 +114,7 @@ try {
 }
 ```
 
-## launcherBundlemanager.getAllLauncherAbilityInfo<sup>9+</sup>
+## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
 getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>) : void;
 
@@ -162,7 +162,7 @@ try {
     console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
-## launcherBundlemanager.getAllLauncherAbilityInfo<sup>9+</sup>
+## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
 getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>;
 
@@ -210,7 +210,7 @@ try {
 }
 ```
 
-## launcherBundlemanager.getShortcutInfo<sup>9+</sup>
+## launcherBundleManager.getShortcutInfo<sup>9+</sup>
 
 getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>) : void;
 
@@ -257,7 +257,7 @@ try {
 }
 ```
 
-## launcherBundlemanager.getShortcutInfo<sup>9+</sup>
+## launcherBundleManager.getShortcutInfo<sup>9+</sup>
 
 getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>;
 
