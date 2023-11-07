@@ -50,3 +50,4 @@
 | [OH_Image_Format](image.md#oh_image_format) (const [ImageNative](image.md#imagenative) \*native, int32_t \*format) | 获取native **ImageNative** 对象的图像格式。 | 
 | [OH_Image_GetComponent](image.md#oh_image_getcomponent) (const [ImageNative](image.md#imagenative) \*native, int32_t componentType, struct [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) \*componentNative) | 从 native **ImageNative** 对象中获取 [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)。 | 
 | [OH_Image_Release](image.md#oh_image_release) ([ImageNative](image.md#imagenative) \*native) | 释放 **ImageNative** native对象。 | 
+<!--no_check-->
