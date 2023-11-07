@@ -8,7 +8,6 @@
 <hr/>
 ## 版本
 
-| 版本 | 
 | ---- |
 | V0.1 |
 
@@ -18,9 +17,6 @@
 
 # C API
 
-> C API采用接近C11/pthread (https://zh.cppreference.com/w/c) 的命名风格，并冠以`ffrt_`前缀，以`_base`为后缀的API是内部API，通常不被用户直接调用
->
-> **出于易用性方面的考虑，除非必要，强烈建议你使用C++ API(亦满足二进制兼容要求)，调用C API将会使你的代码非常臃肿** 
 
 ## 任务管理
 
@@ -327,15 +323,15 @@ int ffrt_queue_attr_init(ffrt_queue_attr_t* attr);
 void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 ```
 
-### 参数
+#### 参数
 
 `attr`
 * 该参数是指向未初始化的ffrt_queue_attr_t
 
-### 返回值
+#### 返回值
 * 若成功返回0，否则返回-1
 
-### 描述
+#### 描述
 * ffrt_queue_attr_t用于创建ffrt_queue_t且不单独使用，因此必须在创建队列前先创建好队列属性
 * ffrt_queue_attr_t对象的置空和销毁由用户完成，对同一个ffrt_queue_t仅能调用一次`ffrt_queue_attr_destroy`，重复对同一个ffrt_queue_t调用`ffrt_queue_attr_destroy`，其行为是未定义的
 * 在`ffrt_queue_attr_destroy`之后再对ffrt_queue_t进行访问，其行为是未定义的
@@ -353,7 +349,7 @@ ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const f
 void ffrt_queue_destroy(ffrt_queue_t queue)
 ```
 
-### 参数
+#### 参数
 
 `type`
 * 该参数用于描述创建的队列类型
@@ -364,10 +360,10 @@ void ffrt_queue_destroy(ffrt_queue_t queue)
 `attr`
 * 该参数用于描述queue的属性，详见ffrt_queue_attr_t章节
 
-### 返回值
+#### 返回值
 * 若成功则返回新创建的队列，否则返回空指针
 
-### 描述
+#### 描述
 * 提交至该队列的任务将按照顺序执行，如果某个提交的任务中发生阻塞，则无法保证该任务的执行顺序
 * ffrt_queue_t对象的置空和销毁由用户完成，对同一个ffrt_queue_t仅能调用一次`ffrt_queue_t`，重复对同一个ffrt_queue_t调用`ffrt_queue_destroy`，其行为是未定义的
 * 在`ffrt_queue_destroy`之后再对ffrt_queue_t进行访问，其行为是未定义的
@@ -545,8 +541,7 @@ void ffrt_yield();
 * 此函数的确切行为取决于实现，特别是使用中的FFRT 调度程序的机制和系统状态
 
 
-  
-* **出于易用性方面的考虑，除非必要，强烈建议你使用C++ API，调用C API将会使你的代码非常臃肿或者更容易产生资源未释放问题**
+
 
 
 <br/>
