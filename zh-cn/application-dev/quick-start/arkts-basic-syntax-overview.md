@@ -17,7 +17,7 @@
 ![arkts-basic-grammar](figures/arkts-basic-grammar.png)
 
 
-- 装饰器： 用于装饰类、结构、方法以及变量，并赋予其特殊的含义。如上述示例中\@Entry、\@Component和\@State都是装饰器，\@Component表示自定义组件，\@Entry表示该自定义组件为入口组件，\@State表示组件中的状态变量，状态变量变化会触发UI刷新。
+- 装饰器： 用于装饰类、结构、方法以及变量，并赋予其特殊的含义。如上述示例中\@Entry、\@Component和\@State都是装饰器，[@Component](arkts-create-custom-components.md#自定义组件的基本结构)表示自定义组件，[@Entry](arkts-create-custom-components.md#自定义组件的基本结构)表示该自定义组件为入口组件，[@State](arkts-state.md)表示组件中的状态变量，状态变量变化会触发UI刷新。
 
 - [UI描述](arkts-declarative-ui-description.md)：以声明式的方式来描述UI的结构，例如build()方法中的代码块。
 
@@ -29,6 +29,7 @@
 
 - 事件方法：组件可以通过链式调用设置多个事件的响应逻辑，如跟随在Button后面的onClick()。
 
+- 系统组件、属性方法、事件方法具体使用可参考[基于ArkTS的声明式开发范式](../reference/arkui-ts/Readme-CN.md)。
 
 除此之外，ArkTS扩展了多种语法范式来使开发更加便捷：
 
