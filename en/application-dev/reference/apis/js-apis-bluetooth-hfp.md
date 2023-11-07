@@ -12,7 +12,6 @@ The **hfp** module provides APIs for using the Bluetooth Hands-Free Profile (HFP
 
 ```js
 import hfp from '@ohos.bluetooth.hfp';
-import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -33,6 +32,7 @@ Creates an **HfpAgProfile** instance.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hfpAgProfile = hfp.createHfpAgProfile();
     console.info('hfpAg success');
@@ -79,6 +79,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hfpAg = hfp.createHfpAgProfile();
     hfpAg.connect('XX:XX:XX:XX:XX:XX');
@@ -120,6 +121,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hfpAg = hfp.createHfpAgProfile();
     hfpAg.disconnect('XX:XX:XX:XX:XX:XX');

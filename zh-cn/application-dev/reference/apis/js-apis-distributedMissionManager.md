@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import distributedMissionManager from '@ohos.distributedMissionManager'
+import distributedMissionManager from '@ohos.distributedMissionManager';
 ```
 
 ## distributedMissionManager.registerMissionListener
@@ -664,13 +664,13 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 
 ```js
   import distributedMissionManager from '@ohos.distributedMissionManager'
-  
+
   try {
     distributedMissionManager.off('continueStateChange', (data) => {
       console.info("continueStateChange off:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("continueStateChange err: " + JSON.stringify(error));
+    console.error("continueStateChange err: " + JSON.stringify(err));
   }
   ```
 

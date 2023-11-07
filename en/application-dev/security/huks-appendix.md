@@ -2,7 +2,6 @@
 
 ## Application Scope
 This document provides the HUKS specifications. Mandatory specifications are algorithm specifications that must be supported. Optional specifications can be used based on actual situation. Before using the optional specifications, refer to the documents provided by the vendor to ensure that the specifications are supported.
-
 **You are advised to use mandatory specifications to develop applications for compatibility purposes.**
 
 ## Supported Algorithm Types and Parameter Combinations
@@ -35,7 +34,7 @@ This document provides the HUKS specifications. Mandatory specifications are alg
 | RSA/ECB/NoPadding<br>RSA/ECB/PKCS1_V1_5<br>RSA/ECB/OAEP             | 8+                |  The OAEP padding mode supports SHA-256, SHA-384, and SHA-512 digest algorithms. | Yes|
 | SM4/ECB/NoPadding<br> SM4/ECB/PKCS7<br>SM4/CBC/PKCS7 | 9+ | The **IV** parameter is mandatory in CBC mode. |No|
 | SM4/CTR/NoPadding<br>SM4/CBC/NoPadding<br>| 9+  | The **IV** parameter is mandatory. |Yes|
-
+| SM2/-/NoPadding | 11+  | SM3 is used as the digest algorithm. |Yes|
 
 
 ### Specifications for the Combination of the Signing & Signature Verification Algorithm, Digest Algorithm, and Padding Mode

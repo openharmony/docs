@@ -123,8 +123,8 @@
     - [@ohos.continuation.continuationManager (continuationManager)](js-apis-continuation-continuationManager.md)
     - continuation
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)
-    - [continuationResult](js-apis-continuation-continuationResult.md)
-  
+      - [continuationResult](js-apis-continuation-continuationResult.md)
+
 - Common Event and Notification
   - [System Common Events](commonEventManager-definitions.md)
   - [@ohos.commonEventManager (Common Event) (Recommended)](js-apis-commonEventManager.md)
@@ -463,6 +463,8 @@
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
   - [@ohos.enterprise.networkManager (Network Management)](js-apis-enterprise-networkManager.md)
   - [@ohos.enterprise.restrictions (Restrictions)](js-apis-enterprise-restrictions.md)
+  - [@ohos.enterprise.securityManager (Security Management)](js-apis-enterprise-securityManager.md)
+  - [@ohos.enterprise.systemManager (System Management)](js-apis-enterprise-systemManager.md)
   - [@ohos.enterprise.usbManager (USB Management)](js-apis-enterprise-usbManager.md)
   - [@ohos.enterprise.wifiManager (Wi-Fi Management)](js-apis-enterprise-wifiManager.md)
 
@@ -490,6 +492,9 @@
   - [@ohos.util.Vector (Linear Container Vector)](js-apis-vector.md)
   - [@ohos.worker (Worker Startup)](js-apis-worker.md)
   - [@ohos.xml (XML Parsing and Generation)](js-apis-xml.md)
+
+- Application services
+  - [@ohos.identifier.oaid (OAID)](js-apis-oaid.md)
 
 - Test
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)
@@ -551,4 +556,4 @@
     - [remoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
   - data/rdb
-    - [resultSet](js-apis-data-resultset.md)
+    - [resultSet](js-apis-data-resultset.md) 

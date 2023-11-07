@@ -1,8 +1,44 @@
 # Image Error Codes
 
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
+## 62980096 Operation Failed
+
+**Error Message**
+
+Transaction operation failed.
+
+**Possible Cause**
+
+1. An exception occurs during image upload.
+2. Other operations are performed during decoding.
+3. Image decoding is not performed as instructed.
+4. The memory of the device is insufficient.
+5. The processing on the decoding library fails.
+
+**Solution**
+
+Check the image and follow the instructions to decode it.
+
+## 62980097 PixelMap Serialization Failed
+
+**Error Message**
+
+Rpc error.
+
+**Possible Cause**
+
+1. An exception occurs during image upload.
+2. Other operations are performed during decoding.
+3. Image decoding is not performed as instructed.
+4. The memory of the device is insufficient.
+
+**Solution**
+
+Check the image and follow the instructions to decode it.
 
 ## 62980098 Shared Memory Error
 

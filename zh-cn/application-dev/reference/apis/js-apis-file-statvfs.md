@@ -42,7 +42,7 @@ getFreeSize(path:string):Promise&lt;number&gt;
   import { BusinessError } from '@ohos.base';
   let path: string = "/dev";
   statvfs.getFreeSize(path).then((number: number) => {
-    console.info("getFreeSize promise successfully, Size: " + number);
+    console.info("getFreeSize succeed, Size: " + number);
   }).catch((err: BusinessError) => {
     console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -76,7 +76,7 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
     if (err) {
       console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.info("getFreeSize callback successfully, Size: " + number);
+      console.info("getFreeSize succeed, Size: " + number);
     }
   });
   ```
@@ -110,7 +110,7 @@ getFreeSizeSync(path:string): number
   ```ts
   let path = "/dev";
   let number = statvfs.getFreeSizeSync(path);
-  console.info("getFreeSize promise successfully, Size: " + number);
+  console.info("getFreeSizeSync succeed, Size: " + number);
   ```
 
 ## statvfs.getTotalSize
@@ -143,7 +143,7 @@ getTotalSize(path: string): Promise&lt;number&gt;
   import { BusinessError } from '@ohos.base';
   let path: string = "/dev";
   statvfs.getTotalSize(path).then((number: number) => {
-    console.info("getTotalSize promise successfully, Size: " + number);
+    console.info("getTotalSize succeed, Size: " + number);
   }).catch((err: BusinessError) => {
     console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
   });
@@ -177,7 +177,7 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
     if (err) {
       console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.info("getTotalSize promise successfully, Size: " + number);
+      console.info("getTotalSize succeed, Size: " + number);
     }
   });
   ```
@@ -211,5 +211,5 @@ getTotalSizeSync(path: string): number
   ```ts
   let path = "/dev";
   let number = statvfs.getTotalSizeSync(path);
-  console.info("getTotalSize promise successfully, Size: " + number);
+  console.info("getTotalSizeSync succeed, Size: " + number);
   ```

@@ -472,7 +472,7 @@ config.highContrastText.off((data: boolean) => {
 ## DaltonizationColorFilter
 
 用于不同弱视类型的校正颜色滤镜。  
-颜色滤镜功能开启时（daltonizationState设置为true)，选择的校正颜色滤镜生效；颜色滤镜功能关闭时（daltonizationState设置为false)，显示为正常类型<sup>11+</sup>。
+颜色滤镜功能开启时（daltonizationState设置为true)，将无障碍保存的DaltonizationColorFilter的值设置进系统；颜色滤镜功能关闭时（daltonizationState设置为false)，显示为正常类型<sup>11+</sup>。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
@@ -482,3 +482,4 @@ config.highContrastText.off((data: boolean) => {
 | Protanomaly | 表示红色弱视类型。 |
 | Deuteranomaly | 表示绿色弱视类型。 |
 | Tritanomaly  | 表示蓝色弱视类型。 |
+

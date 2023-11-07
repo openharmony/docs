@@ -2306,7 +2306,7 @@ struct WebComponent {
 
 postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
-Sends a web message to an HTML5 window.
+Sends a web message to an HTML window.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3512,8 +3512,6 @@ setNetworkAvailable(enable: boolean): void
 
 Sets the **window.navigator.isOnLine** attribute in JavaScript.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO
-
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
@@ -3567,9 +3565,15 @@ HTML file to be loaded:
 <body>
 <h1>online attribute </h1>
 <p id="demo"></p>
+<button onclick="func()">click</button>
 <script>
     let online = navigator.onLine;
     document.getElementById ("demo").innerHTML = "Browser online:" + online;
+
+    function func(){
+      var online = navigator.onLine;
+      document.getElementById ("demo").innerHTML = "Browser online:" + online;
+    }
 </script>
 </body>
 </html>
@@ -4114,7 +4118,7 @@ struct WebComponent {
 
 getCertificate(): Promise<Array<cert.X509Cert>>
 
-Obtains the certificate information of this website. When the **\<Web>** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses a promise to return the [X.509 certificate](./js-apis-cert.md) of the current website.
+Obtains the certificate information of this website. When the **\<Web>** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses a promise to return the [X.509 certificate](./js-apis-cert.md#x509cert) of the current website.
 
 **System capability**: SystemCapability.Web.Webview.Core
 

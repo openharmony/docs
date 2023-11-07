@@ -90,3 +90,8 @@ The following lists the permission groups supported currently. For details about
 ## Bluetooth
 
 - ohos.permission.ACCESS_BLUETOOTH
+
+## Pasteboard
+
+- ohos.permission.SECURE_PASTE
+- ohos.permission.READ_PASTEBOARD

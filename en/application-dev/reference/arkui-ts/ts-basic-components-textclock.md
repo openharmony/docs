@@ -27,7 +27,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name  | Type| Description                                                        |
 | ------ | -------- | ------------------------------------------------------------ |
-| format | string   | Time format.<br>**y**: year<br>**M**: month<br>**d**: day<br>**E**: day of week (Prioritize the full name; use the abbreviation only when the space is insufficient.)<br>**H**: hour (0-23)<br>**h**: hour (1-12)<br>**m**: minute<br>**s**: second<br>**SS**: centisecond<br>**SSS**: millisecond<br>**a**: morning/afternoon (valid only in the 12-hour system)<br>Separator: slash (/), hyphen (-), period (.), or any custom separator.<br>You can make your own combination of the time format. That is, the year, month, day, day of week, hour, minute, second, and millisecond can display on their own.<br>Default value: **hh:mm:ss**|
+| format | string   | Time format.<br>**y**: year<br>**M**: month<br>**d**: day<br>**E**: day of week (Prioritize the full name; use the abbreviation only when the space is insufficient.)<br>**H**: hour (0-23)<br>**h**: hour (1-12)<br>**m**: minute<br>**s**: second<br>**SS**: centisecond<br>**SSS**: millisecond<br>**a**: morning/afternoon (This parameter does not take effect when the hour part  is set to **H**.)<br>Separators: slashes (/), hyphens (-), dots (.), or any custom characters (which cannot be letters) used to separate the parts of the date<br>The parts of the date can be used alone or combined with each other as needed.<br>When an invalid letter is set, the letter is ignored.<br>Default value: **hh:mm:ss**|
 
 The following table shows how different settings of **format** work out.
 

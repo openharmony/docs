@@ -2,10 +2,10 @@
 
 The **\<RichText>** component parses and displays HTML text.
 
-> **NOTE**
+>  **NOTE**
 >
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-> This component is not able to auto-adapt its width and height to the content. Therefore, you must set the layout when using this component.
+> - This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> - This component is not able to auto-adapt its width and height to the content. Therefore, you must set the layout when using this component.
 
 
 ## Child Components

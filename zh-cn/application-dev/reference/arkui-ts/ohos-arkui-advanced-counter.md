@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.counter（计数器组件）
+# @ohos.arkui.advanced.Counter（计数器组件）
 
 Counter是用于精确调节数值的组件。
 
@@ -217,15 +217,15 @@ struct DataStyleExample {
   build() {
     Column() {
       //日期内联型counter
-      CounterComponent({ options: new CounterOptions({
+      CounterComponent({ options: {
         type: CounterType.INLINE_DATE,
-        counterOptions: {
+        dateOptions: {
           year: 2016,
           onDateChange: (date: DateData) => {
             console.log("onDateChange Date: " + date.toString());
           }
         } }
-      ) })
+       })
     }
   }
 }

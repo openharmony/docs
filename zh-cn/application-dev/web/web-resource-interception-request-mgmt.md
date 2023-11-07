@@ -7,21 +7,20 @@ Web组件支持在应用拦截到页面请求后自定义响应请求能力。�
 Web网页上发起资源加载请求，应用层收到资源请求消息。应用层构造本地资源响应消息发送给Web内核。Web内核解析应用层响应信息，根据此响应信息进行页面资源加载。
 
 
-在下面的示例中，Web组件通过拦截页面请求“https://www.intercept.com/test.html”， 在应用侧代码构建响应资源，实现自定义页面响应场景。
+在下面的示例中，Web组件通过拦截页面请求“https://www.example.com/test.html”， 在应用侧代码构建响应资源，实现自定义页面响应场景。
 
 
-- 前端页面example.html代码。
+- 前端页面index.html代码。
 
   ```html
   <!DOCTYPE html>
   <html>
   <head>
       <meta charset="utf-8">
-      <title>example</title>
   </head>
   <body>
   <!-- 页面资源请求 -->
-  <a href="https://www.intercept.com/test.html">intercept test!</a>
+  <a href="https://www.example.com/test.html">intercept test!</a>
   </body>
   </html>
   ```
@@ -36,8 +35,8 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    responseweb: WebResourceResponse = new WebResourceResponse()
-    heads:Header[] = new Array()
+    responseResource: WebResourceResponse = new WebResourceResponse()
+    // 开发者自定义响应数据
     @State webdata: string = "<!DOCTYPE html>\n" +
     "<html>\n"+
     "<head>\n"+
@@ -49,28 +48,24 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
     "</html>"
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .onInterceptRequest((event) => {
-            if (event) {
-              console.log('url:' + event.request.getRequestUrl())
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .onInterceptRequest((event?: Record<string, WebResourceRequest>): WebResourceResponse => {
+            if (!event) {
+              return new WebResourceResponse();
             }
-            let head1:Header = {
-              headerKey:"Connection",
-              headerValue:"keep-alive"
+            let mRequest: WebResourceRequest = event.request as WebResourceRequest;
+            console.info('TAGLee: url:'+ mRequest.getRequestUrl());
+            //拦截页面请求，如果加载的url判断与目标url一致则返回自定义加载结果webData
+            if(mRequest.getRequestUrl() === 'https://www.example.com/test.html'){
+              // 构造响应数据
+              this.responseResource.setResponseData(this.webdata);
+              this.responseResource.setResponseEncoding('utf-8');
+              this.responseResource.setResponseMimeType('text/html');
+              this.responseResource.setResponseCode(200);
+              this.responseResource.setReasonMessage('OK');
+              return this.responseResource;
             }
-            let head2:Header = {
-              headerKey:"Cache-Control",
-              headerValue:"no-cache"
-            }
-            let length = this.heads.push(head1)
-            length = this.heads.push(head2)
-            this.responseweb.setResponseHeader(this.heads)
-            this.responseweb.setResponseData(this.webdata)
-            this.responseweb.setResponseEncoding('utf-8')
-            this.responseweb.setResponseMimeType('text/html')
-            this.responseweb.setResponseCode(200)
-            this.responseweb.setReasonMessage('OK')
-            return this.responseweb
+            return;
           })
       }
     }

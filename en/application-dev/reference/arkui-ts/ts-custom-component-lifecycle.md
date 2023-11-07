@@ -271,7 +271,7 @@ struct CustomLayout {
     let pos = 0;
     children.forEach((child) => {
       child.layout({ position: { x: pos, y: pos }, constraint: constraint })
-      pos += 100;
+      pos += 70;
     })
   }
 
@@ -299,9 +299,11 @@ This API is supported since API version 10 and is supported in ArkTS widgets.
 
 | Parameter         | Type     | Description                 |
 |-------------|-----------|---------------------|
-| borderWidth | [EdgeWidth](ts-types.md#edgewidths9) | Border width of the parent component.           |
-| margin      | [Margin](ts-types.md#margin)       | Margin of the parent component.       |
-| padding     | [Padding](ts-types.md#padding)   | Padding of the parent component.|
+| borderWidth | [EdgeWidth](ts-types.md#edgewidths9) | Border width of the parent component.<br>Unit: vp           |
+| margin      | [Margin](ts-types.md#margin)       | Margin of the parent component.<br>Unit: vp      |
+| padding     | [Padding](ts-types.md#padding)   | Padding of the parent component.<br>Unit: vp|
+| width  | Number | Width obtained from the measurement result.<br>Unit: vp<br> **NOTE**<br>If the value is empty, the component width in percentage is returned.|
+| height | Number | Height obtained from the measurement result.<br>Unit: vp<br> **NOTE**<br>If the value is empty, the component height in percentage is returned.|
 
 
 ## Layoutable<sup>10+</sup>
@@ -312,7 +314,7 @@ This API is supported since API version 10 and is supported in ArkTS widgets.
 
 | Parameter        | Type                                                   | Description                 |
 |------------|---------------------------------------------------------|---------------------|
-| measureResult| [MeasureResult](#measureresult10+)                                           | Measurement result of the child component.       |
+| measureResult| [MeasureResult](#measureresult10+)      | Measurement result of the child component.<br>Unit: vp    |
 | layout     | ([Position](ts-types.md#position8)) =&gt; void | Method called to apply the layout information to the child component.|
 
 ## Measurable<sup>10+</sup>
@@ -333,8 +335,8 @@ Since API version 10, this API is supported in ArkTS widgets.
 
 | Parameter    | Type  | Description   |
 |--------|--------|-------|
-| width  | Number | Width obtained from the measurement result.|
-| height | Number | Height obtained from the measurement result.|
+| width  | Number | Width obtained from the measurement result.<br>Unit: vp|
+| height | Number | Height obtained from the measurement result.<br>Unit: vp|
 
 
 ## SizeResult<sup>10+</sup>
@@ -345,15 +347,16 @@ Since API version 10, this API is supported in ArkTS widgets.
 
 | Parameter    | Type  | Description   |
 |--------|--------|-------|
-| width  | Number | Width obtained from the measurement result.|
-| height | Number | Height obtained from the measurement result.|
+| width  | Number | Width obtained from the measurement result.<br>Unit: vp|
+| height | Number | Height obtained from the measurement result.<br>Unit: vp|
 
 > **NOTE**
 >
 >- The custom layout does not support the LazyForEach syntax.
->- Create a custom layout in builder mode. Make sure the **build()** method of a custom component contains only **this.builder()**, as shown in the recommended example below.
->- The priority of the layout and size information set for the child component is lower than that of the information set by **onMeasureSize** and **onPlaceChildren**.
->- When **onPlaceChildren** and **onMeasureSize** are called using custom components, trailing closures are not supported. You are advised to follow the example below.
+>- When a custom layout is created in builder mode, only **this.builder()** is allowed in the **build()** method of a custom component, as shown in the recommended example below.
+>- The layout and size information set for the child component is at a lower priority than the information set by **onMeasureSize** and **onPlaceChildren**.
+>- Regarding use of the custom layout method, if the measure and layout methods of child components are not called, the layout will not be displayed.
+>- After **onPlaceChildren** is called, some universal attributes that affect the layout of child components, such as **margin** and **align**, become ineffective.
 
 ```
 // xxx.ets
@@ -393,7 +396,7 @@ struct CustomLayout {
   };
 
   onPlaceChildren(selfLayoutInfo: GeometryInfo, children: Array<Layoutable>, constraint: ConstraintSizeOptions) {
-    let startPos = 400;
+    let startPos = 300;
     children.forEach((child) => {
       let pos = startPos - child.measureResult.height;
       child.layout({ x: pos, y: pos })

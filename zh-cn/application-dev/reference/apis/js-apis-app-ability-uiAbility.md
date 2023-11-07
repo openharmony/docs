@@ -266,6 +266,7 @@ UIAbility实例已经启动并在前台运行过，由于某些原因切换到�
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
 
   class MyUIAbility extends UIAbility {
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -605,11 +606,11 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
         deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble(1, 'world');
+        let msg = new MyMessageAble('msg', 'world');
         caller.callWithResult(method, msg)
           .then((data) => {
             console.log('Caller callWithResult() called');
-            let retmsg = new MyMessageAble(0, '');
+            let retmsg = new MyMessageAble('msg', 'world');
             data.readParcelable(retmsg);
           })
           .catch((callErr: BusinessError) => {

@@ -14,7 +14,7 @@ In certain circumstances, you may need to add a specific function, such as a cli
 
 ### Initializing \@BuilderParam Decorated Method
 
-An \@BuildParam decorated method can be initialized only by an \@Builder function reference.
+An \@BuilderParam decorated method can be initialized only by an \@Builder function reference.
 
 - Local initialization with the owning component's custom \@Builder function or a global \@Builder function reference
 

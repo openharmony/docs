@@ -44,13 +44,13 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```js
   let fileinfos = trash.listFile();
   for(let i = 0; i < fileinfos.length; i++){
-    console.info(fileinfos[i].uri);
-    console.info(fileinfos[i].srcPath);
-    console.info(fileinfos[i].fileName);
-    console.info(fileinfos[i].mode);
-    console.info(fileinfos[i].size);
-    console.info(fileinfos[i].mtime);
-    console.info(fileinfos[i].ctime);
+    console.info('uri: ' + fileinfos[i].uri);
+    console.info('srcPath: ' + fileinfos[i].srcPath);
+    console.info('fileName: ' + fileinfos[i].fileName);
+    console.info('mode: ' + fileinfos[i].mode);
+    console.info('size: ' + fileinfos[i].size);
+    console.info('mtime: ' + fileinfos[i].mtime);
+    console.info('ctime: ' + fileinfos[i].ctime);
   }
   ```
 
@@ -82,7 +82,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```js
   let fileinfos = trash.listFile();
-  let uri = fileinfos[0];
+  let uri = fileinfos[0].uri;
   trash.recover(uri);
   ```
 
@@ -114,7 +114,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```js
   let fileinfos = trash.listFile();
-  let uri = fileinfos[0];
+  let uri = fileinfos[0].uri;
   trash.completelyDelete(uri);
   ```
 
@@ -126,8 +126,6 @@ Represents information about a file or folder in the **Recently deleted** list.
 **Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
-
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
 | Name| Type  | Readable| Writable| Description    |
 | ------ | ------ | -------- | ------ | -------- |

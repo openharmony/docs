@@ -538,6 +538,75 @@ uiContext.runScopedTask(
 );
 ```
 
+### setKeyboardAvoidMode<sup>11+</sup>
+
+setKeyboardAvoidMode(value: KeyboardAvoidMode): void
+
+配置虚拟键盘弹出时，页面的避让模式。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| value | [KeyboardAvoidMode](../apis/js-apis-arkui-UIContext.md#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
+
+**示例：**
+
+```ts
+import { KeyboardAvoidMode, UIContext } from '@ohos.arkui.UIContext';
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      uiContext.setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+```
+
+### getKeyboardAvoidMode<sup>11+</sup>
+
+getKeyboardAvoidMode(): KeyboardAvoidMode
+
+获取虚拟键盘弹出时，页面的避让模式。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型         | 说明   |
+| ---------- | ---- |
+| [KeyboardAvoidMode](../apis/js-apis-arkui-UIContext.md#keyboardavoidmode11)| 返回当前的页面避让模式。|
+
+**示例：**
+
+```ts
+import { KeyboardAvoidMode, UIContext } from '@ohos.arkui.UIContext';
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
+      console.log("KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+```
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
@@ -2025,3 +2094,12 @@ try {
   console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
+
+## KeyboardAvoidMode<sup>11+</sup>
+
+配置键盘避让时页面的避让模式。
+
+| 名称   | 描述       |
+| ------ | ---------- |
+| OFFSET | 上抬模式。 |
+| RESIZE | 压缩模式。 |

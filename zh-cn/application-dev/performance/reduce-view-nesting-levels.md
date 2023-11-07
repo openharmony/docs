@@ -288,7 +288,7 @@ struct MyComponent {
 
 ![输入图片说明](figures/layout-relative-introduce.png)
 
-使用扁平化布局推荐使用[RelativeContainer](../reference/arkui-ts/ts-container-relativecontainer.md)、[绝对定位](../reference/arkui-ts/ts-universal-attributes-location.md)、[自定义布局](h../reference/arkui-ts/ts-custom-component-lifecycle.md)、[Grid组件](../reference/arkui-ts/ts-container-grid.md)等
+使用扁平化布局推荐使用[RelativeContainer](../reference/arkui-ts/ts-container-relativecontainer.md)、[绝对定位](../reference/arkui-ts/ts-universal-attributes-location.md)、[自定义布局](../reference/arkui-ts/ts-custom-component-lifecycle.md)、[Grid组件](../reference/arkui-ts/ts-container-grid.md)等
 
 ### 使用高性能布局组件
 

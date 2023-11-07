@@ -90,3 +90,16 @@ OH_AudioStreamBuilder_Destroy(builder);
     ```c++
     OH_AudioStreamBuilder_Destroy(builder);
     ```
+
+## 设置低时延模式
+
+当设备支持低时延通路时，开发者可以使用低时延模式创建音频录制构造器，获得更高质量的音频体验。
+
+开发流程与普通录制场景一致，仅需要在创建音频录制构造器时，调用[OH_AudioStreamBuilder_SetLatencyMode()](../reference/native-apis/_o_h_audio.md#oh_audiostreambuilder_setlatencymode)设置低时延模式。
+
+开发示例
+
+```C
+OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
+OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
+```

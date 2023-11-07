@@ -471,7 +471,7 @@ Copies a directory to the specified directory. This API uses a promise to return
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to copy.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
 
 **Return value**
 
@@ -511,7 +511,7 @@ Copies a directory to the specified directory. This API uses an asynchronous cal
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to copy.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback invoked immediately after the directory is copied.             |
 
 **Error codes**
@@ -526,7 +526,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   // Copy srcPath to destPath.
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.copyDir(srcPath, destPath, 0, (err: BusinessError, data: Array<ConflictFiles>) => {
+  fs.copyDir(srcPath, destPath, 0, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < data.length; i++) {
         console.info("copy directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
@@ -553,7 +553,7 @@ Copies a directory. This API returns the result synchronously.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to copy.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
 
 **Error codes**
 
@@ -646,6 +646,43 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   });
   ```
 
+## fs.mkdir<sup>11+</sup>
+
+mkdir(path: string, recursion: boolean): Promise<void>
+
+Creates a directory. This API uses a promise to return the result. If **recursion** is set to **true**, a multi-level directory can be created.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the directory.                                  |
+| recursion   | string | Yes  | Whether to create a multi-level directory. The value **true** means to create a multi-level directory. The value **false** means to create a single-level directory.  |
+
+**Return value**
+
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let dirPath = pathDir + "/testDir1/testDir2/testDir3";
+  fs.mkdir(dirPath, true).then(() => {
+    console.info("Directory created");
+  }).catch((err: BusinessError) => {
+    console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
 ## fs.mkdir
 
 mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
@@ -679,6 +716,40 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   });
   ```
 
+## fs.mkdir<sup>11+</sup>
+
+mkdir(path: string, recursion: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Creates a directory. This API uses an asynchronous callback to return the result. If **recursion** is set to **true**, a multi-level directory can be created.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| path     | string                    | Yes  | Application sandbox path of the directory.                                  |
+| recursion   | string | Yes  | Whether to create a multi-level directory. The value **true** means to create a multi-level directory. The value **false** means to create a single-level directory.  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the directory is created.                            |
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let dirPath = pathDir + "/testDir1/testDir2/testDir3";
+  fs.mkdir(dirPath, true, (err: BusinessError) => {
+    if (err) {
+      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("mkdir success");
+    }
+  });
+  ```
+
 ## fs.mkdirSync
 
 mkdirSync(path: string): void
@@ -702,6 +773,32 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   ```ts
   let dirPath = pathDir + "/testDir";
   fs.mkdirSync(dirPath);
+  ```
+
+## fs.mkdirSync<sup>11+</sup>
+
+mkdirSync(path: string): void
+
+Creates a directory. This API returns the result synchronously. If **recursion** is set to **true**, a multi-level directory can be created.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the directory.                                  |
+| recursion   | string | Yes  | Whether to create a multi-level directory. The value **true** means to create a multi-level directory. The value **false** means to create a single-level directory.  |
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  let dirPath = pathDir + "/testDir1/testDir2/testDir3";
+  fs.mkdirSync(dirPath, true);
   ```
 
 ## fs.open
@@ -1059,7 +1156,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.unlink(filePath).then(() => {
     console.info("File deleted");
   }).catch((err: BusinessError) => {
-    console.info("remove file failed with error message: " + err.message + ", error code: " + err.codeor);
+    console.info("remove file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2362,7 +2459,7 @@ Moves a directory. This API uses a promise to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to move.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a non-empty directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
+  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a non-empty directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br>Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
 
 **Return value**
 
@@ -2402,7 +2499,7 @@ Moves a directory. This API uses an asynchronous callback to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source directory.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
+  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br>Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback invoked when the directory is moved.             |
 
 **Error codes**
@@ -2417,7 +2514,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.moveDir(srcPath, destPath, 1, (err: BusinessError, data: Array<ConflictFiles>) => {
+  fs.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < data.length; i++) {
         console.info("move directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
@@ -2444,7 +2541,7 @@ Moves a directory. This API returns the result synchronously.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to copy.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
+  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br>Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
 
 **Error codes**
 
@@ -2461,7 +2558,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     fs.moveDirSync(srcPath, destPath, 1);
     console.info("move directory succeed");
   } catch (err) {
-    let err: BusinessError = error as BusinessError;
     console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
@@ -2480,7 +2576,7 @@ Moves a file. This API uses a promise to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
 
 **Return value**
 
@@ -2519,7 +2615,7 @@ Moves a file. This API uses an asynchronous callback to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is moved.             |
 
 **Error codes**
@@ -2555,7 +2651,7 @@ Moves a file synchronously.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
 
 **Error codes**
 
@@ -2667,6 +2763,33 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let res = fs.mkdtempSync(pathDir + "/XXXXXX");
   ```  
 
+## fs.utimes<sup>11+</sup>
+
+utimes(path: string, mtime: number): void
+
+Updates the latest access time of a file.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+|    Name   | Type    | Mandatory  | Description                         |
+| ------------ | ------ | ------ | ------------------------------------------------------------ |
+| path  | string  |  Yes   | Application sandbox path of the file.|
+| mtime  | number  |  Yes  | New timestamp. The value is the number of milliseconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970). Only the last access time of a file can be modified.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  fs.writeSync(file.fd, 'test data');
+  fs.closeSync(file);
+  fs.utimes(filePath, new Date().getTime());
+  ```
 
 ## fs.createRandomAccessFile<sup>10+</sup>
 
@@ -2778,7 +2901,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
   randomaccessfile.close();
-  fs.closeSync(file);
   ```
 
 ## fs.createStream
@@ -3676,7 +3798,7 @@ Reads data from the stream. This API returns the result synchronously.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br> |
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>|
 
 **Return value**
 
@@ -3717,6 +3839,33 @@ Represents a **File** object opened by **open()**.
 | fd | number | Yes   | No   | FD of the file.|
 | path<sup>10+</sup> | string | Yes   | No   | Path of the file.|
 | name<sup>10+</sup> | string | Yes   | No   | Name of the file.|
+
+### getParent<sup>11+</sup>
+
+getParent(): string
+
+Obtains the parent directory of this file object.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Return value**
+
+  | Type                                | Description    |
+  | ---------------------------------- | ------ |
+  | string | Parent directory obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  console.info('The parent path is: ' + file.getParent());
+  fs.closeSync(file);
+  ```
 
 ### lock
 
@@ -4037,7 +4186,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   option.length = 5;
   let bytesWritten = randomaccessfile.writeSync("hello, world", option);
   randomaccessfile.close();
-  fs.closeSync(file);
   ```
 
 ### read<sup>10+</sup>
@@ -4083,8 +4231,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let arrayBuffer = new ArrayBuffer(bufferLength);
   randomaccessfile.read(arrayBuffer, option).then((readLength: number) => {
     console.info("randomAccessFile readLength: " + readLength);
-    randomaccessfile.close();
-    fs.closeSync(file);
   }).catch((err: BusinessError) => {
     console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
@@ -4155,7 +4301,7 @@ Reads data from a file. This API returns the result synchronously.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.<br> |
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.<br>|
 
 **Return value**
 

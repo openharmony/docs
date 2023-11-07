@@ -86,7 +86,7 @@ Unlocks the screen. This API uses an asynchronous callback to return the result.
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | --------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the screen is unlocked successfully, and **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the screen is unlocked successfully, and **false** means that screen unlocked is canceled.|
 
 **Error codes**
 
@@ -124,7 +124,7 @@ Unlocks the screen. This API uses a promise to return the result.
 
 | Type               | Description                                                        |
 | ------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the screen is unlocked successfully, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the screen is unlocked successfully, and **false** means that screen unlocked is canceled.|
 
 **Error codes**
 

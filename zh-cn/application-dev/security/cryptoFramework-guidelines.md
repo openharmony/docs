@@ -419,6 +419,7 @@ function testConvertHmacKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Print bigint information.
 function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
@@ -2209,7 +2210,6 @@ function doMdByPromise() {
   let mdAlgName = "SHA256"; // Digest algorithm name.
   let message = "mdTestMessgae"; // Data to be digested.
   let md = cryptoFramework.createMd(mdAlgName);
-  ;
   console.info("[Promise]: Md algName is: " + md.algName);
   // If the data volume is small, you can use update() once to pass in all data. There is no limit on the length of the input parameter.
   let promiseMdUpdate = md.update({ data: stringToUint8Array(message) });
@@ -2276,7 +2276,6 @@ function stringToUint8Array(str: string) {
 async function doLoopMdPromise() {
   let mdAlgName = "SHA256"; // Digest algorithm name.
   let md = cryptoFramework.createMd(mdAlgName);
-  ;
   console.info("[Promise]: Md algName is: " + md.algName);
   let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // Assume that the message is of 43 bytes.
   let messageArr: number[] = [];
@@ -2599,6 +2598,74 @@ function doRandBySync() {
     let e: BusinessError = error as BusinessError;
     console.error(`do rand failed, ${e.code}, ${e.message}`);
   }
+}
+```
+
+## 使用密钥派生算法操作
+
+### 场景说明
+
+使用密钥派生算法时，典型的场景有：
+
+用户输入指定的密码，通过密钥派生函数，生成指定长度的密钥。
+
+> **说明：**
+>
+> 从API version 11开始，支持密钥派生函数操作。
+
+### 接口及参数说明
+
+详细接口说明可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
+
+|实例名|接口名|描述|
+|---|---|---|
+|cryptoFramework|creatKdf(algName : string) : Kdf|根据String设置的参数创建Kdf对象|
+|Kdf|generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void |使用callback方式进行密钥派生|
+|Kdf|generateSecret(params: KdfSpec): Promise<DataBlob>;|使用Promise方式进行密钥派生|
+
+### 开发步骤
+
+1. 构造密钥派生函数的参数对象（如PKBDF2Spec）。
+2. 通过接口`creatKdf`生成密钥派生函数实例。
+3. 接受密钥派生函数参数，进行密钥派生操作。
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function kdfPromise() {
+  let spec: cryptoFramework.PBKDF2Spec = {
+    algName: 'PBKDF2',
+    password: '123456',
+    salt: new Uint8Array(16),
+    iterations: 10000,
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
+  let kdfPromise = kdf.generateSecret(spec);
+  kdfPromise.then((secret) => {
+    console.info("key derivation output is " + secret.data);
+  }).catch((error: BusinessError) => {
+    console.error("key derivation error.");
+  });
+}
+
+function kdfCallback() {
+  let spec: cryptoFramework.PBKDF2Spec = {
+    algName: 'PBKDF2',
+    password: '123456',
+    salt: new Uint8Array(16),
+    iterations: 10000,
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
+  kdf.generateSecret(spec, (err, secret) => {
+    if (err) {
+      console.error("key derivation error.");
+      return;
+    }
+    console.info("key derivation output is " + secret.data);
+  });
 }
 ```
 

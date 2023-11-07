@@ -34,7 +34,7 @@ app.json5配置文件包含以下标签。
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| bundleName | 标识应用的Bundle名称，用于标识应用的唯一性。该标签不可缺省。标签的值命名规则&nbsp;：<br/>-&nbsp;字符串以字母、数字、下划线和符号“.”组成。<br/>-&nbsp;以字母开头。<br/>-&nbsp;最小长度7个字节，最大长度128个字节。<br/>推荐采用反域名形式命名（如com.example.demo，建议第一级为域名后缀com，第二级为厂商/个人名，第三级为应用名，也可以多级）。<br/>其中，随系统源码编译的应用建议命名为“com.ohos.demo”形式，&nbsp;ohos标识OpenHarmony系统应用。 | 字符串 | 该标签不可缺省。 |
+| bundleName | 标识应用的Bundle名称，用于标识应用的唯一性。该标签不可缺省。标签的值命名规则&nbsp;：<br/>-&nbsp;字符串以字母、数字、下划线和符号“.”组成。<br/>-&nbsp;以字母开头。<br/>-&nbsp;最小长度7个字节，最大长度128个字节。<br/>推荐采用反域名形式命名（如com.example.demo，建议第一级为域名后缀com，第二级为厂商/个人名，第三级为应用名，也可以多级）。<br/>其中，随系统源码编译的应用建议命名为“com.ohos.demo”形式，&nbsp;ohos标识系统应用。 | 字符串 | 该标签不可缺省。 |
 | bundleType| 标识应用的Bundle类型，用于区分应用或者原子化服务。该标签可选值为app和atomicService&nbsp;：<br/>-&nbsp;app：当前Bundle为普通应用。<br/>-&nbsp;atomicService：当前Bundle为原子化服务。<br/>-&nbsp;shared：当前Bundle为共享库应用。 | 字符串| 该标签可以缺省，缺省为app。 |
 | debug | 标识应用是否可调试，该标签由IDE编译构建时生成。<br/>-&nbsp;true：可调试。<br/>-&nbsp;false：不可调式。 | 布尔值 | 该标签可以缺省，缺省为false。 |
 | icon | 标识[应用的图标](../application-models/application-component-configuration-stage.md)，标签值为图标资源文件的索引。 | 字符串 | 该标签不可缺省。 |

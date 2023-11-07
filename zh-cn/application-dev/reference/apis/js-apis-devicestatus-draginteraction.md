@@ -26,16 +26,6 @@ import dragInteraction from '@ohos.deviceStatus.dragInteraction'
 | MSG_DRAG_STATE_STOP |  2  |  表示结束拖拽。  |
 | MSG_DRAG_STATE_CANCEL |  3  |  表示取消拖拽。  |
 
-**示例**：
-
-```ts
-enum DragState {
-    MSG_DRAG_STATE_START = 1,
-    MSG_DRAG_STATE_STOP = 2,
-    MSG_DRAG_STATE_CANCEL = 3
-}
-```
-
 ## dragInteraction.on('drag')
 
 on(type: 'drag', callback: Callback&lt;DragState&gt;): void;
@@ -54,6 +44,12 @@ on(type: 'drag', callback: Callback&lt;DragState&gt;): void;
 **示例**：
 
 ```ts
+enum DragState {
+    MSG_DRAG_STATE_START = 1,
+    MSG_DRAG_STATE_STOP = 2,
+    MSG_DRAG_STATE_CANCEL = 3
+}
+
 try {
   dragInteraction.on('drag', (data : DragState) => {
     console.log(`Drag interaction event: ${JSON.stringify(data)}`);
@@ -81,6 +77,12 @@ off(type: 'drag', callback?: Callback&lt;DragState&gt;): void;
 **示例**：
 
 ```ts
+enum DragState {
+    MSG_DRAG_STATE_START = 1,
+    MSG_DRAG_STATE_STOP = 2,
+    MSG_DRAG_STATE_CANCEL = 3
+}
+
 // 取消注册单个回调函数
 function single_callback(event : DragState) {
   console.log(`Drag interaction event: ${JSON.stringify(event)}`);
@@ -94,6 +96,12 @@ try {
 }
 ```
 ```ts
+enum DragState {
+    MSG_DRAG_STATE_START = 1,
+    MSG_DRAG_STATE_STOP = 2,
+    MSG_DRAG_STATE_CANCEL = 3
+}
+
 // 取消注册所有回调函数
 function all_callback(event : DragState) {
   console.log(`Drag interaction event: ${JSON.stringify(event)}`);

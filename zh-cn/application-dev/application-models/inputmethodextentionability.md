@@ -31,7 +31,7 @@
 
 1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录，并命名为InputMethodExtensionAbility。
 
-2. 在InputMethodExtensionAbility目录下，右键选择“New > TypeScript File”，新建四个TypeScript文件，分别为KeyboardController.ts、InputMethodService.ts、Index.ets以及KeyboardKeyData.ts。目录如下：
+2. 在InputMethodExtensionAbility目录下，右键选择“New > File”，新建四个文件，分别为KeyboardController.ts、InputMethodService.ts、Index.ets以及KeyboardKeyData.ts。目录如下：
 
 ```
 /src/main/
@@ -43,12 +43,6 @@
 │      └── KeyboardKeyData.ts			    # 键盘属性定义
 ├── resources/base/profile/main_pages.json   
 ```
-
-> **说明：**
-> 
-> 在编译输入法应用时，要使用system_basic级别的签名，否则无法拉起输入法键盘。
-> 
-> [签名指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)。
 
 ## 文件介绍
 
@@ -138,7 +132,7 @@
        let nonBarPosition = dHeight - keyHeight;
        let panelInfo: inputMethodEngine.PanelInfo = {
          type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-         flag: inputMethodEngine.PanelFlag.FLG_FLOATING
+         flag: inputMethodEngine.PanelFlag.FLG_FIXED
        };
        inputMethodAbility.createPanel(this.mContext, panelInfo).then(async (inputPanel: inputMethodEngine.Panel) => {
          this.panel = inputPanel;
@@ -353,6 +347,14 @@
      }
    }
    ```
+
+## 验证方法
+
+1. 使用hdc命令，拉起选择输入法弹窗应用：`hdc shell aa start ability -a InputMethod -b cn.openharmonyinputmethodchoosedialog`
+
+2. 在弹窗上显示的输入法应用列表中，选择并点击demo应用，将demo应用切换为当前输入法。
+
+3. 点击任意编辑框，即可拉起输入法demo。
 
 ## 约束与限制
 

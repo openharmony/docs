@@ -23,22 +23,23 @@ createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates):
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | name | string | 是 | 数据库表中的表名。 |
-  | dataAbilityPredicates | [DataAbilityPredicates](#dataabilitypredicates) | 是 | DataAbility谓词。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name | string | 是 | 数据库表中的表名。 |
+| dataAbilityPredicates | [DataAbilityPredicates](#dataabilitypredicates) | 是 | DataAbility谓词。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | rdb.[RdbPredicates](js-apis-data-rdb.md#rdbpredicates) | 返回RdbPredicates对象。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| rdb.[RdbPredicates](js-apis-data-rdb.md#rdbpredicates) | 返回RdbPredicates对象。 |
 
 **示例：**
 
   ```js
   let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
   dataAbilityPredicates.equalTo("NAME", "Rose")
+  // EMPLOYEE是使用关系型数据库创建的表。
   let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
   ```
 
@@ -56,16 +57,16 @@ equalTo(field: string, value: ValueType): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -83,16 +84,16 @@ notEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -110,9 +111,9 @@ beginWrap(): DataAbilityPredicates
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回带有左括号的DataAbility谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回带有左括号的DataAbility谓词。 |
 
 **示例：**
 
@@ -135,9 +136,9 @@ endWrap(): DataAbilityPredicates
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回带有右括号的DataAbility谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回带有右括号的DataAbility谓词。 |
 
 **示例：**
 
@@ -160,9 +161,9 @@ or(): DataAbilityPredicates
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回带有或条件的DataAbility谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回带有或条件的DataAbility谓词。 |
 
 **示例：**
 
@@ -182,9 +183,9 @@ and(): DataAbilityPredicates
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回带有和条件的DataAbility谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回带有和条件的DataAbility谓词。 |
 
 **示例：**
 
@@ -204,16 +205,16 @@ contains(field: string, value: string): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | value | string | 是 | 指示要与谓词匹配的值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| value | string | 是 | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -231,16 +232,16 @@ beginsWith(field: string, value: string): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | value | string | 是 | 指示要与谓词匹配的值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| value | string | 是 | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -258,16 +259,16 @@ endsWith(field: string, value: string): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | value | string | 是 | 指示要与谓词匹配的值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| value | string | 是 | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -285,15 +286,15 @@ isNull(field: string): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -311,15 +312,15 @@ isNotNull(field: string): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -337,16 +338,16 @@ like(field: string, value: string): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | value | string | 是 | 指示要与谓词匹配的值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| value | string | 是 | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -364,16 +365,16 @@ glob(field: string, value: string): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | value | string | 是 | 指示要与谓词匹配的值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| value | string | 是 | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -391,17 +392,17 @@ between(field: string, low: ValueType, high: ValueType): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | low | [ValueType](#valuetype) | 是 | 指示与谓词匹配的最小值。 |
-  | high | [ValueType](#valuetype) | 是 | 指示与谓词匹配的最大值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| low | [ValueType](#valuetype) | 是 | 指示与谓词匹配的最小值。 |
+| high | [ValueType](#valuetype) | 是 | 指示与谓词匹配的最大值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -419,17 +420,17 @@ notBetween(field: string, low: ValueType, high: ValueType): DataAbilityPredicate
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | low | [ValueType](#valuetype) | 是 | 指示与谓词匹配的最小值。 |
-  | high | [ValueType](#valuetype) | 是 | 指示与谓词匹配的最大值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| low | [ValueType](#valuetype) | 是 | 指示与谓词匹配的最小值。 |
+| high | [ValueType](#valuetype) | 是 | 指示与谓词匹配的最大值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -447,16 +448,16 @@ greaterThan(field: string, value: ValueType): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -474,16 +475,16 @@ lessThan(field: string, value: ValueType): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -501,16 +502,16 @@ greaterThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -528,16 +529,16 @@ lessThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -555,15 +556,15 @@ orderByAsc(field: string): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -581,15 +582,15 @@ orderByDesc(field: string): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -607,9 +608,9 @@ distinct(): DataAbilityPredicates
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回可用于过滤重复记录的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回可用于过滤重复记录的谓词。 |
 
 **示例：**
 
@@ -627,15 +628,15 @@ limitAs(value: number): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | value | number | 是 | 最大数据记录数。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | number | 是 | 最大数据记录数。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回可用于设置最大数据记录数的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回可用于设置最大数据记录数的谓词。 |
 
 **示例：**
 
@@ -653,15 +654,15 @@ offsetAs(rowOffset: number): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | rowOffset | number | 是 | 返回结果的起始位置，取值为正整数。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| rowOffset | number | 是 | 返回结果的起始位置，取值为正整数。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回具有指定返回结果起始位置的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回具有指定返回结果起始位置的谓词。 |
 
 **示例：**
 
@@ -680,15 +681,15 @@ groupBy(fields: Array&lt;string&gt;): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | fields | Array&lt;string&gt; | 是 | 指定分组依赖的列名。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| fields | Array&lt;string&gt; | 是 | 指定分组依赖的列名。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回分组查询列的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回分组查询列的谓词。 |
 
 **示例：**
 
@@ -706,15 +707,15 @@ indexedBy(field: string): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | indexName | string | 是 | 索引列的名称。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| indexName | string | 是 | 索引列的名称。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回具有指定索引列的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回具有指定索引列的谓词。 |
 
 **示例：**
 
@@ -732,17 +733,17 @@ in(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | value | Array&lt;[ValueType](#valuetype)&gt; | 是 | 以ValueType类型数组形式指定的要匹配的值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| value | Array&lt;[ValueType](#valuetype)&gt; | 是 | 以ValueType类型数组形式指定的要匹配的值。 |
 
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -760,16 +761,16 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 数据库表中的列名。 |
-  | value | Array&lt;[ValueType](#valuetype)&gt; | 是 | 以ValueType类型数组形式指定的要匹配的值。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| field | string | 是 | 数据库表中的列名。 |
+| value | Array&lt;[ValueType](#valuetype)&gt; | 是 | 以ValueType类型数组形式指定的要匹配的值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 

@@ -65,7 +65,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
    let avProfile: media.AVRecorderProfile = {
      fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
      videoBitrate : 200000, // 视频比特率
-     videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
+     videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
      videoFrameWidth : 640,  // 视频分辨率的宽
      videoFrameHeight : 480, // 视频分辨率的高
      videoFrameRate : 30 // 视频帧率
@@ -96,7 +96,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
    })
    ```
 
-5. 初始化视频数据输入源。该步骤需要在输入源模块完成，以相机为例，需要创建录像输出流，包括创建Camera对象、获取相机列表、创建相机输入流等，相机详细步骤请参考[相机-录像实现方案](camera-recording-case.md)。
+5. 初始化视频数据输入源。该步骤需要在输入源模块完成，以相机为例，需要创建录像输出流，包括创建Camera对象、获取相机列表、创建相机输入流等，相机详细步骤请参考[相机-录像方案](camera-recording.md)。
 
 6. 开始录制，启动输入源输入视频数据，例如相机模块调用camera.VideoOutput.start接口启动相机录制。然后调用AVRecorder.start()接口，此时AVRecorder进入started状态。
 
@@ -126,7 +126,7 @@ export class VideoRecorderDemo {
   private avProfile: media.AVRecorderProfile = {
     fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
     videoBitrate : 100000, // 视频比特率
-    videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
+    videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
     videoFrameWidth : 640,  // 视频分辨率的宽
     videoFrameHeight : 480, // 视频分辨率的高
     videoFrameRate : 30 // 视频帧率

@@ -105,5 +105,7 @@
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
 - Common Library
   - [Common Library Error Codes](errorcode-utils.md)
+- Application services
+  - [OAID Error Codes](errorcode-oaid.md)
 - Test
   - [UiTest Error Codes](errorcode-uitest.md)

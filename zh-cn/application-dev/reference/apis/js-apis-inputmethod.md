@@ -69,6 +69,70 @@ getController(): InputMethodController
 let inputMethodController = inputMethod.getController();
 ```
 
+## inputMethod.getDefaultInputMethod<sup>11+</sup>
+
+getDefaultInputMethod(): InputMethodProperty
+
+获取默认输入法。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                                         | 说明                     |
+| -------------------------------------------- | ------------------------ |
+| [InputMethodProperty](#inputmethodproperty8) | 返回默认输入法属性对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 12800008 | input method manager service error. |
+
+**示例：**
+
+```ts
+try {
+  let defaultIme = inputMethod.getDefaultInputMethod();
+} catch(err) {
+  console.error(`Failed to getDefaultInputMethod: ${JSON.stringify(err)}`);
+}
+```
+
+## inputMethod.getSystemInputMethodConfigAbility<sup>11+</sup>
+
+getSystemInputMethodConfigAbility(): ElementName
+
+获取系统输入法设置界面Ability信息。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                                         | 说明                     |
+| -------------------------------------------- | ------------------------ |
+| [ElementName](./js-apis-bundleManager-elementName.md) | 系统输入法设置界面Ability的ElementName。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 12800008 | input method manager service error. |
+
+**示例：**
+
+```ts
+try {
+  let inputMethodConfig = inputMethod.getSystemInputMethodConfigAbility();
+} catch(err) {
+  console.error(`Failed to get getSystemInputMethodConfigAbility: ${JSON.stringify(err)}`);
+}
+```
+
 ## inputMethod.getSetting<sup>9+</sup>
 
 getSetting(): InputMethodSetting
@@ -361,7 +425,11 @@ let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
 
 switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
-切换至指定输入法的指定子类型，适用于跨输入法切换子类型，仅系统应用可用。使用callback异步回调。
+切换至指定输入法的指定子类型，适用于跨输入法切换子类型。使用callback异步回调。
+
+> **说明：**
+>
+> 在API version 9-10版本，仅支持系统应用调用；API version 11版本起，应用需要具备ohos.permission.CONNECT_IME_ABILITY权限，如果是输入法应用调用，则必须是当前使用的输入法。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
@@ -410,7 +478,11 @@ try {
 
 switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype): Promise&lt;boolean&gt;
 
-切换至指定输入法的指定子类型，适用于跨输入法切换子类型，仅系统应用可用。使用promise异步回调。
+切换至指定输入法的指定子类型，适用于跨输入法切换子类型。使用promise异步回调。
+
+> **说明：**
+>
+> 在API version 9-10版本，仅支持系统应用调用；API version 11版本起，应用需要具备ohos.permission.CONNECT_IME_ABILITY权限，如果是输入法应用调用，则必须是当前使用的输入法。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
@@ -2543,6 +2615,52 @@ off(type: 'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
 inputMethodSetting.off('imeHide');
 ```
 
+### isPanelShown<sup>11+</sup>
+
+isPanelShown(panelInfo: PanelInfo): boolean
+
+查询指定类型的输入法面板是否处于显示状态。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名    | 类型                                                  | 必填 | 说明               |
+| --------- | ----------------------------------------------------- | ---- | ------------------ |
+| panelInfo | [PanelInfo](./js-apis-inputmethod-panel.md#panelinfo) | 是   | 输入法面板的属性。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 面板显隐状态查询结果。<br/>- true表示被查询的输入法面板处于显示状态。<br/>- false表示被查询的输入法面板处于隐藏状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 12800008 | input method manager service error. |
+
+**示例：**
+
+```ts
+import panel from '@ohos.inputMethod.Panel';
+let info: panel.PanelInfo = {
+  type: panel.PanelType.SOFT_KEYBOARD,
+  flag: panel.PanelFlag.FLAG_FIXED
+}
+try {
+  let result = inputMethodSetting.isPanelShown(info);
+  console.log('Succeeded in querying isPanelShown, result: ' + result);
+} catch (err) {
+  console.error(`Failed to query isPanelShown: ${JSON.stringify(err)}`);
+}
+```
+
 ### listInputMethodSubtype<sup>9+</sup>
 
 listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: AsyncCallback&lt;Array&lt;InputMethodSubtype&gt;&gt;): void
@@ -2570,12 +2688,17 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 **示例：**
 
 ```ts
+import inputMethod from '@ohos.inputMethod';
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { BusinessError } from '@ohos.base';
+
 let inputMethodProperty: inputMethod.InputMethodProperty = {
   packageName: 'com.example.kikakeyboard',
   name: 'InputMethodExAbility',
   methodId: '',
   id: 'propertyId',
 }
+let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err: BusinessError, data: Array<InputMethodSubtype>) => {
     if (err) {
@@ -2621,16 +2744,21 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 **示例：**
 
 ```ts
+import inputMethod from '@ohos.inputMethod';
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { BusinessError } from '@ohos.base';
+
 let inputMethodProperty: inputMethod.InputMethodProperty = {
   packageName: 'com.example.kikakeyboard',
   name: 'InputMethodExAbility',
   methodId: '',
   id: 'propertyId',
 }
+let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data: Array<InputMethodSubtype>) => {
     console.log('Succeeded in listing inputMethodSubtype.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -2664,6 +2792,10 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 **示例：**
 
 ```ts
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { BusinessError } from '@ohos.base';
+
+let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listCurrentInputMethodSubtype((err: BusinessError, data: Array<InputMethodSubtype>) => {
     if (err) {
@@ -2703,10 +2835,14 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 **示例：**
 
 ```ts
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { BusinessError } from '@ohos.base';
+
+let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listCurrentInputMethodSubtype().then((data: Array<InputMethodSubtype>) => {
     console.log('Succeeded in listing currentInputMethodSubtype.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -2757,7 +2893,7 @@ try {
     }
     console.log('Succeeded in getting inputMethods.');
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -2808,7 +2944,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
   })
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -2855,7 +2991,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let imeProp = inputMethodSetting.getInputMethodsSync(true);
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -2896,7 +3032,7 @@ try {
     }
     console.log('Succeeded in getting all inputMethods.');
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -2931,7 +3067,7 @@ import { BusinessError } from '@ohos.base';
 
 inputMethodSetting.getAllInputMethods().then((data: Array<inputMethod.InputMethodProperty>) => {
   console.log('Succeeded in getting all inputMethods.');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
 })
 ```
@@ -2966,7 +3102,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let imeProp = inputMethodSetting.getAllInputMethodsSync();
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to getAllInputMethodsSync: ${JSON.stringify(err)}`);
 }
 ```

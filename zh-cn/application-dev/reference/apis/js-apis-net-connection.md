@@ -1705,7 +1705,11 @@ netCon.register((error: BusinessError) => {
 })
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+class Value {
+    netHandle: NetHandle = connection.NetHandle
+    blocked: boolean = false
+}
+netCon.on('netBlockStatusChange', (data: Value) => {
   console.log(JSON.stringify(data))
 })
 
@@ -1789,8 +1793,13 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
+class Value {
+    netHandle: NetHandle = connection.NetHandle
+    connectionProperties: ConnectionProperties = connection.ConnectionProperties
+}
+
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+netCon.on('netConnectionPropertiesChange', (data: Value) => {
   console.log(JSON.stringify(data))
 })
 
@@ -1832,7 +1841,7 @@ netCon.register((error: BusinessError) => {
 })
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+netCon.on('netLost', (data: connection.NetHandle) => {
   console.log(JSON.stringify(data))
 })
 

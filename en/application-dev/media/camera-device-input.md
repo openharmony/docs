@@ -11,14 +11,14 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```ts
    import camera from '@ohos.multimedia.camera';
    import { BusinessError } from '@ohos.base';
-   import featureAbility from '@ohos.ability.featureAbility';
+   import common from '@ohos.app.ability.common';
    ```
 
 2. Call **getCameraManager()** to obtain a **CameraManager** object.
 
-   There are different [types of contexts](../application-models/application-context-stage.md).
+   For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
    ```ts
-   function getCameraManager(context: featureAbility.Context): camera.CameraManager {
+   function getCameraManager(context: common.BaseContext): camera.CameraManager {
      let cameraManager: camera.CameraManager = camera.getCameraManager(context);
      return cameraManager;
    }

@@ -83,6 +83,12 @@ Publishes a notification. This API uses a promise to return the result.
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
 | request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 
+**Return value**
+
+| Type    | Description| 
+| ------- |--|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -206,6 +212,12 @@ Publishes a notification to a specified user. This API uses a promise to return 
 | request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
 
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -305,6 +317,12 @@ Cancels a notification with the specified ID and optional label. This API uses a
 | ----- | ------ | ---- | -------- |
 | id    | number | Yes  | Notification ID.  |
 | label | string | No  | Notification label. This parameter is left empty by default.|
+
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -419,6 +437,12 @@ Cancels all notifications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -509,6 +533,12 @@ Adds a notification slot. This API uses a promise to return the result.
 | ---- | ---------------- | ---- | -------------------- |
 | slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot to add.|
 
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -591,6 +621,12 @@ Adds a notification slot of a specified type. This API uses a promise to return 
 | Name| Type    | Mandatory| Description                  |
 | ---- | -------- | ---- | ---------------------- |
 | type | [SlotType](#slottype) | Yes  | Type of the notification slot to add.|
+
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -686,6 +722,12 @@ Adds an array of notification slots. This API uses a promise to return the resul
 | Name | Type                     | Mandatory| Description                    |
 | ----- | ------------------------- | ---- | ------------------------ |
 | slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Notification slots to add.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -936,6 +978,12 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 | -------- | -------- | ---- | ----------------------------------------------------------- |
 | slotType | [SlotType](#slottype) | Yes  | Type of the notification slot, which can be used for social communication, service information, content consultation, and other purposes.|
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -1005,6 +1053,12 @@ removeAllSlots(): Promise\<void\>
 Removes all notification slots. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -1095,6 +1149,12 @@ Sets whether to enable notification for a specified application. This API uses a
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -1471,6 +1531,12 @@ Sets whether to enable the notification badge for a specified application. This 
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -1610,6 +1676,12 @@ Sets the notification badge number. This API uses a promise to return the result
 | ----------- | ------ | ---- | ---------- |
 | badgeNumber | number | Yes  | Notification badge number to set.|
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 | ID| Error Message                           |
@@ -1746,6 +1818,12 @@ Sets the notification slot for a specified application. This API uses a promise 
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 | slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -2272,6 +2350,12 @@ Cancels notifications under a notification group of this application. This API u
 | --------- | ------ | ---- | -------------- |
 | groupName | string | Yes  | Name of the notification group.|
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -2363,6 +2447,12 @@ Removes notifications under a notification group of a specified application. Thi
 | --------- | ------------ | ---- | -------------- |
 | bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.    |
 | groupName | string       | Yes  | Name of the notification group.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -2459,6 +2549,13 @@ Sets the DND time. This API uses a promise to return the result.
 | Name| Type            | Mandatory| Description          |
 | ---- | ---------------- | ---- | -------------- |
 | date | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set.|
+
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -2563,6 +2660,12 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 | ------ | ---------------- | ---- | -------------- |
 | date   | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set.|
 | userId | number           | Yes  | ID of the user for whom you want to set the DND time.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -3002,6 +3105,12 @@ Requests notification to be enabled for this application. This API uses a promis
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -3089,6 +3198,12 @@ Requests notification to be enabled for this application in a modal. This API us
 | Name  | Type                    | Mandatory| Description                |
 | -------- | ------------------------ | ---- |--------------------|
 | context | UIAbilityContext | Yes  | Ability context bound to the notification dialog box.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -3677,6 +3792,12 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
 | userId               | number                                      | Yes  | User ID.                           |
 
+**Return value**
+
+| Type             | Description       | 
+|-----------------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -3794,6 +3915,12 @@ Cancels a notification published by the reminder agent. This API uses a promise 
 | id                   | number | Yes  | Notification ID.          |
 | representativeBundle | string | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.|
 | userId               | number | Yes  | User ID.|
+
+**Return value**
+
+| Type             | Description       | 
+|-----------------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 

@@ -329,7 +329,7 @@ CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:C
 
 ```
 
-## CommonEventManager.createSubscriberSync
+## CommonEventManager.createSubscriberSync<sup>10+</sup>
 
 createSubscriberSync(subscribeInfo: CommonEventSubscribeInfo): CommonEventSubscriber
 
@@ -518,12 +518,15 @@ try {
 }
 
 // Unsubscribe from the common event.
-try {
+// Wait until execution of the asynchronous API subscribe is completed. Add setTimeout when necessary.
+setTimeout(() => {
+  try {
     CommonEventManager.unsubscribe(subscriber, unsubscribeCB);
-} catch (error) {
+  } catch (error) {
     let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
-}
+  }
+}, 500);
 ```
 
 ## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>

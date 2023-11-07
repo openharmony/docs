@@ -4,7 +4,8 @@ The **\<ListItemGroup>** component is used to display list item groups. It must 
 
 > **NOTE**
 >
-> This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+> - This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+> - This component can be used only as a child of [\<List>](ts-container-list.md).
 
 ## Usage Guidelines
 

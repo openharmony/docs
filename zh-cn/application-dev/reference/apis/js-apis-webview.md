@@ -1359,6 +1359,7 @@ class testObj {
   }
 
   test(): string {
+    console.log('ArkUI Web Component');
     return "ArkUI Web Component";
   }
 
@@ -1367,11 +1368,26 @@ class testObj {
   }
 }
 
+class webObj {
+  constructor() {
+  }
+
+  webTest(): string {
+    console.log('Web test');
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString');
+  }
+}
+
 @Entry
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   @State testObjtest: testObj = new testObj();
+  @State webTestObj: webObj = new webObj();
   build() {
     Column() {
       Button('refresh')
@@ -1387,6 +1403,7 @@ struct Index {
         .onClick(() => {
           try {
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -1408,12 +1425,19 @@ struct Index {
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
+      <p id="webDemo"></p>
     </body>
     <script type="text/javascript">
     function htmlTest() {
+      // This function call expects to return "ArkUI Web Component"
       let str=objName.test();
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
+
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
     }
 </script>
 </html>
@@ -1935,7 +1959,7 @@ struct WebComponent {
 
 zoom(factor: number): void
 
-调整当前网页的缩放比例。
+调整当前网页的缩放比例，[zoomAccess](../arkui-ts/ts-basic-components-web.md#zoomaccess)需为true。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1979,6 +2003,7 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
+        .zoomAccess(true)
     }
   }
 }
@@ -2261,7 +2286,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 | 类型                   | 说明              |
 | ---------------------- | ----------------- |
-| [WebMessagePort](#webmessageport) | web消息端口列表。 |
+| Array\<[WebMessagePort](#webmessageport)> | web消息端口列表。 |
 
 **错误码：**
 
@@ -3510,7 +3535,7 @@ struct WebComponent {
 
 setNetworkAvailable(enable: boolean): void
 
-设置JavaScript中的window.navigator.isOnLine属性。
+设置JavaScript中的window.navigator.onLine属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3518,7 +3543,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.isOnLine。 |
+| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
 
 **错误码：**
 
@@ -4637,6 +4662,120 @@ struct WebComponent {
 }
 ```
 
+### setDownloadDelegate<sup>11+</sup>
+
+setDownloadDelegate(delegate: WebDownloadDelegate): void
+
+为当前的Web组件设置一个WebDownloadDelegate，该delegate用来接收页面内触发的下载与下载的进展。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| delegate      | [WebDownloadDelegate](#webdownloaddelegate11)  | 是   | 用来接收下载进回调的委托。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### startDownload<sup>11+</sup>
+
+startDownload(url: string): void
+
+使用Web组件的下载能力来下载指定的url, 比如下载网页中指定的图片。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| url      | string  | 是   | 下载地址。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### getCustomUserAgent<sup>10+</sup>
 
 getCustomUserAgent(): string
@@ -4690,6 +4829,56 @@ struct WebComponent {
 }
 ```
 
+### setConnectionTimeout<sup>11+</sup>
+
+static setConnectionTimeout(timeout: number): void
+
+设置网络连接超时时间，使用者可通过Web组件中的onErrorReceive方法获取超时错误码。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| timeout        | number  | 是   | socket连接超时时间，以秒为单位。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setConnectionTimeout')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.setConnectionTimeout(5);
+            console.log("setConnectionTimeout: 5s");
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onErrorReceive((event) => {
+          if (event) {
+            console.log('getErrorInfo:' + event.error.getErrorInfo())
+            console.log('getErrorCode:' + event.error.getErrorCode())
+          }
+        })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
@@ -4698,11 +4887,15 @@ struct WebComponent {
 >
 > 目前调用WebCookieManager下的方法，都需要先加载Web组件。
 
-### getCookie
+### getCookie<sup>(deprecated)</sup>
 
 static getCookie(url: string): string
 
 获取指定url对应cookie的值。
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 11开始废弃。建议使用[fetchCookieSync](###fetchCookieSync11)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4756,11 +4949,199 @@ struct WebComponent {
 }
 ```
 
-### setCookie
+### fetchCookieSync<sup>11+</sup>
+
+static fetchCookieSync(url: string): string
+
+获取指定url对应cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 指定url对应的cookie的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 17100002 | Invalid url.                                           |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('fetchCookieSync')
+        .onClick(() => {
+          try {
+            let value = web_webview.WebCookieManager.fetchCookieSync('https://www.example.com');
+            console.log("fetchCookieSync cookie = " + value);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### fetchCookie<sup>11+</sup>
+
+static fetchCookie(url: string, callback: AsyncCallback\<string>): void
+
+异步callback方式获取指定url对应cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+| callback | AsyncCallback\<string> | 是 | callback回调，用于获取cookie |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 401 | Invalid input parameter.                                           |
+| 17100002 | Invalid url.                                           |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('fetchCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.fetchCookie('https://www.example.com', (error, cookie) => {
+              if (error) {
+                console.log('error: ' + JSON.stringify(error));
+                return;
+              }
+              if (cookie) {
+                console.log('fetchCookie cookie = ' + cookie);
+              }
+            })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### fetchCookie<sup>11+</sup>
+
+static fetchCookie(url: string): Promise\<string>
+
+以Promise方式异步获取指定url对应cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Promise\<string> | Promise实例，用于获取指定url对应的cookie值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 401 | Invalid input parameter.                                           |
+| 17100002 | Invalid url.                                           |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('fetchCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.fetchCookie('https://www.example.com')
+              .then(cookie => {
+                console.log("fetchCookie cookie = " + cookie);
+              })
+              .catch((error:business_error.BusinessError) => {
+                console.log('error: ' + JSON.stringify(error));
+              })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+
+### setCookie<sup>(deprecated)</sup>
 
 static setCookie(url: string, value: string): void
 
 为指定url设置单个cookie的值。
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 11开始废弃。建议使用[configCookieSync](###configCookieSync11+)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4798,6 +5179,184 @@ struct WebComponent {
         .onClick(() => {
           try {
             web_webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookieSync<sup>11+</sup>
+
+static configCookieSync(url: string, value: string): void
+
+为指定url设置单个cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要设置的cookie所属的url，建议使用完整的url。 |
+| value  | string | 是   | 要设置的cookie的值。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookieSync')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookie<sup>11+</sup>
+
+static configCookie(url: string, value: string, callback: AsyncCallback\<void>): void
+
+异步callback方式为指定url设置单个cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+| value  | string | 是   | 要设置的cookie的值。      |
+| callback | AsyncCallback\<void> | 是 | callback回调，用于获取设置cookie的结果 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Invalid input parameter.                               |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.configCookie('https://www.example.com', "a=b", (error) => {
+              if (error) {
+                console.log("error: " + JSON.stringify(error));
+              }
+            })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookie<sup>11+</sup>
+
+static configCookie(url: string, value: string): Promise\<void>
+
+以异步Promise方式为指定url设置单个cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+| value  | string | 是   | 要设置的cookie的值。      |
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Promise\<string> | Promise实例，用于获取指定url设置单个cookie值是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Invalid input parameter.                               |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.configCookie('https://www.example.com', 'a=b')
+              .then(() => {
+                console.log('configCookie success!');
+              })
+              .catch((error:business_error.BusinessError) => {
+                console.log('error: ' + JSON.stringify(error));
+              })
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -5105,11 +5664,15 @@ struct WebComponent {
 }
 ```
 
-### deleteEntireCookie
+### deleteEntireCookie<sup>(deprecated)</sup>
 
 static deleteEntireCookie(): void
 
 清除所有cookie。
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 11开始废弃。建议使用[clearAllCookiesSync](###clearAllCookiesSync11+)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5136,11 +5699,142 @@ struct WebComponent {
 }
 ```
 
-### deleteSessionCookie
+### clearAllCookiesSync<sup>11+</sup>
+
+static clearAllCookiesSync(): void
+
+清除所有cookie。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearAllCookiesSync')
+        .onClick(() => {
+          web_webview.WebCookieManager.clearAllCookiesSync();
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearAllCookies<sup>11+</sup>
+
+static clearAllCookies(callback: AsyncCallback\<void>): void
+
+异步callback方式清除所有cookie。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                               |
+| -------- | ---------------------- | ---- | :------------------------------------------------- |
+| callback | AsyncCallback\<void> | 是   | callback回调，用于获取清除所有cookie是否成功。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearAllCookies')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.clearAllCookies((error) => {
+              if (error) {
+                console.log("error: " + error);
+              }
+            })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearAllCookies<sup>11+</sup>
+
+static clearAllCookies(): Promise\<void>
+
+异步promise方式清除所有cookie。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型             | 说明                                      |
+| ---------------- | ----------------------------------------- |
+| Promise\<void> | Promise实例，用于获取清除所有cookie是否成功。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearAllCookies')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.clearAllCookies()
+              .then(() => {
+                console.log("clearAllCookies success!");
+              })
+              .catch((error:business_error.BusinessError) => {
+                console.error("error: " + error);
+              });
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### deleteSessionCookie<sup>(deprecated)</sup>
 
 static deleteSessionCookie(): void
 
 清除所有会话cookie。
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 11开始废弃。建议使用[clearSessionCookiesync](###clearSessionCookieSync11+)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5160,6 +5854,133 @@ struct WebComponent {
       Button('deleteSessionCookie')
         .onClick(() => {
           web_webview.WebCookieManager.deleteSessionCookie();
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearSessionCookieSync<sup>11+</sup>
+
+static clearSessionCookieSync(): void
+
+清除所有会话cookie。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearSessionCookieSync')
+        .onClick(() => {
+          web_webview.WebCookieManager.clearSessionCookieSync();
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearSessionCookie<sup>11+</sup>
+
+static clearSessionCookie(callback: AsyncCallback\<void>): void
+
+异步callback方式清除所有会话cookie。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                               |
+| -------- | ---------------------- | ---- | :------------------------------------------------- |
+| callback | AsyncCallback\<void> | 是   | callback回调，用于获取清除所有会话cookie是否成功。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearSessionCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.clearSessionCookie((error) => {
+              if (error) {
+                console.log("error: " + error);
+              }
+            })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearSessionCookie<sup>11+</sup>
+
+static clearSessionCookie(): Promise\<void>
+
+异步promise方式清除所有会话cookie。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型             | 说明                                      |
+| ---------------- | ----------------------------------------- |
+| Promise\<void> | Promise实例，用于获取清除所有会话cookie是否成功。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearSessionCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.clearSessionCookie()
+              .then(() => {
+                console.log("clearSessionCookie success!");
+              })
+              .catch((error:business_error.BusinessError) => {
+                console.error("error: " + error);
+              });
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -6876,3 +7697,2040 @@ Web组件使用HTTPDNS的模式。
 | OFF                                  | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
 | AUTO                                 | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。|
 | SECURE_ONLY                          | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|
+
+## WebDownloadState<sup>11+</sup>
+
+下载任务的状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 值 | 说明                                      |
+| ------------- | -- |----------------------------------------- |
+| IN_PROGRESS                                  | 0 |下载任务正在进行中。|
+| COMPLETED                                 | 1 |下载任务已经完成。|
+| CANCELED                          | 2 |下载任务已经被取消。|
+| INTERRUPTED                          | 3 |下载任务被中断。|
+| PENDING                          | 4 |下载任务等待开始。|
+| PAUSED                          | 5 |下载任务已经被暂停。|
+| UNKNOWN                          | 6 |下载任务未知状态。|
+
+## WebDownloadErrorCode<sup>11+</sup>
+
+下载任务的错误码。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 值 | 说明                                      |
+| ------------- | -- |----------------------------------------- |
+| ERROR_UNKNOWN                                  | 0 |未知的错误。|
+| FILE_FAILED | 1 |  常规文件操作失败。|
+| FILE_ACCESS_DENIED | 2 | 没有权限访问文件。|
+| FILE_NO_SPACE | 3 | 磁盘没有足够的空间。|
+| FILE_NAME_TOO_LONG | 5 | 文件名字过长。|
+| FILE_TOO_LARGE | 6 | 文件太大。|
+| FILE_TRANSIENT_ERROR | 10 |  出现了一些临时问题，例如内存不足、文件正在使用以及同时打开的文件过多。|
+| FILE_BLOCKED | 11 |  由于某些本地策略，文件被阻止访问。|
+| FILE_TOO_SHORT | 13 |  当尝试恢复下载时，发现文件不够长，可能该文件已不存在。|
+| FILE_HASH_MISMATCH | 14 |  哈希不匹配。|
+| FILE_SAME_AS_SOURCE | 15 |  文件已存在。|
+| NETWORK_FAILED | 20 |  一般网络错误。|
+| NETWORK_TIMEOUT | 21 | 网络超时。|
+| NETWORK_DISCONNECTED | 22 | 网络断开连接。|
+| NETWORK_SERVER_DOWN | 23 |  服务器关闭。|
+| NETWORK_INVALID_REQUEST | 24 |  无效的网络请求，可能重定向到不支持的方案或无效的URL。|
+| SERVER_FAILED | 30 | 服务器返回了一个一般性错误。|
+| SERVER_NO_RANGE | 31 |  服务器不支持范围请求。|
+| SERVER_BAD_CONTENT | 33 |   服务器没有请求的数据。|
+| SERVER_UNAUTHORIZED | 34 |  服务器不允许下载该文件。|
+| SERVER_CERT_PROBLEM | 35 |  服务器证书错误。|
+| SERVER_FORBIDDEN | 36 |  服务器访问被禁止。|
+| SERVER_UNREACHABLE | 37 |  无法访问服务器。|
+| SERVER_CONTENT_LENGTH_MISMATCH | 38 |  接收到的数据与内容长度不匹配。|
+| SERVER_CROSS_ORIGIN_REDIRECT | 39 | 发生意外的跨站重定向。|
+| USER_CANCELED | 40 | 用户取消了下载。|
+| USER_SHUTDOWN | 41 | 用户关闭了应用。|
+| CRASH | 50 | 应用发生了崩溃。|
+
+## WebDownloadItem<sup>11+</sup>
+
+ 表示下载任务，您可以使用此对象来操作相应的下载任务。
+
+> **说明：**
+>
+> 在下载过程中，下载的进程会通过WebDownloadDelegate通知给使用者，使用者可以通过参数WebDownloadItem来操作下载任务。
+
+### getGuid<sup>11+</sup>
+
+getGuid(): string
+
+获取下载任务的唯一ID。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 下载任务的唯一ID。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getCurrentSpeed<sup>11+</sup>
+
+getCurrentSpeed(): number
+
+获取下载的速度，单位：字节每秒。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| number | 下载的速度（字节每秒）。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update current speed: " + webDownloadItem.getCurrentSpeed());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getPercentComplete<sup>11+</sup>
+
+getPercentComplete(): number
+
+获取下载的进度，100代表下载完成。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| number | 下载完成的进度，100代表下载完成。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getTotalBytes<sup>11+</sup>
+
+getTotalBytes(): number
+
+获取待下载文件的总长度。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| number | 待下载文件的总长度。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update total bytes: " + webDownloadItem.getTotalBytes());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getState<sup>11+</sup>
+
+getState(): WebDownloadState
+
+获取下载的状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| [WebDownloadState](#webdownloadstate11) | 下载的状态。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update download state: " + webDownloadItem.getState());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getLastErrorCode<sup>11+</sup>
+
+getLastErrorCode(): number
+
+获取下载的错误码。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| number | 下载发生错误的时候的错误码。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.log("download error code: " + webDownloadItem.getLastErrorCode());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getMethod<sup>11+</sup>
+
+getMethod(): string
+
+获取下载任务的请求方式。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 下载的请求方式。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download， method:" + webDownloadItem.getMethod());
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getMimeType<sup>11+</sup>
+
+getMimeType(): string
+
+获取下载的媒体类型（例如，一个声音文件可能被标记为 audio/ogg ，一个图像文件可能是 image/png）。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 下载的媒体类型（例如，一个声音文件可能被标记为 audio/ogg ，一个图像文件可能是 image/png）。|
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download， mime type:" + webDownloadItem.getMimeType());
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getUrl<sup>11+</sup>
+
+getUrl(): string
+
+获取下载的请求地址。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 下载的请求地址。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download, url:" + webDownloadItem.getUrl());
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getSuggestedFileName<sup>11+</sup>
+
+getSuggestedFileName(): string
+
+获取下载的建议文件名。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 下载的建议文件名。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download, suggest name:" + webDownloadItem.getSuggestedFileName());
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getReceivedBytes<sup>11+</sup>
+
+getReceivedBytes(): number
+
+获取已经接收的字节数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| number | 已经接收的字节数。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.log("download update received bytes: " + webDownloadItem.getReceivedBytes());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getFullPath<sup>11+</sup>
+
+getFullPath(): string
+
+获取下载文件在磁盘上的全路径。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 下载文件在磁盘上的全路径。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.log("download finish full path: " + webDownloadItem.getFullPath());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### serialize<sup>11+</sup>
+
+serialize(): Uint8Array
+
+将失败的下载序列化到一个字节数组。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Uint8Array | 失败的下载序列化后的字节数组。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 序列化失败的下载到一个字节数组。
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### deserialize<sup>11+</sup>
+
+static deserialize(serializedData: Uint8Array): WebDownloadItem
+
+将序列化后的字节数组反序列化为一个WebDownloadItem对象。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Uint8Array | 序列化后的下载。 |
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| [WebDownloadItem](#webdownloaditem11) | 从字节数组反序列化为一个WebDownloadItem对象。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 序列化失败的下载到一个字节数组。
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### start<sup>11+</sup>
+
+start(downloadPath: string): void
+
+开始一个下载，参数为下载文件的磁盘存储路径(包含文件名)。该接口需要在WebDownloadDelegate的onBeforeDownload回调中使用，如果在WebDownloadDelegate的onBeforeDownload中不调用start('xxx')该下载任务会一直处于PENDING状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 下载文件的路径(包含文件名)。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 序列化失败的下载到一个字节数组。
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### cancel<sup>11+</sup>
+
+cancel(): void
+
+取消一个正在下载的下载任务。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 序列化失败的下载到一个字节数组。
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### pause<sup>11+</sup>
+
+pause(): void
+
+暂停一个正在下载的下载任务。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100019 | The download has not been started yet. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 序列化失败的下载到一个字节数组。
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+        Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### resume<sup>11+</sup>
+
+resume(): void
+
+恢复一个暂停的下载任务。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100016 | The download is not paused. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 序列化失败的下载到一个字节数组。
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+## WebDownloadDelegate<sup>11+</sup>
+
+ 下载任务的状态会通过该类的回调接口通知给用户。
+
+### onBeforeDownload<sup>11+</sup>
+
+onBeforeDownload(): void
+
+下载开始前通知给用户，用户需要在此接口中调用WebDownloadItem.start("xxx")并提供下载路径，否则下载会一直处于PENDING状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 序列化失败的下载到一个字节数组。
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### onDownloadUpdated<sup>11+</sup>
+
+onDownloadUpdated(): void
+
+下载过程中的回调，通过该回调的参数可以了解下载进度等信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 序列化失败的下载到一个字节数组。
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### onDownloadFinish<sup>11+</sup>
+
+onDownloadFinish(): void
+
+下载完成的通知。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 序列化失败的下载到一个字节数组。
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### onDownloadFailed<sup>11+</sup>
+
+onDownloadFailed(): void
+
+下载失败的通知。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 序列化失败的下载到一个字节数组。
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+## WebDownloadManager<sup>11+</sup>
+
+可以通过该类提供的接口来恢复失败的下载任务。
+
+### setDownloadDelegate<sup>11+</sup>
+
+static setDownloadDelegate(delegate: WebDownloadDelegate): void
+
+设置用于接收从WebDownloadManager触发的下载进度的委托。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| delegate      | [WebDownloadDelegate](#webdownloaddelegate11)  | 是   | 用来接收下载进回调的委托。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 序列化失败的下载到一个字节数组。
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### resumeDownload<sup>11+</sup>
+
+static resumeDownload(webDownloadItem: WebDownloadItem): void
+
+设置用于接收从WebDownloadManager触发的下载进度的委托。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| webDownloadItem      | [WebDownloadItem](#webdownloaditem11)  | 是   | 待恢复的下载任务。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100018 | No WebDownloadDelegate has been set yet. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 序列化失败的下载到一个字节数组。
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```

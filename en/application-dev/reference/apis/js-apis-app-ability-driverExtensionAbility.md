@@ -44,6 +44,8 @@ Called when a DriverExtensionAbility is created to initialize the service logic.
 **Example**
 
   ```ts
+  import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
   class DriverExt extends DriverExtension {
     onInit(want : Want) {
       console.log('onInit, want: ${want.abilityName}');
@@ -94,12 +96,16 @@ Called following **onCreate()** when a DriverExtensionAbility is started by call
 **Example**
 
   ```ts
+  import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
   import rpc from '@ohos.rpc';
+  import Want from '@ohos.app.ability.Want';
   class StubTest extends rpc.RemoteObject{
       constructor(des : string) {
           super(des);
       }
-      onRemoteMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, option : MessageOption) {
+      onRemoteMessageRequest(code : number, data : rpc.MessageSequence, reply : rpc.MessageSequence, option : rpc.MessageOption) {
+        // This interface must be overridden.
+        return true;
       }
   }
   class DriverExt extends DriverExtension {
@@ -113,12 +119,16 @@ Called following **onCreate()** when a DriverExtensionAbility is started by call
 If the returned **RemoteObject** object depends on an asynchronous API, you can use the asynchronous lifecycle.
 
   ```ts
+import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
 import rpc from '@ohos.rpc';
+import Want from '@ohos.app.ability.Want';
 class StubTest extends rpc.RemoteObject{
     constructor(des : string) {
         super(des);
     }
-    onRemoteMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, option : MessageOption) {
+    onRemoteMessageRequest(code : number, data : rpc.MessageSequence, reply : rpc.MessageSequence, option : rpc.MessageOption) {
+      // This interface must be overridden.
+      return true;
     }
 }
 async function getDescriptor() {
@@ -151,6 +161,8 @@ Called when a client is disconnected from this DriverExtensionAbility.
 **Example**
 
   ```ts
+  import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
   class DriverExt extends DriverExtension {
     onDisconnect(want : Want) {
       console.log('onDisconnect, want: ${want.abilityName}');
@@ -161,6 +173,8 @@ Called when a client is disconnected from this DriverExtensionAbility.
 After the **onDisconnect** lifecycle callback is executed, the application may exit. As a result, the asynchronous function in **onDisconnect** may fail to be executed correctly, for example, asynchronously writing data to the database. The asynchronous lifecycle can be used to ensure that the subsequent lifecycle continues after the asynchronous **onDisconnect** is complete.
 
   ```ts
+import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 class DriverExt extends DriverExtension {
   async onDisconnect(want : Want) {
     console.log('onDisconnect, want: ${want.abilityName}');

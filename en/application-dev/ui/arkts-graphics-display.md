@@ -1,7 +1,7 @@
 # Displaying Images (Image)
 
 
-More often than not, you may need to display images in your application, for example, logos in buttons, online images, and local images. This is where the **\<Image>** component comes in handy. The **\<Image>** component supports a wide range of image formats, including PNG, JPG, BMP, SVG, and GIF. For details, see [Image](../reference/arkui-ts/ts-basic-components-image.md).
+More often than not, you may need to display images in your application, for example, icons in buttons, online images, and local images. This is where the **\<Image>** component comes in handy. The **\<Image>** component supports a wide range of image formats, including PNG, JPG, BMP, SVG, and GIF. For details, see [Image](../reference/arkui-ts/ts-basic-components-image.md).
 
 
 To use the **\<Image>** component, call the following API:
@@ -74,7 +74,7 @@ Data sources of the archived type can be classified into local resources, online
 
 - Media library **file://data/storage**
 
-  To load images from the media library, use a path string that starts with **file://**.
+  To load images from the [media library](../reference/apis/js-apis-file-picker.md), use a path string that starts with **file://**.
 
   1. Call the API to obtain the image URL in the media library.
       ```ts

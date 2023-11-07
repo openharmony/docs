@@ -23,8 +23,6 @@ Obtains a **PhotoAccessHelper** instance for accessing and modifying media files
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**Required permissions**: ohos.permission.READ_IMAGEVIDEO
-
 **Parameters**
 
 | Name | Type   | Mandatory| Description                      |
@@ -74,11 +72,14 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOptions.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -131,11 +132,14 @@ Obtains image and video assets. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOptions.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -185,13 +189,16 @@ Creates an image or video asset with the specified file name. This API uses an a
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md) and [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if type displayName is not string.         |
-| 14000001   | if type of displayName is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -236,13 +243,16 @@ Creates an image or video asset with the specified file name. This API uses a pr
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md) and [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if type displayName or albumUri is not string.         |
-| 14000001   | if type of displayName is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -282,13 +292,16 @@ Creates an image or video asset with the specified file name and options. This A
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md) and [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if type displayName is not string.         |
-| 14000001   | if type displayName invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -337,13 +350,16 @@ Creates an image or video asset with the specified file name and options. This A
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md) and [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if type displayName is not string.         |
-| 14000001   | if type of displayName is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -387,11 +403,14 @@ If the application does not have the **ohos.permission.WRITE_IMAGEVIDEO** permis
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type createOption is wrong.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -436,11 +455,14 @@ If the application does not have the **ohos.permission.WRITE_IMAGEVIDEO** permis
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type createOption is wrong.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -488,11 +510,14 @@ If the application does not have the **ohos.permission.WRITE_IMAGEVIDEO** permis
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type createOption is wrong.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -541,12 +566,16 @@ The album name must meet the following requirements:
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900015       |  File exists.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -596,12 +625,16 @@ The album name must meet the following requirements:
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900015       |  File exists.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -642,12 +675,15 @@ Ensure that the albums to be deleted exist. Only user albums can be deleted.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -704,12 +740,15 @@ Ensure that the albums to be deleted exist. Only user albums can be deleted.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -760,11 +799,14 @@ Before the operation, ensure that the albums to obtain exist.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOption.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -818,11 +860,14 @@ Before the operation, ensure that the albums to obtain exist.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOption.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -874,11 +919,14 @@ Before the operation, ensure that the albums to obtain exist.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOption.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -930,12 +978,16 @@ Deletes media files. This API uses an asynchronous callback to return the result
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000002       | Invalid uri.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -995,12 +1047,16 @@ Deletes media files. This API uses a promise to return the result. The deleted f
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000002       | Invalid uri.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1035,8 +1091,6 @@ registerChange(uri: string, forChildUris: boolean, callback: Callback&lt;ChangeD
 
 Registers listening for the specified URI. This API uses a callback to return the result.
 
-**Required permissions**: ohos.permission.READ_IMAGEVIDEO
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -1049,11 +1103,13 @@ Registers listening for the specified URI. This API uses a callback to return th
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
 
 **Example**
 
@@ -1101,8 +1157,6 @@ unRegisterChange(uri: string, callback?: Callback&lt;ChangeData&gt;): void
 
 Unregisters listening for the specified URI. Multiple callbacks can be registered for a URI for listening. You can use this API to unregister the listening of the specified callbacks or all callbacks.
 
-**Required permissions**: ohos.permission.READ_IMAGEVIDEO
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -1114,11 +1168,13 @@ Unregisters listening for the specified URI. Multiple callbacks can be registere
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
 
 **Example**
 
@@ -1178,11 +1234,14 @@ Creates a dialog box for deleting media files. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1240,11 +1299,14 @@ Creates a dialog box for deleting media files. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1301,11 +1363,15 @@ Obtains the index of an image or video in an album. This API uses an asynchronou
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 202     |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1375,11 +1441,15 @@ Obtains the index of an image or video in an album. This API uses a promise to r
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 202     |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1436,11 +1506,13 @@ Call this API when the APIs of the **PhotoAccessHelper** instance are no longer 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042    | Unknown error.         |
+| 401      |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1474,11 +1546,13 @@ Call this API when the APIs of the **PhotoAccessHelper** instance are no longer 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042    | Unknown error.         |
+| 401      |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1504,7 +1578,7 @@ Provides APIs for encapsulating file asset attributes.
 
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#media-file-uri).        |
+| uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).        |
 | photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
 | displayName               | string                   | Yes  | No  | File name, including the file name extension, to display.                                |
 
@@ -1530,11 +1604,13 @@ Obtains a **PhotoAsset** member parameter.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401    | if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000014     | Member is not a valid PhotoKey.         |
 
 **Example**
 
@@ -1577,11 +1653,13 @@ Sets a **PhotoAsset** member parameter.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401    | if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000014     | Member is not a valid PhotoKey.         |
 
 **Example**
 
@@ -1624,11 +1702,15 @@ Commits the modification on the file metadata to the database. This API uses an 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401    | if values to commit is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1677,11 +1759,15 @@ Commits the modification on the file metadata to the database. This API uses a p
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401    | if values to commit is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1717,7 +1803,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file asset. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
+**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
 
 **System API**: This is a system API.
 
@@ -1734,12 +1820,15 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202     |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1787,12 +1876,15 @@ Opens this file asset. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202     |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1821,7 +1913,7 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file in read-only mode. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>After the read operation is complete, call **close** to close the file.
+**NOTE**<br>After the read operation is complete, call **close** to close the file.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -1835,11 +1927,14 @@ Opens this file in read-only mode. This API uses an asynchronous callback to ret
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1879,11 +1974,14 @@ Opens this file in read-only mode. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1923,11 +2021,13 @@ Closes a file. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1981,11 +2081,13 @@ Closes a file. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2030,11 +2132,14 @@ Obtains the thumbnail of this file. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2080,11 +2185,14 @@ Obtains the file thumbnail of the given size. This API uses an asynchronous call
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2137,11 +2245,14 @@ Obtains the file thumbnail of the given size. This API uses a promise to return 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2190,12 +2301,15 @@ Favorites or unfavorites this file. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2247,12 +2361,15 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2300,12 +2417,15 @@ Private files are stored in the private album. After obtaining private files fro
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2359,12 +2479,15 @@ Private files are stored in the private album. After obtaining private files fro
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2411,6 +2534,18 @@ Obtains a JSON string consisting of the EXIF tags of this JPG image. This API us
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
 | Promise&lt;string&gt; | Callback invoked to return the JSON string obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Supported EXIF tags**
 
@@ -2468,8 +2603,8 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    let exifMessage = await fileAsset.getExif();
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let exifMessage = await photoAsset.getExif();
     let userCommentKey = 'UserComment';
     let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
     fetchResult.close();
@@ -2498,6 +2633,18 @@ Obtains a JSON string consisting of the EXIF tags of this JPG image. This API us
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the JSON string obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Supported EXIF tags**
 
@@ -2556,10 +2703,10 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getExifDemo fileAsset displayName: ' + JSON.stringify(fileAsset.displayName));
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getExifDemo photoAsset displayName: ' + JSON.stringify(photoAsset.displayName));
     let userCommentKey = 'UserComment';
-    fileAsset.getExif((err, exifMessage) => {
+    photoAsset.getExif((err, exifMessage) => {
       if (exifMessage != undefined) {
         let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
         console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
@@ -2600,6 +2747,18 @@ Sets user comment information of an image or video. This API uses a promise to r
 | --------------------------------------- | ----------------- |
 |Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
+
 **Example**
 
 ```ts
@@ -2614,9 +2773,9 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let userComment = 'test_set_user_comment';
-    await fileAsset.setUserComment(userComment);
+    await photoAsset.setUserComment(userComment);
   } catch (err) {
     console.error('setUserCommentDemoCallback failed with error: ' + err);
   }
@@ -2644,6 +2803,18 @@ Sets user comment information of an image or video. This API uses an asynchronou
 | userComment | string | Yes  | User comment information to set, which cannot exceed 140 characters.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
+
 **Example**
 
 ```ts
@@ -2658,9 +2829,9 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let userComment = 'test_set_user_comment';
-    fileAsset.setUserComment(userComment, (err) => {
+    photoAsset.setUserComment(userComment, (err) => {
       if (err === undefined) {
         console.info('setUserComment successfully');
       } else {
@@ -2707,6 +2878,15 @@ Starts a **photoPicker** page for the user to select one or more images or video
 | ----------------------------- | :---- |
 | Promise&lt;[PhotoSelectResult](#photoselectresult)&gt; | Promise return information about the images or videos selected.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 13900042      | Unknown error.         |
+
 **Example**
 
 ```ts
@@ -2745,6 +2925,15 @@ Starts a **photoPicker** page for the user to select one or more images or video
 | ------- | ------- | ---- | -------------------------- |
 | option | [PhotoSelectOptions](#photoselectoptions) | Yes  | Options for selecting images or videos.|
 | callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return information about the images or videos selected.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 13900042      | Unknown error.         |
 
 **Example**
 
@@ -2785,6 +2974,15 @@ Starts a **photoPicker** page for the user to select one or more images or video
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return information about the images or videos selected.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 13900042      | Unknown error.         |
 
 **Example**
 
@@ -2827,11 +3025,13 @@ Obtains the total number of files in the result set.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2867,11 +3067,13 @@ Checks whether the cursor is in the last row of the result set.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2900,17 +3102,19 @@ async function example() {
 
 close(): void
 
-Releases this **FetchFileResult** instance to invalidate it. After this instance is released, the APIs in this instance cannot be invoked.
+Closes this **FetchFileResult** instance to invalidate it. After this instance is closed, the APIs in this instance cannot be invoked.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2950,11 +3154,13 @@ Obtains the first file asset in the result set. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2995,11 +3201,13 @@ Obtains the first file asset in the result set. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3035,11 +3243,13 @@ Obtains the next file asset in the result set. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3083,11 +3293,13 @@ Obtains the next file asset in the result set. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3126,11 +3338,13 @@ Obtains the last file asset in the result set. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3171,11 +3385,13 @@ Obtains the last file asset in the result set. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3212,11 +3428,13 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401    | if type index is not number.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3263,11 +3481,13 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type index is not number.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3303,11 +3523,13 @@ Obtains all the file assets in the result set. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042    | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3348,11 +3570,13 @@ Obtains all the file assets in the result set. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042    | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3408,11 +3632,14 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOptions.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3466,11 +3693,14 @@ Obtains image and video assets. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOptions.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3518,11 +3748,14 @@ Commits the modification on the album attributes to the database. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if value to modify is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3567,11 +3800,14 @@ Commits the modification on the album attributes to the database. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if value to modify is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3616,11 +3852,14 @@ Adds image and video assets to an album. Before the operation, ensure that the i
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if PhotoAssets is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3676,11 +3915,14 @@ Adds image and video assets to an album. Before the operation, ensure that the i
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if PhotoAssets is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3730,11 +3972,14 @@ Removes image and video assets from an album. The album and file resources must 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if PhotoAssets is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3790,11 +4035,14 @@ Removes image and video assets from an album. The album and file resources must 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if PhotoAssets is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3846,12 +4094,15 @@ Recovers image or video assets from the trash. Before the operation, ensure that
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.                |
-| 401   |  if PhotoAssets is invalid.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3909,12 +4160,15 @@ Recovers image or video assets from the trash. Before the operation, ensure that
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.                |
-| 401   |  if PhotoAssets is invalid.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3968,12 +4222,15 @@ Deletes image or video assets from the trash. Before the operation, ensure that 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.                |
-| 401   | if PhotoAssets is invalid.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -4033,12 +4290,15 @@ Deletes image or video assets from the trash. Before the operation, ensure that 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.                |
-| 401   | if PhotoAssets is invalid.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -4092,12 +4352,15 @@ Sets the album cover. This API uses an asynchronous callback to return the resul
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.                |
-| 401   | if parameter is invalid.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -4157,13 +4420,15 @@ Sets the album cover. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.                |
-| 401   | if parameter is invalid.         |
-
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 **Example**
 
 ```ts
@@ -4283,7 +4548,7 @@ Defines the key information about an image or video file.
 | PHOTO_TYPE    | 'media_type'           | Type of the file.                                             |
 | DISPLAY_NAME  | 'display_name'        | File name displayed.                                                  |
 | SIZE          | 'size'                | File size.                                                  |
-| DATE_ADDED    | 'date_added'          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.            |
+| DATE_ADDED    | 'date_added'          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
 | DATE_MODIFIED | 'date_modified'       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
 | DURATION      | 'duration'            | Duration, in ms.                                   |
 | WIDTH         | 'width'               | Image width, in pixels.                                   |
@@ -4293,7 +4558,7 @@ Defines the key information about an image or video file.
 | FAVORITE      | 'is_favorite'            | Whether the file is added to favorites.                                                   |
 | TITLE         | 'title'               | Title in the file.                                                  |
 | POSITION  | 'position'            | File location type.<br>**System API**: This is a system API.                              |
-| DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds between the time when the file is deleted and January 1, 1970.<br>**System API**: This is a system API.                |
+| DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time. **System API**: This is a system API.                |
 | HIDDEN  | 'hidden'            | Whether the file is hidden.<br>**System API**: This is a system API.                              |
 | CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br>**System API**: This is a system API.           |
 | USER_COMMENT<sup>10+</sup>  | 'user_comment'            | User comment information.<br>**System API**: This is a system API.          |
@@ -4316,12 +4581,14 @@ Enumerates the key album attributes.
 
 Defines the options for creating an image or video asset.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| subtype           | [PhotoSubtype](#photosubtype) | No | Subtype of the image or video.<br>**System API**: This is a system API. |
-| cameraShotKey           | string | No | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br>**System API**: This is a system API.  |
+| subtype           | [PhotoSubtype](#photosubtype) | No | Subtype of the image or video. |
+| cameraShotKey           | string | No | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)  |
 
 ## CreateOptions
 
@@ -4341,7 +4608,7 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Column names used for retrieval. If this parameter is left empty, the media files are fetched by **uri**, **name**, and **photoType** by default. The specific field names are subject to the definition of the search object. Example:<br>fetchColumns: ['uri', 'title']|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object.<br>Example: fetchColumns: ['uri', 'title']|
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## ChangeData
@@ -4412,5 +4679,5 @@ Defines information about the images or videos selected.
 
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the media files selected.|
+| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI] (../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
 | isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media file is the original image.|

@@ -14,7 +14,7 @@ Router适应于模块间与模块内页面切换，通过每个页面的url实�
 
 Router模块提供了两种跳转模式，分别是[router.pushUrl()](../reference/apis/js-apis-router.md#routerpushurl9)和[router.replaceUrl()](../reference/apis/js-apis-router.md#routerreplaceurl9)。这两种模式决定了目标页面是否会替换当前页。
 
-- router.pushUrl()：目标页面不会替换当前页，而是压入[页面栈](../application-models/page-mission-stack.md)。这样可以保留当前页的状态，并且可以通过返回键或者调用[router.back()](../reference/apis/js-apis-router.md#routerback)方法返回到当前页。
+- router.pushUrl()：目标页面不会替换当前页，而是压入页面栈。这样可以保留当前页的状态，并且可以通过返回键或者调用[router.back()](../reference/apis/js-apis-router.md#routerback)方法返回到当前页。
 
 - router.replaceUrl()：目标页面会替换当前页，并销毁当前页。这样可以释放当前页的资源，并且无法返回到当前页。
 

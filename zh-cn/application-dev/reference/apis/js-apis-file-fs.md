@@ -526,10 +526,10 @@ copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void,
   // copy directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.copyDir(srcPath, destPath, 0, (err: BusinessError, data: Array<ConflictFiles>) => {
+  fs.copyDir(srcPath, destPath, 0, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
-      for (let i = 0; i < data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
+      for (let i = 0; i < err.data.length; i++) {
+        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
       console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
@@ -646,6 +646,43 @@ mkdir(path: string): Promise&lt;void&gt;
   });
   ```
 
+## fs.mkdir<sup>11+</sup>
+
+mkdir(path: string, recursion: boolean): Promise<void>
+
+创建目录，使用Promise异步回调。当recursion指定为true，可多层级创建目录。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | 是   | 目录的应用沙箱路径。                                   |
+| recursion   | boolean | 是   | 是否多层级创建目录。recursion指定为true时，可多层级创建目录。recursion指定为false时，仅可创建单层目录。   |
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let dirPath = pathDir + "/testDir1/testDir2/testDir3";
+  fs.mkdir(dirPath, true).then(() => {
+    console.info("mkdir succeed");
+  }).catch((err: BusinessError) => {
+    console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
 ## fs.mkdir
 
 mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
@@ -679,6 +716,40 @@ mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
+## fs.mkdir<sup>11+</sup>
+
+mkdir(path: string, recursion: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+创建目录，使用callback异步回调。当recursion指定为true，可多层级创建目录。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| path     | string                    | 是   | 目录的应用沙箱路径。                                   |
+| recursion   | boolean | 是   | 是否多层级创建目录。recursion指定为true时，可多层级创建目录。recursion指定为false时，仅可创建单层目录。   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步创建目录操作完成之后的回调。                             |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let dirPath = pathDir + "/testDir1/testDir2/testDir3";
+  fs.mkdir(dirPath, true, (err: BusinessError) => {
+    if (err) {
+      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("mkdir success");
+    }
+  });
+  ```
+
 ## fs.mkdirSync
 
 mkdirSync(path: string): void
@@ -702,6 +773,32 @@ mkdirSync(path: string): void
   ```ts
   let dirPath = pathDir + "/testDir";
   fs.mkdirSync(dirPath);
+  ```
+
+## fs.mkdirSync<sup>11+</sup>
+
+mkdirSync(path: string, recursion: boolean): void
+
+以同步方法创建目录。当recursion指定为true，可多层级创建目录。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | 是   | 目录的应用沙箱路径。                                   |
+| recursion | boolean | 是   | 是否多层级创建目录。recursion指定为true时，可多层级创建目录。recursion指定为false时，仅可创建单层目录。   |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  let dirPath = pathDir + "/testDir1/testDir2/testDir3";
+  fs.mkdirSync(dirPath, true);
   ```
 
 ## fs.open
@@ -1059,7 +1156,7 @@ unlink(path: string): Promise&lt;void&gt;
   fs.unlink(filePath).then(() => {
     console.info("remove file succeed");
   }).catch((err: BusinessError) => {
-    console.info("remove file failed with error message: " + err.message + ", error code: " + err.codeor);
+    console.info("remove file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1411,6 +1508,14 @@ readLines(filePath: string, options?: Options, callback: AsyncCallback&lt;Reader
   let options: Options = {
     encoding: 'utf-8'
   };
+  let readerIteratorPromise = fs.readLines(filePath, options);
+  readerIteratorPromise.then((readerIterator: fs.ReaderIterator) => {
+    for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
+      console.info("content: " + it.value);
+    }
+  }).catch((err: BusinessError) => {
+    console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+  });
   fs.readLines(filePath, options, (err: BusinessError, readerIterator: fs.ReaderIterator) => {
     if (err) {
       console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
@@ -1966,7 +2071,7 @@ fdatasync(fd: number): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdatasync(file.fd).then((err: BusinessError) => {
+  fs.fdatasync(file.fd).then(() => {
     console.info("sync data succeed");
   }).catch((err: BusinessError) => {
     console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
@@ -2181,7 +2286,7 @@ listFile(path: string, options?: {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter;
+    public filter: Filter = {};
   }
   let option = new ListFileOption();
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
@@ -2237,7 +2342,7 @@ listFile(path: string, options?: {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter;
+    public filter: Filter = {};
   }
   let option = new ListFileOption();
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
@@ -2300,7 +2405,7 @@ listFileSync(path: string, options?: {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter;
+    public filter: Filter = {};
   }
   let option = new ListFileOption();
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
@@ -2343,6 +2448,8 @@ lseek(fd: number, offset: number, whence?: WhenceType): number
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   console.info('The current offset is at ' + fs.lseek(file.fd, 5, fs.WhenceType.SEEK_SET));
   fs.closeSync(file);
@@ -2417,7 +2524,7 @@ moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void,
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.moveDir(srcPath, destPath, 1, (err: BusinessError, data: Array<ConflictFiles>) => {
+  fs.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < data.length; i++) {
         console.info("move directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
@@ -2461,7 +2568,6 @@ moveDirSync(src: string, dest: string, mode?: number): void
     fs.moveDirSync(srcPath, destPath, 1);
     console.info("move directory succeed");
   } catch (err) {
-    let err: BusinessError = error as BusinessError;
     console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
@@ -2667,6 +2773,35 @@ mkdtempSync(prefix: string): string
   let res = fs.mkdtempSync(pathDir + "/XXXXXX");
   ```  
 
+## fs.utimes<sup>11+</sup>
+
+utimes(path: string, mtime: number): void
+
+修改文件最近访问时间属性。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+|    参数名    | 类型     | 必填   | 说明                          |
+| ------------ | ------ | ------ | ------------------------------------------------------------ |
+| path  | string  |  是    | 文件的应用沙箱路径。 |
+| mtime  | number  |  是   | 待更新的时间戳。自1970年1月1日起至目标时间的毫秒数。仅支持修改文件最近访问时间属性。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  fs.writeSync(file.fd, 'test data');
+  fs.closeSync(file);
+  fs.utimes(filePath, new Date().getTime());
+  ```
 
 ## fs.createRandomAccessFile<sup>10+</sup>
 
@@ -2774,11 +2909,12 @@ createRandomAccessFileSync(file: string|File, mode?: number): RandomAccessFile
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
   randomaccessfile.close();
-  fs.closeSync(file);
   ```
 
 ## fs.createStream
@@ -3718,6 +3854,33 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
 | path<sup>10+</sup> | string | 是    | 否    | 文件路径。 |
 | name<sup>10+</sup> | string | 是    | 否    | 文件名。 |
 
+### getParent<sup>11+</sup>
+
+getParent(): string
+
+获取File对象对应文件父目录。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**返回值：**
+
+  | 类型                                 | 说明     |
+  | ---------------------------------- | ------ |
+  | string | 返回父目录路径。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  console.info('The parent path is: ' + file.getParent());
+  fs.closeSync(file);
+  ```
+
 ### lock
 
 lock(exclusive?: boolean): Promise\<void>
@@ -4037,7 +4200,6 @@ writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: numb
   option.length = 5;
   let bytesWritten = randomaccessfile.writeSync("hello, world", option);
   randomaccessfile.close();
-  fs.closeSync(file);
   ```
 
 ### read<sup>10+</sup>
@@ -4135,7 +4297,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
         console.info("read succeed and size is:" + readLength);
       }
     }
-    randomAccessFile.close();
+    randomaccessfile.close();
     fs.closeSync(file);
   });
   ```
@@ -4168,6 +4330,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);

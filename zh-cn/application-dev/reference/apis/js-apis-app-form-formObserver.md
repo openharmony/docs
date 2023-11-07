@@ -446,7 +446,7 @@ try {
 }
 ```
 
-## getRunningFormInfos
+## getRunningFormInfos<sup>11+</sup>
 
 getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;, isUnusedIncluded: boolean, hostBundleName?: string): void
 
@@ -540,7 +540,7 @@ try {
 }
 ```
 
-## getRunningFormInfos
+## getRunningFormInfos<sup>11+</sup>
 
 getRunningFormInfos(isUnusedIncluded: boolean, hostBundleName?: string):  Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
@@ -762,7 +762,7 @@ try {
 }
 ```
 
-## getRunningFormInfoById
+## getRunningFormInfoById<sup>11+</sup>
 
 getRunningFormInfoById(formId: string, isUnusedIncluded: boolean): Promise&lt;formInfo.RunningFormInfo&gt;
 
@@ -867,7 +867,7 @@ try {
 }
 ```
 
-## getRunningFormInfoById
+## getRunningFormInfoById<sup>11+</sup>
 
 getRunningFormInfoById(formId: string, isUnusedIncluded: boolean, callback: AsyncCallback&lt;formInfo.RunningFormInfo&gt;): void
 

@@ -172,7 +172,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
 try {
-    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags).then(() => {
+    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
         console.log('grantUserGrantedPermission success');
     }).catch((err: BusinessError) => {
         console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
@@ -225,7 +225,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
 try {
-    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err: BusinessError, data: void) => {
+    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -285,7 +285,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
 try {
-    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags).then(() => {
+    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
         console.log('revokeUserGrantedPermission success');
     }).catch((err: BusinessError) => {
         console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
@@ -338,7 +338,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
 try {
-    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err: BusinessError, data: void) => {
+    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {

@@ -142,7 +142,7 @@ struct TextInputSample {
 ```
 
 
-![TextInputGIF](figures/TextInputGIF.gif)
+![textinput](figures/textinput.gif)
 
 
 ## 相关实例

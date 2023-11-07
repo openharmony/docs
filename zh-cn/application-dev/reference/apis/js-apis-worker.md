@@ -79,8 +79,8 @@ ThreadWorker构造函数。
 
 ```ts
 import worker from '@ohos.worker';
-// worker线程创建
 
+// worker线程创建
 // FA模型-目录同级（entry模块下，workers目录与pages目录同级）
 const workerFAModel01 = new worker.ThreadWorker("workers/worker.ts", {name:"first worker in FA model"});
 // FA模型-目录不同级（entry模块下，workers目录与pages目录的父目录同级）
@@ -601,6 +601,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 
 ```ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 //用法一:
@@ -668,6 +669,8 @@ workerInstance.removeAllListener();
 ```
 
 ## WorkerEventTarget<sup>9+</sup>
+
+处理Worker监听事件。
 
 ### addEventListener<sup>9+</sup>
 
@@ -777,6 +780,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 
 ```ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 //用法一:
@@ -877,6 +881,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 ```ts
 // main thread
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -887,6 +892,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     let buffer = new ArrayBuffer(8);
@@ -923,6 +929,7 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 ```ts
 // main thread
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -933,6 +940,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.postMessage("receive data from main thread");
@@ -961,12 +969,14 @@ close(): void
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.close()
@@ -1003,6 +1013,7 @@ ThreadWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 ```
@@ -1010,6 +1021,7 @@ workerInstance.postMessage("hello world");
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     console.log("receive main thread message");
@@ -1046,12 +1058,14 @@ ThreadWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一�
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror")
@@ -1131,12 +1145,14 @@ GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用�
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
 ```
 
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const workerPort = worker.workerPort
 workerPort.onerror = () => {
     console.log("worker.ts onerror")
@@ -1189,6 +1205,7 @@ Worker构造函数。
 
 ```ts
 import worker from '@ohos.worker';
+
 // worker线程创建
 
 // FA模型-目录同级
@@ -1488,12 +1505,13 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worke
 
 | 参数名 | 类型                               | 必填 | 说明                   |
 | ------ | ---------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent\<T>](#messageeventt) | 是   | 收到的Worker消息数据。 |
+| event  | [MessageEvent](#messageeventt) | 是   | 收到的Worker消息数据。 |
 
 **示例：**
 
 ```ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.onmessage = (e: MessageEvents): void => {
     console.log("onmessage");
@@ -1516,7 +1534,7 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 
 | 参数名 | 类型                               | 必填 | 说明       |
 | ------ | ---------------------------------- | ---- | ---------- |
-| event  | [MessageEvent\<T>](#messageeventt) | 是   | 异常数据。 |
+| event  | [MessageEvent](#messageeventt) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -1731,6 +1749,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 ```ts
 // main thread
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -1741,6 +1760,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
@@ -1772,6 +1792,7 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 ```ts
 // main thread
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -1782,6 +1803,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
@@ -1805,11 +1827,13 @@ close(): void
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 ```
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     parentPort.close()
@@ -1833,19 +1857,21 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 | 参数名 | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。         |
-| ev     | [MessageEvent\<T>](#messageeventt)                           | 是   | 收到宿主线程发送的数据。 |
+| ev     | [MessageEvent](#messageeventt)                           | 是   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 ```
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     console.log("receive main thread message");
@@ -1869,18 +1895,20 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。 |
-| ev     | [MessageEvent\<T>](#messageeventt)                           | 是   | 异常数据。       |
+| ev     | [MessageEvent](#messageeventt)                           | 是   | 异常数据。       |
 
 **示例：**
 
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 ```
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror")
@@ -2009,11 +2037,13 @@ WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被�
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts")
 ```
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const parentPort = worker.parentPort
 parentPort.onerror = () => {
     console.log("worker.ts onerror")
@@ -2034,6 +2064,7 @@ parentPort.onerror = () => {
 ```ts
 // main thread
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
 workerInstance.postMessage("message from main thread to worker");
 workerInstance.onmessage = (d: MessageEvents): void => {
@@ -2044,6 +2075,7 @@ workerInstance.onmessage = (d: MessageEvents): void => {
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 class MyModel {
     name = "undefined"
@@ -2090,6 +2122,7 @@ Actor并发模型的交互原理：各个Actor并发地处理主线程任务，�
 ```ts
 // main thread(同级目录为例)
 import worker, { MessageEvents } from '@ohos.worker';
+
 // 主线程中创建Worker对象
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
 

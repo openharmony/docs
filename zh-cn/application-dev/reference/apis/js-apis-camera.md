@@ -830,6 +830,9 @@ function unregisterCameraMute(cameraManager: camera.CameraManager): void {
 
 isPrelaunchSupported(camera: CameraDevice): boolean
 
+检查指定cameraDevice是否支持预热启动。
+
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -3425,7 +3428,7 @@ function registerCaptureSessionError(captureSession: camera.CaptureSession): voi
 
 off(type: 'error', callback?: ErrorCallback): void
 
-监听拍照会话的错误事件，通过注册回调函数获取结果。
+注销监听拍照会话的错误事件，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4629,6 +4632,7 @@ on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void
 ```ts
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 async function registerQuickThumbnail(context: common.BaseContext, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);

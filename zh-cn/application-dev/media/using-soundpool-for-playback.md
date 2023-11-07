@@ -8,7 +8,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
 本开发指导将以SoundPool进行一次低时延播放音频的过程为例，向开发者讲解如何使用SoundPool。详细的API声明请参考[SoundPool API参考](../reference/apis/js-apis-inner-multimedia-soundPool.md)。
 
-过程包括：创建SoundPool实例，加载音频资源（包括资源的解封装与解码:解码格式参考[音频解码支持](audio-decoding.md#音频解码)），设置播放参数（倍速/循环模式/播放优先级等），播放控制（播放/停止），释放资源。
+过程包括：创建SoundPool实例，加载音频资源（包括资源的解封装与解码:解码格式参考[音频解码支持](audio-decoding.md#音频解码)），设置播放参数（循环模式/播放优先级等），播放控制（播放/停止），释放资源。
 
 在应用开发过程中，开发者应通过监听方法检查当前播放状态并按照一定顺序调用接口，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 
@@ -19,7 +19,6 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```ts
     let soundPool: media.SoundPool;
     let audioRendererInfo: audio.AudioRendererInfo = {
-        content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
         usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
         rendererFlags : 1
     }
@@ -118,21 +117,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     soundPool.setPriority(streamID, 1);
     ```
 
-9. 调用setRate方法设置播放倍速。
-
-    ```ts
-    let streamID: number;
-    let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // 默认正常速率
-    // 先调用play方法获取到对应资源的streamID
-
-    soundPool.setRate(streamID, selectedAudioRendererRate).then(() => {
-      console.info('setRate success');
-    }).catch((err: BusinessError) => {
-      console.error('soundpool setRate failed and catch error is ' + err.message);
-    });
-    ```
-
-10. 调用setVolume方法设置音量。
+9. 调用setVolume方法设置音量。
 
     ```ts
     let streamID: number;
@@ -145,7 +130,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     });
     ```
 
-11. 调用stop方法终止指定流的播放。
+10. 调用stop方法终止指定流的播放。
      
     ```ts
     let streamID: number;
@@ -158,7 +143,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     });
     ```
 
-12. 调用unload方法卸载音频资源。
+11. 调用unload方法卸载音频资源。
 
     ```ts
     let soundID: number;
@@ -171,25 +156,25 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     });
     ```
 
-13. 调用off('loadComplete')方法注销加载完成监听。
+12. 调用off('loadComplete')方法注销加载完成监听。
 
     ```ts
     soundPool.off('loadComplete');
     ```
 
-14. 调用off('playFinished')方法注销播放完成监听。
+13. 调用off('playFinished')方法注销播放完成监听。
 
     ```ts
     soundPool.off('playFinished');
     ```
 
-15. 调用off('error')方法注销错误错误类型监听。
+14. 调用off('error')方法注销错误错误类型监听。
 
     ```ts
     soundPool.off('error');
     ```
 
-16. 调用release方法释放SoundPool实例。
+15. 调用release方法释放SoundPool实例。
 
     ```ts
     soundPool.release().then(() => {
@@ -213,7 +198,6 @@ struct Soundpool {
   private streamId: number = 0;
   private soundId: number = 0;
   private audioRendererInfo: audio.AudioRendererInfo = {
-    content: audio.ContentType.CONTENT_TYPE_SPEECH,
     usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags: 1
   }
@@ -267,8 +251,6 @@ struct Soundpool {
     this.soundPool.setLoop(this.streamId, 2); // 播放3次
     // 设置对应流的优先级
     this.soundPool.setPriority(this.streamId, 1);
-    // 设置播放倍速
-    this.soundPool.setRate(this.streamId, audio.AudioRendererRate.RENDER_RATE_HALF); // 半倍速播放
     // 设置音量
     this.soundPool.setVolume(this.streamId, 0.5, 0.5);
   }

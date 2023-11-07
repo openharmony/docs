@@ -119,6 +119,17 @@
 | dx   | [Length](#length) | 是    | 水平方向偏移量。 |
 | dy   | [Length](#length) | 是    | 竖直方向偏移量。 |
 
+## RectResult<sup>10+</sup>
+
+位置和尺寸类型，用于描述组件的位置和宽高。
+
+| 参数      | 类型     | 描述 |
+| ------- | ------ | ----------------------- |
+| x     | number | 水平方向横坐标。|
+| y     | number | 竖直方向纵坐标。|
+| width | number | 内容宽度大小。|
+| height | number | 内容高度大小。|
+
 ## ResourceColor
 
 颜色类型，用于描述资源颜色类型。
@@ -339,3 +350,12 @@ Swiper组件动画相关信息集合。
 | BOTTOM | 下方区域。 |
 | START  | 前部区域。 |
 | END    | 尾部区域。 |
+
+## KeyboardAvoidMode<sup>11+</sup>
+
+配置键盘避让时页面的避让模式。
+
+| 名称   | 描述       |
+| ------ | ---------- |
+| OFFSET | 上抬模式。 |
+| RESIZE | 压缩模式。 |

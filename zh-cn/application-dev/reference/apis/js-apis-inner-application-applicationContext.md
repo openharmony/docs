@@ -17,15 +17,9 @@ import common from '@ohos.app.ability.common';
 
 在使用ApplicationContext的功能前，需要通过context的实例获取。
 
-```ts
-import common from '@ohos.app.ability.common';
-
-let applicationContext: common.ApplicationContext = this.context.getApplicationContext();
-```
-
 ## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
 
-on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): **number**;
+on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): **number**
 
 注册监听应用内生命周期
 
@@ -99,7 +93,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**
 
 取消监听应用内生命周期
 
@@ -137,7 +131,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number)
 
-off(type: 'abilityLifecycle', callbackId: number): Promise\<void>;
+off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
 取消监听应用内生命周期
 
@@ -168,7 +162,7 @@ export default class MyAbility extends Ability {
 
 ## ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)
 
-on(type: 'environment', callback: EnvironmentCallback): **number**;
+on(type: 'environment', callback: EnvironmentCallback): **number**
 
 注册对系统环境变化的监听。使用callback异步回调。
 
@@ -217,7 +211,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**
 
 取消对系统环境变化的监听。使用callback异步回调。
 
@@ -254,7 +248,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**
 
 取消对系统环境变化的监听。使用callback异步回调。
 
@@ -284,7 +278,7 @@ export default class MyAbility extends Ability {
 
 ## ApplicationContext.on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback)<sup>10+</sup>
 
-on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **void**;
+on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **void**
 
 注册对当前应用前后台变化的监听。使用callback异步回调。
 
@@ -326,7 +320,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
 
-off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback):  **void**;
+off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback):  **void**
 
 取消当前应用注册的前后台变化的全部监听。
 
@@ -354,7 +348,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
 
-getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
+getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 获取有关运行进程的信息。
 
@@ -395,7 +389,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
 
-getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
+getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
 获取有关运行进程的信息。
 
@@ -437,7 +431,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.killAllProcesses<sup>9+</sup>
 
-killAllProcesses(): Promise\<void\>;
+killAllProcesses(): Promise\<void\>
 
 杀死应用所在的进程。
 
@@ -472,7 +466,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.killAllProcesses<sup>9+</sup>
 
-killAllProcesses(callback: AsyncCallback\<void\>);
+killAllProcesses(callback: AsyncCallback\<void\>)
 
 杀死应用所在的进程。
 
@@ -506,11 +500,11 @@ export default class MyAbility extends UIAbility {
             }
         });
     }
-});
+}
 ```
-## ApplicationContext.setColorMode<sup>11</sup>
+## ApplicationContext.setColorMode<sup>11+</sup>
 
-setColorMode(colorMode: ConfigurationConstant.ColorMode): void;
+setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 设置应用的颜色模式。
 
@@ -545,9 +539,9 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.setLanguage<sup>11</sup>
+## ApplicationContext.setLanguage<sup>11+</sup>
 
-setLanguage(language: string): void;
+setLanguage(language: string): void
 
 设置应用的语言。
 
@@ -580,3 +574,401 @@ export default class MyAbility extends UIAbility {
   }
 }
 ```
+
+## ApplicationContext.clearUpApplicationData<sup>11+</sup>
+
+clearUpApplicationData(): Promise\<void\>
+
+清理应用本身的数据。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onBackground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.clearUpApplicationData();
+    }
+}
+```
+
+## ApplicationContext.clearUpApplicationData<sup>11+</sup>
+
+clearUpApplicationData(callback: AsyncCallback\<void\>): void
+
+清理应用本身的数据。使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+| 参数名        | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| callback | AsyncCallback\<void> | 是   | 回调方法。清理应用本身的数据成功时，err为undefined，否则返回错误对象。  |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+export default class MyAbility extends UIAbility {
+    onBackground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.clearUpApplicationData(error => {
+            if (error) {
+                console.error(`clearUpApplicationData fail, error: ${JSON.stringify(error)}`);
+            }
+        });
+    }
+}
+```
+
+## ApplicationContext.on<sup>11+</sup>
+
+on(type: 'abilityAutoStartup', callback: AutoStartupCallback): void
+
+应用注册对自身开机自启动状态变化的监听。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                            |
+| -------- | ------------------- | ---- | ----------------------------------------------- |
+| type     | string              | 是   | 注册监听事件的类型,必须为"abilityAutoStartup"。 |
+| callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | 是   | 注册监听应用开机自启动状态变化的回调对象。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    let autoStartupCallback = {
+      onAutoStartupOn(data) {
+        console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+      },
+      onAutoStartupOff(data) {
+        console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+      }
+    };
+    try {
+      applicationContext.on('abilityAutoStartup', autoStartupCallback);
+    } catch (err) {
+      console.info('===> autostartupmanager on throw err: ' + JSON.stringify(err));
+    }
+  }
+}
+```
+
+## ApplicationContext.off<sup>11+</sup>
+
+off(type: 'abilityAutoStartup', callback?: AutoStartupCallback): void
+
+应用注销对自身开机自启动状态变化的监听。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                            |
+| -------- | ------------------- | ---- | ----------------------------------------------- |
+| type     | string              | 是   | 注册监听事件的类型,必须为"abilityAutoStartup"。 |
+| callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | 否   | 注销监听应用开机自启动状态变化的回调对象。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    let autoStartupCallback = {
+      onAutoStartupOn(data) {
+        console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+      },
+      onAutoStartupOff(data) {
+        console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+      }
+    };
+    try {
+      applicationContext.off('abilityAutoStartup', autoStartupCallback);
+    } catch (err) {
+      console.info('===> autostartupmanager off throw err: ' + JSON.stringify(err));
+    }
+  }
+}
+```
+
+## ApplicationContext.setAutoStartup<sup>11+</sup>
+
+setAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
+
+应用设置为开机自启动。使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                       |
+| -------- | ------------------- | ---- | -------------------------- |
+| info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)     | 是   | 设置开机自启动的应用组件信息。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当设置为开机自启动成功，err为undefined，否则为错误对象。   |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      applicationContext.setAutoStartup({
+        bundleName: 'com.example.autostartupapp',
+        abilityName: 'EntryAbility'
+      }, (err, data) => {
+        console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+      });
+    } catch (err) {
+      console.info('===> autostartupmanager setAutoStartup throw err: ' + JSON.stringify(err));
+    }
+  }
+}
+```
+
+## ApplicationContext.setAutoStartup<sup>11+</sup>
+
+setAutoStartup(info: AutoStartupInfo): Promise\<void\>
+
+应用设置为开机自启动。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型            | 必填 | 说明                       |
+| ------ | --------------- | ---- | -------------------------- |
+| info   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md) | 是   | 设置开机自启动的应用组件信息。 |
+
+**返回值：**
+
+| 类型            | 说明                                        |
+| --------------- | ------------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      applicationContext.setAutoStartup({
+        bundleName: 'com.example.autostartupapp',
+        abilityName: 'EntryAbility'
+      }).then((data) => {
+        console.info('====> setAutoStartup data: ' + JSON.stringify(data));
+      }).catch((err) => {
+        console.info('====> setAutoStartup err: ' + JSON.stringify(err));
+      });
+    } catch (err) {
+      console.info('===> autostartupmanager setAutoStartup throw err: ' + JSON.stringify(err));
+    }
+  }
+}
+```
+
+## ApplicationContext.cancelAutoStartup<sup>11+</sup>
+
+cancelAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
+
+应用取消开机自启动。使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                       |
+| -------- | ------------------- | ---- | -------------------------- |
+| info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)     | 是   | 取消开机自启动的应用组件信息。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当取消开机自启动成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      applicationContext.cancelAutoStartup({
+        bundleName: 'com.example.autostartupapp',
+        abilityName: 'EntryAbility'
+      }, (err, data) => {
+        console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+      });
+    } catch (err) {
+      console.info('===> autostartupmanager cancelAutoStartup throw err: ' + JSON.stringify(err));
+    }
+  }
+}
+```
+
+## ApplicationContext.cancelAutoStartup<sup>11+</sup>
+
+cancelAutoStartup(info: AutoStartupInfo): Promise\<void\>
+
+应用取消开机自启动。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型            | 必填 | 说明                       |
+| ------ | --------------- | ---- | -------------------------- |
+| info   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md) | 是   | 取消开机自启动的应用组件信息。 |
+
+**返回值：**
+
+| 类型            | 说明                                        |
+| --------------- | ------------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      applicationContext.cancelAutoStartup({
+        bundleName: 'com.example.autostartupapp',
+        abilityName: 'EntryAbility'
+      }).then((data) => {
+          console.info('====> cancelAutoStartup data: ' + JSON.stringify(data));
+      }).catch((err) => {
+          console.info('====> cancelAutoStartup err: ' + JSON.stringify(err));
+      });
+    } catch (err) {
+      console.info('===> autostartupmanager cancelAutoStartup throw err: ' + JSON.stringify(err));
+    }
+  }
+}
+```
+
+## ApplicationContext.isAutoStartup<sup>11+</sup>
+
+isAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<boolean\>): void
+
+应用查询自身组件是否开机自启动。使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                       |
+| -------- | ---------------------- | ---- | -------------------------- |
+| info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)        | 是   | 查询是否开机启动的应用自身组件的信息。 |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。返回true表示查询的应用组件是开机自启动；返回false表示查询的应用组件不是开机自启动。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      applicationContext.isAutoStartup({
+        bundleName: 'com.example.autostartupapp',
+        abilityName: 'EntryAbility'
+      }, (err, data) => {
+        console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+      });
+    } catch (err) {
+      console.info('===> autostartupmanager isAutoStartup throw err: ' + JSON.stringify(err));
+    }
+  }
+}
+```
+
+## ApplicationContext.isAutoStartup<sup>11+</sup>
+
+isAutoStartup(info: AutoStartupInfo): Promise\<boolean\>
+
+应用查询自身组件是否开机自启动。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型            | 必填 | 说明                       |
+| ------ | --------------- | ---- | -------------------------- |
+| info   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md) | 是   | 查询是否开机启动的应用自身组件的信息。 |
+
+**返回值：**
+
+| 类型             | 说明                                        |
+| ---------------- | ------------------------------------------- |
+| Promise\<boolean\> | Promise对象。返回true表示查询的应用组件是开机自启动；返回false表示查询的应用组件不是开机自启动。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      applicationContext.isAutoStartup({
+        bundleName: 'com.example.autostartupapp',
+        abilityName: 'EntryAbility'
+      }).then((data) => {
+        console.info('====> isAutoStartup data: ' + JSON.stringify(data));
+      }).catch((err) => {
+        console.info('====> isAutoStartup err: ' + JSON.stringify(err));
+      });
+    } catch (err) {
+      console.info('===> autostartupmanager isAutoStartup throw err: ' + JSON.stringify(err));
+    }
+  }
+}
+```
+

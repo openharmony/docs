@@ -2,11 +2,11 @@
 
 ## 概述
 
-为支撑OpenHarmony性能测试，我们向用户提供了符合功能需求并且可靠、易用的性能测试工具。支持开发者针对应用进行相应的性能数据采集以及指标计算功能。
+为支撑系统性能测试，我们向用户提供了符合功能需求并且可靠、易用的性能测试工具。支持开发者针对应用进行相应的性能数据采集以及指标计算功能。
 
 ## 简介
 
-SmartPerf端是一款基于OpenHarmony系统开发的性能功耗测试工具，操作简单易用，可提供包括性能、功耗的关键KPI指标，给出具体指标的测试值，包括采集设备的FPS、CPU、GPU、Ftrace等指标数据；
+SmartPerf端是一款基于系统开发的性能功耗测试工具，操作简单易用，可提供包括性能、功耗的关键KPI指标，给出具体指标的测试值，包括采集设备的FPS、CPU、GPU、Ftrace等指标数据；
 
 目前SmartPerf工具提供了两种使用方式，分别为hap应用可视化操作方式(SmartPerf-Device)和shell命令行方式(SmartPerf-Daemon),其中SmartPerf-Device支持可视化操作、悬浮窗控制暂停，悬浮窗实时展示数据，SmartPerf-Daemon主要适用于无屏设备、性能较差的设备，对3568等设备同样支持。
 
@@ -24,7 +24,7 @@ SmartPerf工具主要包括SmartPerf-Device、SmartPerf-Daemon两个部分，其
 
 ## 环境准备
 
-SmartPerf-Daemon执行需要PC连接OpenHarmony设备，如RK3568开发板等。
+SmartPerf-Daemon执行需要PC连接硬件设备，如开发板等。
 
 ## 执行性能测试
 

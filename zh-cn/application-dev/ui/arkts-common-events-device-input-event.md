@@ -394,18 +394,15 @@ struct KeyEventExample {
 
 
 ```ts
-class butypef{
-  buttonType:string = ''
-  set(val:string){
-    this.buttonType = val
-  }
-  get(){
-    return this.buttonType
-  }
-}
+// xxx.ets
 @Entry
 @Component
-struct MouseExample {
+struct KeyEventExample {
+  @State buttonText: string = '';
+  @State buttonType: string = '';
+  @State columnText: string = '';
+  @State columnType: string = '';
+
   build() {
     Column() {
       Button('onKeyEvent')
@@ -413,26 +410,42 @@ struct MouseExample {
         .onKeyEvent((event?: KeyEvent) => {
           // 通过stopPropagation阻止事件冒泡
           if(event){
-            if(event.stopPropagation) {
+            if(event.stopPropagation){
               event.stopPropagation();
             }
             if (event.type === KeyType.Down) {
-              let butset = new butypef()
-              butset.set('Down')
+              this.buttonType = 'Down';
             }
             if (event.type === KeyType.Up) {
-              let butset = new butypef()
-              butset.set('Up')
+              this.buttonType = 'Up';
             }
-            let butfset = new butypef()
-            let butset = new butypef()
-            butfset.set('Button: \n' +
-              'KeyType:' + butset.get() + '\n' +
+            this.buttonText = 'Button: \n' +
+              'KeyType:' + this.buttonType + '\n' +
               'KeyCode:' + event.keyCode + '\n' +
-              'KeyText:' + event.keyText)
+              'KeyText:' + event.keyText;
           }
         })
-    }
+
+      Divider()
+      Text(this.buttonText).fontColor(Color.Green)
+
+      Divider()
+      Text(this.columnText).fontColor(Color.Red)
+    }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+    .onKeyEvent((event?: KeyEvent) => { // 给父组件Column设置onKeyEvent事件
+      if(event){
+        if (event.type === KeyType.Down) {
+          this.columnType = 'Down';
+        }
+        if (event.type === KeyType.Up) {
+          this.columnType = 'Up';
+        }
+        this.columnText = 'Column: \n' +
+          'KeyType:' + this.buttonType + '\n' +
+          'KeyCode:' + event.keyCode + '\n' +
+          'KeyText:' + event.keyText;
+      }
+    })
   }
 }
 ```

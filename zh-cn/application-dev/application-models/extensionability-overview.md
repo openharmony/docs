@@ -15,7 +15,7 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 
 | 已支持ExtensionAbility类型                 | 功能描述 | 是否允许三方应用实现                  | 是否允许三方应用访问                                                 |
 | ------------------------ | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)                 | FORM类型的ExtensionAbility组件，用于提供[服务卡片](arkts-ui-widget-modules.md)的相关能力。      | Y | N |
+| [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)                 | FORM类型的ExtensionAbility组件，用于提供[服务卡片](service-widget-overview.md)的相关能力。      | Y | N |
 | [WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md) | WORK_SCHEDULER类型的ExtensionAbility组件，用于提供[延迟任务](../task-management/work-scheduler.md)的相关能力。      | Y | NA |
 | [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md) | INPUT_METHOD类型的ExtensionAbility组件，用于实现[输入法应用](inputmethodextentionability.md)的开发。      | Y | Y |
 | [AccessibilityExtensionAbility](../reference/apis/js-apis-application-accessibilityExtensionAbility.md) | ACCESSIBILITY类型的ExtensionAbility组件，用于实现[无障碍扩展服务](accessibilityextensionability.md)的开发。      | Y | NA |

@@ -5,6 +5,7 @@ The **Notification** module provides notification management capabilities, cover
 > **NOTE**
 >
 > The APIs provided by this module are no longer maintained since API version 9. You are advised to use [@ohos.notificationManager](js-apis-notificationManager.md).
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > Notification subscription and unsubscription APIs are available only to system applications.
@@ -72,6 +73,12 @@ Publishes a notification. This API uses a promise to return the result.
 | Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
 | request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -168,6 +175,12 @@ Publishes a notification to a specified user. This API uses a promise to return 
 | request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -244,6 +257,12 @@ Cancels a notification with the specified ID and optional label. This API uses a
 | ----- | ------ | ---- | -------- |
 | id    | number | Yes  | Notification ID.  |
 | label | string | No  | Notification label. This parameter is left empty by default.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -330,6 +349,12 @@ Cancels all notifications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -400,6 +425,12 @@ Adds a notification slot. This API uses a promise to return the result.
 | ---- | ---------------- | ---- | -------------------- |
 | slot | [NotificationSlot](#notificationslot) | Yes  | Notification slot to add.|
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -461,6 +492,12 @@ Adds a notification slot of a specified type. This API uses a promise to return 
 | Name| Type    | Mandatory| Description                  |
 | ---- | -------- | ---- | ---------------------- |
 | type | [SlotType](#slottype) | Yes  | Type of the notification slot to add.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -535,6 +572,12 @@ Adds an array of notification slots. This API uses a promise to return the resul
 | Name | Type                     | Mandatory| Description                    |
 | ----- | ------------------------- | ---- | ------------------------ |
 | slots | Array\<[NotificationSlot](#notificationslot)\> | Yes  | Notification slots to add.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -724,6 +767,12 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 | -------- | -------- | ---- | ----------------------------------------------------------- |
 | slotType | [SlotType](#slottype) | Yes  | Type of the notification slot, which can be used for social communication, service information, content consultation, and other purposes.|
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -773,6 +822,12 @@ removeAllSlots(): Promise\<void\>
 Removes all notification slots. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -892,6 +947,12 @@ Subscribes to a notification with the subscription information specified. This A
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | Yes  | Notification subscriber.|
 | info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | No  | Notification subscription information. This parameter is left empty by default.  |
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -970,6 +1031,12 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 | ---------- | ---------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | Yes  | Notification subscriber.|
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -1045,6 +1112,12 @@ Sets whether to enable notification for a specified application. This API uses a
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -1265,6 +1338,12 @@ Sets whether to enable the notification badge for a specified application. This 
 | bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -1416,6 +1495,12 @@ Sets the notification slot for a specified application. This API uses a promise 
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
 | slot   | [NotificationSlot](#notificationslot) | Yes  | Notification slot.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -1656,6 +1741,12 @@ Removes a notification for a specified bundle. This API uses a promise to return
 | notificationKey | [NotificationKey](#notificationkeydeprecated) | Yes  | Notification key.  |
 | reason          | [RemoveReason](#removereason-deprecated) | Yes  | Reason for deleting the notification.        |
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -1732,6 +1823,12 @@ Removes a notification for a specified bundle. This API uses a promise to return
 | -------- | ---------- | ---- | ---------- |
 | hashCode | string | Yes  | Unique notification ID.|
 | reason   | [RemoveReason](#removereason-deprecated) | Yes  | Reason for deleting the notification.        |
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -1835,6 +1932,12 @@ Removes all notifications for a specified application. This API uses a promise t
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](#bundleoptiondeprecated) | No  | Bundle information of the application. By default, this parameter is left empty, indicating that all notifications will be removed.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -2144,6 +2247,12 @@ Cancels notifications under a notification group of this application. This API u
 | --------- | ------ | ---- | -------------- |
 | groupName | string | Yes  | Name of the notification group.|
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -2214,6 +2323,12 @@ Removes notifications under a notification group of a specified application. Thi
 | --------- | ------------ | ---- | -------------- |
 | bundle    | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.    |
 | groupName | string       | Yes  | Name of the notification group.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -2287,6 +2402,12 @@ Sets the DND time. This API uses a promise to return the result.
 | Name| Type            | Mandatory| Description          |
 | ---- | ---------------- | ---- | -------------- |
 | date | [DoNotDisturbDate](#donotdisturbdate8-deprecated) | Yes  | DND time to set.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -2367,6 +2488,12 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 | ------ | ---------------- | ---- | -------------- |
 | date   | [DoNotDisturbDate](#donotdisturbdate8-deprecated) | Yes  | DND time to set.|
 | userId | number           | Yes  | ID of the user for whom you want to set the DND time.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -2696,6 +2823,12 @@ requestEnableNotification(): Promise\<void\>
 Requests notification to be enabled for this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 

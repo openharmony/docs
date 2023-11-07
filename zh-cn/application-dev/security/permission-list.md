@@ -920,7 +920,7 @@
 
 ## ohos.permission.ACCESS_USER_AUTH_INTERNAL
 
-允许调用统一身份认证服务的系统内部接口。
+允许调用系统级用户身份认证接口。
 
 **权限级别**：system_basic
 
@@ -1293,6 +1293,90 @@
 ## ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
 允许设备设置安全管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
+
+允许设备管理应用设置和查询蓝牙信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+允许设备管理应用设置和查询WIFI信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+允许设备管理应用管理限制策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+允许设备管理应用管理应用策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_LOCATION
+
+允许设备管理应用设置和查询位置信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_REBOOT
+
+允许设备管理应用进行关机重启操作。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_LOCK_DEVICE
+
+允许设备管理应用锁定设备。
 
 **权限级别**：system_basic
 
@@ -2998,6 +3082,30 @@
 
 **起始版本**：11
 
+## ohos.permission.SET_ADVANCED_SECURITY_MODE
+
+允许应用修改高级安全模式配置。
+
+**权限级别**: system_core
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
+
+## ohos.permission.SET_DEVELOPER_MODE
+
+允许应用修改开发者模式配置。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.COOPERATE_MANAGER
 
 允许系统应用使能键鼠穿越能力。
@@ -3013,6 +3121,126 @@
 ## ohos.permission.PERCEIVE_TRAIL
 
 允许系统应用使用MSDP足迹感知功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.EXECUTE_INSIGHT_INTENT
+
+允许系统应用执行意图调用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_ACTIVATION_LOCK
+
+允许应用管理设备激活锁。
+
+**权限级别**: system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
+
+## ohos.permission.VERIFY_ACTIVATION_LOCK
+
+允许应用校验激活锁凭据合法性。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+允许应用访问系统预置隐藏相册及相册内文件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_OUC
+
+允许系统应用拉起软件更新能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_FINGERPRINT_AUTH
+
+允许调用配置和管理指纹认证模块的接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.TRUSTED_RING_HASH_DATA_PERMISSION
+
+允许应用向关键资产信任环发送数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.INPUT_CONTROL_DISPATCHING
+
+允许系统应用控制事件分发流程
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_TRUSTED_RING
+
+允许使用关键资产信任环服务提供的能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.USE_TRUSTED_RING
+
+允许应用或服务使用关键资产信任环加环能力。
 
 **权限级别**：system_basic
 

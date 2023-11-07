@@ -52,7 +52,54 @@
    import dlpPermission from '@ohos.dlpPermission';
    ```
 
-2. 查询当前应用是否在沙箱中。
+2. 打开DLP文件，系统会自动安装应用的DLP沙箱分身应用。
+
+    ```ts
+    async OpenDlpFile(dlpUri: string, fileName: string, fd: number) {
+      let want:Want = {
+        "action": "ohos.want.action.viewData",
+        "bundleName": "com.example.example_bundle_name",
+        "abilityName": "exampleAbility",
+        "uri": dlpUri,
+        "parameters": {
+          "fileName": {
+            "name": fileName
+          },
+          "keyFd": {
+            "type": "FD",
+            "value": fd
+          }
+        }
+      }
+      
+      try {
+        console.log("openDLPFile:" + JSON.stringify(want));
+        console.log("openDLPFile: delegator:" + JSON.stringify(CustomGlobal.context));
+        CustomGlobal.context.startAbility(want);
+      } catch (err) {
+        console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
+        return;
+      }
+    }
+    ```
+    
+    以上代码需要在module.json5文件中增加ohos.want.action.viewData：
+
+    ```json
+      "skills":[
+        {
+          "entities":[
+            ...
+          ],
+          "actions":[
+            ...
+            "ohos.want.action.viewData"
+          ]
+        }
+      ]
+    ```
+
+3. 查询当前应用是否在沙箱中。
 
    ```ts
    dlpPermission.isInSandbox().then((data)=> { 
@@ -62,7 +109,7 @@
    });
    ```
 
-3. 查询当前编辑的文档权限，根据文档授权的不同，DLP沙箱被限制的权限有所不同，参考[沙箱限制](#沙箱限制)。
+4. 查询当前编辑的文档权限，根据文档授权的不同，DLP沙箱被限制的权限有所不同，参考[沙箱限制](#沙箱限制)。
 
    ```ts
    dlpPermission.getDLPPermissionInfo().then((data)=> { 
@@ -72,7 +119,7 @@
    });
    ```
 
-4. 获取当前可支持DLP方案的文件扩展名类型列表，用于应用判断能否生成DLP文档，可用在实现类似文件管理器设置DLP权限的场景。
+5. 获取当前可支持DLP方案的文件扩展名类型列表，用于应用判断能否生成DLP文档，可用在实现类似文件管理器设置DLP权限的场景。
 
    ```ts
    dlpPermission.getDLPSupportedFileTypes((err, result) => { 
@@ -81,7 +128,7 @@
    });
    ```
 
-5. 判断当前打开文件是否是dlp文件。
+6. 判断当前打开文件是否是dlp文件。
   
    ```ts
    let file = fs.openSync(uri);
@@ -94,11 +141,11 @@
    fs.closeSync(file);
    ```
 
-6. 订阅、取消订阅DLP打开事件。
+7. 订阅、取消订阅DLP打开事件。
 
    ```ts
-   event(info: dlpPermission.VisitedDLPFileInfo) {
-     console.info('openDlpFile event', info.uri, info.recentOpenTime)
+   event(info: dlpPermission.AccessedDLPFileInfo) {
+     console.info('openDlpFile event', info.uri, info.lastOpenTime)
    }
    unSubscribe() {
      try {
@@ -114,18 +161,20 @@
        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
      }
    }
-   async func() {
-     this.subscribe();
-     this.unSubscribe();
+   onCreate() {
+    this.subscribe();
+   }
+   onDestroy() {
+    this.unSubscribe();
    }
    ```
 
-7. 获取DLP文件打开记录。
+8. 获取DLP文件打开记录。
 
    ```ts
    async func() {
      try {
-       let res:Array<dlpPermission.VisitedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
+       let res:Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
        console.info('res', JSON.stringify(res))
      } catch (err) {
        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
@@ -133,12 +182,12 @@
    }
    ```
 
-8. 获取DLP文件保留沙箱记录。
+9. 获取DLP文件保留沙箱记录。
 
    ```ts
    async func() {
      try {
-       let res:Array<dlpPermission.VisitedDLPFileInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
+       let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
        console.info('res', JSON.stringify(res))
      } catch (err) {
        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错

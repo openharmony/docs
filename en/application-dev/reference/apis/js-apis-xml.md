@@ -26,7 +26,7 @@ A constructor used to create an **XmlSerializer** instance.
 
 | Name  | Type                             | Mandatory| Description                                            |
 | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | Yes  | **ArrayBuffer** or **DataView** for storing the XML information to write.|
+| buffer   | ArrayBuffer \| DataView | Yes  | **ArrayBuffer** or **DataView** for storing the XML information to set.|
 | encoding | string                            | No  | Encoding format. The default value is **'utf-8'** (the only format currently supported).              |
 
 **Example**
@@ -41,7 +41,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<?xml version="1.0" encoding="utf-8"?>
+console.log(view1) // <?xml version="1.0" encoding="utf-8"?>
 ```
 
 
@@ -49,7 +49,7 @@ console.log(view1) //<?xml version="1.0" encoding="utf-8"?>
 
 setAttributes(name: string, value: string): void
 
-Writes an attribute and its value.
+Sets an attribute.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -57,8 +57,8 @@ Writes an attribute and its value.
 
 | Name| Type  | Mandatory| Description           |
 | ------ | ------ | ---- | --------------- |
-| name   | string | Yes  | Attribute to write.  |
-| value  | string | Yes  | Attribute value to write.|
+| name   | string | Yes  | Key of the attribute.  |
+| value  | string | Yes  | Value of the attribute.|
 
 **Example**
 
@@ -75,7 +75,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<note importance1="high1"/>
+console.log(view1) // <note importance1="high1"/>
 ```
 
 
@@ -106,7 +106,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<d/>
+console.log(view1) // <d/>
 ```
 
 
@@ -114,7 +114,7 @@ console.log(view1) //<d/>
 
 setDeclaration(): void
 
-Writes an XML file declaration.
+Sets a declaration.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -134,7 +134,9 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<?xml version="1.0" encoding="utf-8"?>
+console.log(view1)
+// <?xml version="1.0" encoding="utf-8"?>
+// <h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 
@@ -168,7 +170,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 ### endElement
@@ -195,7 +197,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 
@@ -230,14 +232,14 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 ### setComment
 
 setComment(text: string): void
 
-Writes a comment.
+Sets a comment.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -245,7 +247,7 @@ Writes a comment.
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| text   | string | Yes  | Comment to write.|
+| text   | string | Yes  | Comment to set.|
 
 **Example**
 
@@ -260,7 +262,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<!--Hello, World!-->'
+console.log(view1) // <!--Hello, World!-->
 ```
 
 
@@ -268,7 +270,7 @@ console.log(view1) //<!--Hello, World!-->'
 
 setCDATA(text: string): void
 
-Writes CDATA data.
+Sets CDATA data.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -276,7 +278,7 @@ Writes CDATA data.
 
 | Name| Type  | Mandatory| Description             |
 | ------ | ------ | ---- | ----------------- |
-| text   | string | Yes  | CDATA data to write.|
+| text   | string | Yes  | CDATA data to set.|
 
 **Example**
 
@@ -291,7 +293,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //'<![CDATA[root SYSTEM]]>''
+console.log(view1) // <![CDATA[root SYSTEM]]>
 ```
 
 
@@ -299,7 +301,7 @@ console.log(view1) //'<![CDATA[root SYSTEM]]>''
 
 setText(text: string): void
 
-Writes a tag value.
+Sets a tag value.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -307,7 +309,7 @@ Writes a tag value.
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| text   | string | Yes  | Tag value to write, which is the content of the **text** attribute.|
+| text   | string | Yes  | Tag value to set, which is the content of the **text** attribute.|
 
 **Example**
 
@@ -325,7 +327,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) // '<note importance="high">Happy1</note>'
+console.log(view1) // <note importance="high">Happy1</note>
 ```
 
 
@@ -333,7 +335,7 @@ console.log(view1) // '<note importance="high">Happy1</note>'
 
 setDocType(text: string): void
 
-Writes a document type.
+Sets a document type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -341,7 +343,7 @@ Writes a document type.
 
 | Name| Type  | Mandatory| Description               |
 | ------ | ------ | ---- | ------------------- |
-| text   | string | Yes  | Content of **DocType** to write.|
+| text   | string | Yes  | Content of **DocType** to set.|
 
 **Example**
 
@@ -356,7 +358,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //'<!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">'
+console.log(view1) // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 ```
 
 

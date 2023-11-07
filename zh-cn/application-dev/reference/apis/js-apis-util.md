@@ -36,10 +36,10 @@ format(format: string,  ...args: Object[]): string
 
 **示例：**
 
-  ```ts
-  let res = util.format("This is : %s", "hello world!");
-  console.log(res);
-  ```
+```ts
+let res = util.format("This is : %s", "hello world!");
+console.log(res);
+```
 
 ## util.errnoToString<sup>9+</sup>
 
@@ -64,9 +64,9 @@ errnoToString(errno: number): string
 **示例：**
 
 ```ts
-  let errnum = -1; // -1 : a system error number
-  let result = util.errnoToString(errnum);
-  console.log("result = " + result);
+let errnum = -1; // -1 : a system error number
+let result = util.errnoToString(errnum);
+console.log("result = " + result);
 ```
 
 **部分错误码及信息示例：**
@@ -105,16 +105,16 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 **示例：**
 
-  ```ts
-  async function fn() {
-    return 'hello world';
-  }
-  let cb = util.callbackWrapper(fn);
-  cb(1, (err : Object, ret : string) => {
-    if (err) throw new Error;
-    console.log(ret);
-  });
-  ```
+```ts
+async function fn() {
+  return 'hello world';
+}
+let cb = util.callbackWrapper(fn);
+cb(1, (err : Object, ret : string) => {
+  if (err) throw new Error;
+  console.log(ret);
+});
+```
 
 ## util.promisify<sup>9+</sup>
 
@@ -138,25 +138,25 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 **示例：**
 
-  ```ts
-  function fun(num, callback) {
-    if (typeof num === 'number') {
-        callback(null, num + 3);
-    } else {
-        callback("type err");
-    }
+```ts
+function fun(num, callback) {
+  if (typeof num === 'number') {
+      callback(null, num + 3);
+  } else {
+      callback("type err");
   }
+}
 
-  const addCall = util.promisify(fun);
-  (async () => {
-    try {
-        let res = await addCall(2);
-        console.log(res);
-    } catch (err) {
-        console.log(err);
-    }
-  })();
-  ```
+const addCall = util.promisify(fun);
+(async () => {
+  try {
+      let res = await addCall(2);
+      console.log(res);
+  } catch (err) {
+      console.log(err);
+  }
+})();
+```
 
 ## util.generateRandomUUID<sup>9+</sup>
 
@@ -180,12 +180,12 @@ generateRandomUUID(entropyCache?: boolean): string
 
 **示例：**
 
-  ```ts
-  let uuid = util.generateRandomUUID(true);
-  console.log("RFC 4122 Version 4 UUID:" + uuid);
-  // 输出：
-  // RFC 4122 Version 4 UUID:88368f2a-d5db-47d8-a05f-534fab0a0045
-  ```
+```ts
+let uuid = util.generateRandomUUID(true);
+console.log("RFC 4122 Version 4 UUID:" + uuid);
+// 输出：
+// RFC 4122 Version 4 UUID:88368f2a-d5db-47d8-a05f-534fab0a0045
+```
 
 ## util.generateRandomBinaryUUID<sup>9+</sup>
 
@@ -209,12 +209,12 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
 **示例：**
 
-  ```ts
-  let uuid = util.generateRandomBinaryUUID(true);
-  console.log(JSON.stringify(uuid));
-  // 输出：
-  // 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
-  ```
+```ts
+let uuid = util.generateRandomBinaryUUID(true);
+console.log(JSON.stringify(uuid));
+// 输出：
+// 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
+```
 
 ## util.parseUUID<sup>9+</sup>
 
@@ -238,12 +238,12 @@ parseUUID(uuid: string): Uint8Array
 
 **示例：**
 
-  ```ts
-  let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
-  console.log(JSON.stringify(uuid));
-  // 输出：
-  // 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
-  ```
+```ts
+let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
+console.log(JSON.stringify(uuid));
+// 输出：
+// 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
+```
 
 ## util.printf<sup>(deprecated)</sup>
 
@@ -272,10 +272,10 @@ printf(format: string,  ...args: Object[]): string
 
 **示例：**
 
-  ```ts
-  let res = util.printf("%s", "hello world!");
-  console.log(res);
-  ```
+```ts
+let res = util.printf("%s", "hello world!");
+console.log(res);
+```
 
 
 ## util.getErrorString<sup>(deprecated)</sup>
@@ -304,11 +304,11 @@ getErrorString(errno: number): string
 
 **示例：**
 
-  ```ts
-  let errnum = -1; // -1 : a system error number
-  let result = util.getErrorString(errnum);
-  console.log("result = " + result);
-  ```
+```ts
+let errnum = -1; // -1 : a system error number
+let result = util.getErrorString(errnum);
+console.log("result = " + result);
+```
 
 ## util.promiseWrapper<sup>(deprecated)</sup>
 
@@ -359,7 +359,7 @@ TextDecoder的构造函数。
 
 ### create<sup>9+</sup>
 
-create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder;
+create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
 
 替代有参构造功能。
 
@@ -382,8 +382,8 @@ create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): Te
 **示例：**
 
 ```ts
-  let result = util.TextDecoder.create('utf-8', { ignoreBOM : true })
-  let retStr = result.encoding
+let result = util.TextDecoder.create('utf-8', { ignoreBOM : true })
+let retStr = result.encoding
 ```
 
 ### decodeWithStream<sup>9+</sup>
@@ -415,19 +415,19 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
 
 **示例：**
 
-  ```ts
-  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  let result = new Uint8Array(6);
-  result[0] = 0xEF;
-  result[1] = 0xBB;
-  result[2] = 0xBF;
-  result[3] = 0x61;
-  result[4] = 0x62;
-  result[5] = 0x63;
-  console.log("input num:");
-  let retStr = textDecoder.decodeWithStream( result , {stream: false});
-  console.log("retStr = " + retStr);
-  ```
+```ts
+let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM : true });
+let result = new Uint8Array(6);
+result[0] = 0xEF;
+result[1] = 0xBB;
+result[2] = 0xBF;
+result[3] = 0x61;
+result[4] = 0x62;
+result[5] = 0x63;
+console.log("input num:");
+let retStr = textDecoder.decodeWithStream( result , {stream: false});
+console.log("retStr = " + retStr);
+```
 
 ### constructor<sup>(deprecated)</sup>
 
@@ -457,9 +457,9 @@ TextDecoder的构造函数。
 
 **示例：**
 
-  ```ts
-  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  ```
+```ts
+let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+```
 
 ### decode<sup>(deprecated)</sup>
 
@@ -494,19 +494,19 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 **示例：**
 
-  ```ts
-  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  let result = new Uint8Array(6);
-  result[0] = 0xEF;
-  result[1] = 0xBB;
-  result[2] = 0xBF;
-  result[3] = 0x61;
-  result[4] = 0x62;
-  result[5] = 0x63;
-  console.log("input num:");
-  let retStr = textDecoder.decode( result , {stream: false});
-  console.log("retStr = " + retStr);
-  ```
+```ts
+let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+let result = new Uint8Array(6);
+result[0] = 0xEF;
+result[1] = 0xBB;
+result[2] = 0xBF;
+result[3] = 0x61;
+result[4] = 0x62;
+result[5] = 0x63;
+console.log("input num:");
+let retStr = textDecoder.decode( result , {stream: false});
+console.log("retStr = " + retStr);
+```
 
 ## TextEncoder
 
@@ -531,9 +531,9 @@ TextEncoder的构造函数。
 
 **示例：**
 
-  ```ts
-  let textEncoder = new util.TextEncoder();
-  ```
+```ts
+let textEncoder = new util.TextEncoder();
+```
 
 ### constructor<sup>9+</sup>
 
@@ -551,9 +551,9 @@ TextEncoder的构造函数。
 
 **示例：**
 
-  ```ts
-  let textEncoder = new util.TextEncoder("utf-8");
-  ```
+```ts
+let textEncoder = new util.TextEncoder("utf-8");
+```
 
 ### encodeInto<sup>9+</sup>
 
@@ -577,12 +577,12 @@ encodeInto(input?: string): Uint8Array
 
 **示例：**
 
-  ```ts
-  let textEncoder = new util.TextEncoder();
-  let buffer = new ArrayBuffer(20);
-  let result = new Uint8Array(buffer);
-  result = textEncoder.encodeInto("\uD800¥¥");
-  ```
+```ts
+let textEncoder = new util.TextEncoder();
+let buffer = new ArrayBuffer(20);
+let result = new Uint8Array(buffer);
+result = textEncoder.encodeInto("\uD800¥¥");
+```
 
 ### encodeIntoUint8Array<sup>9+</sup>
 
@@ -607,13 +607,13 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): { read: number; written: 
 
 **示例：**
 
-  ```ts
-  let that = new util.TextEncoder()
-  let buffer = new ArrayBuffer(4)
-  let dest = new Uint8Array(buffer)
-  let result = new Object()
-  result = that.encodeIntoUint8Array('abcd', dest)
-  ```
+```ts
+let that = new util.TextEncoder()
+let buffer = new ArrayBuffer(4)
+let dest = new Uint8Array(buffer)
+let result = new Object()
+result = that.encodeIntoUint8Array('abcd', dest)
+```
 
 ### encodeInto<sup>(deprecated)</sup>
 
@@ -641,13 +641,14 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 | Uint8Array | 返回编码后的文本。 |
 
 **示例：**
-  ```ts
-  let that = new util.TextEncoder()
-  let buffer = new ArrayBuffer(4)
-  let dest = new Uint8Array(buffer)
-  let result = new Object()
-  result = that.encodeInto('abcd', dest)
-  ```
+
+```ts
+let that = new util.TextEncoder()
+let buffer = new ArrayBuffer(4)
+let dest = new Uint8Array(buffer)
+let result = new Object()
+result = that.encodeInto('abcd', dest)
+```
 
 ### encode<sup>(deprecated)</sup>
 
@@ -674,12 +675,13 @@ encode(input?: string): Uint8Array
 | Uint8Array | 返回编码后的文本。 |
 
 **示例：**
-  ```ts
-  let textEncoder = new util.TextEncoder();
-  let buffer = new ArrayBuffer(20);
-  let result = new Uint8Array(buffer);
-  result = textEncoder.encode("\uD800¥¥");
-  ```
+
+```ts
+let textEncoder = new util.TextEncoder();
+let buffer = new ArrayBuffer(20);
+let result = new Uint8Array(buffer);
+result = textEncoder.encode("\uD800¥¥");
+```
 
 ## RationalNumber<sup>8+</sup>
 
@@ -696,14 +698,14 @@ RationalNumber的构造函数。
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber();
+let rationalNumber = new util.RationalNumber();
 ```
 
 ### parseRationalNumber<sup>9+</sup>
 
 parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
-替代原有参构造的参数处理。
+用于创建具有给定分子和分母的RationalNumber实例。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -717,7 +719,7 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 **示例：**
 
 ```ts
-  let rationalNumber = util.RationalNumber.parseRationalNumber(1,2)
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 ```
 
 ### createRationalFromString<sup>8+</sup>
@@ -743,8 +745,7 @@ static createRationalFromString​(rationalString: string): RationalNumber​
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
+let rational = util.RationalNumber.createRationalFromString("3/4");
 ```
 
 ### compare<sup>9+</sup>
@@ -759,7 +760,7 @@ compare​(another: RationalNumber): number​
 
 | 参数名  | 类型           | 必填 | 说明               |
 | ------- | -------------- | ---- | ------------------ |
-| another | RationalNumber | 是   | 其他的有理数对象。 |
+| another | [RationalNumber](#rationalnumber8) | 是   | 其他的有理数对象。 |
 
 **返回值：**
 
@@ -769,11 +770,13 @@ compare​(another: RationalNumber): number​
 
 **示例：**
 
-  ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
-  let result = rationalNumber.compare(rational);
-  ```
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.compare(rational);
+console.log("result = " + result);
+// 输出结果：result = -1
+```
 
 ### valueOf<sup>8+</sup>
 
@@ -792,8 +795,17 @@ valueOf(): number
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.valueOf();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.valueOf();
+console.log("result = " + result);
+// 输出结果：result = 0.5
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.valueOf();
+console.log("result = " + result);
+// 输出结果：result = 0.5
 ```
 
 ### equals<sup>8+</sup>
@@ -819,9 +831,19 @@ equals​(obj: Object): boolean
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
-  let result = rationalNumber.equals(rational);
+let rationalNumber = new util.RationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.equals(rational);
+console.log("result = " + result);
+// 输出结果：result = false
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.equals(rational);
+console.log("result = " + result);
+// 输出结果：result = false
 ```
 
 ### getCommonFactor<sup>9+</sup>
@@ -848,8 +870,9 @@ getCommonFactor(number1: number,number2: number): number
 **示例：**
 
 ```ts
-let rationalNumber = new util.RationalNumber(1,2);
 let result = util.RationalNumber.getCommonFactor(4,6);
+console.log("result = " + result);
+// 输出结果：result = 2
 ```
 
 ### getNumerator<sup>8+</sup>
@@ -869,8 +892,17 @@ getNumerator​(): number
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.getNumerator();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.getNumerator();
+console.log("result = " + result);
+// 输出结果：result = 1
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.getNumerator();
+console.log("result = " + result);
+// 输出结果：result = 1
 ```
 
 ### getDenominator<sup>8+</sup>
@@ -890,8 +922,17 @@ getDenominator​(): number
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.getDenominator();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.getDenominator();
+console.log("result = " + result);
+// 输出结果：result = 2
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2)
+let result = rationalNumber.getDenominator();
+console.log("result = " + result);
+// 输出结果：result = 2
 ```
 
 ### isZero<sup>8+</sup>
@@ -911,8 +952,17 @@ isZero​():boolean
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.isZero();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.isZero();
+console.log("result = " + result);
+// 输出结果：result = false
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.isZero();
+console.log("result = " + result);
+// 输出结果：result = false
 ```
 
 ### isNaN<sup>8+</sup>
@@ -932,8 +982,17 @@ isNaN​(): boolean
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.isNaN();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.isNaN();
+console.log("result = " + result);
+// 输出结果：result = false
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.isNaN();
+console.log("result = " + result);
+// 输出结果：result = false
 ```
 
 ### isFinite<sup>8+</sup>
@@ -953,8 +1012,17 @@ isFinite​():boolean
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.isFinite();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.isFinite();
+console.log("result = " + result);
+// 输出结果：result = true
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.isFinite();
+console.log("result = " + result);
+// 输出结果：result = true
 ```
 
 ### toString<sup>8+</sup>
@@ -974,8 +1042,17 @@ toString​(): string
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.toString();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.toString();
+console.log("result = " + result);
+// 输出结果：result = 1/2
+```
+API 9及以上建议使用以下写法：
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.toString();
+console.log("result = " + result);
+// 输出结果：result = 1/2
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -986,7 +1063,7 @@ RationalNumber的构造函数。
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[constructor<sup>9+</sup>](#constructor9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[parserationalnumber<sup>9+</sup>](#parserationalnumber9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1000,7 +1077,7 @@ RationalNumber的构造函数。
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
+let rationalNumber = new util.RationalNumber(1,2);
 ```
 
 ### compareTo<sup>(deprecated)</sup>
@@ -1030,9 +1107,9 @@ compareTo​(another: RationalNumber): number​
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
-  let result = rationalNumber.compareTo(rational);
+let rationalNumber = new util.RationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.compareTo(rational);
 ```
 
 ### getCommonDivisor<sup>(deprecated)</sup>
@@ -1063,8 +1140,8 @@ static getCommonDivisor​(number1: number,number2: number): number
 **示例：**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = util.RationalNumber.getCommonDivisor(4,6);
+let rationalNumber = new util.RationalNumber(1,2);
+let result = util.RationalNumber.getCommonDivisor(4,6);
 ```
 
 ## LRUCache<sup>9+</sup>
@@ -1082,10 +1159,10 @@ LRUCache用于在缓存空间不够的时候，将近期最少使用的数据替
 **示例：**
 
 ```ts
-  let  pro : util.LRUCache<number, number> = new util.LRUCache();
-  pro.put(2,10);
-  pro.put(1,8);
-  let result = pro.length;
+let  pro : util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+pro.put(1,8);
+let result = pro.length;
 ```
 
 ### constructor<sup>9+</sup>
@@ -1105,7 +1182,7 @@ constructor(capacity?: number)
 **示例：**
 
 ```ts
-  let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
+let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
 ```
 
 
@@ -1126,8 +1203,8 @@ updateCapacity(newCapacity: number): void
 **示例：**
 
 ```ts
-  let pro : util.LRUCache<number,number>= new util.LRUCache();
-  pro.updateCapacity(100);
+let pro : util.LRUCache<number,number>= new util.LRUCache();
+pro.updateCapacity(100);
 ```
 
 
@@ -1148,11 +1225,11 @@ toString(): string
 **示例：**
 
 ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  pro.get(2);
-  pro.remove(20);
-  let result = pro.toString();
+let pro : util.LRUCache<number,number> = new util.LRUCache();
+pro.put(2,10);
+pro.get(2);
+pro.remove(20);
+let result = pro.toString();
 ```
 
 
@@ -1172,11 +1249,10 @@ getCapacity(): number
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  let result = pro.getCapacity();
-  ```
-
+```ts
+let pro : util.LRUCache<number,number> = new util.LRUCache();
+let result = pro.getCapacity();
+```
 
 ### clear<sup>9+</sup>
 
@@ -1188,13 +1264,12 @@ clear(): void
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.length;
-  pro.clear();
-  ```
-
+```ts
+let pro : util.LRUCache<number,number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.length;
+pro.clear();
+```
 
 ### getCreateCount<sup>9+</sup>
 
@@ -1212,12 +1287,11 @@ getCreateCount(): number
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(1,8);
-  let result = pro.getCreateCount();
-  ```
-
+```ts
+let pro : util.LRUCache<number,number> = new util.LRUCache();
+pro.put(1,8);
+let result = pro.getCreateCount();
+```
 
 ### getMissCount<sup>9+</sup>
 
@@ -1235,13 +1309,12 @@ getMissCount(): number
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  pro.get(2);
-  let result = pro.getMissCount();
-  ```
-
+```ts
+let pro : util.LRUCache<number,number> = new util.LRUCache();
+pro.put(2,10);
+pro.get(2);
+let result = pro.getMissCount();
+```
 
 ### getRemovalCount<sup>9+</sup>
 
@@ -1259,14 +1332,13 @@ getRemovalCount(): number
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  pro.updateCapacity(2);
-  pro.put(50,22);
-  let result = pro.getRemovalCount();
-  ```
-
+```ts
+let pro : util.LRUCache<number,number> = new util.LRUCache();
+pro.put(2,10);
+pro.updateCapacity(2);
+pro.put(50,22);
+let result = pro.getRemovalCount();
+```
 
 ### getMatchCount<sup>9+</sup>
 
@@ -1291,7 +1363,6 @@ getMatchCount(): number
   let result = pro.getMatchCount();
   ```
 
-
 ### getPutCount<sup>9+</sup>
 
 getPutCount(): number
@@ -1308,12 +1379,11 @@ getPutCount(): number
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.getPutCount();
-  ```
-
+```ts
+let pro : util.LRUCache<number,number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.getPutCount();
+```
 
 ### isEmpty<sup>9+</sup>
 
@@ -1331,12 +1401,11 @@ isEmpty(): boolean
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.isEmpty();
-  ```
-
+```ts
+let pro : util.LRUCache<number,number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.isEmpty();
+```
 
 ### get<sup>9+</sup>
 
@@ -1360,12 +1429,11 @@ get(key: K): V | undefined
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result  = pro.get(2);
-  ```
-
+```ts
+let pro : util.LRUCache<number,number> = new util.LRUCache();
+pro.put(2,10);
+let result  = pro.get(2);
+```
 
 ### put<sup>9+</sup>
 
@@ -1390,10 +1458,10 @@ put(key: K,value: V): V
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  let result = pro.put(2,10);
-  ```
+```ts
+let pro : util.LRUCache<number,number> = new util.LRUCache();
+let result = pro.put(2,10);
+```
 
 ### values<sup>9+</sup>
 
@@ -1411,14 +1479,13 @@ values(): V[]
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number|string,number|string> = new util.LRUCache();
-  pro.put(2,10);
-  pro.put(2,"anhu");
-  pro.put("afaf","grfb");
-  let result = pro.values();
-  ```
-
+```ts
+let pro : util.LRUCache<number|string,number|string> = new util.LRUCache();
+pro.put(2,10);
+pro.put(2,"anhu");
+pro.put("afaf","grfb");
+let result = pro.values();
+```
 
 ### keys<sup>9+</sup>
 
@@ -1436,12 +1503,11 @@ keys(): K[]
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number>= new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.keys();
-  ```
-
+```ts
+let pro : util.LRUCache<number,number>= new util.LRUCache();
+pro.put(2,10);
+let result = pro.keys();
+```
 
 ### remove<sup>9+</sup>
 
@@ -1465,12 +1531,11 @@ remove(key: K): V | undefined
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number>= new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.remove(20);
-  ```
-
+```ts
+let pro : util.LRUCache<number,number>= new util.LRUCache();
+pro.put(2,10);
+let result = pro.remove(20);
+```
 
 ### afterRemoval<sup>9+</sup>
 
@@ -1491,24 +1556,23 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 **示例：**
 
-  ```ts
-  let arr : Object[] = [];
-  class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
-    constructor() {
-      super();
-    }
+```ts
+let arr : Object[] = [];
+class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
+  constructor() {
+    super();
+  }
 
-    afterRemoval(isEvict: boolean, key: K, value: V, newValue: V) : void
-    {
-      if (isEvict === false) {
-        arr = [key, value, newValue];
-      }
+  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V) : void
+  {
+    if (isEvict === false) {
+      arr = [key, value, newValue];
     }
   }
-  let lru : ChildLruBuffer<number,number|null>= new ChildLruBuffer();
-  lru.afterRemoval(false,10,30,null);
-  ```
-
+}
+let lru : ChildLruBuffer<number,number|null>= new ChildLruBuffer();
+lru.afterRemoval(false,10,30,null);
+```
 
 ### contains<sup>9+</sup>
 
@@ -1532,16 +1596,15 @@ contains(key: K): boolean
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number|object,number> = new util.LRUCache();
-  pro.put(2,10);
-  class Lru{
-  s : string = ""
-  }
-  let obj : Lru = {s : "key" }
-  let result = pro.contains(obj);
-  ```
-
+```ts
+let pro : util.LRUCache<number|object,number> = new util.LRUCache();
+pro.put(2,10);
+class Lru{
+s : string = ""
+}
+let obj : Lru = {s : "key" }
+let result = pro.contains(obj);
+```
 
 ### createDefault<sup>9+</sup>
 
@@ -1565,11 +1628,10 @@ createDefault(key: K): V
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  let result = pro.createDefault(50);
-  ```
-
+```ts
+let pro : util.LRUCache<number,number> = new util.LRUCache();
+let result = pro.createDefault(50);
+```
 
 ### entries<sup>9+</sup>
 
@@ -1587,11 +1649,11 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.entries();
-  ```
+```ts
+let pro : util.LRUCache<number,number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.entries();
+```
 
 ### [Symbol.iterator]<sup>9+</sup>
 
@@ -1609,11 +1671,11 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 **示例：**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro[Symbol.iterator]();
-  ```
+```ts
+let pro : util.LRUCache<number,number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro[Symbol.iterator]();
+```
 
 ## ScopeComparable<sup>8+</sup>
 
@@ -1623,7 +1685,7 @@ ScopeComparable类型的值需要实现compareTo方法，确保传入的数据�
 
 ### compareTo<sup>8+</sup>
 
-compareTo(other: ScopeComparable): boolean;
+compareTo(other: ScopeComparable): boolean
 
 比较两个值的大小，返回一个布尔值。
 
@@ -1646,21 +1708,21 @@ compareTo(other: ScopeComparable): boolean;
 构造新类，实现compareTo方法。后续示例代码中，均以此Temperature类为例。
 
 ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 ```
 
 ## ScopeType<sup>8+</sup>
@@ -1695,27 +1757,26 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  ```
-
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+```
 
 ### toString<sup>9+</sup>
 
@@ -1733,29 +1794,28 @@ toString(): string
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.toString();
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.toString();
+```
 
 ### intersect<sup>9+</sup>
 
@@ -1775,36 +1835,35 @@ intersect(range: ScopeHelper): ScopeHelper
 
 | 类型                           | 说明                           |
 | ------------------------------ | ------------------------------ |
-| [ScopeHelper9+](#scopehelper9) | 返回给定范围和当前范围的交集。 |
+| [ScopeHelper](#scopehelper9) | 返回给定范围和当前范围的交集。 |
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-  range.intersect(rangeFir);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+range.intersect(rangeFir);
+```
 
 ### intersect<sup>9+</sup>
 
@@ -1829,31 +1888,30 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.intersect(tempMiDF, tempMidS);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.intersect(tempMiDF, tempMidS);
+```
 
 ### getUpper<sup>9+</sup>
 
@@ -1871,29 +1929,28 @@ getUpper(): ScopeType
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.getUpper();
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.getUpper();
+```
 
 ### getLower<sup>9+</sup>
 
@@ -1911,29 +1968,28 @@ getLower(): ScopeType
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.getLower();
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.getLower();
+```
 
 ### expand<sup>9+</sup>
 
@@ -1958,31 +2014,30 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.expand(tempMiDF, tempMidS);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.expand(tempMiDF, tempMidS);
+```
 
 ### expand<sup>9+</sup>
 
@@ -2006,32 +2061,31 @@ expand(range: ScopeHelper): ScopeHelper
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-  let result = range.expand(rangeFir);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+let result = range.expand(rangeFir);
+```
 
 ### expand<sup>9+</sup>
 
@@ -2055,30 +2109,29 @@ expand(value: ScopeType): ScopeHelper
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.expand(tempMiDF);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.expand(tempMiDF);
+```
 
 ### contains<sup>9+</sup>
 
@@ -2102,30 +2155,29 @@ contains(value: ScopeType): boolean
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.contains(tempMiDF);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.contains(tempMiDF);
+```
 
 ### contains<sup>9+</sup>
 
@@ -2149,32 +2201,31 @@ contains(range: ScopeHelper): boolean
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let tempLess = new Temperature(20);
-  let tempMore = new Temperature(45);
-  let rangeSec = new util.ScopeHelper(tempLess, tempMore);
-  let result = range.contains(rangeSec);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let tempLess = new Temperature(20);
+let tempMore = new Temperature(45);
+let rangeSec = new util.ScopeHelper(tempLess, tempMore);
+let result = range.contains(rangeSec);
+```
 
 ### clamp<sup>9+</sup>
 
@@ -2198,29 +2249,29 @@ clamp(value: ScopeType): ScopeType
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.clamp(tempMiDF);
-  ```
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.clamp(tempMiDF);
+```
 
 ## Base64Helper<sup>9+</sup>
 
@@ -2806,6 +2857,10 @@ isGeneratorFunction(value: Object): boolean
 
 检查输入的value是否是generator函数类型。
 
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2833,6 +2888,10 @@ isGeneratorFunction(value: Object): boolean
 isGeneratorObject(value: Object): boolean
 
 检查输入的value是否是generator对象类型。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3235,6 +3294,10 @@ isStringObject(value: Object): boolean
 isSymbolObject(value: Object): boolean
 
 检查输入的value是否是Symbol对象类型。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3639,7 +3702,7 @@ updateCapacity(newCapacity: number): void
 
   ```ts
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
-  let result = pro.updateCapacity(100);
+  pro.updateCapacity(100);
   ```
 
 ### toString<sup>(deprecated)</sup>

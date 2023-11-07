@@ -8,7 +8,7 @@
 >
 > 应用本身预置的资源文件（即应用在安装前的HAP包中已经存在的资源文件）仅支持本地应用内拖拽。
 
-ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应，开发者只需要将这些组件的[draggale](ts-universal-attributes-drag-drop.md)属性设置为true，即可使用默认拖拽能力。
+ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应，开发者只需要将这些组件的[draggable](ts-universal-attributes-drag-drop.md)属性设置为true，即可使用默认拖拽能力。
 
 - 默认支持拖出能力的组件（可从组件上拖出数据）：Search、TextInput、TextArea、RichEditor、Text、Image、FormComponent、Hyperlink
 
@@ -54,7 +54,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 | 名称     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
-| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使用系统默认落入动画。 |
+| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使能并使用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义动效。<br/>当不配置或设置为false时，系统默认落位动效生效，此情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
 | setData(unifiedData: [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup> | void | 向DragEvent中设置拖拽相关数据。 |
 | getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata) | 从DragEvent中获取拖拽相关数据。数据获取结果请参考错误码说明。 |
 | getSummary()<sup>10+</sup> | [Summary](../apis/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。 |
@@ -109,6 +109,15 @@ struct Index {
   @State videoSrc: string = 'resource://RAWFILE/02.mp4';
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
+  @Builder
+  pixelMapBuilder() {
+    Column() {
+      Image($r('app.media.icon'))
+        .width(120)
+        .height(120)
+        .backgroundColor(Color.Yellow)
+    }
+  }
 
   getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
   {
@@ -185,6 +194,9 @@ struct Index {
           video.videoUri = '/resources/rawfile/01.mp4';
           let data: UDC.UnifiedData = new UDC.UnifiedData(video);
           (event as DragEvent).setData(data);
+          return { builder: () => {
+            this.pixelMapBuilder()
+          }, extraInfo: 'extra info' };
         })
         Column() {
           Text('this is abstract')
