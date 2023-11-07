@@ -57,7 +57,7 @@ Stage模型完善了以下特性：
 ### ArkUI
 
 - **基础组件增加或增强：**
-  - 新增UIExtension组件，用于将一个应用通过UIExtensionAblity的方式，嵌入显示到另一个应用内。
+  - 新增UIExtension组件，用于将一个应用通过UIExtensionAbility的方式，嵌入显示到另一个应用内。
   - 绘制组件Rect/Circle/Ellipse/Line/Polyline/Polygon/Path/Rect/Shape支持偏移、裁剪、遮罩等通用属性，增强绘制组件基础功能。
   - 自定义弹框支持蒙层颜色及弹出动画自定义，如允许设置弹出动画效果的相关参数，增强弹框的开发者自定义功能。
   - bindContextMenu/bindMenu支持自定义位置，允许设置菜单的位置，增强菜单基础功能。
@@ -77,7 +77,7 @@ Stage模型完善了以下特性：
   - 支持组件属性变化的过渡动效，如组件的尺寸、背景色、透明度等属性发生变化时通过过渡动效衔接变化前后的状态，提升组件属性变化时的动画体验。
   - 支持给组件设置球面高阶属性、下边缘像素扩展、取色模糊、G2圆角、阴影、渐变等高阶图形属性，丰富高阶动画效果。
   - 布局属性、背景图片大小位置属性、显隐属性支持隐式动效。
-  - List新增支持scrollToIndex动效、Tasb模糊动效、Popup出现/消失动效。
+  - List新增支持scrollToIndex动效、Tabs模糊动效、Popup出现/消失动效。
   - 支持自定义动画，满足多种多样的动画诉求。
 
 - 开发效率增强：支持命名路由的能力，借助此能力可针对不同页面设置差异化的切换动效；轻量级ArkUI框架支持定义全局数据对象，可进行应用内页面间的数据共享。
@@ -449,7 +449,7 @@ Stage模型完善了以下特性：
 
 ### WebView
 
-- W3C能力补充完善：补充Web camere能力，以及bindContextMenu、Select、date类型input等H5标签能力。
+- W3C能力补充完善：补充Web camera能力，以及bindContextMenu、Select、date类型input等H5标签能力。
 
 - 支持多渲染进程的进程拆分。
 
