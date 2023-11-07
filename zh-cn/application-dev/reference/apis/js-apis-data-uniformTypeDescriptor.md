@@ -20,9 +20,9 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 
 | 名称                         | 值                            | 说明                                 |
 |----------------------------|------------------------------|------------------------------------|
-| ENTITY<sup>11+</sup>                       | 'general.entity'                   | 物理层面结构的基本类型。                          |
-| OBJECT<sup>11+</sup>                       | 'general.object'                   | 逻辑层面结构的基本类型。                          |
-| COMPOSITE_OBJECT<sup>11+</sup>                       | 'general.composite-object'                   | 混合对象的基类型，例如：PDF文件包含文本和特殊格式数据，归属类型为OBJECT。                          |
+| ENTITY<sup>11+</sup>                       | 'general.entity'                   | 所有表示物理存储类型的基类型，无归属类型。                          |
+| OBJECT<sup>11+</sup>                       | 'general.object'                   | 所有表示逻辑内容类型的基类型，无归属类型。                          |
+| COMPOSITE_OBJECT<sup>11+</sup>                       | 'general.composite-object'                   | 所有组合内容类型（例如PDF文件类型混合了文本和图片类数据）的基类型，归属类型为OBJECT。                          |
 | TEXT                       | 'general.text'                   | 所有文本的基类型，归属类型为OBJECT。                          |
 | PLAIN_TEXT                | 'general.plain-text'             | 未指定编码的文本类型，没有标识符，归属类型为TEXT。        |
 | HTML                  | 'general.html'                   | HTML文本类型，归属类型为TEXT。               |
@@ -111,7 +111,7 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | OpenHarmony系统定义的桌面图标类型，归属类型为OBJECT。            |
 | OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | OpenHarmony系统定义的像素图类型，归属类型为IMAGE。             |
 | OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | OpenHarmony系统定义的元服务类型，归属类型为OBJECT。             |
-| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | OpenHarmony系统定义的包，即将目录作为文件呈现给用户，归属类型为DIRECTORY。             |
+| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | OpenHarmony系统定义的包（即目录的打包文件），归属类型为DIRECTORY。             |
 | OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | OpenHarmony系统定义的能力包，归属类型为OPENHARMONY_PACKAGE。             |
 
 ## TypeDescriptor<sup>11+</sup> 
@@ -309,7 +309,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
-    if(typeId != null) {
+    if(typeId) {
         console.info(`typeId is general.type-script`);
     }
 } catch(e) {
@@ -347,7 +347,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('image/jpeg', 'general.image');
-    if(typeId != null) {
+    if(typeId) {
         console.info(`typeId is general.jpeg`);
     }
 } catch(e) {
@@ -384,13 +384,15 @@ import { BusinessError } from '@ohos.base';
 
 try {
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('com.adobe.photoshop-image');
-    if (typeObj != null) {
+    if (typeObj) {
         let typeId = typeObj.typeId;
         let belongingToTypes = typeObj.belongingToTypes;
         let description = typeObj.description;
         let referenceURL = typeObj.referenceURL;
         let iconFile = typeObj.iconFile;
         console.info('typeId: ' + typeId + ', belongingToTypes: ' + belongingToTypes + ', description: ' + description + ', referenceURL: ' + referenceURL + ', iconFile: ' + iconFile);
+    } else {
+        console.info('type does not exist');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
