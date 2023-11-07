@@ -30,6 +30,18 @@ enableHotspot(): void;
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
+**示例：**
+
+```ts
+        import wifiManagerExt  from '@ohos.wifiManagerExt';
+
+        try {
+            wifiManagerExt.enableHotspot();
+        }catch(error){
+            console.error("failed:" + JSON.stringify(error));
+        }
+```
+
 ## wifiext.disableHotspot<sup>9+</sup>
 
 disableHotspot(): void;
@@ -47,6 +59,18 @@ disableHotspot(): void;
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|
+
+**示例：**
+
+```ts
+        import wifiManagerExt  from '@ohos.wifiManagerExt';
+
+        try {
+            wifiManagerExt.disableHotspot();
+        }catch(error){
+            console.error("failed:" + JSON.stringify(error));
+        }
+```
 
 ## wifiext.getSupportedPowerMode<sup>9+</sup>
 
@@ -109,6 +133,26 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
+**示例：**
+
+```ts
+        import wifiManagerExt  from '@ohos.wifiManagerExt';
+
+        wifiManagerExt.getSupportedPowerMode((err, data) => {
+            if (err) {
+                console.error("get supported power mode info error");
+                return;
+            }
+            console.info("get supported power mode info: " + JSON.stringify(data));
+        });
+
+        wifiManagerExt.getSupportedPowerMode().then(data => {
+            console.info("get supported power mode info: " + JSON.stringify(data));
+        }).catch((error:number) => {
+            console.info("get supported power mode error");
+        });
+```
+
 ## wifiext.getPowerMode<sup>9+</sup>
 
 getPowerMode(): Promise&lt;PowerMode&gt;
@@ -132,6 +176,19 @@ getPowerMode(): Promise&lt;PowerMode&gt;
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|
+
+**示例：**
+
+```ts
+        import wifiManagerExt  from '@ohos.wifiManagerExt';
+
+        try {
+            let model = wifiManagerExt.getPowerMode();
+            console.info("model info:" + model);
+        }catch(error){
+            console.error("failed:" + JSON.stringify(error));
+        }
+```
 
 ## wifiext.getPowerMode<sup>9+</sup>
 
@@ -157,6 +214,26 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
+**示例：**
+
+```ts
+        import wifiManagerExt  from '@ohos.wifiManagerExt';
+
+        wifiManagerExt.getPowerMode((err, data) => {
+            if (err) {
+                console.error("get linked info error");
+                return;
+            }
+            console.info("get power mode info: " + JSON.stringify(data));
+        });
+
+        wifiManagerExt.getPowerMode().then(data => {
+            console.info("get power mode info: " + JSON.stringify(data));
+        }).catch((error:number) => {
+            console.info("get power mode error");
+        });
+```
+
 ## wifiext.setPowerMode<sup>9+</sup>
 
 setPowerMode(mode: PowerMode) : void;
@@ -180,3 +257,17 @@ setPowerMode(mode: PowerMode) : void;
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|
+
+**示例：**
+
+```ts
+        import wifiManagerExt  from '@ohos.wifiManagerExt';
+
+        try {
+            let model = 0;
+            wifiManagerExt.setPowerMode(model);
+        }catch(error){
+            console.error("failed:" + JSON.stringify(error));
+        }
+```
+
