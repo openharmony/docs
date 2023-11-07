@@ -23,12 +23,12 @@
 
 - View(UI)：UI渲染，一般指自定义组件的build方法和\@Builder装饰的方法内的UI描述。
 
-- State：状态，一般指的是装饰器装饰的数据。用户通过触发组件的事件方法，改变状态数据。状态数据的改变，引起UI的重新渲染。
+- State：状态，指驱动UI更新的数据。用户通过触发组件的事件方法，改变状态数据。状态数据的改变，引起UI的重新渲染。
 
 
 ## 基本概念
 
-- 状态变量：被状态装饰器装饰的变量，改变会引起UI的渲染更新。
+- 状态变量：被状态装饰器装饰的变量，状态变量值的改变会引起UI的渲染更新。示例：@State num: number = 1,其中，@State是状态装饰器，num是状态变量。
 
 - 常规变量：没有状态的变量，通常应用于辅助计算。它的改变永远不会引起UI的刷新。
 
@@ -88,7 +88,7 @@ ArkUI提供了多种装饰器，通过使用这些装饰器，状态变量不仅
 ![zh-cn_image_0000001502704640](figures/zh-cn_image_0000001502704640.png)
 
 
-上图中，Components部分的装饰器为组件级别的状态管理，Application部分为应用的状态管理。开发者可以通过\@StorageLink/\@LocalStorageLink和\@StorageProp/\@LocalStorageProp实现应用和组件状态的双向和单向同步。图中箭头方向为数据同步方向，单箭头为单向同步，双箭头为双向同步。
+上图中，Components部分的装饰器为组件级别的状态管理，Application部分为应用的状态管理。开发者可以通过@StorageLink/@LocalStorageLink实现应用和组件状态的双向同步，通过@StorageProp/@LocalStorageProp实现应用和组件状态的单向同步。
 
 
 [管理组件拥有的状态](arkts-state.md)，即图中Components级别的状态管理：
