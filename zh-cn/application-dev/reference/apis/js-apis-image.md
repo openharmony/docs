@@ -3305,13 +3305,13 @@ PixelMap的初始化选项。
 | WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"               | 白平衡。                                      |
 | FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"      | 焦距35毫米胶片。                              |
 | CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"         | 捕获模式，当前为只读属性。                  |
-| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"    | 物理孔径,光圈大小，当前为只读属性。         |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"    | 物理孔径，光圈大小，当前为只读属性。        |
 | ROLL_ANGLE <sup>11+</sup>                 | "HwMnoteRollAngle"           | 滚动角度，当前为只读属性。                  |
 | PITCH_ANGLE<sup>11+</sup>                | "HwMnotePitchAngle"          | 俯仰角度，当前为只读属性。                  |
 | SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"       | 拍照场景：食物，当前为只读属性。            |
 | SCENE_STAGE_CONF<sup>11+</sup>           | "HwMnoteSceneStageConf"     | 拍照场景：舞台，当前为只读属性。            |
 | SCENE_BLUESKY_CONF<sup>11+</sup>          | "HwMnoteSceneBlueSkyConf"    | 拍照场景：蓝天，当前为只读属性。            |
-| SCENE_GREENPLANT_CONF<sup>11+</sup>       | "HwMnoteSceneGreenPlantConf" | 拍照场景：綠植，当前为只读属性。            |
+| SCENE_GREENPLANT_CONF<sup>11+</sup>       | "HwMnoteSceneGreenPlantConf" | 拍照场景：绿植，当前为只读属性。       |
 | SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"      | 拍照场景：沙滩，当前为只读属性。            |
 | SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"       | 拍照场景：下雪，当前为只读属性。            |
 | SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"     | 拍照场景：日落，当前为只读属性。            |
