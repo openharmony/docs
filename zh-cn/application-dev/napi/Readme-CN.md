@@ -11,6 +11,7 @@
   - [Vulkan开发指导](vulkan-guidelines.md)
 - 资源管理
   - [Rawfile开发指导](rawfile-guidelines.md)
+  - [FFRT开发指导](ffrt-guidelines.md)
 - AI
   - [使用MindSpore Lite引擎进行模型推理](mindspore-lite-guidelines.md)
   - [使用MindSpore Lite进行离线模型的转换及推理](mindspore-lite-offline-model-guidelines.md)

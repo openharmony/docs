@@ -33,7 +33,6 @@
   - [UsbDdk](_usb_ddk.md)
   - [Hitrace](_hitrace.md)
   - [Vulkan](_vulkan.md)
-  - [FFRT](_f_f_rt.md)
 - 头文件
   - [drawing_bitmap.h](drawing__bitmap_8h.md)
   - [drawing_brush.h](drawing__brush_8h.md)
