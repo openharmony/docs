@@ -86,52 +86,7 @@ void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, 
   * exec：用于描述该Task如何被执行，当FFRT需要执行该Task时由FFRT调用
   * destroy：用于描述该Task如何被执行，当FFRT需要执行该Task时由FFRT调用
 
-#### 样例
 
-* 通过该接口提供C++11 Lambda表达式的支持（该代码已经在ffrr.h中提供，默认支持）
-
-```{.cpp}
-template<class T>
-struct function {
-    template<class CT>
-    function(ffrt_function_header_t h, CT&& c) : header(h), closure(std::forward<CT>(c)) {}
-    ffrt_function_header_t header;
-    T closure;
-};
-
-template<class T>
-void exec_function_wrapper(void* t)
-{
-    auto f = (function<std::decay_t<T>>*)t;
-    f->closure();
-}
-
-template<class T>
-void destroy_function_wrapper(void* t)
-{
-    auto f = (function<std::decay_t<T>>*)t;
-    f->closure = nullptr;
-}
-
-template<class T>
-inline ffrt_function_header_t* create_function_wrapper(T&& func)
-{
-    using function_type = function<std::decay_t<T>>;
-    static_assert(sizeof(function_type) <= ffrt_auto_managed_function_storage_size,
-        "size of function must be less than ffrt_auto_managed_function_storage_size");
-
-    auto p = ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    auto f = new (p) function_type(
-        {exec_function_wrapper<T>, destroy_function_wrapper<T>},
-        std::forward<T>(func));
-    return (ffrt_function_header_t*)f;
-}
-
-static inline void submit(std::function<void()>&& func)
-{
-    return ffrt_submit_base(create_function_wrapper(std::move(func)), NULL, NULL, NULL);
-}
-```
 
 ### ffrt_wait
 
@@ -161,137 +116,6 @@ void ffrt_wait();
 * ffrt_wait() 用于等待当前上下文提交的所有子任务（`注意：不包括孙任务和下级子任务`）都完成才能执行后面的代码
 * 该接口支持在FFRT task 内部调用，也支持在FFRT task 外部调用
 * 在FFRT task 外部调用的wait 是OS 能够感知的等待，相对于FFRT task 内部调用的wait 是更加昂贵的，因此我们希望尽可能让更多的wait 发生在FFRT task 内部 ，而不是FFRT task 外部
-
-#### 样例
-
-**recursive fibonacci**
-
-串行版的fibonacci 可以实现为：
-
-```{.c}
-#include <stdio.h>
-
-void fib(int x, int* y) {
-    if (x <= 1) {
-        *y = x;
-    } else {
-        int y1, y2;
-        fib(x - 1, &y1);
-        fib(x - 2, &y2);
-        *y = y1 + y2;
-    }
-}
-int main(int narg, char** argv)
-{
-    int r;
-    fib(10, &r);
-    printf("fibonacci 10: %d\n", r);
-    return 0;
-}
-```
-
-若要使用 FFRT 实现并行（注，对于单纯的fibonacci，单个 Task 的计算量极小，不具有并行加速的意义，但这种调用pattern 对并行编程模型的灵活性考验是非常高的），其中1种可行的实现为：
-
-```{.c}
-#include <stdio.h>
-#include "ffrt.h"
-
-typedef struct {
-    int x;
-    int* y;
-} fib_ffrt_s;
-
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function;
-
-static void ffrt_exec_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void* arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-    c_function* f = (c_function*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t*)f;
-}
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-#define ffrt_deps_define(name, dep1, ...) const void* __v_##name[] = {dep1, ##__VA_ARGS__}; \
-    ffrt_deps_t name = {sizeof(__v_##name) / sizeof(void*), __v_##name}
-
-void fib_ffrt(void* arg)
-{
-    fib_ffrt_s* p = (fib_ffrt_s*)arg;
-    int x = p->x;
-    int* y = p->y;
-
-    if (x <= 1) {
-        *y = x;
-    } else {
-        int y1, y2;
-        fib_ffrt_s s1 = {x - 1, &y1};
-        fib_ffrt_s s2 = {x - 2, &y2};
-        ffrt_deps_define(dx, &x);
-        ffrt_deps_define(dy1, &y1);
-        ffrt_deps_define(dy2, &y2);
-        ffrt_deps_define(dy12, &y1, &y2);
-        ffrt_submit_c(fib_ffrt, NULL, &s1, &dx, &dy1, NULL);
-        ffrt_submit_c(fib_ffrt, NULL, &s2, &dx, &dy2, NULL);
-        ffrt_wait_deps(&dy12);
-        *y = y1 + y2;
-    }
-}
-
-int main(int narg, char** argv)
-{
-    int r;
-    fib_ffrt_s s = {10, &r};
-    ffrt_deps_define(dr, &r);
-    ffrt_submit_c(fib_ffrt, NULL, &s, NULL, &dr, NULL);
-    ffrt_wait_deps(&dr);
-    printf("fibonacci 10: %d\n", r);
-    return 0;
-}
-```
-
-`解析`：
-
-1)   将fibonacci (x-1)和fibonacci (x-2) 作为2个Task 提交给FFRT，在两个Task 完成之后将结果累加；
-
-2)   虽然单个Task 只能拆分成2个SubTask 但是子Task 可以继续拆分，因此，整个计算图的并行度是非常高的，Task 之间在FFRT 内部形成了一颗调用树；
-
-<img src="images/2023-11-02 195629.png" style="zoom:100%" />
-
-> 以上实现，逻辑上虽与C++ API中的实现类似，但是用户显式管理数据生命周期和函数入参打包两个因素将使代码异常复杂
 
 
 
@@ -326,46 +150,6 @@ typedef struct {
 
 * item为len个Signature的起始指针，该指针可以指向堆空间，也可以指向栈空间，但是要求分配的空间大于等于len * sizeof(void*)
 
-#### 样例
-
-* item指向栈空间的ffrt_deps_t
-
-```{.c}
-#include "ffrt.h"
-
-int main(int narg, char** argv)
-{
-    int x1 = 1;
-    int x2 = 2;
-    
-    void *t[] = {&x1, &x2};
-    ffrt_deps_t deps = {2, (const void* const *)&t};
-    // some code use deps
-    return 0;
-}
-```
-
-* item指向栈空间的ffrt_deps_t
-
-```{.c}
-#include <stdlib.h>
-#include "ffrt.h"
-
-int main(int narg, char** argv)
-{
-    int x1 = 1;
-    int x2 = 2;
-    
-    void** t = (void**)malloc(sizeof(void*) * 2);
-    t[0]= &x1;
-    t[1]= &x2;
-    ffrt_deps_t deps = {2, t};
-    
-    // some code use deps
-    free(t);
-    return 0;
-}
-```
 
 ### ffrt_task_attr_t
 
@@ -420,74 +204,6 @@ const char* ffrt_task_attr_get_name(const ffrt_task_attr_t* attr);
 * ffrt_task_attr_t对象的置空和销毁由用户完成，对同一个ffrt_task_attr_t仅能调用一次`ffrt_task_attr_destroy`，重复对同一个ffrt_task_attr_t调用`ffrt_task_attr_destroy`，其行为是未定义的
 * 在`ffrt_task_attr_destroy`之后再对task_attr进行访问，其行为是未定义的
 
-#### 样例
-
-```{.c}
-#include <stdio.h>
-#include "ffrt.h"
-
-void my_print(void* arg)
-{
-    printf("hello ffrt\n");
-}
-
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function;
-
-static void ffrt_exec_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void* arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-    c_function* f = (c_function*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t*)f;
-}
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-int main(int narg, char** argv)
-{
-    ffrt_task_attr_t attr;
-    ffrt_task_attr_init(&attr);
-    ffrt_task_attr_set_qos(&attr, ffrt_qos_background);
-    ffrt_submit_c(my_print, NULL, NULL, NULL, NULL, &attr);
-    ffrt_task_attr_destroy(&attr);
-    ffrt_wait();
-    return 0;
-}
-```
-
-* 提交一个qos 级别为background 的任务
 
 
 
@@ -535,115 +251,6 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 * C API中的task_handle_t对象的置空和销毁由用户完成，对同一个ffrt_task_handle_t仅能调用一次`ffrt_task_handle_destroy`，重复对同一个ffrt_task_handle_t调用`ffrt_task_handle_destroy`，其行为是未定义的
 * 在`ffrt_task_handle_destroy`之后再对ffrt_task_handle_t进行访问，其行为是未定义的
 
-#### 样例
-
-```{.c}
-#include <stdio.h>
-#include "ffrt.h"
-
-void func0(void* arg)
-{
-    printf("hello ");
-}
-
-void func1(void* arg)
-{
-    (*(int*)arg)++;
-}
-
-void func2(void* arg)
-{
-    printf("world, x = %d\n", *(int*)arg);
-}
-
-void func3(void* arg)
-{
-    printf("handle wait");
-    (*(int*)arg)++;
-}
-
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function;
-
-static void ffrt_exec_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void* arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-    c_function* f = (c_function*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t*)f;
-}
-
-static inline ffrt_task_handle_t ffrt_submit_h_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    return ffrt_submit_h_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-#define ffrt_deps_define(name, dep1, ...) const void* __v_##name[] = {dep1, ##__VA_ARGS__}; \
-    ffrt_deps_t name = {sizeof(__v_##name) / sizeof(void*), __v_##name}
-
-int main(int narg, char** argv)
-{  
-    // handle work with submit
-    ffrt_task_handle_t h = ffrt_submit_h_c(func0, NULL, NULL, NULL, NULL, NULL); // not need some data in this task
-    int x = 1;
-    ffrt_deps_define(d1, &x);
-    ffrt_deps_define(d2, &x, h);
-    ffrt_submit_c(func1, NULL, &x, NULL, &d1, NULL);
-    ffrt_submit_c(func2, NULL, &x, &d2, NULL, NULL); // this task depend x and h
-    ffrt_task_handle_destroy(h);
-    
-    // handle work with wait
-    ffrt_task_handle_t h2 = ffrt_submit_h_c(func3, NULL, &x, NULL, NULL, NULL);
-    ffrt_deps_define(d3, h2);
-    ffrt_wait_deps(&d3);
-    ffrt_task_handle_destroy(h2);
-    printf("x = %d", x);
-    ffrt_wait();
-    return 0;
-}
-```
-
-* 预期的输出为
-
-```
-hello world, x = 2
-handle wait
-x = 3
-```
 
 
 
@@ -673,9 +280,6 @@ uint64_t ffrt_this_task_get_id();
 * 可以基于该接口在task外部调用返回0的特性来区分函数是运行在FFRT 工作线程上还是非FFRT工作线程上
 * task id为从1开始编码，每提交一个task便增加1，被设计成64bit，即便是每秒百万次提交，也需要292471.2年才会发生翻转
 
-#### 样例
-
-* 忽略
 
 
 
@@ -706,9 +310,6 @@ int ffrt_this_task_update_qos(ffrt_qos_t qos);
 * 如果新设定的qos与当前的qos一致，则接口会立即返回0，不做任何处理
 * **如果在非task内部调用该接口，则返回非0值，用户可以选择忽略或其他处理**
 
-#### 样例
-
-* 忽略
 
 ## 串行队列
 <hr />
@@ -739,8 +340,7 @@ void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 * ffrt_queue_attr_t对象的置空和销毁由用户完成，对同一个ffrt_queue_t仅能调用一次`ffrt_queue_attr_destroy`，重复对同一个ffrt_queue_t调用`ffrt_queue_attr_destroy`，其行为是未定义的
 * 在`ffrt_queue_attr_destroy`之后再对ffrt_queue_t进行访问，其行为是未定义的
 
-### 样例
-将ffrt_queue_t章节的样例
+
 
 ### ffrt_queue_t
 
@@ -772,26 +372,7 @@ void ffrt_queue_destroy(ffrt_queue_t queue)
 * ffrt_queue_t对象的置空和销毁由用户完成，对同一个ffrt_queue_t仅能调用一次`ffrt_queue_t`，重复对同一个ffrt_queue_t调用`ffrt_queue_destroy`，其行为是未定义的
 * 在`ffrt_queue_destroy`之后再对ffrt_queue_t进行访问，其行为是未定义的
 
-### 样例
-```
-#include <stdio.h>
-#include "ffrt.h"
 
-using namespace ffrt;
-using namespace std;
-
-int main(int narg, char** argv)
-{
-    ffrt_queue_attr_t queue_attr;
-    (void)ffrt_queue_attr_init(&queue_attr);
-    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
-
-    ffrt_queue_submit(queue_handle, ffrt::create_function_wrapper([]() {printf("Task done.\n");}, ffrt_function_kind_queue), nullptr);
-
-    ffrt_queue_attr_destroy(&queue_attr);
-    ffrt_queue_destroy(queue_handle);
-}
-```
 ## 同步原语
 
 ### ffrt_mutex_t
@@ -841,109 +422,7 @@ int ffrt_mutex_destroy(ffrt_mutex_t* mutex);
 * **注意：C API中的ffrt_mutex_t对象的置空和销毁由用户完成，对同一个ffrt_mutex_t仅能调用一次`ffrt_mutex_destroy`，重复对同一个ffrt_mutex_t调用`ffrt_mutex_destroy`，其行为是未定义的**
 * **注意：在`ffrt_mutex_destroy`之后再对ffrt_mutex_t进行访问，其行为是未定义的**
 
-#### 样例
 
-```{.c}
-#include <stdio.h>
-#include "ffrt.h"
-
-typedef struct {
-    int* sum;
-    ffrt_mutex_t* mtx;
-} tuple;
-
-void func(void* arg)
-{
-    tuple* t = (tuple*)arg;
-    
-    int ret = ffrt_mutex_lock(t->mtx);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    (*t->sum)++;
-    ret = ffrt_mutex_unlock(t->mtx);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-}
-
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function;
-
-static void ffrt_exec_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void* arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-    c_function* f = (c_function*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t*)f;
-}
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-void ffrt_mutex_task()
-{
-    int sum = 0;
-    ffrt_mutex_t mtx;
-    tuple t = {&sum, &mtx};
-    int ret = ffrt_mutex_init(&mtx, NULL);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    for (int i = 0; i < 10; i++) {
-        ffrt_submit_c(func, NULL, &t, NULL, NULL, NULL);
-    }
-    ffrt_mutex_destroy(&mtx);
-    ffrt_wait();
-    printf("sum = %d", sum);
-}
-
-int main(int narg, char** argv)
-{
-    int r;
-    ffrt_submit_c(ffrt_mutex_task, NULL, NULL, NULL, NULL, NULL);
-    ffrt_wait();
-    return 0;
-}
-```
-
-预期输出为
-
-```
-sum=10
-```
-
-* 该例子为功能示例，实际中并不鼓励这样使用
 
 
 ### ffrt_cond_t
@@ -1012,136 +491,7 @@ int ffrt_cond_destroy(ffrt_cond_t* cond);
 * **注意：C API中的ffrt_cond_t对象的置空和销毁由用户完成，对同一个ffrt_cond_t仅能调用一次`ffrt_cond_destroy`，重复对同一个ffrt_cond_t调用`ffrt_cond_destroy`，其行为是未定义的**
 * **注意：在`ffrt_cond_destroy`之后再对ffrt_cond_t进行访问，其行为是未定义的**
 
-#### 样例
 
-```{.c}
-#include <stdio.h>
-#include "ffrt.h"
-
-typedef struct {
-    ffrt_cond_t* cond;
-    int* a;
-    ffrt_mutex_t* lock_;
-} tuple;
-
-void func1(void* arg)
-{
-    tuple* t = (tuple*)arg;
-    int ret = ffrt_mutex_lock(t->lock_);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    while (*t->a != 1) {
-        ret = ffrt_cond_wait(t->cond, t->lock_);
-        if (ret != ffrt_success) {
-            printf("error\n");
-        }
-    }
-    ret = ffrt_mutex_unlock(t->lock_);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    printf("a = %d", *(t->a));
-}
-
-void func2(void* arg)
-{
-    tuple* t = (tuple*)arg;
-    int ret = ffrt_mutex_lock(t->lock_);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    *(t->a) = 1;
-    ret = ffrt_cond_signal(t->cond);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    ret = ffrt_mutex_unlock(t->lock_);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-}
-
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function;
-
-static void ffrt_exec_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void* arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-    c_function* f = (c_function*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t*)f;
-}
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-void ffrt_cv_task()
-{
-    ffrt_cond_t cond;
-    int ret = ffrt_cond_init(&cond, NULL);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    int a = 0;
-    ffrt_mutex_t lock_;
-    tuple t = {&cond, &a, &lock_};
-    ret = ffrt_mutex_init(&lock_, NULL);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    ffrt_submit_c(func1, NULL, &t, NULL, NULL, NULL);
-    ffrt_submit_c(func2, NULL, &t, NULL, NULL, NULL);
-    ffrt_wait();
-    ffrt_cond_destroy(&cond);
-    ffrt_mutex_destroy(&lock_);
-}
-
-int main(int narg, char** argv)
-{
-    ffrt_submit_c(ffrt_cv_task, NULL, NULL, NULL, NULL, NULL);
-    ffrt_wait();
-    return 0;
-}
-```
-
-预期输出为：
-
-```
-a=1
-```
-
-* 该例子为功能示例，实际中并不鼓励这样使用
 
 ## 杂项
 
@@ -1170,71 +520,7 @@ int ffrt_usleep(uint64_t usec);
 * 该接口只能在FFRT task 内部调用，在FFRT task 外部调用存在未定义的行为
 * 该功能能够避免传统的sleep 睡眠时陷入内核的问题，在使用得当的条件下将会有更好的性能
 
-#### 样例
 
-```{.c}
-#include <time.h>
-#include <stdio.h>
-#include "ffrt.h"
-
-void func(void* arg)
-{
-    printf("Time: %s", ctime(&(time_t){time(NULL)}));
-    ffrt_usleep(2000000); // 睡眠 2 秒
-    printf("Time: %s", ctime(&(time_t){time(NULL)}));
-}
-
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function;
-
-static void ffrt_exec_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void* arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-    c_function* f = (c_function*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t*)f;
-}
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-int main(int narg, char** argv)
-{
-    ffrt_submit_c(func, NULL, NULL, NULL, NULL, NULL);
-    ffrt_wait();
-    return 0;
-}
-```
 
 ### ffrt_yield
 <hr/>
@@ -1258,84 +544,9 @@ void ffrt_yield();
 * 该接口只能在FFRT task 内部调用，在FFRT task 外部调用存在未定义的行为
 * 此函数的确切行为取决于实现，特别是使用中的FFRT 调度程序的机制和系统状态
 
-#### 样例
 
-* 省略
-
-
-# 部署
-
-## 部署方式
-<img src="images/2023-11-02 115530.png" alt="2023-11-02 115530" style="zoom:67%;" />
-
-* FFRT的部署依赖FFRT动态库libffrt.so和一组header头文件
-
-* FFRT的头文件为`ffrt.h`，内部包含了C++ API，C API和C base API
-  * ffrt.h 定义为：
-  ```{.cpp}
-  #ifndef FFRT_API_FFRT_H
-  #define FFRT_API_FFRT_H
-  #ifdef __cplusplus
-  #include "cpp/task.h"
-  #include "cpp/deadline.h"
-  #include "cpp/sys_event.h"
-  #include "cpp/mutex.h"
-  #include "cpp/condition_variable.h"
-  #include "cpp/sleep.h"
-  #include "cpp/thread.h"
-  #include "cpp/config.h"
-  #include "cpp/future.h"
-  #else
-  #include "c/task.h"
-  #include "c/deadline.h"
-  #include "c/sys_event.h"
-  #include "c/mutex.h"
-  #include "c/condition_variable.h"
-  #include "c/sleep.h"
-  #include "c/thread.h"
-  #include "c/config.h"
-  #endif
-  #endif
-  ```
-  * C base API定义示例：
-  ```{.cpp}
-  void ffrt_submit_base(ffrt_function_header_t* func, ...);
-  int ffrt_mutex_init(...);
-  ```
-  * C API定义示例：
-  ```{.cpp}
-  static inline void ffrt_submit(ffrt_function_t func, void* arg, ...)
-  {
-      ffrt_submit_base(ffrt_create_function_wrapper(func, arg), ...);
-  }
-  ```
-  * C++ API定义示例：
-  ```{.cpp}
-  namespace ffrt {
-  static inline void submit(std::function& func, ...)
-  {
-      ffrt_submit_base(ffrt_create_function_wrapper(func), ...);
-  }
-  struct mutex {
-      mutex() {
-          ffrt_mutex_init(...);
-          ...
-      };
-  }
-  ```
   
 * **出于易用性方面的考虑，除非必要，强烈建议你使用C++ API，调用C API将会使你的代码非常臃肿或者更容易产生资源未释放问题**
-
-| 需求列表                                                     |
-| ------------------------------------------------------------ |
-| 需求1：ABI兼容性，在NDK场景中由于用户的编译环境与FFRT的编译环境不同，使用C++接口可能存在ABI兼容性问题，要有解决方案 |
-| 需求2：用户的编译环境为纯C编译环境，不想因为引入FFRT而引入C++元素的场景，要有解决方案 |
-| 需求3：易用性，尽可能让接口简单易用，用户少出错              |
-
-* 对于需求1，通过在用户调用的C++接口和FFRT的实现之间增加一个C base API层，并基于头文件方式将API中的C++的元素编译到用户的so，从而解决ABI兼容的问题
-* 对于需求2，可以通过C Base API解决
-* 对于需求3，建议用户尽可能使用C++ API，以避免C API固有的资源未初始化/释放、参数冗长等问题，对于不得不使用C API的场景，FFRT仍然支持用户使用C API和C base API
-
 
 
 <br/>
