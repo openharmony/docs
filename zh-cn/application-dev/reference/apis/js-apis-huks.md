@@ -236,7 +236,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | 参数名   | 类型                        | 必填 | 说明                                          |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。           |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。                      |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，比如删除的密钥范围（全量，还是单个），当删除单个时，TAG字段可选。                      |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **错误码：**
@@ -288,7 +288,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 参数名   | 类型                        | 必填 | 说明                                |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。            |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，比如删除的密钥范围（全量，还是单个），当删除单个时，TAG字段可选。            |
 
 **错误码：**
 
@@ -2707,7 +2707,7 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 | 参数名   | 类型        | 必填 | 说明                                                  |
 | -------- | ----------- | ---- | ----------------------------------------------------- |
 | keyAlias | string      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| options | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
+| options | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，比如删除的密钥范围（全量，还是单个），当删除单个时，TAG字段可选。 |
 
 **返回值：**
 
