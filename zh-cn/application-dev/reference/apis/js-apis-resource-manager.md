@@ -309,6 +309,8 @@ import { BusinessError } from '@ohos.base';
 > - ResourceManager涉及到的方法，仅限基于TS扩展的声明式开发范式使用。
 >
 > - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
+>
+> - 通过指定资源ID或指定资源名称可实现本应用包资源的访问，通过指定[resource对象](#resource9)或对应包的[context](../application-models/application-context-stage.md#创建其他应用或其他module的context)可实现应用内跨包资源的访问。
 
 ### getStringSync<sup>9+</sup>
 
