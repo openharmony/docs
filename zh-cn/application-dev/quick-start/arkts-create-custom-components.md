@@ -261,7 +261,7 @@ struct ParentComponent {
   }
   ```
 
-- 不允许调用除了被\@Builder装饰以外的方法，允许系统组件的参数是TS方法的返回值。
+- 不允许调用没有用\@Builder装饰的方法，允许系统组件的参数是TS方法的返回值。
 
   ```ts
   @Component
