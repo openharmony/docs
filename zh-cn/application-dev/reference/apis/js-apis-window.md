@@ -5804,7 +5804,7 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 // 将windowClass调整到targetWindow之上
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
@@ -5854,7 +5854,7 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 ```js
 // 将windowClass调整到targetWindow之上
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
