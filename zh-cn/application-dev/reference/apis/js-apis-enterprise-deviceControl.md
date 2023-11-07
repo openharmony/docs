@@ -119,7 +119,7 @@ deviceControl.resetFactory(wantTemp).then(() => {
 
 shutdown(admin: Want): void
 
-指定设备管理应用使设备关机。同步调用。
+指定设备管理应用使设备关机。
 
 **需要权限：** ohos.permission.ENTERPRISE_REBOOT
 
@@ -164,7 +164,7 @@ try {
 
 reboot(admin: Want): void
 
-指定设备管理应用使设备重启。同步调用。
+指定设备管理应用使设备重启。
 
 **需要权限：** ohos.permission.ENTERPRISE_REBOOT
 
@@ -209,7 +209,7 @@ try {
 
 lockScreen(admin: Want): void
 
-指定设备管理应用使设备屏幕锁定。同步调用。
+指定设备管理应用使设备屏幕锁定。
 
 **需要权限：** ohos.permission.ENTERPRISE_LOCK_DEVICE
 
