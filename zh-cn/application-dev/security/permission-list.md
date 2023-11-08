@@ -3249,3 +3249,51 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+
+允许应用访问公共目录下的Download目录。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
+允许应用访问公共目录下的Documents目录。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
+
+允许应用访问公共目录下的Desktop目录。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.FILE_ACCESS_PERSIST
+
+允许应用支持持久化访问文件Uri。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
