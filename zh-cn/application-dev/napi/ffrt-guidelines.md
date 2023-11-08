@@ -108,9 +108,6 @@ task5(OUT A);
 
 # C API
 
-> C API采用接近C11/pthread (https://zh.cppreference.com/w/c) 的命名风格，并冠以`ffrt_`前缀，以`_base`为后缀的API是内部API，通常不被用户直接调用
->
-> **出于易用性方面的考虑，除非必要，强烈建议你使用C++ API(亦满足二进制兼容要求)，调用C API将会使你的代码非常臃肿** 
 
 ## 任务管理
 
@@ -151,16 +148,19 @@ void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, 
 
 `in_deps`
 
-* 同ffrt_submit
-
+* 该参数是可选的
+* 该参数用于描述该任务的输入依赖，FFRT 通过数据的虚拟地址作为数据的Signature 来建立依赖
 
 `out_deps`
 
-* 同ffrt_submit
+* 该参数是可选的
+* 该参数用于描述该任务的输出依赖
+* `注意`：该依赖值本质上是一个数值，ffrt没办法区分该值是合理的还是不合理的，会假定输入的值是合理的进行处理；但不建议采用NULL，1, 2 等值来建立依赖关系，建议采用实际的内存地址，因为前者使用不当会建立起不必要的依赖，影响并发
 
 `attr`
 
-* 同ffrt_submit
+* 该参数是可选的
+* 该参数用于描述Task 的属性，比如qos 等
 
 #### 返回值
 
@@ -600,19 +600,23 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 
 `func`
 
-* 同ffrt_submit，详见[ffrt_submit](#ffrt_submit) 定义
+* 可被std::function 接收的一切CPU 可执行体，可以为C++ 定义的Lambda 函数闭包，函数指针，甚至是函数对象
 
 `in_deps`
 
-* 同ffrt_submit，详见[ffrt_submit](#ffrt_submit) 定义
+* 该参数是可选的
+* 该参数用于描述该任务的输入依赖，FFRT 通过数据的虚拟地址作为数据的Signature 来建立依赖
 
 `out_deps`
 
-* 同ffrt_submit，详见[ffrt_submit](#ffrt_submit) 定义
+* 该参数是可选的
+* 该参数用于描述该任务的输出依赖
+* `注意`：该依赖值本质上是一个数值，ffrt没办法区分该值是合理的还是不合理的，会假定输入的值是合理的进行处理；但不建议采用NULL，1, 2 等值来建立依赖关系，建议采用实际的内存地址，因为前者使用不当会建立起不必要的依赖，影响并发
 
 `attr`
 
-* 同ffrt_submit，详见[ffrt_submit](#ffrt_submit) 定义
+* 该参数是可选的
+* 该参数用于描述Task 的属性，比如qos 等，详见 [task_attr](#task_attr)章节
 
 #### 返回值
 
@@ -620,8 +624,7 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 
 #### 描述
 
-* C API中的ffrt_task_handle_t的使用与C++ API中的ffrt::task_handle相同
-* **差异在于：C API中的ffrt_task_handle_t需要用户调用`ffrt_task_handle_destroy`显式销毁，而C++ API无需该操作**
+* **C API中的ffrt_task_handle_t需要用户调用`ffrt_task_handle_destroy`显式销毁**
 * C API中的task_handle_t对象的置空和销毁由用户完成，对同一个ffrt_task_handle_t仅能调用一次`ffrt_task_handle_destroy`，重复对同一个ffrt_task_handle_t调用`ffrt_task_handle_destroy`，其行为是未定义的
 * 在`ffrt_task_handle_destroy`之后再对ffrt_task_handle_t进行访问，其行为是未定义的
 
