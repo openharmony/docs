@@ -341,7 +341,7 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "alertWindow",
   windowType: window.WindowType.TYPE_SYSTEM_ALERT
@@ -398,7 +398,7 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "alertWindow",
   windowType: window.WindowType.TYPE_SYSTEM_ALERT
@@ -447,7 +447,7 @@ findWindow(name: string): Window
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 try {
   windowClass = window.findWindow('alertWindow');
 } catch (exception) {
@@ -484,7 +484,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 try {
   class BaseContext {
       stageMode: boolean = false;
@@ -538,7 +538,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 class BaseContext {
   stageMode: boolean = false;
 }
@@ -1263,7 +1263,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.create('first', window.WindowType.TYPE_APP, (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1307,7 +1307,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.create('first', window.WindowType.TYPE_APP);
 promise.then((data) => {
   windowClass = data;
@@ -1343,7 +1343,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.create('alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1387,7 +1387,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.create('alertWindow', window.WindowType.TYPE_SYSTEM_ALERT);
 promise.then((data) => {
   windowClass = data;
@@ -1421,7 +1421,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.find('alertWindow', (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1462,7 +1462,7 @@ find(id: string): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.find('alertWindow');
 promise.then((data) => {
   windowClass = data;
@@ -1497,7 +1497,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.getTopWindow((err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1534,7 +1534,7 @@ getTopWindow(): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data)=> {
     windowClass = data;
@@ -1568,7 +1568,7 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data) => {
   windowClass = data;
@@ -1607,7 +1607,7 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data) => {
   windowClass = data;
@@ -3799,7 +3799,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = { name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
@@ -3888,7 +3888,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "dialogWindow",
   windowType: window.WindowType.TYPE_DIALOG
@@ -3953,7 +3953,7 @@ import { BusinessError } from '@ohos.base';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
     };
@@ -4027,7 +4027,7 @@ import { BusinessError } from '@ohos.base';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
     };
@@ -4244,6 +4244,7 @@ getWindowColorSpace(): ColorSpace
 **示例：**
 
 ```ts
+let windowClass: window.Window = window.findWindow("test");
 let colorSpace = windowClass.getWindowColorSpace();
 ```
 
@@ -4365,6 +4366,7 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let brightness: number = 1;
+let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setWindowBrightness(brightness);
   promise.then(() => {
@@ -5804,9 +5806,10 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 // 将windowClass调整到targetWindow之上
+let windowClass: window.Window | undefined = undefined;
+let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
-let windowClass: window.Window = window.findWindow("test");
 windowClass.raiseAboveTarget(targetId, (err) => {
     if (err.code) {
         console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
@@ -5853,6 +5856,8 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 ```js
 // 将windowClass调整到targetWindow之上
+let windowClass: window.Window | undefined = undefined;
+let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
 let promise = windowClass.raiseAboveTarget(targetId);
@@ -8283,7 +8288,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     windowStage.getMainWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
       if (errCode) {
@@ -8334,7 +8339,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let promise = windowStage.getMainWindow();
     promise.then((data) => {
       windowClass = data;
@@ -8429,7 +8434,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     try {
       windowStage.createSubWindow('mySubWindow', (err: BusinessError, data) => {
         const errCode: number = err.code;
@@ -8496,7 +8501,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     try {
       let promise = windowStage.createSubWindow('mySubWindow');
       promise.then((data) => {
@@ -9228,7 +9233,7 @@ completeTransition(isCompleted: boolean): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({
@@ -9280,7 +9285,7 @@ animationForShown(context: TransitionContext): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context : window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({
@@ -9326,7 +9331,7 @@ animationForHidden(context: TransitionContext): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({

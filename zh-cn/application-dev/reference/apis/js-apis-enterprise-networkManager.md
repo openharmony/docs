@@ -756,7 +756,7 @@ let wantTemp: Want = {
 };
 let filterRule: networkManager.AddFilterRule = {
   "ruleNo": 1,
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -821,7 +821,7 @@ let wantTemp: Want = {
 };
 let filterRule: networkManager.AddFilterRule = {
   "ruleNo": 1,
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -877,7 +877,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let filterRule: networkManager.RemoveFilterRule = {
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -940,7 +940,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let filterRule: networkManager.RemoveFilterRule = {
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",

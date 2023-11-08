@@ -402,6 +402,7 @@
       - 使用多线程并发能力进行开发
         - [多线程并发概述](arkts-utils/multi-thread-concurrency-overview.md)
         - [TaskPool和Worker的对比](arkts-utils/taskpool-vs-worker.md)
+        - [@Concurrent装饰器：校验并发函数](arkts-utils/arkts-concurrent.md)
         - [CPU密集型任务开发指导](arkts-utils/cpu-intensive-task-development.md)
         - [I/O密集型任务开发指导](arkts-utils/io-intensive-task-development.md)
         - [同步任务开发指导](arkts-utils/sync-task-development.md)
@@ -720,7 +721,7 @@
     - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
     - 图形图像
       - [XComponent开发指导](napi/xcomponent-guidelines.md)
-      - [Drawing开发指导](napi/drawing-guidelines.md)
+      - [使用Drawing实现图形绘制与显示](napi/drawing-guidelines.md)
       - [NativeBuffer开发指导](napi/native-buffer-guidelines.md)
       - [NativeImage开发指导](napi/native-image-guidelines.md)
       - [NativeVsync开发指导](napi/native-vsync-guidelines.md)
@@ -766,6 +767,7 @@
       - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
+      - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具

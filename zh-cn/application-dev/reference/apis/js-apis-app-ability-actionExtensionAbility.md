@@ -95,7 +95,7 @@ ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 
 2. 在ActionExtAbility目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为ActionExtAbility.ts。
 
-    ```
+    ```text
     ├── ets
     │ ├── ActionExtAbility
     │ │   ├── ActionExtAbility.ts

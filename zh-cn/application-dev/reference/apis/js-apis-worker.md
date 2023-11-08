@@ -670,6 +670,8 @@ workerInstance.removeAllListener();
 
 ## WorkerEventTarget<sup>9+</sup>
 
+处理Worker监听事件。
+
 ### addEventListener<sup>9+</sup>
 
 addEventListener(type: string, listener: WorkerEventListener): void
@@ -1503,7 +1505,7 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worke
 
 | 参数名 | 类型                               | 必填 | 说明                   |
 | ------ | ---------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent\<T>](#messageeventt) | 是   | 收到的Worker消息数据。 |
+| event  | [MessageEvent](#messageeventt) | 是   | 收到的Worker消息数据。 |
 
 **示例：**
 
@@ -1532,7 +1534,7 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 
 | 参数名 | 类型                               | 必填 | 说明       |
 | ------ | ---------------------------------- | ---- | ---------- |
-| event  | [MessageEvent\<T>](#messageeventt) | 是   | 异常数据。 |
+| event  | [MessageEvent](#messageeventt) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -1855,7 +1857,7 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 | 参数名 | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。         |
-| ev     | [MessageEvent\<T>](#messageeventt)                           | 是   | 收到宿主线程发送的数据。 |
+| ev     | [MessageEvent](#messageeventt)                           | 是   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
@@ -1893,7 +1895,7 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。 |
-| ev     | [MessageEvent\<T>](#messageeventt)                           | 是   | 异常数据。       |
+| ev     | [MessageEvent](#messageeventt)                           | 是   | 异常数据。       |
 
 **示例：**
 

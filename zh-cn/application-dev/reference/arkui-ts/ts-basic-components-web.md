@@ -171,6 +171,8 @@ domStorageAccess(domStorageAccess: boolean)
 
 设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。
 
+**系统能力：** SystemCapability.Web.Webview.Core
+
 **参数：**
 
 | 参数名              | 参数类型    | 必填   | 默认值   | 参数描述                                 |
@@ -341,6 +343,37 @@ javaScriptAccess(javaScriptAccess: boolean)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .javaScriptAccess(true)
+      }
+    }
+  }
+  ```
+
+### overScrollMode<sup>11+</sup>
+
+overScrollMode(mode: OverScrollMode)
+
+设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | ----------- | ---- | --------------- | ------------------ |
+|  mode  | [OverScrollMode](#overscrollmode11枚举说明) | 是   | OverScrollMode.NEVER | 设置Web的过滚动模式为关闭或开启。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State mode: OverScrollMode = OverScrollMode.ALWAYS
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .overScrollMode(this.mode)
       }
     }
   }
@@ -1455,7 +1488,7 @@ mediaOptions(options: WebMediaOptions)
 
 ## 事件
 
-不支持通用事件。
+不支持[通用事件](ts-universal-events-click.md)。
 
 ### onAlert
 
@@ -4749,6 +4782,13 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | Map           | 地理地址。                    |
 | Phone         | 电话号码。                    |
 | Unknown       | 未知内容。                    |
+
+ ## OverScrollMode<sup>11+</sup>枚举说明
+
+| 名称      | 描述                                   |
+| ------- | ------------------------------------ |
+| NEVER   | Web过滚动模式关闭。                     |
+| ALWAYS  | Web过滚动模式开启。                     |
 
 ## SslError<sup>9+</sup>枚举说明
 

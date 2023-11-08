@@ -359,7 +359,7 @@ TextDecoder的构造函数。
 
 ### create<sup>9+</sup>
 
-create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder;
+create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
 
 替代有参构造功能。
 
@@ -1685,7 +1685,7 @@ ScopeComparable类型的值需要实现compareTo方法，确保传入的数据�
 
 ### compareTo<sup>8+</sup>
 
-compareTo(other: ScopeComparable): boolean;
+compareTo(other: ScopeComparable): boolean
 
 比较两个值的大小，返回一个布尔值。
 
@@ -2857,6 +2857,10 @@ isGeneratorFunction(value: Object): boolean
 
 检查输入的value是否是generator函数类型。
 
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2884,6 +2888,10 @@ isGeneratorFunction(value: Object): boolean
 isGeneratorObject(value: Object): boolean
 
 检查输入的value是否是generator对象类型。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3286,6 +3294,10 @@ isStringObject(value: Object): boolean
 isSymbolObject(value: Object): boolean
 
 检查输入的value是否是Symbol对象类型。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3690,7 +3702,7 @@ updateCapacity(newCapacity: number): void
 
   ```ts
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
-  let result = pro.updateCapacity(100);
+  pro.updateCapacity(100);
   ```
 
 ### toString<sup>(deprecated)</sup>

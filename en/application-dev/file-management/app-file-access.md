@@ -1,42 +1,42 @@
 # Accessing Application Files
 
-This topic describes how to enable an application to view, create, read, write, delete, move, or copy an application and obtain file information.
+This topic describes how to enable an application to view, create, read, write, delete, move, or copy an application file and obtain file information.
 
 ## Available APIs
 
-You can use [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement access to application files. The following table describes the APIs.
+You can use [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement access to application files. The following table describes the common APIs.
 
 **Table 1** APIs for basic application file operations
 
-| API| Description| Type| Synchronous Programming| Asynchronous Programming| 
+| API| Description| Category| Synchronous Programming| Asynchronous Programming|
 | -------- | -------- | -------- | -------- | -------- |
-| access | Checks whether a file exists.| Method| √ | √ | 
-| close | Closes a file.| Method| √ | √ | 
-| copyFile | Copies a file.| Method| √ | √ | 
-| createStream | Creates a stream based on the specified file path.| Method| √ | √ | 
-| listFile | Lists all files in a directory.| Method| √ | √ | 
-| mkdir | Creates a directory.| Method| √ | √ | 
-| moveFile | Moves a file.| Method| √ | √ | 
-| open | Opens a file.| Method| √ | √ | 
-| read | Reads data from a file.| Method| √ | √ | 
-| rename | Renames a file or folder.| Method| √ | √ | 
-| rmdir | Deletes a directory.| Method| √ | √ | 
-| stat | Obtains detailed file information.| Method| √ | √ | 
-| unlink | Deletes a single file.| Method| √ | √ | 
-| write | Writes data to a file.| Method| √ | √ | 
-| Stream.close | Closes a stream.| Method| √ | √ | 
-| Stream.flush | Flushes all data from this stream.| Method| √ | √ | 
-| Stream.write | Writes data to a stream.| Method| √ | √ | 
-| Stream.read | Reads data from a stream.| Method| √ | √ | 
-| File.fd | Defines a file descriptor.| Attribute| - | - | 
-| OpenMode | Defines the mode for opening a file.| Attribute| - | - | 
-| Filter | Defines the options for setting the file filter.| Type| - | - | 
+| access | Checks whether a file exists.| Method| Supported| Supported|
+| close | Closes a file.| Method| Supported| Supported|
+| copyFile | Copies a file.| Method| Supported| Supported|
+| createStream | Creates a stream based on a file path.| Method| Supported| Supported|
+| listFile | Lists all files in a directory.| Method| Supported| Supported|
+| mkdir | Creates a directory.| Method| Supported| Supported|
+| moveFile | Moves a file.| Method| Supported| Supported|
+| open | Opens a file.| Method| Supported| Supported|
+| read | Reads data from a file.| Method| Supported| Supported|
+| rename | Renames a file or folder.| Method| Supported| Supported|
+| rmdir | Deletes a directory.| Method| Supported| Supported|
+| stat | Obtains detailed file information.| Method| Supported| Supported|
+| unlink | Deletes a single file.| Method| Supported| Supported|
+| write | Writes data to a file.| Method| Supported| Supported|
+| Stream.close | Closes a stream.| Method| Supported| Supported|
+| Stream.flush | Flushes all data from this stream.| Method| Supported| Supported|
+| Stream.write | Writes data to a stream.| Method| Supported| Supported|
+| Stream.read | Reads data from a stream.| Method| Supported| Supported|
+| File.fd | Defines a file descriptor.| Attribute| N/A| N/A|
+| OpenMode | Defines the mode for opening a file.| Attribute| N/A| N/A|
+| Filter | Defines the options for filtering files.| Type| N/A| N/A|
 
 ## Development Example
 
-First, obtain the [application file path](../application-models/application-context-stage.md#obtaining-application-file-paths). The following example shows how to obtain a HAP file path using **UIAbilityContext**. For details about how to obtain **UIAbilityContext**, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+Before performing any file operation, obtain the [application file path](../application-models/application-context-stage.md#obtaining-application-file-paths). The following example shows how to obtain a HAP file path using **UIAbilityContext**. For details about how to obtain **UIAbilityContext**, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
-Then, perform file operations.
+The following walks you through on how to perform common file operations.
 
 ### Creating, Reading, and Writing a File
 
@@ -76,7 +76,7 @@ function createFile(): void {
 
 ### Copying Data to Another File
 
-The following example demonstrates how to read data from a file and write it to another file.
+The following example demonstrates how to read data from a file and copy it to another file.
 
 ```ts
 // pages/xxx.ets
@@ -161,7 +161,7 @@ async function readWriteFileWithStream(): Promise<void> {
 
 > **NOTE**
 >
-> - Close the stream that is no longer used in a timely manner. 
+> - Close the stream once it is not required.
 > - Comply with the programming specifications for **Stream** APIs in asynchronous mode and avoid mixed use of the APIs in synchronous mode and asynchronous mode.
 > - The **Stream** APIs do not support concurrent read and write operations.
 

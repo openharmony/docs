@@ -10,8 +10,8 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 ```ts
 LazyForEach(
     dataSource: IDataSource,             // 需要进行数据迭代的数据源
-    itemGenerator: (item: Object) => void,  // 需要进行数据迭代的数据源
-    keyGenerator?: (item: Object): string => string // 需要进行数据迭代的数据源
+    itemGenerator: (item: Object) => void,  // 子组件生成函数
+    keyGenerator?: (item: Object): string => string // 键值生成函数
 ): void
 ```
 

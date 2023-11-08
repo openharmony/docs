@@ -120,11 +120,7 @@ scan(): void
 
 启动WLAN扫描。
 
-**需要权限：**
-
-API 9：ohos.permission.SET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
-
-API 10起：ohos.permission.SET_WIFI_INFO
+**需要权限：** ohos.permission.SET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -2476,6 +2472,13 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示P2P连接信息。如果error为非0，表示处理出现错误。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifiManager.getCurrentGroup<sup>9+</sup>
 
@@ -3537,6 +3540,8 @@ on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 
 注册WIFI设备配置更改事件。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
@@ -3562,6 +3567,8 @@ off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
 
 取消注册WIFI设备配置更改事件。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
@@ -3571,7 +3578,7 @@ off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"streamChange"字符串。 |
-| callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置.|
+| callback | Callback&lt;number&gt; | 否 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置.|
 
 **错误码：**
 
@@ -3785,7 +3792,7 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
-| callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
+| callback | Callback&lt;StationInf]&gt; | 否 | 状态改变回调函数。 |
 
 **错误码：**
 
@@ -3793,7 +3800,7 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-| 2501000  | Operation failed.|
+| 2601000  | Operation failed.|
 
 **示例：**
 ```ts

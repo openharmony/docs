@@ -18,25 +18,28 @@ This repository stores device and application development documents provided by 
 
  - master: the latest version.
 
+ - OpenHarmony 4.0 Release. [Learn more](en/release-notes/OpenHarmony-v4.0-release.md)
+
  - OpenHarmony 3.2 Release. [Learn more](en/release-notes/OpenHarmony-v3.2-release.md)
+   
+   This version is upgraded to OpenHarmony 3.2.3 Release. [Learn more](en/release-notes/OpenHarmony-v3.2.3-release.md)
 
  - OpenHarmony 3.1 Release. [Learn more](en/release-notes/OpenHarmony-v3.1-release.md)
 
-   This version is upgraded to OpenHarmony 3.1.3 Release. [Learn more](en/release-notes/OpenHarmony-v3.1.3-release.md)
+   This version is upgraded to OpenHarmony 3.1.7 Release. [Learn more](en/release-notes/OpenHarmony-v3.1.7-release.md)
 
  - OpenHarmony 3.0 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0-LTS.md)
 
-   This version is upgraded to OpenHarmony 3.0.6 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0.6-LTS.md)
+   This version is upgraded to OpenHarmony 3.0.8 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0.8-LTS.md)
 
- - OpenHarmony 2.2 Beta2. [Learn more](en/release-notes/OpenHarmony-v2.2-beta2.md)
 
- - OpenHarmony 2.0 Canary. [Learn more](en/release-notes/OpenHarmony-2-0-Canary.md)
 
 ### Historical Stable Versions
 
-OpenHarmony_v1.x_release: OpenHarmony 1.1.5 LTS. [Learn more](en/release-notes/OpenHarmony-v1.1.5-LTS.md)
+OpenHarmony-1.0.1-Release
 
 [More versions](en/release-notes/)
+[OpenHarmony Version Definitions](en/release-notes/release-definitions/Release-version-definitions.md)
 
 
 ## Third-Party Open-Source Software and License Notice

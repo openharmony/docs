@@ -33,6 +33,8 @@ import Want from '@ohos.app.ability.Want';
 - 基础用法(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)
 
   ```ts
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import Want from '@ohos.app.ability.Want';
   import { BusinessError } from '@ohos.base';
 

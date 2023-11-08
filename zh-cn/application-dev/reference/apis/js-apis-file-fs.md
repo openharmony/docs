@@ -528,8 +528,8 @@ copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void,
   let destPath = pathDir + "/destDir/";
   fs.copyDir(srcPath, destPath, 0, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
-      for (let i = 0; i < data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
+      for (let i = 0; i < err.data.length; i++) {
+        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
       console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
@@ -659,7 +659,7 @@ mkdir(path: string, recursion: boolean): Promise<void>
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 目录的应用沙箱路径。                                   |
-| recursion   | string | 是   | 是否多层级创建目录。recursion指定为true时，可多层级创建目录。recursion指定为false时，仅可创建单层目录。   |
+| recursion   | boolean | 是   | 是否多层级创建目录。recursion指定为true时，可多层级创建目录。recursion指定为false时，仅可创建单层目录。   |
 
 **返回值：**
 
@@ -729,7 +729,7 @@ mkdir(path: string, recursion: boolean, callback: AsyncCallback&lt;void&gt;): vo
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                    | 是   | 目录的应用沙箱路径。                                   |
-| recursion   | string | 是   | 是否多层级创建目录。recursion指定为true时，可多层级创建目录。recursion指定为false时，仅可创建单层目录。   |
+| recursion   | boolean | 是   | 是否多层级创建目录。recursion指定为true时，可多层级创建目录。recursion指定为false时，仅可创建单层目录。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步创建目录操作完成之后的回调。                             |
 
 **错误码：**
@@ -777,7 +777,7 @@ mkdirSync(path: string): void
 
 ## fs.mkdirSync<sup>11+</sup>
 
-mkdirSync(path: string): void
+mkdirSync(path: string, recursion: boolean): void
 
 以同步方法创建目录。当recursion指定为true，可多层级创建目录。
 
@@ -788,7 +788,7 @@ mkdirSync(path: string): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 目录的应用沙箱路径。                                   |
-| recursion   | string | 是   | 是否多层级创建目录。recursion指定为true时，可多层级创建目录。recursion指定为false时，仅可创建单层目录。   |
+| recursion | boolean | 是   | 是否多层级创建目录。recursion指定为true时，可多层级创建目录。recursion指定为false时，仅可创建单层目录。   |
 
 **错误码：**
 
@@ -1508,6 +1508,14 @@ readLines(filePath: string, options?: Options, callback: AsyncCallback&lt;Reader
   let options: Options = {
     encoding: 'utf-8'
   };
+  let readerIteratorPromise = fs.readLines(filePath, options);
+  readerIteratorPromise.then((readerIterator: fs.ReaderIterator) => {
+    for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
+      console.info("content: " + it.value);
+    }
+  }).catch((err: BusinessError) => {
+    console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+  });
   fs.readLines(filePath, options, (err: BusinessError, readerIterator: fs.ReaderIterator) => {
     if (err) {
       console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
@@ -2063,7 +2071,7 @@ fdatasync(fd: number): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdatasync(file.fd).then((err: BusinessError) => {
+  fs.fdatasync(file.fd).then(() => {
     console.info("sync data succeed");
   }).catch((err: BusinessError) => {
     console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
@@ -2278,7 +2286,7 @@ listFile(path: string, options?: {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter;
+    public filter: Filter = {};
   }
   let option = new ListFileOption();
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
@@ -2334,7 +2342,7 @@ listFile(path: string, options?: {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter;
+    public filter: Filter = {};
   }
   let option = new ListFileOption();
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
@@ -2397,7 +2405,7 @@ listFileSync(path: string, options?: {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter;
+    public filter: Filter = {};
   }
   let option = new ListFileOption();
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
@@ -2440,6 +2448,8 @@ lseek(fd: number, offset: number, whence?: WhenceType): number
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   console.info('The current offset is at ' + fs.lseek(file.fd, 5, fs.WhenceType.SEEK_SET));
   fs.closeSync(file);
@@ -2784,6 +2794,8 @@ utimes(path: string, mtime: number): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.writeSync(file.fd, 'test data');
@@ -2897,6 +2909,8 @@ createRandomAccessFileSync(file: string|File, mode?: number): RandomAccessFile
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
@@ -4283,7 +4297,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
         console.info("read succeed and size is:" + readLength);
       }
     }
-    randomAccessFile.close();
+    randomaccessfile.close();
     fs.closeSync(file);
   });
   ```
@@ -4316,6 +4330,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);

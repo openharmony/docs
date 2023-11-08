@@ -1,6 +1,6 @@
 # @ohos.app.ability.childProcessManager (childProcessManager)
 
-childProcessManager模块提供子进程管理能力，支持子进程启动操作。
+childProcessManager模块提供子进程管理能力，支持子进程启动操作。该模块仅平板类设备可用。
 
 > **说明：**
 >
@@ -28,7 +28,7 @@ import childProcessManager from '@ohos.app.ability.childProcessManager';
 
 startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;;
 
-启动子进程，并调用子进程的入口方法，以Promise方式返回执行结果。创建子进程成功会返回子进程pid，但并不代表入口方法调用成功，具体结果以入口方法是否调用成功为准。
+启动子进程，并调用子进程的入口方法，以Promise方式返回执行结果。创建子进程成功会返回子进程pid，但并不代表入口方法调用成功，具体结果以入口方法是否调用成功为准。子进程中不支持再次调用该方法创建子进程。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -36,7 +36,7 @@ startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | 是 | 子进程源文件相对路径。 |
+  | srcEntry | string | 是 | 子进程源文件相对路径，目前只支持源文件放在entry类型的模块中。 |
   | startMode | [StartMode](#childprocessmanagerstartmode) | 是 | 子进程启动模式。 |
 
 **返回值：**
@@ -69,8 +69,10 @@ export default class DemoProcess extends ChildProcess {
 
 // 使用childProcessManager.startChildProcess方法启动子进程:
 import childProcessManager from '@ohos.app.ability.childProcessManager';
+import DemoProcess from '../process/DemoProcess';
 
 try {
+  DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
   childProcessManager.startChildProcess("./ets/process/DemoProcess.ts", childProcessManager.StartMode.SELF_FORK)
     .then((data) => {
       console.log(`startChildProcess success, pid: ${data}`);
@@ -86,7 +88,7 @@ try {
 
 startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallback&lt;number&gt;): void;
 
-启动子进程，并调用子进程的入口方法，以Callback方式返回执行结果。创建子进程成功会返回子进程pid，但并不代表入口方法调用成功，具体结果以入口方法是否调用成功为准。
+启动子进程，并调用子进程的入口方法，以Callback方式返回执行结果。创建子进程成功会返回子进程pid，但并不代表入口方法调用成功，具体结果以入口方法是否调用成功为准。子进程中不支持再次调用该方法创建子进程。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -94,7 +96,7 @@ startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallbac
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | 是 | 子进程源文件相对路径。 |
+  | srcEntry | string | 是 | 子进程源文件相对路径，目前只支持源文件放在entry类型的模块中。 |
   | startMode | [StartMode](#childprocessmanagerstartmode) | 是 | 子进程启动模式。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 以callback的形式返回子进程pid。 |
 
@@ -122,8 +124,10 @@ export default class DemoProcess extends ChildProcess {
 
 // 使用childProcessManager.startChildProcess方法启动子进程:
 import childProcessManager from '@ohos.app.ability.childProcessManager';
+import DemoProcess from '../process/DemoProcess';
 
 try {
+  DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
   childProcessManager.startChildProcess("./ets/process/DemoProcess.ts", childProcessManager.StartMode.SELF_FORK, (err, data) => {
     if (data) {
       console.log(`startChildProcess success, pid: ${data}`);

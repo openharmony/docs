@@ -85,8 +85,8 @@ SideBarContainer( type?: SideBarContainerType )
 >
 >  当showSideBar属性未设置时，依据组件大小进行自动显示：
 >
->  - 小于520vp：默认不显示侧边栏。
->  - 大于等于520vp：默认显示侧边栏。
+>  - 小于minSideBarWidth + minContentWidth：默认不显示侧边栏。
+>  - 大于等于minSideBarWidth + minContentWidth：默认显示侧边栏。
 
 ## 事件
 

@@ -6,7 +6,6 @@
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
 
 ```ts
@@ -1354,12 +1353,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 | photoUri | string | 是   | 所查询的图库资源的uri。 |
 | albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
 | options  | [FetchOptions](#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
-
-**返回值：**
-
-| 类型                                    | 说明              |
-| --------------------------------------- | ----------------- |
-| AsyncCallback&lt;number&gt;| 返回相册中资源的索引。 |
+| callback | AsyncCallback&lt;number&gt;| 是   | callback返回相册中资源的索引。 |
 
 **错误码：**
 
@@ -1493,7 +1487,7 @@ async function example() {
 
 release(callback: AsyncCallback&lt;void&gt;): void
 
-释放PhotoAccessHelper实例。
+释放PhotoAccessHelper实例，使用callback方式返回结果。
 当后续不需要使用PhotoAccessHelper实例中的方法时调用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -1533,7 +1527,7 @@ async function example() {
 
 release(): Promise&lt;void&gt;
 
-释放PhotoAccessHelper实例。
+释放PhotoAccessHelper实例，使用Promise方式返回结果。
 当后续不需要使用PhotoAccessHelper 实例中的方法时调用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -2515,13 +2509,13 @@ async function example() {
 }
 ```
 
-### getExif<sup>10+</sup>
+### getExif
 
 getExif(): Promise&lt;string&gt;
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与PhotoKeys.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
 
 **系统接口**：此接口为系统接口。
 
@@ -2614,13 +2608,13 @@ async function example() {
 }
 ```
 
-### getExif<sup>10+</sup>
+### getExif
 
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与PhotoKeys.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
 
 **系统接口**：此接口为系统接口。
 
@@ -2721,7 +2715,7 @@ async function example() {
 }
 ```
 
-### setUserComment<sup>10+</sup>
+### setUserComment
 
 setUserComment(userComment: string): Promise&lt;void&gt;
 
@@ -2782,7 +2776,7 @@ async function example() {
 }
 ```
 
-### setUserComment<sup>10+</sup>
+### setUserComment
 
 setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -2840,6 +2834,714 @@ async function example() {
     });
   } catch (err) {
     console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setPending<sup>11+</sup>
+
+setPending(pendingState: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+为图片或视频资源设置pending状态，该方法使用callback形式来返回结果。
+
+将文件通过`setPending(true)`设置为pending状态后，只能通过`setPending(false)`解除pending状态。可以通过`photoAsset.get(photoAccessHelper.PhotoKeys.PENDING)`的方式获取是否为pending状态，pending状态下返回true，否则返回false。
+
+**注意**：setPending只能在文件的创建期使用，在文件的首次创建流程的close之后，无法通过setPending(true)将文件设置为pending状态。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| pendingState | boolean | 是    | 设置的pending状态，true为设置pending状态，false为解除pending状态 |
+| callback | AsyncCallback&lt;void&gt; | 是    | Callback对象，返回void |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+async function example() {
+  try {
+    console.info('setPendingCallbackDemo');
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    let photoAsset = await phAccessHelper.createAsset(testFileName);
+    photoAsset.setPending(true, async (err) => {
+      if (err !== undefined) {
+        console.error('setPending(true) failed with error: ' + err);
+        return;
+      }
+      // write photo buffer in fd
+      photoAsset.setPending(false, async (err) => {
+        if (err !== undefined) {
+          console.error('setPending(false) failed with error: ' + err);
+          return;
+        }
+        await photoAsset.close(fd);
+      });
+    });
+  } catch (err) {
+    console.error('setPendingCallbackDemo failed with error: ' + err);
+  }
+}
+```
+
+### setPending<sup>11+</sup>
+
+setPending(pendingState: boolean): Promise&lt;void&gt;
+
+为图片或视频资源设置pending状态，该方法使用promise形式来返回结果。
+
+将文件通过`setPending(true)`设置为pending状态后，只能通过`setPending(false)`解除pending状态。可以通过`photoAsset.get(photoAccessHelper.PhotoKeys.PENDING)`的方式获取是否为pending状态，pending状态下返回true，否则返回false。
+
+**注意**：setPending只能在文件的创建期使用，在文件的首次创建流程的close之后，无法通过setPending(true)将文件设置为pending状态。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| pendingState | boolean | 是    | 设置的pending状态，true为设置pending状态，false为解除pending状态。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;boolean&gt; | Promise对象，返回void。 |
+
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+async function example() {
+  try {
+    console.info('setPendingPromiseDemo');
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    let photoAsset = await phAccessHelper.createAsset(testFileName);
+    let fd = await photoAsset.open('fd');
+    await photoAsset.setPending(true);
+    // write photo buffer in fd
+    photoAsset.setPending(false);
+    await photoAsset.close(fd);
+  } catch (err) {
+    console.error('setPendingPromiseDemo failed with error: ' + err);
+  }
+}
+```
+
+### isEdited<sup>11+</sup>
+
+isEdited(callback: AsyncCallback&lt;boolean&gt;): void
+
+查询图片或视频资源是否被编辑过，该方法使用callback形式来返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | Callback对象，返回图片或视频资源是否被编辑过 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('isEditedCallbackDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    photoAsset.isEdited((err, isEdited) => {
+      if (err === undefined) {
+        if (isEdited === true) {
+          console.info('Photo is edited');
+        } else {
+          console.info('Photo is not edited');
+        }
+      } else {
+        console.error('isEdited failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('isEditedDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### isEdited<sup>11+</sup>
+
+isEdited(): Promise&lt;boolean&gt;
+
+查询图片或视频资源是否被编辑过，该方法使用promise形式来返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;boolean&gt; | Promise对象，返回图片或视频资源是否被编辑过。 |
+
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('isEditedPromiseDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let isEdited = await photoAsset.isEdited();
+    if (isEdited === true) {
+      console.info('Photo is edited');
+    } else {
+      console.info('Photo is not edited');
+    }
+  } catch (err) {
+    console.error('isEditedDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### requestEditData<sup>11+</sup>
+
+requestEditData(callback: AsyncCallback&lt;string&gt;): void
+
+获得图片或视频资源的编辑数据，该方法使用callback形式来返回结果。
+
+如果资源未编辑过，则返回一个空字符串。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;string&gt; | 是    | Callback对象，返回图片或视频资源的编辑数据 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('requestEditDataCallbackDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    photoAsset.requestEditData((err, editdata) => {
+      if (err === undefined) {
+        console.info('Editdata is ' + editdata);
+      } else {
+        console.error('requestEditData failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('requestEditDataCallbackDemo failed with error: ' + err);
+  }
+}
+```
+
+### requestEditData<sup>11+</sup>
+
+requestEditData(): Promise&lt;string&gt;
+
+获得图片或视频资源的编辑数据，该方法使用promise形式来返回结果。
+
+如果资源未编辑过，则返回一个空字符串。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;string&gt; | Promise对象，返回图片或视频资源的编辑数据。 |
+
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('requestEditDataPromiseDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let editdata = await photoAsset.requestEditData();
+    console.info('Editdata is ' + editdata);
+  } catch (err) {
+    console.error('requestEditDataPromiseDemo failed with error: ' + err);
+  }
+}
+```
+
+### requestSource<sup>11+</sup>
+
+requestSource(callback: AsyncCallback&lt;number&gt;): void
+
+打开源文件并返回fd，该方法使用callback形式来返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;string&gt; | 是    | Callback对象，返回源文件fd。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('requsetSourceCallbackDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    photoAsset.requestSource((err, fd) => {
+      if (err === undefined) {
+        console.info('Source fd is ' + fd);
+      } else {
+        console.error('requestSource failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('requsetSourceCallbackDemo failed with error: ' + err);
+  }
+}
+```
+
+### requestSource<sup>11+</sup>
+
+requestSource(): Promise&lt;string&gt;
+
+打开源文件并返回fd，该方法使用callback形式来返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;string&gt; | Promise对象，返回源文件fd。 |
+
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('requsetSourcePromiseDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let fd = await photoAsset.requestSource();
+    console.info('Source fd is ' + fd);
+  } catch (err) {
+    console.error('requsetSourcePromiseDemo failed with error: ' + err);
+  }
+}
+```
+
+### commitEditedAsset<sup>11+</sup>
+
+commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;number&gt;): void
+
+提交编辑数据以及编辑后的图片或视频，该方法使用callback形式来返回结果。
+
+通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri，可参考[FileUri](./js-apis-file-fileuri.md)。
+
+**注意**：新的编辑数据提交后，将覆盖掉原来的编辑数据。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| editData | string | 是    | 提交的编辑数据。 |
+| uri | string; | 是    | 提交的编辑后的图片或视频，在应用沙箱下的uri。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | Callback对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('commitEditedAssetCallbackDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let editData = '123456';
+    let uri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    photoAsset.commitEditedAsset(editData, uri, (err) => {
+      if (err === undefined) {
+        console.info('commitEditedAsset is successful');
+      } else {
+        console.error('requestSource failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('commitEditedAssetCallbackDemo failed with error: ' + err);
+  }
+}
+```
+
+### commitEditedAsset<sup>11+</sup>
+
+commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
+
+提交编辑数据以及编辑后的图片或视频，该方法使用promise形式来返回结果。
+
+通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri，可参考[FileUri](./js-apis-file-fileuri.md)。
+
+**注意**：新的编辑数据提交后，将覆盖掉原来的编辑数据。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| editData | string | 是    | 提交的编辑数据。 |
+| uri | string | 是    | 提交的编辑后的图片或视频，在应用沙箱下的uri。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;void&gt; | Promise对象，返回void。 |
+
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('commitEditedAssetPromiseDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let editData = '123456';
+    let uri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    photoAsset.commitEditedAsset(editData, uri);
+    console.info('commitEditedAsset is successful');
+  } catch (err) {
+    console.error('commitEditedAssetPromiseDemo failed with error: ' + err);
+  }
+}
+```
+
+### revertToOriginal<sup>11+</sup>
+
+revertToOriginal(callback: AsyncCallback&lt;void&gt;): void
+
+回退到编辑前的状态，该方法使用callback形式来返回结果。
+
+**注意**：调用该接口后，编辑数据和编辑后的图片或视频资源都将被删除，无法恢复，请谨慎调用。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;void&gt; | 是    | Callback对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('revertToOriginalCallbackDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    photoAsset.revertToOriginal((err) => {
+      if (err === undefined) {
+        console.info('revertToOriginal is successful');
+      } else {
+        console.error('revertToOriginal failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('RevertToOriginalCallbackDemo failed with error: ' + err);
+  }
+}
+```
+
+### revertToOriginal<sup>11+</sup>
+
+revertToOriginal(): Promise&lt;void&gt;
+
+回退到编辑前的状态，该方法使用promise形式来返回结果。
+
+**注意**：调用该接口后，编辑数据和编辑后的图片或视频资源都将被删除，无法恢复，请谨慎调用。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;string&gt; | Promise对象，返回void。 |
+
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('RevertToOriginalPromiseDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    photoAsset.revertToOriginal();
+    console.info('revertToOriginal is successful');
+  } catch (err) {
+    console.error('RevertToOriginalPromiseDemo failed with error: ' + err);
   }
 }
 ```
@@ -3229,9 +3931,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(callback: AsyncCallback&lt;T&gt;): void
+getNextObject(callback: AsyncCallback&lt;T&gt;): void
 
 获取文件检索结果中的下一个文件资产。此方法使用callback形式返回结果。
+在调用此方法之前，必须使用[isAfterLast()](#isafterlast)来检查当前位置是否为最后一行。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3265,7 +3968,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     fetchResult.getNextObject((err, photoAsset) => {
       if (photoAsset != undefined) {
         console.info('photoAsset displayName: ', photoAsset.displayName);
@@ -3279,9 +3982,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(): Promise&lt;T&gt;
+getNextObject(): Promise&lt;T&gt;
 
 获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回。
+在调用此方法之前，必须使用[isAfterLast()](#isafterlast)来检查当前位置是否为最后一行。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3315,7 +4019,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
     console.info('photoAsset displayName: ', photoAsset.displayName);
   }
@@ -4565,6 +5269,7 @@ async function example() {
 | DATE_YEAR<sup>11+</sup>  | 'date_year'            | 创建文件的年份。**系统接口**：此接口为系统接口。           |
 | DATE_MONTH<sup>11+</sup>  | 'date_month'            | 创建文件的月份。**系统接口**：此接口为系统接口。           |
 | DATE_DAY<sup>11+</sup>  | 'date_day'            | 创建文件的日期。**系统接口**：此接口为系统接口。           |
+| PENDING<sup>11+</sup>  | 'pending'            | pending状态。**系统接口**：此接口为系统接口。           |
 
 ## AlbumKeys
 
