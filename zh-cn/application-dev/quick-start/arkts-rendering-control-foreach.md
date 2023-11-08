@@ -535,7 +535,7 @@ struct ChildItem {
 
 上述代码的初始渲染效果（左图）和点击“在第1项后插入新项”文本组件后的渲染效果（右图）如下图所示。
 
-图8  渲染结果非预期运行效果图  
+**图8**  渲染结果非预期运行效果图  
 ![ForEach-UnexpectedRenderingResult](figures/ForEach-UnexpectedRenderingResult.gif)
 
 `ForEach`在首次渲染时，创建的键值依次为"0"、"1"、"2"。
@@ -594,18 +594,18 @@ struct ChildItem {
 
 以上代码的初始渲染效果（左图）和点击"在第1项后插入新项"文本组件后的渲染效果（右图）如下所示。
 
-图9  渲染性能降低案例运行效果图  
+**图9**  渲染性能降低案例运行效果图  
 ![ForEach-RenderPerformanceDecrease](figures/ForEach-RenderPerformanceDecrease.gif)
 
 点击“在第1项后插入新项”文本组件后，IDE的日志打印结果如下所示。
 
-图 10  渲染性能降低案例日志打印图  
+**图10**  渲染性能降低案例日志打印图  
 ![ForEach-RenderPerformanceDecreaseLogs](figures/ForEach-RenderPerformanceDecreaseLogs.png)
 
 插入新项后，`ForEach`为`new item`、 `two`、 `three`三个数组项创建了对应的组件`ChildItem`，并执行了组件的[`aboutToAppear()`](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)生命周期函数。这是因为：
 
-- 在`ForEach`首次渲染时，创建的键值依次为`0__one`、`1__two`、`2__three`。
-- 插入新项后，数据源`simpleList`变为`['one', 'new item', 'two', 'three']`，ArkUI框架监听到`@State`装饰的数据源长度变化触发`ForEach`重新渲染。
-- `ForEach`依次遍历新数据源，遍历数据项`one`时生成键值`0__one`，键值已存在，因此不创建新组件。继续遍历数据项`new item`时生成键值`1__new item`，不存在相同键值，创建内容为`new item`的新组件并渲染。继续遍历数据项`two`生成键值`2__two`，不存在相同键值，创建内容为`two`的新组件并渲染。最后遍历数据项`three`时生成键值`3__three`，不存在相同键值，创建内容为`three`的新组件并渲染。
+1. 在`ForEach`首次渲染时，创建的键值依次为`0__one`、`1__two`、`2__three`。
+2. 插入新项后，数据源`simpleList`变为`['one', 'new item', 'two', 'three']`，ArkUI框架监听到`@State`装饰的数据源长度变化触发`ForEach`重新渲染。
+3. `ForEach`依次遍历新数据源，遍历数据项`one`时生成键值`0__one`，键值已存在，因此不创建新组件。继续遍历数据项`new item`时生成键值`1__new item`，不存在相同键值，创建内容为`new item`的新组件并渲染。继续遍历数据项`two`生成键值`2__two`，不存在相同键值，创建内容为`two`的新组件并渲染。最后遍历数据项`three`时生成键值`3__three`，不存在相同键值，创建内容为`three`的新组件并渲染。
 
 尽管此示例中界面渲染的结果符合预期，但每次插入一条新数组项时，`ForEach`都会为从该数组项起后面的所有数组项全部重新创建组件。当数据源数据量较大或组件结构复杂时，由于组件无法得到复用，将导致性能体验不佳。因此，除非必要，否则不推荐将第三个参数`KeyGenerator`函数处于缺省状态，以及在键值生成规则中包含数据项索引`index`。
