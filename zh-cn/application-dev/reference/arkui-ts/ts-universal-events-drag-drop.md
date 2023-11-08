@@ -27,7 +27,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 | onDragEnter(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽进入组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDragMove(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽在组件范围内移动时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDragLeave(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽离开组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
-| onDrop(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>说明： 如果没有显式使用event.setResult()，则默认result为DRAG_SUCCESSFUL |
+| onDrop(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>**说明：** <br/>如果没有显式使用event.setResult()，则默认result为DRAG_SUCCESSFUL。 |
 | onDragEnd(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | 否       | 绑定此事件的组件触发的拖拽结束后，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。 |
 
 ## DragItemInfo说明
@@ -84,11 +84,11 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 | 名称 | 描述 |
 | ----- | ----------------- |
-| DRAG_SUCCESSFUL | 拖拽成功，在onDrop中使用 |
-| DRAG_FAILED | 拖拽失败，在onDrop中使用 |
-| DRAG_CANCELED | 拖拽取消，在onDrop中使用 |
-| DROP_ENABLED | 组件允许落入，在onDragMove中使用 |
-| DROP_DISABLED | 组件不允许落入，在onDragMove中使用 |
+| DRAG_SUCCESSFUL | 拖拽成功，在onDrop中使用。 |
+| DRAG_FAILED | 拖拽失败，在onDrop中使用。 |
+| DRAG_CANCELED | 拖拽取消，在onDrop中使用。 |
+| DROP_ENABLED | 组件允许落入，在onDragMove中使用。 |
+| DROP_DISABLED | 组件不允许落入，在onDragMove中使用。 |
 
 ## 示例
 
@@ -164,6 +164,7 @@ struct Index {
           .margin({left: 15})
           .visibility(this.imgState)
           .onDragEnd((event)=>{
+            // onDragEnd里取到的result值在接收方onDrop设置
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
               promptAction.showToast({duration: 100, message: 'Drag Success'});
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
@@ -240,6 +241,7 @@ struct Index {
                 this.imageHeight = 100;
                 this.imgState = Visibility.None;
               })
+              // 显式设置result为successful，则将该值传递给拖出方的onDragEnd
               event.setResult(DragResult.DRAG_SUCCESSFUL);
             })
           })
