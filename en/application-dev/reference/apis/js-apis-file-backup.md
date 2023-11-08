@@ -1,4 +1,4 @@
-# @ohos.file.backup (Backup and Restoration)
+# @ohos.file.backup (Backup and Restore)
 
 The **file.backup** module provides APIs for backing up and restoring data for applications.
 
@@ -15,7 +15,7 @@ import backup from '@ohos.file.backup';
 
 ## FileMeta
 
-Defines a file metadata object, which includes the application name and file URI. **FileMeta** is an indispensable object for data backup and restoration.
+Defines a file metadata object, which includes the application name and file URI. **FileMeta** is an indispensable object for data backup and restore.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -26,7 +26,7 @@ Defines a file metadata object, which includes the application name and file URI
 
 ## FileData
 
-Defines a file data object, which includes the file descriptor (FD) of the file opened. **FileData** is an indispensable object for data backup and restoration.
+Defines a file data object, which includes the file descriptor (FD) of the file opened. **FileData** is an indispensable object for data backup and restore.
 
 > **NOTE**
 >
@@ -51,7 +51,7 @@ inherits from [FileMeta](#filemeta) and [FileData](#filedata).
 
 ## GeneralCallbacks
 
-Provides callbacks to be used in the backup or restoration process. The backup service uses these callbacks to notify the client of the backup/restoration phase of the application.
+Provides callbacks to be used in the backup or restore process. The backup service uses these callbacks to notify the client of the backup/restore phase of the application.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -98,7 +98,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 onBundleBegin : AsyncCallback&lt;string&gt;
 
- Called when the backup or restoration of an application begins. If the backup or restoration begins, **err** is undefined. Otherwise, **err** is an error object.
+ Called when the backup or restore of an application begins. If the backup or restore begins, **err** is undefined. Otherwise, **err** is an error object.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -131,7 +131,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 onBundleEnd : AsyncCallback&lt;string&gt;
 
-Called when the backup or restoration of an application ends. If the backup or restoration ends successfully, **err** is undefined. Otherwise, **err** is an error object.
+Called when the backup or restore of an application ends. If the backup or restore ends successfully, **err** is undefined. Otherwise, **err** is an error object.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -164,7 +164,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
 
-Called when the backup or restoration of all bundles ends. If the backup or restoration of all bundles ends, **err** is **undefined**. Otherwise, **err** is an error object.
+Called when the backup or restore of all bundles ends. If the backup or restore of all bundles ends, **err** is **undefined**. Otherwise, **err** is an error object.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -582,7 +582,7 @@ A constructor used to create a **SessionRestore** instance.
 
 | Name  | Type                                 | Mandatory| Description                |
 | -------- | ------------------------------------- | ---- | -------------------- |
-| callback | [GeneralCallbacks](#generalcallbacks) | Yes  | Callbacks to be invoked during the data restoration process.|
+| callback | [GeneralCallbacks](#generalcallbacks) | Yes  | Callbacks to be invoked during the data restore process.|
 
 **Example**
 
@@ -626,11 +626,11 @@ A constructor used to create a **SessionRestore** instance.
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
 
-Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restoration process. This API uses an asynchronous callback to return the result.
+Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restore process. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> - During the data restoration, the capability file needs to be verified.
+> - During the data restore process, the capability file needs to be verified.
 > - Therefore, **remoteCapabilitiesFd** can be obtained by using the [getLocalCapabilities](#backupgetlocalcapabilities) API provided by the backup service. You can modify the parameters based on the actual situation of your application. You can also use the JSON file example provided by **getLocalCapabilities** to generate a capability file.
 
 **Required permissions**: ohos.permission.BACKUP
@@ -719,11 +719,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&lt;void&gt;
 
-Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restoration process. This API uses a promise to return the result.
+Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restore process. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> - During the data restoration, the capability file needs to be verified.
+> - During the data restore process, the capability file needs to be verified.
 > - Therefore, **remoteCapabilitiesFd** can be obtained by using the [getLocalCapabilities](#backupgetlocalcapabilities) API provided by the backup service. You can modify the parameters based on the actual situation of your application. You can also use the JSON file example provided by **getLocalCapabilities** to generate a capability file.
 
 **Required permissions**: ohos.permission.BACKUP
