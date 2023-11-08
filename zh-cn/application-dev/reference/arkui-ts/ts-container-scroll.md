@@ -40,7 +40,7 @@ Scroll(scroller?: Scroller)
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](#nestedscrolloptions10对象说明) | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
 | friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9<br/>**说明：** <br/>设置为小于等于0的值时，按默认值处理 |
 
-## ScrollDirection枚举说明
+### ScrollDirection枚举说明
 | 名称       | 描述                     |
 | ---------- | ------------------------ |
 | Horizontal | 仅支持水平方向滚动。     |
@@ -48,7 +48,7 @@ Scroll(scroller?: Scroller)
 | None       | 不可滚动。               |
 | Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动<br/> 从API version 9开始废弃|
 
-## scrollSnapOptions结构图定义
+### scrollSnapOptions结构图定义
 | 名称       | 参数类型       | 描述       |
 | ---------- | ---------------------------------------- | -------- |
 | snapAlign  | [ScrollSnapAlign](#scrollsnapalign枚举定义)   | 设置Scroll组件限位滚动时的对其方式。注：<br/>1.该属性默认值为ScrollSnapAlign.NONE。<br/>2.该接口仅当snapPagination属性为Dimension时生效，不支持Array\<Dimension\>。 |
@@ -56,7 +56,7 @@ Scroll(scroller?: Scroller)
 | enableSnapToStart | boolean   | 在Scroll组件限位滚动模式下，该属性设置为false后，运行Scroll在开头和第一个限位点间自由滑动。注：<br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
 | enableSnapToEnd | boolean   | 在Scroll组件限位滚动模式下，该属性设置为false后，运行Scroll在最后一个限位点和末尾间自由滑动。注：<br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
 
-## ScrollSnapAlign枚举定义
+### ScrollSnapAlign枚举定义
 | 名称       | 描述                     |
 | ---------- | ------------------------ |
 | NONE       | 关闭限位模式              |
