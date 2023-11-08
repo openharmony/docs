@@ -316,7 +316,7 @@ try {
         let iconFile = typeObj.iconFile;
         console.info(`typeId: ${typeId}, belongingToTypes: ${belongingToTypes}, description: ${description}, referenceURL: ${referenceURL}, iconFile: ${iconFile}`);
     } else {
-        console.info('type does not exist');
+        console.info('type com.adobe.photoshop-image does not exist');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
