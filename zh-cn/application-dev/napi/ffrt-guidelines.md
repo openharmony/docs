@@ -4,17 +4,6 @@
 >
 > 本文用于指导开发者基于Function Flow编程模型和FFRT实现并行编程。
 
-<hr/>
-# 版本
-
-| 版本 | 编辑                                                         | 主要变更                                                     | 日期       |
-| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------- |
-| V0.1 | linjiashu <br />zhangguowei <br />huangyouzhong  | 发布以下API：<br />1. task 管理，包括：submit，wait，task_attr, task_handle/submit_h<br />2. 同步原语，包括：mutex，condition_variable<br />3. Deadline 调度<br />4. 杂项：sleep，yield<br /> | 2022/09/26 |
-
-
-<br/>
-
-<hr/>
 # 缩写
 
 | 缩略语        | 英文全名                        | 中文解释                                                     |
@@ -581,7 +570,7 @@ int main(int narg, char** argv)
 
 
 
-### ffrt_submit_h
+### ffrt_submit_h_base
 
 <hr/>
 
@@ -592,7 +581,7 @@ int main(int narg, char** argv)
 ```{.cpp}
 typedef void* ffrt_task_handle_t;
 
-ffrt_task_handle_t ffrt_submit_h(ffrt_function_t func, void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
+ffrt_task_handle_t ffrt_submit_h_base(ffrt_function_t func, void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
 void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 ```
 
@@ -616,7 +605,7 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 `attr`
 
 * 该参数是可选的
-* 该参数用于描述Task 的属性，比如qos 等，详见 [task_attr](#task_attr)章节
+* 该参数用于描述Task 的属性，比如qos 等，详见 [ffrt_task_attr_t](#ffrt_task_attr_t)章节
 
 #### 返回值
 
@@ -1822,7 +1811,7 @@ void fib_ffrt(int x, int* y)
 #include "ffrt.h"
 void abnormal_case_1()
 {
-    ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
+    ffrt_task_handle_t h = ffrt_submit_h_base([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
     ...
     ffrt_task_handle_destroy(h);
     ffrt_task_handle_destroy(h); // double free
@@ -1835,7 +1824,7 @@ void abnormal_case_1()
 #include "ffrt.h"
 void abnormal_case_2()
 {
-    ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
+    ffrt_task_handle_t h = ffrt_submit_h_base([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
     ...
     // memory leak
 }
@@ -1847,7 +1836,7 @@ void abnormal_case_2()
 #include "ffrt.h"
 void normal_case()
 {
-    ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
+    ffrt_task_handle_t h = ffrt_submit_h_base([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
     ...
     ffrt_task_handle_destroy(h);
     h = nullptr; // if necessary
