@@ -10,7 +10,7 @@
 | ------------- | ------------------------------- | ------------------------------------------------------------ |
 | FFRT          | Function Flow Run Time          | 软件实现Function Flow运行时用于任务调度和执行                |
 | Function Flow | Function Flow Programming Model | Function Flow编程模型                                        |
-| Pure Function | Pure Function                   | 纯函数，注意本文中定义的纯函数指的是通过表达相互间数据依赖即可由调度系统保证正确执行的任务。 |
+| Pure Function | Pure Function                   | 纯函数，注意本文中定义的纯函数指的是通过表达相互间数据依赖即可由调度系统保证正确执行的任务 |
 
 
 <br/>
@@ -102,7 +102,7 @@ task5(OUT A);
 
 ### ffrt_submit_base
 
-* 该接口为ffrt动态库的导出接口，基于此可以封装出不同的C++ API ffrt::submit和C API ffrt_submit，满足二进制兼容
+* 该接口为ffrt动态库的导出接口，基于此可以封装出C API ffrt_submit，满足二进制兼容
 
 #### 声明
 
@@ -149,16 +149,15 @@ void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, 
 `attr`
 
 * 该参数是可选的
-* 该参数用于描述Task 的属性，比如qos 等
+* 该参数用于描述Task 的属性，比如qos 等，详见 [ffrt_task_attr_t](#ffrt_task_attr_t)章节
 
 #### 返回值
 
 * 不涉及
 
 #### 描述
-
-* ffrt_submit_base不建议用户直接调用，推荐使用基于此封装的C++接口（亦满足二进制兼容）
-* **ffrt_submit_base作为底层能力，只有在用户需要自定义task类型时使用，使用时需要满足以下限制：**
+* 建议用户对ffrt_submit_base进行封装后调用，具体可参考样例
+* **ffrt_submit_base作为底层能力，使用时需要满足以下限制：**
   * ffrt_submit_base入参中的func指针只能通过ffrt_alloc_auto_managed_function_storage_base申请，且二者的调用需一一对应
   * ffrt_alloc_auto_managed_function_storage_base申请的内存为ffrt_auto_managed_function_storage_size字节，其生命周期归ffrt管理，在该task结束时，由FFRT自动释放，用户无需释放
 * ffrt_function_header_t 中定义了两个函数指针：
@@ -167,7 +166,6 @@ void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, 
 
 #### 样例
 
-* 通过该接口提供C++11 Lambda表达式的支持（该代码已经在ffrr.h中提供，默认支持）
 
 ```{.cpp}
 template<class T>
@@ -215,7 +213,7 @@ static inline void submit(std::function<void()>&& func)
 ### ffrt_wait
 
 <hr/>
-* 同步等待，与ffrt_submit 配合使用
+* 同步等待，与ffrt_submit_base 配合使用
 * 等待指定的数据被生产完成，或等待当前任务的所有子任务完成，在不满足条件之前，当前的执行上下文被suspend，在满足条件后恢复执行
 
 #### 声明
@@ -370,7 +368,7 @@ int main(int narg, char** argv)
 
 <img src="figures/ffrtfigure2.png" style="zoom:100%" />
 
-> 以上实现，逻辑上虽与C++ API中的实现类似，但是用户显式管理数据生命周期和函数入参打包两个因素将使代码异常复杂
+> 以上实现，因为需要用户显式管理数据生命周期和函数入参打包两个因素,使得代码实现异常复杂
 
 
 
@@ -381,9 +379,19 @@ int main(int narg, char** argv)
 #### 声明
 
 ```{.cpp}
+typedef enum {
+    ffrt_dependence_data,
+    ffrt_dependence_task,
+} ffrt_dependence_type_t;
+
+typedef struct {
+    ffrt_dependence_type_t type;
+    const void* ptr;
+} ffrt_dependence_t;
+
 typedef struct {
     uint32_t len;
-    const void* const * items;
+    const ffrt_dependence_t* items;
 } ffrt_deps_t;
 ```
 
@@ -589,7 +597,7 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 
 `func`
 
-* 可被std::function 接收的一切CPU 可执行体，可以为C++ 定义的Lambda 函数闭包，函数指针，甚至是函数对象
+* CPU Function的指针，该指针执行的数据结构，按照`ffrt_function_header_t`定义的描述了该CPU Task如何执行和销毁的函数指针，FFRT通过这两个函数指针完成Task的执行和销毁
 
 `in_deps`
 
