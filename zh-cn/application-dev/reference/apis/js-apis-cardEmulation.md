@@ -138,7 +138,7 @@ start(elementName: ElementName, aidList: string[]): void
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
 | elementName | ElementName | 是   | 服务能力的元素名称。 |
-| aidList | string[] | 是   | 动态注册卡模拟的AID列表。 |
+| aidList | string[] | 是   | 动态注册卡模拟的AID列表，允许为空。 |
 
 **错误码：**
 
