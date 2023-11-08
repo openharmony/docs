@@ -10,7 +10,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 
 混淆功能在不同版本默认开启情况不同：
 
-- 在API 9中，HAR模块默认不开启混淆能力，开启混淆能力，需要把HAR模块的build-profile.json5文件中的artifactType字段设置为obfuscation，配置如下所示：
+- 在API 9中，HAR模块默认不开启混淆能力。若要开启混淆能力，需要把HAR模块的build-profile.json5文件中的artifactType字段设置为obfuscation，配置如下所示：
 
   ```json
   {
@@ -58,7 +58,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
   ```
 ### 适配指导
 
-该字段配置前向兼容，原有功能暂时不受影响。API10后续将逐步废弃，建议尽快用新的配置方式。
+该字段配置前向兼容，原有功能暂时不受影响。API10后续将逐步废弃，建议尽快使用新的配置方式。
 
 ## HAR开发注意事项
 - HAR不支持在配置文件中声明abilities、extensionAbilities组件。

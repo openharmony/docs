@@ -18,39 +18,39 @@
 
 * 使用[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行调试
    
-   在调试前，需要先安装或更新HAP，此处有两种方式。
+   在调试前，需要先安装或更新HAP，此处有两种方式：
 
- 1. 直接使用hdc安装、更新HAP。 
+   * 直接使用hdc安装、更新HAP。 
 
-    HAP的路径为开发平台上的文件路径，以Windows开发平台为例，命令参考如下：
+     HAP的路径为开发平台上的文件路径，以Windows开发平台为例，命令参考如下：
 
-    ```
-    // 安装、更新，多HAP可以指定多个文件路径
-    hdc install C:\entry.hap C:\feature.hap
-    // 执行结果
-    install bundle successfully.
-    // 卸载
-    hdc uninstall com.example.myapplication
-    // 执行结果
-    uninstall bundle successfully.
-    ```
+     ```
+     // 安装、更新，多HAP可以指定多个文件路径
+     hdc install C:\entry.hap C:\feature.hap
+     // 执行结果
+     install bundle successfully.
+     // 卸载
+     hdc uninstall com.example.myapplication
+     // 执行结果
+     uninstall bundle successfully.
+     ```
  
- 2. 先执行hdc shell，再使用bm工具安装、更新HAP。
+   * 先执行hdc shell，再使用bm工具安装、更新HAP。
 
-    HAP的文件路径为真机上的文件路径，命令参考如下：
-    
-    ```
-    // 先执行hdc shell才能使用bm工具
-    hdc shell
-    // 安装、更新，多HAP可以指定多个文件路径
-    bm install -p /data/app/entry.hap /data/app/feature.hap
-    // 执行结果
-    install bundle successfully.
-    // 卸载
-    bm uninstall -n com.example.myapplication
-    // 执行结果
-    uninstall bundle successfully.
-    ```
+      HAP的文件路径为真机上的文件路径，命令参考如下：
+      
+      ```
+      // 先执行hdc shell才能使用bm工具
+      hdc shell
+      // 安装、更新，多HAP可以指定多个文件路径
+      bm install -p /data/app/entry.hap /data/app/feature.hap
+      // 执行结果
+      install bundle successfully.
+      // 卸载
+      bm uninstall -n com.example.myapplication
+      // 执行结果
+      uninstall bundle successfully.
+      ```
     完成HAP安装或更新后，即可参考相关调试命令进行[调试](../tools/aa-tool.md)。
 
 ## 发布
