@@ -141,7 +141,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let inSandbox = dlpPermission.isInSandbox(); // Check whether the application is running in a sandbox.
   if (inSandbox) {
-    let res: dlpPermission.DLPPermissionInfo = dlpPermission.getDLPPermissionInfo(); // Obtain the permission information.
+    let res: Promise<dlpPermission.DLPPermissionInfo> = dlpPermission.getDLPPermissionInfo(); // Obtain the permission information.
     console.info('res', JSON.stringify(res));
   }
 } catch (err) {
@@ -521,7 +521,9 @@ try {
 
 setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
-Sets the retention state for sandbox applications. The sandbox application in the retention state will not be automatically uninstalled when the DLP file is closed. This API uses a promise to return the result.
+Sets the sandbox retention state. This API uses a promise to return the result. 
+
+A sandbox application is automatically installed when a DLP file is opened, and automatically uninstalled when the DLP file is closed. Once the sandbox retention state is set for a DLP file, the sandbox application will not be automatically uninstalled when the DLP file is closed.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
@@ -554,6 +556,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
   let inSandbox = dlpPermission.isInSandbox(); // Check whether the application is running in a sandbox.
   if (inSandbox) {
@@ -568,7 +571,9 @@ try {
 
 setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the retention state for sandbox applications. The sandbox application in the retention state will not be automatically uninstalled when the DLP file is closed. This API uses an asynchronous callback to return the result.
+Sets the sandbox retention state. This API uses an asynchronous callback to return the result. 
+
+A sandbox application is automatically installed when a DLP file is opened, and automatically uninstalled when the DLP file is closed. Once the sandbox retention state is set for a DLP file, the sandbox application will not be automatically uninstalled when the DLP file is closed.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
@@ -596,6 +601,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
   dlpPermission.setRetentionState([uri], (err, res) => {
     if (err != undefined) {
@@ -613,7 +619,7 @@ try {
 
 cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
-Cancels the retention state for sandbox applications. This API uses a promise to return the result.
+Cancels the sandbox retention state, that is, allows the sandbox application to be automatically uninstalled when the DLP file is closed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
@@ -621,7 +627,7 @@ Cancels the retention state for sandbox applications. This API uses a promise to
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| docUris | Array&lt;string&gt; | Yes| URIs of the files whose retention state is to be canceled.| 
+| docUris | Array&lt;string&gt; | Yes| URIs of the files whose retention state is to be canceled.|
 
 **Return value**
 
@@ -645,6 +651,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
   dlpPermission.cancelRetentionState([uri]); // Cancel the retention state for a sandbox application.
 } catch (err) {
@@ -656,7 +663,7 @@ try {
 
 cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Cancels the retention state for sandbox applications. This API uses an asynchronous callback to return the result.
+Cancels the sandbox retention state, that is, allows the sandbox application to be automatically uninstalled when the DLP file is closed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
@@ -664,7 +671,7 @@ Cancels the retention state for sandbox applications. This API uses an asynchron
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| docUris | Array&lt;string&gt; | Yes| URIs of the files whose retention state is to be canceled.| 
+| docUris | Array&lt;string&gt; | Yes| URIs of the files whose retention state is to be canceled.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -683,6 +690,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
   dlpPermission.cancelRetentionState([uri], (err, res) => {
     if (err != undefined) {
@@ -734,7 +742,7 @@ import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let res: Array<dlpPermission.RetentionSandboxInfo> = dlpPermission.getRetentionSandboxList(); // Obtain information about all the sandbox applications in the retention state.
+  let res: Promise<Array<dlpPermission.RetentionSandboxInfo>> = dlpPermission.getRetentionSandboxList(); // Obtain all the sandbox applications in the retention state.
   console.info('res', JSON.stringify(res))
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
@@ -861,7 +869,7 @@ import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let res: Array<dlpPermission.AccessedDLPFileInfo> = dlpPermission.getDLPFileAccessRecords(); // Obtain the list of recently accessed DLP files.
+  let res: Promise<Array<dlpPermission.AccessedDLPFileInfo>> = dlpPermission.getDLPFileAccessRecords(); // Obtain the list of recently accessed DLP files.
   console.info('res', JSON.stringify(res))
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
@@ -948,7 +956,7 @@ import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let res: dlpPermission.GatheringPolicyType = dlpPermission.getDLPGatheringPolicy(); //  Obtain the sandbox gathering policy.
+  let res: Promise<dlpPermission.GatheringPolicyType> = dlpPermission.getDLPGatheringPolicy(); // Obtain the sandbox gathering policy.
   console.info('res', JSON.stringify(res));
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
@@ -1049,8 +1057,9 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  let res: dlpPermission.DLPSandboxInfo = dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // Install a DLP sandbox application.
+  let res: Promise<dlpPermission.DLPSandboxInfo> = dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // Install a DLP sandbox application.
   console.info('res', JSON.stringify(res));
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
@@ -1097,6 +1106,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
   dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri, (err, res) => {
     if (err != undefined) {
@@ -1127,7 +1137,7 @@ Uninstalls a DLP sandbox application for an application. This API uses a promise
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name of the application.|
-| userId | number | Yes| Current user ID, which is the OS account ID obtained by the account subsystem. The default super user ID is **100**.| 
+| userId | number | Yes| Current user ID, which is the OS account ID obtained by the account subsystem. The default super user ID is **100**.|
 | appIndex | number | Yes| Index of the DLP sandbox application.|
 
 **Return value**
@@ -1154,10 +1164,12 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  let res: dlpPermission.DLPSandboxInfo = dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // Install a DLP sandbox application.
-  console.info('res', JSON.stringify(res));
-  dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex); // Uninstall a DLP sandbox application.
+  dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri).then((res)=>{
+    console.info('res', JSON.stringify(res));
+    dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex); // Uninstall a DLP sandbox application.
+  }); // Install a DLP sandbox application.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -1202,16 +1214,18 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  let res: dlpPermission.DLPSandboxInfo = await dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // Install a DLP sandbox application.
-  console.info('res', JSON.stringify(res));
-  dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex, (err, res) => {
-    if (err != undefined) {
-      console.error('uninstallDLPSandbox error,', err.code, err.message);
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-  });
+  dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri).then((res)=>{
+    console.info('res', JSON.stringify(res));
+    dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex, (err, res) => {
+      if (err != undefined) {
+        console.error('uninstallDLPSandbox error,', err.code, err.message);
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  }); // Install a DLP sandbox application.
 } catch (err) {
   console.error('uninstallDLPSandbox error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1368,9 +1382,10 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
-  dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
+    dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  }); // Open a DLP file.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -1419,19 +1434,19 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.addDLPLinkFile('test.txt.dlp.link', async (err, res) => {
-    if (err != undefined) {
-      console.error('addDLPLinkFile error,', err.code, err.message);
-      await dlpFile.closeDLPFile(); // Close the DLPFile instance.
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link', async (err, res) => {
+      if (err != undefined) {
+        console.error('addDLPLinkFile error,', err.code, err.message);
+        await dlpFile.closeDLPFile(); // Close the DLPFile instance.
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  }); // Open a DLP file.
 } catch (err) {
   console.error('addDLPLinkFile error,', (err as BusinessError).code, (err as BusinessError).message);
 }
-
 ```
 
 ### stopFuseLink
@@ -1474,10 +1489,11 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
-  dlpFile.stopFuseLink(); // Stop read/write on the link file.
-  dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
+    dlpFile.stopFuseLink(); // Stop read/write on the link file.
+    dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  }); // Open a DLP file.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -1525,16 +1541,17 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
-  dlpFile.stopFuseLink(async (err, res) => {
-    if (err != undefined) {
-      console.error('stopFuseLink error,', err.code, err.message);
-      await dlpFile.closeDLPFile(); // Close the DLPFile instance.
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
+    dlpFile.stopFuseLink(async (err, res) => {
+      if (err != undefined) {
+        console.error('stopFuseLink error,', err.code, err.message);
+        await dlpFile.closeDLPFile(); // Close the DLPFile instance.
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  }); // Open a DLP file.
 } catch (err) {
   console.error('stopFuseLink error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1580,11 +1597,12 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
-  dlpFile.stopFuseLink(); // Stop read/write on the link file.
-  dlpFile.resumeFuseLink(); // Resume read/write on the link file.
-  dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
+    dlpFile.stopFuseLink(); // Stop read/write on the link file.
+    dlpFile.resumeFuseLink(); // Resume read/write on the link file.
+    dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  }); // Open a DLP file.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -1632,17 +1650,18 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
-  dlpFile.stopFuseLink(); // Stop read/write on the link file.
-  dlpFile.resumeFuseLink(async (err, res) => {
-    if (err != undefined) {
-      console.error('resumeFuseLink error,', err.code, err.message);
-      await dlpFile.closeDLPFile(); // Close the DLPFile instance.
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
+    dlpFile.stopFuseLink(); // Stop read/write on the link file.
+    dlpFile.resumeFuseLink(async (err, res) => {
+      if (err != undefined) {
+        console.error('resumeFuseLink error,', err.code, err.message);
+        await dlpFile.closeDLPFile(); // Close the DLPFile instance.
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  }); // Open a DLP file.
 } catch (err) {
   console.error('resumeFuseLink error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1664,7 +1683,7 @@ Replaces a link file. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | Yes| Name of the link file to replace.| 
+| linkFileName | string | Yes| Name of the link file to replace.|
 
 **Return value**
 
@@ -1695,12 +1714,13 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
-  dlpFile.stopFuseLink(); // Stop read/write on the link file.
-  dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link'); // Replace the link file.
-  dlpFile.resumeFuseLink(); // Resume read/write on the link file.
-  dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
+    dlpFile.stopFuseLink(); // Stop read/write on the link file.
+    dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link'); // Replace the link file.
+    dlpFile.resumeFuseLink(); // Resume read/write on the link file.
+    dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  }); // Open a DLP file.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -1723,7 +1743,7 @@ Replaces a link file. This API uses an asynchronous callback to return the resul
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | Yes| Name of the link file to replace.| 
+| linkFileName | string | Yes| Name of the link file to replace.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
@@ -1749,18 +1769,19 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
-  dlpFile.stopFuseLink(); // Stop read/write on the link file.
-  dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link', async (err, res) => { // Replace a link file.
-    if (err != undefined) {
-      console.error('replaceDLPLinkFile error,', err.code, err.message);
-      await dlpFile.closeDLPFile(); // Close the DLPFile instance.
-    } else {
-      console.info('res', JSON.stringify(res));
-      await dlpFile.resumeFuseLink(); // Resume read/write on the link file.
-    }
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
+    dlpFile.stopFuseLink(); // Stop read/write on the link file.
+    dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link', async (err, res) => { // Replace a link file.
+      if (err != undefined) {
+        console.error('replaceDLPLinkFile error,', err.code, err.message);
+        await dlpFile.closeDLPFile(); // Close the DLPFile instance.
+      } else {
+        console.info('res', JSON.stringify(res));
+        await dlpFile.resumeFuseLink(); // Resume read/write on the link file.
+      }
+    });
+  }); // Open a DLP file.
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1782,7 +1803,7 @@ Deletes a link file from the FUSE. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | Yes| Name of the link file to delete.| 
+| linkFileName | string | Yes| Name of the link file to delete.|
 
 **Return value**
 
@@ -1813,10 +1834,11 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
-  dlpFile.deleteDLPLinkFile('test.txt.dlp.link'); // Delete the link file.
-  dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
+    dlpFile.deleteDLPLinkFile('test.txt.dlp.link'); // Delete the link file.
+    dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  }); // Open a DLP file.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -1839,7 +1861,7 @@ Deletes a link file. This API uses an asynchronous callback to return the result
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | Yes| Name of the link file to delete.| 
+| linkFileName | string | Yes| Name of the link file to delete.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
@@ -1865,16 +1887,17 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
-  dlpFile.deleteDLPLinkFile('test.txt.dlp.link', async (err, res) => { // Delete a link file.
-    if (err != undefined) {
-      console.error('deleteDLPLinkFile error,', err.code, err.message);
-      await dlpFile.closeDLPFile(); // Close the DLPFile instance.
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
+    dlpFile.deleteDLPLinkFile('test.txt.dlp.link', async (err, res) => { // Delete a link file.
+      if (err != undefined) {
+        console.error('deleteDLPLinkFile error,', err.code, err.message);
+        await dlpFile.closeDLPFile(); // Close the DLPFile instance.
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  }); // Open a DLP file.
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1934,9 +1957,10 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 let destFile = fs.openSync("destUri");
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.recoverDLPFile(destFile.fd); // Recover the plain text from the DLP file.
-  dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.recoverDLPFile(destFile.fd); // Recover the plain text from the DLP file.
+    dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  }); // Open a DLP file.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -1993,15 +2017,16 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 let destFile = fs.openSync("destUri");
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.recoverDLPFile(destFile.fd, async (err, res) => { // Recover the plaintext of a DLP file.
-    if (err != undefined) {
-      console.error('recoverDLPFile error,', err.code, err.message);
-      await dlpFile.closeDLPFile(); // Close the DLPFile instance.
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.recoverDLPFile(destFile.fd, async (err, res) => { // Recover the plaintext of a DLP file.
+      if (err != undefined) {
+        console.error('recoverDLPFile error,', err.code, err.message);
+        await dlpFile.closeDLPFile(); // Close the DLPFile instance.
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  }); // Open a DLP file.
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -2051,8 +2076,9 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  }); // Open a DLP file.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -2103,15 +2129,16 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.closeDLPFile((err, res) => {// Close the DLP file.
-    if (err != undefined) {
-      console.error('closeDLPFile error,', err.code, err.message);
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-    fs.closeSync(file);
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.closeDLPFile((err, res) => {// Close the DLP file.
+      if (err != undefined) {
+        console.error('closeDLPFile error,', err.code, err.message);
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+      fs.closeSync(file);
+    });
+  }); // Open a DLP file.
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
   fs.closeSync(file);
@@ -2182,8 +2209,9 @@ try {
     ownerAccountID: 'xxxxxxx',
     everyoneAccessList: []
   };
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.generateDLPFile(file.fd, dlp.fd, dlpProperty); // Generate a DLP file.
-  dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  dlpPermission.generateDLPFile(file.fd, dlp.fd, dlpProperty).then((dlpFile)=>{
+    dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  }); // Generate a DLP file.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -2315,8 +2343,9 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // Open a DLP file.
-  dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.closeDLPFile(); // Close the DLPFile instance.
+  }); // Open a DLP file.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -2340,7 +2369,7 @@ Opens a DLP file. This API uses an asynchronous callback to return the result.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | ciphertextFd | number | Yes| FD of the encrypted file.|
-| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | Yes| Callback invoked to return the **DLPFile** instance opened.| 
+| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | Yes| Callback invoked to return the **DLPFile** instance opened.|
 
 **Error codes**
 
@@ -2424,7 +2453,7 @@ Represents the permission information about a DLP file.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | Yes| No| User permission on the DLP file, for example, read-only.| 
+| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | Yes| No| User permission on the DLP file, for example, read-only.|
 | flags | number | Yes| No| Operations that can be performed on the DLP file. It is a combination of different [ActionFlagTypes](#actionflagtype).|
 
 ## AccessedDLPFileInfo
