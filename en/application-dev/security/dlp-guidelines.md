@@ -109,7 +109,7 @@ Procedure
    });
    ```
 
-4. Obtain the permissions on the file. For more information, see [Sandbox Restrictions](#sandbox- restrictions).
+4. Obtain the permissions on the file. For more information, see [Sandbox Restrictions](#sandbox-restrictions).
 
    ```ts
    dlpPermission.getDLPPermissionInfo().then((data)=> { 
