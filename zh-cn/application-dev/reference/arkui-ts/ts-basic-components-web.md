@@ -1677,7 +1677,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，触发默认弹窗。 |
 
 **示例：**
 
