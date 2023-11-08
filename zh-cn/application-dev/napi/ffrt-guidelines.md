@@ -1360,8 +1360,8 @@ void ffrt_yield();
 * 程序过程各步骤以函数封装表达，函数满足类纯函数特性
 * 无全局数据访问
 * 无内部状态保留
-* 通过ffrt::submit()接口以异步任务方式提交函数执行
-* 将函数访问的数据对象以及访问方式在ffrt::submit()接口中的in_deps/out_deps参数表达
+* 通过ffrt_submit_base()接口以异步任务方式提交函数执行
+* 将函数访问的数据对象以及访问方式在ffrt_submit_base()接口中的in_deps/out_deps参数表达
 * 程序员通过inDeps/outDeps参数表达任务间依赖关系以保证程序执行的正确性
 
 > 做到纯函数的好处在于：1. 能够最大化挖掘并行度，2.避免DataRace和锁的问题
@@ -1374,91 +1374,7 @@ void ffrt_yield();
 * 通过FFRT提供的锁机制保护对全局变量的访问
 
 
-
-### 建议2: 注意任务粒度
-
-* FFRT管理和调度异步任务执行有调度开销，任务粒度（执行时间）需匹配调度开销
-* 大量小粒度任务造成FFRT调度开销占比增加，性能下降，解决方法：
-  * 将多个小粒度任务聚合为大粒度任务一次发送给FFRT异步执行
-  * 同步方式执行小粒度任务，不发送给FFRT异步执行。需注意和异步任务之间的数据同步问题，在需要同步的地方插入ffrt::wait()
-  * 下面的例子中，fib_ffrt2会比fib_ffrt1拥有更好的性能
-
-  ```{.cpp}
-  #include "ffrt.h"
-  void fib_ffrt1(int x, int& y)
-  {
-      if (x <= 1) {
-          y = x;
-      } else {
-          int y1, y2;
-          ffrt::submit([&] {fib_ffrt1(x - 1, y1);}, {&x}, {&y1} );
-          ffrt::submit([&] {fib_ffrt1(x - 2, y2);}, {&x}, {&y2} );
-          ffrt::submit([&] {y = y1 + y2;}, {&y1, &y2}, {} );
-          ffrt::wait();
-      }
-  }
-
-  void fib_ffrt2(int x, int& y)
-  {
-      if (x <= 1) {
-          y = x;
-      } else {
-          int y1, y2;
-          ffrt::submit([&] {fib_ffrt2(x - 1, y1);}, {&x}, {&y1} );
-          ffrt::submit([&] {fib_ffrt2(x - 2, y2);}, {&x}, {&y2} );
-          ffrt::wait({&y1, &y2});
-          y = y1 + y2;
-      }
-  }
-  ```
-
-
-
-### 建议3: 数据生命周期
-
-* FFRT的任务提交和执行是异步的，因此需要确保任务执行时，对任务中涉及的数据的访问是有效的
-* 常见问题：子任务使用父任务栈数据，当父任务先于子任务执行完成时释放栈数据，子任务产生数据访问错误
-* 解决方法1：父任务中增加ffrt::wait()等待子任务完成
-
-```{.cpp}
-#include "ffrt.h"
-void fib_ffrt(int x, int& y)
-{
-    if (x <= 1) {
-        y = x;
-    } else {
-        int y1, y2;
-        ffrt::submit([&] {fib_ffrt(x - 1, y1);}, {&x}, {&y1} );
-        ffrt::submit([&] {fib_ffrt(x - 2, y2);}, {&x}, {&y2} );
-        ffrt::submit([&] {y = y1 + y2;}, {&y1, &y2}, {} );
-        ffrt::wait(); // 用于保证y1 y2的生命周期
-    }
-}
-```
-
-* 解决方法2：将数据由栈移到堆，手动管理生命周期
-
-```{.cpp}
-#include "ffrt.h"
-void fib_ffrt(int x, int* y)
-{
-    if (x <= 1) {
-        *y = x;
-    } else {
-        int *y1 = (int*)malloc(sizeof(int));
-        int *y2 = (int*)malloc(sizeof(int));
-		
-        ffrt::submit([=] {fib_ffrt(x - 1, y1);}, {}, {y1} );
-        ffrt::submit([=] {fib_ffrt(x - 2, y2);}, {}, {y2} );
-        ffrt::submit([=] {*y = *y1 + *y2; }, {y1, y2}, {} );
-		ffrt::wait();
-    }
-}
-```
-
-
-
-### 建议4: 使用FFRT提供的替代API
+### 建议2: 使用FFRT提供的替代API
 
 * 禁止在FFRT任务中使用系统线程库API创建线程，使用submit提交任务
 * 使用FFRT提供的锁，条件变量，睡眠，IO等API代替系统线程库API
@@ -1466,7 +1382,7 @@ void fib_ffrt(int x, int* y)
 
 
 
-### 建议5: Deadline机制
+### 建议3: Deadline机制
 
 * **必须用于具备周期/重复执行特征的处理流程**
 * 在有明确时间约束和性能关键的处理流程中使用，避免滥用
@@ -1474,7 +1390,7 @@ void fib_ffrt(int x, int* y)
 
 
 
-### 建议6: 从线程模型迁移
+### 建议4: 从线程模型迁移
 
 * 创建线程替代为创建FFRT任务
   * 线程从逻辑上类似无in_deps的任务
