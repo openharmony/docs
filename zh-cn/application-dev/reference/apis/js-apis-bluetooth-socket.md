@@ -12,7 +12,6 @@ socket模块提供了操作和管理蓝牙socket的方法。
 
 ```js
 import socket from '@ohos.bluetooth.socket';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## socket.sppListen<a name="sppListen"></a>
@@ -47,6 +46,7 @@ sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&g
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
 function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
@@ -94,6 +94,7 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
 function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
@@ -151,10 +152,11 @@ sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;num
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -196,6 +198,7 @@ sppCloseServerSocket(socket: number): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
 function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
@@ -238,9 +241,10 @@ sppCloseClientSocket(socket: number): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -282,9 +286,10 @@ sppWrite(clientSocket: number, data: ArrayBuffer): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -330,9 +335,10 @@ on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -370,9 +376,10 @@ off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);

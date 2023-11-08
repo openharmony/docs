@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import { Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '@ohos.multimodalInput.gestureEvent';
+import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '@ohos.multimodalInput.gestureEvent';
 ```
 
 ## Pinch
@@ -22,6 +22,17 @@ import { Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '@ohos.mu
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
 | type         | [ActionType](#actiontype)   | 是    | 否    | 捏合事件类型                                   |
 | scale        | number      | 是    | 否    | 捏合度，取值范围大于等于0                             |
+
+## Rotate
+
+旋转事件。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Core
+
+| 名称             | 类型        | 可读   | 可写   | 说明                                       |
+| -------------- | ----------- | ---- | ---- | ---------------------------------------- |
+| type         | [ActionType](#actiontype)   | 是    | 否    | 旋转事件类型                                   |
+| angle        | number      | 是    | 否    | 旋转角度                             |
 
 ## ThreeFingersSwipe
 

@@ -632,6 +632,10 @@ plainArray.forEach((value: string, index?: number) => {
 
 返回一个包含key-value键值对的迭代器对象，其中key是number类型。
 
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**

@@ -147,7 +147,7 @@
          Text('+123 4567 8901').fontSize(14).fontColor("#66182431")
        }
        Blank()                  // 拉伸能力
-       Image($r("app.media.call"))
+       Image($r("app.media.phone"))
          .width(24)
          .height(24)
        Image($r('app.media.dots'))
@@ -187,7 +187,7 @@
          Text('+123 4567 8901').fontSize(14).fontColor("#66182431")
        }
        Blank()
-       Image($r("app.media.call"))
+       Image($r("app.media.phone"))
          .width(24)
          .height(24)
        Image($r('app.media.dots'))
@@ -254,7 +254,7 @@
 
   | 默认设备 | 平板 | 
   | -------- | -------- |
-  | ![zh-cn_image_0000001386180233](figures/zh-cn_image_0000001386180233.jpg) | ![message_list_tablet](figures/message_list_tablet.png) | 
+  | ![zh-cn_image_0000001386060209](figures/zh-cn_image_0000001386060209.jpg) | ![message_list_tablet_default](figures/message_list_tablet_default.png) | 
 
 **消息气泡**
 
@@ -432,26 +432,26 @@ struct MessageBubble {
 
 ```ts
 const globalMessageList:any[] = [
-   {
-     'time':'上午 10:20',
-     'content':'项目介绍',
-     'isReceived':false
-   },
-   {
-     'time':'上午 10:28',
-     'content':'OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及运营的开源项目，目标是面向全场景、全连接、全智能时代，基于开源的方式，搭建一个智能终端设备操作系统的框架和平台，促进万物互联产业的繁荣发展。',
-     'isReceived':false
-   },{
-     'time':'上午 10:32',
-     'content':'技术架构',
-     'isReceived':true
-   },
-   {
-     'time':'上午 10:35',
-     'content':'OpenHarmony整体遵从分层设计，从下向上依次为：内核层、系统服务层、框架层和应用层。系统功能按照“系统 > 子系统 > 组件”逐级展开，在多设备部署场景下，支持根据实际需求裁剪某些非必要的组件。',
-     'isReceived':true
-   }
- ]
+  {
+    'time':'上午 10:20',
+    'content':'项目介绍',
+    'isReceived':false
+  },
+  {
+    'time':'上午 10:28',
+    'content':'"一次开发，多端部署"支撑开发者快速高效的开发支持多种终端设备形态的应用，实现对不同设备兼容的同时，提供跨设备的流转、迁移和协同的分布式体验',
+    'isReceived':false
+  },{
+  'time':'上午 10:32',
+  'content':'系统能力',
+  'isReceived':true
+  },
+  {
+    'time':'上午 10:35',
+    'content':'系统能力（即SystemCapability，缩写为SysCap）指操作系统中每一个相对独立的特性，如蓝牙，WIFI，NFC，摄像头等，都是系统能力之一。每个系统能力对应多个API，随着目标设备是否支持该系统能力共同存在或消失。',
+    'isReceived':true
+  }
+]
 ```
 
 结合[栅格组件](../../reference/arkui-ts/ts-container-gridcontainer.md)的定义，考虑我们当前的实际场景，GridRow的各参数设置如下。

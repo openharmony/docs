@@ -78,7 +78,7 @@ Bottom navigation is the most common navigation mode in applications. The bottom
 ![bottom-navigation](figures/bottom-navigation.gif)
 
 
-You set the position of the navigation bar through the **barPosition** parameter of the **\<Tabs>** component. The default value of this parameter is **Start**, which means that the navigation bar is located on the top. To set the navigation bar to the bottom, set **barPosition** to **End**.
+You set the position of the navigation bar through the **barPosition** parameter of the **\<Tabs>** component. By default, **barPosition** is set to **BarPosition.Start**, which means that the navigation bar is located on the top. To display the navigation bar at the bottom, set **barPosition** to **BarPosition.End**.
 
 
 ```ts
@@ -97,8 +97,6 @@ Top navigation comes in handy when there are many content categories and users n
 
 ![top-navigation](figures/top-navigation.gif)
 
-The default barPosition parameter of the Tabs component is Start, indicating the top navigation mode.
-
 
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
@@ -110,7 +108,7 @@ Tabs({ barPosition: BarPosition.Start }) {
 
 ## Side Navigation
 
-Side navigation is seldom used in applications. It is more applicable to landscape screens and is used to perform navigation operations on applications. Because the natural eye movement pattern is from left to right, the side navigation bar is located on the left side by default.
+Side navigation is seldom used in applications. It is more applicable to landscape screens. Because the natural eye movement pattern is from left to right, the side navigation bar is located on the left side by default.
 
 
   **Figure 5** Side navigation bar 
@@ -118,7 +116,7 @@ Side navigation is seldom used in applications. It is more applicable to landsca
 ![side-navigation](figures/side-navigation.png)
 
 
-To implement the side navigation bar, set the **vertical** attribute of the **\<Tabs>** component to **true**. In the bottom navigation and top navigation implementations, the default value **false** of the **vertical** attribute is used, indicating that the content page and navigation bar are aligned vertically.
+To implement the side navigation bar, set the **vertical** attribute of the **\<Tabs>** component to **true**. By default, **vertical** is set to **false**, indicating that the content page and navigation bar are aligned vertically.
 
 
 
@@ -183,7 +181,7 @@ When the content categories are relatively fixed and not scalable, a fixed navig
 ![fixed-navigation](figures/fixed-navigation.gif)
 
 
-To use a fixed navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **Fixed** (default).
+To use a fixed navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **barMode.Fixed** (default).
 
 
 
@@ -206,7 +204,7 @@ The top navigation bar or side navigation bar can be set to be scrollable if the
 ![scrollable-navigation](figures/scrollable-navigation.gif)
 
 
-To use a scrollable navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **Scrollable**.
+To use a scrollable navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **BarMode.Scrollable**.
 
 
 

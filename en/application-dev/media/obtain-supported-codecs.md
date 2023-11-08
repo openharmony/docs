@@ -37,7 +37,7 @@ Read [AVCapability](../reference/native-apis/_a_v_capability.md) for the API ref
     }
 
     // Check whether the codec capability instance supports a specific bit rate mode.
-    bool isEncoderBitrateModeSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, &bitrateMode);
+    bool isEncoderBitrateModeSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, BITRATE_MODE_CBR);
 
     // Obtain the quality range supported by the encoder.
     OH_AVRange qualityRange;
@@ -75,7 +75,7 @@ Read [AVCapability](../reference/native-apis/_a_v_capability.md) for the API ref
         // Exception processing.
     }
 
-    // Obtain the high alignment value supported.
+    // Obtain the height alignment value supported.
     int32_t heightAlignment;
     int32_t ret = OH_AVCapability_GetVideoHeightAlignment(capability, &heightAlignment);
     if (ret != AV_ERR_OK) {
@@ -151,6 +151,6 @@ Read [AVCapability](../reference/native-apis/_a_v_capability.md) for the API ref
     uint32_t levelNum = 0;
     int32_t ret = OH_AVCapability_GetSupportedLevelsForProfile(capability, 0, &levels, &levelNum);
 
-    // Check whether the codec capability instance supports the scenario where the resolution is 1080p and the frame rate is 30 fps.
-    bool areVideoSizeAndFrameRateSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, 1920, 1080, 30);
+    // Check whether the codec capability instance supports the combination of a profile and level.
+    bool areProfileAndLevelSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_PROFILE_BASELINE, 1);
     ```

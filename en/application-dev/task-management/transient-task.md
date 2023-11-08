@@ -43,47 +43,51 @@ The table below lists the main APIs used for transient task development. For det
 
 1. Import the module.
    
-     ```ts
-     import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-     import { BusinessError } from '@ohos.base';
-     ```
-   
-2. Request a transient task and implement the callback.
+   ```ts
+   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+   import { BusinessError } from '@ohos.base';
+   ```
 
-     ```ts
-     let id: number;         // ID of the transient task.
-     let delayTime: number;  // Remaining time of the transient task.
+2. Request a transient task and implement the callback.
    
-     // Request a transient task.
-     function requestSuspendDelay() {
-       let myReason = 'test requestSuspendDelay'; // Reason for the request.
-       let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-         // Callback function, which is triggered when the transient task is about to time out. The application can carry out data clear and annotation, and cancel the task in the callback.
-         console.info('Succeeded in requesting suspend delay.');
-         backgroundTaskManager.cancelSuspendDelay(id);
-       })
-       id = delayInfo.requestId;
-       delayTime = delayInfo.actualDelayTime;
-     }
-     ```
+   ```ts
+   let id: number;         // ID of the transient task.
+   let delayTime: number;  // Remaining time of the transient task.
+
+   // Request a transient task.
+   function requestSuspendDelay() {
+     let myReason = 'test requestSuspendDelay'; // Reason for the request.
+     let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+       // Callback function, which is triggered when the transient task is about to time out. The application can carry out data clear and annotation, and cancel the task in the callback.
+       console.info('Succeeded in requesting suspend delay.');
+       backgroundTaskManager.cancelSuspendDelay(id);
+     })
+     id = delayInfo.requestId;
+     delayTime = delayInfo.actualDelayTime;
+   }
+   ```
 
 3. Obtain the remaining time of the transient task. Based on the remaining time, the application determines whether to continue to run other services. For example, the application has two small tasks. After the first task is executed, it queries the remaining time of the current transient task to determine whether to execute the second task.
+   
+   ```ts
+   let id: number; // ID of the transient task.
 
-     ```ts
-     async function getRemainingDelayTime() {
-       backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
-         console.info('Succeeded in getting remaining delay time.');
-       }).catch((err: BusinessError) => {
-         console.error(`Failed to get remaining delay time. Code: ${err.code}, message: ${err.message}`);
-       })
-     }
-     ```
+   async function getRemainingDelayTime() {
+     backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
+       console.info('Succeeded in getting remaining delay time.');
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to get remaining delay time. Code: ${err.code}, message: ${err.message}`);
+     })
+   }
+   ```
 
 4. Cancel the transient task.
-
-     ```ts
-     function cancelSuspendDelay() {
-       backgroundTaskManager.cancelSuspendDelay(id);
-     }
-     ```
+   
+   ```ts
+   let id: number; // ID of the transient task.
+    
+   function cancelSuspendDelay() {
+     backgroundTaskManager.cancelSuspendDelay(id);
+   }
+   ```
 

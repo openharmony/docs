@@ -1,6 +1,6 @@
 # IPC & RPC Development Guidelines
 
-## When to Use
+## Overview
 
 IPC/RPC enables a proxy and a stub that run on different processes to communicate with each other, regardless of whether they run on the same or different devices.
 
@@ -182,7 +182,7 @@ Table 1 Native IPC APIs
    ```ts
    import rpc from '@ohos.rpc';
    // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-   // import featureAbility from "@ohos.ability.featureAbility";
+   // import featureAbility from '@ohos.ability.featureAbility';
    ```
 
    If you use the stage model, you need to obtain the context. The sample code is as follows:
@@ -270,7 +270,7 @@ Table 1 Native IPC APIs
    try{
        deviceManager.createDeviceManager("ohos.rpc.test", deviceManagerCallback);
    } catch(error) {
-       let e: BusinessError = error as BusinessError;
+       let err: BusinessError = error as BusinessError;
        console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
    }
 
@@ -298,6 +298,8 @@ Table 1 Native IPC APIs
    Call the **onConnect** API to return a proxy object inherited from **rpc.RemoteObject** after the ability is successfully bound. Implement the **onRemoteMessageRequest** API for the proxy object to process requests sent from the client.
 
    ```ts
+    import rpc from '@ohos.rpc';
+    import Want from '@ohos.app.ability.Want';
     class Stub extends rpc.RemoteObject {
        constructor(descriptor: string) {
            super(descriptor);
@@ -306,10 +308,11 @@ Table 1 Native IPC APIs
            // Process requests sent from the client based on the code.
            return true;
        }
-    }
-    onConnect(want: Want) {
+
+       onConnect(want: Want) {
            const robj: rpc.RemoteObject = new Stub("rpcTestAbility");
            return robj;
+       }
     } 
    ```
 
@@ -324,6 +327,7 @@ Table 1 Native IPC APIs
    let data = rpc.MessageParcel.create();
    let reply = rpc.MessageParcel.create();
    // Write parameters to data.
+   let proxy: rpc.IRemoteObject | undefined = undefined;
    proxy.sendRequest(1, data, reply, option)
        .then((result: rpc.SendRequestResult) => {
            if (result.errCode != 0) {
@@ -353,11 +357,11 @@ Table 1 Native IPC APIs
            result.reply.reclaim();
        }
    }
-   let option = new rpc.MessageOption();
-   let data = rpc.MessageParcel.create();
-   let reply = rpc.MessageParcel.create();
+   let options = new rpc.MessageOption();
+   let datas = rpc.MessageParcel.create();
+   let replys = rpc.MessageParcel.create();
    // Write parameters to data.
-   proxy.sendRequest(1, data, reply, option, sendRequestCallback);
+   proxy.sendRequest(1, datas, replys, options, sendRequestCallback);
    ```
 
 5. Tear down the connection.
@@ -365,16 +369,41 @@ Table 1 Native IPC APIs
    If you use the FA model, call the API provided by **featureAbility** to tear down the connection when the communication is over. If you use the stage model, obtain a service instance through **Context**, and then call the API provided by **featureAbility** to tear down the connection.
 
    ```ts
-   import rpc from "@ohos.rpc";
+   import rpc from '@ohos.rpc';
+   import Want from '@ohos.app.ability.Want';
+   import common from '@ohos.app.ability.common';
    // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
    // import featureAbility from "@ohos.ability.featureAbility";
 
    function disconnectCallback() {
-       console.info("disconnect ability done");
+     console.info("disconnect ability done");
    }
    // Use this method to disconnect from the ability in the FA model.
    // featureAbility.disconnectAbility(connectId, disconnectCallback);
 
+   let proxy: rpc.IRemoteObject | undefined = undefined;
+   let connectId: number;
+
+   // Bind the ability on a single device.
+   let want: Want = {
+     // Enter the bundle name and ability name.
+     bundleName: "ohos.rpc.test.server",
+     abilityName: "ohos.rpc.test.server.ServiceAbility",
+   };
+   let connect: common.ConnectOptions = {
+     onConnect: (elementName, remote) => {
+       proxy = remote;
+     },
+     onDisconnect: (elementName) => {
+     },
+     onFailed: () => {
+       proxy;
+     }
+   };
+   // Use this method to connect to the ability in the FA model.
+   // connectId = featureAbility.connectAbility(want, connect);
+
+   connectId = this.context.connectServiceExtensionAbility(want,connect);
+
    this.context.disconnectServiceExtensionAbility(connectId);
    ```
-

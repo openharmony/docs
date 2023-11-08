@@ -25,7 +25,7 @@ Obtains the total heap memory size of this application.
 
 | Type  | Description                       |
 | ------ | --------------------------- |
-| bigint | Total heap memory size of the application, in KB.|
+| bigint | Total heap memory size of the application, in bytes.|
 
 **Example**
   ```ts
@@ -44,7 +44,7 @@ Obtains the allocated heap memory size of this application.
 
 | Type  | Description                             |
 | ------ | --------------------------------- |
-| bigint | Allocated heap memory of the application, in KB.|
+| bigint | Allocated heap memory of the application, in bytes.|
 
 
 **Example**
@@ -64,7 +64,7 @@ Obtains the free heap memory size of this application.
 
 | Type  | Description                           |
 | ------ | ------------------------------- |
-| bigint | Free heap memory size of the application, in KB.|
+| bigint | Free heap memory size of the application, in bytes.|
 
 **Example**
   ```ts
@@ -190,24 +190,20 @@ let applicationContext: common.Context | null = null;
 try {
   applicationContext = this.context.getApplicationContext();
 } catch (error) {
-  console.info((error as BusinessError).code);
-  console.info((error as BusinessError).message);
+  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 
-if (applicationContext) {
-  let filesDir: string = applicationContext.filesDir;
-}
+let filesDir: string = applicationContext!.filesDir;
 let path: string = filesDir + "/serviceInfo.txt";
 console.info("output path: " + path);
-let file: file.fs = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 let serviceId: number = 10;
-let args: Array = new Array("allInfo");
+let args: Array<string> = new Array("allInfo");
 
 try {
   hidebug.getServiceDump(serviceId, file.fd, args);
 } catch (error) {
-  console.info((error as BusinessError).code);
-  console.info((error as BusinessError).message);
+  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 fs.closeSync(file);
 ```
@@ -245,8 +241,7 @@ try {
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info((error as BusinessError).code)
-  console.info((error as BusinessError).message)
+  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -275,8 +270,7 @@ try {
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info((error as BusinessError).code)
-  console.info((error as BusinessError).message)
+  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -311,8 +305,7 @@ import { BusinessError } from '@ohos.base'
 try {
   hidebug.dumpJsHeapData("heapData");
 } catch (error) {
-  console.info((error as BusinessError).code)
-  console.info((error as BusinessError).message)
+  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 

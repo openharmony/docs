@@ -6,7 +6,7 @@
 
 - 多线程并发允许在同一时间段内同时执行多段代码。在主线程继续响应用户操作和更新UI的同时，后台也能执行耗时操作，从而避免应用出现卡顿。
 
-并发能力在多种场景中都有应用，其中包括单次I/O任务、CPU密集型任务、I/O密集型任务和同步任务等。开发者可以根据不同的场景，选择相应的并发策略进行优化和开发。
+并发能力在多种场景中都有应用，其中包括[单次I/O任务](single-io-development.md)、[CPU密集型任务](cpu-intensive-task-development.md)、[I/O密集型任务](io-intensive-task-development.md)和[同步任务](sync-task-development.md)等。开发者可以根据不同的场景，选择相应的并发策略进行优化和开发。
 
 ArkTS支持异步并发和多线程并发。
 

@@ -4,7 +4,7 @@
 >
 > 该模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-选择器(Picker)是一个封装PhotoViewPicker、DocumentViewPicker、AudioViewPicker等系统应用选择与保存能力的模块。应用可以自行选择使用哪种picker实现文件选择和文件保存的功能。该类接口，需要应用在界面UIAbility中调用，否则无法拉起photoPicker或FilePicker。
+选择器(Picker)是一个封装PhotoViewPicker、DocumentViewPicker、AudioViewPicker等API模块，具有选择与保存的能力。应用可以自行选择使用哪种API实现文件选择和文件保存的功能。该类接口，需要应用在界面UIAbility中调用，否则无法拉起photoPicker应用或FilePicker应用。
 
 ## 导入模块
 
@@ -26,9 +26,11 @@ let photoPicker = new picker.PhotoViewPicker();
 
 ### select
 
-select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
+select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 
 通过选择模式拉起photoPicker界面，用户可以选择一个或多个图片/视频。接口采用promise异步返回形式，传入可选参数PhotoSelectOptions对象，返回PhotoSelectResult对象。
+
+**注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -36,7 +38,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| option | [PhotoSelectOptions](#photoselectoptions) | 否   | photoPicker选择选项，若无此参数，则默认选择媒体文件类型为图片和视频类型，选择媒体文件数量的最大值为50 |
+| option | [PhotoSelectOptions](#photoselectoptions) | 否   | photoPicker选择选项，若无此参数，则默认选择媒体文件类型为图片和视频类型，选择媒体文件数量的默认最大值为50 |
 
 **返回值：**
 
@@ -68,9 +70,11 @@ async function example01() {
 
 ### select
 
-select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
+select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
 通过选择模式拉起photoPicker界面，用户可以选择一个或多个图片/视频。接口采用callback异步返回形式，传入参数PhotoSelectOptions对象，返回PhotoSelectResult对象。
+
+**注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -107,9 +111,11 @@ async function example02() {
 
 ### select
 
-select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
+select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
 通过选择模式拉起photoPicker界面，用户可以选择一个或多个图片/视频。接口采用callback异步返回形式，返回PhotoSelectResult对象。
+
+**注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -142,9 +148,11 @@ async function example03() {
 
 ### save
 
-save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
+save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
-通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用promise异步返回形式，传入可选参数PhotoSaveOptions对象，返回保存文件的uri数组。save接口会将文件保存在文件管理器，而不是图库。
+通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用promise异步返回形式，传入可选参数PhotoSaveOptions对象，返回保存文件的uri数组。
+
+**注意**：此接口会将文件保存在文件管理器，而不是图库。返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -183,9 +191,11 @@ async function example04() {
 
 ### save
 
-save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用callback异步返回形式，传入参数PhotoSaveOptions对象，返回保存文件的uri数组。save接口会将文件保存在文件管理器，而不是图库。
+通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用callback异步返回形式，传入参数PhotoSaveOptions对象，返回保存文件的uri数组。
+
+**注意**：此接口会将文件保存在文件管理器，而不是图库。返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -221,9 +231,11 @@ async function example05() {
 
 ### save
 
-save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用callback异步返回形式，返回保存文件的uri数组。save接口会将文件保存在文件管理器，而不是图库。
+通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用callback异步返回形式，返回保存文件的uri数组。
+
+**注意**：此接口会将文件保存在文件管理器，而不是图库。返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -268,9 +280,11 @@ let documentPicker = new picker.DocumentViewPicker();
 
 ### select
 
-select(option?: DocumentSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
+select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用promise异步返回形式，传入可选参数DocumentSelectOptions对象，返回选择文件的uri数组。
+
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -308,9 +322,11 @@ async function example07() {
 
 ### select
 
-select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用callback异步返回形式，传入参数DocumentSelectOptions对象，返回选择文件的uri数组。
+
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -345,9 +361,11 @@ async function example08() {
 
 ### select
 
-select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用callback异步返回形式，返回选择文件的uri数组。
+
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -381,9 +399,11 @@ async function example09() {
 
 ### save
 
-save(option?: DocumentSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
+save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用promise异步返回形式，传入可选参数DocumentSaveOptions对象，返回保存文件的uri数组。
+
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -422,9 +442,11 @@ async function example10() {
 
 ### save
 
-save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用callback异步返回形式，传入参数DocumentSaveOptions对象，返回保存文件的uri数组。
+
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -460,9 +482,11 @@ async function example11() {
 
 ### save
 
-save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用callback异步返回形式，返回保存文件的uri数组。
+
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -507,9 +531,11 @@ let audioPicker = new picker.AudioViewPicker();
 
 ### select
 
-select(option?: AudioSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
+select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 通过选择模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以选择一个或多个音频文件。接口采用promise异步返回形式，传入可选参数AudioSelectOptions对象，返回选择音频文件的uri数组。
+
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -547,9 +573,11 @@ async function example13() {
 
 ### select
 
-select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过选择模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以选择一个或多个音频文件。接口采用callback异步返回形式，传入参数AudioSelectOptions对象，返回选择音频文件的uri数组。
+
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -584,9 +612,11 @@ async function example14() {
 
 ### select
 
-select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过选择模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以选择一个或多个音频文件。接口采用callback异步返回形式，返回选择音频文件的uri数组。
+
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -619,9 +649,11 @@ async function example15() {
 
 ### save
 
-save(option?: AudioSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
+save(option?: AudioSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用promise异步返回形式，传入可选参数AudioSaveOptions对象，返回保存音频文件的uri数组。
+
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -660,9 +692,11 @@ async function example16() {
 
 ### save
 
-save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用callback异步返回形式，传入参数AudioSaveOptions对象，返回保存音频文件的uri数组。
+
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -698,9 +732,11 @@ async function example17() {
 
 ### save
 
-save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
+save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用callback异步返回形式，返回保存音频文件的uri数组。
+
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -762,8 +798,8 @@ async function example18() {
 
 | 名称                    | 类型                | 可读 | 可写 | 说明                           |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | 是   | 是   | 返回图库选择后的媒体文件的uri数组 |
-| isOriginalPhoto        | boolean    | 是   | 是   | 返回图库选择后的媒体文件是否为原图 | 
+| photoUris        | Array&lt;string&gt;    | 是   | 是   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。 |
+| isOriginalPhoto        | boolean    | 是   | 是   | 返回图库选择后的媒体文件是否为原图。 |
 
 ## PhotoSaveOptions
 
@@ -785,7 +821,7 @@ async function example18() {
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | maxSelectNumber<sup>10+</sup>       | number  | 否   | 选择文件/目录最大个数，上限500，有效值范围1-500      |
 | defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定选择的文件或者目录路径 |
-| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt; | 否   | 选择文件的后缀类型 |
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt; | 否   | 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔 |
 
 ## DocumentSaveOptions
 

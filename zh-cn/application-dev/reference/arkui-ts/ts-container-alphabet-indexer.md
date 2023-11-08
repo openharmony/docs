@@ -33,15 +33,15 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 | selectedColor           | [ResourceColor](ts-types.md#resourcecolor)     | 设置选中项文字颜色。<br/>默认值：0xFF254FF7。                           |
 | popupColor              | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗文字颜色。<br/>默认值：0xFF254FF7。                         |
 | selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)       | 设置选中项背景颜色。<br/>默认值：0x1F0A59F7。                           |
-| popupBackground         | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗背景色。<br/>默认值：0xFFF1F3F5。                            |
+| popupBackground         | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗背景色。<br/>默认值：0xFFFFFFFF。                            |
 | usingPopup              | boolean                                  | 设置是否使用提示弹窗。<br/>默认值：false。                         |
-| selectedFont            | [Font](ts-types.md#font) | 设置选中项文字样式。<br/>默认值：<br/>{<br/>size:10,<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                          |
-| popupFont               | [Font](ts-types.md#font) | 设置提示弹窗字体样式。<br/>默认值：<br/>{<br/>size:10,<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                         |
-| font                    | [Font](ts-types.md#font) | 设置字母索引条默认字体样式。<br/>默认值：<br/>{<br/>size:10,<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                      |
-| itemSize                | string&nbsp;\|&nbsp;number            | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。不支持设置为百分比。<br/>默认值：24.0<br/>单位：vp |
+| selectedFont            | [Font](ts-types.md#font) | 设置选中项文字样式。<br/>默认值：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                          |
+| popupFont               | [Font](ts-types.md#font) | 设置提示弹窗字体样式。<br/>默认值：<br/>{<br/>size:'24.0vp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                         |
+| font                    | [Font](ts-types.md#font) | 设置字母索引条默认字体样式。<br/>默认值：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                      |
+| itemSize                | string&nbsp;\|&nbsp;number            | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。不支持设置为百分比。<br/>默认值：16.0<br/>单位：vp |
 | alignStyle              | value: [IndexerAlign](#indexeralign枚举说明),<br/>offset<sup>10+</sup>?: [Length](ts-types.md#length) | value：设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值: IndexerAlign.Right。<br/>offset：设置提示弹窗与索引条之间间距，大于等于0为有效值，在不设置或设置为小于0的情况下间距与popupPosition.x相同。与popupPosition同时设置时，水平方向上offset生效，竖直方向上popupPosition.y生效。 |
 | selected | number | 设置选中项索引值。<br/>默认值：0。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| popupPosition | [Position](ts-types.md#position8) | 设置弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:96.0, y:48.0}。 |
+| popupPosition | [Position](ts-types.md#position8) | 设置弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:60.0, y:48.0}。 |
 | popupSelectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分选中文字色。 <br/>默认值：#FF182431 |
 | popupUnselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分未选中文字色。 <br/>默认值：#FF182431 |
 | popupItemFont<sup>10+</sup> | [Font](ts-types.md#font) | 设置提示弹窗非字母部分字体样式。 <br/>默认值：<br/>{<br/>size:24,<br/>style:FontStyle.Medium<br/>}|

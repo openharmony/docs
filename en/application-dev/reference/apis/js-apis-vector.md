@@ -18,7 +18,7 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import Vector from '@ohos.util.Vector';  
+import Vector from '@ohos.util.Vector';
 ```
 
 
@@ -581,7 +581,7 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.increaseCapacityTo(2);
-vector.increaseCapacityTo(8);
+vector.increaseCapacityTo(12);
 ```
 
 ### trimToCurrentLength
@@ -721,7 +721,6 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.add("a");
 let result = vector.getLastIndexFrom(4,3);
 ```
 
@@ -754,7 +753,6 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.add("a");
 let result = vector.getIndexFrom(4, 3);
 ```
 
@@ -814,6 +812,7 @@ vector.add(5);
 vector.add(4);
 let result = vector.get(2);
 ```
+
 ### set
 
 set(index: number, element: T): T
@@ -840,6 +839,10 @@ Replaces an element at the specified position in this container with a given ele
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 Obtains an iterator. Each item of the iterator is a JavaScript object.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **System capability**: SystemCapability.Utils.Lang
 

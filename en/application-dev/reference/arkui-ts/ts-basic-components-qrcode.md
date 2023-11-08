@@ -2,7 +2,7 @@
 
 The **\<QRCode>** component is used to display a QR code.
 
-> **NOTE**
+>  **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 > 
@@ -32,8 +32,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | Color of the QR code.<br>Default value: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, the default value is changed to **ohos_id_color_foreground**.|
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the QR code.<br>Default value: **Color.White**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The settings of the universal attribute [backgroundColor](./ts-universal-attributes-background.md) applies to the QR code content area instead of the entire **\<QRCode>** component.<br>Since API version 10, the default value is changed to **ohos_id_color_background**.|
+| color | [ResourceColor](ts-types.md#resourcecolor) | Color of the QR code.<br>Default value: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 11, the default value is changed to **'#ff182431'**.|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the QR code.<br>Default value: **Color.White**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 11, the default value is changed to **'#ffffffff'**.|
 | contentOpacity<sup>11+<sup> | [number](ts-types.md#number) \| [Resource](ts-types.md#resource) | Opacity of the QR code content. The minimum value is 0, and the maximum value is 1.<br>Default value: **1**|
 
 

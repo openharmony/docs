@@ -30,23 +30,23 @@
 
 以下是用户首选项持久化功能的相关接口，更多接口及使用方式请见[用户首选项](../reference/apis/js-apis-data-preferences.md)。
 
-  | 接口名称                                                                                             | 描述                                                         | 
-|--------------------------------------------------------------------------------------------------|------------------------------------------------------------|
-| getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void | 获取Preferences实例。                                           | 
-| putSync(key: string, value: ValueType): void                | 将数据写入Preferences实例，可通过flush将Preferences实例持久化。该接口存在异步接口。    | 
-| hasSync(key: string): void                                   | 检查Preferences实例是否包含名为给定Key的存储键值对。给定的Key值不能为空。该接口存在异步接口。    | 
-| getSync(key: string, defValue: ValueType): void            | 获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。该接口存在异步接口。         | 
-| deleteSync(key: string): void                                   | 从Preferences实例中删除名为给定Key的存储键值对。该接口存在异步接口。                  | 
-| flush(callback: AsyncCallback&lt;void&gt;): void                                                 | 将当前Preferences实例的数据异步存储到用户首选项持久化文件中。                       | 
-| on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void                             | 订阅数据变更，订阅的Key的值发生变更后，在执行flush方法后，触发callback回调。             | 
-| off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void                           | 取消订阅数据变更。                                                  | 
-| deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void     | 从内存中移除指定的Preferences实例。若Preferences实例有对应的持久化文件，则同时删除其持久化文件。 | 
+| 接口名称                                                     | 描述                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| getPreferencesSync(context: Context, options: Options): Preferences | 获取Preferences实例。该接口存在异步接口。                    |
+| putSync(key: string, value: ValueType): void                 | 将数据写入Preferences实例，可通过flush将Preferences实例持久化。该接口存在异步接口。 |
+| hasSync(key: string): void                                   | 检查Preferences实例是否包含名为给定Key的存储键值对。给定的Key值不能为空。该接口存在异步接口。 |
+| getSync(key: string, defValue: ValueType): void              | 获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。该接口存在异步接口。 |
+| deleteSync(key: string): void                                | 从Preferences实例中删除名为给定Key的存储键值对。该接口存在异步接口。 |
+| flush(callback: AsyncCallback&lt;void&gt;): void             | 将当前Preferences实例的数据异步存储到用户首选项持久化文件中。 |
+| on(type: 'change', callback: ( key : string ) => void): void | 订阅数据变更，订阅的Key的值发生变更后，在执行flush方法后，触发callback回调。 |
+| off(type: 'change', callback?: ( key : string ) => void): void | 取消订阅数据变更。                                           |
+| deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void | 从内存中移除指定的Preferences实例。若Preferences实例有对应的持久化文件，则同时删除其持久化文件。 |
 
 
 ## 开发步骤
 
 1. 导入`@ohos.data.preferences`模块。
-     
+   
    ```ts
    import dataPreferences from '@ohos.data.preferences';
    ```
@@ -55,23 +55,19 @@
 
    Stage模型示例：
 
-     
+
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
    import { BusinessError } from '@ohos.base';
    import window from '@ohos.window';
-   
+
+   let preferences: dataPreferences.Preferences | null = null;
+
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        try {
-         dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
-           if (err) {
-             console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
-             return;
-           }
-           console.info('Succeeded in getting preferences.');
-           // 请确保获取到Preferences实例后，再进行相关数据操作
-         })
+         let options: dataPreferences.Options = { name: 'myStore' };
+         preferences = dataPreferences.getPreferencesSync(this.context, options);
        } catch (err) {
          let code = (err as BusinessError).code;
          let message = (err as BusinessError).message;
@@ -83,27 +79,22 @@
 
    FA模型示例：
 
-     
+
    ```ts
+   // 获取context
    import featureAbility from '@ohos.ability.featureAbility';
    import { BusinessError } from '@ohos.base';
    
-   // 获取context
    let context = featureAbility.getContext();
+   let preferences: dataPreferences.Preferences | null = null;
    
    try {
-     dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
-       if (err) {
-         console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
-         return;
-       }
-       console.info('Succeeded in getting preferences.');
-       // 请确保获取到Preferences实例后，再进行相关数据操作
-     })
+       let options: dataPreferences.Options =  { name: 'myStore' };
+       preferences = dataPreferences.getPreferencesSync(context, options);
    } catch (err) {
-     let code = (err as BusinessError).code;
-     let message = (err as BusinessError).message;
-     console.error(`Failed to get preferences. Code is ${code},message:${message}`);
+       let code = (err as BusinessError).code;
+     	let message = (err as BusinessError).message;
+     	console.error(`Failed to get preferences. Code is ${code},message:${message}`);
    }
    ```
 
@@ -117,7 +108,7 @@
 
    示例代码如下所示：
 
-     
+   
    ```ts
    try {
      if (preferences.hasSync('startup')) {
@@ -153,7 +144,7 @@
 
    使用deleteSync()方法删除指定键值对，示例代码如下所示：
 
-     
+   
    ```ts
    try {
      preferences.deleteSync('startup');
@@ -189,10 +180,7 @@
      应用订阅数据变更需要指定observer作为回调方法。订阅的Key值发生变更后，当执行flush()方法时，observer被触发回调。示例代码如下所示：
      
    ```ts
-   interface observer {
-      key: string
-   }
-   preferences.on('change', (key: observer) => {
+   preferences.on('change', (key: string) => {
      console.info('The key' + key + 'changed.');
    });
    // 数据产生变更，由'auto'变为'manual'
@@ -224,20 +212,21 @@
 
    示例代码如下所示：
 
-     
+   
    ```ts
    try {
-     dataPreferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
-         return;
-       }
-       console.info('Succeeded in deleting preferences.');
-     })
+       let options: dataPreferences.Options = { name: 'myStore' };
+       dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
+           if (err) {
+               console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
+               return;
+           }
+           console.info('Succeeded in deleting preferences.');
+       })
    } catch (err) {
-     let code = (err as BusinessError).code;
-     let message = (err as BusinessError).message;
-     console.error(`Failed to delete preferences. Code:${code}, message:${message}`);
+       let code = (err as BusinessError).code;
+       let message = (err as BusinessError).message;
+       console.error(`Failed to delete preferences. Code:${code}, message:${message}`);
    }
    ```
 

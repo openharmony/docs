@@ -103,7 +103,7 @@ httpRequest.request(
 
 ```ts
 // 引入包名
-import http from '@ohos.net.http'
+import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
@@ -124,8 +124,8 @@ httpRequest.on('dataEnd', () => {
 });
 // 用于订阅HTTP流式响应数据接收进度事件
 class Data {
-  receiveSize: number = 0
-  totalSize: number = 0
+  receiveSize: number = 0;
+  totalSize: number = 0;
 }
 httpRequest.on('dataReceiveProgress', (data: Data) => {
   console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);

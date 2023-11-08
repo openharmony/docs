@@ -257,18 +257,23 @@ function callback(error: BusinessError, data: void) {
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         let wantAgentInfo: wantAgent.WantAgentInfo = {
+            // 点击通知后，将要执行的动作列表
             wants: [
                 {
                     bundleName: "com.example.myapplication",
                     abilityName: "EntryAbility"
                 }
             ],
+            // 点击通知后，动作类型
             operationType: wantAgent.OperationType.START_ABILITY,
+            // 使用者自定义的一个私有值
             requestCode: 0,
+            // 点击通知后，动作执行属性
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
         try {
+            // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
             wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
                 try {
                     backgroundTaskManager.startBackgroundRunning(this.context,
@@ -335,18 +340,23 @@ import { BusinessError } from '@ohos.base';
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         let wantAgentInfo: wantAgent.WantAgentInfo = {
+            // 点击通知后，将要执行的动作列表
             wants: [
                 {
                     bundleName: "com.example.myapplication",
                     abilityName: "EntryAbility"
                 }
             ],
+            // 点击通知后，动作类型
             operationType: wantAgent.OperationType.START_ABILITY,
+            // 使用者自定义的一个私有值
             requestCode: 0,
+            // 点击通知后，动作执行属性
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
         try {
+            // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
             wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
                 try {
                     backgroundTaskManager.startBackgroundRunning(this.context,

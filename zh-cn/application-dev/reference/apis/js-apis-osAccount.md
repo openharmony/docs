@@ -4690,7 +4690,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 **示例：**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {
@@ -4754,7 +4754,7 @@ authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback)
 
 **示例：**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -4805,7 +4805,7 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
 
 **示例：**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -4962,7 +4962,7 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5012,7 +5012,7 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5063,7 +5063,7 @@ isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, cal
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5113,7 +5113,7 @@ getAccessToken(options: GetDomainAccessTokenOptions, callback: AsyncCallback&lt;
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5174,7 +5174,7 @@ static registerPlugin(plugin: DomainPlugin): void
 
 **示例：**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
          callback: account_osAccount.IUserAuthCallback) => {},
@@ -6679,6 +6679,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | domain      | string | 是   | 域名。     |
 | accountName | string | 是   | 域帐号名。 |
 | accountId<sup>10+</sup> | string | 否   | 域帐号标识。<br>**系统接口：** 此接口为系统接口，默认为空。 |
+| isAuthenticated<sup>11+</sup>| boolean | 否 | 指示域账号是否已认证。<br>**系统接口：** 此接口为系统接口，默认为false。|
 
 ## 系统帐号约束列表
 

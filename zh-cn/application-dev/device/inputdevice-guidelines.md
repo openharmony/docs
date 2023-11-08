@@ -27,8 +27,8 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
 
 ## 开发步骤
 
-1. 调用getDeviceList方法查询所有连接的输入设备，调用getKeyboardType方法遍历所有连接的设备，判断是否有物理键盘，若有则标记已有物理键盘连接，该步骤确保监听设备热插拔之前，检测所有插入的输入设备。
-2. 调用on接口监听输入设备热插拔事件，若监听到有物理键盘插入，则标记已有物理键盘连接；若监听到有物理键盘拔掉，则标记没有物理键盘连接。
+1. 调用[getDeviceList](../reference/apis/js-apis-inputdevice.md#inputdevicegetdevicelist9)方法查询所有连接的输入设备，调用[getKeyboardType](../reference/apis/js-apis-inputdevice.md#inputdevicegetkeyboardtype9)方法遍历所有连接的设备，判断是否有物理键盘，若有则标记已有物理键盘连接，该步骤确保监听设备热插拔之前，检测所有插入的输入设备。
+2. 调用[on](../reference/apis/js-apis-inputdevice.md#inputdeviceon9)接口监听输入设备热插拔事件，若监听到有物理键盘插入，则标记已有物理键盘连接；若监听到有物理键盘拔掉，则标记没有物理键盘连接。
 
 
 ```js

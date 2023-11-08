@@ -48,7 +48,7 @@ Navigation(pathInfos: NavPathStack)
 | navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition枚举说明)    | 导航栏位置。<br/>默认值：NavBarPosition.Start<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
 | mode<sup>9+</sup>                  | [NavigationMode](#navigationmode枚举说明)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>**说明：** <br/>支持Stack、Split与Auto模式。 |
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。 |
-| hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏。 |
+| hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏。<br/>默认值：false |
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
 | navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432。<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar 优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。 |
 | minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
@@ -59,6 +59,7 @@ Navigation(pathInfos: NavPathStack)
 | ---------------------------------------- | ---------------------------------------- |
 | onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | 当titleMode为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。 |
 | onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) | 导航栏显示状态切换时触发该回调。返回值isVisible为true时表示显示，为false时表示隐藏。 |
+| onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) <sup>11+</sup>| 当Navigation首次显示或者单双栏状态发生变化时触发该回调。<br>NavigationMode.Split: 当前Navigation显示为双栏;<br>NavigationMode.Stack: 当前Navigation显示为单栏。|
 
 ## NavPathStack<sup>10+</sup>
 
@@ -266,7 +267,7 @@ constructor(name: string, param: unknown)
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
-| value  | string        | 是    | 菜单栏单个选项的显示文本。   |
+| value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  |
 | icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 |
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   |
 

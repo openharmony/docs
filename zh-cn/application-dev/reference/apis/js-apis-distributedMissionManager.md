@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import distributedMissionManager from '@ohos.distributedMissionManager'
+import distributedMissionManager from '@ohos.distributedMissionManager';
 ```
 
 ## distributedMissionManager.registerMissionListener
@@ -37,6 +37,8 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+  
+  // 实现回调函数
   function NotifyMissionsChanged(deviceId: string): void {
     console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
   }
@@ -49,6 +51,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
     console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   try {
+    // 调用registerMissionListener接口
     distributedMissionManager.registerMissionListener(
       { deviceId: "" },
       {
@@ -94,6 +97,8 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
+  // 实现回调函数
   function NotifyMissionsChanged(deviceId: string): void {
     console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
   }
@@ -106,6 +111,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
     console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   try {
+      // 调用registerMissionListener接口
       distributedMissionManager.registerMissionListener(
         { deviceId: "" },
         {
@@ -144,6 +150,7 @@ unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.unRegisterMissionListener(
       { deviceId: "" },
@@ -185,6 +192,7 @@ unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.unRegisterMissionListener({deviceId: ""}).then(() => {
       console.info('unRegisterMissionListener finished successfully');
@@ -218,6 +226,7 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.startSyncRemoteMissions(
       {
@@ -263,6 +272,7 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.startSyncRemoteMissions(
       {
@@ -302,6 +312,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.stopSyncRemoteMissions(
       {
@@ -345,6 +356,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.stopSyncRemoteMissions(
       {
@@ -395,10 +407,13 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
+  // 实现回调函数
   function onContinueDone(resultCode: number): void {
     console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   try {
+    // 调用continueMission接口
     distributedMissionManager.continueMission(
       {
         srcDeviceId: "",
@@ -459,10 +474,13 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
+  // 实现回调函数
   function onContinueDone(resultCode: number): void {
     console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   try {
+    // 调用continueMission接口
     distributedMissionManager.continueMission(
       {
         srcDeviceId: "",
@@ -515,6 +533,7 @@ continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.continueMission(
       {
@@ -574,6 +593,7 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
       distributedMissionManager.continueMission(
         {
@@ -613,6 +633,7 @@ on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, i
 
 ```js
   import distributedMissionManager from '@ohos.distributedMissionManager'
+
   try {
     distributedMissionManager.on('continueStateChange', (data) => {
       console.info("continueStateChange on:" + JSON.stringify(data));
@@ -643,12 +664,13 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 
 ```js
   import distributedMissionManager from '@ohos.distributedMissionManager'
+
   try {
     distributedMissionManager.off('continueStateChange', (data) => {
       console.info("continueStateChange off:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("continueStateChange err: " + JSON.stringify(error));
+    console.error("continueStateChange err: " + JSON.stringify(err));
   }
   ```
 

@@ -44,13 +44,24 @@ destroy(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-this.context.destroy((err: BusinessError) => {
-  if(err) {
-    console.log('Failed to destroy context.');
-    return;
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+class InputMethodExtnAbility extends InputMethodExtensionAbility {
+  onCreate(want: Want): void {
+    let context = this.context;
   }
-  console.log('Succeeded in destroying context.');
-});
+  onDestroy() {
+    this.context.destroy((err: BusinessError) => {
+      if(err) {
+        console.log(`Failed to destroy context, err code = ${err.code}`);
+        return;
+      }
+      console.log('Succeeded in destroying context.');
+    });
+  }
+}
 ```
 
 ## InputMethodExtensionContext.destroy
@@ -70,9 +81,20 @@ destroy(): Promise\<void>;
 **示例：**
 
 ```ts
-this.context.destroy().then(() => {
-  console.log('Succeed in destroying context.');
-}).catch((err: BusinessError)=>{
-  console.log('Failed to destroy context.');
-});
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+class InputMethodExtnAbility extends InputMethodExtensionAbility {
+  onCreate(want: Want): void {
+    let context = this.context;
+  }
+  onDestroy() {
+    this.context.destroy().then(() => {
+      console.log('Succeed in destroying context.');
+    }).catch((err: BusinessError)=>{
+      console.log(`Failed to destroy context, err code = ${err.code}`);
+    });
+  }
+}
 ```

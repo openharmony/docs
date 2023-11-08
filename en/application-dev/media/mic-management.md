@@ -34,8 +34,8 @@ The **AudioVolumeGroupManager** class provides APIs for managing the microphone 
    }
    ```
 
-3. Call **isMicrophoneMute** to check whether the microphone is muted. If the returned value is **true**, the microphone is muted; otherwise, the microphone is not muted.
-     
+3. Call **isMicrophoneMute** to check whether the microphone is muted. If the return value is **true**, the microphone is muted; otherwise, the microphone is not muted.
+   
    ```ts
    async function isMicrophoneMute() { // Check whether the microphone is muted.
      await audioVolumeGroupManager.isMicrophoneMute().then((value: boolean) => {

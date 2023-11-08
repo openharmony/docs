@@ -16,11 +16,11 @@
       - [UIAbility组件间交互（设备内）](uiability-intra-device-interaction.md)
     - ExtensionAbility组件
       - [ExtensionAbility组件概述](extensionability-overview.md)
-      - [ServiceExtensionAbility](serviceextensionability.md)
-      - [AccessibilityExtensionAbility](accessibilityextensionability.md)
-      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
+      - [AccessibilityExtensionAbility](accessibilityextensionability.md)
+      - [ServiceExtensionAbility](serviceextensionability.md)      
       - [WindowExtensionAbility（仅对系统应用开放）](windowextensionability.md)
+      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)    
       - [DriverExtensionAbility](driverextensionability.md)
     - 服务卡片开发指导（Stage模型）
       - [服务卡片概述](service-widget-overview.md)

@@ -32,7 +32,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| Embed |  侧边栏嵌入到组件内，和内容区并列显示。<br/>组件大小小于minContentWidth + minSideBarWidth,并且未设置showSideBar时，侧边栏自动隐藏。组件大小在自动隐藏后，如果通过点击控制按钮唤出侧边栏，则侧边栏悬浮在内容区上显示。 |
+| Embed | 侧边栏嵌入到组件内，和内容区并列显示。<br/>组件尺寸小于minContentWidth + minSideBarWidth,并且未设置showSideBar时，侧边栏自动隐藏。<br/>未设置minSideBarWidth或者minContentWidth采用未设置接口的默认值进行计算。<br/> 组件在自动隐藏后，如果通过点击控制按钮唤出侧边栏，则侧边栏悬浮在内容区上显示。|
 | Overlay | 侧边栏浮在内容区上面。 |
 | AUTO | 组件尺寸大于等于minSideBarWidth+minContentWidth时，采用Embed模式显示。<br/>组件尺寸小于minSideBarWidth+minContentWidth时，采用Overlay模式显示。<br/>未设置minSideBarWidth或minContentWidth时，会使用未设置接口的默认值进行计算，若计算的值小于600vp，则使用600vp做为模式切换的断点值。|
 
@@ -51,7 +51,7 @@ SideBarContainer( type?: SideBarContainerType )
 | autoHide<sup>9+</sup> | boolean | 设置当侧边栏拖拽到小于最小宽度后，是否自动隐藏。<br/>默认值：true<br>**说明：** <br>受minSideBarWidth属性方法影响，minSideBarWidth属性方法未设置值使用默认值。<br/>拖拽过程中判断是否要自动隐藏。小于最小宽度时需要阻尼效果触发隐藏（越界一段距离） |
 | sideBarPosition<sup>9+</sup> | [SideBarPosition](#sidebarposition9枚举说明) | 设置侧边栏显示位置。<br/>默认值：SideBarPosition.Start |
 | divider<sup>10+</sup>        | [DividerStyle](#dividerstyle10对象说明) \| null | 设置分割线的样式。<br/>- 默认为DividerStyle：显示分割线。<br/>- null：不显示分割线。 |
-| minContentWidth<sup>10+</sup> | [Dimension](ts-types.md#dimension10) | SideBarContainer组件内容区的最小宽度。<br/>默认值：360vp<br/>单位：vp<br/>**说明：** <br/>设置为小于0的值时按默认值显示，未设置时为0vp。<br/>Embed场景下，增大组件尺寸时仅增大内容区的尺寸。<br/>缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth。继续缩小组件尺寸时，保持内容区宽度minContentWidth不变，优先缩小侧边栏的尺寸。<br/>当缩小侧边栏的尺寸至minSideBarWidth后，继续缩小组件尺寸时，<br/>- 如果autoHide属性为false，则会保持侧边栏宽度minSideBarWidth和内容区宽度minContentWidth不变，但内容区会被截断显示；<br/>- 如果autoHide属性为true，则会优先隐藏侧边栏，然后继续缩小至内容区宽度minContentWidth后，内容区宽度保持不变，但内容区会被截断显示。<br/>minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minContentWidth未设置时默认值优先级低于设置的minSideBarWidth与maxSideBarWidth属性。 |
+| minContentWidth<sup>10+</sup> | [Dimension](ts-types.md#dimension10) | SideBarContainer组件内容区可显示的最小宽度。<br/>默认值：360vp<br/>单位：vp<br/>**说明：** <br/>设置为小于0，内容区显示的最小宽度为360vp，未设置该属性时，组件内容区的可缩小到0。<br/>Embed场景下，增大组件尺寸时仅增大内容区的尺寸。<br/>缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth。继续缩小组件尺寸时，保持内容区宽度minContentWidth不变，优先缩小侧边栏的尺寸。<br/>当缩小侧边栏的尺寸至minSideBarWidth后，继续缩小组件尺寸时，<br/>- 如果autoHide属性为false，则会保持侧边栏宽度minSideBarWidth和内容区宽度minContentWidth不变，但内容区会被截断显示；<br/>- 如果autoHide属性为true，则会优先隐藏侧边栏，然后继续缩小至内容区宽度minContentWidth后，内容区宽度保持不变，但内容区会被截断显示。<br/>minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minContentWidth未设置时默认值优先级低于设置的minSideBarWidth与maxSideBarWidth属性。 |
 
 ## ButtonStyle对象说明
 
@@ -85,8 +85,8 @@ SideBarContainer( type?: SideBarContainerType )
 >
 >  当showSideBar属性未设置时，依据组件大小进行自动显示：
 >
->  - 小于520vp：默认不显示侧边栏。
->  - 大于等于520vp：默认显示侧边栏。
+>  - 小于minSideBarWidth + minContentWidth：默认不显示侧边栏。
+>  - 大于等于minSideBarWidth + minContentWidth：默认显示侧边栏。
 
 ## 事件
 

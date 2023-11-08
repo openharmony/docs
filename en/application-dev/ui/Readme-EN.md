@@ -41,10 +41,10 @@
     - [Drawing Custom Graphics on the Canvas (Canvas)](arkts-drawing-customization-on-canvas.md)
   - Using Animation
     - [Animation Overview](arkts-animation.md)
-    - Attribute Animation
-      - [Attribute Animation Overview](arkts-attribute-animation-overview.md)
-      - [Attribute Animation APIs](arkts-attribute-animation-apis.md)
-      - [Custom Attribute Animation](arkts-custom-attribute-animation.md)
+    - Property Animation
+      - [Property Animation Overview](arkts-attribute-animation-overview.md)
+      - [Property Animation APIs](arkts-attribute-animation-apis.md)
+      - [Custom Property Animation](arkts-custom-attribute-animation.md)
     - Transition Animation
       - [Transition Animation Overview](arkts-transition-overview.md)
       - [Enter/Exit Transition](arkts-enter-exit-transition.md)

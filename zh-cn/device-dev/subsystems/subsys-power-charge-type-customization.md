@@ -25,7 +25,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
 ### 开发步骤 
 
-本文以[DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568)为例介绍电池温度保护机制的定制方法。
+本文以[DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568)为例介绍充电类型的定制方法。
 
 1. 在产品目录[（/vendor/hihope/rk3568）](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568)下创建battery文件夹。
 
@@ -104,7 +104,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     cd /data/service/el0/battery/
     ```
 
-3. 默认充电类型的映射配置数据为例，修改充电状态，模拟电池信息上报，观察发送是否发送对应充电类型广播。
+3. 默认充电类型的映射配置数据为例，修改充电状态，模拟电池信息上报，观察是否发送对应充电类型广播。
     1. 修改充电类型
     ```
     echo 1 > charger_type

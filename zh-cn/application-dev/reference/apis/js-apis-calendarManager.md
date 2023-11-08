@@ -54,6 +54,7 @@ getCalendarManager(context : Context): CalendarManager
     calendarMgr = calendarManager.getCalendarManager(mContext);
   }
    
+  let calendarMgr:calendarManager.CalendarManager = calendarManager.getCalendarManager(mContext as Context);
 ```
 
 ## CalendarManager

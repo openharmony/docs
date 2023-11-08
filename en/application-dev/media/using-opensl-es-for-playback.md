@@ -88,7 +88,7 @@ Refer to the sample code below to play an audio file.
    };
    SLDataSource slSource = {&slBufferQueue, &pcmFormat};
    SLObjectItf pcmPlayerObject = nullptr;
-   (*engineEngine)->CreateAudioPlayer(engineEngine, &pcmPlayerObject, &slSource, null, 0, nullptr, nullptr);
+   (*engineEngine)->CreateAudioPlayer(engineEngine, &pcmPlayerObject, &slSource, nullptr, 0, nullptr, nullptr);
    (*pcmPlayerObject)->Realize(pcmPlayerObject, SL_BOOLEAN_FALSE);
    ```
 

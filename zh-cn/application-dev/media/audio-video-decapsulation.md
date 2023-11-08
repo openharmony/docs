@@ -11,8 +11,6 @@
 | 视频     | mp4、mpeg-ts                  |
 | 音频      | m4a、aac、mp3、ogg、flac、wav |
 
-
-
 **适用场景**：
 
 - 播放
@@ -27,7 +25,8 @@
 
   媒体文件格式转换时，需要先对音视频流进行解封装，然后按需将音视频流封装至新的格式文件内。
 
-## 开发步骤
+## 开发指导
+
 详细的API说明参考[AVDemuxer](../reference/native-apis/_a_v_demuxer.md)和[AVSource](../reference/native-apis/_a_v_source.md)
 
 > **说明**
@@ -36,7 +35,26 @@
 > - 调用解封装能力解析本地文件，需要[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.READ_MEDIA
 > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法请参考[ResourceManager API参考](../reference/apis/js-apis-resource-manager.md#getrawfd9)
 
-1. 创建解封装器实例对象
+### 在 CMake 脚本中链接动态库
+
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
+target_link_libraries(sample PUBLIC libnative_media_avsource.so)
+```
+
+### 开发步骤
+
+1. 添加头文件。
+
+   ```c++
+   #include <multimedia/player_framework/native_avdemuxer.h>
+   #include <multimedia/player_framework/native_avsource.h>
+   #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   ```
+
+2. 创建解封装器实例对象。
 
    ``` c++
    // 创建文件操作符 fd，打开时对文件句柄必须有读权限
@@ -59,6 +77,7 @@
    // 为 uri 资源文件创建 source 资源对象(可选)
    // OH_AVSource *source = OH_AVSource_CreateWithURI(uri);
    ```
+
    ```c++
    // 为资源对象创建对应的解封装器
    OH_AVDemuxer *demuxer = OH_AVDemuxer_CreateWithSource(source);
@@ -68,9 +87,7 @@
    }
    ```
 
-
-
-2. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）
+3. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
 
    ``` c++
    // 从文件 source 信息获取文件轨道数
@@ -84,9 +101,7 @@
    OH_AVFormat_Destroy(sourceFormat);
    ```
 
-   
-
-3. 获取轨道index及信息（可选，若用户已知轨道信息，可跳过此步）
+4. 获取轨道index及信息（可选，若用户已知轨道信息，可跳过此步）。
 
    ``` c++
    uint32_t audioTrackIndex = 0;
@@ -112,9 +127,7 @@
    }
    ```
 
-   
-
-4. 添加解封装轨道
+5. 添加解封装轨道。
 
    ``` c++
    if(OH_AVDemuxer_SelectTrackByID(demuxer, audioTrackIndex) != AV_ERR_OK){
@@ -129,9 +142,7 @@
    // OH_AVDemuxer_UnselectTrackByID(demuxer, audioTrackIndex);
    ```
 
-
-
-5. 调整轨道到指定时间点(可选)
+6. 调整轨道到指定时间点(可选)。
 
    ``` c++
    // 调整轨道到指定时间点，后续从该时间点进行解封装
@@ -141,7 +152,7 @@
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-6. 开始解封装，循环获取帧数据(以含音频、视频两轨的文件为例)
+7. 开始解封装，循环获取帧数据(以含音频、视频两轨的文件为例)。
 
    ``` c++
    // 创建 buffer，用与保存用户解封装得到的数据
@@ -181,9 +192,7 @@
    OH_AVMemory_Destroy(buffer);
    ```
 
-   
-
-7. 销毁解封装实例
+8. 销毁解封装实例。
 
    ``` c++
    // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误

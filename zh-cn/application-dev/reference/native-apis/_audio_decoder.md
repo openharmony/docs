@@ -23,35 +23,35 @@ AudioDecoder模块提供用于音频解码的函数。该模块在部分设备�
 
 | 名称                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 描述                                                                  |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [OHOS::Media::AudioChannelSet](#audiochannelset) : uint64_t {``**FRONT_LEFT** = 1ULL &lt;&lt; 0U, **FRONT_RIGHT** = 1ULL &lt;&lt; 1U, **FRONT_CENTER** = 1ULL &lt;&lt; 2U, **LOW_FREQUENCY** = 1ULL &lt;&lt; 3U,``**BACK_LEFT** = 1ULL &lt;&lt; 4U, **BACK_RIGHT** = 1ULL &lt;&lt; 5U, **FRONT_LEFT_OF_CENTER** = 1ULL &lt;&lt; 6U, **FRONT_RIGHT_OF_CENTER** = 1ULL &lt;&lt; 7U,``**BACK_CENTER** = 1ULL &lt;&lt; 8U, **SIDE_LEFT** = 1ULL &lt;&lt; 9U, **SIDE_RIGHT** = 1ULL &lt;&lt; 10U, **TOP_CENTER** = 1ULL &lt;&lt; 11U,``**TOP_FRONT_LEFT** = 1ULL &lt;&lt; 12U, **TOP_FRONT_CENTER** = 1ULL &lt;&lt; 13U, **TOP_FRONT_RIGHT** = 1ULL &lt;&lt; 14U, **TOP_BACK_LEFT** = 1ULL &lt;&lt; 15U,``**TOP_BACK_CENTER** = 1ULL &lt;&lt; 16U, **TOP_BACK_RIGHT** = 1ULL &lt;&lt; 17U, **STEREO_LEFT** = 1ULL &lt;&lt; 29U, **STEREO_RIGHT** = 1ULL &lt;&lt; 30U,``**WIDE_LEFT** = 1ULL &lt;&lt; 31U, **WIDE_RIGHT** = 1ULL &lt;&lt; 32U, **SURROUND_DIRECT_LEFT** = 1ULL &lt;&lt; 33U, **SURROUND_DIRECT_RIGHT** = 1ULL &lt;&lt; 34U,``**LOW_FREQUENCY_2** = 1ULL &lt;&lt; 35U, **TOP_SIDE_LEFT** = 1ULL &lt;&lt; 36U, **TOP_SIDE_RIGHT** = 1ULL &lt;&lt; 37U, **BOTTOM_FRONT_CENTER** = 1ULL &lt;&lt; 38U,``**BOTTOM_FRONT_LEFT** = 1ULL &lt;&lt; 39U, **BOTTOM_FRONT_RIGHT** = 1ULL &lt;&lt; 40U, **AMBISONICS_ACN0** = 1ULL &lt;&lt; 41U, OHOS::Media::AMBISONICS_ACN1 = 1ULL &lt;&lt; 42U,``OHOS::Media::AMBISONICS_ACN2 = 1ULL &lt;&lt; 43U, OHOS::Media::AMBISONICS_ACN3 = 1ULL &lt;&lt; 44U, OHOS::Media::AMBISONICS_W = AMBISONICS_ACN0, OHOS::Media::AMBISONICS_Y = AMBISONICS_ACN1,``OHOS::Media::AMBISONICS_Z = AMBISONICS_ACN2, OHOS::Media::AMBISONICS_X = AMBISONICS_ACN3, OHOS::Media::AMBISONICS_ACN4 = 1ULL &lt;&lt; 45U, OHOS::Media::AMBISONICS_ACN5 = 1ULL &lt;&lt; 46U,``OHOS::Media::AMBISONICS_ACN6 = 1ULL &lt;&lt; 47U, OHOS::Media::AMBISONICS_ACN7 = 1ULL &lt;&lt; 48U, OHOS::Media::AMBISONICS_ACN8 = 1ULL &lt;&lt; 49U, OHOS::Media::AMBISONICS_ACN9 = 1ULL &lt;&lt; 50U,``OHOS::Media::AMBISONICS_ACN10 = 1ULL &lt;&lt; 51U, OHOS::Media::AMBISONICS_ACN11 = 1ULL &lt;&lt; 52U, OHOS::Media::AMBISONICS_ACN12 = 1ULL &lt;&lt; 53U, OHOS::Media::AMBISONICS_ACN13 = 1ULL &lt;&lt; 54U,``OHOS::Media::AMBISONICS_ACN14 = 1ULL &lt;&lt; 55U, OHOS::Media::AMBISONICS_ACN15 = 1ULL &lt;&lt; 56U``}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 音频声道数集合， 将每一个声道数映射为int64的变量。                    |
-| [OHOS::Media::AudioChannelLayout](#audiochannellayout) : uint64_t {``**UNKNOWN_CHANNEL_LAYOUT** = 0, **MONO** = (AudioChannelSet::FRONT_CENTER), **STEREO** = (AudioChannelSet::FRONT_LEFT \| AudioChannelSet::FRONT_RIGHT), **CH_2POINT1** = (STEREO \| AudioChannelSet::LOW_FREQUENCY),``**CH_2_1** = (STEREO \| AudioChannelSet::BACK_CENTER), **SURROUND** = (STEREO \| AudioChannelSet::FRONT_CENTER), **CH_3POINT1** = (SURROUND \| AudioChannelSet::LOW_FREQUENCY), **CH_4POINT0** = (SURROUND \| AudioChannelSet::BACK_CENTER),``**CH_4POINT1** = (CH_4POINT0 \| AudioChannelSet::LOW_FREQUENCY), **CH_2_2** = (STEREO \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT), **QUAD** = (STEREO \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT), **CH_5POINT0** = (SURROUND \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),``**CH_5POINT1** = (CH_5POINT0 \| AudioChannelSet::LOW_FREQUENCY), **CH_5POINT0_BACK** = (SURROUND \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT), **CH_5POINT1_BACK** = (CH_5POINT0_BACK \| AudioChannelSet::LOW_FREQUENCY), **CH_6POINT0** = (CH_5POINT0 \| AudioChannelSet::BACK_CENTER),``**CH_6POINT0_FRONT** = (CH_2_2 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER), **HEXAGONAL** = (CH_5POINT0_BACK \| AudioChannelSet::BACK_CENTER), **CH_6POINT1** = (CH_5POINT1 \| AudioChannelSet::BACK_CENTER), **CH_6POINT1_BACK** = (CH_5POINT1_BACK \| AudioChannelSet::BACK_CENTER),``**CH_6POINT1_FRONT** = (CH_6POINT0_FRONT \| AudioChannelSet::LOW_FREQUENCY), **CH_7POINT0** = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT), **CH_7POINT0_FRONT** = (CH_5POINT0 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER), **CH_7POINT1** = (CH_5POINT1 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),``**CH_7POINT1_WIDE** = (CH_5POINT1 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER), **CH_7POINT1_WIDE_BACK**, **CH_3POINT1POINT2** = (CH_3POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT), **CH_5POINT1POINT2** = (CH_5POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),``**CH_5POINT1POINT4**, **CH_7POINT1POINT2** = (CH_7POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT), **CH_7POINT1POINT4**, **CH_9POINT1POINT4** = (CH_7POINT1POINT4 \| AudioChannelSet::WIDE_LEFT \| AudioChannelSet::WIDE_RIGHT),``**CH_9POINT1POINT6** = (CH_9POINT1POINT4 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT), **CH_10POINT2**, **CH_22POINT2**, **OCTAGONAL** = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_CENTER \| AudioChannelSet::BACK_RIGHT),``**HEXADECAGONAL**, **STEREO_DOWNMIX** = (AudioChannelSet::STEREO_LEFT \| AudioChannelSet::STEREO_RIGHT), **HOA_FIRST**, **HOA_SECOND**,``**HOA_THIRD**``} | 音频声道数类型， 将用户申请的解码器输出格式表示为编解码器的声道类型。 |
+| [AudioChannelSet](#audiochannelset) : uint64_t {<br/>**FRONT_LEFT** = 1ULL &lt;&lt; 0U, <br/>**FRONT_RIGHT** = 1ULL &lt;&lt; 1U, <br/>**FRONT_CENTER** = 1ULL &lt;&lt; 2U, <br/>**LOW_FREQUENCY** = 1ULL &lt;&lt; 3U,<br/>**BACK_LEFT** = 1ULL &lt;&lt; 4U, <br/>**BACK_RIGHT** = 1ULL &lt;&lt; 5U, <br/>**FRONT_LEFT_OF_CENTER** = 1ULL &lt;&lt; 6U, <br/>**FRONT_RIGHT_OF_CENTER** = 1ULL &lt;&lt; 7U,<br/>**BACK_CENTER** = 1ULL &lt;&lt; 8U, <br/>**SIDE_LEFT** = 1ULL &lt;&lt; 9U, <br/>**SIDE_RIGHT** = 1ULL &lt;&lt; 10U, <br/>**TOP_CENTER** = 1ULL &lt;&lt; 11U,<br/>**TOP_FRONT_LEFT** = 1ULL &lt;&lt; 12U, <br/>**TOP_FRONT_CENTER** = 1ULL &lt;&lt; 13U, <br/>**TOP_FRONT_RIGHT** = 1ULL &lt;&lt; 14U, <br/>**TOP_BACK_LEFT** = 1ULL &lt;&lt; 15U,<br/>**TOP_BACK_CENTER** = 1ULL &lt;&lt; 16U, <br/>**TOP_BACK_RIGHT** = 1ULL &lt;&lt; 17U, <br/>**STEREO_LEFT** = 1ULL &lt;&lt; 29U, <br/>**STEREO_RIGHT** = 1ULL &lt;&lt; 30U,<br/>**WIDE_LEFT** = 1ULL &lt;&lt; 31U, <br/>**WIDE_RIGHT** = 1ULL &lt;&lt; 32U, <br/>**SURROUND_DIRECT_LEFT** = 1ULL &lt;&lt; 33U, <br/>**SURROUND_DIRECT_RIGHT** = 1ULL &lt;&lt; 34U,<br/>**LOW_FREQUENCY_2** = 1ULL &lt;&lt; 35U, <br/>**TOP_SIDE_LEFT** = 1ULL &lt;&lt; 36U, <br/>**TOP_SIDE_RIGHT** = 1ULL &lt;&lt; 37U, <br/>**BOTTOM_FRONT_CENTER** = 1ULL &lt;&lt; 38U,<br/>**BOTTOM_FRONT_LEFT** = 1ULL &lt;&lt; 39U, <br/>**BOTTOM_FRONT_RIGHT** = 1ULL &lt;&lt; 40U, <br/>**AMBISONICS_ACN0** = 1ULL &lt;&lt; 41U, <br/>**AMBISONICS_ACN1** = 1ULL &lt;&lt; 42U,<br/>**AMBISONICS_ACN2** = 1ULL &lt;&lt; 43U, <br/>**AMBISONICS_ACN3** = 1ULL &lt;&lt; 44U, <br/>**AMBISONICS_W** = AMBISONICS_ACN0, <br/>**AMBISONICS_Y** = AMBISONICS_ACN1,<br/>**AMBISONICS_Z** = AMBISONICS_ACN2, <br/>**AMBISONICS_X** = AMBISONICS_ACN3, <br/>**AMBISONICS_ACN4** = 1ULL &lt;&lt; 45U, <br/>**AMBISONICS_ACN5** = 1ULL &lt;&lt; 46U,<br/>**AMBISONICS_ACN6** = 1ULL &lt;&lt; 47U, <br/>**AMBISONICS_ACN7** = 1ULL &lt;&lt; 48U, <br/>**AMBISONICS_ACN8** = 1ULL &lt;&lt; 49U, <br/>**AMBISONICS_ACN9** = 1ULL &lt;&lt; 50U,<br/>**AMBISONICS_ACN10** = 1ULL &lt;&lt; 51U, <br/>**AMBISONICS_ACN11** = 1ULL &lt;&lt; 52U, <br/>**AMBISONICS_ACN12** = 1ULL &lt;&lt; 53U, <br/>**AMBISONICS_ACN13** = 1ULL &lt;&lt; 54U, <br/>**AMBISONICS_ACN14** = 1ULL &lt;&lt; 55U, <br/>**AMBISONICS_ACN15** = 1ULL &lt;&lt; 56U}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 音频声道数集合， 将每一个声道数映射为int64的变量。                    |
+| [AudioChannelLayout](#audiochannellayout) : uint64_t {<br/>**UNKNOWN_CHANNEL_LAYOUT** = 0, <br/>**MONO** = (AudioChannelSet::FRONT_CENTER), <br/>**STEREO** = (AudioChannelSet::FRONT_LEFT \| AudioChannelSet::FRONT_RIGHT), <br/>**CH_2POINT1** = (STEREO \| AudioChannelSet::LOW_FREQUENCY),<br/>**CH_2_1** = (STEREO \| AudioChannelSet::BACK_CENTER), <br/>**SURROUND** = (STEREO \| AudioChannelSet::FRONT_CENTER), <br/>**CH_3POINT1** = (SURROUND \| AudioChannelSet::LOW_FREQUENCY), <br/>**CH_4POINT0** = (SURROUND \| AudioChannelSet::BACK_CENTER),<br/>**CH_4POINT1** = (CH_4POINT0 \| AudioChannelSet::LOW_FREQUENCY), <br/>**CH_2_2** = (STEREO \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT), <br/>**QUAD** = (STEREO \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT), <br/>**CH_5POINT0** = (SURROUND \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br/>**CH_5POINT1** = (CH_5POINT0 \| AudioChannelSet::LOW_FREQUENCY), <br/>**CH_5POINT0_BACK** = (SURROUND \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT), <br/>**CH_5POINT1_BACK** = (CH_5POINT0_BACK \| AudioChannelSet::LOW_FREQUENCY), <br/>**CH_6POINT0** = (CH_5POINT0 \| AudioChannelSet::BACK_CENTER),<br/>**CH_6POINT0_FRONT** = (CH_2_2 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER), <br/>**HEXAGONAL** = (CH_5POINT0_BACK \| AudioChannelSet::BACK_CENTER), <br/>**CH_6POINT1** = (CH_5POINT1 \| AudioChannelSet::BACK_CENTER), <br/>**CH_6POINT1_BACK** = (CH_5POINT1_BACK \| AudioChannelSet::BACK_CENTER),<br/>**CH_6POINT1_FRONT** = (CH_6POINT0_FRONT \| AudioChannelSet::LOW_FREQUENCY), <br/>**CH_7POINT0** = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT), <br/>**CH_7POINT0_FRONT** = (CH_5POINT0 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER), <br/>**CH_7POINT1** = (CH_5POINT1 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>**CH_7POINT1_WIDE** = (CH_5POINT1 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER), <br/>**CH_7POINT1_WIDE_BACK**, <br/>**CH_3POINT1POINT2** = (CH_3POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT), <br/>**CH_5POINT1POINT2** = (CH_5POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br/>**CH_5POINT1POINT4**, <br/>**CH_7POINT1POINT2** = (CH_7POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT), <br/>**CH_7POINT1POINT4**, <br/>**CH_9POINT1POINT4** = (CH_7POINT1POINT4 \| AudioChannelSet::WIDE_LEFT \| AudioChannelSet::WIDE_RIGHT),<br/>**CH_9POINT1POINT6** = (CH_9POINT1POINT4 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT), <br/>**CH_10POINT2**, <br/>**CH_22POINT2**, <br/>**OCTAGONAL** = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_CENTER \| AudioChannelSet::BACK_RIGHT),<br/>**HEXADECAGONAL**, <br/>**STEREO_DOWNMIX** = (AudioChannelSet::STEREO_LEFT \| AudioChannelSet::STEREO_RIGHT), <br/>**HOA_FIRST**, <br/>**HOA_SECOND** <br/>**HOA_THIRD**} | 音频声道数类型， 将用户申请的解码器输出格式表示为编解码器的声道类型。 |
 
 ### 函数
 
 | 名称                                                                                                                                          | 描述                                                                                                 |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| \*[OHOS::Media::OH_AudioDecoder_CreateByMime](#oh_audiodecoder_createbymime) (const char \*mime)                                                 | 根据MIME类型创建音频解码器实例，大多数场景下建议使用此方式。                                         |
-| \*[OHOS::Media::OH_AudioDecoder_CreateByName](#oh_audiodecoder_createbyname) (const char \*name)                                                 | 通过音频解码器名称创建音频解码器实例，使用此接口的前提是知道解码器的确切名称。                       |
-| [OHOS::Media::OH_AudioDecoder_Destroy](#oh_audiodecoder_destroy) (OH_AVCodec \*codec)                                                            | 清理解码器内部资源，销毁解码器实例。                                                                 |
-| [OHOS::Media::OH_AudioDecoder_SetCallback](#oh_audiodecoder_setcallback) (OH_AVCodec \*codec, OH_AVCodecAsyncCallback callback, void \*userData) | 设置异步回调函数，使您的应用程序可以响应音频解码器生成的事件。                                       |
-| [OHOS::Media::OH_AudioDecoder_Configure](#oh_audiodecoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format)                                  | 要配置音频解码器，通常需要配置从容器中提取的音频描述信息。                                           |
-| [OHOS::Media::OH_AudioDecoder_Prepare](#oh_audiodecoder_prepare) (OH_AVCodec \*codec)                                                            | 准备解码器的内部资源，在调用此接口之前必须调用Configure接口。                                        |
-| [OHOS::Media::OH_AudioDecoder_Start](#oh_audiodecoder_start) (OH_AVCodec \*codec)                                                                | Prepare成功后调用此接口启动解码器。                                                                  |
-| [OHOS::Media::OH_AudioDecoder_Stop](#oh_audiodecoder_stop) (OH_AVCodec \*codec)                                                                  | 停止解码器。                                                                                         |
-| [OHOS::Media::OH_AudioDecoder_Flush](#oh_audiodecoder_flush) (OH_AVCodec \*codec)                                                                | 清除解码器中缓存的输入和输出数据。                                                                   |
-| [OHOS::Media::OH_AudioDecoder_Reset](#oh_audiodecoder_reset) (OH_AVCodec \*codec)                                                                | 重置解码器。如果要继续解码，需要再次调用Configure接口配置解码器实例 。                               |
-| \*[OHOS::Media::OH_AudioDecoder_GetOutputDescription](#oh_audiodecoder_getoutputdescription) (OH_AVCodec \*codec)                                | 获取解码器输出数据的描述信息，详细信息请参见**OH_AVFormat**。                                  |
-| [OHOS::Media::OH_AudioDecoder_SetParameter](#oh_audiodecoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format)                            | 配置解码器的动态参数。注意：该接口必须在解码器启动后才能调用。另外，参数配置错误可能会导致解码失败。 |
-| [OHOS::Media::OH_AudioDecoder_PushInputData](#oh_audiodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, OH_AVCodecBufferAttr attr)     | 将填充有数据的输入缓冲区提交给音频解码器。                                                           |
-| [OHOS::Media::OH_AudioDecoder_FreeOutputData](#oh_audiodecoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index)                              | 将处理后的输出缓冲区返回给解码器。                                                                   |
-| [OHOS::Media::OH_AudioDecoder_IsValid](#oh_audiodecoder_isvalid) (OH_AVCodec \*codec, bool \*isValid)                                            | 检查当前解码器实例是否有效。                                                                         |
+| \*[OH_AudioDecoder_CreateByMime](#oh_audiodecoder_createbymime) (const char \*mime)                                                 | 根据MIME类型创建音频解码器实例，大多数场景下建议使用此方式。                                         |
+| \*[OH_AudioDecoder_CreateByName](#oh_audiodecoder_createbyname) (const char \*name)                                                 | 通过音频解码器名称创建音频解码器实例，使用此接口的前提是知道解码器的确切名称。                       |
+| [OH_AudioDecoder_Destroy](#oh_audiodecoder_destroy) (OH_AVCodec \*codec)                                                            | 清理解码器内部资源，销毁解码器实例。                                                                 |
+| [OH_AudioDecoder_SetCallback](#oh_audiodecoder_setcallback) (OH_AVCodec \*codec, OH_AVCodecAsyncCallback callback, void \*userData) | 设置异步回调函数，使您的应用程序可以响应音频解码器生成的事件。                                       |
+| [OH_AudioDecoder_Configure](#oh_audiodecoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format)                                  | 要配置音频解码器，通常需要配置从容器中提取的音频描述信息。                                           |
+| [OH_AudioDecoder_Prepare](#oh_audiodecoder_prepare) (OH_AVCodec \*codec)                                                            | 准备解码器的内部资源，在调用此接口之前必须调用Configure接口。                                        |
+| [OH_AudioDecoder_Start](#oh_audiodecoder_start) (OH_AVCodec \*codec)                                                                | Prepare成功后调用此接口启动解码器。                                                                  |
+| [OH_AudioDecoder_Stop](#oh_audiodecoder_stop) (OH_AVCodec \*codec)                                                                  | 停止解码器。                                                                                         |
+| [OH_AudioDecoder_Flush](#oh_audiodecoder_flush) (OH_AVCodec \*codec)                                                                | 清除解码器中缓存的输入和输出数据。                                                                   |
+| [OH_AudioDecoder_Reset](#oh_audiodecoder_reset) (OH_AVCodec \*codec)                                                                | 重置解码器。如果要继续解码，需要再次调用Configure接口配置解码器实例 。                               |
+| \*[OH_AudioDecoder_GetOutputDescription](#oh_audiodecoder_getoutputdescription) (OH_AVCodec \*codec)                                | 获取解码器输出数据的描述信息，详细信息请参见**OH_AVFormat**。                                  |
+| [OH_AudioDecoder_SetParameter](#oh_audiodecoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format)                            | 配置解码器的动态参数。注意：该接口必须在解码器启动后才能调用。另外，参数配置错误可能会导致解码失败。 |
+| [OH_AudioDecoder_PushInputData](#oh_audiodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, OH_AVCodecBufferAttr attr)     | 将填充有数据的输入缓冲区提交给音频解码器。                                                           |
+| [OH_AudioDecoder_FreeOutputData](#oh_audiodecoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index)                              | 将处理后的输出缓冲区返回给解码器。                                                                   |
+| [OH_AudioDecoder_IsValid](#oh_audiodecoder_isvalid) (OH_AVCodec \*codec, bool \*isValid)                                            | 检查当前解码器实例是否有效。                                                                         |
 
 ## 枚举类型说明
 
 ### AudioChannelLayout
 
 ```
-enum OHOS::Media::AudioChannelLayout : uint64_t
+enum AudioChannelLayout : uint64_t
 ```
 
 **描述：**
@@ -67,7 +67,7 @@ enum OHOS::Media::AudioChannelLayout : uint64_t
 ### AudioChannelSet
 
 ```
-enum OHOS::Media::AudioChannelSet : uint64_t
+enum AudioChannelSet : uint64_t
 ```
 
 **描述：**
@@ -107,7 +107,7 @@ enum OHOS::Media::AudioChannelSet : uint64_t
 ### OH_AudioDecoder_Configure()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioDecoder_Configure (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OH_AudioDecoder_Configure (OH_AVCodec * codec, OH_AVFormat * format )
 ```
 
 **描述：**
@@ -136,7 +136,7 @@ OH_AVErrCode OHOS::Media::OH_AudioDecoder_Configure (OH_AVCodec * codec, OH_AVFo
 ### OH_AudioDecoder_CreateByMime()
 
 ```
-OH_AVCodec* OHOS::Media::OH_AudioDecoder_CreateByMime (const char * mime)
+OH_AVCodec* OH_AudioDecoder_CreateByMime (const char * mime)
 ```
 
 **描述：**
@@ -149,7 +149,7 @@ OH_AVCodec* OHOS::Media::OH_AudioDecoder_CreateByMime (const char * mime)
 
 | 名称 | 描述                                                    |
 | ---- | ------------------------------------------------------- |
-| mime | MIME类型描述字符串，请参阅**AVCODEC_MIME_TYPE**。 |
+| mime | MIME类型描述字符串，请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量)。 |
 
 **返回：**
 
@@ -162,7 +162,7 @@ OH_AVCodec* OHOS::Media::OH_AudioDecoder_CreateByMime (const char * mime)
 ### OH_AudioDecoder_CreateByName()
 
 ```
-OH_AVCodec* OHOS::Media::OH_AudioDecoder_CreateByName (const char * name)
+OH_AVCodec* OH_AudioDecoder_CreateByName (const char * name)
 ```
 
 **描述：**
@@ -188,7 +188,7 @@ OH_AVCodec* OHOS::Media::OH_AudioDecoder_CreateByName (const char * name)
 ### OH_AudioDecoder_Destroy()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioDecoder_Destroy (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioDecoder_Destroy (OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -214,7 +214,7 @@ OH_AVErrCode OHOS::Media::OH_AudioDecoder_Destroy (OH_AVCodec * codec)
 ### OH_AudioDecoder_Flush()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioDecoder_Flush (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioDecoder_Flush (OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -242,7 +242,7 @@ OH_AVErrCode OHOS::Media::OH_AudioDecoder_Flush (OH_AVCodec * codec)
 ### OH_AudioDecoder_FreeOutputData()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioDecoder_FreeOutputData (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OH_AudioDecoder_FreeOutputData (OH_AVCodec * codec, uint32_t index )
 ```
 
 **描述：**
@@ -269,7 +269,7 @@ OH_AVErrCode OHOS::Media::OH_AudioDecoder_FreeOutputData (OH_AVCodec * codec, ui
 ### OH_AudioDecoder_GetOutputDescription()
 
 ```
-OH_AVFormat* OHOS::Media::OH_AudioDecoder_GetOutputDescription (OH_AVCodec * codec)
+OH_AVFormat* OH_AudioDecoder_GetOutputDescription (OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -295,7 +295,7 @@ OH_AVFormat* OHOS::Media::OH_AudioDecoder_GetOutputDescription (OH_AVCodec * cod
 ### OH_AudioDecoder_IsValid()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioDecoder_IsValid (OH_AVCodec * codec, bool * isValid )
+OH_AVErrCode OH_AudioDecoder_IsValid (OH_AVCodec * codec, bool * isValid )
 ```
 
 **描述：**
@@ -322,7 +322,7 @@ OH_AVErrCode OHOS::Media::OH_AudioDecoder_IsValid (OH_AVCodec * codec, bool * is
 ### OH_AudioDecoder_Prepare()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioDecoder_Prepare (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioDecoder_Prepare (OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -348,7 +348,7 @@ OH_AVErrCode OHOS::Media::OH_AudioDecoder_Prepare (OH_AVCodec * codec)
 ### OH_AudioDecoder_PushInputData()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioDecoder_PushInputData (OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
+OH_AVErrCode OH_AudioDecoder_PushInputData (OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
 ```
 
 **描述：**
@@ -378,7 +378,7 @@ OH_AVErrCode OHOS::Media::OH_AudioDecoder_PushInputData (OH_AVCodec * codec, uin
 ### OH_AudioDecoder_Reset()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioDecoder_Reset (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioDecoder_Reset (OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -404,7 +404,7 @@ OH_AVErrCode OHOS::Media::OH_AudioDecoder_Reset (OH_AVCodec * codec)
 ### OH_AudioDecoder_SetCallback()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioDecoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
+OH_AVErrCode OH_AudioDecoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
 ```
 
 **描述：**
@@ -434,7 +434,7 @@ OH_AVErrCode OHOS::Media::OH_AudioDecoder_SetCallback (OH_AVCodec * codec, OH_AV
 ### OH_AudioDecoder_SetParameter()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioDecoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OH_AudioDecoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * format )
 ```
 
 **描述：**
@@ -463,7 +463,7 @@ OH_AVErrCode OHOS::Media::OH_AudioDecoder_SetParameter (OH_AVCodec * codec, OH_A
 ### OH_AudioDecoder_Start()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioDecoder_Start (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioDecoder_Start (OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -491,7 +491,7 @@ Prepare成功后调用此接口启动解码器。
 ### OH_AudioDecoder_Stop()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioDecoder_Stop (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioDecoder_Stop (OH_AVCodec * codec)
 ```
 
 **描述：**

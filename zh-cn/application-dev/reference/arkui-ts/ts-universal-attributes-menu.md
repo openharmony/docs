@@ -42,9 +42,9 @@
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | offset                | [Position](ts-types.md#position8)                            | 否   | 菜单弹出位置的偏移量，不会导致菜单显示超出屏幕范围。<br/>**说明：**<br />菜单类型为相对⽗组件区域弹出时，⾃动根据菜单位置属性 (placement)将区域的宽或⾼计⼊偏移量中。<br/>当菜单相对父组件出现在上侧时（placement设置为Placement.TopLeft，Placement.Top，Placement.TopRight），x为正值，菜单相对组件向右进行偏移，y为正值，菜单相对组件向上进行偏移。<br/>当菜单相对父组件出现在下侧时（placement设置为Placement.BottomLeft，Placement.Bottom，Placement.BottomRight），x为正值，菜单相对组件向右进行偏移，y为正值，菜单相对组件向下进行偏移。<br/>当菜单相对父组件出现在左侧时（placement设置为Placement.LeftTop，Placement.Left，Placement.LeftBottom），x为正值，菜单相对组件向左进行偏移，y为正值，菜单相对组件向下进行偏移。<br/>当菜单相对父组件出现在右侧时（placement设置为Placement.RightTop，Placement.Right，Placement.RightBottom），x为正值，菜单相对组件向右进行偏移，y为正值，菜单相对组件向下进行偏移。<br/>如果菜单调整了显示位置（与placement初始值主方向不⼀致），则偏移值 (offset) 失效。 |
 | placement             | [Placement](ts-appendix-enums.md#placement8)                 | 否   | 菜单组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>**说明：**<br />placement值设置为undefined、null或没有设置此选项时，按未设置placement处理，菜单跟随点击位置弹出。 |
-| enableArrow           | boolean                                                      | 否   | 是否显示箭头。如果菜单的大小和位置不足以放置箭头时，不会显示箭头。 <br/>默认值：false, 不显示箭头。<br/>**说明：**<br />箭头显示时，placement未设置或者值为非法值，默认在目标物上方显示，否则按照placement的位置优先显示。当前位置显示不下时，会自动调整位置。 |
+| enableArrow           | boolean                                                      | 否   | 是否显示箭头。如果菜单的大小和位置不足以放置箭头时，不会显示箭头。 <br/>默认值：false, 不显示箭头。<br/>**说明：**<br />enableArrow为true时，placement未设置或者值为非法值，默认在目标物上方显示，否则按照placement的位置优先显示。当前位置显示不下时，会自动调整位置。 |
 | arrowOffset           | [Length](ts-types.md#length)                                 | 否   | 箭头在菜单处的偏移。箭头在菜单水平方向时，偏移量为箭头至最左侧的距离，默认居中。箭头在菜单竖直方向时，偏移量为箭头至最上侧的距离，默认居中。偏移量必须合法且转换为具体数值时大于0才会生效，另外该值生效时不会导致箭头超出菜单四周的安全距离。根据配置的placement来计算是在水平还是竖直方向上偏移。 |
-| preview<sup>11+</sup> | [MenuPreviewMode](ts-appendix-enums.md#menupreviewmode11)\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 长按悬浮菜单的预览内容样式，可以为目标组件的截图，也可以为用户自定义的内容。<br/>默认值：MenuPreviewMode.NONE, 无预览内容。<br/>**说明：**<br />仅支持responseType为ResponseType.LongPress时触发，如果responseType为ResponseType.RightClick，则不会显示预览内容。 |
+| preview<sup>11+</sup> | [MenuPreviewMode](ts-appendix-enums.md#menupreviewmode11)\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 长按悬浮菜单的预览内容样式，可以为目标组件的截图，也可以为用户自定义的内容。<br/>默认值：MenuPreviewMode.NONE, 无预览内容。<br/>**说明：**<br />- 仅支持responseType为ResponseType.LongPress时触发，如果responseType为ResponseType.RightClick，则不会显示预览内容。<br />- 当未设置preview参数或preview参数设置为MenuPreviewMode.NONE时，enableArrow参数生效。<br />- 当preview参数设置为MenuPreviewMode.IMAGE或CustomBuilder时，enableArrow为true时也不显示箭头。 |
 | onAppear              | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单弹出时的事件回调。                                       |
 | onDisappear           | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单消失时的事件回调。                                       |
 
@@ -213,3 +213,98 @@ struct DirectiveMenuExample {
 ```
 
 ![zh-cn_image_0000001689126950](figures/zh-cn_image_0000001689126950.png)
+
+### 示例5
+
+长按悬浮菜单（预览内容为截图形式）
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  private iconStr: ResourceStr = $r("app.media.icon")
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+    }
+  }
+
+  build() {
+    Column({ space: 50 }) {
+      Column() {
+        Column() {
+          Text('preview-image')
+            .width(200)
+            .height(100)
+            .textAlign(TextAlign.Center)
+            .margin(100)
+            .fontSize(30)
+            .bindContextMenu(this.MyMenu, ResponseType.LongPress,
+              { preview: MenuPreviewMode.IMAGE })
+            .backgroundColor("#ff3df2f5")
+        }
+      }.width('100%')
+    }
+  }
+}
+```
+
+![preview-image](figures/preview-image.png)
+
+### 示例6
+
+长按悬浮菜单（自定义预览内容）
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  private iconStr: ResourceStr = $r("app.media.icon")
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+    }
+  }
+
+  @Builder
+  MyPreview() {
+    Column() {
+      Image($r('app.media.icon'))
+        .width(200)
+        .height(200)
+    }
+  }
+
+  build() {
+    Column({ space: 50 }) {
+      Column() {
+        Column() {
+          Text('preview-builder')
+            .width(200)
+            .height(100)
+            .textAlign(TextAlign.Center)
+            .margin(100)
+            .fontSize(30)
+            .bindContextMenu(this.MyMenu, ResponseType.LongPress,
+              {
+                preview: this.MyPreview
+              })
+        }
+      }.width('100%')
+    }
+  }
+}
+```
+
+![preview-builder](figures/preview-builder.png)
+

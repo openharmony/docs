@@ -2413,13 +2413,13 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 **参数：**
 
-| 参数名 | 类型             | 必填 | 说明                                                |
-| ------ | ---------------- | ---- | --------------------------------------------------- |
-| p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                    |
-| down   | boolean          | 是   | 滚轮滑动方向是否向下。                              |
-| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。 |
-| key1   | number           | 否   | 指定的第一个key值。                                 |
-| key2   | number           | 否   | 指定的第二个key值。                                 |
+| 参数名 | 类型             | 必填 | 说明                                                        |
+| ------ | ---------------- | ---- | ----------------------------------------------------------- |
+| p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                            |
+| down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。 |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。         |
+| key1   | number           | 否   | 指定的第一个key值。                                         |
+| key2   | number           | 否   | 指定的第二个key值。                                         |
 
 **错误码：**
 
@@ -2500,6 +2500,216 @@ import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let observer = await driver.createUIEventObserver()
+}
+```
+
+### mouseScroll<sup>11+</sup>
+
+mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, speed?: number): Promise\<void>
+
+在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键并且指定滑动速度。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型             | 必填 | 说明                                                         |
+| ------ | ---------------- | ---- | ------------------------------------------------------------ |
+| p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                             |
+| down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。  |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。          |
+| key1   | number           | 否   | 指定的第一个key值。                                          |
+| key2   | number           | 否   | 指定的第二个key值。                                          |
+| speed  | number           | 否   | 鼠标滚轮滚动的速度，范围：1-500，不在范围内设为默认值为20，单位：格/秒。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+
+**示例：**
+
+```ts
+import { Driver } from '@ohos.UiTest';
+async function demo() {
+    let driver = Driver.create();
+    await driver.mouseScroll({x:360, y:640}, true, 30, 2072,20)
+}
+```
+
+### mouseDoubleClick<sup>11+</sup>
+
+mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
+
+在指定坐标点注入鼠标双击动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标双击动作。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明                |
+| ------ | ----------------------------- | ---- | ------------------- |
+| p      | [Point](#point9)              | 是   | 鼠标双击的坐标。    |
+| btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。    |
+| key1   | number                        | 否   | 指定的第一个key值。 |
+| key2   | number                        | 否   | 指定的第二个key值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+
+**示例：**
+
+```ts
+import { Driver,MouseButton } from '@ohos.UiTest';
+async function demo() {
+    let driver = Driver.create();
+    await driver.mouseDoubleClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
+}
+```
+
+### mouseLongClick<sup>11+</sup>
+
+mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
+
+在指定坐标点注入鼠标长按动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标长按动作。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明                |
+| ------ | ----------------------------- | ---- | ------------------- |
+| p      | [Point](#point9)              | 是   | 鼠标长按的坐标。    |
+| btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。    |
+| key1   | number                        | 否   | 指定的第一个key值。 |
+| key2   | number                        | 否   | 指定的第二个key值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+
+**示例：**
+
+```ts
+import { Driver,MouseButton } from '@ohos.UiTest';
+async function demo() {
+    let driver = Driver.create();
+    await driver.mouseLongClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
+}
+```
+
+### mouseMoveWithTrack<sup>11+</sup>
+
+mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
+
+鼠标从起始坐标点滑向终点坐标点。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型             | 必填 | 说明                                                         |
+| ------ | ---------------- | ---- | ------------------------------------------------------------ |
+| from   | [Point](#point9) | 是   | 起始点坐标。                                                 |
+| to     | [Point](#point9) | 是   | 终点坐标。                                                   |
+| speed  | number           | 否   | 滑动速率，范围：200-15000，不在范围内设为默认值为600，单位：像素点/秒。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+
+**示例：**
+
+```ts
+import { Driver } from '@ohos.UiTest';
+async function demo() {
+    let driver = Driver.create();
+    await driver.mouseMoveWithTrack(100,100,200,200,600);
+}
+```
+
+### mouseDrag<sup>11+</sup>
+
+mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
+
+鼠标按住鼠标左键从起始坐标点拖拽至终点坐标点。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型             | 必填 | 说明                                                         |
+| ------ | ---------------- | ---- | ------------------------------------------------------------ |
+| from   | [Point](#point9) | 是   | 起始点坐标。                                                 |
+| to     | [Point](#point9) | 是   | 终点坐标。                                                   |
+| speed  | number           | 否   | 滑动速率，范围：200-15000，不在范围内设为默认值为600，单位：像素点/秒。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+
+**示例：**
+
+```ts
+import { Driver } from '@ohos.UiTest';
+async function demo() {
+    let driver = Driver.create();
+    await driver.mouseDrag(100,100,200,200,600);
+}
+```
+
+### inputText<sup>11+</sup>
+
+inputText(p: Point, text: string): Promise\<void>
+
+在指定坐标点输入文本。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型             | 必填 | 说明               |
+| ------ | ---------------- | ---- | ------------------ |
+| p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
+| text   | string           | 是   | 输入的文本信息。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+
+**示例：**
+
+```ts
+import { Driver, ON } from '@ohos.UiTest';
+async function demo() {
+    let driver = Driver.create();
+    let text = await driver.findComponent(ON.type('TextInput'));
+    let point = await text.getBoundsCenter();
+    await driver.inputText(point, '123');
 }
 ```
 

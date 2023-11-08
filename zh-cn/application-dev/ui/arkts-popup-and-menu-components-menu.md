@@ -28,7 +28,7 @@ Button('click for Menu')
 
 ## 创建自定义样式的菜单
 
-当默认样式不满足开发需求时，可使用[\@Builder](../quick-start/arkts-builder.md)自定义菜单内容。可通过bindMenu接口进行菜单的自定义。
+当默认样式不满足开发需求时，可使用[\@Builder](../quick-start/arkts-builder.md)自定义菜单内容，通过bindMenu接口进行菜单的自定义。
 
 
 ### \@Builder开发菜单内的内容
@@ -104,7 +104,7 @@ Button('click for Menu')
 
 ## 创建支持右键或长按的菜单
 
-通过bindContextMenu接口进行菜单的自定义及菜单弹出的触发方式：右键或长按。使用bindContextMenu弹出的菜单项是在独立子窗口内的，可显示在应用窗口外部。
+通过bindContextMenu接口自定义菜单，设置菜单弹出的触发方式，触发方式为右键或长按。使用bindContextMenu弹出的菜单项是在独立子窗口内的，可显示在应用窗口外部。
 
 
 - @Builder开发菜单内的内容与上文写法相同。

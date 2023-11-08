@@ -1,8 +1,7 @@
 # 资源管理开发常见问题
 
-## 如何读取rawfile中的xml文件并转化为String类型
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 如何读取rawfile中的xml文件并转化为String类型(API 9)
 
 **解决措施**
 
@@ -25,9 +24,8 @@ resourceManager.getRawFileContent('test.xml', (error, value) => {
 
 [资源管理](../reference/apis/js-apis-resource-manager.md)
 
-## Stage模型下如何获取资源
 
-适用于：OpenHarmony 3.1 Beta5  API 9
+## Stage模型下如何获取资源(API 9)
 
 **解决措施**
 
@@ -45,9 +43,8 @@ context
 })
 ```
 
-## 如何通过接口获取resource目录的路径
 
-适用于：Openharmony 3.1 Beta5 API 9
+## 如何通过接口获取resource目录的路径(API 9)
 
 **问题现象**
 
@@ -59,17 +56,16 @@ context
 
 可以考虑如下两种方式获取资源文件：
 
-1. 使用\$r或者\$rawfile访问。适合静态访问，程序运行时不改变资源路径。
+1. 使用$r或者$rawfile访问。适合静态访问，程序运行时不改变资源路径。
 
 2. 使用ResourceManage访问。适合动态访问，程序运行时可动态改变资源路径。
 
 **参考链接**
 
-[资源分类与访问](../quick-start/resource-categories-and-access.md) [资源管理](../reference/apis/js-apis-resource-manager.md)
+[资源分类与访问](../quick-start/resource-categories-and-access.md)、[资源管理](../reference/apis/js-apis-resource-manager.md)
 
-## 资源管理内的getPluralString方法获取value值有误
 
-适用于：OpenHarmony 3.2 Beta5  API 9
+## 资源管理内的getPluralString方法获取value值有误(API 9)
 
 **问题现象**
 
@@ -79,9 +75,8 @@ getPluralString接口获取value值有误，显示复数值（other）。
 
 getPluralString接口只支持英文系统，不支持中文。
 
-## 如何获取resources目录中自定义的string字段
 
-适用于：OpenHarmony 3.2 Beta5  API 9
+## 如何获取resources目录中自定义的string字段(API 9)
 
 **解决措施**
 
@@ -91,60 +86,56 @@ getPluralString接口只支持英文系统，不支持中文。
 
 [资源管理](../reference/apis/js-apis-resource-manager.md#getstringvalue9)
 
-## AppScope中的资源如图片，文字等如何引用
 
-适用于：OpenHarmony 3.2 Beta5  API 9
-
-**解决措施**
-
-通过\$r\('app.type.name'\)的形式来引用，type代表资源类型，如color，string，media等，name代表资源命名。
-
-## Resource类型如何转为String
-
-适用于：OpenHarmony 3.2 Beta5  API 9
+## AppScope中的资源如图片，文字等如何引用(API 9)
 
 **解决措施**
 
-Resource为string支持限定词目录使用this.context.resourceManager.getStringSync\(\$r\('app.string.test'\).id\)，可以同步转换，不支持\$r\('app.string.test', 2\)方式。
+通过$r('app.type.name')的形式来引用，type代表资源类型，如color，string，media等，name代表资源命名。
+
+
+## Resource类型如何转为String(API 9)
+
+**解决措施**
+
+Resource为string支持限定词目录使用this.context.resourceManager.getStringSync($r('app.string.test').id)，可以同步转换，不支持$r('app.string.test', 2)方式。
 
 **参考链接**
 
 [ResourceManager\(资源管理\)](../reference/apis/js-apis-resource-manager.md#getstringsync9)
 
-## form\_config.json文件中是否可以使用$引用常量
 
-适用于：OpenHarmony 3.2 Beta5  API 9
+## form_config.json文件中是否可以使用$引用常量(API 9)
 
-form\_config.json文件中不支持使用\$引用常量。
+form_config.json文件中不支持使用$引用常量。
 
-## ArkTS如何解析xml文件
 
-适用于：OpenHarmony 3.2 Beta5  API 9
+## ArkTS如何解析xml文件(API 9)
 
 **解决措施**
 
-1.  在rawfile目录下创建如下xml文件**。**
+1. 在rawfile目录下创建如下xml文件**。**
 
-    ```
-    <?xml version="1.0" encoding="utf-8"?>
-    <user>
-        <name>Jacky</name>
-        <age>18</age>
-    </user>
-    ```
+   ```
+   <?xml version="1.0" encoding="utf-8"?>
+   <user>
+       <name>Jacky</name>
+       <age>18</age>
+   </user>
+   ```
 
-2.  使用resourceManager.getRawFileContent获取xml文件字节数组。
+2. 使用resourceManager.getRawFileContent获取xml文件字节数组。
 
-    ```
-    import resourceManager from '@ohos.resourceManager';
-    resourceManager.getRawFileContent("test.xml", (error, value) => {
-      if (error != null) {
-        console.log("error is " + error);
-        return
-      }
-      let arrayBuffer = value.buffer; // unit8Array
-      var xmpParser = new xml.XmlPullParser(arrayBuffer);
-      var tagName = ""
-      //do something
-    }
-    ```
+   ```
+   import resourceManager from '@ohos.resourceManager';
+   resourceManager.getRawFileContent("test.xml", (error, value) => {
+     if (error != null) {
+       console.log("error is " + error);
+       return
+     }
+     let arrayBuffer = value.buffer; // unit8Array
+     var xmpParser = new xml.XmlPullParser(arrayBuffer);
+     var tagName = ""
+     //do something
+   }
+   ```

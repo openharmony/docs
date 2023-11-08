@@ -532,6 +532,10 @@ while(!temp.done) {
 
 Obtains an iterator, each item of which is a JavaScript object.
 
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -555,6 +559,7 @@ hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 
 // Method 1:
+let keys = Array.from(hashMap.keys());
 for (let key of keys) {
   console.log("key:" + key);
   console.log("value:" + hashMap.get(key));

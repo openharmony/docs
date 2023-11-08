@@ -242,7 +242,7 @@ stack1.push('a');
 let stack2: Stack<number> = new Stack();
 stack2.push(1); // Add an element.
 console.info(`result: ${stack1[0]}`); // Access an element.
-stack2.pop(); // Remove an element.
+stack2.pop(); // Remove the top element from this container.
 console.info(`result: ${stack2.length}`);
 
 // List

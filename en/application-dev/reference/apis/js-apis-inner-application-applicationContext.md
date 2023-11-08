@@ -3,8 +3,8 @@
 The **ApplicationContext** module provides application-level context. You can use the APIs of this module to register and deregister the ability lifecycle listener in an application.
 
 > **NOTE**
-> 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+>
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
@@ -506,6 +506,77 @@ export default class MyAbility extends UIAbility {
             }
         });
     }
+});
+```
+## ApplicationContext.setColorMode<sup>11</sup>
+
+setColorMode(colorMode: ConfigurationConstant.ColorMode): void;
+
+Sets the color mode for the application.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description                |
+| ------ | ------------- | ---- | -------------------- |
+| colorMode | [ConfigurationConstant.ColorMode](../apis/js-apis-app-ability-configurationConstant.md) | Yes  | Target color mode, including dark mode, light mode, and system theme mode (no setting).|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 401 | If the input parameter is not valid parameter. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+
+export default class MyAbility extends UIAbility {
+  onCreate() {
+    let applicationContext = this.context.getApplicationContext();
+    applicationContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+  }
 }
 ```
-<!--no_check-->
+
+## ApplicationContext.setLanguage<sup>11</sup>
+
+setLanguage(language: string): void;
+
+Sets the language for the application.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description                |
+| ------ | ------------- | ---- | -------------------- |
+| language | string | Yes  | Target language. The list of supported languages can be obtained by using **static getSystemLanguage(): Array<string>** in @ohos.i18n.d.ts. |
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 401 | If the input parameter is not valid parameter. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+  onCreate() {
+    let applicationContext = this.context.getApplicationContext();
+    applicationContext.setLanguage('zh-cn');
+  }
+}
+```

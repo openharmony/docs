@@ -5,7 +5,6 @@
 The Network Connection Management module provides basic network management capabilities, including management of Wi-Fi/cellular/Ethernet connection priorities, network quality evaluation, subscription to network connection status changes, query of network connection information, and DNS resolution.
 
 > **NOTE**
-> 
 > To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [sms API Reference](../reference/apis/js-apis-net-connection.md).
 
 ## Basic Concepts
@@ -81,42 +80,42 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 
 6. Call **conn.unregister()** to unsubscribe from the network status changes if required.
 
-```js
+```ts
 // Import the connection namespace.
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
-let netCap = {
-  // Assume that the default network is Wi-Fi. If you need to create a cellular network connection, set the network type to CELLULAR.
-  bearerTypes: [connection.NetBearType.BEARER_CELLULAR],
-  // Set the network capability to INTERNET.
-  networkCap: [connection.NetCap.NET_CAPABILITY_INTERNET],
-};
-let netSpec = {
-  netCapabilities: netCap,
+let netSpecifier: connection.NetSpecifier = {
+  netCapabilities: {
+    // Assume that the default network is Wi-Fi. If you need to create a cellular network connection, set the network type to CELLULAR.
+    bearerTypes: [connection.NetBearType.BEARER_CELLULAR],
+    // Set the network capability to INTERNET.
+    networkCap: [connection.NetCap.NET_CAPABILITY_INTERNET]
+  },
 };
 
 // Set the timeout value to 10s. The default value is 0.
 let timeout = 10 * 1000;
 
 // Create a NetConnection object.
-let conn = connection.createNetConnection(netSpec, timeout);
+let conn = connection.createNetConnection(netSpecifier, timeout);
 
 // Listen to network status change events. If the network is available, an on_netAvailable event is returned.
-conn.on('netAvailable', (data => {
+conn.on('netAvailable', ((data: connection.NetHandle) => {
   console.log("net is available, netId is " + data.netId);
 }));
 
 // Listen to network status change events. If the network is unavailable, an on_netUnavailable event is returned.
-conn.on('netUnavailable', (data => {
+conn.on('netUnavailable', ((data: void) => {
   console.log("net is unavailable, data is " + JSON.stringify(data));
 }));
 
 // Register an observer for network status changes.
-conn.register((err, data) => {
+conn.register((err: BusinessError, data: void) => {
 });
 
 // Unregister the observer for network status changes.
-conn.unregister((err, data) => {
+conn.unregister((err: BusinessError, data: void) => {
 });
 ```
 
@@ -128,16 +127,40 @@ conn.unregister((err, data) => {
 
 2. Call **getAllNets** to obtain the list of all connected networks.
 
-```js
+```ts
 // Import the connection namespace.
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+
+// Construct a singleton object.
+export class GlobalContext {
+  public netList: connection.NetHandle[] = [];
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+}
 
 // Obtain the list of all connected networks.
-connection.getAllNets((err, data) => {
+connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
   if (data) {
-    this.netList = data;
+    GlobalContext.getContext().netList = data;
   }
 })
 ```
@@ -154,25 +177,51 @@ connection.getAllNets((err, data) => {
 
 4. Call **getConnectionProperties** to obtain the connection information of the data network specified by **NetHandle**.
 
-```js
-// Import the connection namespace.
-import connection from '@ohos.net.connection'
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+
+// Construct a singleton object.
+export class GlobalContext {
+  public netList: connection.NetHandle[] = [];
+  public netHandle: connection.NetHandle|null = null;
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+}
 
 // Call getDefaultNet to obtain the default data network specified by **NetHandle**.
-connection.getDefaultNet((err, data) => {
+connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
   if (data) {
-    this.netHandle = data;
+    GlobalContext.getContext().netHandle = data;
   }
 })
 
 // Obtain the network capability information of the data network specified by **NetHandle**. The capability information includes information such as the network type and specific network capabilities.
-connection.getNetCapabilities(this.netHandle, (err, data) => {
+connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
   console.log(JSON.stringify(err));
 
   // Obtain the network type via bearerTypes.
-  for (let item of data.bearerTypes) {
+  let bearerTypes: Set<number> = new Set(data.bearerTypes);
+  let bearerTypesNum = Array.from(bearerTypes.values());
+  for (let item of bearerTypesNum) {
     if (item == 0) {
       // Cellular network
       console.log(JSON.stringify("BEARER_CELLULAR"));
@@ -184,9 +233,11 @@ connection.getNetCapabilities(this.netHandle, (err, data) => {
       console.log(JSON.stringify("BEARER_ETHERNET"));
     }
   }
-
+  
   // Obtain the specific network capabilities via networkCap.
-  for (let item of data.networkCap) {
+  let itemNumber : Set<number> = new Set([0, 11, 12, 15, 16]);
+  let dataNumber = Array.from(itemNumber.values());
+  for (let item of dataNumber) {
     if (item == 0) {
       // The network can connect to the carrier's Multimedia Messaging Service Center (MMSC) to send and receive multimedia messages.
       console.log(JSON.stringify("NET_CAPABILITY_MMS"));
@@ -207,29 +258,31 @@ connection.getNetCapabilities(this.netHandle, (err, data) => {
 })
 
 // Obtain the connection information of the data network specified by NetHandle. Connection information includes link and route information.
-connection.getConnectionProperties(this.netHandle, (err, data) => {
+connection.getConnectionProperties(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.ConnectionProperties) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
 })
 
 // Call getAllNets to obtain the list of all connected networks via Array<NetHandle>.
-connection.getAllNets((err, data) => {
+connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
   if (data) {
-    this.netList = data;
+    GlobalContext.getContext().netList = data;
   }
 })
 
-for (let item of this.netList) {
+let itemNumber : Set<connection.NetHandle> = new Set(GlobalContext.getContext().netList);
+let dataNumber = Array.from(itemNumber.values());
+for (let item of dataNumber) {
   // Obtain the network capability information of the network specified by each netHandle on the network list cyclically.
-  connection.getNetCapabilities(item, (err, data) => {
+  connection.getNetCapabilities(item, (err: BusinessError, data: connection.NetCapabilities) => {
     console.log(JSON.stringify(err));
     console.log(JSON.stringify(data));
   })
 
   // Obtain the connection information of the network specified by each netHandle on the network list cyclically.
-  connection.getConnectionProperties(item, (err, data) => {
+  connection.getConnectionProperties(item, (err: BusinessError, data: connection.ConnectionProperties) => {
     console.log(JSON.stringify(err));
     console.log(JSON.stringify(data));
   })
@@ -244,12 +297,13 @@ for (let item of this.netList) {
 
 2. Call **getAddressesByName** to use the default network to resolve the host name to obtain the list of all IP addresses.
 
-```js
-    // Import the connection namespace.
-import connection from '@ohos.net.connection'
+```ts
+// Import the connection namespace.
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 // Use the default network to resolve the host name to obtain the list of all IP addresses.
-connection.getAddressesByName(this.host, (err, data) => {
+connection.getAddressesByName(this.host, (err: BusinessError, data: connection.NetAddress[]) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
 })

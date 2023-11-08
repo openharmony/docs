@@ -1,5 +1,7 @@
 # Subscribing to State Changes of a Remote Object
 
+## Overview
+
 IPC/RPC allows you to subscribe to the state changes of a remote stub object. When the remote stub object dies, a death notification will be sent to your local proxy object. Such subscription and unsubscription are controlled by APIs. To be specific, you need to implement the **DeathRecipient** interface and the **onRemoteDied** API to clear resources. This callback is invoked when the process accommodating the remote stub object dies, or the device accommodating the remote stub object leaves the network. It is worth noting that these APIs should be called in the following order: The proxy object must first subscribe to death notifications of the stub object. If the stub object is in the normal state, the proxy object can cancel the subscription as required. If the process of the stub object exits or the device hosting the stub object goes offline, subsequent operations customized by the proxy object will be automatically triggered.
 
 ## Scenarios
@@ -75,7 +77,7 @@ void TestDeathRecipient::OnRemoteDied(const wptr<IRemoteObject>& remoteObject)
 
 ```c++
 sptr<IPCObjectProxy> object = new IPCObjectProxy(1, to_utf16(DESCRIPTOR));
-sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient());// Construct a death notification recipient.
+sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient()); // Construct a death notification recipient.
 bool result = object->AddDeathRecipient(deathRecipient); // Add a recipient for death notifications.
 result = object->RemoveDeathRecipient(deathRecipient); // Remove the recipient for death notifications.
 ```
@@ -132,23 +134,24 @@ export default class MainAbility extends UIAbility {
 // import FA from "@ohos.ability.featureAbility";
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
+import rpc from '@ohos.rpc';
 
 let proxy: rpc.IRemoteObject | undefined = undefined;
 let connect: common.ConnectOptions = {
-    onConnect: (elementName, remoteProxy) => {
-        console.log("RpcClient: js onConnect called.");
-        proxy = remoteProxy;
-    },
-    onDisconnect: (elementName) => {
-        console.log("RpcClient: onDisconnect");
-    },
-    onFailed: () => {
-        console.log("RpcClient: onFailed");
-    }
+  onConnect: (elementName, remoteProxy) => {
+    console.log("RpcClient: js onConnect called.");
+    proxy = remoteProxy;
+  },
+  onDisconnect: (elementName) => {
+    console.log("RpcClient: onDisconnect");
+  },
+  onFailed: () => {
+    console.log("RpcClient: onFailed");
+  }
 };
 let want: Want = {
-    bundleName: "com.ohos.server",
-    abilityName: "com.ohos.server.EntryAbility",
+  bundleName: "com.ohos.server",
+  abilityName: "com.ohos.server.EntryAbility",
 };
 // Use this method to connect to the ability in the FA model.
 // FA.connectAbility(want, connect);
@@ -159,12 +162,16 @@ this.context.connectServiceExtensionAbility(want, connect);
 The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
 
 ```ts
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+import rpc from '@ohos.rpc';
 class MyDeathRecipient implements rpc.DeathRecipient{
     onRemoteDied() {
         console.log("server died");
     }
 }
 let deathRecipient = new MyDeathRecipient();
+let proxy: rpc.IRemoteObject | undefined = undefined;
 proxy.registerDeathRecipient(deathRecipient, 0);
 proxy.unregisterDeathRecipient(deathRecipient, 0);
 ```
@@ -182,7 +189,7 @@ Forward dead notification is a mechanism that allows the proxy to detect death n
 ### Sample Code
 
 ```c++
-//Proxy
+// Proxy
 int TestAbilityProxy::TestAnonymousStub()
 {
     MessageOption option;
@@ -194,7 +201,7 @@ int TestAbilityProxy::TestAnonymousStub()
     return result;
 }
 
-//Stub
+// Stub
 
 int TestAbilityStub::OnRemoteRequest(uint32_t code, MessageParcel &data, MessageParcel &reply, MessageOption &option)
 {

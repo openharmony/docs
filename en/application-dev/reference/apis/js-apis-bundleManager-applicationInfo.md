@@ -23,8 +23,8 @@ The **ApplicationInfo** module defines the application information. A system app
 | process                    | string                                                       | Yes  | No  | Process in which the application runs. If this parameter is not set, the bundle name is used.                  |
 | permissions                | Array\<string>                                               | Yes  | No  | Permissions required for accessing the application. The permissions can be obtained by passing in **GET_APPLICATION_INFO_WITH_PERMISSION** to the **appFlags** parameter of [bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo).|
 | codePath                   | string                                                       | Yes  | No  | Installation directory of the application.                                            |
-| metadata<sup>(deprecated)<sup>  | Map\<string, Array\<[Metadata](js-apis-bundleManager-metadata.md)>> | Yes  | No  | Metadata of the application. The information can be obtained by passing in **GET_APPLICATION_INFO_WITH_METADATA** to the **appFlags** parameter of [bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo). <br>**NOTE**<br>This field is deprecated since API version 10. You are advised to use **metadataArray** instead. |
-| metadataArray              | Array\<[ModuleMetadata](#modulemetadata)> | Yes  | No  | Metadata of the application. The information can be obtained by passing in **GET_APPLICATION_INFO_WITH_METADATA** to the **appFlags** parameter of [bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo).|
+| metadata<sup>(deprecated)<sup>  | Map\<string, Array\<[Metadata](js-apis-bundleManager-metadata.md)>> | Yes  | No  | Metadata of the application. The information can be obtained by passing in **GET_APPLICATION_INFO_WITH_METADATA** to the **appFlags** parameter of [bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo). **NOTE**<br>This field is deprecated since API version 10. You are advised to use **metadataArray** instead.|
+| metadataArray<sup>10+</sup>              | Array\<[ModuleMetadata](#modulemetadata)> | Yes  | No  | Metadata of the application. The information can be obtained by passing in **GET_APPLICATION_INFO_WITH_METADATA** to the **appFlags** parameter of [bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo).|
 | removable                  | boolean                                                      | Yes  | No  | Whether the application is removable.                                        |
 | accessTokenId             | number                                                       | Yes  | No  | Access token ID of the application.                                     |
 | uid                       | number                                                       | Yes  | No  | UID of the application.                                               |
@@ -37,7 +37,7 @@ The **ApplicationInfo** module defines the application information. A system app
 | bundleType                |[BundleType](js-apis-bundleManager.md#bundletype)             | Yes  | No  | Bundle type, which can be **APP** (common application) or **ATOMIC_SERVICE** (atomic service).                               |
 | debug<sup>10+</sup>       | boolean                                | Yes  | No  | Whether the application is in debugging mode. The default value is **false**.       |
 
-## ModuleMetadata
+## ModuleMetadata<sup>10+</sup>
 
 Describes the metadata of a module.
 
@@ -45,5 +45,5 @@ Describes the metadata of a module.
 
 | Name     | Type          | Readable| Writable| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| moduleName| string         | Yes  | No  | Module name.  |
-| metadata  | Array\<[Metadata](js-apis-bundleManager-metadata.md)>      | Yes  | No  | Metadata list of the module.|
+| moduleName<sup>10+</sup>| string         | Yes  | No  | Module name.  |
+| metadata<sup>10+</sup>  | Array\<[Metadata](js-apis-bundleManager-metadata.md)>      | Yes  | No  | Metadata list of the module.|

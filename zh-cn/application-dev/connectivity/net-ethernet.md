@@ -45,7 +45,7 @@
 
 ```ts
 // 从@ohos.net.ethernet中导入ethernet命名空间
-import ethernet from '@ohos.net.ethernet'
+import ethernet from '@ohos.net.ethernet';
 import { BusinessError } from '@ohos.base';
 
 // getAllActiveIfaces获取所有活动的网络设备名称
@@ -98,7 +98,7 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
 
 ```ts
 // 从@ohos.net.ethernet中导入ethernet命名空间
-import ethernet from '@ohos.net.ethernet'
+import ethernet from '@ohos.net.ethernet';
 import { BusinessError } from '@ohos.base';
 
 // getAllActiveIfaces获取所有活动的网络设备名称
@@ -168,7 +168,7 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
 
 ```ts
 // 从@ohos.net.ethernet中导入ethernet命名空间
-import ethernet from '@ohos.net.ethernet'
+import ethernet from '@ohos.net.ethernet';
 
 // 订阅interfaceStateChange事件
 class EthernetData{

@@ -5,7 +5,6 @@
 The Ethernet Connection module allows a device to access the Internet through a network cable. After a device is connected to the Ethernet through a network cable, the device can obtain a series of network attributes, such as the dynamically allocated IP address, subnet mask, gateway, and DNS. You can manually configure and obtain the network attributes of the device in static mode.
 
 > **NOTE**
-> 
 > To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [sms API Reference](../reference/apis/js-apis-net-ethernet.md).
 
 ## **Constraints**
@@ -14,7 +13,7 @@ The Ethernet Connection module allows a device to access the Internet through a 
 - System: Linux kernel
 - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## When to Use
+## Scenario
 
 Typical application scenarios of Ethernet connection are as follows:
 
@@ -44,12 +43,13 @@ For the complete list of APIs and example code, see [Ethernet Connection](../ref
 4. Call **isIfaceActive** in user mode to check whether the **eth0** port is active.
 5. Call **getIfaceConfig** in user mode to obtain the static network attributes of the **eth0** port. By default, an unconfigured Ethernet network uses the DHCP mode, in which the Ethernet network obtains the automatically assigned network attributes.
 
-```js
+```ts
 // Import the ethernet namespace from @ohos.net.ethernet.
-import ethernet from '@ohos.net.ethernet'
+import ethernet from '@ohos.net.ethernet';
+import { BusinessError } from '@ohos.base';
 
 // Call getAllActiveIfaces to obtain the list of all active network ports.
-ethernet.getAllActiveIfaces((error, data) => {
+ethernet.getAllActiveIfaces((error: BusinessError, data: string[]) => {
   if (error) {
     console.log("getAllActiveIfaces callback error = " + error);
   } else {
@@ -61,7 +61,7 @@ ethernet.getAllActiveIfaces((error, data) => {
 });
 
 // Call isIfaceActive to check whether the specified network port is active.
-ethernet.isIfaceActive("eth0", (error, data) => {
+ethernet.isIfaceActive("eth0", (error: BusinessError, data: number) => {
   if (error) {
     console.log("isIfaceActive callback error = " + error);
   } else {
@@ -70,7 +70,7 @@ ethernet.isIfaceActive("eth0", (error, data) => {
 });
 
 // Call getIfaceConfig to obtain the network attributes of the specified Ethernet network.
-ethernet.getIfaceConfig("eth0", (error, data) => {
+ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceConfiguration) => {
   if (error) {
     console.log("getIfaceConfig  callback error = " + error);
   } else {
@@ -96,12 +96,13 @@ ethernet.getIfaceConfig("eth0", (error, data) => {
 5. Call **setIfaceConfig** in user mode to set the **eth0** port to the static mode, in which you need to manually assign the network attributes (including the IP address, subnet mask, gateway, and DNS).
 6. Call **getIfaceConfig** in user mode to obtain the static network attributes of the **eth0** port.
 
-```js
+```ts
 // Import the ethernet namespace from @ohos.net.ethernet.
-import ethernet from '@ohos.net.ethernet'
+import ethernet from '@ohos.net.ethernet';
+import { BusinessError } from '@ohos.base';
 
 // Call getAllActiveIfaces to obtain the list of all active network ports.
-ethernet.getAllActiveIfaces((error, data) => {
+ethernet.getAllActiveIfaces((error: BusinessError, data: string[]) => {
   if (error) {
     console.log("getAllActiveIfaces callback error = " + error);
   } else {
@@ -113,7 +114,7 @@ ethernet.getAllActiveIfaces((error, data) => {
 });
 
 // Call isIfaceActive to check whether the specified network port is active.
-ethernet.isIfaceActive("eth0", (error, data) => {
+ethernet.isIfaceActive("eth0", (error: BusinessError, data: number) => {
   if (error) {
     console.log("isIfaceActive callback error = " + error);
   } else {
@@ -121,11 +122,18 @@ ethernet.isIfaceActive("eth0", (error, data) => {
   }
 });
 
+let ethernetParam: ethernet.InterfaceConfiguration = {
+  mode: ethernet.IPSetMode.STATIC,
+  ipAddr: "192.168.xx.xx",
+  routeAddr: "192.168.xx.xx",
+  gateAddr: "192.168.xx.xx",
+  maskAddr: "255.255.xx.xx",
+  dnsAddr0: "1.1.xx.xx",
+  dnsAddr1: "2.2.xx.xx"
+}
+
 // Call setIfaceConfig to configure the network attributes of the specified Ethernet network.
-ethernet.setIfaceConfig("eth0", {
-  mode: ethernet.STATIC, ipAddr: "192.168.xx.xx", routeAddr: "192.168.xx.xx",
-  gateAddr: "192.168.xx.xx", maskAddr: "255.255.xx.xx", dnsAddr0: "1.1.xx.xx", dnsAddr1: "2.2.xx.xx"
-}, (error) => {
+ethernet.setIfaceConfig("eth0", ethernetParam, (error: BusinessError) => {
   if (error) {
     console.log("setIfaceConfig callback error = " + error);
   } else {
@@ -134,7 +142,7 @@ ethernet.setIfaceConfig("eth0", {
 });
 
 // Call getIfaceConfig to obtain the network attributes of the specified Ethernet network.
-ethernet.getIfaceConfig("eth0", (error, data) => {
+ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceConfiguration) => {
   if (error) {
     console.log("getIfaceConfig  callback error = " + error);
   } else {
@@ -158,12 +166,17 @@ ethernet.getIfaceConfig("eth0", (error, data) => {
 3. Check whether an **interfaceStateChange** event is triggered when the interface state changes.
 4. Call the **off()** method to unsubscribe from **interfaceStateChange** events.
 
-```js
+```ts
 // Import the ethernet namespace from @ohos.net.ethernet.
-import ethernet from '@ohos.net.ethernet'
+import ethernet from '@ohos.net.ethernet';
 
 // Subscribe to interfaceStateChange events.
-ethernet.on('interfaceStateChange', (data) => {
+class EthernetData{
+  iface: string = ""
+  active: boolean = false
+}
+
+ethernet.on('interfaceStateChange', (data: EthernetData) => {
   console.log(JSON.stringify(data));
 });
 

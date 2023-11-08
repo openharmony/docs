@@ -20,7 +20,7 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
 | context<sup>10+</sup> | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | Yes| No|Context of the DataShare ExtensionAbility.|
 
@@ -36,7 +36,7 @@ Called by the server to initialize service logic when the DataShare client conne
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
-| want | [Want](js-apis-application-want.md#want) | Yes | Want information, including the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md#want) | Yes | Want information, including the ability name and bundle name.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**

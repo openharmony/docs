@@ -12,7 +12,7 @@ StaticSubscriberExtensionContext模块提供StaticSubscriberExtensionAbility具�
 ## 导入模块
 
 ```ts
-import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext'
+import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext';
 ```
 
 ## 使用说明
@@ -20,12 +20,8 @@ import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriber
 在使用StaticSubscriberExtensionContext的功能前，需要通过StaticSubscriberExtensionAbility获取。
 
 ```ts
-import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
-import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext'
-
-export default class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
-    context: StaticSubscriberExtensionContext = this.context;
-};
+import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
+import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext';
 ```
 
 ## StaticSubscriberExtensionContext.startAbility
@@ -74,32 +70,39 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
-  };
+let want: Want = {
+  bundleName: "com.example.myapp",
+  abilityName: "MyAbility"
+};
 
-  try {
-    this.context.startAbility(want, (error: BusinessError) => {
-      if (error) {
-        // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log('startAbility succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
-    ' error.message: ' + JSON.stringify(message));
+class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
+  onReceiveEvent(event: CommonEventManager.CommonEventData) {
+    console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
+
+    try {
+      this.context.startAbility(want, (error: BusinessError) => {
+        if (error) {
+          // 处理业务逻辑错误
+          console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+            ' error.message: ' + JSON.stringify(error.message));
+          return;
+        }
+        // 执行正常业务
+        console.log('startAbility succeed');
+      });
+    } catch (paramError) {
+      // 处理入参错误异常
+      let code = (paramError as BusinessError).code;
+      let message = (paramError as BusinessError).message;
+      console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+        ' error.message: ' + JSON.stringify(message));
+    }
   }
+}
   ```
 
 ## StaticSubscriberExtensionContext.startAbility
@@ -153,30 +156,36 @@ startAbility(want: Want): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
-  };
+let want: Want = {
+  bundleName: "com.example.myapp",
+  abilityName: "MyAbility"
+};
 
-  try {
-    this.context.startAbility(want)
-      .then(() => {
-        // 执行正常业务
-        console.log('startAbility succeed');
-      })
-      .catch((error: BusinessError) => {
-        // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
-    ' error.message: ' + JSON.stringify(message));
+class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
+  onReceiveEvent(event: CommonEventManager.CommonEventData) {
+    console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
+    try {
+      this.context.startAbility(want)
+        .then(() => {
+          // 执行正常业务
+          console.log('startAbility succeed');
+        })
+        .catch((error: BusinessError) => {
+          // 处理业务逻辑错误
+          console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+            ' error.message: ' + JSON.stringify(error.message));
+        });
+    } catch (paramError) {
+      // 处理入参错误异常
+      let code = (paramError as BusinessError).code;
+      let message = (paramError as BusinessError).message;
+      console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+        ' error.message: ' + JSON.stringify(message));
+    }
   }
+}
   ```

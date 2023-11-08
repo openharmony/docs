@@ -299,6 +299,83 @@ function convertSM2AsyKey() {
 }
 ```
 
+### Randomly Generating an HMAC Key and Obtaining the Binary Data
+
+ > **NOTE**
+ >
+ > From API version 11, HMAC keys can be generated randomly.
+
+Randomly generate a symmetric key **SymKey** for the HMAC algorithm and obtain the binary data.
+
+1. Create a **SymKeyGenerator** instance.
+2. Use the symmetric key generator to randomly generate a symmetric key for the HMAC algorithm.
+3. Obtain the binary data of the key generated.
+
+Example: Randomly generate an HMAC key (256 bits) in promise mode.
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function testGenerateHmacKey() {
+  // Create a SymKeyGenerator instance.
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("HMAC|SHA256");
+  // Use the key generator to randomly generate a symmetric key.
+  let promiseSymKey = symKeyGenerator.generateSymKey();
+  promiseSymKey.then(key => {
+    // Obtain the binary data of the symmetric key and output a 256-bit byte stream. The length is 32 bytes.
+    let encodedKey = key.getEncoded();
+    console.info('key hex:' + encodedKey.data);
+  })
+}
+```
+
+### Converting Binary Data into an HMAC Key
+
+ > **NOTE**
+ >
+ > From API version 11, HMAC key conversion is supported.
+
+Generate a symmetric key **SymKey** for the HMAC algorithm based on the specified HMAC symmetric key binary data.
+
+1. Create a **SymKeyGenerator** instance.
+2. Use the symmetric key generator to generate a **SymKey** object based on the specified HMAC binary key data.
+
+> **NOTE**
+>
+> 1. If **HMAC** is used to create a symmetric key generator, the binary key data of 1 to 4096 bytes can be passed in to generate a **symKey**.
+> 2. If **HMAC|SHA512** is used to create a symmetric key generator, binary key data of 64 bytes must be passed in to generate a **symKey**.
+
+Example: Generate an HMAC key in callback mode (using SHA512 as the hash function).
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function stringToUint8Array(str) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  let tmpUint8Array = new Uint8Array(arr);
+  return tmpUint8Array;
+}
+
+function testConvertHmacKey() {
+  let keyBlob = {
+    // The length is 512-bit (64 bytes).
+    data : stringToUint8Array("12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh")
+  }
+  // Create a SymKeyGenerator instance.
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("HMAC");
+  symKeyGenerator.convertKey(keyBlob, (error, symKey) => {
+    if (error) {
+      console.info('Convert symKey fail!');
+      return;
+    }
+    console.info('Convert symKey success!');
+  })
+}
+```
+
 ## Generating an Asymmetric Key Object and Obtaining Key Parameters
 
 ### When to Use
@@ -339,7 +416,6 @@ Example: Generate an ECC key based on key parameters in promise mode.
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
-import { BusinessError } from '@ohos.base';
 
 // Print bigint information.
 function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
@@ -559,8 +635,8 @@ The following table describes the APIs used in the typical encryption and decryp
 |Cipher|init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>|Sets a key and initializes the **Cipher** instance. This API uses a promise to return the result.|
 |Cipher|update(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Updates the data for encryption and decryption. This API uses an asynchronous callback to return the result.|
 |Cipher|update(data : DataBlob) : Promise\<DataBlob>|Updates the data for encryption and decryption. This API uses a promise to return the result.|
-|Cipher|doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Finalizes the encryption or decryption. This API uses an asynchronous callback to return the result.|
-|Cipher|doFinal(data : DataBlob) : Promise\<DataBlob>|Finalizes the encryption or decryption. This API uses a promise to return the result.|
+|Cipher|doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Finishes the encryption or decryption. This API uses an asynchronous callback to return the result.|
+|Cipher|doFinal(data : DataBlob) : Promise\<DataBlob>|Finishes the encryption or decryption. This API uses a promise to return the result.|
 |Cipher|getCipherSpec(itemType: CipherSpecItem): string \| Uint8Array|Obtains cipher specifications. Currently, only the RSA is supported.|
 |Cipher|setCipherSpec(itemType: CipherSpecItem, itemValue: Uint8Array): void|Sets cipher specifications. Currently, only the RSA is supported.|
 
@@ -2264,8 +2340,8 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 | Mac             | init(key : SymKey) : Promise\<void>;                        | Initializes the **Mac** instance. This API uses a promise to return the result. |
 | Mac             | update(input : DataBlob, callback : AsyncCallback\<void>) : void; | Updates the data for the MAC operation. This API uses an asynchronous callback to return the result.      |
 | Mac             | update(input : DataBlob) : Promise\<void>;                  | Updates the data for the MAC operation. This API uses a promise to return the result.       |
-| Mac             | doFinal(callback : AsyncCallback\<DataBlob>) : void;        | Finalizes the MAC operation to generate a MAC. This API uses an asynchronous callback to return the result.                |
-| Mac             | doFinal() : Promise\<DataBlob>;                             | Finalizes the MAC operation to generate a MAC. This API uses a promise to return the result.                 |
+| Mac             | doFinal(callback : AsyncCallback\<DataBlob>) : void;        | Finishes the MAC operation to generate a MAC. This API uses an asynchronous callback to return the result.                |
+| Mac             | doFinal() : Promise\<DataBlob>;                             | Finishes the MAC operation to generate a MAC. This API uses a promise to return the result.                 |
 | Mac             | getMacLength() : number;                                     | Obtains the length of the MAC based on the specified algorithm.              |
 | Mac             | readonly algName : string;                                   | Obtains the digest algorithm.                           |
 

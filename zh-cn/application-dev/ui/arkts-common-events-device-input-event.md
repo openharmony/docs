@@ -101,7 +101,7 @@ onMouse(event: (event?: MouseEvent) => void)
 ```
 
 
-鼠标事件回调。绑定该API的组件每当鼠标指针在该组件内产生行为（MouseAction）时，触发事件回调，参数为[MouseEvent](../reference/arkui-ts/ts-universal-mouse-key.md)对象，表示触发此次的鼠标事件。该事件支持自定义冒泡设置，默认父子冒泡。常见用于开发者自定义的鼠标行为逻辑处理。
+鼠标事件回调。绑定该API的组件每当鼠标指针在该组件内产生行为（MouseAction）时，触发事件回调，参数为[MouseEvent](../reference/arkui-ts/ts-universal-mouse-key.md)对象，表示触发此次的鼠标事件。该事件支持自定义冒泡设置，默认父子冒泡。常用于开发者自定义的鼠标行为逻辑处理。
 
 
 开发者可以通过回调中的MouseEvent对象获取触发事件的坐标（displayX/displayY/windowX/windowY/x/y）、按键（[MouseButton](../reference/arkui-ts/ts-appendix-enums.md#mousebutton)）、行为（[MouseAction](../reference/arkui-ts/ts-appendix-enums.md#mouseaction)）、时间戳（timestamp）、交互组件的区域（[EventTarget](../reference/arkui-ts/ts-universal-events-click.md)）、事件来源（[SourceType](../reference/arkui-ts/ts-gesture-settings.md)）等。MouseEvent的回调函数stopPropagation用于设置当前事件是否阻止冒泡。
@@ -262,7 +262,7 @@ hoverEffect(value: HoverEffect)
 | Auto           | 组件默认提供的悬浮态效果，由各组件定义。                     |
 | Scale          | 动画播放方式，鼠标悬浮时：组件大小从100%放大至105%，鼠标离开时：组件大小从105%缩小至100%。 |
 | Highlight      | 动画播放方式，鼠标悬浮时：组件背景色叠加一个5%透明度的白色，视觉效果是组件的原有背景色变暗，鼠标离开时：组件背景色恢复至原有样式。 |
-| None           | 禁用悬浮态效果                                  |
+| None           | 禁用悬浮态效果。                                  |
 
 
 
@@ -394,18 +394,15 @@ struct KeyEventExample {
 
 
 ```ts
-class butypef{
-  buttonType:string = ''
-  set(val:string){
-    this.buttonType = val
-  }
-  get(){
-    return this.buttonType
-  }
-}
+// xxx.ets
 @Entry
 @Component
-struct MouseExample {
+struct KeyEventExample {
+  @State buttonText: string = '';
+  @State buttonType: string = '';
+  @State columnText: string = '';
+  @State columnType: string = '';
+
   build() {
     Column() {
       Button('onKeyEvent')
@@ -413,26 +410,42 @@ struct MouseExample {
         .onKeyEvent((event?: KeyEvent) => {
           // 通过stopPropagation阻止事件冒泡
           if(event){
-            if(event.stopPropagation) {
+            if(event.stopPropagation){
               event.stopPropagation();
             }
             if (event.type === KeyType.Down) {
-              let butset = new butypef()
-              butset.set('Down')
+              this.buttonType = 'Down';
             }
             if (event.type === KeyType.Up) {
-              let butset = new butypef()
-              butset.set('Up')
+              this.buttonType = 'Up';
             }
-            let butfset = new butypef()
-            let butset = new butypef()
-            butfset.set('Button: \n' +
-              'KeyType:' + butset.get() + '\n' +
+            this.buttonText = 'Button: \n' +
+              'KeyType:' + this.buttonType + '\n' +
               'KeyCode:' + event.keyCode + '\n' +
-              'KeyText:' + event.keyText)
+              'KeyText:' + event.keyText;
           }
         })
-    }
+
+      Divider()
+      Text(this.buttonText).fontColor(Color.Green)
+
+      Divider()
+      Text(this.columnText).fontColor(Color.Red)
+    }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+    .onKeyEvent((event?: KeyEvent) => { // 给父组件Column设置onKeyEvent事件
+      if(event){
+        if (event.type === KeyType.Down) {
+          this.columnType = 'Down';
+        }
+        if (event.type === KeyType.Up) {
+          this.columnType = 'Up';
+        }
+        this.columnText = 'Column: \n' +
+          'KeyType:' + this.buttonType + '\n' +
+          'KeyCode:' + event.keyCode + '\n' +
+          'KeyText:' + event.keyText;
+      }
+    })
   }
 }
 ```

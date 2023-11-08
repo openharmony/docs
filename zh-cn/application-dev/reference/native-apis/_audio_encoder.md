@@ -22,28 +22,28 @@ AudioEncoder模块提供用于音频编码的函数。该模块在部分设备�
 
 | 名称                                                                                                                                          | 描述                                                                             |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| \*[OHOS::Media::OH_AudioEncoder_CreateByMime](#oh_audioencoder_createbymime) (const char \*mime)                                                 | 根据MIME类型创建音频编码器实例，大多数场景下建议使用此方式。                     |
-| \*[OHOS::Media::OH_AudioEncoder_CreateByName](#oh_audioencoder_createbyname) (const char \*name)                                                 | 通过音频编码器名称创建音频编码器实例，使用此接口的前提是知道编码器的确切名称。   |
-| [OHOS::Media::OH_AudioEncoder_Destroy](#oh_audioencoder_destroy) (OH_AVCodec \*codec)                                                            | 清理编码器内部资源，销毁编码器实例。                                             |
-| [OHOS::Media::OH_AudioEncoder_SetCallback](#oh_audioencoder_setcallback) (OH_AVCodec \*codec, OH_AVCodecAsyncCallback callback, void \*userData) | 设置异步回调函数，使您的应用程序可以响应音频编码器生成的事件。                   |
-| [OHOS::Media::OH_AudioEncoder_Configure](#oh_audioencoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format)                                  | 要配置音频编码器，通常需要配置编码后的音轨的描述信息。                           |
-| [OHOS::Media::OH_AudioEncoder_Prepare](#oh_audioencoder_prepare) (OH_AVCodec \*codec)                                                            | 准备编码器的内部资源，在调用此接口之前必须调用Configure接口。                    |
-| [OHOS::Media::OH_AudioEncoder_Start](#oh_audioencoder_start) (OH_AVCodec \*codec)                                                                | Prepare成功后调用此接口启动编码器。                                              |
-| [OHOS::Media::OH_AudioEncoder_Stop](#oh_audioencoder_stop) (OH_AVCodec \*codec)                                                                  | 停止编码器。                                                                     |
-| [OHOS::Media::OH_AudioEncoder_Flush](#oh_audioencoder_flush) (OH_AVCodec \*codec)                                                                | 清除编码器中缓存的输入和输出数据。                                               |
-| [OHOS::Media::OH_AudioEncoder_Reset](#oh_audioencoder_reset) (OH_AVCodec \*codec)                                                                | 重置编码器。                                                                     |
-| \*[OHOS::Media::OH_AudioEncoder_GetOutputDescription](#oh_audioencoder_getoutputdescription) (OH_AVCodec \*codec)                                | 获取编码器输出数据的描述信息，详细信息请参见[OH_AVFormat](native__avformat_8h.md)。 |
-| [OHOS::Media::OH_AudioEncoder_SetParameter](#oh_audioencoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format)                            | 配置编码器的动态参数。                                                           |
-| [OHOS::Media::OH_AudioEncoder_PushInputData](#oh_audioencoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, OH_AVCodecBufferAttr attr)     | 将填充有数据的输入缓冲区提交给音频编码器。                                       |
-| [OHOS::Media::OH_AudioEncoder_FreeOutputData](#oh_audioencoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index)                              | 将处理后的输出缓冲区返回给编码器。                                               |
-| [OHOS::Media::OH_AudioEncoder_IsValid](#oh_audioencoder_isvalid) (OH_AVCodec \*codec, bool \*isValid)                                            | 检查当前编码器实例是否有效。                                                     |
+| \*[OH_AudioEncoder_CreateByMime](#oh_audioencoder_createbymime) (const char \*mime)                                                 | 根据MIME类型创建音频编码器实例，大多数场景下建议使用此方式。                     |
+| \*[OH_AudioEncoder_CreateByName](#oh_audioencoder_createbyname) (const char \*name)                                                 | 通过音频编码器名称创建音频编码器实例，使用此接口的前提是知道编码器的确切名称。   |
+| [OH_AudioEncoder_Destroy](#oh_audioencoder_destroy) (OH_AVCodec \*codec)                                                            | 清理编码器内部资源，销毁编码器实例。                                             |
+| [OH_AudioEncoder_SetCallback](#oh_audioencoder_setcallback) (OH_AVCodec \*codec, OH_AVCodecAsyncCallback callback, void \*userData) | 设置异步回调函数，使您的应用程序可以响应音频编码器生成的事件。                   |
+| [OH_AudioEncoder_Configure](#oh_audioencoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format)                                  | 要配置音频编码器，通常需要配置编码后的音轨的描述信息。                           |
+| [OH_AudioEncoder_Prepare](#oh_audioencoder_prepare) (OH_AVCodec \*codec)                                                            | 准备编码器的内部资源，在调用此接口之前必须调用Configure接口。                    |
+| [OH_AudioEncoder_Start](#oh_audioencoder_start) (OH_AVCodec \*codec)                                                                | Prepare成功后调用此接口启动编码器。                                              |
+| [OH_AudioEncoder_Stop](#oh_audioencoder_stop) (OH_AVCodec \*codec)                                                                  | 停止编码器。                                                                     |
+| [OH_AudioEncoder_Flush](#oh_audioencoder_flush) (OH_AVCodec \*codec)                                                                | 清除编码器中缓存的输入和输出数据。                                               |
+| [OH_AudioEncoder_Reset](#oh_audioencoder_reset) (OH_AVCodec \*codec)                                                                | 重置编码器。                                                                     |
+| \*[OH_AudioEncoder_GetOutputDescription](#oh_audioencoder_getoutputdescription) (OH_AVCodec \*codec)                                | 获取编码器输出数据的描述信息，详细信息请参见[OH_AVFormat](native__avformat_8h.md)。 |
+| [OH_AudioEncoder_SetParameter](#oh_audioencoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format)                            | 配置编码器的动态参数。                                                           |
+| [OH_AudioEncoder_PushInputData](#oh_audioencoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, OH_AVCodecBufferAttr attr)     | 将填充有数据的输入缓冲区提交给音频编码器。                                       |
+| [OH_AudioEncoder_FreeOutputData](#oh_audioencoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index)                              | 将处理后的输出缓冲区返回给编码器。                                               |
+| [OH_AudioEncoder_IsValid](#oh_audioencoder_isvalid) (OH_AVCodec \*codec, bool \*isValid)                                            | 检查当前编码器实例是否有效。                                                     |
 
 ## 函数说明
 
 ### OH_AudioEncoder_Configure()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioEncoder_Configure (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OH_AudioEncoder_Configure (OH_AVCodec * codec, OH_AVFormat * format )
 ```
 
 **描述：**
@@ -72,7 +72,7 @@ OH_AVErrCode OHOS::Media::OH_AudioEncoder_Configure (OH_AVCodec * codec, OH_AVFo
 ### OH_AudioEncoder_CreateByMime()
 
 ```
-OH_AVCodec* OHOS::Media::OH_AudioEncoder_CreateByMime (const char * mime)
+OH_AVCodec* OH_AudioEncoder_CreateByMime (const char * mime)
 ```
 
 **描述：**
@@ -85,7 +85,7 @@ OH_AVCodec* OHOS::Media::OH_AudioEncoder_CreateByMime (const char * mime)
 
 | 名称 | 描述                                                    |
 | ---- | ------------------------------------------------------- |
-| mime | MIME类型描述字符串，请参阅**AVCODEC_MIME_TYPE**。 |
+| mime | MIME类型描述字符串，请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量)。 |
 
 **返回：**
 
@@ -98,7 +98,7 @@ OH_AVCodec* OHOS::Media::OH_AudioEncoder_CreateByMime (const char * mime)
 ### OH_AudioEncoder_CreateByName()
 
 ```
-OH_AVCodec* OHOS::Media::OH_AudioEncoder_CreateByName (const char * name)
+OH_AVCodec* OH_AudioEncoder_CreateByName (const char * name)
 ```
 
 **描述：**
@@ -124,7 +124,7 @@ OH_AVCodec* OHOS::Media::OH_AudioEncoder_CreateByName (const char * name)
 ### OH_AudioEncoder_Destroy()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioEncoder_Destroy (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioEncoder_Destroy (OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -150,7 +150,7 @@ OH_AVErrCode OHOS::Media::OH_AudioEncoder_Destroy (OH_AVCodec * codec)
 ### OH_AudioEncoder_Flush()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioEncoder_Flush (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioEncoder_Flush (OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -178,7 +178,7 @@ OH_AVErrCode OHOS::Media::OH_AudioEncoder_Flush (OH_AVCodec * codec)
 ### OH_AudioEncoder_FreeOutputData()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioEncoder_FreeOutputData (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OH_AudioEncoder_FreeOutputData (OH_AVCodec * codec, uint32_t index )
 ```
 
 **描述：**
@@ -205,7 +205,7 @@ OH_AVErrCode OHOS::Media::OH_AudioEncoder_FreeOutputData (OH_AVCodec * codec, ui
 ### OH_AudioEncoder_GetOutputDescription()
 
 ```
-OH_AVFormat* OHOS::Media::OH_AudioEncoder_GetOutputDescription (OH_AVCodec * codec)
+OH_AVFormat* OH_AudioEncoder_GetOutputDescription (OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -233,7 +233,7 @@ OH_AVFormat* OHOS::Media::OH_AudioEncoder_GetOutputDescription (OH_AVCodec * cod
 ### OH_AudioEncoder_IsValid()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioEncoder_IsValid (OH_AVCodec * codec, bool * isValid )
+OH_AVErrCode OH_AudioEncoder_IsValid (OH_AVCodec * codec, bool * isValid )
 ```
 
 **描述：**
@@ -260,7 +260,7 @@ OH_AVErrCode OHOS::Media::OH_AudioEncoder_IsValid (OH_AVCodec * codec, bool * is
 ### OH_AudioEncoder_Prepare()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioEncoder_Prepare (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioEncoder_Prepare (OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -286,7 +286,7 @@ OH_AVErrCode OHOS::Media::OH_AudioEncoder_Prepare (OH_AVCodec * codec)
 ### OH_AudioEncoder_PushInputData()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioEncoder_PushInputData (OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
+OH_AVErrCode OH_AudioEncoder_PushInputData (OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
 ```
 
 **描述：**
@@ -316,7 +316,7 @@ OH_AVErrCode OHOS::Media::OH_AudioEncoder_PushInputData (OH_AVCodec * codec, uin
 ### OH_AudioEncoder_Reset()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioEncoder_Reset (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioEncoder_Reset (OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -338,7 +338,7 @@ OH_AVErrCode OHOS::Media::OH_AudioEncoder_Reset (OH_AVCodec * codec)
 ### OH_AudioEncoder_SetCallback()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioEncoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
+OH_AVErrCode OH_AudioEncoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
 ```
 
 **描述：**
@@ -368,7 +368,7 @@ OH_AVErrCode OHOS::Media::OH_AudioEncoder_SetCallback (OH_AVCodec * codec, OH_AV
 ### OH_AudioEncoder_SetParameter()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioEncoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OH_AudioEncoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * format )
 ```
 
 **描述：**
@@ -397,7 +397,7 @@ OH_AVErrCode OHOS::Media::OH_AudioEncoder_SetParameter (OH_AVCodec * codec, OH_A
 ### OH_AudioEncoder_Start()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioEncoder_Start (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioEncoder_Start (OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -425,7 +425,7 @@ Prepare成功后调用此接口启动编码器。
 ### OH_AudioEncoder_Stop()
 
 ```
-OH_AVErrCode OHOS::Media::OH_AudioEncoder_Stop (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioEncoder_Stop (OH_AVCodec * codec)
 ```
 
 **描述：**

@@ -15,7 +15,7 @@
 | rotate | 通过设置组件旋转创建转场效果。 | 出现时为rotate接口设置的值到默认值0，消失时为默认值0到rotate接口设置的值。 |
 | opacity | 通过设置透明度参数创建转场效果。 | 出现时为opacity设置的值到默认透明度1，消失时为默认透明度1到opacity设置的值。 |
 | move | 通过[TransitionEdge](../reference/arkui-ts/ts-appendix-enums.md#transitionedge10)创建从窗口哪条边缘出来的效果。 | 出现时从TransitionEdge方向滑入，消失时滑出到TransitionEdge方向。 |
-| asymmetric | 通过此方法组合非对称的出现消失转场效果。<br/>appear:出现转场的效果。<br/>disappear：消失转场的效果。 | 出现时采用appear设置的TransitionEffect出现效果，消失时采用disappear设置的TransitionEffect的消失效果。 |
+| asymmetric | 通过此方法组合非对称的出现消失转场效果。<br/>- appear:出现转场的效果。<br/>- disappear：消失转场的效果。 | 出现时采用appear设置的TransitionEffect出现效果，消失时采用disappear设置的TransitionEffect消失效果。 |
 | combine | 组合其他TransitionEffect。 | 组合其他TransitionEffect，一起生效。 |
 | animation | 定义转场效果的动画参数：<br/>-&nbsp;如果不定义会跟随animateTo的动画参数。<br/>-&nbsp;不支持通过控件的animation接口配置动画参数。<br/>-&nbsp;TransitionEffect中animation的onFinish不生效。 | 调用顺序时从上往下，上面TransitionEffect的animation也会作用到下面TransitionEffect。 |
 
@@ -27,7 +27,7 @@
    // 用于说明各个effect跟随的动画参数
    private effect: object =
      TransitionEffect.OPACITY // 创建了透明度转场效果，这里没有调用animation接口，会跟随animateTo的动画参数
-       // 通过combine方法,添加缩放转场效果,并指定了springMotion(0.6, 1.2)曲线
+       // 通过combine方法，添加缩放转场效果，并指定了springMotion(0.6, 1.2)曲线
        .combine(TransitionEffect.scale({ x: 0, y: 0 }).animation({curve: curves.springMotion(0.6, 1.2) }))
        // 添加旋转转场效果，这里的动画参数会跟随上面的TransitionEffect，也就是springMotion(0.6, 1.2)
        .combine(TransitionEffect.rotate({ angle: 90 }))
@@ -51,23 +51,23 @@
    ```ts
    @state isPresent: boolean = true;
    ...
-   if (isPresent) {
+   if (this.isPresent) {
      Text('test')
        .transition(effect)
    }
    ...
    // 控制新增或者删除组件
    // 方式一：将控制变量放到animateTo闭包内，未通过animation接口定义动画参数的TransitionEffect将跟随animateTo的动画参数
-   animateTo({curve: curves.springMotion()}) {
+   animateTo({curve: curves.springMotion()}, ()=> {
      this.isPresent = false;
-   }
+   })
    
    // 方式二：直接控制删除或者新增组件，动画参数由TransitionEffect的animation接口配置
    this.isPresent = false;
    ```
 
 
-  完整的示例代码和效果如下：
+ 完整的示例代码和效果如下，示例中采用直接删除或新增组件的方式触发转场，也可以替换为在animateTo闭包内改变控制变量触发转场。
 
 ```ts
 import curves from '@ohos.curves';

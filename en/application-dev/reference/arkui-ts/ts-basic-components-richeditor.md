@@ -5,6 +5,8 @@ The **\<RichEditor>** is a component that supports interactive text editing and 
 >  **NOTE**
 >
 >  This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  Drag effects such as floating for the **\<RichEditor>** component can only be implemented through the [onDragStart](ts-universal-events-drag-drop.md) event.
 
 
 ## Child Components
@@ -29,14 +31,15 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 >  **NOTE**
 >
-> The default value of the **clip** attribute is **true**.
-> The **align** attribute supports only the start, center, and end options.
+>  The default value of the **clip** attribute is **true**.
+>
+>  The **align** attribute supports only the start, center, and end options.
 
 | Name                     | Type                                                    | Description                                                        |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus.| 
+| customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus.|
 | bindSelectionMenu | {<br>spantype: [RichEditorSpanType](#richeditorspantype),<br>content: [CustomBuilder](ts-types.md#custombuilder8),<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8),<br>options?: [SelectionMenuOptions](#selectionmenuoptions)<br>} | Custom selection menu.<br> Default value: {<br>  spanType: RichEditorSpanType:TEXT<br>responseType: ResponseType.LongPress<br>Other: null<br>}<br>**NOTE**<br>Currently, the **spanType** parameter setting does not take effect, regardless of the value.|
-| copyOption | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>**NOTE**<br>If **copyOptions** is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, long pressing content in the component will display a shortcut menu, after which you can adjust the content selection scope and perform the desired operation, such as copy and select all.<br>If **copyOptions** is set to **CopyOptions.None**, copy and paste is not allowed. |
+| copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed for text content.<br>Default value: **CopyOptions.LocalDevice**<br>**NOTE**<br>If **copyOptions** is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, long pressing content in the component will display a shortcut menu, after which you can adjust the content selection scope and perform the desired operation, such as copy and select all.<br>If **copyOptions** is set to **CopyOptions.None**, copy and paste is not allowed. |
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
@@ -229,7 +232,7 @@ Adds an image span.
 
 updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions): void
 
-Updates the text or image span style. <br>If only part of a span is updated, the span is split into multiple spans based on the updated part and the unupdated part.
+Updates the text or image span style. <br>If only part of a span is updated, the span is split into multiple spans based on the updated part and the non-updated part.
 
 **Parameters**
 
@@ -322,7 +325,7 @@ Provides the text style information.
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color.<br> Default value: **Color.Black**|
-| fontSize | [Length](ts-types.md#length) \| number   | No| Font size.<br>Default value: **16fp**|
+| fontSize | [Length](ts-types.md#length) | No| Font size. If **Length** is of the number type, the unit fp is used. The default value is **16**. The value cannot be a percentage.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | No| Font style.<br>Default value: **FontStyle.Normal**|
 | fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
 | fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | No| Font family. The HarmonyOS Sans font and [register custom fonts](../apis/js-apis-font.md) are supported.<br>Default font: **'HarmonyOS Sans'**|
@@ -344,7 +347,7 @@ Provides the image span style information.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| size  | [Dimension, Dimension]  | No| Width and height of the image.|
+| size  | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)]  | No| Width and height of the image.|
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No  | Vertical alignment mode of the image.<br>Default value: **ImageSpanAlignment.BASELINE**|
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | No| Scale mode of the image.<br> Default value: **ImageFit.Cover**|
 
@@ -540,12 +543,14 @@ struct RichEditorExample {
             Button(item + "")
               .width(110).onClick(() => {
               this.controller.addTextSpan(item + '', {
+                offset: this.controller.getCaretOffset(),
                 style:
                 {
                   fontColor: Color.Orange,
                   fontSize: 30
                 }
               })
+              this.controller.setCaretOffset(this.controller.getCaretOffset() + item.toString().length)
             })
           }
         })
@@ -559,12 +564,15 @@ struct RichEditorExample {
         // Bind the custom keyboard.
         .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
         .height(200)
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width("100%")
     }
   }
 }
 ```
 
-![customKeyboard](figures/richEditorCustomKeyboard.png)
+![customKeyboard](figures/richEditorCustomKeyboard.gif)
 
 ### Example 3
 

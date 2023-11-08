@@ -1,12 +1,11 @@
 # 图形图像开发常见问题
 
-## 如何获取设备的dpi值
 
-适用于：OpenHarmony 3.2 Beta5，API 9 Stage模型
+## 如何获取设备的dpi值(API 9)
 
 **解决措施**
 
-导入@ohos.display包，通过getDefaultDisplaySync\(\)方法获取。
+导入\@ohos.display包，通过getDefaultDisplaySync()方法获取。
 
 **代码示例**
 
@@ -21,13 +20,12 @@ try {
 }
 ```
 
-## 如何获取窗口的宽高信息
 
-适用于：OpenHarmony 3.2 Beta5，API 9 Stage模型  
+## 如何获取窗口的宽高信息(API 9)
 
 **解决措施**
 
-引入窗口模块@ohos.window，获取指定窗口对象Window后，在该对象上使用getWindowProperties\(\)获取窗口各个属性，在属性windowRect中获取窗口宽高信息。
+引入窗口模块\@ohos.window，获取指定窗口对象Window后，在该对象上使用getWindowProperties()获取窗口各个属性，在属性windowRect中获取窗口宽高信息。
 
 **代码示例**
 
@@ -55,13 +53,12 @@ try {
 }
 ```
 
-## 如何对图片进行高斯模糊处理
 
-适用于：OpenHarmony 3.2 Beta5，API 9
+## 如何对图片进行高斯模糊处理(API 9)
 
 **解决措施**
 
-导入图像处理（@ohos.multimedia.image）和图像效果（@ohos.effectKit）模块，对图像进行处理并添加模糊效果。
+导入图像处理（\@ohos.multimedia.image）和图像效果（\@ohos.effectKit）模块，对图像进行处理并添加模糊效果。
 
 **代码示例**
 

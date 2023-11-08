@@ -1703,7 +1703,7 @@ try {
 }
 ```
 
-### Type '*** | null' is not assignable to type '\*\*\*'. Type 'null' is not assignable to type '\*\*\*'
+### Type '*** | null' is not assignable to type '\*\*\*'
 
 **应用代码**
 
@@ -1910,13 +1910,13 @@ ArkTS不支持通过注释的方式绕过严格类型检查。首先将注释（
 
 ## arkts-no-tsdeps
 
-ets文件可以import ets、ts、js文件源码，但是不允许ts、js文件import ets文件源码
+不允许.ts、.js文件`import`.ets文件源码。
 
 **建议改法**
 
-方式1.将ts文件修改后缀成ets。  
-方式2.将被依赖的ets文件后缀改成ts。  
-方式3.将ets中被ts导入的接口分拆成ts文件。
+方式1.将.ts文件的后缀修改成ets，按照ArkTS语法规则适配代码。
+
+方式2.将.ets文件中被.ts文件依赖的代码单独抽取到.ts文件中。
 
 ## arkts-no-special-imports
 
@@ -2083,6 +2083,228 @@ class Foo {
 
   static sub(left: number, right: number): number {
     return left - right
+  }
+}
+```
+
+## 状态管理使用典型场景
+
+### Struct组件外使用状态变量
+
+由于struct和class不同，不建议把this作为参数传递到struct外部使用，避免引起实例引用无法释放的情况，导致内存泄露。建议将状态变量对象传递到struct外面使用，通过修改对象的属性，来触发UI刷新。
+
+**不推荐用法**
+
+```typescript
+export class MyComponentController {
+  item: MyComponent = null;
+
+  setItem(item: MyComponent) {
+    this.item = item;
+  }
+
+  changeText(value: string) {
+    this.item.value = value;
+  }
+}
+
+@Component
+export default struct MyComponent {
+  public controller: MyComponentController = null;
+  @State value: string = 'Hello World';
+
+  build() {
+    Column() {
+      Text(this.value)
+        .fontSize(50)
+    }
+  }
+
+  aboutToAppear() {
+    if (this.controller)
+      this.controller.setItem(this);
+  }
+}
+
+@Entry
+@Component
+struct ObjThisOldPage {
+  controller = new MyComponentController();
+
+  build() {
+    Column() {
+      MyComponent({ controller: this.controller })
+      Button('change value').onClick(() => {
+        this.controller.changeText('Text');
+      })
+    }
+  }
+}
+```
+
+**推荐用法**
+
+```typescript
+class CC {
+  value: string = '1';
+
+  constructor(value: string) {
+    this.value = value;
+  }
+}
+
+export class MyComponentController {
+  item: CC = new CC('1');
+
+  setItem(item: CC) {
+    this.item = item;
+  }
+
+  changeText(value: string) {
+    this.item.value = value;
+  }
+}
+
+@Component
+export default struct MyComponent {
+  public controller: MyComponentController | null = null;
+  @State value: CC = new CC('Hello World')
+
+  build() {
+    Column() {
+      Text(`${this.value.value}`)
+        .fontSize(50)
+    }
+  }
+
+  aboutToAppear() {
+    if (this.controller)
+      this.controller.setItem(this.value);
+  }
+}
+
+@Entry
+@Component
+struct StyleExample {
+  controller: MyComponentController = new MyComponentController();
+
+  build() {
+    Column() {
+      MyComponent({ controller: this.controller })
+      Button('change value').onClick(() => {
+        this.controller.changeText('Text')
+      })
+    }
+  }
+}
+```
+
+### Struct支持联合类型的方案
+
+下面这段代码有arkts-no-any-unknown的报错，由于strcut不支持泛型，建议使用联合类型，实现自定义组件类似泛型的功能。
+
+**不推荐用法**
+
+```typescript
+class Data {
+  aa: number = 11;
+}
+
+@Entry
+@Component
+struct DatauionOldPage {
+  @State array: Data[] = [new Data(), new Data(), new Data()];
+
+  @Builder
+  componentCloser(data: Data) {
+    Text(data.aa + '').fontSize(50)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        ForEachCom({ arrayList: this.array, closer: this.componentCloser })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Component
+export struct ForEachCom {
+  arrayList: any[]
+  @BuilderParam closer: (data: any) => void = this.componentCloser
+
+  @Builder
+  componentCloser() {
+  }
+
+  build() {
+    Column() {
+      ForEach(this.arrayList, (item: any) => {
+        Row() {
+          this.closer(item)
+        }.width('100%').height(200).backgroundColor('#eee')
+      })
+    }
+  }
+}
+```
+
+**推荐用法**
+
+```typescript
+class Data {
+  aa: number = 11;
+}
+
+class Model {
+  aa: string = '11';
+}
+
+type UnionData = Data | Model
+
+@Entry
+@Component
+struct DatauionPage {
+  array: UnionData[] = [new Data(), new Data(), new Data()];
+
+  @Builder
+  componentCloser(data: UnionData) {
+    if (data instanceof Data) {
+      Text(data.aa + '').fontSize(50)
+    }
+  }
+
+  build() {
+    Row() {
+      Column() {
+        ForEachCom({ arrayList: this.array, closer: this.componentCloser })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Component
+export struct ForEachCom {
+  arrayList: UnionData[] = [new Data(), new Data(), new Data()];
+  @BuilderParam closer: (data: UnionData) => void = this.componentCloser
+
+  @Builder
+  componentCloser() {
+  }
+
+  build() {
+    Column() {
+      ForEach(this.arrayList, (item: UnionData) => {
+        Row() {
+          this.closer(item)
+        }.width('100%').height(200).backgroundColor('#eee')
+      })
+    }
   }
 }
 ```

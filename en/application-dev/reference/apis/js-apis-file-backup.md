@@ -362,7 +362,7 @@ A constructor used to create a **SessionBackup** instance.
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
-  let generalCallbacks = ({
+  let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
@@ -391,7 +391,7 @@ A constructor used to create a **SessionBackup** instance.
     onBackupServiceDied: () => {
       console.info('service died');
     }
-  });
+  };
   let sessionBackup = new backup.SessionBackup(generalCallbacks);
   ```
 
@@ -409,7 +409,7 @@ Appends the applications whose data needs to be backed up. Currently, the obtain
 
 | Name         | Type                     | Mandatory| Description                                                          |
 | --------------- | ------------------------- | ---- | -------------------------------------------------------------- |
-| bundlesToBackup | string[]                  | Yes  | Array of the application names to append.                                     |
+| bundlesToBackup | string[]                  | Yes  | Array of the application names to append.                                    |
 | callback        | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the applications are appended successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -548,7 +548,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
     onBackupServiceDied: () => {
       console.info('service died');
     }
-  }
+  };
   let sessionBackup = new backup.SessionBackup(generalCallbacks);
   async function appendBundles() {
     try {
@@ -1115,7 +1115,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
   let g_session: backup.SessionRestore;
-  async function publishFile(file: backup.fileMeta) {
+  async function publishFile(file: backup.FileMeta) {
     let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
       uri: file.uri

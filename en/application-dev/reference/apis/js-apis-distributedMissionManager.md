@@ -11,7 +11,7 @@ The **distributedMissionManager** module implements mission management across de
 ## Modules to Import
 
 ```js
-import distributedMissionManager from '@ohos.distributedMissionManager'
+import distributedMissionManager from '@ohos.distributedMissionManager';
 ```
 
 ## distributedMissionManager.registerMissionListener
@@ -37,6 +37,8 @@ Registers a mission status listener. This API uses an asynchronous callback to r
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+  
+  // Implement a callback function.
   function NotifyMissionsChanged(deviceId: string): void {
     console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
   }
@@ -49,6 +51,7 @@ Registers a mission status listener. This API uses an asynchronous callback to r
     console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   try {
+    // Call registerMissionListener.
     distributedMissionManager.registerMissionListener(
       { deviceId: "" },
       {
@@ -94,6 +97,8 @@ Registers a mission status listener. This API uses a promise to return the resul
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
+  // Implement a callback function.
   function NotifyMissionsChanged(deviceId: string): void {
     console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
   }
@@ -106,6 +111,7 @@ Registers a mission status listener. This API uses a promise to return the resul
     console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   try {
+      // Call registerMissionListener.
       distributedMissionManager.registerMissionListener(
         { deviceId: "" },
         {
@@ -144,6 +150,7 @@ Deregisters a mission status listener. This API uses an asynchronous callback to
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.unRegisterMissionListener(
       { deviceId: "" },
@@ -185,6 +192,7 @@ Deregisters a mission status listener. This API uses a promise to return the res
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.unRegisterMissionListener({deviceId: ""}).then(() => {
       console.info('unRegisterMissionListener finished successfully');
@@ -218,6 +226,7 @@ Starts to synchronize the remote mission list. This API uses an asynchronous cal
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.startSyncRemoteMissions(
       {
@@ -263,6 +272,7 @@ Starts to synchronize the remote mission list. This API uses a promise to return
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.startSyncRemoteMissions(
       {
@@ -302,6 +312,7 @@ Stops synchronizing the remote mission list. This API uses an asynchronous callb
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.stopSyncRemoteMissions(
       {
@@ -345,6 +356,7 @@ Stops synchronizing the remote mission list. This API uses a promise to return t
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.stopSyncRemoteMissions(
       {
@@ -395,10 +407,13 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
+  // Implement a callback function.
   function onContinueDone(resultCode: number): void {
     console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   try {
+    // Call continueMission.
     distributedMissionManager.continueMission(
       {
         srcDeviceId: "",
@@ -459,10 +474,13 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
+  // Implement a callback function.
   function onContinueDone(resultCode: number): void {
     console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   try {
+    // Call continueMission.
     distributedMissionManager.continueMission(
       {
         srcDeviceId: "",
@@ -515,6 +533,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.continueMission(
       {
@@ -574,6 +593,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager'
   import { BusinessError } from '@ohos.base';
+
   try {
       distributedMissionManager.continueMission(
         {
@@ -613,6 +633,7 @@ Subscribes to continuation state change events of the current mission.
 
 ```js
   import distributedMissionManager from '@ohos.distributedMissionManager'
+
   try {
     distributedMissionManager.on('continueStateChange', (data) => {
       console.info("continueStateChange on:" + JSON.stringify(data));
@@ -643,12 +664,13 @@ Unsubscribes from continuation state change events of the current mission.
 
 ```js
   import distributedMissionManager from '@ohos.distributedMissionManager'
+
   try {
     distributedMissionManager.off('continueStateChange', (data) => {
       console.info("continueStateChange off:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("continueStateChange err: " + JSON.stringify(error));
+    console.error("continueStateChange err: " + JSON.stringify(err));
   }
   ```
 

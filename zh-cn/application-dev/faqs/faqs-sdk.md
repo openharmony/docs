@@ -1,8 +1,7 @@
 # SDK使用常见问题
 
-## cmake中arm64-v8a/armeabi-v7a这层目录的宏定义是什么
 
-适用于：OpenHarmony 3.1 Beta5  API 9
+## cmake中arm64-v8a/armeabi-v7a这层目录的宏定义是什么(API 9)
 
 **解决方案**
 
@@ -21,11 +20,11 @@ entry
                └─ CMakeLists.txt
 ```
 
-访问到目录的宏定义为：\$\{CMAKE\_CURRENT\_SOURCE\_DIR\}/../../../libs/$\{OHOS\_ARCH\}/xxxx.so
+访问到目录的宏定义为：${CMAKE_CURRENT_SOURCE_DIR}/../../../libs/${OHOS_ARCH}/xxxx.so
 
-CMAKE\_CURRENT\_SOURCE\_DIR：CMakeList.txt文件所在目录。
+CMAKE_CURRENT_SOURCE_DIR：CMakeList.txt文件所在目录。
 
-OHOS\_ARCH：设置应用程序二进制接口ABI，类型为 armeabi-v7a、arm64-v8a，默认值是 arm64-v8a。
+OHOS_ARCH：设置应用程序二进制接口ABI，类型为 armeabi-v7a、arm64-v8a，默认值是 arm64-v8a。
 
 **使用示例**
 
@@ -39,13 +38,12 @@ target_link_libraries(entry PUBLIC
 )
 ```
 
-## 在Native代码中使用OH\_LOG\_Print打印日志报错
 
-适用于：OpenHarmony 3.1 Beta5  API 9
+## 在Native代码中使用OH_LOG_Print打印日志报错(API 9)
 
 **问题现象**
 
-在Native代码中使用OH\_LOG\_Print打印日志，上报错误：undefined symbol: OH\_LOG\_Print
+在Native代码中使用OH_LOG_Print打印日志，上报错误：undefined symbol: OH_LOG_Print
 
 **原因分析**
 
@@ -53,7 +51,7 @@ target_link_libraries(entry PUBLIC
 
 **解决措施**
 
-打开CMakeLists.txt文件，在target\_link\_libraries最后追加libhilog\_ndk.z.so。
+打开CMakeLists.txt文件，在target_link_libraries最后追加libhilog_ndk.z.so。
 
 ```
 set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
@@ -63,13 +61,12 @@ target_link_libraries(entry PUBLIC
 )
 ```
 
-## 如何遍历rawfiles中的文件
 
-适用于：OpenHarmony 3.1 Beta5  API 9
+## 如何遍历rawfiles中的文件(API 9)
 
 **解决方案：**
 
-使用Native API中的OH\_ResourceManager\_OpenRawDir\(\)方法获取到rawfile的根目录，然后对其进行遍历。
+使用Native API中的OH_ResourceManager_OpenRawDir()方法获取到rawfile的根目录，然后对其进行遍历。
 
 **参考文档：**
 

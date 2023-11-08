@@ -4,7 +4,7 @@
 阻尼弹簧曲线（以下简称弹簧曲线）对应的阻尼弹簧系统中，偏离平衡位置的物体一方面受到弹簧形变产生的反向作用力，被迫发生振动。另一方面，阻尼的存在为物体振动提供阻力。除阻尼为0的特殊情况，物体在振动过程中振幅不断减小，且最终趋于0，其轨迹对应的动画曲线自然连续。
 
 
-采用弹簧曲线的动画在达终点时动画速度为0，不会产生动画“戛然而止”的观感，导致影响用户体验。
+采用弹簧曲线的动画在达终点时动画速度为0，不会产生动画“戛然而止”的观感，以避免影响用户体验。
 
 
 ArkUI提供了四种阻尼弹簧曲线接口。
@@ -133,10 +133,10 @@ struct Motion {
 export struct SpringDemo {
   @State dRotate: number = 0;
   private springs: Spring[] = [
-    new Spring('springMotion()', '(springMotion(1, 0.25): \n\n周期2, 阻尼0.25)', {interpolate: curves.springMotion(1, 0.25).interpolate}),
-    new Spring('responsiveSpringMotion()', 'responsiveSpringMotion(1, 0.25): \n\n默认弹性跟手曲线', {interpolate: curves.responsiveSpringMotion(1, 0.25).interpolate}),
-    new Spring('interpolatingSpring()', '(interpolatingSpring(10, 1, 228, 30): \n\n初始速度100， 质量1， 剛度228， 阻尼30)', {interpolate: curves.interpolatingSpring(10, 1, 228, 30).interpolate}),
-    new Spring('springCurve()', '(springCurve(10, 1, 228, 30): \n\n初始速度100， 质量1， 剛度228， 阻尼30)', {interpolate: curves.springCurve(10, 1, 228, 30).interpolate})
+    new Spring('springMotion()', '(springMotion(1, 0.25): \n\n周期2, 阻尼0.25)', curves.springMotion(1, 0.25)),
+    new Spring('responsiveSpringMotion()', 'responsiveSpringMotion(1, 0.25): \n\n默认弹性跟手曲线', curves.responsiveSpringMotion(1, 0.25)),
+    new Spring('interpolatingSpring()', '(interpolatingSpring(10, 1, 228, 30): \n\n初始速度100， 质量1， 剛度228， 阻尼30)', curves.interpolatingSpring(10, 1, 228, 30)),
+    new Spring('springCurve()', '(springCurve(10, 1, 228, 30): \n\n初始速度100， 质量1， 剛度228， 阻尼30)', curves.springCurve(10, 1, 228, 30))
   ];
 
   build() {

@@ -25,7 +25,7 @@ import promptAction from '@ohos.promptAction'
 @Component
 struct AppearExample {
   @State isShow: boolean = true
-  @State changeAppear: string = 'Hide Text'
+  @State changeAppear: string = 'Show/Hide'
   private myText: string = 'Text for onAppear'
 
   build() {
@@ -37,16 +37,14 @@ struct AppearExample {
       if (this.isShow) {
         Text(this.myText).fontSize(26).fontWeight(FontWeight.Bold)
           .onAppear(() => {
-            this.changeAppear = 'Hide Text'
             promptAction.showToast({
-              message: 'The text is shown',
+              message: 'Text shown.',
               duration: 2000
             })
           })
           .onDisAppear(() => {
-            this.changeAppear = 'Show Text'
             promptAction.showToast({
-              message: 'The text is hidden',
+              message: 'Text hidden.',
               duration: 2000
             })
           })

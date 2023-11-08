@@ -54,7 +54,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | listDirection                         | [Axis](ts-appendix-enums.md#axis)        | 设置List组件排列方向。<br/>默认值：Axis.Vertical<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | divider                               | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;Length,<br/>endMargin?:&nbsp;Length<br/>}&nbsp;\|&nbsp;null | 设置ListItem分割线样式，默认无分割线。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>endMargin + startMargin 超过列宽度后startMargin和endMargin会置0。 <br/>strokeWidth, startMargin和endMargin不支持设置百分比。<br/>List的分割线画在主轴方向两个子组件之间，第一个子组件上方和最后一个子组件下方不会绘制分割线。<br/>多列模式下，ListItem与ListItem之间的分割线起始边距从每一列的交叉轴方向起始边开始计算，其他情况从List交叉轴方向起始边开始计算。 |
 | scrollBar                             | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
-| cachedCount                           | number                                   | 设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。具体使用可参考[减少应用白块说明](../../ui/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。<br/>多列模式下， 会在List显示的ListItem前后各缓存cachedCount*列数个ListItem。 |
+| cachedCount                           | number                                   | 设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。具体使用可参考[减少应用白块说明](../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。<br/>多列模式下， 会在List显示的ListItem前后各缓存cachedCount*列数个ListItem。 |
 | editMode<sup>(deprecated)</sup>       | boolean                                  | 声明当前List组件是否处于可编辑模式。<br/>从API version9开始废弃。可参考[示例3](#示例3)实现删除选中的list项。<br/>默认值：false |
 | edgeEffect                            | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 设置组件的滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | chainAnimation                        | boolean                                  | 设置当前List是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：List内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>默认值：false<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>链式动效生效后，List的分割线不显示。<br>链式动效生效需要满足以下前提条件：<br> -&nbsp; List边缘效果为Spring类型<br> -&nbsp; List没有启用多列模式 |
@@ -189,6 +189,48 @@ ScrollState枚举变更如下。
 >  - editMode属性设置为true（从API9开始无需设置editMode属性）。
 >
 >  - 绑定onDragStart事件，且事件回调中返回浮动UI布局。
+
+## ListScroller<sup>11+</sup>
+
+List组件的滚动控制器，通过它控制List组件的滚动，仅支持一对一绑定到List组件。
+
+
+>  **说明：**
+>
+>  ListScroller继承自[Scroller](ts-container-scroll.md#scroller)，具有[Scroller](ts-container-scroll.md#scroller)的全部方法。
+
+### 导入对象
+
+```
+listScroller: ListScroller = new ListScroller()
+```
+
+
+### getItemRectInGroup<sup>11+</sup>
+
+getItemRectInGroup(index: number, indexInGroup: number): RectResult
+
+获取[ListItemGroup](ts-container-listitemgroup.md)中的[ListItem](ts-container-listitem.md)的大小和相对于List的位置。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 参数描述              |
+| ----- | ------ | ---- | ----------------- |
+| index | number | 是    | ListItemGroup在List中的索引值。 |
+| indexInGroup | number | 是    | ListItem在ListItemGroup中的索引值。 |
+
+> **说明：**
+>
+> - index必须是当前显示区域显示的子组件的索引值，否则视index为非法值。
+> - 索引值为index的子组件必须是ListItemGroup，否则视index为非法值。
+> - indexInGroup必须是当前显示区域内ListItemGroup中显示的ListItem的索引值，否则视indexInGroup为非法值。
+> - index或者indexInGroup为非法值时返回的大小和位置均为0。
+
+**返回值：**
+
+| 类型       | 说明       |
+| -------------------  | -------- |
+| [RectResult](ts-types.md#rectresult10) | ListItemGroup中的ListItem的大小和相对于List的位置。 |
 
 ## 示例
 
