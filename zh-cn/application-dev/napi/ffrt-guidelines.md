@@ -1402,24 +1402,6 @@ void ffrt_yield();
 
 ## 已知限制
 
-### 不支持thread_local变量
-
-* Task内部创建或Task间传递的thread_local变量的行为都是不确定的
-
-* 原因在于FFRT在编程模型中已经没有thread的概念，只有task的概念
-* 在C++的语义下，thread_local可以被正常编译，但是使用该thread_local变量的task在哪一个线程上执行时不确定的
-* 对于使用了FFRT进程中的non-worker，thread_local的行为不受FFRT影响
-
-> 类似的，与thread绑定的thread_idx/pthread_specific/递归锁/线程优先级/线程亲和性/递归锁具有相似的问题
-
-`建议`
-
-* 避免使用这些特性，如必须使用，使用FFRT的task local来替代
-
-
-### 以动态库方式部署FFRT
-
-* 只能以动态库方式部署FFRT，静态库部署可能有多实例问题，例如：当多个被同一进程加载的so都以静态库的方式使用FFRT时，FFRT会被实例化成多份，其行为是未知的，这也不是FFRT设计的初衷
 
 ### C API中初始化ffrt对象后，对象的置空与销毁由用户负责
 
