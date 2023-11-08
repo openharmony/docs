@@ -350,8 +350,8 @@ let mmsPars: sms.MmsParam = {
 // 调用发送接口
 sms.sendMms(context, mmsPars, async(err: BusinessError) =>{
   if (err) {
-    console.log(`sendMms fail, err : ${String(err)}`);
-    return;
+      console.error(`sendMms fail, err : ${String(err)}`);
+      return;
   }
   console.log(`sendMms Success`);
 })
@@ -384,7 +384,7 @@ class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
     sms.sendMms(this.context, mmsPars, async(err) =>{
         if (err) {
-            console.log(`sendMms fail, err : ${String(err)}`);
+            console.error(`sendMms fail, err : ${String(err)}`);
             return;
         }
         console.log(`sendMms Success`);
@@ -570,8 +570,8 @@ let mmsPars: sms.MmsParam = {
 // 调用下载接口
 mms.downloadMms(context, mmsPars, async(err: BusinessError) =>{
   if (err) {
-    console.log(`downloadMms fail, err : ${toString(err)}`);
-    return;
+      console.error(`downloadMms fail, err : ${toString(err)}`);
+      return;
   }
   console.log(`downloadMms Success`);
 }
@@ -607,7 +607,7 @@ class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
     mms.downloadMms(this.context, mmsPars, async(err) =>{
         if (err) {
-            console.log(`downloadMms fail, err : ${toString(err)}`);
+            console.error(`downloadMms fail, err : ${toString(err)}`);
             return;
         }
         console.log(`downloadMms Success`);
