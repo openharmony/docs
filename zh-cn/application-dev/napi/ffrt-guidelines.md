@@ -1356,7 +1356,7 @@ void ffrt_yield();
 # 部署
 
 ## 部署方式
-<img src="figures/ffrtfigure1.png" alt="ffrtfigure1" style="zoom:67%;" />
+<img src="figures/ffrtfigure1.png" style="zoom:67%;" />
 
 * FFRT的部署依赖FFRT动态库libffrt.so和一组header头文件
 
