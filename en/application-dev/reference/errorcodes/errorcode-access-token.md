@@ -1,4 +1,4 @@
-# Access Token Error Codes
+# Access Control Error Codes
 
 > **NOTE**
 >
@@ -53,7 +53,7 @@ Permission does not exist.
 
 **Solution**
 
-Set the **permissionName** parameter correctly. For details, see [permission-list](../../security/permission-list.md).
+Set the **permissionName** parameter correctly. For details, see [Application Permission List](../../security/permission-list.md).
 
 
 ## 12100004 Listener APIs Not Used in Pairs
