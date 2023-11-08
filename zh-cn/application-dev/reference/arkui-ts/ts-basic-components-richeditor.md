@@ -315,6 +315,7 @@ closeSelectionMenu(): void
 | ------ | -------- | ---- | -------------------------------------- |
 | offset  | number   | 否   | 添加文本的位置。省略时，添加到所有文本字符串的最后。 |
 | style  | [RichEditorTextStyle](#richeditortextstyle)   | 否   | 文本样式信息。省略时，使用系统默认文本信息。|
+| gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | 否   | 行为触发回调。省略时，仅使用系统默认行为。|
 
 ## RichEditorTextStyle
 
@@ -338,6 +339,7 @@ closeSelectionMenu(): void
 | ------ | -------- | ---- | -------------------------------------- |
 | offset  | number   | 否   | 添加图片的位置。省略时，添加到所有文本字符串的最后。 |
 | imageStyle  | [RichEditorImageSpanStyle](#richeditorimagespanstyle)   | 否   | 图片样式信息。省略时，使用系统默认图片信息。|
+| gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | 否   | 行为触发回调。省略时，仅使用系统默认行为。|
 
 ## RichEditorImageSpanStyle
 
@@ -367,6 +369,33 @@ closeSelectionMenu(): void
 | onAppear | ?(() => void) | 否 | 自定义选择菜单弹出时回调。 |
 | onDisappear | ?(() => void) | 否 | 自定义选择菜单关闭时回调。 |
 
+## RichEditorGesture<sup>11+</sup>
+
+用户行为回调。
+
+### onClick<sup>11+</sup>
+
+onClick(callback: (event?: ClickEvent) => void)
+
+点击完成时回调事件。
+
+**参数:**
+
+| 参数名   | 参数类型   | 必填   | 描述                            |
+| ----- | ------ | ---- | ---------------------------------------- |
+| event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) | 否    | 用户点击事件。 |
+
+### onLongPress<sup>11+</sup>
+
+onLongPress(callback: (event?: GestureEvent) => void )
+
+长按完成时回调事件。
+
+**参数:**
+
+| 参数名   | 参数类型   | 必填   | 描述                            |
+| ----- | ------ | ---- | ---------------------------------------- |
+| event | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明) | 否    | 用户长按事件。 |
 
 ## 示例
 
