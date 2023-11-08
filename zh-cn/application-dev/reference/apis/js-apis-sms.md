@@ -350,7 +350,7 @@ let mmsPars: sms.MmsParam = {
 // 调用发送接口
 sms.sendMms(context, mmsPars, async(err: BusinessError) =>{
   if (err) {
-      console.error(`sendMms fail, err : ${String(err)}`);
+      console.error(`sendMms fail, err : ${JSON.stringify(err)}`);
       return;
   }
   console.log(`sendMms Success`);
@@ -361,6 +361,8 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
 
 // 彩信pdu存储路径
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -374,7 +376,7 @@ let mmsConf = {
 
 // 发送彩信参数(mmsc以联通卡为例)
 let mmsPars = {
-  slotId : DEFAULT_SLOTID,
+  slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
   mmsConfig: mmsConf
@@ -382,9 +384,9 @@ let mmsPars = {
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-    sms.sendMms(this.context, mmsPars, async(err) =>{
+    sms.sendMms(this.context, mmsPars, async(err: BusinessError) =>{
         if (err) {
-            console.error(`sendMms fail, err : ${String(err)}`);
+            console.error(`sendMms fail, err : ${JSON.stringify(err)}`);
             return;
         }
         console.log(`sendMms Success`);
@@ -472,6 +474,8 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
 
 // 彩信pdu存储路径
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -485,7 +489,7 @@ let mmsConf = {
 
 // 发送彩信参数(mmsc以联通卡为例)
 let mmsPars = {
-  slotId : DEFAULT_SLOTID,
+  slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
   mmsConfig: mmsConf
@@ -496,7 +500,7 @@ class EntryAbility extends UIAbility {
     let promise = sms.sendMms(this.context, mmsPars);
     promise.then(() => {
         console.log(`sendMms success`);
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         console.error(`sendMms failed, promise: err->${JSON.stringify(err)}`);
     });
     }
@@ -581,6 +585,8 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import mms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
 
 // 彩信pdu存储路径
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -597,7 +603,7 @@ let mmsConf = {
 
 // 下载彩信参数
 let mmsPars = {
-  slotId : DEFAULT_SLOTID,
+  slotId : 0,
   mmsc: wapPushUrl,
   data: filePath,
   mmsConfig: mmsConf
@@ -605,13 +611,13 @@ let mmsPars = {
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-    mms.downloadMms(this.context, mmsPars, async(err) =>{
+    mms.downloadMms(this.context, mmsPars, async(err: BusinessError) =>{
         if (err) {
-            console.error(`downloadMms fail, err : ${toString(err)}`);
+            console.error(`downloadMms fail, err : ${JSON.stringify(err)}`);
             return;
         }
         console.log(`downloadMms Success`);
-        }
+        });
     }
 }
 ```
@@ -698,6 +704,8 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
 
 // 彩信pdu存储路径
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -714,7 +722,7 @@ let mmsConf = {
 
 // 下载彩信参数
 let mmsPars = {
-  slotId : DEFAULT_SLOTID,
+  slotId : 0,
   mmsc: wapPushUrl,
   data: filePath,
   mmsConfig: mmsConf
@@ -725,7 +733,7 @@ class EntryAbility extends UIAbility {
     let promise = sms.downloadMms(this.context, mmsPars);
     promise.then(() => {
         console.log(`downloadMms success`);
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         console.error(`downloadMms failed, promise: err->${JSON.stringify(err)}`);
     });
     }
