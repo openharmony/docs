@@ -21,7 +21,6 @@
     build() {
       Column() {
         Button('功能A')
-          .margin('20%')
           .onClick(() => {
             console.info('Jump to EntryAbility funA');
             postCardAction(this, {
@@ -34,7 +33,6 @@
           })
   
         Button('功能B')
-          .margin('20%')
           .onClick(() => {
             console.info('Jump to EntryAbility funB');
             postCardAction(this, {
@@ -47,7 +45,7 @@
           })
       }
       .width('100%')
-      .height('100%')
+      .height('100%').justifyContent(FlexAlign.SpaceAround)
     }
   }
   ```

@@ -53,8 +53,17 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
         <item name="charge"/>
     </state>
     ```
+4. 外部可调用thermal service的UpdateThermalState接口设置场景状态值。
+```cpp
+bool UpdateThermalState(const std::string& tag, const std::string& val, bool isImmed = false)
+```
+| 参数 | 说明 | 类型 |
+|---|---|---|
+| tag | 场景标签 | string |
+| val | 场景状态值 | string |
+| isImmed | 是否立即更新温控动作值 | bool |
 
-4. 参考[默认热场景配置文件夹中的BUILD.gn](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/BUILD.gn)编写BUILD.gn文件，将thermal_service_config.xml打包到`/vendor/etc/thermal_config`目录下
+5. 参考[默认热场景配置文件夹中的BUILD.gn](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/BUILD.gn)编写BUILD.gn文件，将thermal_service_config.xml打包到`/vendor/etc/thermal_config`目录下
 
     ```shell
     import("//build/ohos.gni")                      # 引用build/ohos.gni 
@@ -67,7 +76,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     }
     ```
 
-5. 将编译目标添加到[ohos.build](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/ohos.build)的"module_list"中，例如：
+6. 将编译目标添加到[ohos.build](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/ohos.build)的"module_list"中，例如：
 
     ```json
     {
@@ -88,13 +97,13 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     ```
     “//vendor/hihope/rk3568/thermal/”为文件夹路径，“profile”为创建的文件夹名字，“thermal_service_config”为编译目标。
 
-6. 参考《[快速入门](../quick-start/quickstart-overview.md)》编译定制版本，编译命令如下：
+7. 参考《[快速入门](../quick-start/quickstart-overview.md)》编译定制版本，编译命令如下：
 
     ```shell
     ./build.sh --product-name rk3568 --ccache
     ```
 
-7. 将定制版本烧录到DAYU200开发板中。
+8. 将定制版本烧录到DAYU200开发板中。
 
 ### 调测验证 
 

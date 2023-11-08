@@ -2755,23 +2755,25 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 配置参数以实际硬件设备支持的范围为准
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
-  audioCodec : 'audio/mp4a-latm' as media.CodecMimeType,
+  audioCodec : media.CodecMimeType.AUDIO_AAC,
   audioSampleRate : 48000,
-  fileFormat : 'mp4' as media.ContainerFormatType,
+  fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 2000000,
-  videoCodec : 'video/avc' as media.CodecMimeType,
+  videoCodec : media.CodecMimeType.VIDEO_AVC,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
 
 let videoConfig: media.VideoRecorderConfig = {
-  audioSourceType : 1,
-  videoSourceType : 0,
+  audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
+  videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : videoProfile,
   url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
   rotation : 0,
@@ -2830,19 +2832,19 @@ prepare(config: VideoRecorderConfig): Promise\<void>
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
-  audioCodec : 'audio/mp4a-latm' as media.CodecMimeType,
+  audioCodec : media.CodecMimeType.AUDIO_AAC,
   audioSampleRate : 48000,
-  fileFormat : 'mp4' as media.ContainerFormatType,
+  fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 2000000,
-  videoCodec : 'video/avc' as media.CodecMimeType,
+  videoCodec : media.CodecMimeType.VIDEO_AVC,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
 
 let videoConfig: media.VideoRecorderConfig = {
-  audioSourceType : 1,
-  videoSourceType : 0,
+  audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
+  videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : videoProfile,
   url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
   rotation : 0,
@@ -2890,8 +2892,10 @@ getInputSurface(callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // asyncallback
-let surfaceID: string;                                               // 传递给外界的surfaceID
+let surfaceID: string;   // 传递给外界的surfaceID
 videoRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err == null) {
     console.info('getInputSurface success');
@@ -3441,7 +3445,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```ts
 // 当获取videoRecordState接口出错时通过此订阅事件上报
-videoRecorder.on('error', (error: Error) => {                                  // 设置'error'事件回调
+videoRecorder.on('error', (error: Error) => {   // 设置'error'事件回调
   console.error(`audio error called, error: ${error}`);
 })
 ```

@@ -2817,7 +2817,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -2854,7 +2854,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContactsByEmail('xxx@email.com', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -2902,7 +2902,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -2944,7 +2944,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -2997,7 +2997,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
@@ -3043,7 +3043,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
@@ -3082,8 +3082,8 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
   import { BusinessError } from '@ohos.base';
   // 获取context
   let context = getContext(this) as Context;
-  contact.queryGroups(context, (err, data) => {
-      if (err: BusinessError) {
+  contact.queryGroups(context, (err: BusinessError, data) => {
+      if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
           return;
       }
@@ -3747,8 +3747,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 
 ```js
-// 当前示例代码仅适用于js源文件
-let myContact = {
+let myContact: contact.Contact = {
     phoneNumbers: [{
         phoneNumber: "138xxxxxxxx"
     }],
@@ -3766,7 +3765,6 @@ let myContact = {
   或使用new一个Contact对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let myContact = new contact.Contact();
 let name = new contact.Name();
 name.fullName = "fullName";
@@ -3795,8 +3793,7 @@ myContact.phoneNumbers = [phoneNumber];
 
 
 ```js
-// 当前示例代码仅适用于js源文件
-let contactAttributes = {
+let contactAttributes: contact.ContactAttributes = {
     attributes: [
         contact.Attribute.ATTR_EMAIL,
         contact.Attribute.ATTR_NAME,
@@ -3809,7 +3806,6 @@ let contactAttributes = {
 
 
 ```js
-// 当前示例代码仅适用于js源文件
 let contactAttributes = new contact.ContactAttributes();
 contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 ```
@@ -3844,7 +3840,6 @@ contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE];
 ```
 
@@ -3881,8 +3876,7 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let email = {
+let email: contact.Email = {
     email: "xxx@email.com",
     displayName: "displayName"
 }
@@ -3892,7 +3886,6 @@ let email = {
   或使用new一个Email对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let email = new contact.Email();
 email.email = "xxx@email.com";
 ```
@@ -3916,8 +3909,7 @@ email.email = "xxx@email.com";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let holder = {
+let holder: contact.Holder = {
   holderId: 0
 };
 ```
@@ -3925,7 +3917,6 @@ let holder = {
   或使用new一个Holder对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let holder = new contact.Holder();
 holder.holderId = 0;
 ```
@@ -3962,8 +3953,7 @@ holder.holderId = 0;
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let event = {
+let event: contact.Event = {
     eventDate: "xxxxxx"
 };
 ```
@@ -3971,7 +3961,6 @@ let event = {
   或使用new一个Event对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let event = new contact.Event();
 event.eventDate = "xxxxxx";
 ```
@@ -3994,8 +3983,7 @@ event.eventDate = "xxxxxx";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let group = {
+let group: contact.Group = {
     groupId: 1,
     title: "title"
 };
@@ -4004,7 +3992,6 @@ let group = {
   或使用new一个Group对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let group = new contact.Group();
 group.title = "title";
 ```
@@ -4045,8 +4032,7 @@ group.title = "title";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let imAddress = {
+let imAddress: contact.ImAddress = {
     imAddress: "imAddress",
     labelName: "labelName"
 };
@@ -4056,7 +4042,6 @@ let imAddress = {
   或使用new一个ImAddress对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let imAddress = new contact.ImAddress();
 imAddress.imAddress = "imAddress";
 ```
@@ -4086,8 +4071,7 @@ imAddress.imAddress = "imAddress";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let name = {
+let name: contact.Name = {
     familyName: "familyName",
     fullName: "fullName"
 };
@@ -4096,7 +4080,6 @@ let name = {
   或使用new一个name对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let name = new contact.Name();
 name.familyName = "familyName";
 name.fullName = "fullName";
@@ -4119,8 +4102,7 @@ name.fullName = "fullName";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let nickName = {
+let nickName: contact.NickName = {
     nickName: "nickName"
 };
 ```
@@ -4128,7 +4110,6 @@ let nickName = {
   或使用new一个NickName对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let nickName = new contact.NickName();
 nickName.nickName = "nickName";
 ```
@@ -4150,8 +4131,7 @@ nickName.nickName = "nickName";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let note = {
+let note: contact.Note = {
     noteContent: "noteContent"
 };
 ```
@@ -4159,7 +4139,6 @@ let note = {
   或使用new一个Note对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let note = new contact.Note();
 note.noteContent = "noteContent";
 ```
@@ -4182,8 +4161,7 @@ note.noteContent = "noteContent";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let organization = {
+let organization: contact.Organization = {
     name: "name",
     title: "title"
 };
@@ -4192,7 +4170,6 @@ let organization = {
   或使用new一个Organization对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let organization = new contact.Organization();
 organization.name = "name";
 organization.title = "title";
@@ -4247,8 +4224,7 @@ organization.title = "title";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let phoneNumber = {
+let phoneNumber: contact.PhoneNumber = {
     phoneNumber: "138xxxxxxxx",
     labelId: contact.PhoneNumber.NUM_HOME
 };
@@ -4257,7 +4233,6 @@ let phoneNumber = {
   或使用new一个PhoneNumber对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let phoneNumber = new contact.PhoneNumber();
 phoneNumber.phoneNumber = "138xxxxxxxx";
 ```
@@ -4279,8 +4254,7 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let portrait = {
+let portrait: contact.Portrait = {
     uri: "uri"
 };
 ```
@@ -4288,7 +4262,6 @@ let portrait = {
   或使用new一个Portrait对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let portrait = new contact.Portrait();
 portrait.uri = "uri";
 ```
@@ -4332,8 +4305,7 @@ portrait.uri = "uri";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let postalAddress = {
+let postalAddress: contact.PostalAddress = {
     city: "city"
 };
 ```
@@ -4341,7 +4313,6 @@ let postalAddress = {
   或使用new一个PostalAddress对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let postalAddress = new contact.PostalAddress();
 postalAddress.city = "city";
 ```
@@ -4389,8 +4360,7 @@ postalAddress.city = "city";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let relation = {
+let relation: contact.Relation = {
     relationName: "relationName",
     labelId: contact.Relation.RELATION_ASSISTANT
 };
@@ -4399,7 +4369,6 @@ let relation = {
   或使用new一个Relation对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let relation = new contact.Relation();
 relation.relationName = "relationName";
 relation.labelId = contact.Relation.RELATION_ASSISTANT;
@@ -4436,8 +4405,7 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-var sipAddress = {
+let sipAddress: contact.SipAddress = {
     sipAddress: "sipAddress"
 };
 ```
@@ -4445,7 +4413,6 @@ var sipAddress = {
   或使用new一个SipAddress对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let sipAddress = new contact.SipAddress();
 sipAddress.sipAddress = "sipAddress";
 ```
@@ -4467,8 +4434,7 @@ sipAddress.sipAddress = "sipAddress";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
-let website = {
+let website: contact.Website = {
     website: "website"
 };
 ```
@@ -4476,7 +4442,6 @@ let website = {
   或使用new一个Website对象的方式创建数据：
 
 ```js
-// 当前示例代码仅适用于js源文件
 let website = new contact.Website();
 website.website = "website";
 ```
