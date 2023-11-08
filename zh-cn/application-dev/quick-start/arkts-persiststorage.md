@@ -13,8 +13,17 @@ PersistentStorage将选定的AppStorage属性保留在设备磁盘上。应用�
 
 PersistentStorage和AppStorage中的属性建立双向同步。应用开发通常通过AppStorage访问PersistentStorage，另外还有一些接口可以用于管理持久化属性，但是业务逻辑始终是通过AppStorage获取和设置属性的。
 
-
 ## 限制条件
+
+PersistentStorage允许的类型和值有：
+
+- `number, string, boolean, enum` 等简单类型。
+- 可以被`JSON.stringify()`和`JSON.parse()`重构的对象。例如`Date, Map, Set`等内置类型则不支持，以及对象的属性方法不支持持久化。
+
+PersistentStorage不允许的类型和值有：
+
+- 不支持嵌套对象（对象数组，对象的属性是对象等）。因为目前框架无法检测AppStorage中嵌套对象（包括数组）值的变化，所以无法写回到PersistentStorage中。
+- 不支持`undefined` 和 `null` 。
 
 持久化数据是一个相对缓慢的操作，应用程序应避免以下情况：
 
