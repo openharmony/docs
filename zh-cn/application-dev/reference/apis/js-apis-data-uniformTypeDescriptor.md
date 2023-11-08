@@ -140,7 +140,7 @@ belongsTo(type: string): boolean
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| type    | string  | 是    |所指定的标准化数据类型。   |
+| type    | string  | 是    |所指定的标准化数据类型（即[UniformDataType](#uniformdatatype)中对应的枚举值）。   |
 
 **返回值：**
 
@@ -337,7 +337,7 @@ getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: str
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | filenameExtension    | string  | 是    |文件后缀名称。   |
-| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID，无默认值，若*********************只按照文件后缀名称查询标准化数据类型ID。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID，无默认值，若不传入此参数则只按照文件后缀名称查询标准化数据类型ID。   |
 
 **返回值：**
 
@@ -375,7 +375,7 @@ getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | mimeType    | string  | 是    |MIME类型名称。   |
-| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。无默认值，若*********************只按照MIME类型名称查询标准化数据类型ID。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。无默认值，若不传入此参数则只按照MIME类型名称查询标准化数据类型ID。   |
 
 **返回值：**
 
