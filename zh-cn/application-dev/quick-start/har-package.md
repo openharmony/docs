@@ -27,10 +27,10 @@ artifactType字段有以下两种取值，默认缺省为original。
 - Stage模型的HAR，不能引用AppScope内的内容。在编译构建时APPScope中的内容不会打包到HAR中，导致HAR资源引用失败。
 
 ## 导出HAR的ArkUI组件、接口、资源
-index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，统一在index.ets文件中导出。index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的oh-package.json5文件中的main字段配置入口声明文件，配置如下所示：
+Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，统一在Index.ets文件中导出。Index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的oh-package.json5文件中的main字段配置入口声明文件，配置如下所示：
 ```json
 {
-  "main": "index.ets"
+  "main": "Index.ets"
 }
 ```
 ### 导出ArkUI组件
@@ -53,9 +53,9 @@ export struct MainPage {
   }
 }
 ```
-HAR对外暴露的接口，在index.ets导出文件中声明如下所示：
+HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
 ```js
-// library/index.ets
+// library/Index.ets
 export { MainPage } from './src/main/ets/components/MainPage/MainPage'
 ```
 ### 导出ts类和方法
@@ -76,9 +76,9 @@ export function func2() {
   return "har func2";
 }
 ```
-HAR对外暴露的接口，在index.ets导出文件中声明如下所示：
+HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
 ```js
-// library/index.ets
+// library/Index.ets
 export { Log } from './src/main/ts/test'
 export { func } from './src/main/ts/test'
 export { func2 } from './src/main/ts/test'
@@ -95,9 +95,9 @@ export function nativeAdd(a: number, b: number) {
     return result;
 }
 ```
-HAR对外暴露的接口，在index.ets导出文件中声明如下所示：
+HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
 ```ts
-// library/index.ets
+// library/Index.ets
 export { nativeAdd } from './src/main/ets/utils/nativeTest'
 ```
 
@@ -114,7 +114,7 @@ HAR模块编译打包时会把资源打包到HAR中。在编译构建HAP时，De
 
 HAR的依赖配置成功后，可以引用HAR的ArkUI组件。ArkUI组件的导入方式与ts的导入方式一致，通过`import`引入HAR导出的ArkUI组件，示例如下所示：
 ```js
-// entry/src/main/ets/pages/index.ets
+// entry/src/main/ets/pages/Index.ets
 import { MainPage } from "library"
 
 @Entry
@@ -139,7 +139,7 @@ struct Index {
 ### 引用HAR的ts类和方法
 通过`import`引用HAR导出的ts类和方法，示例如下所示：
 ```js
-// entry/src/main/ets/pages/index.ets
+// entry/src/main/ets/pages/Index.ets
 import { Log } from "library"
 import { func } from "library"
 
@@ -166,7 +166,7 @@ struct Index {
 ### 引用HAR的native方法
 通过`import`引用HAR导出的native方法，示例如下所示：
 ```ts
-// entry/src/main/ets/pages/index.ets
+// entry/src/main/ets/pages/Index.ets
 import { nativeAdd } from "library"
 
 @Entry
@@ -194,7 +194,7 @@ struct Index {
 ### 引用HAR的资源
 通过`$r`引用HAR中的资源，例如在HAR模块的`src/main/resources`里添加字符串资源（在string.json中定义，name：hello_har）和图片资源（icon_har.png），然后在Entry模块中引用该字符串和图片资源的示例如下所示：
 ```js
-// entry/src/main/ets/pages/index.ets
+// entry/src/main/ets/pages/Index.ets
 @Entry
 @Component
 struct Index {
