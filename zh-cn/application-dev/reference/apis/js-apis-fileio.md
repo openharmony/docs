@@ -797,7 +797,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
   let arrayBuffer = new ArrayBuffer(4096);
-  fileio.read(fd, arrayBuffer).then((readResult: ReadOut) => {
+  fileio.read(fd, arrayBuffer).then((readResult: fileio.ReadOut) => {
     console.info("read file data succeed");
     let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
     console.log(`The content of file: ${buf.toString()}`);
@@ -837,7 +837,7 @@ read(fd: number, buffer: ArrayBuffer, options: { offset?: number; length?: numbe
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
   let arrayBuffer = new ArrayBuffer(4096);
-  fileio.read(fd, arrayBuffer, (err: BusinessError, readResult: ReadOut) => {
+  fileio.read(fd, arrayBuffer, (err: BusinessError, readResult: fileio.ReadOut) => {
     if (readLen) {
       console.info("read file data succeed");
       let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
@@ -2992,8 +2992,8 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 **示例：**
 
   ```ts
-  let filePath = pathDir +"/test.txt";
-  fileio.createWatcher(filePath, 1, (event: number) => {
+  let filePath = pathDir + "/test.txt";
+  fileio.createWatcher(filePath, 1, async(event: number) => {
     console.info("event: " + event);
   });
   
@@ -3270,8 +3270,8 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  let filePath = pathDir +"/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, (event: number) => {
+  let filePath = pathDir + "/test.txt";
+  let watcher = fileio.createWatcher(filePath, 1, async(event: number) => {
     console.info("event: " + event);
   });
   watcher.stop(() => {
