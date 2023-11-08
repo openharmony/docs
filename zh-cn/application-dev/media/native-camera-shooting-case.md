@@ -167,13 +167,6 @@ int main()
       OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
   }
 
-  for (int index = 0; index < size; index++) {
-    console.info('cameraId : ' + cameras[index].cameraId);                          // 获取相机ID
-    console.info('cameraPosition : ' + cameras[index].cameraPosition);              // 获取相机位置
-    console.info('cameraType : ' + cameras[index].cameraType);                      // 获取相机类型
-    console.info('connectionType : ' + cameras[index].connectionType);              // 获取相机连接类型
-  }
-
   // 创建相机输入流
   ret = OH_CameraManager_CreateCameraInput(cameraManager, &cameras[cameraDeviceIndex], &cameraInput);
   if (cameraInput == nullptr || ret != CAMERA_OK) {
