@@ -29,6 +29,41 @@ import cloudData from '@ohos.data.cloudData';
 | CLEAR_CLOUD_INFO | 清除从云端下载的数据的云标识，相关数据作为本地数据保存。 |
 | CLEAR_CLOUD_DATA_AND_INFO |清除从云端下载的数据，不包括本地已修改的云端数据。   |
 
+##   ExtraData
+
+用于数据更改通知的外部数据
+
+**系统能力：** syscap SystemCapability.DistributedDataManager.CloudSync.Config
+
+| 名称      | 类型   | 必填 | 说明                                                         |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| eventId   | string | 是   | 固定传cloud_data_change  表示云数据变更                      |
+| extraData | string | 是   | 包含以下字段（header和data字段）其中通知变更数据的信息在data字段中 |
+
+**示例：**
+
+```
+"extraData":{
+ "header":{
+         "token":"bbbbbb"
+         }
+ "data":"{
+        \"accountId\": \"aaa\",
+        \"bundleName\": \"com.bbb.xxx\",
+        \"containerName\": \"alias\",
+        \"databaseScopes\": \"[\\\"private\\\", \\\"shared\\\"] \",
+        \"recordTypes\":  \"[\\\"xxx\\\", \\\"yyy\\\", \\\"zzz\\\"] \",
+        \"properties\": {
+          \"key\": \"value\"
+        },
+        \"keyId\": "",
+        \"signV3\": ""
+        }" 
+}
+```
+
+
+
 ## Config
 
 提供配置端云协同的方法，包括云同步打开、关闭、清理数据、数据变化通知。
@@ -354,6 +389,135 @@ try {
   console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
+
+### notifyDataChange
+
+ **static** notifyDataChange(extInfo: ExtraData, callback: AsyncCallback&lt;void&gt;):void
+
+通知云端的数据变更，使用callback异步回调。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                  |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| extInfo  | [ExtraData](#ExtraData)   | 是   | 透传数据 包含通知数据变更后的应用信息 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                            |
+
+**示例：**
+
+```javascript
+import { BusinessError } from '@ohos.base';
+
+let eventId = cloudData.DATA_CHANGE_EVENT_ID;
+let header = "aaaa";
+let data = "{\"accountId\":\"2850086000356238647\",\"bundleName\":\"com.huawei.hmos.notepad\",\"containerName\":\"alias\",\"recordTypes\":\"[\\\"xxx\\\",\\\"yyy\\\"]\"}"
+let extraData = header+data;
+try {
+  cloudData.Config.notifyDataChange({ eventId:eventId ,extraData:extraData}, (err) => {
+    if (err === undefined) {
+      console.info('Succeeded in notifying the change of data');
+    } else {
+      console.error(`Failed to notify the change of data. Code: ${err.code}, message: ${err.message}`);
+    }
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+### notifyDataChange
+
+static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallback&lt;void&gt;):void
+
+通知云端的数据变更，使用callback异步回调。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| extInfo  | [ExtraData](#ExtraData)   | 是   | 透传数据 包含通知数据变更后的应用信息                        |
+| userId   | number                    | 否   | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let eventId = cloudData.DATA_CHANGE_EVENT_ID;
+let header = "aaaa";
+let data = "{\"accountId\":\"2850086000356238647\",\"bundleName\":\"com.huawei.hmos.notepad\",\"containerName\":\"alias\",\"recordTypes\":\"[\\\"xxx\\\",\\\"yyy\\\"]\"}"
+let extraData = header+data;
+let userId = 100;
+try {
+  cloudData.Config.notifyDataChange({ eventId:eventId ,extraData:extraData},userId, (err) => {
+    if (err === undefined) {
+      console.info('Succeeded in notifying the change of data');
+    } else {
+      console.error(`Failed to notify the change of data. Code: ${err.code}, message: ${err.message}`);
+    }
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+
+
+### notifyDataChange
+
+**static** notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt;
+
+通知云端的数据变更，使用Promise异步回调。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+**参数：**
+
+| 参数名  | 类型                    | 必填 | 说明                                                         |
+| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| extInfo | [ExtraData](#Extradata) | 是   | 透传数据 包含通知数据变更后的应用信息                        |
+| userId  | number                  | 否   | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let eventId = cloudData.DATA_CHANGE_EVENT_ID;
+let header = "aaaa";
+let data = "{\"accountId\":\"2850086000356238647\",\"bundleName\":\"com.huawei.hmos.notepad\",\"containerName\":\"alias\",\"recordTypes\":\"[\\\"xxx\\\",\\\"yyy\\\"]\"}"
+let extraData = header+data;
+let userId = 100;
+try {
+  cloudData.Config.notifyDataChange({ eventId:eventId ,extraData:extraData},userId).then(() => {
+    console.info('Succeeded in notifying the change of data');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to notify the change of data. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+
 
 ###  clear
 
