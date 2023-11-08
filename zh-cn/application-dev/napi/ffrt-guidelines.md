@@ -1,17 +1,10 @@
-﻿## FFRT 用户编程指南
+﻿# FFRT 用户编程指南
+
+## 场景介绍
 
 > Function Flow编程模型是一种基于任务和数据驱动的并发编程模型，允许开发者通过任务及其依赖关系描述的方式进行应用开发。FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运行时库，用于调度执行开发者基于Function Flow编程模型开发的应用。通过Function Flow编程模型和FFRT，开发者可专注于应用功能开发，由FFRT在运行时根据任务依赖状态和可用执行资源自动并发调度和执行任务。
 >
 > 本文用于指导开发者基于Function Flow编程模型和FFRT实现并行编程。
-
-# 缩写
-
-| 缩略语        | 英文全名                        | 中文解释                                                     |
-| ------------- | ------------------------------- | ------------------------------------------------------------ |
-| FFRT          | Function Flow Run Time          | 软件实现Function Flow运行时用于任务调度和执行                |
-| Function Flow | Function Flow Programming Model | Function Flow编程模型                                        |
-| Pure Function | Pure Function                   | 纯函数，注意本文中定义的纯函数指的是通过表达相互间数据依赖即可由调度系统保证正确执行的任务 |
-
 
 <br/>
 <hr/>
@@ -28,7 +21,7 @@
 
 
 
-## Function Flow 任务编程模型
+### Function Flow 任务编程模型
 
 Function Flow编程模型允许开发者通过任务及其依赖关系描述的方式进行应用开发，其主要特性包括`Task-Based` 和 `Data-Driven` 。
 
@@ -95,7 +88,7 @@ task5(OUT A);
 
 
 
-# C API
+# 函数介绍
 
 
 ## 任务管理
@@ -368,7 +361,7 @@ int main(int narg, char** argv)
 
 <img src="figures/ffrtfigure2.png" style="zoom:100%" />
 
-> 以上实现，因为需要用户显式管理数据生命周期和函数入参打包两个因素,使得代码实现异常复杂
+> 以上实现，因为需要用户显式管理数据生命周期和函数入参打包两个因素，所以使得代码实现异常复杂
 
 
 
@@ -404,6 +397,14 @@ typedef struct {
 `item`
 
 * len个Signature的起始地址指针
+
+`type`
+
+* 当前依赖为数据依赖还是任务依赖
+
+`ptr`
+
+* 所依赖对应Signature内容的实际地址
 
 #### 返回值
 
@@ -457,7 +458,7 @@ int main(int narg, char** argv)
 ### ffrt_task_attr_t
 
 <hr/>
-* 定义task 的属性的辅助类，与ffrt_submit 配合使用
+* 定义task 的属性的辅助类，与ffrt_submit_base 配合使用
 
 #### 声明
 
@@ -468,10 +469,12 @@ typedef enum {
     ffrt_qos_utility,
     ffrt_qos_default,
     ffrt_qos_user_initiated,
-} ffrt_qos_t;
+} ffrt_qos_default_t;
+
+typedef int ffrt_qos_t;
 
 typedef struct {
-    char storage[ffrt_task_attr_storage_size];
+    uint32_t storage[(ffrt_task_attr_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)];
 } ffrt_task_attr_t;
 typedef void* ffrt_task_handle_t;
 
@@ -481,6 +484,8 @@ void ffrt_task_attr_set_qos(ffrt_task_attr_t* attr, ffrt_qos_t qos);
 ffrt_qos_t ffrt_task_attr_get_qos(const ffrt_task_attr_t* attr);
 void ffrt_task_attr_set_name(ffrt_task_attr_t* attr, const char* name);
 const char* ffrt_task_attr_get_name(const ffrt_task_attr_t* attr);
+void ffrt_task_attr_set_delay(ffrt_task_attr_t* attr, uint64_t delay_us);
+uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr);
 ```
 
 #### 参数
@@ -493,6 +498,10 @@ const char* ffrt_task_attr_get_name(const ffrt_task_attr_t* attr);
 
 * qos 设定的枚举类型
 * inherent 是一个qos 设定策略，代表即将ffrt_submit 的task 的qos 继承当前task 的qos
+
+`delay_us`
+
+* 任务延迟执行的时间，单位为us
 
 #### 返回值
 
@@ -508,6 +517,8 @@ const char* ffrt_task_attr_get_name(const ffrt_task_attr_t* attr);
 * 在`ffrt_task_attr_destroy`之后再对task_attr进行访问，其行为是未定义的
 
 #### 样例
+
+* 提交一个qos 级别为background 的任务
 
 ```{.c}
 #include <stdio.h>
@@ -567,6 +578,7 @@ int main(int narg, char** argv)
     ffrt_task_attr_t attr;
     ffrt_task_attr_init(&attr);
     ffrt_task_attr_set_qos(&attr, ffrt_qos_background);
+    ffrt_task_attr_set_delay(&attr, 10000);
     ffrt_submit_c(my_print, NULL, NULL, NULL, NULL, &attr);
     ffrt_task_attr_destroy(&attr);
     ffrt_wait();
@@ -574,7 +586,6 @@ int main(int narg, char** argv)
 }
 ```
 
-* 提交一个qos 级别为background 的任务
 
 
 
@@ -582,7 +593,7 @@ int main(int narg, char** argv)
 
 <hr/>
 
-* 向调度器提交一个task，与ffrt_submit 的差别在于返回task 的句柄，该句柄可以用于建立task 之间的依赖，或用于在wait 语句中实现同步
+* 向调度器提交一个task，与ffrt_submit_base 的差别在于返回task 的句柄，该句柄可以用于建立task 之间的依赖，或用于在wait 语句中实现同步
 
 #### 声明
 
@@ -702,16 +713,12 @@ static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t aft
     ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
 }
 
-#define ffrt_deps_define(name, dep1, ...) const void* __v_##name[] = {dep1, ##__VA_ARGS__}; \
-    ffrt_deps_t name = {sizeof(__v_##name) / sizeof(void*), __v_##name}
 
 int main(int narg, char** argv)
 {  
     // handle work with submit
     ffrt_task_handle_t h = ffrt_submit_h_c(func0, NULL, NULL, NULL, NULL, NULL); // not need some data in this task
     int x = 1;
-    ffrt_deps_define(d1, &x);
-    ffrt_deps_define(d2, &x, h);
     ffrt_submit_c(func1, NULL, &x, NULL, &d1, NULL);
     ffrt_submit_c(func2, NULL, &x, &d2, NULL, NULL); // this task depend x and h
     ffrt_task_handle_destroy(h);
@@ -927,7 +934,7 @@ int ffrt_mutex_destroy(ffrt_mutex_t* mutex);
 * 该接口只能在FFRT task 内部调用，在FFRT task 外部调用存在未定义的行为
 * 该功能能够避免pthread传统的pthread_mutex_t 在抢不到锁时陷入内核的问题，在使用得当的条件下将会有更好的性能
 * **注意：目前暂不支持递归和定时功能**
-* **注意：C API中的ffrt_mutex_t需要用户调用`ffrt_mutex_init`和`ffrt_mutex_destroy`显式创建和销毁，而C++ API无需该操作**
+* **注意：C API中的ffrt_mutex_t需要用户调用`ffrt_mutex_init`和`ffrt_mutex_destroy`显式创建和销毁**
 * **注意：C API中的ffrt_mutex_t对象的置空和销毁由用户完成，对同一个ffrt_mutex_t仅能调用一次`ffrt_mutex_destroy`，重复对同一个ffrt_mutex_t调用`ffrt_mutex_destroy`，其行为是未定义的**
 * **注意：在`ffrt_mutex_destroy`之后再对ffrt_mutex_t进行访问，其行为是未定义的**
 
@@ -1054,15 +1061,6 @@ typedef enum {
 } ffrt_error_t;
 
 struct ffrt_cond_t;
-typedef enum {
-    ffrt_clock_realtime = CLOCK_REALTIME,
-    ffrt_clock_monotonic = CLOCK_MONOTONIC
-} ffrt_clockid_t;
-
-int ffrt_condattr_init(ffrt_condattr_t* attr);
-int ffrt_condattr_destroy(ffrt_condattr_t* attr);
-int ffrt_condattr_setclock(ffrt_condattr_t* attr, ffrt_clockid_t clock);
-int ffrt_condattr_getclock(const ffrt_condattr_t* attr, ffrt_clockid_t* clock);
 
 int ffrt_cond_init(ffrt_cond_t* cond, const ffrt_condattr_t* attr);
 int ffrt_cond_signal(ffrt_cond_t* cond);
@@ -1098,7 +1096,7 @@ int ffrt_cond_destroy(ffrt_cond_t* cond);
 #### 描述
 * 该接口只能在FFRT task 内部调用，在FFRT task 外部调用存在未定义的行为
 * 该功能能够避免传统的pthread_cond_t在条件不满足时陷入内核的问题，在使用得当的条件下将会有更好的性能
-* **注意：C API中的ffrt_cond_t需要用户调用`ffrt_cond_init`和`ffrt_cond_destroy`显式创建和销毁，而C++ API中依赖构造和析构自动完成**
+* **注意：C API中的ffrt_cond_t需要用户调用`ffrt_cond_init`和`ffrt_cond_destroy`显式创建和销毁**
 * **注意：C API中的ffrt_cond_t对象的置空和销毁由用户完成，对同一个ffrt_cond_t仅能调用一次`ffrt_cond_destroy`，重复对同一个ffrt_cond_t调用`ffrt_cond_destroy`，其行为是未定义的**
 * **注意：在`ffrt_cond_destroy`之后再对ffrt_cond_t进行访问，其行为是未定义的**
 
@@ -1351,309 +1349,6 @@ void ffrt_yield();
 #### 样例
 
 * 省略
-
-
-# 部署
-
-## 部署方式
-<img src="figures/ffrtfigure1.png" alt="ffrtfigure1" style="zoom:67%;" />
-
-* FFRT的部署依赖FFRT动态库libffrt.so和一组header头文件
-
-* FFRT的头文件为`ffrt.h`，内部包含了C++ API，C API和C base API
-  * ffrt.h 定义为：
-  ```{.cpp}
-  #ifndef FFRT_API_FFRT_H
-  #define FFRT_API_FFRT_H
-  #ifdef __cplusplus
-  #include "cpp/task.h"
-  #include "cpp/deadline.h"
-  #include "cpp/sys_event.h"
-  #include "cpp/mutex.h"
-  #include "cpp/condition_variable.h"
-  #include "cpp/sleep.h"
-  #include "cpp/thread.h"
-  #include "cpp/config.h"
-  #include "cpp/future.h"
-  #else
-  #include "c/task.h"
-  #include "c/deadline.h"
-  #include "c/sys_event.h"
-  #include "c/mutex.h"
-  #include "c/condition_variable.h"
-  #include "c/sleep.h"
-  #include "c/thread.h"
-  #include "c/config.h"
-  #endif
-  #endif
-  ```
-  * C base API定义示例：
-  ```{.cpp}
-  void ffrt_submit_base(ffrt_function_header_t* func, ...);
-  int ffrt_mutex_init(...);
-  ```
-  * C API定义示例：
-  ```{.cpp}
-  static inline void ffrt_submit(ffrt_function_t func, void* arg, ...)
-  {
-      ffrt_submit_base(ffrt_create_function_wrapper(func, arg), ...);
-  }
-  ```
-  * C++ API定义示例：
-  ```{.cpp}
-  namespace ffrt {
-  static inline void submit(std::function& func, ...)
-  {
-      ffrt_submit_base(ffrt_create_function_wrapper(func), ...);
-  }
-  struct mutex {
-      mutex() {
-          ffrt_mutex_init(...);
-          ...
-      };
-  }
-  ```
-  
-* **出于易用性方面的考虑，除非必要，强烈建议你使用C++ API，调用C API将会使你的代码非常臃肿或者更容易产生资源未释放问题**
-
-| 需求列表                                                     |
-| ------------------------------------------------------------ |
-| 需求1：ABI兼容性，在NDK场景中由于用户的编译环境与FFRT的编译环境不同，使用C++接口可能存在ABI兼容性问题，要有解决方案 |
-| 需求2：用户的编译环境为纯C编译环境，不想因为引入FFRT而引入C++元素的场景，要有解决方案 |
-| 需求3：易用性，尽可能让接口简单易用，用户少出错              |
-
-* 对于需求1，通过在用户调用的C++接口和FFRT的实现之间增加一个C base API层，并基于头文件方式将API中的C++的元素编译到用户的so，从而解决ABI兼容的问题
-* 对于需求2，可以通过C Base API解决
-* 对于需求3，建议用户尽可能使用C++ API，以避免C API固有的资源未初始化/释放、参数冗长等问题，对于不得不使用C API的场景，FFRT仍然支持用户使用C API和C base API
-
-
-
-<br/>
-<br/>
-
-<hr/>
-# 实战指南
-
-## 步骤1: 分析应用
-
-使用 FFRT 并行编程的第一步便是您需要了解你的应用。
-
-【建议1】：使用 Task 梳理应用的流程。
-
-使用 Task 梳理应用的流程，并且尽可能使用数据来表达 Task 之间的依赖。当然如果两个 Task 之间如无数据依赖，仅存在控制依赖，您也可以创建一个虚拟的（或者逻辑上的）数据依赖。
-
-<img src="figures/image-20220926152831526.png" style="zoom:70%" />
-
-<center>AIRAW 的数据流图</center>
-
-基于数据流图，可以很容易判定出哪些 Task 是可以并发的，比如，Slice0 的 NPU Task 和 Slice1 的 GPU Pre Task 是可以并发的，因为它们没有任何依赖。
-
-反过来，如果并发的效果不理想，也可以通过调整数据流图来优化并发。例如，假如上图中GPU Pre Task 执行时间有很大波动，但平均耗时略小于 NPU Task，会出现某些时刻 GPU Pre Task 拖慢整个执行时间。此时，如果将 GPU Pre Task 的输出 Buffer 改成3个（或者更多）的 Buffer ，可以增加 GPU Pre Task 和 NPU Task 的并发机会，将降低波动对总执行时间的影响。
-
- 
-
-【建议2】：这里不用太担心 Task 大或小的问题，因为 FFRT 允许你在 Task 内部继续拆分 SubTask，可以逐步细化。
-
-下图中，第一次画数据流图时，可以不将 FaceDirection 和 UpdateExistFaceImageInfo 两个 Task 展开，可以逐步细化。
-
-<img src="figures/image-20220926153003884.png" style="zoom:70%" />
-
-<center>某拍照业务的数据流图</center>
-
-【建议3】：上述流程图或者数据流图不要求是静态图（即 Task 数量和 Task 依赖关系是固定的）
-
-FFRT 允许动态提交 Task ，在编程界面上不体现图的概念，FFRT 内部会根据Task 之间的依赖关系动态调整数据流图的节点。
-
-
-【建议4】：尽可能对应用做热点分析
-
-如果是对存量代码的 FFRT 化改造，那么，使用 System Trace 这类工具能帮助您聚焦在性能热点上，比如下图可以很容易知道当前的性能Bound，在分析数据流图时，可以重点关注这些热点任务。
-
-<img src="figures/image-20220926153030993.png" style="zoom:70%" />
-
-<center>某业务的System Trace</center>
-
-## 步骤2: 并行化应用
-
-【建议1】：不要直接使用线程，使用 FFRT 提交Task。
-
-如果应用中有明显的数据依赖关系，那么 FFRT 将会非常适合；最差的情况是应用没有数据依赖或难以并行（如果真的存在），您仍然可以把 FFRT 当做一个高效的进程级线程池、或者协程库去使用它，但非常不建议你继续创建线程。
-
- 
-
-【建议2】：Task 最好被建模为纯函数。
-
-纯函数是指其执行没有副作用，例如更新全局数据结构。每个任务都依赖于其输入/输出签名来连接到其他任务。
-
-请注意，即使 Task 不是"纯"的，FFRT 仍然适用。只要任务使用的数据依赖或者锁足以保证正确执行，FFRT 就能正常工作。
-
- 
-
-【建议3】：尽可能尝试通过 inDeps/outDeps 表达依赖，而不是使用 ffrt::wait()。
-
-这是因为 FFRT 跟踪和处理 inDeps/outDeps 比调用显式 ffrt::wait() 函数更自然、更便宜。
-
- 
-
-【建议4】：注意 Task 粒度
-
-以适当的粒度提交任务至关重要：目前每个任务的调度开销约为 10 us。如果 Task 的粒度非常小，那么开销的百分比将会很高。FFRT 会继续基于软硬件的方式优化调度开销。
-
- 
-
-【建议5】：尽可能使用 FFRT 原语
-
-如果需要mutex、sleep、异步 I/O，请使用 FFRT 原语，而不是使用OS 提供的版本。因为这些 FFRT 提供的实现在与 FFRT 配合时开销将会更小。
-
- 
-
-【建议6】：在需要时，使用 ffrt::wait() 确保栈变量的生命周期。
-
-如果子任务使用驻留在父任务栈上的数据，则父任务应避免在子任务执行完成前返回。在父任务的末尾添加 ffrt::wait() 可以解决这个问题。
-
- 
-
-## 步骤3: 优化应用
-
-【建议1】：基于System Trace，分析并行是否符合预期
-
-FFRT 已经内置 SysTrace 支持，默认以txx.xx表示，非常有利于分析 Task 粒度和并发度。未来，在性能分析和维测方面将继续增强。
-
-<img src="figures/image-20220926153209875.png" style="zoom:70%" />
-
-【建议2】：对于耗时的 Task，尝试提交 SubTask，提升应用的并行度
-
-
-【建议3】：在合适的场景，使用 Deadline 调度，实现能效和性能的平衡
-
-方案正在验证中，待更新。
-
- 
-
-## 样例: CameraHal QuickThumb
-
-### 步骤1: 分析应用
-
-<img src="figures/image-20220926153255824.png" style="zoom:70%" />
-
-1)   QuickThumb 是 CameraHal 中实现的对一张图片进行缩小的功能，整体运行时间约30 us；
-
-2)   在实现上分为两层循环，外层的一次循环输出1行，内层的1次循环输出该行的m列；
-
-3)   在划分 Task 时，一种简单的做法是1行的处理就是1个Task。
-
-### 步骤2: 并行化应用
-<img src="figures/image-20220926153509205.png" style="zoom:100%" />
-
- 1)   根据纯函数的定义，该 Task 的输入输出的数据是非常之多的，因此，这个场景下使用更宽泛的纯函数的定义，只需要考虑在 Task 内部会被写，但是却被定义在 Task 外部的变量即可；
-
-2)   按照上面的原则，将 py/puv 的定义移到 Task 内部可避免多个 Task 同时写 py/puv 的问题；
-
-3)   s32r 的处理可以有两种方式，都能得到正确的功能：a. 保持定义在Task 外部，但作为Task 的输出依赖；b. 将s32r定义在Task 内部，作为Task的私有变量。显然，b 方案能够获得更好的性能
-
- 
-
-### 步骤3: 优化应用
-
-通过System Trace，会发现上述改造方案的Task 粒度较小，大约单个Task 耗时在5us左右，因此，扩大Task的粒度为32行处理，得到最终的并行结果，下图为使用4小核和3中核的结果。
-
-<img src="figures/image-20220926153603572.png" style="zoom:100%" />
-
-
-
-## 样例: Camera AIRAW
-
-### 步骤1: 分析应用
-<img src="figures/image-20220926153611121.png" style="zoom:70%" />
-
-AIRAW 的处理包括了3个处理步骤，在数据面上，可以按slice 进行切分，在不考虑pre_outbuf和npu_outbuf 在slice间复用的情况下，数据流图如上图所示。
-
-<img src="figures/image-20220926152831526.png" style="zoom:70%" />
-
-为了节省运行过程中的内存占用，但不影响整体性能，可以只保留2个pre_outbuf和2个npu_outbuf。
-
-`为此付出的代价是：Buffer 的复用产生了slice3 的GPU Pre Task 依赖slice1 的NPU Task 完成，俗称反压，又称生产者依赖关系。但是，如果您使用 FFRT 来实现，将会是非常自然而高效的`
-
-### 步骤2: 并行化应用
-
-```{.cpp}
-constexpr uint32_t SLICE_NUM = 24;
-constexpr uint32_t BUFFER_NUM = 2;
-
-int input[SLICE_NUM]; // input is split into SLICE_NUM slices
-int pre_outbuf[BUFFER_NUM]; // gpu pre task output buffers
-int npu_outbuf[BUFFER_NUM]; // npu output buffers
-int output[SLICE_NUM]; // output is split into SLICE_NUM slices
-
-for (uint32_t i = 0; i < SLICE_NUM; i++) {
-  uint32_t buf_id = i % BUFFER_NUM;
-  ffrt::submit(gpuPreTask, {input + i}, {pre_outbuf + buf_id});
-  ffrt::submit(npuTask, {pre_outbuf + buf_id}, {npu_outbuf + buf_id});
-  ffrt::submit(gpuPostTask, {npu_outbuf + buf_id}, {output + i});
-}
-
-ffrt::wait();
-```
-
-### 步骤3: 优化应用
-
-<img src="figures/image-20220926153825527.png" style="zoom:100%" />
-
-基于以上实现，从上面的Trace中我们看到，NPU 的硬件时间被完全用满，系统端到端性能达到最优，而付出的开发代价将会比GCD 或多线程小的多。
-
- 
-
-## 样例: Camera FaceStory
-
-### 步骤1: 分析应用
-
-<img src="figures/image-20220926153003884.png" style="zoom:70%" />
-
- 
-
-### 步骤2: 并行化应用
-
-<img src="figures/image-20220926153906692.png" style="zoom:100%" />
-
-代码改造样例
-
-1)     该场景输出存量代码迁移，只需将原先串行的代码以Task的方式提交即可；
-
-2)     过程中需要考虑Data Race和数据生命周期；
-
-3)     先提交大的Task，根据需要逐步拆分SubTask。
-
- 
-
-### 步骤3: 优化应用
-
-<img src="figures/image-20220926153030993.png" style="zoom:100%" />
-
-<center>原始System Trace</center>
-
-<img src="figures/image-20220926153925963.png" style="zoom:100%" />
-
-
-
-
-<center>改造后System Trace</center>
-
-并行化的收益来自于：
-
-1)    多分支或循环并发，实现CPU前后处理和NPU的并发
-
-2)    子任务拆分，进一步提升并行度
-
-3)    基于数据流图优化CPU L2 Cache Flush频次
-
-4)    NPU Worker Thread实时优先级调整，后续FFRT中考虑独立出XPU调度Worker来保证实时性
-
-5)    在未来，模型加载使用FFRT submit，模型加载内部也可以使用submit来继续拆分，能够优化整个业务的启动耗时。
-
-<br/>
-<br/>
-<hr/>
-
 
 
 # 使用建议
