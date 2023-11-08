@@ -83,6 +83,12 @@ publish(request: NotificationRequest): Promise\<void\>
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
 | request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 
+**返回值：**
+
+| 类型     | 说明 | 
+| ------- |--|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
@@ -206,6 +212,12 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 | request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 
+**返回值：**
+
+| 类型     | 说明        | 
+| ------- |-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
@@ -305,6 +317,12 @@ cancel(id: number, label?: string): Promise\<void\>
 | ----- | ------ | ---- | -------- |
 | id    | number | 是   | 通知ID。   |
 | label | string | 否   | 通知标签，默认为空。 |
+
+**返回值：**
+
+| 类型     | 说明        | 
+| ------- |-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -419,6 +437,12 @@ cancelAll(): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
+**返回值：**
+
+| 类型     | 说明        | 
+| ------- |-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
@@ -509,6 +533,12 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 | ---- | ---------------- | ---- | -------------------- |
 | slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是   | 要创建的通知通道对象。 |
 
+**返回值：**
+
+| 类型     | 说明        | 
+| ------- |-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
@@ -591,6 +621,12 @@ addSlot(type: SlotType): Promise\<void\>
 | 参数名 | 类型     | 必填 | 说明                   |
 | ---- | -------- | ---- | ---------------------- |
 | type | [SlotType](#slottype) | 是   | 要创建的通知通道的类型。 |
+
+**返回值：**
+
+| 类型     | 说明        | 
+| ------- |-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -687,6 +723,12 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 | ----- | ------------------------- | ---- | ------------------------ |
 | slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 要创建的通知通道对象数组。 |
 
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
@@ -778,7 +820,7 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<NotificationSlot\> | 以Promise形式返回获取一个通知通道。 |
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 以Promise形式返回获取一个通知通道。 |
 
 **错误码：**
 
@@ -936,6 +978,12 @@ removeSlot(slotType: SlotType): Promise\<void\>
 | -------- | -------- | ---- | ----------------------------------------------------------- |
 | slotType | [SlotType](#slottype) | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
 
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
@@ -1005,6 +1053,12 @@ removeAllSlots(): Promise\<void\>
 删除所有通知通道（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1095,6 +1149,12 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 | enable | boolean      | 是   | 使能状态。   |
+
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1471,6 +1531,12 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 | enable | boolean      | 是   | 使能状态。   |
 
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
@@ -1610,6 +1676,12 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 | ----------- | ------ | ---- | ---------- |
 | badgeNumber | number | 是   | 角标个数。 |
 
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 | 错误码ID | 错误信息                            |
@@ -1746,6 +1818,12 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 | slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是   | 通知通道。 |
+
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2272,6 +2350,12 @@ cancelGroup(groupName: string): Promise\<void\>
 | --------- | ------ | ---- | -------------- |
 | groupName | string | 是   | 通知组名称。 |
 
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
@@ -2363,6 +2447,12 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 | --------- | ------------ | ---- | -------------- |
 | bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。     |
 | groupName | string       | 是   | 通知组名称。 |
+
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2459,6 +2549,13 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 | 参数名 | 类型             | 必填 | 说明           |
 | ---- | ---------------- | ---- | -------------- |
 | date | [DoNotDisturbDate](#donotdisturbdate) | 是   | 免打扰时间选项。 |
+
+
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2563,6 +2660,12 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 | ------ | ---------------- | ---- | -------------- |
 | date   | [DoNotDisturbDate](#donotdisturbdate) | 是   | 免打扰时间选项。 |
 | userId | number           | 是   | 设置免打扰时间的用户ID。 |
+
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -3002,6 +3105,12 @@ requestEnableNotification(): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
@@ -3089,6 +3198,12 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 | 参数名   | 类型                     | 必填 | 说明                 |
 | -------- | ------------------------ | ---- |--------------------|
 | context | UIAbilityContext | 是   | 通知弹窗绑定Ability的上下文。 |
+
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -3677,6 +3792,12 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | representativeBundle | string                                      | 是   | 被代理应用的包名。                            |
 | userId               | number                                      | 是   | 用户ID。                            |
 
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
@@ -3794,6 +3915,12 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 | id                   | number | 是   | 通知ID。           |
 | representativeBundle | string | 是   | 被代理应用的包名。 |
 | userId               | number | 是   | 用户ID。 |
+
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -4315,6 +4442,116 @@ try{
 }
 ```
 
+## notificationManager.triggerSystemLiveView<sup>11+</sup>
+
+triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOptions: ButtonOptions): Promise\<void>;
+
+触发系统实况窗。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明           |
+| -------------- | ------------- | ---- | -------------- |
+| bundle         | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | 是   |指定应用的包信息。 |
+| notificationId | number        | 是   | 通知ID。 |
+| buttonOptions  | [ButtonOptions](#buttonoptions11) | 是   | 按钮信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---- | ----|
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600007  | The notification is not exist.      |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+// 包信息
+let bundle = {
+    bundle: "bundleName1",
+};
+// 通知ID
+let notificationId = 1;
+// 按钮信息
+let buttonOptions = {
+    buttonName: "buttonName1",
+}
+notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
+	console.info("triggerSystemLiveView success");
+}).catch((error: Base.BusinessError) => {
+    console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
+});
+```
+
+
+## notificationManager.subscribeSystemLiveView<sup>11+</sup>
+
+subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
+
+订阅系统实况窗。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明           |
+| -------------- | ------------- | ---- | -------------- |
+| subscriber | [SystemLiveViewSubscriber](#systemliveviewsubscriber11)  | 是   | 系统实况窗订阅者。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---- | ----|
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
+
+**示例：**
+
+```ts
+let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
+    console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
+}
+let subscriber: notificationManager.SystemLiveViewSubscriber  = {
+    onResponse: onResponseCallback,
+};
+notificationManager.subscribeSystemLiveView(subscriber).then(() => {
+	console.info("subscribeSystemLiveView success");
+}).catch((error: Base.BusinessError) => {
+    console.error(`subscribeSystemLiveView fail: ${JSON.stringify(error)}`);
+});
+```
+
+
+
 ## DoNotDisturbDate
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
@@ -4352,6 +4589,7 @@ try{
 | NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | 图片类型通知。          |
 | NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | 社交类型通知（暂不支持该类型）。 |
 | NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | 多行文本类型通知。        |
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW    | NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | 实况窗类型通知（仅对系统应用开放）。        |
 
 ## SlotLevel
 
@@ -4376,6 +4614,7 @@ try{
 | SOCIAL_COMMUNICATION | 1 | 社交类型。 |
 | SERVICE_INFORMATION  | 2 | 服务类型。 |
 | CONTENT_INFORMATION  | 3 | 内容类型。 |
+| LIVE_VIEW            | 4 | 实况窗类型（仅对系统应用开放）。 |
 | OTHER_TYPES          | 0xFFFF | 其他类型。 |
 
 
@@ -4433,3 +4672,32 @@ try{
 | ------- | ------------------------------------ | ---- | ---------------------- |
 | code    | number                               | 是   | 0-display, 1-no display。 |
 | message | string                               | 是   | 结果信息。    |
+
+
+## ButtonOptions<sup>11+</sup>
+
+描述触发按钮信息。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+
+| 名称    | 类型                                  | 必填 | 说明                   |
+| ------- | ------------------------------------ | ---- | ---------------------- |
+| buttonName    | string                         | 是   | 按钮名称。 |
+
+
+## SystemLiveViewSubscriber<sup>11+</sup>
+
+系统实况窗订阅者。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+
+| 名称    | 类型                                  | 必填 | 说明                   |
+| ------- | ------------------------------------ | ---- | ---------------------- |
+| onResponse    | (notificationId: number, buttonOptions: ButtonOptions) => void;                         | 否   | 点击按钮的回调。 |
+

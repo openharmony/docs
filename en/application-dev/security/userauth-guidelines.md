@@ -1,6 +1,7 @@
 # User Authentication Development
 
 > **NOTE**
+>
 > This guide applies to the SDK for API version 10.
 
 ## When to Use
@@ -47,7 +48,7 @@ Before authentication, you must specify the [authentication type](../reference/a
 
 2. Specify the [authentication type](../reference/apis/js-apis-useriam-userauth.md#userauthtype8) and [authentication trust level](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8), and call [getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9) to check whether the current device supports the authentication capabilities.
 
-    ```js
+    ```ts
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
     // Check whether the authentication capabilities are supported.
@@ -71,9 +72,7 @@ Before authentication, you must specify the [authentication type](../reference/a
 
 4. Call [start](../reference/apis/js-apis-useriam-userauth.md#start10) to start authentication and return the authentication result through the [callback](../reference/apis/js-apis-useriam-userauth.md#callback10).
 
-5. Call [off](../reference/apis/js-apis-useriam-userauth.md#off10) to unsubscribe from the authentication result.
-
-    ```js
+    ```ts
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
     const authParam : userIAM_userAuth.AuthParam = {
@@ -83,7 +82,6 @@ Before authentication, you must specify the [authentication type](../reference/a
     };
     const widgetParam : userIAM_userAuth.WidgetParam = {
       title:'Enter password',
-      navigationButtonText: 'Back',
     };
     try {
       // Obtain an authentication object.
@@ -98,17 +96,39 @@ Before authentication, you must specify the [authentication type](../reference/a
       console.log('auth on success');
       userAuthInstance.start();
       console.log('auth start success');
-      // Unsubscribe from the authentication result.
-      userAuthInstance.off('result', {
-        onResult (result) {
-          console.log('auth off result: ' + JSON.stringify(result));
-        }
-      });
-      console.log('auth off success');
     } catch (error) {
       console.log('auth catch error: ' + JSON.stringify(error));
     }
     ```
+
+5. Call [off](../reference/apis/js-apis-useriam-userauth.md#off10) for the [UserAuthInstance](../reference/apis/js-apis-useriam-userauth.md#userauthinstance10) object to unsubscribe from the authentication result.
+
+   ```ts
+   import userIAM_userAuth from '@ohos.userIAM.userAuth';
+   
+   const authParam : userIAM_userAuth.AuthParam = {
+     challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+     authType: [userIAM_userAuth.UserAuthType.PIN],
+     authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1,
+   };
+   const widgetParam : userIAM_userAuth.WidgetParam = {
+     title:'Enter password',
+   };
+   try {
+     // Obtain an authentication object.
+     let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+     console.log('get userAuth instance success');
+     // Unsubscribe from the authentication result.
+     userAuthInstance.off('result', {
+       onResult (result) {
+         console.log('auth off result: ' + JSON.stringify(result));
+       }
+     });
+     console.log('auth off success');
+   } catch (error) {
+     console.log('auth catch error: ' + JSON.stringify(error));
+   }
+   ```
 
 ## Canceling User Authentication
 
@@ -120,9 +140,9 @@ Before authentication, you must specify the [authentication type](../reference/a
 
 3. Call [start](../reference/apis/js-apis-useriam-userauth.md#start10) to start authentication.
 
-4. Call [cancel](../reference/apis/js-apis-useriam-userauth.md#cancel10) to cancel this authentication.
+4. Call [cancel](../reference/apis/js-apis-useriam-userauth.md#cancel10) for the [UserAuthInstance](../reference/apis/js-apis-useriam-userauth.md#userauthinstance10) object to cancel this authentication.
 
-    ```js
+    ```ts
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
     const authParam : userIAM_userAuth.AuthParam = {
@@ -132,7 +152,6 @@ Before authentication, you must specify the [authentication type](../reference/a
     };
     const widgetParam : userIAM_userAuth.WidgetParam = {
       title:'Enter password',
-      navigationButtonText: 'Back',
     };
     try {
       // Obtain an authentication object.

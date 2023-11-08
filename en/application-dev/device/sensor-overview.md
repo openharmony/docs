@@ -1,5 +1,7 @@
 # Sensor Overview
 
+## Sensor Types
+
 
 Sensors in OpenHarmony are an abstraction of underlying sensor hardware. Your application can access the underlying sensor hardware via the sensors. Using the [Sensor](../reference/apis/js-apis-sensor.md) APIs, you can query sensors on your device, subscribe to sensor data, customize algorithms based on sensor data, and develop various sensor-based applications, such as compass, motion-controlled games, and fitness and health applications.
 
@@ -32,7 +34,7 @@ Sensors in OpenHarmony are an abstraction of underlying sensor hardware. Your ap
 
 The following modules work cooperatively to implement OpenHarmony sensors: Sensor API, Sensor Framework, Sensor Service, and HDF layer.
 
-  **Figure 1** How the sensor works
+**Figure 1** How the sensor works
 
 ![fad1a124-a90e-460f-84fc-e87d6caebb21](figures/fad1a124-a90e-460f-84fc-e87d6caebb21.png)
 
@@ -47,13 +49,13 @@ The following modules work cooperatively to implement OpenHarmony sensors: Senso
 
 ## Constraints
 
-1. To obtain data of the following sensors, you must claim the required permissions.
+To obtain data of the following sensors, you must request the required permissions.
 
-    | Sensor                      | Permission                             | Sensitivity        | Permission Description                   |
-    | ------------------------- | -------------------------------- | ------------ | ----------------------- |
-    | Acceleration sensor, uncalibrated acceleration sensor, and linear acceleration sensor| ohos.permission.ACCELEROMETER    | system_grant | Allows an application to subscribe to data of these acceleration-related sensors in the motion category.|
-    | Gyroscope sensor and uncalibrated gyroscope sensor         | ohos.permission.GYROSCOPE        | system_grant | Allows an application to subscribe to data of the gyroscope-related sensors in the motion category.|
-    | Pedometer sensor                      | ohos.permission.ACTIVITY_MOTION  | user_grant   | Allows an application to subscribe to the motion status.               |
-    | Heart rate sensor                      | ohos.permission.READ_HEALTH_DATA | user_grant   | Allows an application to read health data.               |
-    
-2. The APIs for subscribing to and unsubscribing from sensor data work in pairs. If you do not need sensor data, call the unsubscription API to stop sensor data reporting.
+| Sensor                                            | Permission                          | Sensitivity    | Permission Description                                                    |
+| -------------------------------------------------- | -------------------------------- | ------------ | ------------------------------------------------------------ |
+| Acceleration sensor, uncalibrated acceleration sensor, and linear acceleration sensor| ohos.permission.ACCELEROMETER    | system_grant | The permission allows an application to read data from acceleration sensors, uncalibrated acceleration sensors, and linear acceleration sensors.|
+| Gyroscope sensor and uncalibrated gyroscope sensor                  | ohos.permission.GYROSCOPE        | system_grant | The permission allows an application to read data from gyroscope sensors and uncalibrated gyroscope sensors.|
+| Pedometer sensor                                            | ohos.permission.ACTIVITY_MOTION  | user_grant   | The permission allows an application to read an end user's motion status, for example, to determine whether the user is in motion or to record the number of steps that the user has walked. |
+| Heart rate sensor                                            | ohos.permission.READ_HEALTH_DATA | user_grant   | The permission allows an application to obtain an end user's health data, such as heart rate data.          |
+
+The APIs for subscribing to and unsubscribing from sensor data work in pairs. If you do not need sensor data, call the unsubscription API to stop sensor data reporting.

@@ -7,6 +7,8 @@ The **DataShareResultSet** module provides APIs for accessing the result set obt
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > - The APIs provided by this module are system APIs.
+>
+> - The APIs of this module can be used only in the stage model.
 
 
 ## Modules to Import
@@ -26,7 +28,7 @@ import { BusinessError } from '@ohos.base'
 
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-await dataShare.createDataShareHelper(this.context, uri, (err, data) => {
+dataShare.createDataShareHelper(this.context, uri, (err, data) => {
   if (err != undefined) {
     console.error("createDataShareHelper fail, error message : " + err);
   } else {

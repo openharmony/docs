@@ -8,17 +8,35 @@
 | -------- | --------------------- | ---------------- |
 | mp4      | AVC(H.264)、HEVC(H.265) |AVC(H.264) |
 
-
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 ("video/avc")，硬解则支持 H264 ("video/avc") 和 H265 ("video/hevc")。
 
-## 开发步骤
+## 开发指导
 
 详细的API说明请参考[API文档](../reference/native-apis/_video_decoder.md)。
 如下为视频解码调用关系图：
 ![Invoking relationship of video decode stream](figures/video-decode.png)
 
-1. 创建编解码器实例对象。
-   
+### 在 CMake 脚本中链接动态库
+
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+target_link_libraries(sample PUBLIC libnative_media_core.so)
+target_link_libraries(sample PUBLIC libnative_media_vdec.so)
+```
+
+### 开发步骤
+
+1. 添加头文件。
+
+   ``` c++
+   #include <multimedia/player_framework/native_avcodec_videodecoder.h>
+   #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   ```
+
+2. 创建编解码器实例对象。
+
    应用可以通过名称或媒体类型创建解码器。
 
    ``` c++
@@ -27,6 +45,7 @@
     const char *name = OH_AVCapability_GetName(capability);
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(name);
    ```
+
    ```c++
     // 通过 mimetype 创建解码器
     // 软/硬解: 创建 H264 解码器，存在多个可选解码器时，系统会创建最合适的解码器
@@ -34,6 +53,7 @@
     // 硬解: 创建 H265 解码器
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
    ```
+
    ``` c++
    // 初始化队列
    class VDecSignal {
@@ -51,7 +71,7 @@
    VDecSignal *signal_;
    ```
 
-2. 调用OH_VideoDecoder_SetCallback()设置回调函数。
+3. 调用OH_VideoDecoder_SetCallback()设置回调函数。
 
    注册回调函数指针集合OH_AVCodecAsyncCallback，包括：
 
@@ -84,7 +104,7 @@
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
-        unique_lock<mutex> lock(signal_->inMutex_);
+        std::unique_lock<std::mutex> lock(signal_->inMutex_);
         // 解码输入帧id送入 inQueue_
         signal_->inQueue_.push(index);
         // 解码输入帧数据送入 inBufferQueue_
@@ -98,7 +118,7 @@
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
-        unique_lock<mutex> lock(signal_->outMutex_);
+        std::unique_lock<std::mutex> lock(signal_->outMutex_);
         // 将对应输出 buffer 的 index 送入 outQueue_
         signal_->outQueue_.push(index);
         // 将对应解码完成的数据 data 送入 outBufferQueue_ (注： Surface模式下data为空)
@@ -111,7 +131,7 @@
     int32_t ret = OH_VideoDecoder_SetCallback(videoDec, cb, signal_);
    ```
 
-3. 调用OH_VideoDecoder_Configure()配置解码器。
+4. 调用OH_VideoDecoder_Configure()配置解码器。
 
    配置必选项：视频帧宽度、视频帧高度、视频颜色格式。
 
@@ -130,25 +150,16 @@
     OH_AVFormat_Destroy(format);
    ```
 
-4. （如需使用Surface送显，必须设置）设置Surface。
-   
+5. （如需使用Surface送显，必须设置）设置Surface。应用需要从XComponent组件获取 nativeWindow，获取方式请参考 [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md)。
+
    ``` c++
     // 配置送显窗口参数
-    sptr<Rosen::Window> window = nullptr;
-    sptr<Rosen::WindowOption> option = new Rosen::WindowOption();
-    option->SetWindowRect({0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT});
-    option->SetWindowType(Rosen::WindowType::WINDOW_TYPE_APP_LAUNCHING);
-    option->SetWindowMode(Rosen::WindowMode::WINDOW_MODE_FLOATING);
-    window = Rosen::Window::Create("video-decoding", option);
-    window->Show();
-    sptr<Surface> ps = window->GetSurfaceNode()->GetSurface();
-    OHNativeWindow *nativeWindow = CreateNativeWindowFromSurface(&ps);
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);    // 从 XComponent 获取 window 
     bool isSurfaceMode = true;
    ```  
 
-5. （仅使用Surface时可配置）配置解码器surface参数。
-   
+6. （仅使用Surface时可配置）配置解码器surface参数。
+
    ``` c++
     OH_AVFormat *format = OH_AVFormat_Create();
     // 配置显示旋转角度
@@ -157,9 +168,9 @@
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_SCALING_MODE, SCALING_MODE_SCALE_CROP);
     int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
-   ``` 
+   ```
 
-6. 调用OH_VideoDecoder_Start()启动解码器。
+7. 调用OH_VideoDecoder_Start()启动解码器。
 
    ``` c++
     string_view outputFilePath = "/*yourpath*.yuv";
@@ -176,7 +187,7 @@
     int32_t ret = OH_VideoDecoder_Start(videoDec);
    ```
 
-7. 调用OH_VideoDecoder_PushInputData()，写入解码码流。
+8. 调用OH_VideoDecoder_PushInputData()，写入解码码流。
 
    ``` c++
     // 配置 buffer info 信息
@@ -192,14 +203,15 @@
     int32_t ret = OH_VideoDecoder_PushInputData(videoDec, index, info);
    ```
 
-8. 调用OH_VideoDecoder_FreeOutputData()，输出解码帧。
+9. surface模式显示场景，调用OH_VideoDecoder_RenderOutputData()显示并释放解码帧；
+   surface模式不显示场景和buffer模式，调用OH_VideoDecoder_FreeOutputData()释放解码帧。
 
    ``` c++
     int32_t ret;
     // 将解码完成数据 data 写入到对应输出文件中
     outFile->write(reinterpret_cast<char *>(OH_AVMemory_GetAddr(data)), data.size);
     // buffer 模式, 释放已完成写入的数据, index 为对应 surface/buffer 队列下标
-    if (isSurfaceMode) {
+    if (isSurfaceMode && isRender) {
         ret = OH_VideoDecoder_RenderOutputData(videoDec, index);
     } else {
         ret = OH_VideoDecoder_FreeOutputData(videoDec, index);
@@ -209,10 +221,10 @@
     }
    ```
 
-9. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
-   
+10. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
+
    调用OH_VideoDecoder_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
-    
+
    此时需要调用OH_VideoDecoder_Start()重新开始解码。
 
    ``` c++
@@ -226,8 +238,8 @@
     ret = OH_VideoDecoder_Start(videoDec);
    ```
 
-10. （可选）调用OH_VideoDecoder_Reset()重置解码器。
-    
+11. （可选）调用OH_VideoDecoder_Reset()重置解码器。
+
     调用OH_VideoDecoder_Reset()后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure()重新配置。
 
     ``` c++
@@ -241,8 +253,8 @@
      ret = OH_VideoDecoder_Configure(videoDec, format);
     ```
 
-11. 调用OH_VideoDecoder_Stop()停止解码器。
-    
+12. 调用OH_VideoDecoder_Stop()停止解码器。
+
     ``` c++
      int32_t ret;
      // 终止解码器 videoDec
@@ -250,10 +262,9 @@
      if (ret != AV_ERR_OK) {
          // 异常处理
      }
-     return AV_ERR_OK;
     ```
 
-12. 调用OH_VideoDecoder_Destroy()销毁解码器实例，释放资源。
+13. 调用OH_VideoDecoder_Destroy()销毁解码器实例，释放资源。
 
     ``` c++
      int32_t ret;
@@ -262,6 +273,4 @@
      if (ret != AV_ERR_OK) {
          // 异常处理
      }
-     return AV_ERR_OK;
     ```
-

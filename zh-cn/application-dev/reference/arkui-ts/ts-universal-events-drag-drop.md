@@ -8,7 +8,7 @@
 >
 > 应用本身预置的资源文件（即应用在安装前的HAP包中已经存在的资源文件）仅支持本地应用内拖拽。
 
-ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应，开发者只需要将这些组件的[draggale](ts-universal-attributes-drag-drop.md)属性设置为true，即可使用默认拖拽能力。
+ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应，开发者只需要将这些组件的[draggable](ts-universal-attributes-drag-drop.md)属性设置为true，即可使用默认拖拽能力。
 
 - 默认支持拖出能力的组件（可从组件上拖出数据）：Search、TextInput、TextArea、RichEditor、Text、Image、FormComponent、Hyperlink
 
@@ -23,7 +23,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 | 名称                                                         | 支持冒泡 | 功能描述                                                     |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onDragStart(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;&nbsp;[CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo说明)) | 否       | 第一次拖拽此事件绑定的组件时，触发回调。<br/>- event：拖拽事件信息，详见[DragEvent](#dragevent说明)。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/> 返回值：拖拽过程中显示的组件信息。<br/>触发条件：长按时间 >= 500ms。<br> 事件优先级：长按触发时间 < 500ms，长按事件 > 拖拽事件<br> 其他： 拖拽事件 > 长按事件。 <br>**说明：**<br>当前不支持同时配置[dragController.executeDrag](../apis/js-apis-arkui-dragController.md#dragcontrollerexecutedrag)和onDragStart。|
+| onDragStart(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;&nbsp;[CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo说明)) | 否       | 第一次拖拽此事件绑定的组件时，触发回调。<br/>- event：拖拽事件信息，详见[DragEvent](#dragevent说明)。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/> 返回值：拖拽过程中显示的组件信息。<br/>触发条件：长按时间 >= 500ms。<br> 事件优先级：长按触发时间 < 500ms，长按事件 > 拖拽事件<br> 其他： 拖拽事件 > 长按事件。 |
 | onDragEnter(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽进入组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDragMove(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽在组件范围内移动时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDragLeave(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽离开组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
@@ -54,7 +54,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 | 名称     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
-| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使用系统默认落入动画。 |
+| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使能并使用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义动效。<br/>当不配置或设置为false时，系统默认落位动效生效，此情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
 | setData(unifiedData: [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup> | void | 向DragEvent中设置拖拽相关数据。 |
 | getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata) | 从DragEvent中获取拖拽相关数据。数据获取结果请参考错误码说明。 |
 | getSummary()<sup>10+</sup> | [Summary](../apis/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。 |
@@ -109,6 +109,15 @@ struct Index {
   @State videoSrc: string = 'resource://RAWFILE/02.mp4';
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
+  @Builder
+  pixelMapBuilder() {
+    Column() {
+      Image($r('app.media.icon'))
+        .width(120)
+        .height(120)
+        .backgroundColor(Color.Yellow)
+    }
+  }
 
   getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
   {
@@ -185,6 +194,9 @@ struct Index {
           video.videoUri = '/resources/rawfile/01.mp4';
           let data: UDC.UnifiedData = new UDC.UnifiedData(video);
           (event as DragEvent).setData(data);
+          return { builder: () => {
+            this.pixelMapBuilder()
+          }, extraInfo: 'extra info' };
         })
         Column() {
           Text('this is abstract')

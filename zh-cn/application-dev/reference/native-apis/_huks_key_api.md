@@ -60,7 +60,7 @@ struct OH_Huks_Result OH_Huks_AbortSession (const struct OH_Huks_Blob * handle, 
 
 **返回:**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md)时接口使用成功，其他时为错误。
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 **参见:**
 
@@ -90,7 +90,7 @@ struct OH_Huks_Result OH_Huks_AttestKeyItem (const struct OH_Huks_Blob * keyAlia
 
 **返回:**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md)时获取成功，其他时为错误。
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时获取成功，其他时为错误。
 
 
 ### OH_Huks_DeleteKeyItem()
@@ -111,7 +111,7 @@ struct OH_Huks_Result OH_Huks_DeleteKeyItem (const struct OH_Huks_Blob * keyAlia
 
 **返回:**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md)时接口使用成功，其他时为错误。
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_ExportPublicKeyItem()
@@ -133,7 +133,7 @@ struct OH_Huks_Result OH_Huks_ExportPublicKeyItem (const struct OH_Huks_Blob * k
 
 **返回:**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md)时接口使用成功，其他时为错误。
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_FinishSession()
@@ -156,7 +156,7 @@ struct OH_Huks_Result OH_Huks_FinishSession (const struct OH_Huks_Blob * handle,
 
 **返回:**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md)时接口使用成功，其他时为错误。
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 **参见:**
 
@@ -186,7 +186,7 @@ struct OH_Huks_Result OH_Huks_GenerateKeyItem (const struct OH_Huks_Blob * keyAl
 
 **返回:**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md)时接口使用成功，其他时为错误。
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_GetKeyItemParamSet()
@@ -208,7 +208,7 @@ struct OH_Huks_Result OH_Huks_GetKeyItemParamSet (const struct OH_Huks_Blob * ke
 
 **返回:**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md)时获取成功，其他时为失败。
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时获取成功，其他时为失败。
 
 
 ### OH_Huks_GetSdkVersion()
@@ -228,7 +228,7 @@ struct OH_Huks_Result OH_Huks_GetSdkVersion (struct OH_Huks_Blob * sdkVersion)
 
 **返回:**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md)时接口使用成功，其他时为错误。
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_ImportKeyItem()
@@ -250,7 +250,7 @@ struct OH_Huks_Result OH_Huks_ImportKeyItem (const struct OH_Huks_Blob * keyAlia
 
 **返回:**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md)时接口使用成功，其他时为错误。
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_ImportWrappedKeyItem()
@@ -273,7 +273,7 @@ struct OH_Huks_Result OH_Huks_ImportWrappedKeyItem (const struct OH_Huks_Blob * 
 
 **返回:**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md)时接口使用成功，其他时为错误。
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_InitSession()
@@ -296,7 +296,7 @@ struct OH_Huks_Result OH_Huks_InitSession (const struct OH_Huks_Blob * keyAlias,
 
 **返回:**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md)时接口使用成功，其他时为错误。
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 **参见:**
 
@@ -325,7 +325,7 @@ struct OH_Huks_Result OH_Huks_IsKeyItemExist (const struct OH_Huks_Blob * keyAli
 
 **返回:**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md)时密钥存在， 返回[OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST](_huks_type_api.md)不存在，其他时为错误。
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时密钥存在， 返回[OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST](_huks_type_api.md)不存在，其他时为错误。
 
 
 ### OH_Huks_UpdateSession()
@@ -348,7 +348,7 @@ struct OH_Huks_Result OH_Huks_UpdateSession (const struct OH_Huks_Blob * handle,
 
 **返回:**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md)时接口使用成功，其他时为错误。
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 **参见:**
 

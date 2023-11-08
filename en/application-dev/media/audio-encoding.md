@@ -17,10 +17,10 @@ Currently, the following encoding capabilities are supported:
 
 - Audio recording
 
-  Record and transfer PCM data, and encode the data into streams in the desired format.
+  Record and pass in PCM data, and encode the data into streams in the desired format.
 - Audio editing
 
-  Import edited PCM data, and encode the data into streams in the desired format.
+  Export edited PCM data, and encode the data into streams in the desired format.
 
 ## How to Develop
 
@@ -36,11 +36,22 @@ The figure below shows the call relationship of audio encoding.
 
 ![Call relationship of audio encoding](figures/audio-encode.png)
 
+### Linking the Dynamic Library in the CMake Script
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+target_link_libraries(sample PUBLIC libnative_media_core.so)
+target_link_libraries(sample PUBLIC libnative_media_aenc.so)
+```
+
+### How to Develop
+
 1. Create an encoder instance.
 
    You can create an encoder by name or MIME type.
 
    ```cpp
+   // Namespace of the C++ standard library.
+   using namespace std;
    // Create an encoder by name.
    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
    const char *name = OH_AVCapability_GetName(capability);
@@ -54,17 +65,17 @@ The figure below shows the call relationship of audio encoding.
    // Initialize the queues.
    class AEncSignal {
    public:
-       std::mutex inMutex_;
-       std::mutex outMutex_;
-       std::mutex startMutex_;
-       std::condition_variable inCond_;
-       std::condition_variable outCond_;
-       std::condition_variable startCond_;
-       std::queue<uint32_t> inQueue_;
-       std::queue<uint32_t> outQueue_;
-       std::queue<OH_AVMemory *> inBufferQueue_;
-       std::queue<OH_AVMemory *> outBufferQueue_;
-       std::queue<OH_AVCodecBufferAttr> attrQueue_;
+       mutex inMutex_;
+       mutex outMutex_;
+       mutex startMutex_;
+       condition_variable inCond_;
+       condition_variable outCond_;
+       condition_variable startCond_;
+       queue<uint32_t> inQueue_;
+       queue<uint32_t> outQueue_;
+       queue<OH_AVMemory *> inBufferQueue_;
+       queue<OH_AVMemory *> outBufferQueue_;
+       queue<OH_AVCodecBufferAttr> attrQueue_;
    };
    AEncSignal *signal_ = new AEncSignal();
    ```
@@ -120,21 +131,59 @@ The figure below shows the call relationship of audio encoding.
            signal->attrQueue_.push(*attr);
        }
    }
+   signal_ = new AEncSignal();
    OH_AVCodecAsyncCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputData, &OnNeedOutputData};
    // Set the asynchronous callbacks.
-   int32_t ret = OH_AudioEncoder_SetCallback(audioEnc, cb, userData);
+   int32_t ret = OH_AudioEncoder_SetCallback(audioEnc, cb, signal_);
+   if (ret != AV_ERR_OK) {
+       // Exception handling.
+   }
    ```
 3. Call **OH_AudioEncoder_Configure** to configure the encoder.
 
    The following options are mandatory: sampling rate, bit rate, number of audio channels, audio channel type, and bit depth. The maximum input length is optional.
 
    For FLAC encoding, the compliance level and sampling precision are also mandatory.
-
+   
+   The following provides the AAC invoking process.
    ```cpp
-   enum AudioFormatType : int32_t {
-       TYPE_AAC = 0,
-       TYPE_FLAC = 1,
-   };
+   #include "avcodec_audio_channel_layout.h"
+   
+   int32_t ret;
+   // (Mandatory) Configure the audio sampling rate.
+   constexpr uint32_t DEFAULT_SAMPLERATE = 44100; 
+   // (Mandatory) Configure the audio bit rate.
+   constexpr uint64_t DEFAULT_BITRATE = 32000;
+   // (Mandatory) Configure the number of audio channels.
+   constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
+   // (Mandatory) Configure the audio channel type.
+   constexpr AudioChannelLayout CHANNEL_LAYOUT = AudioChannelLayout::STEREO;
+   // (Mandatory) Configure the audio bit depth. Only SAMPLE_F32P is available for AAC encoding.
+   constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_F32LE;
+   // Configure the audio compliance level. The default value is 0, and the value ranges from -2 to 2.
+   constexpr int32_t COMPLIANCE_LEVEL = 0;
+   // (Mandatory) Configure the audio sampling precision. SAMPLE_S16LE, SAMPLE_S24LE, and SAMPLE_S32LE are available.
+   constexpr uint32_t BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
+   // (Optional) Configure the maximum input length.
+   constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1024*DEFAULT_CHANNEL_COUNT *sizeof(float);//aac
+   OH_AVFormat *format = OH_AVFormat_Create();
+   // Set the format.
+   OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_CHANNEL_COUNT,DEFAULT_CHANNEL_COUNT);
+   OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_SAMPLE_RATE,DEFAULT_SAMPLERATE);
+   OH_AVFormat_SetLongValue(format,OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT);
+   OH_AVFormat_SetLongValue(format,OH_MD_KEY_CHANNEL_LAYOUT,CHANNEL_LAYOUT);
+   OH_AVFormat_SetIntValue(format,OH_MD_KEY_MAX_INPUT_SIZE,DEFAULT_MAX_INPUT_SIZE);
+   // Configure the encoder.
+   ret = OH_AudioEncoder_Configure(audioEnc, format);
+   if (ret != AV_ERR_OK) {
+       // Exception handling.
+   }
+   ```
+   The following provides the FLAC invoking process.
+   ```cpp
+   #include "avcodec_audio_channel_layout.h"
+   
    int32_t ret;
    // (Mandatory) Configure the audio sampling rate.
    constexpr uint32_t DEFAULT_SMAPLERATE = 44100; 
@@ -143,32 +192,22 @@ The figure below shows the call relationship of audio encoding.
    // (Mandatory) Configure the number of audio channels.
    constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
    // (Mandatory) Configure the audio channel type.
-   constexpr AudioChannelLayout CHANNEL_LAYOUT =AudioChannelLayout::STEREO;
+   constexpr AudioChannelLayout CHANNEL_LAYOUT = AudioChannelLayout::STEREO;
    // (Mandatory) Configure the audio bit depth. Only SAMPLE_S16LE and SAMPLE_S32LE are available for FLAC encoding.
-   constexpr OH_BitsPerSample SAMPLE_FORMAT =OH_BitsPerSample::SAMPLE_S32LE;
-   // (Mandatory) Configure the audio bit depth. Only SAMPLE_F32P is available for AAC encoding.
-   constexpr OH_BitsPerSample SAMPLE_AAC_FORMAT = OH_BitsPerSample::SAMPLE_F32LE;
+   constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S32LE;
    // Configure the audio compliance level. The default value is 0, and the value ranges from -2 to 2.
    constexpr int32_t COMPLIANCE_LEVEL = 0;
    // (Mandatory) Configure the audio sampling precision. SAMPLE_S16LE, SAMPLE_S24LE, and SAMPLE_S32LE are available.
-   constexpr BITS_PER_CODED_SAMPLE BITS_PER_CODED_SAMPLE =OH_BitsPerSample::SAMPLE_S24LE;
-   // (Optional) Configure the maximum input length.
-   constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1024*DEFAULT_CHANNEL_COUNT *sizeof(float);//aac
+   constexpr uint32_t BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
    OH_AVFormat *format = OH_AVFormat_Create();
    // Set the format.
-   OH_AVFormat_SetIntValue(format,MediaDescriptionKey::MD_KEY_SAMPLE_RATE.data(),DEFAULT_SMAPLERATE);
-   OH_AVFormat_SetLongValue(format,MediaDescriptionKey::MD_KEY_BITRATE.data(), DEFAULT_BITRATE);
-   OH_AVFormat_SetIntValue(format,MediaDescriptionKey::MD_KEY_CHANNEL_COUNT.data(),DEFAULT_CHANNEL_COUNT);
-   OH_AVFormat_SetIntValue(format,MediaDescriptionKey::MD_KEY_MAX_INPUT_SIZE.data(),DEFAULT_MAX_INPUT_SIZE);
-   OH_AVFormat_SetLongValue(format,MediaDescriptionKey::MD_KEY_CHANNEL_LAYOUT.data(),CHANNEL_LAYOUT);
-   OH_AVFormat_SetIntValue(format,MediaDescriptionKey::MD_KEY_AUDIO_SAMPLE_FORMAT.data(),SAMPLE_FORMAT);
-   if(audioType == TYPE_AAC){
-       OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_AUDIO_SAMPLE_FORMAT.data(), SAMPLE_AAC_FORMAT);
-   }
-   if (audioType == TYPE_FLAC) {
-       OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_BITS_PER_CODED_SAMPLE.data(), BITS_PER_CODED_SAMPLE);
-       OH_AVFormat_SetLongValue(format, MediaDescriptionKey::MD_KEY_COMPLIANCE_LEVEL.data(), COMPLIANCE_LEVEL);
-   }
+   OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_CHANNEL_COUNT,DEFAULT_CHANNEL_COUNT);
+   OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_SAMPLE_RATE,DEFAULT_SMAPLERATE);
+   OH_AVFormat_SetLongValue(format,OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITS_PER_CODED_SAMPLE, BITS_PER_CODED_SAMPLE); 
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT); 
+   OH_AVFormat_SetLongValue(format,OH_MD_KEY_CHANNEL_LAYOUT,CHANNEL_LAYOUT);
+   OH_AVFormat_SetLongValue(format, OH_MD_KEY_COMPLIANCE_LEVEL, COMPLIANCE_LEVEL); 
    // Configure the encoder.
    ret = OH_AudioEncoder_Configure(audioEnc, format);
    if (ret != AV_ERR_OK) {
@@ -183,12 +222,12 @@ The figure below shows the call relationship of audio encoding.
 5. Call **OH_AudioEncoder_Start()** to start the encoder.
 
    ```c++
-   inputFile_ = std::make_unique<std::ifstream>();
+   unique_ptr<ifstream> inputFile_ = make_unique<ifstream>();
+   unique_ptr<ofstream> outFile_ = make_unique<ofstream>();
    // Open the path of the binary file to be encoded.
-   inputFile_->open(inputFilePath.data(), std::ios::in |std::ios::binary); 
+   inputFile_->open(inputFilePath.data(), ios::in |ios::binary); 
    // Configure the path of the output file.
-   outFile_ = std::make_unique<std::ofstream>();
-   outFile_->open(outputFilePath.data(), std::ios::out |std::ios::binary);
+   outFile_->open(outputFilePath.data(), ios::out |ios::binary);
    // Start encoding.
    ret = OH_AudioEncoder_Start(audioEnc);
    if (ret != AV_ERR_OK) {
@@ -220,14 +259,13 @@ The figure below shows the call relationship of audio encoding.
    
       ```c++
       constexpr int32_t FRAME_SIZE = 1024; // AAC encoding
-      constexpr int32_t DEFAULT_CHANNEL_COUNT =2;
+      constexpr int32_t DEFAULT_CHANNEL_COUNT = 2;
       constexpr int32_t INPUT_FRAME_BYTES = DEFAULT_CHANNEL_COUNT * FRAME_SIZE * sizeof(float); // AAC encoding
       // Configure the buffer information.
       OH_AVCodecBufferAttr info;
-      // Set the package size, offset, and timestamp.
-      info.size = pkt_->size;
+      // Set the size, offset, and timestamp.
+      info.size = INPUT_FRAME_BYTES;
       info.offset = 0;
-      info.pts = pkt_->pts;
       info.flags = AVCODEC_BUFFER_FLAGS_CODEC_DATA;
       auto buffer = signal_->inBufferQueue_.front();
       if (inputFile_->eof()){
@@ -310,7 +348,6 @@ The figure below shows the call relationship of audio encoding.
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-        return ret;
     ```
 11. Call **OH_AudioEncoder_Destroy()** to destroy the encoder instance and release resources.
 
@@ -324,5 +361,4 @@ The figure below shows the call relationship of audio encoding.
     } else {
         audioEnc = NULL; // The encoder cannot be destroyed repeatedly.
     }
-    return ret;
     ```

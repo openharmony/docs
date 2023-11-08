@@ -686,7 +686,7 @@ try {
 
 ## AccessibilityElement<sup>9+</sup>
 
-Defines the accessibilityelement. Before calling APIs of **AccessibilityElement**, you must call [AccessibilityExtensionContext.getFocusElement()](#accessibilityextensioncontextgetfocuselement) or [AccessibilityExtensionContext.getWindowRootElement()](#accessibilityextensioncontextgetwindowrootelement) to obtain an **AccessibilityElement** instance.
+Defines the **AccessibilityElement**. Before calling APIs of **AccessibilityElement**, you must call [AccessibilityExtensionContext.getFocusElement()](#accessibilityextensioncontextgetfocuselement) or [AccessibilityExtensionContext.getWindowRootElement()](#accessibilityextensioncontextgetwindowrootelement) to obtain an **AccessibilityElement** instance.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 

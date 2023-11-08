@@ -1,7 +1,7 @@
 # 管理位置权限
 
 
-Web组件提供位置权限管理能力。开发者可以通过[onGeolocationShow()](../reference/arkui-ts/ts-basic-components-web.md#ongeolocationshow)接口对某个网站进行位置权限管理。Web组件根据接口响应结果，决定是否赋予前端页面权限。获取设备位置，需要开发者配置[ohos.permission.LOCATION](../security/accesstoken-guidelines.md)权限。
+Web组件提供位置权限管理能力。开发者可以通过[onGeolocationShow()](../reference/arkui-ts/ts-basic-components-web.md#ongeolocationshow)接口对某个网站进行位置权限管理。Web组件根据接口响应结果，决定是否赋予前端页面权限。获取设备位置，需要开发者配置[ohos.permission.LOCATION](../security/accesstoken-guidelines.md)权限，并同时在设备上打开应用的位置权限和控制中心的位置信息。
 
 
 在下面的示例中，用户点击前端页面"获取位置"按钮，Web组件通过弹窗的形式通知应用侧位置权限请求消息。

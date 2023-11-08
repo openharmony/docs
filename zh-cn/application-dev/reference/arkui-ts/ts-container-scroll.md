@@ -36,7 +36,7 @@ Scroll(scroller?: Scroller)
 | scrollBarWidth | string&nbsp;\|&nbsp;number         | 设置滚动条的宽度，不支持百分比设置。<br/>默认值：4<br/>单位：vp<br/>**说明：** <br/>如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。 |
 | edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)            | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.None |
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
-| nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](#nestedscrolloptions10对象说明)         | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
+| nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](#nestedscrolloptions10对象说明) | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
 | friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9<br/>**说明：** <br/>设置为小于等于0的值时，按默认值处理 |
 
 ## ScrollDirection枚举说明
@@ -188,6 +188,33 @@ isAtEnd(): boolean
 | ------- | -------- |
 | boolean | true表示组件已经滚动到底部，false表示组件还没滚动到底部。 |
 
+### getItemRect<sup>11+</sup>
+
+getItemRect(index: number): RectResult
+
+获取子组件的大小位置。
+
+>  **说明：**
+>
+>  支持Scroll、List、Grid、WaterFlow组件。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 参数描述              |
+| ----- | ------ | ---- | ----------------- |
+| index | number | 是    | 子组件的索引值。 |
+
+> **说明：**
+>
+> - index必须是当前显示区域显示的子组件的索引值，否则视为非法值。
+> - 非法值返回的大小和位置均为0。
+
+**返回值：**
+
+| 类型       | 说明       |
+| -------------------  | -------- |
+| [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。 |
+
 ## ScrollAlign枚举说明<sup>10+ </sup>
 
 | 名称     | 描述                             |
@@ -208,7 +235,7 @@ isAtEnd(): boolean
 | ------ | ------------------------------ |
 | SELF_ONLY   | 只自身滚动，不与父组件联动。  |
 | SELF_FIRST | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。        |
-| PARENT_FIRST  | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，人工有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
+| PARENT_FIRST  | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
 | PARALLEL  | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。|
 
 ## 示例

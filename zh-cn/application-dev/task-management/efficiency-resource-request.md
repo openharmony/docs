@@ -26,8 +26,8 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| applyEfficiencyResources(request:EfficiencyResourcesRequest): void | 申请能效资源 |
-| resetAllEfficiencyResources():void | 释放全部能效资源 |
+| applyEfficiencyResources(request: EfficiencyResourcesRequest): void | 申请能效资源 |
+| resetAllEfficiencyResources(): void | 释放全部能效资源 |
 
 **表2** 能效资源申请参数
 | 名称 | 类型 | 必填 | 说明 |

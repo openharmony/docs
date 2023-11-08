@@ -12,6 +12,7 @@ import xml from '@ohos.xml';
 
 ## XmlSerializer
 
+XmlSerializer接口用于生成XML文件。
 
 ### constructor
 
@@ -40,7 +41,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<?xml version="1.0" encoding="utf-8"?>
+console.log(view1) // <?xml version="1.0" encoding="utf-8"?>
 ```
 
 
@@ -74,7 +75,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<note importance1="high1"/>
+console.log(view1) // <note importance1="high1"/>
 ```
 
 
@@ -105,7 +106,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<d/>
+console.log(view1) // <d/>
 ```
 
 
@@ -133,7 +134,9 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<?xml version="1.0" encoding="utf-8"?>
+console.log(view1)
+// <?xml version="1.0" encoding="utf-8"?>
+// <h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 
@@ -167,7 +170,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 ### endElement
@@ -194,7 +197,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 
@@ -229,7 +232,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 ### setComment
@@ -259,7 +262,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //<!--Hello, World!-->'
+console.log(view1) // <!--Hello, World!-->
 ```
 
 
@@ -290,7 +293,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //'<![CDATA[root SYSTEM]]>''
+console.log(view1) // <![CDATA[root SYSTEM]]>
 ```
 
 
@@ -324,7 +327,7 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) // '<note importance="high">Happy1</note>'
+console.log(view1) // <note importance="high">Happy1</note>
 ```
 
 
@@ -355,12 +358,13 @@ let view1 = "";
 for (let i = 0; i < result.length; ++i) {
     view1 = view1 + String.fromCodePoint(view[i]);
 }
-console.log(view1) //'<!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">'
+console.log(view1) // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 ```
 
 
 ## XmlPullParser
 
+XmlPullParser接口用于解析现有的XML文件。
 
 ### constructor
 
@@ -381,6 +385,7 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<!DOCTYPE note [\n<!ENTITY foo "baa">]>' +
@@ -434,6 +439,7 @@ parse(option: ParseOptions): void
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -498,6 +504,7 @@ getColumnNumber(): number
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -538,6 +545,7 @@ getDepth(): number
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -581,6 +589,7 @@ getLineNumber(): number
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -621,6 +630,7 @@ getName(): string
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -660,6 +670,7 @@ getNamespace(): string
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -699,6 +710,7 @@ getPrefix(): string
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -739,6 +751,7 @@ getText(): string
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -778,6 +791,7 @@ isEmptyElementTag(): boolean
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -817,6 +831,7 @@ isWhitespace(): boolean
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -855,6 +870,7 @@ getAttributeCount(): number
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +

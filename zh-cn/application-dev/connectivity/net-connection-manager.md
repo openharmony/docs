@@ -82,7 +82,7 @@
 
 ```ts
 // 引入包名
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 let netSpecifier: connection.NetSpecifier = {
@@ -129,8 +129,8 @@ conn.unregister((err: BusinessError, data: void) => {
 
 ```ts
 // 引入包名
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 // 构造单例对象
 export class GlobalContext {
@@ -178,7 +178,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 4. 调用getConnectionProperties方法，获取NetHandle对应网络的连接信息。
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 // 构造单例对象
@@ -298,9 +298,9 @@ for (let item of dataNumber) {
 2. 调用getAddressesByName方法，使用默认网络解析主机名以获取所有IP地址。
 
 ```ts
-    // 引入包名
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+// 引入包名
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 // 使用默认网络解析主机名以获取所有IP地址
 connection.getAddressesByName(this.host, (err: BusinessError, data: connection.NetAddress[]) => {

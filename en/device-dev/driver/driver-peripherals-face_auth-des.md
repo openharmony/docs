@@ -53,7 +53,7 @@ The identity authentication consists of User_auth and basic authentication servi
 
 - HAPs
 
-  In a broad sense, OpenHarmony Ability Packages (HAPs) are application packages that can be installed on OpenHarmony. In this document, the HAPs only refer to the upper-layer applications of the Face_auth driver.
+  In a broad sense, Harmony Ability Packages (HAPs) are application packages that can be installed on OpenHarmony. In this document, the HAPs only refer to the upper-layer applications of the Face_auth driver.
 
 - IDL interface
 

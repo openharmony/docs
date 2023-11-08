@@ -85,7 +85,7 @@ The development process consists of the following main steps:
     The required model can be downloaded directly or obtained using the model conversion tool.
   
      - If the downloaded model is in the `.ms` format, you can use it directly for inference. The following uses the **mobilenetv2.ms** model as an example.
-     - If the downloaded model uses a third-party framework, such as TensorFlow, TensorFlow Lite, Caffe, or ONNX, you can use the [model conversion tool](https://www.mindspore.cn/lite/docs/zh-CN/r1.5/use/downloads.html#id1) to convert it to the .ms format.
+     - If the downloaded model uses a third-party framework, such as TensorFlow, TensorFlow Lite, Caffe, or ONNX, you can use the [model conversion tool](https://www.mindspore.cn/lite/docs/en/master/use/downloads.html#1-8-1) to convert it to the `.ms` format.
 
 2. Create a context, and set parameters such as the number of runtime threads and device type.
 
@@ -131,13 +131,13 @@ The development process consists of the following main steps:
     }
     // Preferentially use NNRT inference.
     // Use the NNRT hardware of the first ACCELERATORS class to create the NNRT device information and configure the high-performance inference mode for the NNRT hardware. You can also use OH_AI_GetAllNNRTDeviceDescs() to obtain the list of NNRT devices in the current environment, search for a specific device by device name or type, and use the device as the NNRT inference hardware.
-    OH_AI_DeviceInfoHandle nnrt_device_info = OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDEVICE_ACCELERATORS);
+    OH_AI_DeviceInfoHandle nnrt_device_info = OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDEVICE_ACCELERATOR);
     if (nnrt_device_info == NULL) {
       printf("OH_AI_DeviceInfoCreate failed.\n");
       OH_AI_ContextDestroy(&context);
       return OH_AI_STATUS_LITE_ERROR;
     }
-    OH_AI_DeviceInfoSetPerformaceMode(nnrt_device_info, OH_AI_PERFORMANCE_HIGH);
+    OH_AI_DeviceInfoSetPerformanceMode(nnrt_device_info, OH_AI_PERFORMANCE_HIGH);
     OH_AI_ContextAddDeviceInfo(context, nnrt_device_info);
 
     // Configure CPU inference.

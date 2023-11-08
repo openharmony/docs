@@ -10,18 +10,18 @@
 对于“surface”类型，开发者可将相关数据传入XComponent单独拥有的“surface”来渲染画面。
 
 
-对于“component”类型则主要用于实现动态加载显示内容的目的。
+对于“component”类型，主要用于实现动态加载显示内容的目的。
 
 
 ## surface类型
 
-XComponent设置为surface类型时通常用于EGL/OpenGLES和媒体数据写入，并将其显示在XComponent组件上。
+XComponent设置为surface类型时，通常用于EGL/OpenGLES和媒体数据写入，并将其显示在XComponent组件上。
 
 设置为“surface“类型时XComponent组件可以和其他组件一起进行布局和渲染。
 
 同时XComponent又拥有单独的“surface“，可以为开发者在native侧提供native window用来创建EGL/OpenGLES环境，进而使用标准的OpenGL ES开发。
 
-除此之外，媒体相关应用（视频、相机等）也可以将相关数据写入XComponent所提供的surface，从而实现呈现相应画面。
+除此之外，媒体相关应用（视频、相机等）也可以将相关数据写入XComponent所提供的surface，从而呈现相应画面。
 
 
 ## 使用EGL/OpenGLES渲染
@@ -158,7 +158,7 @@ NativeXComponent为XComponent提供了在native层的实例，可作为js层和n
 
 ### 创建EGL/OpenGLES环境
 
-在注册的OnSurfaceCreated回调中开发者能拿到native window的句柄（其本质就是XComponent所单独拥有的surface），因此可以在这里创建应用自己的EGL/OpenGLES开发环境，由此开始具体渲染逻辑的开发。
+在注册的OnSurfaceCreated回调中，开发者能拿到native window的句柄（其本质就是XComponent所单独拥有的surface），因此可以在这里创建应用自己的EGL/OpenGLES开发环境，由此开始具体渲染逻辑的开发。
 
 
 ```c++
@@ -177,7 +177,7 @@ void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
 
 ### ArkTS侧语法介绍
 
-开发者在ArkTS侧使用如下代码即可用XComponent组件进行利用EGL/OpenGLES渲染的开发。
+开发者在ArkTS侧使用如下代码，即可用XComponent组件进行利用EGL/OpenGLES渲染的开发。
 
 
 ```ts
@@ -219,7 +219,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 
 ### 媒体数据写入
 
-XComponent所持有的Surface符合“生产者-消费者”模型
+XComponent所持有的Surface符合“生产者-消费者”模型。
 
 OpenHarmony上Camera、AVPlayer等符合生产者设计的部件都可以将数据写入XComponent持有的surface并通过XComponent显示。
 

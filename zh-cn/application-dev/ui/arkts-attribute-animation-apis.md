@@ -4,7 +4,7 @@
 通过可动画属性改变引起UI上产生的连续视觉效果，即为属性动画。属性动画是最基础易懂的动画，ArkUI提供两种属性动画接口[animateTo](../reference/arkui-ts/ts-explicit-animation.md)和[animation](../reference/arkui-ts/ts-animatorproperty.md)驱动组件属性按照动画曲线等动画参数进行连续的变化，产生属性动画。
 
 
-| 隐式动画接口 | 作用域 | 原理 | 使用场景 |
+| 属性动画接口 | 作用域 | 原理 | 使用场景 |
 | -------- | -------- | -------- | -------- |
 | animateTo | 闭包内改变属性引起的界面变化。<br/>作用于出现消失转场。 | 通用函数，对闭包前界面和闭包中的状态变量引起的界面之间的差异做动画。<br/>支持多次调用，支持嵌套。 | 适用对多个可动画属性配置相同动画参数的动画。<br/>需要嵌套使用动画的场景。 |
 | animation | 组件通过属性接口绑定的属性变化引起的界面变化。 | 识别组件的可动画属性变化，自动添加动画。<br/>组件的接口调用是从下往上执行，animation只会作用于在其之上的属性调用。<br/>组件可以根据调用顺序对多个属性设置不同的animation。 | 适用于对多个可动画属性配置不同参数动画的场景。 |
@@ -68,7 +68,7 @@ struct AnimateToDemo {
         .margin({ top: 120 })
         .onClick(() => {
           this.animate = !this.animate;
-          // 第三步：通过隐式动画接口开启隐式动画
+          // 第三步：通过属性动画接口开启属性动画
           animateTo({ curve: curves.springMotion() }, () => {
             // 第四步：闭包内通过状态变量改变UI界面
             // 这里可以写任何能改变UI的逻辑比如数组添加，显隐控制，系统会检测改变后的UI界面与之前的UI界面的差异，对有差异的部分添加动画
@@ -122,7 +122,7 @@ struct AnimationDemo {
           .borderRadius(10)
           .backgroundColor(0xf56c6c)
           .rotate({ angle: this.rotateValue })
-            // 第三步：通过隐式动画接口开启隐式动画，控件的函数调用顺序是从下往上的，这个animation会作用到上面的rotate属性
+            // 第三步：通过属性动画接口开启属性动画，控件的函数调用顺序是从下往上的，这个animation会作用到上面的rotate属性
           .animation({ curve: curves.springMotion(0.3, 1.0) })
           .width(150)
           .height(150)
@@ -132,7 +132,7 @@ struct AnimationDemo {
           .fontWeight(FontWeight.Bold)
           .fontSize(20)
           .fontColor(this.color)
-            // 第三步：通过隐式动画接口开启隐式动画，控件的函数调用顺序是从下往上的，这个animation会作用到上面的fontColor属性
+            // 第三步：通过属性动画接口开启属性动画，控件的函数调用顺序是从下往上的，这个animation会作用到上面的fontColor属性
           .animation({ curve: curves.springMotion(0.6, 1.2) })
           .textAlign(TextAlign.Center)
           .borderRadius(10)
@@ -140,7 +140,7 @@ struct AnimationDemo {
           .width(150)
           .height(150)
           .translate({ y: this.translateY })
-            // 第三步：通过隐式动画接口开启隐式动画，控件的函数调用顺序是从下往上的，这个animation会作用到上面的translate属性
+            // 第三步：通过属性动画接口开启属性动画，控件的函数调用顺序是从下往上的，这个animation会作用到上面的translate属性
           .animation({ curve: curves.springMotion(0.3, 0.6) })
       }
       .justifyContent(FlexAlign.Center)
@@ -178,4 +178,4 @@ struct AnimationDemo {
 > 
 > - 属性动画应该作用于始终存在的组件，对于将要出现或者将要消失的组件的动画应该使用[转场动画](arkts-transition-overview.md)。
 > 
-> - 尽量不要使用动画结束回调。隐式动画是对已经发生的状态进行的动画，不需要开发者去处理结束的逻辑。如果要使用结束回调，一定要正确处理连续操作的数据管理。
+> - 尽量不要使用动画结束回调。属性动画是对已经发生的状态进行的动画，不需要开发者去处理结束的逻辑。如果要使用结束回调，一定要正确处理连续操作的数据管理。

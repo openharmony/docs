@@ -6,6 +6,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 
 需要对代码资产进行保护时，建议开启混淆能力。混淆能力开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
 > 注意：仅Stage模型的ArkTS工程支持混淆。
+> HAR开启混淆后资源ID为-1，[ResourceManager](../reference/apis/js-apis-resource-manager.md)等通过ID获取资源的API不再生效。
 
 混淆功能在不同版本默认开启情况不同：
 
@@ -123,6 +124,24 @@ export { Log } from './src/main/ts/test'
 export { func } from './src/main/ts/test'
 export { func2 } from './src/main/ts/test'
 ```
+
+### 导出native方法
+在HAR中也可以包含C++编写的so。对于so中的native方法，HAR通过以下方式导出，以导出libnative.so的加法接口add为例：
+```ts
+// library/src/main/ets/utils/nativeTest.ts
+import native from "libnative.so"
+
+export function nativeAdd(a: number, b: number) {
+    let result: number = native.add(a, b);
+    return result;
+}
+```
+HAR对外暴露的接口，在index.ets导出文件中声明如下所示：
+```ts
+// library/index.ets
+export { nativeAdd } from './src/main/ets/utils/nativeTest'
+```
+
 ### 资源
 HAR模块编译打包时会把资源打包到HAR中。在编译构建HAP时，DevEco Studio会从HAP模块及依赖的模块中收集资源文件，如果不同模块下的资源文件出现重名冲突时，DevEco Studio会按照以下优先级进行覆盖（优先级由高到低）：
 - AppScope（仅API9的Stage模型支持）。
@@ -158,7 +177,7 @@ struct Index {
   }
 }
 ```
-### 引用HAR的类和方法
+### 引用HAR的ts类和方法
 通过`import`引用HAR导出的ts类和方法，示例如下所示：
 ```ts
 // entry/src/main/ets/pages/index.ets
@@ -184,6 +203,35 @@ struct Index {
   }
 }
 ```
+
+### 引用HAR的native方法
+通过`import`引用HAR导出的native方法，示例如下所示：
+```ts
+// entry/src/main/ets/pages/index.ets
+import { nativeAdd } from "library"
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button('nativeAdd(1, 2)')
+          .onClick(()=> {
+            this.message = "result: " + nativeAdd(1, 2);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### 引用HAR的资源
 通过`$r`引用HAR中的资源，例如在HAR模块的`src/main/resources`里添加字符串资源（在string.json中定义，name：hello_har）和图片资源（icon_har.png），然后在Entry模块中引用该字符串和图片资源的示例如下所示：
 ```ts

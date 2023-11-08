@@ -11,7 +11,7 @@ In silent data access, the DatamgrService accesses and modifies data without sta
 
 The DatamgrService supports basic database access or data hosting only. If service processing is required, the service processing needs to be encapsulated into APIs for the data consumer to call.
 
-If the service processing is too complex to be processed by the data consumer, use **DataShareExtensionAbility** to start the data provider.
+If the service processing is too complex to be processed by the data consumer, use [DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) to start the data provider.
 
 
 ## Working Principles
@@ -33,7 +33,7 @@ The DatamgrService can serve as a proxy to access the following types of data:
 | Persistent data| Sandbox of the data provider | Tables in the database   | Permanent storage        | RDB data applications, such as schedules and conferences.     |
 | Process data | DatamgrService sandbox| JSON or byte| Automatically deleted 10 days after no subscription| Applications featuring simple and time-sensitive data, such as step count, weather, and heart rate.|
 
-​
+
 
 **Figure 1** Silent access
 
@@ -82,7 +82,7 @@ The following table lists the APIs for silent data access. Most of the APIs are 
 
 | API                                    | Description                |
 | ---------------------------------------- | ------------------ |
-| publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void | Publish data to the **DatamgrService**.|
+| publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void | Publishes data to the **DatamgrService**.|
 | on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string, callback: AsyncCallback&lt;PublishedDataChangeNode&gt;): Array&lt;OperationResult&gt; | Subscribes to changes of the published data.   |
 
 
@@ -337,4 +337,4 @@ In the **module.json5** file of the data provider, set the process data ID, read
    }
    ```
 
-   ​
+   

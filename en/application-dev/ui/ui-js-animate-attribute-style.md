@@ -90,4 +90,4 @@ text {
 > **NOTE**
 > - The values of animation attributes are not sequenced. However, the values of duration and delay are parsed based on the sequence in which they are displayed.
 > 
-> - The animation-duration attribute must be set. Otherwise, the duration is 0, which means there is no animation effect. When animation-fill-mode is set to forwards, the component directly displays the style of the last frame.
+> - The **animation-duration** attribute must be set. Otherwise, the duration is 0, which means there is no animation effect. When **animation-fill-mode** is set to **forwards**, the component directly displays the style of the last frame.

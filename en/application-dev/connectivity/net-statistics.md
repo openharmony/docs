@@ -11,8 +11,7 @@ Its functions include:
 - Subscribing to traffic change events by NIC or UID
 
 > **NOTE**
-> 
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [Traffic Management](../reference/apis/js-apis-net-statistics.md).
+> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [sms API Reference](../reference/apis/js-apis-net-statistics.md).
 
 The following describes the development procedure specific to each application scenario.
 
@@ -20,20 +19,20 @@ The following describes the development procedure specific to each application s
 
 For the complete list of APIs and example code, see [Traffic Management](../reference/apis/js-apis-net-statistics.md).
 
-| Type| API| Description|
-| ---- | ---- | ---- |
-| ohos.net.statistics | getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void; |Obtains the real-time downlink data traffic of the specified NIC. |
-| ohos.net.statistics | getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void; |Obtains the real-time uplink data traffic of the specified NIC. |
-| ohos.net.statistics | getCellularRxBytes(callback: AsyncCallback\<number>): void; |Obtains the real-time downlink data traffic of the cellular network.|
-| ohos.net.statistics | getCellularTxBytes(callback: AsyncCallback\<number>): void; |Obtains the real-time uplink data traffic of the cellular network.|
-| ohos.net.statistics | getAllRxBytes(callback: AsyncCallback\<number>): void; |Obtains the real-time downlink data traffic of the all NICs. |
-| ohos.net.statistics | getAllTxBytes(callback: AsyncCallback\<number>): void; |Obtains the real-time uplink data traffic of the all NICs. |
-| ohos.net.statistics | getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void; |Obtains the real-time downlink data traffic of the specified application. |
-| ohos.net.statistics | getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void; |Obtains the real-time uplink data traffic of the specified application. |
-| ohos.net.statistics | getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; |Obtains the historical data traffic of the specified NIC. |
-| ohos.net.statistics | getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void; |Obtains the historical data traffic of the specified application. |
-| ohos.net.statistics | on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void |Subscribes to traffic change events.|
-| ohos.net.statistics | off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void; |Unsubscribes from traffic change events.|
+| Type               | API                                                                                       | Description                      |
+| ------------------- | ------------------------------------------------------------------------------------------- | ------------------------------ |
+| ohos.net.statistics | getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | Obtains the real-time downlink data traffic of the specified NIC. |
+| ohos.net.statistics | getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | Obtains the real-time uplink data traffic of the specified NIC. |
+| ohos.net.statistics | getCellularRxBytes(callback: AsyncCallback\<number>): void;                                 | Obtains the real-time downlink data traffic of the cellular network.    |
+| ohos.net.statistics | getCellularTxBytes(callback: AsyncCallback\<number>): void;                                 | Obtains the real-time uplink data traffic of the cellular network.    |
+| ohos.net.statistics | getAllRxBytes(callback: AsyncCallback\<number>): void;                                      | Obtains the real-time downlink data traffic of the all NICs. |
+| ohos.net.statistics | getAllTxBytes(callback: AsyncCallback\<number>): void;                                      | Obtains the real-time uplink data traffic of the all NICs. |
+| ohos.net.statistics | getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | Obtains the real-time downlink data traffic of the specified application. |
+| ohos.net.statistics | getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | Obtains the real-time uplink data traffic of the specified application. |
+| ohos.net.statistics | getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | Obtains the historical data traffic of the specified NIC.     |
+| ohos.net.statistics | getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;       | Obtains the historical data traffic of the specified application.     |
+| ohos.net.statistics | on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void      | Subscribes to traffic change events.        |
+| ohos.net.statistics | off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;   | Unsubscribes from traffic change events.    |
 
 ## Obtaining Real-Time Traffic Data by NIC or UID
 
@@ -42,59 +41,60 @@ For the complete list of APIs and example code, see [Traffic Management](../refe
 3. Obtain the real-time data traffic of all NICs. 
 4. Obtain the real-time data traffic of the specified application. 
 
-```js
+```ts
 // Import the statistics namespace from @ohos.net.statistics.
-import statistics from '@ohos.net.statistics'
+import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@ohos.base';
 
 // Obtain the real-time downlink data traffic of the specified NIC. 
-statistics.getIfaceRxBytes("wlan0", (error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-})
+statistics.getIfaceRxBytes('wlan0', (error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 
 // Obtain the real-time uplink data traffic of the specified NIC. 
-statistics.getIfaceTxBytes("wlan0", (error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-})
+statistics.getIfaceTxBytes('wlan0', (error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 
 // Obtain the real-time downlink data traffic of the cellular network.
-statistics.getCellularRxBytes((error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-})
+statistics.getCellularRxBytes((error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 
 // Obtain the real-time uplink data traffic of the cellular network.
-statistics.getCellularTxBytes((error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-})
+statistics.getCellularTxBytes((error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 
 // Obtain the real-time downlink data traffic of the all NICs. 
-statistics.getAllRxBytes((error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-})
+statistics.getAllRxBytes((error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 
 // Obtain the real-time uplink data traffic of the all NICs. 
-statistics.getAllTxBytes((error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-})
+statistics.getAllTxBytes((error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 
 // Obtain the real-time downlink data traffic of the specified application. 
 let uid = 20010038;
-statistics.getUidRxBytes(uid, (error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-})
+statistics.getUidRxBytes(uid, (error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 
 // Obtain the real-time uplink data traffic of the specified application. 
-let uid = 20010038;
-statistics.getUidTxBytes(uid, (error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-})
+let uids = 20010038;
+statistics.getUidTxBytes(uids, (error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## Obtaining Historical Traffic Data by NIC or UID
@@ -102,38 +102,39 @@ statistics.getUidTxBytes(uid, (error, stats) => {
 1. Obtain the historical data traffic of the specified NIC. 
 2. Obtain the historical data traffic of the specified application. 
 
-```js
-let ifaceInfo = {
-    iface: "wlan0",
-    startTime: 1685948465,
-    endTime: 16859485670
+```ts
+import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@ohos.base';
+
+class IfaceInfo {
+  iface: string = "wlan0"
+  startTime: number = 1685948465
+  endTime: number = 16859485670
 }
 // Obtain the historical data traffic of the specified NIC. 
-statistics.getTrafficStatsByIface(ifaceInfo), (error, statsInfo) => {
-    console.log(JSON.stringify(error))
-    console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
-    console.log("getTrafficStatsByIface packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getTrafficStatsByIface packets of sent = " + JSON.stringify(statsInfo.txPackets));
+statistics.getTrafficStatsByIface(new IfaceInfo(), (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
+  console.log(JSON.stringify(error))
+  console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
+  console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
+  console.log("getTrafficStatsByIface packets of received = " + JSON.stringify(statsInfo.rxPackets));
+  console.log("getTrafficStatsByIface packets of sent = " + JSON.stringify(statsInfo.txPackets));
 });
 
-let uidInfo = {
-    ifaceInfo: {
-      iface: "wlan0",
-      startTime: 1685948465,
-      endTime: 16859485670
-    },
-    uid: 20010037
+class UidInfo {
+  uid: number = 20010037
+  ifaceInfo: IfaceInfo = new IfaceInfo()
 }
-// Obtain the historical data traffic of the specified application. 
-statistics.getTrafficStatsByUid(uidInfo), (error, statsInfo) => {
-    console.log(JSON.stringify(error))
-    console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
-    console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
-});
 
+let uidInfo = new UidInfo()
+
+// Obtain the historical data traffic of the specified application. 
+statistics.getTrafficStatsByUid(uidInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
+  console.log(JSON.stringify(error))
+  console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
+  console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
+  console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
+  console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
+});
 ```
 
 ## Subscribing to Traffic Change Events
@@ -141,16 +142,20 @@ statistics.getTrafficStatsByUid(uidInfo), (error, statsInfo) => {
 1. Subscribe to traffic change events.
 2. Unsubscribe from traffic change events.
 
-```js
-
-let callback = data => {
-    console.log("on netStatsChange, data:" + JSON.stringify(data));
+```ts
+import statistics from '@ohos.net.statistics';
+class Data {
+  iface: string = ""
+  uid?: number = 0
 }
+
+let callback = (data: Data) => {
+  console.log('on netStatsChange, data:' + JSON.stringify(data));
+};
 // Subscribe to traffic change events.
 statistics.on('netStatsChange', callback);
 
 // Unsubscribe from traffic change events. You can pass the callback of the **on** function if you want to unsubscribe from a certain type of event. If you do not pass the callback, you will unsubscribe from all events.
 statistics.off('netStatsChange', callback);
 statistics.off('netStatsChange');
-
 ```

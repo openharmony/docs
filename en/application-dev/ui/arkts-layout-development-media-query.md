@@ -46,7 +46,7 @@ listener.on('change', onPortrait);
 
 ## Media Query Conditions
 
-The media query condition consists of the media type (optional), logical operator, and media feature. The logical operator is used to connect different media types and media features. A media feature must be enclosed in parentheses (). There may be multiple media features. The specific rules are as follows:
+The media query condition consists of the media type (optional), logical operator, and media feature. The logical operator is used to connect different media types and media features. A media feature must be enclosed in parentheses (). There may be multiple media features.
 
 
 ### Syntax
@@ -88,7 +88,7 @@ You can use logical operators (**and**, **or**, **not**, and **only**) to compos
 | or             | The **or** operator is used to combine multiple media features into one media query, in a logical OR operation. The query is valid if a media feature is true. For example, **screen and (max-height: 1000) or (round-screen: true)** indicates that the query is valid when the maximum height of the application is 1000 pixel units or the device screen is round.|
 | not            | The **not** operator is used to perform a logical negation for a media query. **true** is returned if the query condition is not met. Otherwise, **false** is returned. For example, **not screen and (min-height: 50) and (max-height: 600)** evaluates to **true** when the height of the application is less than 50 pixel units or greater than 600 pixel units.<br>You must specify the media type when using the **not** operator.|
 | only           | The **only** operator applies the selected style only when the entire expression is matched. It can be used to prevent ambiguity on browsers of earlier versions. The statements that contain both media types and media features produce ambiguity when they are received by some browsers of earlier versions. For example, regarding **screen and (min-height: 50)**, the browsers of earlier versions would mislead this sentence into **screen**, causing the fact that the specified style is applied when only the media type is matched. In this case, the **only** operator can be used to avoid this issue.<br>You must specify the media type when using the **only** operator.|
-| comma (, ) | The **or** operator is used to combine multiple media features into one media query, in a logical OR operation. The query is valid if a media feature is true. The effect of a comma operator is equivalent to that of the **or** operator. For example, **screen and (min-height: 1000), (round-screen: true)** indicates that the query is valid when the minimum height of the application is 1000 pixel units or the device screen is round.|
+| comma (,) | The **or** operator is used to combine multiple media features into one media query, in a logical OR operation. The query is valid if a media feature is true. The effect of a comma operator is equivalent to that of the **or** operator. For example, **screen and (min-height: 1000), (round-screen: true)** indicates that the query is valid when the minimum height of the application is 1000 pixel units or the device screen is round.|
 
 Media range operators include <=, >=, <, and >. For details, see the following table.
 

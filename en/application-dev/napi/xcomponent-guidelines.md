@@ -15,7 +15,7 @@
 |OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size)|Obtains the ID of the **\<XComponent>**.|
 |OH_NativeXComponent_GetXComponentSize(OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height)|Obtains the size of the surface held by the **\<XComponent>**.|
 |OH_NativeXComponent_GetXComponentOffset(OH_NativeXComponent* component, const void* window, double* x, double* y)|Obtains the offset of the surface held by the **\<XComponent>** relative to the upper left corner of the window.|
-|OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent)|Obtains the touch event triggered by the **\<XComponent>**.|
+|OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent)|Obtains the touch event triggered by the **\<XComponent>**. For details about the attribute values in **touchEvent**, see [OH_NativeXComponent_TouchEvent](../reference/native-apis/_o_h___native_x_component___touch_event.md).|
 |OH_NativeXComponent_GetTouchPointToolType(OH_NativeXComponent* component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType* toolType)|Obtains the tool type of the **\<XComponent>** touch point.|
 |OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltX)|Obtains the tilt angle of the **\<XComponent>** touch point relative to the x-axis.|
 |OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltY)|Obtains the tilt angle of the **\<XComponent>** touch point relative to the y-axis.|
@@ -37,9 +37,12 @@
 You can use the **\<XComponent>** to develop EGL/OpenGL ES rendering by using the following code on the ArkTS side:
 
 ```typescript
-XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' })
-  .onLoad((context) => {})
-  .onDestroy(() => {})
+@Builder
+function myComponent() {
+  XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' })
+    .onLoad((context) => {})
+    .onDestroy(() => {})
+}
 ```
 
 ### **onLoad** Event
@@ -64,21 +67,40 @@ The following describes how to use the **\<XComponent>** to call the native APIs
 1. Define the **\<XComponent>** on the GUI.
 
     ```typescript
-    // ...
-    // Define XComponent in an .ets file.
-    XComponent({
-    id: 'xcomponentId',
-    type: XComponentType.SURFACE,
-    libraryname: 'nativerender'
-    })
-    .focusable(true) // Set the component to be able to respond to key events.
-    .onLoad((xComponentContext) => {
-        this.xComponentContext = xComponentContext;
-    })
-    .onDestroy(() => {
-        console.log("onDestroy");
-    })
-    // ...
+    @Entry
+    @Component
+    struct Index {
+        @State message: string = 'Hello World'
+        xComponentContext: object | undefined = undefined;
+        xComponentAttrs: XComponentAttrs = {
+            id: 'xcomponentId',
+            type: XComponentType.SURFACE,
+            libraryname: 'nativerender'
+        }
+
+        build() {
+            Row() {
+            // ...
+            // Define XComponent in an .ets file.
+            XComponent(this.xComponentAttrs)
+                .focusable(true) // Set the component to be able to respond to key events.
+                .onLoad((xComponentContext) => {
+                this.xComponentContext = xComponentContext;
+                })
+                .onDestroy(() => {
+                console.log("onDestroy");
+                })
+            // ...
+            }
+            .height('100%')
+        }
+    }
+
+    interface XComponentAttrs {
+        id: string;
+        type: number;
+        libraryname: string;
+    }
     ```
 
 2. Register the N-API module. For details, see [Using Native APIs in Application Projects](napi-guidelines.md).
@@ -106,7 +128,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
     // Write the API description. You can modify the corresponding parameters as required.
     static napi_module nativerenderModule = {
         .nm_version = 1,
-        .nflag_s = 0,
+        .nm_flags = 0,
         .nm_filename = nullptr,
         // Entry function
         .nm_register_func = Init,
@@ -349,6 +371,12 @@ The following describes how to use the **\<XComponent>** to call the native APIs
        OH_NativeXComponent_TouchEvent touchEvent;
        // Obtain the touch event triggered by the <XComponent>.
        OH_NativeXComponent_GetTouchEvent(component, window, &touchEvent);
+       // Obtain the x coordinate of the <XComponent> touch point relative to the left edge of the <XComponent> and the y coordinate of the <XComponent> touch point relative to the upper edge of the <XComponent>.
+       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
+           "touch info: x = %{public}lf, y = %{public}lf", touchEvent.x, touchEvent.y);
+       // Obtain the x coordinate and y-coordinate of the <XComponent> touch point relative to the upper left corner of the application window where the <XComponent> is located.
+       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
+           "touch info: screenX = %{public}lf, screenY = %{public}lf", touchEvent.screenX, touchEvent.screenY);
        std::string id(idStr);
        PluginRender* render = PluginRender::GetInstance(id);
        if (render != nullptr && touchEvent.type == OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UP) {
@@ -428,7 +456,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
         
         // Set the callback of the mouse event. When the event is triggered, the N-API is called to call the original C++ method.
         mouseCallback_.DispatchMouseEvent = DispatchMouseEventCB;
-        // Set the callback of the mouse event. When the event is triggered, the N-API is called to call the original C++ method.
+        // Set the callback of the mouse pointer hover event. When the event is triggered, the N-API is called to call the original C++ method.
         mouseCallback_.DispatchHoverEvent = DispatchHoverEventCB;
         // Register OH_NativeXComponent_MouseEvent_Callback with NativeXComponent.
         OH_NativeXComponent_RegisterMouseEventCallback(nativeXComponent, &mouseCallback_);
@@ -677,7 +705,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
         GLfloat rightX = rotateY * (M_PI / 180 * 18);
         GLfloat rightY = 0;
 
-        // Determine the vertices for drawing the quadrilateral, which are represented by the percentage of the drawing area.
+        // Determine the vertices for drawing the quadrilateral, which are represented by the percentages of the drawing area.
         const GLfloat shapeVertices[] = {
             centerX / width_, centerY / height_,
             leftX / width_, leftY / height_,
@@ -698,7 +726,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
             rotate2d(centerX, centerY, &leftX, &leftY,rad);
             rotate2d(centerX, centerY, &rightX, &rightY,rad);
             
-            // Determine the vertices for drawing the quadrilateral, which are represented by the percentage of the drawing area.
+            // Determine the vertices for drawing the quadrilateral, which are represented by the percentages of the drawing area.
             const GLfloat shapeVertices[] = {
                     centerX / width_, centerY / height_,
                     leftX / width_, leftY / height_,
@@ -745,7 +773,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
             return;
         }
     
-        // Determine the vertices for drawing the quadrilateral, which are represented by the percentage of the drawing area.
+        // Determine the vertices for drawing the quadrilateral, which are represented by the percentages of the drawing area.
         GLfloat rotateX = 0;
         GLfloat rotateY = FIFTY_PERCENT * height_;
         GLfloat centerX = 0;
@@ -755,7 +783,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
         GLfloat rightX = rotateY * (M_PI / 180 * 18);
         GLfloat rightY = 0;
     
-        // Determine the vertices for drawing the quadrilateral, which are represented by the percentage of the drawing area.
+        // Determine the vertices for drawing the quadrilateral, which are represented by the percentages of the drawing area.
         const GLfloat shapeVertices[] = {
             centerX / width_, centerY / height_,
             leftX / width_, leftY / height_,
@@ -777,7 +805,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
             rotate2d(centerX, centerY, &leftX, &leftY,rad);
             rotate2d(centerX, centerY, &rightX, &rightY,rad);
             
-            // Determine the vertices for drawing the quadrilateral, which are represented by the percentage of the drawing area.
+            // Determine the vertices for drawing the quadrilateral, which are represented by the percentages of the drawing area.
             const GLfloat shapeVertices[] = {
                     centerX / width_, centerY / height_,
                     leftX / width_, leftY / height_,
@@ -894,9 +922,4 @@ The following describes how to use the **\<XComponent>** to call the native APIs
     target_link_libraries(nativerender PUBLIC
         ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib})
     ```
-
-##   
-
- 
-
--  
+  

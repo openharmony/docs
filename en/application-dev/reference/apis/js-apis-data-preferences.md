@@ -920,6 +920,7 @@ FA model:
 ```ts
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 try {
     data_preferences.removePreferencesFromCacheSync(context, 'myStore');
@@ -934,6 +935,8 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
+import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1894,7 +1897,7 @@ try {
 
 ### on('change')
 
-on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
+on(type: 'change', callback: ( key : string ) => void): void
 
 Subscribes to data changes. A callback will be triggered to return the new value if the value of the subscribed key is changed and [flushed](#flush).
 
@@ -1902,24 +1905,21 @@ Subscribes to data changes. A callback will be triggered to return the new value
 
 **Parameters**
 
-| Name  | Type                            | Mandatory| Description                                    |
-| -------- | -------------------------------- | ---- | ---------------------------------------- |
+| Name  | Type    | Mandatory| Description                                    |
+| -------- | -------- | ---- | ---------------------------------------- |
 | type     | string                           | Yes  | Event type. The value is **change**, which indicates data changes. |
-| callback | Callback&lt;{ key : string }&gt; | Yes  | Callback invoked to return data changes.                          |
+| callback | Function | Yes  | Callback invoked to return the result.<br>**key** indicates the key whose value is changed.    |
 
 **Example**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: data_preferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('change', (key: observer) => {
+        preferences.on('change', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'manual', (err: BusinessError) => {
@@ -1947,7 +1947,7 @@ try {
 
 ### on('multiProcessChange')<sup>10+</sup>
 
-on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
+on(type: 'multiProcessChange', callback: ( key : string ) => void): void
 
 Subscribes to inter-process data changes. For the multiple processes holding the same preference file, if the value of the subscribed key changes in any process, the callback in this API will be invoked after [flush()](#flush) is executed.
 
@@ -1957,10 +1957,10 @@ This API can be used with [removePreferencesFromCache](#data_preferencesremovepr
 
 **Parameters**
 
-| Name  | Type                            | Mandatory| Description                                                          |
-| -------- | -------------------------------- | ---- | -------------------------------------------------------------- |
-| type     | string                           | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Callback&lt;{ key : string }&gt; | Yes  | Callback invoked to return data changes between processes.                              |
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
+| callback | Function | Yes  | Callback invoked to return the result.<br>**key** indicates the key whose value is changed.                        |
 
 **Error codes**
 
@@ -1973,9 +1973,6 @@ For details about the error codes, see [User Preference Error Codes](../errorcod
 **Example 1**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
     data_preferences.getPreferences(this.context, options, (err: BusinessError, preferences: data_preferences.Preferences) => {
@@ -1983,7 +1980,7 @@ try {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('multiProcessChange', (key: observer) => {
+        preferences.on('multiProcessChange', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'manual', (err: BusinessError) => {
@@ -2011,9 +2008,6 @@ try {
 **Example 2**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     let options: data_preferences.Options = { name: 'myStore' };
     data_preferences.getPreferences(this.context, options, (err: BusinessError, val: data_preferences.Preferences) => {
@@ -2022,7 +2016,7 @@ try {
             return;
         }
         preferences = val;
-        preferences.on('multiProcessChange', (key: observer) => {
+        preferences.on('multiProcessChange', (key: string) => {
             console.info("The key " + key + " changed.");
             try {
                 data_preferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
@@ -2061,13 +2055,15 @@ try {
             }
             console.info("Successfully put the value of 'startup'.");
 
-            preferences.flush((err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Successfully flushed data.");
-            })
+            if (preferences != null) {
+                preferences.flush((err: BusinessError) => {
+                    if (err) {
+                        console.error("Failed to flush. Cause: " + err);
+                        return;
+                    }
+                    console.info("Successfully flushed data.");
+                })
+            }
         })
     })
 } catch (err) {
@@ -2079,7 +2075,7 @@ try {
 
 ### off('change')
 
-off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
+off(type: 'change', callback?: ( key : string ) => void): void
 
 Unsubscribes from data changes.
 
@@ -2087,24 +2083,22 @@ Unsubscribes from data changes.
 
 **Parameters**
 
-| Name  | Type                            | Mandatory| Description                                      |
-| -------- | -------------------------------- | ---- | ------------------------------------------ |
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | Yes  | Event type. The value is **change**, which indicates data changes. |
-| callback | Callback&lt;{ key : string }&gt; | No  | Callback to unregister. If this parameter is left blank, all callbacks for data changes will be unregistered. |
+| callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for data changes will be unregistered.<br>**key** indicates the key whose value is changed.|
 
 **Example**
 
 ```ts
-interface observer {
-  key: string
-}
+
 try {
-    data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: data_preferences.Preferences) => {
+    data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: data_preferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('change', (key: observer) => {
+        preferences.on('change', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'auto', (err: BusinessError) => {
@@ -2121,7 +2115,7 @@ try {
                 }
                 console.info("Successfully flushed data.");
             })
-            preferences.off('change', (key: observer) => {
+            preferences.off('change', (key: string) => {
                 console.info("The key " + key + " changed.");
             });
         })
@@ -2135,7 +2129,7 @@ try {
 
 ### off('multiProcessChange')<sup>10+</sup>
 
-off(type: 'multiProcessChange', callback?: Callback&lt;{ key : string }&gt;): void
+off(type: 'multiProcessChange', callback?: ( key : string ) => void): void
 
 Unsubscribes from inter-process data changes.
 
@@ -2143,17 +2137,14 @@ Unsubscribes from inter-process data changes.
 
 **Parameters**
 
-| Name  | Type                            | Mandatory| Description                                                          |
-| -------- | -------------------------------- | ---- | -------------------------------------------------------------- |
-| type     | string                           | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Callback&lt;{ key : string }&gt; | No  | Callback to unregister. If this parameter is left blank, all callbacks for **multiProcessChange** will be unregistered.                    |
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
+| callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for **multiProcessChange** will be unregistered.<br>**key** indicates the key whose value is changed.|
 
 **Example**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
     data_preferences.getPreferences(this.context, options, (err: BusinessError, preferences: data_preferences.Preferences) => {
@@ -2161,7 +2152,7 @@ try {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('multiProcessChange', (key: observer) => {
+        preferences.on('multiProcessChange', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'auto', (err: BusinessError) => {
@@ -2178,7 +2169,7 @@ try {
                 }
                 console.info("Successfully flushed data.");
             })
-            preferences.off('multiProcessChange', (key: observer) => {
+            preferences.off('multiProcessChange', (key: string) => {
                 console.info("The key " + key + " changed.");
             });
         })

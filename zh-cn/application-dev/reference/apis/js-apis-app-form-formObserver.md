@@ -28,7 +28,7 @@ import formObserver from '@ohos.app.form.formObserver';
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | type | string | 是   | 填写'formAdd'，表示卡片新增事件。 |
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回新增卡片的RunningFormInfo。 |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回新增卡片的RunningFormInfo。 |
 
 **示例：**
 
@@ -56,8 +56,8 @@ formObserver.on('formAdd', (data: formInfo.RunningFormInfo) => {
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | type | string | 是   | 填写'formAdd'，表示卡片新增事件。 |
-| bundleName | string | 是 | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片新增事件。 |
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回新增卡片的RunningFormInfo。 |
+| hostBundleName | string | 是 | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片新增事件。 |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回新增卡片的RunningFormInfo。 |
 
 
 **示例：**
@@ -88,8 +88,8 @@ formObserver.on('formAdd', bundleName, (data: formInfo.RunningFormInfo) => {
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | type | string | 是   | 填写'formAdd'，表示卡片新增事件。 |
-| bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 否 | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formAdd')的callback一致。|
+| hostBundleName | string | 否 | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 否 | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formAdd')的callback一致。|
 
 
 **示例：**
@@ -124,7 +124,7 @@ formObserver.off('formAdd', bundleName, (data: formInfo.RunningFormInfo) => {
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | type | string | 是   | 填写'formRemove'，表示卡片删除事件。 |
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回删除卡片的RunningFormInfo。 |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回删除卡片的RunningFormInfo。 |
 
 **示例：**
 
@@ -152,8 +152,8 @@ formObserver.on('formRemove', (data: formInfo.RunningFormInfo) => {
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | type | string | 是   | 填写'formRemove'，表示卡片删除事件。 |
-| bundleName | string | 是 | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片删除事件。 |
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回删除卡片的RunningFormInfo。 |
+| hostBundleName | string | 是 | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片删除事件。 |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回删除卡片的RunningFormInfo。 |
 
 
 **示例：**
@@ -183,8 +183,8 @@ off(type: "formRemove", hostBundleName?: string, observerCallback?: Callback&lt;
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | type | string | 是   | 填写'formRemove'，表示卡片删除事件。 |
-| bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 否 | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formRemove')的callback一致。|
+| hostBundleName | string | 否 | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 否 | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formRemove')的callback一致。|
 
 **示例：**
 
@@ -219,7 +219,7 @@ formObserver.off('formRemove', bundleName, (data: formInfo.RunningFormInfo) => {
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | 是   | 仅允许填写'notifyVisible'，表示订阅通知卡片可见的事件。      |
-| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是   | 回调函数。返回订阅通知卡片可见的RunningFormInfo。            |
+| observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是   | 回调函数。返回订阅通知卡片可见的RunningFormInfo。            |
 
 **示例：**
 
@@ -250,8 +250,8 @@ formObserver.on('notifyVisible', (data: formInfo.RunningFormInfo[]) => {
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | 是   | 仅允许填写'notifyVisible'，表示订阅通知卡片可见的事件。      |
-| bundleName | string                                                       | 是   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。 |
-| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是   | 回调函数。返回订阅通知卡片可见的RunningFormInfo。            |
+| hostBundleName | string                                                       | 是   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。 |
+| observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是   | 回调函数。返回订阅通知卡片可见的RunningFormInfo。            |
 
 
 **示例：**
@@ -281,8 +281,8 @@ formObserver.on('notifyVisible', bundleName, (data: formInfo.RunningFormInfo[]) 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | 是   | 仅允许填写'notifyVisible'，表示取消订阅通知卡片为可见的事件。 |
-| bundleName | string                                                       | 否   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。<br> 填写该参数时，与注册时填写bundleName的on接口对应。 |
-| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 否   | 入参，注册时注册进去的callback。缺省时，表示注销对应已注册订阅的回调。<br> 需与对应on('notifyVisible')的callback一致。 |
+| hostBundleName | string                                                       | 否   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。<br> 填写该参数时，与注册时填写bundleName的on接口对应。 |
+| observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 否   | 入参，注册时注册进去的callback。缺省时，表示注销对应已注册订阅的回调。<br> 需与对应on('notifyVisible')的callback一致。 |
 
 
 **示例：**
@@ -319,7 +319,7 @@ formObserver.off('notifyVisible', bundleName, (data: formInfo.RunningFormInfo[])
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | 是   | 仅允许填写'notifyInvisible'，表示订阅卡片不可见的事件。      |
-| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是   | 回调函数。返回订阅通知卡片不可见的RunningFormInfo。          |
+| observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是   | 回调函数。返回订阅通知卡片不可见的RunningFormInfo。          |
 
 **示例：**
 
@@ -350,8 +350,8 @@ formObserver.on('notifyInvisible', (data: formInfo.RunningFormInfo[]) => {
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | 是   | 仅允许填写'notifyInvisible'，表示订阅卡片不可见的事件。      |
-| bundleName | string                                                       | 是   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。 |
-| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是   | 回调函数。返回订阅通知卡片不可见的RunningFormInfo。          |
+| hostBundleName | string                                                       | 是   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。 |
+| observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是   | 回调函数。返回订阅通知卡片不可见的RunningFormInfo。          |
 
 **示例：**
 
@@ -380,8 +380,8 @@ formObserver.on('notifyInvisible', bundleName, (data: formInfo.RunningFormInfo[]
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | 是   | 仅允许填写'notifyInvisible'，表示卡片可见性变更为不可见。    |
-| bundleName | string                                                       | 否   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br>  |
-| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 否   | 入参，注册时注册进去的callback。缺省时，表示注销对应已注册事件回调。<br/> 需与对应on('notifyInvisible')的callback一致。 |
+| hostBundleName | string                                                       | 否   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br>  |
+| observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 否   | 入参，注册时注册进去的callback。缺省时，表示注销对应已注册事件回调。<br/> 需与对应on('notifyInvisible')的callback一致。 |
 
 **示例：**
 
@@ -446,6 +446,52 @@ try {
 }
 ```
 
+## getRunningFormInfos<sup>11+</sup>
+
+getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;, isUnusedIncluded: boolean, hostBundleName?: string): void
+
+获取所有卡片信息。使用callback异步回调。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| callback | AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt; | 是 | 以callback形式返回获取到的所有卡片信息，当获取成功时，回调中的error为undefined，data为查询到的卡片信息。|
+| isUnusedIncluded | boolean | 是 |  是否包含未使用的卡片。 |
+| hostBundleName | string | 否 |  指定要查询的卡片使用方名称，指定后会仅返回该卡片使用方下正在运行的非临时卡片信息。 <br> 缺省时，返回设备上所有正在运行的非临时卡片信息。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. ||
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
+
+try {
+  formObserver.getRunningFormInfos((error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
+    }
+  }, true, 'com.example.ohos.formjsdemo');
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+
 ## getRunningFormInfos
 
 getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
@@ -485,6 +531,55 @@ import Base from '@ohos.base';
 
 try {
   formObserver.getRunningFormInfos('com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
+    console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+
+## getRunningFormInfos<sup>11+</sup>
+
+getRunningFormInfos(isUnusedIncluded: boolean, hostBundleName?: string):  Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+
+获取设备上正在运行的所有非临时卡片信息。使用Promise异步回调。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| isUnusedIncluded | boolean | 是 |  是否包含未使用的卡片。 |
+| hostBundleName | string | 否 |  指定要查询的卡片使用方名称，指定后会仅返回该卡片使用方下正在运行的非临时卡片信息。 <br> 缺省时，返回设备上所有正在运行的非临时卡片信息。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                |
+| :----------------------------------------------------------- | :---------------------------------- |
+| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. ||
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
+
+try {
+  formObserver.getRunningFormInfos(true, 'com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
     console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
   }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
@@ -667,6 +762,60 @@ try {
 }
 ```
 
+## getRunningFormInfoById<sup>11+</sup>
+
+getRunningFormInfoById(formId: string, isUnusedIncluded: boolean): Promise&lt;formInfo.RunningFormInfo&gt;
+
+
+根据formId查询卡片已有的使用方列表信息。使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名      | 类型            | 必填 | 说明                             |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formId     | string | 是   | 卡片标识。 |
+| isUnusedIncluded     | boolean | 是   | 是否包含未使用的卡片。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt; | Promise对象，返回查询到的使用方列表信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000  | An internal functional error occurred. |
+
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
+
+let formId: string = '12400633174999288';
+try {
+  formObserver.getRunningFormInfoById(formId, true).then((data: formInfo.RunningFormInfo) => {
+    console.info('formObserver getRunningFormInfoById success, data:' + JSON.stringify(data));
+  }).catch((error: Base.BusinessError) => {
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+
 ## getRunningFormInfoById
 
 getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.RunningFormInfo&gt;): void
@@ -707,6 +856,55 @@ import Base from '@ohos.base';
 let formId: string = '12400633174999288';
 try {
   formObserver.getRunningFormInfoById(formId,(error: Base.BusinessError, data: formInfo.RunningFormInfo) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log(`formObserver getRunningFormInfoById, data: ${JSON.stringify(data)}`);
+    }
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+
+## getRunningFormInfoById<sup>11+</sup>
+
+getRunningFormInfoById(formId: string, isUnusedIncluded: boolean, callback: AsyncCallback&lt;formInfo.RunningFormInfo&gt;): void
+
+根据卡片标识formId，查询卡片已有的使用方列表信息。使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名      | 类型            | 必填 | 说明                             |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formId     | string | 是   | 卡片标识。 |
+| isUnusedIncluded     | boolean | 是   | 是否包含未使用的卡片。 |
+| callback | AsyncCallback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000  | An internal functional error occurred. |
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
+
+let formId: string = '12400633174999288';
+try {
+  formObserver.getRunningFormInfoById(formId, true, (error: Base.BusinessError, data: formInfo.RunningFormInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {

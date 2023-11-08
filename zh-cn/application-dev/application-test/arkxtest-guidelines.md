@@ -1,9 +1,9 @@
-# 自动化测试框架使用指导
+# 自动化测试框架使用指导 
 
 
 ## 概述
 
-OpenHarmony的自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架(JsUnit)及UI测试框架(UiTest)。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行等内容。
+自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架(JsUnit)及UI测试框架(UiTest)。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行等内容。
 
 
 ## 实现原理
@@ -20,9 +20,6 @@ OpenHarmony的自动化测试框架arkxtest，作为工具集的重要组成部�
 
   ![](figures/TestFlow.PNG)
 
-> **说明：**
->
-> 单元测试框架中的函数具体含义请参考[函数定义](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
 
 ### UI测试框架
 
@@ -35,16 +32,13 @@ OpenHarmony的自动化测试框架arkxtest，作为工具集的重要组成部�
 
 - UI测试框架的能力在OpenHarmony 3.1 release版本之后方可使用，历史版本不支持使用。
 
-- 单元测试框架的部分能力与其版本有关，具体能力与版本匹配信息可见代码仓中的[文档介绍](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md)。
-
-
 ## 环境准备
 
 ### 环境要求
 
-OpenHarmony自动化脚本的编写主要基于DevEco Studio，并建议使用3.0之后的版本进行脚本编写。
+自动化脚本的编写主要基于DevEco Studio，并建议使用3.0之后的版本进行脚本编写。
 
-脚本执行需要PC连接OpenHarmony设备，如RK3568开发板等。
+脚本执行需要PC连接硬件设备，如开发板等。
 
 ### 搭建环境
 
@@ -71,26 +65,30 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 如下示例代码实现的场景是：启动测试页面，检查设备当前显示的页面是否为预期页面。
 
-```js
+```ts
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { BusinessError } from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
 export default function abilityTest() {
-    describe('ActsAbilityTest', () =>{
+  describe('ActsAbilityTest', () =>{
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
-        console.info('Uitest, start ability finished:' + result)
-      }).catch((err: BusinessError) => {
+      const want: Want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
+      }
+      await delegator.startAbility(want, (err: BusinessError, data: void) => {
         console.info('Uitest, start ability failed: ' + err)
-      })
+      });
       await sleep(1000);
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
@@ -109,20 +107,52 @@ export default function abilityTest() {
 
 1.增加依赖导包。
 
-```js
+```ts
 import { Driver, ON } from '@ohos.UiTest'
 ```
 
-2.编写具体测试代码。
+2.编写index.ets页面代码。
 
-```js
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Text("Next")
+          .fontSize(50)
+          .margin({top:20})
+          .fontWeight(FontWeight.Bold)
+        Text("after click")
+          .fontSize(50)
+          .margin({top:20})
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+3.编写具体测试代码。
+
+```ts
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest'
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
@@ -131,11 +161,13 @@ export default function abilityTest() {
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
-        console.info('Uitest, start ability finished:' + result)
-      }).catch((err: BusinessError) => {
+      const want: Want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
+      }
+      await delegator.startAbility(want, (err: BusinessError, data: void) => {
         console.info('Uitest, start ability failed: ' + err)
-      })
+      });
       await sleep(1000);
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
@@ -182,7 +214,7 @@ export default function abilityTest() {
 
 **查看测试用例覆盖率**
 
-执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[OpenHarmony Test代码覆盖率统计](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section1989615417457)
+执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[Test代码覆盖率统计](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section1989615417457)
 
 ### CMD执行
 
@@ -400,6 +432,82 @@ hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool 为本地存�
 	"fingerNumber": "1" //手指数量
 }
 ```
+
+## shell命令方式注入UI模拟操作
+> 支持操作类型：点击 双击 长按 慢滑 快滑 拖拽 输入文字 KeyEvent。
+
+| 配置参数值       | 配置参数含义                                  | 配置参数有值                                                                                                                                                                                              | 示例                                                                                  |
+|-------------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| click       | 模拟单击操作                                  | point_x (必选参数,点击x坐标点)<br/> point_y (必选参数,点击y坐标点)                                                                                                                                                    | hdc shell uitest uiInput click point_x point_y                                      |
+| doubleClick | 模拟双击操作                                  | point_x (必选参数,双击x坐标点)<br/> point_y (必选参数,双击y坐标点)                                                                                                                                                    | hdc shell uitest uiInput doubleClick point_x point_y                                |
+| longClick   | 模拟长按操作                                  | point_x (必选参数,长按x坐标点)<br/> point_y (必选参数,长按y坐标点)                                                                                                                                                    | hdc shell uitest uiInput longClick point_x point_y                                  |
+| fling       | 模拟快滑操作                                  | from_x (必选参数,滑动起点x坐标)<br/> from_y(必选参数,滑动起点y坐标)<br/> to_x(必选参数,滑动终点x坐标)<br/> to_y(必选参数,滑动终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600)<br/> stepLength(可选参数,滑动步长,默认值:滑动距离/50) | hdc shell uitest uiInput fling from_x from_y to_x to_y swipeVelocityPps_ stepLength |
+| swipe       | 模拟慢滑操作                                  | from_x (必选参数,滑动起点x坐标)<br/> from_y(必选参数,滑动起点y坐标)<br/> to_x(必选参数,滑动终点x坐标)<br/> to_y(必选参数,滑动终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600))                                       | hdc shell uitest uiInput swipe from_x from_y to_x to_y swipeVelocityPps_            |
+| drag        | 模拟拖拽操作                                  | from_x (必选参数,拖拽起点x坐标)<br/> from_y(必选参数,拖拽起点y坐标)<br/> to_x(必选参数,拖拽终点x坐标)<br/> to_y(必选参数,拖拽终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600))                                       | hdc shell uitest uiInput drag from_x from_y to_x to_y swipeVelocityPps_             |
+| dircFling   | 模拟指定方向滑动操作                              | direction (可选参数,滑动方向,可选值: [0,1,2,3], 滑动方向: [左,右,上,下],默认值: 0)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600)<br/> stepLength(可选参数,滑动步长,默认值:滑动距离/50)                                                                                                                                  | hdc shell uitest uiInput dircFling direction swipeVelocityPps_ stepLength                                       |
+| input       | 模拟输入框输入文本操作                             | point_x (必选参数,输入框x坐标点)<br/> point_y (必选参数,输入框y坐标点)<br/> input(输入文本)                                                                                                                                 | hdc shell uitest uiInput input point_x point_y text                                 |
+| keyEvent    | 模拟实体按键事件(如:键盘,电源键,返回上一级,返回桌面等),以及组合按键操作 | keyID (必选参数,实体按键对应ID)<br/> keyID2 (可选参数,实体按键对应ID)                                                                                                                                                   | hdc shell uitest uiInput keyEvent keyID                                             |
+
+示例代码1：执行点击事件。
+```shell  
+ hdc shell uitest uiInput click 100 100
+```
+示例代码2：执行双击事件。
+```shell  
+ hdc shell uitest uiInput doubleClick 100 100
+```
+示例代码3：执行长按事件。
+```shell  
+ hdc shell uitest uiInput longClick 100 100
+```
+示例代码4：执行快滑操作。
+```shell  
+hdc shell uitest uiInput fling 0 0 200 200 500 
+```
+示例代码5：执行慢滑操作。
+```shell  
+hdc shell uitest uiInput swipe 0 0 200 200 500 
+```
+示例代码6：执行拖拽操作。
+```shell  
+hdc shell uitest uiInput drag 0 0 100 100 500 
+```
+示例代码6：执行向左滑动操作。
+```shell  
+hdc shell uitest uiInput dircFling 0 500
+```
+示例代码7：执行向右滑动操作。
+```shell  
+hdc shell uitest uiInput dircFling 1 600
+```
+示例代码8：执行向上滑动操作。
+```shell  
+hdc shell uitest uiInput dircFling 2 
+```
+示例代码9：执行向下滑动操作。
+```shell  
+hdc shell uitest uiInput dircFling 3
+```
+
+示例代码10：执行输入框输入操作。
+```shell  
+hdc shell uitest uiInput inputText 100 100 hello
+```
+
+示例代码12：执行返回主页操作。
+```shell  
+hdc shell uitest uiInput keyEvent home
+```
+示例代码13：执行返回上一步操作。
+```shell  
+hdc shell uitest uiInput keyEvent back
+```
+示例代码14：执行组合键复制粘贴操作。
+```shell  
+hdc shell uitest uiInput keyEvent 2072 2038
+```
+
+### 
 
 ## 相关实例
 

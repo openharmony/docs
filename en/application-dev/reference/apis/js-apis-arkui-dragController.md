@@ -19,7 +19,7 @@ import dragController from "@ohos.arkui.dragController";
 
 ## dragController.executeDrag
 
-executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: AsyncCallback&lt;{event: DragEvent, extraParams: string}&gt;): void
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: AsyncCallback&lt; {event: DragEvent, extraParams: string}&gt;): void
 
 Initiates a drag action, with the object to be dragged and the drag information passed in. This API uses an asynchronous callback to return the result.
 
@@ -31,13 +31,13 @@ Initiates a drag action, with the object to be dragged and the drag information 
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
 | custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.|
 | dragInfo | [DragInfo](#draginfo)                                        | Yes  | Drag information.                      |
-| callback | AsyncCallback&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Yes  | Callback used to return the result.        |
+| callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Yes  | Callback used to return the result.        |
 
 **Example**
 
 ```ts
 import dragController from "@ohos.arkui.dragController"
-import UDMF from '@ohos.data.unifiedDataChannel';
+import UDC from '@ohos.data.unifiedDataChannel';
 
 @Entry
 @Component
@@ -57,8 +57,8 @@ struct DragControllerPage {
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDMF.Text()
-              let unifiedData = new UDMF.UnifiedData(text)
+              let text = new UDC.Text()
+              let unifiedData = new UDC.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
@@ -66,15 +66,17 @@ struct DragControllerPage {
                 extraParams: ''
               }
               class tmp{
-                event:DragResult|undefined = undefined
+                event:DragEvent|undefined = undefined
                 extraParams:string = ''
               }
               let eve:tmp = new tmp()
-              dragController.executeDrag(this.DraggingBuilder(), dragInfo, (err, eve) => {
-                if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                // ...
-                } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                // ...
+              dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
+                if(eve.event){
+                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                  // ...
+                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                  // ...
+                  }
                 }
               })
             }
@@ -112,7 +114,7 @@ Initiates a drag action, with the object to be dragged and the drag information 
 import dragController from "@ohos.arkui.dragController"
 import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
-import UDMF from '@ohos.data.unifiedDataChannel';
+import UDC from '@ohos.data.unifiedDataChannel';
 
 @Entry
 @Component
@@ -143,19 +145,20 @@ struct DragControllerPage {
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDMF.Text()
-              let unifiedData = new UDMF.UnifiedData(text)
+              let text = new UDC.Text()
+              let unifiedData = new UDC.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
                 data: unifiedData,
                 extraParams: ''
               }
-              componentSnapshot.createFromBuilder(this.PixmapBuilder()).then((pix: image.PixelMap) => {
+              let pb:CustomBuilder =()=>{():void=>{this.PixmapBuilder()}}
+              componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
                 this.pixmap = pix;
                 let dragItemInfo: DragItemInfo = {
                   pixelMap: this.pixmap,
-                  builder: this.DraggingBuilder(),
+                  builder: ()=>{this.DraggingBuilder()},
                   extraInfo: "DragItemInfoTest"
                 }
 

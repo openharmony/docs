@@ -271,7 +271,7 @@ struct CustomLayout {
     let pos = 0;
     children.forEach((child) => {
       child.layout({ position: { x: pos, y: pos }, constraint: constraint })
-      pos += 100;
+      pos += 70;
     })
   }
 
@@ -396,7 +396,7 @@ struct CustomLayout {
   };
 
   onPlaceChildren(selfLayoutInfo: GeometryInfo, children: Array<Layoutable>, constraint: ConstraintSizeOptions) {
-    let startPos = 400;
+    let startPos = 300;
     children.forEach((child) => {
       let pos = startPos - child.measureResult.height;
       child.layout({ x: pos, y: pos })

@@ -5765,7 +5765,7 @@ Opens a session to obtain the challenge value. This API uses a promise to return
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   try {
-    userIDM.openSession().then((challengechallenge: Uint8Array) => {
+    userIDM.openSession().then((challenge: Uint8Array) => {
         console.info('openSession challenge = ' + JSON.stringify(challenge));
     }).catch((err: BusinessError) => {
         console.info('openSession error = ' + JSON.stringify(err));
@@ -6036,7 +6036,7 @@ Deletes user credential information.
 **Example**
   ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
-  let credentialId: Uint8Array = new Uint8Array([0]);
+  let credentialId: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0]);
   let token: Uint8Array = new Uint8Array([0]);
   try {
     userIDM.delCred(credentialId, token, {
@@ -6819,7 +6819,7 @@ Defines the options for obtaining domain account information.
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
-Defines the options for obtaining domain account information using a plugin. The **GetDomainAccountInfoPluginOptions** class inherits from [**GetDomainAccountInfoOptions**](#getdomainaccountinfooptions10).
+Defines the options for the domain plug-in to obtain the domain account information. The **GetDomainAccountInfoPluginOptions** class inherits from [**GetDomainAccountInfoOptions**](#getdomainaccountinfooptions10).
 
 **System API**: This is a system API.
 

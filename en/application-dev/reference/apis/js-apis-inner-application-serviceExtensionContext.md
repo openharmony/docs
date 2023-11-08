@@ -45,7 +45,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -111,7 +111,7 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
@@ -187,7 +187,7 @@ Starts an ability with the start options specified. This API uses an asynchronou
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
@@ -266,7 +266,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -342,7 +342,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
@@ -424,7 +424,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
@@ -503,7 +503,7 @@ Starts a new ServiceExtensionAbility. This API uses an asynchronous callback to 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -566,7 +566,7 @@ Starts a new ServiceExtensionAbility. This API uses a promise to return the resu
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 
 **Return value**
 
@@ -640,7 +640,7 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -712,7 +712,7 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 
 **Return value**
@@ -787,7 +787,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -858,7 +858,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -933,7 +933,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
@@ -1011,7 +1011,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1071,7 +1071,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 
 **Return value**
 
@@ -1142,7 +1142,7 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -1210,7 +1210,7 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 
 **Return value**
@@ -1365,7 +1365,7 @@ Connects this ability to a ServiceExtensionAbility.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Callback used to return the information indicating that the connection is successful, interrupted, or failed.|
 
 **Return value**
@@ -1436,7 +1436,7 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | options | ConnectOptions | Yes| Remote object instance.|
 
@@ -1625,7 +1625,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
 
 **Return value**
 
@@ -1738,7 +1738,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1809,7 +1809,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
@@ -1886,7 +1886,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Error codes**
@@ -1964,7 +1964,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
 | accountId | number | Yes| ID of a system account. The value **-1** indicates the current user. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 
 **Return value**

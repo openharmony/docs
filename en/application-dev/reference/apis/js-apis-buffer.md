@@ -16,23 +16,23 @@ import buffer from '@ohos.buffer';
 
 ## BufferEncoding
 
-Enumerates the supported encoding formats of strings.
+Enumerates the supported encoding formats.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Encoding Format   | Description                |
+| Type   | Description                |
 | ------- | -------------------- |
-| 'ascii' | ASCII format, which is case insensitive.|
-| 'utf8' | UTF-8 format, which is case insensitive.|
-| 'utf-8' | UTF-8 format, which is case insensitive.|
-| 'utf16le' | UTF-16 little-endian format, which is case insensitive.|
-| 'ucs2' | UTF-16 little-endian format, which is case insensitive.|
-| 'ucs-2' | UTF-16 little-endian format, which is case insensitive.|
-| 'base64' | Base64 format, which is case insensitive.|
-| 'base64url' | Base64 format, which is case insensitive.|
-| 'latin1' | ASCII format, which is case insensitive.|
-| 'binary' | Binary format, which is case insensitive.|
-| 'hex' | Hexadecimal format, which is case insensitive.|
+| 'ascii' | ASCII format.|
+| 'utf8' | UTF-8 format.|
+| 'utf-8' | UTF-8 format.|
+| 'utf16le' | UTF-16LE format.|
+| 'ucs2' | Alias of UTF-16LE.|
+| 'ucs-2' | Alias of UTF-16LE.|
+| 'base64' | Base64 format.|
+| 'base64url' | Base64URL format.|
+| 'latin1' | ASCII format.|
+| 'binary' | Binary format.|
+| 'hex' | Hexadecimal format.|
 
 ## buffer.alloc
 

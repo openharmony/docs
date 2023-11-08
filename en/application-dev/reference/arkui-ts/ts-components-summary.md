@@ -326,4 +326,14 @@
 
 - [UIExtensionComponent](ts-container-ui-extension-component.md)
 
-    A component that is used to embed UIs provided by other applications in the local application UI. 
+    A component that is used to embed UIs provided by other applications in the local application UI.
+
+- [LocationButton](ts-security-components-locationbutton.md)
+
+    A component that is used to obtain temporary precise location permission from the user by their touching the component, eliminating the need for a permission request dialog box.
+- [PasteButton](ts-security-components-pastebutton.md)
+
+    A component that is used to obtain temporary pasteboard permission from the user by their touching the component, eliminating the need for a permission request dialog box.
+- [SaveButton](ts-security-components-savebutton.md)
+
+    A component that is used to obtain temporary storage permission from the user by their touching the component, eliminating the need for a permission request dialog box.

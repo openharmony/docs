@@ -8,7 +8,7 @@
 
 **错误信息**
 
-The resId invalid.
+If the resId invalid.
 
 **错误描述**
 
@@ -26,7 +26,7 @@ The resId invalid.
 
 **错误信息**
 
-The resource not found by resId.
+If the resource not found by resId.
 
 **错误描述**
 
@@ -46,7 +46,7 @@ The resource not found by resId.
 
 **错误信息**
 
-The resName invalid.
+If the resName invalid.
 
 **错误描述**
 
@@ -64,7 +64,7 @@ The resName invalid.
 
 **错误信息**
 
-The resource not found by resName.
+If the resource not found by resName.
 
 **错误描述**
 
@@ -84,7 +84,7 @@ The resource not found by resName.
 
 **错误信息**
 
-The resource not found by path.
+If the resource not found by path.
 
 **错误描述**
 
@@ -102,7 +102,7 @@ The resource not found by path.
 
 **错误信息**
 
-the resource re-ref too much.
+If the resource re-ref too much.
 
 **错误描述**
 
@@ -120,7 +120,7 @@ the resource re-ref too much.
 
 **错误信息**
 
-The resource obtained by resId formatting error.
+If the resource obtained by resId formatting error.
 
 **错误描述**
 
@@ -142,7 +142,7 @@ resId获取的字符串资源格式化失败。
 
 **错误信息**
 
-The resource obtained by resName formatting error.
+If the resource obtained by resName formatting error.
 
 **错误描述**
 
@@ -164,7 +164,7 @@ resName获取的字符串资源格式化失败。
 
 **错误信息**
 
-Get system resource manager failed.
+If application can't access system resource.
 
 **错误描述**
 
@@ -182,7 +182,7 @@ Get system resource manager failed.
 
 **错误信息**
 
-Overlay resource path is invalid.
+If the overlay path is invalid.
 
 **错误描述**
 

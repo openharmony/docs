@@ -1,29 +1,29 @@
 # Packing Tool
 ## Overview
 
-The packing tool packs compiled files for installation and release. The packing tool supports the generation of HAP (an application package), APP (application set to launch to the application market), HQF (quick fix package), APPQF (quick fix package to launch to the application market), HAR (statically shared library), and HSP (dynamically shared library) files. The unpacking tool is used to unpack the HAP, APP, HQF, APPQF, HAR, and HSP files and parse the HAP, HSP, APP, and APPQF files. Generally, the packing process is automatically carried out in DevEco Studio. However, you can also use the JAR package of the packing tool to pack files. The JAR package is stored in the **toolchains** directory in the SDK path.
+The packing tool packs compiled files for installation and release. The packing tool supports the generation of HAP (application package), APP (application set to launch to the application market), HQF (quick fix package), APPQF (quick fix package to launch to the application market), HAR (statically shared library), and HSP (dynamically shared library) files. Generally, the packing process is automatically carried out in DevEco Studio. However, you can also use the JAR package of the packing tool to pack files. The JAR package is stored in the **toolchains** directory of the SDK.
 
 ## Packing Commands
 
 ### Packing Commands for HAP Files
 
-You can use the JAR package of the packing tool to generate an HAP file by importing packing options and file paths.
+You can use the JAR package of the packing tool to generate an HAP file by passing in packing options and file paths.
 
 #### Example
 
 - A packing command example in the stage model:
 
 
-  ```
-  java -jar app_packing_tool.jar --mode hap --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path <option> --force true
-  ```
+```
+java -jar app_packing_tool.jar --mode hap --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path <option> --force true
+```
 
 - A packing command example in the FA model:
 
 
-  ```
-  java -jar app_packing_tool.jar --mode hap --json-path <option> --maple-so-path [option] --profile-path [option] --maple-so-dir [option] --dex-path [option] --lib-path [option] --resources-path [option] --index-path [option] --out-path <option> --force [option]
-  ```
+```
+java -jar app_packing_tool.jar --mode hap --json-path <option> --maple-so-path [option] --profile-path [option] --maple-so-dir [option] --dex-path [option] --lib-path [option] --resources-path [option] --index-path [option] --out-path <option> --force [option]
+```
 
 #### Parameters
 
@@ -33,7 +33,7 @@ You can use the JAR package of the packing tool to generate an HAP file by impor
 | --json-path      | Yes    | NA                   | Path of the JSON file. The file name must be **config.json** in the FA model and **module.json** in the stage model.| NA         |
 | --profile-path   | No    | NA                   | Path of the **CAPABILITY.profile** file.                                  | NA         |
 | --maple-so-path  | No    | NA                   | Path of the Maple SO file. The file name extension must be .so. If there are multiple SO files, separate them with commas (,).      | NA         |
-| --maple-so-dir   | No    | NA                   | Path of the maple SO directory.                                          | NA         |
+| --maple-so-dir   | No    | NA                   | Path of the maple SO directory (folder).                                          | NA         |
 | --dex-path       | No    | NA                   | Path of the DEX file. The file name extension must be .dex. If there are multiple DEX files, separate them with commas (,).<br>The value can also be the directory (folder) where the DEX file is stored.| NA         |
 | --lib-path       | No    | NA                   | Path of the library file.                                                | NA         |
 | --resources-path | No    | NA                   | Path of the resource file.                                          | NA         |
@@ -50,7 +50,7 @@ You can use the JAR package of the packing tool to generate an HAP file by impor
 
 ### Packing Commands for HAR Files
 
-You can use the JAR package of the packing tool to generate an HAR file by importing packing options and file paths.
+You can use the JAR package of the packing tool to generate an HAR file by passing in packing options and file paths.
 
 #### Example
 
@@ -72,7 +72,7 @@ java -jar app_packing_tool.jar --mode har --json-path [option] --jar-path [optio
 
 ### Packing Commands for APP Files
 
-You can use the JAR package of the packing tool to generate an APP file by importing packing options and file paths. The APP file is used to release the application to the application market.
+You can use the JAR package of the packing tool to generate an APP file by passing in packing options and file paths. The APP file is used to release the application to the application market.
 
 
 #### Example
@@ -113,9 +113,9 @@ java -jar app_packing_tool.jar --mode multiApp --hap-list [option] --hsp-list [o
 | Name        | Mandatory| Option       | Description                                                                                                 |
 |------------|-------|-----------|-----------------------------------------------------------------------------------------------------|
 | --mode     | Yes    | multiApp  | Packing mode. Each HAP file to pack into the APP file must pass the validity check.                                                           |
-| --hap-list | No    | Path of the HAP files   | Path of the HAP files. The file name extension must be .hap. If there are multiple HAP files, separate them with commas (,).<br>The value can also be the directory (folder) where the HAP file is stored.                                         |
-| --hsp-list | No    | Path of the HSP files   | Path of the HSP files. The file name extension must be .hsp. If there are multiple HSP files, separate them with commas (,).<br>The value can also be the directory (folder) where the HSP file is stored.                                         |
-| --app-list | No    | Path of the APP files   | Path of the APP files. The file name extension must be .app. If there are multiple APP files, separate them with commas (,).<br>The value can also be the directory (folder) where the APP file is stored.<br>You must specify **--hap-list**, **--hsp-list**, or **--app-list**, or any of their combinations.|
+| --hap-list | No    | Path of the HAP files   | Path of the HAP files. The file name extension must be .hap. If there are multiple HAP files, separate them with commas (,).<br>The value can also be the directory (folder) where the HAP files are stored.                                         |
+| --hsp-list | No    | Path of the HSP files   | Path of the HSP files. The file name extension must be .hsp. If there are multiple HSP files, separate them with commas (,).<br>The value can also be the directory (folder) where the HSP files are stored.                                         |
+| --app-list | No    | Path of the APP files   | Path of the APP files. The file name extension must be .app. If there are multiple APP files, separate them with commas (,).<br>The value can also be the directory (folder) where the APP files are stored.<br>You must specify **--hap-list**, **--hsp-list**, or **--app-list**, or any of their combinations.|
 | --out-path | Yes    | NA | Path of the target file. The file name extension must be .hqf.|
 | --force    | No    | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing.                                                                 |
 
@@ -125,7 +125,7 @@ Ensure that the values of **bundleName**, **versionCode**, **versionName**, **mi
 
 ### Packing Commands for HQF Files
 
-If you find detects in the application and want to rectify the defects quickly, you can use HQF files. You can use the JAR package of the packing tool to generate an HQF file by importing packing options and file paths.
+If you find detects in the application and want to rectify the defects quickly, you can use HQF files. You can use the JAR package of the packing tool to generate an HQF file by passing in packing options and file paths.
 
 #### Example
 
@@ -146,7 +146,7 @@ java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <optio
 
 ### Packing Commands for APPQF Files
 
-An APPQF file consists of one or more HQF files. These HQF files are split from an APPQF file in the application market and then distributed to specific devices. You can use the JAR package of the packing tool to generate an APPQF file by importing packing options and file paths.
+An APPQF file consists of one or more HQF files. These HQF files are split from an APPQF file in the application market and then distributed to specific devices. You can use the JAR package of the packing tool to generate an APPQF file by passing in packing options and file paths.
 
 #### Example
 
@@ -166,7 +166,7 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <option> --out-path <opti
 
 ### Packing Commands for HSP Files
 
-HSP files enable multiple HAPs to share files. You can use the JAR package of the packing tool to generate an HSP file by importing packing options and file paths.
+HSP files enable file sharing among multiple HAPs. You can use the JAR package of the packing tool to generate an HSP file by passing in packing options and file paths.
 
 #### Example
 ```
@@ -189,3 +189,22 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 | --ets-path       | No    | NA          | Path of the ETS file.                                             |
 | --out-path       | Yes    | NA          | Path of the target file. The file name extension must be .hsp.                                    |
 | --force          | No    | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing.                       |
+
+### versionNormalize Command
+
+For the same APP, the values of **versionName** and **versionCode** of all the HAP and HSP files must be the same. When only one HAP or HSP needs to be updated, you can run the **versionNormalize** command to unify the versions of these HAP or HSP files. This command changes the version numbers and names of the HAP and HSP files passed in, and generates in the specified directory new HAP and HSP files with the same names and a **version_record.json** file to record their original version numbers and names.
+
+#### Example
+```
+java -jar path\app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path path\out\
+```
+
+#### Parameters
+
+| Name            | Mandatory| Option              | Description                                                               |
+|----------------|-------|------------------|-------------------------------------------------------------------|
+| --mode         | Yes    | versionNormalize | Command type.                                                            |
+| --input-list   | Yes    | Path of the HAP or HSP files      | Path of the HAP or HSP files. The file name extension must be .hap or .hsp. If there are multiple HAP or HSP files, separate them with commas (,).<br>The value can also be the directory (folder) where the HAP and HSP files are stored. If this is the case, all HAP and HSP files in the directory (folder) are read.|
+| --version-code | Yes    | Internal version number             | New internal version number of the HAP and HSP files. The value must be an integer and cannot be earlier than the version numbers of all the HAP and HSP files passed in.           |
+| --version-name | Yes    | Version name            | New version name of the HAP and HSP files.                                   |
+| --out-path     | Yes    | NA               | Target file path, which must be a directory (folder).                                                  |

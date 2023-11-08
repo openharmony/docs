@@ -1,6 +1,6 @@
 # NotificationCommonDef
 
-描述BundleOption信息
+描述BundleOption信息。
 
 > **说明：**
 >

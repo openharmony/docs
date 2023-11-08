@@ -99,26 +99,17 @@ The lanes attribute of the **\<List>** component is useful in building a list th
 
 
 ```ts
-class Tmp{
-  minLength:number = 200
-  maxLength:number = 300
-}
-let Mn:Tmp = new Tmp()
 List() {
   ...
 }
-.lanes(Mn)
+.lanes(2)
 ```
 
 If set to a value of the LengthConstrain type, the **lanes** attribute determines the number of rows or columns based on the LengthConstrain settings and the size of the **\<List>** component.
 
 
 ```ts
-class Tmp{
-  minLength:number = 200
-  maxLength:number = 300
-}
-let mn:Tmp = new Tmp()
+let mn:LengthConstrain = { 'minLength': 200,'maxLength': 300}
 List() {
   ...
 }
@@ -155,6 +146,7 @@ The list displays a collection of items horizontally or vertically and can scrol
 ![en-us_image_0000001563060761](figures/en-us_image_0000001563060761.png)
 
 ```ts
+@Entry
 @Component
 struct CityList {
   build() {
@@ -258,7 +250,7 @@ struct SimpleContacts {
           .width('100%')
           .justifyContent(FlexAlign.Start)
         }
-      }, ((item:Contact):string => item.key))
+      }, (item:Contact) => item.key.toString())
     }
     .width('100%')
   }
@@ -297,12 +289,20 @@ To add dividers between items in a **\<List>** component, you can use its **divi
 
 
 ```ts
-let opt = {
-  'strokeWidth': 1,
-  'startMargin': 60,
-  'endMargin': 10,
-  'color': '#ffe9f0f0'
-} as Record<string,number|string>
+class dividerTmp{
+  strokeWidth: Length = 1
+  startMargin: Length = 60
+  endMargin: Length = 10
+  color: ResourceColor ='#ffe9f0f0'
+
+  constructor(strokeWidth: Length,startMargin: Length,endMargin: Length,color: ResourceColor) {
+    this.strokeWidth = strokeWidth
+    this.startMargin = startMargin
+    this.endMargin = endMargin
+    this.color = color
+  }
+}
+let opt:dividerTmp = new dividerTmp(1,60,10,'#ffe9f0f0')
 List() {
   ...
 }
@@ -353,9 +353,9 @@ A **\<List>** component allows one or more **\<ListItemGroup>** child components
 
 
 ```ts
+@Entry
 @Component
 struct ContactsList {
-  ...
   
   @Builder itemHead(text: string) {
     // Header of the list group, corresponding to the group A and B locations.
@@ -370,15 +370,11 @@ struct ContactsList {
     List() {
       ListItemGroup({ header: this.itemHead('A') }) {
         // Render the repeated list items of group A.
-        ...
       }
-      ...
 
       ListItemGroup({ header: this.itemHead('B') }) {
         // Render the repeated list items of group B.
-        ...
       }
-      ...
     }
   }
 }
@@ -436,7 +432,7 @@ List() {
         ForEach(item.contacts, () => {
           ListItem() {
           }
-        }, ((item: cgtmpf): string => item.key))
+        }, (item: cgtmpf) => item.key.toString())
       }
     }
   })
@@ -460,11 +456,44 @@ Setting the **sticky** attribute to **StickyStyle.Header** implements a sticky h
 
 
 ```ts
+import util from '@ohos.util';
+class cgtmpf{
+  title:string = ''
+  contacts:Array<object>|null = null
+  key:string = ''
+}
+class Contact {
+  key: string = util.generateRandomUUID(true);
+  name: string;
+  icon: Resource;
+
+  constructor(name: string, icon: Resource) {
+    this.name = name;
+    this.icon = icon;
+  }
+}
+export let contactsGroups: object[] = [
+  {
+    title: 'A',
+    contacts: [
+      new Contact('Alice', $r('app.media.iconA')),
+      new Contact ('Ann', $r ('app.media.iconB')),
+      new Contact('Angela', $r('app.media.iconC')),
+    ],
+  } as cgtmpf,
+  {
+    title: 'B',
+    contacts: [
+      new Contact ('Ben', $r ('app.media.iconD')),
+      new Contact ('Bryan', $r ('app.media.iconE')),
+    ],
+  } as cgtmpf,
+]
+@Entry
 @Component
 struct ContactsList {
   // Define the contactsGroups array.
-  ...
- 
+
   @Builder itemHead(text: string) {
     // Header of the list group, corresponding to the group A and B locations.
     Text(text)
@@ -484,7 +513,7 @@ struct ContactsList {
             ForEach(item.contacts, () => {
               ListItem() {
               }
-            }, ((item:cgtmpf):string => item.key))
+            }, (item:cgtmpf) => item.key.toString())
           }
         }
       })
@@ -552,31 +581,24 @@ When the list scrolls, the **selectedIndex** value of the letter to highlight in
 
 
 ```ts
-...
 const alphabets = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
   'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
 @Entry
 @Component
 struct ContactsList {
   @State selectedIndex: number = 0;
   private listScroller: Scroller = new Scroller();
-  ...
 
   build() {
     Stack({ alignContent: Alignment.End }) {
-      List({ scroller: this.listScroller }) {
-        ...
-      }
+      List({ scroller: this.listScroller }) {}
       .onScrollIndex((firstIndex: number) => {
         // Recalculate the value of this.selectedIndex in the alphabetical index bar based on the index of the item to which the list has scrolled.
       })
-      ...
 
       // <AlphabetIndexer> component
       AlphabetIndexer({ arrayValue: alphabets, selected: 0 })
         .selected(this.selectedIndex)
-      ...
     }
   }
 }
@@ -601,17 +623,6 @@ In the example of the message list, the **end** parameter is set to a custom del
 
 
 ```ts
-class swtmp{
-  temp:Record<string,object> = {}
-  itemEnd:Function|undefined = undefined
-  get(index:number){
-    if(this.itemEnd){
-      this.temp = {'end':this.itemEnd(this, index)}
-    }
-    return this.temp
-  }
-}
-let swipertmp:swtmp = new swtmp()
 @Entry
 @Component
 struct MessageList {
@@ -629,21 +640,18 @@ struct MessageList {
     .onClick(() => {
       this.messages.splice(index, 1);
     })
-    ...
   }
 
   build() {
-    ...
       List() {
         ForEach(this.messages, (item:MessageList, index:number|undefined) => {
           if(index){
             ListItem() {
             }
-            .swipeAction(swipertmp.get(index)) // Set the swipe action.
+            .swipeAction({ end: ()=>{this.itemEnd(index)} }) // Set the swipe action.
           }
-        }, ((item:MessageList):string => item.id.toString()))
+        }, (item:MessageList) => item.id.toString())
       }
-    ...
   }
 }
 ```
@@ -725,15 +733,15 @@ The process of implementing the addition feature is as follows:
 
     Then, initialize the to-do list data and options:
 
-   ```ts
-   @State toDoData: ToDo[] = [];
-    export let availableThings: string[] = ['Reading', 'Fitness', 'Travel','Music','Movie', 'Singing'];
-   ```
+  ```ts
+  @State toDoData: ToDo[] = [];
+  export let availableThings: string[] = ['Reading', 'Fitness', 'Travel','Music','Movie', 'Singing'];
+  ```
 
    Finally, build the list layout and list items:
 
-   ```ts
-    export class ToDo {
+  ```ts
+  export class ToDo {
     key: string = util.generateRandomUUID(true);
     name: string;
     toDoData:ToDo[] = [];
@@ -741,15 +749,15 @@ The process of implementing the addition feature is as follows:
     constructor(name: string) {
       this.name = name;
     }
-    }
-    let todo:ToDo = new ToDo()
-   List({ space: 10 }) {
-     ForEach(todo.toDoData, (toDoItem:ToDo) => {
-       ListItem() {
-       }
-     }, ((toDoItem:ToDo):string => toDoItem.key))
-   }
-   ```
+  }
+  let todo:ToDo = new ToDo()
+  List({ space: 10 }) {
+    ForEach(todo.toDoData, (toDoItem:ToDo) => {
+      ListItem() {
+      }
+    }, (toDoItem:ToDo) => toDoItem.key.toString())
+  }
+  ```
 
 2. Provide the entry for adding a list item, that is, add a click event to the add button.
 
@@ -806,7 +814,7 @@ The process of implementing the deletion feature is as follows:
       })
     )
   )
-  ```
+   ```
 
 2. Respond to the selection by the user and record the list items to be deleted.
    In this example of the to-do list, respond to the selection by correctly displaying the check mark and record all the selected list items.
@@ -843,9 +851,8 @@ The process of implementing the deletion feature is as follows:
           }
         }
       })
-      ...
   }
-  ```
+   ```
 
 3. Respond to the user's clicking the delete button and delete the corresponding items from the list.
 
@@ -879,7 +886,6 @@ The process of implementing the deletion feature is as follows:
       todolist.toDoData = leftData;
       todolist.isEditMode = false;
     })
-    ...
   ```
 
 

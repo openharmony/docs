@@ -14,6 +14,10 @@ USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发
 | OH_Usb_GetConfigDescriptor(uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config) | 获取配置描述符。请在描述符使用完后使用OH_Usb_FreeConfigDescriptor()释放描述符，否则会造成内存泄露。 |
 | OH_Usb_FreeConfigDescriptor(const struct UsbDdkConfigDescriptor *const config) | 释放配置描述符，请在描述符使用完后释放描述符，否则会造成内存泄露。 |
 | OH_Usb_ClaimInterface(uint64_t deviceId, uint8_t interfaceIndex, uint64_t *interfaceHandle) | 声明接口。 |
+| OH_Usb_SelectInterfaceSetting(uint64_t interfaceHandle, uint8_t settingIndex) | 激活接口的备用设置。 |
+| OH_Usb_GetCurrentInterfaceSetting(uint64_t interfaceHandle, uint8_t \*settingIndex) | 获取接口当前激活的备用设置。 |
+| OH_Usb_SendControlReadRequest(uint64_t interfaceHandle, const struct UsbControlRequestSetup \*setup, uint32_t timeout, uint8_t \*data, uint32_t \*dataLen) | 发送控制读请求，该接口为同步接口。 |
+| OH_Usb_SendControlWriteRequest(uint64_t interfaceHandle, const struct UsbControlRequestSetup \*setup, uint32_t, const uint8_t \*data, uint32_t dataLen) | 发送控制写请求，该接口为同步接口。 |
 | OH_Usb_ReleaseInterface(uint64_t interfaceHandle) | 释放接口。 |
 | OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMap *devMmap) | 发送管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。 |
 | OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap) | 创建缓冲区。请在缓冲区使用完后，调用OH_Usb_DestroyDeviceMemMap()销毁缓冲区，否则会造成资源泄露。 |
@@ -63,8 +67,46 @@ libusb_ndk.z.so
     // 释放配置描述符
     OH_Usb_FreeConfigDescriptor(config);
     ```
+3. **获取当前激活接口的备用设置及激活备用设置**。使用 **usb_ddk_api.h** 的 **OH_Usb_GetCurrentInterfaceSetting** 获取备用设置，并使用 **OH_Usb_SelectInterfaceSetting** 激活备用设置
 
-3. **创建内存映射缓冲区及发送请求**。使用 **usb_ddk_api.h** 的**OH_Usb_CreateDeviceMemMap**接口创建内存映射缓冲区**devMmap**，并使用**OH_Usb_SendPipeRequest**发送请求。
+    ```c++
+    uint8_t settingIndex = 0;
+    // 接口获取备用设置
+    OH_Usb_GetCurrentInterfaceSetting(interfaceHandle, &settingIndex);
+
+    // 激活备用设置
+    OH_Usb_SelectInterfaceSetting(interfaceHandle, &settingIndex);
+    ```
+4. **发送控制读请求、发送控制写请求**。使用 **usb_ddk_api.h** 的**OH_Usb_SendControlReadRequest**发送控制读请求，或者使用**OH_Usb_SendControlWriteRequest**发送控制写请求。
+
+    ```c++
+        // 超时时间，设置为1s;
+    uint32_t timeout = 1000;
+
+    struct UsbControlRequestSetup setupRead;
+    setupRead.bmRequestType	= 0x80;
+    setupRead.bRequest = 0x08;
+    setupRead.wValue = 0;
+    setupRead.wIndex = 0;
+    setupRead.wLength = 0x01;
+    uint8_t dataRead[256] = {0};
+    uint32_t dataReadLen = 256;
+    // 发送控制读请求
+    OH_Usb_SendControlReadRequest(interfaceHandle, &setupRead, timeout, dataRead, &dataReadLen);
+
+    struct UsbControlRequestSetup setupWrite;
+    setupWrite.bmRequestType = 0;
+    setupWrite.bRequest = 0x09;
+    setupWrite.wValue = 1;
+    setupWrite.wIndex = 0;
+    setupWrite.wLength = 0;
+    uint8_t dataWrite[256] = {0};
+    uint32_t dataWriteLen = 256;
+    // 发送控制写请求
+    OH_Usb_SendControlWriteRequest(interfaceHandle, &setupWrite, timeout, dataWrite, &dataWriteLen);
+    ```
+
+5. **创建内存映射缓冲区及发送请求**。使用 **usb_ddk_api.h** 的**OH_Usb_CreateDeviceMemMap**接口创建内存映射缓冲区**devMmap**，并使用**OH_Usb_SendPipeRequest**发送请求。
 
     ```c++
     struct UsbDeviceMemMap *devMmap = nullptr;
@@ -80,7 +122,7 @@ libusb_ndk.z.so
     OH_Usb_SendPipeRequest(&pipe, devMmap);
     ```
 
-4. **释放资源**。在所有请求处理完毕，程序退出前，使用 **usb_ddk_api.h** 的 **OH_Usb_DestroyDeviceMemMap** 接口销毁缓冲区。使用**OH_Usb_ReleaseInterface**释放接口。使用**OH_Usb_Release**释放USB DDK。
+6. **释放资源**。在所有请求处理完毕，程序退出前，使用 **usb_ddk_api.h** 的 **OH_Usb_DestroyDeviceMemMap** 接口销毁缓冲区。使用**OH_Usb_ReleaseInterface**释放接口。使用**OH_Usb_Release**释放USB DDK。
 
     ```c++
     // 销毁缓冲区

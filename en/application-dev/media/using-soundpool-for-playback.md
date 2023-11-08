@@ -18,6 +18,12 @@ During application development, you must subscribe to playback state changes and
 
     ```ts
     let soundPool: media.SoundPool;
+    let audioRendererInfo: audio.AudioRendererInfo = {
+        content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
+        usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+        rendererFlags : 1
+    }
+
     media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
       if (soundpool_ != null) {
         soundPool = soundpool_;
@@ -25,7 +31,7 @@ During application development, you must subscribe to playback state changes and
       } else {
         console.error('create SoundPool fail');
       }
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       console.error(`soundpool catchCallback, error message:${error.message}`);
     });
     ```
@@ -53,23 +59,23 @@ During application development, you must subscribe to playback state changes and
     ```ts
     soundPool.on('loadComplete', (soundId_: number) => {
       console.info('loadComplete, soundId: ' + soundId_);
-    })
+    });
     ```
 
 4. Call **on('playFinished')** to listen for the completion of sound playing.
-   
+     
     ```ts
     soundPool.on('playFinished', () => {
       console.info("recive play finished message");
-    })
+    });
     ```
 
 5. Call **on('error')** to listen for errors that may occur.
-   
+     
     ```ts
     soundPool.on('error', (error) => {
       console.info('error happened,message is :' + error.message);
-    })
+    });
     ```
 
 6. Set the playback parameters and call **play()** to play the sound. If **play()** with the same sound ID passed in is called for multiple times, the sound is played only once.
@@ -77,37 +83,37 @@ During application development, you must subscribe to playback state changes and
     ```ts
     let soundID: number;
     let streamID: number;
-    let PlayParameters: media.PlayParameters = {
-        loop: number = 0, // The sound does not loop. It is played once.
-        rate: AudioRendererRate = 2, // The sound is played at twice its original frequency.
-        leftVolume: number = 0.5, // range = 0.0-1.0
-        rightVolume: number = 0.5, // range = 0.0-1.0
-        priority: number = 0 // The sound playback has the lowest priority.
+    let playParameters: media.PlayParameters = {
+        loop = 0, // The sound does not loop. It is played once.
+        rate = 2, // The sound is played at twice its original frequency.
+        leftVolume = 0.5, // range = 0.0-1.0
+        rightVolume = 0.5, // range = 0.0-1.0
+        priority = 0, // The sound playback has the lowest priority.
         parallelPlayFlag: boolean = false // The sound is not played in parallel with other active audio streams.
       }
-    soundPool.play(soundID, PlayParameters, (error, streamId: number) => {
+    soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
       if (error) {
         console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         streamID = streamId;
         console.info('play success soundid:' + streamId);
       }
-    })
+    });
     ```
 
 7. Call **setLoop()** to set the number of loops.
-   
+     
     ```ts
     let streamID: number;
     soundPool.setLoop(streamID, 1).then(() => {
       console.info('setLoop success streamID:' + streamID);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool setLoop failed and catch error is ' + err.message);
     });
     ```
 
 8. Call **setPriority()** to set the playback priority.
-   
+     
     ```ts
     let streamID: number;
     soundPool.setPriority(streamID, 1);
@@ -122,7 +128,7 @@ During application development, you must subscribe to playback state changes and
 
     soundPool.setRate(streamID, selectedAudioRendererRate).then(() => {
       console.info('setRate success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool setRate failed and catch error is ' + err.message);
     });
     ```
@@ -135,20 +141,20 @@ During application development, you must subscribe to playback state changes and
 
     soundPool.setVolume(streamID, 0.5, 0.5).then(() => {
       console.info('setVolume success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool setVolume failed and catch error is ' + err.message);
     });
     ```
 
 11. Call **stop()** to stop the playback.
-    
+     
     ```ts
     let streamID: number;
     // Call play() to obtain the stream ID.
 
     soundPool.stop(streamID).then(() => {
       console.info('stop success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool load stop and catch error is ' + err.message);
     });
     ```
@@ -161,7 +167,7 @@ During application development, you must subscribe to playback state changes and
 
     soundPool.unload(soundID).then(() => {
       console.info('unload success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool unload failed and catch error is ' + err.message);
     });
     ```
@@ -189,7 +195,7 @@ During application development, you must subscribe to playback state changes and
     ```ts
     soundPool.release().then(() => {
       console.info('release success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool release failed and catch error is ' + err.message);
     });
     ```
@@ -197,7 +203,7 @@ During application development, you must subscribe to playback state changes and
 ### Sample Code
 
 The following sample code implements low-latency playback using **SoundPool**.
-
+  
 ```ts
 
 import audio from '@ohos.multimedia.audio';
@@ -217,7 +223,7 @@ struct Soundpool {
     rate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
     leftVolume: number = 0.5, // range = 0.0-1.0
     rightVolume: number = 0.5, // range = 0.0-1.0
-    priority: number = 0 // The sound playback has the lowest priority.
+    priority: number = 0, // The sound playback has the lowest priority.
     parallelPlayFlag: boolean = false // The sound is not played in parallel with other active audio streams.
   }
   private uri: string = "";
@@ -231,7 +237,7 @@ struct Soundpool {
     // Load a sound.
     await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
       console.info("file fd: " + file.fd);
-      uri = 'fd://' + (file.fd).toString()
+      this.uri = 'fd://' + (file.fd).toString()
     }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
     this.soundId = await this.soundPool.load(this.uri);
   }

@@ -8,17 +8,13 @@ The **\<TextInput>** and **\<TextArea>** components are input components typical
 
 The **\<TextInput>** component provides single-line text input, while the **\<TextArea>** component provides multi-line text input. To create these components, use the following APIs:
 
-
-```ts
-TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextAreaController})
-```
-
-
-
 ```ts
 TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextInputController})
 ```
 
+```ts
+TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextAreaController})
+```
 
 - Single-line text box
 
@@ -146,4 +142,4 @@ struct TextInputSample {
 ```
 
 
-![TextInputGIF](figures/TextInputGIF.gif)
+![textinput](figures/textinput.gif)

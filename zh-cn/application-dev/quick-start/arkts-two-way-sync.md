@@ -27,7 +27,7 @@ $$运算符为系统内置组件提供TS变量的引用，使得TS变量和系�
   | [SideBarContainer](../reference/arkui-ts/ts-container-sidebarcontainer.md) | showSideBar     | 10          |
   | [Slider](../reference/arkui-ts/ts-basic-components-slider.md) | value           | 10          |
   | [Stepper](../reference/arkui-ts/ts-basic-components-stepper.md) | index           | 10          |
-  | [Swiper](../reference/arkui-ts/ts-container-swiper.md)       | isOn            | 10          |
+  | [Swiper](../reference/arkui-ts/ts-container-swiper.md)       | index       | 10          |
   | [Tabs](../reference/arkui-ts/ts-container-tabs.md)           | index           | 10          |
   | [TextArea](../reference/arkui-ts/ts-basic-components-textarea.md) | text            | 10          |
   | [TextInput](../reference/arkui-ts/ts-basic-components-textinput.md) | text            | 10          |
