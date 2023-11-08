@@ -74,7 +74,6 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 ```ts
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 
@@ -92,9 +91,7 @@ export default function abilityTest() {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
       }
-      await delegator.startAbility(want, (err: BusinessError, data: void) => {
-        console.info('Uitest, start ability failed: ' + err)
-      });
+      await delegator.startAbility(want);
       await sleep(1000);
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
@@ -153,7 +150,6 @@ struct Index {
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest'
-import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
@@ -171,9 +167,7 @@ export default function abilityTest() {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
       }
-      await delegator.startAbility(want, (err: BusinessError, data: void) => {
-        console.info('Uitest, start ability failed: ' + err)
-      });
+      await delegator.startAbility(want);
       await sleep(1000);
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
@@ -182,7 +176,7 @@ export default function abilityTest() {
       })
       //ui test code
       //init driver
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
       //find button on text 'Next'
       let button = await driver.findComponent(ON.text('Next'));
