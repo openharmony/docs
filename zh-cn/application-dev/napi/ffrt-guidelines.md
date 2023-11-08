@@ -88,16 +88,16 @@ task5(OUT A);
 
 
 
-# 函数介绍
+## 函数介绍
 
 
-## 任务管理
+### 任务管理
 
-### ffrt_submit_base
+#### ffrt_submit_base
 
 * 该接口为ffrt动态库的导出接口，基于此可以封装出C API ffrt_submit，满足二进制兼容
 
-#### 声明
+##### 声明
 
 ```{.cpp}
 const int ffrt_auto_managed_function_storage_size = 64 + sizeof(ffrt_function_header_t);
@@ -118,7 +118,7 @@ typedef struct {
 void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
 ```
 
-#### 参数
+##### 参数
 
 `kind`
 
@@ -144,11 +144,11 @@ void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, 
 * 该参数是可选的
 * 该参数用于描述Task 的属性，比如qos 等，详见 [ffrt_task_attr_t](#ffrt_task_attr_t)章节
 
-#### 返回值
+##### 返回值
 
 * 不涉及
 
-#### 描述
+##### 描述
 * 建议用户对ffrt_submit_base进行封装后调用，具体可参考样例
 * **ffrt_submit_base作为底层能力，使用时需要满足以下限制：**
   * ffrt_submit_base入参中的func指针只能通过ffrt_alloc_auto_managed_function_storage_base申请，且二者的调用需一一对应
@@ -157,7 +157,7 @@ void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, 
   * exec：用于描述该Task如何被执行，当FFRT需要执行该Task时由FFRT调用
   * destroy：用于描述该Task如何被执行，当FFRT需要执行该Task时由FFRT调用
 
-#### 样例
+##### 样例
 
 
 ```{.cpp}
@@ -203,36 +203,36 @@ static inline void submit(std::function<void()>&& func)
 }
 ```
 
-### ffrt_wait
+#### ffrt_wait
 
 <hr/>
 * 同步等待，与ffrt_submit_base 配合使用
 * 等待指定的数据被生产完成，或等待当前任务的所有子任务完成，在不满足条件之前，当前的执行上下文被suspend，在满足条件后恢复执行
 
-#### 声明
+##### 声明
 
 ```{.cpp}
 void ffrt_wait_deps(ffrt_deps_t* deps);
 void ffrt_wait();
 ```
 
-#### 参数
+##### 参数
 
 `deps`
 
 * 需要等待被生产完成的数据的虚拟地址，这些地址可能作为某些任务在submit 时的out_deps，该依赖的生成见ffrt_deps_t章节，空指针表示无依赖
 
-#### 返回值
+##### 返回值
 
 * 不涉及
 
-#### 描述
+##### 描述
 * ffrt_wait_deps(deps) 用于等待deps指代的数据被生产完成才能执行后面的代码
 * ffrt_wait() 用于等待当前上下文提交的所有子任务（`注意：不包括孙任务和下级子任务`）都完成才能执行后面的代码
 * 该接口支持在FFRT task 内部调用，也支持在FFRT task 外部调用
 * 在FFRT task 外部调用的wait 是OS 能够感知的等待，相对于FFRT task 内部调用的wait 是更加昂贵的，因此我们希望尽可能让更多的wait 发生在FFRT task 内部 ，而不是FFRT task 外部
 
-#### 样例
+##### 样例
 
 **recursive fibonacci**
 
@@ -365,11 +365,11 @@ int main(int narg, char** argv)
 
 
 
-### ffrt_deps_t
+#### ffrt_deps_t
 
 * C API中对依赖数组的抽象，逻辑上等同于C++ API中的`std::vector<void*>`
 
-#### 声明
+##### 声明
 
 ```{.cpp}
 typedef enum {
@@ -388,7 +388,7 @@ typedef struct {
 } ffrt_deps_t;
 ```
 
-#### 参数
+##### 参数
 
 `len`
 
@@ -406,15 +406,15 @@ typedef struct {
 
 * 所依赖对应Signature内容的实际地址
 
-#### 返回值
+##### 返回值
 
 * 不涉及
 
-#### 描述
+##### 描述
 
 * item为len个Signature的起始指针，该指针可以指向堆空间，也可以指向栈空间，但是要求分配的空间大于等于len * sizeof(void*)
 
-#### 样例
+##### 样例
 
 * item指向栈空间的ffrt_deps_t
 
@@ -455,12 +455,12 @@ int main(int narg, char** argv)
 }
 ```
 
-### ffrt_task_attr_t
+#### ffrt_task_attr_t
 
 <hr/>
 * 定义task 的属性的辅助类，与ffrt_submit_base 配合使用
 
-#### 声明
+##### 声明
 
 ```{.c}
 typedef enum {
@@ -488,7 +488,7 @@ void ffrt_task_attr_set_delay(ffrt_task_attr_t* attr, uint64_t delay_us);
 uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr);
 ```
 
-#### 参数
+##### 参数
 
 `attr`
 
@@ -503,11 +503,11 @@ uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr);
 
 * 任务延迟执行的时间，单位为us
 
-#### 返回值
+##### 返回值
 
 * 不涉及
 
-#### 描述
+##### 描述
 * `attr`所传递的内容会在ffrt_submit内部完成取存，ffrt_submit返回后用户即可销毁
 * 约定
   * 在submit 时，如果不通过task_attr 设定qos，那么默认该提交的task的qos 为`ffrt_qos_default`
@@ -516,7 +516,7 @@ uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr);
 * ffrt_task_attr_t对象的置空和销毁由用户完成，对同一个ffrt_task_attr_t仅能调用一次`ffrt_task_attr_destroy`，重复对同一个ffrt_task_attr_t调用`ffrt_task_attr_destroy`，其行为是未定义的
 * 在`ffrt_task_attr_destroy`之后再对task_attr进行访问，其行为是未定义的
 
-#### 样例
+##### 样例
 
 * 提交一个qos 级别为background 的任务
 
@@ -589,13 +589,13 @@ int main(int narg, char** argv)
 
 
 
-### ffrt_submit_h_base
+#### ffrt_submit_h_base
 
 <hr/>
 
 * 向调度器提交一个task，与ffrt_submit_base 的差别在于返回task 的句柄，该句柄可以用于建立task 之间的依赖，或用于在wait 语句中实现同步
 
-#### 声明
+##### 声明
 
 ```{.cpp}
 typedef void* ffrt_task_handle_t;
@@ -604,7 +604,7 @@ ffrt_task_handle_t ffrt_submit_h_base(ffrt_function_t func, void* arg, const ffr
 void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 ```
 
-#### 参数
+##### 参数
 
 `func`
 
@@ -626,17 +626,17 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 * 该参数是可选的
 * 该参数用于描述Task 的属性，比如qos 等，详见 [ffrt_task_attr_t](#ffrt_task_attr_t)章节
 
-#### 返回值
+##### 返回值
 
 * task 的句柄，该句柄可以用于建立task 之间的依赖，或用于在wait 语句中实现同步
 
-#### 描述
+##### 描述
 
 * **C API中的ffrt_task_handle_t需要用户调用`ffrt_task_handle_destroy`显式销毁**
 * C API中的task_handle_t对象的置空和销毁由用户完成，对同一个ffrt_task_handle_t仅能调用一次`ffrt_task_handle_destroy`，重复对同一个ffrt_task_handle_t调用`ffrt_task_handle_destroy`，其行为是未定义的
 * 在`ffrt_task_handle_destroy`之后再对ffrt_task_handle_t进行访问，其行为是未定义的
 
-#### 样例
+##### 样例
 
 ```{.c}
 #include <stdio.h>
@@ -744,76 +744,76 @@ x = 3
 
 
 
-### ffrt_this_task_get_id
+#### ffrt_this_task_get_id
 
 <hr/>
 
 * 返回当前task的id标识，更多使用用于维测（原因是task name可能重名）
 
-#### 声明
+##### 声明
 
 ```{.c}
 uint64_t ffrt_this_task_get_id();
 ```
 
-#### 参数
+##### 参数
 
 * 不涉及
 
-#### 返回值
+##### 返回值
 
 * 当前task的id
 
-#### 描述
+##### 描述
 
 * 该接口在task内部调用将返回当前task的id标识，在task外部调用将返回0
 * 可以基于该接口在task外部调用返回0的特性来区分函数是运行在FFRT 工作线程上还是非FFRT工作线程上
 * task id为从1开始编码，每提交一个task便增加1，被设计成64bit，即便是每秒百万次提交，也需要292471.2年才会发生翻转
 
-#### 样例
+##### 样例
 
 * 忽略
 
 
 
-### ffrt_this_task_update_qos
+#### ffrt_this_task_update_qos
 
 <hr/>
 
 * 更新当前正在执行的task的优先级
 
-#### 声明
+##### 声明
 
 ```{.cpp}
 int ffrt_this_task_update_qos(ffrt_qos_t qos);
 ```
 
-#### 参数
+##### 参数
 
 * `qos` 新的优先级
 
-#### 返回值
+##### 返回值
 
 * 0表示成功，非0表示失败
 
-#### 描述
+##### 描述
 
 * 该接口对当前task的qos调整会立即生效
 * 如果新设定的qos与当前的qos不一致，则会block当前task的执行，再按照新的qos恢复执行
 * 如果新设定的qos与当前的qos一致，则接口会立即返回0，不做任何处理
 * **如果在非task内部调用该接口，则返回非0值，用户可以选择忽略或其他处理**
 
-#### 样例
+##### 样例
 
 * 忽略
 
-## 串行队列
+### 串行队列
 <hr />
 * FFRT提供queue来实现Andorid中类似WorkQueue能力，且在使用得当的情况下将有更好的性能
 
-### ffrt_queue_attr_t
+#### ffrt_queue_attr_t
 
-#### 声明
+##### 声明
 ```{.c}
 typedef struct {
     uint32_t storage[(ffrt_queue_attr_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)];
@@ -823,25 +823,25 @@ int ffrt_queue_attr_init(ffrt_queue_attr_t* attr);
 void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 ```
 
-#### 参数
+##### 参数
 
 `attr`
 * 该参数是指向未初始化的ffrt_queue_attr_t
 
-#### 返回值
+##### 返回值
 * 若成功返回0，否则返回-1
 
-#### 描述
+##### 描述
 * ffrt_queue_attr_t用于创建ffrt_queue_t且不单独使用，因此必须在创建队列前先创建好队列属性
 * ffrt_queue_attr_t对象的置空和销毁由用户完成，对同一个ffrt_queue_t仅能调用一次`ffrt_queue_attr_destroy`，重复对同一个ffrt_queue_t调用`ffrt_queue_attr_destroy`，其行为是未定义的
 * 在`ffrt_queue_attr_destroy`之后再对ffrt_queue_t进行访问，其行为是未定义的
 
-#### 样例
+##### 样例
 将ffrt_queue_t章节的样例
 
-### ffrt_queue_t
+#### ffrt_queue_t
 
-#### 声明
+##### 声明
 ```{.c}
 typedef enum { ffrt_queue_serial, ffrt_queue_max } ffrt_queue_type_t;
 typedef void* ffrt_queue_t;
@@ -850,7 +850,7 @@ ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const f
 void ffrt_queue_destroy(ffrt_queue_t queue)
 ```
 
-#### 参数
+##### 参数
 
 `type`
 * 该参数用于描述创建的队列类型
@@ -861,15 +861,15 @@ void ffrt_queue_destroy(ffrt_queue_t queue)
 `attr`
 * 该参数用于描述queue的属性，详见ffrt_queue_attr_t章节
 
-#### 返回值
+##### 返回值
 * 若成功则返回新创建的队列，否则返回空指针
 
-#### 描述
+##### 描述
 * 提交至该队列的任务将按照顺序执行，如果某个提交的任务中发生阻塞，则无法保证该任务的执行顺序
 * ffrt_queue_t对象的置空和销毁由用户完成，对同一个ffrt_queue_t仅能调用一次`ffrt_queue_t`，重复对同一个ffrt_queue_t调用`ffrt_queue_destroy`，其行为是未定义的
 * 在`ffrt_queue_destroy`之后再对ffrt_queue_t进行访问，其行为是未定义的
 
-#### 样例
+##### 样例
 ```
 #include <stdio.h>
 #include "ffrt.h"
@@ -889,13 +889,13 @@ int main(int narg, char** argv)
     ffrt_queue_destroy(queue_handle);
 }
 ```
-## 同步原语
+### 同步原语
 
-### ffrt_mutex_t
+#### ffrt_mutex_t
 <hr/>
 * FFRT提供的类似pthread mutex 的性能实现
 
-#### 声明
+##### 声明
 
 ```{.cpp}
 typedef enum {
@@ -916,7 +916,7 @@ int ffrt_mutex_trylock(ffrt_mutex_t* mutex);
 int ffrt_mutex_destroy(ffrt_mutex_t* mutex);
 ```
 
-#### 参数
+##### 参数
 
 `attr`
 
@@ -926,11 +926,11 @@ int ffrt_mutex_destroy(ffrt_mutex_t* mutex);
 
 * 指向所操作的互斥锁的指针
 
-#### 返回值
+##### 返回值
 
 * 若成功则为 ffrt_success ，否则发生错误
 
-#### 描述
+##### 描述
 * 该接口只能在FFRT task 内部调用，在FFRT task 外部调用存在未定义的行为
 * 该功能能够避免pthread传统的pthread_mutex_t 在抢不到锁时陷入内核的问题，在使用得当的条件下将会有更好的性能
 * **注意：目前暂不支持递归和定时功能**
@@ -938,7 +938,7 @@ int ffrt_mutex_destroy(ffrt_mutex_t* mutex);
 * **注意：C API中的ffrt_mutex_t对象的置空和销毁由用户完成，对同一个ffrt_mutex_t仅能调用一次`ffrt_mutex_destroy`，重复对同一个ffrt_mutex_t调用`ffrt_mutex_destroy`，其行为是未定义的**
 * **注意：在`ffrt_mutex_destroy`之后再对ffrt_mutex_t进行访问，其行为是未定义的**
 
-#### 样例
+##### 样例
 
 ```{.c}
 #include <stdio.h>
@@ -1043,12 +1043,12 @@ sum=10
 * 该例子为功能示例，实际中并不鼓励这样使用
 
 
-### ffrt_cond_t
+#### ffrt_cond_t
 <hr/>
 
 * FFRT提供的类似pthread 信号量的性能实现
 
-#### 声明
+##### 声明
 
 ```{.c}
 typedef enum {
@@ -1070,7 +1070,7 @@ int ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const struct tim
 int ffrt_cond_destroy(ffrt_cond_t* cond);
 ```
 
-#### 参数
+##### 参数
 
 `cond`
 
@@ -1089,18 +1089,18 @@ int ffrt_cond_destroy(ffrt_cond_t* cond);
 * 指向指定等待时限时间的对象的指针
 
 
-#### 返回值
+##### 返回值
 
 * 若成功则为 ffrt_success，若在锁定互斥前抵达时限则为 ffrt_error_timedout
 
-#### 描述
+##### 描述
 * 该接口只能在FFRT task 内部调用，在FFRT task 外部调用存在未定义的行为
 * 该功能能够避免传统的pthread_cond_t在条件不满足时陷入内核的问题，在使用得当的条件下将会有更好的性能
 * **注意：C API中的ffrt_cond_t需要用户调用`ffrt_cond_init`和`ffrt_cond_destroy`显式创建和销毁**
 * **注意：C API中的ffrt_cond_t对象的置空和销毁由用户完成，对同一个ffrt_cond_t仅能调用一次`ffrt_cond_destroy`，重复对同一个ffrt_cond_t调用`ffrt_cond_destroy`，其行为是未定义的**
 * **注意：在`ffrt_cond_destroy`之后再对ffrt_cond_t进行访问，其行为是未定义的**
 
-#### 样例
+##### 样例
 
 ```{.c}
 #include <stdio.h>
@@ -1231,34 +1231,34 @@ a=1
 
 * 该例子为功能示例，实际中并不鼓励这样使用
 
-## 杂项
+### 杂项
 
-### ffrt_usleep
+#### ffrt_usleep
 
 <hr/>
 * FFRT提供的类似C11 sleep和linux usleep的性能实现
 
-#### 声明
+##### 声明
 
 ```{.c}
 int ffrt_usleep(uint64_t usec);
 ```
 
-#### 参数
+##### 参数
 
 `usec`
 
 * 睡眠的us数
 
-#### 返回值
+##### 返回值
 
 * 不涉及
 
-#### 描述
+##### 描述
 * 该接口只能在FFRT task 内部调用，在FFRT task 外部调用存在未定义的行为
 * 该功能能够避免传统的sleep 睡眠时陷入内核的问题，在使用得当的条件下将会有更好的性能
 
-#### 样例
+##### 样例
 
 ```{.c}
 #include <time.h>
@@ -1324,36 +1324,36 @@ int main(int narg, char** argv)
 }
 ```
 
-### ffrt_yield
+#### ffrt_yield
 <hr/>
 * 当前task 主动让出CPU 执行资源，让其他可以被执行的task 先执行，如果没有其他可被执行的task，yield 无效
 
-#### 声明
+##### 声明
 
 ```{.cpp}
 void ffrt_yield();
 ```
 
-#### 参数
+##### 参数
 
 * 不涉及
 
-#### 返回值
+##### 返回值
 
 * 不涉及
 
-#### 描述
+##### 描述
 * 该接口只能在FFRT task 内部调用，在FFRT task 外部调用存在未定义的行为
 * 此函数的确切行为取决于实现，特别是使用中的FFRT 调度程序的机制和系统状态
 
-#### 样例
+##### 样例
 
 * 省略
 
 
-# 使用建议
+## 使用建议
 
-## 建议1: 函数化
+### 建议1: 函数化
 
 **基本思想：计算过程函数化**
 
@@ -1375,7 +1375,7 @@ void ffrt_yield();
 
 
 
-## 建议2: 注意任务粒度
+### 建议2: 注意任务粒度
 
 * FFRT管理和调度异步任务执行有调度开销，任务粒度（执行时间）需匹配调度开销
 * 大量小粒度任务造成FFRT调度开销占比增加，性能下降，解决方法：
@@ -1414,7 +1414,7 @@ void ffrt_yield();
 
 
 
-## 建议3: 数据生命周期
+### 建议3: 数据生命周期
 
 * FFRT的任务提交和执行是异步的，因此需要确保任务执行时，对任务中涉及的数据的访问是有效的
 * 常见问题：子任务使用父任务栈数据，当父任务先于子任务执行完成时释放栈数据，子任务产生数据访问错误
@@ -1458,7 +1458,7 @@ void fib_ffrt(int x, int* y)
 
 
 
-## 建议4: 使用FFRT提供的替代API
+### 建议4: 使用FFRT提供的替代API
 
 * 禁止在FFRT任务中使用系统线程库API创建线程，使用submit提交任务
 * 使用FFRT提供的锁，条件变量，睡眠，IO等API代替系统线程库API
@@ -1466,7 +1466,7 @@ void fib_ffrt(int x, int* y)
 
 
 
-## 建议5: Deadline机制
+### 建议5: Deadline机制
 
 * **必须用于具备周期/重复执行特征的处理流程**
 * 在有明确时间约束和性能关键的处理流程中使用，避免滥用
@@ -1474,7 +1474,7 @@ void fib_ffrt(int x, int* y)
 
 
 
-## 建议6: 从线程模型迁移
+### 建议6: 从线程模型迁移
 
 * 创建线程替代为创建FFRT任务
   * 线程从逻辑上类似无in_deps的任务
@@ -1484,9 +1484,9 @@ void fib_ffrt(int x, int* y)
 
 
 
-# 已知限制
+## 已知限制
 
-## 不支持thread_local变量
+### 不支持thread_local变量
 
 * Task内部创建或Task间传递的thread_local变量的行为都是不确定的
 
@@ -1501,11 +1501,11 @@ void fib_ffrt(int x, int* y)
 * 避免使用这些特性，如必须使用，使用FFRT的task local来替代
 
 
-## 以动态库方式部署FFRT
+### 以动态库方式部署FFRT
 
 * 只能以动态库方式部署FFRT，静态库部署可能有多实例问题，例如：当多个被同一进程加载的so都以静态库的方式使用FFRT时，FFRT会被实例化成多份，其行为是未知的，这也不是FFRT设计的初衷
 
-## C API中初始化ffrt对象后，对象的置空与销毁由用户负责
+### C API中初始化ffrt对象后，对象的置空与销毁由用户负责
 
 * 为保证较高的性能，ffrt的C API中内部不包含对对象的销毁状态的标记，用户需要合理地进行资源的释放，重复调用各个对象的destroy操作，其结果是未定义的
 * 错误示例1，重复调用destroy可能造成不可预知的数据损坏
