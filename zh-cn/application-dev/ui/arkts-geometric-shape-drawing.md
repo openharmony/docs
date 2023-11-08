@@ -23,7 +23,7 @@
   ```
 
 
-- 绘制组件单独使用，用于在页面上绘制指定的图形。有7种绘制类型，分别为[Circle](../reference/arkui-ts/ts-drawing-components-circle.md)（圆形）、[Ellipse](../reference/arkui-ts/ts-drawing-components-ellipse.md)（椭圆形）、[Line](../reference/arkui-ts/ts-drawing-components-line.md)（直线）、[PolyLine](../reference/arkui-ts/ts-drawing-components-polyline.md)（折线）、[Polygon](../reference/arkui-ts/ts-drawing-components-polygon.md)（多边形）、[Path](../reference/arkui-ts/ts-drawing-components-path.md)（路径）、[Rect](../reference/arkui-ts/ts-drawing-components-rect.md)（矩形）。以Circle的接口调用为例：
+- 绘制组件单独使用，用于在页面上绘制指定的图形。有7种绘制类型，分别为[Circle](../reference/arkui-ts/ts-drawing-components-circle.md)（圆形）、[Ellipse](../reference/arkui-ts/ts-drawing-components-ellipse.md)（椭圆形）、[Line](../reference/arkui-ts/ts-drawing-components-line.md)（直线）、[Polyline](../reference/arkui-ts/ts-drawing-components-polyline.md)（折线）、[Polygon](../reference/arkui-ts/ts-drawing-components-polygon.md)（多边形）、[Path](../reference/arkui-ts/ts-drawing-components-path.md)（路径）、[Rect](../reference/arkui-ts/ts-drawing-components-rect.md)（矩形）。以Circle的接口调用为例：
 
   ```ts
   Circle(options?: {width?: string | number, height?: string | number}
