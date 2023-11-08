@@ -310,7 +310,7 @@ import { BusinessError } from '@ohos.base';
 >
 > - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
 >
-> - 通过指定资源ID或资源名称可实现本应用包资源的访问。通过指定[resource对象](#resource9)或对应包的[context](../application-models/application-context-stage.md#创建其他应用或其他module的context)可实现应用内跨包资源的访问，通过对应包context访问跨包资源与本应用包资源访问的逻辑一致，推荐开发者通过对应包的context访问应用内跨包资源。
+> - 通过指定资源ID或资源名称可实现本应用包资源的访问。通过指定[resource对象](#resource9)或对应包的[context](../application-models/application-context-stage.md#创建其他应用或其他module的context)可实现应用内跨包资源的访问，通过对应包context访问跨包资源与访问本应用包资源的逻辑一致，推荐开发者使用对应包的context方法。
 
 ### getStringSync<sup>9+</sup>
 
