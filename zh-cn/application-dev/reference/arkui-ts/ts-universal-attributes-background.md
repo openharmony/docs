@@ -52,7 +52,7 @@ struct BackgroundExample {
         .border({ width: 1 })
 
       Text('background fill the box(Cover)').fontSize(9).width('90%').fontColor(0xCCCCCC)
-      // 不保准图片完整的情况下占满盒子
+      // 不保证图片完整的情况下占满盒子
       Row()
         .width(200)
         .height(50)
@@ -61,7 +61,7 @@ struct BackgroundExample {
         .border({ width: 1 })
 
       Text('background fill the box(Contain)').fontSize(9).width('90%').fontColor(0xCCCCCC)
-      // 保准图片完整的情况下放到最大
+      // 保证图片完整的情况下放到最大
       Row()
         .width(200)
         .height(50)
