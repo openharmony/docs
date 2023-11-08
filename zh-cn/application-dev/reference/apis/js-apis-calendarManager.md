@@ -84,6 +84,7 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
+let calendar: calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
