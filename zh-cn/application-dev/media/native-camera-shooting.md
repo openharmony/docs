@@ -1,14 +1,15 @@
-# NDK Camera拍照
+# 相机拍照指导(Native)
 
 拍照是相机的最重要功能之一，拍照模块基于相机复杂的逻辑，为了保证用户拍出的照片质量，在中间步骤可以设置分辨率、闪光灯、焦距、照片质量及旋转角度等信息。
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../reference/apis/js-apis-camera.md)。
+详细的API说明请参考[Camera API参考](../reference/native-apis/native-apis-camera.md)。
 
 1. 导入image接口。创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的image接口能力，导入image接口的方法如下。
      
    ```ts
+   // ts侧需要导入image接口，通过ImageReceiver获取拍照的surfaceId
    import image from '@ohos.multimedia.image';
    private mReceiver: image.ImageReceiver = undefined
    ```
@@ -18,6 +19,7 @@
    通过image的createImageReceiver方法创建ImageReceiver实例，再通过实例的getReceivingSurfaceId方法获取SurfaceId，与拍照输出流相关联，获取拍照输出流的数据。
  
    ```ts
+   // 获取拍照的surfaceId （参考ndk demo：在modeSwitchPage.ets中调用）
     async getPhotoSurfaceID() {
         if(this.mReceiver) {
         Logger.info(this.tag, 'imageReceiver has been created')
@@ -33,9 +35,13 @@
     }
    ```
 
-3. 导入NDK接口。创建拍照输出数据、配置相机参数以及触发拍照流程，都需要用到系统提供的NDK接口能力，导入NDK接口的方法如下。
+3. 在CMake脚本中链接Camera NDK动态库。 target_link_libraries(PUBLIC libcamera_ndk.so)
+
+
+4. 导入NDK接口。创建拍照输出数据、配置相机参数以及触发拍照流程，都需要用到系统提供的NDK接口能力，导入NDK接口的方法如下。
 
    ```c++
+    //导入NDK接口头文件 （参考ndk demo：在camera_manager.cpp中调用）
     #include "multimedia/camera_framework/camera.h"
     #include "multimedia/camera_framework/camera_input.h"
     #include "multimedia/camera_framework/capture_session.h"
@@ -45,7 +51,7 @@
     #include "multimedia/camera_framework/camera_manager.h"
    ```
 
-4. 创建拍照输出流。
+5. 创建拍照输出流。
    
    通过OH_CameraManager_GetSupportedCameraOutputCapability方法，可获取当前设备支持的拍照输出流，通过OH_CameraManager_CreatePhotoOutput方法传入支持的某一个输出流及步骤二获取的SurfaceId创建拍照输出流。
 
@@ -59,7 +65,7 @@
     Camera_PreviewOutput* previewOutput = nullptr;
     Camera_PhotoOutput* photoOutput = nullptr;
     Camera_Input* cameraInput = nullptr;
-    uint32_t size = 0;`
+    uint32_t size = 0;
     uint32_t cameraDeviceIndex = 0;
 
     Camera_ErrorCode ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex], &cameraOutputCapability);
@@ -76,7 +82,7 @@
     }
    ```
 
-5. 参数配置。
+6. 参数配置。
 
    配置相机的参数可以调整拍照的一些功能，包括闪光灯、变焦、焦距等。
 
@@ -168,7 +174,7 @@
     }
    ```
 
-6. 触发拍照。
+7. 触发拍照。
 
    - 通过OH_PhotoOutput_Capture方法，执行拍照任务。该方法有一个参数，该参数为CreatePhotoOutput时的回调参Camera_PhotoOutput** photoOutput。
 
