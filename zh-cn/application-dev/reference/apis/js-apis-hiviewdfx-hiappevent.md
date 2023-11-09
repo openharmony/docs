@@ -122,7 +122,7 @@ hiAppEvent.write({
 
 ## AppEventInfo
 
-此接口提供了应用事件信息的参数选项。
+提供了应用事件信息的参数选项。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -173,7 +173,7 @@ hiAppEvent.configure(config2);
 
 ## ConfigOption
 
-此接口提供了对应用事件打点功能的配置选项。
+提供了对应用事件打点功能的配置选项。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -305,7 +305,7 @@ hiAppEvent.removeWatcher(watcher);
 
 ## Watcher
 
-此接口提供了应用事件观察者的参数选项。
+提供了应用事件观察者的参数选项。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -318,7 +318,7 @@ hiAppEvent.removeWatcher(watcher);
 
 ## TriggerCondition
 
-此接口提供了回调触发条件的参数选项，只要满足任一条件就会触发订阅回调。
+提供了回调触发条件的参数选项，只要满足任一条件就会触发订阅回调。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -330,7 +330,7 @@ hiAppEvent.removeWatcher(watcher);
 
 ## AppEventFilter
 
-此接口提供了过滤应用事件的参数选项。
+提供了过滤应用事件的参数选项。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -343,13 +343,11 @@ hiAppEvent.removeWatcher(watcher);
 
 订阅数据持有者类，用于对订阅事件进行处理。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
-
 ### constructor
 
 constructor(watcherName: string)
 
-类构造函数，在添加应用事件观察者时，会由系统自动调用来创建一个该观察者对应的订阅数据持有者对象，并返回给开发者。
+类构造函数，创建订阅数据持有者实例，通过观察者名称关联到应用内已添加的观察者对象。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -362,9 +360,7 @@ constructor(watcherName: string)
 **示例：**
 
 ```ts
-let holder1 = hiAppEvent.addWatcher({
-    name: "watcher1",
-});
+let holder1: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher1");
 ```
 
 ### setSize
@@ -392,9 +388,7 @@ setSize(size: number): void
 **示例：**
 
 ```ts
-let holder2 = hiAppEvent.addWatcher({
-    name: "watcher2",
-});
+let holder2: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher2");
 holder2.setSize(1000);
 ```
 
@@ -406,18 +400,22 @@ takeNext(): [AppEventPackage](#appeventpackage)
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
+**返回值：**
+
+| 类型                                | 说明                                                   |
+| ----------------------------------- | ------------------------------------------------------ |
+| [AppEventPackage](#appeventpackage) | 取出的事件包对象，订阅事件数据被全部取出后会返回null。 |
+
 **示例：**
 
 ```ts
-let holder3 = hiAppEvent.addWatcher({
-    name: "watcher3",
-});
+let holder3: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher3");
 let eventPkg = holder3.takeNext();
 ```
 
 ## AppEventPackage
 
-此接口提供了订阅返回的应用事件包的参数定义。
+提供了订阅返回的应用事件包的参数定义。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -459,7 +457,7 @@ hiAppEvent.clearData();
 
 ## event
 
-此接口提供了所有预定义事件的事件名称常量。
+提供了所有预定义事件的事件名称常量。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -472,7 +470,7 @@ hiAppEvent.clearData();
 
 ## param
 
-此接口提供了所有预定义参数的参数名称常量。
+提供了所有预定义参数的参数名称常量。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
