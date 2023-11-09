@@ -4,7 +4,7 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 7 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.appManager](js-apis-app-ability-appManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 8 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.appManager](js-apis-app-ability-appManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -71,7 +71,7 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 ## appManager.isRamConstrainedDevice
 
-isRamConstrainedDevice(): Promise\<boolean>;
+isRamConstrainedDevice(): Promise\<boolean>
 
 查询是否为ram受限设备。
 
@@ -98,7 +98,7 @@ isRamConstrainedDevice(): Promise\<boolean>;
 
 ## appManager.isRamConstrainedDevice
 
-isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
+isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 查询是否为ram受限设备。
 
@@ -126,7 +126,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 
 ## appManager.getAppMemorySize
 
-getAppMemorySize(): Promise\<number>;
+getAppMemorySize(): Promise\<number>
 
 获取应用程序的内存大小。
 
@@ -153,7 +153,7 @@ getAppMemorySize(): Promise\<number>;
 
 ## appManager.getAppMemorySize
 
-getAppMemorySize(callback: AsyncCallback\<number>): void;
+getAppMemorySize(callback: AsyncCallback\<number>): void
 
 获取应用程序的内存大小。
 
@@ -180,7 +180,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
   ```
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
-getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
+getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>
 
 获取有关运行进程的信息。
 
@@ -211,7 +211,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
-getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
+getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void
 
 获取有关运行进程的信息。
 
@@ -243,7 +243,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 ## appManager.registerApplicationStateObserver<sup>8+</sup>
 
-registerApplicationStateObserver(observer: ApplicationStateObserver): number;
+registerApplicationStateObserver(observer: ApplicationStateObserver): number
 
 注册全部应用程序状态观测器。
 
@@ -286,7 +286,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
 
 ## appManager.unregisterApplicationStateObserver<sup>8+</sup>
 
-unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\<void>): void;
+unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\<void>): void
 
 取消注册应用程序状态观测器。
 
@@ -321,7 +321,7 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
 
 ## appManager.unregisterApplicationStateObserver<sup>8+</sup>
 
-unregisterApplicationStateObserver(observerId: number): Promise\<void>;
+unregisterApplicationStateObserver(observerId: number): Promise\<void>
 
 取消注册应用程序状态观测器。
 
@@ -362,7 +362,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
 
 ## appManager.getForegroundApplications<sup>8+</sup>
 
-getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
+getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
 获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
@@ -394,7 +394,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 ## appManager.getForegroundApplications<sup>8+</sup>
 
-getForegroundApplications(): Promise\<Array\<AppStateData>>;
+getForegroundApplications(): Promise\<Array\<AppStateData>>
 
 获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
@@ -510,7 +510,7 @@ appManager.killProcessWithAccount(bundleName, accountId, killProcessWithAccountC
 
 ## appManager.killProcessesByBundleName<sup>8+</sup>
 
-killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
+killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
 通过Bundle名称终止进程。
 
@@ -546,7 +546,7 @@ import { BusinessError } from '@ohos.base';
 
 ## appManager.killProcessesByBundleName<sup>8+</sup>
 
-killProcessesByBundleName(bundleName: string): Promise\<void>;
+killProcessesByBundleName(bundleName: string): Promise\<void>
 
 通过Bundle名称终止进程。
 
@@ -586,7 +586,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
 
-clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
+clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
 
 通过Bundle名称清除应用数据。
 
@@ -622,7 +622,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
 
-clearUpApplicationData(bundleName: string): Promise\<void>;
+clearUpApplicationData(bundleName: string): Promise\<void>
 
 通过Bundle名称清除应用数据。
 

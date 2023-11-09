@@ -14,7 +14,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 ## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
+isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询当前是否处于稳定性测试场景。
 
@@ -51,7 +51,7 @@ appManager.isRunningInStabilityTest((err, flag) => {
 
 ## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(): Promise&lt;boolean&gt;
+isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 查询当前是否处于稳定性测试场景。
 
@@ -231,7 +231,7 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
-获取有关运行进程的信息。
+获取运行进程的有关信息。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -268,7 +268,7 @@ appManager.getRunningProcessInformation().then((data) => {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
-获取有关运行进程的信息。
+获取运行进程的有关信息。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -368,7 +368,7 @@ isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCa
 | --------- | ---------------------------------------- | ---- | -------------- |
 | bundleName    | string   | 是    | 表示要查询的共享库包名。 |
 | versionCode   | number   | 是    | 表示要查询的共享库版本号。      |
-|AsyncCallback\<boolean>> | 回调函数。返回true表示共享库正在使用，返回false表示共享库不在使用。 |
+| callback    | syncCallback\<boolean>> | 是    | 回调函数。返回true表示共享库正在使用，返回false表示共享库不在使用。 |
 
 **错误码**：
 
