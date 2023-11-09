@@ -94,8 +94,19 @@ let options: AnimatorOptions = { // The explicit type AnimatorOptions does not n
   begin: 200.0,
   end: 400.0
 };
+let optionsNew: AnimatorOptions = {
+  duration: 1500,
+  easing: "friction",
+  delay: 0,
+  fill: "forwards",
+  direction: "normal",
+  iterations: 5,
+  begin: 200.0,
+  end: 400.0
+};
 try {
-  animator.reset(options);
+  let animatorResult:AnimatorResult|undefined = animator.create(options)
+  animatorResult.reset(options);
 } catch(error) {
   console.error(`Animator reset failed, error code: ${error.code}, message: ${error.message}.`);
 }
