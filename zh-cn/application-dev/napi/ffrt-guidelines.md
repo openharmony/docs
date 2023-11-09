@@ -264,7 +264,7 @@ int main(int narg, char** argv)
 
 ```{.c}
 #include <stdio.h>
-#include "ffrt.h"
+#include "ffrt.h"  //包含所有ffrt涉及的头文件
 
 typedef struct {
     int x;
@@ -412,47 +412,24 @@ typedef struct {
 
 ##### 描述
 
-* item为len个Signature的起始指针，该指针可以指向堆空间，也可以指向栈空间，但是要求分配的空间大于等于len * sizeof(void*)
+* item为len个Signature的起始指针，该指针可以指向堆空间，也可以指向栈空间，但是要求分配的空间大于等于len * sizeof(ffrt_dependence_t)
 
 ##### 样例
 
-* item指向栈空间的ffrt_deps_t
+* 创建数据依赖或者任务依赖
 
 ```{.c}
-#include "ffrt.h"
+// 创建数据依赖的ffrt_deps_t
+int x = 0;
+const std::vector<ffrt_dependence_t> in_deps = {{ffrt_dependence_data, &x}};
+ffrt_deps_t in{static_cast<uint32_t>(in_deps.size()), in_deps.data()};
 
-int main(int narg, char** argv)
-{
-    int x1 = 1;
-    int x2 = 2;
-    
-    void *t[] = {&x1, &x2};
-    ffrt_deps_t deps = {2, (const void* const *)&t};
-    // some code use deps
-    return 0;
-}
-```
-
-* item指向栈空间的ffrt_deps_t
-
-```{.c}
-#include <stdlib.h>
-#include "ffrt.h"
-
-int main(int narg, char** argv)
-{
-    int x1 = 1;
-    int x2 = 2;
-    
-    void** t = (void**)malloc(sizeof(void*) * 2);
-    t[0]= &x1;
-    t[1]= &x2;
-    ffrt_deps_t deps = {2, t};
-    
-    // some code use deps
-    free(t);
-    return 0;
-}
+// 提交某个返回handle任务
+ffrt_task_handle_t task = ffrt_submit_h_base(
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+// 创建任务依赖的ffrt_deps_t
+const std::vector<ffrt_dependence_t> wait_deps = {{ffrt_dependence_task, task}};
+ffrt_deps_t wait{static_cast<uint32_t>(wait_deps.size()), wait_deps.data()};
 ```
 
 #### ffrt_task_attr_t
@@ -719,13 +696,21 @@ int main(int narg, char** argv)
     // handle work with submit
     ffrt_task_handle_t h = ffrt_submit_h_c(func0, NULL, NULL, NULL, NULL, NULL); // not need some data in this task
     int x = 1;
+    const std::vector<ffrt_dependence_t> in_deps = {{ffrt_dependence_data, &x}};
+    ffrt_deps_t d2{static_cast<uint32_t>(in_deps.size()), in_deps.data()};
+
+    const std::vector<ffrt_dependence_t> out_deps = {{ffrt_dependence_data, &x}};
+    ffrt_deps_t d1{static_cast<uint32_t>(out_deps.size()), out_deps.data()};
+
     ffrt_submit_c(func1, NULL, &x, NULL, &d1, NULL);
     ffrt_submit_c(func2, NULL, &x, &d2, NULL, NULL); // this task depend x and h
     ffrt_task_handle_destroy(h);
     
     // handle work with wait
     ffrt_task_handle_t h2 = ffrt_submit_h_c(func3, NULL, &x, NULL, NULL, NULL);
-    ffrt_deps_define(d3, h2);
+
+    const std::vector<ffrt_dependence_t> wait_deps = {{ffrt_dependence_task, h2}};
+    ffrt_deps_t d3{static_cast<uint32_t>(wait_deps.size()), wait_deps.data()};
     ffrt_wait_deps(&d3);
     ffrt_task_handle_destroy(h2);
     printf("x = %d", x);
@@ -874,8 +859,40 @@ void ffrt_queue_destroy(ffrt_queue_t queue)
 #include <stdio.h>
 #include "ffrt.h"
 
-using namespace ffrt;
 using namespace std;
+
+template<class T>
+struct Function {
+    template<class CT>
+    Function(ffrt_function_header_t h, CT&& c) : header(h), closure(std::forward<CT>(c)) {}
+    ffrt_function_header_t header;
+    T closure;
+};
+
+template<class T>
+void ExecFunctionWrapper(void* t)
+{
+    auto f = reinterpret_cast<Function<std::decay_t<T>>*>(t);
+    f->closure();
+}
+
+template<class T>
+void DestroyFunctionWrapper(void* t)
+{
+    auto f = reinterpret_cast<Function<std::decay_t<T>>*>(t);
+    f->closure = nullptr;
+}
+
+template<class T>
+static inline ffrt_function_header_t* create_function_wrapper(T&& func,
+    ffrt_function_kind_t kind = ffrt_function_kind_general)
+{
+    using function_type = Function<std::decay_t<T>>;
+    auto p = ffrt_alloc_auto_managed_function_storage_base(kind);
+    auto f =
+        new (p)function_type({ ExecFunctionWrapper<T>, DestroyFunctionWrapper<T>, { 0 } }, std::forward<T>(func));
+    return reinterpret_cast<ffrt_function_header_t*>(f);
+}
 
 int main(int narg, char** argv)
 {
@@ -883,7 +900,7 @@ int main(int narg, char** argv)
     (void)ffrt_queue_attr_init(&queue_attr);
     ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
 
-    ffrt_queue_submit(queue_handle, ffrt::create_function_wrapper([]() {printf("Task done.\n");}, ffrt_function_kind_queue), nullptr);
+    ffrt_queue_submit(queue_handle, create_function_wrapper([]() {printf("Task done.\n");}, ffrt_function_kind_queue), nullptr);
 
     ffrt_queue_attr_destroy(&queue_attr);
     ffrt_queue_destroy(queue_handle);
@@ -1350,6 +1367,178 @@ void ffrt_yield();
 
 * 省略
 
+
+## 开发步骤
+
+以下步骤描述了如何使用`FFRT`提供的Native API接口，创建并行队列任务和串行队列任务以及销毁相应资源。
+
+**添加动态链接库**
+
+CMakeLists.txt中添加以下lib。
+```txt
+libffrt.z.so
+```
+
+**头文件**
+```c++
+#include "ffrt/task.h"
+#include "ffrt/type_def.h"
+#include "ffrt/condition_variable.h"
+#include "ffrt/mutex.h"
+#include "ffrt/queue.h"
+#include "ffrt/sleep.h"
+```
+
+1. **首先需要对执行的函数进行封装**。
+    ```c++
+    // 第一种使用模板，支持C++
+    template<class T>
+    struct Function {
+        template<class CT>
+        Function(ffrt_function_header_t h, CT&& c) : header(h), closure(std::forward<CT>(c)) {}
+        ffrt_function_header_t header;
+        T closure;
+    };
+
+    template<class T>
+    void ExecFunctionWrapper(void* t)
+    {
+        auto f = reinterpret_cast<Function<std::decay_t<T>>*>(t);
+        f->closure();
+    }
+
+    template<class T>
+    void DestroyFunctionWrapper(void* t)
+    {
+        auto f = reinterpret_cast<Function<std::decay_t<T>>*>(t);
+        f->closure = nullptr;
+    }
+
+    template<class T>
+    static inline ffrt_function_header_t* create_function_wrapper(T&& func,
+        ffrt_function_kind_t kind = ffrt_function_kind_general)
+    {
+        using function_type = Function<std::decay_t<T>>;
+        auto p = ffrt_alloc_auto_managed_function_storage_base(kind);
+        auto f =
+            new (p)function_type({ ExecFunctionWrapper<T>, DestroyFunctionWrapper<T>, { 0 } }, std::forward<T>(func));
+        return reinterpret_cast<ffrt_function_header_t*>(f);
+    }
+
+    // 第二种创建方式
+    typedef struct {
+        ffrt_function_header_t header;
+        ffrt_function_t func;
+        ffrt_function_t after_func;
+        void* arg;
+    } CFunction;
+
+    static void FfrtExecFunctionWrapper(void* t)
+    {
+        CFunction* f = static_cast<CFunction*>(t);
+        if (f->func) {
+            f->func(f->arg);
+        }
+    }
+
+    static void FfrtDestroyFunctionWrapper(void* t)
+    {
+        CFunction* f = static_cast<CFunction*>(t);
+        if (f->after_func) {
+            f->after_func(f->arg);
+        }
+    }
+
+    #define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
+    static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
+        const ffrt_function_t after_func, void* arg, ffrt_function_kind_t kind_t = ffrt_function_kind_general)
+    {
+        FFRT_STATIC_ASSERT(sizeof(CFunction) <= ffrt_auto_managed_function_storage_size,
+            size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
+        CFunction* f = static_cast<CFunction*>(ffrt_alloc_auto_managed_function_storage_base(kind_t));
+        f->header.exec = FfrtExecFunctionWrapper;
+        f->header.destroy = FfrtDestroyFunctionWrapper;
+        f->func = func;
+        f->after_func = after_func;
+        f->arg = arg;
+        return reinterpret_cast<ffrt_function_header_t*>(f);
+    }
+
+    // 样例：待提交执行的函数
+    void OnePlusForTest(void* arg)
+    {
+        (*static_cast<int*>(arg)) += 1;
+    }
+    ```
+   
+2. **设置task属性值**。
+    用户提交任务时可以设置任务属性，包括qos优先级，名称等，具体可参考接口文档
+    ```c++
+    // ******初始化并行任务属性******
+    ffrt_task_attr_t attr;
+    ffrt_task_attr_init(&attr);
+
+    // ******创建串行队列******
+
+    // 创建串行队列的属性
+    ffrt_queue_attr_t queue_attr;
+    // 创建串行队列的handle
+    ffrt_queue_t queue_handle;
+
+    // 初始化队列属性
+    (void)ffrt_queue_attr_init(&queue_attr);
+
+    // 如有需要，设置指定优先级
+    ffrt_queue_attr_set_qos(&queue_attr, static_cast<ffrt_qos_t>(ffrt_qos_inherit));
+    // 如有需要，设置超时时间(ms)
+    ffrt_queue_attr_set_timeout(&queue_attr, 10000);
+    // 如有需要，设置超时回调
+    int x = 0;
+    ffrt_queue_attr_set_callback(&queue_attr, ffrt_create_function_wrapper(OnePlusForTest, NULL, &x,
+        ffrt_function_kind_queue));
+
+    // 基于属性，初始化队列
+    queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+    ```
+
+3. **提交任务**。
+    ```c++
+    int a = 0;
+    // ******并行任务******
+    // 提交不带handle返回值的并行任务
+    ffrt_submit_base(ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+    // 提交带handle返回值的并行任务
+    ffrt_task_handle_t task = ffrt_submit_h_base(
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+
+    // ******串行任务******
+    // 提交不返回handle的串行队列任务
+    ffrt_queue_submit(queue_handle, ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a,
+        ffrt_function_kind_queue), nullptr);
+    // 提交带handle的串行队列任务
+    ffrt_task_handle_t handle = ffrt_queue_submit_h(queue_handle,
+        ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+
+    // 如果需要等待执行结果，则调用wait
+    const std::vector<ffrt_dependence_t> wait_deps = {{ffrt_dependence_task, task}};
+    ffrt_deps_t wait{static_cast<uint32_t>(wait_deps.size()), wait_deps.data()};
+    ffrt_wait_deps(&wait);
+
+    ffrt_queue_wait(handle);
+    ```
+
+4. **任务提交完成后销毁相应资源**。
+    ```c++
+    // ******销毁并行队列任务******
+    ffrt_task_attr_destroy(&attr);
+    ffrt_task_handle_destroy(task);
+
+    // ******销毁串行队列任务******
+    // 先销毁任务handle，再销毁队列
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_task_handle_destroy(handle);
+    ffrt_queue_destroy(queue_handle);
+    ```
 
 ## 使用建议
 
