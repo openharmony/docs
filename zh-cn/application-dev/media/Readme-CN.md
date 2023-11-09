@@ -52,7 +52,7 @@
     - [使用分布式媒体会话](using-distributed-avsession.md)
 - 相机
   - [相机开发概述](camera-overview.md)
-  - 相机开发指导
+  - 相机开发指导（ArkTS）
     - [开发准备](camera-preparation.md)
     - [设备输入](camera-device-input.md)
     - [会话管理](camera-session-management.md)

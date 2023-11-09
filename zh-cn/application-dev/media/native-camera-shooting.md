@@ -4,7 +4,7 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../reference/native-apis/native-apis-camera.md)。
+详细的API说明请参考[Camera API参考](../reference/apis/js-apis-camera.md)。
 
 1. 导入image接口。创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的image接口能力，导入image接口的方法如下。
      
@@ -35,7 +35,10 @@
     }
    ```
 
-3. 在CMake脚本中链接Camera NDK动态库。 target_link_libraries(PUBLIC libcamera_ndk.so)
+3. 在CMake脚本中链接Camera NDK动态库。
+   ```txt
+    target_link_libraries(PUBLIC libcamera_ndk.so)
+   ```
 
 
 4. 导入NDK接口。创建拍照输出数据、配置相机参数以及触发拍照流程，都需要用到系统提供的NDK接口能力，导入NDK接口的方法如下。
