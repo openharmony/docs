@@ -1058,7 +1058,7 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
 指定设备管理应用为设备添加防火墙过滤规则。<br/>
-添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的网络数据包将会被丢弃。
+添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的网络数据包将会被丢弃或拦截。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1110,7 +1110,7 @@ networkManager.addFirewallRule(wantTemp, firewallRule);
 removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
 指定设备管理应用移除设备防火墙过滤规则。<br/>
-移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addFirewallRule](#networkmanageraddfirewallrule11)默认添加的DENY规则清空。
+移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addFirewallRule](#networkmanageraddfirewallrule11)添加的默认DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1211,7 +1211,7 @@ firewallRule = networkManager.getFirewallRules(wantTemp);
 addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
 指定设备管理应用为设备添加域名过滤规则。<br/>
-添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的域名解析数据包将会被丢弃。
+添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的域名解析数据包将会被丢弃或拦截。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1258,7 +1258,7 @@ networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
 removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
 指定设备管理应用移除设备域名过滤规则。<br/>
-移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addDomainFilterRule](#networkmanageradddomainfilterrule11)默认添加的DENY规则清空。
+移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addDomainFilterRule](#networkmanageradddomainfilterrule11)添加的默认DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
