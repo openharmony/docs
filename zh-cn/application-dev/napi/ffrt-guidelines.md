@@ -93,11 +93,11 @@ task5(OUT A);
 | ffrt_condattr_init (ffrt_condattr_t* attr) | 初始化条件变量属性。 |
 | ffrt_condattr_destroy(ffrt_condattr_t* attr)  | 销毁条件变量属性。 |
 | ffrt_condattr_setclock(ffrt_condattr_t* attr, ffrt_clockid_t clock) | 设置条件变量的时钟属性。 |
-| OH_NativeImage_DetachContext (OH_NativeImage \*image)        | 将OH_NativeImage实例从当前OpenGL ES上下文分离。              |
-| OH_NativeImage_UpdateSurfaceImage (OH_NativeImage \*image)   | 通过OH_NativeImage获取最新帧更新相关联的OpenGL ES纹理。      |
-| OH_NativeImage_GetTimestamp (OH_NativeImage \*image)         | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的相关时间戳。 |
-| OH_NativeImage_GetTransformMatrix (OH_NativeImage \*image, float matrix[16]) | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。 |
-| OH_NativeImage_Destroy (OH_NativeImage \*\*image)            | 销毁通过OH_NativeImage_Create创建的OH_NativeImage实例，销毁后该OH_NativeImage指针会被赋值为空。 |
+| ffrt_condattr_getclock(const ffrt_condattr_t* attr, ffrt_clockid_t* clock)        | 获取条件变量的时钟属性。              |
+| ffrt_cond_init(ffrt_cond_t* cond, const ffrt_condattr_t* attr)   | 初始化条件变量。      |
+| ffrt_cond_signal(ffrt_cond_t* cond)         | 唤醒阻塞在条件变量上的一个任务。 |
+| ffrt_cond_broadcast(ffrt_cond_t* cond) | 唤醒阻塞在条件变量上的所有任务。 |
+| ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)            | 条件变量等待函数，条件变量不满足时阻塞当前任务。 |
 
 ## 函数介绍
 
