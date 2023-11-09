@@ -34,7 +34,7 @@ Scroll(scroller?: Scroller)
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Auto<br/>**说明：** <br/>如果容器组件无法滚动，则滚动条不显示。如果容器组件的子组件大小为无穷大，则滚动条不支持拖动和伴随滚动。 |
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color)   | 设置滚动条的颜色。 |
 | scrollBarWidth | string&nbsp;\|&nbsp;number         | 设置滚动条的宽度，不支持百分比设置。<br/>默认值：4<br/>单位：vp<br/>**说明：** <br/>如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。 |
-| scrollSnap<sup>10+</sup>     | [ScrollSnapOptions](#scrollsnapoptions)                     | 设置Scroll组件的限位滚动模式。 |
+| scrollSnap     | [ScrollSnapOptions](#scrollsnapoptions10)                     | 设置Scroll组件的限位滚动模式。 |
 | edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)            | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.None |
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](#nestedscrolloptions10对象说明) | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
@@ -48,7 +48,7 @@ Scroll(scroller?: Scroller)
 | None       | 不可滚动。               |
 | Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动<br/> 从API version 9开始废弃|
 
-## scrollSnapOptions
+## scrollSnapOptions<sup>10+</sup>
 | 名称       | 参数类型       | 描述       |
 | ---------- | ---------------------------------------- | -------- |
 | snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 设置Scroll组件限位滚动时的对其方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。<br/>2.该接口仅当snapPagination属性为Dimension时生效，不支持Array\<Dimension\>。 |
