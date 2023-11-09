@@ -83,7 +83,7 @@ import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        if (launchParam.lastExitReason === AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
+        if (launchParam.lastExitReason === AbilityConstant.LastExitReason.APP_FREEZE) {
             console.log('The ability has exit last because the ability was not responding.');
         }
     }
