@@ -109,7 +109,7 @@ toString(): string
 
 getDirectoryUri(): string;
 
-以同步方法通过URI获取获取所在路径URI，文件获取所在路径URI，目录获取当前路径URI，该接口仅支持特定设备。
+以同步方法通过URI获取获取所在路径URI，文件获取所在路径URI，目录获取当前路径URI。
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
@@ -125,7 +125,6 @@ getDirectoryUri(): string;
 
 | 错误码ID                     | 错误信息                      |
 | ---------------------------- |---------------------------|
-| 801 | Capability not supported  |
 | 13900002 | No such file or directory |
 | 13900012 | Permission denied         |
 | 13900042 | Unknown error             |
