@@ -108,7 +108,7 @@ task5(OUT A);
 | ffrt_queue_attr_init(ffrt_queue_attr_t* attr)    | 初始化串行队列属性。 |
 | ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr)    | 销毁串行队列属性。 |
 | ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)    | 设置串行队列qos属性。 |
-| ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)      | 获取串行队列qos属性。 |
+| ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)      | 获取串行队列qos属性。 |
 | ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)   | 创建队列。 |
 | ffrt_queue_destroy(ffrt_queue_t queue)   | 销毁队列。 |
 | ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)   | 提交一个任务到队列中调度执行。 |
@@ -120,13 +120,23 @@ task5(OUT A);
 | ffrt_task_attr_init(ffrt_task_attr_t* attr)     | 初始化任务属性。 |
 | ffrt_task_attr_set_name(ffrt_task_attr_t* attr, const char* name)   | 设置任务名字。 |
 | ffrt_task_attr_get_name(const ffrt_task_attr_t* attr)   | 获取任务名字。 |
-| ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)            | 条件变量等待函数，条件变量不满足时阻塞当前任务。 |
-| ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)            | 条件变量等待函数，条件变量不满足时阻塞当前任务。 |
-| ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)            | 条件变量等待函数，条件变量不满足时阻塞当前任务。 |
-| ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)            | 条件变量等待函数，条件变量不满足时阻塞当前任务。 |
-| ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)            | 条件变量等待函数，条件变量不满足时阻塞当前任务。 |
-| ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)            | 条件变量等待函数，条件变量不满足时阻塞当前任务。 |
-| ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)            | 条件变量等待函数，条件变量不满足时阻塞当前任务。 |
+| ffrt_task_attr_destroy(ffrt_task_attr_t* attr)    | 销毁任务属性。 |
+| ffrt_task_attr_set_qos(ffrt_task_attr_t* attr, ffrt_qos_t qos)    | 设置任务qos。 |
+| ffrt_task_attr_get_qos(const ffrt_task_attr_t* attr)      | 获取任务qos。 |
+| ffrt_task_attr_set_delay(ffrt_task_attr_t* attr, uint64_t delay_us)    | 设置任务延迟时间。 |
+| ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr)      | 获取任务延迟时间。 |
+| ffrt_this_task_update_qos(ffrt_qos_t qos)    | 更新任务qos。 |
+| ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_t kind)     | 申请函数执行结构的内存。 |
+| ffrt_submit_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)   | 提交任务调度执行。 |
+| ffrt_submit_h_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)    | 提交任务调度执行并返回任务句柄。 |
+| ffrt_task_handle_destroy(ffrt_task_handle_t handle)    | 销毁任务句柄。 |
+| ffrt_skip(ffrt_task_handle_t handle)     | 跳过指定任务。 |
+| ffrt_wait_deps(const ffrt_deps_t* deps)    | 等待依赖的任务完成，当前任务开始执行。 |
+| ffrt_this_task_get_id(void)     | 获取任务id。 |
+| ffrt_this_task_get_id(void)     | 获取任务id。 |
+| ffrt_this_task_get_id(void)     | 获取任务id。 |
+
+
 
 ## 函数介绍
 
