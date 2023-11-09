@@ -506,4 +506,4 @@ struct Index {
   }
 }
 ```
-![NestedScroll2](figures/NestedScrollSnap.gif)
+![NestedScrollSnap](figures/NestedScrollSnap.gif)
