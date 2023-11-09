@@ -1795,6 +1795,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or domainInfo. |
+| 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
@@ -1848,6 +1849,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or domainInfo. |
+| 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
