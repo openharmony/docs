@@ -205,7 +205,7 @@ zh-cn/application-dev/reference/apis/js-apis-audio.md @liuyuehua1 @zengyawen @ma
 zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md @chenmingJay @ningningW @very0228 @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-battery-info.md  @zengyawen  @alien0208 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-bluetooth.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
-zh-cn/application-dev/reference/apis/js-apis-brightness.md  @zengyawen  @alien0208
+zh-cn/application-dev/reference/apis/js-apis-brightness.md  @zengyawen  @alien0208 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-buffer.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-bundle-AbilityInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-bundle-ApplicationInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
@@ -326,7 +326,7 @@ zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @han-zhengshi @HelloC
 zh-cn/application-dev/reference/apis/js-apis-permissionrequestresult.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-plainarray.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-pointer.md @yuanxinying @ningningW @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-power.md  @zengyawen  @alien0208
+zh-cn/application-dev/reference/apis/js-apis-power.md  @zengyawen  @alien0208 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-privacyManager.md @nianCode @zengyawen @shuqinglin2 @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-process.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-processrunninginfo.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
@@ -339,7 +339,7 @@ zh-cn/application-dev/reference/apis/js-apis-request.md @hu-zhiqiong @hanruofei 
 zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-rpc.md @xuepianpian @zhang_yixin13 @zhaopeng_gitee @vagrant_world
-zh-cn/application-dev/reference/apis/js-apis-runninglock.md  @zengyawen  @alien0208
+zh-cn/application-dev/reference/apis/js-apis-runninglock.md  @zengyawen  @alien0208 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-screen.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis/js-apis-screenshot.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis/js-apis-securityLabel.md @panqinxu @zengyawen @bubble_mao @jinhaihw
