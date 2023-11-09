@@ -15,7 +15,7 @@ import wifiManager from '@ohos.wifiManager';
 
 enableWifi(): void
 
-使能WLAN，异步接口，是否打开成功需要注册并监听wifiStateChange的回调。
+使能WLAN，异步接口，需要通过注册"wifiStateChange"事件的回调来监听是否打开成功。
 
 **系统接口：** 此接口为系统接口。
 
@@ -48,7 +48,7 @@ enableWifi(): void
 
 disableWifi(): void
 
-去使能WLAN，异步接口，是否关闭成功需要注册并监听wifiStateChange的回调。
+去使能WLAN，异步接口，需要通过注册"wifiStateChange"事件的回调来监听是否关闭成功。
 
 **系统接口：** 此接口为系统接口。
 
@@ -189,7 +189,7 @@ getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise对象。返回扫描到的热点列表。 |
+| Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;&nbsp;&gt; | Promise对象。返回扫描到的热点列表。 |
 
 **错误码：**
 
@@ -212,8 +212,8 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | 是 | 回调函数。当成功时，err为0，data为扫描到的热点；否则err为非0值，data为空。 |
-  | Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 返回扫描到的热点列表。 |
+| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;&gt; | 是 | 回调函数。当成功时，err为0，data为扫描到的热点；否则err为非0值，data为空。 |
+  | Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt; | 返回扫描到的热点列表。 |
 
 **错误码：**
 
@@ -267,7 +267,7 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 ## wifiManager.getScanResultsSync<sup>9+</sup>
 
-getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
+getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;
 
 获取扫描结果，使用同步方式返回结果。
 
@@ -279,7 +279,7 @@ getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
 
 | **类型** | **说明** |
 | -------- | -------- |
-| &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 扫描结果数组。 |
+| &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt; | 扫描结果数组。 |
 
 **错误码：**
 
@@ -332,7 +332,7 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;;
 
 | **类型** | **说明** |
 | -------- | -------- |
-| Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 返回扫描到的热点列表。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的bssid为真实设备地址，否则为随机设备地址。 |
+| Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt; | 返回扫描到的热点列表。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的bssid为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
@@ -380,11 +380,11 @@ WLAN热点信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | 热点的BSSID。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | bssidType<sup>10+</sup>| DeviceAddressType | 是 | 否 | 热点的BSSID类型。 |
 | capabilities | string | 是 | 否 | 热点能力。 |
-| securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | WLAN加密类型。 |
+| securityType | [WifiSecurityType](#wifisecuritytype9) | 是 | 否 | WLAN加密类型。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
 | band | number | 是 | 否 | WLAN接入点的频段。 |
 | frequency | number | 是 | 否 | WLAN接入点的频率。 |
@@ -419,11 +419,11 @@ wifi 设备地址（mac/bssid）类型。
 | WIFI_SEC_TYPE_WEP | 2 | Wired&nbsp;Equivalent&nbsp;Privacy&nbsp;(WEP)加密类型。 |
 | WIFI_SEC_TYPE_PSK | 3 | Pre-shared&nbsp;key&nbsp;(PSK)加密类型。 |
 | WIFI_SEC_TYPE_SAE | 4 | Simultaneous&nbsp;Authentication&nbsp;of&nbsp;Equals&nbsp;(SAE)加密类型。 |
-| WIFI_SEC_TYPE_EAP<sup>9+</sup> | 5 | EAP加密类型。 |
-| WIFI_SEC_TYPE_EAP_SUITE_B<sup>9+</sup> | 6 | Suite-B 192位加密类型。 |
-| WIFI_SEC_TYPE_OWE<sup>9+</sup> | 7 | 机会性无线加密类型。 |
-| WIFI_SEC_TYPE_WAPI_CERT<sup>9+</sup> | 8 | WAPI-Cert加密类型。 |
-| WIFI_SEC_TYPE_WAPI_PSK<sup>9+</sup> | 9 | WAPI-PSK加密类型。 |
+| WIFI_SEC_TYPE_EAP | 5 | EAP加密类型。 |
+| WIFI_SEC_TYPE_EAP_SUITE_B | 6 | Suite-B 192位加密类型。 |
+| WIFI_SEC_TYPE_OWE | 7 | 机会性无线加密类型。 |
+| WIFI_SEC_TYPE_WAPI_CERT | 8 | WAPI-Cert加密类型。 |
+| WIFI_SEC_TYPE_WAPI_PSK | 9 | WAPI-PSK加密类型。 |
 
 
 ## WifiBandType<sup>10+</sup>
@@ -578,7 +578,7 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
 
 **返回值：**
 
@@ -622,12 +622,12 @@ WLAN配置信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | 热点的BSSID。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | bssidType<sup>10+</sup> | DeviceAddressType | 是 | 否 | 热点的BSSID类型。 |
-| preSharedKey | string | 是 | 否 | 热点的密钥。 |
+| preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。 |
 | isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 |
-| securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | 加密类型。 |
+| securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 否 | 加密类型。 |
 | creatorUid | number | 是 | 否 | 创建用户的ID。 <br /> **系统接口：** 此接口为系统接口。 |
 | disableReason | number | 是 | 否 | 禁用原因。 <br /> **系统接口：** 此接口为系统接口。 |
 | netId | number | 是 | 否 | 分配的网络ID。 <br /> **系统接口：** 此接口为系统接口。 |
@@ -779,7 +779,7 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。当error为非0，表示处理出现错误。 |
 
 **错误码：**
@@ -823,7 +823,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
 
 **返回值：**
 
@@ -871,7 +871,7 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。如果操作出现错误，err为非0值。 |
 
 **错误码：**
@@ -986,7 +986,7 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 
 ## wifiManager.getCandidateConfigs<sup>9+</sup>
 
-getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
+getCandidateConfigs(): &nbsp;Array&lt;WifiDeviceConfig&gt;
 
 获取候选网络配置。
 
@@ -1002,7 +1002,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 
   | **类型** | **说明** |
   | -------- | -------- |
-  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | 候选网络配置数组。 |
+  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | 候选网络配置数组。 |
 
 **错误码：**
 
@@ -1065,8 +1065,7 @@ connectToCandidateConfig(networkId: number): void
 
 	try {
 		let networkId = 0;
-		let ret = wifiManager.connectToCandidateConfig(networkId);
-		console.info("result:" + ret);
+		wifiManager.connectToCandidateConfig(networkId);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -1130,7 +1129,7 @@ connectToDevice(config: WifiDeviceConfig): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
 
 **错误码：**
 
@@ -1764,7 +1763,7 @@ reconnect(): void
 
 ## wifiManager.getDeviceConfigs<sup>9+</sup>
 
-getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
+getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt;
 
 获取网络配置。
 
@@ -1782,7 +1781,7 @@ API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
 
   | **类型** | **说明** |
   | -------- | -------- |
-  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | 网络配置信息的数组。 |
+  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | 网络配置信息的数组。 |
 
 **错误码：**
 
@@ -1820,7 +1819,7 @@ updateNetwork(config: WifiDeviceConfig): number
 
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
+  | config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。 |
 
 **返回值：**
 
@@ -2287,7 +2286,7 @@ setHotspotConfig(config: HotspotConfig): void
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 是 | 热点的SSID，编码格式为UTF-8。 |
-| securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 是 | 加密类型。 |
+| securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 是 | 加密类型。 |
 | band | number | 是 | 是 | 热点的带宽。1: 2.4G, 2: 5G, 3: 双模频段 |
 | channel<sup>10+</sup> | number | 是 | 是 | 热点的信道（2.4G：1~14,5G：7~196，双模频段：暂不支持）。 |
 | preSharedKey | string | 是 | 是 | 热点的密钥。 |
