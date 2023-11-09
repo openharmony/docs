@@ -126,6 +126,7 @@ task5(OUT A);
 | ffrt_task_attr_set_delay(ffrt_task_attr_t* attr, uint64_t delay_us)    | 设置任务延迟时间。 |
 | ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr)      | 获取任务延迟时间。 |
 | ffrt_this_task_update_qos(ffrt_qos_t qos)    | 更新任务qos。 |
+| ffrt_this_task_get_id(void)    | 获取任务id。 |
 | ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_t kind)     | 申请函数执行结构的内存。 |
 | ffrt_submit_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)   | 提交任务调度执行。 |
 | ffrt_submit_h_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)    | 提交任务调度执行并返回任务句柄。 |
