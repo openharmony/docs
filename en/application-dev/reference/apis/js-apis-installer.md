@@ -136,7 +136,7 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> Since API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
+> From API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
 >
 > To install an enterprise application, you must have the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
 >
@@ -180,6 +180,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification is failed. |
 | 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
 
 **Example**
 
@@ -221,7 +222,7 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> Since API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
+> From API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
 >
 > To install an enterprise application, you must have the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
 >
@@ -263,6 +264,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification is failed. |
 | 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
 
 **Example**
 
@@ -301,7 +303,7 @@ Installs a bundle. This API uses a promise to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> Since API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
+> From API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
 >
 > To install an enterprise application, you must have the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
 >
@@ -350,6 +352,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification is failed. |
 | 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
 
 **Example**
 
@@ -1112,6 +1115,7 @@ Defines the parameters that need to be specified for bundle installation, uninst
 | specifiedDistributionType<sup>10+</sup> | string | No|Distribution type specified during application installation. By default, no value is passed. The maximum length is 128 bytes. This field is usually specified by the application market of the operating system operator.|
 | additionalInfo<sup>10+</sup> | string | No|Additional information during application installation (usually an enterprise application). By default, no value is passed. The maximum length is 3,000 bytes. This field is usually specified by the application market of the operating system operator.|
 | verifyCodeParams<sup>10+</sup> | Array<[VerifyCodeParam](#verifycodeparam10)> | No| Information about the code signature file. The default value is null.        |
+| pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | No| Parameters of the Profile-guided Optimization (PGO) configuration file. The default value is null.        |
 
 ## UninstallParam<sup>10+</sup>
 
@@ -1138,3 +1142,16 @@ Defines the information about the code signature file.
 | ---------- | ------ | ---------------- | ---------------- |
 | moduleName | string | Yes| Module name of the bundle.|
 | signatureFilePath  | string | Yes| Path of the code signature file.          |
+
+## PGOParam<sup>11+</sup>
+
+Defines the parameters of the PGO configuration file.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+ **System API**: This is a system API.
+
+| Name    | Type  | Mandatory| Description            |
+| ---------- | ------ | ---------------- | ---------------- |
+| moduleName | string | Yes| Module name of the bundle.|
+| pgoFilePath  | string | Yes| Path of the PGO configuration file.          |
