@@ -370,33 +370,6 @@ buffer数组，提供blob数据类型。
 | sk | bigint | 是   | 是   | 指定RSA算法的私钥sk。 |
 | pk | bigint | 是   | 是   | 指定RSA算法的公钥pk。 |
 
-## KdfSpec<sup>11+</sup>
-
-密钥派生函数参数，使用密钥派生函数进行密钥派生时，需要构建其子类对象并作为输入。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
-| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 是   | 指明密钥派生函数的算法名，如"PBKDF2"。 |
-
-## PBKDF2Spec<sup>11+</sup>
-
-密钥派生函数参数[KdfSpec](#kdfspec11)的子类，作为PBKDF2密钥派生函数进行密钥派生时的输入。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
-| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| password | string \| Uint8Array | 是   | 是   | 用户输入的原始密码。|
-| salt | Uint8Array | 是   | 是   | 盐值。 |
-| iterations | number | 是   | 是   | 迭代次数，需要为正整数。 |
-| keySize | number | 是   | 是   | 派生得到的密钥字节长度。 |
-
-> **说明：**
->
-> password指的是原始密码，如果使用string类型，需要直接传入用于密钥派生的数据，而不是HexString、base64等字符串类型，同时需要确保该字符串为utf-8编码，否则派生结果会有差异。
-
 ## Key
 
 密钥（父类），在运行密码算法（如加解密）时需要提前生成其子类对象，并传入[Cipher](#cipher)实例的[init()](#init-2)方法。
@@ -652,10 +625,6 @@ generateSymKey(callback: AsyncCallback\<SymKey>): void
 
 目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
 
-> **说明：**
->
-> 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则会随机生成与哈希长度一致的二进制密钥数据（如指定“HMAC|SHA256”会随机生成256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则不支持随机生成对称密钥数据，可通过[convertKey](#convertkey)方式生成对称密钥数据。
-
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -734,10 +703,6 @@ convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
 异步根据指定数据生成对称密钥，通过注册回调函数获取结果。
 
 必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
-
-> **说明：**
->
-> 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则需要传入与哈希长度一致的二进制密钥数据（如传入SHA256对应256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则支持传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3140,10 +3105,6 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 
 使用对称密钥初始化Mac计算，通过注册回调函数获取结果。
 
-  > **说明：**
-  >
-  > 建议通过[HMAC密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)创建对称密钥生成器，调用[generateSymKey](#generatesymkey)随机生成对称密钥或调用[convertKey](#convertkey)传入与密钥规格长度一致的二进制密钥数据生成密钥。<br/>当指定“HMAC”生成对称密钥生成器时，仅支持调用[convertKey](#convertkey)传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据生成密钥。
-
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -3707,149 +3668,5 @@ rand.generateRandom(12, (err, randData) => {
       console.error(`sync error, ${e.code}, ${e.message}`);
     }
   }
-});
-```
-
-## cryptoFramework.createKdf<sup>11+</sup>
-
-createKdf(algName: string): Kdf
-
-密钥派生函数（key derivation function）实例生成。<br/>支持的规格详见框架概述“[密钥派生函数规格](../../security/cryptoFramework-overview.md#密钥派生函数规格)”一节。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**参数：**
-
-| 参数名  | 类型   | 必填 | 说明                              |
-| ------- | ------ | ---- | --------------------------------- |
-| algName | string | 是   | 指定密钥派生算法（包含HMAC配套的散列函数）：目前仅支持PBKDF2算法，如"PBKDF2|SHA1"。 |
-
-**返回值**：
-
-| 类型         | 说明                                       |
-| ------------ | ------------------------------------------ |
-| [Kdf](#kdf11) | 返回由输入算法指定生成的Kdf对象。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401 | invalid parameters.          |
-| 801 | this operation is not supported.          |
-| 17620001 | memory error.          |
-
-**示例：**
-
-```ts
-let kdf = cryptoFramework.createKdf("PBKDF2|SHA1");
-
-```
-
-## Kdf<sup>11+</sup>
-
-密钥派生函数（key derivation function）类，使用密钥派生方法之前需要创建该类的实例进行操作，通过createKdf(algName: string): Kdf方法构造此实例。
-
-### 属性
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
-| ------- | ------ | ---- | ---- | ---------------------------- |
-| algName | string | 是   | 否   | 密钥派生函数的算法名称。 |
-
-### generateSecret
-
-generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
-
-基于传入的密钥派生参数进行密钥派生，通过注册回调函数返回派生得到的密钥。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**参数：**
-
-| 参数名   | 类型                     | 必填 | 说明                   |
-| -------- | ------------------------ | ---- | ---------------------- |
-| spec   | [KdfSpec](#kdfspec11)        | 是   | 设置密钥派生函数的参数。 |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取派生得到的密钥DataBlob数据。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401 | invalid parameters.          |
-| 17620001 | memory error.          |
-| 17630001 | crypto operation error. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let spec: cryptoFramework.PBKDF2Spec = {
-  algName: 'PBKDF2',
-  password: '123456',
-  salt: new Uint8Array(16),
-  iterations: 10000,
-  keySize: 32
-};
-let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
-kdf.generateSecret(spec, (err, secret) => {
-  if (err) {
-    console.error("key derivation error.");
-    return;
-  }
-  console.info("key derivation output is " + secret.data);
-});
-```
-
-### generateSecret
-
-generateSecret(params: KdfSpec): Promise\<DataBlob>
-
-基于传入的密钥派生参数进行密钥派生，通过Promise形式返回派生得到的密钥。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | ---------------------- |
-| spec   | [KdfSpec](#kdfspec11)        | 是   | 设置密钥派生函数的参数。 |
-
-**返回值：**
-
-| 类型               | 说明     |
-| ------------------ | -------- |
-| Promise\<[DataBlob](#datablob)> | 回调函数，用于获取派生得到的密钥DataBlob数据。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401 | invalid parameters.          |
-| 17620001 | memory error.          |
-| 17630001 | crypto operation error. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let spec: cryptoFramework.PBKDF2Spec = {
-  algName: 'PBKDF2',
-  password: '123456',
-  salt: new Uint8Array(16),
-  iterations: 10000,
-  keySize: 32
-};
-let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
-let kdfPromise = kdf.generateSecret(spec);
-kdfPromise.then((secret) => {
-  console.info("key derivation output is " + secret.data);
-}).catch((error: BusinessError) => {
-  console.error("key derivation error.");
 });
 ```
