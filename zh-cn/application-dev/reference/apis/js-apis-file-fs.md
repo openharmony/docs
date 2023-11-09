@@ -1640,7 +1640,7 @@ readLines(filePath: string, options?: Options, callback: AsyncCallback&lt;Reader
   });
   ```
 
-## fs.readLinesSync
+## fs.readLinesSync<sup>11+</sup>
 
 readLinesSync(filePath: string, options?: Options): ReaderIterator
 
@@ -1683,7 +1683,7 @@ readLinesSync(filePath: string, options?: Options): ReaderIterator
 
 文件读取迭代器。在调用ReaderIterator的方法前，需要先通过readLines方法（同步或异步）来构建一个ReaderIterator实例。
 
-### next
+### next<sup>11+</sup>
 
 next(): ReaderIteratorResult
 
