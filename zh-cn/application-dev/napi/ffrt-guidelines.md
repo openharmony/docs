@@ -132,9 +132,6 @@ task5(OUT A);
 | ffrt_task_handle_destroy(ffrt_task_handle_t handle)    | 销毁任务句柄。 |
 | ffrt_skip(ffrt_task_handle_t handle)     | 跳过指定任务。 |
 | ffrt_wait_deps(const ffrt_deps_t* deps)    | 等待依赖的任务完成，当前任务开始执行。 |
-| ffrt_this_task_get_id(void)     | 获取任务id。 |
-| ffrt_this_task_get_id(void)     | 获取任务id。 |
-| ffrt_this_task_get_id(void)     | 获取任务id。 |
 
 
 
