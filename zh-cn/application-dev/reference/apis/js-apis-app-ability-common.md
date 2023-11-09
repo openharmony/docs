@@ -29,7 +29,6 @@ import common from '@ohos.app.ability.common';
 | EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | EventHub二级模块。 |
 | PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)               | PacMap二级模块。 |
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | AbilityResult二级模块。 |
-| AbilityStartCallback<sup>11+<sup>   | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)               | AbilityStartCallback二级模块。 |
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | ConnectOptions二级模块。 |
 
 **示例：**
