@@ -822,7 +822,7 @@ void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 * 在`ffrt_queue_attr_destroy`之后再对ffrt_queue_t进行访问，其行为是未定义的
 
 ##### 样例
-将ffrt_queue_t章节的样例
+参考ffrt_queue_t章节的样例
 
 #### ffrt_queue_t
 
