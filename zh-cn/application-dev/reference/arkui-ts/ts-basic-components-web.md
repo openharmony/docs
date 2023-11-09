@@ -782,7 +782,7 @@ initialScale(percent: number)
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .(this.percent)
+          .initialScale(this.percent)
       }
     }
   }
@@ -1455,7 +1455,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，触发默认弹窗。 |
 
 **示例：**
 
@@ -2398,8 +2398,8 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 | handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | 通知Web组件用户操作行为。  |
 | host     | string                                   | 请求证书服务器的主机名。    |
 | port     | number                                   | 请求证书服务器的端口号。    |
-| keyTypes | Array<string>                            | 可接受的非对称秘钥类型。    |
-| issuers  | Array<string>                            | 与私钥匹配的证书可接受颁发者。 |
+| keyTypes | Array<string\>                            | 可接受的非对称秘钥类型。    |
+| issuers  | Array<string\>                            | 与私钥匹配的证书可接受颁发者。 |
 
   **示例：**
   ```ts
