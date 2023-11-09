@@ -115,7 +115,7 @@ task5(OUT A);
 | ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)  | 提交一个任务到队列中调度执行，并返回任务句柄。 |
 | ffrt_queue_wait(ffrt_task_handle_t handle)    | 等待队列中一个任务执行完成。 |
 | ffrt_queue_cancel(ffrt_task_handle_t handle)     | 取消队列中一个任务。 |
-| ffrt_usleep(uint64_t usec)   | 延迟usec微妙。 |
+| ffrt_usleep(uint64_t usec)   | 延迟usec微秒。 |
 | ffrt_yield(void)     | 当前任务主动放权，让其他任务有机会调度执行。 |
 | ffrt_task_attr_init(ffrt_task_attr_t* attr)     | 初始化任务属性。 |
 | ffrt_task_attr_set_name(ffrt_task_attr_t* attr, const char* name)   | 设置任务名字。 |
