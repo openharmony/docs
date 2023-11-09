@@ -175,7 +175,7 @@ zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md @nianCode @zen
 zh-cn/application-dev/reference/apis/js-apis-abilityDelegatorRegistry.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-abilityrunninginfo.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-abilitystagecontext.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-accessibility-extension-context.md @mupceet @RayShih @mupceet @gaoxi785
+zh-cn/application-dev/reference/apis/js-apis-accessibility-extension-context.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-animator.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-appAccount.md @nianCode @zengyawen @JiDong-CS @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-application-ability.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
@@ -186,7 +186,7 @@ zh-cn/application-dev/reference/apis/js-apis-application-abilityLifecycleCallbac
 zh-cn/application-dev/reference/apis/js-apis-application-abilityManager.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-application-abilityMonitor.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-application-abilitystage.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-AccessibilityExtensionAbility.md @mupceet @RayShih @mupceet @chengxingzhen
+zh-cn/application-dev/reference/apis/js-apis-application-AccessibilityExtensionAbility.md @mupceet @RayShih @mupceet @chengxingzhen @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-application-applicationContext.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-application-context.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-application-DataShareExtensionAbility.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
@@ -254,7 +254,7 @@ zh-cn/application-dev/reference/apis/js-apis-dataAbilityHelper.md @feng-aiwen @g
 zh-cn/application-dev/reference/apis/js-apis-DataUriUtils.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-deque.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-device-info.md @mupceet @zhang_yixin13 @handyohos @nan-xiansen
-zh-cn/application-dev/reference/apis/js-apis-device-manager.md @intermilano @RayShih @william-ligang @liuhonggang123
+zh-cn/application-dev/reference/apis/js-apis-device-manager.md @intermilano @RayShih @william-ligang @liuhonggang123 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-deviceUsageStatistics.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-display.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis/js-apis-distributed-account.md @nianCode @zengyawen @JiDong-CS @murphy1984
@@ -422,10 +422,10 @@ zh-cn/application-dev/reference/arkui-ts/ts-basic-components-web.md @bigpumpkin 
 zh-cn/application-dev/reference/apis/js-apis-ability-ability.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-ability-abilityResult.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-ability-Want.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-accessibility-config.md @mupceet @RayShih @mupceet @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePath.md @mupceet @RayShih @mupceet @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePoint.md @mupceet @RayShih @mupceet @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-accessibility.md @mupceet @RayShih @mupceet @gaoxi785
+zh-cn/application-dev/reference/apis/js-apis-accessibility-config.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePath.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePoint.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-accessibility.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-app-ability-appRecovery.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-appControl.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-application-configuration.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
