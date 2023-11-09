@@ -1110,7 +1110,7 @@ networkManager.addFirewallRule(wantTemp, firewallRule);
 removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
 指定设备管理应用移除设备防火墙过滤规则。
-移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addFirewallRule](#networkmanageraddfirewallrule)默认添加的DENY规则清空。
+移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addFirewallRule](#networkmanageraddfirewallrule11)默认添加的DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1258,7 +1258,7 @@ networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
 removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
 指定设备管理应用移除设备域名过滤规则。
-移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addDomainFilterRule](#networkmanageradddomainfilterrule)默认添加的DENY规则清空。
+移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addDomainFilterRule](#networkmanageradddomainfilterrule11)默认添加的DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
