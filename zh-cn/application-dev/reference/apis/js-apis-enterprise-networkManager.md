@@ -1057,7 +1057,7 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 
 addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
-指定设备管理应用为设备添加防火墙过滤规则。
+指定设备管理应用为设备添加防火墙过滤规则。<br/>
 添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的网络数据包将会被丢弃。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -1071,7 +1071,7 @@ addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 | 参数名          | 类型                                  | 必填   | 说明         |
 |--------------|-------------------------------------| ---- |------------|
 | admin        | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。    |
-| firewallRule | [FirewallRule](#firewallrule)       | 是    | 添加防火墙过滤规则。 |
+| firewallRule | [FirewallRule](#firewallrule11)       | 是    | 添加防火墙过滤规则。 |
 
 **错误码**：
 
@@ -1109,8 +1109,8 @@ networkManager.addFirewallRule(wantTemp, firewallRule);
 
 removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
-指定设备管理应用移除设备防火墙过滤规则。
-移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addFirewallRule](#networkmanageraddfirewallrule)默认添加的DENY规则清空。
+指定设备管理应用移除设备防火墙过滤规则。<br/>
+移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addFirewallRule](#networkmanageraddfirewallrule11)默认添加的DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1123,7 +1123,7 @@ removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 | 参数名          | 类型                                  | 必填 | 说明                          |
 |--------------|-------------------------------------|----|-----------------------------|
 | admin        | [Want](js-apis-app-ability-want.md) | 是  | 设备管理应用。                     |
-| firewallRule | [FirewallRule](#firewallrule)       | 否  | 移除防火墙过滤规则。值为空时，清空所有的防火墙规则。 |
+| firewallRule | [FirewallRule](#firewallrule11)       | 否  | 移除防火墙过滤规则。值为空时，清空所有的防火墙规则。 |
 
 **错误码**：
 
@@ -1182,7 +1182,7 @@ getFirewallRules(admin: Want): Array\<FirewallRule>
 
 | 类型                                    | 说明                                |
 |---------------------------------------|-----------------------------------|
-| Array\<[FirewallRule](#firewallrule)> | 返回当前设备配置的防火墙过滤规则列表，当方法调用错误时会抛出异常。 |
+| Array\<[FirewallRule](#firewallrule11)> | 返回当前设备配置的防火墙过滤规则列表，当方法调用错误时会抛出异常。 |
 
 **错误码**：
 
@@ -1210,7 +1210,7 @@ firewallRule = networkManager.getFirewallRules(wantTemp);
 
 addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
-指定设备管理应用为设备添加域名过滤规则。
+指定设备管理应用为设备添加域名过滤规则。<br/>
 添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的域名解析数据包将会被丢弃。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -1224,7 +1224,7 @@ addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 | 参数名          | 类型                                    | 必填   | 说明         |
 |--------------|---------------------------------------| ---- |------------|
 | admin        | [Want](js-apis-app-ability-want.md)   | 是    | 设备管理应用。    |
-| domainFilterRule | [DomainFilterRule](#domainfilterrule) | 是    | 添加域名过滤规则。 |
+| domainFilterRule | [DomainFilterRule](#domainfilterrule11) | 是    | 添加域名过滤规则。 |
 
 **错误码**：
 
@@ -1257,8 +1257,8 @@ networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
 
 removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
-指定设备管理应用移除设备域名过滤规则。
-移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addDomainFilterRule](#networkmanageradddomainfilterrule)默认添加的DENY规则清空。
+指定设备管理应用移除设备域名过滤规则。<br/>
+移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addDomainFilterRule](#networkmanageradddomainfilterrule11)默认添加的DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1271,7 +1271,7 @@ removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 | 参数名          | 类型                                    | 必填 | 说明                       |
 |--------------|---------------------------------------|----|--------------------------|
 | admin        | [Want](js-apis-app-ability-want.md)   | 是  | 设备管理应用。                  |
-| domainFilterRule | [DomainFilterRule](#domainfilterrule) | 否  | 移除域名过滤规则。值为空时，清空所有的域名规则。 |
+| domainFilterRule | [DomainFilterRule](#domainfilterrule11) | 否  | 移除域名过滤规则。值为空时，清空所有的域名规则。 |
 
 **错误码**：
 
@@ -1325,7 +1325,7 @@ getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 
 | 类型                                            | 说明                               |
 |-----------------------------------------------|----------------------------------|
-| Array\<[DomainFilterRule](#domainfilterrule)> | 返回当前设备配置的域名过滤规则列表，当方法调用错误时会抛出异常。 |
+| Array\<[DomainFilterRule](#domainfilterrule11)> | 返回当前设备配置的域名过滤规则列表，当方法调用错误时会抛出异常。 |
 
 **错误码**：
 
