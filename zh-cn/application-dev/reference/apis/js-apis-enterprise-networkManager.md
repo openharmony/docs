@@ -1053,11 +1053,12 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 });
 ```
 
-## networkManager.addFirewallRule
+## networkManager.addFirewallRule<sup>11+</sup>
 
-addFirewallRule(admin: Want, firewallRule: Firewall): void
+addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
 指定设备管理应用为设备添加防火墙过滤规则。
+添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的网络数据包将会被丢弃。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1104,11 +1105,12 @@ let firewallRule: networkManager.FirewallRule = {
 networkManager.addFirewallRule(wantTemp, firewallRule);
 ```
 
-## networkManager.removeFirewallRule
+## networkManager.removeFirewallRule<sup>11+</sup>
 
-removeFirewallRule(admin: Want, firewallRule?: Firewall): void
+removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
 指定设备管理应用移除设备防火墙过滤规则。
+移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addFirewallRule](#networkmanageraddfirewallrule)默认添加的DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1158,9 +1160,9 @@ networkManager.removeFirewallRule(wantTemp, firewallRule);
 networkManager.removeFirewallRule(wantTemp);
 ```
 
-## networkManager.getFirewallRule
+## networkManager.getFirewallRules<sup>11+</sup>
 
-getFirewallRule(admin: Want): Array\<FirewallRule>
+getFirewallRules(admin: Want): Array\<FirewallRule>
 
 指定设备管理应用查询防火墙过滤规则。
 
@@ -1204,11 +1206,12 @@ let firewallRule: Array<networkManager.FirewallRule>;
 firewallRule = networkManager.getFirewallRules(wantTemp);
 ```
 
-## networkManager.addDomainFilterRule
+## networkManager.addDomainFilterRule<sup>11+</sup>
 
 addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
 指定设备管理应用为设备添加域名过滤规则。
+添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的域名解析数据包将会被丢弃。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1250,11 +1253,12 @@ let domainFilterRule: networkManager.DomainFilterRule = {
 networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
 ```
 
-## networkManager.removeDomainFilterRule
+## networkManager.removeDomainFilterRule<sup>11+</sup>
 
 removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
 指定设备管理应用移除设备域名过滤规则。
+移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addDomainFilterRule](#networkmanageradddomainfilterrule)默认添加的DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1299,7 +1303,7 @@ networkManager.removeDomainFilterRule(wantTemp, domainFilterRule);
 networkManager.removeDomainFilterRule(wantTemp);
 ```
 
-## networkManager.getDomainFilterRules
+## networkManager.getDomainFilterRules<sup>11+</sup>
 
 getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 
@@ -1439,7 +1443,7 @@ domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 | UDP | 2 | 网络协议UDP。 |
 | ICMP | 3 | 网络协议ICMP。 |
 
-## FirewallRule
+## FirewallRule<sup>11+</sup>
 
 防火墙过滤规则。
 
@@ -1458,7 +1462,7 @@ domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 | action    | [Action](#action)       | 否  | 接收或者丢弃数据包。<br/>添加防护墙过滤规则时必填；移除防火墙时非必填，表示清空所有的匹配[Action](#action)规则的链。<br/>当值为空时srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
 | protocol  | [Protocol](#protocol)   | 否  | 网络协议。当值为ALL或者ICMP时，不允许设置srcPort与destPort。                                                                             |
 
-## DomainFilterRule
+## DomainFilterRule<sup>11+</sup>
 
 域名过滤规则。
 
