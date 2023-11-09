@@ -282,9 +282,9 @@ zh-cn/application-dev/reference/apis/js-apis-appmanager.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-arraylist.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-audio.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md @ningningW
-zh-cn/application-dev/reference/apis/js-apis-battery-info.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-battery-info.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-bluetooth.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-brightness.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-brightness.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-buffer.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-bundle-AbilityInfo.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-bundle-ApplicationInfo.md @RayShih
@@ -401,7 +401,7 @@ zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-permissionrequestresult.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-plainarray.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-pointer.md @ningningW
-zh-cn/application-dev/reference/apis/js-apis-power.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-power.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-privacyManager.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-process.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-processrunninginfo.md @RayShih
@@ -414,7 +414,7 @@ zh-cn/application-dev/reference/apis/js-apis-request.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-rpc.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-runninglock.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-runninglock.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-screen.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-screenshot.md @ge-yafang
@@ -498,7 +498,7 @@ zh-cn/application-dev/reference/apis/js-apis-application-configuration.md @RaySh
 zh-cn/application-dev/reference/apis/js-apis-application-configurationConstant.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-application-quickFixManager.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-avsession.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-Bundle-BundleStatusCallback.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-bundleManager-abilityInfo.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-bundleManager-applicationInfo.md @RayShih
