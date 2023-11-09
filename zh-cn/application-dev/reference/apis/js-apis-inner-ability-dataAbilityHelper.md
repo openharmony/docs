@@ -18,7 +18,7 @@ import ability from '@ohos.ability.ability';
 使用前根据具体情况引入如下模块
 ```ts
 import ohos_data_ability from '@ohos.data.dataAbility';
-import relationalStore from '@ohos.data.relationalStore'
+import relationalStore from '@ohos.data.relationalStore';
 ```
 
 ## DataAbilityHelper.openFile
@@ -131,7 +131,7 @@ DAHelper.on(
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
-注消观察者以停止监听uri指定数据的数据变化通知。
+注销观察者以停止监听uri指定数据的数据变化通知。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -701,7 +701,7 @@ DAHelper.delete('dataability:///com.example.DataAbility', da, (error, data) => {
 
 ## DataAbilityHelper.delete
 
-delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>;
+delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
 
 从数据库中删除一个或多个数据记录（Promise形式）。
 
@@ -756,7 +756,6 @@ predicates筛选条件为空，自定义数据库删除数据记录的处理逻�
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
-import ohos_data_ability from '@ohos.data.dataAbility';
 
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
@@ -816,7 +815,7 @@ DAHelper.update('dataability:///com.example.DataAbility', va, da, (error, data) 
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>;
+update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
 
 更新数据库中的数据记录（Promise形式）。
 
@@ -880,7 +879,6 @@ predicates筛选条件为空，自定义更新数据库的处理逻辑（callbac
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
-import ohos_data_ability from '@ohos.data.dataAbility';
 import rdb from '@ohos.data.rdb';
 
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
@@ -915,7 +913,7 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
 | columns    | Array\<string>                | 是   | 表示要查询的列。如果此参数为空，则查询所有列。   |
-| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，自定义查询数据库中数据的处理逻辑。 |
 | callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
 
 **示例：**
@@ -943,7 +941,7 @@ DAHelper.query('dataability:///com.example.DataAbility', cars, da, (error, data)
 
 query(uri: string, callback: AsyncCallback\<ResultSet>): void
 
-predicates筛选条件为空，自定义查询数据库中数据的处理逻辑（callback形式）。
+查询数据库中的数据（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -959,7 +957,6 @@ predicates筛选条件为空，自定义查询数据库中数据的处理逻辑�
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
-import ohos_data_ability from '@ohos.data.dataAbility';
 
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
@@ -977,7 +974,7 @@ DAHelper.query('dataability:///com.example.DataAbility', (error, data) => {
 
 query(uri: string, columns: Array\<string>, callback: AsyncCallback\<ResultSet>): void
 
-predicates筛选条件为空，自定义查询数据库中数据的处理逻辑（callback形式）。
+查询数据库中的数据（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -994,7 +991,6 @@ predicates筛选条件为空，自定义查询数据库中数据的处理逻辑�
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
-import ohos_data_ability from '@ohos.data.dataAbility';
 
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
@@ -1013,7 +1009,7 @@ DAHelper.query('dataability:///com.example.DataAbility', cars, (error, data) => 
 
 query(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void
 
-predicates筛选条件为空，自定义查询数据库中数据的处理逻辑（callback形式）。
+查询数据库中的数据（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -1022,7 +1018,7 @@ predicates筛选条件为空，自定义查询数据库中数据的处理逻辑�
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
-| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，自定义查询数据库中数据的处理逻辑。 |
 | callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
 
 **示例：**
@@ -1047,7 +1043,7 @@ DAHelper.query('dataability:///com.example.DataAbility', da, (error, data) => {
 
 ## DataAbilityHelper.query
 
-query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilityPredicates): Promise\<ResultSet>;
+query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilityPredicates): Promise\<ResultSet>
 
 查询数据库中的数据（Promise形式）。
 
@@ -1059,7 +1055,7 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
 | columns    | Array\<string>               | 否   | 表示要查询的列。如果此参数为空，则查询所有列。   |
-| predicates | dataAbility.DataAbilityPredicates | 否   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| predicates | dataAbility.DataAbilityPredicates | 否   | 表示筛选条件。当此参数为null时，自定义查询数据库中数据的处理逻辑。 |
 
 **返回值：**
 
@@ -1164,7 +1160,7 @@ dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
 
 ## DataAbilityHelper.executeBatch
 
-executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void;
+executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void
 
 批量操作数据库中的数据。
 
@@ -1200,7 +1196,7 @@ dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbi
 
 ## DataAbilityHelper.executeBatch
 
-executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Array\<DataAbilityResult>>;
+executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Array\<DataAbilityResult>>
 
 批量操作数据库中的数据。
 
@@ -1239,12 +1235,14 @@ dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbi
 
 ```
 
-## PacMap
+## PacMap<sup>11+</sup>
 
-[key: string]: number | string | boolean | Array\<string | number | boolean> | null;
+[key: string]: number | string | boolean | Array\<string | number | boolean> | null
+
+用于存储数据的PacMap类型。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes| 数据存储在键值对中。|
+| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | 是 | 数据存储在键值对中。|

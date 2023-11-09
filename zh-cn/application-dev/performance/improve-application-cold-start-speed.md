@@ -4,7 +4,7 @@
 
 ## 分析应用冷启动耗时
 
-OpenHarmony的应用冷启动过程大致可分成以下四个阶段：应用进程创建&初始化、Application&Ability初始化、Ability生命周期、加载绘制首页，如下图：
+应用冷启动过程大致可分成以下四个阶段：应用进程创建&初始化、Application&Ability初始化、Ability生命周期、加载绘制首页，如下图：
 
 ![输入图片说明](figures/application-cold-start.png)
 

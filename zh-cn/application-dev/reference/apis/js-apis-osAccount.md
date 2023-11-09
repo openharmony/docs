@@ -4690,7 +4690,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 **示例：**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {
@@ -4754,7 +4754,7 @@ authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback)
 
 **示例：**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -4805,7 +4805,7 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
 
 **示例：**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -4962,7 +4962,7 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5012,7 +5012,7 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5063,7 +5063,7 @@ isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, cal
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5113,7 +5113,7 @@ getAccessToken(options: GetDomainAccessTokenOptions, callback: AsyncCallback&lt;
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5174,7 +5174,7 @@ static registerPlugin(plugin: DomainPlugin): void
 
 **示例：**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
          callback: account_osAccount.IUserAuthCallback) => {},
@@ -5674,6 +5674,107 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
     });
   } catch (err) {
     console.log('getAccountInfo exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### getAccessToken<sup>11+</sup>
+
+getAccessToken(businessParams: { [key: string]: Object }, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+获取当前域帐号的业务访问令牌，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| businessParams | { [key: string]: Object }  | 是   | 指示业务参数，具体格式取决于域插件的实现要求。|
+| callback | AsyncCallback&lt;Uint8Array&gt;  | 是   | 指示结果回调。如果获取成功，err返回null，否则为错误对象。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid business parameters. |
+| 12300003 | Domain account not found. |
+| 12300013 | Network exception. |
+| 12300014 | Domain account not authenticated. |
+| 12300111 | Operation timeout. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let businessParams: Record<string, Object> = {
+    'clientId': 'xxx',
+    'secretId': 'yyy'
+  };  // depends on the implementation of the domain plugin
+  try {
+    account_osAccount.DomainAccountManager.getAccessToken(businessParams,
+      (err: BusinessError, result: Uint8Array) => {
+      if (err) {
+        console.log('getAccessToken failed, error: ' + JSON.stringify(err));
+      } else {
+        console.log('getAccessToken result: ' + result);
+      }
+    });
+  } catch (err) {
+    console.log('getAccessToken exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### getAccessToken<sup>11+</sup>
+
+getAccessToken(businessParams: { [key: string]: Object }): Promise&lt;Uint8Array&gt;
+
+查询当前域帐号的业务访问令牌，使用promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| businessParams | { [key: string]: Object } | 是   | 指示业务参数，具体格式取决于域插件的实现要求。|
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;Uint8Array&gt; | Promise对象，返回业务访问令牌。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid business parameters. |
+| 12300003 | Domain account not found. |
+| 12300013 | Network exception. |
+| 12300014 | Domain account not authenticated. |
+| 12300111 | Operation timeout. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let businessParams: Record<string, Object> = {
+    'clientId': 'xxx',
+    'secretId': 'yyy'
+  };  // depends on the implementation of the domain plugin
+  try {
+    account_osAccount.DomainAccountManager.getAccessToken(businessParams)
+      .then((result: Uint8Array) => {
+      console.log('getAccessToken result: ' + result);
+    }).catch((err: BusinessError) => {
+      console.log('getAccessToken failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('getAccessToken exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -6701,7 +6802,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | constraint.credentials.set | 禁止配置用户凭据 |
 | constraint.os.account.remove | 禁止删除用户 |
 | constraint.managed.profile.remove | 禁止删除此用户的托管配置文件 |
-| constraint.debug.features.use | J禁止启用或访问调试功能 |
+| constraint.debug.features.use | 禁止启用或访问调试功能 |
 | constraint.vpn.set | 禁止配置VPN |
 | constraint.date.time.set | 禁止配置日期时间和时区 |
 | constraint.tethering.config | 禁止配置Tethering |

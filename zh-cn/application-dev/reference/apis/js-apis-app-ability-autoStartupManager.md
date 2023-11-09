@@ -5,7 +5,8 @@ autoStartupManager模块提供注册、注销监听应用开机自启动状态�
 > **说明：**
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 本模块接口均为系统接口，三方应用不支持调用。
+> 本模块接口均为系统接口，三方应用不支持调用。  
+> 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
@@ -51,7 +52,7 @@ try {
 
 ## off
 
-off(type: 'systemAutoStartup', callback: AutoStartupCallback): void
+off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 
 注销监听应用组件开机自启动状态变化。
 
@@ -62,7 +63,7 @@ off(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | type | string              | 是    | 固定取值“systemAutoStartup”，表示为系统应用所调用。 |
-| callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)   | 是 | 监听应用组件开机自启动状态变化的回调对象。 |
+| callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)   | 否 | 监听应用组件开机自启动状态变化的回调对象。 |
 
 **示例**：
 
@@ -158,7 +159,7 @@ try {
 
 ## cancelApplicationAutoStartup
 
-cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback<void>): void
+cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 
 取消应用组件开机自启动。使用callback异步回调。
 

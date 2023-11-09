@@ -920,7 +920,7 @@
 
 ## ohos.permission.ACCESS_USER_AUTH_INTERNAL
 
-允许调用统一身份认证服务的系统内部接口。
+允许调用系统级用户身份认证接口。
 
 **权限级别**：system_basic
 
@@ -1293,6 +1293,90 @@
 ## ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
 允许设备设置安全管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
+
+允许设备管理应用设置和查询蓝牙信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+允许设备管理应用设置和查询WIFI信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+允许设备管理应用管理限制策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+允许设备管理应用管理应用策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_LOCATION
+
+允许设备管理应用设置和查询位置信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_REBOOT
+
+允许设备管理应用进行关机重启操作。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_LOCK_DEVICE
+
+允许设备管理应用锁定设备。
 
 **权限级别**：system_basic
 
@@ -3086,7 +3170,7 @@
 
 允许应用访问系统预置隐藏相册及相册内文件。
 
-**权限级别**：system_basic
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
@@ -3099,6 +3183,114 @@
 允许系统应用拉起软件更新能力。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_FINGERPRINT_AUTH
+
+允许调用配置和管理指纹认证模块的接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.TRUSTED_RING_HASH_DATA_PERMISSION
+
+允许应用向关键资产信任环发送数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.INPUT_CONTROL_DISPATCHING
+
+允许系统应用控制事件分发流程
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_TRUSTED_RING
+
+允许使用关键资产信任环服务提供的能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.USE_TRUSTED_RING
+
+允许应用或服务使用关键资产信任环加环能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+
+允许应用访问公共目录下的Download目录。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
+允许应用访问公共目录下的Documents目录。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
+
+允许应用访问公共目录下的Desktop目录。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.FILE_ACCESS_PERSIST
+
+允许应用支持持久化访问文件Uri。
+
+**权限级别**：normal
 
 **授权方式**：system_grant
 

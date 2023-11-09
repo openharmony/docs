@@ -1703,7 +1703,7 @@ try {
 }
 ```
 
-### Type '*** | null' is not assignable to type '\*\*\*'. Type 'null' is not assignable to type '\*\*\*'
+### Type '*** | null' is not assignable to type '\*\*\*'
 
 **应用代码**
 

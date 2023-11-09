@@ -1,7 +1,7 @@
 # OpenHarmony IDL工具规格及使用说明书（仅对系统应用开放）
 
 ## IDL接口描述语言简介
-在OpenHarmony中，当客户端和服务器进行IPC通信时，需要定义双方都认可的接口，以保障双方可以成功通信，OpenHarmony IDL（OpenHarmony Interface Definition Language）则是一种定义此类接口的工具。OpenHarmony IDL先把需要传递的对象分解成操作系统能够理解的基本类型，并根据开发者的需要封装跨边界的对象。
+当客户端和服务器进行IPC通信时，需要定义双方都认可的接口，以保障双方可以成功通信，OpenHarmony IDL（OpenHarmony Interface Definition Language）则是一种定义此类接口的工具。OpenHarmony IDL先把需要传递的对象分解成操作系统能够理解的基本类型，并根据开发者的需要封装跨边界的对象。
 
   **图1** IDL接口描述
 
@@ -410,7 +410,7 @@ function connectAbility(): void {
 
 #### IPC传递sequenceable对象
 
-开发者可以通过 IPC 接口，将某个类从一个进程发送至另一个进程。但是，必须确保 IPC 通道的另一端可使用该类的代码，并且该类必须支持marshalling和unmarshalling方法。OpenHarmony 需要通过该marshalling和unmarshalling方法将对象序列化和反序列化成各进程能识别的对象。
+开发者可以通过 IPC 接口，将某个类从一个进程发送至另一个进程。但是，必须确保 IPC 通道的另一端可使用该类的代码，并且该类必须支持marshalling和unmarshalling方法。系统需要通过marshalling和unmarshalling方法将对象序列化和反序列化成各进程能识别的对象。
 
  **如需创建支持sequenceable 类型数据，开发者必须执行以下操作：** 
 

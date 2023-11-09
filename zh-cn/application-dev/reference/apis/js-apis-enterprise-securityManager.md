@@ -68,11 +68,11 @@ try {
 ```
 ## securityManager.getDeviceEncryptionStatus
 
-getDeviceEncryptionStatus(admin: Want): EncryptionStatus;
+getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus;
 
 以同步方法查询设备文件系统加密状态。成功返回设备文件系统加密状态，失败抛出对应异常。
 
-**需要权限：** ohos.permission.ENTERPRISE_MANGE_SECURITY
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -116,3 +116,14 @@ try {
 }
 ```
 
+## DeviceEncryptionStatus
+
+设备管理应用的文件系统加密状态。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+| 名称         | 类型     | 必填 | 说明                            |
+| ----------- | --------| ---- | ------------------------------- |
+| isEncrypted | boolean | 是   | 表示设备的文件系统是否加密。true:表示已加密  false:表示未加密 |
