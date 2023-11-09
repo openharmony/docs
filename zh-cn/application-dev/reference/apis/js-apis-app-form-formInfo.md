@@ -145,19 +145,6 @@ import formInfo from '@ohos.app.form.formInfo';
 | FORM_VISIBLE | 1   | 表示卡片为可见。 |
 | FORM_INVISIBLE   | 2   | 表示卡片为不可见。 |
 
-## FormUsageState
-
-卡片当前使用状态枚举。
-
-**系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称        |  值   | 说明         |
-| ----------- | ---- | ------------ |
-| USED<sup>11+</sup> | 0   | 表示卡片在使用中。 |
-| UNUSED<sup>11+</sup> | 1   | 表示卡片未被使用。 |
-
 ## RunningFormInfo<sup>10+</sup>
 
 卡片使用方信息
@@ -176,7 +163,6 @@ import formInfo from '@ohos.app.form.formInfo';
 | abilityName<sup>10+</sup> | string               | 是    | 否     | 卡片所属的Ability名称。                       |
 | formName<sup>10+</sup>        | string               | 是    | 否     | 卡片名称。                                 |
 | dimension | number               | 是    | 否     | 卡片规格。   |
-| formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | 是    | 否     | 卡片当前使用状态枚举。   |
 
 ## formProviderFilter<sup>10+</sup>
 
@@ -194,7 +180,6 @@ import formInfo from '@ohos.app.form.formInfo';
 | formName    | string               | 是    | 否     | 卡片名称。                     |
 | moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。        |
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。        |
-| isUnusedIncluded<sup>11+</sup> | boolean               | 是    | 否     | 是否包含未使用的卡片。        |
 
 ## LaunchReason<sup>10+</sup>
 

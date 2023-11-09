@@ -446,52 +446,6 @@ try {
 }
 ```
 
-## getRunningFormInfos<sup>11+</sup>
-
-getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;, isUnusedIncluded: boolean, hostBundleName?: string): void
-
-获取所有卡片信息。使用callback异步回调。
-
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt; | 是 | 以callback形式返回获取到的所有卡片信息，当获取成功时，回调中的error为undefined，data为查询到的卡片信息。|
-| isUnusedIncluded | boolean | 是 |  是否包含未使用的卡片。 |
-| hostBundleName | string | 否 |  指定要查询的卡片使用方名称，指定后会仅返回该卡片使用方下正在运行的非临时卡片信息。 <br> 缺省时，返回设备上所有正在运行的非临时卡片信息。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. ||
-
-**示例：**
-
-```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
-
-try {
-  formObserver.getRunningFormInfos((error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
-    if (error) {
-      console.error(`error, code: ${error.code}, message: ${error.message}`);
-    } else {
-      console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
-    }
-  }, true, 'com.example.ohos.formjsdemo');
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
-}
-```
-
 ## getRunningFormInfos
 
 getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
@@ -531,55 +485,6 @@ import Base from '@ohos.base';
 
 try {
   formObserver.getRunningFormInfos('com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
-    console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
-  });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
-}
-```
-
-## getRunningFormInfos<sup>11+</sup>
-
-getRunningFormInfos(isUnusedIncluded: boolean, hostBundleName?: string):  Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
-
-获取设备上正在运行的所有非临时卡片信息。使用Promise异步回调。
-
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| isUnusedIncluded | boolean | 是 |  是否包含未使用的卡片。 |
-| hostBundleName | string | 否 |  指定要查询的卡片使用方名称，指定后会仅返回该卡片使用方下正在运行的非临时卡片信息。 <br> 缺省时，返回设备上所有正在运行的非临时卡片信息。 |
-
-**返回值：**
-
-| 类型                                                         | 说明                                |
-| :----------------------------------------------------------- | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. ||
-
-**示例：**
-
-```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
-
-try {
-  formObserver.getRunningFormInfos(true, 'com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
     console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
   }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
@@ -762,60 +667,6 @@ try {
 }
 ```
 
-## getRunningFormInfoById<sup>11+</sup>
-
-getRunningFormInfoById(formId: string, isUnusedIncluded: boolean): Promise&lt;formInfo.RunningFormInfo&gt;
-
-
-根据formId查询卡片已有的使用方列表信息。使用Promise异步回调。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名      | 类型            | 必填 | 说明                             |
-| ----------- | --------------- | ---- | -------------------------------- |
-| formId     | string | 是   | 卡片标识。 |
-| isUnusedIncluded     | boolean | 是   | 是否包含未使用的卡片。 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt; | Promise对象，返回查询到的使用方列表信息。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500100 | Failed to obtain the configuration information. |
-| 16501000  | An internal functional error occurred. |
-
-
-```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
-
-let formId: string = '12400633174999288';
-try {
-  formObserver.getRunningFormInfoById(formId, true).then((data: formInfo.RunningFormInfo) => {
-    console.info('formObserver getRunningFormInfoById success, data:' + JSON.stringify(data));
-  }).catch((error: Base.BusinessError) => {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
-  });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
-}
-```
-
 ## getRunningFormInfoById
 
 getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.RunningFormInfo&gt;): void
@@ -856,55 +707,6 @@ import Base from '@ohos.base';
 let formId: string = '12400633174999288';
 try {
   formObserver.getRunningFormInfoById(formId,(error: Base.BusinessError, data: formInfo.RunningFormInfo) => {
-    if (error) {
-      console.error(`error, code: ${error.code}, message: ${error.message}`);
-    } else {
-      console.log(`formObserver getRunningFormInfoById, data: ${JSON.stringify(data)}`);
-    }
-  });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
-}
-```
-
-## getRunningFormInfoById<sup>11+</sup>
-
-getRunningFormInfoById(formId: string, isUnusedIncluded: boolean, callback: AsyncCallback&lt;formInfo.RunningFormInfo&gt;): void
-
-根据卡片标识formId，查询卡片已有的使用方列表信息。使用callback异步回调。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名      | 类型            | 必填 | 说明                             |
-| ----------- | --------------- | ---- | -------------------------------- |
-| formId     | string | 是   | 卡片标识。 |
-| isUnusedIncluded     | boolean | 是   | 是否包含未使用的卡片。 |
-| callback | AsyncCallback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500100 | Failed to obtain the configuration information. |
-| 16501000  | An internal functional error occurred. |
-
-```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
-
-let formId: string = '12400633174999288';
-try {
-  formObserver.getRunningFormInfoById(formId, true, (error: Base.BusinessError, data: formInfo.RunningFormInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
