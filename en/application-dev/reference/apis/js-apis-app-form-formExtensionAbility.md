@@ -25,7 +25,7 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 onAddForm(want: Want): formBindingData.FormBindingData
 
-Called to notify the widget provider that a **Form** instance (widget) has been created.
+Called to notify the widget provider that a **Form** instance (widget) is being created.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -64,7 +64,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onCastToNormalForm(formId: string): void
 
-Called to notify the widget provider that a temporary widget has been converted to a normal one.
+Called to notify the widget provider that a temporary widget is being converted to a normal one.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -88,7 +88,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onUpdateForm(formId: string): void
 
-Called to notify the widget provider that a widget has been updated. After obtaining the latest data, your application should call **updateForm** of [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) to update the widget data.
+Called to notify the widget provider that a widget is being updated. After obtaining the latest data, your application should call **updateForm** of [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) to update the widget data.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -118,7 +118,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onChangeFormVisibility(newStatus: { [key: string]: number }): void
 
-Called to notify the widget provider of the change of visibility.
+Called to notify the widget provider that the widget visibility status is being changed.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -145,14 +145,14 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         console.error('Operation updateForm failed. Cause: ' + error);});
     }
   }
-};
+}
 ```
 
 ## onFormEvent
 
 onFormEvent(formId: string, message: string): void
 
-Called to instruct the widget provider to receive and process the widget event.
+Called to instruct the widget provider to process the widget event.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -177,7 +177,7 @@ export default class MyFormExtension extends FormExtensionAbility {
 
 onRemoveForm(formId: string): void
 
-Called to notify the widget provider that a **Form** instance (widget) has been destroyed.
+Called to notify the widget provider that a **Form** instance (widget) is being destroyed.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -199,9 +199,9 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
-Called when the configuration of the environment where the ability is running is updated.
+Called when the configuration of the environment where the FormExtensionAbility is running is updated.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -223,9 +223,9 @@ class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onAcquireFormState
 
-onAcquireFormState?(want: Want): formInfo.FormState;
+onAcquireFormState?(want: Want): formInfo.FormState
 
-Called when the widget provider receives the status query result of a widget. By default, the initial state is returned.
+Called to notify the widget provider that the widget host is requesting the widget state. By default, the initial state is returned.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -251,7 +251,7 @@ class MyFormExtensionAbility extends FormExtensionAbility {
 
 onShareForm?(formId: string): { [key: string]: Object }
 
-Called by the widget provider to receive shared widget data.
+Called to notify the widget provider that the widget host is sharing the widget data.
 
 **System API**: This is a system API.
 
@@ -267,7 +267,7 @@ Called by the widget provider to receive shared widget data.
 
 | Type                                                        | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| {[key: string]: any} | Data to be shared by the widget, in the form of key-value pairs.|
+| {[key: string]: Object} | Data to be shared by the widget, in the form of key-value pairs.|
 
 **Example**
 

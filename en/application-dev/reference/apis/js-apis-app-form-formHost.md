@@ -1783,7 +1783,7 @@ try {
 
 ## notifyFormsPrivacyProtected
 
-notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>;
+notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>
 
 Notifies that the privacy protection status of the specified widgets changes. This API uses a promise to return the result.
 

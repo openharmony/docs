@@ -1,4 +1,4 @@
-# @ohos.application.formBindingData (formBindingData)
+# @ohos.app.form.formBindingData (formBindingData)
 
 The **FormBindingData** module provides APIs for widget data binding. You can use the APIs to create a **FormBindingData** object and obtain related information.
 
@@ -21,7 +21,6 @@ Describes a **FormBindingData** object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | data | Object | Yes| Data to be displayed on the JS widget. The value can be an object containing multiple key-value pairs or a string in JSON format.|
-
 
 ## createFormBindingData
 
