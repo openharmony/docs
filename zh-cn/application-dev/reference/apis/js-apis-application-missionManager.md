@@ -18,7 +18,7 @@ ohos.permission.MANAGE_MISSIONS
 
 ## missionManager.registerMissionListener
 
-registerMissionListener(listener: MissionListener): number;
+registerMissionListener(listener: MissionListener): number
 
 注册系统任务状态监听器。
 
@@ -60,7 +60,7 @@ let listenerid = missionManager.registerMissionListener({
 
 ## missionManager.unregisterMissionListener
 
-unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt;): void;
+unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt;): void
 
 解注册任务状态监听器。
 
@@ -101,7 +101,7 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
 
 ## missionManager.unregisterMissionListener
 
-unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
+unregisterMissionListener(listenerId: number): Promise&lt;void&gt;
 
 反注册任务状态监听器，以promise方式返回执行结果。
 
@@ -148,7 +148,7 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
 
 ## missionManager.getMissionInfo
 
-getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void;
+getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void
 
 获取单个任务信息，以异步回调的方式返回任务信息。
 
@@ -192,7 +192,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
 ## missionManager.getMissionInfo
 
-getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
+getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
 获取单个任务信息，以promise方式返回任务信息。
 
@@ -229,7 +229,7 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 
 ## missionManager.getMissionInfos
 
-getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void;
+getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void
 
 获取所有任务信息，以回调函数的方式返回任务信息数组。
 
@@ -265,7 +265,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 
 ## missionManager.getMissionInfos
 
-getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;;
+getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;
 
 获取所有任务信息，以promise的方式返回任务信息数组。
 
@@ -302,7 +302,7 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 
 ## missionManager.getMissionSnapShot
 
-getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void;
+getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void
 
 获取任务快照，以回调函数的方式返回快照内容。
 
@@ -347,7 +347,7 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 
 ## missionManager.getMissionSnapShot
 
-getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;;
+getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;
 
 获取任务快照，以promise的方式返回快照内容。
 
@@ -393,7 +393,7 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
 
 ## missionManager.lockMission
 
-lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 锁定指定任务id的任务，以回调函数的方式返回。
 
@@ -433,7 +433,7 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 ## missionManager.lockMission
 
-lockMission(missionId: number): Promise&lt;void&gt;;
+lockMission(missionId: number): Promise&lt;void&gt;
 
 锁定指定任务id的任务，以promise方式返回。
 
@@ -479,7 +479,7 @@ lockMission(missionId: number): Promise&lt;void&gt;;
 
 ## missionManager.unlockMission
 
-unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 解锁指定任务id的任务，以回调函数的方式返回。
 
@@ -519,7 +519,7 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 ## missionManager.unlockMission
 
-unlockMission(missionId: number): Promise&lt;void&gt;;
+unlockMission(missionId: number): Promise&lt;void&gt;
 
 解锁指定任务id的任务，以promise的方式返回。
 
@@ -568,7 +568,7 @@ unlockMission(missionId: number): Promise&lt;void&gt;;
 
 ## missionManager.clearMission
 
-clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 清理指定任务id的任务，无论该任务是否被锁定，以回调函数的方式返回。
 
@@ -608,7 +608,7 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 ## missionManager.clearMission
 
-clearMission(missionId: number): Promise&lt;void&gt;;
+clearMission(missionId: number): Promise&lt;void&gt;
 
 清理指定任务id的任务，无论该任务是否被锁定，以promise的方式返回。
 
@@ -654,7 +654,7 @@ clearMission(missionId: number): Promise&lt;void&gt;;
 
 ## missionManager.clearAllMissions
 
-clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
+clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
 清理所有未锁定的任务，以回调函数的方式返回。
 
@@ -663,6 +663,12 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
 
@@ -677,7 +683,7 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
 
 ## missionManager.clearAllMissions
 
-clearAllMissions(): Promise&lt;void&gt;;
+clearAllMissions(): Promise&lt;void&gt;
 
 清理所有未锁定的任务，以promise的方式返回。
 
@@ -707,7 +713,7 @@ clearAllMissions(): Promise&lt;void&gt;;
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 把指定任务id的任务切到前台，以回调函数的方式返回。
 
@@ -747,7 +753,7 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以回调函数的方式返回。
 
@@ -788,7 +794,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;;
+moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;
 
 把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以promise的方式返回。
 
