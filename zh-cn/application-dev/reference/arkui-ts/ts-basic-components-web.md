@@ -1486,6 +1486,77 @@ mediaOptions(options: WebMediaOptions)
   }
   ```
 
+### javaScriptOnDocumentStart<sup>11+</sup>
+
+javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
+
+将JavaScript脚本注入到Web组件中，当指定页面或者文档开始加载时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+
+> **说明：**
+>
+> - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | ----------- | ---- | --------------- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是   | - | 需要注入的的ScriptItem数组 |
+
+**ets示例：**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct Index {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    private localStorage: string =
+        "if (typeof(Storage) !== 'undefined') {" +
+        "   localStorage.setItem('color', 'Red');" +
+        "}";
+    @State scripts: Array<ScriptItem> = [
+        { script: this.localStorage, scriptRules: ["*"] }
+    ];
+    build() {
+        Column({ space: 20 }) {
+            Web({ src: $rawfile('index.html'), controller: this.controller })
+                .javaScriptAccess(true)
+                .domStorageAccess(true)
+                .backgroundColor(Color.Grey)
+                .javaScriptOnDocumentStart(this.scripts)
+                .width('100%')
+                .height('100%')
+        }
+    }
+}
+  ```
+**HTML示例：**
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body style="font-size: 30px;" onload='bodyOnLoadLocalStorage()'>
+      Hello world!
+      <div id="result"></div>
+  </body>
+  <script type="text/javascript">
+    function bodyOnLoadLocalStorage() {
+      if (typeof(Storage) !== 'undefined') {
+        document.getElementById('result').innerHTML = localStorage.getItem('color');
+      } else {
+        document.getElementById('result').innerHTML = 'Your browser does not support localStorage.';
+      }
+    }
+  </script>
+</html>
+```
+
 ## 事件
 
 不支持[通用事件](ts-universal-events-click.md)。
@@ -5653,3 +5724,12 @@ saveCookie(): boolean
 | 类型      | 说明                   |
 | ------- | -------------------- |
 | boolean | 同步内存cookie到磁盘操作是否成功。 |
+
+## ScriptItem<sup>11+</sup>
+
+通过[javaScriptOnDocumentStart](#javascriptondocumentstart11)属性注入到Web组件的ScriptItem对象。
+
+| 名称        | 类型           | 必填 | 描述                             |
+| ----------- | -------------- | ---- | -------------------------------- |
+| script      | string         | 是   | 需要注入、执行的JavaScript脚本。 |
+| scriptRules | Array\<string> | 是   | 一组允许来源的匹配规则。         |
