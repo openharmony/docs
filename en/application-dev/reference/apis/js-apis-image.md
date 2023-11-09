@@ -37,14 +37,14 @@ Creates a **PixelMap** object with the default BGRA_8888 format and pixel proper
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
+image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
   console.log('Succeeded in creating pixelmap.');
 }).catch((error : BusinessError) => {
-  console.log('Failed to create pixelmap.');
+  console.error('Failed to create pixelmap.');
 })
 ```
 
@@ -67,11 +67,11 @@ Creates a **PixelMap** object with the default BGRA_8888 format and pixel proper
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (error : BusinessError, pixelmap : image.PixelMap) => {
+image.createPixelMap(color, opts, (error : BusinessError, pixelMap : image.PixelMap) => {
     if(error) {
         console.log('Failed to create pixelmap.');
     } else {
@@ -115,12 +115,12 @@ Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const readBuffer : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-pixelmap.readPixelsToBuffer(readBuffer).then(() => {
+pixelMap.readPixelsToBuffer(readBuffer).then(() => {
     console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
 }).catch((error : BusinessError) => {
-    console.log('Failed to read image pixel data.');  // Called if no condition is met.
+    console.error('Failed to read image pixel data.');  // Called if no condition is met.
 })
 ```
 
@@ -142,11 +142,11 @@ Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const readBuffer : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-pixelmap.readPixelsToBuffer(readBuffer, (err : BusinessError, res : Object) => {
+pixelMap.readPixelsToBuffer(readBuffer, (err : BusinessError, res : void) => {
     if(err) {
-        console.log('Failed to read image pixel data.');  // Called if no condition is met.
+        console.error('Failed to read image pixel data.');  // Called if no condition is met.
     } else {
         console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
     }
@@ -176,17 +176,17 @@ Reads image pixel map data in an area. This API uses a promise to return the dat
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const area : image.PositionArea = {
     pixels: new ArrayBuffer(8),
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
 }
-pixelmap.readPixels(area).then(() => {
+pixelMap.readPixels(area).then(() => {
     console.log('Succeeded in reading the image data in the area.'); // Called if the condition is met.
 }).catch((error : BusinessError) => {
-    console.log('Failed to read the image data in the area.'); // Called if no condition is met.
+    console.error('Failed to read the image data in the area.'); // Called if no condition is met.
 })
 ```
 
@@ -208,23 +208,23 @@ Reads image pixel map data in an area. This API uses an asynchronous callback to
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (err : BusinessError, pixelmap : image.PixelMap) => {
-    if(pixelmap == undefined){
+image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
+    if(pixelMap == undefined){
         console.info('createPixelMap failed.');
     } else {
         const area : image.PositionArea = { pixels: new ArrayBuffer(8),
             offset: 0,
             stride: 8,
             region: { size: { height: 1, width: 2 }, x: 0, y: 0 }};
-        pixelmap.readPixels(area, (err : BusinessError) => {
+        pixelMap.readPixels(area, (err : BusinessError) => {
             if (err != undefined) {
-		   console.info('Failed to read pixelmap from the specified area.');
+	        console.error('Failed to read pixelmap from the specified area.');
 	    } else {
-		   console.info('Succeeded to read pixelmap from the specified area.');
+	        console.info('Succeeded to read pixelmap from the specified area.');
 	    }
         })
     }
@@ -254,13 +254,13 @@ Writes image pixel map data to an area. This API uses a promise to return the op
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
-    .then( (pixelmap : image.PixelMap)  => {
-        if (pixelmap == undefined) {
+    .then( (pixelMap : image.PixelMap)  => {
+        if (pixelMap == undefined) {
             console.info('createPixelMap failed.');
         }
         const area : image.PositionArea = { pixels: new ArrayBuffer(8),
@@ -273,11 +273,11 @@ image.createPixelMap(color, opts)
             bufferArr[i] = i + 1;
         }
 
-        pixelmap.writePixels(area).then(() => {
-		    console.info('Succeeded to write pixelmap into the specified area.');
+        pixelMap.writePixels(area).then(() => {
+            console.info('Succeeded to write pixelmap into the specified area.');
         })
     }).catch((error : BusinessError) => {
-        console.log('error: ' + error);
+        console.error('error: ' + error);
     })
 ```
 
@@ -299,7 +299,7 @@ Writes image pixel map data to an area. This API uses an asynchronous callback t
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const area : image.PositionArea = { pixels: new ArrayBuffer(8),
     offset: 0,
     stride: 8,
@@ -309,9 +309,9 @@ let bufferArr : Uint8Array = new Uint8Array(area.pixels);
 for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
 }
-pixelmap.writePixels(area, (error : BusinessError) => {
+pixelMap.writePixels(area, (error : BusinessError) => {
     if (error != undefined) {
-        console.info('Failed to write pixelmap into the specified area.');
+        console.error('Failed to write pixelmap into the specified area.');
     } else {
         console.info('Succeeded to write pixelmap into the specified area.');
     }
@@ -341,13 +341,13 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr : Uint8Array = new Uint8Array(color);
 for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
 }
-pixelmap.writeBufferToPixels(color).then(() => {
+pixelMap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
 }).catch((error : BusinessError) => {
     console.error("Failed to write data from a buffer to a PixelMap.");
@@ -372,19 +372,19 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr : Uint8Array = new Uint8Array(color);
 for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
 }
-pixelmap.writeBufferToPixels(color, (err : BusinessError) => {
+pixelMap.writeBufferToPixels(color, (err : BusinessError) => {
     if (err != undefined) {
         console.error("Failed to write data from a buffer to a PixelMap.");
         return;
     } else {
-		console.log("Succeeded in writing data from a buffer to a PixelMap.");
-	}
+	console.log("Succeeded in writing data from a buffer to a PixelMap.");
+    }
 });
 ```
 
@@ -407,11 +407,11 @@ Obtains pixel map information of this image. This API uses a promise to return t
 ```ts
 const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
-image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
-    if (pixelmap == undefined) {
+image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
+    if (pixelMap == undefined) {
         console.error("Failed to obtain the image pixel map information.");
     }
-    pixelmap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+    pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
         if (imageInfo == undefined) {
             console.error("Failed to obtain the image pixel map information.");
         }
@@ -439,14 +439,14 @@ Obtains pixel map information of this image. This API uses an asynchronous callb
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (err : BusinessError, pixelmap : image.PixelMap) => {
-    if (pixelmap == undefined) {
+image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
+    if (pixelMap == undefined) {
         console.error("Failed to obtain the image pixel map information.");
     }
-    pixelmap.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => {
+    pixelMap.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => {
         if (imageInfo == undefined) {
             console.error("Failed to obtain the image pixel map information.");
         }
@@ -474,12 +474,12 @@ Obtains the number of bytes per row of this image pixel map.
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (err : BusinessError, pixelmap : image.PixelMap) => {
-    let rowCount : number = pixelmap.getBytesNumberPerRow();
+image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
+    let rowCount : number = pixelMap.getBytesNumberPerRow();
 })
 ```
 
@@ -500,7 +500,7 @@ Obtains the total number of bytes of this image pixel map.
 **Example**
 
 ```ts
-let pixelBytesNumber : number = pixelmap.getPixelBytesNumber();
+let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
 ```
 
 ### getDensity<sup>9+</sup>
@@ -520,7 +520,7 @@ Obtains the density of this image pixel map.
 **Example**
 
 ```ts
-let getDensity : number = pixelmap.getDensity();
+let getDensity : number = pixelMap.getDensity();
 ```
 
 ### opacity<sup>9+</sup>
@@ -541,9 +541,9 @@ Sets an opacity rate for this image pixel map. This API uses an asynchronous cal
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 let rate = 0.5;
-pixelmap.opacity(rate, (err : BusinessError) => {
+pixelMap.opacity(rate, (err : BusinessError) => {
 	if (err) {
         console.error("Failed to set opacity.");
         return;
@@ -577,7 +577,7 @@ Sets an opacity rate for this image pixel map. This API uses a promise to return
 
 ```ts
 async function Demo() {
-    await pixelmap.opacity(0.5);
+    await pixelMap.opacity(0.5);
 }
 ```
 
@@ -599,7 +599,7 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 
 ```ts
 async function Demo() {
-    await pixelmap.createAlphaPixelmap();
+    await pixelMap.createAlphaPixelmap();
 }   
 ```
 
@@ -620,10 +620,10 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
-pixelmap.createAlphaPixelmap((err : BusinessError, alphaPixelMap : image.PixelMap) => {
+import {BusinessError} from '@ohos.base';
+pixelMap.createAlphaPixelmap((err : BusinessError, alphaPixelMap : image.PixelMap) => {
     if (alphaPixelMap == undefined) {
-        console.info('Failed to obtain new pixel map.');
+        console.error('Failed to obtain new pixel map.');
     } else {
         console.info('Succeed in obtaining new pixel map.');
     }
@@ -650,7 +650,7 @@ Scales this image based on the input width and height. This API uses an asynchro
 
 ```ts
 async function Demo() {
-	await pixelmap.scale(2.0, 1.0);
+    await pixelMap.scale(2.0, 1.0);
 }
 ```
 
@@ -679,7 +679,7 @@ Scales this image based on the input width and height. This API uses a promise t
 
 ```ts
 async function Demo() {
-	await pixelmap.scale(2.0, 1.0);
+    await pixelMap.scale(2.0, 1.0);
 }
 ```
 
@@ -703,7 +703,7 @@ Translates this image based on the input coordinates. This API uses an asynchron
 
 ```ts
 async function Demo() {
-	await pixelmap.translate(3.0, 1.0);
+    await pixelMap.translate(3.0, 1.0);
 }
 ```
 
@@ -732,7 +732,7 @@ Translates this image based on the input coordinates. This API uses a promise to
 
 ```ts
 async function Demo() {
-	await pixelmap.translate(3.0, 1.0);
+    await pixelMap.translate(3.0, 1.0);
 }
 ```
 
@@ -754,15 +754,15 @@ Rotates this image based on the input angle. This API uses an asynchronous callb
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 let angle = 90.0;
-pixelmap.rotate(angle, (err : BusinessError) => {
+pixelMap.rotate(angle, (err : BusinessError) => {
     if (err != undefined) {
         console.error("Failed to set rotation.");
         return;
     } else {
         console.log("Succeeded in setting rotation.");
-	}
+    }
 })
 ```
 
@@ -790,7 +790,7 @@ Rotates this image based on the input angle. This API uses a promise to return t
 
 ```ts
 async function Demo() {
-    await pixelmap.rotate(90.0);
+    await pixelMap.rotate(90.0);
 }
 ```
 
@@ -814,7 +814,7 @@ Flips this image horizontally or vertically, or both. This API uses an asynchron
 
 ```ts
 async function Demo() {
-    await pixelmap.flip(false, true);
+    await pixelMap.flip(false, true);
 }
 ```
 
@@ -843,7 +843,7 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 
 ```ts
 async function Demo() {
-    await pixelmap.flip(false, true);
+    await pixelMap.flip(false, true);
 }
 ```
 
@@ -866,7 +866,7 @@ Crops this image based on the input size. This API uses an asynchronous callback
 
 ```ts
 async function Demo() {
-    await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
+    await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
 }
 ```
 
@@ -894,7 +894,7 @@ Crops this image based on the input size. This API uses a promise to return the 
 
 ```ts
 async function Demo() {
-    await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
+    await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
 }
 ```
 
@@ -927,7 +927,7 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 ```ts
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 async function Demo() {
-    let csm : Object = pixelmap.getColorSpace();
+    let csm : Object = pixelMap.getColorSpace();
 }
 ```
 
@@ -961,7 +961,7 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelmap.setColorSpace(csm);
+    pixelMap.setColorSpace(csm);
 }
 ```
 
@@ -991,12 +991,12 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import rpc from '@ohos.rpc'
+import image from '@ohos.multimedia.image';
+import rpc from '@ohos.rpc';
 class MySequence implements rpc.Parcelable {
-    pixel_map;
-    constructor(pixelmap : image.PixelMap) {
-        this.pixel_map = pixelmap;
+    pixel_map : image.PixelMap;
+    constructor(conPixelMap : image.PixelMap) {
+        this.pixel_map = conPixelMap;
     }
     marshalling(messageSequence : rpc.MessageSequence) {
         this.pixel_map.marshalling(messageSequence);
@@ -1028,8 +1028,8 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap : image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
-      pixelMap = pixelmap;
+   await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+      pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
      // Implement serialization.
@@ -1078,12 +1078,12 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import rpc from '@ohos.rpc'
+import image from '@ohos.multimedia.image';
+import rpc from '@ohos.rpc';
 class MySequence implements rpc.Parcelable {
-    pixel_map;
-    constructor(pixelmap : image.PixelMap) {
-        this.pixel_map = pixelmap;
+    pixel_map : image.PixelMap;
+    constructor(conPixelMap : image.PixelMap) {
+        this.pixel_map = conPixelMap;
     }
     marshalling(messageSequence : rpc.MessageSequence) {
         this.pixel_map.marshalling(messageSequence);
@@ -1115,8 +1115,8 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap : image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
-      pixelMap = pixelmap;
+   await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+      pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
      // Implement serialization.
@@ -1149,11 +1149,11 @@ Releases this **PixelMap** object. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
-pixelmap.release().then(() => {
-	console.log('Succeeded in releasing pixelmap object.');
+import {BusinessError} from '@ohos.base';
+pixelMap.release().then(() => {
+    console.log('Succeeded in releasing pixelmap object.');
 }).catch((error : BusinessError) => {
-	console.log('Failed to release pixelmap object.');
+    console.error('Failed to release pixelmap object.');
 })
 ```
 
@@ -1174,10 +1174,10 @@ Releases this **PixelMap** object. This API uses an asynchronous callback to ret
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
-pixelmap.release((err : BusinessError) => {
+import {BusinessError} from '@ohos.base';
+pixelMap.release((err : BusinessError) => {
     if (err != undefined) {
-        console.log('Failed to release pixelmap object.');
+        console.error('Failed to release pixelmap object.');
     } else {
         console.log('Succeeded in releasing pixelmap object.');
     }
@@ -1217,7 +1217,7 @@ const imageSourceApi : image.ImageSource = image.createImageSource(path);
 // FA model
 import featureAbility from '@ohos.ability.featureAbility';
 
-const context : _Context = featureAbility.getContext();
+const context : featureAbility.Context = featureAbility.getContext();
 const path : string = context.getCacheDir() + "/test.jpg";
 const imageSourceApi : image.ImageSource = image.createImageSource(path);
 ```
@@ -1350,7 +1350,8 @@ Creates an **ImageSource** instance based on the buffers.
 
 ```ts
 const data : ArrayBuffer= new ArrayBuffer(112);
-const imageSourceApi : image.ImageSource = image.createImageSource(data);
+let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
+const imageSourceApi : image.ImageSource = image.createImageSource(data, sourceOptions);
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -1679,8 +1680,10 @@ Updates incremental data. This API uses a promise to return the result.
 ```ts
 import {BusinessError} from '@ohos.base'
 const array : ArrayBuffer = new ArrayBuffer(100);
-imageSourceApi.updateData(array, false, 0, 10).then((data : Object) => {
+imageSourceApi.updateData(array, false, 0, 10).then(() => {
     console.info('Succeeded in updating data.');
+}).catch((err: BusinessError) => {
+    console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1708,9 +1711,11 @@ Updates incremental data. This API uses an asynchronous callback to return the r
 ```ts
 import {BusinessError} from '@ohos.base'
 const array : ArrayBuffer = new ArrayBuffer(100);
-imageSourceApi.updateData(array, false, 0, 10,(error : BusinessError, data : Object)=> {
-    if(data !== undefined){
-        console.info('Succeeded in updating data.');     
+imageSourceApi.updateData(array, false, 0, 10, (err: BusinessError) => {
+    if (err != undefined) {
+        console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.info('Succeeded in updating data.');
     }
 })
 ```
@@ -1837,7 +1842,8 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let decodeOpts : image.DecodingOptions = {
+import {BusinessError} from '@ohos.base'
+let decodeOpts: image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
     desiredSize: { width: 198, height: 202 },
@@ -1845,7 +1851,11 @@ let decodeOpts : image.DecodingOptions = {
     desiredPixelFormat: 3,
     index: 0,
 };
-let pixelmaplist : Array<image.PixelMap> = await imageSourceApi.createPixelMapList(decodeOpts);
+imageSourceApi.createPixelMapList(decodeOpts).then((pixelmaplist: Array<image.PixelMap>) => {
+    console.log('Succeeded in creating pixelmaplist object.');
+}).catch((err: BusinessError) => {
+    console.error(`Failed to create pixelmaplist object.code is ${err.code},message is ${err.message}`);
+})
 ```
 
 ### createPixelMapList<sup>10+</sup>
@@ -1877,8 +1887,13 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-imageSourceApi.createPixelMapList( (pixelmaplist : Array<image.PixelMap>) => {
-    console.info('Succeeded in creating pixelmaplist object.');
+import {BusinessError} from '@ohos.base'
+imageSourceApi.createPixelMapList((err: BusinessError, pixelmaplist: Array<image.PixelMap>) => {
+    if (err != undefined) {
+        console.error(`Failed to create pixelmaplist object.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.info('Succeeded in creating pixelmaplist object.');
+    }
 })
 ```
 
@@ -1921,8 +1936,12 @@ let decodeOpts : image.DecodingOptions = {
     desiredPixelFormat: 3,
     index: 0,
 };
-imageSourceApi.createPixelMapList(decodeOpts, (err : BusinessError, pixelmaplist : Array<image.PixelMap>) => { 
-    console.log('Succeeded in creating pixelmaplist object.');
+imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelmaplist: Array<image.PixelMap>) => {
+    if (err != undefined) {
+        console.error(`Failed to create pixelmaplist object.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.log('Succeeded in creating pixelmaplist object.');
+    }
 })
 ```
 
@@ -1958,9 +1977,13 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 ```ts
 import {BusinessError} from '@ohos.base'
-imageSourceApi.getDelayTimeList((err : BusinessError, delayTimes : Array<number>) => {
-    console.log('Succeeded in getting delay time.');
-});
+imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
+    if (err != undefined) {
+        console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.log('Succeeded in delayTimes object.');
+    }
+})
 ```
 
 ### getDelayTimeList<sup>10+</sup>
@@ -1994,7 +2017,11 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let delayTimes : Array<number> = await imageSourceApi.getDelayTimeList();
+imageSourceApi.getDelayTimeList().then((delayTimes : Array<number>) => {
+    console.log('Succeeded in delayTimes object.');
+}).catch((err: BusinessError) => {
+    console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
+})
 ```
 
 ### getFrameCount<sup>10+</sup>
@@ -2029,9 +2056,13 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 ```ts
 import {BusinessError} from '@ohos.base'
-imageSourceApi.getFrameCount((err : BusinessError, frameCount : number) => {
-    console.log('Succeeded in getting frame count.');
-});
+imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
+    if (err != undefined) {
+        console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.log('Succeeded in getting frame count.');
+    }
+})
 ```
 
 ### getFrameCount<sup>10+</sup>
@@ -2065,7 +2096,11 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let frameCount : number = await imageSourceApi.getFrameCount();
+imageSourceApi.getFrameCount().then((frameCount: number) => {
+    console.log('Succeeded in getting frame count.');
+}).catch((err : BusinessError) => {
+    console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
+})
 ```
 
 ### release
@@ -3145,43 +3180,43 @@ Describes the exchangeable image file format (EXIF) data of an image.
 
 | Name             |   Value                   | Description                    |
 | ----------------- | ----------------------- | ------------------------ |
-| BITS_PER_SAMPLE   | "BitsPerSample"         | Number of bits per pixel.        |
-| ORIENTATION       | "Orientation"           | Image orientation.              |
-| IMAGE_LENGTH      | "ImageLength"           | Image length.              |
-| IMAGE_WIDTH       | "ImageWidth"            | Image width.              |
-| GPS_LATITUDE      | "GPSLatitude"           | Image latitude.              |
-| GPS_LONGITUDE     | "GPSLongitude"          | Image longitude.              |
-| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | Latitude reference, for example, N or S.   |
-| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | Longitude reference, for example, W or E.   |
-| DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | Shooting time, for example, 2022:09:06 15:48:00. This attribute is read-only.    |
-| EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | Exposure time, for example, 1/33 sec. Currently, this attribute is read-only.|
-| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | Shooting scene type, for example, portrait, scenery, motion, and night. Currently, this attribute is read-only.     |
-| ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO sensitivity or ISO speed, for example, 400. Currently, this attribute is read-only.     |
-| F_NUMBER<sup>9+</sup>           | "FNumber"          | Aperture, for example, f/1.8. Currently, this attribute is read-only.     |
-| DATE_TIME<sup>10+</sup>                  | "DateTime"             | Date and time. Currently, this attribute is read-only.               |
-| GPS_TIME_STAMP<sup>10+</sup>             | "GPSTimeStamp"         | GPS timestamp. Currently, this parameter is read-only.        |
-| GPS_DATE_STAMP<sup>10+</sup>             | "GPSDateStamp"         | GPS date stamp. Currently, this attribute is read-only.         |
-| IMAGE_DESCRIPTION<sup>10+</sup>          | "ImageDescription"     | Image description. Currently, this attribute is read-only.              |
-| MAKE<sup>10+</sup>                       | "Make"                 | Vendor. Currently, this attribute is read-only.                 |
-| MODEL<sup>10+</sup>                      | "Model"                | Device model. Currently, this attribute is read-only.                 |
-| PHOTO_MODE<sup>10+</sup>                 | "PhotoMode "           | Photo mode. Currently, this attribute is read-only.             |
-| SENSITIVITY_TYPE<sup>10+</sup>           | "SensitivityType"      | Sensitivity type. Currently, this attribute is read-only.            |
-| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup>           | "StandardOutputSensitivity"          | Standard output sensitivity. Currently, this attribute is read-only.   |
-| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>            | "RecommendedExposureIndex"          | Recommended exposure index. Currently, this attribute is read-only.   |
-| ISO_SPEED<sup>10+</sup>                             | "ISOSpeedRatings"          | ISO speed. Currently, this attribute is read-only.   |
-| APERTURE_VALUE<sup>10+</sup>             | "ApertureValue"            | Aperture value. Currently, this attribute is read-only.   |
-| EXPOSURE_BIAS_VALUE<sup>10+</sup>        | "ExposureBiasValue"        | Exposure bias value. Currently, this attribute is read-only.   |
-| METERING_MODE<sup>10+</sup>              | "MeteringMode"             | Metering mode. Currently, this attribute is read-only.   |
-| LIGHT_SOURCE<sup>10+</sup>               | "LightSource"              | Light source. Currently, this attribute is read-only.   |
-| FLASH <sup>10+</sup>                     | "Flash"                    | Flash status. Currently, this attribute is read-only.   |
-| FOCAL_LENGTH <sup>10+</sup>              | "FocalLength"              | Focal length. Currently, this attribute is read-only.   |
-| USER_COMMENT <sup>10+</sup>               | "UserComment"              | User comment. Currently, this attribute is read-only.   |
-| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"          | Pixel X dimension. Currently, this attribute is read-only.  |
-| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"          | Pixel Y dimension. Currently, this attribute is read-only.   |
-| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"             | White balance. Currently, this attribute is read-only.   |
-| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"    | Focal length in 35mm film. Currently, this attribute is read-only.   |
-| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"       | Capture mode. Currently, this parameter is read-only.   |
-| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"  | Physical aperture. Currently, this parameter is read-only.  |
+| BITS_PER_SAMPLE                           | "BitsPerSample"              | Number of bits per pixel.                           |
+| ORIENTATION                               | "Orientation"                | Image orientation.                                 |
+| IMAGE_LENGTH                              | "ImageLength"                | Image length.                                 |
+| IMAGE_WIDTH                               | "ImageWidth"                 | Image width.                                 |
+| GPS_LATITUDE                              | "GPSLatitude"                | Image latitude.                                 |
+| GPS_LONGITUDE                             | "GPSLongitude"               | Image longitude.                                 |
+| GPS_LATITUDE_REF                          | "GPSLatitudeRef"             | Latitude reference, for example, N or S.                       |
+| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"            | Longitude reference, for example, W or E.                       |
+| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"           | Shooting time, for example, 2022:09:06 15:48:00. Currently, this attribute is read-only.         |
+| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"               | Exposure time, for example, 1/33 sec. Currently, this attribute is read-only.                    |
+| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                  | Shooting scene type, for example, portrait, scenery, motion, and night. Currently, this attribute is read-only.|
+| ISO_SPEED_RATINGS<sup>9+</sup>            | "ISOSpeedRatings"            | ISO sensitivity or ISO speed, for example, 400. Currently, this attribute is read-only.                       |
+| F_NUMBER<sup>9+</sup>                     | "FNumber"                    | Aperture, for example, f/1.8. Currently, this attribute is read-only.                        |
+| DATE_TIME<sup>10+</sup>                   | "DateTime"                   | Date and time. Currently, this attribute is read-only.                                 |
+| GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"               | GPS timestamp. Currently, this attribute is read-only.                                  |
+| GPS_DATE_STAMP<sup>10+</sup>              | "GPSDateStamp"               | GPS date stamp. Currently, this attribute is read-only.                                  |
+| IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"           | Image description. Currently, this attribute is read-only.                               |
+| MAKE<sup>10+</sup>                        | "Make"                       | Manufacturer. Currently, this attribute is read-only.                                     |
+| MODEL<sup>10+</sup>                       | "Model"                      | Device model. Currently, this attribute is read-only.                                   |
+| PHOTO_MODE<sup>10+</sup>                  | "PhotoMode "                 | Photographing mode. Currently, this attribute is read-only.                                   |
+| SENSITIVITY_TYPE<sup>10+</sup>            | "SensitivityType"            | Sensitivity type. Currently, this attribute is read-only.                                |
+| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup> | "StandardOutputSensitivity"  | Standard output sensitivity. Currently, this attribute is read-only.                             |
+| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>  | "RecommendedExposureIndex"   | Recommended exposure index. Currently, this attribute is read-only.                               |
+| ISO_SPEED<sup>10+</sup>                   | "ISOSpeedRatings"            | ISO speed. Currently, this attribute is read-only.                                |
+| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"              | Aperture value. Currently, this attribute is read-only.                                     |
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"          | Exposure bias value. Currently, this attribute is read-only.                                 |
+| METERING_MODE<sup>10+</sup>               | "MeteringMode"               | Metering mode. Currently, this attribute is read-only.                                   |
+| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"                | Light source. Currently, this attribute is read-only.                                      |
+| FLASH <sup>10+</sup>                      | "Flash"                      | Flash status. Currently, this attribute is read-only.                     |
+| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"                | Focal length. Currently, this attribute is read-only.                                       |
+| USER_COMMENT <sup>10+</sup>               | "UserComment"                | User comment. Currently, this attribute is read-only.                                  |
+| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"            | Pixel X dimension. Currently, this attribute is read-only.                                 |
+| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"            | Pixel Y dimension. Currently, this attribute is read-only.                                 |
+| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"               | White balance. Currently, this attribute is read-only.                                     |
+| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"      | Focal length in 35mm film. Currently, this attribute is read-only.                             |
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"         | Capture mode. Currently, this attribute is read-only.                 |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"    | Physical aperture. Currently, this attribute is read-only.       |
 
 ## ImageFormat<sup>9+</sup>
 
