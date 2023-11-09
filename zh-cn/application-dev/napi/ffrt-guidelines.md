@@ -86,7 +86,18 @@ task5(OUT A);
 - task2/task3 与task4 构成Consumer-Producer 依赖，即：task4 需要等到task2/task3 读完A之后才能写A
 - task4 与task5 构成Producer-Producer 依赖，即：task5 需要等到task4 写完A之后才能写A
 
+## 接口说明
 
+| 接口名                                                       | 描述                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ffrt_condattr_init (ffrt_condattr_t* attr) | 初始化条件变量属性。 |
+| ffrt_condattr_destroy(ffrt_condattr_t* attr)  | 销毁条件变量属性。 |
+| ffrt_condattr_setclock(ffrt_condattr_t* attr, ffrt_clockid_t clock) | 设置条件变量的时钟属性。 |
+| OH_NativeImage_DetachContext (OH_NativeImage \*image)        | 将OH_NativeImage实例从当前OpenGL ES上下文分离。              |
+| OH_NativeImage_UpdateSurfaceImage (OH_NativeImage \*image)   | 通过OH_NativeImage获取最新帧更新相关联的OpenGL ES纹理。      |
+| OH_NativeImage_GetTimestamp (OH_NativeImage \*image)         | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的相关时间戳。 |
+| OH_NativeImage_GetTransformMatrix (OH_NativeImage \*image, float matrix[16]) | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。 |
+| OH_NativeImage_Destroy (OH_NativeImage \*\*image)            | 销毁通过OH_NativeImage_Create创建的OH_NativeImage实例，销毁后该OH_NativeImage指针会被赋值为空。 |
 
 ## 函数介绍
 
