@@ -687,16 +687,3 @@ Failed to install the HAP because the distribution type of caller application is
 
 **处理步骤**<br/>
 检查应用的签名文件是否正确配置。
-
-## 17700052 非开发者模式下不允许安装调试应用
-**错误信息**<br/>
-Failed to install the HAP because debug bundle cannot be installed under non-developer mode.
-
-**错误描述**<br/>
-安装调试应用时，设备处于非开发者模式，不允许安装。
-
-**可能原因**<br/>
-应用为调试应用，而设备处于非开发者模式。
-
-**处理步骤**<br/>
-执行hdc shell param get const.security.developermode.state，若返回结果为false，说明该设备无法安装调试应用。

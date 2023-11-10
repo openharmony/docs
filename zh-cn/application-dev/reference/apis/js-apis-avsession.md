@@ -1060,11 +1060,13 @@ avSession.sendSystemControlCommand(avcommand).then(() => {
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**系统接口：** 该接口为系统接口。
+
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL      | 0    | 本地设备 <br> **系统接口：** 该接口为系统接口。 |
-| TYPE_CAST_PLUS_MIRROR      | 1    | Cast+的镜像模式 <br> **系统接口：** 该接口为系统接口。 |
-| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式 |
+| TYPE_LOCAL      | 0    | 本地设备    |
+| TYPE_CAST_PLUS_MIRROR      | 1    | Cast+的镜像模式 |
+| TYPE_CAST_PLUS_STREAM      | 2    | Cast+的Stream模式 |
 
 ## avSession.startCastDeviceDiscovery<sup>10+</sup>
 
@@ -3202,7 +3204,7 @@ currentAVSession.on('playPrevious', () => {
 
 ### on('fastForward')<sup>10+</sup>
 
-on(type: 'fastForward', callback: (time?: number) => void): void
+on(type: 'fastForward', callback: () => void): void
 
 设置快进命令监听事件。
 
@@ -3213,7 +3215,7 @@ on(type: 'fastForward', callback: (time?: number) => void): void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | 是   | 事件回调类型，支持的事件是 `'fastForward'`，当快进命令被发送到会话时，触发该事件回调。 |
-| callback | callback: (time?: number) => void | 是   | 回调函数。参数time是时间节点，单位为秒。    |
+| callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。    |
 
 **错误码：**
 
@@ -3227,14 +3229,14 @@ on(type: 'fastForward', callback: (time?: number) => void): void
 **示例：**
 
 ```ts
-currentAVSession.on('fastForward', (time?: number) => {
+currentAVSession.on('fastForward', () => {
   console.info(`on fastForward entry`);
 });
 ```
 
 ### on('rewind')<sup>10+</sup>
 
-on(type:'rewind', callback: (time?: number) => void): void
+on(type:'rewind', callback: () => void): void
 
 设置快退命令监听事件。
 
@@ -3245,7 +3247,7 @@ on(type:'rewind', callback: (time?: number) => void): void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | 是   | 事件回调类型，支持的事件是`'rewind'`，当快退命令被发送到会话时，触发该事件回调。 |
-| callback | callback: (time?: number) => void | 是   | 回调函数。参数time是时间节点，单位为秒。      |
+| callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。      |
 
 **错误码：**
 
@@ -3259,7 +3261,7 @@ on(type:'rewind', callback: (time?: number) => void): void
 **示例：**
 
 ```ts
-currentAVSession.on('rewind', (time?: number) => {
+currentAVSession.on('rewind', () => {
   console.info(`on rewind entry`);
 });
 ```
@@ -4705,77 +4707,6 @@ aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
 
 ```
 
-### release<sup>11+</sup>
-
-release(callback: AsyncCallback\<void>): void
-
-销毁当前controller，结果通过callback异步回调方式返回。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
-**参数：**
-
-| 参数名   | 类型                       | 必填 | 说明                                                         |
-| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<void>       | 是   | 回调函数。当命令执行成功，err为undefined，否则返回错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------------------------- |
-| 6600101  | Session service exception. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-aVCastController.release((err: BusinessError) => {
-  if (err) {
-    console.error(`release BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    console.info(`release successfully`);
-  }
-});
-```
-
-### release<sup>11+</sup>
-
-release(): Promise\<void>
-
-销毁当前controller。结果通过Promise异步回调方式返回。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
-**返回值：**
-
-| 类型           | 说明                          |
-| -------------- | ----------------------------- |
-| Promise\<void> | Promise对象，controller销毁成功，无结果返回，否则返回错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ------------------------------ |
-| 6600101  | Session service exception. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-aVCastController.release().then(() => {
-  console.info(`release successfully`);
-}).catch((err: BusinessError) => {
-  console.error(`release BusinessError: code: ${err.code}, message: ${err.message}`);
-});
-
-```
-
 ### on('playbackStateChange')<sup>10+</sup>
 
 on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', callback: (state: AVPlaybackState) => void): void
@@ -5251,8 +5182,6 @@ aVCastController.off('error')
 | lyric           | string                  | 否   | 歌词文件路径地址(本地路径或网络路径) |
 | previousAssetId | string                  | 否   | 上一首媒体ID。                                                            |
 | nextAssetId     | string                  | 否   | 下一首媒体ID。                                                            |
-| filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。                   |
-| skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 快进快退支持的时间间隔，默认为SECONDS_15，即15秒。                            |
 
 ## AVMediaDescription<sup>10+</sup>
 
@@ -5310,10 +5239,6 @@ aVCastController.off('error')
 | activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id |
 | volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量 |
 | extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据 |
-| maxVolume<sup>11+</sup> | number                    | 否   | 最大音量 |
-| muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音 |
-| videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。 |
-| videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。 |
 
 ## PlaybackPosition<sup>10+</sup>
 
@@ -7682,15 +7607,3 @@ try {
 | ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or events.       |
 | ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connecting failed.       |
 | ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote connection is not established.       |
-
-## SkipIntervals<sup>11+</sup>
-
-表示session支持的快进快退时间间隔。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
-| 名称                   | 值 | 说明                     |
-| ---------------------- | -- | ----------------------- |
-| SECONDS_10             | 10 | 时间为10秒。             |
-| SECONDS_15             | 15 | 时间为15秒。             |
-| SECONDS_30             | 30 | 时间为30秒。             |
