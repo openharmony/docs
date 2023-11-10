@@ -18,7 +18,7 @@
 import cloudData from '@ohos.data.cloudData';
 ```
 
-##   ClearAction
+## ClearAction
 
 清除本地下载的云端数据的行为枚举。
 
@@ -29,40 +29,39 @@ import cloudData from '@ohos.data.cloudData';
 | CLEAR_CLOUD_INFO | 清除从云端下载的数据的云标识，相关数据作为本地数据保存。 |
 | CLEAR_CLOUD_DATA_AND_INFO |清除从云端下载的数据，不包括本地已修改的云端数据。   |
 
-##   ExtraData
+## ExtraData
 
-用于数据更改通知的外部数据
+透传数据 携带通知数据变更所需要的信息。
 
 **系统能力：** syscap SystemCapability.DistributedDataManager.CloudSync.Config
 
 | 名称      | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
-| eventId   | string | 是   | 固定传cloud_data_change  表示云数据变更                      |
-| extraData | string | 是   | 包含以下字段（header和data字段）其中通知变更数据的信息在data字段中 |
+| eventId   | string | 是   | 表示云数据变更。                                             |
+| extraData | string | 是   | 由push透传过来，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含账号，应用名，数据库名和数据库表名。 |
 
 **示例：**
 
-```
-"extraData":{
- "header":{
-         "token":"bbbbbb"
-         }
- "data":"{
-        \"accountId\": \"aaa\",
-        \"bundleName\": \"com.bbb.xxx\",
-        \"containerName\": \"alias\",
-        \"databaseScopes\": \"[\\\"private\\\", \\\"shared\\\"] \",
-        \"recordTypes\":  \"[\\\"xxx\\\", \\\"yyy\\\", \\\"zzz\\\"] \",
-        \"properties\": {
-          \"key\": \"value\"
-        },
-        \"keyId\": "",
-        \"signV3\": ""
-        }" 
+```ts
+ExtraData {
+    eventId:"cloud_data_change",
+    extraData:"{
+        "header":{ 
+            "token":"bbbbbb"  //用于校验应用信息
+        }
+        "data":{
+            "accountId": "aaa",  //用户打开的云帐号ID。
+            "bundleName": "com.bbb.xxx",  //应用名。
+            "containerName": "alias",  //云上的数据库名称
+            "recordTypes":  [ //数据库表名
+                "xxx", 
+                "yyy", 
+                "zzz",
+            ]
+        }
+    }"
 }
 ```
-
-
 
 ## Config
 
@@ -394,7 +393,7 @@ try {
 
  **static** notifyDataChange(extInfo: ExtraData, callback: AsyncCallback&lt;void&gt;):void
 
-通知云端的数据变更，使用callback异步回调。
+通知云端的数据变更，由push服务直接调用，使用callback异步回调。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -402,10 +401,10 @@ try {
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                                  |
-| -------- | ------------------------- | ---- | ------------------------------------- |
-| extInfo  | [ExtraData](#ExtraData)   | 是   | 透传数据 包含通知数据变更后的应用信息 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                            |
+| 参数名   | 类型                      | 必填 | 说明                                    |
+| -------- | ------------------------- | ---- | --------------------------------------- |
+| extInfo  | [ExtraData](#ExtraData)   | 是   | 透传数据 包含通知数据变更后的应用信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                              |
 
 **示例：**
 
@@ -434,7 +433,7 @@ try {
 
 static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallback&lt;void&gt;):void
 
-通知云端的数据变更，使用callback异步回调。
+通知云端的数据变更，由push服务直接调用，使用callback异步回调。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -442,11 +441,11 @@ static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallba
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| extInfo  | [ExtraData](#ExtraData)   | 是   | 透传数据 包含通知数据变更后的应用信息                        |
-| userId   | number                    | 否   | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
+| 参数名   | 类型                      | 必填 | 说明                                            |
+| -------- | ------------------------- | ---- | ----------------------------------------------- |
+| extInfo  | [ExtraData](#ExtraData)   | 是   | 透传数据 包含通知数据变更后的应用信息。         |
+| userId   | number                    | 否   | 表示用户ID。此参数是可选的。取值范围是100-102。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
 ```ts
 import { BusinessError } from '@ohos.base';
@@ -470,13 +469,11 @@ try {
 }
 ```
 
-
-
 ### notifyDataChange
 
 **static** notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt;
 
-通知云端的数据变更，使用Promise异步回调。
+通知云端的数据变更，由push服务直接调用，使用Promise异步回调。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -484,10 +481,10 @@ try {
 
 **参数：**
 
-| 参数名  | 类型                    | 必填 | 说明                                                         |
-| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| extInfo | [ExtraData](#Extradata) | 是   | 透传数据 包含通知数据变更后的应用信息                        |
-| userId  | number                  | 否   | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
+| 参数名  | 类型                    | 必填 | 说明                                            |
+| ------- | ----------------------- | ---- | ----------------------------------------------- |
+| extInfo | [ExtraData](#Extradata) | 是   | 透传数据 包含通知数据变更后的应用信息。         |
+| userId  | number                  | 否   | 表示用户ID。此参数是可选的。取值范围是100-102。 |
 
 **返回值：**
 
@@ -516,8 +513,6 @@ try {
   console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
-
-
 
 ###  clear
 
