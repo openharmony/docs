@@ -27,8 +27,6 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 | AXIS_BEGIN  | 4   | 鼠标轴事件开始 |
 | AXIS_UPDATE | 5   | 鼠标轴事件更新 |
 | AXIS_END    | 6   | 鼠标轴事件结束 |
-| ACTION_DOWN<sup>11+</sup> | 7   | 触摸板按下 |
-| ACTION_UP<sup>11+</sup> | 8   | 触摸板抬起 |
 
 ## Button
 
@@ -71,19 +69,6 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 | axis  | [Axis](#axis)   | 是    | 否    | 轴类型  |
 | value | number | 是    | 否    | 轴的值  |
 
-## ToolType<sup>11+</sup>
-
-工具类型
-
-**系统能力**：SystemCapability.MultimodalInput.Input.Core
-
-| 名称      | 值  | 说明    |
-| ------- | ------| ----- |
-| UNKNOWN<sup>11+</sup> | 0 | 未知类型  |
-| MOUSE<sup>11+</sup>  | 1 | 鼠标 |
-| JOYSTICK<sup>11+</sup> | 2 | 摇杆 |
-| TOUCHPAD<sup>11+</sup> | 3 | 触摸板 |
-
 ## MouseEvent
 
 鼠标事件。
@@ -111,4 +96,3 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 | capsLock       | boolean     | 是    | 否    | 当前capsLock是否处于激活状态 <br>ture表示激活状态，false表示处于未激活状态  |
 | numLock        | boolean     | 是    | 否    | 当前numLock是否处于激活状态                        |
 | scrollLock     | boolean     | 是    | 否    | 当前scrollLock是否处于激活状态                     |
-| toolType<sup>11+</sup> | [ToolType](#tooltype11) | 是    | 否    | 工具类型                     |
