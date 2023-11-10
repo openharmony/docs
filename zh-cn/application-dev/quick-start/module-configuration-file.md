@@ -1,6 +1,6 @@
 # module.json5配置文件
 
-## module.json5配置文件示例
+## 配置文件示例
 
 先通过一个示例，整体认识一下module.json5配置文件。
 
@@ -66,7 +66,7 @@
 }
 ```
 
-## module.json5配置文件标签
+## 配置文件标签
 
 module.json5配置文件包含以下标签。
 
