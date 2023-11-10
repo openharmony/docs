@@ -378,7 +378,7 @@ onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>):
         }
       };
       resolve(result);
-    })
+    });
   }
 
   export default class IntentExecutorImpl extends IntentExecutor {
