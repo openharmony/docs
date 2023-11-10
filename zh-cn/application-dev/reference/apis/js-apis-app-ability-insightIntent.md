@@ -25,7 +25,7 @@ import insightIntent from '@ohos.app.ability.insightIntent';
 | UI_ABILITY_FOREGROUND | 0 | 将UIAbility在前台显示。 |
 | UI_ABILITY_BACKGROUND | 1 | 将UIAbility在后台拉起。 |
 | UI_EXTENSION_ABILITY | 2 | 拉起UIExtensionAbility。 |
-| SERVICE_EXTENSION_ABILITY | 3 | 拉起ServiceExtensionAbility。<br>**系统API**：该接口为系统接口，三方应用不支持调用。|
+| SERVICE_EXTENSION_ABILITY | 3 | 拉起ServiceExtensionAbility。<br/>**系统接口：** 该接口为系统接口。|
 
 ## ExecuteResult
 

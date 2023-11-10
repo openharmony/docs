@@ -311,7 +311,7 @@ onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageL
 onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>):
     insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>
 
-当意图调用是将ServiceExtensionAbility拉起时，触发该回调。支持同步返回和使用Promise异步返回。
+当意图调用是拉起ServiceExtensionAbility时，触发该回调。支持同步返回和使用Promise异步返回。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
