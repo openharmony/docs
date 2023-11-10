@@ -222,7 +222,7 @@
    ```ts
    // 修改数据
 
-   let value1 = 'Lisa';
+   let value1 = 'Rose';
    let value2 = 22;
    let value3 = 200.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
@@ -279,7 +279,7 @@
      
    ```ts
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-   predicates.equalTo('NAME', 'Lisa');
+   predicates.equalTo('NAME', 'Rose');
    if (store != undefined) {
      (store as relationalStore.RdbStore).query(predicates, ['ID', 'NAME', 'AGE', 'SALARY'], (err: BusinessError, resultSet) => {
        if (err) {
