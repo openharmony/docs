@@ -6679,7 +6679,6 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | domain      | string | 是   | 域名。     |
 | accountName | string | 是   | 域帐号名。 |
 | accountId<sup>10+</sup> | string | 否   | 域帐号标识。<br>**系统接口：** 此接口为系统接口，默认为空。 |
-| isAuthenticated<sup>11+</sup>| boolean | 否 | 指示域账号是否已认证。<br>**系统接口：** 此接口为系统接口，默认为false。|
 
 ## 系统帐号约束列表
 
