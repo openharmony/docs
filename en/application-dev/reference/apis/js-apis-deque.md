@@ -242,15 +242,15 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
 
-callbackfn
+callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
 | index | number | No| Position index of the element that is currently traversed.|
-| deque | Deque&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+| deque | Deque&lt;T&gt; | No| Instance that calls the **forEach** API.|
 
 **Error codes**
 
@@ -285,7 +285,7 @@ Obtains the first element of this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element obtained.|
+| T | First element of the T type obtained.|
 
 **Error codes**
 
@@ -318,7 +318,7 @@ Obtains the last element of this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element obtained.|
+| T | Last element of the T type obtained.|
 
 **Error codes**
 
