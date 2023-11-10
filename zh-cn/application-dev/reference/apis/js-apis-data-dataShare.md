@@ -50,11 +50,13 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 ```ts
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(this.context, uri, (err, data) => {
+  dataShare.createDataShareHelper(context, uri, (err, data) => {
     if (err !== undefined) {
       console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       return;
@@ -101,11 +103,13 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 
 ```ts
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(this.context, uri, {isProxy : true}, (err, data) => {
+  dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err, data) => {
     if (err !== undefined) {
       console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       return;
@@ -158,11 +162,13 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 
 ```ts
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(this.context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
+  dataShare.createDataShareHelper(context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
     console.info("createDataShareHelper succeed, data : " + data);
     dataShareHelper = data;
   }). catch((err: BusinessError) => {
