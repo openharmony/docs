@@ -107,7 +107,7 @@ enum AudioChannelSet : uint64_t
 ### OH_AudioDecoder_Configure()
 
 ```
-OH_AVErrCode OH_AudioDecoder_Configure (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OH_AudioDecoder_Configure(OH_AVCodec * codec, OH_AVFormat * format )
 ```
 
 **描述：**
@@ -136,7 +136,7 @@ OH_AVErrCode OH_AudioDecoder_Configure (OH_AVCodec * codec, OH_AVFormat * format
 ### OH_AudioDecoder_CreateByMime()
 
 ```
-OH_AVCodec* OH_AudioDecoder_CreateByMime (const char * mime)
+OH_AVCodec* OH_AudioDecoder_CreateByMime(const char * mime)
 ```
 
 **描述：**
@@ -162,7 +162,7 @@ OH_AVCodec* OH_AudioDecoder_CreateByMime (const char * mime)
 ### OH_AudioDecoder_CreateByName()
 
 ```
-OH_AVCodec* OH_AudioDecoder_CreateByName (const char * name)
+OH_AVCodec* OH_AudioDecoder_CreateByName(const char * name)
 ```
 
 **描述：**
@@ -188,7 +188,7 @@ OH_AVCodec* OH_AudioDecoder_CreateByName (const char * name)
 ### OH_AudioDecoder_Destroy()
 
 ```
-OH_AVErrCode OH_AudioDecoder_Destroy (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioDecoder_Destroy(OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -214,7 +214,7 @@ OH_AVErrCode OH_AudioDecoder_Destroy (OH_AVCodec * codec)
 ### OH_AudioDecoder_Flush()
 
 ```
-OH_AVErrCode OH_AudioDecoder_Flush (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioDecoder_Flush(OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -242,7 +242,7 @@ OH_AVErrCode OH_AudioDecoder_Flush (OH_AVCodec * codec)
 ### OH_AudioDecoder_FreeOutputData()
 
 ```
-OH_AVErrCode OH_AudioDecoder_FreeOutputData (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OH_AudioDecoder_FreeOutputData(OH_AVCodec * codec, uint32_t index )
 ```
 
 **描述：**
@@ -269,7 +269,7 @@ OH_AVErrCode OH_AudioDecoder_FreeOutputData (OH_AVCodec * codec, uint32_t index 
 ### OH_AudioDecoder_GetOutputDescription()
 
 ```
-OH_AVFormat* OH_AudioDecoder_GetOutputDescription (OH_AVCodec * codec)
+OH_AVFormat* OH_AudioDecoder_GetOutputDescription(OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -295,7 +295,7 @@ OH_AVFormat* OH_AudioDecoder_GetOutputDescription (OH_AVCodec * codec)
 ### OH_AudioDecoder_IsValid()
 
 ```
-OH_AVErrCode OH_AudioDecoder_IsValid (OH_AVCodec * codec, bool * isValid )
+OH_AVErrCode OH_AudioDecoder_IsValid(OH_AVCodec * codec, bool * isValid )
 ```
 
 **描述：**
@@ -322,7 +322,7 @@ OH_AVErrCode OH_AudioDecoder_IsValid (OH_AVCodec * codec, bool * isValid )
 ### OH_AudioDecoder_Prepare()
 
 ```
-OH_AVErrCode OH_AudioDecoder_Prepare (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioDecoder_Prepare(OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -348,7 +348,7 @@ OH_AVErrCode OH_AudioDecoder_Prepare (OH_AVCodec * codec)
 ### OH_AudioDecoder_PushInputData()
 
 ```
-OH_AVErrCode OH_AudioDecoder_PushInputData (OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
+OH_AVErrCode OH_AudioDecoder_PushInputData(OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
 ```
 
 **描述：**
@@ -378,7 +378,7 @@ OH_AVErrCode OH_AudioDecoder_PushInputData (OH_AVCodec * codec, uint32_t index, 
 ### OH_AudioDecoder_Reset()
 
 ```
-OH_AVErrCode OH_AudioDecoder_Reset (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioDecoder_Reset(OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -404,7 +404,7 @@ OH_AVErrCode OH_AudioDecoder_Reset (OH_AVCodec * codec)
 ### OH_AudioDecoder_SetCallback()
 
 ```
-OH_AVErrCode OH_AudioDecoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
+OH_AVErrCode OH_AudioDecoder_SetCallback(OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
 ```
 
 **描述：**
@@ -434,7 +434,7 @@ OH_AVErrCode OH_AudioDecoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCal
 ### OH_AudioDecoder_SetParameter()
 
 ```
-OH_AVErrCode OH_AudioDecoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OH_AudioDecoder_SetParameter(OH_AVCodec * codec, OH_AVFormat * format )
 ```
 
 **描述：**
@@ -463,7 +463,7 @@ OH_AVErrCode OH_AudioDecoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * for
 ### OH_AudioDecoder_Start()
 
 ```
-OH_AVErrCode OH_AudioDecoder_Start (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioDecoder_Start(OH_AVCodec * codec)
 ```
 
 **描述：**
@@ -491,7 +491,7 @@ Prepare成功后调用此接口启动解码器。
 ### OH_AudioDecoder_Stop()
 
 ```
-OH_AVErrCode OH_AudioDecoder_Stop (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioDecoder_Stop(OH_AVCodec * codec)
 ```
 
 **描述：**
