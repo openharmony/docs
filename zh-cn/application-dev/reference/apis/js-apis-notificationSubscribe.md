@@ -12,7 +12,9 @@
 import notificationSubscribe from '@ohos.notificationSubscribe';
 ```
 
-## NotificationSubscribe.subscribe
+**系统接口**：此接口为系统接口。
+
+## notificationSubscribe.subscribe
 
 subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback\<void\>): void
 
@@ -69,7 +71,7 @@ let info: notificationSubscribe.NotificationSubscribeInfo = {
 notificationSubscribe.subscribe(subscriber, info, subscribeCallback);
 ```
 
-## NotificationSubscribe.subscribe
+## notificationSubscribe.subscribe
 
 subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
 
@@ -122,7 +124,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 
 
-## NotificationSubscribe.subscribe
+## notificationSubscribe.subscribe
 
 subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo): Promise\<void\>
 
@@ -139,7 +141,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
-| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空。   |
+| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空（当为空时，表示订阅当前用户下所有应用的通知，否则表示订阅通知并指定订阅信息）。   |
 
 **返回值：**
 
@@ -178,7 +180,7 @@ notificationSubscribe.subscribe(subscriber).then(() => {
 
 
 
-## NotificationSubscribe.unsubscribe
+## notificationSubscribe.unsubscribe
 
 unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
 
@@ -228,7 +230,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
-## NotificationSubscribe.unsubscribe
+## notificationSubscribe.unsubscribe
 
 unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
@@ -280,7 +282,7 @@ notificationSubscribe.unsubscribe(subscriber).then(() => {
 });
 ```
 
-## NotificationSubscribe.remove
+## notificationSubscribe.remove
 
 remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
@@ -339,7 +341,7 @@ notificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 
 
 
-## NotificationSubscribe.remove
+## notificationSubscribe.remove
 
 remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason): Promise\<void\>
 
@@ -398,7 +400,7 @@ notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
 });
 ```
 
-## NotificationSubscribe.remove
+## notificationSubscribe.remove
 
 remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
@@ -447,7 +449,7 @@ let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveRea
 notificationSubscribe.remove(hashCode, reason, removeCallback);
 ```
 
-## NotificationSubscribe.remove
+## notificationSubscribe.remove
 
 remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
@@ -496,7 +498,7 @@ notificationSubscribe.remove(hashCode, reason).then(() => {
   console.error("remove fail: " + JSON.stringify(err));
 });
 ```
-## NotificationSubscribe.remove<sup>10+<sup>
+## notificationSubscribe.remove<sup>10+<sup>
 
 remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
@@ -544,7 +546,7 @@ let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveRea
 notificationSubscribe.remove(hashCodes, reason, removeCallback);
 ```
 
-## NotificationSubscribe.remove<sup>10+<sup>
+## notificationSubscribe.remove<sup>10+<sup>
 
 remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
 
@@ -593,7 +595,7 @@ notificationSubscribe.remove(hashCodes, reason).then(() => {
 });
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
@@ -641,7 +643,7 @@ let bundle: notificationSubscribe.BundleOption = {
 notificationSubscribe.removeAll(bundle, removeAllCallback);
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(callback: AsyncCallback\<void\>): void
 
@@ -685,7 +687,7 @@ let removeAllCallback = (err: Base.BusinessError) => {
 notificationSubscribe.removeAll(removeAllCallback);
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(bundle?: BundleOption): Promise\<void\>
 
@@ -733,7 +735,7 @@ notificationSubscribe.removeAll().then(() => {
 });
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(userId: number, callback: AsyncCallback\<void>): void
 
@@ -781,7 +783,7 @@ let userId: number = 1;
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(userId: number): Promise\<void>
 
@@ -815,17 +817,13 @@ removeAll(userId: number): Promise\<void>
 ```ts
 import Base from '@ohos.base';
 
-let removeAllCallback = (err: Base.BusinessError) => {
-  if (err) {
-    console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info("removeAll success");
-  }
-}
-
 let userId: number = 1;
 
-notificationSubscribe.removeAll(userId, removeAllCallback);
+notificationSubscribe.removeAll(userId).then(() => {
+	console.info("removeAll success");
+}).catch((err: Base.BusinessError) => {
+  console.error("removeAll fail: " + JSON.stringify(err));
+});
 ```
 
 ## NotificationKey
