@@ -730,13 +730,19 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 import window from '@ohos.window';
 
-featureAbility.getWindow((error: BusinessError, data: window.Window) => {
-    if (error && error.code !== 0) {
+export default {
+
+  onActive() {
+    console.info("onActive");
+    featureAbility.getWindow((error: BusinessError, data: window.Window) => {
+      if (error && error.code !== 0) {
         console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`getWindow success, data: ${JSON.stringify(data)}`);
-    }
-});
+      } else {
+        console.log(`getWindow success, data: ${typeof(data)}`);
+      }
+    });
+  }
+}
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
@@ -757,10 +763,20 @@ getWindow(): Promise\<window.Window>;
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
-featureAbility.getWindow().then((data) => {
-    console.info('getWindow data: ${typeof(data)}');
-});
+export default {
+
+  onActive() {
+    console.info("onActive");
+    featureAbility.getWindow().then((data: window.Window) => {
+        console.log(`getWindow success, data: ${typeof(data)}`);
+    }).catch((error: BusinessError)=>{
+        console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
+    });
+  }
+}
 ```
 
 ## AbilityWindowConfiguration
