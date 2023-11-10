@@ -16,7 +16,7 @@ import storageStatistics from "@ohos.file.storageStatistics";
 
 getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
-异步获取外置存储设备中指定卷设备的总空间大小（单位为Byte），以promise方式返回。
+异步获取外置存储设备中指定卷设备的总空间大小（单位为Byte），以Promise方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -52,12 +52,17 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 **示例：**
 
   ```ts
+  import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
-  let uuid: string = "";
-  storageStatistics.getTotalSizeOfVolume(uuid).then((number: number) => {
-    console.info("getTotalSizeOfVolume successfully:" + number);
+  volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    let uuid: string = volumes[0].uuid;
+    storageStatistics.getTotalSizeOfVolume(uuid).then((number: number) => {
+      console.info("getTotalSizeOfVolume successfully:" + number);
+    }).catch((err: BusinessError) => {
+      console.info("getTotalSizeOfVolume failed with error:" + JSON.stringify(err));
+    });
   }).catch((err: BusinessError) => {
-    console.info("getTotalSizeOfVolume failed with error:" + JSON.stringify(err));
+    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -96,11 +101,20 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
 **示例：**
 
   ```ts
+  import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
-  let uuid: string = "";
-  storageStatistics.getTotalSizeOfVolume(uuid, (error: BusinessError, number: number) => {
-    // do something
-    console.info("getTotalSizeOfVolume successfully:" + number);
+  volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    let uuid: string = volumes[0].uuid;
+    storageStatistics.getTotalSizeOfVolume(uuid, (error: BusinessError, number: number) => {
+      if (error) {
+        console.info("getTotalSizeOfVolume failed with error:" + JSON.stringify(error));
+      } else {
+        // do something
+        console.info("getTotalSizeOfVolume successfully:" + number);
+      }
+    });
+  }).catch((err: BusinessError) => {
+    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -108,7 +122,7 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
 
 getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
-异步获取外置存储设备中指定卷设备的可用空间大小（单位为Byte），以promise方式返回。
+异步获取外置存储设备中指定卷设备的可用空间大小（单位为Byte），以Promise方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -144,12 +158,17 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 **示例：**
 
   ```ts
+  import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
-  let uuid: string = "";
-  storageStatistics.getFreeSizeOfVolume(uuid).then((number: number) => {
-    console.info("getFreeSizeOfVolume successfully:" + number);
+  volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    let uuid: string = volumes[0].uuid;
+    storageStatistics.getFreeSizeOfVolume(uuid).then((number: number) => {
+      console.info("getFreeSizeOfVolume successfully:" + number);
+    }).catch((err: BusinessError) => {
+      console.info("getFreeSizeOfVolume failed with error:" + JSON.stringify(err));
+    });
   }).catch((err: BusinessError) => {
-    console.info("getFreeSizeOfVolume failed with error:" + JSON.stringify(err));
+    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -188,11 +207,20 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
 **示例：**
 
   ```ts
+  import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
-  let uuid: string = "";
-  storageStatistics.getFreeSizeOfVolume(uuid, (error: BusinessError, number: number) => {
-    // do something
-    console.info("getFreeSizeOfVolume successfully: " + number);
+  volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    let uuid: string = volumes[0].uuid;
+    storageStatistics.getFreeSizeOfVolume(uuid, (error: BusinessError, number: number) => {
+      if (error) {
+        console.info("getFreeSizeOfVolume failed with error:" + JSON.stringify(error));
+      } else {
+        // do something
+        console.info("getFreeSizeOfVolume successfully: " + number);
+      }
+    });
+  }).catch((err: BusinessError) => {
+    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -200,7 +228,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
 
 getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
-异步获取应用存储空间大小（单位为Byte），以promise方式返回。
+异步获取应用存储数据的空间大小（单位为Byte），以Promise方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -218,7 +246,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
   | 类型                                       | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储数据（单位为Byte） |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储数据的空间大小（单位为Byte） |
 
 **错误码：**
 
@@ -249,7 +277,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
 getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 
-异步获取应用存储空间大小（单位为Byte），以callback方式返回。
+异步获取应用存储数据的空间大小（单位为Byte），以callback方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -262,7 +290,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
   | 参数名   | 类型                                                      | 必填 | 说明                                 |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | 是   | 应用包名 |
-  | callback | AsyncCallback&lt;[Bundlestats](#bundlestats9)&gt; | 是   | 获取指定卷上的应用存储数据之后的回调 |
+  | callback | AsyncCallback&lt;[Bundlestats](#bundlestats9)&gt; | 是   | 获取指定卷上的应用存储数据的空间大小之后的回调 |
 
 **错误码：**
 
@@ -283,8 +311,12 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
   import { BusinessError } from '@ohos.base';
   let packageName: string = "";
   storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.BundleStats) => {
-    // do something
-    console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
+    if (error) {
+      console.info("getBundleStats failed with error:" + JSON.stringify(error));
+    }  else {
+      // do something
+      console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
+    }
   });
   ```
 
@@ -292,7 +324,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 
 getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
-第三方应用异步获取当前应用存储空间大小（单位为Byte），以promise方式返回。
+第三方应用异步获取当前应用存储空间大小（单位为Byte），以Promise方式返回。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -352,8 +384,12 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
   ```ts
   import { BusinessError } from '@ohos.base';
   storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.BundleStats) => {
-    // do something
-    console.info("getCurrentBundleStats successfully:" + JSON.stringify(bundleStats));
+    if (error) {
+      console.info("getCurrentBundleStats failed with error:" + JSON.stringify(error));
+    } else {
+      // do something
+      console.info("getCurrentBundleStats successfully:" + JSON.stringify(bundleStats));
+    }
   });
   ```
 
@@ -371,7 +407,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 getTotalSize(): Promise&lt;number&gt;
 
-获取内置存储的总空间大小（单位为Byte），以promise方式返回。
+获取内置存储的总空间大小（单位为Byte），以Promise方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -443,8 +479,12 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
   ```ts
   import { BusinessError } from '@ohos.base';
   storageStatistics.getTotalSize((error: BusinessError, number: number) => {
-    // do something
-    console.info("getTotalSize successfully:"+ JSON.stringify(number));
+    if (error) {
+      console.info("getTotalSize failed with error:" + JSON.stringify(error));
+    } else {
+      // do something
+      console.info("getTotalSize successfully:" + number);
+    }
   });
   ```
 
@@ -459,6 +499,12 @@ getTotalSizeSync(): number
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 **系统接口：** 该接口为系统接口。
+
+**返回值：**
+
+  | 类型                   | 说明               |
+  | --------------------- | ------------------ |
+  | number | 返回内置存储的总空间大小（单位为Byte）   |
 
 **错误码：**
 
@@ -488,7 +534,7 @@ getTotalSizeSync(): number
 
 getFreeSize(): Promise&lt;number&gt;
 
-获取内置存储的可用空间大小（单位为Byte），以promise方式返回。
+获取内置存储的可用空间大小（单位为Byte），以Promise方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -560,8 +606,12 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
   ```ts
   import { BusinessError } from '@ohos.base';
   storageStatistics.getFreeSize((error: BusinessError, number: number) => {
-    // do something
-    console.info("getFreeSize successfully:" + JSON.stringify(number));
+    if (error) {
+      console.info("getFreeSize failed with error:" + JSON.stringify(error));
+    } else {
+      // do something
+      console.info("getFreeSize successfully:" + number);
+    }
   });
   ```
 
@@ -576,6 +626,12 @@ getFreeSizeSync(): number
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 **系统接口：** 该接口为系统接口。
+
+**返回值：**
+
+  | 类型                   | 说明               |
+  | --------------------- | ------------------ |
+  | number | 返回内置存储的可用空间大小（单位为Byte） |
 
 **错误码：**
 
@@ -606,7 +662,7 @@ getFreeSizeSync(): number
 
 getSystemSize(): Promise&lt;number&gt;
 
-异步获取系统数据的空间大小（单位为Byte），以promise方式返回。
+异步获取系统数据的空间大小（单位为Byte），以Promise方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -678,8 +734,12 @@ getSystemSize(callback: AsyncCallback&lt;number&gt;): void
   ```ts
   import { BusinessError } from '@ohos.base';
   storageStatistics.getSystemSize((error: BusinessError, number: number) => {
-    // do something
-    console.info("getSystemSize successfully:" + number);
+    if (error) {
+      console.info("getSystemSize failed with error:" + JSON.stringify(error));
+    } else {
+      // do something
+      console.info("getSystemSize successfully:" + number);
+    }
   });
   ```
 
@@ -687,7 +747,7 @@ getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 
 getUserStorageStats(): Promise&lt;StorageStats&gt;
 
-异步获取当前用户各类别存储空间大小（单位为Byte），以promise方式返回。
+异步获取当前用户各类别存储空间大小（单位为Byte），以Promise方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -759,8 +819,12 @@ getUserStorageStats(callback: AsyncCallback&lt;StorageStats&gt;): void
   ```ts
   import { BusinessError } from '@ohos.base';
   storageStatistics.getUserStorageStats((error: BusinessError, storageStats: storageStatistics.StorageStats) => {
-    // do something
-    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+    if (error) {
+      console.info("getUserStorageStats failed with error:" + JSON.stringify(error));
+    } else {
+      // do something
+      console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+    }
   });
   ```
 
@@ -768,7 +832,7 @@ getUserStorageStats(callback: AsyncCallback&lt;StorageStats&gt;): void
 
 getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 
-异步获取指定用户各类别存储空间大小（单位为Byte），以promise方式返回。
+异步获取指定用户各类别存储空间大小（单位为Byte），以Promise方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -851,8 +915,12 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
   import { BusinessError } from '@ohos.base';
   let userId: number = 100;
   storageStatistics.getUserStorageStats(userId, (error: BusinessError, storageStats: storageStatistics.StorageStats) => {
-    // do something
-    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+    if (error) {
+      console.info("getUserStorageStats failed with error:" + JSON.stringify(error));
+    } else {
+      // do something
+      console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+    }
   });
   ```
 
