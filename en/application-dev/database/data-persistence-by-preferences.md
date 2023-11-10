@@ -30,17 +30,17 @@ The preference persistent file of an application is stored in the application sa
 
 The following table lists the APIs used for persisting user preference data. For more information about the APIs, see [User Preferences](../reference/apis/js-apis-data-preferences.md).
 
-| API                                                          | Description                                                  |
+| API                                                    | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | getPreferencesSync(context: Context, options: Options): Preferences | Obtains a **Preferences** instance. This API returns the result synchronously.<br/>An asynchronous API is also provided. |
 | putSync(key: string, value: ValueType): void                 | Writes data to the **Preferences** instance. This API returns the result synchronously.<br/>You can use **flush()** to persist the **Preferences** instance data. <br/>An asynchronous API is also provided. |
 | hasSync(key: string): void                                   | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty. This API returns the result synchronously.<br/>An asynchronous API is also provided. |
 | getSync(key: string, defValue: ValueType): void              | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned. This API returns the result synchronously.<br/>An asynchronous API is also provided. |
 | deleteSync(key: string): void                                | Deletes the KV pair with the given key from the **Preferences** instance. This API returns the result synchronously.<br/>An asynchronous API is also provided. |
-| flush(callback: AsyncCallback&lt;void&gt;): void             | Flushes the data of this **Preferences** instance to a file for data persistence. |
-| on(type: 'change', callback: ( key : string ) => void): void | Subscribes to data changes of the specified key. When the value of the specified key is changed and saved by **flush()**, a callback will be invoked to return the new data. |
-| off(type: 'change', callback?: ( key : string ) => void): void | Unsubscribes from data changes.                              |
-| deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void | Deletes a **Preferences** instance from memory. If the **Preferences** instance has a persistent file, this API also deletes the persistent file. |
+| flush(callback: AsyncCallback&lt;void&gt;): void             | Flushes the data of this **Preferences** instance to a file for data persistence.|
+| on(type: 'change', callback: ( key : string ) => void): void | Subscribes to data changes of the specified key. When the value of the specified key is changed and saved by **flush()**, a callback will be invoked to return the new data.|
+| off(type: 'change', callback?: ( key : string ) => void): void | Unsubscribes from data changes.                                          |
+| deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void | Deletes a **Preferences** instance from memory. If the **Preferences** instance has a persistent file, this API also deletes the persistent file.|
 
 
 ## How to Develop
@@ -60,20 +60,20 @@ The following table lists the APIs used for persisting user preference data. For
    import UIAbility from '@ohos.app.ability.UIAbility';
    import { BusinessError } from '@ohos.base';
    import window from '@ohos.window';
-   
+
    let preferences: dataPreferences.Preferences | null = null;
-   
+
    class EntryAbility extends UIAbility {
-       onWindowStageCreate(windowStage: window.WindowStage) {
-           try {
-               let options: dataPreferences.Options = { name: 'myStore' };
-               preferences = dataPreferences.getPreferencesSync(this.context, options);
-           } catch (err) {
-               let code = (err as BusinessError).code;
-         		let message = (err as BusinessError).message;
-         		console.error(`Failed to get preferences. Code:${code},message:${message}`);
-           }
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       try {
+         let options: dataPreferences.Options = { name: 'myStore' };
+         preferences = dataPreferences.getPreferencesSync(this.context, options);
+       } catch (err) {
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to get preferences. Code:${code},message:${message}`);
        }
+     }
    }
    ```
 
@@ -128,9 +128,8 @@ The following table lists the APIs used for persisting user preference data. For
 4. Read data.
 
    Use **getSync()** to obtain the value of the specified key. If the value is null or is not of the default value type, the default data is returned. 
-
+     
    Example:
-
    ```ts
    try {
      let val = preferences.getSync('startup', 'default');
@@ -147,8 +146,7 @@ The following table lists the APIs used for persisting user preference data. For
    Use **deleteSync()** to delete a KV pair.
 
    Example:
-
-
+   
    ```ts
    try {
      preferences.deleteSync('startup');
@@ -162,9 +160,8 @@ The following table lists the APIs used for persisting user preference data. For
 6. Persist data.
 
    You can use **flush()** to persist the data held in a **Preferences** instance to a file. 
-
+     
    Example:
-
    ```ts
    try {
      preferences.flush((err: BusinessError) => {
@@ -184,9 +181,8 @@ The following table lists the APIs used for persisting user preference data. For
 7. Subscribe to data changes.
 
    Specify an observer as the callback to return the data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data. 
-
+     
    Example:
-
    ```ts
    preferences.on('change', (key: string) => {
      console.info('The key' + key + 'changed.');
