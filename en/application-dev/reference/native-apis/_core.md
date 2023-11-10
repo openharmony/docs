@@ -29,7 +29,7 @@ The **Core** module provides the basic backbone capabilities for the media playb
 | Name| Description| 
 | -------- | -------- |
 | [OH_AVErrCode](#oh_averrcode) | Defines an enum that enumerates the audio and video error codes.| 
-| [OH_AVPixelFormat](#oh_avpixelformat) | Defines an enum that enumerates the video pixel formats.| 
+| [OH_AVPixelFormat](#oh_avpixelformat) | Defines an enum that enumerates the audio and video pixel formats.| 
 
 
 ### Enums
@@ -37,7 +37,7 @@ The **Core** module provides the basic backbone capabilities for the media playb
 | Name| Description| 
 | -------- | -------- |
 | [OH_AVErrCode](#oh_averrcode) {<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_OK = 0,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_NO_MEMORY = 1,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_OPERATE_NOT_PERMIT = 2,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_INVALID_VAL = 3,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_IO = 4,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_TIMEOUT = 5,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_UNKNOWN = 6,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_SERVICE_DIED = 7,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_INVALID_STATE = 8,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_UNSUPPORT = 9,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_EXTEND_START = 100<br>} | Enumerates the audio and video error codes.| 
-| [OH_AVPixelFormat](#oh_avpixelformat) {<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_YUVI420 = 1,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_NV12 = 2,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_NV21 = 3,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_RGBA = 5<br>} | Enumerates the video pixel formats.| 
+| [OH_AVPixelFormat](#oh_avpixelformat) {<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_YUVI420 = 1,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_NV12 = 2,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_NV21 = 3,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_RGBA = 5<br>} | Enumerates the audio and video pixel formats.| 
 
 
 ### Functions
@@ -239,7 +239,7 @@ Creates an audio **OH_AVFormat** instance for reading and writing data.
 
 | Name| Description| 
 | -------- | -------- |
-| mimeType | Pointer to the MIME type.| 
+| mimeType | Pointer to a string that describes the MIME type. For details, see [AVCODEC_MIMETYPE](_codec_base.md#variables).| 
 | sampleRate | Sampling rate, in Hz.| 
 | channelCount | Number of audio channels. For example, 1 indicates mono and 2 indicates stereo.| 
 
@@ -269,7 +269,7 @@ Creates a video **OH_AVFormat** instance for reading and writing data.
 
 | Name| Description| 
 | -------- | -------- |
-| mimeType | Pointer to the MIME type.| 
+| mimeType | Pointer to a string that describes the MIME type. For details, see [AVCODEC_MIMETYPE](_codec_base.md#variables).| 
 | width | Video width, in pixels.| 
 | height | Video height, in pixels.| 
 

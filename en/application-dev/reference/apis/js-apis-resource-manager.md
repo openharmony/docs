@@ -169,7 +169,7 @@ Obtains a **ResourceManager** object.
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| Resourcemanager | **ResourceManager** object.|
+| [Resourcemanager](#resourcemanager) | **ResourceManager** object.|
 
 **Error codes**
 
@@ -296,6 +296,8 @@ Defines the resource information of an application.
 | bundleName | string | Yes   | No| Bundle name of the application.|
 | moduleName | string | Yes   | No| Module name of the application.|
 | id         | number | Yes   | No| Resource ID.     |
+| params     | any[] | Yes   | No| Other resource parameters, which are optional.     |
+| type       | number | Yes   | No| Resource type, which is optional.     |
 
 
 ## ResourceManager
@@ -4591,7 +4593,7 @@ Obtains the device configuration. This API return the results synchronously.
 
 | Type                                      | Description              |
 | ---------------------------------------- | ---------------- |
-| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the result.|
+| [Configuration](#configuration) | Promise used to return the result.|
 
 **Example**
   ```ts
@@ -4676,7 +4678,7 @@ Obtains the device capability. This API return the results synchronously.
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| DeviceCapability | Promise used to return the result.|
+| [DeviceCapability](#devicecapability) | Promise used to return the result.|
 
 **Example**
   ```ts

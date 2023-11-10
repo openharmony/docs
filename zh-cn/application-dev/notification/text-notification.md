@@ -12,6 +12,7 @@
 | NOTIFICATION_CONTENT_MULTILINE | 多行文本类型。 |
 | NOTIFICATION_CONTENT_PICTURE | 图片类型。 |
 
+
 目前，系统仅支持通知栏订阅通知，将通知显示在通知栏中。基本类型通知的效果示意如下图所示。
 
 **图1** 基础类型通知呈现效果示意图  

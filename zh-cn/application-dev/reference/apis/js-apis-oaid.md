@@ -21,8 +21,6 @@ getOAID():Promise&lt;string&gt;
 
 获取开放匿名设备标识符（Open Anonymous Device Identifier, OAID）。
 
-**模型约束：** 此接口仅可在Stage模型下使用。
-
 **需要权限：** ohos.permission.APP_TRACKING_CONSENT
 
 **系统能力：** SystemCapability.Advertising.OAID
@@ -50,11 +48,11 @@ import { BusinessError } from '@ohos.base';
 try {  
   identifier.getOAID().then((data) => {
     const oaid: string = data;
-    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success`);
+    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by promise success`);
   }).catch((err: BusinessError) => {
     hilog.info(0x0000, 'testTag', '%{public}s', `get oaid failed, message: ${err.message}`);
   })
-} catch (err: BusinessError) {
+} catch (err) {
   hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', err.code, err.message);
 }
 ```
@@ -65,8 +63,6 @@ try {
 getOAID(callback: AsyncCallback&lt;string&gt;): void
 
 获取开放匿名设备标识符（Open Anonymous Device Identifier, OAID）。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
 
 **需要权限：** ohos.permission.APP_TRACKING_CONSENT
 
@@ -106,7 +102,7 @@ try {
       hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success`);
     }
    });
-} catch (err: BusinessError) {
+} catch (err) {
   hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', err.code, err.message);
 }
 ```
@@ -119,10 +115,6 @@ resetOAID(): void
 重置开放匿名设备标识符（Open Anonymous Device Identifier, OAID）。
 
 **系统接口：** 此接口为系统接口。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**需要权限：** ohos.permission.APP_TRACKING_CONSENT
 
 **系统能力：** SystemCapability.Advertising.OAID
 
@@ -138,11 +130,10 @@ resetOAID(): void
 ```
 import identifier from '@ohos.identifier.oaid';
 import hilog from '@ohos.hilog'; 
-import { BusinessError } from '@ohos.base';
 
 try {
   identifier.resetOAID();
-} catch (err: BusinessError) {
+} catch (err) {
   hilog.error(0x0000, 'testTag', 'reset oaid catch error: %{public}d %{public}s', err.code, err.message);
 }
 ```

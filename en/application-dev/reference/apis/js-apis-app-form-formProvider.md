@@ -374,7 +374,7 @@ try {
 
 requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<string>): void
 
-Requests to publish a widget carrying data to the widget host. This API uses an asynchronous callback to return the result. The widget host is usually the home screen.
+Requests to publish a widget carrying data to the widget host (usually the home screen). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -437,7 +437,7 @@ try {
 
 requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
-Requests to publish a widget to the widget host. This API uses an asynchronous callback to return the result. The widget host is usually the home screen.
+Requests to publish a widget to the widget host (usually the home screen). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -493,7 +493,7 @@ try {
 
 requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData): Promise&lt;string&gt;
 
-Requests to publish a widget to the widget host. This API uses a promise to return the result. The widget host is usually the home screen.
+Requests to publish a widget to the widget host (usually the home screen). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.Form
 

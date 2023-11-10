@@ -23,7 +23,7 @@ For example, you can use logging functions to output logs of the specified log t
 
 | Name| Description|
 | -------- | -------- |
-| [log.h](log_8h.md) | Defines the logging functions of the HiLog module.<br>**File to include**: <hilog/log.h><br>**Library**: libhitrace_ndk.z.so|
+| [log.h](log_8h.md) | Defines the logging functions of the HiLog module.<br>**File to include**: <hilog/log.h><br>**Library**: libhilog_ndk.z.so|
 
 
 ### Macros

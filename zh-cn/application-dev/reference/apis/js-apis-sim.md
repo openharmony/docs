@@ -69,7 +69,7 @@ import sim from '@ohos.telephony.sim';
 sim.isSimActive(0).then((data: boolean) => {
     console.log(`isSimActive success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`isSimActive failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`isSimActive failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -152,7 +152,7 @@ import sim from '@ohos.telephony.sim';
 sim.getDefaultVoiceSlotId().then((data: number) => {
     console.log(`getDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -235,7 +235,7 @@ import sim from '@ohos.telephony.sim';
 sim.hasOperatorPrivileges(0).then((data: boolean) => {
     console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`hasOperatorPrivileges failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`hasOperatorPrivileges failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -321,7 +321,7 @@ import sim from '@ohos.telephony.sim';
 sim.getISOCountryCodeForSim(0).then((data: string) => {
     console.log(`getISOCountryCodeForSim success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getISOCountryCodeForSim failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getISOCountryCodeForSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -439,7 +439,7 @@ import sim from '@ohos.telephony.sim';
 sim.getSimOperatorNumeric(0).then((data: string) => {
     console.log(`getSimOperatorNumeric success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimOperatorNumeric failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimOperatorNumeric failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -557,7 +557,7 @@ import sim from '@ohos.telephony.sim';
 sim.getSimSpn(0).then((data: string) => {
     console.log(`getSimSpn success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimSpn failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimSpn failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -670,10 +670,10 @@ getSimState\(slotId: number\): Promise\<SimState\>
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-sim.getSimState(0).then((data: sim.simstate) => {
+sim.getSimState(0).then((data: sim.SimState) => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimState failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -790,7 +790,7 @@ import sim from '@ohos.telephony.sim';
 sim.getCardType(0).then((data: sim.CardType) => {
     console.log(`getCardType success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getCardType failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getCardType failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -906,7 +906,7 @@ import sim from '@ohos.telephony.sim';
 sim.hasSimCard(0).then((data: boolean) => {
     console.log(`hasSimCard success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`hasSimCard failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`hasSimCard failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1036,7 +1036,7 @@ import sim from '@ohos.telephony.sim';
 sim.getSimAccountInfo(0).then((data: sim.IccAccountInfo) => {
     console.log(`getSimAccountInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimAccountInfo failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimAccountInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1124,7 +1124,7 @@ import sim from '@ohos.telephony.sim';
 sim.getActiveSimAccountInfoList().then((data: Array<sim.IccAccountInfo>) => {
     console.log(`getActiveSimAccountInfoList success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getActiveSimAccountInfoList failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getActiveSimAccountInfoList failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1224,7 +1224,7 @@ import sim from '@ohos.telephony.sim';
 sim.setDefaultVoiceSlotId(0).then(() => {
     console.log(`setDefaultVoiceSlotId success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1325,7 +1325,7 @@ let name: string = "ShowName";
 sim.setShowName(0, name).then(() => {
     console.log(`setShowName success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setShowName failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1423,7 +1423,7 @@ import sim from '@ohos.telephony.sim';
 sim.getShowName(0).then((data: string) => {
     console.log(`getShowName success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getShowName failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1525,7 +1525,7 @@ let number: string = '+861xxxxxxxxxx';
 sim.setShowNumber(0, number).then(() => {
     console.log(`setShowNumber success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setShowNumber failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1623,7 +1623,7 @@ import sim from '@ohos.telephony.sim';
 sim.getShowNumber(0).then((data: string) => {
     console.log(`getShowNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getShowNumber failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1721,7 +1721,7 @@ import sim from '@ohos.telephony.sim';
 sim.activateSim(0).then(() => {
     console.log(`activateSim success.`);
 }).catch((err: BusinessError) => {
-    console.log(`activateSim failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`activateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1819,7 +1819,7 @@ import sim from '@ohos.telephony.sim';
 sim.deactivateSim(0).then(() => {
     console.log(`deactivateSim success.`);
 }).catch((err: BusinessError) => {
-    console.log(`deactivateSim failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`deactivateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1931,7 +1931,7 @@ let lockInfo: sim.LockInfo = {
 sim.setLockState(0, lockInfo).then((data: sim.LockStatusResponse) => {
     console.log(`setLockState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`setLockState failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setLockState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2033,7 +2033,7 @@ import sim from '@ohos.telephony.sim';
 sim.getLockState(0, 1).then((data: sim.LockState) => {
     console.log(`getLockState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getLockState failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getLockState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2137,7 +2137,7 @@ import sim from '@ohos.telephony.sim';
 sim.alterPin(0, "1234", "0000").then((data: sim.LockStatusResponse) => {
     console.log(`alterPin success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`alterPin failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`alterPin failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2241,7 +2241,7 @@ import sim from '@ohos.telephony.sim';
 sim.alterPin2(0, "1234", "0000").then((data: sim.LockStatusResponse) => {
     console.log(`alterPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`alterPin2 failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`alterPin2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2345,7 +2345,7 @@ let pin: string = '1234';
 sim.unlockPin(0, pin).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPin success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`unlockPin failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`unlockPin failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2453,7 +2453,7 @@ let newPin: string = '1235';
 sim.unlockPuk(0, newPin, puk).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPuk success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`unlockPuk failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`unlockPuk failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2557,7 +2557,7 @@ let pin2: string = '1234';
 sim.unlockPin2(0, pin2).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`unlockPin2 failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`unlockPin2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2665,7 +2665,7 @@ let newPin2: string = '1235';
 sim.unlockPuk2(0, newPin2, puk2).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPuk2 success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`unlockPuk2 failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`unlockPuk2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2785,7 +2785,7 @@ import sim from '@ohos.telephony.sim';
 sim.getSimIccId(0).then((data:string) => {
     console.log(`getSimIccId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimIccId failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimIccId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2883,7 +2883,7 @@ import sim from '@ohos.telephony.sim';
 sim.getVoiceMailIdentifier(0).then((data: string) => {
     console.log(`getVoiceMailIdentifier success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getVoiceMailIdentifier failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getVoiceMailIdentifier failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2981,7 +2981,7 @@ import sim from '@ohos.telephony.sim';
 sim.getVoiceMailNumber(0).then((data: string) => {
     console.log(`getVoiceMailNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getVoiceMailNumber failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getVoiceMailNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3086,7 +3086,7 @@ import sim from '@ohos.telephony.sim';
 sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com").then(() => {
     console.log(`setVoiceMailInfo success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setVoiceMailInfo failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setVoiceMailInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3184,7 +3184,7 @@ import sim from '@ohos.telephony.sim';
 sim.getSimTelephoneNumber(0).then((data: string) => {
     console.log(`getSimTelephoneNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimTelephoneNumber failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimTelephoneNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3282,7 +3282,7 @@ import sim from '@ohos.telephony.sim';
 sim.getSimGid1(0).then((data: string) => {
     console.log(`getSimGid1 success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimGid1 failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimGid1 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3380,7 +3380,7 @@ import sim from '@ohos.telephony.sim';
 sim.getIMSI(0).then((data: string) => {
     console.log(`getIMSI success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getIMSI failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getIMSI failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3476,7 +3476,7 @@ import sim from '@ohos.telephony.sim';
 sim.getOperatorConfigs(0).then((data: Array<sim.OperatorConfig>) => {
     console.log(`getOperatorConfigs success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getOperatorConfigs failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getOperatorConfigs failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3578,7 +3578,7 @@ import sim from '@ohos.telephony.sim';
 sim.queryIccDiallingNumbers(0, 1).then((data:  Array<sim.DiallingNumbersInfo>) => {
     console.log(`queryIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`queryIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`queryIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3691,7 +3691,7 @@ let diallingNumbersInof: sim.DiallingNumbersInfo = {
 sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
     console.log(`addIccDiallingNumbers success.`);
 }).catch((err: BusinessError) => {
-    console.log(`addIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`addIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3805,7 +3805,7 @@ let diallingNumbersInof: sim.DiallingNumbersInfo = {
 sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
     console.log(`delIccDiallingNumbers success.`);
 }).catch((err: BusinessError) => {
-    console.log(`delIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`delIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3920,7 +3920,7 @@ let diallingNumbersInof: sim.DiallingNumbersInfo = {
 sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
     console.log(`updateIccDiallingNumbers success.`);
 }).catch((err: BusinessError) => {
-    console.log(`updateIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`updateIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -4020,7 +4020,7 @@ import sim from '@ohos.telephony.sim';
 sim.sendEnvelopeCmd(0, "ls").then(() => {
     console.log(`sendEnvelopeCmd success.`);
 }).catch((err: BusinessError) => {
-    console.log(`sendEnvelopeCmd failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`sendEnvelopeCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -4120,7 +4120,7 @@ import sim from '@ohos.telephony.sim';
 sim.sendTerminalResponseCmd(0, "ls").then(() => {
     console.log(`sendTerminalResponseCmd success.`);
 }).catch((err: BusinessError) => {
-    console.log(`sendTerminalResponseCmd failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`sendTerminalResponseCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -4231,7 +4231,7 @@ let persoLockInfo: sim.PersoLockInfo = {
 sim.unlockSimLock(0, persoLockInfo).then((data: sim.LockStatusResponse) => {
     console.log(`unlockSimLock success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`unlockSimLock failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`unlockSimLock failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -4272,13 +4272,13 @@ import sim from '@ohos.telephony.sim';
 try {
     sim.getOpKey(0, (err: BusinessError, data: string) => {
     if (err) {
-      console.log("getOpKey failed, err: " + JSON.stringify(err));
+      console.error("getOpKey failed, err: " + JSON.stringify(err));
     } else {
       console.log('getOpKey successfully, data: ' + JSON.stringify(data));
     }
   });
 } catch (err) {
-  console.log("getOpKey err: " + JSON.stringify(err));
+  console.error("getOpKey err: " + JSON.stringify(err));
 }
 ```
 
@@ -4326,7 +4326,7 @@ try {
     let data: Promise<string> = sim.getOpKey(0);
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
 } catch (error) {
-    console.log(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
+    console.error(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -4397,13 +4397,13 @@ import sim from '@ohos.telephony.sim';
 try {
     sim.getOpName(0, (err: BusinessError, data: string) => {
     if (err) {
-      console.log("getOpName failed, err: " + JSON.stringify(err));
+      console.error("getOpName failed, err: " + JSON.stringify(err));
     } else {
       console.log('getOpName successfully, data: ' + JSON.stringify(data));
     }
   });
 } catch (err) {
-  console.log("getOpName err: " + JSON.stringify(err));
+  console.error("getOpName err: " + JSON.stringify(err));
 }
 ```
 
@@ -4451,7 +4451,7 @@ try {
     let data: Promise<string> = sim.getOpName(0);
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
 } catch (error) {
-    console.log(`getOpName failed, promise: err->${JSON.stringify(error)}`);
+    console.error(`getOpName failed, promise: err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -4561,7 +4561,7 @@ let promise = sim.getDefaultVoiceSimId();
 promise.then((data: number) => {
     console.log(`getDefaultVoiceSimId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getDefaultVoiceSimId failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getDefaultVoiceSimId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 

@@ -450,10 +450,10 @@ struct BlankExample {
 
 ## 自适应缩放
 
-自适应缩放是指子组件随容器尺寸的变化而按照预设的比例自动调整尺寸，适应各种不同大小的设备。在线性布局中，可以使用以下两种方法实现自适应缩放。
+自适应缩放是指子元素随容器尺寸的变化而按照预设的比例自动调整尺寸，适应各种不同大小的设备。在线性布局中，可以使用以下两种方法实现自适应缩放。
 
 
-- 父容器尺寸确定时，使用layoutWeight属性设置子组件和兄弟元素在主轴上的权重，忽略元素本身尺寸设置，使它们在任意尺寸的设备下自适应占满剩余空间。
+- 父容器尺寸确定时，使用layoutWeight属性设置子元素和兄弟元素在主轴上的权重，忽略元素本身尺寸设置，使它们在任意尺寸的设备下自适应占满剩余空间。
 
   ```ts
   @Entry
@@ -474,9 +474,9 @@ struct BlankExample {
           }.layoutWeight(2).backgroundColor(0xD2B48C).height('100%')
 
           Column() {
-            Text('layoutWeight(6)')
+            Text('layoutWeight(3)')
               .textAlign(TextAlign.Center)
-          }.layoutWeight(6).backgroundColor(0xF5DEB3).height('100%')
+          }.layoutWeight(3).backgroundColor(0xF5DEB3).height('100%')
 
         }.backgroundColor(0xffd306).height('30%')
 
@@ -510,7 +510,7 @@ struct BlankExample {
 
   ![zh-cn_image_0000001511580968](figures/zh-cn_image_0000001511580968.png)
 
-- 父容器尺寸确定时，使用百分比设置子组件和兄弟元素的宽度，使他们在任意尺寸的设备下保持固定的自适应占比。
+- 父容器尺寸确定时，使用百分比设置子元素和兄弟元素的宽度，使他们在任意尺寸的设备下保持固定的自适应占比。
 
   ```ts
   @Entry

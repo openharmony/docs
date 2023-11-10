@@ -50,7 +50,7 @@ TaskPool偏向独立任务（线程级）维度，超长任务（大于3分钟�
 
 ![taskpool](figures/taskpool.png)
 
-TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择合适的工作线程，进行任务的分发及执行，再将结果返回给主线程。接口直观易用，支持任务的执行、取消，以及指定优先级的能力，同时通过系统统一线程管理，结合动态调度及负载均衡算法，可以节约系统资源。系统默认会启动一个任务工作线程，当任务较多时会扩容，工作线程数量上限跟当前设备的物理核数相关，为max(3, 物理核数-1)个，长时间没有任务分发时会缩容，减少工作线程数量。
+TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择合适的工作线程，进行任务的分发及执行，再将结果返回给主线程。接口直观易用，支持任务的执行、取消，以及指定优先级的能力，同时通过系统统一线程管理，结合动态调度及负载均衡算法，可以节约系统资源。系统默认会启动一个任务工作线程，当任务较多时会扩容，工作线程数量上限跟当前设备的物理核数相关，具体数量内部管理，保证最优的调度及执行效率，长时间没有任务分发时会缩容，减少工作线程数量。
 
 
 ## Worker运作机制
@@ -64,11 +64,7 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
 ## TaskPool注意事项
 
-- 实现任务的函数需要使用装饰器\@Concurrent标注，且仅支持在.ets文件中使用。
-
-- 实现任务的函数只支持普通函数或者async函数，不支持类成员函数或者匿名函数。
-
-- 实现任务的函数仅支持在Stage模型的工程中使用import的变量和入参变量，否则只能使用入参变量。
+- 实现任务的函数需要使用装饰器[\@Concurrent](arkts-concurrent.md)标注，且仅支持在.ets文件中使用。
 
 - 任务函数在TaskPool工作线程的执行耗时不能超过3分钟（不包含Promise和async/await异步调用的耗时，例如网络下载、文件读写等I/O任务的耗时），否则会被强制退出。
 
@@ -101,6 +97,9 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
   当使用Worker模块具体功能时，均需先构造Worker实例对象，其构造函数与API版本相关。
 
 ```ts
+// 导入模块
+import worker form '@ohos.worker';
+
 // API 9及之后版本使用：
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
 // API 8及之前版本使用：
@@ -115,6 +114,9 @@ const worker2: worker.Worker = new worker.Worker('entry/ets/workers/MyWorker.ts'
 
 
 ```ts
+// 导入模块
+import worker form '@ohos.worker';
+
 // 写法一
 // Stage模型-目录同级（entry模块下，workers目录与pages目录同级）
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts', {name:"first worker in Stage model"});
@@ -148,6 +150,9 @@ const worker4: worker.ThreadWorker = new worker.ThreadWorker('@bundle:com.exampl
   构造函数中的scriptURL示例如下：
 
 ```ts
+// 导入模块
+import worker form '@ohos.worker';
+
 // FA模型-目录同级（entry模块下，workers目录与pages目录同级）
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});
 // FA模型-目录不同级（entry模块下，workers目录与pages目录的父目录同级）

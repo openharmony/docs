@@ -23,26 +23,27 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称              | 值 | 说明               |
-| ----------------- | ------ | ------------------ |
-| TYPE_APP          | 0      | 表示应用子窗口。<br>**模型约束：** 此接口仅可在FA模型下使用。 |
-| TYPE_SYSTEM_ALERT | 1      | 表示系统告警窗口。 |
-| TYPE_INPUT_METHOD<sup>9+</sup> | 2      | 表示输入法窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_STATUS_BAR<sup>9+</sup>   | 3      | 表示状态栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_PANEL<sup>9+</sup>        | 4      | 表示通知栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_KEYGUARD<sup>9+</sup>     | 5      | 表示锁屏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_VOLUME_OVERLAY<sup>9+</sup> | 6      | 表示音量条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_NAVIGATION_BAR<sup>9+</sup> | 7      | 表示导航栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_FLOAT<sup>9+</sup> | 8      | 表示悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW |
-| TYPE_WALLPAPER<sup>9+</sup> | 9      | 表示壁纸。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_DESKTOP<sup>9+</sup> | 10      | 表示桌面。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_LAUNCHER_RECENT<sup>9+</sup> | 11      | 表示多任务中心。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | 表示桌面Dock栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_POINTER<sup>9+</sup> | 14      | 表示鼠标。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | 表示相机类型悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_DIALOG<sup>10+</sup>  | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| TYPE_SCREENSHOT<sup>9+</sup>  | 17      | 表示截屏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| 名称                                  | 值 | 说明                                                                                     |
+|-------------------------------------| ------ |----------------------------------------------------------------------------------------|
+| TYPE_APP                            | 0      | 表示应用子窗口。<br>**模型约束：** 此接口仅可在FA模型下使用。                                                   |
+| TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。                                                                              |
+| TYPE_INPUT_METHOD<sup>9+</sup>      | 2      | 表示输入法窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                         |
+| TYPE_STATUS_BAR<sup>9+</sup>        | 3      | 表示状态栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                         |
+| TYPE_PANEL<sup>9+</sup>             | 4      | 表示通知栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                           |
+| TYPE_KEYGUARD<sup>9+</sup>          | 5      | 表示锁屏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                            |
+| TYPE_VOLUME_OVERLAY<sup>9+</sup>    | 6      | 表示音量条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                           |
+| TYPE_NAVIGATION_BAR<sup>9+</sup>    | 7      | 表示导航栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                         |
+| TYPE_FLOAT<sup>9+</sup>             | 8      | 表示悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW |
+| TYPE_WALLPAPER<sup>9+</sup>         | 9      | 表示壁纸。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                            |
+| TYPE_DESKTOP<sup>9+</sup>           | 10      | 表示桌面。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                            |
+| TYPE_LAUNCHER_RECENT<sup>9+</sup>   | 11      | 表示多任务中心。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                         |
+| TYPE_LAUNCHER_DOCK<sup>9+</sup>     | 12      | 表示桌面Dock栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                       |
+| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                          |
+| TYPE_POINTER<sup>9+</sup>           | 14      | 表示鼠标。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                            |
+| TYPE_FLOAT_CAMERA<sup>9+</sup>      | 15      | 表示相机类型悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                       |
+| TYPE_DIALOG<sup>10+</sup>           | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。                                                 |
+| TYPE_SCREENSHOT<sup>9+</sup>        | 17      | 表示截屏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                          |
+| TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | 表示顶层提示窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                        |
 
 ## Configuration<sup>9+</sup>
 
@@ -340,7 +341,7 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "alertWindow",
   windowType: window.WindowType.TYPE_SYSTEM_ALERT
@@ -397,7 +398,7 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "alertWindow",
   windowType: window.WindowType.TYPE_SYSTEM_ALERT
@@ -446,7 +447,7 @@ findWindow(name: string): Window
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 try {
   windowClass = window.findWindow('alertWindow');
 } catch (exception) {
@@ -483,7 +484,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 try {
   class BaseContext {
       stageMode: boolean = false;
@@ -537,7 +538,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 class BaseContext {
   stageMode: boolean = false;
 }
@@ -1262,7 +1263,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.create('first', window.WindowType.TYPE_APP, (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1306,7 +1307,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.create('first', window.WindowType.TYPE_APP);
 promise.then((data) => {
   windowClass = data;
@@ -1342,7 +1343,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.create('alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1386,7 +1387,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.create('alertWindow', window.WindowType.TYPE_SYSTEM_ALERT);
 promise.then((data) => {
   windowClass = data;
@@ -1420,7 +1421,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.find('alertWindow', (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1461,7 +1462,7 @@ find(id: string): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.find('alertWindow');
 promise.then((data) => {
   windowClass = data;
@@ -1496,7 +1497,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.getTopWindow((err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1533,7 +1534,7 @@ getTopWindow(): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data)=> {
     windowClass = data;
@@ -1567,7 +1568,7 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data) => {
   windowClass = data;
@@ -1606,7 +1607,7 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data) => {
   windowClass = data;
@@ -2117,11 +2118,14 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 改变当前窗口大小，使用callback异步回调。
 
-应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 2560]，默认高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准。
 
 系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
 
-设置的宽度与高度受到此约束限制。
+设置的宽度与高度受到此约束限制，规则：
+若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
+若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
 全屏模式窗口不支持该操作。
 
@@ -2170,11 +2174,14 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。
 
-应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 2560]，默认高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准。
 
 系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
 
-设置的宽度与高度受到此约束限制。
+设置的宽度与高度受到此约束限制，规则：
+若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
+若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
 全屏模式窗口不支持该操作。
 
@@ -3059,6 +3066,258 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+### loadContentByName<sup>11+</sup>
+
+loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
+
+为当前窗口加载与LocalStorage相关联的[命名路由](../../ui/arkts-routing.md#命名路由)页面，使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| name     | string                                                  | 是   | 命名路由页面的名称。                                             |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| callback | AsyncCallback&lt;void&gt;                               | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| -------- | --------------------------------------------- |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// ets/entryability/EntryAbility.ets
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+import * as Index from '../pages/Index'; // 导入命名路由页面
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
+    let storage: LocalStorage = new LocalStorage();
+    storage.setOrCreate('storageSimpleProp', 121);
+    try {
+      if (!windowClass) {
+        console.info('Failed to load the content. Cause: windowClass is null');
+      } else {
+        (windowClass as window.Window).loadContentByName(Index.entryName, storage, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in loading the content.');
+        });
+      }
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+    }
+  }
+};
+```
+```ts
+// ets/pages/Index.ets
+export const entryName : string = 'Index';
+@Entry({routeName: entryName, storage : LocalStorage.getShared()})
+@Component
+export struct Index {
+  @State message: string = 'Hello World'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### loadContentByName<sup>11+</sup>
+
+loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
+
+为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面内容，使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明             |
+| -------- | ------------------------- | ---- | ---------------- |
+| name     | string                    | 是   | 命名路由页面的名称。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| -------- | --------------------------------------------- |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// ets/entryability/EntryAbility.ets
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+import * as Index from '../pages/Index'; // 导入命名路由页面
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
+    try {
+      if (!windowClass) {
+        console.info('Failed to load the content. Cause: windowClass is null');
+      } else {
+        (windowClass as window.Window).loadContentByName(Index.entryName, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in loading the content.');
+        });
+      }
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+    }
+  }
+};
+```
+```ts
+// ets/pages/Index.ets
+export const entryName : string = 'Index';
+@Entry({routeName: entryName})
+@Component
+export struct Index {
+  @State message: string = 'Hello World'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### loadContentByName<sup>11+</sup>
+
+loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
+
+为当前窗口加载与LocalStorage相关联的[命名路由](../../ui/arkts-routing.md#命名路由)页面，使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名  | 类型                                                    | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| name    | string                                                  | 是   | 命名路由页面的名称。                                             |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| -------- | --------------------------------------------- |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// ets/entryability/EntryAbility.ets
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+import * as Index from '../pages/Index'; // 导入命名路由页面
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
+    let storage: LocalStorage = new LocalStorage();
+    storage.setOrCreate('storageSimpleProp', 121);
+    try {
+      if (!windowClass) {
+        console.info('Failed to load the content. Cause: windowClass is null');
+      } else {
+        let promise = (windowClass as window.Window).loadContentByName(Index.entryName, storage);
+        promise.then(() => {
+          console.info('Succeeded in loading the content.');
+        }).catch((err: BusinessError) => {
+          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        });
+      }
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+    }
+  }
+};
+```
+```ts
+// ets/pages/Index.ets
+export const entryName : string = 'Index';
+@Entry({routeName: entryName, storage : LocalStorage.getShared()})
+@Component
+export struct Index {
+  @State message: string = 'Hello World'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### isWindowShowing<sup>9+</sup>
 
 isWindowShowing(): boolean
@@ -3256,13 +3515,11 @@ try {
 }
 ```
 
-### on('touchOutside')<sup>9+</sup>
+### on('touchOutside')<sup>11+</sup>
 
 on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
 开启本窗口区域范围外的点击事件的监听。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3286,13 +3543,11 @@ try {
 }
 ```
 
-### off('touchOutside')<sup>9+</sup>
+### off('touchOutside')<sup>11+</sup>
 
 off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
 关闭本窗口区域范围外的点击事件的监听。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3544,7 +3799,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = { name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
@@ -3633,7 +3888,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "dialogWindow",
   windowType: window.WindowType.TYPE_DIALOG
@@ -3698,7 +3953,7 @@ import { BusinessError } from '@ohos.base';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
     };
@@ -3772,7 +4027,7 @@ import { BusinessError } from '@ohos.base';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
     };
@@ -3989,6 +4244,7 @@ getWindowColorSpace(): ColorSpace
 **示例：**
 
 ```ts
+let windowClass: window.Window = window.findWindow("test");
 let colorSpace = windowClass.getWindowColorSpace();
 ```
 
@@ -4110,6 +4366,7 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let brightness: number = 1;
+let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setWindowBrightness(brightness);
   promise.then(() => {
@@ -5549,9 +5806,10 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 // 将windowClass调整到targetWindow之上
+let windowClass: window.Window | undefined = undefined;
+let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
-let windowClass: window.Window = window.findWindow("test");
 windowClass.raiseAboveTarget(targetId, (err) => {
     if (err.code) {
         console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
@@ -5598,6 +5856,8 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 ```js
 // 将windowClass调整到targetWindow之上
+let windowClass: window.Window | undefined = undefined;
+let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
 let promise = windowClass.raiseAboveTarget(targetId);
@@ -6321,11 +6581,14 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 改变当前窗口大小，使用callback异步回调。
 
-应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 2560]，默认高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准。
 
 系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
 
-设置的宽度与高度受到此约束限制。
+设置的宽度与高度受到此约束限制，规则：
+若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
+若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
 全屏模式窗口不支持该操作。
 
@@ -6365,11 +6628,14 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。
 
-应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 2560]，默认高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准。
 
 系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
 
-设置的宽度与高度受到此约束限制。
+设置的宽度与高度受到此约束限制，规则：
+若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
+若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
 全屏模式窗口不支持该操作。
 
@@ -7976,6 +8242,8 @@ WindowStage生命周期。
 | ACTIVE     | 2      | 获焦状态。 |
 | INACTIVE   | 3      | 失焦状态。 |
 | HIDDEN     | 4      | 切到后台。 |
+| RESUMED<sup>11+</sup> | 5      | 前台可交互状态。前台应用进入多任务为不可交互状态，继续返回前台时恢复可交互状态。 |
+| PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态。前台应用进入多任务为不可交互状态，继续返回前台时恢复可交互状态。 |
 
 ## WindowStage<sup>9+</sup>
 
@@ -8020,7 +8288,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     windowStage.getMainWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
       if (errCode) {
@@ -8071,7 +8339,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let promise = windowStage.getMainWindow();
     promise.then((data) => {
       windowClass = data;
@@ -8166,7 +8434,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     try {
       windowStage.createSubWindow('mySubWindow', (err: BusinessError, data) => {
         const errCode: number = err.code;
@@ -8233,7 +8501,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     try {
       let promise = windowStage.createSubWindow('mySubWindow');
       promise.then((data) => {
@@ -8519,6 +8787,239 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+### loadContentByName<sup>11+</sup>
+
+loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
+
+为当前WindowStage加载与LocalStorage相关联的[命名路由](../../ui/arkts-routing.md#命名路由)页面，使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| name     | string                                                  | 是   | 命名路由页面的名称。                                             |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| callback | AsyncCallback&lt;void&gt;                               | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| -------- | --------------------------------------------- |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// ets/entryability/EntryAbility.ets
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+import * as Index from '../pages/Index'; // 导入命名路由页面
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  storage: LocalStorage = new LocalStorage();
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    this.storage.setOrCreate('storageSimpleProp', 121);
+    try {
+      windowStage.loadContentByName(Index.entryName, this.storage, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in loading the content.');
+      });
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+    }
+  }
+};
+```
+```ts
+// ets/pages/Index.ets
+export const entryName : string = 'Index';
+@Entry({routeName: entryName, storage : LocalStorage.getShared()})
+@Component
+export struct Index {
+  @State message: string = 'Hello World'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### loadContentByName<sup>11+</sup>
+
+loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
+
+为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明             |
+| -------- | ------------------------- | ---- | ---------------- |
+| name     | string                    | 是   | 命名路由页面的名称。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| -------- | --------------------------------------------- |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// ets/entryability/EntryAbility.ets
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+import * as Index from '../pages/Index'; // 导入命名路由页面
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.loadContentByName(Index.entryName, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in loading the content.');
+      });
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+    }
+  }
+};
+```
+```ts
+// ets/pages/Index.ets
+export const entryName : string = 'Index';
+@Entry({routeName: entryName})
+@Component
+export struct Index {
+  @State message: string = 'Hello World'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### loadContentByName<sup>11+</sup>
+
+loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
+
+为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，使用promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名  | 类型         | 必填 | 说明                                                         |
+| ------- | ------------ | ---- | ------------------------------------------------------------ |
+| name    | string       | 是   | 命名路由页面的名称。                                             |
+| storage | LocalStorage | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| -------- | --------------------------------------------- |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// ets/entryability/EntryAbility.ets
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+import * as Index from '../pages/Index'; // 导入命名路由页面
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  storage: LocalStorage = new LocalStorage();
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    this.storage.setOrCreate('storageSimpleProp', 121);
+    try {
+      let promise = windowStage.loadContentByName(Index.entryName, this.storage);
+      promise.then(() => {
+        console.info('Succeeded in loading the content.');
+      }).catch((err: BusinessError) => {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+      });
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+    }
+  }
+};
+```
+```ts
+// ets/pages/Index.ets
+export const entryName : string = 'Index';
+@Entry({routeName: entryName, storage : LocalStorage.getShared()})
+@Component
+export struct Index {
+  @State message: string = 'Hello World'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### on('windowStageEvent')<sup>9+</sup>
 
 on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
@@ -8732,7 +9233,7 @@ completeTransition(isCompleted: boolean): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({
@@ -8784,7 +9285,7 @@ animationForShown(context: TransitionContext): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context : window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({
@@ -8830,7 +9331,7 @@ animationForHidden(context: TransitionContext): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({

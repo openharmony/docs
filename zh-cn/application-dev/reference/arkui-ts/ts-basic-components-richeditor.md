@@ -5,6 +5,7 @@
 >  **说明：**
 >
 >  该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  RichEditor[仅支持通过onDragStart事件](ts-universal-events-drag-drop.md)实现浮起等拖拽效果。
 
 
 ## 子组件
@@ -35,8 +36,8 @@ RichEditor(value: RichEditorOptions)
 | 名称                      | 参数类型                                                     | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。 | 
-| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}<br/>**说明：**<br/>当前spanType参数设置不会生效，不区分类型。|
-| copyOption | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按组件内容，会弹出文本默认选择菜单，可选中内容并进行复制、全选操作。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。  |
+| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
+| copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按组件内容，会弹出文本默认选择菜单，可选中内容并进行复制、全选操作。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。  |
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -322,7 +323,7 @@ closeSelectionMenu(): void
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本颜色。<br/> 默认值：Color.Black。 |
-| fontSize | [Length](ts-types.md#length) \| number   | 否 | 字体大小。 <br/>默认值：16fp。|
+| fontSize | [Length](ts-types.md#length) | 否 | 设置字体大小，Length为number类型时，使用fp单位。字体默认大小16。不支持设置百分比字符串。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 否 | 字体样式。<br/>默认值：FontStyle.Normal。 |
 | fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
 | fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | 否 | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../apis/js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。|
@@ -344,7 +345,7 @@ closeSelectionMenu(): void
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| size  | [Dimension, Dimension]  | 否 | 图片宽度和高度。 |
+| size  | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)]  | 否 | 图片宽度和高度。 |
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | 否 | 图片缩放类型。<br/> 默认值:ImageFit.Cover。 |
 
@@ -540,12 +541,14 @@ struct RichEditorExample {
             Button(item + "")
               .width(110).onClick(() => {
               this.controller.addTextSpan(item + '', {
+                offset: this.controller.getCaretOffset(),
                 style:
                 {
                   fontColor: Color.Orange,
                   fontSize: 30
                 }
               })
+              this.controller.setCaretOffset(this.controller.getCaretOffset() + item.toString().length)
             })
           }
         })
@@ -559,12 +562,15 @@ struct RichEditorExample {
         // 绑定自定义键盘
         .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
         .height(200)
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width("100%")
     }
   }
 }
 ```
 
-![customKeyboard](figures/richEditorCustomKeyboard.png)
+![customKeyboard](figures/richEditorCustomKeyboard.gif)
 
 ### 示例3
 
@@ -590,7 +596,7 @@ struct SelectionMenu {
   options: RichEditorOptions = { controller: this.controller }
   private iconArr: Array<Resource> =
     [$r('app.media.icon'), $r("app.media.icon"), $r('app.media.icon'),
-    $r("app.media.icon"), $r('app.media.icon')]
+      $r("app.media.icon"), $r('app.media.icon')]
   private listArr: Array<Object> =
     [{ imageSrc: $r('sys.media.ohos_ic_public_cut'), id: '剪切', label: "Ctrl+X" } as info,
       { imageSrc: $r('sys.media.ohos_ic_public_copy'), id: '复制', label: "Ctrl+C" } as info,
@@ -614,6 +620,9 @@ struct SelectionMenu {
             this.controller.addTextSpan(this.message, { style: { fontColor: Color.Orange, fontSize: 30 } })
           })
           .onSelect((value: RichEditorSelection) => {
+            if (value.selection[0] == -1 && value.selection[1] == -1) {
+              return
+            }
             this.start = value.selection[0]
             this.end = value.selection[1]
           })
@@ -624,26 +633,20 @@ struct SelectionMenu {
           .borderColor(Color.Red)
           .width(200)
           .height(200)
-          .position({ x: 150, y: 100 })
-      }.width('100').backgroundColor(Color.White)
-    }.height('100')
+      }.width('100%').backgroundColor(Color.White)
+    }.height('100%')
   }
 
   @Builder
   panel() {
     Column() {
-      Menu() {
-        MenuItem({ builder: this.iconPanel() })
-      }.shadow(ShadowStyle.OUTER_DEFAULT_MD).margin({ bottom: 8 }).height(56).width(256)
-
-      Menu() {
-        if (!this.sliderShow) {
-          MenuItem({ builder: this.listPanel() })
-        } else {
-          MenuItem({ builder: this.sliderPanel() })
-        }
-      }.width(256).shadow(ShadowStyle.OUTER_DEFAULT_MD)
-    }.width(256).backgroundColor(Color.Transparent)
+      this.iconPanel()
+      if (!this.sliderShow) {
+        this.listPanel()
+      } else {
+        this.sliderPanel()
+      }
+    }.width(256)
   }
 
   @Builder iconPanel() {
@@ -702,7 +705,7 @@ struct SelectionMenu {
             if(isHover != undefined) {
               this.iconBgColor[index as number] = $r('sys.color.ohos_id_color_hover')
             }else{
-                this.listBgColor[index as number] = this.colorTransparent
+              this.listBgColor[index as number] = this.colorTransparent
             }
           })
           .onFocus(() => {
@@ -715,10 +718,11 @@ struct SelectionMenu {
         })
       }
     }
-    .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
     .width(248)
     .height(48)
+    .margin({ bottom: 8 })
+    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
   }
 
   @Builder listPanel() {
@@ -734,7 +738,6 @@ struct SelectionMenu {
             })
               .onClick(() => {
                 let sysBoard = pasteboard.getSystemPasteboard()
-                this.controller.closeSelectionMenu()
                 let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, '')
                 this.controller.getSpans({ start: this.start, end: this.end })
                   .forEach((item, i) => {
@@ -849,6 +852,7 @@ struct SelectionMenu {
     .width(248)
     .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
   }
 
   @Builder sliderPanel() {
@@ -925,5 +929,8 @@ struct listChild {
   }
 }
 ```
+> **说明：**
+>
+> 系统暂未预置加粗、斜体等图标，示例代码使用系统默认图标，开发者使用时需自行替换iconArr中的资源。
 
 ![selectionMenu](figures/richEditorSelectionMenu.png)

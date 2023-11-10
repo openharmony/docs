@@ -32,7 +32,7 @@ The **AudioEncoder** module provides the functions for audio encoding. This modu
 | [OHOS::Media::OH_AudioEncoder_Stop](#oh_audioencoder_stop) (OH_AVCodec \*codec)                                                                  | Stops an audio encoder.                                                                    |
 | [OHOS::Media::OH_AudioEncoder_Flush](#oh_audioencoder_flush) (OH_AVCodec \*codec)                                                                | Clears the input and output data in the internal buffer of an audio encoder.                                              |
 | [OHOS::Media::OH_AudioEncoder_Reset](#oh_audioencoder_reset) (OH_AVCodec \*codec)                                                                | Resets an audio encoder.                                                                    |
-| \*[OHOS::Media::OH_AudioEncoder_GetOutputDescription](#oh_audioencoder_getoutputdescription) (OH_AVCodec \*codec)                                | Obtains the description information about the output data of an audio encoder. For details, see **OH_AVFormat**.|
+| \*[OHOS::Media::OH_AudioEncoder_GetOutputDescription](#oh_audioencoder_getoutputdescription) (OH_AVCodec \*codec)                                | Obtains the description information about the output data of an audio encoder. For details, see [OH_AVFormat](native__avformat_8h.md).|
 | [OHOS::Media::OH_AudioEncoder_SetParameter](#oh_audioencoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format)                            | Sets dynamic parameters for an audio encoder.                                                          |
 | [OHOS::Media::OH_AudioEncoder_PushInputData](#oh_audioencoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, OH_AVCodecBufferAttr attr)     | Pushes the input buffer filled with data to an audio encoder.                                      |
 | [OHOS::Media::OH_AudioEncoder_FreeOutputData](#oh_audioencoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index)                              | Frees an output buffer of an audio encoder.                                              |
@@ -85,7 +85,7 @@ Creates an audio encoder instance based on a MIME type. This function is recomme
 
 | Name| Description                                                   |
 | ---- | ------------------------------------------------------- |
-| mime | Pointer to a string that describes the MIME type. For details, see **AVCODEC_MIME_TYPE**.|
+| mime | Pointer to a string that describes the MIME type. For details, see [AVCODEC_MIMETYPE](_codec_base.md#variables).|
 
 **Returns**
 
@@ -210,7 +210,7 @@ OH_AVFormat* OHOS::Media::OH_AudioEncoder_GetOutputDescription (OH_AVCodec * cod
 
 **Description**
 
-Obtains the description information about the output data of an audio encoder. For details, see **OH_AVFormat**.
+Obtains the description information about the output data of an audio encoder. For details, see [OH_AVFormat](native__avformat_8h.md).
 
 The caller must manually release the **OH_AVFormat** instance in the return value.
 

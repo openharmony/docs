@@ -510,7 +510,7 @@ export class Test {
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;;
 let inputName = 'input_data.bin';
 globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
-  let inputBuffer = buffer.buffer;
+  let modelBuffer = buffer.buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();

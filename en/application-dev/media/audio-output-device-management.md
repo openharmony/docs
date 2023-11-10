@@ -107,8 +107,8 @@ let rendererInfo: audio.AudioRendererInfo = {
     rendererFlags : 0,
 }
 
-async function getPreferredOutputDeviceForRendererInfo() {
-  audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
+async function getPreferOutputDeviceForRendererInfo() {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
     console.info(`device descriptor: ${desc}`);
   }).catch((err: BusinessError) => {
     console.error(`Result ERROR: ${err}`);
@@ -127,11 +127,11 @@ let rendererInfo: audio.AudioRendererInfo = {
 }
 
 // Listen for changes of the output device with the highest priority.
-audioRoutingManager.on('preferredOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
     console.info(`device change descriptor : ${desc[0].deviceRole}`);  // Device role.
     console.info(`device change descriptor : ${desc[0].deviceType}`);  // Device type.
 });
 
 // Cancel the listening for changes of the output device with the highest priority.
-audioRoutingManager.off('preferredOutputDeviceChangeForRendererInfo');
+audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
 ```

@@ -811,12 +811,13 @@ If **inDevices** is specified in **predicates** when **sync()** is called, data 
 import deviceManager from '@ohos.distributedDeviceManager';
 
 let dmInstance: deviceManager.DeviceManager;
+let deviceIds: Array<string> = [];
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-  let devices: Array<string> = dmInstance.getAvailableDeviceListSync();     
+  let devices: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
-    let deviceIds: Array<string> = devices[i].networkId;
+    deviceIds[i] = devices[i].networkId!;
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -3032,8 +3033,8 @@ let deviceId: string | undefined = undefined;
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   if(devices != undefined) {
-    let devices = dmInstance.getAvailableDeviceListSync();
     deviceId = devices[0].networkId;
   }
 } catch (err) {
@@ -3855,7 +3856,7 @@ if(store != undefined) {
 }
 ```
 
-
+ 
 
 ### setDistributedTables<sup>10+</sup>
 
@@ -4104,12 +4105,13 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 import deviceManager from '@ohos.distributedDeviceManager';
 
 let dmInstance: deviceManager.DeviceManager;
+let deviceIds: Array<string> = [];
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-  let devices = dmInstance.getAvailableDeviceListSync();
+  let devices: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
-      let deviceIds: Array<string> = devices[i].networkId;
+    deviceIds[i] = devices[i].networkId!;
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -4171,12 +4173,13 @@ import deviceManager from '@ohos.distributedDeviceManager';
 import { BusinessError } from "@ohos.base";
 
 let dmInstance: deviceManager.DeviceManager;
+let deviceIds: Array<string> = [];
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-  let devices = dmInstance.getAvailableDeviceListSync();
+  let devices: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
-    let deviceIds: Array<string> = devices[i].networkId;
+    deviceIds[i] = devices[i].networkId!;
   }
 } catch (err) {
   let code = (err as BusinessError).code;
@@ -4381,13 +4384,12 @@ try {
           console.info(`device= ${devices[i]} data changed`);
         }
       }
-    });
+    })
   }
-  catch(err) {
+} catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message
     console.error(`Register observer failed, code is ${code},message is ${message}`);
-  }
 }
 ```
 

@@ -118,7 +118,7 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 getOsAccountDistributedInfoByLocalId(localId: number, callback: AsyncCallback&lt;DistributedInfo&gt;): void
 
-获取指定系统账号的分布式信息。使用callback异步回调。
+获取指定系统帐号的分布式信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -163,7 +163,7 @@ getOsAccountDistributedInfoByLocalId(localId: number, callback: AsyncCallback&lt
 
 getOsAccountDistributedInfoByLocalId(localId: number): Promise&lt;DistributedInfo&gt;
 
-获取指定系统账号的分布式信息。使用Promise异步回调。
+获取指定系统帐号的分布式信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 

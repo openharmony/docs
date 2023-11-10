@@ -236,7 +236,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | 参数名   | 类型                        | 必填 | 说明                                          |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。           |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。                      |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，比如删除的密钥范围（全量/单个），当删除单个时，TAG字段可传空。                      |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **错误码：**
@@ -288,7 +288,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 参数名   | 类型                        | 必填 | 说明                                |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。            |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，比如删除的密钥范围（全量/单个），当删除单个时，TAG字段可传空。            |
 
 **错误码：**
 
@@ -1381,10 +1381,10 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                                    |
-| -------- | --------------------------- | ---- | --------------------------------------- |
-| keyAlias | string                      | 是   | 所需查找的密钥的别名。                  |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。                |
+| 参数名   | 类型                        | 必填 | 说明                                                     |
+| -------- | --------------------------- | ---- |--------------------------------------------------------|
+| keyAlias | string                      | 是   | 所需查找的密钥的别名。                                            |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，比如查询的密钥范围（全量/单个），当查询单个时，TAG字段可传空。     |
 | callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，则error中会输出密钥不存在的error code。 |
 
 **错误码：**
@@ -1441,7 +1441,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。   |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，比如查询的密钥范围（全量/单个），当查询单个时，TAG字段可传空。 |
 
 **返回值：**
 
@@ -2386,6 +2386,7 @@ async function huksAbort() {
 | --------------------------------------- | ---- | ------------------------------------------------ |
 | HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD | 1 << 0 | 表示安全访问控制类型为清除密码后密钥无效。       |
 | HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 1 << 1 | 表示安全访问控制类型为新录入生物特征后密钥无效。 |
+| HUKS_AUTH_ACCESS_ALWAYS_VALID<sup>11+</sup> | 1 << 2 | 表示安全访问控制类型为该密钥总是有效。 |
 
 ## HuksChallengeType<sup>9+</sup>
 
@@ -2428,14 +2429,14 @@ async function huksAbort() {
 
 **系统能力**：SystemCapability.Security.Huks.Core
 
-| 名称                                         | 值      | 说明                                         |
-| -------------------------------------------- | ------- | -------------------------------------------- |
-| HUKS_TAG_TYPE_INVALID<sup>(deprecated)</sup> | 0 << 28 | 表示非法的Tag类型。从API version 9开始废弃。 |
-| HUKS_TAG_TYPE_INT                            | 1 << 28 | 表示该Tag的数据类型为int类型的number。       |
-| HUKS_TAG_TYPE_UINT                           | 2 << 28 | 表示该Tag的数据类型为uint类型的number。      |
-| HUKS_TAG_TYPE_ULONG                          | 3 << 28 | 表示该Tag的数据类型为bigint。                |
-| HUKS_TAG_TYPE_BOOL                           | 4 << 28 | 表示该Tag的数据类型为boolean。               |
-| HUKS_TAG_TYPE_BYTES                          | 5 << 28 | 表示该Tag的数据类型为Uint8Array。            |
+| 名称                  | 值      | 说明                                    |
+| --------------------- | ------- | --------------------------------------- |
+| HUKS_TAG_TYPE_INVALID | 0 << 28 | 表示非法的Tag类型。                     |
+| HUKS_TAG_TYPE_INT     | 1 << 28 | 表示该Tag的数据类型为int类型的number。  |
+| HUKS_TAG_TYPE_UINT    | 2 << 28 | 表示该Tag的数据类型为uint类型的number。 |
+| HUKS_TAG_TYPE_ULONG   | 3 << 28 | 表示该Tag的数据类型为bigint。           |
+| HUKS_TAG_TYPE_BOOL    | 4 << 28 | 表示该Tag的数据类型为boolean。          |
+| HUKS_TAG_TYPE_BYTES   | 5 << 28 | 表示该Tag的数据类型为Uint8Array。       |
 
 ## HuksTag
 
@@ -2670,11 +2671,11 @@ deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                                               |
-| -------- | ----------------------------------------- | ---- | -------------------------------------------------- |
-| keyAlias | string                                    | 是   | 密钥别名，应为生成key时传入的别名。                |
-| options  | [HuksOptions](#huksoptions)               | 是   | 空对象（此处传空即可）。                           |
-| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | 是   | 回调函数。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
+| 参数名   | 类型                                      | 必填 | 说明                                                 |
+| -------- | ----------------------------------------- | ---- |----------------------------------------------------|
+| keyAlias | string                                    | 是   | 密钥别名，应为生成key时传入的别名。                                |
+| options  | [HuksOptions](#huksoptions)               | 是   | 用于删除时指定密钥的属性TAG，比如删除的密钥范围（全量/单个），当删除单个时，TAG字段可传空。 |
+| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | 是   | 回调函数。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。               |
 
 **示例：**
 
@@ -2706,7 +2707,7 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 | 参数名   | 类型        | 必填 | 说明                                                  |
 | -------- | ----------- | ---- | ----------------------------------------------------- |
 | keyAlias | string      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| options | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
+| options | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，比如删除的密钥范围（全量/单个），当删除单个时，TAG字段可传空。 |
 
 **返回值：**
 
@@ -3027,8 +3028,8 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 | 参数名   | 类型                   | 必填 | 说明                                  |
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | 是   | 所需查找的密钥的别名。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数。FALSE代表密钥不存在，TRUE代表密钥存在。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，比如查询的密钥范围（全量/单个），当查询单个时，TAG字段可传空。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。false代表密钥不存在，true代表密钥存在。 |
 
 **示例：**
 
@@ -3060,13 +3061,13 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 参数名   | 类型        | 必填 | 说明                             |
 | -------- | ----------- | ---- | -------------------------------- |
 | keyAlias | string      | 是   | 所需查找的密钥的别名。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，比如查询的密钥范围（全量/单个），当查询单个时，TAG字段可传空。 |
 
 **返回值：**
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise对象。FALSE代表密钥不存在，TRUE代表密钥存在。 |
+| Promise\<boolean> | Promise对象。false代表密钥不存在，true代表密钥存在。 |
 
 **示例：**
 
@@ -3324,16 +3325,12 @@ function huksFinish() {
     console.log(resultMessage);
 }
 async function huksAbort() {
-    huks.abort(handle, options).then((data) => {
-        if (data.errorCode === 0) {
-            resultMessage = "abort success!";
-        } else {
-            resultMessage = "abort fail errorCode: " + data.errorCode;
-        }
-    }).catch((err: BusinessError) => {
-        resultMessage = "abort fail， catch errorMessage:" + JSON.stringify(err)
+    new Promise<huks.HuksResult>((resolve, reject) => {
+        huks.abort(handle, options, (err, data) => {
+            console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
+            console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
+        });
     });
-    console.log(resultMessage);
 }
 ```
 
@@ -3462,12 +3459,16 @@ async function huksFinish() {
 }
 
 function huksAbort() {
-    new Promise<huks.HuksResult>((resolve, reject) => {
-        huks.abort(handle, options, (err, data) => {
-            console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
-            console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
-        });
+    huks.abort(handle, options).then((data) => {
+        if (data.errorCode === 0) {
+            resultMessage = "abort success!";
+        } else {
+            resultMessage = "abort fail errorCode: " + data.errorCode;
+        }
+    }).catch((err: BusinessError) => {
+        resultMessage = "abort fail， catch errorMessage:" + JSON.stringify(err)
     });
+    console.log(resultMessage);
 }
 ```
 

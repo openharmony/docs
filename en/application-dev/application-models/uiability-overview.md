@@ -37,7 +37,7 @@ To enable an application to properly use a UIAbility component, declare the UIAb
     "abilities": [
       {
         "name": "EntryAbility", // Name of the UIAbility component.
-        "srcEntry": "./ets/entryability/EntryAbility.ts", // Code path of the UIAbility component.
+        "srcEntry": "./ets/entryability/EntryAbility.ets", // Code path of the UIAbility component.
         "description": "$string:EntryAbility_desc", // Description of the UIAbility component.
         "icon": "$media:icon", // Icon of the UIAbility component.
         "label": "$string:EntryAbility_label", // Label of the UIAbility component.

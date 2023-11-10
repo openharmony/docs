@@ -361,6 +361,8 @@ context.getFilesDir().then((filePath) => {
 
 Provides APIs for obtaining and modifying storage data.
 
+Before calling the following APIs, use [data_storage.getStorage](#data_storagegetstorage) or [data_storage.getStorageSync](#data_storagegetstoragesync) to obtain the **Storage** instance.
+
 ### getSync
 
 getSync(key: string, defValue: ValueType): ValueType

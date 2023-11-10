@@ -26,11 +26,11 @@ on(type: SensorId.COLOR, callback: Callback\<ColorResponse>, options?: Options):
 
 **参数：**
 
-| 参数名   | 类型                                            | 必填 | 说明                                                        |
-| -------- | ----------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).COLOR                    | 是   | 传感器类型，该值固定为SensorId.COLOR。                      |
-| callback | Callback&lt;[ColorResponse](#colorresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ColorResponse。         |
-| options  | [Options](#options)                             | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+| 参数名   | 类型                                              | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).COLOR                      | 是   | 传感器类型，该值固定为SensorId.COLOR。                      |
+| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ColorResponse。         |
+| options  | [Options](#options)                               | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
 **错误码**：
 
@@ -53,7 +53,6 @@ try{
   }, { interval: 100000000 });
   setTimeout(() => {
         sensor.off(sensor.SensorId.COLOR);
-        done();
   }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
@@ -73,11 +72,11 @@ on(type: SensorId.SAR, callback: Callback\<SarResponse>, options?: Options): voi
 
 **参数：**
 
-| 参数名   | 类型                                     | 必填 | 说明                                                        |
-| -------- | ---------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).SAR               | 是   | 传感器类型，该值固定为SensorId.SAR。                        |
-| callback | Callback&lt;[SarResponse](#sarresponse)> | 是   | 回调函数，异步上报的传感器数据固定为SarResponse。           |
-| options  | [Options](#options)                      | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+| 参数名   | 类型                                          | 必填 | 说明                                                        |
+| -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).SAR                    | 是   | 传感器类型，该值固定为SensorId.SAR。                        |
+| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 是   | 回调函数，异步上报的传感器数据固定为SarResponse。           |
+| options  | [Options](#options)                           | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
 **错误码**：
 
@@ -486,11 +485,11 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 
 **参数：** 
 
-| 参数名   | 类型                                          | 必填 | 说明                                                        |
-| -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。                       |
-| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HallResponse。          |
-| options  | [Options](#options)                           | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+| 参数名   | 类型                                          | 必填 | 说明                                                         |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。                        |
+| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HallResponse。           |
+| options  | [Options](#options)                           | 否   | 可选参数列表，默认值为200000000ns。当霍尔事件被触发的很频繁时，该参数用于限定事件上报的频率。 |
 
 **错误码**： 
 
@@ -895,11 +894,11 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                        |
-| -------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。                  |
-| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ProximityResponse。     |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。                   |
+| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ProximityResponse。      |
+| options  | [Options](#options)                                     | 否   | 可选参数列表，默认值为200000000ns。当接近光事件被触发的很频繁时，该参数用于限定事件上报的频率。 |
 
 **错误码**： 
 
@@ -1511,8 +1510,8 @@ import sensor from "@ohos.sensor"
 import BusinessError from "@ohos.base"
 
 try {
-  sensor.once(sensor.SensorId.HUMIDITY, (data: sensor.HeartRateResponse) => {
-    console.info('Succeeded in invoking once. Heart rate: ' + data.heartRate);
+  sensor.once(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
+    console.info('Succeeded in invoking once. Humidity: ' + data.humidity);
   });
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
@@ -1944,10 +1943,10 @@ off(type: SensorId.COLOR, callback?: Callback\<ColorResponse>): void
 
 **参数：**
 
-| 参数名   | 类型                                            | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9).COLOR                    | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
-| callback | Callback&lt;[ColorResponse](#colorresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).COLOR                      | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
+| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
@@ -1988,10 +1987,10 @@ off(type: SensorId.SAR, callback?: Callback\<SarResponse>): void
 
 **参数：**
 
-| 参数名   | 类型                                     | 必填 | 说明                                                         |
-| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9).SAR               | 是   | 传感器类型，该值固定为SensorId.SAR。                         |
-| callback | Callback&lt;[SarResponse](#sarresponse)> | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+| 参数名   | 类型                                       | 必填 | 说明                                                         |
+| -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).SAR                 | 是   | 传感器类型，该值固定为SensorId.SAR。                         |
+| callback | Callback&lt;[SarResponse](#sarresponse10)> | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
@@ -2923,7 +2922,7 @@ try {
 
 getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callback: AsyncCallback&lt;GeomagneticResponse&gt;): void
 
-获取某时刻地球上特定位置的地磁场信息。
+获取某时刻地球上特定位置的地磁场信息，使用Callback异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2933,7 +2932,7 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callbac
 | --------------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | locationOptions | [LocationOptions](#locationoptions)                          | 是   | 地理位置，包括经度、纬度和海拔高度。                         |
 | timeMillis      | number                                                       | 是   | 获取磁偏角的时间，unix时间戳，单位毫秒。 |
-| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   | 回调函数，返回地磁场信息。                     |
+| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   | 回调函数，异步返回地磁场信息。                 |
 
 **错误码**： 
 
@@ -2974,7 +2973,7 @@ try {
 
 getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number): Promise&lt;GeomagneticResponse&gt;
 
-获取某时刻地球上特定位置的地磁场信息。
+获取某时刻地球上特定位置的地磁场信息，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2989,7 +2988,7 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number): Promis
 
 | 类型                                                       | 说明           |
 | ---------------------------------------------------------- | -------------- |
-| Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise对象，返回地磁场信息。 |
+| Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise对象，使用异步方式返回地磁场信息。 |
 
 **错误码**： 
 
@@ -3028,7 +3027,7 @@ try {
 
 getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallback&lt;number&gt;): void
 
-根据气压值获取海拔高度。
+根据气压值获取海拔高度，使用Callback异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3038,7 +3037,7 @@ getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncC
 | --------------- | --------------------------- | ---- | ------------------------------------- |
 | seaPressure     | number                      | 是   | 海平面气压值，单位为hPa。         |
 | currentPressure | number                      | 是   | 指定的气压值，单位为hPa。 |
-| callback        | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回指定的气压值对应的海拔高度，单位为米。    |
+| callback        | AsyncCallback&lt;number&gt; | 是   | 回调函数，异步返回指定的气压值对应的海拔高度，单位为米。  |
 
 **错误码**： 
 
@@ -3074,7 +3073,7 @@ try {
 
 getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 
-根据气压值获取海拔高度。
+根据气压值获取海拔高度，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3089,7 +3088,7 @@ getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;numb
 
 | 类型                  | 说明                                 |
 | --------------------- | ------------------------------------ |
-| Promise&lt;number&gt; | Promise对象，返回指定的气压值对应的海拔高度，单位为米。 |
+| Promise&lt;number&gt; | Promise对象，使用异步方式返回指定的气压值对应的海拔高度，单位为米。 |
 
 **错误码**： 
 
@@ -3124,7 +3123,7 @@ try {
 
 getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-根据倾斜矩阵计算地磁倾角。
+根据倾斜矩阵计算地磁倾角，使用Callback异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3133,7 +3132,7 @@ getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&l
 | 参数名            | 类型                        | 必填 | 说明                         |
 | ----------------- | --------------------------- | ---- | ---------------------------- |
 | inclinationMatrix | Array&lt;number&gt;         | 是   | 倾斜矩阵。               |
-| callback          | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回地磁倾角，单位为弧度。 |
+| callback          | AsyncCallback&lt;number&gt; | 是   | 回调函数，异步返回地磁倾角，单位为弧度。 |
 
 **错误码**： 
 
@@ -3173,7 +3172,7 @@ try {
 
  getInclination(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 
-根据倾斜矩阵计算地磁倾角。
+根据倾斜矩阵计算地磁倾角，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3187,7 +3186,7 @@ try {
 
 | 类型                  | 说明                         |
 | --------------------- | ---------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回地磁倾斜角，单位为弧度。 |
+| Promise&lt;number&gt; | Promise对象，使用异步方式返回地磁倾斜角，单位为弧度。 |
 
 **错误码**： 
 
@@ -3227,7 +3226,7 @@ try {
  getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;,
         callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-计算两个旋转矩阵之间的角度变化。
+计算两个旋转矩阵之间的角度变化，使用Callback异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3237,7 +3236,7 @@ try {
 | --------------------- | ---------------------------------------- | ---- | --------------------------------- |
 | currentRotationMatrix | Array&lt;number&gt;                      | 是   | 当前旋转矩阵。                |
 | preRotationMatrix     | Array&lt;number&gt;                      | 是   | 相对旋转矩阵。                    |
-| callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，返回绕z、x、y轴方向的旋转角度。 |
+| callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，异步返回绕z、x、y轴方向的旋转角度。 |
 
 **错误码**： 
 
@@ -3287,7 +3286,7 @@ try {
 
 getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt; 
 
-得到两个旋转矩阵之间的角度变化。
+得到两个旋转矩阵之间的角度变化，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3302,7 +3301,7 @@ getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix:
 
 | 类型                               | 说明                              |
 | ---------------------------------- | --------------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回绕z、x、y轴方向的旋转角度。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，使用异步方式返回绕z、x、y轴方向的旋转角度。 |
 
 **错误码**： 
 
@@ -3351,7 +3350,7 @@ try {
 
 getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-根据旋转矢量获取旋转矩阵。
+根据旋转矢量获取旋转矩阵，使用Callback异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3360,7 +3359,7 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&l
 | 参数名         | 类型                                     | 必填 | 说明           |
 | -------------- | ---------------------------------------- | ---- | -------------- |
 | rotationVector | Array&lt;number&gt;                      | 是   | 旋转矢量。 |
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，返回3*3旋转矩阵。 |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，异步返回3*3旋转矩阵。 |
 
 **错误码**： 
 
@@ -3397,7 +3396,7 @@ try {
 
 getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt; 
 
-根据旋转矢量获取旋转矩阵。
+根据旋转矢量获取旋转矩阵，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3411,7 +3410,7 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numb
 
 | 类型                               | 说明           |
 | ---------------------------------- | -------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回旋转矩阵。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，使用异步方式返回旋转矩阵。 |
 
 **错误码**： 
 
@@ -3448,7 +3447,7 @@ try {
 transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions,
         callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-根据指定坐标系映射旋转矩阵。
+根据指定坐标系映射旋转矩阵，使用Callback异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3458,7 +3457,7 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 | ---------------- | ----------------------------------------- | ---- | ---------------------- |
 | inRotationVector | Array&lt;number&gt;                       | 是   | 旋转矩阵。         |
 | coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是   | 指定坐标系方向。       |
-| callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | 是   | 回调函数，返回映射后的旋转矩阵。 |
+| callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | 是   | 回调函数，异步返回映射后的旋转矩阵。 |
 
 **错误码**：
 
@@ -3499,7 +3498,7 @@ try {
 
 transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
 
-根据指定坐标系映射旋转矩阵。
+根据指定坐标系映射旋转矩阵，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3514,7 +3513,7 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 
 | 类型                               | 说明                   |
 | ---------------------------------- | ---------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回转换后的旋转矩阵。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，使用异步方式返回转换后的旋转矩阵。 |
 
 **错误码**： 
 
@@ -3554,7 +3553,7 @@ try {
 
 getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void 
 
-根据旋转向量计算归一化四元数。
+根据旋转向量计算归一化四元数，使用Callback异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3563,7 +3562,7 @@ getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Ar
 | 参数名         | 类型                                     | 必填 | 说明           |
 | -------------- | ---------------------------------------- | ---- | -------------- |
 | rotationVector | Array&lt;number&gt;                      | 是   | 旋转矢量。 |
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，返回归一化四元数。   |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，异步返回归一化四元数。 |
 
 **错误码**： 
 
@@ -3600,7 +3599,7 @@ try {
 
 getQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-根据旋转向量计算归一化四元数。
+根据旋转向量计算归一化四元数，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3614,7 +3613,7 @@ getQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&g
 
 | 类型                               | 说明         |
 | ---------------------------------- | ------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise，对象返归一化回四元数。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise，使用异步方式对象返归一化回四元数。 |
 
 **错误码**： 
 
@@ -3650,7 +3649,7 @@ try {
 
 getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void 
 
-根据旋转矩阵计算设备方向。
+根据旋转矩阵计算设备方向，使用Callback异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3659,7 +3658,7 @@ getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;A
 | 参数名         | 类型                                     | 必填 | 说明                              |
 | -------------- | ---------------------------------------- | ---- | --------------------------------- |
 | rotationMatrix | Array&lt;number&gt;                      | 是   | 旋转矩阵。                    |
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，返回围绕z、x、y轴方向的旋转角度。 |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，异步返回围绕z、x、y轴方向的旋转角度。 |
 
 **错误码**： 
 
@@ -3703,7 +3702,7 @@ try {
 
 getOrientation(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-根据旋转矩阵计算设备的方向。
+根据旋转矩阵计算设备的方向，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3717,7 +3716,7 @@ getOrientation(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&
 
 | 类型                               | 说明                              |
 | ---------------------------------- | --------------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回围绕z、x、y轴方向的旋转角度。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，使用异步方式返回围绕z、x、y轴方向的旋转角度。 |
 
 **错误码**： 
 
@@ -3757,7 +3756,7 @@ try {
 
 getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;, callback: AsyncCallback&lt;RotationMatrixResponse&gt;): void 
 
-根据重力矢量和地磁矢量计算旋转矩阵。
+根据重力矢量和地磁矢量计算旋转矩阵，使用Callback异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3767,7 +3766,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 | ----------- | ------------------------------------------------------------ | ---- | -------------- |
 | gravity     | Array&lt;number&gt;                                          | 是   | 重力矢量。 |
 | geomagnetic | Array&lt;number&gt;                                          | 是   | 地磁矢量。 |
-| callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 是   | 回调函数，返回旋转矩阵。 |
+| callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 是   | 回调函数，异步返回旋转矩阵。 |
 
 **错误码**： 
 
@@ -3803,7 +3802,7 @@ try {
 
 getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;): Promise&lt;RotationMatrixResponse&gt;
 
-根据重力矢量和地磁矢量计算旋转矩阵。
+根据重力矢量和地磁矢量计算旋转矩阵，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3818,7 +3817,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Promise对象，返回旋转矩阵。 |
+| Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Promise对象，使用异步方式返回旋转矩阵。 |
 
 **错误码**： 
 
@@ -3853,7 +3852,7 @@ try {
 
 getSensorList(callback: AsyncCallback&lt;Array&lt;Sensor&gt;&gt;): void
 
-获取设备上的所有传感器信息。
+获取设备上的所有传感器信息，使用Callback异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3861,7 +3860,7 @@ getSensorList(callback: AsyncCallback&lt;Array&lt;Sensor&gt;&gt;): void
 
 | 参数名   | 类型                                           | 必填 | 说明             |
 | -------- | ---------------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | 回调函数，返回传感器属性列表。 |
+| callback | AsyncCallback&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | 回调函数，异步返回传感器属性列表。 |
 
 **错误码**： 
 
@@ -3897,7 +3896,7 @@ try {
 
  getSensorList(): Promise&lt;Array&lt;Sensor&gt;&gt;
 
-获取设备上的所有传感器信息。
+获取设备上的所有传感器信息，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3905,7 +3904,7 @@ try {
 
 | 参数名  | 类型                                     | 必填 | 说明             |
 | ------- | ---------------------------------------- | ---- | ---------------- |
-| promise | Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | Promise对象，返回传感器属性列表。 |
+| promise | Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | Promise对象，使用异步方式返回传感器属性列表。 |
 
 **错误码**： 
 
@@ -3939,7 +3938,7 @@ try {
 
 getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 
-获取指定传感器类型的属性信息。
+获取指定传感器类型的属性信息，使用Callback异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3948,7 +3947,7 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 | 参数名   | 类型                                    | 必填 | 说明             |
 | -------- | --------------------------------------- | ---- | ---------------- |
 | type     | [SensorId](#sensorid9)                  | 是   | 指定传感器类型。     |
-| callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | 是   | 回调函数，返回指定传感器的属性信息。 |
+| callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | 是   | 回调函数，异步返回指定传感器的属性信息。 |
 
 **错误码**： 
 
@@ -3982,7 +3981,7 @@ try {
 
  getSingleSensor(type: SensorId): Promise&lt;Sensor&gt;
 
-获取指定类型的传感器信息。
+获取指定类型的传感器信息，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3994,9 +3993,9 @@ try {
 
 **返回值：** 
 
-| 参数名  | 类型                              | 必填 | 说明             |
-| ------- | --------------------------------- | ---- | ---------------- |
-| promise | Promise&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
+| 参数名  | 类型                              | 必填 | 说明                         |
+| ------- | --------------------------------- | ---- | ---------------------------- |
+| promise | Promise&lt;[Sensor](#sensor9)&gt; | 是   | 使用异步方式返回传感器信息。 |
 
 **错误码**： 
 
@@ -4271,7 +4270,7 @@ try {
 
 | 名称   | 类型   | 可读 | 可写 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| scalar | number | 是   | 是   | 表示剧烈运动程度。测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；如果取值为1则代表存在大幅度运动，取值为0则代表没有大幅度运动。 |
+| scalar | number | 是   | 是   | 表示剧烈运动程度。测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；若存在大幅度运动则数据上报为1。 |
 
 
 ## ProximityResponse
@@ -4281,9 +4280,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称     | 类型   | 可读 | 可写 | 说明                                                   |
-| -------- | ------ | ---- | ---- | ------------------------------------------------------ |
-| distance | number | 是   | 是   | 可见物体与设备显示器的接近程度。0表示接近，1表示远离。 |
+| 名称     | 类型   | 可读 | 可写 | 说明                                                       |
+| -------- | ------ | ---- | ---- | ---------------------------------------------------------- |
+| distance | number | 是   | 是   | 可见物体与设备显示器的接近程度。0表示接近，大于0表示远离。 |
 
 
 ## LightResponse
@@ -4396,9 +4395,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称     | 类型   | 可读 | 可写 | 说明                     |
-| -------- | ------ | ---- | ---- | ------------------------ |
-| pressure | number | 是   | 是   | 压力值（单位：帕斯卡）。 |
+| 名称     | 类型   | 可读 | 可写 | 说明                   |
+| -------- | ------ | ---- | ---- | ---------------------- |
+| pressure | number | 是   | 是   | 压力值（单位：百帕）。 |
 
 
 ## HeartRateResponse
@@ -4461,7 +4460,7 @@ try {
 
 ## GeomagneticResponse
 
-设置地磁响应对象，继承于[Response](#response)。
+设置地磁响应对象。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
@@ -4495,7 +4494,9 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 
 监听加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.ACCELEROMETER](#accelerometer9)代替。
+> **说明**：
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.ACCELEROMETER](#accelerometer9)代替。
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -4529,7 +4530,9 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.LINEAR_ACCELEROMETER](#linear_accelerometer9)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.LINEAR_ACCELEROMETER](#linear_accelerometer9)代替。 
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -4549,7 +4552,9 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
 
 监听未校准加速度计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9)代替。
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -4587,7 +4592,9 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespons
 
 监听重力传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.GRAVITY](#gravity9)代替。
+> **说明**：
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.GRAVITY](#gravity9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4619,7 +4626,9 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
 
 监听陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.GYROSCOPE](#gyroscope9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.GYROSCOPE](#gyroscope9)代替。
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -4653,7 +4662,9 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
 
 监听未校准陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9)代替。
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -4690,7 +4701,9 @@ on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;Sig
 
 监听大幅动作传感器数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.SIGNIFICANT_MOTION](#significant_motion9) 代替。
+> **说明**：
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.SIGNIFICANT_MOTION](#significant_motion9) 代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4720,7 +4733,9 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;Pe
 
 监听计步检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.PEDOMETER_DETECTION](#pedometer_detection9)代替。 
+> **说明**：
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.PEDOMETER_DETECTION](#pedometer_detection9)代替。 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -4752,7 +4767,9 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
 
 监听计步传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.PEDOMETER](#pedometer9)代替。
+> **说明**：
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.PEDOMETER](#pedometer9)代替。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
@@ -4784,7 +4801,9 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambi
 
 监听环境温度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.AMBIENT_TEMPERATURE](#ambient_temperature9)代替。
+> **说明**：
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.AMBIENT_TEMPERATURE](#ambient_temperature9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4814,7 +4833,9 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
 
 监听磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.MAGNETIC_FIELD](#magnetic_field9)代替。  
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.MAGNETIC_FIELD](#magnetic_field9)代替。  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4846,7 +4867,9 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
 
 监听未校准磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9)代替。 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4881,7 +4904,9 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
 
 监听接近光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.PROXIMITY](#proximity9)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.PROXIMITY](#proximity9)代替。 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4891,7 +4916,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PROXIMITY      | 是   | 要订阅的接近光传感器类型为SENSOR_TYPE_ID_PROXIMITY。         |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 注册接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+| options  | [Options](#options)                                     | 否   | 可选参数列表，默认值为200000000ns。当接近光事件被触发的很频繁时，该参数用于限定事件上报的频率。 |
 
 **示例：** 
 
@@ -4911,7 +4936,9 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
 
 监听湿度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.HUMIDITY](#humidity9)代替。  
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.HUMIDITY](#humidity9)代替。  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4941,7 +4968,9 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
 
 监听气压计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.BAROMETER](#barometer9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.BAROMETER](#barometer9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4971,7 +5000,9 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
 
 监听霍尔传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.HALL](#hall9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.HALL](#hall9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4981,7 +5012,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HALL | 是   | 要订阅的霍尔传感器类型为SENSOR_TYPE_ID_HALL。                |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 注册霍尔传感器的回调函数，上报的数据类型为&nbsp;HallResponse。 |
-| options  | [Options](#options)                           | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+| options  | [Options](#options)                           | 否   | 可选参数列表，默认值为200000000ns。当霍尔事件被触发的很频繁时，该参数用于限定事件上报的频率。 |
 
 **示例：** 
 
@@ -5001,7 +5032,9 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightRes
 
 监听环境光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.AMBIENT_LIGHT](#ambient_light9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.AMBIENT_LIGHT](#ambient_light9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5031,7 +5064,9 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientatio
 
 监听方向传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.ORIENTATION](#orientation9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.ORIENTATION](#orientation9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5063,7 +5098,9 @@ on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateRe
 
 监听心率传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.HEART_RATE](#heart_rate9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.HEART_RATE](#heart_rate9)代替。
 
 **需要权限**：ohos.permission.HEALTH_DATA 
 
@@ -5083,7 +5120,9 @@ on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;Rotatio
 
 监听旋转矢量传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.ROTATION_VECTOR](#rotation_vector9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.ROTATION_VECTOR](#rotation_vector9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5116,7 +5155,9 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
 
 监听所佩戴的检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.WEAR_DETECTION](#wear_detection9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.on.WEAR_DETECTION](#wear_detection9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5148,7 +5189,9 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
 
 监听加速度传感器的数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.ACCELEROMETER](#accelerometer9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.ACCELEROMETER](#accelerometer9-1)代替。
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -5179,7 +5222,9 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 
 监听线性加速度传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.LINEAR_ACCELEROMETER](#linear_accelerometer9-1)代替。
+> **说明**：
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.LINEAR_ACCELEROMETER](#linear_accelerometer9-1)代替。
 
 **需要权限**：ohos.permission.ACCELERATION
 
@@ -5198,7 +5243,9 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callba
 
 监听未校准加速度传感器的数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9-1)代替。
+> **说明**：
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9-1)代替。
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -5232,7 +5279,9 @@ once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespo
 
 监听重力传感器的数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.GRAVITY](#gravity9-1)代替。
+> **说明**：
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.GRAVITY](#gravity9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5261,7 +5310,9 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeR
 
 监听陀螺仪传感器的数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.GYROSCOPE](#gyroscope9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.GYROSCOPE](#gyroscope9-1)代替。
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -5292,7 +5343,9 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&l
 
 监听未校准陀螺仪传感器的数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9-1)代替。
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -5325,7 +5378,9 @@ once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;Si
 
 监听有效运动传感器的数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.SIGNIFICANT_MOTION](#significant_motion9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.SIGNIFICANT_MOTION](#significant_motion9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5352,7 +5407,9 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;P
 
 监听计步检测传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.PEDOMETER_DETECTION](#pedometer_detection9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.PEDOMETER_DETECTION](#pedometer_detection9-1)代替。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -5381,7 +5438,9 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerR
 
 监听计步器传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.PEDOMETER](#pedometer9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.PEDOMETER](#pedometer9-1)代替。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -5410,7 +5469,9 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;A
 
 监听环境温度传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.AMBIENT_TEMPERATURE](#ambient_temperature9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.AMBIENT_TEMPERATURE](#ambient_temperature9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5437,7 +5498,9 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magne
 
 监听磁场传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.MAGNETIC_FIELD](#magnetic_field9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.MAGNETIC_FIELD](#magnetic_field9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5466,7 +5529,9 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callb
 
 监听未校准磁场传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5498,7 +5563,9 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
 
 监听接近光传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.PROXIMITY](#proximity9-1)代替。
+> **说明**：  
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.PROXIMITY](#proximity9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5526,7 +5593,9 @@ once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRes
 
 监听湿度传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.HUMIDITY](#humidity9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.HUMIDITY](#humidity9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5553,7 +5622,9 @@ once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerR
 
 监听气压计传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.BAROMETER](#barometer9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.BAROMETER](#barometer9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5580,7 +5651,9 @@ once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt
 
 监听霍尔传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.HALL](#hall9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.HALL](#hall9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5607,7 +5680,9 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightR
 
 监听环境光传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.AMBIENT_LIGHT](#ambient_light9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.AMBIENT_LIGHT](#ambient_light9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5634,7 +5709,9 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientat
 
 监听方向传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.ORIENTATION](#orientation9-1)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.ORIENTATION](#orientation9-1)代替。 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5663,7 +5740,9 @@ once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;Rota
 
 监听旋转矢量传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.ROTATION_VECTOR](#rotation_vector9-1)代替。  
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.ROTATION_VECTOR](#rotation_vector9-1)代替。  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5693,7 +5772,9 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 
 监听心率传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.HEART_RATE](#heart_rate9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.HEART_RATE](#heart_rate9-1)代替。
 
 **需要权限**：ohos.permission.HEART_RATE  
 
@@ -5712,7 +5793,9 @@ once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearD
 
 监听所佩戴的检测传感器的数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.WEAR_DETECTION](#wear_detection9-1)代替。  
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.once.WEAR_DETECTION](#wear_detection9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5740,7 +5823,9 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;Accele
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.ACCELEROMETER](#accelerometer9-2)代替。  
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.ACCELEROMETER](#accelerometer9-2)代替。
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -5773,7 +5858,9 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callb
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9-2)代替。 
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -5809,7 +5896,9 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightR
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.AMBIENT_LIGHT](#ambient_light9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.AMBIENT_LIGHT](#ambient_light9-2)代替。 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5838,7 +5927,9 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.AMBIENT_TEMPERATURE](#ambient_temperature9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.AMBIENT_TEMPERATURE](#ambient_temperature9-2)代替。 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5867,7 +5958,9 @@ off(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback&lt;BarometerR
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.BAROMETER](#barometer9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.BAROMETER](#barometer9-2)代替。 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5896,7 +5989,9 @@ off(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback&lt;GravityRespo
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.GRAVITY](#gravity9-2)代替。  
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.GRAVITY](#gravity9-2)代替。  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -5927,7 +6022,9 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeR
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.GYROSCOPE](#gyroscope9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.GYROSCOPE](#gyroscope9-2)代替。 
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -5960,7 +6057,9 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9-2)代替。  
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9-2)代替。
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -5993,7 +6092,9 @@ off(type: SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback&lt;HallResponse&gt
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.HALL](#hall9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.HALL](#hall9-2)代替。 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6022,7 +6123,9 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.HEART_RATE](#heart_rate9-2)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.HEART_RATE](#heart_rate9-2)代替。
 
 **需要权限**：ohos.permission.HEALTH_DATA 
 
@@ -6053,7 +6156,9 @@ off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityRes
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.HUMIDITY](#humidity9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.HUMIDITY](#humidity9-2)代替。 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6082,7 +6187,9 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.LINEAR_ACCELEROMETER](#linear_accelerometer9-2)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.LINEAR_ACCELEROMETER](#linear_accelerometer9-2)代替。
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -6115,7 +6222,9 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.MAGNETIC_FIELD](#magnetic_field9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.MAGNETIC_FIELD](#magnetic_field9-2)代替。 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6146,7 +6255,9 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9-2)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9-2)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6180,7 +6291,9 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callbac
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.ORIENTATION](#orientation9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.ORIENTATION](#orientation9-2)代替。 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6211,7 +6324,9 @@ off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerR
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.PEDOMETER](#pedometer9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.PEDOMETER](#pedometer9-2)代替。 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -6242,7 +6357,9 @@ off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback&lt;
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.PEDOMETER_DETECTION](#pedometer_detection9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.PEDOMETER_DETECTION](#pedometer_detection9-2)代替。 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -6273,7 +6390,9 @@ off(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback&lt;ProximityR
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.PROXIMITY](#proximity9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.PROXIMITY](#proximity9-2)代替。 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6302,7 +6421,9 @@ off(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback&lt;Rota
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.ROTATION_VECTOR](#rotation_vector9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.ROTATION_VECTOR](#rotation_vector9-2)代替。 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6334,7 +6455,9 @@ off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;S
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.SIGNIFICANT_MOTION](#significant_motion9-2)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.SIGNIFICANT_MOTION](#significant_motion9-2)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6363,7 +6486,9 @@ off(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback&lt;WearD
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.WEAR_DETECTION](#wear_detection9-2)代替。 
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.off.WEAR_DETECTION](#wear_detection9-2)代替。 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6390,19 +6515,21 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, accCallback);
 
 transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
+旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系，使用Callback异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.transformRotationMatrix](#sensortransformrotationmatrix9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.transformRotationMatrix](#sensortransformrotationmatrix9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
 
-| 参数名              | 类型                                       | 必填   | 说明          |
-| ---------------- | ---------------------------------------- | ---- | ----------- |
-| inRotationVector | Array&lt;number&gt;                      | 是    | 表示旋转矩阵。     |
-| coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是    | 表示坐标系方向。    |
-| callback         | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 返回转换后的旋转矩阵。 |
+| 参数名           | 类型                                      | 必填 | 说明                       |
+| ---------------- | ----------------------------------------- | ---- | -------------------------- |
+| inRotationVector | Array&lt;number&gt;                       | 是   | 表示旋转矩阵。             |
+| coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是   | 表示坐标系方向。           |
+| callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | 是   | 异步返回转换后的旋转矩阵。 |
 
 **示例：** 
 
@@ -6426,9 +6553,11 @@ sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], { x: 2, y: 3 },
 
 transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
 
-旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
+旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系，使用Promise异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.transformRotationMatrix](#sensortransformrotationmatrix9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.transformRotationMatrix](#sensortransformrotationmatrix9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6441,9 +6570,9 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 
 **返回值：** 
 
-| 类型                                 | 说明          |
-| ---------------------------------- | ----------- |
-| Promise&lt;Array&lt;number&gt;&gt; | 返回转换后的旋转矩阵。 |
+| 类型                               | 说明                               |
+| ---------------------------------- | ---------------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | 使用异步方式返回转换后的旋转矩阵。 |
 
 **示例：** 
 
@@ -6466,9 +6595,11 @@ promise.then((data: Array<number>) => {
 
 getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callback: AsyncCallback&lt;GeomagneticResponse&gt;): void
 
-获取地球上特定位置的地磁场。
+获取地球上特定位置的地磁场，使用callback异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getGeomagneticInfo](#sensorgetgeomagneticinfo9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getGeomagneticInfo](#sensorgetgeomagneticinfo9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6478,7 +6609,7 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 | --------------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | locationOptions | [LocationOptions](#locationoptions)                          | 是   | 地理位置。                         |
 | timeMillis      | number                                                       | 是   | 表示获取磁偏角的时间，单位为毫秒。 |
-| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   | 返回磁场信息。                     |
+| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   | 异步返回磁场信息。                 |
 
 **示例：** 
 
@@ -6501,9 +6632,11 @@ sensor.getGeomagneticField({ latitude: 80, longitude: 0, altitude: 0 }, 15804864
 
 getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promise&lt;GeomagneticResponse&gt;
 
-获取地球上特定位置的地磁场。
+获取地球上特定位置的地磁场，使用Promise异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getGeomagneticInfo](#sensorgetgeomagneticinfo9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getGeomagneticInfo](#sensorgetgeomagneticinfo9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6515,9 +6648,9 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
 | timeMillis      | number                              | 是    | 表示获取磁偏角的时间，单位为毫秒。 |
 
 **返回值：** 
-| 类型                                       | 说明      |
-| ---------------------------------------- | ------- |
-| Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 返回磁场信息。 |
+| 类型                                                       | 说明                       |
+| ---------------------------------------------------------- | -------------------------- |
+| Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 使用异步方式返回磁场信息。 |
 
 **示例：** 
 
@@ -6539,19 +6672,21 @@ promise.then((data: sensor.GeomagneticResponse) => {
 
 getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallback&lt;number&gt;): void
 
-根据气压值获取设备所在的海拔高度。
+根据气压值获取设备所在的海拔高度，使用Callback异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getDeviceAltitude](#sensorgetdevicealtitude9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getDeviceAltitude](#sensorgetdevicealtitude9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
 
-| 参数名             | 类型                          | 必填   | 说明                   |
-| --------------- | --------------------------- | ---- | -------------------- |
-| seaPressure     | number                      | 是    | 表示海平面气压值，单位为hPa。     |
-| currentPressure | number                      | 是    | 表示设备所在高度的气压值，单位为hPa。 |
-| callback        | AsyncCallback&lt;number&gt; | 是    | 返回设备所在的海拔高度，单位为米。    |
+| 参数名          | 类型                        | 必填 | 说明                                   |
+| --------------- | --------------------------- | ---- | -------------------------------------- |
+| seaPressure     | number                      | 是   | 表示海平面气压值，单位为hPa。          |
+| currentPressure | number                      | 是   | 表示设备所在高度的气压值，单位为hPa。  |
+| callback        | AsyncCallback&lt;number&gt; | 是   | 异步返回设备所在的海拔高度，单位为米。 |
 
 **示例：** 
 
@@ -6572,9 +6707,11 @@ sensor.getAltitude(0, 200, (err: BusinessError.BusinessError, data: number) => {
 
 getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 
-根据气压值获取设备所在的海拔高度。
+根据气压值获取设备所在的海拔高度，使用Promise异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getDeviceAltitude](#sensorgetdevicealtitude9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getDeviceAltitude](#sensorgetdevicealtitude9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6587,9 +6724,9 @@ getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 
 **返回值：** 
 
-| 类型                    | 说明                 |
-| --------------------- | ------------------ |
-| Promise&lt;number&gt; | 返回设备所在的海拔高度（单位：米）。 |
+| 类型                  | 说明                                             |
+| --------------------- | ------------------------------------------------ |
+| Promise&lt;number&gt; | 使用异步方式返回设备所在的海拔高度（单位：米）。 |
 
 **示例：** 
 
@@ -6610,18 +6747,20 @@ promise.then((data: number) => {
 
 getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-根据倾斜矩阵计算地磁倾斜角。
+根据倾斜矩阵计算地磁倾斜角，使用Callback异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getInclination](#sensorgetinclination9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getInclination](#sensorgetinclination9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
 
-| 参数名               | 类型                          | 必填   | 说明             |
-| ----------------- | --------------------------- | ---- | -------------- |
-| inclinationMatrix | Array&lt;number&gt;         | 是    | 表示倾斜矩阵。        |
-| callback          | AsyncCallback&lt;number&gt; | 是    | 返回地磁倾斜角，单位为弧度。 |
+| 参数名            | 类型                        | 必填 | 说明                             |
+| ----------------- | --------------------------- | ---- | -------------------------------- |
+| inclinationMatrix | Array&lt;number&gt;         | 是   | 表示倾斜矩阵。                   |
+| callback          | AsyncCallback&lt;number&gt; | 是   | 异步返回地磁倾斜角，单位为弧度。 |
 
 **示例：** 
 
@@ -6642,9 +6781,11 @@ sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError.Busine
 
 getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 
-根据倾斜矩阵计算地磁倾斜角。
+根据倾斜矩阵计算地磁倾斜角，使用Promise异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getInclination](#sensorgetinclination9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getInclination](#sensorgetinclination9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6656,9 +6797,9 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 
 **返回值：** 
 
-| 类型                    | 说明             |
-| --------------------- | -------------- |
-| Promise&lt;number&gt; | 返回地磁倾斜角，单位为弧度。 |
+| 类型                  | 说明                                     |
+| --------------------- | ---------------------------------------- |
+| Promise&lt;number&gt; | 使用异步方式返回地磁倾斜角，单位为弧度。 |
 
 **示例：** 
 
@@ -6678,19 +6819,21 @@ promise.then((data: number) => {
 
 getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-获取两个旋转矩阵之间的角度变化。
+获取两个旋转矩阵之间的角度变化，使用Callback异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getAngleVariation](#sensorgetanglevariation9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getAngleVariation](#sensorgetanglevariation9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
 
-| 参数名                   | 类型                                       | 必填   | 说明                 |
-| --------------------- | ---------------------------------------- | ---- | ------------------ |
-| currentRotationMatrix | Array&lt;number&gt;                      | 是    | 表示当前旋转矩阵。          |
-| preRotationMatrix     | Array&lt;number&gt;                      | 是    | 表示旋转矩阵。            |
-| callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 返回z、x、y轴方向的旋转角度变化。 |
+| 参数名                | 类型                                     | 必填 | 说明                                  |
+| --------------------- | ---------------------------------------- | ---- | ------------------------------------- |
+| currentRotationMatrix | Array&lt;number&gt;                      | 是   | 表示当前旋转矩阵。                    |
+| preRotationMatrix     | Array&lt;number&gt;                      | 是   | 表示旋转矩阵。                        |
+| callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 异步返回z、x、y轴方向的旋转角度变化。 |
 
 **示例：** 
 
@@ -6714,9 +6857,11 @@ sensor.getAngleModify([1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 0.87, -0.50, 0, 
 
 getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-获取两个旋转矩阵之间的角度变化。
+获取两个旋转矩阵之间的角度变化，使用Promise异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getAngleVariation](#sensorgetanglevariation9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getAngleVariation](#sensorgetanglevariation9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6729,9 +6874,9 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 
 **返回值：** 
 
-| 类型                                 | 说明                 |
-| ---------------------------------- | ------------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | 返回z、x、y轴方向的旋转角度变化。 |
+| 类型                               | 说明                                          |
+| ---------------------------------- | --------------------------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | 使用异步方式返回z、x、y轴方向的旋转角度变化。 |
 
 **示例：** 
 
@@ -6755,18 +6900,20 @@ promise.then((data: Array<number>) => {
 
 createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-将旋转矢量转换为旋转矩阵。
+将旋转矢量转换为旋转矩阵，使用Callback异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
 
-| 参数名            | 类型                                       | 必填   | 说明      |
-| -------------- | ---------------------------------------- | ---- | ------- |
-| rotationVector | Array&lt;number&gt;                      | 是    | 表示旋转矢量。 |
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 返回旋转矩阵。 |
+| 参数名         | 类型                                     | 必填 | 说明               |
+| -------------- | ---------------------------------------- | ---- | ------------------ |
+| rotationVector | Array&lt;number&gt;                      | 是   | 表示旋转矢量。     |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 异步返回旋转矩阵。 |
 
 **示例：** 
 
@@ -6790,9 +6937,11 @@ sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877],
 
 createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-将旋转矢量转换为旋转矩阵。
+将旋转矢量转换为旋转矩阵，使用Promise异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6804,9 +6953,9 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 
 **返回值：** 
 
-| 类型                                 | 说明      |
-| ---------------------------------- | ------- |
-| Promise&lt;Array&lt;number&gt;&gt; | 返回旋转矩阵。 |
+| 类型                               | 说明                       |
+| ---------------------------------- | -------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | 使用异步方式返回旋转矩阵。 |
 
 **示例：** 
 
@@ -6829,18 +6978,20 @@ promise.then((data: Array<number>) => {
 
 createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-将旋转矢量转换为四元数。
+将旋转矢量转换为四元数，使用Callback异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getQuaternion](#sensorgetquaternion9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getQuaternion](#sensorgetquaternion9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
 
-| 参数名            | 类型                                       | 必填   | 说明      |
-| -------------- | ---------------------------------------- | ---- | ------- |
-| rotationVector | Array&lt;number&gt;                      | 是    | 表示旋转矢量。 |
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 返回四元数。  |
+| 参数名         | 类型                                     | 必填 | 说明             |
+| -------------- | ---------------------------------------- | ---- | ---------------- |
+| rotationVector | Array&lt;number&gt;                      | 是   | 表示旋转矢量。   |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 异步返回四元数。 |
 
 **示例：** 
 
@@ -6864,9 +7015,11 @@ sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877],
 
 createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-将旋转矢量转换为四元数。
+将旋转矢量转换为四元数，使用Promise异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getQuaternion](#sensorgetquaternion9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getQuaternion](#sensorgetquaternion9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6878,9 +7031,9 @@ createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numbe
 
 **返回值：** 
 
-| 类型                                 | 说明     |
-| ---------------------------------- | ------ |
-| Promise&lt;Array&lt;number&gt;&gt; | 返回四元数。 |
+| 类型                               | 说明                     |
+| ---------------------------------- | ------------------------ |
+| Promise&lt;Array&lt;number&gt;&gt; | 使用异步方式返回四元数。 |
 
 **示例：** 
 
@@ -6903,18 +7056,20 @@ promise.then((data: Array<number>) => {
 
 getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-根据旋转矩阵计算设备的方向。
+根据旋转矩阵计算设备的方向，使用Callback异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getOrientation](#sensorgetorientation9)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getOrientation](#sensorgetorientation9)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
 
-| 参数名            | 类型                                       | 必填   | 说明                 |
-| -------------- | ---------------------------------------- | ---- | ------------------ |
-| rotationMatrix | Array&lt;number&gt;                      | 是    | 表示旋转矩阵。            |
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 返回围绕z、x、y轴方向的旋转角度。 |
+| 参数名         | 类型                                     | 必填 | 说明                                  |
+| -------------- | ---------------------------------------- | ---- | ------------------------------------- |
+| rotationMatrix | Array&lt;number&gt;                      | 是   | 表示旋转矩阵。                        |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 异步返回围绕z、x、y轴方向的旋转角度。 |
 
 **示例：** 
 
@@ -6938,9 +7093,11 @@ sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError.BusinessErr
 
 getDirection(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-根据旋转矩阵计算设备的方向。
+根据旋转矩阵计算设备的方向，使用Promise异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getOrientation](#sensorgetorientation9-1)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getOrientation](#sensorgetorientation9-1)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -6952,9 +7109,9 @@ getDirection(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt
 
 **返回值：** 
 
-| 类型                                 | 说明                 |
-| ---------------------------------- | ------------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | 返回围绕z、x、y轴方向的旋转角度。 |
+| 类型                               | 说明                                          |
+| ---------------------------------- | --------------------------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | 使用异步方式返回围绕z、x、y轴方向的旋转角度。 |
 
 **示例：** 
 
@@ -6977,19 +7134,21 @@ promise.then((data: Array<number>) => {
 
 createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;, callback: AsyncCallback&lt;RotationMatrixResponse&gt;): void
 
-根据重力矢量和地磁矢量计算旋转矩阵。
+根据重力矢量和地磁矢量计算旋转矩阵，使用Callback异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9-2)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9-2)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
 
-| 参数名         | 类型                                       | 必填   | 说明      |
-| ----------- | ---------------------------------------- | ---- | ------- |
-| gravity     | Array&lt;number&gt;                      | 是    | 表示重力向量。 |
-| geomagnetic | Array&lt;number&gt;                      | 是    | 表示地磁矢量。 |
-| callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 是    | 返回旋转矩阵。 |
+| 参数名      | 类型                                                         | 必填 | 说明               |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------ |
+| gravity     | Array&lt;number&gt;                                          | 是   | 表示重力向量。     |
+| geomagnetic | Array&lt;number&gt;                                          | 是   | 表示地磁矢量。     |
+| callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 是   | 异步返回旋转矩阵。 |
 
 **示例：** 
 
@@ -7011,9 +7170,11 @@ sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.
 
 createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;): Promise&lt;RotationMatrixResponse&gt;
 
-根据重力矢量和地磁矢量计算旋转矩阵。
+根据重力矢量和地磁矢量计算旋转矩阵，使用Promise异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9-3)代替。
+> **说明**： 
+>
+> 从API version 9 开始不再维护，建议使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9-3)代替。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -7026,9 +7187,9 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 **返回值：** 
 
-| 类型                                       | 说明      |
-| ---------------------------------------- | ------- |
-| Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 返回旋转矩阵。 |
+| 类型                                                         | 说明                       |
+| ------------------------------------------------------------ | -------------------------- |
+| Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 使用异步方式返回旋转矩阵。 |
 
 **示例：** 
 

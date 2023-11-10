@@ -7,7 +7,7 @@
 
 开放匿名设备标识符（Open Anonymous Device Identifier, OAID，以下简称OAID）：是一种非永久性设备标识符，基于开放匿名设备标识符，可在保护用户个人数据隐私安全的前提下，向用户提供个性化广告，同时三方监测平台也可以向广告主提供转化归因分析。
 
-媒体App、广告平台、三方监测平台等开发者，可获取华为设备上的OAID，您可基于OAID进行个性化广告推荐或广告转化归因分析。
+媒体App、广告平台、三方监测平台等开发者，可获取设备上的OAID，您可基于OAID进行个性化广告推荐或广告转化归因分析。
 
 
 ### 接口说明
@@ -53,7 +53,7 @@
         }).catch((err: BusinessError) => {
           hilog.error(0x0000, 'testTag', '%{public}s', `request permission failed, error message: ${err.message}`);
         })
-      } catch(err: BusinessError) {
+      } catch(err) {
         hilog.error(0x0000, 'testTag', '%{public}s', `catch err->${JSON.stringify(err)}`);
       }
     }
@@ -74,7 +74,7 @@
          hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success`);
        }
       });
-   } catch (err: BusinessError) {
+   } catch (err) {
      hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', err.code, err.message);
    }
    ```
@@ -83,12 +83,11 @@
    ```
    import identifier from '@ohos.identifier.oaid';
    import hilog from '@ohos.hilog'; 
-   import { BusinessError } from '@ohos.base';
    
    // 重置OAID
    try {
      identifier.resetOAID();
-   } catch (err: BusinessError) {
+   } catch (err) {
      hilog.error(0x0000, 'testTag', 'reset oaid catch error: %{public}d %{public}s', err.code, err.message);
    }
    ```

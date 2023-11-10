@@ -89,17 +89,85 @@ typedef struct {
 }
 ```
 
-## 常见问题
-### 沙盒没有创建成功
+## 系统/芯片沙盒常见问题
+- 原因分析：
+     相关服务访问不到所需要的so等资源文件 
+- 解决方案：
+    分析hilog，通过分析log检查失败的原因，在设备中搜索报错so的path，修改对应so的BUILD.gn文件。如下步骤:
 
-**现象描述**
+    - log分析，hilog搜索关键字"failed"或".so"结果
 
-dmesg或者hilog日志中出现 Sandbox %s has not been created.
+      ```
+      08-05 17:27:29.302   488   488 E C02500/driver_loader_full: get driver entry failed, /vendor/lib/libcamera_host_service_1.0.z.so load fail, Error loading shared library libdisplay_buffer_proxy_1.0.z.so: No such file or directory (needed by /system/lib/chipset-pub-sdk/libdisplay_buffer_hdi_impl.z.so)
+      08-05 17:27:29.303   488   488 E C02500/devhost_service_full: DevHostServiceAddDevice failed and return -207
+      08-05 17:27:29.305   488   488 E C02500/devhost_service_stub: Dis patch failed, add service failed and ret is -207
+      08-05 17:27:29.307   488   488 I C02500/devhost_service_stub: add device 0x7000201
+      08-05 17:27:29.308   488   488 E C02500/driver_loader_full: /vendor/lib/libhdi_media_layer_service.z.so no valid, errno:2
+      ```
 
-**原因分析**
+    - 根据结果，camera报错是由于libdisplay_buffer_proxy_1.0.z.so加载失败，两种方式进行处理，方式一在沙盒中对该file进行mount进行快速修复(仅支持本地debug，源码修改需要进行评审)，方式二需要修改对应BUILD.gn文件
 
-沙盒没有创建成功，主要原因是mount与link时出现错误，根据mount与link的主要函数的日志，排查具体问题。
+      - 快速修复方式：沙盒中mount file/path
 
-**解决方法**
-1. 检查JSON文件是否配置正确。
-2. 创建的沙盒是否受支持。
+        - 系统沙盒: 编辑设备中/system/etc/sandbox/system-sandbox.json文件，默认只mount vendor路径下的部分文件，如有报错缺失在其中进行单独mount
+      
+        - chipset沙盒: 编辑设备中/system/etc/sandbox/chipset-sandbox.json文件，默认只mount system路径下的部分文件，如有报错缺失在其中进行单独mount
+        
+        - 如上case需要在/system/etc/sandbox/chipset-sandbox.json中添加如下：
+        
+        ```
+        "mount-bind-files" : [
+        	{
+                "src-path" : "/system/lib/libdisplay_buffer_proxy_1.0.z.so",
+                "sandbox-path" : "/system/lib/libdisplay_buffer_proxy_1.0.z.so",
+                "sandbox-flags" : [ "bind", "rec", "private" ]
+            },{...}
+        ],
+        ```
+        
+      - 方式二：添加innerapi_tags
+      
+        ```
+        ohos_shared_library("xxx") {
+        	...
+        	innerapi_tags = [
+            	"chipsetsdk",
+            ]
+        }
+        ```
+        
+      - innerapi_tags相关:
+      
+        -   沙盒权限相关的tags包含"passthrough"、"chipsetsdk"、"passthrough_indirect "、"chipsetsdk_indirect" 
+          
+          -  可通过 Openharmony实时架构信息网站查看so信息，如果是间接依赖模块使用chipsetsdk_indirect或者passthrough_indirect , 其余使用chipsetsdk或者passthrough 
+          -  安装到系统目录的so使用"chipsetsdk"和"chipsetsdk_indirect"，供芯片组件访问 
+          -  安装到芯片目录的so使用"passthrough"和"passthrough_indirect "，供系统组件访问 
+        -  通过innerapi_tags标记添加可以指定so安装的路径，比如标记了chipsetsdk的就装在/lib/chipset-sdk/目录下，具体逻辑源码如下，代码路径： build/templates/cxx/cxx.gni
+        ```gni
+        # auto set auto_relative_install_dir by innerapi_tags
+        if (defined(invoker.innerapi_tags)) {
+      	    is_chipsetsdk = false
+            is_platformsdk = false
+            is_passthrough = false
+            foreach(tag, filter_include(invoker.innerapi_tags, [ "chipsetsdk*" ])) {
+              is_chipsetsdk = true
+            }
+            foreach(tag, filter_include(invoker.innerapi_tags, [ "platformsdk*" ])) {
+              is_platformsdk = true
+            }
+            foreach(tag, filter_include(invoker.innerapi_tags, [ "passthrough*" ])) {
+              is_passthrough = true
+            }
+            if (is_chipsetsdk && is_platformsdk) {
+              auto_relative_install_dir = "chipset-pub-sdk"
+            } else if (is_chipsetsdk) {
+              auto_relative_install_dir = "chipset-sdk"
+            } else if (is_platformsdk) {
+              auto_relative_install_dir = "platformsdk"
+            }
+            if (is_passthrough) {
+              auto_relative_install_dir = chipset_passthrough_dir
+            }
+            ...
+        }

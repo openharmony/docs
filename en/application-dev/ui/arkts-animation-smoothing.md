@@ -3,9 +3,6 @@
 
 When running animations, the UI is also interacting with users in real time. It must respond immediately to changes in user behavior. For example, if the user swipes up to exit in the midst of an application launch process, the UI should immediately transit from the startup animation to the exit animation, rather than finishing the startup animation before exiting. In the scenario where the animation triggered when the user lifts their fingers off the screen, the initial velocity of the animation must inherit the gesture speed, so as to avoid pauses caused by speed disconnection. For the preceding and similar scenarios, OpenHarmony provides efficient APIs for smoothing between animations and between animations and gestures.
 
-
-## Smoothing Between Animations
-
 Assume that there is a running animation for an animatable attribute. If the end value of the attribute changes due to an operation on the UI, just change the attribute value in the **animateTo** closure or change the input parameter value of the **animation** API to create an animation. OpenHarmony then automatically connects the previous animation with the current animation – the created animation.
 
 
@@ -143,20 +140,7 @@ Below is the complete sample code and effect.
 
 ```ts
 import curves from '@ohos.curves';
-class SetOffset{
-  offsetX:number = 0;
-  offsetY:number = 0;
-  positionX:number = 100;
-  positionY:number = 100;
-  set(x:number,y:number):void{
-    this.offsetX = x;
-    this.offsetY = y;
-  }
-  setJ(x:number,y:number,diameter:number = 50):void{
-    this.positionX = x - diameter / 2;
-    this.positionY = y - diameter / 2;
-  }
-}
+
 @Entry
 @Component
 struct SpringMotionDemo {
@@ -176,15 +160,15 @@ struct SpringMotionDemo {
                 // When the user places or moves their finger on the screen, use the responsiveSpringMotion curve.
                 animateTo({ curve: curves.responsiveSpringMotion() }, () => {
                   // Subtract the radius so that the center of the ball moves to where the finger is placed.
-                  let setxy = new SetOffset();
-                  setxy.setJ(event.touches[0].screenX,event.touches[0].screenY,this.diameter)
-                  console.info(`move, animateTo x:${setxy.positionX}, y:${setxy.positionY}`);
+                  this.positionX = event.touches[0].screenX - this.diameter / 2;
+                  this.positionY = event.touches[0].screenY - this.diameter / 2;
+                  console.info(`move, animateTo x:${this.positionX}, y:${this.positionY}`);
                 })
               } else if (event.type === TouchType.Up) {
                 // After the user lifts their finger off the screen, use the springMotion curve.
                 animateTo({ curve: curves.springMotion() }, () => {
-                  let setxy = new SetOffset();
-                  setxy.set(100,100)
+                  this.positionX = 100;
+                  this.positionY = 100;
                   console.info(`touchUp, animateTo x:100, y:100`);
                 })
               }

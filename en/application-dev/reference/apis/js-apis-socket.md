@@ -2,8 +2,7 @@
 
 The **socket** module implements data transfer over TCP, UDP, Web, and TLS socket connections.
 
-> **NOTE**
->
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -299,7 +298,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 Obtains the status of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -351,7 +350,7 @@ getState(): Promise\<SocketStateBase\>
 
 Obtains the status of the UDP socket connection. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -395,7 +394,7 @@ setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
 Sets other properties of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -457,7 +456,7 @@ setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
 Sets other properties of the UDP socket connection. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -545,7 +544,7 @@ class SocketInfo {
 let messageView = '';
 udp.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -560,7 +559,7 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 
 Unsubscribes from **message** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -585,7 +584,7 @@ let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -633,7 +632,7 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **listening** events or **close** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -699,7 +698,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -823,10 +822,10 @@ Defines a TCP socket connection. Before calling TCPSocket APIs, you need to call
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
-Binds the IP address and port number. The port number can be specified or randomly allocated by the system. This API uses an asynchronous callback to return the result.
+Binds an IP address and a port number. The port number can be specified or randomly allocated by the system. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> If the operation fails, the system randomly allocates a port number.
+> **NOTE**<br>
+> If the bind operation fails due to a port conflict, the system will randomly allocate a port number. The TCP client can call **tcp.bind** to explicitly bind the IP address and port number, and then call **tcp.connect** to connect to the server. Alternatively, the TCP client can directly call **tcp.connect** to automatically bind the IP address and port number to connect to the server. If the IP address is **localhost** or **127.0.0.1**, only local loopback access is allowed; that is, the TCP client and the server are deployed on the same device.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -869,10 +868,10 @@ tcp.bind(bindAddr, (err: BusinessError) => {
 
 bind(address: NetAddress): Promise\<void\>
 
-Binds the IP address and port number. The port number can be specified or randomly allocated by the system. This API uses a promise to return the result.
+Binds an IP address and a port number. The port number can be specified or randomly allocated by the system. This API uses a promise to return the result.
 
-> **NOTE**
-> If the operation fails, the system randomly allocates a port number.
+> **NOTE**<br>
+> If the bind operation fails due to a port conflict, the system will randomly allocate a port number. The TCP client can call **tcp.bind** to explicitly bind the IP address and port number, and then call **tcp.connect** to connect to the server. Alternatively, the TCP client can directly call **tcp.connect** to automatically bind the IP address and port number to connect to the server. If the IP address is **localhost** or **127.0.0.1**, only local loopback access is allowed; that is, the TCP client and the server are deployed on the same device.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -920,8 +919,8 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 
 Sets up a connection to the specified IP address and port number. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> This API can be called only after **bind** is successfully called.
+> **NOTE**<br>
+> This API allows you to connect to the TCP server without first executing **tcp.bind**.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -969,6 +968,9 @@ tcp.connect(tcpconnectoptions, (err: BusinessError) => {
 connect(options: TCPConnectOptions): Promise\<void\>
 
 Sets up a connection to the specified IP address and port number. This API uses a promise to return the result.
+
+> **NOTE**<br>
+> This API allows you to connect to the TCP server without first executing **tcp.bind**.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1020,7 +1022,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 Sends data over a TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1076,7 +1078,7 @@ send(options: TCPSendOptions): Promise\<void\>
 
 Sends data over a TCP socket connection. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1208,7 +1210,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 Obtains the remote address of a socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1259,7 +1261,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 Obtains the remote address of a socket connection. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1310,7 +1312,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 Obtains the status of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1361,7 +1363,7 @@ getState(): Promise\<SocketStateBase\>
 
 Obtains the status of the TCP socket connection. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1412,7 +1414,7 @@ getSocketFd(callback: AsyncCallback\<number\>): void
 
 Obtains the file descriptor of the **TCPSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **bind** or **connect** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1452,7 +1454,7 @@ getSocketFd(): Promise\<number\>
 
 Obtains the file descriptor of the **TCPSocket** object. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **bind** or **connect** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1492,7 +1494,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 Sets other properties of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1554,7 +1556,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 Sets other properties of the TCP socket connection. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1641,7 +1643,7 @@ class SocketInfo {
 let messageView = '';
 tcp.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -1656,7 +1658,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 
 Unsubscribes from **message** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1681,7 +1683,7 @@ class SocketInfo {
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -1729,7 +1731,7 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from connection or close events of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1795,7 +1797,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1999,7 +2001,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 Obtains the status of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2054,7 +2056,7 @@ getState(): Promise\<SocketStateBase\>
 
 Obtains the status of the TCPSocketServer connection. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2106,7 +2108,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 Sets other properties of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2173,7 +2175,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 Sets other properties of the TCPSocketServer connection. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2243,7 +2245,7 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 
 Subscribes to TCPSocketServer connection events. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2277,7 +2279,7 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 
 Unsubscribes from TCPSocketServer connection events. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2315,7 +2317,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 Subscribes to **error** events of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2350,7 +2352,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2387,7 +2389,7 @@ tcpServer.off('error');
 
 Defines a **TCPSocketConnection** object, that is, the connection between the TCPSocket client and the server. Before calling TCPSocketConnection APIs, you need to obtain a **TCPSocketConnection** object.
 
-> **NOTE**
+> **NOTE**<br>
 > The TCPSocket client can call related APIs through the **TCPSocketConnection** object only after a connection is successfully established between the TCPSocket client and the server.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2404,7 +2406,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 Sends data over a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after a connection with the client is set up.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2448,7 +2450,7 @@ send(options: TCPSendOptions): Promise\<void\>
 
 Sends data over a **TCPSocketConnection** object. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after a connection with the client is set up.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2579,7 +2581,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 Obtains the remote address of a socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after a connection with the client is set up.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2624,7 +2626,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 Obtains the remote address of a socket connection. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after a connection with the client is set up.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2696,7 +2698,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('message', (value: SocketInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
-      let messages: number = value.message.i
+      let messages: number = value.message[i]
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -2712,7 +2714,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 
 Unsubscribes from **message** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2743,7 +2745,7 @@ class SocketInfo {
 let callback = (value: SocketInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -2798,7 +2800,7 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **close** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2872,7 +2874,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -3274,7 +3276,7 @@ class SocketInfo {
 let messageView = '';
 tls.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3289,7 +3291,7 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 
 Unsubscribes from **message** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -3314,7 +3316,7 @@ class SocketInfo {
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3360,7 +3362,7 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **connect** or **close** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -3425,7 +3427,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -3794,7 +3796,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate().then((data: socket.X509CertRawData) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -3864,7 +3866,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -3936,7 +3938,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getProtocol().then((data: string) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4010,7 +4012,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCipherSuite().then((data: Array<string>) => {
   console.log('getCipherSuite success:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4080,7 +4082,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getSignatureAlgorithms().then((data: Array<string>) => {
   console.log("getSignatureAlgorithms success" + data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4165,7 +4167,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.send("xxxx").then(() => {
   console.log("send success");
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4241,7 +4243,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.close().then(() => {
   console.log("close success");
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4456,7 +4458,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 Obtains the status of the TLS socket server connection upon successful listening. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4518,7 +4520,7 @@ getState(): Promise\<SocketStateBase\>
 
 Obtains the status of the TLS socket server connection upon successful listening. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4577,7 +4579,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 Sets other properties of the TLS socket server connection upon successful listening. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4651,7 +4653,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 Sets other properties of the TLS socket server connection upon successful listening. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4728,7 +4730,7 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 
 Obtains the local digital certificate after a TLS socket server connection is established. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4791,7 +4793,7 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
 Obtains the local digital certificate after a TLS socket server connection is established. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4841,7 +4843,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 tlsServer.getCertificate().then((data: socket.x509certrawdata9) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4851,7 +4853,7 @@ getProtocol(callback: AsyncCallback\<string\>): void
 
 Obtains the communication protocol version after a TLS socket server connection is established. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4914,7 +4916,7 @@ getProtocol():Promise\<string\>
 
 Obtains the communication protocol version after a TLS socket server connection is established. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4964,7 +4966,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 tlsServer.getProtocol().then((data: string) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4974,7 +4976,7 @@ on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
 
 Subscribes to TLS socket server connection events. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -5031,7 +5033,7 @@ off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
 
 Unsubscribes from TLS socket server connection events. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
@@ -5094,7 +5096,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 Subscribes to **error** events of a **TLSSocketServer** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -5151,7 +5153,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TLSSocketServer** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API can be called only after **listen** is successfully called.
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
@@ -5212,7 +5214,7 @@ tlsServer.off('error');
 
 Defines a **TLSSocketConnection** object, that is, the connection between the TLSSocket client and the server. Before calling TLSSocketConnection APIs, you need to obtain a **TLSSocketConnection** object.
 
-> **NOTE**
+> **NOTE**<br>
 > The TLSSocket client can call related APIs through the **TLSSocketConnection** object only after a connection is successfully established between the TLSSocket client and the server.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -5596,7 +5598,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteAddress().then((data: socket.NetAddress) => {
     console.log('getRemoteAddress success:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error(err);
+    console.error("failed" + err);
   });
 });
 ```
@@ -5715,7 +5717,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate().then((data: socket.X509CertRawData) => {
     console.log('getRemoteCertificate success:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error(err);
+    console.error("failed" + err);
   });
 });
 ```
@@ -5773,7 +5775,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
-  client.getCipherSuite((err: string, data: Array<string>) => {
+  client.getCipherSuite((err: BusinessError, data: Array<string>) => {
     if (err) {
       console.log("getCipherSuite callback error = " + err);
     } else {
@@ -5838,7 +5840,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getCipherSuite().then((data: Array<string>) => {
     console.log('getCipherSuite success:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error(err);
+    console.error("failed" + err);
   });
 });
 ```
@@ -5957,7 +5959,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getSignatureAlgorithms().then((data: Array<string>) => {
     console.log("getSignatureAlgorithms success" + data);
   }).catch((err: BusinessError) => {
-    console.error(err);
+    console.error("failed" + err);
   });
 });
 ```
@@ -6020,7 +6022,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('message', (value: SocketInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
-      let messages: number = value.message.i
+      let messages: number = value.message[i]
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -6036,7 +6038,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 
 Unsubscribes from **message** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -6090,7 +6092,7 @@ class SocketInfo {
 let callback = (value: SocketInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -6167,7 +6169,7 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **close** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -6288,7 +6290,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack

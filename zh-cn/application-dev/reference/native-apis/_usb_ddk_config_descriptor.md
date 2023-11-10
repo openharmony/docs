@@ -46,7 +46,7 @@ struct UsbConfigDescriptor UsbDdkConfigDescriptor::configDescriptor
 
 
 ```
-uint8_t* UsbDdkConfigDescriptor::extra
+const uint8_t* UsbDdkConfigDescriptor::extra
 ```
 
 **描述:**

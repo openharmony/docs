@@ -20,8 +20,15 @@ The ability to query does not exist.
 
 **Solution**
 
-1. Check whether the bundle name is correct.
-2. Check whether the ability name corresponding to the bundle name is correct.
+1. Pass in correct values of **bundleName**, **moduleName**, and **abilityName** in **want**.
+2. Check whether the application corresponding to **bundleName** in **want** is installed. You can run the following command to query the list of installed applications. If **bundleName** is not in the query result, the application is not installed.
+    ```
+    hdc shell bm dump -a
+    ```
+3. For a multi-HAP application, check whether the HAP to which the ability belongs is installed. You can run the following command to query the bundle information. If the installed application does not contain the corresponding HAP and ability, the HAP to which the ability belongs is not installed.
+    ```
+    hdc shell bm dump -n bundleName
+    ```
 
 ## 16000002 Incorrect Ability Type
 
@@ -39,8 +46,8 @@ The ability with the specified type does not support the API invocation.
 
 **Solution**
 
-1. Check whether the ability name corresponding to the bundle name is correct.
-2. Call the supported APIs based on the ability type.
+1. Pass in correct values of **bundleName**, **moduleName**, and **abilityName** in **want**.
+2. Call APIs based on the ability type. For example, call [startServiceExtensionAbility](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartserviceextensionability) to start the ServiceExtensionAbility, or call [connectServiceExtensionAbility()](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) to connect to the ServiceExtensionAbility.
 
 ## 16000003 Nonexistent ID
 
@@ -76,7 +83,8 @@ Visibility verification fails.
 
 **Solution**
 
-Check whether **exported** under the **Ability** field in the **module.json5** file of the application is set to **true**. If this parameter is set to **true**, the ability can be invoked by other applications. If this parameter is set to **false**, the ability cannot be invoked by other applications.
+1. Check whether [exported](../../quick-start/module-configuration-file.md#abilities) under the **Ability** field in the **module.json5** file of the ability is set to **true**. If this parameter is set to **true**, the ability can be started by other applications. If this parameter is set to **false**, the ability cannot be started by other applications.
+2. To start the ability for which **exported** is set to **false**, the caller must request the [ohos.permission.START_INVISIBLE_ABILITY](../../security/permission-list.md#ohospermissionstart_invisible_ability) permission.
 
 ## 16000006 Cross-User Operation Is Not Allowed
 
@@ -130,7 +138,7 @@ The crowdtesting application has expired.
 
 **Solution**
 
-Check whether the crowdtesting application has expired.
+Expired crowdtesting applications cannot be started.
 
 ## 16000009 Ability Start or Stop Failure in Wukong Mode
 
@@ -148,7 +156,7 @@ An ability cannot be started or stopped in Wukong mode.
 
 **Solution**
 
-Do not start or stop an ability in Wukong mode.
+Exit Wukong mode, and then start or stop the ability. An ability cannot be started or stopped in Wukong mode.
 
 ## 16000010 Continuation Flag Forbidden
 
@@ -186,6 +194,42 @@ The context passed in the API does not exist.
 
 Use the correct context.
 
+## 16000012 Application Under Control
+
+**Error Message**
+
+The application is controlled.
+
+**Description**
+
+This error code is reported when an application is controlled by the application market.
+
+**Possible Causes**
+
+The application is suspected to have malicious behavior and is not allowed to start due to application market control.
+
+**Solution**
+
+It is recommended that end users uninstall the application.
+
+## 16000013 Application Controlled by EDM
+
+**Error Message**
+
+The application is controlled by EDM.
+
+**Description**
+
+This error code is reported when an application is controlled by [Enterprise Device Manager (EDM)](../apis/enterpriseDeviceManagement-overview.md).
+
+**Possible Causes**
+
+The application is controlled by EDM.
+
+**Solution**
+
+Contact the enterprise device management personnel.
+
 ## 16000017 Waiting for the Previous Abilities to Finish Startup
 
 **Error Message**
@@ -216,11 +260,13 @@ This error code is reported when an error occurs during internal processing, suc
 
 **Possible Causes**
 
-Common kernel errors such as memory application and multi-thread processing errors occur.
+Common kernel errors such as memory application and multi-thread processing errors occur. The possible causes are as follows: empty internal object, processing timeout, failure in obtaining application information, failing in obtaining the system service, and too many started ability instances.
 
 **Solution**
 
-Ensure sufficient system memory.
+1. Ensure sufficient system memory. Ensure that the system version used by the device is normal.
+2. Limit the number of ability processes started.
+3. Restart the device.
 
 ## 16000051 Network Error
 
@@ -270,7 +316,7 @@ This error code is reported when the ability is not displayed on the top of the 
 
 **Possible Causes**
 
-The ability is not displayed on the top of the UI.
+During the installation-free startup process, the ability is not displayed on the top of the UI.
 
 **Solution**
 
@@ -402,6 +448,42 @@ Sandbox applications cannot authorize URIs.
 
 Use a non-sandbox application.
 
+## 16000061 Unsupport Operation
+
+**Error Message**
+
+Operation not supported.
+
+**Description**
+
+This error code is reported when an operation is not supported.
+
+**Possible Causes**
+
+The operation is not supported.
+
+**Solution**
+
+Perform a supported operation.
+
+## 16000062 Too Many Subprocesses
+
+**Error Message**
+
+The number of child process exceeds upper bound.
+
+**Description**
+
+This error code is reported when the number of created subprocesses reaches the upper limit.
+
+**Possible Causes**
+
+The number of created subprocesses has reached the upper limit.
+
+**Solution**
+
+Limit the number of created subprocesses. The maximum number is 128.
+
 ## 16000101 shell Command Failure
 
 **Error Message**
@@ -527,7 +609,9 @@ The caller has been released.
 
 **Solution**
 
-Register a valid caller again.
+1. Register a valid caller again.
+2. Check whether the ability corresponding to the context is still running when **context.startAbility** is called. This error code is thrown when the ability has been destructed.
+3. If **startAbility()** and **terminateSelf()** are called consecutively, ensure that a success or failure callback for **startAbility()** is received before calling **terminateSelf()**.
 
 ## 16200002 Invalid Callee
 

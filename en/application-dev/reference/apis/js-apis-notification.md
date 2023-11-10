@@ -4,7 +4,9 @@ The **Notification** module provides notification management capabilities, cover
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. This module is deprecated since API version 9.
+> The APIs provided by this module are no longer maintained since API version 9. You are advised to use [@ohos.notificationManager](js-apis-notificationManager.md).
+>
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > Notification subscription and unsubscription APIs are available only to system applications.
 
@@ -71,6 +73,12 @@ Publishes a notification. This API uses a promise to return the result.
 | Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
 | request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -167,6 +175,12 @@ Publishes a notification to a specified user. This API uses a promise to return 
 | request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -243,6 +257,12 @@ Cancels a notification with the specified ID and optional label. This API uses a
 | ----- | ------ | ---- | -------- |
 | id    | number | Yes  | Notification ID.  |
 | label | string | No  | Notification label. This parameter is left empty by default.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -329,6 +349,12 @@ Cancels all notifications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -399,6 +425,12 @@ Adds a notification slot. This API uses a promise to return the result.
 | ---- | ---------------- | ---- | -------------------- |
 | slot | [NotificationSlot](#notificationslot) | Yes  | Notification slot to add.|
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -461,10 +493,16 @@ Adds a notification slot of a specified type. This API uses a promise to return 
 | ---- | -------- | ---- | ---------------------- |
 | type | [SlotType](#slottype) | Yes  | Type of the notification slot to add.|
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
-import NotificationManager from '@ohos.notificationManager';
+import Base from '@ohos.base';
 
 Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then(() => {
   console.info("addSlot success");
@@ -534,6 +572,12 @@ Adds an array of notification slots. This API uses a promise to return the resul
 | Name | Type                     | Mandatory| Description                    |
 | ----- | ------------------------- | ---- | ------------------------ |
 | slots | Array\<[NotificationSlot](#notificationslot)\> | Yes  | Notification slots to add.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -723,6 +767,12 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 | -------- | -------- | ---- | ----------------------------------------------------------- |
 | slotType | [SlotType](#slottype) | Yes  | Type of the notification slot, which can be used for social communication, service information, content consultation, and other purposes.|
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -772,6 +822,12 @@ removeAllSlots(): Promise\<void\>
 Removes all notification slots. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -891,6 +947,12 @@ Subscribes to a notification with the subscription information specified. This A
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | Yes  | Notification subscriber.|
 | info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | No  | Notification subscription information. This parameter is left empty by default.  |
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -969,6 +1031,12 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 | ---------- | ---------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | Yes  | Notification subscriber.|
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -1004,7 +1072,7 @@ Sets whether to enable notification for a specified application. This API uses a
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.       |
+| bundle   | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.       |
 | enable   | boolean               | Yes  | Whether to enable notification.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -1042,8 +1110,14 @@ Sets whether to enable notification for a specified application. This API uses a
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -1077,7 +1151,7 @@ Checks whether notification is enabled for a specified application. This API use
 
 | Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.           |
+| bundle   | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.           |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1114,7 +1188,7 @@ Checks whether notification is enabled for a specified application. This API use
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1187,7 +1261,7 @@ Checks whether notification is enabled for this application. This API uses a pro
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1223,7 +1297,7 @@ Sets whether to enable the notification badge for a specified application. This 
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.          |
+| bundle   | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.          |
 | enable   | boolean               | Yes  | Whether to enable notification.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -1261,8 +1335,14 @@ Sets whether to enable the notification badge for a specified application. This 
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -1295,7 +1375,7 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 | Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.              |
+| bundle   | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.              |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1332,7 +1412,7 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1371,7 +1451,7 @@ Sets the notification slot for a specified application. This API uses an asynchr
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.          |
+| bundle   | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.          |
 | slot     | [NotificationSlot](#notificationslot)      | Yes  | Notification slot.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -1413,8 +1493,14 @@ Sets the notification slot for a specified application. This API uses a promise 
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
 | slot   | [NotificationSlot](#notificationslot) | Yes  | Notification slot.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -1451,7 +1537,7 @@ Obtains the notification slots of a specified application. This API uses an asyn
 
 | Name    | Type                                    | Mandatory| Description                |
 | -------- | ---------------------------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)                             | Yes  | Bundle information of the application.          |
+| bundle   | [BundleOption](#bundleoptiondeprecated)                             | Yes  | Bundle information of the application.          |
 | callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)>> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1489,7 +1575,7 @@ Obtains the notification slots of a specified application. This API uses a promi
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1529,7 +1615,7 @@ Obtains the number of notification slots of a specified application. This API us
 
 | Name    | Type                     | Mandatory| Description                  |
 | -------- | ------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption)              | Yes  | Bundle information of the application.            |
+| bundle   | [BundleOption](#bundleoptiondeprecated)              | Yes  | Bundle information of the application.            |
 | callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1567,7 +1653,7 @@ Obtains the number of notification slots of a specified application. This API us
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1607,7 +1693,7 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 
 | Name           | Type                               | Mandatory| Description                |
 | --------------- |   ----------------------------------| ---- | -------------------- |
-| bundle          | [BundleOption](#bundleoption)       | Yes  | Bundle information of the application.          |
+| bundle          | [BundleOption](#bundleoptiondeprecated)       | Yes  | Bundle information of the application.          |
 | notificationKey | [NotificationKey](#notificationkeydeprecated) | Yes  | Notification key.            |
 | reason          | [RemoveReason](#removereason-deprecated)      | Yes  | Reason for deleting a notification.        |
 | callback        | AsyncCallback\<void\>               | Yes  | Callback used to return the result.|
@@ -1651,9 +1737,15 @@ Removes a notification for a specified bundle. This API uses a promise to return
 
 | Name           | Type           | Mandatory| Description      |
 | --------------- | --------------- | ---- | ---------- |
-| bundle          | [BundleOption](#bundleoption)    | Yes  | Bundle information of the application.|
+| bundle          | [BundleOption](#bundleoptiondeprecated)    | Yes  | Bundle information of the application.|
 | notificationKey | [NotificationKey](#notificationkeydeprecated) | Yes  | Notification key.  |
 | reason          | [RemoveReason](#removereason-deprecated) | Yes  | Reason for deleting the notification.        |
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -1732,6 +1824,12 @@ Removes a notification for a specified bundle. This API uses a promise to return
 | hashCode | string | Yes  | Unique notification ID.|
 | reason   | [RemoveReason](#removereason-deprecated) | Yes  | Reason for deleting the notification.        |
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -1762,7 +1860,7 @@ Removes all notifications for a specified application. This API uses an asynchro
 
 | Name    | Type                 | Mandatory| Description                        |
 | -------- | --------------------- | ---- | ---------------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.                  |
+| bundle   | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.                  |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1833,7 +1931,13 @@ Removes all notifications for a specified application. This API uses a promise t
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | No  | Bundle information of the application. By default, this parameter is left empty, indicating that all notifications will be removed.|
+| bundle | [BundleOption](#bundleoptiondeprecated) | No  | Bundle information of the application. By default, this parameter is left empty, indicating that all notifications will be removed.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -1844,7 +1948,7 @@ import Base from '@ohos.base';
 Notification.removeAll().then(() => {
   console.info("removeAll success");
 }).catch((err: Base.BusinessError) => {
-  console.error(`removeAll failed, code is ${err}`);
+  ar
 });
 ```
 
@@ -2143,6 +2247,12 @@ Cancels notifications under a notification group of this application. This API u
 | --------- | ------ | ---- | -------------- |
 | groupName | string | Yes  | Name of the notification group.|
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -2172,7 +2282,7 @@ Removes notifications under a notification group of a specified application. Thi
 
 | Name     | Type                 | Mandatory| Description                        |
 | --------- | --------------------- | ---- | ---------------------------- |
-| bundle    | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.                  |
+| bundle    | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.                  |
 | groupName | string                | Yes  | Name of the notification group.              |
 | callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -2211,8 +2321,14 @@ Removes notifications under a notification group of a specified application. Thi
 
 | Name     | Type        | Mandatory| Description          |
 | --------- | ------------ | ---- | -------------- |
-| bundle    | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.    |
+| bundle    | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.    |
 | groupName | string       | Yes  | Name of the notification group.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -2244,7 +2360,7 @@ Sets the DND time. This API uses an asynchronous callback to return the result.
 
 | Name    | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
-| date     | [DoNotDisturbDate](#donotdisturbdate8)      | Yes  | DND time to set.        |
+| date     | [DoNotDisturbDate](#donotdisturbdate8-deprecated)      | Yes  | DND time to set.        |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -2285,7 +2401,13 @@ Sets the DND time. This API uses a promise to return the result.
 
 | Name| Type            | Mandatory| Description          |
 | ---- | ---------------- | ---- | -------------- |
-| date | [DoNotDisturbDate](#donotdisturbdate8) | Yes  | DND time to set.|
+| date | [DoNotDisturbDate](#donotdisturbdate8-deprecated) | Yes  | DND time to set.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -2321,7 +2443,7 @@ Sets the DND time for a specified user. This API uses an asynchronous callback t
 
 | Name    | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
-| date     | [DoNotDisturbDate](#donotdisturbdate8)      | Yes  | DND time to set.        |
+| date     | [DoNotDisturbDate](#donotdisturbdate8-deprecated)      | Yes  | DND time to set.        |
 | userId   | number                | Yes  | ID of the user for whom you want to set the DND time.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -2364,8 +2486,14 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 
 | Name  | Type            | Mandatory| Description          |
 | ------ | ---------------- | ---- | -------------- |
-| date   | [DoNotDisturbDate](#donotdisturbdate8) | Yes  | DND time to set.|
+| date   | [DoNotDisturbDate](#donotdisturbdate8-deprecated) | Yes  | DND time to set.|
 | userId | number           | Yes  | ID of the user for whom you want to set the DND time.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Example**
 
@@ -2404,7 +2532,7 @@ Obtains the DND time. This API uses an asynchronous callback to return the resul
 
 | Name    | Type                             | Mandatory| Description                  |
 | -------- | --------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8-deprecated)\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -2438,7 +2566,7 @@ Obtains the DND time. This API uses a promise to return the result.
 
 | Type                                             | Description                                     |
 | ------------------------------------------------- | ----------------------------------------- |
-| Promise\<[DoNotDisturbDate](#donotdisturbdate8)\> | Promise used to return the result.|
+| Promise\<[DoNotDisturbDate](#donotdisturbdate8-deprecated)\> | Promise used to return the result.|
 
 **Example**
 
@@ -2469,7 +2597,7 @@ Obtains the DND time of a specified user. This API uses an asynchronous callback
 
 | Name    | Type                             | Mandatory| Description                  |
 | -------- | --------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8-deprecated)\> | Yes  | Callback used to return the result.|
 | userId   | number                            | Yes  | User ID.|
 
 **Example**
@@ -2512,7 +2640,7 @@ Obtains the DND time of a specified user. This API uses a promise to return the 
 
 | Type                                             | Description                                     |
 | ------------------------------------------------- | ----------------------------------------- |
-| Promise\<[DoNotDisturbDate](#donotdisturbdate8)\> | Promise used to return the result.|
+| Promise\<[DoNotDisturbDate](#donotdisturbdate8-deprecated)\> | Promise used to return the result.|
 
 **Example**
 
@@ -2696,6 +2824,12 @@ Requests notification to be enabled for this application. This API uses a promis
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -2851,7 +2985,7 @@ Sets whether a specified application supports distributed notifications. This AP
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | Yes  | Bundle information of the application.                  |
+| bundle   | [BundleOption](#bundleoptiondeprecated)             | Yes  | Bundle information of the application.                  |
 | enable   | boolean                  | Yes  | Whether the device supports distributed notifications.                      |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -2893,7 +3027,7 @@ Sets whether a specified application supports distributed notifications. This AP
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | Yes  | Application bundle.               |
+| bundle   | [BundleOption](#bundleoptiondeprecated)             | Yes  | Application bundle.               |
 | enable   | boolean                  | Yes  | Whether the device supports distributed notifications.                 |
 
 **Example**
@@ -2931,7 +3065,7 @@ Obtains whether an application supports distributed notifications based on the b
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | Yes  | Application bundle.                    |
+| bundle   | [BundleOption](#bundleoptiondeprecated)             | Yes  | Application bundle.                    |
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -2970,7 +3104,7 @@ Checks whether a specified application supports distributed notifications. This 
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | Yes  | Application bundle.               |
+| bundle   | [BundleOption](#bundleoptiondeprecated)             | Yes  | Application bundle.               |
 
 **Return value**
 
@@ -3011,7 +3145,7 @@ Obtains the notification reminder type. This API uses an asynchronous callback t
 
 | Name  | Type                              | Mandatory| Description                      |
 | -------- | --------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype8)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype8-deprecated)\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -3045,7 +3179,7 @@ Obtains the notification reminder type. This API uses a promise to return the re
 
 | Type              | Description           |
 | ------------------ | --------------- |
-| Promise\<[DeviceRemindType](#deviceremindtype8)\> | Promise used to return the result.|
+| Promise\<[DeviceRemindType](#deviceremindtype8-deprecated)\> | Promise used to return the result.|
 
 **Example**
 
@@ -3099,7 +3233,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 
 | Name | Type                                  | Readable| Writable| Description                  |
 | ----- | -------------------------------------- | ---- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype8) | Yes  | Yes  | DND time type.|
+| type  | [DoNotDisturbType](#donotdisturbtype8-deprecated) | Yes  | Yes  | DND time type.|
 | begin | Date                                   | Yes  | Yes  | DND start time.|
 | end   | Date                                   | Yes  | Yes  | DND end time.|
 
@@ -3369,20 +3503,20 @@ Describes the notification slot.
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name                | Type                 | Readable| Writable| Description                                      |
-| -------------------- | --------------------- | ---- | --- | ------------------------------------------ |
-| type                 | [SlotType](#slottype) | Yes | Yes | Slot type.                                  |
+| Name                | Type                 | Readable| Writable| Description                    |
+| -------------------- | --------------------- | ---- | --- |------------------------|
+| type                 | [SlotType](#slottype) | Yes | Yes | Slot type.                 |
 | level                | number                | Yes | Yes | Notification level. If this parameter is not set, the default value is used based on the notification slot type.|
-| desc                 | string                | Yes | Yes | Notification slot description.                          |
-| badgeFlag            | boolean               | Yes | Yes | Whether to display the badge.                              |
-| bypassDnd            | boolean               | Yes | Yes | Whether to bypass DND mode in the system.              |
-| lockscreenVisibility | number                | Yes | Yes | Mode for displaying the notification on the lock screen.                |
-| vibrationEnabled     | boolean               | Yes | Yes | Whether vibration is enabled for the notification.                                |
-| sound                | string                | Yes | Yes | Notification alert tone.                                |
-| lightEnabled         | boolean               | Yes | Yes | Whether the indicator blinks for the notification.                                  |
-| lightColor           | number                | Yes | Yes | Indicator color of the notification.                                |
-| vibrationValues      | Array\<number\>       | Yes | Yes | Vibration mode of the notification.                              |
-| enabled<sup>9+</sup> | boolean               | Yes | No | Whether the notification slot is enabled.                     |
+| desc                 | string                | Yes | Yes | Notification slot description.             |
+| badgeFlag            | boolean               | Yes | Yes | Whether to display the badge.               |
+| bypassDnd            | boolean               | Yes | Yes | Whether to bypass DND mode in the system.      |
+| lockscreenVisibility | number                | Yes | Yes | Mode for displaying the notification on the lock screen.        |
+| vibrationEnabled     | boolean               | Yes | Yes | Whether vibration is enabled for the notification.                |
+| sound                | string                | Yes | Yes | Notification alert tone.                |
+| lightEnabled         | boolean               | Yes | Yes | Whether the indicator blinks for the notification.                 |
+| lightColor           | number                | Yes | Yes | Indicator color of the notification.                |
+| vibrationValues      | Array\<number\>       | Yes | Yes | Vibration mode of the notification.               |
+| enabled<sup>9+</sup> | boolean               | Yes | No | Whether the notification slot is enabled.          |
 
 
 ## NotificationSorting
@@ -3422,10 +3556,10 @@ Provides the information about the publisher for notification subscription.
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name       | Type           | Readable| Writable| Description                           |
-| ----------- | --------------- | --- | ---- | ------------------------------- |
-| bundleNames | Array\<string\> | Yes | Yes | Bundle names of the applications whose notifications are to be subscribed to.|
-| userId      | number          | Yes | Yes | User whose notifications are to be subscribed to.   |
+| Name                                               | Type           | Readable| Writable| Description                                                                                          |
+|---------------------------------------------------| --------------- | --- | ---- |----------------------------------------------------------------------------------------------|
+| bundleNames                                       | Array\<string\> | Yes | Yes | Bundle names of the applications whose notifications are to be subscribed to.                                                                          |
+| userId | number          | Yes | Yes | User whose notifications are to be subscribed to. You can obtain the user ID through [getCurrentOsAccount](js-apis-osAccount.md#getcurrentosaccount9).|
 
 
 ## NotificationTemplate<sup>8+</sup>

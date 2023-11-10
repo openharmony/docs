@@ -12,7 +12,6 @@ hid模块提供了访问蓝牙hid相关功能的方法。
 
 ```js
 import hid from '@ohos.bluetooth.hid';
-import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -33,6 +32,7 @@ createHidHostProfile(): HidHostProfile
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hidHostProfile = hid.createHidHostProfile();
     console.info('hidHost success');
@@ -79,6 +79,7 @@ connect(deviceId: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hidHostProfile = hid.createHidHostProfile();
     hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
@@ -120,6 +121,7 @@ disconnect(deviceId: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hidHostProfile = hid.createHidHostProfile();
     hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');

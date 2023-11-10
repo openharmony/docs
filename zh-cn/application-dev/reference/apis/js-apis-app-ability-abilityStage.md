@@ -38,7 +38,7 @@ class MyAbilityStage extends AbilityStage {
 
 ## AbilityStage.onAcceptWant
 
-onAcceptWant(want: Want): string;
+onAcceptWant(want: Want): string
 
 启动一个specified ability时触发的事件。
 
@@ -54,7 +54,7 @@ onAcceptWant(want: Want): string;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | string | 用户返回一个ability标识，如果之前启动过标识的ability，不创建新的实例并拉回栈顶，否则创建新的实例并启动。 | 
+  | string | 返回一个ability标识，如果之前启动过标识的ability，不创建新的实例并拉回栈顶，否则创建新的实例并启动。 | 
 
 **示例：**
     
@@ -70,10 +70,9 @@ class MyAbilityStage extends AbilityStage {
 }
 ```
 
-
 ## AbilityStage.onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
 环境变化通知接口，发生全局配置变更时回调。
 
@@ -100,7 +99,7 @@ class MyAbilityStage extends AbilityStage {
 
 ## AbilityStage.onMemoryLevel
 
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
 
@@ -127,7 +126,7 @@ class MyAbilityStage extends AbilityStage {
 
 ## AbilityStage.context
 
-context: AbilityStageContext;
+context: AbilityStageContext
 
 指示AbilityStage的上下文。
 

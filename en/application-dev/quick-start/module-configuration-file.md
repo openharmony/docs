@@ -28,7 +28,7 @@ This topic gives an overview of the **module.json5** configuration file. To star
     "abilities": [
       {
         "name": "EntryAbility",
-        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
         "label": "$string:EntryAbility_label",
@@ -257,7 +257,7 @@ The **abilities** tag represents the UIAbility configuration of the module, whic
 | minWindowWidth | Minimum window width supported by the UIAbility component, in vp. The minimum value is 0, and the value cannot be less than the minimum window width allowed by the platform or greater than the value of **maxWindowWidth**. For details about the window size, see [Constraints](../windowmanager/window-overview.md#constraints).| Number| Yes (initial value: minimum window width supported by the platform)|
 | maxWindowHeight | Maximum window height supported by the UIAbility component, in vp. The minimum value is 0, and the value cannot be less than the value of **minWindowHeight** or greater than the maximum window height allowed by the platform. For details about the window size, see [Constraints](../windowmanager/window-overview.md#constraints).| Number| Yes (initial value: maximum window height supported by the platform)|
 | minWindowHeight | Minimum window height supported by the UIAbility component, in vp. The minimum value is 0, and the value cannot be less than the minimum window height allowed by the platform or greater than the value of **maxWindowHeight**. For details about the window size, see [Constraints](../windowmanager/window-overview.md#constraints).| Number| Yes (initial value: minimum window height supported by the platform)|
-| excludeFromMissions | Whether the UIAbility component is displayed in the recent task list.<br>- **true**: displayed in the recent task list.<br>- **false**: not displayed in the recent task list.<br>**NOTE**<br>This attribute applies only to system applications and requires the **AllowAbilityExcludeFromMissions** privilege. Learn [Application Privilege Configuration](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).| Boolean| Yes (initial value: **false**)|
+| excludeFromMissions | Whether the UIAbility component is displayed in the recent task list.<br>- **true**: displayed in the recent task list.<br>- **false**: not displayed in the recent task list.<br>**NOTE**<br>This attribute applies only to system applications and requires the **AllowAbilityExcludeFromMissions** privilege. For details, see [Application Privilege Configuration](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).| Boolean| Yes (initial value: **false**)|
 | recoverable | Whether the application can be recovered to its previous state in case of a detected fault.<br>- **true**: The application can be recovered to its previous state in case of a detected fault.<br>- **false**: The application cannot be recovered to its previous state in case of a detected fault.| Boolean| Yes (initial value: **false**)|
 | unclearableMission | Whether the UIAbility component is unclearable in the recent tasks list.<br>- **true**: The UIAbility component is unclearable in the recent tasks list.<br>- **false**: The UIAbility component is clearable in the recent tasks list.<br>**NOTE**<br>This attribute works only after the [AllowMissionNotCleared](../../device-dev/subsystems/subsys-app-privilege-config-guide.md) privilege is obtained.| Boolean| Yes (initial value: **false**)|
 
@@ -268,7 +268,7 @@ Example of the **abilities** structure:
 {
   "abilities": [{
     "name": "EntryAbility",
-    "srcEntry": "./ets/entryability/EntryAbility.ts",
+    "srcEntry": "./ets/entryability/EntryAbility.ets",
     "launchType":"singleton",
     "description": "$string:description_main_ability",
     "icon": "$media:icon",
@@ -508,7 +508,7 @@ The **shortcut** information is identified in **metadata**, where:
        "abilities": [
          {
            "name": "EntryAbility",
-           "srcEntry": "./ets/entryability/EntryAbility.ts",
+           "srcEntry": "./ets/entryability/EntryAbility.ets",
            // ...
            "skills": [
              {

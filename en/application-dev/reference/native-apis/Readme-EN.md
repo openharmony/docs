@@ -12,7 +12,7 @@
   - [Rawfile](rawfile.md)
   - [RDB](_r_d_b.md)
   - [MindSpore](_mind_spore.md)
-  - [NeuralNeworkRuntime](_neural_nework_runtime.md)
+  - [NeuralNetworkRuntime](_neural_nework_runtime.md)
   - [AVCapability](_a_v_capability.md)
   - [AVMuxer](_a_v_muxer.md)
   - [AudioDecoder](_audio_decoder.md)

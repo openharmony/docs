@@ -60,7 +60,7 @@ This example implements a shared element transition for the scenario where, as a
     List() {
       // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
       if (!this.isExpand) {
-        Text ('I appear in normal state')
+        Text ('Collapse')
           .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.9) }))
       }
     
@@ -72,7 +72,7 @@ This example implements a shared element transition for the scenario where, as a
     
       // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
       if (this.isExpand) {
-        Text ('I appear in expanded state')
+        Text ('Expand')
           .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion() }))
       }
     }
@@ -93,11 +93,10 @@ import curves from '@ohos.curves';
 export struct share_transition_expand {
   // Declare the isExpand variable to be synced with the parent component.
   // Expand the component.
-  @Link isExpand: boolean;
+  @State isExpand: boolean = false;
   // Currently expanded component.
   @State curIndex: number = 0;
-  private listArray: Array<number> = [1, 2, 3, 4, 5, 6];
-
+  @State listArray: Array<number> = [1, 2, 3, 4, 5, 6];
   build() {
     Column() {
       List() {
@@ -178,13 +177,14 @@ export struct share_transition_expand {
 ```ts
 // Index.ets
 import { share_transition_expand } from './utils';
-let Tmp:Record<string,boolean> = { 'isExpand': false }
 @Entry
 @Component
 struct ShareTransitionDemo {
   @State isExpand: boolean = false;
-
+  @State Tmp:Record<string,boolean> = { 'isExpand': false }
+  private scroller: Scroller = new Scroller();
   build() {
+    Scroll(this.scroller) {
     Column() {
       Text('Sibling nodes appear and disappear.')
         .fontWeight(FontWeight.Bold)
@@ -192,12 +192,13 @@ struct ShareTransitionDemo {
         .fontColor(Color.Black)
         .margin(10)
 
-      share_transition_expand(Tmp)
+      share_transition_expand(this.Tmp)
 
     }
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Start)
+    }
   }
 }
 ```
@@ -230,8 +231,8 @@ import curves from '@ohos.curves';
 @Component
 export struct share_zIndex_expand {
   // Declare the isExpand variable to be synced with the parent component.
-  @Link isExpand: boolean;
-  @Link curIndex: number;
+  @State isExpand: boolean = false;
+  @State curIndex: number = 0;
   @State listArray: Array<number> = [1, 2, 3, 4, 5, 6];
   private parentScroller: Scroller = new Scroller(); // Upper-layer scroller
 
@@ -317,16 +318,13 @@ export struct share_zIndex_expand {
 ```ts
 // Index.ets
 import { share_zIndex_expand } from './utils'
-let isExpand: boolean = false;
-let curIndex: number = 0;
-let scroller: Scroller = new Scroller();
-let Sze:Record<string,boolean|number|Scroller> = { 'isExpand': isExpand, 'curIndex': curIndex, 'parentScroller': scroller }
 @Entry
 @Component
 struct ShareZIndexDemo {
   @State isExpand: boolean = false;
   @State curIndex: number = 0;
-  scroller: Scroller = new Scroller();
+  private scroller: Scroller = new Scroller();
+  @State Sze:Record<string,boolean|number|Scroller> = { 'isExpand': this.isExpand, 'curIndex': this.curIndex, 'parentScroller': this.scroller }
 
   build() {
     Scroll(this.scroller) {
@@ -338,7 +336,7 @@ struct ShareZIndexDemo {
           .zIndex(0)
           .margin(10)
 
-        share_zIndex_expand(Sze)
+        share_zIndex_expand(this.Sze)
       }
       .width('100%')
       .height('100%')
@@ -493,7 +491,7 @@ struct GeometryTransitionDemo {
       .height(150)
       .margin(20)
       // Modal transition component
-      .bindContentCover($$this.isPresent, this.MyBuilder, ModalTransition.NONE)
+      .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.NONE)
       // The <Row> component is assigned the ID share1 and configured to have the shared element effect.
       .geometryTransition('share1')
       .onClick(() => {
@@ -531,7 +529,9 @@ struct GeometryTransitionDemo {
 
 ```ts
 import curves from '@ohos.curves';
-
+class itTmp{
+  $rect:Array<number> = []
+}
 @Entry
 @Component
 struct AutoAchieveShareTransitionDemo {
@@ -589,8 +589,8 @@ struct AutoAchieveShareTransitionDemo {
             .onClick(() => {
               // Obtain the position and size of the corresponding component.
               let strJson = getInspectorByKey(item);
-              let obj:string = JSON.parse(strJson);
-              let rectInfo:string = JSON.parse('[' + obj.$rect + ']');
+              let rect:itTmp = JSON.parse(strJson);
+              let rectInfo:Array<object> = JSON.parse('[' + rect.$rect + ']');
               let rect_left:string = JSON.parse('[' + rectInfo[0] + ']')[0];
               let rect_top:string = JSON.parse('[' + rectInfo[0] + ']')[1];
               let rect_right:string = JSON.parse('[' + rectInfo[1] + ']')[0];
@@ -600,7 +600,7 @@ struct AutoAchieveShareTransitionDemo {
               };
 
               // Set the location, content, and status of the shared element.
-              this.rect_top = rect_top;
+              this.rect_top = Number(rect_top);
               this.item = item;
               this.expand = true;
               this.count += 1;
@@ -608,7 +608,7 @@ struct AutoAchieveShareTransitionDemo {
               animateTo({ curve: curves.springMotion() }, () => {
                 this.layoutHeight = 2772 / 3.5;
                 this.layoutWidth = '100%';
-                this.layoutOffset = -((rect_top - 136) / 3.5);
+                this.layoutOffset = -((Number(rect_top) - 136) / 3.5);
               })
             })
           })
@@ -646,6 +646,7 @@ struct AutoAchieveShareTransitionDemo {
             .fontSize(20)
             .fontColor(0xcccccc)
             .margin({ top: 20 })
+            .width(100)
 
         }
         .borderRadius(this.layoutWidth == '100%' ? 0 : 10)

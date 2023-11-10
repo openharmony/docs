@@ -17,6 +17,8 @@ createVpnConnection(context: AbilityContext): VpnConnection
 
 Creates a VPN connection.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Communication.NetManager.Vpn
 
 **Parameters**
@@ -37,7 +39,8 @@ For details about the error codes, see [VPN Error Codes](../errorcodes/errorcode
 
 | ID| Error Message        |
 | --------- | ---------------- |
-| 401       | Parameter error. |
+| 202       | Non-system applications use system APIs.         |
+| 401       | Parameter error.                                 |
 
 **Example**
 Stage model:

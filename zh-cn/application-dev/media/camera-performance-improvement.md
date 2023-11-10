@@ -31,14 +31,14 @@
 
 ![](figures/deferred-surface-sequence-diagram.png)
 
-[各类Context的获取方式](../application-models/application-context-stage.md)
+[BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
 
 ```ts
 import camera from '@ohos.multimedia.camera';
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function preview(context: featureAbility.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
-  const cameraManager: camera.CameraManager = camera.getCameraManager(context);
+async function preview(baseContext: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
+  const cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
   const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, photoSurfaceId);
@@ -82,15 +82,15 @@ async function preview(context: featureAbility.Context, cameraInfo: camera.Camer
 
 ![](figures/quick-thumbnail-sequence-diagram.png)
 
-[各类Context的获取方式](../application-models/application-context-stage.md)
+[BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function enableQuickThumbnail(context: featureAbility.Context, surfaceId: string, photoProfile: camera.Profile): Promise<void> {
-  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+async function enableQuickThumbnail(baseContext: common.BaseContext, surfaceId: string, photoProfile: camera.Profile): Promise<void> {
+  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   // 创建CaptureSession实例
   let captureSession: camera.CaptureSession = cameraManager.createCaptureSession();
@@ -148,17 +148,17 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
 ![](figures/prelaunch-sequence-diagram.png)
 
-[各类Context的获取方式](../application-models/application-context-stage.md)
+[BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
 
 - **桌面应用**
 
   ```ts
   import camera from '@ohos.multimedia.camera';
   import { BusinessError } from '@ohos.base';
-  import featureAbility from '@ohos.ability.featureAbility';
+  import common from '@ohos.app.ability.common';
 
-  function preLaunch(context: featureAbility.Context): void {
-    let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  function preLaunch(baseContext: common.BaseContext): void {
+    let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
     try {
       cameraManager.prelaunch();
     } catch (error) {
@@ -177,10 +177,10 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
   ```ts
   import camera from '@ohos.multimedia.camera';
   import { BusinessError } from '@ohos.base';
-  import featureAbility from '@ohos.ability.featureAbility';
+  import common from '@ohos.app.ability.common';
 
-  function setPreLaunchConfig(context: featureAbility.Context): void {
-    let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  function setPreLaunchConfig(baseContext: common.BaseContext): void {
+    let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
     let cameras: Array<camera.CameraDevice> = [];
     try {
       cameras = cameraManager.getSupportedCameras();

@@ -218,7 +218,7 @@ function tagFunc(name: string, value: string): boolean {
   return true;
 }
 
-function attFunc(name: xml.EventType, value: string): boolean {
+function attFunc(name: string, value: string): boolean {
   str = name + ' ' + value;
   console.info('attri-' + str);
   return true;
@@ -231,7 +231,7 @@ function tokenFunc(name: xml.EventType, value: xml.ParseInfo): boolean {
 }
 
 let options: xml.ParseOptions = {
-  supportDocType: true,
+  supportDoctype: true,
   ignoreNameSpace: true,
   tagValueCallbackFunction: tagFunc,
   attributeValueCallbackFunction: attFunc,

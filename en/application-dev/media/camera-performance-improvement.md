@@ -1,8 +1,8 @@
 # Using Performance Improvement Features (for System Applications Only)
 
-The camera startup performance is affected by time-consuming operations such as power-on of underlying components and initialization of the process pipeline. To improve the camera startup speed and thumbnail display speed, OpenHarmony introduces some features. The capabilities of these features are related to underlying components. You need to check whether these capabilities are supported before using them.
+The camera startup performance is affected by time-consuming operations such as power-on of underlying components and initialization of the process pipeline. To improve the camera startup speed and thumbnail display speed, OpenHarmony introduces some features. The capabilities of these features are related to underlying components. You need to check whether your underlying components support these capabilities before using the capabilities.
 
-These features are involved in the processes of starting the camera device, configuring streams, and taking photos. This topic describes the three scenarios.
+​These features are involved in the processes of starting the camera device, configuring streams, and taking photos. This topic describes the three scenarios.
 
 ## Deferred Stream Configuration
 
@@ -22,7 +22,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
-| createDeferredPreviewOutput(profile: Profile): Promise\<PreviewOutput> | Creates a deferred **PreviewOutput** instance and adds it to the data stream instead of a common **PreviewOutput** instance during stream configuration.|
+| createDeferredPreviewOutput(profile: Profile): Promise\<PreviewOutput> | Creates a deferred **PreviewOutput** instance and adds it, instead of a common **PreviewOutput** instance, to the data stream during stream configuration. |
 | addDeferredSurface(surfaceId: string): Promise\<void> | Adds a surface for delayed preview. This API can run after **session.commitConfig()** or **session.start()** is called.|
 
 ### Development Example
@@ -31,14 +31,14 @@ The figure below shows the recommended API call process.
 
 ![](figures/deferred-surface-sequence-diagram.png)
 
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
 
 ```ts
 import camera from '@ohos.multimedia.camera';
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function preview(context: featureAbility.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
-  const cameraManager: camera.CameraManager = camera.getCameraManager(context);
+async function preview(baseContext: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
+  const cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
   const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, photoSurfaceId);
@@ -82,15 +82,15 @@ The figure below shows the recommended API call process.
 
 ![](figures/quick-thumbnail-sequence-diagram.png)
 
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function enableQuickThumbnail(context: featureAbility.Context, surfaceId: string, photoProfile: camera.Profile): Promise<void> {
-  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+async function enableQuickThumbnail(baseContext: common.BaseContext, surfaceId: string, photoProfile: camera.Profile): Promise<void> {
+  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   // Create a CaptureSession instance.
   let captureSession: camera.CaptureSession = cameraManager.createCaptureSession();
@@ -127,7 +127,7 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
 Generally, the startup of the camera application is triggered when the user touches the camera icon on the home screen. The home screen senses the touch event and instructs the application manager to start the camera application. This takes a relatively long time. After the camera application is started, the camera startup process starts. A typical camera startup process includes starting the camera device, configuring a data stream, and starting the data stream, which is also time-consuming.
 
-The prelaunch feature triggers the action of starting the camera device before the camera application is started. In other words, when the user touches the camera icon on the home screen, the system starts the camera device. At this time, the camera application is not started yet. The figure below shows the camera application process before and after the prelaunch feature is introduced.
+​The prelaunch feature triggers the action of starting the camera device before the camera application is started. In other words, when the user touches the camera icon on the home screen, the system starts the camera device. At this time, the camera application is not started yet. The figure below shows the camera application process before and after the prelaunch feature is introduced.
 
 ![prelaunch-scene](figures/prelaunch-scene.png)
 
@@ -139,7 +139,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 | ---- | ---- |
 | isPrelaunchSupported(camera: CameraDevice) : boolean |  Checks whether the camera supports prelaunch.|
 | setPrelaunchConfig(prelaunchConfig: PrelaunchConfig) : void | Sets the prelaunch parameters.|
-| prelaunch() : void | Prelaunches the camera. This API is called when a user clicks the system camera icon to start the camera application.|
+| prelaunch() : void | Prelaunches the camera. This API is called when a user touches the system camera icon to start the camera application. |
 
 ### Development Example
 
@@ -147,17 +147,17 @@ The figure below shows the recommended API call process.
 
 ![](figures/prelaunch-sequence-diagram.png)
 
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
 
 - **Home screen**
 
   ```ts
   import camera from '@ohos.multimedia.camera';
   import { BusinessError } from '@ohos.base';
-  import featureAbility from '@ohos.ability.featureAbility';
+  import common from '@ohos.app.ability.common';
 
-  function preLaunch(context: featureAbility.Context): void {
-    let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  function preLaunch(baseContext: common.BaseContext): void {
+    let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
     try {
       cameraManager.prelaunch();
     } catch (error) {
@@ -176,10 +176,10 @@ There are multiple [methods for obtaining the context](../application-models/app
   ```ts
   import camera from '@ohos.multimedia.camera';
   import { BusinessError } from '@ohos.base';
-  import featureAbility from '@ohos.ability.featureAbility';
+  import common from '@ohos.app.ability.common';
 
-  function setPreLaunchConfig(context: featureAbility.Context): void {
-    let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  function setPreLaunchConfig(baseContext: common.BaseContext): void {
+    let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
     let cameras: Array<camera.CameraDevice> = [];
     try {
       cameras = cameraManager.getSupportedCameras();

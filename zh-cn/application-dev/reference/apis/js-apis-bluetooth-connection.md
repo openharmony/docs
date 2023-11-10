@@ -12,7 +12,6 @@ connection模块提供了对蓝牙操作和管理的方法。
 
 ```js
 import connection from '@ohos.bluetooth.connection';
-import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -46,6 +45,7 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     // 实际的地址可由扫描流程获取
     connection.pairDevice('XX:XX:XX:XX:XX:XX');
@@ -90,6 +90,7 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     // 实际的地址可由扫描流程获取
     connection.pairDevice('XX:XX:XX:XX:XX:XX');
@@ -132,6 +133,7 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: As
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     connection.pairCredibleDevice('68:13:24:79:4C:8C', connection.BluetoothTransport
         .TRANSPORT_BR_EDR, (err: BusinessError) => {
@@ -185,6 +187,7 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     connection.pairCredibleDevice('68:13:24:79:4C:8C', 0).then(() => {
         console.info('PairCredibleDevice');
@@ -229,6 +232,7 @@ cancelPairedDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     connection.cancelPairedDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -274,6 +278,7 @@ cancelPairedDevice(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     connection.cancelPairedDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -314,6 +319,7 @@ cancelPairingDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     connection.cancelPairingDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -359,6 +365,7 @@ cancelPairingDevice(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     connection.cancelPairingDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -402,6 +409,7 @@ getRemoteDeviceName(deviceId: string): string
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let remoteDeviceName: string = connection.getRemoteDeviceName('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -445,6 +453,7 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let remoteDeviceClass: connection.DeviceClass = connection.getRemoteDeviceClass('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -481,6 +490,7 @@ getLocalName(): string
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let localName: string = connection.getLocalName();
 } catch (err) {
@@ -518,6 +528,7 @@ getPairedDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let devices: Array<string> = connection.getPairedDevices();
 } catch (err) {
@@ -562,6 +573,7 @@ getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import constant from '@ohos.bluetooth.constant';
 try {
     let result: connection.ProfileConnectionState = connection.getProfileConnectionState(constant.ProfileId.PROFILE_A2DP_SOURCE);
@@ -601,6 +613,7 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认
 function onReceivePinRequiredEvent(data: connection.PinRequiredParam) { // data为配对请求的入参，配对请求参数
     console.info('pin required  = '+ JSON.stringify(data));
@@ -645,6 +658,7 @@ setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //callback
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError) => {
@@ -692,6 +706,7 @@ setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //promise
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345').then(() => {
@@ -735,6 +750,7 @@ setLocalName(name: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     connection.setLocalName('device_name');
 } catch (err) {
@@ -773,6 +789,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     // 设置为可连接可发现才可被远端设备扫描到，可以连接。
     connection.setBluetoothScanMode(connection.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
@@ -811,6 +828,7 @@ getBluetoothScanMode(): ScanMode
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let scanMode: connection.ScanMode = connection.getBluetoothScanMode();
 } catch (err) {
@@ -842,6 +860,7 @@ startBluetoothDiscovery(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<string>) {
     console.log('data length' + data.length);
 }
@@ -877,6 +896,7 @@ stopBluetoothDiscovery(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     connection.stopBluetoothDiscovery();
 } catch (err) {
@@ -916,6 +936,7 @@ getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): 
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: Array<connection.ProfileUuids>) => {
         console.info('getLocalProfileUuids, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
@@ -957,6 +978,7 @@ getLocalProfileUuids(): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX').then(() => {
         console.info('getLocalProfileUuids');
@@ -1001,6 +1023,7 @@ getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;Prof
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: Array<connection.ProfileUuids>) => {
         console.info('getRemoteProfileUuids, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
@@ -1049,6 +1072,7 @@ getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX').then(() => {
         console.info('getRemoteProfileUuids');
@@ -1089,6 +1113,7 @@ on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): 
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<string>) { // data为蓝牙设备地址集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -1128,6 +1153,7 @@ off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;)
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<string>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -1168,6 +1194,7 @@ on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: connection.BondStateParam) { // data为回调函数入参，表示配对的状态
     console.info('pair state = '+ JSON.stringify(data));
 }
@@ -1207,6 +1234,7 @@ off(type: 'bondStateChange', callback?: Callback&lt;BondStateParam&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: connection.BondStateParam) {
     console.info('bond state = '+ JSON.stringify(data));
 }
@@ -1247,6 +1275,7 @@ on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: connection.PinRequiredParam) { // data为配对请求参数
     console.info('pin required = '+ JSON.stringify(data));
 }
@@ -1286,6 +1315,7 @@ off(type: 'pinRequired', callback?: Callback&lt;PinRequiredParam&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: connection.PinRequiredParam) {
     console.info('pin required = '+ JSON.stringify(data));
 }

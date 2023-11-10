@@ -93,7 +93,7 @@ listFile(): Array\<FileInfo>
 
   | 类型 | 说明 |
   | --- | -- |
-  | [Array\<FileInfo>](#fileinfo) | FileInfo数组 |
+  |  Array [\<FileInfo>](#fileinfo) | FileInfo数组 |
 
 **错误码：**
 
@@ -104,13 +104,13 @@ listFile(): Array\<FileInfo>
   ```js
   let fileinfos = recent.listFile();
   for(let i = 0; i < fileinfos.length; i++){
-    console.info(fileinfos[i].uri);
-    console.info(fileinfos[i].srcPath);
-    console.info(fileinfos[i].fileName);
-    console.info(fileinfos[i].mode);
-    console.info(fileinfos[i].size);
-    console.info(fileinfos[i].mtime);
-    console.info(fileinfos[i].ctime);
+    console.info('uri: ' + fileinfos[i].uri);
+    console.info('srcPath: ' + fileinfos[i].srcPath);
+    console.info('fileName: ' + fileinfos[i].fileName);
+    console.info('mode: ' + fileinfos[i].mode);
+    console.info('size: ' + fileinfos[i].size);
+    console.info('mtime: ' + fileinfos[i].mtime);
+    console.info('ctime: ' + fileinfos[i].ctime);
   }
   ```
 
@@ -121,8 +121,6 @@ listFile(): Array\<FileInfo>
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
-
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
 | 名称 | 类型   | 可读 | 可写 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |

@@ -45,6 +45,7 @@
         int i = pdata->start;
         while(i<pdata->end){
             *oriData *= i;
+            i++;
         }
         return ret;
     }

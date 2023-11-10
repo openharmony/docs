@@ -2,10 +2,10 @@
 
 The **\<ListItem>** component displays specific items in the list. It must be used together with **\<List>**.
 
->  **NOTE**
+> **NOTE**
 >
->  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
+> - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> - The parent of this component can only be [\<List>](ts-container-list.md) or [\<ListItemGroup>](ts-container-listitemgroup.md).
 
 ## Child Components
 
@@ -23,7 +23,7 @@ ListItem(value?: ListItemOptions)
 
 | Name| Type                                     | Mandatory| Description                                                    |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ListItemOptions](#listitemoptions10) | No  | Value of the list item, containing the **style** parameter of the **ListItemStyle** enum type. |
+| value  | [ListItemOptions](#listitemoptions10) | No  | Value of the list item, containing the **style** parameter of the **ListItemStyle** enum type.|
 
 ### ListItem<sup>(deprecated)</sup>
 
@@ -74,9 +74,9 @@ This API is deprecated since API version 9.
 ## SwipeActionItem<sup>10+</sup>
 Describes the swipe action item.
 
-For a list in vertical layout, it refers to the delete item displayed on the left (or right) of the list item when the list item is swiped right (or left).
+For a list in vertical layout, it refers to the delete option displayed on the left (or right) of the list item when the list item is swiped right (or left).
 
-For a list in horizontal layout, it refers to the delete item displayed below (or above) the list item when the list item is swiped up (or down).
+For a list in horizontal layout, it refers to the delete option displayed below (or above) the list item when the list item is swiped up (or down).
 
 | Name                | Type                                                    | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -89,7 +89,7 @@ For a list in horizontal layout, it refers to the delete item displayed below (o
 
 | Name | Type                                 | Mandatory| Description                                                        |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| style | [ListItemStyle](#listitemstyle10) | No  | Style of the list item.<br>Default value: **ListItemStyle.NONE**<br>If this parameter is set to **ListItemStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemStyle.CARD**, the default card style is applied, but only when **ListItemGroupStyle.CARD** is set for [\<ListItemGroup>](ts-container-listitemgroup.md).<br>In the default card style, the list item has a 48 vp height and 100% width. It can be in focus, hover, press, selected, or disable style depending on the state.<br>**NOTE**<br>In the default card style, the list has its **listDirection** attribute fixed at **Axis.Vertical** and **alignListItem** attribute at **ListItemAlign.Center**.|
+| style | [ListItemStyle](#listitemstyle10) | No  | Style of the list item.<br>Default value: **ListItemStyle.NONE**<br>If this parameter is set to **ListItemStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemStyle.CARD**, the default card style is applied, but only when **ListItemGroupStyle.CARD** is set for [\<ListItemGroup>](ts-container-listitemgroup.md).<br>In the default card style, the list item has a 48 vp height and 100% width. It can be in focus, hover, press, selected, or disable style depending on the state.<br>**NOTE**<br>In the default card style, the list has its **listDirection** attribute fixed at **Axis.Vertical** and **alignListItem** attribute at **ListItemAlign.Center**.<br>If **ListItemStyle.CARD** is set and **ListItemGroupStyle.CARD** is not, only some card styles and functions are available.|
 
 ## ListItemStyle<sup>10+</sup>
 

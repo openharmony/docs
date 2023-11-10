@@ -47,6 +47,9 @@ export default class EntryAbility extends UIAbility {
                 let displayId = config.displayId;
                 let hasPointerDevice = config.hasPointerDevice;
             }
+            onMemoryLevel(level){
+                console.log('onMemoryLevel level: ${level}');
+            }
         };
         try {
             let applicationContext = this.context.getApplicationContext();

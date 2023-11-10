@@ -6,48 +6,48 @@ The OpenHarmony Universal KeyStore (HUKS) provides full lifecycle management cap
 
 With the Native APIs provided by the HUKS, you can:
 
-* Generate a key.
-* Import an external key to the HUKS.
-* Encrypt and decrypt data by using a key.
-* Generate a digital signature and verify a signature.
-* Generate a shared secrete through key agreement.
-* Derive a key.
-* Provide key attestation.
+* [Generate a key](#key-generation).
+* [Import a key](#key-import).
+* [Encrypt and decrypt data using a key](#encryption-and-decryption).
+* [Sign data and verify a signature](#signing-and-signature-verification).
+* [Generate a shared secret via key agreement](#key-agreement).
+* [Derive a key](#key-derivation).
+* [Attest a key](#key-attestation).
 
 ## Available APIs
 
 ### APIs for Key Use
 
-| API| Description|
+  | API| Description| 
 | -------- | -------- |
-| [OH_Huks_GetSdkVersion](../reference/native-apis/_huks_key_api.md#oh_huks_getsdkversion) (struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*sdkVersion) | Obtains the current HUKS SDK version. |
-| [OH_Huks_GenerateKeyItem](../reference/native-apis/_huks_key_api.md#oh_huks_generatekeyitem) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSetIn, struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSetOut) | Generates a key. |
-| [OH_Huks_ImportKeyItem](../reference/native-apis/_huks_key_api.md#oh_huks_importkeyitem) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*key) | Imports a key in plaintext. |
-| [OH_Huks_ImportWrappedKeyItem](../reference/native-apis/_huks_key_api.md#oh_huks_importwrappedkeyitem) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*wrappingKeyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*wrappedKeyData) | Imports a wrapped (encrypted) key. |
-| [OH_Huks_ExportPublicKeyItem](../reference/native-apis/_huks_key_api.md#oh_huks_exportpublickeyitem) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*key) | Exports a public key. |
-| [OH_Huks_DeleteKeyItem](../reference/native-apis/_huks_key_api.md#oh_huks_deletekeyitem) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet) | Deletes a key. |
-| [OH_Huks_GetKeyItemParamSet](../reference/native-apis/_huks_key_api.md#oh_huks_getkeyitemparamset) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSetIn, struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSetOut) | Obtains the parameter set of a key. |
-| [OH_Huks_IsKeyItemExist](../reference/native-apis/_huks_key_api.md#oh_huks_iskeyitemexist) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet) | Checks whether a key exists. |
-| [OH_Huks_AttestKeyItem](../reference/native-apis/_huks_key_api.md#oh_huks_attestkeyitem) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_CertChain](../reference/native-apis/_o_h___huks___cert_chain.md) \*certChain) | Obtains the key certificate chain. |
-| [OH_Huks_InitSession](../reference/native-apis/_huks_key_api.md#oh_huks_initsession) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*handle, struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*token) | Initializes the key session to obtain a handle (mandatory) and a challenge value (optional). |
-| [OH_Huks_UpdateSession](../reference/native-apis/_huks_key_api.md#oh_huks_updatesession) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*outData) | Adds data by segment for the key operation, performs the related key operation, and outputs the processed data. |
-| [OH_Huks_FinishSession](../reference/native-apis/_huks_key_api.md#oh_huks_finishsession) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*outData) | Finishes the key session. |
-| [OH_Huks_AbortSession](../reference/native-apis/_huks_key_api.md#oh_huks_abortsession) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet) | Aborts a key session. |
+| [OH_Huks_GetSdkVersion](../reference/native-apis/_huks_key_api.md#oh_huks_getsdkversion) (struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*sdkVersion) | Obtains the current HUKS SDK version. | 
+| [OH_Huks_GenerateKeyItem](../reference/native-apis/_huks_key_api.md#oh_huks_generatekeyitem) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSetIn, struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSetOut) | Generates a key. | 
+| [OH_Huks_ImportKeyItem](../reference/native-apis/_huks_key_api.md#oh_huks_importkeyitem) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*key) | Imports a key in plaintext. | 
+| [OH_Huks_ImportWrappedKeyItem](../reference/native-apis/_huks_key_api.md#oh_huks_importwrappedkeyitem) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*wrappingKeyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*wrappedKeyData) | Imports a wrapped (encrypted) key. | 
+| [OH_Huks_ExportPublicKeyItem](../reference/native-apis/_huks_key_api.md#oh_huks_exportpublickeyitem) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*key) | Exports a public key. | 
+| [OH_Huks_DeleteKeyItem](../reference/native-apis/_huks_key_api.md#oh_huks_deletekeyitem) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet) | Deletes a key. | 
+| [OH_Huks_GetKeyItemParamSet](../reference/native-apis/_huks_key_api.md#oh_huks_getkeyitemparamset) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSetIn, struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSetOut) | Obtains the parameter set of a key. | 
+| [OH_Huks_IsKeyItemExist](../reference/native-apis/_huks_key_api.md#oh_huks_iskeyitemexist) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet) | Checks whether a key exists. | 
+| [OH_Huks_AttestKeyItem](../reference/native-apis/_huks_key_api.md#oh_huks_attestkeyitem) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_CertChain](../reference/native-apis/_o_h___huks___cert_chain.md) \*certChain) | Obtains the key certificate chain. | 
+| [OH_Huks_InitSession](../reference/native-apis/_huks_key_api.md#oh_huks_initsession) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*handle, struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*token) | Initializes the key session to obtain a handle (mandatory) and a challenge value (optional). | 
+| [OH_Huks_UpdateSession](../reference/native-apis/_huks_key_api.md#oh_huks_updatesession) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*outData) | Adds data by segment for the key operation, performs the related key operation, and outputs the processed data. | 
+| [OH_Huks_FinishSession](../reference/native-apis/_huks_key_api.md#oh_huks_finishsession) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*outData) | Finishes the key session. | 
+| [OH_Huks_AbortSession](../reference/native-apis/_huks_key_api.md#oh_huks_abortsession) (const struct [OH_Huks_Blob](../reference/native-apis/_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet) | Aborts a key session. | 
 
 ### APIs for Key Parameters
 
-| API| Description|
+  | API| Description| 
 | -------- | -------- |
-| [OH_Huks_InitParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_initparamset) (struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*\*paramSet) | Initializes a parameter set. |
-| [OH_Huks_AddParams](../reference/native-apis/_huks_param_set_api.md#oh_huks_addparams) (struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Param](../reference/native-apis/_o_h___huks___param.md) \*params, uint32_t paramCnt) | Adds parameters to a parameter set. |
-| [OH_Huks_BuildParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_buildparamset) (struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*\*paramSet) | Builds a formal parameter set. |
-| [OH_Huks_FreeParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_freeparamset) (struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*\*paramSet) | Destroys a parameter set. |
-| [OH_Huks_CopyParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_copyparamset) (const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*fromParamSet, uint32_t fromParamSetSize, struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*\*paramSet) | Copies a parameter set (deep copy). |
-| [OH_Huks_GetParam](../reference/native-apis/_huks_param_set_api.md#oh_huks_getparam) (const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, uint32_t tag, struct [OH_Huks_Param](../reference/native-apis/_o_h___huks___param.md) \*\*param) | Obtains parameters from a parameter set. |
-| [OH_Huks_FreshParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_freshparamset) (struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, bool isCopy) | Refreshes data of the **Blob** type in a parameter set. |
-| [OH_Huks_IsParamSetTagValid](../reference/native-apis/_huks_param_set_api.md#oh_huks_isparamsettagvalid) (const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet) | Checks whether the parameters in a parameter set are valid. |
-| [OH_Huks_IsParamSetValid](../reference/native-apis/_huks_param_set_api.md#oh_huks_isparamsetvalid) (const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, uint32_t size) | Checks whether a parameter set is of the valid size. |
-| [OH_Huks_CheckParamMatch](../reference/native-apis/_huks_param_set_api.md#oh_huks_checkparammatch) (const struct [OH_Huks_Param](../reference/native-apis/_o_h___huks___param.md) \*baseParam, const struct [OH_Huks_Param](../reference/native-apis/_o_h___huks___param.md) \*param) | Compares whether two parameters are the same. |
+| [OH_Huks_InitParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_initparamset) (struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*\*paramSet) | Initializes a parameter set. | 
+| [OH_Huks_AddParams](../reference/native-apis/_huks_param_set_api.md#oh_huks_addparams) (struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Param](../reference/native-apis/_o_h___huks___param.md) \*params, uint32_t paramCnt) | Adds parameters to a parameter set. | 
+| [OH_Huks_BuildParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_buildparamset) (struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*\*paramSet) | Builds a formal parameter set. | 
+| [OH_Huks_FreeParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_freeparamset) (struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*\*paramSet) | Destroys a parameter set. | 
+| [OH_Huks_CopyParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_copyparamset) (const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*fromParamSet, uint32_t fromParamSetSize, struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*\*paramSet) | Copies a parameter set (deep copy). | 
+| [OH_Huks_GetParam](../reference/native-apis/_huks_param_set_api.md#oh_huks_getparam) (const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, uint32_t tag, struct [OH_Huks_Param](../reference/native-apis/_o_h___huks___param.md) \*\*param) | Obtains parameters from a parameter set. | 
+| [OH_Huks_FreshParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_freshparamset) (struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, bool isCopy) | Refreshes data of the **Blob** type in a parameter set. | 
+| [OH_Huks_IsParamSetTagValid](../reference/native-apis/_huks_param_set_api.md#oh_huks_isparamsettagvalid) (const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet) | Checks whether the parameters in a parameter set are valid. | 
+| [OH_Huks_IsParamSetValid](../reference/native-apis/_huks_param_set_api.md#oh_huks_isparamsetvalid) (const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, uint32_t size) | Checks whether a parameter set is of the valid size. | 
+| [OH_Huks_CheckParamMatch](../reference/native-apis/_huks_param_set_api.md#oh_huks_checkparammatch) (const struct [OH_Huks_Param](../reference/native-apis/_o_h___huks___param.md) \*baseParam, const struct [OH_Huks_Param](../reference/native-apis/_o_h___huks___param.md) \*param) | Compares whether two parameters are the same. | 
 
 ## How to Develop
 
@@ -913,7 +913,6 @@ The HUKS operates data based on key sessions. The general process is as follows:
 #### Encryption and Decryption
 
 **C++ Code Example**
-
 ```C++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
@@ -1107,7 +1106,6 @@ static napi_value EncDecKey(napi_env env, napi_callback_info info)
 #### Signing and Signature Verification
 
 **C++ Code Example**
-
 ```C++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
@@ -1722,7 +1720,7 @@ static napi_value DeriveKey(napi_env env, napi_callback_info info)
             break;
         }
         
-        /* 1. Generate Key */
+        /* 1. Generate a key. */
         ohResult = OH_Huks_GenerateKeyItem(&genAlias, genParamSet, nullptr);
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;

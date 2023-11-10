@@ -50,12 +50,14 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
   ```ts
   import backgroundTaskManager from '@ohos.backgroundTaskManager';
   import { BusinessError } from '@ohos.base';
-
+  
+  // 设置延迟任务挂起的原因
   let myReason = 'test requestSuspendDelay';
+  // 申请延迟任务
   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
       console.info("Request suspension delay will time out.");
   })
-
+  // 打印延迟任务信息
   let id = delayInfo.requestId;
   let time = delayInfo.actualDelayTime;
   console.info("The requestId is: " + id);
@@ -323,8 +325,10 @@ export default class EntryAbility extends UIAbility {
           abilityName: "EntryAbility"
         }
       ],
+      // 点击通知后，动作类型
       operationType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
+      // 点击通知后，动作执行属性
       wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
 
@@ -429,6 +433,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 
+// 取消长时任务
 backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
   console.info("Operation stopBackgroundRunning succeeded");
 }).catch((err: BusinessError) => {
@@ -448,6 +453,7 @@ import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // 取消长时任务
     backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
       console.info("Operation stopBackgroundRunning succeeded");
     }).catch((err: BusinessError) => {

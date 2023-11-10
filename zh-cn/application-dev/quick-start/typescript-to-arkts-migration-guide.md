@@ -1,12 +1,13 @@
 # 从TypeScript到ArkTS的适配规则
 
-本文通过提供简洁的约束指导如何将标准的TypeScript代码重构为ArkTS代码。尽管ArkTS是基于TypeScript设计的，但出于性能考虑，一些TypeScript的特性被限制了。因此，在ArkTS中，所有的TypeScript特性被分成三类。 
+本文通过提供简洁的约束，将标准的TypeScript代码重构为ArkTS代码。
+尽管ArkTS是基于TypeScript设计的，但出于性能考虑，一些TypeScript的特性被限制了。因此，在ArkTS中，所有的TypeScript特性被分成三类。 
 
 1. **完全支持的特性**：原始代码无需任何修改。根据测试，对于已遵循最佳TypeScript实践的项目，代码库中90%到97%的内容可以保持原封不动。
-2. **部分支持的特性**：需小规模的代码重构。例如，必须使用关键字`let`代替`var`来声明变量。
-3. **不支持的特性**：需大规模的代码重构。例如，不支持`any`类型，所有使用`any`的代码都需要引入显式类型。
+2. **部分支持的特性**：需小规模的重构代码。例如，必须使用关键字`let`代替`var`来声明变量。
+3. **不支持的特性**：需大规模的重构代码。例如，不支持`any`类型，所有使用`any`的代码都需要引入显式类型。
 
-本文将逐一介绍所有部分支持和所有不支持的特性，并提供代码重构的建议。根据本文提供的约束进行代码重构后代码仍为有效的TypeScript代码。对于没有提到的特性，则说明ArkTS完全支持。
+本文将介绍所有部分支持和所有不支持的特性，并提供重构代码的建议。根据本文提供的约束进行代码重构后代码仍为有效的TypeScript代码。对于没有提到的特性，则说明ArkTS完全支持。
 
 **示例**
 
@@ -22,7 +23,6 @@ function addTen(x: number): number {
 重构后的代码：
 
 ```typescript
-// 重要！重构后仍然是有效的TypeScript代码。
 function addTen(x: number): number {
   let ten = 10
   return x + ten
@@ -53,29 +53,21 @@ function addTen(x: number): number {
 
 ArkTS在设计之初，就确定了如下目标：
 
-- ArkTS代码需非常容易阅读和理解，因为代码的阅读频率高于编写频率。
+- 因为代码的阅读频率高于编写频率，ArkTS代码需非常容易阅读和理解。
 - 以最小功耗快速执行代码，这点对于移动设备（ArkTS的目标设备）来说至关重要。
 
-静态类型是ArkTS最重要的特性之一。使用静态类型有助于实现上述两个目标。如果程序采用静态类型，即所有类型在编译时都是已知的，那么开发者就能够容易理解代码中使用了哪些数据结构。同时，由于所有类型在程序实际运行前都是已知的，编译器可以提前验证代码的正确性，从而可以减少运行时的类型检查，有助于性能提升。
+静态类型是ArkTS最重要的特性之一。使用静态类型有助于实现上述两个目标。如果程序采用静态类型，即所有类型在编译时都是已知的，那么开发者就能够容易理解代码中使用了哪些数据结构。同时，由于所有类型在程序实际运行前都是已知的，编译器可以提前验证代码的正确性，从而可以减少运行时的类型检查，有助于提升性能。
 
 基于上述考虑，ArkTS中禁止使用`any`类型。
 
 **示例**
 
 ```typescript
-//
 // 不支持：
-//
-
 let res: any = some_api_function('hello', 'world')
-
 // `res`是什么？错误代码的数字？字符串？对象？
 // 该如何处理它？
-
-//
 // 支持：
-//
-
 class CallResult {
   public succeeded(): boolean { ... }
   public errorMessage(): string { ... }
@@ -87,17 +79,17 @@ if (!res.succeeded()) {
 }
 ```
 
-`any`类型在TypeScript中并不常见，只有大约1%的TypeScript代码库使用。一些代码检查工具（例如ESLint）也制定一系列规则来禁止使用`any`。因此，虽然禁止`any`将导致代码重构，但重构量很小，有助于整体性能提升，因此这个约束是非常有价值的。
+`any`类型在TypeScript中并不常见，只有大约1%的TypeScript代码库使用。一些代码检查工具（例如ESLint）也制定一系列规则来禁止使用`any`。因此，虽然禁止`any`将导致代码重构，但重构量很小，有助于整体性能提升。
 
 ### 禁止在运行时变更对象布局
 
 为实现最佳性能，ArkTS要求在程序执行期间不能更改对象的布局。换句话说，ArkTS禁止以下行为：
 
-- 向对象中添加新的属性或方法
-- 从对象中删除已有的属性或方法
-- 将任意类型的值赋值给对象属性
+- 向对象中添加新的属性或方法。
+- 从对象中删除已有的属性或方法。
+- 将任意类型的值赋值给对象属性。
 
-TypeScript编译器已经禁止了许多此类操作。然而，有些操作还是有可能绕过编译器的，例如，使用ArkTS不支持的`as any`进行转换。（详见下面的示例。）
+TypeScript编译器已经禁止了许多此类操作。然而，有些操作还是有可能绕过编译器的，例如，使用ArkTS不支持的`as any`进行转换。
 
 **示例**
 
@@ -112,23 +104,23 @@ class Point {
   }
 }
 
-// 无法从对象中删除某个属性，从而确保所有Point对象都具有属性x：
+// 无法从对象中删除某个属性，从而确保所有Point对象都具有属性x
 let p1 = new Point(1.0, 1.0)
 delete p1.x           // 在TypeScript和ArkTS中，都会产生编译时错误
 delete (p1 as any).x  // 在TypeScript中不会报错；在ArkTS中会产生编译时错误
 
-// Point类没有定义命名为z的属性，在程序运行时也无法添加该属性：
+// Point类没有定义命名为z的属性，在程序运行时也无法添加该属性
 let p2 = new Point(2.0, 2.0)
 p2.z = 'Label';           // 在TypeScript和ArkTS中，都会产生编译时错误
 (p2 as any).z = 'Label'   // 在TypeScript中不会报错；在ArkTS中会产生编译时错误
 
-// 类的定义确保了所有Point对象只有属性x和y，并且无法被添加其他属性：
+// 类的定义确保了所有Point对象只有属性x和y，并且无法被添加其他属性
 let p3 = new Point(3.0, 3.0)
 let prop = Symbol();     // 在TypeScript中不会报错；在ArkTS中会产生编译时错误
 (p3 as any)[prop] = p3.x // 在TypeScript中不会报错；在ArkTS中会产生编译时错误
 p3[prop] = p3.x          // 在TypeScript和ArkTS中，都会产生编译时错误
 
-// 类的定义确保了所有Point对象的属性x和y都具有number类型，因此，无法将其他类型的值赋值给它们：
+// 类的定义确保了所有Point对象的属性x和y都具有number类型，因此，无法将其他类型的值赋值给它们
 let p4 = new Point(4.0, 4.0)
 p4.x = 'Hello!';         // 在TypeScript和ArkTS中，都会产生编译时错误
 (p4 as any).x = 'Hello!' // 在TypeScript中不会报错；在ArkTS中会产生编译时错误
@@ -146,7 +138,7 @@ console.log('Distance between p5 and p6: ' + distance(p5, p6))
 
 修改对象布局会影响代码的可读性以及运行时性能。从开发者的角度来说，在某处定义类，然后又在其他地方修改实际的对象布局，很容易引起困惑乃至引入错误。此外，这点还需要额外的运行时支持，增加了执行开销。这一点与静态类型的约束也冲突：既然已决定使用显式类型，为什么还需要添加或删除属性呢？
 
-当前，只有少数项目允许在运行时变更对象布局，一些常用的代码检查工具也增加了相应的限制规则。这个约束只会导致少量代码重构，但对性能提升会有积极的影响。
+当前，只有少数项目允许在运行时变更对象布局，一些常用的代码检查工具也增加了相应的限制规则。这个约束只会导致少量代码重构，但会提升性能。
 
 ### 限制运算符的语义
 
@@ -186,13 +178,13 @@ class U {
 }
 ```
 
-我们能把类型为`T`的值赋给类型为`U`的变量吗？
+能把类型为`T`的值赋给类型为`U`的变量吗？
 
 ```typescript
 let u: U = new T() // 是否允许？
 ```
 
-我们能把类型为`T`的值传递给接受类型为`U`的参数的函数吗？
+能把类型为`T`的值传递给接受类型为`U`的参数的函数吗？
 
 ```typescript
 function greeter(u: U) {
@@ -392,10 +384,6 @@ scoped_let = 5 //编译时错误
 
 ArkTS不支持`any`和`unknown`类型。显式指定具体类型。
 
-在ArkTS的跨语言调用TS/JS代码的场景中，如果无法标注类型，那么可以使用`ESObject`来标注动态对象（来自TS/JS代码的对象）的类型。
-使用`ESObject`会消除类型检查，增加代码错误的风险，增加额外的运行时开销，所以应尽可能避免使用`ESObject`。
-使用`ESObject`将会产生一条*警告*。
-
 **TypeScript**
 
 ```typescript
@@ -406,10 +394,6 @@ value1 = 42
 let value2: unknown
 value2 = true
 value2 = 42
-
-// 由于external_function定义在JS代码中，无法获知其返回值类型信息
-let something: any = external_function()
-console.log('someProperty of something:', something.someProperty)
 ```
 
 **ArkTS**
@@ -419,15 +403,11 @@ let value_b: boolean = true // 或者 let value_b = true
 let value_n: number = 42 // 或者 let value_n = 42
 let value_o1: Object = true
 let value_o2: Object = 42
-
-// 由于external_function定义在JS代码中，无法获知其返回值类型信息
-let something: ESObject = external_function()
-console.log('someProperty of something:', something.someProperty)
 ```
 
 **相关约束**
 
-* 强制进行严格类型检查
+强制进行严格类型检查
 
 ### 使用`class`而非具有call signature的类型
 
@@ -472,7 +452,7 @@ doSomething(new DescribableFunction())
 
 **相关约束**
 
-* 使用class而非具有构造签名的类型
+使用class而非具有构造签名的类型
 
 ### 使用`class`而非具有构造签名的类型
 
@@ -513,7 +493,7 @@ function fn(s: string): SomeObject {
 
 **相关约束**
 
-* 使用class而非具有call signature的类型
+使用class而非具有call signature的类型
 
 ### 仅支持一个静态块
 
@@ -521,7 +501,7 @@ function fn(s: string): SomeObject {
 
 **级别：错误**
 
-ArkTS不允许类中有多个静态块。如果存在多个静态块语句，请合并到一个静态块中。
+ArkTS不允许类中有多个静态块，如果存在多个静态块语句，请合并到一个静态块中。
 
 **TypeScript**
 
@@ -557,7 +537,7 @@ class C {
 
 **级别：错误**
 
-ArkTS不允许index signature。改用数组。
+ArkTS不允许index signature，改用数组。
 
 **TypeScript**
 
@@ -592,7 +572,7 @@ const secondItem = myArray.f[1]
 
 **级别：错误**
 
-目前ArkTS不支持intersection type。可以使用继承作为替代方案。
+目前ArkTS不支持intersection type，可以使用继承作为替代方案。
 
 **TypeScript**
 
@@ -632,7 +612,7 @@ interface Employee extends Identity,  Contact {}
 
 **级别：错误**
 
-ArkTS不支持`this`类型。改用显式具体类型。
+ArkTS不支持`this`类型，改用显式具体类型。
 
 **TypeScript**
 
@@ -672,13 +652,13 @@ class C {
 
 **级别：错误**
 
-ArkTS不支持条件类型别名。引入带显式约束的新类型，或使用`Object`重写逻辑。不支持`infer`关键字。
+ArkTS不支持条件类型别名，引入带显式约束的新类型，或使用`Object`重写逻辑。
+不支持`infer`关键字。
 
 **TypeScript**
 
 ```typescript
 type X<T> = T extends number ? T: never
-
 type Y<T> = T extends Array<infer Item> ? Item: never
 ```
 
@@ -688,7 +668,7 @@ type Y<T> = T extends Array<infer Item> ? Item: never
 // 在类型别名中提供显式约束
 type X1<T extends number> = T
 
-// 用Object重写，这种情况下，类型控制较少，需要更多的类型检查以确保安全
+// 用Object重写，类型控制较少，需要更多的类型检查以确保安全
 type X2<T> = Object
 
 // Item必须作为泛型参数使用，并能正确实例化
@@ -777,7 +757,7 @@ function fn(i: I) {
 
 **相关约束**
 
-* 使用class而非具有构造签名的类型
+使用class而非具有构造签名的类型
 
 ### 不支持索引访问类型
 
@@ -972,7 +952,8 @@ foo(new Y())
 
 **级别：错误**
 
-如果可以从传递给泛型函数的参数中推断出具体类型，ArkTS允许省略泛型类型实参。否则，省略泛型类型实参会发生编译时错误。禁止仅基于泛型函数返回类型推断泛型类型参数。
+如果可以从传递给泛型函数的参数中推断出具体类型，ArkTS允许省略泛型类型实参。否则，省略泛型类型实参会发生编译时错误。
+禁止仅基于泛型函数返回类型推断泛型类型参数。
 
 **TypeScript**
 
@@ -981,7 +962,7 @@ function choose<T>(x: T, y: T): T {
   return Math.random() < 0.5 ? x: y
 }
 
-let x = choose(10, 20)   // OK，推断choose<number>(...)
+let x = choose(10, 20)   // 推断choose<number>(...)
 let y = choose('10', 20) // 编译时错误
 
 function greet<T>(): T {
@@ -997,7 +978,7 @@ function choose<T>(x: T, y: T): T {
   return Math.random() < 0.5 ? x: y
 }
 
-let x = choose(10, 20)   // OK，推断choose<number>(...)
+let x = choose(10, 20)   // 推断choose<number>(...)
 let y = choose('10', 20) // 编译时错误
 
 function greet<T>(): T {
@@ -1012,7 +993,7 @@ let z = greet<string>()
 
 **级别：错误**
 
-当前ArkTS不支持正则字面量。请使用`RegExp()`创建正则对象。
+ArkTS不支持正则字面量，请使用`RegExp()`创建正则对象。
 
 **TypeScript**
 
@@ -1286,7 +1267,7 @@ let a2: C[] = [{n: 1, s: '1'}, {n: 2, s: '2'}]    // a2的类型为“C[]”
 
 **级别：错误**
 
-ArkTS不支持函数表达式。使用箭头函数。
+ArkTS不支持函数表达式，使用箭头函数。
 
 **TypeScript**
 
@@ -1336,7 +1317,7 @@ generic_func<String>('string')
 
 **级别：错误**
 
-ArkTS不支持使用类表达式。必须显式声明一个类。
+ArkTS不支持使用类表达式，必须显式声明一个类。
 
 **TypeScript**
 
@@ -1370,7 +1351,7 @@ class Rectangle {
 const rectangle = new Rectangle(0.0, 0.0)
 ```
 
-### 类不允许被`implements`
+### 类不允许`implements`
 
 **规则：**`arkts-implements-only-iface`
 
@@ -1467,7 +1448,7 @@ c3.foo() // Extra foo
 
 **级别：错误**
 
-在ArkTS中，`as`关键字是类型转换的唯一语法。错误的类型转换会导致编译时错误或者运行时抛出`ClassCastException`异常。不支持使用`<type>`语法进行类型转换。
+在ArkTS中，`as`关键字是类型转换的唯一语法，错误的类型转换会导致编译时错误或者运行时抛出`ClassCastException`异常。ArkTS不支持使用`<type>`语法进行类型转换。
 
 当需要将`primitive`类型（如`number`或`boolean`）转换成引用类型时，请使用`new`表达式。
 
@@ -1626,7 +1607,7 @@ p.y = null
 
 **级别：错误**
 
-ArkTS仅支持在表达式中使用`typeof`运算符。不允许使用`typeof`作为类型。
+ArkTS仅支持在表达式中使用`typeof`运算符，不允许使用`typeof`作为类型。
 
 **TypeScript**
 
@@ -1749,7 +1730,7 @@ for (let i = 1; i < data.length; ++i) {
 
 **级别：错误**
 
-为了方便理解执行顺序，在ArkTS中，逗号运算符`,`仅适用于`for`循环语句中。注意与声明变量、函数参数传递时的逗号分隔符不同。
+为了方便理解执行顺序，在ArkTS中，逗号运算符仅适用于`for`循环语句中。注意与声明变量、函数参数传递时的逗号分隔符不同。
 
 **TypeScript**
 
@@ -1812,7 +1793,7 @@ function returnZeroPoint(): Point {
   return new Point()
 }
 
-// 创建一个局部变量来处理每个字段：
+// 创建一个局部变量来处理每个字段
 let zp = returnZeroPoint()
 let x = zp.x
 let y = zp.y
@@ -1830,7 +1811,7 @@ let y = zp.y
 
 ```typescript
 try {
-  // 一些代码
+  // ...
 } catch (a: unknown) {
   // 处理异常
 }
@@ -1840,7 +1821,7 @@ try {
 
 ```typescript
 try {
-  // 一些代码
+  // ...
 } catch (a) {
   // 处理异常
 }
@@ -1848,7 +1829,7 @@ try {
 
 **相关约束**
 
-* 限制throw语句中表达式的类型
+限制throw语句中表达式的类型
 
 ### 不支持`for .. in`
 
@@ -1882,7 +1863,7 @@ for (let i = 0; i < a.length; ++i) {
 
 **级别：错误**
 
-ArkTS不支持映射类型。使用其他语法来表示相同的语义。
+ArkTS不支持映射类型，使用其他语法来表示相同的语义。
 
 **TypeScript**
 
@@ -1912,7 +1893,7 @@ class CFlags {
 
 **级别：错误**
 
-ArkTS不支持`with`语句。使用其他语法来表示相同的语义。
+ArkTS不支持`with`语句，使用其他语法来表示相同的语义。
 
 **TypeScript**
 
@@ -2053,21 +2034,21 @@ function main() {
 
 **级别：错误**
 
-ArkTS不支持在函数内声明函数。改用lambda函数。
+ArkTS不支持在函数内声明函数，改用lambda函数。
 
 **TypeScript**
 
 ```typescript
 function addNum(a: number, b: number): void {
 
-  // 函数内声明函数：
+  // 函数内声明函数
   function logToConsole(message: String): void {
     console.log(message)
   }
 
   let result = a + b
 
-  // 调用函数：
+  // 调用函数
   logToConsole('result is ' + result)
 }
 ```
@@ -2076,7 +2057,7 @@ function addNum(a: number, b: number): void {
 
 ```typescript
 function addNum(a: number, b: number): void {
-  // 使用lambda函数代替声明函数：
+  // 使用lambda函数代替声明函数
   let logToConsole: (message: string) => void = (message: string): void => {
     console.log(message)
   }
@@ -2093,7 +2074,7 @@ function addNum(a: number, b: number): void {
 
 **级别：错误**
 
-ArkTS不支持在函数和类的静态方法中使用`this`。只能在类的实例方法中使用`this`。
+ArkTS不支持在函数和类的静态方法中使用`this`，只能在类的实例方法中使用`this`。
 
 **TypeScript**
 
@@ -2133,7 +2114,7 @@ function main(): void {
 
 **相关约束**
 
-* 不支持Function.apply、Function.bind以及Function.call
+不支持Function.apply、Function.bind以及Function.call
 
 ### 不支持生成器函数
 
@@ -2141,7 +2122,7 @@ function main(): void {
 
 **级别：错误**
 
-目前ArkTS不支持生成器函数。使用`async`或`await`机制进行并行任务处理。
+目前ArkTS不支持生成器函数，使用`async`或`await`机制进行并行任务处理。
 
 **TypeScript**
 
@@ -2161,7 +2142,7 @@ for (let num of counter(1, 5)) {
 
 ```typescript
 async function complexNumberProcessing(str: string): Promise<string> {
-  //一些代码逻辑
+  // ...
   return str
 }
 
@@ -2451,7 +2432,7 @@ interface Document {
 
 **级别：错误**
 
-ArkTS不支持接口继承类。接口只能继承接口。
+ArkTS不支持接口继承类，接口只能继承接口。
 
 **TypeScript**
 
@@ -2483,7 +2464,7 @@ interface SelectableControl extends Control {
 
 **级别：错误**
 
-ArkTS不支持使用构造函数类型。改用lambda函数。
+ArkTS不支持使用构造函数类型，改用lambda函数。
 
 **TypeScript**
 
@@ -2614,7 +2595,7 @@ enum Color {
 
 **级别：错误**
 
-ArkTS不支持将命名空间用作对象。可以使用类或模块。
+ArkTS不支持将命名空间用作对象，可以使用类或模块。
 
 **TypeScript**
 
@@ -2665,39 +2646,9 @@ namespace A {
   }
 }
 
-// 调用初始化函数来执行：
+// 调用初始化函数来执行
 A.init()
 ```
-
-### 不支持`import type`
-
-**规则：**`arkts-no-special-imports`
-
-**级别：错误**
-
-ArkTS不支持`import type`。改为`import`。
-
-**TypeScript**
-
-```typescript
-// 通用导入语法
-import { APIResponseType } from 'api'
-
-// 导入类型
-import type { APIResponseType } from 'api'
-```
-
-**ArkTS**
-
-```typescript
-import { APIResponseType } from 'api'
-```
-
-**相关约束**
-
-* 不支持仅为副作用而导入一个模块
-* 不支持import default as ...
-* 不支持require和import赋值表达式
 
 ### 不支持仅为副作用而导入一个模块
 
@@ -2716,7 +2667,7 @@ export const EXAMPLE_VALUE = 42
 // 设置全局变量
 window.MY_GLOBAL_VAR = 'Hello, world!'
 
-//==== 使用此模块：
+// === 使用此模块：
 import 'path/to/module'
 ```
 
@@ -2732,7 +2683,7 @@ import * as ns from 'path/to/module'
 
 **级别：错误**
 
-ArkTS不支持`import default as ...`语法。使用显式的`import ... from ...`语法。
+ArkTS不支持`import default as ...`语法，使用显式的`import ... from ...`语法。
 
 **TypeScript**
 
@@ -2752,7 +2703,7 @@ import d from 'mod'
 
 **级别：错误**
 
-ArkTS不支持通过`require`导入，也不支持`import`赋值表达式。改用`import`。
+ArkTS不支持通过`require`导入，也不支持`import`赋值表达式，改用`import`。
 
 **TypeScript**
 
@@ -2768,7 +2719,7 @@ import * as m from 'mod'
 
 **相关约束**
 
-* 不支持export = ...语法 
+不支持export = ...语法 
 
 ### 不支持`export = ...`语法
 
@@ -2776,7 +2727,7 @@ import * as m from 'mod'
 
 **级别：错误**
 
-ArkTS不支持`export = ...`语法。改用常规的`export`或`import`。
+ArkTS不支持`export = ...`语法，改用常规的`export`或`import`。
 
 **TypeScript**
 
@@ -2812,45 +2763,7 @@ let p = Pt.Point.origin
 
 **相关约束**
 
-* 不支持require和import赋值表达式
-
-### 不支持`export type`
-**规则：**`arkts-no-special-exports`
-
-**级别：错误**
-
-ArkTS不支持`export type`。改用`export`。
-
-**TypeScript**
-
-```typescript
-// 显式导出class：
-export class Class1 {
-  // ...
-}
-
-// 声明一个类，之后通过`export type`导出
-class Class2 {
-  // ...
-}
-
-// 不支持
-export type { Class2 }
-```
-
-**ArkTS**
-
-```typescript
-// 显式导出class：
-export class Class1 {
-  // ...
-}
-
-// 显式导出class：
-export class Class2 {
-  // ...
-}
-```
+不支持require和import赋值表达式
 
 ### 不支持ambient module声明
 
@@ -2858,7 +2771,7 @@ export class Class2 {
 
 **级别：错误**
 
-ArkTS不支持ambient module声明，因为ArkTS本身有与JavaScript交互的机制。
+由于ArkTS本身有与JavaScript交互的机制，ArkTS不支持ambient module声明。
 
 **TypeScript**
 
@@ -2877,7 +2790,7 @@ import { normalize } from 'someModule'
 
 **相关约束**
 
-* 不支持在模块名中使用通配符
+不支持在模块名中使用通配符
 
 ### 不支持在模块名中使用通配符
 
@@ -2952,7 +2865,7 @@ mathLib.isPrime(2)
 
 **相关约束**
 
-* 不支持在模块名中使用通配符
+不支持在模块名中使用通配符
 
 ### 不支持`new.target`
 
@@ -2964,7 +2877,7 @@ ArkTS没有原型的概念，因此不支持`new.target`。此特性不符合静
 
 **相关约束**
 
-* 不支持在原型上赋值
+不支持在原型上赋值
 
 ### 不支持确定赋值断言
 
@@ -3042,7 +2955,7 @@ class C {
 
 **相关约束**
 
-* 不支持new.target
+不支持new.target
 
 ### 不支持`globalThis`
 
@@ -3059,19 +2972,19 @@ class C {
 var abc = 100
 
 // 从上面引用'abc'
-globalThis.abc = 200
+let x = globalThis.abc
 ```
 
 **ArkTS**
 
 ```typescript
 // file1
-export let abc: number = 0
+export let abc: number = 100
 
 // file2
 import * as M from 'file1'
 
-M.abc = 200
+let x = M.abc
 ```
 
 **相关约束**
@@ -3099,9 +3012,9 @@ ArkTS仅支持`Partial`、`Required`、`Readonly`和`Record`，不支持TypeScri
 
 **相关约束**
 
-* 不支持globalThis
+不支持globalThis
 
-### 不支持`Function.apply`、`Function.bind`以及`Function.call`
+### 不支持`Function.apply`、`Function.bind`和`Function.call`
 
 **规则：**`arkts-no-func-apply-bind-call`
 
@@ -3111,7 +3024,7 @@ ArkTS不允许使用标准库函数`Function.apply`、`Function.bind`以及`Func
 
 **相关约束**
 
-* 不支持在函数中使用this
+不支持在函数中使用this
 
 ### 不支持`as const`断言
 
@@ -3155,7 +3068,7 @@ let z: Label = {
 
 ### 不支持导入断言
 
-**规则：** `arkts-no-import-assertions`
+**规则：**`arkts-no-import-assertions`
 
 **级别：错误**
 
@@ -3188,8 +3101,7 @@ import { something } from 'module'
 
 ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部分接口与动态特性有关。ArkTS中禁止使用以下接口：
 
-全局对象的属性和方法：`eval`、
-`Infinity`、`NaN`、`isFinite`、`isNaN`、`parseFloat`、`parseInt`
+全局对象的属性和方法：`eval`
 
 `Object`：`__proto__`、`__defineGetter__`、`__defineSetter__`、
 `__lookupGetter__`、`__lookupSetter__`、`assign`、`create`、
@@ -3210,8 +3122,6 @@ ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部�
 `handler.getOwnPropertyDescriptor()`、`handler.getPrototypeOf()`、
 `handler.has()`、`handler.isExtensible()`、`handler.ownKeys()`、
 `handler.preventExtensions()`、`handler.set()`、`handler.setPrototypeOf()`
-
-`ArrayBuffer`：`isView`
 
 **相关约束**
 
@@ -3237,11 +3147,6 @@ ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部�
 **TypeScript**
 
 ```typescript
-class C {
-  n: number // 只有在开启strictPropertyInitialization选项时会产生编译时错误
-  s: string // 只有在开启strictPropertyInitialization选项时会产生编译时错误
-}
-
 // 只有在开启noImplicitReturns选项时会产生编译时错误
 function foo(s: string): string {
   if (s != '') {
@@ -3258,11 +3163,6 @@ let n: number = null // 只有在开启strictNullChecks选项时会产生编译�
 **ArkTS**
 
 ```typescript
-class C {
-  n: number = 0
-  s: string = ''
-}
-
 function foo(s: string): string {
   console.log(s)
   return s
@@ -3270,6 +3170,41 @@ function foo(s: string): string {
 
 let n1: number | null = null
 let n2: number = 0
+```
+
+在定义类时，如果无法在声明时或者构造函数中初始化某实例属性，那么可以使用确定赋值断言符`!`来消除`strictPropertyInitialization`的报错。
+
+使用确定赋值断言符会增加代码错误的风险，开发者需要保证该实例属性在被使用前已被赋值，否则可能会产生运行时异常。
+
+使用确定赋值断言符会增加运行时的类型检查，从而增加额外的运行时开销，所以应尽可能避免使用确定赋值断言符。
+
+使用确定赋值断言符将产生`warning: arkts-no-definite-assignment`。
+
+**TypeScript**
+
+```typescript
+class C {
+  name: string  // 只有在开启strictPropertyInitialization选项时会产生编译时错误
+  age: number   // 只有在开启strictPropertyInitialization选项时会产生编译时错误
+}
+
+let c = new C()
+```
+
+**ArkTS**
+
+```typescript
+class C {
+  name: string = ''
+  age!: number      // warning: arkts-no-definite-assignment
+
+  initAge(age: number) {
+    this.age = age
+  }
+}
+
+let c = new C()
+c.initAge(10)
 ```
 
 **相关约束**
@@ -3311,13 +3246,13 @@ let s2: string = null // 编译时报错
 * 使用具体的类型而非any或unknown
 * 强制进行严格类型检查
 
-### 允许ArkTS代码导入TS代码, 不允许TS代码导入ArkTS代码
+### 允许.ets文件`import`.ets/.ts/.js文件源码, 不允许.ts/.js文件`import`.ets文件源码
 
 **规则：**`arkts-no-ts-deps`
 
 **级别：错误**
 
-ArkTS中的代码可以导入来自标准TypeScript的代码，而标准TypeScript的代码不能导入来自ArkTS中的代码。
+.ets文件可以`import`.ets/.ts/.js文件源码，但是.ts/.js文件不允许`import`.ets文件源码。
 
 **TypeScript**
 
@@ -3388,3 +3323,45 @@ class C {
   n: number = 0
 }
 ```
+
+### 限制使用`ESObject`类型
+
+**规则：**`arkts-limited-esobj`
+
+**级别：警告**
+
+为了防止动态对象（来自.ts/.js文件）在静态代码（.ets文件）中的滥用，`ESObject`类型在ArkTS中的使用是受限的。唯一允许使用`ESObject`类型的场景是将其用在局部变量的声明中。`ESObject`类型变量的赋值也是受限的，只能被来自跨语言调用的对象赋值，例如：`ESObject`、`any`、`unknown`、匿名类型等类型的变量。禁止使用静态类型的值（在.ets文件中定义的）初始化`ESObject`类型变量。`ESObject`类型变量只能用在跨语言调用的函数里或者赋值给另一个`ESObject`类型变量。
+
+**ArkTS**
+
+```typescript
+// lib.d.ts
+declare function foo(): any;
+declare function bar(a: any): number;
+
+// main.ets
+let e0: ESObject = foo(); // 编译时错误：ESObject类型只能用于局部变量
+
+function f() {
+  let e1 = foo();        // 编译时错误：e1的类型是any
+  let e2: ESObject = 1;  // 编译时错误：不能用非动态值初始化ESObject类型变量
+  let e3: ESObject = {}; // 编译时错误：不能用非动态值初始化ESObject类型变量
+  let e4: ESObject = []; // 编译时错误：不能用非动态值初始化ESObject类型变量
+  let e5: ESObject = ''; // 编译时错误：不能用非动态值初始化ESObject类型变量
+  e5['prop']             // 编译时错误：不能访问ESObject类型变量的属性
+  e5[1]                  // 编译时错误：不能访问ESObject类型变量的属性
+  e5.prop                // 编译时错误：不能访问ESObject类型变量的属性
+
+  let e6: ESObject = foo(); // OK，显式标注ESObject类型
+  let e7 = e6;              // OK，使用ESObject类型赋值
+  bar(e7)                   // OK，ESObject类型变量传给跨语言调用的函数
+}
+
+**相关约束**
+
+* 对象的属性名必须是合法的标识符
+* 不支持Symbol() API
+* 不支持通过索引访问字段
+* 仅允许在表达式中使用typeof运算符
+* 不支持in运算符
+* 不支持globalThis

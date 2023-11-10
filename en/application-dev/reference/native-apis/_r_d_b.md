@@ -19,12 +19,12 @@ The relational database (RDB) store manages data based on relational models. The
 
 | Name| Description|
 | -------- | -------- |
-| [oh_cursor.h](oh__cursor_8h.md) | Defines the APIs for accessing the result set obtained by querying the RDB store.<br>File to include: \<database/rdb/oh_cursor.h> |
-| [oh_predicates.h](oh__predicates_8h.md) | Defines the predicates for RDB stores.<br>File to include: \<database/rdb/oh_predicates.h>|
-| [oh_value_object.h](oh__value__object_8h.md) | Defines type conversion methods.<br>File to include: \<database/rdb/oh_value_object.h> |
-| [oh_values_bucket.h](oh__values__bucket_8h.md) | Defines the types of the key and value in a key-value (KV) pair.<br>File to include: \<database/rdb/oh_values_bucket.h>|
-| [relational_store.h](relational__store_8h.md) | Defines the APIs for managing an RDB store.<br>File to include: \<database/rdb/relational_store.h> |
-| [relational_store_error_code.h](relational__store__error__code_8h.md) | Declares the error codes used for RDB stores.<br>File to include: \<database/rdb/relational_error_code.h>|
+| [oh_cursor.h](oh__cursor_8h.md) | Defines the APIs for accessing the result set obtained by querying the RDB store.<br>**File to include**: \<database/rdb/oh_cursor.h><br>**Library**: native_rdb_ndk_header.so |
+| [oh_predicates.h](oh__predicates_8h.md) | Defines the predicates for RDB stores.<br>**File to include**: \<database/rdb/oh_predicates.h><br>**Library**: native_rdb_ndk_header.so |
+| [oh_value_object.h](oh__value__object_8h.md) | Defines type conversion methods.<br>**File to include**: \<database/rdb/oh_value_object.h><br>**Library**: native_rdb_ndk_header.so |
+| [oh_values_bucket.h](oh__values__bucket_8h.md) | Defines the types of the key and value in a key-value (KV) pair.<br>File to include: \<database/rdb/oh_values_bucket.h><br>**Library**: native_rdb_ndk_header.so |
+| [relational_store.h](relational__store_8h.md) | Defines the APIs for managing an RDB store.<br>**File to include**: \<database/rdb/relational_store.h><br>**Library**: native_rdb_ndk_header.so |
+| [relational_store_error_code.h](relational__store__error__code_8h.md) | Declares the error codes used for RDB stores.<br>File to include: \<database/rdb/relational_error_code.h><br>**Library**: native_rdb_ndk_header.so |
 
 
 ### Structs
@@ -130,29 +130,29 @@ The relational database (RDB) store manages data based on relational models. The
 | [OH_Predicates::in](#in) | Pointer to the function used to set a predicates object to match the field with the value within the specified range.|
 | [OH_Predicates::notIn](#notin) | Pointer to the function used to set a predicates object to match the field with the value out of the specified range.|
 | [OH_Predicates::clear](#clear-12) | Pointer to the function used to clear a predicates instance.|
-| [OH_Predicates::destroy](#destroy-24) | Destroys an [OH_Predicates](_o_h___predicates.md) object and reclaims the memory occupied.|
+| [OH_Predicates::destroy](#destroy-24) | Pointer to the function used to destroy an [OH_Predicates](_o_h___predicates.md) object and reclaim the memory occupied. |
 | [OH_VObject::id](#id-24) | Unique identifier of the **OH_VObject** struct.|
-| [OH_VObject::putInt64](#putint64-22) | Converts a single parameter or an array of the int64 type into a value of the [OH_VObject](_o_h___v_object.md) type.|
-| [OH_VObject::putDouble](#putdouble) | Converts a single parameter or an array of the double type into a value of the [OH_VObject](_o_h___v_object.md) type.|
-| [OH_VObject::putText](#puttext-22) | Converts a character array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.|
-| [OH_VObject::putTexts](#puttexts) | Converts a string array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.|
-| [OH_VObject::destroy](#destroy-44) | Destroys an [OH_VObject](_o_h___v_object.md) object and reclaims the memory occupied.|
+| [OH_VObject::putInt64](#putint64-22) | Pointer to the function used to convert a single parameter or an array of the int64 type into a value of the [OH_VObject](_o_h___v_object.md) type. |
+| [OH_VObject::putDouble](#putdouble) | Pointer to the function used to convert a single parameter or an array of the double type into a value of the [OH_VObject](_o_h___v_object.md) type. |
+| [OH_VObject::putText](#puttext-22) | Pointer to the function used to convert a character array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type. |
+| [OH_VObject::putTexts](#puttexts) | Pointer to the function used to convert a string array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type. |
+| [OH_VObject::destroy](#destroy-44) | Pointer to the function used to destroy an [OH_VObject](_o_h___v_object.md) object and reclaim the memory occupied. |
 | [OH_VBucket::id](#id-34) | Unique identifier of the **OH_VBucket** struct.|
 | [OH_VBucket::capability](#capability) | Number of the KV pairs in the struct.|
-| [OH_VBucket::putText](#puttext-12) | Puts a char value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.|
-| [OH_VBucket::putInt64](#putint64-12) | Puts an int64_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.|
-| [OH_VBucket::putReal](#putreal) | Puts a double value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.|
-| [OH_VBucket::putBlob](#putblob) | Puts a const uint8_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.|
-| [OH_VBucket::putNull](#putnull) | Puts a null value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.|
-| [OH_VBucket::clear](#clear-22) | Clears an [OH_VBucket](_o_h___v_bucket.md) object.|
-| [OH_VBucket::destroy](#destroy-34) | Destroys an [OH_VBucket](_o_h___v_bucket.md) object and reclaims the memory occupied.|
+| [OH_VBucket::putText](#puttext-12) | Pointer to the function used to put a char value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column. |
+| [OH_VBucket::putInt64](#putint64-12) | Pointer to the function used to put an int64_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column. |
+| [OH_VBucket::putReal](#putreal) | Pointer to the function used to put a double value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column. |
+| [OH_VBucket::putBlob](#putblob) | Pointer to the function used to put a const uint8_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column. |
+| [OH_VBucket::putNull](#putnull) | Pointer to the function used to put a null value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column. |
+| [OH_VBucket::clear](#clear-22) | Pointer to the function used to clear an [OH_VBucket](_o_h___v_bucket.md) object. |
+| [OH_VBucket::destroy](#destroy-34) | Pointer to the function used to destroy an [OH_VBucket](_o_h___v_bucket.md) object and reclaim the memory occupied. |
 | [OH_Rdb_Config::selfSize](#selfsize) | Size of the struct.|
 | [OH_Rdb_Config::dataBaseDir](#databasedir) | Path of the database file.|
 | [OH_Rdb_Config::storeName](#storename) | Name of the RDB store.|
 | [OH_Rdb_Config::bundleName](#bundlename) | Bundle name.|
 | [OH_Rdb_Config::moduleName](#modulename) | Module name. |
 | [OH_Rdb_Config::isEncrypt](#isencrypt) | Whether to encrypt the RDB store.|
-| [OH_Rdb_Config::securityLevel](#securitylevel) | Sets the RDB store security level [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel).|
+| [OH_Rdb_Config::securityLevel](#securitylevel) | Pointer to the function used to set the RDB store security level [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel). |
 | [OH_Rdb_Store::id](#id-44) | Unique identifier of the **OH_Rdb_Store** struct.|
 
 

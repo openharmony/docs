@@ -11,7 +11,7 @@ The **battery** module allows you to query the charging status and remaining pow
 
 
 ```js
-import battery from '@system.battery';
+import battery, { BatteryResponse } from '@system.battery';
 ```
 
 

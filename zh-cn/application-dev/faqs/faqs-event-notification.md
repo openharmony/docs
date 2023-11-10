@@ -1,8 +1,7 @@
 # 事件通知开发常见问题
 
-## 如何封装一个通用的commonEvent工具类
 
-适用于OpenHarmony 3.1 Beta5  API 9
+## 如何封装一个通用的commonEvent工具类(API 9)
 
 **问题现象**
 
@@ -112,9 +111,7 @@ struct Faq10_1 {
 
 [公共事件模块](../reference/apis/js-apis-commonEventManager.md)
 
-## 如何让事件只在一个UIAbility实例中传递
-
-适用于：OpenHarmony 3.2 Beta5  API 9 
+## 如何让事件只在一个UIAbility实例中传递(API 9)
 
 **问题现象**
 
@@ -150,9 +147,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 [使用EventHub进行数据](../application-models/uiability-data-sync-with-ui.md#使用eventhub进行数据通信)
 
-## 如何实现点击Notification通知打开App功能
 
-适用于：OpenHarmony 3.1 Beta5 API 9
+## 如何实现点击Notification通知打开App功能(API 9)
 
 **解决措施**
 
@@ -195,9 +191,8 @@ async function publishNotification() {
 
 [Notification](../reference/apis/js-apis-notificationManager.md)、[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)
 
-## 调用notificationManager.publish发布通知失败
 
-适用于：OpenHarmony 3.2 Beta5
+## 调用notificationManager.publish发布通知失败(API 9)
 
 **问题现象**
 
@@ -207,6 +202,6 @@ async function publishNotification() {
 
 发布通知时，需要在真机端系统设置中，开启对应应用的通知开关，然后才能在通知栏中看到发布的通知。
 
-手动开启步骤：设置 \> 通知和状态栏 \> 应用名称 \> 允许通知。
+手动开启步骤：设置 &gt; 通知和状态栏 &gt; 应用名称 &gt; 允许通知。
 
-也可通过接口notificationManager.requestEnableNotification\(\)来弹窗让用户授权（仅弹一次）。
+也可通过接口notificationManager.requestEnableNotification()来弹窗让用户授权（仅弹一次）。

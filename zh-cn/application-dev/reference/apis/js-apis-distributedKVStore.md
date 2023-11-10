@@ -349,7 +349,6 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvManager: distributedKVStore.KVManager = xxx;
 let kvStore: distributedKVStore.SingleKVStore | null;
 try {
   const options: distributedKVStore.Options = {
@@ -409,7 +408,6 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvManager: distributedKVStore.KVManager = xxx;
 let kvStore: distributedKVStore.SingleKVStore | null;
 try {
   const options: distributedKVStore.Options = {
@@ -453,7 +451,6 @@ closeKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvManager: distributedKVStore.KVManager = xxx;
 let kvStore: distributedKVStore.SingleKVStore | null;
 const options: distributedKVStore.Options = {
   createIfMissing: true,
@@ -514,7 +511,6 @@ closeKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvManager: distributedKVStore.KVManager = xxx;
 let kvStore: distributedKVStore.SingleKVStore | null;
 
 const options: distributedKVStore.Options = {
@@ -575,7 +571,6 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvManager: distributedKVStore.KVManager = xxx;
 let kvStore: distributedKVStore.SingleKVStore | null;
 
 const options: distributedKVStore.Options = {
@@ -645,7 +640,6 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvManager: distributedKVStore.KVManager = xxx;
 let kvStore: distributedKVStore.SingleKVStore | null;
 
 const options: distributedKVStore.Options = {
@@ -697,8 +691,6 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvManager: distributedKVStore.KVManager = xxx;
-
 try {
   kvManager.getAllKVStoreId('appId', (err, data) => {
     if (err != undefined) {
@@ -739,8 +731,6 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvManager: distributedKVStore.KVManager = xxx;
-
 try {
   console.info('GetAllKVStoreId');
   kvManager.getAllKVStoreId('appId').then((data: string[]) => {
@@ -775,8 +765,6 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvManager: distributedKVStore.KVManager = xxx;
-
 try {
   console.info('KVManagerOn');
   const deathCallback = () => {
@@ -808,8 +796,6 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvManager: distributedKVStore.KVManager = xxx;
 
 try {
   console.info('KVManagerOff');
@@ -848,7 +834,6 @@ getCount(): number
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let count: number;
@@ -884,7 +869,6 @@ getPosition(): number
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let position: number;
@@ -920,7 +904,6 @@ moveToFirst(): boolean
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
@@ -956,7 +939,6 @@ moveToLast(): boolean
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
@@ -992,7 +974,6 @@ moveToNext(): boolean
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
@@ -1031,7 +1012,6 @@ moveToPrevious(): boolean
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
@@ -1074,7 +1054,6 @@ move(offset: number): boolean
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
@@ -1117,7 +1096,6 @@ moveToPosition(position: number): boolean
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
@@ -1154,7 +1132,6 @@ isFirst(): boolean
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let isfirst: boolean;
@@ -1190,7 +1167,6 @@ isLast(): boolean
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let islast: boolean;
@@ -1226,7 +1202,6 @@ isBeforeFirst(): boolean
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   kvStore.getResultSet('batch_test_string_key').then((result) => {
@@ -1261,7 +1236,6 @@ isAfterLast(): boolean
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   kvStore.getResultSet('batch_test_string_key').then((result) => {
@@ -1296,7 +1270,6 @@ getEntry(): Entry
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   kvStore.getResultSet('batch_test_string_key').then((result) => {
@@ -2296,7 +2269,6 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
@@ -2354,7 +2326,6 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
@@ -2403,8 +2374,6 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -2481,8 +2450,6 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
@@ -2554,8 +2521,6 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
   let v8Arr: distributedKVStore.Entry[] = [];
   let arr = new Uint8Array([4, 5, 6, 7]);
@@ -2623,8 +2588,6 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
   let v8Arr: distributedKVStore.Entry[] = [];
   let arr = new Uint8Array([4, 5, 6, 7]);
@@ -2680,8 +2643,6 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2746,8 +2707,6 @@ delete(key: string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
@@ -2807,7 +2766,6 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let predicates = new dataSharePredicates.DataSharePredicates();
   let arr = ["name"];
@@ -2877,7 +2835,6 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let predicates = new dataSharePredicates.DataSharePredicates();
   let arr = ["name"];
@@ -2933,7 +2890,6 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let entries: distributedKVStore.Entry[] = [];
   let keys: string[] = [];
@@ -3010,7 +2966,6 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 try {
   let entries: distributedKVStore.Entry[] = [];
   let keys: string[] = [];
@@ -3075,7 +3030,6 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
@@ -3136,7 +3090,6 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
 try {
@@ -3192,7 +3145,6 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -3252,7 +3204,6 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -3301,8 +3252,6 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -3374,7 +3323,6 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -3435,8 +3383,6 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -3507,8 +3453,6 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
   let arr = new Uint8Array([21, 31]);
   let entries: distributedKVStore.Entry[] = [];
@@ -3574,10 +3518,8 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
     let key = 'batch_test_string_key';
@@ -3653,10 +3595,8 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
     let key = 'batch_test_string_key';
@@ -3721,10 +3661,8 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): voi
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
     let key = 'batch_test_string_key';
@@ -3794,10 +3732,8 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
     let key = 'batch_test_string_key';
@@ -3864,10 +3800,8 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
   kvStore.getResultSet(predicates, async (err, result) => {
@@ -3931,10 +3865,8 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
   kvStore.getResultSet(predicates).then((result) => {
@@ -3974,16 +3906,22 @@ closeResultSet(resultSet: KVStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
+let resultSet: distributedKVStore.KVStoreResultSet;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
-  kvStore.closeResultSet(resultSet, (err) => {
-    if (err == undefined) {
-      console.info('Succeeded in closing result set');
-    } else {
-      console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+  kvStore.getResultSet('batch_test_string_key', async (err, result) => {
+    if (err != undefined) {
+      console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+      return;
     }
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+    kvStore.closeResultSet(resultSet, (err) => {
+      if (err != undefined) {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in closing result set');
+    })
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -4016,10 +3954,14 @@ closeResultSet(resultSet: KVStoreResultSet): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
+let resultSet: distributedKVStore.KVStoreResultSet;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  kvStore.getResultSet('batch_test_string_key').then((result) => {
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+  });
   kvStore.closeResultSet(resultSet).then(() => {
     console.info('Succeeded in closing result set');
   }).catch((err: BusinessError) => {
@@ -4059,8 +4001,6 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -4127,8 +4067,6 @@ getResultSize(query: Query): Promise&lt;number&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
@@ -4188,8 +4126,6 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 let file = "BK001";
 try {
   kvStore.backup(file, (err) => {
@@ -4238,8 +4174,6 @@ backup(file:string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 let file = "BK001";
 try {
   kvStore.backup(file).then(() => {
@@ -4280,8 +4214,6 @@ restore(file:string, callback: AsyncCallback&lt;void&gt;):void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 let file = "BK001";
 try {
@@ -4331,8 +4263,6 @@ restore(file:string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 let file = "BK001";
 try {
   kvStore.restore(file).then(() => {
@@ -4365,8 +4295,6 @@ deleteBackup(files:Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;[str
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 let files = ["BK001", "BK002"];
 try {
@@ -4407,8 +4335,6 @@ deleteBackup(files:Array&lt;string&gt;): Promise&lt;Array&lt;[string, number]&gt
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 let files = ["BK001", "BK002"];
 try {
@@ -4455,8 +4381,6 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 function putBatchString(len: number, prefix: string) {
   let entries: distributedKVStore.Entry[] = [];
@@ -4534,8 +4458,6 @@ startTransaction(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
   let count = 0;
   kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data) => {
@@ -4580,8 +4502,6 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
   kvStore.commit((err) => {
     if (err == undefined) {
@@ -4623,8 +4543,6 @@ commit(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
   kvStore.commit().then(async () => {
     console.info('Succeeded in committing');
@@ -4663,8 +4581,6 @@ rollback(callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 try {
   kvStore.rollback((err) => {
@@ -4707,8 +4623,6 @@ rollback(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
   kvStore.rollback().then(async () => {
     console.info('Succeeded in rolling back');
@@ -4740,8 +4654,6 @@ enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 try {
   kvStore.enableSync(true, (err) => {
@@ -4782,8 +4694,6 @@ enableSync(enabled: boolean): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
   kvStore.enableSync(true).then(() => {
     console.info('Succeeded in enabling sync');
@@ -4816,8 +4726,6 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: Asy
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 try {
   const localLabels = ['A', 'B'];
@@ -4861,8 +4769,6 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;v
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
   const localLabels = ['A', 'B'];
   const remoteSupportLabels = ['C', 'D'];
@@ -4896,8 +4802,6 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 try {
   const defaultAllowedDelayMs = 500;
@@ -4938,8 +4842,6 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 try {
   const defaultAllowedDelayMs = 500;
@@ -4988,44 +4890,48 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 ```ts
 import deviceManager from '@ohos.distributedDeviceManager';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 let devManager: deviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
-try {
-  devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
-  let deviceIds: string[] = [];
-  if (devManager != null) {
-    let devices = devManager.getAvailableDeviceListSync();
-    for (let i = 0; i < devices.length; i++) {
-      deviceIds[i] = devices[i].networkId as string;
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    let context = this.context;
+    try {
+      devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+      let deviceIds: string[] = [];
+      if (devManager != null) {
+        let devices = devManager.getAvailableDeviceListSync();
+        for (let i = 0; i < devices.length; i++) {
+          deviceIds[i] = devices[i].networkId as string;
+        }
+      }
+      try {
+        kvStore.on('syncComplete', (data) => {
+          console.info('Sync dataChange');
+        });
+        kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+          if (err != undefined) {
+            console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in putting data');
+          const mode = distributedKVStore.SyncMode.PULL_ONLY;
+          kvStore.sync(deviceIds, mode, 1000);
+        });
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`Failed to sync.code is ${error.code},message is ${error.message}`);
+      }
+
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
     }
   }
-  try {
-    kvStore.on('syncComplete', (data) => {
-      console.info('Sync dataChange');
-    });
-    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
-      if (err != undefined) {
-        console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in putting data');
-      const mode = distributedKVStore.SyncMode.PULL_ONLY;
-      kvStore.sync(deviceIds, mode, 1000);
-    });
-  } catch (e) {
-    let error = e as BusinessError;
-    console.error(`Failed to sync.code is ${error.code},message is ${error.message}`);
-  }
-
-} catch (err) {
-  let error = err as BusinessError;
-  console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
 }
 ```
 
@@ -5064,47 +4970,51 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
 ```ts
 import deviceManager from '@ohos.distributedDeviceManager';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 let devManager: deviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
-try {
-  let devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
-  let deviceIds: string[] = [];
-  if (devManager != null) {
-    let devices = devManager.getAvailableDeviceListSync();
-    for (let i = 0; i < devices.length; i++) {
-      deviceIds[i] = devices[i].networkId as string;
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    let context = this.context;
+    try {
+      let devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+      let deviceIds: string[] = [];
+      if (devManager != null) {
+        let devices = devManager.getAvailableDeviceListSync();
+        for (let i = 0; i < devices.length; i++) {
+          deviceIds[i] = devices[i].networkId as string;
+        }
+      }
+      try {
+        kvStore.on('syncComplete', (data) => {
+          console.info('Sync dataChange');
+        });
+        kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+          if (err != undefined) {
+            console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in putting data');
+          const mode = distributedKVStore.SyncMode.PULL_ONLY;
+          const query = new distributedKVStore.Query();
+          query.prefixKey("batch_test");
+          query.deviceId(devManager.getLocalDeviceNetworkId());
+          kvStore.sync(deviceIds, query, mode, 1000);
+        });
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`Failed to sync.code is ${error.code},message is ${error.message}`);
+      }
+
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
     }
   }
-  try {
-    kvStore.on('syncComplete', (data) => {
-      console.info('Sync dataChange');
-    });
-    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
-      if (err != undefined) {
-        console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in putting data');
-      const mode = distributedKVStore.SyncMode.PULL_ONLY;
-      const query = new distributedKVStore.Query();
-      query.prefixKey("batch_test");
-      query.deviceId(devManager.getLocalDeviceNetworkId());
-      kvStore.sync(deviceIds, query, mode, 1000);
-    });
-  } catch (e) {
-    let error = e as BusinessError;
-    console.error(`Failed to sync.code is ${error.code},message is ${error.message}`);
-  }
-
-} catch (err) {
-  let error = err as BusinessError;
-  console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
 }
 ```
 
@@ -5138,8 +5048,6 @@ on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotific
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
   kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL, (data) => {
     console.info(`dataChange callback call data: ${data}`);
@@ -5170,7 +5078,6 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
 const VALUE_TEST_FLOAT_ELEMENT = 321.12;
@@ -5216,8 +5123,6 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 class KvstoreModel {
   call(data: string) {
@@ -5267,8 +5172,6 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 class KvstoreModel {
   call(data: string) {
@@ -5326,8 +5229,6 @@ getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.SingleKVStore = xxx;
-
 try {
   kvStore.getSecurityLevel((err, data) => {
     if (err != undefined) {
@@ -5368,8 +5269,6 @@ getSecurityLevel(): Promise&lt;SecurityLevel&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.SingleKVStore = xxx;
 
 try {
   kvStore.getSecurityLevel().then((data) => {
@@ -5422,8 +5321,6 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -5483,8 +5380,6 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
-
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
@@ -5538,8 +5433,6 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -5604,8 +5497,6 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
-
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
@@ -5653,8 +5544,6 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -5726,8 +5615,6 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
-
 try {
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
@@ -5792,8 +5679,6 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -5870,8 +5755,6 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
-
 try {
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
@@ -5934,8 +5817,6 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -6006,8 +5887,6 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
-
 try {
   let arr = new Uint8Array([21, 31]);
   let entries: distributedKVStore.Entry[] = [];
@@ -6076,7 +5955,6 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
   let arr = new Uint8Array([21, 31]);
   let entries: distributedKVStore.Entry[] = [];
@@ -6157,7 +6035,6 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
   let arr = new Uint8Array([21, 31]);
   let entries: distributedKVStore.Entry[] = [];
@@ -6223,9 +6100,8 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
     let key = 'batch_test_string_key';
@@ -6301,9 +6177,8 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
     let key = 'batch_test_string_key';
@@ -6373,9 +6248,8 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async (err, result) => {
     if (err != undefined) {
       console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
@@ -6437,9 +6311,8 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
@@ -6492,9 +6365,8 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
     let key = 'batch_test_string_key';
@@ -6577,9 +6449,8 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
     let key = 'batch_test_string_key';
@@ -6654,9 +6525,8 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
     let key = 'batch_test_string_key';
@@ -6723,9 +6593,8 @@ getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
     let key = 'batch_test_string_key';
@@ -6803,9 +6672,8 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
   kvStore.getResultSet(predicates, async (err, result) => {
@@ -6869,9 +6737,8 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
   kvStore.getResultSet(predicates).then((result) => {
@@ -6931,9 +6798,8 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
   kvStore.getResultSet('localDeviceId', predicates, async (err, result) => {
@@ -7002,9 +6868,8 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
+  let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
   kvStore.getResultSet('localDeviceId', predicates).then((result) => {
@@ -7053,7 +6918,6 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
@@ -7119,7 +6983,6 @@ getResultSize(query: Query): Promise&lt;number&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
@@ -7185,7 +7048,6 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
@@ -7260,7 +7122,6 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {

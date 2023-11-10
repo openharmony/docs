@@ -43,7 +43,7 @@ The following steps describe how to use the canvas and brush of the **NativeDraw
     // Create a bitmap object.
     OH_Drawing_Bitmap* cBitmap = OH_Drawing_BitmapCreate();
     // Define the pixel format of the bitmap.
-    OH_Drawing_BitmapFormat cFormat {COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUYE};
+    OH_Drawing_BitmapFormat cFormat {COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
     // Set the pixel format for the bitmap.
     OH_Drawing_BitmapBuild(cBitmap, width, height, &cFormat);
     ```

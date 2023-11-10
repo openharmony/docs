@@ -487,7 +487,9 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 设置系统日期，使用callback异步回调。
 
-> **说明：** 从API version 9开始支持，从API 10开始废弃。建议使用[systemDateTime.setTime](#systemdatetimesettime)替代。
+> **说明：**
+>
+> 从API version 9开始支持，从API 10开始废弃。建议使用[systemDateTime.setTime](#systemdatetimesettime)替代。
 
 **系统接口：** 此接口为系统接口
 
@@ -528,7 +530,9 @@ setDate(date: Date): Promise&lt;void&gt;
 
 设置系统日期，使用Promise异步回调。
 
-> **说明：** 从API version 9开始支持，从API 10开始废弃。建议使用[systemDateTime.setTime](#systemdatetimesettime)替代。
+> **说明：**
+>
+> 从API version 9开始支持，从API 10开始废弃。建议使用[systemDateTime.setTime](#systemdatetimesettime)替代。
 
 **系统接口：** 此接口为系统接口
 
@@ -572,7 +576,9 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 获取当前系统日期，使用callback异步回调。
 
-> **说明：** 从API version 9开始支持，从API 10开始废弃。建议使用new Date()替代，new Date()返回Date实例对象。
+> **说明：**
+>
+> 从API version 9开始支持，从API 10开始废弃。建议使用new Date()替代，new Date()返回Date实例对象。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -607,7 +613,9 @@ getDate(): Promise&lt;Date&gt;
 
 获取当前系统日期，使用Promise异步回调。
 
-> **说明：** 从API version 9开始支持，从API 10开始废弃。建议使用new Date()替代，new Date()返回Date实例对象。
+> **说明：**
+>
+> 从API version 9开始支持，从API 10开始废弃。建议使用new Date()替代，new Date()返回Date实例对象。
 
 **系统能力：** SystemCapability.MiscServices.Time
 

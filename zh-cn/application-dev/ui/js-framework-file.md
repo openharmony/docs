@@ -2,7 +2,7 @@
 
 ## 目录结构
 
-JS FA应用的JS模块(entry/src/main/js/module)的典型开发目录结构如下：
+JS FA应用的JS模块（entry/src/main/js/module）的典型开发目录结构如下：
 
 **图1** 目录结构
 

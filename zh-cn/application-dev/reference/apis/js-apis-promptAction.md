@@ -72,11 +72,13 @@ try {
 | duration | number                                                       | 否   | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。 |
 | bottom   | string\| number                                              | 否   | 设置弹窗边框距离屏幕底部的位置。<br>默认值：80vp             |
 
+
+
 ## promptAction.showDialog
 
 showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
-创建并显示对话框，对话框响应后同步返回结果。
+创建并显示对话框，对话框响应后异步返回结果。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -279,7 +281,7 @@ try {
 
 showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
 
-创建并显示操作菜单，菜单响应后同步返回结果。
+创建并显示操作菜单，菜单响应后异步返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

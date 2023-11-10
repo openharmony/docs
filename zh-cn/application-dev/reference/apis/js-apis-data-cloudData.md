@@ -35,7 +35,7 @@ import cloudData from '@ohos.data.cloudData';
 
 ### enableCloud
 
-static enableCloud(accountId: string, switches: {[bundleName: string]: boolean}, callback: AsyncCallback&lt;void&gt;):void
+static enableCloud(accountId: string, switches: { [bundleName: string]: boolean }, callback: AsyncCallback&lt;void&gt;): void
 
 打开端云协同，使用callback异步回调。
 
@@ -74,7 +74,7 @@ try {
 
 ### enableCloud
 
-static enableCloud(accountId: string, switches: {[bundleName: string]: boolean}): Promise&lt;void&gt;
+static enableCloud(accountId: string, switches: { [bundleName: string]: boolean }): Promise&lt;void&gt;
 
 打开端云协同，使用Promise异步回调。
 
@@ -116,7 +116,7 @@ try {
 
 ### disableCloud
 
-static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):void
+static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): void
 
 关闭端云协同，使用callback异步回调。
 
@@ -193,7 +193,7 @@ try {
 
 ### changeAppCloudSwitch
 
-static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, callback: AsyncCallback&lt;void&gt;):void
+static changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 修改单个应用端云协同开关，使用callback异步回调。
 
@@ -233,7 +233,7 @@ try {
 
 ### changeAppCloudSwitch
 
-static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean): Promise&lt;void&gt;
+static changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean): Promise&lt;void&gt;
 
 修改单个应用端云协同开关，使用Promise异步回调。
 
@@ -276,7 +276,7 @@ try {
 
 ### notifyDataChange
 
-static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCallback&lt;void&gt;):void
+static notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 通知云端的数据变更，使用callback异步回调。
 
@@ -315,7 +315,7 @@ try {
 
 ### notifyDataChange
 
-static notifyDataChange(accountId: string,bundleName:string): Promise&lt;void&gt;
+static notifyDataChange(accountId: string,bundleName: string): Promise&lt;void&gt;
 
 通知云端的数据变更，使用Promise异步回调。
 
@@ -357,7 +357,7 @@ try {
 
 ###  clear
 
-static clear(accountId: string, appActions: {[bundleName: string]: ClearAction},  callback: AsyncCallback&lt;void&gt;):void
+static clear(accountId: string, appActions: { [bundleName: string]: ClearAction },  callback: AsyncCallback&lt;void&gt;): void
 
 清除本地下载的云端数据，使用callback异步回调。
 
@@ -378,12 +378,11 @@ static clear(accountId: string, appActions: {[bundleName: string]: ClearAction},
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let action = cloudData.ClearAction;
 let account = "test_id";
 type dataType = Record<string, cloudData.ClearAction>
 let appActions: dataType = {
-  'test_bundleName1': action.CLEAR_CLOUD_INFO,
-  'test_bundleName2': action.CLEAR_CLOUD_DATA_AND_INFO
+  'test_bundleName1': cloudData.ClearAction.CLEAR_CLOUD_INFO,
+  'test_bundleName2': cloudData.ClearAction.CLEAR_CLOUD_DATA_AND_INFO
 };
 try {
   cloudData.Config.clear(account, appActions, (err) => {
@@ -401,7 +400,7 @@ try {
 
 ### clear
 
-static clear(accountId: string, appActions: {[bundleName: string]: ClearAction}): Promise&lt;void&gt;
+static clear(accountId: string, appActions: { [bundleName: string]: ClearAction }): Promise&lt;void&gt;
 
 清除本地下载的云端数据，使用Promise异步回调。
 
@@ -427,12 +426,11 @@ static clear(accountId: string, appActions: {[bundleName: string]: ClearAction})
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let action = cloudData.ClearAction;
 let account = "test_id";
 type dataType = Record<string, cloudData.ClearAction>;
 let appActions: dataType = {
-  'test_bundleName1': action.CLEAR_CLOUD_INFO,
-  'test_bundleName2': action.CLEAR_CLOUD_DATA_AND_INFO
+  'test_bundleName1': cloudData.ClearAction.CLEAR_CLOUD_INFO,
+  'test_bundleName2': cloudData.ClearAction.CLEAR_CLOUD_DATA_AND_INFO
 };
 try {
   cloudData.Config.clear(account, appActions).then(() => {

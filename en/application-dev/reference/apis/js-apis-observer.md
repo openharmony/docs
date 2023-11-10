@@ -9,7 +9,7 @@ The **observer** module provides event subscription management functions. You ca
 
 ## Modules to Import
 
-```
+```ts
 import observer from '@ohos.telephony.observer';
 ```
 
@@ -45,8 +45,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('networkStateChange', data => {
+```ts
+observer.on('networkStateChange', (data: observer.NetworkState) => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -85,8 +85,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('networkStateChange', {slotId: 0}, data => {
+```ts
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('networkStateChange', id, (data: observer.NetworkState) => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -125,8 +129,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let callback = data => {
+```ts
+let callback: (data: observer.NetworkState) => void = (data: observer.NetworkState) => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 }
 observer.on('networkStateChange', callback);
@@ -164,8 +168,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('signalInfoChange', data => {
+```ts
+import radio from '@ohos.telephony.radio';
+
+observer.on('signalInfoChange', (data: Array<radio.SignalInformation>) => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -201,8 +207,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('signalInfoChange', {slotId: 0}, data => {
+```ts
+import radio from '@ohos.telephony.radio';
+
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('signalInfoChange', id, (data: Array<radio.SignalInformation>) => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -241,8 +253,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let callback = data => {
+```ts
+import radio from '@ohos.telephony.radio';
+
+let callback: (data: Array<radio.SignalInformation>) => void = (data: Array<radio.SignalInformation>) => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 }
 observer.on('signalInfoChange', callback);
@@ -286,8 +300,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('cellInfoChange', data => {
+```ts
+import radio from '@ohos.telephony.radio';
+
+observer.on('cellInfoChange', (data: Array<radio.CellInformation>) => {
     console.log("on cellInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -329,8 +345,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('cellInfoChange', {slotId: 0}, data => {
+```ts
+import radio from '@ohos.telephony.radio';
+
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('cellInfoChange', id, (data: Array<radio.CellInformation>) => {
     console.log("on cellInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -372,8 +394,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let callback = data => {
+```ts
+import radio from '@ohos.telephony.radio';
+
+let callback: (data: Array<radio.CellInformation>) => void = (data: Array<radio.CellInformation>) => {
     console.log("on cellInfoChange, data:" + JSON.stringify(data));
 }
 observer.on('cellInfoChange', callback);
@@ -411,8 +435,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('callStateChange', value => {
+```ts
+import call from '@ohos.telephony.call';
+
+class Value {
+    state: call.CallState = call.CallState.CALL_STATE_UNKNOWN
+    number: string = ""
+}
+observer.on('callStateChange', (value: Value) => {
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 });
 ```
@@ -448,8 +478,18 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('callStateChange', {slotId: 0}, value => {
+```ts
+import call from '@ohos.telephony.call';
+
+class Value {
+    state: call.CallState = call.CallState.CALL_STATE_UNKNOWN
+    number: string = ""
+}
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('callStateChange', id, (value: Value) => {
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 });
 ```
@@ -488,8 +528,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let callback = value => {
+```ts
+import call from '@ohos.telephony.call';
+
+class Value {
+    state: call.CallState = call.CallState.CALL_STATE_UNKNOWN
+    number: string = ""
+}
+let callback: (value: Value) => void = (value: Value) => {
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 }
 observer.on('callStateChange', callback);
@@ -528,8 +574,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('cellularDataConnectionStateChange', value => {
+```ts
+import data from '@ohos.telephony.data';
+import radio from '@ohos.telephony.radio';
+
+class Value {
+    state: data.DataConnectState = data.DataConnectState.DATA_STATE_UNKNOWN
+    network: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN
+}
+observer.on('cellularDataConnectionStateChange', (value: Value) => {
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 });
 ```
@@ -565,8 +618,19 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('cellularDataConnectionStateChange', {slotId: 0}, value => {
+```ts
+import data from '@ohos.telephony.data';
+import radio from '@ohos.telephony.radio';
+
+class Value {
+    state: data.DataConnectState = data.DataConnectState.DATA_STATE_UNKNOWN
+    network: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN
+}
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('cellularDataConnectionStateChange', id, (value: Value) => {
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 });
 ```
@@ -605,8 +669,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let callback = value => {
+```ts
+import data from '@ohos.telephony.data';
+import radio from '@ohos.telephony.radio';
+
+class Value {
+    state: data.DataConnectState = data.DataConnectState.DATA_STATE_UNKNOWN
+    network: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN
+}
+let callback: (value: Value) => void = (value: Value) => {
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 }
 observer.on('cellularDataConnectionStateChange', callback);
@@ -645,8 +716,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('cellularDataFlowChange', data => {
+```ts
+import data from '@ohos.telephony.data';
+
+observer.on('cellularDataFlowChange', (data: data.DataFlowType) => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -682,8 +755,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('cellularDataFlowChange', {slotId: 0}, data => {
+```ts
+import data from '@ohos.telephony.data';
+
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('cellularDataFlowChange', id, (data: data.DataFlowType) => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
 });
 ```
@@ -722,8 +801,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let callback = data => {
+```ts
+import data from '@ohos.telephony.data';
+
+let callback: (data: data.DataFlowType) => void = (data: data.DataFlowType) => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
 }
 observer.on('cellularDataFlowChange', callback);
@@ -762,8 +843,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('simStateChange', data => {
+```ts
+observer.on('simStateChange', (data: observer.SimStateData) => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -799,8 +880,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('simStateChange', {slotId: 0}, data => {
+```ts
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('simStateChange', id, (data: observer.SimStateData) => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -839,8 +924,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let callback = data => {
+```ts
+let callback: (data: observer.SimStateData) => void = (data: observer.SimStateData) => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 }
 observer.on('simStateChange', callback);
@@ -877,9 +962,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-observer.on('iccAccountInfoChange', error => {
-    console.log("on iccAccountInfoChange, error:" + JSON.stringify(error));
+```ts
+observer.on('iccAccountInfoChange', () => {
+    console.log("on iccAccountInfoChange success");
 });
 ```
 
@@ -916,9 +1001,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let callback = data => {
-    console.log("on iccAccountInfoChange, data:" + JSON.stringify(data));
+```ts
+let callback: () => void = () => {
+    console.log("on iccAccountInfoChange success");
 }
 observer.on('iccAccountInfoChange', callback);
 // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.

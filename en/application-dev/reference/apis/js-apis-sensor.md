@@ -16,13 +16,21 @@ import sensor from '@ohos.sensor';
 
 ### COLOR<sup>10+</sup>
 
-on(type: SensorId.COLOR, callback: Callback\<ColorResponse>,options?: Options): void
+on(type: SensorId.COLOR, callback: Callback\<ColorResponse>, options?: Options): void
 
 Subscribes to data of the color sensor.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
 **System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                                                       |
+| -------- | ------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).COLOR                      | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                     |
+| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | Yes  | Callback used to report the sensor data, which is a **ColorResponse** object.        |
+| options  | [Options](#options)                               | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
 **Error codes**
 
@@ -31,14 +39,6 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
-
-**Parameters**
-
-| Name  | Type                                           | Mandatory| Description                                                       |
-| -------- | ----------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).COLOR                    | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                     |
-| callback | Callback&lt;[ColorResponse](#colorresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **ColorResponse** object.        |
-| options  | [Options](#options)                             | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
 **Example**
 
@@ -51,6 +51,9 @@ try{
     console.log('Succeeded in getting the intensity of light: ' + data.lightIntensity);
     console.log('Succeeded in getting the color temperature: ' + data.colorTemperature);
   }, { interval: 100000000 });
+  setTimeout(() => {
+        sensor.off(sensor.SensorId.COLOR);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -59,13 +62,21 @@ try{
 
 ### SAR<sup>10+</sup>
 
-on(type: SensorId.SAR, callback: Callback\<SarResponse>,options?: Options): void
+on(type: SensorId.SAR, callback: Callback\<SarResponse>, options?: Options): void
 
 Subscribes to data of the Sodium Adsorption Ratio (SAR) sensor.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
 **System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                         | Mandatory| Description                                                       |
+| -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).SAR                    | Yes  | Sensor type. The value is fixed at **SensorId.SAR**.                       |
+| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | Yes  | Callback used to report the sensor data, which is a **SarResponse** object.          |
+| options  | [Options](#options)                           | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
 **Error codes**
 
@@ -74,14 +85,6 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
-
-**Parameters**
-
-| Name  | Type                                    | Mandatory| Description                                                       |
-| -------- | ---------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).SAR               | Yes  | Sensor type. The value is fixed at **SensorId.SAR**.                       |
-| callback | Callback&lt;[SarResponse](#sarresponse)> | Yes  | Callback used to report the sensor data, which is a **SarResponse** object.          |
-| options  | [Options](#options)                      | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
 **Example**
 
@@ -93,6 +96,9 @@ try {
   sensor.on(sensor.SensorId.SAR, (data: sensor.SarResponse) => {
     console.info('Succeeded in getting specific absorption rate : ' + data.absorptionRatio);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.SAR);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -101,7 +107,7 @@ try {
 
 ### ACCELEROMETER<sup>9+</sup>
 
-on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;,options?: Options): void
+on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;, options?: Options): void
 
 Subscribes to data of the acceleration sensor.
 
@@ -137,6 +143,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.ACCELEROMETER);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -145,7 +154,7 @@ try {
 
 ### ACCELEROMETER_UNCALIBRATED<sup>9+</sup>
 
-on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;AccelerometerUncalibratedResponse&gt;,options?: Options): void
+on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
 
 Subscribes to data of the uncalibrated acceleration sensor.
 
@@ -184,6 +193,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate bias: ' + data.biasY);
     console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -224,6 +236,9 @@ try {
   sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data: sensor.LightResponse) => {
     console.info('Succeeded in getting the ambient light intensity: ' + data.intensity);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.AMBIENT_LIGHT);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -232,7 +247,7 @@ try {
 
 ###  AMBIENT_TEMPERATURE<sup>9+</sup>
 
-on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureResponse&gt;,options?: Options): void
+on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureResponse&gt;, options?: Options): void
 
 Subscribes to data of the ambient temperature sensor.
 
@@ -264,6 +279,9 @@ try {
   sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
     console.info('Succeeded in invoking on. Temperature: ' + data.temperature);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.AMBIENT_TEMPERATURE);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -304,6 +322,9 @@ try {
   sensor.on(sensor.SensorId.BAROMETER, (data: sensor.BarometerResponse) => {
     console.info('Succeeded in invoking on. Atmospheric pressure: ' + data.pressure);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.BAROMETER);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -312,7 +333,7 @@ try {
 
 ###  GRAVITY<sup>9+</sup>
 
-on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: Options): void
+on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;, options?: Options): void
 
 Subscribes to data of the gravity sensor.
 
@@ -346,6 +367,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.GRAVITY);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -354,7 +378,7 @@ try {
 
 ###  GYROSCOPE<sup>9+</sup>
 
-on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;,options?: Options): void
+on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, options?: Options): void
 
 Subscribes to data of the gyroscope sensor.
 
@@ -390,6 +414,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.GYROSCOPE);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -438,6 +465,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate bias: ' + data.biasY);
     console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -455,11 +485,11 @@ Subscribes to data of the Hall effect sensor.
 
 **Parameters**
 
-| Name  | Type                                         | Mandatory| Description                                                       |
-| -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).HALL                   | Yes  | Sensor type. The value is fixed at **SensorId.HALL**.                      |
-| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HallResponse** object.         |
-| options  | [Options](#options)                           | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
+| Name  | Type                                         | Mandatory| Description                                                        |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).HALL                   | Yes  | Sensor type. The value is fixed at **SensorId.HALL**.                       |
+| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HallResponse** object.          |
+| options  | [Options](#options)                           | No  | List of optional parameters. The default value is 200,000,000 ns. This parameter is used to set the data reporting frequency when Hall effect events are frequently triggered.|
 
 **Error codes**
 
@@ -479,6 +509,9 @@ try {
   sensor.on(sensor.SensorId.HALL, (data: sensor.HallResponse) => {
     console.info('Succeeded in invoking on. Hall status: ' + data.status);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.HALL);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -488,7 +521,7 @@ try {
 
 ###   HEART_RATE<sup>9+</sup>
 
-on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,options?: Options): void
+on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
 
 Subscribes to data of the heart rate sensor.
 
@@ -522,6 +555,9 @@ try {
   sensor.on(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
     console.info('Succeeded in invoking on. Heart rate: ' + data.heartRate);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.HEART_RATE);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -530,7 +566,7 @@ try {
 
 ###  HUMIDITY<sup>9+</sup>
 
-on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?: Options): void
+on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;, options?: Options): void
 
 Subscribes to data of the humidity sensor.
 
@@ -562,6 +598,9 @@ try {
   sensor.on(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
     console.info('Succeeded in invoking on. Humidity: ' + data.humidity);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.HUMIDITY);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -607,6 +646,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -615,7 +657,7 @@ try {
 
 ###  MAGNETIC_FIELD<sup>9+</sup>
 
-on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;,options?: Options): void
+on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;, options?: Options): void
 
 Subscribes to data of the magnetic field sensor.
 
@@ -649,6 +691,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.MAGNETIC_FIELD);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -694,6 +739,9 @@ try {
     console.info('Succeeded in invoking on. Y-coordinate bias: ' + data.biasY);
     console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -702,7 +750,7 @@ try {
 
 ### ORIENTATION<sup>9+</sup>
 
-on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;,options?: Options): void
+on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, options?: Options): void
 
 Subscribes to data of the orientation sensor.
 
@@ -736,6 +784,9 @@ try {
     console.info('Succeeded in the device rotating at an angle around the X axis: ' + data.beta);
     console.info('Succeeded in the device rotating at an angle around the Y axis: ' + data.gamma);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.ORIENTATION);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -778,6 +829,9 @@ try {
   sensor.on(sensor.SensorId.PEDOMETER, (data: sensor.PedometerResponse) => {
     console.info('Succeeded in invoking on. Step count: ' + data.steps);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.PEDOMETER);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -821,6 +875,9 @@ try {
   sensor.on(sensor.SensorId.PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
     console.info('Succeeded in invoking on. Pedometer scalar: ' + data.scalar);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.PEDOMETER_DETECTION);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -837,11 +894,11 @@ Subscribes to data of the proximity sensor.
 
 **Parameters**
 
-| Name  | Type                                                   | Mandatory| Description                                                       |
-| -------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).PROXIMITY                        | Yes  | Sensor type. The value is fixed at **SensorId.PROXIMITY**.                 |
-| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **ProximityResponse** object.    |
-| options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).PROXIMITY                        | Yes  | Sensor type. The value is fixed at **SensorId.PROXIMITY**.                  |
+| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **ProximityResponse** object.     |
+| options  | [Options](#options)                                     | No  | List of optional parameters. The default value is 200,000,000 ns. This parameter is used to set the data reporting frequency when proximity sensor events are frequently triggered.|
 
 **Error codes**
 
@@ -861,6 +918,9 @@ try {
   sensor.on(sensor.SensorId.PROXIMITY, (data: sensor.ProximityResponse) => {
     console.info('Succeeded in invoking on. Distance: ' + data.distance);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.PROXIMITY);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -905,6 +965,9 @@ try {
     console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
     console.info('Succeeded in invoking on. Scalar quantity: ' + data.w);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.ROTATION_VECTOR);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -946,6 +1009,9 @@ try {
   sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
     console.info('Succeeded in invoking on. Scalar data: ' + data.scalar);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.SIGNIFICANT_MOTION);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -987,6 +1053,9 @@ try {
   sensor.on(sensor.SensorId.WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
     console.info('Succeeded in invoking on. Wear status: ' + data.value);
   }, { interval: 100000000 });
+  setTimeout(() => {
+    sensor.off(sensor.SensorId.WEAR_DETECTION);
+  }, 500);
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
@@ -1441,8 +1510,8 @@ import sensor from "@ohos.sensor"
 import BusinessError from "@ohos.base"
 
 try {
-  sensor.once(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
-    console.info('Succeeded in invoking once. Heart rate: ' + data.heartRate);
+  sensor.once(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
+    console.info('Succeeded in invoking once. Humidity: ' + data.humidity);
   });
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
@@ -1595,7 +1664,7 @@ Obtains data of the orientation sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).AMBIENT_LIGHT
+For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -1874,10 +1943,10 @@ Unsubscribes from data of the color sensor.
 
 **Parameters**
 
-| Name  | Type                                           | Mandatory| Description                                                        |
-| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9).COLOR                    | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                      |
-| callback | Callback&lt;[ColorResponse](#colorresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+| Name  | Type                                             | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).COLOR                      | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                      |
+| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -1918,10 +1987,10 @@ Unsubscribes from data of the SAR sensor.
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                                                        |
-| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9).SAR               | Yes  | Sensor type. The value is fixed at **SensorId.SAR**.                        |
-| callback | Callback&lt;[SarResponse](#sarresponse)> | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+| Name  | Type                                      | Mandatory| Description                                                        |
+| -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).SAR                 | Yes  | Sensor type. The value is fixed at **SensorId.SAR**.                        |
+| callback | Callback&lt;[SarResponse](#sarresponse10)> | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -2863,7 +2932,7 @@ Obtains the geomagnetic field of a geographic location at a certain time. This A
 | --------------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | locationOptions | [LocationOptions](#locationoptions)                          | Yes  | Geographic location, including the longitude, latitude, and altitude.                        |
 | timeMillis      | number                                                       | Yes  | Time when the magnetic declination is obtained. The value is a Unix timestamp, in ms.|
-| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes  | Callback used to return the geomagnetic field.                    |
+| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes  | Callback used to return the geomagnetic field.                |
 
 **Error codes**
 
@@ -2968,7 +3037,7 @@ Obtains the altitude based on the atmospheric pressure. This API uses an asynchr
 | --------------- | --------------------------- | ---- | ------------------------------------- |
 | seaPressure     | number                      | Yes  | Sea-level atmospheric pressure, in hPa.        |
 | currentPressure | number                      | Yes  | Specified atmospheric pressure, in hPa.|
-| callback        | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the altitude, in meters.   |
+| callback        | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the altitude, in meters. |
 
 **Error codes**
 
@@ -3493,7 +3562,7 @@ Obtains the quaternion from a rotation vector. This API uses an asynchronous cal
 | Name        | Type                                    | Mandatory| Description          |
 | -------------- | ---------------------------------------- | ---- | -------------- |
 | rotationVector | Array&lt;number&gt;                      | Yes  | Rotation vector.|
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the quaternion.  |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the quaternion.|
 
 **Error codes**
 
@@ -3924,8 +3993,8 @@ Obtains information about the sensor of a specific type. This API uses a promise
 
 **Return value**
 
-| Name | Type                             | Mandatory| Description            |
-| ------- | --------------------------------- | ---- | ---------------- |
+| Name | Type                             | Mandatory| Description                        |
+| ------- | --------------------------------- | ---- | ---------------------------- |
 | promise | Promise&lt;[Sensor](#sensor9)&gt; | Yes  | Promise used to return the sensor information.|
 
 **Error codes**
@@ -4017,6 +4086,18 @@ Enumerates the sensor types.
 | SENSOR_TYPE_ID_WEAR_DETECTION              | 280  | Wear detection sensor.      |
 | SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED  | 281  | Uncalibrated acceleration sensor.|
 
+## SensorAccuracy<sup>11+</sup>
+
+Enumerates the accuracy levels of sensor data.
+
+**System capability**: SystemCapability.Sensors.Sensor
+| Name     | Type  | Value| Description                    |
+| --------- | ------ | ---- | ------------------------ |
+| ACCURACY_UNRELIABLE | number | 0   | The sensor data is unreliable.|
+| ACCURACY_LOW | number | 1   | The sensor data is at a low accuracy level.|
+| ACCURACY_MEDIUM | number | 2   | The sensor data is at a medium accuracy level.|
+| ACCURACY_HIGH | number | 3   | The sensor data is at a high accuracy level.|
+
 ## Response
 
 Describes the timestamp of the sensor data.
@@ -4026,6 +4107,7 @@ Describes the timestamp of the sensor data.
 | Name     | Type  | Readable| Writable| Description                    |
 | --------- | ------ | ---- | ---- | ------------------------ |
 | timestamp | number | Yes  | Yes  | Timestamp when the sensor reports data.|
+| accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11) | Yes  | No  | Accuracy of the sensor data.|
 
 ## Sensor<sup>9+</sup>
 
@@ -4201,7 +4283,7 @@ Describes the significant motion sensor data. It extends from [Response](#respon
 
 | Name  | Type  | Readable| Writable| Description                                                        |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| scalar | number | Yes  | Yes  | Intensity of a motion. This parameter specifies whether a device has a significant motion on three physical axes (X, Y, and Z). The value **0** means that the device does not have a significant motion, and **1** means the opposite.|
+| scalar | number | Yes  | Yes  | Intensity of a motion. This parameter specifies whether a device has a significant motion on three physical axes (X, Y, and Z). The value **1** is reported when the device has a significant motion.|
 
 
 ## ProximityResponse
@@ -4211,9 +4293,9 @@ Describes the proximity sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable| Writable| Description                                                  |
-| -------- | ------ | ---- | ---- | ------------------------------------------------------ |
-| distance | number | Yes  | Yes  | Proximity between the visible object and the device monitor. The value **0** means the two are close to each other, and **1** means that they are far away from each other.|
+| Name    | Type  | Readable| Writable| Description                                                      |
+| -------- | ------ | ---- | ---- | ---------------------------------------------------------- |
+| distance | number | Yes  | Yes  | Proximity between the visible object and the device monitor. The value **0** means the two are close to each other, and a value greater than 0 means that they are far away from each other.|
 
 
 ## LightResponse
@@ -4326,9 +4408,9 @@ Describes the barometer sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable| Writable| Description                    |
-| -------- | ------ | ---- | ---- | ------------------------ |
-| pressure | number | Yes  | Yes  | Atmospheric pressure, in pascal.|
+| Name    | Type  | Readable| Writable| Description                  |
+| -------- | ------ | ---- | ---- | ---------------------- |
+| pressure | number | Yes  | Yes  | Atmospheric pressure, in units of hPa.|
 
 
 ## HeartRateResponse
@@ -4391,7 +4473,7 @@ Describes the coordinate options.
 
 ## GeomagneticResponse
 
-Describes a geomagnetic response object. It extends from [Response](#response).
+Describes a geomagnetic response object.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -4821,7 +4903,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.PR
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PROXIMITY      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PROXIMITY**.        |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | Callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**.|
-| options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
+| options  | [Options](#options)                                     | No  | List of optional parameters. The default value is 200,000,000 ns. This parameter is used to set the data reporting frequency when proximity sensor events are frequently triggered.|
 
 **Example**
 
@@ -4911,7 +4993,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.HA
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HALL | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HALL**.               |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | Callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**.|
-| options  | [Options](#options)                           | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
+| options  | [Options](#options)                           | No  | List of optional parameters. The default value is 200,000,000 ns. This parameter is used to set the data reporting frequency when Hall effect events are frequently triggered.|
 
 **Example**
 
@@ -5965,6 +6047,18 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.H
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HEART_RATE     | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HEART_RATE**.     |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.HeartRateResponse) {
+  console.info('Succeeded in invoking off. Humidity: ' + data.heartRate);
+}
+
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback);
+```
+
 ### HUMIDITY<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
@@ -6012,6 +6106,20 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.L
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_LINEAR_ACCELERATION | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_LINEAR_ACCELERATION**.|
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
+
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.LinearAccelerometerResponse) {
+  console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
+}
+
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
+```
 
 ### MAGNETIC_FIELD<sup>(deprecated)</sup>
 
@@ -6302,11 +6410,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.trans
 
 **Parameters**
 
-| Name             | Type                                      | Mandatory  | Description         |
-| ---------------- | ---------------------------------------- | ---- | ----------- |
-| inRotationVector | Array&lt;number&gt;                      | Yes   | Rotation vector to rotate.    |
-| coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes   | Direction of the coordinate system.   |
-| callback         | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the rotation vector after being rotated.|
+| Name          | Type                                     | Mandatory| Description                      |
+| ---------------- | ----------------------------------------- | ---- | -------------------------- |
+| inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation vector to rotate.            |
+| coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes  | Direction of the coordinate system.          |
+| callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | Yes  | Callback used to return the rotation vector after being rotated.|
 
 **Example**
 
@@ -6345,8 +6453,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.trans
 
 **Return value**
 
-| Type                                | Description         |
-| ---------------------------------- | ----------- |
+| Type                              | Description                              |
+| ---------------------------------- | ---------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation vector after being rotated.|
 
 **Example**
@@ -6382,7 +6490,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.getGe
 | --------------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | locationOptions | [LocationOptions](#locationoptions)                          | Yes  | Geographic location.                        |
 | timeMillis      | number                                                       | Yes  | Time for obtaining the magnetic declination, in milliseconds.|
-| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes  | Callback used to return the geomagnetic field.                    |
+| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes  | Callback used to return the geomagnetic field.                |
 
 **Example**
 
@@ -6419,8 +6527,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.getGe
 | timeMillis      | number                              | Yes   | Time for obtaining the magnetic declination, in milliseconds.|
 
 **Return value**
-| Type                                      | Description     |
-| ---------------------------------------- | ------- |
+| Type                                                      | Description                      |
+| ---------------------------------------------------------- | -------------------------- |
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
 
 **Example**
@@ -6451,11 +6559,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.getDe
 
 **Parameters**
 
-| Name            | Type                         | Mandatory  | Description                  |
-| --------------- | --------------------------- | ---- | -------------------- |
-| seaPressure     | number                      | Yes   | Sea-level atmospheric pressure, in hPa.    |
-| currentPressure | number                      | Yes   | Atmospheric pressure at the altitude where the device is located, in hPa.|
-| callback        | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the altitude, in meters.   |
+| Name         | Type                       | Mandatory| Description                                  |
+| --------------- | --------------------------- | ---- | -------------------------------------- |
+| seaPressure     | number                      | Yes  | Sea-level atmospheric pressure, in hPa.         |
+| currentPressure | number                      | Yes  | Atmospheric pressure at the altitude where the device is located, in hPa. |
+| callback        | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the altitude, in meters.|
 
 **Example**
 
@@ -6491,8 +6599,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.getDe
 
 **Return value**
 
-| Type                   | Description                |
-| --------------------- | ------------------ |
+| Type                 | Description                                            |
+| --------------------- | ------------------------------------------------ |
 | Promise&lt;number&gt; | Promise used to return the altitude, in meters.|
 
 **Example**
@@ -6522,10 +6630,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
 
 **Parameters**
 
-| Name              | Type                         | Mandatory  | Description            |
-| ----------------- | --------------------------- | ---- | -------------- |
-| inclinationMatrix | Array&lt;number&gt;         | Yes   | Inclination matrix.       |
-| callback          | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the magnetic dip, in radians.|
+| Name           | Type                       | Mandatory| Description                            |
+| ----------------- | --------------------------- | ---- | -------------------------------- |
+| inclinationMatrix | Array&lt;number&gt;         | Yes  | Inclination matrix.                  |
+| callback          | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the magnetic dip, in radians.|
 
 **Example**
 
@@ -6560,8 +6668,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
 
 **Return value**
 
-| Type                   | Description            |
-| --------------------- | -------------- |
+| Type                 | Description                                    |
+| --------------------- | ---------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the magnetic dip, in radians.|
 
 **Example**
@@ -6590,11 +6698,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.getAn
 
 **Parameters**
 
-| Name                  | Type                                      | Mandatory  | Description                |
-| --------------------- | ---------------------------------------- | ---- | ------------------ |
-| currentRotationMatrix | Array&lt;number&gt;                      | Yes   | Current rotation matrix.         |
-| preRotationMatrix     | Array&lt;number&gt;                      | Yes   | The other rotation matrix.           |
-| callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the angle change around the z, x, and y axes.|
+| Name               | Type                                    | Mandatory| Description                                 |
+| --------------------- | ---------------------------------------- | ---- | ------------------------------------- |
+| currentRotationMatrix | Array&lt;number&gt;                      | Yes  | Current rotation matrix.                   |
+| preRotationMatrix     | Array&lt;number&gt;                      | Yes  | The other rotation matrix.                       |
+| callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the angle change around the z, x, and y axes.|
 
 **Example**
 
@@ -6633,8 +6741,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.getAn
 
 **Return value**
 
-| Type                                | Description                |
-| ---------------------------------- | ------------------ |
+| Type                              | Description                                         |
+| ---------------------------------- | --------------------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the angle change around the z, x, and y axes.|
 
 **Example**
@@ -6667,10 +6775,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 
 **Parameters**
 
-| Name           | Type                                      | Mandatory  | Description     |
-| -------------- | ---------------------------------------- | ---- | ------- |
-| rotationVector | Array&lt;number&gt;                      | Yes   | Rotation vector to convert.|
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the rotation matrix.|
+| Name        | Type                                    | Mandatory| Description              |
+| -------------- | ---------------------------------------- | ---- | ------------------ |
+| rotationVector | Array&lt;number&gt;                      | Yes  | Rotation vector to convert.    |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation matrix.|
 
 **Example**
 
@@ -6708,8 +6816,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 
 **Return value**
 
-| Type                                | Description     |
-| ---------------------------------- | ------- |
+| Type                              | Description                      |
+| ---------------------------------- | -------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation matrix.|
 
 **Example**
@@ -6741,10 +6849,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.getQu
 
 **Parameters**
 
-| Name           | Type                                      | Mandatory  | Description     |
-| -------------- | ---------------------------------------- | ---- | ------- |
-| rotationVector | Array&lt;number&gt;                      | Yes   | Rotation vector to convert.|
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the quaternion. |
+| Name        | Type                                    | Mandatory| Description            |
+| -------------- | ---------------------------------------- | ---- | ---------------- |
+| rotationVector | Array&lt;number&gt;                      | Yes  | Rotation vector to convert.  |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the quaternion.|
 
 **Example**
 
@@ -6782,8 +6890,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.getQu
 
 **Return value**
 
-| Type                                | Description    |
-| ---------------------------------- | ------ |
+| Type                              | Description                    |
+| ---------------------------------- | ------------------------ |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the quaternion.|
 
 **Example**
@@ -6815,10 +6923,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.getOr
 
 **Parameters**
 
-| Name           | Type                                      | Mandatory  | Description                |
-| -------------- | ---------------------------------------- | ---- | ------------------ |
-| rotationMatrix | Array&lt;number&gt;                      | Yes   | The other rotation matrix.           |
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the rotation angle around the z, x, and y axes.|
+| Name        | Type                                    | Mandatory| Description                                 |
+| -------------- | ---------------------------------------- | ---- | ------------------------------------- |
+| rotationMatrix | Array&lt;number&gt;                      | Yes  | Rotation matrix.                       |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation angle around the z, x, and y axes.|
 
 **Example**
 
@@ -6852,12 +6960,12 @@ This API is deprecated since API version 9. You are advised to use [sensor.getOr
 
 | Name           | Type                 | Mandatory  | Description     |
 | -------------- | ------------------- | ---- | ------- |
-| rotationMatrix | Array&lt;number&gt; | Yes   | The other rotation matrix.|
+| rotationMatrix | Array&lt;number&gt; | Yes   | Rotation matrix.|
 
 **Return value**
 
-| Type                                | Description                |
-| ---------------------------------- | ------------------ |
+| Type                              | Description                                         |
+| ---------------------------------- | --------------------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation angle around the z, x, and y axes.|
 
 **Example**
@@ -6889,11 +6997,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 
 **Parameters**
 
-| Name        | Type                                      | Mandatory  | Description     |
-| ----------- | ---------------------------------------- | ---- | ------- |
-| gravity     | Array&lt;number&gt;                      | Yes   | Gravity vector.|
-| geomagnetic | Array&lt;number&gt;                      | Yes   | Geomagnetic vector.|
-| callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Yes   | Callback used to return the rotation matrix.|
+| Name     | Type                                                        | Mandatory| Description              |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------ |
+| gravity     | Array&lt;number&gt;                                          | Yes  | Gravity vector.    |
+| geomagnetic | Array&lt;number&gt;                                          | Yes  | Geomagnetic vector.    |
+| callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Yes  | Callback used to return the rotation matrix.|
 
 **Example**
 
@@ -6913,7 +7021,7 @@ sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.
 
 ## sensor.createRotationMatrix<sup>(deprecated)</sup>
 
-createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse&gt;
+createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;): Promise&lt;RotationMatrixResponse&gt;
 
 Creates a rotation matrix based on the gravity vector and geomagnetic vector. This API uses a promise to return the result.
 
@@ -6930,8 +7038,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 
 **Return value**
 
-| Type                                      | Description     |
-| ---------------------------------------- | ------- |
+| Type                                                        | Description                      |
+| ------------------------------------------------------------ | -------------------------- |
 | Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Promise used to return the rotation matrix.|
 
 **Example**

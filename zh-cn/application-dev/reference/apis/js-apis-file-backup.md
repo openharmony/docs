@@ -362,7 +362,7 @@ constructor(callbacks: GeneralCallbacks);
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
-  let generalCallbacks = ({
+  let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
@@ -391,7 +391,7 @@ constructor(callbacks: GeneralCallbacks);
     onBackupServiceDied: () => {
       console.info('service died');
     }
-  });
+  };
   let sessionBackup = new backup.SessionBackup(generalCallbacks);
   ```
 
@@ -548,7 +548,7 @@ appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;
     onBackupServiceDied: () => {
       console.info('service died');
     }
-  }
+  };
   let sessionBackup = new backup.SessionBackup(generalCallbacks);
   async function appendBundles() {
     try {
@@ -1115,7 +1115,7 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
   let g_session: backup.SessionRestore;
-  async function publishFile(file: backup.fileMeta) {
+  async function publishFile(file: backup.FileMeta) {
     let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
       uri: file.uri

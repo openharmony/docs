@@ -122,9 +122,9 @@ if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: USBDevice = devicesList[0];
+let device: usb.USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe: USBDevicePipe = usb.connectDevice(device);
+let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
 console.log(`devicepipe = ${devicepipe}`);
 ```
 
@@ -182,7 +182,7 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 ```ts
 let devicesName: string = "1-1";
-usb.requestRight(devicesName:).then((ret: number) => {
+usb.requestRight(devicesName).then(ret => {
   console.log(`requestRight = ${ret}`);
 });
 ```
@@ -283,10 +283,10 @@ if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: USBDevice = devicesList[0];
+let device: usb.USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe: USBDevicePipe = usb.connectDevice(device);
-let interfaces: USBInterface = device.configs[0].interfaces[0];
+let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
+let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
 let ret: number= usb.claimInterface(devicepipe, interfaces);
 console.log(`claimInterface = ${ret}`);
 ```
@@ -322,10 +322,10 @@ if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: USBDevice = devicesList[0];
+let device: usb.USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe: USBDevicePipe = usb.connectDevice(device);
-let interfaces: USBInterface = device.configs[0].interfaces[0];
+let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
+let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
 let ret: number = usb.claimInterface(devicepipe, interfaces);
 ret = usb.releaseInterface(devicepipe, interfaces);
 console.log(`releaseInterface = ${ret}`);
@@ -362,10 +362,10 @@ if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: USBDevice = devicesList[0];
+let device: usb.USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe: USBDevicePipe = usb.connectDevice(device);
-let config: USBConfiguration = device.configs[0];
+let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
+let config: usb.USBConfiguration = device.configs[0];
 let ret: number= usb.setConfiguration(devicepipe, config);
 console.log(`setConfiguration = ${ret}`);
 ```
@@ -401,10 +401,10 @@ if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: USBDevice = devicesList[0];
+let device: usb.USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe: USBDevicePipe = usb.connectDevice(device);
-let interfaces: USBInterface = device.configs[0].interfaces[0];
+let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
+let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
 let ret: number = usb.claimInterface(devicepipe, interfaces);
 ret = usb.setInterface(devicepipe, interfaces);
 console.log(`setInterface = ${ret}`);
@@ -441,8 +441,8 @@ if (devicesList.length == 0) {
 }
 
 usb.requestRight(devicesList[0].name);
-let devicepipe: USBDevicePipe = usb.connectDevice(devicesList[0]);
-let ret: number = usb.getRawDescriptor(devicepipe);
+let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
+let ret: Uint8Array = usb.getRawDescriptor(devicepipe);
 ```
 
 ## usb.getFileDescriptor
@@ -476,7 +476,7 @@ if (devicesList.length == 0) {
 }
 
 usb.requestRight(devicesList[0].name);
-let devicepipe: USBDevicePipe = usb.connectDevice(devicesList[0]);
+let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
 let ret: number = usb.getFileDescriptor(devicepipe);
 ```
 
@@ -509,11 +509,11 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 ```ts
 class PARA {
   request: number = 0
-  reqType: USBControlRequestType = 0
-  target: USBRequestTargetType = 0
+  reqType: usb.USBControlRequestType = 0
+  target: usb.USBRequestTargetType = 0
   value: number = 0
   index: number = 0
-  data: Uint8Array = 0
+  data: Uint8Array = new Uint8Array()
 }
 
 let param: PARA = {
@@ -522,7 +522,7 @@ let param: PARA = {
   target:0,
   value: 0,
   index: 0,
-  data: 0
+  data: new Uint8Array()
 };
 
 let devicesList: Array<usb.USBDevice> = usb.getDevices();
@@ -531,7 +531,7 @@ if (devicesList.length == 0) {
 }
 
 usb.requestRight(devicesList[0].name);
-let devicepipe: USBDevicePipe = usb.connectDevice(devicesList[0]);
+let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
 usb.controlTransfer(devicepipe, param).then((ret: number) => {
  console.log(`controlTransfer = ${ret}`);
 })
@@ -573,12 +573,12 @@ if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device: USBDevice = devicesList[0];
+let device: usb.USBDevice = devicesList[0];
 usb.requestRight(device.name);
 
-let devicepipe: USBDevicePipe = usb.connectDevice(device);
-let interfaces: USBInterface = device.configs[0].interfaces[0];
-let endpoint: USBEndpoint = device.configs[0].interfaces[0].endpoints[0];
+let devicepipe: usb.USBDevicePipe = usb.connectDevice(device);
+let interfaces: usb.USBInterface = device.configs[0].interfaces[0];
+let endpoint: usb.USBEndpoint = device.configs[0].interfaces[0].endpoints[0];
 let ret: number = usb.claimInterface(devicepipe, interfaces);
 let buffer =  new Uint8Array(128);
 usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret: number) => {
@@ -617,7 +617,7 @@ if (devicesList.length == 0) {
 }
 
 usb.requestRight(devicesList[0].name);
-let devicepipe: USBDevicePipe = usb.connectDevice(devicesList[0]);
+let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
 let ret: number = usb.closePipe(devicepipe);
 console.log(`closePipe = ${ret}`);
 ```
@@ -676,8 +676,8 @@ usbFunctionsToString(funcs: FunctionType): string
 **示例：**
 
 ```ts
-let funcs: string = usb.FunctionType.ACM | usb.FunctionType.ECM;
-let ret: number = usb.usbFunctionsToString(funcs);
+let funcs: number = usb.FunctionType.ACM | usb.FunctionType.ECM;
+let ret: string = usb.usbFunctionsToString(funcs);
 ```
 
 ## usb.setCurrentFunctions
@@ -714,10 +714,10 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 ```ts
 import {BusinessError} from '@ohos.base';
-let funcs: string = usb.FunctionType.HDC;
+let funcs: number = usb.FunctionType.HDC;
 usb.setCurrentFunctions(funcs).then(() => {
     console.info('usb setCurrentFunctions successfully.');
-}).catch(err: BusinessError => {
+}).catch((err: BusinessError) => {
     console.error('usb setCurrentFunctions failed: ' + err.code + ' message: ' + err.message);
 });
 ```
@@ -763,7 +763,7 @@ getPorts(): Array\<USBPort\>
 **示例：**
 
 ```ts
-let ret: number = usb.getPorts();
+let ret: Array<usb.USBPort> = usb.getPorts();
 ```
 
 ## usb.getSupportedModes
@@ -825,7 +825,7 @@ import {BusinessError} from '@ohos.base';
 let portId: number = 1;
 usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
     console.info('usb setPortRoles successfully.');
-}).catch(err: BusinessError => {
+}).catch((err: BusinessError) => {
     console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);
 });
 ```

@@ -10,13 +10,13 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称        | 类型                                                         | 只读 | 必填 | 说明               |
-| ----------- | ------------------------------------------------------------ | ---- | --- | ------------------ |
-| contentType | [ContentType](./js-apis-notificationManager.md#contenttype)  | 否  | 是  | 通知内容类型。       |
-| normal      | [NotificationBasicContent](#notificationbasiccontent)        | 否  | 否  | 基本类型通知内容。   |
-| longText    | [NotificationLongTextContent](#notificationlongtextcontent)  | 否  | 否  | 长文本类型通知内容。 |
-| multiLine   | [NotificationMultiLineContent](#notificationmultilinecontent) | 否  | 否  | 多行类型通知内容。   |
-| picture     | [NotificationPictureContent](#notificationpicturecontent)    | 否  | 否  | 图片类型通知内容。   |
+| 名称           | 类型                                                                        | 只读 | 必填 | 说明               |
+| -----------   | --------------------------------------------------------------------------- | ---- | --- | ------------------ |
+| contentType | [ContentType](./js-apis-notificationManager.md#contenttype)                   | 否  | 否  | 通知内容类型。       |
+| normal         | [NotificationBasicContent](#notificationbasiccontent)                      | 否  | 否  | 基本类型通知内容。   |
+| longText       | [NotificationLongTextContent](#notificationlongtextcontent)                | 否  | 否  | 长文本类型通知内容。 |
+| multiLine      | [NotificationMultiLineContent](#notificationmultilinecontent)              | 否  | 否  | 多行类型通知内容。   |
+| picture        | [NotificationPictureContent](#notificationpicturecontent)                  | 否  | 否  | 图片类型通知内容。   |
 
 ## NotificationBasicContent
 
@@ -24,11 +24,11 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称           | 类型   | 必填 | 说明                               |
-| -------------- | ------ | ---- | ---------------------------------- |
-| title          | string | 是   | 通知标题。                         |
-| text           | string | 是   | 通知内容。                         |
-| additionalText | string | 否   | 通知附加内容，是对通知内容的补充。 |
+| 名称           | 类型    | 只读 | 必填 | 说明                               |
+| -------------- | ------ | ---- |-----| ---------------------------------- |
+| title          | string |  否  |  是  | 通知标题（不可为空字符串）。         |
+| text           | string |  否  |  是  | 通知内容（不可为空字符串）。         |
+| additionalText | string |  否  |  否  | 通知附加内容，是对通知内容的补充。   |
 
 
 ## NotificationLongTextContent
@@ -37,14 +37,14 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称           | 类型   | 必填 | 说明                             |
-| -------------- | ------ | --- | -------------------------------- |
-| title          | string | 是  | 通知标题。                         |
-| text           | string | 是  | 通知内容。                         |
-| additionalText | string | 否  | 通知附加内容，是对通知内容的补充。   |
-| longText       | string | 是  | 通知的长文本。                     |
-| briefText      | string | 是  | 通知概要内容，是对通知内容的总结。   |
-| expandedTitle  | string | 是  | 通知展开时的标题。                 |
+| 名称           | 类型    | 只读 | 必填 | 说明                             |
+| -------------- | ------ | ---- | --- | -------------------------------- |
+| title          | string |  否  | 是  | 通知标题（不可为空字符串）。                         |
+| text           | string |  否  | 是  | 通知内容（不可为空字符串）。                         |
+| additionalText | string |  否  | 否  | 通知附加内容，是对通知内容的补充。   |
+| longText       | string |  否  | 是  | 通知的长文本（不可为空字符串）。                     |
+| briefText      | string |  否  | 是  | 通知概要内容，是对通知内容的总结（不可为空字符串）。   |
+| expandedTitle  | string |  否  | 是  | 通知展开时的标题（不可为空字符串）。                 |
 
 
 ## NotificationMultiLineContent
@@ -53,14 +53,14 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称           | 类型            | 可读 | 可写 | 说明                             |
+| 名称           | 类型            | 只读 | 必填 | 说明                             |
 | -------------- | --------------- | --- | --- | -------------------------------- |
-| title          | string          | 否  | 是  | 通知标题。                         |
-| text           | string          | 否  | 是  | 通知内容。                         |
+| title          | string          | 否  | 是  | 通知标题（不可为空字符串）。       |
+| text           | string          | 否  | 是  | 通知内容（不可为空字符串）。       |
 | additionalText | string          | 否  | 否  | 通知附加内容，是对通知内容的补充。 |
-| briefText      | string          | 否  | 是  | 通知概要内容，是对通知内容的总结。 |
-| longTitle      | string          | 否  | 是  | 通知展开时的标题。                 |
-| lines          | Array\<string\> | 否  | 是  | 通知的多行文本。                   |
+| briefText      | string          | 否  | 是  | 通知概要内容，是对通知内容的总结（不可为空字符串）。 |
+| longTitle      | string          | 否  | 是  | 通知展开时的标题（不可为空字符串）。|
+| lines          | Array\<string\> | 否  | 是  | 通知的多行文本。                  |
 
 
 ## NotificationPictureContent
@@ -69,11 +69,11 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称           | 类型           | 可读 | 可写 | 说明          |
-| -------------- | -------------- | ---- | --- |-------------|
-| title          | string         | 否  | 是  | 通知标题。       |
-| text           | string         | 否  | 是  | 通知内容。       |
-| additionalText | string         | 否  | 否  | 通知附加内容，是对通知内容的补充。 |
-| briefText      | string         | 否  | 是  | 通知概要内容，是对通知内容的总结。 |
-| expandedTitle  | string         | 否  | 是  | 通知展开时的标题。   |
-| picture        | [image.PixelMap](js-apis-image.md#pixelmap7) | 否  | 是  | 通知的图片内容(最大支持2MB的图片文件)。  |
+| 名称           | 类型                                          | 只读 | 必填 | 说明                               |
+| -------------- | -------------------------------------------- | ---- | --- |------------------------------------|
+| title          | string                                       |  否  | 是  | 通知标题（不可为空字符串）。          |
+| text           | string                                       |  否  | 是  | 通知内容（不可为空字符串）。          |
+| additionalText | string                                       |  否  | 否  | 通知附加内容，是对通知内容的补充。    |
+| briefText      | string                                       |  否  | 是  | 通知概要内容，是对通知内容的总结（不可为空字符串）。 |
+| expandedTitle  | string                                       |  否  | 是  | 通知展开时的标题（不可为空字符串）。    |
+| picture        | [image.PixelMap](js-apis-image.md#pixelmap7) |  否  | 是  | 通知的图片内容(最大支持2MB的图片文件)。|

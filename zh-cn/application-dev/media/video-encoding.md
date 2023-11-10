@@ -25,34 +25,51 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
 
 两种模式的开发步骤详细说明请参考：[Buffer模式](#buffer模式)和[Surface模式](#surface模式)。
 
-## 开发步骤
+## 开发指导
 
 详细的API说明请参考[API文档](../reference/native-apis/_video_encoder.md)。
 如下为视频编码调用关系图：
 ![Invoking relationship of video encode stream](figures/video-encode.png)
+
+### 在 CMake 脚本中链接动态库
+
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+target_link_libraries(sample PUBLIC libnative_media_core.so)
+target_link_libraries(sample PUBLIC libnative_media_venc.so)
+```
 
 ### Buffer模式
 
 参考以下示例代码，开发者可以完成Buffer输入模式下，视频编码的全流程。此处以YUV文件输入，编码成H.264格式为例。
 本模块目前仅支持异步模式的数据轮转。
 
-1. 创建编码器实例对象。
+1. 添加头文件。
+
+   ```cpp
+   #include <multimedia/player_framework/native_avcodec_videodecoder.h>
+   #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   ```
+
+2. 创建编码器实例对象。
 
    应用可以通过名称或媒体类型创建编码器。
 
     ``` c++
     // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
-    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(CodecMimeType::VIDEO_AVC.data());
+    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
     ```
 
     ```c++
     // 通过codec name创建编码器，应用有特殊需求，比如选择支持某种分辨率规格的编码器，可先查询capability，再根据codec name创建编码器。
-    OH_AVCapability *capability = OH_AVCodec_GetCapability(CodecMimeType::VIDEO_AVC.data(), true);
+    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     const char *codecName = OH_AVCapability_GetName(capability);
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
     ```
 
-2. 调用OH_VideoEncoder_SetCallback()设置回调函数。
+3. 调用OH_VideoEncoder_SetCallback()设置回调函数。
 
    > **注意：**
    >
@@ -115,13 +132,13 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-3. 调用OH_VideoEncoder_Configure()配置编码器。
+4. 调用OH_VideoEncoder_Configure()配置编码器。
 
    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频像素格式。  
    示例中的变量如下：
     - DEFAULT_WIDTH：320像素宽度；  
     - DEFAULT_HEIGHT：240像素高度；  
-    - DEFAULT_PIXELFORMAT： 像素格式，因为示例使用YUV的文件保存的像素格式是YUV420P，所以设置为VideoPixelFormat::YUV420P。  
+    - DEFAULT_PIXELFORMAT： 像素格式，因为示例使用YUV的文件保存的像素格式是YUV420P，所以设置为 AV_PIXEL_FORMAT_YUVI420。  
 
     ``` c++
     // 配置视频帧宽度（必须）
@@ -129,12 +146,12 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     // 配置视频帧高度（必须）
     constexpr uint32_t DEFAULT_HEIGHT = 240;
     // 配置视频像素格式（必须）
-    constexpr VideoPixelFormat DEFAULT_PIXELFORMAT = VideoPixelFormat::YUV420P;
+    constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_YUVI420;
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_WIDTH.data(), DEFAULT_WIDTH);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_HEIGHT.data(), DEFAULT_HEIGHT);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_PIXEL_FORMAT.data(), DEFAULT_PIXELFORMAT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
     // 配置编码器
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
@@ -142,7 +159,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-4. 调用OH_VideoEncoder_Prepare()，编码器就绪。
+5. 调用OH_VideoEncoder_Prepare()，编码器就绪。
 
    该接口将在编码器运行前进行一些数据的准备工作。
 
@@ -153,7 +170,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-5. 调用OH_VideoEncoder_Start()启动编码器，进入运行态。
+6. 调用OH_VideoEncoder_Start()启动编码器，进入运行态。
 
    启动编码器后，回调函数将开始响应事件。所以，需要先配置输入文件、输出文件。
 
@@ -172,7 +189,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-6. （可选）动态配置编码器实例。
+7. （可选）动态配置编码器实例。
 
     ``` c++
     OH_AVFormat *format = OH_AVFormat_Create();
@@ -185,11 +202,11 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     // 配置传输特性
     int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
     // 配置最大矩阵系数
-    int32_t matrix = static_cast<int32_t>(OH_MaxtrixCoefficient::MATRIX_COFFICIENT_IDENTITY);
+    int32_t matrix = static_cast<int32_t>(OH_MaxtrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
     // 配置编码Profile
-    int32_t profile = static_cast<int32_t>(AVCProfile::AVC_PROFILE_BASELINE);
+    int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
     // 配置编码比特率模式
-    int32_t rateMode = static_cast<int32_t>(VideoEncodeBitrateMode::CBR);
+    int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
     // 配置关键帧的间隔，单位为毫秒
     int32_t iFrameInterval = 23000;
     // 配置所需的编码质量。只有在恒定质量模式下配置的编码器才支持此配置
@@ -197,17 +214,17 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     // 配置比特率
     int64_t bitRate = 3000000;
     // 写入format
-    OH_AVFormat_SetDoubleValue(format, MediaDescriptionKey::MD_KEY_FRAME_RATE, frameRate);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_RANGE_FLAG, rangeFlag);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_COLOR_PRIMARIES, primary);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_MATRIX_COEFFICIENTS, matrix);
+    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, primary);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
     
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_PROFILE, profile);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
-    OH_AVFormat_SetLongValue(format, MediaDescriptionKey::MD_KEY_BITRATE, bitRate);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_QUALITY, quality);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
+    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
 
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
@@ -215,7 +232,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-7. 调用OH_VideoEncoder_PushInputData()，写入编码码流。
+8. 调用OH_VideoEncoder_PushInputData()，写入编码码流。
 
     送入输入队列进行编码，以下示例中：  
     - GetOneFrameSize()：计算yuv文件帧长度的函数，具体的计算过程请参阅YUV相关资料。
@@ -239,7 +256,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-8. 通知编码器码流结束。
+9.  通知编码器码流结束。
 
     以下示例中：  
     index：回调函数OnNeedInputData传入的参数，数据队列的索引。  
@@ -258,7 +275,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-9. 调用OH_VideoEncoder_FreeOutputData()，输出编码帧。
+10. 调用OH_VideoEncoder_FreeOutputData()，输出编码帧。
 
     以下示例中：  
     - index：回调函数OnNeedOutputData传入的参数，数据队列的索引。
@@ -275,7 +292,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-10. （可选）调用OH_VideoEncoder_Flush()刷新编码器。
+11. （可选）调用OH_VideoEncoder_Flush()刷新编码器。
 
     调用OH_VideoEncoder_Flush()后，编码器仍处于运行态，但会将当前队列清空，将已编码的数据释放。
 
@@ -295,7 +312,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-11. （可选）调用OH_VideoEncoder_Reset()重置编码器。
+12. （可选）调用OH_VideoEncoder_Reset()重置编码器。
 
     调用OH_VideoEncoder_Reset()后，编码器回到初始化的状态，需要调用OH_VideoEncoder_Configure()重新配置。
 
@@ -313,7 +330,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-12. 调用OH_VideoEncoder_Stop()停止编码器。
+13. 调用OH_VideoEncoder_Stop()停止编码器。
 
     ``` c++
     int32_t ret;
@@ -324,7 +341,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-13. 调用OH_VideoEncoder_Destroy()销毁编码器实例，释放资源。
+14. 调用OH_VideoEncoder_Destroy()销毁编码器实例，释放资源。
 
     > **注意：**
     >
@@ -345,23 +362,32 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
 参考以下示例代码，开发者可以完成Surface输入模式下，视频编码的全流程。此处以视频数据输入，编码成H.264格式为例。
 本模块目前仅支持异步模式的数据轮转。
 
-1. 创建编码器实例对象。
+1. 添加头文件。
+
+   ```cpp
+   #include <multimedia/player_framework/native_avcodec_videodecoder.h>
+   #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   #include <multimedia/player_framework/native_avcodec_base.h> 
+   ```
+
+2. 创建编码器实例对象。
 
    应用可以通过名称或媒体类型创建编码器。
 
     ``` c++
     // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
-    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(CodecMimeType::VIDEO_AVC.data());
+    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
     ```
 
     ```c++
     // 通过codec name创建编码器，应用有特殊需求，比如选择支持某种分辨率规格的编码器，可先查询capability，再根据codec name创建编码器。
-    OH_AVCapability *capability = OH_AVCodec_GetCapability(CodecMimeType::VIDEO_AVC.data(), true);
+    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     const char *codecName = OH_AVCapability_GetName(capability);
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
     ```
 
-2. 调用OH_VideoEncoder_SetCallback()设置回调函数。
+3. 调用OH_VideoEncoder_SetCallback()设置回调函数。
 
    > **注意：**
    >
@@ -420,13 +446,13 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-3. 调用OH_VideoEncoder_Configure()配置编码器。
+4. 调用OH_VideoEncoder_Configure()配置编码器。
 
    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频像素格式。  
    示例中的变量如下：
     - DEFAULT_WIDTH：320像素宽度；  
     - DEFAULT_HEIGHT：240像素高度；  
-    - DEFAULT_PIXELFORMAT： 像素格式，因为示例使用YUV的文件保存的像素格式是YUV420P，所以设置为VideoPixelFormat::YUV420P。  
+    - DEFAULT_PIXELFORMAT： 像素格式，因为示例使用YUV的文件保存的像素格式是YUV420P，所以设置为 AV_PIXEL_FORMAT_YUVI420。  
 
     ``` c++
     // 配置视频帧宽度（必须）
@@ -434,12 +460,12 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     // 配置视频帧高度（必须）
     constexpr uint32_t DEFAULT_HEIGHT = 240;
     // 配置视频像素格式（必须）
-    constexpr VideoPixelFormat DEFAULT_PIXELFORMAT = VideoPixelFormat::YUV420P;
+    constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_YUVI420;
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_WIDTH.data(), DEFAULT_WIDTH);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_HEIGHT.data(), DEFAULT_HEIGHT);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_PIXEL_FORMAT.data(), DEFAULT_PIXELFORMAT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
     // 配置编码器
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
@@ -447,7 +473,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-4. 调用OH_VideoEncoder_Prepare()，编码器就绪。
+5. 调用OH_VideoEncoder_Prepare()，编码器就绪。
 
    该接口将在编码器运行前进行一些数据的准备工作。
 
@@ -458,7 +484,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-5. 获取Surface。
+6. 获取Surface。
 
     获取编码器Surface模式的OHNativeWindow输入，获取Surface需要在启动编码器之前完成。
 
@@ -473,9 +499,9 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     // 通过OHNativeWindow*变量类型，配置输入数据的Surface
     ```
 
-    OHNativeWindow*变量类型的使用方法请参考图形子系统/foundation/graphic/graphic_2d
+    OHNativeWindow*变量类型的使用方法请参考图形子系统 [NativeWindow](../reference/native-apis/_native_window.md)
 
-6. 调用OH_VideoEncoder_Start()启动编码器。
+7. 调用OH_VideoEncoder_Start()启动编码器。
 
     ``` c++
     int32_t ret;
@@ -486,7 +512,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-7. （可选）动态配置编码器实例。
+8. （可选）动态配置编码器实例。
 
     ``` c++
     OH_AVFormat *format = OH_AVFormat_Create();
@@ -499,11 +525,11 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     // 配置传输特性
     int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
     // 配置最大矩阵系数
-    int32_t matrix = static_cast<int32_t>(OH_MaxtrixCoefficient::MATRIX_COFFICIENT_IDENTITY);
+    int32_t matrix = static_cast<int32_t>(OH_MaxtrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
     // 配置编码Profile
-    int32_t profile = static_cast<int32_t>(AVCProfile::AVC_PROFILE_BASELINE);
+    int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
     // 配置编码比特率模式
-    int32_t rateMode = static_cast<int32_t>(VideoEncodeBitrateMode::CBR);
+    int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
     // 配置关键帧的间隔，单位为毫秒
     int32_t iFrameInterval = 23000;
     // 配置所需的编码质量。只有在恒定质量模式下配置的编码器才支持此配置
@@ -511,17 +537,17 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     // 配置比特率
     int64_t bitRate = 3000000;
     // 写入format
-    OH_AVFormat_SetDoubleValue(format, MediaDescriptionKey::MD_KEY_FRAME_RATE, frameRate);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_RANGE_FLAG, rangeFlag);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_COLOR_PRIMARIES, primary);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_MATRIX_COEFFICIENTS, matrix);
+    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, primary);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
     
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_PROFILE, profile);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
-    OH_AVFormat_SetLongValue(format, MediaDescriptionKey::MD_KEY_BITRATE, bitRate);
-    OH_AVFormat_SetIntValue(format, MediaDescriptionKey::MD_KEY_QUALITY, quality);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
+    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
 
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
@@ -529,12 +555,12 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-8. 写入编码码流。
+9. 写入编码码流。
 
     在之前的第5步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。  
     因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputData回调函数进行处理，也无需使用OH_VideoEncoder_PushInputData接口输入数据。  
 
-9. 调用OH_VideoEncoder_NotifyEndOfStream()通知编码器码流结束。
+10. 调用OH_VideoEncoder_NotifyEndOfStream()通知编码器码流结束。
 
     ``` c++
     int32_t ret;
@@ -546,7 +572,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
     }
     ```
 
-10. 调用OH_VideoEncoder_FreeOutputData()，输出编码帧。
+11. 调用OH_VideoEncoder_FreeOutputData()，输出编码帧。
 
     以下示例中：  
     - index：回调函数OnNeedOutputData传入的参数，数据队列的索引。

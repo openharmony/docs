@@ -169,7 +169,7 @@ getSystemResourceManager(): ResourceManager
 
 | 类型                                       | 说明                 |
 | ---------------------------------------- | ------------------ |
-| Resourcemanager | 返回系统资源的管理对象 |
+| [Resourcemanager](#resourcemanager) | 返回系统资源的管理对象 |
 
 **错误码：**
 
@@ -309,6 +309,8 @@ import { BusinessError } from '@ohos.base';
 > - ResourceManager涉及到的方法，仅限基于TS扩展的声明式开发范式使用。
 >
 > - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
+>
+> - 对于本应用包资源，通过指定资源ID或资源名称进行访问。对于应用内跨包资源，通过指定[resource对象](#resource9)或对应包的[context](../../application-models/application-context-stage.md#创建其他应用或其他module的context)进行访问，通过对应包context访问跨包资源与访问本应用包资源的逻辑一致，推荐开发者使用对应包的context方法。
 
 ### getStringSync<sup>9+</sup>
 
@@ -366,7 +368,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
 
 **返回值：**
 
@@ -4593,7 +4595,7 @@ getConfigurationSync(): Configuration
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise&lt;[Configuration](#configuration)&gt; | 设备的Configuration |
+| [Configuration](#configuration) | 设备的Configuration |
 
 **示例：** 
   ```ts
@@ -4678,7 +4680,7 @@ getDeviceCapabilitySync(): DeviceCapability
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| DeviceCapability | 设备的DeviceCapability |
+| [DeviceCapability](#devicecapability) | 设备的DeviceCapability |
 
 **示例：** 
   ```ts
@@ -4837,6 +4839,56 @@ removeResource(path: string) : void;
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`removeResource failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getLocales<sup>11+</sup>
+
+getLocales(includeSystem?: boolean): Array\<string>
+
+获取应用的语言列表。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名         | 类型    | 必填   | 说明       |
+| -------------- | ------- | ------ | -------------------- |
+| includeSystem  | boolean |  否    | 是否包含系统资源，默认值为false <br> false：表示仅获取应用资源的语言列表 <br>true：表示获取系统资源和应用资源的语言列表 <br>当系统资源管理对象获取语言列表时，includeSystem值无效，返回获取系统资源语言列表 |
+
+**返回值：**
+
+| 类型                        | 说明          |
+| ------------------------- | ----------- |
+| Array\<string> | 返回获取的语言列表，列表中的字符串由语言、脚本(可选)、地区(可选)，按照顺序使用中划线"-"连接组成|
+
+**示例：**
+  ```ts
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.getLocales(); // 仅获取应用资源语言列表
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getLocales failed, error code: ${code}, message: ${message}.`);
+  }
+
+  try {
+    resourceManager.getSystemResourceManager().getLocales(); // 仅获取系统资源语言列表
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getLocales failed, error code: ${code}, message: ${message}.`);
+  }
+
+  try {
+    this.context.resourceManager.getLocales(true); // 获取应用资源和系统资源语言列表
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getLocales failed, error code: ${code}, message: ${message}.`);
   }
   ```
 

@@ -8,11 +8,19 @@ An application can share its file with another application based on the file des
 
 You can use the related APIs to [share a file with another application](#sharing-a-file-with-another-application) or [use shared application files](#using-shared-files).
 
+## Shareable Application Directories
+
+| Sandbox Path                            | Physical Path                                                                            | Description &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|
+| -------                              | -------                                                                             | ---- |
+| /data/storage/el1/base               | /data/app/el1/\<currentUserId\>/base/\<PackageName\>                                | Encrypted database directory under **/el1**.|
+| /data/storage/el2/base               | /data/app/el2/\<currentUserId\>/base/\<PackageName\>                                | Encrypted database directory under **/el2**.|
+| /data/storage/el2/distributedfiles   | /mnt/hmdfs/\<currentUserId\>/account/device_view/\<networkId\>/data/\<PackageName\> | Distributed data directory of the application under **el2/**.|
+
 ## File URI Specifications
 
 The file URIs are in the following format:
 
-**file://**&lt;bundleName&gt;/&lt;path&gt;
+  **file**://&lt;bundleName&gt;/&lt;path&gt;
 
 - **file**: indicates a file URI.
 
@@ -30,7 +38,7 @@ Before sharing application files, you need to [obtain the application file path]
    import UIAbility from '@ohos.app.ability.UIAbility';
    import fileuri from '@ohos.file.fileuri';
    import window from '@ohos.window';
-
+   
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        // Obtain the application sandbox path of the file.
@@ -43,7 +51,6 @@ Before sharing application files, you need to [obtain the application file path]
    ```
 
 2. Set the target application, with which you want to share the file, and grant permissions on the file.
-
    Use [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to share the file with the target application. You need to pass in the obtained URI in **uri** of the **want** parameter, set the type of the file to share, set **action** to **ohos.want.action.sendData**, and set the granted permission on the file in **flags**. For details, see [Want](../reference/apis/js-apis-app-ability-want.md#attributes).
 
    > **NOTE**
@@ -52,44 +59,44 @@ Before sharing application files, you need to [obtain the application file path]
 
    ```ts
    import fileuri from '@ohos.file.fileuri';
-      import window from '@ohos.window';
-      import wantConstant from '@ohos.app.ability.wantConstant';
-      import UIAbility from '@ohos.app.ability.UIAbility';
-      import Want from '@ohos.app.ability.Want';
-      import { BusinessError } from '@ohos.base';
-
-      export default class EntryAbility extends UIAbility {
-        onWindowStageCreate(windowStage: window.WindowStage) {
-          // Obtain the application sandbox path of the file.
-          let filePath = this.context.filesDir + '/test.txt';
-          // Convert the application sandbox path into a URI.
-          let uri = fileuri.getUriFromPath(filePath);
-          let want: Want  = {
-            // Grant the read and write permissions on the shared file to the target application.
-            flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            // Set the implicit startup rule for the application that shares the file.
-            action: 'ohos.want.action.sendData',
-            uri: uri,
-            type: 'text/plain'
-          }
-          this.context.startAbility(want)
-            .then(() => {
-              console.info('Invoke getCurrentBundleStats succeeded.');
-            })
-            .catch((err: BusinessError) => {
-              console.error(`Invoke startAbility failed, code is ${err.code}, message is ${err.message}`);
-            });
-        }
-        // ...
-      }
+   import window from '@ohos.window';
+   import wantConstant from '@ohos.app.ability.wantConstant';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+   
+   export default class EntryAbility extends UIAbility {
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       // Obtain the application sandbox path of the file.
+       let filePath = this.context.filesDir + '/test.txt';
+       // Convert the application sandbox path into a URI.
+       let uri = fileuri.getUriFromPath(filePath);
+       let want: Want  = {
+         // Grant the read and write permissions on the shared file to the target application.
+         flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+         // Set the implicit startup rule for the application that shares the file.
+         action: 'ohos.want.action.sendData',
+         uri: uri,
+         type: 'text/plain'
+       }
+       this.context.startAbility(want)
+         .then(() => {
+           console.info('Invoke getCurrentBundleStats succeeded.');
+         })
+         .catch((err: BusinessError) => {
+           console.error(`Invoke startAbility failed, code is ${err.code}, message is ${err.message}`);
+         });
+     }
+     // ...
+   }
    ```
-**Figure 1** Examples:<br/>
+**Figure 1** Example
 ![share-app-file](figures/share-app-file.png)
 
 ## Using Shared Files
 
 In the [**module.json5** file](../quick-start/module-configuration-file.md) of the application, which wants to use the shared file, set **actions** to **ohos.want.action.sendData** to allow the application to receive files shared by another application and set **uris** to the type of the URI to receive. In the following example, the application receives only .txt files with **scheme** of **file**.
-
+  
 ```json
 {
   "module": {

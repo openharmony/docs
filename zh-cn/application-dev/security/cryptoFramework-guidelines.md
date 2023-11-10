@@ -300,6 +300,7 @@ function convertSM2AsyKey() {
 }
 ```
 
+
 ## 非对称密钥对象根据参数生成与获取参数
 
 ### 场景说明
@@ -2133,7 +2134,6 @@ function doMdByPromise() {
   let mdAlgName = "SHA256"; // Digest algorithm name.
   let message = "mdTestMessgae"; // Data to be digested.
   let md = cryptoFramework.createMd(mdAlgName);
-  ;
   console.info("[Promise]: Md algName is: " + md.algName);
   // If the data volume is small, you can use update() once to pass in all data. There is no limit on the length of the input parameter.
   let promiseMdUpdate = md.update({ data: stringToUint8Array(message) });
@@ -2200,7 +2200,6 @@ function stringToUint8Array(str: string) {
 async function doLoopMdPromise() {
   let mdAlgName = "SHA256"; // Digest algorithm name.
   let md = cryptoFramework.createMd(mdAlgName);
-  ;
   console.info("[Promise]: Md algName is: " + md.algName);
   let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // Assume that the message is of 43 bytes.
   let messageArr: number[] = [];
@@ -2525,6 +2524,7 @@ function doRandBySync() {
   }
 }
 ```
+
 
 ## 相关实例
 

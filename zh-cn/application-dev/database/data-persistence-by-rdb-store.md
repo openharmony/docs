@@ -66,7 +66,8 @@
          name: 'RdbTest.db', // 数据库文件名
          securityLevel: relationalStore.SecurityLevel.S1, // 数据库安全级别
          encrypt: false, // 可选参数，指定数据库是否加密，默认不加密
-         dataGroupId: "dataGroupID" // 可选参数，仅可在Stage模型下使用，表示为应用组ID，需要向应用市场获取。指定在此Id对应的沙箱路径下创建实例，当此参数不填时，默认在本应用沙箱目录下创建。
+         dataGroupId: 'dataGroupID', // 可选参数，仅可在Stage模型下使用，表示为应用组ID，需要向应用市场获取。指定在此Id对应的沙箱路径下创建实例，当此参数不填时，默认在本应用沙箱目录下创建。
+         customDir: 'customDir/subCustomDir' // 可选参数，数据库自定义路径。数据库将在如下的目录结构中被创建：context.databaseDir + '/rdb/' + customDir，其中context.databaseDir是应用沙箱对应的路径，'/rdb/'表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。
        };
 
        // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
@@ -77,7 +78,7 @@
            console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
            return;
          }
-         console.info(`Succeeded in getting RdbStore.`);
+         console.info('Succeeded in getting RdbStore.');
 
          // 当数据库创建时，数据库默认版本为0
          if (store.version == 0) {
@@ -91,7 +92,7 @@
          if (store.version != 3 && store.version == 1) {
            // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
            if (store != undefined) {
-             (store as relationalStore.RdbStore).executeSql("ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER", );
+             (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
              store.version = 2;
            }
          }
@@ -100,7 +101,7 @@
          if (store.version != 3 && store.version == 2) {
            // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
            if (store != undefined) {
-             (store as relationalStore.RdbStore).executeSql("ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT", );
+             (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
              store.version = 3;
            }
          }
@@ -119,7 +120,7 @@
    import relationalStore from '@ohos.data.relationalStore'; // 导入模块
    import featureAbility from '@ohos.ability.featureAbility';
    
-   let context = getContext(this);
+   let context = featureAbility.getContext()
 
    const STORE_CONFIG :relationalStore.StoreConfig = {
      name: 'RdbTest.db', // 数据库文件名
@@ -134,7 +135,7 @@
        console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
        return;
      }
-     console.info(`Succeeded in getting RdbStore.`);
+     console.info('Succeeded in getting RdbStore.');
 
      // 当数据库创建时，数据库默认版本为0
      if (store.version == 0) {
@@ -147,14 +148,14 @@
      // 当数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
      if (store.version != 3 && store.version == 1) {
        // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
-       store.executeSql("ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER", );
+       store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
        store.version = 2;
      }
 
      // 当数据库存在并假定版本为2时，例应用从某一版本升级到当前版本，数据库需要从2版本升级到3版本
      if (store.version != 3 && store.version == 2) {
        // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
-       store.executeSql("ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT", );
+       store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
        store.version = 3;
      }
 
@@ -174,23 +175,33 @@
    ```ts
    import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-   let key1 = "NAME";
-   let key2 = "AGE";
-   let key3 = "SALARY";
-   let key4 = "CODES";
-   let value1 = "Lisa";
+
+   let value1 = 'Lisa';
    let value2 = 18;
    let value3 = 100.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-   const valueBucket: ValuesBucket = {
-     key1: value1,
-     key2: value2,
-     key3: value3,
-     key4: value4,
+   // 以下三种方式可用
+   const valueBucket1: ValuesBucket = {
+     'NAME':    value1,
+     'AGE':     value2,
+     'SALARY':  value3,
+     'CODES':   value4,
+   };
+   const valueBucket2: ValuesBucket = {
+     NAME:      value1,
+     AGE:       value2,
+     SALARY:    value3,
+     CODES:     value4,
+   };
+   const valueBucket3: ValuesBucket = {
+     "NAME":    value1,
+     "AGE":     value2,
+     "SALARY":  value3,
+     "CODES":   value4,
    };
 
    if (store != undefined) {
-     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket, (err: BusinessError, rowId: number) => {
+     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket1, (err: BusinessError, rowId: number) => {
        if (err) {
          console.error(`Failed to insert data. Code:${err.code}, message:${err.message}`);
          return;
@@ -210,26 +221,36 @@
      
    ```ts
    // 修改数据
-   let key1 = "NAME";
-   let key2 = "AGE";
-   let key3 = "SALARY";
-   let key4 = "CODES";
-   let value1 = "Lisa";
+
+   let value1 = 'Lisa';
    let value2 = 22;
    let value3 = 200.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-   const valueBucket: ValuesBucket = {
-     key1: value1,
-     key2: value2,
-     key3: value3,
-     key4: value4,
+   // 以下三种方式可用
+   const valueBucket1: ValuesBucket = {
+     'NAME':    value1,
+     'AGE':     value2,
+     'SALARY':  value3,
+     'CODES':   value4,
+   };
+   const valueBucket2: ValuesBucket = {
+     NAME:      value1,
+     AGE:       value2,
+     SALARY:    value3,
+     CODES:     value4,
+   };
+   const valueBucket3: ValuesBucket = {
+     "NAME":    value1,
+     "AGE":     value2,
+     "SALARY":  value3,
+     "CODES":   value4,
    };
    
    // 修改数据
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE'); // 创建表'EMPLOYEE'的predicates
    predicates.equalTo('NAME', 'Lisa'); // 匹配表'EMPLOYEE'中'NAME'为'Lisa'的字段
    if (store != undefined) {
-     (store as relationalStore.RdbStore).update(valueBucket, predicates, (err: BusinessError, rows: number) => {
+     (store as relationalStore.RdbStore).update(valueBucket1, predicates, (err: BusinessError, rows: number) => {
        if (err) {
          console.error(`Failed to update data. Code:${err.code}, message:${err.message}`);
         return;
@@ -258,7 +279,7 @@
      
    ```ts
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-   predicates.equalTo('NAME', 'Rose');
+   predicates.equalTo('NAME', 'Lisa');
    if (store != undefined) {
      (store as relationalStore.RdbStore).query(predicates, ['ID', 'NAME', 'AGE', 'SALARY'], (err: BusinessError, resultSet) => {
        if (err) {
@@ -268,10 +289,10 @@
        console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
        // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
        while (resultSet.goToNextRow()) {
-         const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-         const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-         const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-         const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+         const id = resultSet.getLong(resultSet.getColumnIndex('ID'));
+         const name = resultSet.getString(resultSet.getColumnIndex('NAME'));
+         const age = resultSet.getLong(resultSet.getColumnIndex('AGE'));
+         const salary = resultSet.getDouble(resultSet.getColumnIndex('SALARY'));
          console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
        }
        // 释放数据集的内存

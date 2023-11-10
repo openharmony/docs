@@ -2,7 +2,7 @@
 
 # **背景**
 
-应用使用操作系统提供的IPC（Inter-Process Communication，进程间通信）机制进行跨进程通信是通用场景， OpenHarmony基于Binder驱动封装了一套IPC机制，提供了应用和系统服务间的跨进程通信能力。
+应用使用操作系统提供的IPC（Inter-Process Communication，进程间通信）机制进行跨进程通信是通用场景， 当前系统基于Binder驱动封装了一套IPC机制，提供了应用和系统服务间的跨进程通信能力。
 
 IPC机制方便了进程之间的交互和通信，但是，不合理的使用IPC通信会对应用性能造成影响。
 
