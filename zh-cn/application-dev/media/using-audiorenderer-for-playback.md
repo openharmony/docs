@@ -201,9 +201,8 @@ async function start() {
       // buf是要写入缓冲区的音频数据，在调用AudioRenderer.write()方法前可以进行音频数据的预处理，实现个性化的音频播放功能，AudioRenderer会读出写入缓冲区的音频数据进行渲染
       
       let writeSize: number = await (renderModel as audio.AudioRenderer).write(buf);
-        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为released，停止渲染
+        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为released，关闭资源
         fs.close(file);
-        await (renderModel as audio.AudioRenderer).stop();
       }
       if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RUNNING) {
         if (i === len - 1) { // 如果音频文件已经被读取完，停止渲染
