@@ -389,7 +389,6 @@ struct ListExample {
         .scrollSnapAlign(ScrollSnapAlign.CENTER)
         .borderRadius(10)
         .backgroundColor(0xDCDCDC)
-        .width('100%')
       }
       .width('100%')
       .height('100%')
