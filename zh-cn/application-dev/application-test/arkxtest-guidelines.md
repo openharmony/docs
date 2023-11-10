@@ -488,15 +488,15 @@ hdc shell uitest uiInput dircFling 3
 hdc shell uitest uiInput inputText 100 100 hello
 ```
 
-示例代码12：执行返回主页操作。
+示例代码11：执行返回主页操作。
 ```shell  
 hdc shell uitest uiInput keyEvent home
 ```
-示例代码13：执行返回上一步操作。
+示例代码12：执行返回上一步操作。
 ```shell  
 hdc shell uitest uiInput keyEvent back
 ```
-示例代码14：执行组合键复制粘贴操作。
+示例代码13：执行组合键复制粘贴操作。
 ```shell  
 hdc shell uitest uiInput keyEvent 2072 2038
 ```
