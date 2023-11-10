@@ -33,6 +33,13 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 | dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                       |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调。         |
 
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | Internal error |
+
 **示例：**
 
 ```ts
@@ -107,6 +114,13 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 | 类型                                                   | 说明               |
 | ------------------------------------------------------ | ------------------ |
 | Promise&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 拖拽结束返回的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | Internal error |
 
 **示例：**
 
