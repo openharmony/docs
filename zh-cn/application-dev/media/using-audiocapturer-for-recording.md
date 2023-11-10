@@ -17,87 +17,87 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 
 1. 配置音频采集参数并创建AudioCapturer实例，音频采集参数的详细信息可以查看[AudioCapturerOptions](../reference/apis/js-apis-audio.md#audiocaptureroptions8)。
      
-```ts
-import audio from '@ohos.multimedia.audio';
-
-let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-};
-
-let audioCapturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
-};
-
-let audioCapturerOptions: audio.AudioCapturerOptions = {
-  streamInfo: audioStreamInfo,
-  capturerInfo: audioCapturerInfo
-};
-
-audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
-  if (err) {
-    console.error(`Invoke createAudioCapturer failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('Invoke createAudioCapturer succeeded.');
-    let audioCapturer = data;
-  }
-});
-```
+   ```ts
+    import audio from '@ohos.multimedia.audio';
+    
+    let audioStreamInfo: audio.AudioStreamInfo = {
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+      channels: audio.AudioChannel.CHANNEL_2,
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+    };
+    
+    let audioCapturerInfo: audio.AudioCapturerInfo = {
+      source: audio.SourceType.SOURCE_TYPE_MIC,
+      capturerFlags: 0
+    };
+    
+    let audioCapturerOptions: audio.AudioCapturerOptions = {
+      streamInfo: audioStreamInfo,
+      capturerInfo: audioCapturerInfo
+    };
+    
+    audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
+      if (err) {
+        console.error(`Invoke createAudioCapturer failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Invoke createAudioCapturer succeeded.');
+        let audioCapturer = data;
+      }
+    });
+   ```
 
 2. 调用start()方法进入running状态，开始录制音频。
      
-```ts
-audioCapturer.start((err: BusinessError) => {
-  if (err) {
-    console.error(`Capturer start failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('Capturer start success.');
-  }
-});
-```
+   ```ts
+    audioCapturer.start((err: BusinessError) => {
+      if (err) {
+        console.error(`Capturer start failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Capturer start success.');
+      }
+    });
+   ```
 
 3. 指定录制文件地址，调用read()方法读取缓冲区的数据。
      
-```ts
-import fs from '@ohos.file.fs';
-
-let context = getContext(this);
-async function read() {
-  let path = context.filesDir;
-  const filePath = path + '/voice_call_data.wav';
-  let file: fs.File = fs.openSync(filePath, 0o2 | 0o100);
-  let bufferSize: number = await audioCapturer.getBufferSize();
-  let buffer: ArrayBuffer = await audioCapturer.read(bufferSize, true);
-  fs.writeSync(file.fd, buffer);
-}
-```
+   ```ts
+    import fs from '@ohos.file.fs';
+    
+    let context = getContext(this);
+    async function read() {
+      let path = context.filesDir;
+      const filePath = path + '/voice_call_data.wav';
+      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+      let bufferSize: number = await audioCapturer.getBufferSize();
+      let buffer: ArrayBuffer = await audioCapturer.read(bufferSize, true);
+      fs.writeSync(file.fd, buffer);
+    }
+   ```
 
 4. 调用stop()方法停止录制。
      
-```ts
-audioCapturer.stop((err: BusinessError) => {
-  if (err) {
-    console.error(`Capturer stop failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('Capturer stopped.');
-  }
-});
-```
+   ```ts
+    audioCapturer.stop((err: BusinessError) => {
+      if (err) {
+        console.error(`Capturer stop failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Capturer stopped.');
+      }
+    });
+   ```
 
 5. 调用release()方法销毁实例，释放资源。
      
-```ts
-audioCapturer.release((err: BusinessError) => {
-  if (err) {
-    console.error(`capturer release failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('capturer released.');
-  }
-});
-```
+   ```ts
+    audioCapturer.release((err: BusinessError) => {
+      if (err) {
+        console.error(`capturer release failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('capturer released.');
+      }
+    });
+   ```
 
 
 ### 完整示例
@@ -161,7 +161,7 @@ async function start() {
     }
     await (audioCapturer as audio.AudioCapturer).start(); // 启动采集
     const path = context.filesDir + '/test.wav'; // 采集到的音频文件存储路径
-    let file = fs.openSync(path, 0o2 | 0o100); // 如果文件不存在则创建文件
+    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE); // 如果文件不存在则创建文件
     let fd = file.fd;
     let numBuffersToCapture = 150; // 循环写入150次
     let count = 0;
