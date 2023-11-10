@@ -4086,18 +4086,6 @@ try {
 | SENSOR_TYPE_ID_WEAR_DETECTION              | 280  | 佩戴检测传感器。       |
 | SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED  | 281  | 未校准加速度计传感器。 |
 
-## SensorAccuracy<sup>11+</sup>
-
-传感器数据的精度。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-| 名称      | 类型   | 值 | 可读 | 可写 | 说明                     |
-| --------- | ------ | ---- | ------------------------ | ------------------------ | ------------------------ |
-| ACCURACY_UNRELIABLE | number | 0   | 是  | 否 | 传感器数据不可信 |
-| ACCURACY_LOW | number | 1   | 是  | 否 | 传感器低挡位精度 |
-| ACCURACY_MEDIUM | number | 2   | 是  | 否 | 传感器中挡位精度 |
-| ACCURACY_HIGH | number | 3   | 是  | 否 | 传感器高挡位精度 |
-
 ## Response
 
 传感器数据的时间戳。
@@ -4107,7 +4095,6 @@ try {
 | 名称      | 类型   | 可读 | 可写 | 说明                     |
 | --------- | ------ | ---- | ---- | ------------------------ |
 | timestamp | number | 是   | 是   | 传感器数据上报的时间戳。 |
-| accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11) | 是   | 否   | 传感器数据上报的精度挡位值。 |
 
 ## Sensor<sup>9+</sup>
 
