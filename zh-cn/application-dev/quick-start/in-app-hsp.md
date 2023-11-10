@@ -68,7 +68,7 @@ export struct MyTitleBar {
 export { MyTitleBar } from './components/MyTitleBar'
 ```
 
-### 通过$r访问HSP中资源
+### 通过$r访问HSP中的资源
 在组件中，经常需要使用字符串、图片等资源。HSP中的组件需要使用资源时，一般将其所用资源放在HSP包内，而非放在HSP的使用方处，以符合高内聚低耦合的原则。
 
 在工程中，常通过`$r`/`$rawfile`的形式引用应用资源。可以用`$r`/`$rawfile`访问本模块`resources`目录下的资源，如访问`resources`目录下定义的图片`src/main/resources/base/media/example.png`时，可以用`$r("app.media.example")`。有关`$r`/`$rawfile`的详细使用方式，请参阅文档[资源分类与访问](./resource-categories-and-access.md)中“资源访问-应用资源”小节。
@@ -86,10 +86,10 @@ Image("../../resources/base/media/example.png")
   .width("100%")
 ```
 
-### 导出HSP中资源
+### 导出HSP中的资源
 跨包访问HSP内资源时，推荐实现一个资源管理类，以封装对外导出的资源。采用这种方式，具有如下优点：
 - HSP开发者可以控制自己需要导出的资源，不需要对外暴露的资源可以不用导出。
-- 使用方无须感知HSP内部的资源名称。当HSP内部的资源名称变化时，也不需要使用方随之修改。
+- 使用方无须感知HSP内部的资源名称。当HSP内部的资源名称发生变化时，也不需要使用方跟着修改。
 
 其具体实现如下：
 
