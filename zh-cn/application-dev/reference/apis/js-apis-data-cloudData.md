@@ -29,7 +29,7 @@ import cloudData from '@ohos.data.cloudData';
 | CLEAR_CLOUD_INFO | 清除从云端下载的数据的云标识，相关数据作为本地数据保存。 |
 | CLEAR_CLOUD_DATA_AND_INFO |清除从云端下载的数据，不包括本地已修改的云端数据。   |
 
-## ExtraData
+## ExtraData<sup>11+</sup>
 
 透传数据 携带通知数据变更所需要的信息。
 
