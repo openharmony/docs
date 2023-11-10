@@ -1,6 +1,6 @@
 # @ohos.telephony.vcard (VCard模块)
 
-VCard模块提供了VCard能力，包括将VCard文件导入联系人数据库和将联系人数据导出为VCard文件等。
+VCard是电子名片的文件格式标准,它可包含的信息有：姓名、地址资讯、电话号码、URL，logo，相片等。VCard模块提供了VCard能力，包括将VCard文件导入联系人数据库和将联系人数据导出为VCard文件等。
 
 >**说明：**
 >
