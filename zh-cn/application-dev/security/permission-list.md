@@ -3321,3 +3321,51 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.ACCESS_SECURITY_PRIVACY_CENTER
+
+允许业务接入安全隐私中心。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.GET_SECURITY_PRIVACY_ADVICE
+
+允许系统应用获取安全隐私中心建议相关数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.SET_SECURITY_PRIVACY_ADVICE
+
+允许系统应用处理安全隐私中心保护建议。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.USE_SECURITY_PRIVACY_MESSAGER
+
+允许系统服务调用权限管理相关接口。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
