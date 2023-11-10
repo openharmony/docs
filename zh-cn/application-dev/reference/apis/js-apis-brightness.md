@@ -48,9 +48,9 @@ try {
 }
 ```
 
-## brightness.setValue<sup>11+</sup>
+## brightness.setValue<sup>7+</sup>
 
-setValue(value: number, continuous: boolean): void
+setValue(value: number): void
 
 设置系统的屏幕亮度。用于连续调节亮度的场景，在连续调节亮度过程中，设置continuous为true，结束时设置continuous为false，会有更好的性能。
 
