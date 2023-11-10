@@ -40,7 +40,6 @@ Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-
 | CONTINUATION           | 3    | 跨端设备迁移启动ability。 |
 | APP_RECOVERY           | 4    | 设置应用恢复后，应用故障时自动恢复启动ability。 |
 | SHARE<sup>10+</sup>           | 5    | 通过原子化服务分享启动ability。 |
-| AUTO_STARTUP<sup>11+</sup>           | 8    | 通过设置开机自启动来启动Ability。 |
 
 **示例：**
 
