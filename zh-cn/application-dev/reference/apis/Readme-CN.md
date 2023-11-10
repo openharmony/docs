@@ -94,7 +94,6 @@
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
       - [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)
       - [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)
-      - [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)
       - [AbilityStateData](js-apis-inner-application-abilityStateData.md)
       - [abilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md)
       - [ApplicationContext](js-apis-inner-application-applicationContext.md)

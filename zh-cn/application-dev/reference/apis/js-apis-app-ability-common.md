@@ -45,6 +45,5 @@ let formExtensionContext: common.FormExtensionContext;
 let eventHub: common.EventHub;
 let pacMap: common.PacMap;
 let abilityResult: common.AbilityResult;
-let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
 ```
