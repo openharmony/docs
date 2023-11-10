@@ -1,4 +1,4 @@
-# Database Backup and Restoration
+# Database Backup and Restore
 
 
 ## When to Use
@@ -10,7 +10,7 @@ An important operation being performed by an application is interrupted.
 The database is unavailable due to data loss or corruption, or dirty data.
 
 
-Both KV stores and RDB stores support database backup and restoration. In addition, KV stores allow you to delete database backups to release local storage space.
+Both KV stores and RDB stores support database backup and restore. In addition, KV stores allow you to delete database backups to release local storage space.
 
 
 ## Backing Up, Restoring, and Deleting a KV Store
@@ -201,7 +201,7 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
        console.error(`Failed to backup data. Code:${err.code},message:${err.message}`);
        return;
      }
-     console.info(`Succeeded in backuping data.`);
+     console.info('Succeeded in backuping data.');
    })
    ```
 
@@ -226,6 +226,6 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
        console.error(`Failed to restore data. Code:${err.code},message:${err.message}`);
        return;
      }
-     console.info(`Succeeded in restoring data.`);
+     console.info('Succeeded in restoring data.');
    })
    ```
