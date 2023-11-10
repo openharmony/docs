@@ -30,7 +30,7 @@ enableWifi(): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2501000  | Operation failed.|
-| 2501003  | Failed to enable Wi-Fi.|
+| 2501003  | Failed to for wifi is closing.|
 
 **示例：**
 
@@ -63,7 +63,7 @@ disableWifi(): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2501000  | Operation failed.|
-| 2501004  | Failed to disable Wi-Fi.|
+| 2501004  | Failed for wifi is opening.|
 
 **示例：**
 
@@ -3694,7 +3694,7 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
-| callback | Callback&lt;StationInfo&gt; | 否 | 状态改变回调函数。 |
+| callback | Callback&lt;StationInfo&gt; | 是 | 状态改变回调函数。 |
 
 **错误码：**
 
@@ -3721,7 +3721,7 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
-| callback | Callback&lt;StationInfo&gt; | 否 | 状态改变回调函数。 |
+| callback | Callback&lt;StationInfo&gt; | 是 | 状态改变回调函数。 |
 
 **错误码：**
 
@@ -3774,7 +3774,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
   | -------- | -------- |
 | 2601000  | Operation failed.|
 
-## wifiManager.off('hotspotStaLeave')<sup>7+</sup>
+## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
 
 off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 
