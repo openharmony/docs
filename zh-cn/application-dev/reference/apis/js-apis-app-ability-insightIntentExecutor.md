@@ -340,7 +340,20 @@ onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>):
 
   export default class IntentExecutorImpl extends IntentExecutor {
     onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>): insightIntent.ExecuteResult {
-      let result: insightIntent.ExecuteResult = {
+      let result: insightIntent.ExecuteResult;
+      if (name !== 'SupportedInsightIntentName') {
+        hilog.warn(0x0000, 'testTag', 'Unsupported insight intent %{public}s', name);
+        result = {
+          // decided by developer
+          code: 404,
+          result: {
+            message: 'Unsupported insight intent.',
+          }
+        };
+        return result;
+      }
+
+      result = {
         code: 0,
         result: {
           message: 'Execute insight intent succeed.',
@@ -370,7 +383,20 @@ onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>):
 
   export default class IntentExecutorImpl extends IntentExecutor {
     async onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
-      let result: insightIntent.ExecuteResult = await executeInsightIntent(param);
+      let result: insightIntent.ExecuteResult;
+      if (name !== 'SupportedInsightIntentName') {
+        hilog.warn(0x0000, 'testTag', 'Unsupported insight intent %{public}s', name);
+        result = {
+          // decided by developer
+          code: 404,
+          result: {
+            message: 'Unsupported insight intent.',
+          }
+        };
+        return result;
+      }
+
+      result = await executeInsightIntent(param);
       return result;
     }
   }
