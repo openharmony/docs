@@ -2938,6 +2938,18 @@
 
 **起始版本**：11
 
+## ohos.permission.RUN_DYN_CODE
+
+允许应用运行动态代码。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+**起始版本**：11
+
 ## ohos.permission.WAKEUP_VISION
 
 允许应用访问语音助手视觉组件。
