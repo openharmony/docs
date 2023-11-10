@@ -1,6 +1,6 @@
 # 安全区域
 
-通过expandSafeArea属性支持组件扩展其安全区域，通过设置setKeyboardAvoidMode来配置虚拟键盘弹出时页面的避让模式。
+通过expandSafeArea属性支持组件扩展其安全区域。
 
 > **说明：**
 >
@@ -11,8 +11,6 @@
 | 名称           | 参数                           | 参数描述                                |
 | -------------- | ----------------------------- | --------------------------------------- |
 | expandSafeArea | type?: Array <[SafeAreaType](ts-types.md#safeareatype10)>,<br />edges?: Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | 控制组件扩展其安全区域。<br />默认值: <br />type: [SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD],<br />edges: [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM, SafeAreaEdge.START, SafeAreaEdge.END]<br />扩展至所有非安全区域。<br />type: 非必填，配置扩展安全区域的类型。<br />edges: 非必填，配置扩展安全区域的方向。 |
-| setKeyboardAvoidMode<sup>11+</sup> | value?: [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | 控制虚拟键盘抬起时页面的避让模式。<br />默认值: KeyboardAvoidMode.OFFSET <br />键盘抬起时默认页面避让模式为上抬模式。<br />必填，配置虚拟键盘避让时的页面避让模式。 |
-| getKeyboardAvoidMode<sup>11+</sup> | NULL| 返回虚拟键盘抬起时的页面避让模式。 |
 
 ## 示例
 
@@ -73,73 +71,3 @@ struct SafeAreaExample {
 ```
 
 ![expandSafeArea2](figures/expandSafeArea2.png)
-
-### 示例3
-
-```ts
-import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let a = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
-      windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
-
-@Entry
-@Component
-struct KeyboardAvoidExample {
-    build() {
-    Column() {
-      Row().height("30%").width("100%").backgroundColor(Color.Gray)
-      TextArea().width("100%").borderWidth(1)
-      Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor(Color.Pink).layoutWeight(1)
-    }.width('100%').height("100%")
-  }
-}
-```
-
-![keyboardAvoidMode1](figures/keyboardAvoidMode1.jpg)
-
-### 示例4
-
-```ts
-import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let a = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
-      windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.OFFSET);
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
-
-@Entry
-@Component
-struct KeyboardAvoidExample {
-    build() {
-    Column() {
-      Row().height("30%").width("100%").backgroundColor(Color.Gray)
-      TextArea().width("100%").borderWidth(1)
-      Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor(Color.Pink).layoutWeight(1)
-    }.width('100%').height("100%")
-  }
-}
-```
-
-![keyboardAvoidMode1](figures/keyboardAvoidMode2.jpg)
