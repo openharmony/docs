@@ -10,7 +10,6 @@ VCard是电子名片的文件格式标准,它可包含的信息有：姓名、�
 ## 导入模块
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
 ```
 
@@ -20,7 +19,9 @@ importVCard\(context: Context, filePath: string, callback: AsyncCallback\<void\>
 
 将VCard文件导入联系人数据库。使用callback异步回调。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS 和 ohos.permission.READ_CONTACTS
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -69,7 +70,9 @@ importVCard\(context: Context,filePath: string, accountId: number, callback: Asy
 
 将VCard文件导入联系人数据库。使用callback异步回调。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS 和 ohos.permission.READ_CONTACTS
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -120,7 +123,9 @@ importVCard\(context: Context, filePath: string, accountId?: number\): Promise\<
 
 将VCard文件导入联系人数据库。使用Promise异步回调。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS 和 ohos.permission.READ_CONTACTS
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -177,7 +182,9 @@ exportVCard\(context: Context, predicates: dataSharePredicates.DataSharePredicat
 
 将联系人导出为vcf文件。使用callback异步回调。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS 和 ohos.permission.READ_CONTACTS
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -229,7 +236,9 @@ exportVCard\(context: Context, predicates: dataSharePredicates.DataSharePredicat
 
 将联系人导出为vcf文件。使用callback异步回调。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS 和 ohos.permission.READ_CONTACTS
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -284,7 +293,9 @@ exportVCard\(context: Context, predicates: dataSharePredicates.DataSharePredicat
 
 将联系人导出为vcf文件。使用Promise异步回调。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS 和 ohos.permission.READ_CONTACTS
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
