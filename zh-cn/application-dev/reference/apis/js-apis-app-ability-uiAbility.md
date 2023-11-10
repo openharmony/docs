@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIAbility (UIAbility)
 
-UIAbility是包含UI界面的应用组件，提供组件创建、销毁、前后台切换等生命周期回调，同时也具备组件协同的能力，组件协同主要提供如下常用功能：
+UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供组件创建、销毁、前后台切换等生命周期回调，同时也具备组件协同的能力，组件协同主要提供如下常用功能：
 
 - [Caller](#caller)：由[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口返回，CallerAbility(调用者)可使用Caller与CalleeAbility(被调用者)进行通信。
 - [Callee](#callee)：UIAbility的内部对象，CalleeAbility(被调用者)可以通过Callee与Caller进行通信。
@@ -280,7 +280,7 @@ UIAbility实例已经启动并在前台运行过，由于某些原因切换到�
 
 onDump(params: Array\<string>): Array\<string>;
 
-转储客户端信息时调用。
+转储客户端信息时调用，可用于转储非敏感信息。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -796,7 +796,6 @@ on(type: 'release', callback: OnReleaseCallback): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
 | 16200001 | Caller released. The caller has been released. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
@@ -846,12 +845,6 @@ off(type: 'release', callback: OnReleaseCallback): void;
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
 | callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回off回调结果。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
 
 **示例：**
 
@@ -1055,6 +1048,8 @@ off(method: string): void;
 
 ## OnReleaseCallback
 
+注册通用组件服务端Stub（桩）断开监听通知的回调函数类型。
+
 (msg: string): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -1067,6 +1062,8 @@ off(method: string): void;
 
 (msg: string): void;
 
+注册协同场景下跨设备组件状态变化监听通知的回调函数类型。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | 名称 | 可读 | 可写 | 类型 | 说明 |
@@ -1076,6 +1073,8 @@ off(method: string): void;
 ## CalleeCallback
 
 (indata: rpc.MessageSequence): rpc.Parcelable;
+
+通用组件服务端注册消息通知的回调函数类型。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
