@@ -254,7 +254,7 @@ zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-abilityDelegatorRegistry.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-abilityrunninginfo.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-abilitystagecontext.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-accessibility-extension-context.md @RayShih
+zh-cn/application-dev/reference/apis/js-apis-accessibility-extension-context.md @RayShih @warehouse12 
 zh-cn/application-dev/reference/apis/js-apis-animator.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-appAccount.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-application-ability.md @RayShih
@@ -265,7 +265,7 @@ zh-cn/application-dev/reference/apis/js-apis-application-abilityLifecycleCallbac
 zh-cn/application-dev/reference/apis/js-apis-application-abilityManager.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-application-abilityMonitor.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-application-abilitystage.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-application-AccessibilityExtensionAbility.md @RayShih
+zh-cn/application-dev/reference/apis/js-apis-application-AccessibilityExtensionAbility.md @RayShih @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-application-applicationContext.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-application-context.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-application-DataShareExtensionAbility.md @ge-yafang
@@ -282,9 +282,9 @@ zh-cn/application-dev/reference/apis/js-apis-appmanager.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-arraylist.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-audio.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md @ningningW
-zh-cn/application-dev/reference/apis/js-apis-battery-info.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-battery-info.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-bluetooth.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-brightness.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-brightness.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-buffer.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-bundle-AbilityInfo.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-bundle-ApplicationInfo.md @RayShih
@@ -329,7 +329,7 @@ zh-cn/application-dev/reference/apis/js-apis-dataAbilityHelper.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-DataUriUtils.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-deque.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-device-info.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-device-manager.md @RayShih
+zh-cn/application-dev/reference/apis/js-apis-device-manager.md @RayShih @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-deviceUsageStatistics.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-display.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-distributed-account.md @zengyawen
@@ -401,7 +401,7 @@ zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-permissionrequestresult.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-plainarray.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-pointer.md @ningningW
-zh-cn/application-dev/reference/apis/js-apis-power.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-power.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-privacyManager.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-process.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-processrunninginfo.md @RayShih
@@ -414,7 +414,7 @@ zh-cn/application-dev/reference/apis/js-apis-request.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-rpc.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-runninglock.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-runninglock.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-screen.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-screenshot.md @ge-yafang
@@ -454,7 +454,7 @@ zh-cn/application-dev/reference/apis/js-apis-system-timer.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-system-vibrate.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-telephony-data.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-testRunner.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-thermal.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-thermal.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-timer.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-touchevent.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-treemap.md @ge-yafang
@@ -488,17 +488,17 @@ zh-cn/application-dev/reference/apis/js-apis-webview.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-ability-ability.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-ability-abilityResult.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-ability-Want.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-accessibility-config.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePath.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePoint.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-accessibility.md @RayShih
+zh-cn/application-dev/reference/apis/js-apis-accessibility-config.md @RayShih @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePath.md @RayShih @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePoint.md @RayShih @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-accessibility.md @RayShih @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-app-ability-appRecovery.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-appControl.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-application-configuration.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-application-configurationConstant.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-application-quickFixManager.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-avsession.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md @zengyawen @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-Bundle-BundleStatusCallback.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-bundleManager-abilityInfo.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-bundleManager-applicationInfo.md @RayShih
