@@ -2248,7 +2248,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 setTitleFontStyle(font:FontStyle):void
 
-通过该方法设置原子化服务menuBar的标题内容。
+通过该方法设置原子化服务menuBar的字体样式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
