@@ -1053,6 +1053,302 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 });
 ```
 
+## networkManager.addFirewallRule<sup>11+</sup>
+
+addFirewallRule(admin: Want, firewallRule: FirewallRule): void
+
+指定设备管理应用为设备添加防火墙过滤规则。<br/>
+添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的网络数据包将会被丢弃或拦截。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名          | 类型                                  | 必填   | 说明         |
+|--------------|-------------------------------------| ---- |------------|
+| admin        | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。    |
+| firewallRule | [FirewallRule](#firewallrule11)       | 是    | 添加防火墙过滤规则。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                       |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let firewallRule: networkManager.FirewallRule = {
+  "srcAddr": "192.168.1.1-192.188.22.66",
+  "destAddr": "10.1.1.1",
+  "srcPort": "8080",
+  "destPort": "8080",
+  "appUid": "9696",
+  "direction": networkManager.Direction.OUTPUT,
+  "action": networkManager.Action.DENY,
+  "protocol": networkManager.Protocol.UDP,
+}
+
+networkManager.addFirewallRule(wantTemp, firewallRule);
+```
+
+## networkManager.removeFirewallRule<sup>11+</sup>
+
+removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
+
+指定设备管理应用移除设备防火墙过滤规则。<br/>
+移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addFirewallRule](#networkmanageraddfirewallrule11)添加的默认DENY规则清空。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名          | 类型                                  | 必填 | 说明                          |
+|--------------|-------------------------------------|----|-----------------------------|
+| admin        | [Want](js-apis-app-ability-want.md) | 是  | 设备管理应用。                     |
+| firewallRule | [FirewallRule](#firewallrule11)       | 否  | 移除防火墙过滤规则。值为空时，清空所有的防火墙规则。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                       |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+// 移除指定的规则
+let firewallRule: networkManager.FirewallRule = {
+  "srcAddr": "192.168.1.1-192.188.22.66",
+  "destAddr": "10.1.1.1",
+  "srcPort": "8080",
+  "destPort": "8080",
+  "appUid": "9696",
+  "direction": networkManager.Direction.OUTPUT,
+  "action": networkManager.Action.DENY,
+  "protocol": networkManager.Protocol.UDP,
+}
+networkManager.removeFirewallRule(wantTemp, firewallRule);
+
+// 清空所有规则
+networkManager.removeFirewallRule(wantTemp);
+```
+
+## networkManager.getFirewallRules<sup>11+</sup>
+
+getFirewallRules(admin: Want): Array\<FirewallRule>
+
+指定设备管理应用查询防火墙过滤规则。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名          | 类型                                  | 必填 | 说明                          |
+|--------------|-------------------------------------|----|-----------------------------|
+| admin        | [Want](js-apis-app-ability-want.md) | 是  | 设备管理应用。                     |
+
+**返回值：**
+
+| 类型                                    | 说明                                |
+|---------------------------------------|-----------------------------------|
+| Array\<[FirewallRule](#firewallrule11)> | 返回当前设备配置的防火墙过滤规则列表，当方法调用错误时会抛出异常。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                       |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let firewallRule: Array<networkManager.FirewallRule>;
+firewallRule = networkManager.getFirewallRules(wantTemp);
+```
+
+## networkManager.addDomainFilterRule<sup>11+</sup>
+
+addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
+
+指定设备管理应用为设备添加域名过滤规则。<br/>
+添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的域名解析数据包将会被丢弃或拦截。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名          | 类型                                    | 必填   | 说明         |
+|--------------|---------------------------------------| ---- |------------|
+| admin        | [Want](js-apis-app-ability-want.md)   | 是    | 设备管理应用。    |
+| domainFilterRule | [DomainFilterRule](#domainfilterrule11) | 是    | 添加域名过滤规则。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                       |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let domainFilterRule: networkManager.DomainFilterRule = {
+  "domainName": "www.example.com",
+  "appUid": "9696",
+  "action": networkManager.Action.DENY,
+}
+
+networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
+```
+
+## networkManager.removeDomainFilterRule<sup>11+</sup>
+
+removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
+
+指定设备管理应用移除设备域名过滤规则。<br/>
+移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addDomainFilterRule](#networkmanageradddomainfilterrule11)添加的默认DENY规则清空。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名          | 类型                                    | 必填 | 说明                       |
+|--------------|---------------------------------------|----|--------------------------|
+| admin        | [Want](js-apis-app-ability-want.md)   | 是  | 设备管理应用。                  |
+| domainFilterRule | [DomainFilterRule](#domainfilterrule11) | 否  | 移除域名过滤规则。值为空时，清空所有的域名规则。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                       |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+// 移除指定的规则
+let domainFilterRule: networkManager.DomainFilterRule = {
+  "domainName": "www.example.com",
+  "appUid": "9696",
+  "action": networkManager.Action.DENY,
+}
+networkManager.removeDomainFilterRule(wantTemp, domainFilterRule);
+
+// 清空所有规则
+networkManager.removeDomainFilterRule(wantTemp);
+```
+
+## networkManager.getDomainFilterRules<sup>11+</sup>
+
+getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
+
+指定设备管理应用查询域名过滤规则。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名          | 类型                                  | 必填 | 说明                          |
+|--------------|-------------------------------------|----|-----------------------------|
+| admin        | [Want](js-apis-app-ability-want.md) | 是  | 设备管理应用。                     |
+
+**返回值：**
+
+| 类型                                            | 说明                               |
+|-----------------------------------------------|----------------------------------|
+| Array\<[DomainFilterRule](#domainfilterrule11)> | 返回当前设备配置的域名过滤规则列表，当方法调用错误时会抛出异常。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                       |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let domainFilterRule: Array<networkManager.DomainFilterRule>;
+domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
+```
+
 ## AddFilterRule
 
 添加网络包过滤规则
@@ -1146,3 +1442,36 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 | TCP | 1 | 网络协议TCP。 |
 | UDP | 2 | 网络协议UDP。 |
 | ICMP | 3 | 网络协议ICMP。 |
+
+## FirewallRule<sup>11+</sup>
+
+防火墙过滤规则。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+| 名称        | 类型                      | 必填 | 说明                                                                                                                    |
+|-----------|-------------------------|----|-----------------------------------------------------------------------------------------------------------------------|
+| srcAddr   | string                  | 否  | ip源地址。支持IP段，例如：192.168.0.0/22或者192.168.1.100-192.168.1.200                                                            |
+| destAddr  | string                  | 否  | ip目标地址。支持IP段，例如：192.168.0.0/22或者192.168.1.100-192.168.1.200                                                           |
+| srcPort   | string                  | 否  | 源端口。                                                                                                                  |
+| destPort  | string                  | 否  | 目标端口。                                                                                                                 |
+| appUid    | string                  | 否  | 应用uid。                                                                                                                |
+| direction | [Direction](#direction) | 否  | 规则链。<br/>添加防护墙过滤规则时必填；移除防火墙时非必填，表示清空所有的[Direction](#direction)链。<br/>当值为空时srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。      |
+| action    | [Action](#action)       | 否  | 接收或者丢弃数据包。<br/>添加防护墙过滤规则时必填；移除防火墙时非必填，表示清空所有的匹配[Action](#action)规则的链。<br/>当值为空时srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
+| protocol  | [Protocol](#protocol)   | 否  | 网络协议。当值为ALL或者ICMP时，不允许设置srcPort与destPort。                                                                             |
+
+## DomainFilterRule<sup>11+</sup>
+
+域名过滤规则。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+| 名称         | 类型                | 必填 | 说明                                                                                                |
+|------------|-------------------|----|---------------------------------------------------------------------------------------------------|
+| domainName | string            | 否  | 域名。添加域名过滤规则时必填。                                                                                   |
+| appUid     | string            | 否  | 应用uid。                                                                                            |
+| action     | [Action](#action) | 否  | 接收或者丢弃数据包。<br/>添加域名过滤规则时必填；移除域名过滤规则时非必填，表示清空所有的匹配[Action](#action)规则的链。<br/>当值为空时，domainName，appUid也必须传入空值。 |
