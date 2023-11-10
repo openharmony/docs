@@ -58,13 +58,19 @@ Creates the context based on the bundle name.
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 
-let bundleContext: common.Context;
-try {
-    bundleContext = this.context.createBundleContext('com.example.test');
-} catch (error) {
-    console.error('createBundleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let bundleContext: common.Context;
+    try {
+      bundleContext = this.context.createBundleContext('com.example.test');
+    } catch (error) {
+      console.error(`createBundleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
+    }
+  }
 }
 ```
 
@@ -91,13 +97,19 @@ Creates the context based on the module name.
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 
-let moduleContext: common.Context;
-try {
-    moduleContext = this.context.createModuleContext('entry');
-} catch (error) {
-    console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let moduleContext: common.Context;
+    try {
+      moduleContext = this.context.createModuleContext('entry');
+    } catch (error) {
+      console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+    }
+  }
 }
 ```
 
@@ -131,13 +143,19 @@ Creates the context based on the bundle name and module name.
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 
-let moduleContext: common.Context;
-try {
-    moduleContext = this.context.createModuleContext('com.example.test', 'entry');
-} catch (error) {
-    console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let moduleContext: common.Context;
+    try {
+      moduleContext = this.context.createModuleContext('com.example.test', 'entry');
+    } catch (error) {
+      console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+    }
+  }
 }
 ```
 
@@ -158,13 +176,19 @@ Obtains the context of this application.
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 
-let applicationContext: common.Context;
-try {
-    applicationContext = this.context.getApplicationContext();
-} catch (error) {
-    console.error('getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}');
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let applicationContext: common.Context;
+    try {
+      applicationContext = this.context.getApplicationContext();
+    } catch (error) {
+      console.error('getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}');
+    }
+  }
 }
 ```
 
@@ -199,16 +223,22 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 
-let groupId = "1";
-let getGroupDirContext: common.Context = this.context;
-try {
-  getGroupDirContext.getGroupDir(groupId).then(data => {
-    console.log("getGroupDir result:" + data);
-  })
-} catch (error) {
-  console.error('getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}');
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let groupId = "1";
+    let getGroupDirContext: common.Context = this.context;
+    try {
+      getGroupDirContext.getGroupDir(groupId).then(data => {
+        console.log("getGroupDir result:" + data);
+      })
+    } catch (error) {
+      console.error('getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}');
+    }
+  }
 }
 ```
 
@@ -238,15 +268,21 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 
-let getGroupDirContext: common.Context = this.context;
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let getGroupDirContext: common.Context = this.context;
 
-getGroupDirContext.getGroupDir("1", (err, data) => {
-  if (err) {
-    console.error(`getGroupDir faile, err: ${JSON.stringify(err)}`);
-  } else {
-    console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
+    getGroupDirContext.getGroupDir("1", (err, data) => {
+      if (err) {
+        console.error(`getGroupDir faile, err: ${JSON.stringify(err)}`);
+      } else {
+        console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
+      }
+    });
   }
-});
+}
 ```
