@@ -36,7 +36,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                            |
+| 错误码ID | 错误信息                             |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |

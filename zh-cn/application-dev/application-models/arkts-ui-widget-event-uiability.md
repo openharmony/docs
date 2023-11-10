@@ -108,10 +108,13 @@
    
    export default class EntryFormAbility extends FormExtensionAbility {
     onAddForm(want: Want) {
-      let dataObj1 = new Map<string, string>();
+      class DataObj1 {
+        formId: string = ""
+      }
+      let dataObj1 = new DataObj1();
       if (want.parameters && want.parameters["ohos.extra.param.key.form_identity"] != undefined) {
-        let formId: string = JSON.parse(JSON.stringify(want.parameters["ohos.extra.param.key.form_identity"]));
-        dataObj1.set("formId", formId);
+        let formId: string = want.parameters["ohos.extra.param.key.form_identity"].toString();
+        dataObj1.formId = formId;
       }
       let obj1 = formBindingData.createFormBindingData(dataObj1);
       return obj1;
@@ -142,7 +145,7 @@
               'params': {
                 'method': 'funA',
                 'formId': this.formId,
-                'detail': 'CallFromCard'
+                'detail': 'CallFrom'
               }
             });
           })

@@ -30,6 +30,18 @@ enableHotspot(): void;
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
+**示例：**
+
+```ts
+        import wifiManagerExt  from '@ohos.wifiManagerExt';
+
+        try {
+            wifiManagerExt.enableHotspot();
+        }catch(error){
+            console.error("failed:" + JSON.stringify(error));
+        }
+```
+
 ## wifiext.disableHotspot<sup>9+</sup>
 
 disableHotspot(): void;
@@ -48,6 +60,18 @@ disableHotspot(): void;
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
+**示例：**
+
+```ts
+        import wifiManagerExt  from '@ohos.wifiManagerExt';
+
+        try {
+            wifiManagerExt.disableHotspot();
+        }catch(error){
+            console.error("failed:" + JSON.stringify(error));
+        }
+```
+
 ## wifiext.getSupportedPowerMode<sup>9+</sup>
 
 getSupportedPowerMode(): Promise&lt;Array&lt;PowerMode&gt;&gt;
@@ -62,7 +86,7 @@ getSupportedPowerMode(): Promise&lt;Array&lt;PowerMode&gt;&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[PowerMode](#powermode)&gt;&gt; | Promise对象。表示功率模式。 |
+  | Promise&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | Promise对象。表示功率模式。 |
 
 **错误码：**
 
@@ -76,7 +100,7 @@ getSupportedPowerMode(): Promise&lt;Array&lt;PowerMode&gt;&gt;
 
 表示功率模式的枚举。
 
-**系统能力：** SystemCapability.Communication.WiFi.AP.Extension
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -99,7 +123,7 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode)&gt;&gt; | 是 | 回调函数。当操作成功时，err为0，data表示支持的功率模式。如果error为非0，表示处理出现错误。 |
+  | callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | 是 | 回调函数。当操作成功时，err为0，data表示支持的功率模式。如果err为非0，表示处理出现错误。 |
 
 **错误码：**
 
@@ -108,6 +132,26 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|
+
+**示例：**
+
+```ts
+        import wifiManagerExt  from '@ohos.wifiManagerExt';
+
+        wifiManagerExt.getSupportedPowerMode((err, data) => {
+            if (err) {
+                console.error("get supported power mode info error");
+                return;
+            }
+            console.info("get supported power mode info: " + JSON.stringify(data));
+        });
+
+        wifiManagerExt.getSupportedPowerMode().then(data => {
+            console.info("get supported power mode info: " + JSON.stringify(data));
+        }).catch((error:number) => {
+            console.info("get supported power mode error");
+        });
+```
 
 ## wifiext.getPowerMode<sup>9+</sup>
 
@@ -123,7 +167,7 @@ getPowerMode(): Promise&lt;PowerMode&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[PowerMode](#powermode)&gt; | Promise对象。表示功率模式。 |
+  | Promise&lt;[PowerMode](#powermode9)&gt; | Promise对象。表示功率模式。 |
 
 **错误码：**
 
@@ -132,6 +176,19 @@ getPowerMode(): Promise&lt;PowerMode&gt;
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|
+
+**示例：**
+
+```ts
+        import wifiManagerExt  from '@ohos.wifiManagerExt';
+
+        try {
+            let model = wifiManagerExt.getPowerMode();
+            console.info("model info:" + model);
+        }catch(error){
+            console.error("failed:" + JSON.stringify(error));
+        }
+```
 
 ## wifiext.getPowerMode<sup>9+</sup>
 
@@ -147,7 +204,7 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[PowerMode](#powermode)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示功率模式。如果error为非0，表示处理出现错误。 |
+  | callback | AsyncCallback&lt;[PowerMode](#powermode9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示功率模式。如果err为非0，表示处理出现错误。 |
 
 **错误码：**
 
@@ -156,6 +213,26 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|
+
+**示例：**
+
+```ts
+        import wifiManagerExt  from '@ohos.wifiManagerExt';
+
+        wifiManagerExt.getPowerMode((err, data) => {
+            if (err) {
+                console.error("get linked info error");
+                return;
+            }
+            console.info("get power mode info: " + JSON.stringify(data));
+        });
+
+        wifiManagerExt.getPowerMode().then(data => {
+            console.info("get power mode info: " + JSON.stringify(data));
+        }).catch((error:number) => {
+            console.info("get power mode error");
+        });
+```
 
 ## wifiext.setPowerMode<sup>9+</sup>
 
@@ -171,7 +248,7 @@ setPowerMode(mode: PowerMode) : void;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | model | [PowerMode](#powermode) | 是 | 功率模式。 |
+  | model | [PowerMode](#powermode9) | 是 | 功率模式。 |
 
 **错误码：**
 
@@ -180,3 +257,17 @@ setPowerMode(mode: PowerMode) : void;
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|
+
+**示例：**
+
+```ts
+        import wifiManagerExt  from '@ohos.wifiManagerExt';
+
+        try {
+            let model = 0;
+            wifiManagerExt.setPowerMode(model);
+        }catch(error){
+            console.error("failed:" + JSON.stringify(error));
+        }
+```
+

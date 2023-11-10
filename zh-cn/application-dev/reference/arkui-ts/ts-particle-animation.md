@@ -154,7 +154,7 @@ interface ImageParticleParameters {
 ```
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
-| src      | [ResourceStr](ts-types.md#resourcestr) | 是    | 图片路径。暂不支持svg、gif图片类型。 |
+| src      | [ResourceStr](ts-types.md#resourcestr) | 是    | 图片路径。暂不支持svg图片类型。 |
 | size     | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\]| 是    | 图像尺寸。 |
 | objectFit| [ImageFit](ts-appendix-enums.md#imagefit)| 否    | 图片显示模式。 |
 
@@ -191,7 +191,7 @@ interface ParticleColorPropertyUpdaterConfigs {
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 |[ParticleUpdater.NONE]|void | 是 | 无变化，默认值undefined。|
-| [ParticleUpdater.RANDOM] | {<br>  r: [number, number];<br>  g: [number, number];<br>  b: [number, number];<br>  a: [number, number];<br>} | 是 | 表示r、g、b、a四个颜色通道分别变化一个差值，叠加当前颜色值，生成目标颜色值。实现颜色随机变化的效果。|
+| [ParticleUpdater.RANDOM] | {<br>  r: [number, number];<br>  g: [number, number];<br>  b: [number, number];<br>  a: [number, number];<br>} | 是 | 表示变化方式为均匀变化的时候，在区间内随机生成一个差值。r、g、b、a四个颜色通道每秒分别使用差值叠加当前颜色值，生成目标颜色值。实现颜色随机变化的效果。|
 [ParticleUpdater.CURVE]|Array<[ParticlePropertyAnimation](#particlepropertyanimation)\<[ResourceColor](ts-types.md#resourcecolor)\>> | 是 | 表示变化方式为曲线变化时，颜色变化的配置。数组类型表示当前属性可以设置多段动画，如0ms-3000ms，3000ms-5000ms，5000ms-8000ms分别设置动画。|
 
 ## ParticlePropertyOptions

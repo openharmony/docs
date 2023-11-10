@@ -52,7 +52,7 @@
     - [使用分布式媒体会话](using-distributed-avsession.md)
 - 相机
   - [相机开发概述](camera-overview.md)
-  - 相机开发指导
+  - 相机开发指导（ArkTS）
     - [开发准备](camera-preparation.md)
     - [设备输入](camera-device-input.md)
     - [会话管理](camera-session-management.md)
@@ -60,8 +60,10 @@
     - [拍照](camera-shooting.md)
     - [录像](camera-recording.md)
     - [元数据](camera-metadata.md)
+  - [相机拍照指导(Native)](native-camera-shooting.md)
   - 相机最佳实践
-    - [拍照实现方案](camera-shooting-case.md)
+    - [拍照实现方案(ArkTS)](camera-shooting-case.md)
+    - [拍照实现方案(Native)](native-camera-shooting-case.md)
     - [录像实现方案](camera-recording-case.md)
     - [使用人像模式拍照](camera-mode.md)
     - [双路预览](camera-dual-channel-preview.md)

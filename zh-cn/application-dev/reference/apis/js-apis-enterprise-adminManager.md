@@ -1127,8 +1127,6 @@ adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
 
 **系统API**: 此接口为系统接口。
 
-**模型约束**: 此接口仅可在Stage模型下使用。
-
 | 名称         | 类型     | 必填 | 说明                            |
 | ----------- | --------| ---- | ------------------------------- |
 | name        | string   | 是   | 表示设备管理应用所属企业的名称。 |
@@ -1141,8 +1139,6 @@ adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **系统API**: 此接口为系统接口。
-
-**模型约束**: 此接口仅可在Stage模型下使用。
 
 | 名称                | 值  | 说明    |
 | ----------------- | ---- | ----- |
@@ -1157,12 +1153,10 @@ adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
 
 **系统API**: 此接口为系统接口。
 
-**模型约束**: 此接口仅可在Stage模型下使用。
-
 | 名称                        | 值  | 说明           |
 | -------------------------- | ---- | ------------- |
 | MANAGED_EVENT_BUNDLE_ADDED | 0    | 应用安装事件。 |
 | MANAGED_EVENT_BUNDLE_REMOVED | 1  | 应用卸载事件。 |
 | MANAGED_EVENT_APP_START<sup>10+</sup> | 2    | 应用启动事件。 |
 | MANAGED_EVENT_APP_STOP<sup>10+</sup> | 3  | 应用停止事件。 |
-
+| MANAGED_EVENT_SYSTEM_UPDATE<sup>11+</sup> | 4   | 系统更新事件。 |

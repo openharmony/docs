@@ -15,7 +15,7 @@ import calendarManager from '@ohos.calendarManager';
 
 ## calendarManager.getCalendarManager
 
-getCalendarManager(context : Context): CalendarManager;
+getCalendarManager(context : Context): CalendarManager
 
 根据上下文获取CalendarManager对象，用于管理日历。
 
@@ -29,22 +29,31 @@ getCalendarManager(context : Context): CalendarManager;
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 
+**返回值**：
+
+| 类型                           | 说明                                  |
+| ------------------------------ | ------------------------------------- |
+| CalendarManager | 返回创建的CalendarManager对象。 |
 
 **示例**：
 
 ```ts
   // 获取context
+  // 获取calendarManager
   // 以下代码中的class EntryAbility extends UIAbility，onWindowStageCreate在工程main/ets/entryability/EntryAbility.ets中，测试ohosTest/ets/testability/TestAbility.ets中有，可直接使用
   import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
+  import window from '@ohos.window';
 
   export let mContext : common.UIAbilityContext | null = null;
+  export let calendarMgr : calendarManager.CalendarManager | null = null;
   class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage){
       mContext = this.context;
     }
+    calendarMgr = calendarManager.getCalendarManager(mContext);
   }
-  let calendarMgr:calendarManager.CalendarManager = calendarManager.getCalendarManager(mContext as Context);
+   
 ```
 
 ## CalendarManager
@@ -73,8 +82,9 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 
 ```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
-let calendar : calendarManager.Calendar | undefined = undefined;
+let calendar: calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
@@ -119,6 +129,7 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
@@ -148,13 +159,14 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                  | 必填 | 说明           |
 | -------- | --------------------- | ---- | -------------- |
-| calendar | [Calendar](#calendar) | 是   | Calendar对象。 |
-| callback | AsyncCallback\<void>  | 是   | 回调函数。     |
+| calendar | [Calendar](#calendar) | 是   | 即将删除的Calendar对象。 |
+| callback | AsyncCallback\<void>  | 是   | 无返回结果的AsyncCallback对象。     |
 
 **示例**：
 
 ```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
@@ -190,7 +202,7 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 
 | 参数名   | 类型                  | 必填 | 说明           |
 | -------- | --------------------- | ---- | -------------- |
-| calendar | [Calendar](#calendar) | 是   | Calendar对象。 |
+| calendar | [Calendar](#calendar) | 是   | 即将删除的Calendar对象。 |
 
 **返回值**：
 
@@ -202,6 +214,7 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 
 ```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
@@ -239,6 +252,7 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
@@ -272,6 +286,7 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
@@ -314,6 +329,7 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr.getCalendar().then((data: calendarManager.Calendar) => {
@@ -344,6 +360,7 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
 calendarMgr.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
   if (err) {
@@ -378,6 +395,7 @@ getAllCalendars(): Promise\<Calendar[]>
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
 calendarMgr.getAllCalendars().then((data: calendarManager.Calendar[]) => {
   console.info(`Succeeded in getting all calendars->${JSON.stringify(data)}`);
@@ -400,7 +418,7 @@ calendarMgr.getAllCalendars().then((data: calendarManager.Calendar[]) => {
 
 | 名称 | 类型   | 只读 | 必填 | 说明     |
 | ---- | ------ | ---- | ---- | -------- |
-| id   | number | 是   | 是   | 帐户id。 |
+| id   | number | 是   | 是   | 日历帐户id。 |
 
 ### addEvent
 
@@ -945,7 +963,8 @@ setConfig(config: CalendarConfig): Promise\<void>
 import { BusinessError } from '@ohos.base';
 
 const config: calendarManager.CalendarConfig = {
-  enableReminder: true
+  enableReminder: true,
+  color: '#aabbcc'
 };
 calendar.setConfig(config).then(() => {
   console.info("Succeeded in setting config");
@@ -996,7 +1015,7 @@ console.info("get account success");
 | 名称           | 类型                                                | 只读 | 必填 | 说明                                                         |
 | -------------- | --------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | enableReminder | boolean                                             | 否   | 否   | 是否打开Calendar下所有Event提醒能力。当取值为true时，该Calendar下所有Event具备提醒能力；当取值为false时，不具备提醒能力，默认具备提醒能力。 |
-| color          | [ResourceColor](../arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
+| color          | string/number | 否   | 否   | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
 
 ## Event
 

@@ -142,4 +142,4 @@ struct TextInputSample {
 ```
 
 
-![TextInputGIF](figures/TextInputGIF.gif)
+![textinput](figures/textinput.gif)

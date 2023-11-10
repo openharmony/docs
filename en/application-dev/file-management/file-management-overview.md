@@ -10,7 +10,7 @@ In the file management module, the files can be classified into the following ty
 
 - [Application files](app-file-overview.md): files of an application, including the installation files, resource files, and cache files of the application.
 
-- [User files](user-file-overview.md): files of a user who has logged in to the device. User files include the user's images, video and audio clips, and documents.
+- [User files](user-file-overview.md): files of a user who has logged in to the device. User files include the user's images, videos, audio clips, and documents.
 
 - System files: files irrelevant to applications and users. System files include public libraries, device files, and system resource files. The system files do not need to be managed by developers and are not described in this document.
 
