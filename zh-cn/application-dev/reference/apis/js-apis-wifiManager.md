@@ -30,7 +30,7 @@ enableWifi(): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2501000  | Operation failed.|
-| 2501003  | Failed to for wifi is closing.|
+| 2501003  | Failed for wifi is closing.|
 
 **示例：**
 
