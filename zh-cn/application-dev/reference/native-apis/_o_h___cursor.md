@@ -33,5 +33,3 @@
 | [getBlob](_r_d_b.md#getblob) | 函数指针，以字节数组的形式获取当前行中指定列的值。  |
 | [isNull](_r_d_b.md#isnull-12) | 函数指针，检查当前行中指定列的值是否为null。  |
 | [destroy](_r_d_b.md#destroy-14) | 函数指针，关闭结果集。  |
-| [getAsset](_r_d_b.md#getasset) | 函数指针，以资产的形式获取当前行中指定列的值。  |
-| [getAssets](_r_d_b.md#getassets) | 函数指针，以资产数组的形式获取当前行中指定列的值。  |

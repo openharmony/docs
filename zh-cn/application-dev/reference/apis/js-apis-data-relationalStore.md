@@ -504,7 +504,6 @@ class EntryAbility extends UIAbility {
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。 |
 | dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。 |
-| customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。 |
 
 ## SecurityLevel
 
@@ -4370,91 +4369,6 @@ if(store != undefined) {
 };
 ```
 
-### cloudSync<sup>11+</sup>
-
-cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
-
-手动执行按条件进行端云同步，使用callback异步回调。使用该接口需要实现云同步功能。
-
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 
-
-**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
-
-**系统接口：** 此接口为系统接口。
-
-**参数：**
-
-| 参数名         | 类型                             | 必填 | 说明                            |
-|-------------|--------------------------------| ---- |-------------------------------|
-| mode        | [SyncMode](#syncmode)          | 是   | 表示数据库的同步模式。                   |
-| predicates  | [RdbPredicates](#rdbpredicates)                  | 是   | 表示同步数据的谓词条件。                  |
-| progress    | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。           |
-| callback    | AsyncCallback&lt;void&gt;      | 是   | 指定的callback回调函数，用于向调用者发送同步结果。 |
-
-**示例：**
-
-```ts
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.in("id", ["id1", "id2"]);
-
-if(store != undefined) {
-  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
-   }, (err) => {
-     if (err) {
-       console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
-       return;
-     }
-     console.info('Cloud sync succeeded');
-  });
-};
-```
-
-### cloudSync<sup>11+</sup>
-
-cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
-
-手动执行按条件进行端云同步，使用Promise异步处理。使用该接口需要实现云同步功能。
-
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 
-
-**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
-
-**系统接口：** 此接口为系统接口。
-
-**参数：**
-
-| 参数名        | 类型                              | 必填 | 说明                  |
-|------------|---------------------------------| ---- |---------------------|
-| mode       | [SyncMode](#syncmode)           | 是   | 表示数据库的同步模式。         |
-| predicates | [RdbPredicates](#rdbpredicates)                   | 是   | 表示同步数据的谓词条件。                |
-| progress   | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。 |
-
-**返回值**：
-
-| 类型                | 说明                                    |
-| ------------------- | --------------------------------------- |
-| Promise&lt;void&gt; | Promise对象，用于向调用者发送同步结果。 |
-
-**示例：**
-
-```ts
-import {BusinessError} from "@ohos.base";
-
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.in("id", ["id1", "id2"]);
-
-if(store != undefined) {
-  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`progress: ${progressDetail}`);
-  }).then(() => {
-    console.info('Cloud sync succeeded');
-  }).catch((err: BusinessError) => {
-    console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
-  });
-};
-```
-
 ### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
@@ -4567,39 +4481,6 @@ try {
   if(store != undefined) {
     (store as relationalStore.RdbStore).on('storeObserver', false, (storeObserver) => {
       console.info(`storeObserver`);
-    });
-  }
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
-  console.error(`Register observer failed, code is ${code},message is ${message}`);
-}
-```
-
-### on('autoSyncProgress')<sup>11+</sup>
-
-on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
-
-在已打开端云同步，并且网络状态正常的条件下，注册自动同步进度通知，自动同步进行时调用回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名       | 类型                              | 必填 | 说明                                |
-| ------------ |---------------------------------| ---- |-----------------------------------|
-| event        | string                          | 是   | 取值为'autoSyncProgress'，表示自动同步进度通知。 |
-| progress     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 回调函数。                             |
-
-**示例：**
-
-```ts
-import {BusinessError} from "@ohos.base";
-
-try {
-  if(store != undefined) {
-    (store as relationalStore.RdbStore).on('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
-      console.info(`progress: ${progressDetail}`);
     });
   }
 } catch (err) {
@@ -4725,39 +4606,6 @@ try {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message
   console.error(`Unregister observer failed, code is ${code},message is ${message}`);
-}
-```
-
-### off('autoSyncProgress')<sup>11+</sup>
-
-off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
-
-取消订阅自动同步进度的通知。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名       | 类型                              | 必填 | 说明                                                               |
-| ------------ |---------------------------------| ---- |------------------------------------------------------------------|
-| event        | string                          | 是   | 取值为'autoSyncProgress'，表示自动同步进度通知。                                |
-| observer     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 否   | 指已注册的自动同步进度观察者。该参数存在，则取消订阅指定回调，该参数为null或undefined或不存在，则取消订阅所有回调。 |
-
-**示例：**
-
-```ts
-import {BusinessError} from "@ohos.base";
-
-try {
-  if(store != undefined) {
-    (store as relationalStore.RdbStore).off('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
-      console.info(`progress: ${progressDetail}`);
-    });
-  }
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`Unregister failed, code is ${code},message is ${message}`);
 }
 ```
 
