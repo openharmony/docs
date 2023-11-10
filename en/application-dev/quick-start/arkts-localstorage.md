@@ -157,7 +157,7 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 
 2. Once the attribute with the given key in LocalStorage is updated, all the data (including \@LocalStorageLink and \@LocalStorageProp decorated variables) bound to the attribute key is changed synchronously.
 
-3. When the data decorated by \@LocalStorageProp(key) is a state variable, the change of the data is synchronized to LocalStorage, and the owning custom component is re-rendered.
+3. When the data decorated by \@LocalStorageLink(key) is a state variable, the change of the data is synchronized to LocalStorage, and the owning custom component is re-rendered.
 
 
 ## Application Scenarios
@@ -167,12 +167,11 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 
 
 ```ts
-let storage = new LocalStorage(); // Create a new instance and initialize it with the given object.
-storage['PropA'] = 47
-let propA = storage.get<number>('PropA') // propA == 47
-let link1 = storage.link<number>('PropA'); // link1.get() == 47
-let link2 = storage.link<number>('PropA'); // link2.get() == 47
-let prop = storage.prop<number>('PropA'); // prop.get() = 47
+let storage = new LocalStorage({ 'PropA': 47 }); // Create a new instance and initialize it with the given object.
+let propA = storage.get('PropA') // propA == 47
+let link1 = storage.link('PropA'); // link1.get() == 47
+let link2 = storage.link('PropA'); // link2.get() == 47
+let prop = storage.prop('PropA'); // prop.get() = 47
 link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
 prop.set(1); // one-way sync: prop.get()=1; but link1.get() == link2.get() == 48
 link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
@@ -183,7 +182,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 The two decorators \@LocalStorageProp and \@LocalStorageLink can work together to obtain the state variable stored in a LocalStorage instance in the UI component.
 
-This example uses \@LocalStorage as an example to show how to:
+This example uses \@LocalStorageLink to show how to:
 
 - Use the **build** function to create a LocalStorage instance named **storage**.
 
@@ -193,9 +192,7 @@ This example uses \@LocalStorage as an example to show how to:
 
   ```ts
   // Create a new instance and initialize it with the given object.
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
-
+  let storage = new LocalStorage({ 'PropA': 47 });
   @Component
   struct Child {
     // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
@@ -236,8 +233,7 @@ In this example, the **CompA** and **Child** components create local data that i
 
   ```ts
   // Create a new instance and initialize it with the given object.
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
+  let storage = new LocalStorage({ 'PropA': 47 });
 
   // Make LocalStorage accessible from the @Component decorated component.
   @Entry(storage)
@@ -278,10 +274,9 @@ This example shows how to create a two-way data synchronization between an \@Loc
 
 ```ts
 // Create a LocalStorage instance.
-let storage = new LocalStorage();
-storage['PropA'] = 47;
+let storage = new LocalStorage({ 'PropA': 47 });
 // Invoke the link9+ API to create a two-way data synchronization with PropA. linkToPropA is a global variable.
-let linkToPropA = storage.link<number>('PropA');
+let linkToPropA = storage.link('PropA');
 
 @Entry(storage)
 @Component
@@ -322,11 +317,7 @@ Changes in the **Child** custom component:
 1. The update of **playCountLink** is synchronized to LocalStorage, and the parent and sibling child custom components are re-rendered accordingly.
 
    ```ts
-   class Data {
-     countStorage: number = 0;
-   }
-   let data: Data = { countStorage: 1 }
-   let storage = new LocalStorage(data);
+   let storage = new LocalStorage({ countStorage: 1 });
 
    @Component
    struct Child {
@@ -370,11 +361,7 @@ Changes in the **Child** custom component:
              .width(50).height(60).fontSize(12)
            Text(`countStorage ${this.playCount} incr by 1`)
              .onClick(() => {
-               let countStorage: number | undefined = storage.get<number>('countStorage');
-              if (countStorage != undefined){
-                 countStorage += 1;
-                 storage.set<number>('countStorage', countStorage);
-               }
+               storage.set<number>('countStorage', 1 + storage.get<number>('countStorage'));
              })
              .width(250).height(60).fontSize(12)
          }.width(300).height(60)
@@ -401,10 +388,11 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage = new LocalStorage();
+  storage: LocalStorage = new LocalStorage({
+    'PropA': 47
+  });
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    this.storage['PropA'] = 47;
     windowStage.loadContent('pages/Index', this.storage);
   }
 }
