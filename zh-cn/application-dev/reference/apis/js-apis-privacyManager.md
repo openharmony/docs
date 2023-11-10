@@ -625,10 +625,8 @@ try {
 | 名称       | 类型             | 可读 | 可写 | 说明                                       |
 | -------- | -------------- | ---- | ---- | ---------------------------------------- |
 | status  | number         | 是    | 否    | 访问状态。                                 |
-| lockScreenStatus<sup>11+</sup>  | number         | 是    | 否    | 访问时的锁屏状态。<br> - 1，表示非锁屏场景使用权限。<br> - 2，表示锁屏场景使用权限。                                 |
 | timestamp | number         | 是    | 否    | 访问时的时间戳，单位：ms。 |
 | accessDuration  | number         | 是    | 否    | 访问时长，单位：ms。                                 |
-| count<sup>11+</sup> | number | 是 | 否    | 成功或失败次数。
 
 ## PermissionActiveStatus
 
