@@ -80,7 +80,7 @@
 
 | 任务          | 简介                                  | 相关指导                                     |
 | ----------- | ----------------------------------- | ---------------------------------------- |
-| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](../quick-start/arkts-basic-syntax-overview.md)<br>- [状态管理](../quick-start/arkts-state-management-overview.md)<br>- [渲染控制](../quick-start/arkts-rendering-control-overview.md) |
+| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](../quick-start/arkts-basic-syntax-overview.md)<br>- [状态管理](../quick-start/arkts-state-management-overview.md)<br>- [渲染控制](../quick-start/arkts-rendering-control-ifelse.md) |
 | 开发布局        | 介绍了几种常用的布局方式。             | -&nbsp;[常用布局](arkts-layout-development-overview.md)<br/> |
 | 添加组件        | 介绍了几种常用的内置组件、自定义组件以及通过API方式支持的界面元素。 | -&nbsp;[常用组件](arkts-common-components-button.md)<br/>- [自定义组件](../quick-start/arkts-create-custom-components.md)<br>-&nbsp;[气泡和菜单](arkts-popup-and-menu-components-popup.md) |
 | 设置页面路由和组件导航 | 介绍了如何设置页面路由以及组件间的导航。                | -&nbsp;[页面路由](arkts-routing.md)<br/>-&nbsp;[组件导航](arkts-navigation-navigation.md) |
