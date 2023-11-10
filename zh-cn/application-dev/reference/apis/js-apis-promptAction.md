@@ -71,18 +71,7 @@ try {
 | message  | string\| [Resource](../arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 是   | 显示的文本信息。<br>**说明：** <br/>默认字体为'Harmony Sans'，不支持设置其他字体。 |
 | duration | number                                                       | 否   | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。 |
 | bottom   | string\| number                                              | 否   | 设置弹窗边框距离屏幕底部的位置。<br>默认值：80vp             |
-| showMode<sup>11+</sup>   | [ToastShowMode](#toastshowmode)    | 否   | 设置弹窗是否显示在应用之上。<br>默认值：ToastShowMode.DEFAULT，默认显示在应用内             |
 
-### ToastShowMode<sup>11+</sup>
-
-设置弹窗显示模式，默认显示在应用内，支持显示在应用之上。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full。
-
-| 名称     | 值 | 说明                                                         |
-| -------- | ---- | ------------------------------------------------------------ |
-| DEFAULT  | 0   | Toast 显示在应用内。 |
-| TOP_MOST | 1   | Toast 显示在应用之上。 |
 
 
 ## promptAction.showDialog
