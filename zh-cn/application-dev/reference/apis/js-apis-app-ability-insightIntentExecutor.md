@@ -303,3 +303,73 @@ onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageL
     }
   }
   ```
+
+## InsightIntentExecutor.onExecuteInServiceExtensionAbility
+
+onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>):
+    insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>
+
+当意图调用是将ServiceExtensionAbility拉起时，触发该回调。支持同步返回和使用Promise异步返回。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name | string | 是 | 意图调用名称。 |
+| param | Record<string, Object> | 是 | 意图调用参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | 意图调用执行结果。|
+| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise对象，返回意图调用执行结果。 |
+
+**示例：**
+
+直接返回意图调用的结果，示例如下：
+  ```ts
+  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
+  import insightIntent from '@ohos.app.ability.insightIntent';
+
+  export default class IntentExecutorImpl extends IntentExecutor {
+    onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>): insightIntent.ExecuteResult {
+      let result: insightIntent.ExecuteResult = {
+        code: 0,
+        result: {
+          message: 'Execute insight intent succeed.',
+        }
+      };
+      return result;
+    }
+  }
+  ```
+
+使用Promise异步返回意图调用的结果，示例如下：
+  ```ts
+  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
+  import insightIntent from '@ohos.app.ability.insightIntent';
+
+  async function executeInsightIntent(param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
+    return new Promise((resolve, reject) => {
+      let result: insightIntent.ExecuteResult = {
+        code: 0,
+        result: {
+          message: 'Execute insight intent succeed.',
+        }
+      };
+      resolve(result);
+    })
+  }
+
+  export default class IntentExecutorImpl extends IntentExecutor {
+    async onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
+      let result: insightIntent.ExecuteResult = await executeInsightIntent(param);
+      return result;
+    }
+  }
+  ```

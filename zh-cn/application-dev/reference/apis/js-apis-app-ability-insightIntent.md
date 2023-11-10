@@ -23,6 +23,7 @@ import insightIntent from '@ohos.app.ability.insightIntent';
 | UI_ABILITY_FOREGROUND | 0 | 将UIAbility在前台显示。 |
 | UI_ABILITY_BACKGROUND | 1 | 将UIAbility在后台拉起。 |
 | UI_EXTENSION_ABILITY | 2 | 拉起UIExtensionAbility。 |
+| SERVICE_EXTENSION_ABILITY | 3 | 拉起ServiceExtensionAbility。 |
 
 ## ExecuteResult
 
