@@ -525,8 +525,9 @@ getTotalSizeSync(): number
   try {
     let number = storageStatistics.getTotalSizeSync();
     console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
-  } catch (err: BusinessError) {
-    console.info("getTotalSizeSync failed with error:" + err.message);
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.info("getTotalSizeSync failed with error:" + JSON.stringify(error));
   }
   ```
 
