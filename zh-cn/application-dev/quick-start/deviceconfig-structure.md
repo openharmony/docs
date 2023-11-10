@@ -1,7 +1,7 @@
 # deviceConfig内部结构
 
 
-deviceConfig包含设备上的应用配置信息，可以包含default，tv，car，wearable等属性。default标签内的配置适用于所有通用设备，其他设备类型如果有特殊的需求，则需要在该设备类型的标签下进行配置。
+deviceConfig包含设备上的应用配置信息，可以包含default、tv、car、wearable等属性。default标签内的配置适用于所有通用设备，其他设备类型如果有特殊的需求，则需要在该设备类型的标签下进行配置。
 
 ## deviceConfig对象内部结构
 
@@ -16,7 +16,7 @@ deviceConfig包含设备上的应用配置信息，可以包含default，tv，ca
 | wearable | 标识智能穿戴特有的应用配置信息。 | 对象 | 可缺省，缺省值为空。 |
 
 
-上表中各类设备对象的内部结构说明请见[eviceConfig设备对象内部结构](#deviceconfig设备对象内部结构)。
+上表中各类设备对象的内部结构说明参见[deviceConfig设备对象内部结构](#deviceconfig设备对象内部结构)。
 
 ## deviceConfig设备对象内部结构
 
@@ -54,7 +54,7 @@ deviceConfig包含设备上的应用配置信息，可以包含default，tv，ca
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | cleartextPermitted | 标识自定义的网域范围内是否允许明文流量传输。当cleartextTraffic和security同时存在时，自定义网域是否允许明文流量传输以cleartextPermitted的取值为准。<br/>-&nbsp;true：允许明文流量传输。<br/>-&nbsp;false：拒绝明文流量传输。 | 布尔类型 | 可缺省，缺省值为空。 |
-| domains | 标识域名配置信息，包含两个参数：subdomains和name。<br/>-&nbsp;subdomains：表示是否包含子域名，布尔类型。取值为"true"时，此网域规则将与相应网域及所有子网域（包括子网域的子网域）匹配。取值为"false"时，该规则仅适用于精确匹配项。<br/>-&nbsp;name：表示域名名称，字符串类型。 | 对象数组 | 可缺省，缺省值为空。 |
+| domains | 标识域名配置信息，包含两个参数：subdomains和name。<br/>-&nbsp;subdomains：表示是否包含子域名，为布尔类型。取值为"true"时，表示该规则将与相应网域及所有子网域（包括子网域的子网域）匹配；取值为"false"时，表示该规则仅适用于精确匹配项。<br/>-&nbsp;name：表示域名名称，为字符串类型。 | 对象数组 | 可缺省，缺省值为空。 |
 
 deviceConfig示例
 
