@@ -18,7 +18,7 @@
 import cloudData from '@ohos.data.cloudData';
 ```
 
-## ClearAction
+## ClearAction<sup>10+</sup>
 
 清除本地下载的云端数据的行为枚举。
 
