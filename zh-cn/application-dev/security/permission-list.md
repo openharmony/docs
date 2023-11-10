@@ -3216,7 +3216,7 @@
 
 ## ohos.permission.INPUT_CONTROL_DISPATCHING
 
-允许系统应用控制事件分发流程
+允许系统应用屏蔽快捷键分发逻辑。
 
 **权限级别**：system_basic
 
@@ -3291,6 +3291,30 @@
 允许应用支持持久化访问文件Uri。
 
 **权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_APP_INSTALL_INFO
+
+允许应用创建、管理应用安装任务。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.RECEIVE_APP_INSTALL_INFO_CHANGE
+
+允许应用监听其他应用的安装进度。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
