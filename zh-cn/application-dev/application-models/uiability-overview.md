@@ -7,7 +7,7 @@ UIAbility组件是一种包含UI的应用组件，主要用于和用户交互。
 
 UIAbility的设计理念：
 
-1. 原生支持应用组件级的[跨端迁移](hop-cross-device-migration.md)和[多端协同](hop-multi-device-collaboration.md)。
+1. 原生支持应用组件级的跨端迁移和多端协同。
 
 2. 支持多设备和多窗口形态。
 

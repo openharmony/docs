@@ -1,7 +1,7 @@
-# 应用内HSP开发指导
+# HSP
 
-应用内HSP指的是专门为某一应用开发的HSP，只能被该应用内部其他HAP/HSP使用，用于应用内部代码、资源的共享。
-应用内HSP跟随其宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
+HSP（Harmony Shared Package）是动态共享包，按照使用场景可以分为应用内HSP和应用间HSP。由于当前暂不支持应用间HSP，提到HSP时特指应用内HSP。
+应用内HSP指的是专门为某一应用开发的HSP，只能被该应用内部其他HAP/HSP使用，用于应用内部代码、资源的共享。应用内HSP跟随其宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
 
 ## 开发应用内HSP
 
@@ -68,7 +68,7 @@ export struct MyTitleBar {
 export { MyTitleBar } from './components/MyTitleBar'
 ```
 
-### 通过$r访问HSP中资源
+### 通过$r访问HSP中的资源
 在组件中，经常需要使用字符串、图片等资源。HSP中的组件需要使用资源时，一般将其所用资源放在HSP包内，而非放在HSP的使用方处，以符合高内聚低耦合的原则。
 
 在工程中，常通过`$r`/`$rawfile`的形式引用应用资源。可以用`$r`/`$rawfile`访问本模块`resources`目录下的资源，如访问`resources`目录下定义的图片`src/main/resources/base/media/example.png`时，可以用`$r("app.media.example")`。有关`$r`/`$rawfile`的详细使用方式，请参阅文档[资源分类与访问](./resource-categories-and-access.md)中“资源访问-应用资源”小节。
@@ -86,14 +86,14 @@ Image("../../resources/base/media/example.png")
   .width("100%")
 ```
 
-### 导出HSP中资源
-跨包访问HSP内资源时，推荐实现一个资源管理类，以封装对外导出的资源，通过该方式：
-- HSP开发者可以控制自己需要导出的资源，不需要对外暴露的资源可以不用导出；
-- 使用方无须感知HSP内部的资源名称，HSP内部的资源名称变化时也不需要使用方跟着修改。
+### 导出HSP中的资源
+跨包访问HSP内资源时，推荐实现一个资源管理类，以封装对外导出的资源。采用这种方式，具有如下优点：
+- HSP开发者可以控制自己需要导出的资源，不需要对外暴露的资源可以不用导出。
+- 使用方无须感知HSP内部的资源名称。当HSP内部的资源名称发生变化时，也不需要使用方跟着修改。
 
 其具体实现如下：
 
-封装对外提供资源的资源管理类：   
+将需要对外提供的资源封装为一个资源管理类：   
 ```ts
 // library/src/main/ets/ResManager.ets
 export class ResManager{

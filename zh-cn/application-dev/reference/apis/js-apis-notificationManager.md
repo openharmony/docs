@@ -856,13 +856,14 @@ getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
 **参数：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
-
 | 参数名     | 类型                              | 必填 | 说明                 |
 | -------- | --------------------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | 是   | 以callback形式返回获取此应用程序的所有通知通道的结果。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
