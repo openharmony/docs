@@ -67,7 +67,6 @@
          securityLevel: relationalStore.SecurityLevel.S1, // 数据库安全级别
          encrypt: false, // 可选参数，指定数据库是否加密，默认不加密
          dataGroupId: 'dataGroupID', // 可选参数，仅可在Stage模型下使用，表示为应用组ID，需要向应用市场获取。指定在此Id对应的沙箱路径下创建实例，当此参数不填时，默认在本应用沙箱目录下创建。
-         customDir: 'customDir/subCustomDir' // 可选参数，数据库自定义路径。数据库将在如下的目录结构中被创建：context.databaseDir + '/rdb/' + customDir，其中context.databaseDir是应用沙箱对应的路径，'/rdb/'表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。
        };
 
        // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
@@ -222,7 +221,7 @@
    ```ts
    // 修改数据
 
-   let value1 = 'Lisa';
+   let value1 = 'Rose';
    let value2 = 22;
    let value3 = 200.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
@@ -279,7 +278,7 @@
      
    ```ts
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-   predicates.equalTo('NAME', 'Lisa');
+   predicates.equalTo('NAME', 'Rose');
    if (store != undefined) {
      (store as relationalStore.RdbStore).query(predicates, ['ID', 'NAME', 'AGE', 'SALARY'], (err: BusinessError, resultSet) => {
        if (err) {
