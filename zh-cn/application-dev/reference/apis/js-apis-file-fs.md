@@ -460,7 +460,7 @@ copyFile(src: string | number, dest: string | number, callback: AsyncCallback&lt
   import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "/srcDir/test.txt";
   let dstPath = pathDir + "/dstDir/test.txt";
-  fs.copyFile(srcPath, dstPath， (err: BusinessError) => {
+  fs.copyFile(srcPath, dstPath, (err: BusinessError) => {
     if (err) {
       console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -532,8 +532,14 @@ copyDir(src: string, dest: string, mode?: number): Promise\<void>
   let destPath = pathDir + "/destDir/";
   fs.copyDir(srcPath, destPath, 0).then(() => {
     console.info("copy directory succeed");
-  }).catch((err: BusinessError) => {
-    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+  }).catch((err: BusinessError<Array<ConflictFiles>>) => {
+    if (err.code == 13900015) {
+      for (let i = 0; i < err.data.length; i++) {
+        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+      }
+    } else (err) {
+      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+    }
   });
   ```
 
@@ -569,7 +575,7 @@ copyDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
   fs.copyDir(srcPath, destPath, 0, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + data[i].destFile);
+        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
       console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
@@ -653,8 +659,14 @@ copyDirSync(src: string, dest: string, mode?: number): void
     fs.copyDirSync(srcPath, destPath, 0);
     console.info("copy directory succeed");
   } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+    let err: BusinessError<Array<ConflictFiles>> = error as BusinessError;
+    if (err.code == 13900015) {
+      for (let i = 0; i < err.data.length; i++) {
+        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+      }
+    } else (err) {
+      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+    }
   }
   ```
 
@@ -2296,8 +2308,14 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
   let destPath = pathDir + "/destDir/";
   fs.moveDir(srcPath, destPath, 1).then(() => {
     console.info("move directory succeed");
-  }).catch((err: BusinessError) => {
-    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+  }).catch((err: BusinessError<Array<ConflictFiles>) => {
+    if (err.code == 13900015) {
+      for (let i = 0; i < err.data.length; i++) {
+        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+      }
+    } else(err) {
+      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+    }
   });
   ```
 
@@ -2416,8 +2434,14 @@ moveDirSync(src: string, dest: string, mode?: number): void
   try {
     fs.moveDirSync(srcPath, destPath, 1);
     console.info("move directory succeed");
-  } catch (err) {
-    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+  } catch (err: BusinessError<Array<ConflictFiles>>) {
+    if (err.code == 13900015) {
+      for (let i = 0; i < err.data.length; i++) {
+        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+      }
+    } else(err) {
+      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+    }
   }
   ```
 
@@ -3585,7 +3609,7 @@ writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: nu
 
   ```ts
   let filePath = pathDir + "/test.txt";
-  let stream = fs.createStreamSync(filePath,"r+");
+  let stream = fs.createStreamSync(filePath, "r+");
   class Option {
     offset: number = 0;
     length: number = 0;
