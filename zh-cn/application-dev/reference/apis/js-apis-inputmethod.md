@@ -596,6 +596,7 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | EMAIL_ADDRESS  | 5 |邮箱地址类型。 |
 | URL  | 6 |链接类型。 |
 | VISIBLE_PASSWORD  | 7 |密码类型。 |
+| NUMBER_PASSWORD<sup>11+</sup> | 8 |数字密码类型。 |
 
 ## EnterKeyType<sup>10+</sup>
 
