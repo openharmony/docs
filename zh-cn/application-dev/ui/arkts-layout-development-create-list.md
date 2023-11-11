@@ -5,7 +5,7 @@
 
 列表是一种复杂的容器，当列表项达到一定数量，内容超过屏幕大小时，可以自动提供滚动功能。它适合用于呈现同类数据类型或数据类型集，例如图片和文本。在列表中显示数据集合是许多应用程序中的常见要求（如通讯录、音乐列表、购物清单等）。
 
-使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../quick-start/arkts-rendering-control-overview.md)方式生成子组件。
+使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../quick-start/arkts-rendering-control-ifelse.md)方式生成子组件。
 
 
 ## 布局与约束
@@ -121,10 +121,6 @@ List() {
 - 当List组件宽度为300vp时，由于minLength为200vp，此时列表为一列。
 
 - 当List组件宽度变化至400vp时，符合两倍的minLength，则此时列表自适应为两列。
-
->**说明：**
->
->当lanes为LengthConstrain类型时，仅用于计算当前列表的行或列数，不影响列表项本身的尺寸。
 
 同样以垂直列表为例，当alignListItem属性设置为ListItemAlign.Center表示列表项在水平方向上居中对齐。alignListItem的默认值是ListItemAlign.Start，即列表项在列表交叉轴方向上默认按首部对齐。
 
@@ -662,7 +658,7 @@ ListItem的swipeAction属性可用于实现列表项的左右滑动功能。swip
       this.time = time;
     }
    }
-  
+    
    ```
 3. 初始化消息列表数据。
 
@@ -946,7 +942,7 @@ Badge({
       })
     )
   )
-   ```
+  ```
 
 2. 需要响应用户的选择交互，记录要删除的列表项数据。
    在待办列表中，通过勾选框的勾选或取消勾选，响应用户勾选列表项变化，记录所有选择的列表项。
@@ -984,7 +980,7 @@ Badge({
         }
       })
   }
-   ```
+  ```
 
 3. 需要响应用户点击删除按钮事件，删除列表中对应的选项。
 

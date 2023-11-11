@@ -44,7 +44,7 @@
 |新增|NA|类名：PhotoAccessHelper;<br>方法or属性：getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise\<number>;|@ohos.file.photoAccessHelper.d.ts|
 |新增|NA|类名：PhotoViewMIMETypes;<br>方法or属性：IMAGE_TYPE = 'image/*'|@ohos.file.photoAccessHelper.d.ts|
 |新增|NA|类名：PhotoViewMIMETypes;<br>方法or属性：VIDEO_TYPE = 'video/*'|@ohos.file.photoAccessHelper.d.ts|
-|新增|NA|类名：PhotoViewMIMETypes;<br>方法or属性：IMAGE_VIDEO_TYPE = '*/*'|@ohos.file.photoAccessHelper.d.ts|
+|新增|NA|类名：PhotoViewMIMETypes;<br>方法or属性：IMAGE_VIDEO_TYPE = '\*\/\*'|@ohos.file.photoAccessHelper.d.ts|
 |新增|NA|类名：PhotoSelectOptions;<br>方法or属性：MIMEType?: PhotoViewMIMETypes;|@ohos.file.photoAccessHelper.d.ts|
 |新增|NA|类名：PhotoSelectOptions;<br>方法or属性：maxSelectNumber?: number;|@ohos.file.photoAccessHelper.d.ts|
 |新增|NA|类名：PhotoSelectResult;<br>方法or属性：photoUris: Array\<string>;|@ohos.file.photoAccessHelper.d.ts|

@@ -6,12 +6,12 @@ The operations for saving images, audio or video clips, and documents are simila
 
 Currently, all the **save()** APIs of **FilePicker** can be perceived by users. Specifically, **FilePicker** is started to save the files to a directory managed by **FileManager**. The files are isolated from the assets managed by **Gallery** and cannot be viewed in **Gallery**.
 
-To enable the saved image or video to be viewed in Gallery, [create the media asset using a security component](./photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
+To enable the saved image or video to be viewed in **Gallery**, [create the media asset using a security component](./photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
 
 
-## Saving Images or Video Files
+## Saving Images or Videos
 
-For example, select an image from **Gallery** and save it to the file manager.
+For example, select an image from **Gallery** and save it.
 
 1. Import the [picker](../reference/apis/js-apis-file-picker.md), [fs](../reference/apis/js-apis-file-fs.md), [photoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md), and [dataSharePredicates](../reference/apis/js-apis-data-dataSharePredicates.md) modules.
 
@@ -22,7 +22,7 @@ For example, select an image from **Gallery** and save it to the file manager.
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
    ```
 
-2. Obtain the thumbnail of the first image on the device. Before performing this operation, ensure that at least one image exists on the device.
+2. Obtain the thumbnail of the first image in the device. Before performing this operation, ensure that the device has at least one image.
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -60,18 +60,18 @@ For example, select an image from **Gallery** and save it to the file manager.
    }
    ```
 
-3. Create a **photoViewPicker** instance and call [save()](../reference/apis/js-apis-file-picker.md#save) to open the **FilePicker** page to save the image. After the user selects the destination folder, the image is saved and the URI of the saved image is returned.
+3. Create a **photoViewPicker** instance and call [save()](../reference/apis/js-apis-file-picker.md#save) to start the **FilePicker** page to save the image. After the user selects the destination folder, the image is saved and the URI of the saved image is returned.
+   
+   The permission on the URI returned by **save()** is read/write. Further file operations can be performed based on the URI. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger file opening.
 
-   The permission on the URI returned by **save()** is read/write. Further operations on the file can be performed based on the URI in the result set. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger file opening.
-
-   ```ts
+   ```ts  
    import { BusinessError } from '@ohos.base';
 
    let uris: Array<string> = [];
    async function photoViewPickerSave(): Promise<void>{
       try {
          const photoSaveOptions = new picker.PhotoSaveOptions(); // Create a photoSaveOptions instance.
-         photoSaveOptions.newFileNames = ["PhotoViewPicker01.png"]; // (Optional) Name of the file to be saved. The file name in the square brackets can be customized and must be unique. If the file name already exists on the device, change the file name. Otherwise, an error will be returned.
+         photoSaveOptions.newFileNames = ["PhotoViewPicker01.png"]; // (Optional) Name of the file to be saved. The file name in the square brackets can be customized and must be unique. If the file name already exists in the device, change the file name. Otherwise, an error will be returned.
 
          const photoViewPicker = new picker.PhotoViewPicker();
          try {
@@ -91,9 +91,9 @@ For example, select an image from **Gallery** and save it to the file manager.
    }
    ```
 
-4. After the UI is returned from the **FilePicker** page, use a button to trigger API calling. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the file based on the URI and obtain the FD. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_WRITE**.
+4. After the application UI is returned from **FilePicker**, use a button to trigger the application's API. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the image based on the URI and obtain the file descriptor (FD). Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_WRITE**.
 
-   Then, use [fs.write](../reference/apis/js-apis-file-fs.md#fswrite) to modify the file based on the FD, and close the FD after the modification is complete.
+   Then, use [fs.write](../reference/apis/js-apis-file-fs.md#fswrite) to edit the image based on the FD. After that, use **fs.closeSync** to close the FD.
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -130,8 +130,8 @@ For example, select an image from **Gallery** and save it to the file manager.
    ```
 
 3. Create a **documentViewPicker** instance, and call [save()](../reference/apis/js-apis-file-picker.md#save-3) to open the **FilePicker** page to save the document. After the user selects the destination folder, the document is saved and the URI of the document saved is returned.
-
-   The permission on the URI returned by **save()** is read/write. Further operations on the file can be performed based on the URI in the result set. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger file opening.
+   
+   The permission on the URI returned by **save()** is read/write. Further file operations can be performed based on the URI. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger file opening.
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -146,27 +146,27 @@ For example, select an image from **Gallery** and save it to the file manager.
    })
    ```
 
-4. After the UI is returned from the **FilePicker** page, use a button to trigger API calling. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the file based on the URI and obtain the FD. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_WRITE**.
+4. After the application UI is returned from **FilePicker**, use a button to trigger the application's API. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the document based on the URI and obtain the FD. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_WRITE**.
 
    ```ts
    import fs from '@ohos.file.fs';
-
+   
    const uri = '';
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
 
-5. Use [fs.writeSync()](../reference/apis/js-apis-file-fs.md#writesync) to edit the document based on the FD, and then close the FD.
+5. Use [fs.writeSync()](../reference/apis/js-apis-file-fs.md#writesync) to edit the document based on the FD, and then use **fs.closeSync** to close the FD.
 
    ```ts
    import fs from '@ohos.file.fs';
-
+   
    let writeLen: number = fs.writeSync(file.fd, 'hello, world');
    console.info('write data to file succeed and size is:' + writeLen);
    fs.closeSync(file);
    ```
 
-## Saving Audio Files
+## Saving Audio Clips
 
 1. Import the **picker** and **fs** modules.
 
@@ -183,10 +183,10 @@ For example, select an image from **Gallery** and save it to the file manager.
    audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3']; // (Optional) Set the name of the audio file to save.
    ```
 
-3. Create an **audioViewPicker** instance, and call [save()](../reference/apis/js-apis-file-picker.md#save-6) to open the **FilePicker** page to save the file. After the user selects the destination folder, the audio file is saved and the URI of the document saved is returned.
-
-   The permission on the URI returned by **save()** is read/write. Further operations on the file can be performed based on the URI in the result set. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger file opening.
-
+3. Create an **audioViewPicker** instance, and call [save()](../reference/apis/js-apis-file-picker.md#save-6) to open the **FilePicker** page to save the audio clip. After the user selects the destination folder, the audio clip is saved and the URI of the audio clip saved is returned.
+   
+   The permission on the URI returned by **save()** is read/write. Further file operations can be performed based on the URI. Note that the URI cannot be directly used in the **picker** callback to open an audio clip. You need to define a global variable to save the URI and use a button to trigger the operation for opening the audio clip.
+   
    ```ts
    let uri: string = '';
    const audioViewPicker = new picker.AudioViewPicker();
@@ -198,17 +198,18 @@ For example, select an image from **Gallery** and save it to the file manager.
    })
    ```
 
-4. After the UI is returned from the **FilePicker** page, use a button to trigger API calling. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the file based on the URI and obtain the FD. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_WRITE**.
+4. After the application UI is returned from **FilePicker**, use a button to trigger the application's API. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the audio clip based on the URI and obtain the FD. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_WRITE**.
 
    ```ts
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
 
-5. Use [fs.writeSync()](../reference/apis/js-apis-file-fs.md#writesync) to edit the document based on the FD, and then close the FD.
+5. Use [fs.writeSync()](../reference/apis/js-apis-file-fs.md#writesync) to edit the audio clip based on the FD, and then use **fs.closeSync** to close the FD.
 
    ```ts
    let writeLen = fs.writeSync(file.fd, 'hello, world');
    console.info('write data to file succeed and size is:' + writeLen);
    fs.closeSync(file);
    ```
+   

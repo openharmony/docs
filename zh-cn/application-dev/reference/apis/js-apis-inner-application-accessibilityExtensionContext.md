@@ -1209,7 +1209,7 @@ try {
 
 findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCallback\<AccessibilityElement>): void;
 
-根据下一焦点元素方向查询所有节点元素，使用callback异步回调。
+根据下一焦点元素方向查询节点元素，使用callback异步回调。
 
 **系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
 

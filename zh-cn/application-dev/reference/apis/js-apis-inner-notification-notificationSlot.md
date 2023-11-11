@@ -12,7 +12,8 @@
 
 | 名称                 | 类型                  | 必填 | 说明                   |
 | -------------------- | --------------------- | --- |----------------------|
-| type                 | [SlotType](js-apis-notificationManager.md#slottype) | 是  | 通道类型。                |
+| type<sup>(deprecated)</sup> | [SlotType](js-apis-notificationManager.md#slottype) | 否  | 通道类型。<br>从API version 11开始不再维护，建议使用notificationType代替。                |
+| notificationType<sup>11+</sup>                 | [SlotType](js-apis-notificationManager.md#slottype) | 否  | 通道类型。                |
 | level                | number                | 否  | 通知级别，不设置则根据通知渠道类型有默认值。 |
 | desc                 | string                | 否  | 通知渠道描述信息。            |
 | badgeFlag            | boolean               | 否  | 是否显示角标。              |

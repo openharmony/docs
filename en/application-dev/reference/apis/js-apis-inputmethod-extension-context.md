@@ -4,7 +4,8 @@ The **InputMethodExtensionContext** module, inherited from **ExtensionContext**,
 
 > **NOTE**
 >
->The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 
@@ -43,13 +44,24 @@ Destroys this input method. This API uses an asynchronous callback to return the
 **Example**
 
 ```ts
-this.context.destroy((err: BusinessError) => {
-  if(err) {
-    console.log('Failed to destroy context.');
-    return;
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+class InputMethodExtnAbility extends InputMethodExtensionAbility {
+  onCreate(want: Want): void {
+    let context = this.context;
   }
-  console.log('Succeeded in destroying context.');
-});
+  onDestroy() {
+    this.context.destroy((err: BusinessError) => {
+      if(err) {
+        console.log(`Failed to destroy context, err code = ${err.code}`);
+        return;
+      }
+      console.log('Succeeded in destroying context.');
+    });
+  }
+}
 ```
 
 ## InputMethodExtensionContext.destroy
@@ -69,9 +81,20 @@ Destroys this input method. This API uses a promise to return the result.
 **Example**
 
 ```ts
-this.context.destroy().then(() => {
-  console.log('Succeed in destroying context.');
-}).catch((err: BusinessError)=>{
-  console.log('Failed to destroy context.');
-});
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+class InputMethodExtnAbility extends InputMethodExtensionAbility {
+  onCreate(want: Want): void {
+    let context = this.context;
+  }
+  onDestroy() {
+    this.context.destroy().then(() => {
+      console.log('Succeed in destroying context.');
+    }).catch((err: BusinessError)=>{
+      console.log(`Failed to destroy context, err code = ${err.code}`);
+    });
+  }
+}
 ```

@@ -26,7 +26,7 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**系统API**: 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
@@ -35,7 +35,7 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
 
@@ -47,10 +47,12 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
 import Want from '@ohos.app.ability.Want';
+
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 deviceControl.resetFactory(wantTemp, (err) => {
@@ -72,7 +74,7 @@ resetFactory(admin: Want): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**系统API**: 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
@@ -86,7 +88,7 @@ resetFactory(admin: Want): Promise\<void>
 | ----- | ----------------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。当恢复出厂设置失败时抛出错误对象。|
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
 
@@ -98,15 +100,152 @@ resetFactory(admin: Want): Promise\<void>
 **示例：**
 
 ```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
+
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 deviceControl.resetFactory(wantTemp).then(() => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to reset factory. Code is ${err.code}, message is ${err.message}`);
 })
+```
+
+## deviceControl.shutdown<sup>11+</sup>
+
+shutdown(admin: Want): void
+
+指定设备管理应用使设备关机。
+
+**需要权限：** ohos.permission.ENTERPRISE_REBOOT
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
+
+| 错误码ID | 错误信息                                                                      |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  deviceControl.shutdown(wantTemp);
+} catch (err) {
+  console.error(`Failed to shutdown device. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## deviceControl.reboot<sup>11+</sup>
+
+reboot(admin: Want): void
+
+指定设备管理应用使设备重启。
+
+**需要权限：** ohos.permission.ENTERPRISE_REBOOT
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
+
+| 错误码ID | 错误信息                                                                      |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  deviceControl.reboot(wantTemp);
+} catch (err) {
+  console.error(`Failed to reboot device. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## deviceControl.lockScreen<sup>11+</sup>
+
+lockScreen(admin: Want): void
+
+指定设备管理应用使设备屏幕锁定。
+
+**需要权限：** ohos.permission.ENTERPRISE_LOCK_DEVICE
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
+
+| 错误码ID | 错误信息                                                                      |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  deviceControl.lockScreen(wantTemp);
+} catch (err) {
+  console.error(`Failed to lock screen. Code is ${err.code}, message is ${err.message}`);
+}
 ```

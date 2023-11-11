@@ -151,6 +151,8 @@ import formInfo from '@ohos.app.form.formInfo';
 
 **系统能力**：SystemCapability.Ability.Form
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 | 名称        |  值   | 说明         |
 | ----------- | ---- | ------------ |
 | USED<sup>11+</sup> | 0   | 表示卡片在使用中。 |

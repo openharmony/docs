@@ -233,7 +233,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
 Called when the configuration of the environment where the FormExtensionAbility is running is updated.
 
@@ -260,7 +260,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onAcquireFormState
 
-onAcquireFormState?(want: Want): formInfo.FormState;
+onAcquireFormState?(want: Want): formInfo.FormState
 
 Called to notify the widget provider that the widget host is requesting the widget state. By default, the initial state is returned.
 
@@ -307,7 +307,7 @@ Called to notify the widget provider that the widget host is sharing the widget 
 
 | Type                                                        | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| {[key: string]: any} | Data to be shared by the widget, in the form of key-value pairs.|
+| {[key: string]: Object} | Data to be shared by the widget, in the form of key-value pairs.|
 
 **Example**
 
@@ -346,7 +346,7 @@ Called to notify the widget provider that the widget host is requesting the cust
 
 | Type                                                        | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| {[key: string]: any} | Custom data of the widget, in the form of key-value pairs.|
+| {[key: string]: Object} | Custom data of the widget, in the form of key-value pairs.|
 
 **Example**
 

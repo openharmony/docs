@@ -34,11 +34,73 @@ format(format: string,  ...args: Object[]): string
 | ------ | ---------------------------- |
 | string | 按特定格式式样化后的字符串。 |
 
+
+**格式说明符：**
+
+| 格式说明符 | 说明                          |
+| ------ | -------------------------------- |
+| %s     | 将参数转换为字符串，用于除Object，BigInt和-0之外的所有值。|
+| %d     | 将参数作为十进制整数进行格式化输出，用于除Symbol和BigInt之外的所有值。|
+| %i     | 将字符串转换为十进制整数，用于除BigInt和Symbol之外的所有值。|
+| %f     | 将字符串转换为浮点数，用于除Bigint和Symbol之外的所有值。|
+| %j     | 将JavaScript对象转换为JSON字符串进行格式化输出。|
+| %o     | 用于将JavaScript对象进行格式化输出，将对象转换为字符串表示，但不包含对象的原型链信息。|
+| %O     | 用于将JavaScript对象进行格式化输出，将对象转换为字符串表示。|
+| %c     | 只在浏览器环境中有效。其余环境不会产生样式效果。|
+| %%     | 转义百分号的特殊格式化占位符。|
+
 **示例：**
 
 ```ts
-let res = util.format("This is : %s", "hello world!");
-console.log(res);
+let name = 'John';
+let age = 20;
+let formattedString = util.format('My name is %s and I am %s years old', name, age);
+console.log(formattedString);
+// 输出结果：My name is John and I am 20 years old
+let num = 10.5;
+formattedString = util.format('The number is %d', num);
+console.log(formattedString);
+// 输出结果：The number is 10.5
+num = 100.5;
+formattedString = util.format('The number is %i', num);
+console.log(formattedString);
+// 输出结果：The number is 100
+const pi = 3.141592653;
+formattedString = util.format('The value of pi is %f', pi);
+console.log(formattedString);
+// 输出结果：The value of pi is 3.141592653
+const obj = { name: 'John', age: 20 };
+formattedString = util.format('The object is %j', obj);
+console.log(formattedString);
+// 输出结果：The object is {"name":"John","age":20}
+const person = {
+  name: 'John',
+  age: 20,
+  address: {
+    city: 'New York',
+    country: 'USA'
+  }
+};
+console.log(util.format('Formatted object using %%O: %O', person));
+console.log(util.format('Formatted object using %%o: %o', person));
+/*
+输出结果：
+Formatted object using %O: { name: 'John',
+  age: 20,
+  address:
+  { city: 'New York',
+    country: 'USA' } }
+Formatted object using %o: { name: 'John',
+  age: 20,
+  address:
+  { city: 'New York',
+    country: 'USA' } }
+*/
+const percentage = 80;
+let arg = 'homework';
+formattedString = util.format('John finished %d%% of the %s', percentage, arg);
+console.log(formattedString);
+// 输出结果：John finished 80% of the homework
 ```
 
 ## util.errnoToString<sup>9+</sup>
@@ -357,9 +419,15 @@ TextDecoder的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**示例：**
+
+```ts
+let result = new util.TextDecoder();
+let retStr = result.encoding;
+```
 ### create<sup>9+</sup>
 
-create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder;
+create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
 
 替代有参构造功能。
 
@@ -1685,7 +1753,7 @@ ScopeComparable类型的值需要实现compareTo方法，确保传入的数据�
 
 ### compareTo<sup>8+</sup>
 
-compareTo(other: ScopeComparable): boolean;
+compareTo(other: ScopeComparable): boolean
 
 比较两个值的大小，返回一个布尔值。
 
@@ -2857,6 +2925,10 @@ isGeneratorFunction(value: Object): boolean
 
 检查输入的value是否是generator函数类型。
 
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2884,6 +2956,10 @@ isGeneratorFunction(value: Object): boolean
 isGeneratorObject(value: Object): boolean
 
 检查输入的value是否是generator对象类型。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3286,6 +3362,10 @@ isStringObject(value: Object): boolean
 isSymbolObject(value: Object): boolean
 
 检查输入的value是否是Symbol对象类型。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3690,7 +3770,7 @@ updateCapacity(newCapacity: number): void
 
   ```ts
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
-  let result = pro.updateCapacity(100);
+  pro.updateCapacity(100);
   ```
 
 ### toString<sup>(deprecated)</sup>

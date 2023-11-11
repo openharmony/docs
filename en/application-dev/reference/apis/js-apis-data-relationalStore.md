@@ -79,6 +79,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -139,6 +141,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -161,9 +164,10 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let store: relationalStore.RdbStore;
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S1
@@ -185,7 +189,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 Deletes an RDB store. This API uses an asynchronous callback to return the result.
 
-After the deletion, you are advised to set the database object to null.
+After the deletion, you are advised to set the database object to null. If a customized path is set in [StoreConfig](#storeconfig) when an RDB store is created, using this API cannot delete the RDB store. Use [deleteRdbStore<sup>10+</sup>](#relationalstoredeleterdbstore10) instead.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -214,6 +218,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
@@ -232,6 +237,8 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -253,7 +260,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 Deletes an RDB store. This API uses a promise to return the result.
 
-After the deletion, you are advised to set the database object to null.
+After the deletion, you are advised to set the database object to null. If a customized path is set in [StoreConfig](#storeconfig) when an RDB store is created, using this API cannot delete the RDB store. Use [deleteRdbStore<sup>10+</sup>](#relationalstoredeleterdbstore10-1) instead.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -287,6 +294,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
@@ -303,6 +311,8 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -322,7 +332,7 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 
 Deletes an RDB store. This API uses an asynchronous callback to return the result.
 
-After the deletion, you are advised to set the database object to null. If the database file is in the public sandbox directory, you must use this API to delete the database. If the database is accessed by multiple processes at the same time, you are advised to send a database deletion notification to other processes.
+After the deletion, you are advised to set the database object to null. If the database file is in the public sandbox directory, you must use this API to delete the database. If the database is accessed by multiple processes at the same time, you are advised to send a database deletion notification to other processes. Use this API to delete the RDB store that has a customized path set in [StoreConfig](#storeconfig).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -353,6 +363,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -376,6 +387,8 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -402,7 +415,7 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 
 Deletes an RDB store. This API uses a promise to return the result.
 
-After the deletion, you are advised to set the database object to null. If the database file is in the public sandbox directory, you must use this API to delete the database. If the database is accessed by multiple processes at the same time, you are advised to send a database deletion notification to other processes.
+After the deletion, you are advised to set the database object to null. If the database file is in the public sandbox directory, you must use this API to delete the database. If the database is accessed by multiple processes at the same time, you are advised to send a database deletion notification to other processes. Use this API to delete the RDB store that has a customized path set in [StoreConfig](#storeconfig).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -438,6 +451,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -459,6 +473,8 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -487,7 +503,8 @@ Defines the RDB store configuration.
 | name          | string        | Yes  | Database file name.                                           |
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.                                       |
 | encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.|
-| dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from the AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. It specifies the **relationalStore** instance created in the sandbox directory corresponding to the **dataGroupId**. If this parameter is not specified, the **relationalStore** instance is created in the sandbox directory of the application.|
+| dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. The **RdbStore** instance is created in the sandbox directory corresponding to the specified **dataGroupId**. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.|
+| customDir<sup>11+</sup> | string | No| Customized path of the RDB store.<br>**Constraints**: The value cannot exceeds 128 bytes.<br>This parameter is supported since API version 10. The RDB store directory is in the **context.databaseDir**/**rdb**/**customDir** format. **context.databaseDir** specifies the application sandbox path. **rdb** is a fixed field that indicates an RDB store. **customDir** specifies the customized path. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.|
 
 ## SecurityLevel
 
@@ -4353,6 +4370,91 @@ if(store != undefined) {
 };
 ```
 
+### cloudSync<sup>11+</sup>
+
+cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+Manually performs device-cloud synchronization based on specified conditions. This API uses an asynchronous callback to return the result. The cloud synchronization function must be implemented. Otherwise, this API cannot be used.
+
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+
+**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name        | Type                            | Mandatory| Description                           |
+|-------------|--------------------------------| ---- |-------------------------------|
+| mode        | [SyncMode](#syncmode)          | Yes  | Synchronization mode of the database.                  |
+| predicates  | [RdbPredicates](#rdbpredicates)                  | Yes  | Conditions for data synchronization.                 |
+| progress    | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database synchronization details.          |
+| callback    | AsyncCallback&lt;void&gt;      | Yes  | Callback invoked to send the synchronization result to the caller.|
+
+**Example**
+
+```ts
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.in("id", ["id1", "id2"]);
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`progress: ${progressDetail}`);
+   }, (err) => {
+     if (err) {
+       console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
+       return;
+     }
+     console.info('Cloud sync succeeded');
+  });
+};
+```
+
+### cloudSync<sup>11+</sup>
+
+cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
+
+Manually performs device-cloud synchronization based on specified conditions. This API uses a promise to return the result. The cloud synchronization function must be implemented. Otherwise, this API cannot be used.
+
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+
+**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name       | Type                             | Mandatory| Description                 |
+|------------|---------------------------------| ---- |---------------------|
+| mode       | [SyncMode](#syncmode)           | Yes  | Synchronization mode of the database.        |
+| predicates | [RdbPredicates](#rdbpredicates)                   | Yes  | Conditions for data synchronization.               |
+| progress   | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database synchronization details.|
+
+**Return value**
+
+| Type               | Description                                   |
+| ------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the synchronization result.|
+
+**Example**
+
+```ts
+import {BusinessError} from "@ohos.base";
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.in("id", ["id1", "id2"]);
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`progress: ${progressDetail}`);
+  }).then(() => {
+    console.info('Cloud sync succeeded');
+  }).catch((err: BusinessError) => {
+    console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
+  });
+};
+```
+
 ### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
@@ -4465,6 +4567,39 @@ try {
   if(store != undefined) {
     (store as relationalStore.RdbStore).on('storeObserver', false, (storeObserver) => {
       console.info(`storeObserver`);
+    });
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+```
+
+### on('autoSyncProgress')<sup>11+</sup>
+
+on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
+
+Registers a listener for the auto synchronization progress. This API can be called only when device-cloud synchronization is enabled and the network connection is normal. When auto synchronization is performed, a callback will be invoked to send a notification of the synchronization progress.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name      | Type                             | Mandatory| Description                               |
+| ------------ |---------------------------------| ---- |-----------------------------------|
+| event        | string                          | Yes  | Event type. The value is **autoSyncProgress**, which indicates the auto synchronization progress.|
+| progress     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback invoked to return the auto synchronization progress.                            |
+
+**Example**
+
+```ts
+import {BusinessError} from "@ohos.base";
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).on('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
+      console.info(`progress: ${progressDetail}`);
     });
   }
 } catch (err) {
@@ -4589,7 +4724,40 @@ try {
 } catch (err) {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message
-  console.error(`Register observer failed, code is ${code},message is ${message}`);
+  console.error(`Unregister observer failed, code is ${code},message is ${message}`);
+}
+```
+
+### off('autoSyncProgress')<sup>11+</sup>
+
+off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
+
+Unregisters the listener for the auto synchronization progress.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name      | Type                             | Mandatory| Description                                                              |
+| ------------ |---------------------------------| ---- |------------------------------------------------------------------|
+| event        | string                          | Yes  | Event type. The value is **autoSyncProgress**, which indicates the auto synchronization progress.                               |
+| observer     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | No  | Callback for the auto synchronization progress. If this parameter is specified, the specified callback will be unregistered. If this parameter is **null** or **undefined** or not specified, all callbacks for **autoSyncProgress** will be unregistered.|
+
+**Example**
+
+```ts
+import {BusinessError} from "@ohos.base";
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('autoSyncProgress', (progressDetail: relationalStore.ProgressDetails) => {
+      console.info(`progress: ${progressDetail}`);
+    });
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Unregister failed, code is ${code},message is ${message}`);
 }
 ```
 
@@ -4626,11 +4794,13 @@ if(store != undefined) {
 
 ## ResultSet
 
-Provides APIs to access the result set obtained by querying the RDB store. A result set is a set of results returned after **query()** is called.
+Provides APIs to access the **resultSet** object returned by **query()**.
 
 ### Usage
 
 Obtain the **resultSet** object first.
+
+**Example**
 
 ```ts
 let resultSet: relationalStore.ResultSet | undefined = undefined;
@@ -4691,14 +4861,14 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```ts
+```ts
 if(resultSet != undefined) {
   const id = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("ID"));
   const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
   const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
   const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
 }
-  ```
+```
 
 ### getColumnName
 

@@ -96,6 +96,7 @@ struct CheckboxExample {
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
             .selectedColor('#007DFF')
+            .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
               console.info('Checkbox1 change is' + value)
             })
@@ -106,6 +107,7 @@ struct CheckboxExample {
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
             .selectedColor('#007DFF')
+            .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
               console.info('Checkbox2 change is' + value)
             })
@@ -116,6 +118,7 @@ struct CheckboxExample {
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
             .selectedColor('#007DFF')
+            .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
               console.info('Checkbox3 change is' + value)
             })
@@ -158,6 +161,7 @@ struct Index {
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
             .selectedColor(0x39a2db)
+            .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
               console.info('Checkbox1 change is'+ value)
             })
@@ -174,6 +178,7 @@ struct Index {
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
             .selectedColor(0x39a2db)
+            .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
               console.info('Checkbox2 change is' + value)
             })
@@ -184,6 +189,7 @@ struct Index {
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
             .selectedColor(0x39a2db)
+            .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
               console.info('Checkbox3 change is' + value)
             })

@@ -537,6 +537,51 @@ try {
 ```
 
 
+## connection.getPairState<sup>11+</sup><a name="getPairState"></a>
+
+getPairState(deviceId: string): BondState
+
+Obtains the Bluetooth pairing state.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description                               |
+| -------- | ------ | ---- | --------------------------------- |
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+
+**Return value**
+
+| Type                         | Description      |
+| --------------------------- | -------- |
+| [BondState](#bondstate) | Bluetooth pairing state obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let res: BondState = connection.getPairState("XX:XX:XX:XX:XX:XX");
+    console.log('getPairState: ' + res);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## connection.getProfileConnectionState<a name="getProfileConnectionState"></a>
 
 getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
@@ -899,6 +944,45 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 import { BusinessError } from '@ohos.base';
 try {
     connection.stopBluetoothDiscovery();
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.isBluetoothDiscovering<sup>11+</sup><a name="isBluetoothDiscovering"></a>
+
+isBluetoothDiscovering(): boolean
+
+Checks whether Bluetooth discovery is enabled.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Return value**
+
+| Type                 | Description           |
+| ------------------- | ------------- |
+|   boolean           | Returns **true** if Bluetooth discovery is enabled; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let res: boolean = connection.isBluetoothDiscovering();
+    console.log('isBluetoothDiscovering: ' + res);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }

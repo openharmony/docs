@@ -50,11 +50,13 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 ```ts
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(this.context, uri, (err, data) => {
+  dataShare.createDataShareHelper(context, uri, (err, data) => {
     if (err !== undefined) {
       console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       return;
@@ -70,7 +72,7 @@ try {
 ```
 
 ## dataShare.createDataShareHelper<sup>10+</sup>
-createDataShareHelper(context: Context, uri: string, options: DataShareHelperOptions, callback: AsyncCallback&lt;DataShareHelper&gt;): void
+createDataShareHelper(context: Context, uri: string, options: DataShareHelperOptions, callback: AsyncCallback&lt;DataShareHelper&gt;): void 
 
 创建DataShareHelper实例。使用callback异步回调。
 
@@ -101,11 +103,13 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 
 ```ts
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(this.context, uri, {isProxy : true}, (err, data) => {
+  dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err, data) => {
     if (err !== undefined) {
       console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       return;
@@ -138,7 +142,7 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
 | context | [Context](js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。             |
 | uri     | string                                            | 是   | 指示要连接的服务端应用的路径。 |
-| options | [DataShareHelperOptions](#datasharehelperoptions10) | 否 | 可选配置。从API version 10开始支持此参数，如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下。|
+| options<sup>10+</sup> | [DataShareHelperOptions](#datasharehelperoptions10) | 否 | 可选配置。从API version 10开始支持此参数，如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下。|
 
 **返回值：**
 
@@ -158,11 +162,13 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 
 ```ts
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(this.context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
+  dataShare.createDataShareHelper(context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
     console.info("createDataShareHelper succeed, data : " + data);
     dataShareHelper = data;
   }). catch((err: BusinessError) => {
@@ -1066,7 +1072,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要更新的数据的路径。                                     |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。 |
-| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。                                           |
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。可以为null。                                  |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当更新数据库中的数据记录成功，err为undefined，data为获取到的更新的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回更新的数据记录数。 |
 
 **示例：**
@@ -1121,7 +1127,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要更新的数据的路径。                                     |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。 |
-| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。                                           |
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。可以为null。                                   |
 
 **返回值：**
 

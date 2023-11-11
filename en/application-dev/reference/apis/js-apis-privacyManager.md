@@ -60,7 +60,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0).then(() => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
         console.log('addPermissionUsedRecord success');
     }).catch((err: BusinessError) => {
         console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
@@ -111,7 +111,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0, (err: BusinessError, data: void) => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
@@ -286,7 +286,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
         console.log('startUsingPermission success');
     }).catch((err: BusinessError) => {
         console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -335,7 +335,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -391,7 +391,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
         console.log('stopUsingPermission success');
     }).catch((err: BusinessError) => {
         console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -440,7 +440,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -565,11 +565,11 @@ Represents the request for querying permission usage records.
 
 | Name      | Type            | Mandatory  | Description                                      |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | No   | Token ID of the application (invoker).<br> By default, all applications are queried.        |
-| isRemote | boolean         | No   | Whether to query the permission usage records of the remote device.<br> The default value is **false**, which means the permission usage records of the local device are queried by default.|
-| deviceId  | string         | No   | ID of the device hosting the target application.<br> The default value is the local device ID.  |
-| bundleName | string         | No   | Bundle name of the target application.<br> By default, all applications are queried.|
-| permissionNames  | Array&lt;Permissions&gt;         | No   | Permissions to query.<br> By default, the usage records of all permissions are queried.              |
+| tokenId  | number         | No   | Token ID of the application (invoker).<br>By default, all applications are queried.        |
+| isRemote | boolean         | No   | Whether to query the permission usage records of the remote device.<br>The default value is **false**, which means the permission usage records of the local device are queried by default.|
+| deviceId  | string         | No   | ID of the device hosting the target application.<br>The default value is the local device ID.  |
+| bundleName | string         | No   | Bundle name of the target application.<br>By default, all applications are queried.|
+| permissionNames  | Array&lt;Permissions&gt;         | No   | Permissions to query.<br>By default, the usage records of all permissions are queried.              |
 | beginTime | number         | No   | Start time of the query, in ms.<br>The default value is **0**, which means the start time is not set.|
 | endTime | number         | No   | End time of the query, in ms.<br>The default value is **0**, which means the end time is not set.|
 | flag | [PermissionUsageFlag](#permissionusageflag)         | Yes   | Query mode.|
@@ -580,11 +580,11 @@ Represents the permission usage records of all applications.
 
 **System capability**: SystemCapability.Security.AccessToken
 
-| Name      | Type            | Mandatory  | Description                                      |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| beginTime | number         | Yes   | Start time of the query, in ms.|
-| endTime | number         | Yes   | End time of the query, in ms.|
-| bundleRecords  | Array&lt;[BundleUsedRecord](#bundleusedrecord)&gt;         | Yes   | Permission usage records.                                |
+| Name      | Type            | Readable| Writable| Description                                      |
+| --------- | -------------- | ---- | ---- | ---------------------------------------- |
+| beginTime | number         | Yes   | No   | Start time of the query, in ms.|
+| endTime   | number         | Yes   | No   | End time of the query, in ms.|
+| bundleRecords  | Array&lt;[BundleUsedRecord](#bundleusedrecord)&gt;         | Yes   | No   | Permission usage records.                                |
 
 ## BundleUsedRecord
 
@@ -592,13 +592,13 @@ Represents the permission access records of an application.
 
 **System capability**: SystemCapability.Security.AccessToken
 
-| Name      | Type            | Mandatory  | Description                                      |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | Yes   | Token ID of the application (invoker).                                |
-| isRemote | boolean         | Yes   | Whether the token ID belongs to the application on a remote device. The default value is **false**.|
-| deviceId  | string         | Yes   | ID of the device hosting the target application.                                |
-| bundleName | string         | Yes   | Bundle name of the target application.|
-| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | Yes   | Permission usage records of the target application.                                |
+| Name      | Type            | Readable| Writable| Description                                      |
+| -------- | -------------- | ---- | ---- | ---------------------------------------- |
+| tokenId  | number         | Yes   | No   | Token ID of the application (invoker).                                |
+| isRemote | boolean         | Yes   | No   | Whether the token ID belongs to the application on a remote device. The default value is **false**.|
+| deviceId  | string         | Yes   | No   | ID of the device hosting the target application.                                |
+| bundleName | string         | Yes   | No   | Bundle name of the target application.|
+| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | Yes   | No   | Permission usage records of the target application.                                |
 
 ## PermissionUsedRecord
 
@@ -606,16 +606,16 @@ Represents the usage records of a permission.
 
 **System capability**: SystemCapability.Security.AccessToken
 
-| Name      | Type            | Mandatory  | Description                                      |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| permissionName  | Permissions         | Yes   | Name of the permission.                                |
-| accessCount | number         | Yes   | Total number of times that the permission is accessed.|
-| rejectCount | number         | Yes   | Total number of times that the access to the permission is rejected.|
-| lastAccessTime | number         | Yes   | Last time when the permission was accessed, accurate to ms.|
-| lastRejectTime | number         | Yes   | Last time when the access to the permission was rejected, accurate to ms.|
-| lastAccessDuration | number         | Yes   | Last access duration, in ms.|
-| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Successful access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_DETAIL**. By default, 10 records are provided.                                |
-| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Rejected access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_DETAIL**. By default, 10 records are provided.                                |
+| Name      | Type            | Readable| Writable| Description                                      |
+| -------- | -------------- | ---- | ---- | ---------------------------------------- |
+| permissionName  | Permissions         | Yes   | No   | Name of the permission.                                |
+| accessCount | number         | Yes   | No   | Total number of times that the permission is accessed.|
+| rejectCount | number         | Yes   | No   | Total number of times that the access to the permission is rejected.|
+| lastAccessTime | number         | Yes   | No   | Last time when the permission was accessed, accurate to ms.|
+| lastRejectTime | number         | Yes   | No   | Last time when the access to the permission was rejected, accurate to ms.|
+| lastAccessDuration | number         | Yes   | No   | Last access duration, in ms.|
+| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | No   | Successful access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_DETAIL**. By default, 10 records are provided.                                |
+| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | No   | Rejected access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_DETAIL**. By default, 10 records are provided.                                |
 
 ## UsedRecordDetail
 
@@ -623,13 +623,13 @@ Represents the details of a single access record.
 
 **System capability**: SystemCapability.Security.AccessToken
 
-| Name      | Type            | Mandatory  | Description                                      |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| status  | number         | Yes   | Access status.                                |
-| lockScreenStatus<sup>11+</sup>  | number         | No   | Status of the screen during the access.<br> - **1**: The screen is not locked when the permission is used.<br> - **2**: The screen is locked when the permission is used.                                |
-| timestamp | number         | Yes   | Access timestamp, in ms.|
-| accessDuration  | number         | Yes   | Access duration, in ms.                                |
-| count<sup>11+</sup> | number | No| Number of successful or failed accesses.|
+| Name      | Type            | Readable| Writable| Description                                      |
+| -------- | -------------- | ---- | ---- | ---------------------------------------- |
+| status  | number         | Yes   | No   | Access status.                                |
+| lockScreenStatus<sup>11+</sup>  | number         | Yes   | No   | Status of the screen during the access.<br>- **1**: The screen is not locked when the permission is used.<br>- **2**: The screen is locked when the permission is used.                                |
+| timestamp | number         | Yes   | No   | Access timestamp, in ms.|
+| accessDuration  | number         | Yes   | No   | Access duration, in ms.                                |
+| count<sup>11+</sup> | number | Yes| No   | Number of successful or failed accesses.
 
 ## PermissionActiveStatus
 
@@ -652,6 +652,6 @@ Defines the detailed permission usage information.
 | Name          | Type                   | Readable| Writable| Description                  |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
 | tokenId        | number                 | Yes  | No  | Token ID of the application.   |
-| permissionName | Permissions                 | Yes  | No  | Name of the permission.|
+| permissionName | Permissions            | Yes  | No  | Name of the permission.|
 | deviceId       | string                 | Yes  | No  | Device ID.                |
 | activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | Yes  | No  | Permission usage status.       |

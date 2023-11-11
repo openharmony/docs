@@ -339,7 +339,7 @@ let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let iter = hashSet.entries();
-let temp: IteratorResult<string> = iter.next();
+let temp: IteratorResult<[string, string]> = iter.next();
 while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);
@@ -355,6 +355,10 @@ while(!temp.done) {
 Obtains an iterator, each item of which is a JavaScript object.
 
 **System capability**: SystemCapability.Utils.Lang
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **Return value**
 

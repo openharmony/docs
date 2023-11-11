@@ -22,10 +22,10 @@
 | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
 | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
 | stopPropagation      | () => void | 阻塞事件冒泡。 |
-| timestamp<sup>8+</sup> | number | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。<br/>例如当系统启动时间为2023/10/12 11:33, 在2023/10/12 11:34时触发触摸事件，时间戳返回的值为60,000,000,000ns |
+| timestamp<sup>8+</sup> | number | 事件时间戳，触发事件时距离系统启动的时间间隔。<br/>例如，当系统启动时间为2023/10/12 11:33, 在2023/10/12 11:34时触发触摸事件，时间戳返回的值为60,000,000,000ns。<br>单位：纳秒 |
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。 |
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。 |
-| getHistoricalPoints<sup>10+</sup> | Array&lt;[HistoricalPoint](#historicalpoint10对象说明)&gt;| 获取当前帧所有的历史点（不同设备每帧的触摸事件频率不同，当前帧所有的触摸事件被称为历史点）。 |
+| getHistoricalPoints<sup>10+</sup> | Array&lt;[HistoricalPoint](#historicalpoint10对象说明)&gt;| 获取当前帧所有的历史点。不同设备每帧的触摸事件频率不同，当前帧所有的触摸事件被称为历史点。 |
 
 
 ## TouchObject对象说明
@@ -50,7 +50,7 @@
 | touchObject | [TouchObject](#touchobject对象说明)  | 历史点对应触摸事件的基础信息。                                                   |
 | size        | number                              | 历史点对应触摸事件的手指与屏幕的触摸区域大小。<br/>默认值：0                                     |
 | force       | number                              | 历史点对应触摸事件的压力大小。<br/>默认值：0<br/>取值范围：[0,1]，压力越大值越大。<br/>此接口根据硬件设备不同，支持情况不同。当前只支持Tablet。|
-| timestamp   | number                              | 历史点对应触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位毫秒。             |
+| timestamp   | number                              | 历史点对应触摸事件的时间戳。触发事件时距离系统启动的时间间隔。<br>单位：毫秒             |
 ## 示例
 
 ```ts

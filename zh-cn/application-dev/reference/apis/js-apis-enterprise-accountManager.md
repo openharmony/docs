@@ -114,11 +114,11 @@ accountManager.disallowAddLocalAccount(wantTemp, true).then(() => {
 });
 ```
 
-## accountManager.disallowUserAddOsAccount<sup>11+</sup>
+## accountManager.disallowAddOsAccountByUser<sup>11+</sup>
 
-disallowUserAddOsAccount(admin: Want, userId: number, disallow: boolean): void
+disallowAddOsAccountByUser(admin: Want, userId: number, disallow: boolean): void
 
-禁止用户添加账号。
+指定设备管理应用禁止用户添加账号。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -153,18 +153,18 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 
-accountManager.disallowUserAddOsAccount(wantTemp, 100, true).then(() => {
+accountManager.disallowAddOsAccountByUser(wantTemp, 100, true).then(() => {
   console.info('Succeeded in disallowing user add os account');
 }).catch((err: BusinessError) => {
   console.error(`Failed to disallow user add os account. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
-## accountManager.isUserAddOsAccountDisallowed<sup>11+</sup>
+## accountManager.isAddOsAccountByUserDisallowed<sup>11+</sup>
 
-isUserAddOsAccountDisallowed(admin: Want, userId: number): boolean
+isAddOsAccountByUserDisallowed(admin: Want, userId: number): boolean
 
-查询是否禁止某用户添加账号。
+指定设备管理应用查询是否禁止某用户添加账号。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -204,18 +204,18 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 
-let isDisallowed: boolean = accountManager.isUserAddOsAccountDisallowed(wantTemp, 100).then(() => {
+let isDisallowed: boolean = accountManager.isAddOsAccountByUserDisallowed(wantTemp, 100).then(() => {
   console.info(`Succeeded in querying the user can add os account or not. Result is: ${isDisallowed}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to query the user can add os account or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
-## accountManager.createOsAccount<sup>11+</sup>
+## accountManager.addOsAccount<sup>11+</sup>
 
-createOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccount.OsAccountInfo
+addOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccount.OsAccountInfo
 
-后台添加账号。
+指定设备管理应用后台添加账号。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -225,17 +225,17 @@ createOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAcc
 
 **参数：**
 
-| 参数名 | 类型                                | 必填 | 说明                                                      |
-| ------ | ----------------------------------- | ---- | --------------------------------------------------------- |
-| admin  | [Want](js-apis-app-ability-want.md) | 是   | 设备管理应用。                                            |
-| name   | string                              | 是   | 用户ID，指定具体用户，取值范围：大于等于0。               |
-| type   | osAccount.OsAccountType             | 是   | 要添加的账号的类型。<br/>取值范围：ADMIN、NORMAL、GUEST。 |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| admin  | [Want](js-apis-app-ability-want.md)                          | 是   | 设备管理应用。                                               |
+| name   | string                                                       | 是   | 用户ID，指定具体用户，取值范围：大于等于0。                  |
+| type   | [osAccount.OsAccountType](js-apis-osAccount.md#osaccounttype) | 是   | 要添加的账号的类型。<br/>取值范围：ADMIN、NORMAL、GUEST。<br/>· ADMIN：管理员帐号。<br/>· NORMAL：普通账号。<br/>· GUEST：访客账号。 |
 
 **返回值：**
 
-| 类型                    | 说明                 |
-| ----------------------- | -------------------- |
-| osAccount.OsAccountInfo | 返回添加的账号信息。 |
+| 类型                                                         | 说明                 |
+| ------------------------------------------------------------ | -------------------- |
+| [osAccount.OsAccountInfo](js-apis-osAccount.md#osaccountinfo) | 返回添加的账号信息。 |
 
 **错误码**：
 
@@ -245,6 +245,7 @@ createOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAcc
 | -------- | ------------------------------------------------------------ |
 | 9200001  | the application is not an administrator of the device.       |
 | 9200002  | the administrator application does not have permission to manage the device. |
+| 9201003  | failed to add an OS account.                                 |
 
 **示例：**
 
@@ -257,7 +258,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 
-let info: osAccount.OsAccountInfo = accountManager.createOsAccount(wantTemp, "TestAccountName", osAccount.OsAccountType.NORMAL).then(() => {
+let info: osAccount.OsAccountInfo = accountManager.addOsAccount(wantTemp, "TestAccountName", osAccount.OsAccountType.NORMAL).then(() => {
   console.info(`Succeeded in creating os account: ${JSON.stringify(info)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to creating os account. Code: ${err.code}, message: ${err.message}`);
