@@ -151,7 +151,7 @@ struct DragControllerPage {
                 data: unifiedData,
                 extraParams: ''
               }
-              let pb:CustomBuilder =()=>{():void=>{this.PixmapBuilder()}}
+              let pb:CustomBuilder = ():void=>{this.PixmapBuilder()}
               componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
                 this.pixmap = pix;
                 let dragItemInfo: DragItemInfo = {
