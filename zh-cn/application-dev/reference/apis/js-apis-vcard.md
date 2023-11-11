@@ -222,7 +222,7 @@ class EntryAbility extends UIAbility {
         let predicates = new dataSharePredicates.DataSharePredicates();
         predicates.equalTo("NAME", "Rose");
 
-        vcard.exportVCard(this.context, predicates, (err: BusinessError data: string) => {
+        vcard.exportVCard(this.context, predicates, (err: BusinessError, data: string) => {
             console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
         });
     }
@@ -280,7 +280,7 @@ class EntryAbility extends UIAbility {
             cardType: vcard.VCardType.VERSION_21,
             charset: "UTF-8"
         };
-        vcard.exportVCard(this.context, predicates, options, (err: BusinessError data: string) => {
+        vcard.exportVCard(this.context, predicates, options, (err: BusinessError, data: string) => {
             console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
         });
     }
@@ -332,6 +332,7 @@ exportVCard\(context: Context, predicates: dataSharePredicates.DataSharePredicat
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
