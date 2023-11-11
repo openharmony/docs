@@ -567,6 +567,7 @@ print.print(file, context).then((printTask: print.PrintTask) => {
 | jobId | string | 是 | 表示打印任务ID |
 | printerId | string | 是 | 表示负责打印的打印机ID |
 | jobState | PrintJobState | 是 | 表示当前打印任务状态 |
+| jobSubState<sup>11+</sup> | PrintJobSubState | 是 | 表示当前打印任务子状态 |
 | copyNumber | number | 是 | 表示文件列表副本 |
 | pageRange | PrinterRange | 是 | 表示打印范围大小 |
 | isSequential | boolean | 是 | 表示连续打印 |
