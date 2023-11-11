@@ -105,9 +105,9 @@ toString(): string
   console.info("The uri of FileUri is " + fileUriObject.toString());
   ```
 
-### getDirectoryUri<sup>11+</sup>
+### getFullDirectoryUri<sup>11+</sup>
 
-getDirectoryUri(): string;
+getFullDirectoryUri(): string;
 
 以同步方法通过URI获取获取所在路径URI，文件获取所在路径URI，目录获取当前路径URI。
 
@@ -136,10 +136,10 @@ getDirectoryUri(): string;
   try {
     let path = pathDir + '/test.txt';
     let fileUriObject = new fileuri.FileUri(path);
-    let directoryUri = fileUriObject.getDirectoryUri();
-    console.log(`success to getDirectoryUri: ${JSON.stringify(directoryUri)}`);
+    let directoryUri = fileUriObject.getFullDirectoryUri();
+    console.log(`success to getFullDirectoryUri: ${JSON.stringify(directoryUri)}`);
   } catch (error) {
-    console.error(`failed to getDirectoryUri because: ${JSON.stringify(error)}`);
+    console.error(`failed to getFullDirectoryUri because: ${JSON.stringify(error)}`);
   }
   ```
 
