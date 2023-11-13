@@ -78,4 +78,3 @@
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
-      - [渲染控制优秀实践](arkts-rendering-control-best-practices.md)
