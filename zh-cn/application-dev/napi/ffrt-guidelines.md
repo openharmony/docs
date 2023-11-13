@@ -80,9 +80,9 @@ task5(OUT A);
 > 为表述方便，本文中的数据流图均以圆圈表示 Task，方块表示数据。
 
 可以得出以下结论：
-- task1 与task2/task3 构成Producer-Consumer 依赖，即：task2/task3 需要等到task1 写完A之后才能读A
-- task2/task3 与task4 构成Consumer-Producer 依赖，即：task4 需要等到task2/task3 读完A之后才能写A
-- task4 与task5 构成Producer-Producer 依赖，即：task5 需要等到task4 写完A之后才能写A
+- task1 与task2/task3 构成Producer-Consumer 依赖，即：task2/task3 需要等到task1 写完A之后才能读A。
+- task2/task3 与task4 构成Consumer-Producer 依赖，即：task4 需要等到task2/task3 读完A之后才能写A。
+- task4 与task5 构成Producer-Producer 依赖，即：task5 需要等到task4 写完A之后才能写A。
 
 ## 接口说明
 
@@ -192,7 +192,7 @@ void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, 
 
 ##### 返回值
 
-* 不涉及
+* 不涉及。
 
 ##### 描述
 * 建议用户对ffrt_submit_base进行封装后调用，具体可参考样例。
@@ -462,7 +462,7 @@ typedef struct {
 
 ##### 样例
 
-* 创建数据依赖或者任务依赖。
+* 创建数据依赖或者任务依赖：
 
 ```{.c}
 // 创建数据依赖的ffrt_deps_t
@@ -528,7 +528,7 @@ uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr);
 
 ##### 返回值
 
-* 不涉及
+* 不涉及。
 
 ##### 描述
 * `attr`所传递的内容会在ffrt_submit内部完成取存，ffrt_submit返回后用户即可销毁。
@@ -1403,7 +1403,7 @@ void ffrt_yield();
 
 ##### 返回值
 
-* 不涉及
+* 不涉及。
 
 ##### 描述
 * 该接口只能在FFRT task 内部调用，在FFRT task 外部调用存在未定义的行为。
@@ -1420,7 +1420,7 @@ void ffrt_yield();
 
 **添加动态链接库**
 
-CMakeLists.txt中添加以下lib。
+CMakeLists.txt中添加以下lib：
 ```txt
 libffrt.z.so
 ```
@@ -1519,7 +1519,7 @@ libffrt.z.so
    
 2. **设置task属性值**。
 
-    用户提交任务时可以设置任务属性，包括qos优先级，名称等，具体可参考接口文档
+    用户提交任务时可以设置任务属性，包括qos优先级，名称等，具体可参考接口文档。
     ```c++
     // ******初始化并行任务属性******
     ffrt_task_attr_t attr;
