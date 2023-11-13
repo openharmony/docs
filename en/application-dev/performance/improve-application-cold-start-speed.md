@@ -4,7 +4,7 @@ Application startup latency is a key factor that affects user experience. When a
 
 ## Analyzing the Time Required for Application Cold Start
 
-The cold start process of OpenHarmony applications can be divided into four phases: application process creation and initialization, application and ability initialization, ability lifecycle, and home page loading and drawing, as shown below.
+The cold start process of applications can be divided into four phases: application process creation and initialization, application and ability initialization, ability lifecycle, and home page loading and drawing, as shown below.
 
 ![application-cold-start](figures/application-cold-start.png)
 
