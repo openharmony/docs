@@ -37,7 +37,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 | -------------- | ------------------------------------------------------------ |
 | Promise\<void> | Promise对象，无返回值。 |
 
-**示例1：**
+**示例：**
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
@@ -57,7 +57,7 @@ zlib.zipFile(inFile, outFile, options).then((data) => {
 });
 ```
 
-**示例2：**
+**示例：**
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
@@ -148,7 +148,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 | 900001   | The Input source file is invalid.      |
 | 900002   | The Input destination file is invalid. |
 
-**示例**
+**示例：**
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
@@ -188,6 +188,12 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 | outFile | string              | 是   | 指定压缩结果的文件路径。                                           |
 | options | [Options](#options) | 是   | 压缩的配置参数。                                               |
 
+**返回值：**
+
+| 类型           | 说明                    |
+| -------------- | ----------------------- |
+| Promise\<void> | Promise对象，无返回值。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
@@ -196,6 +202,8 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 | -------- | ------------------------------------- |
 | 900001   | The Input source file is invalid.      |
 | 900002   | The Input destination file is invalid. |
+
+**示例：**
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
@@ -247,7 +255,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 | 900001   | The Input source file is invalid.      |
 | 900002   | The Input destination file is invalid. |
 
-**示例**
+**示例：**
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
@@ -287,6 +295,12 @@ decompressFile(inFile: string, outFile: string, options: Options): Promise\<void
 | outFile | string              | 是   | 指定的解压后的文件夹路径，文件夹目录路径需要在系统中存在，不存在则会解压失败。路径必须为沙箱路径，沙箱路径可以通过context获取，具体方法可参考[application/context（Stage模型）](js-apis-inner-application-context.md)或 [app/context（FA模型）](js-apis-inner-app-context.md)。 |
 | options | [Options](#options) | 是   | 解压时的配置参数。                                           |
 
+**返回值：**
+
+| 类型           | 说明                    |
+| -------------- | ----------------------- |
+| Promise\<void> | Promise对象，无返回值。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
@@ -296,7 +310,7 @@ decompressFile(inFile: string, outFile: string, options: Options): Promise\<void
 | 900001 | The Input source file is invalid.      |
 | 900002 | The Input destination file is invalid. |
 
-**示例**
+**示例：**
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
