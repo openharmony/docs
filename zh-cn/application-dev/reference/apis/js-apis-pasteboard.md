@@ -62,14 +62,14 @@ createData(mimeType: string, value: ValueType): PasteData
 **示例1：**
 
   ```ts
-  let dataXml = new ArrayBuffer(256);
+let dataXml = new ArrayBuffer(256);
 let pasteData: pasteboard.PasteData = pasteboard.createData('app/xml', dataXml);
   ```
 
 **示例2：**
 
   ```ts
- let dataText = 'hello';
+let dataText = 'hello';
 let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, dataText);
   ```
 
@@ -688,7 +688,7 @@ addRecord(mimeType: string, value: ValueType): void
 **示例：**
 
   ```ts
-  let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 let dataXml = new ArrayBuffer(256);
 pasteData.addRecord('app/xml', dataXml);
   ```
