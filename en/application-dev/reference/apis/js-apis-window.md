@@ -341,7 +341,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "alertWindow",
   windowType: window.WindowType.TYPE_SYSTEM_ALERT
@@ -398,7 +398,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "alertWindow",
   windowType: window.WindowType.TYPE_SYSTEM_ALERT
@@ -447,7 +447,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 try {
   windowClass = window.findWindow('alertWindow');
 } catch (exception) {
@@ -484,7 +484,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 try {
   class BaseContext {
       stageMode: boolean = false;
@@ -538,7 +538,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 class BaseContext {
   stageMode: boolean = false;
 }
@@ -1263,7 +1263,7 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.create('first', window.WindowType.TYPE_APP, (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1307,7 +1307,7 @@ Creates a subwindow. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.create('first', window.WindowType.TYPE_APP);
 promise.then((data) => {
   windowClass = data;
@@ -1343,7 +1343,7 @@ Creates a system window. This API uses an asynchronous callback to return the re
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.create('alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1387,7 +1387,7 @@ Creates a system window. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.create('alertWindow', window.WindowType.TYPE_SYSTEM_ALERT);
 promise.then((data) => {
   windowClass = data;
@@ -1421,7 +1421,7 @@ Finds a window based on the ID. This API uses an asynchronous callback to return
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.find('alertWindow', (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1462,7 +1462,7 @@ Finds a window based on the ID. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.find('alertWindow');
 promise.then((data) => {
   windowClass = data;
@@ -1497,7 +1497,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.getTopWindow((err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1534,7 +1534,7 @@ Obtains the top window of the current application. This API uses a promise to re
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data)=> {
     windowClass = data;
@@ -1568,7 +1568,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data) => {
   windowClass = data;
@@ -1607,7 +1607,7 @@ Obtains the top window of the current application. This API uses a promise to re
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data) => {
   windowClass = data;
@@ -3806,7 +3806,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = { name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
@@ -3895,7 +3895,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "dialogWindow",
   windowType: window.WindowType.TYPE_DIALOG
@@ -3960,7 +3960,7 @@ import { BusinessError } from '@ohos.base';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
     };
@@ -4034,7 +4034,7 @@ import { BusinessError } from '@ohos.base';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
     };
@@ -4251,6 +4251,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+let windowClass: window.Window = window.findWindow("test");
 let colorSpace = windowClass.getWindowColorSpace();
 ```
 
@@ -4372,6 +4373,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 import { BusinessError } from '@ohos.base';
 
 let brightness: number = 1;
+let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setWindowBrightness(brightness);
   promise.then(() => {
@@ -4929,22 +4931,44 @@ try {
 }
 ```
 
+### snapshot<sup>9+</sup>
+
+snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
+
+Captures this window. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name     | Type                                                         | Mandatory | Description                         |
+| -------- | ------------------------------------------------------------ | --------- | ----------------------------------- |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes       | Callback used to return the result. |
+
+**Error codes**
+
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID| Error Message                                     |
-| -------- | --------------------------------------------- |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
 
 **Example**
 
 ```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
-import * as Index from '../pages/Index'; // Import the named route page.
+import image from '@ohos.multimedia.image';
 
+let windowClass: window.Window = window.findWindow("test");
+windowClass.snapshot((err: BusinessError, pixelMap: image.PixelMap) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // Release the memory in time after the PixelMap is used.
+});
 ```
 
 ### snapshot<sup>9+</sup>
@@ -5282,6 +5306,7 @@ try {
 } catch (exception) {
   console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
 }
+
 ```
 
 ### setBackdropBlurStyle<sup>9+</sup>
@@ -5806,9 +5831,10 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```js
 // Raise windowClass above targetWindow.
+let windowClass: window.Window | undefined = undefined;
+let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
-let windowClass: window.Window = window.findWindow("test");
 windowClass.raiseAboveTarget(targetId, (err) => {
     if (err.code) {
         console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
@@ -5856,6 +5882,8 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```js
 // Raise windowClass above targetWindow.
+let windowClass: window.Window | undefined = undefined;
+let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
 let promise = windowClass.raiseAboveTarget(targetId);
@@ -8361,7 +8389,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     windowStage.getMainWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
       if (errCode) {
@@ -8413,7 +8441,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let promise = windowStage.getMainWindow();
     promise.then((data) => {
       windowClass = data;
@@ -8510,7 +8538,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     try {
       windowStage.createSubWindow('mySubWindow', (err: BusinessError, data) => {
         const errCode: number = err.code;
@@ -8579,7 +8607,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     try {
       let promise = windowStage.createSubWindow('mySubWindow');
       promise.then((data) => {
@@ -9333,7 +9361,7 @@ Completes the transition. This API can be called only after [animateTo()](../ark
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({
@@ -9386,7 +9414,7 @@ Customizes the animation for the scenario when the window is shown.
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context : window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({
@@ -9432,7 +9460,7 @@ Customizes the animation for the scenario when the window is hidden.
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({
