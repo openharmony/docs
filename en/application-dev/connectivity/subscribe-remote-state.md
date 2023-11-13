@@ -1,7 +1,5 @@
 # Subscribing to State Changes of a Remote Object
 
-## Overview
-
 IPC/RPC allows you to subscribe to the state changes of a remote stub object. When the remote stub object dies, a death notification will be sent to your local proxy object. Such subscription and unsubscription are controlled by APIs. To be specific, you need to implement the **DeathRecipient** interface and the **onRemoteDied** API to clear resources. This callback is invoked when the process accommodating the remote stub object dies, or the device accommodating the remote stub object leaves the network. It is worth noting that these APIs should be called in the following order: The proxy object must first subscribe to death notifications of the stub object. If the stub object is in the normal state, the proxy object can cancel the subscription as required. If the process of the stub object exits or the device hosting the stub object goes offline, subsequent operations customized by the proxy object will be automatically triggered.
 
 ## Scenarios
@@ -84,11 +82,11 @@ result = object->RemoveDeathRecipient(deathRecipient); // Remove the recipient f
 
 ## **Development Using JS APIs**
 
-| Name                  | Return Value Type| Description                                                         |
-| ------------------------ | ---------- | ----------------------------------------------------------------- |
-| registerDeathRecipient   | void       | Adds a recipient for death notifications of the remote object, including death notifications of the remote proxy.|
-| unregisterDeathRecipient | void       | Removes the recipient for death notifications of the remote object.                             |
-| onRemoteDied             | void       | Called to perform subsequent operations when a death notification of the remote object is received.   |
+| Name                                                      | Return Value Type| Description                                                    |
+| ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
+| [registerDeathRecipient](../reference/apis/js-apis-rpc.md#registerdeathrecipient9-1) | void       | Adds a recipient for death notifications of the remote object, including death notifications of the remote proxy.|
+| [unregisterDeathRecipient](../reference/apis/js-apis-rpc.md#unregisterdeathrecipient9-1) | void       | Removes the recipient for death notifications of the remote object.                        |
+| [onRemoteDied](../reference/apis/js-apis-rpc.md#onremotedied) | void       | Called to perform subsequent operations when a death notification of the remote object is received.|
 
 ### Obtaining the Context
 
@@ -97,33 +95,34 @@ If you use the stage model, you need to obtain the context before connecting to 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
+import hilog from '@ohos.hilog';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import window from '@ohos.window';
 
 export default class MainAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("[Demo] MainAbility onCreate");
-        let context = this.context;
-    }
-    onDestroy() {
-        console.log("[Demo] MainAbility onDestroy");
-    }
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility onWindowStageCreate");
-    }
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility onWindowStageDestroy");
-    }
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("[Demo] MainAbility onForeground");
-    }
-    onBackground() {
-        // Ability has back to background
-        console.log("[Demo] MainAbility onBackground");
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onCreate');
+    let context = this.context;
+  }
+  onDestroy() {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onDestroy');
+  }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+  	hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageCreate');
+  }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+  	hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageDestroy');
+  }
+  onForeground() {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onForeground');
+  }
+  onBackground() {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onBackground');
+  }
 }
 ```
 
@@ -135,18 +134,19 @@ export default class MainAbility extends UIAbility {
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import rpc from '@ohos.rpc';
+import hilog from '@ohos.hilog';
 
 let proxy: rpc.IRemoteObject | undefined = undefined;
 let connect: common.ConnectOptions = {
   onConnect: (elementName, remoteProxy) => {
-    console.log("RpcClient: js onConnect called.");
+    hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called.');
     proxy = remoteProxy;
   },
   onDisconnect: (elementName) => {
-    console.log("RpcClient: onDisconnect");
+    hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
   },
   onFailed: () => {
-    console.log("RpcClient: onFailed");
+    hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
   }
 };
 let want: Want = {
@@ -159,19 +159,20 @@ let want: Want = {
 this.context.connectServiceExtensionAbility(want, connect);
 ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
+The **proxy** object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. After that, [unregisterDeathRecipient](../reference/apis/js-apis-rpc.md#unregisterdeathrecipient9-1) of the **proxy** object can be called to unregister the callback for receiving the death notification of the remote object.
 
 ```ts
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import rpc from '@ohos.rpc';
+import hilog from '@ohos.hilog';
+
 class MyDeathRecipient implements rpc.DeathRecipient{
-    onRemoteDied() {
-        console.log("server died");
-    }
+  onRemoteDied() {
+    hilog.info(0x0000, 'testTag', 'server died');
+  }
 }
 let deathRecipient = new MyDeathRecipient();
-let proxy: rpc.IRemoteObject | undefined = undefined;
 proxy.registerDeathRecipient(deathRecipient, 0);
 proxy.unregisterDeathRecipient(deathRecipient, 0);
 ```

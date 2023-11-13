@@ -36,6 +36,7 @@ Enables listening for global touch (touchscreen) events.
 **Example**
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 try {
   inputMonitor.on('touch', (touchEvent: TouchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -98,6 +99,7 @@ Disables listening for global touch (touchscreen) events.
 **Example**
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 // Disable listening for a single callback.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -113,6 +115,7 @@ try {
 ```
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 // Cancel listening for all callbacks.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -147,6 +150,7 @@ Disables listening for global mouse events.
 **Example**
 
 ```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
 // Disable listening for a single callback.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -162,6 +166,7 @@ try {
 ```
 
 ```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
 // Cancel listening for all callbacks.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -199,6 +204,7 @@ Defines the callback for touch (touchscreen) events.
 **Example**
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 try {
   inputMonitor.on('touch', touchEvent => {
     if (touchEvent.touches.length == 3) {// Three fingers are pressed.
@@ -231,6 +237,7 @@ Enables listening for global touchpad pinch events.
   **Example**
 
 ```js
+import type { Pinch } from '@ohos.multimodalInput.gestureEvent';
 try {
   inputMonitor.on('pinch', (pinchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
