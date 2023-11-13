@@ -567,7 +567,7 @@ print.print(file, context).then((printTask: print.PrintTask) => {
 | jobId | string | 是 | 表示打印任务ID |
 | printerId | string | 是 | 表示负责打印的打印机ID |
 | jobState | PrintJobState | 是 | 表示当前打印任务状态 |
-| jobSubState<sup>11+</sup> | PrintJobSubState | 是 | 表示当前打印任务子状态 |
+| jobSubstate<sup>11+</sup> | PrintJobSubState | 是 | 表示当前打印任务子状态 |
 | copyNumber | number | 是 | 表示文件列表副本 |
 | pageRange | PrinterRange | 是 | 表示打印范围大小 |
 | isSequential | boolean | 是 | 表示连续打印 |
@@ -643,10 +643,10 @@ print.print(file, context).then((printTask: print.PrintTask) => {
 | PRINT_JOB_BLOCK_PRINT_PERMISSION_ERROR<sup>11+</sup> | 19 | 表示打印许可异常 |
 | PRINT_JOB_BLOCK_PRINT_COLOR_PERMISSION_ERROR<sup>11+</sup> | 20 | 表示彩色打印权限异常 |
 | PRINT_JOB_BLOCK_NETWORK_ERROR<sup>11+</sup> | 21 | 表示设备未连接到网络 |
-| PRINT_JOB_BLOCK_CONNECT_SERVER_ERROR<sup>11+</sup> | 22 | 表示无法连接服务器 |
+| PRINT_JOB_BLOCK_SERVER_CONNECTION_ERROR<sup>11+</sup> | 22 | 表示无法连接服务器 |
 | PRINT_JOB_BLOCK_LARGE_FILE_ERROR<sup>11+</sup> | 23 | 表示打印大文件异常 |
-| PRINT_JOB_BLOCK_PARSE_FILE_ERROR<sup>11+</sup> | 24 | 表示文件分析异常 |
-| PRINT_JOB_BLOCK_FILE_CONVERT_SLOWLY<sup>11+</sup> | 25 | 表示文件转换太慢 |
+| PRINT_JOB_BLOCK_FILE_PARSING_ERROR<sup>11+</sup> | 24 | 表示文件分析异常 |
+| PRINT_JOB_BLOCK_SLOW_FILE_CONVERSION<sup>11+</sup> | 25 | 表示文件转换太慢 |
 | PRINT_JOB_RUNNING_UPLOADING_FILES<sup>11+</sup> | 26 | 表示正在上传文件 |
 | PRINT_JOB_RUNNING_CONVERTING_FILES<sup>11+</sup> | 27 | 表示正在转换文件 |
 | PRINT_JOB_BLOCK_UNKNOWN | 99 | 表示打印未知问题 |
