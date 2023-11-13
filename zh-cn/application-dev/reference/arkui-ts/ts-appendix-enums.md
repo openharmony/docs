@@ -486,6 +486,7 @@
 | None        | 不支持复制。   |
 | InApp       | 支持应用内复制。 |
 | LocalDevice | 支持设备内复制。 |
+| CROSS_DEVICE<sup>11+</sup> | 支持跨设备复制。 |
 
 ## HitTestMode<sup>9+</sup>
 
