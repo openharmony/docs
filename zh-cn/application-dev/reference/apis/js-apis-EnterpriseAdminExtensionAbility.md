@@ -182,3 +182,23 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   }
 };
 ```
+
+## EnterpriseAdminExtensionAbility.onStart<sup>11+</sup>
+
+onStart(): void
+
+EnterpriseAdminExtensionAbility启动事件回调。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onStart() {
+    console.info(`Succeeded in calling onStart callback.`);
+  }
+};
+```
