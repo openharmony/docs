@@ -15,8 +15,9 @@ The distributed data object (**distributedDataObject**) module implements global
 - Distributed in-memory database
   
   The distributed in-memory database caches data in the memory so that applications can quickly access data without persisting data. If the database is closed, the data is not retained.
-- Distributed data object
   
+- Distributed data object
+
   A distributed data object is an encapsulation of the JS object type. Each distributed data object instance creates a data table in the in-memory database. The in-memory databases created for different applications are isolated from each other. Reading and writing a distributed data object are mapped to the **get** and **put** operations in the corresponding database, respectively.
 
 The distributed data object has the following states in its lifecycle:

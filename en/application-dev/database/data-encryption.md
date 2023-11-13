@@ -12,7 +12,7 @@ Both KV stores and RDB stores support database encryption.
 
 ## Encrypting a KV Store
 
-When a KV store is created, the **encrypt** parameter in **options** specifies whether to encrypt the KV store. The value **true** means to encrypt the KV store, and the value **false** (default) means the opposite.
+When a KV store is created, the **encrypt** parameter in **options** specifies whether to encrypt it. The value **true** means to encrypt the KV store, and the value **false** (default) means the opposite.
 
 For details about the APIs, see [Distributed KV Store](../reference/apis/js-apis-distributedKVStore.md).
 
@@ -70,7 +70,7 @@ if (kvStore !== undefined) {
 
 ## Encrypting an RDB Store 
 
-When an RDB store is created, the **encrypt** parameter in **options** specifies whether to encrypt the RDB store. The value **true** means to encrypt the RDB store, and the value **false** (default) means the opposite.
+When an RDB store is created, the **encrypt** parameter in **StoreConfig** specifies whether to encrypt it. The value **true** means to encrypt the RDB store, and the value **false** (default) means the opposite.
 
 For details about the APIs, see [RDB Store](../reference/apis/js-apis-data-relationalStore.md).
 
@@ -91,6 +91,6 @@ relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
     console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
     return;
   }
-  console.info(`Succeeded in getting RdbStore.`);
+  console.info('Succeeded in getting RdbStore.');
 })
 ```
