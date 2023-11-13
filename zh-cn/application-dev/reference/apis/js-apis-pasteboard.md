@@ -62,15 +62,15 @@ createData(mimeType: string, value: ValueType): PasteData
 **示例1：**
 
   ```ts
-  let dataXml = new ArrayBuffer(256);
-  let pasteData: pasteboard.PasteData = pasteboard.createData('app/xml', dataXml);
+let dataXml = new ArrayBuffer(256);
+let pasteData: pasteboard.PasteData = pasteboard.createData('app/xml', dataXml);
   ```
 
 **示例2：**
 
   ```ts
- let dataText = 'hello';
- let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, dataText);
+let dataText = 'hello';
+let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, dataText);
   ```
 
 
@@ -688,9 +688,9 @@ addRecord(mimeType: string, value: ValueType): void
 **示例：**
 
   ```ts
-  let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-  let dataXml = new ArrayBuffer(256);
-  pasteData.addRecord('app/xml', dataXml);
+let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+let dataXml = new ArrayBuffer(256);
+pasteData.addRecord('app/xml', dataXml);
   ```
 
 ### getMimeTypes<sup>7+</sup>
@@ -1789,258 +1789,4 @@ systemPasteboard.setPasteData(pasteData).then((data: void) => {
 }).catch((err: BusinessError) => {
     console.error('Failed to set PasteData. Cause: ' + err.message);
 });
-```
-### isRemoteData<sup>11+</sup>
-
-isRemoteData(): boolean
-
-判断剪贴板中的数据是否来自其他设备。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型    | 说明                                  |
-| ------- | ------------------------------------- |
-| boolean | 是来自其他设备返回true，否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    let result: boolean = systemPasteboard.isRemoteData();
-    console.info(`Succeeded in checking the RemoteData. Result: ${result}`);
-} catch (err: BusinessError) {
-    console.error('Failed to check the RemoteData. Cause:' + err.message);
-};
-```
-
-### getDataSource<sup>11+</sup>
-
-getDataSource(): string
-
-获取数据来源。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型   | 说明   |
-| ------ | ------ |
-| string | 数据来源。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    let result: string = systemPasteboard.getDataSource();
-    console.info(`Succeeded in getting DataSource. Result: ${result}`);
-} catch (err: BusinessError) { 
-    console.error('Failed to get DataSource. Cause:' + err.message);
-};
-```
-
-### hasDataType<sup>11+</sup>
-
-hasDataType(mimeType: string): boolean
-
-检查剪贴板内容中是否有指定类型的数据。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明               |
-| -------- | ------ | ---- | ------------------ |
-| mimeType | string | 是   | 数据类型。 |
-
-**返回值：**
-
-| 类型    | 说明                                        |
-| ------- | ------------------------------------------- |
-| boolean | 有指定类型的数据返回true，否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Type is not string. |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    let result: boolean = systemPasteboard.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
-    console.info(`Succeeded in checking the DataType. Result: ${result}`);
-} catch (err: BusinessError) {
-    console.error('Failed to check the DataType. Cause:' + err.message);
-};
-```
-
-### clearDataSync<sup>11+</sup>
-
-clearDataSync(): void
-
-清空系统剪贴板内容, 此接口为同步接口。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    systemPasteboard.clearDataSync();
-    console.info('Succeeded in clearing the pasteboard.');
-} catch (err: BusinessError) {
-    console.error('Failed to clear the pasteboard. Cause:' + err.message);
-};
-```
-
-### getDataSync<sup>11+</sup>
-
-getDataSync(): PasteData
-
-读取系统剪贴板内容, 此接口为同步接口。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型                    | 说明                 |
-| ----------------------- | -------------------- |
-| [PasteData](#pastedata) | 返回系统剪贴板数据。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    let result: PasteData = systemPasteboard.getDataSync();
-    console.info('Succeeded in getting PasteData.');
-} catch (err: BusinessError) {
-    console.error('Failed to get PasteData. Cause:' + err.message);
-};   
-```
-
-### setDataSync<sup>11+</sup>
-
-setDataSync(data: PasteData): void
-
-将数据写入系统剪贴板, 此接口为同步接口。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型                    | 必填 | 说明             |
-| ------ | ----------------------- | ---- | ---------------- |
-| data   | [PasteData](#pastedata) | 是   | 需要写入剪贴板中的数据。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Type of data is not PasteData. |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    systemPasteboard.setDataSync(pasteData);
-    console.info('Succeeded in setting PasteData.');
-} catch (err: BusinessError) {
-    console.error('Failed to set PasteData. Cause:' + err.message);
-};  
-```
-
-### hasDataSync<sup>11+</sup>
-
-hasDataSync(): boolean
-
-判断系统剪贴板中是否有内容, 此接口为同步接口。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型    | 说明                                                                    |
-| ------- | ----------------------------------------------------------------------- |
-| boolean | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    let result: boolean = systemPasteboard.HasDataSync();
-    console.info(`Succeeded in checking the PasteData. Result: ${result}`);
-} catch (err: BusinessError) {
-    console.error('Failed to check the PasteData. Cause:' + err.message);
-};    
 ```
