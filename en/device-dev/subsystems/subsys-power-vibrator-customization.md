@@ -18,7 +18,7 @@ The device must be equipped with a vibrator.
 
 **Hardware requirements:**
 
-Development board running the standard system, for example, the DAYU200 or RK3568 open source suite and connected to a vibrator
+Development board running the standard system, for example, the DAYU200 open source suite and connected to a vibrator
 
 **Environment requirements:**
 

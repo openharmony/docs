@@ -2,7 +2,7 @@
 
 The **intl** module provides basic i18n capabilities, such as time and date formatting, number formatting, and string sorting, through the standard i18n APIs defined in ECMA 402. For more details about APIs and their usage, see [intl API Reference](../reference/apis/js-apis-intl.md).
 
-The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced i18n capabilities through supplementary interfaces that are not defined in ECMA 402. It works with the intl module to provide a complete suite of i18n capabilities.
+The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced i18n capabilities through supplementary APIs that are not defined in ECMA 402. It works with the intl module to provide a complete suite of i18n capabilities.
 
 ## Setting Locale Information
 
@@ -36,10 +36,10 @@ Call [Locale](../reference/apis/js-apis-intl.md#locale) APIs to maximize or mini
    -  Language: mandatory. It is represented by a two-letter or three-letter code as defined in ISO-639. For example, **en** indicates English, and **zh** indicates Chinese.
    -  Script: optional. It is represented by a four-letter code as defined in ISO-15924. The first letter is in uppercase, and the remaining three letters are in lowercase. For example, **Hant** represents traditional Chinese, and **Hans** represents simplified Chinese.
    -  Country or region: optional. It is represented by two-letter code as defined in ISO-3166. Both letters are in uppercase. For example, **CN** represents China, and **US** represents the United States.
-   -  Extensions: optional. Each extension consists of two parts, key and value. Currently, the extensions listed in the following table are supported. For details, see BCP 47 Extensions. Extensions can be in any sequence and are written in the format of **-key-value**. They are appended to the language, script, and region by using **-u**. For example, **zh-u-nu-latn-ca-chinese** indicates that the Latin digital system and Chinese calendar system are used. Extensions can also be passed via the second parameter.
+   -  Extensions: optional. Each extension consists of two parts, key and value. Currently, the extensions listed in the following table are supported. For details, see BCP 47 Extensions. Extensions can be in any sequence and are written in the format of **-key-value**. They are appended to the language, script, and region by using **-u**. For example, **zh-u-nu-latn-ca-chinese** indicates that the Latin numbering system and Chinese calendar system are used. Extensions can also be passed via the second parameter.
       | ID| Description|
       | -------- | -------- |
-      | ca | Calendar algorithm.|
+      | ca | Calendar system. |
       | co | Collation type.|
       | hc | Hour cycle.|
       | nu | Numbering system.|
@@ -241,7 +241,8 @@ Users in different regions have different requirements for string sorting. You c
    ```
 
      Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions8).
-     The **sensitivity** parameter is used to specify the levels of differences that will be used for string comparison. The value **base** indicates that only characters are compared, but not the accent and capitalization. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **accent** indicates that the accent is considered, but not the capitalization. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **case** indicates that the capitalization is considered, but not the accent. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **variant** indicates that both the accent and capitalization are considered. For example, 'a' != 'b', 'a' == '', 'a'=='A'.
+
+     The **sensitivity** parameter is used to specify the levels of differences that will be used for string comparison. The value **base** indicates that only characters are compared, but not the accent and capitalization. For example, 'a' != 'b'，'a' == 'á'，'a' == 'A'. The value **accent** indicates that the accent is considered, but not the capitalization. For example, 'a' != 'b'，'a' != 'á'，'a' == 'A'. The value **case** indicates that the capitalization is considered, but not the accent. For example, 'a' != 'b'，'a' == 'á'，'a' != 'A'. The value **variant** indicates that both the accent and capitalization are considered. For example, 'a' != 'b'，'a' != 'á'，'a' != 'A'.
    
    ```ts
    let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort", sensitivity: "case"});
