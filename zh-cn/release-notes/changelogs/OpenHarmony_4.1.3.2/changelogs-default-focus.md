@@ -69,3 +69,36 @@ API version 11之前：Checkbox组件的形状默认为圆角方形。
 **适配指导**
 
 若希望API version 11及之后Checkbox组件的形状为变更前的圆角方形，则需要Checkbox组件绑定shape(CheckBoxShape.ROUNDED_SQUARE)属性，这样Checkbox组件的形状就变成圆角方形。
+
+
+
+## rawfile文件资源校验等级变更
+
+针对$rawfile()引用不存在的资源，报错等级由WARN变更成ERROR。
+
+**示例：**
+
+```
+@Entry
+@Component
+struct Index {
+  build() {
+    Button(){
+      // ERROR: No such 'app_icon.ong' resource in current module.
+      Image($rawfile('app_icon.png'))
+    }
+  }
+}
+```
+
+**变更影响**
+
+$rawfile()引用不存在的资源，报错等级由WARN变更成ERROR。 
+
+**关键的接口/组件变更**
+
+不涉及。
+
+**适配指导**
+
+不涉及。
