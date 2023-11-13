@@ -1,14 +1,12 @@
 # @ohos.arkui.dragController (DragController)
 
-The **dragController** module provides APIs for initiating drag actions. When receiving a gesture event, such as a click or long-press event, an application can initiate a drag action and carry drag information therein.
+The **dragController** module provides APIs for initiating drag actions. When receiving a gesture event, such as a touch or long-press event, an application can initiate a drag action and carry drag information therein.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
->
-> **excuteDrag** and [onDragStart](../arkui-ts/ts-universal-events-drag-drop.md# event) cannot be configured at the same time.
 
 
 ## Modules to Import
@@ -31,7 +29,14 @@ Initiates a drag action, with the object to be dragged and the drag information 
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
 | custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.|
 | dragInfo | [DragInfo](#draginfo)                                        | Yes  | Drag information.                      |
-| callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Yes  | Callback used to return the result.        |
+| callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Yes  | Callback used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event.         |
+
+**Error codes**
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | Internal error |
 
 **Example**
 
@@ -106,7 +111,14 @@ Initiates a drag action, with the object to be dragged and the drag information 
 
 | Type                                                  | Description              |
 | ------------------------------------------------------ | ------------------ |
-| Promise&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Promise used to return the result.|
+| Promise&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Promise used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event.|
+
+**Error codes**
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | Internal error |
 
 **Example**
 
@@ -153,7 +165,7 @@ struct DragControllerPage {
                 data: unifiedData,
                 extraParams: ''
               }
-              let pb:CustomBuilder =()=>{():void=>{this.PixmapBuilder()}}
+              let pb:CustomBuilder = ():void=>{this.PixmapBuilder()}
               componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
                 this.pixmap = pix;
                 let dragItemInfo: DragItemInfo = {
