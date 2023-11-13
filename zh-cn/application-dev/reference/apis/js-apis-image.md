@@ -2492,7 +2492,7 @@ const path : string = context.getCacheDir() + "/test.png";
 const imageSourceApi : image.ImageSource = image.createImageSource(path);
 let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 };
 const filePath : string = context.getCacheDir() + "/image_source.jpg";
-let file = fs.openSync(filePath, fs.OpenMode.CREATE|fs.OpenMode.READ_WRITE);
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err : BusinessError => {})
 ```
 
@@ -2528,7 +2528,7 @@ const path : string = context.getCacheDir() + "/test.png";
 const imageSourceApi : image.ImageSource = image.createImageSource(path);
 let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 };
 const filePath : string = context.getCacheDir() + "/image_source.jpg";
-let file = fs.openSync(filePath, fs.OpenMode.CREATE|fs.OpenMode.READ_WRITE);
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(()=>{
     console.log('Succeeded in packToFile.');
 }).catch((error : BusinessError)=>{ 
@@ -2567,7 +2567,7 @@ image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
     const context : _Context = featureAbility.getContext();
 	const path : string = context.getCacheDir() + "pixel_map.jpg";
-    let file = fs.openSync(path, fs.OpenMode.CREATE|fs.OpenMode.READ_WRITE);
+    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err : BusinessError) => {})
 })
 ```
@@ -2606,7 +2606,7 @@ image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
     const context : _Context = featureAbility.getContext();
 	const path : string = context.getCacheDir() + "pixel_map.jpg";
-    let file = fs.openSync(path, fs.OpenMode.CREATE|fs.OpenMode.READ_WRITE);
+    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
         .then(() => {
             console.log('Succeeded in packToFile.');
