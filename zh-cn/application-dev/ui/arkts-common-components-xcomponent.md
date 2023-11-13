@@ -7,7 +7,7 @@
 其可通过指定其type字段来实现不同的功能，主要有两个“surface”和“component”字段可供选择。
 
 
-对于“surface”类型，开发者可将相关数据传入XComponent单独拥有的“surface”来渲染画面。
+对于“surface”类型，开发者可将相关数据传入XComponent单独拥有的“[NativeWindow](../napi/native-window-guidelines.md)”来渲染画面。
 
 
 对于“component”类型，主要用于实现动态加载显示内容的目的。
@@ -19,9 +19,9 @@ XComponent设置为surface类型时，通常用于EGL/OpenGLES和媒体数据写
 
 设置为“surface“类型时XComponent组件可以和其他组件一起进行布局和渲染。
 
-同时XComponent又拥有单独的“surface“，可以为开发者在native侧提供native window用来创建EGL/OpenGLES环境，进而使用标准的OpenGL ES开发。
+同时XComponent又拥有单独的“NativeWindow“，可以为开发者在native侧提供native window用来创建EGL/OpenGLES环境，进而使用标准的OpenGL ES开发。
 
-除此之外，媒体相关应用（视频、相机等）也可以将相关数据写入XComponent所提供的surface，从而呈现相应画面。
+除此之外，媒体相关应用（视频、相机等）也可以将相关数据写入XComponent所提供的NativeWindow，从而呈现相应画面。
 
 
 ## 使用EGL/OpenGLES渲染
@@ -158,7 +158,7 @@ NativeXComponent为XComponent提供了在native层的实例，可作为js层和n
 
 ### 创建EGL/OpenGLES环境
 
-在注册的OnSurfaceCreated回调中，开发者能拿到native window的句柄（其本质就是XComponent所单独拥有的surface），因此可以在这里创建应用自己的EGL/OpenGLES开发环境，由此开始具体渲染逻辑的开发。
+在注册的OnSurfaceCreated回调中，开发者能拿到native window的句柄（其本质就是XComponent所单独拥有的NativeWindow），因此可以在这里创建应用自己的EGL/OpenGLES开发环境，由此开始具体渲染逻辑的开发。
 
 
 ```c++
@@ -219,9 +219,9 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 
 ### 媒体数据写入
 
-XComponent所持有的Surface符合“生产者-消费者”模型。
+XComponent所持有的NativeWindow符合“生产者-消费者”模型。
 
-OpenHarmony上Camera、AVPlayer等符合生产者设计的部件都可以将数据写入XComponent持有的surface并通过XComponent显示。
+OpenHarmony上Camera、AVPlayer等符合生产者设计的部件都可以将数据写入XComponent持有的NativeWindow并通过XComponent显示。
 
 ![图片1](figures/图片1.png)
 
