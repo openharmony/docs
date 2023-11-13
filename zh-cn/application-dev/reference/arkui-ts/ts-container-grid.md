@@ -49,7 +49,6 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | ----- | ------- | ---- | --------------------- |
 | regularSize  | [number, number]  | 是    | 大小规则的GridItem在Grid中占的行数和列数，只支持占1行1列即[1, 1]。   |
 | irregularIndexes | number[] | 否    | 大小不规则的GridItem在Grid所有子节点中的索引值。onGetIrregularSizeByIndex不设置时irregularIndexes中的GridItem默认占垂直滚动Grid的一整行或水平滚动Grid的一整列。 |
-| onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 获取不规则GridItem占用的行数和列数，布局过程中针对irregularIndexes中的index调用，开发者应返回index对应GridItem占用的行数和列数。垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。 |
 
 ## 属性
 
@@ -322,84 +321,3 @@ struct GridExample {
 网格子组件1与子组件6拖拽交换位置后：
 
 ![gridDrag](figures/gridDrag2.png)
-
-### 示例3
-
-使用GridLayoutOptions
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct GridExample {
-  @State Number: String[] = ['0', '1', '2', '3', '4']
-  scroller: Scroller = new Scroller()
-  layoutOptions1: GridLayoutOptions = {
-    regularSize: [1, 1],        // 只支持[1, 1]
-    irregularIndexes: [0, 6],   // 索引为0和6的GridItem占用一行
-  }
-
-  layoutOptions2: GridLayoutOptions = {
-    regularSize: [1, 1],
-    irregularIndexes: [0, 7],   // 索引为0和7的GridItem占用的列数由onGetIrregularSizeByIndex指定
-    onGetIrregularSizeByIndex: (index: number) => {
-      if (index === 0) {
-        return [1, 5]
-      }
-      return [1, index % 6 + 1]
-    }
-  }
-
-  build() {
-    Column({ space: 5 }) {
-      Grid(this.scroller, this.layoutOptions1) {
-        ForEach(this.Number, (day: string) => {
-          ForEach(this.Number, (day: string) => {
-            GridItem() {
-              Text(day)
-                .fontSize(16)
-                .backgroundColor(0xF9CF93)
-                .width('100%')
-                .height(80)
-                .textAlign(TextAlign.Center)
-            }
-          }, (day: string) => day)
-        }, (day: string) => day)
-      }
-      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
-      .columnsGap(10)
-      .rowsGap(10)
-      .scrollBar(BarState.Off)
-      .width('90%')
-      .backgroundColor(0xFAEEE0)
-      .height(300)
-
-      Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
-      // 不使用scroll，需要undefined占位
-      Grid(undefined, this.layoutOptions2) {
-        ForEach(this.Number, (day: string) => {
-          ForEach(this.Number, (day: string) => {
-            GridItem() {
-              Text(day)
-                .fontSize(16)
-                .backgroundColor(0xF9CF93)
-                .width('100%')
-                .height(80)
-                .textAlign(TextAlign.Center)
-            }
-          }, (day: string) => day)
-        }, (day: string) => day)
-      }
-      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
-      .columnsGap(10)
-      .rowsGap(10)
-      .scrollBar(BarState.Off)
-      .width('90%')
-      .backgroundColor(0xFAEEE0)
-      .height(300)
-    }.width('100%').margin({ top: 5 })
-  }
-}
-```
-
-![gridLayoutOptions](figures/gridLayoutOptions.png)

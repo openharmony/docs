@@ -57,7 +57,6 @@ Swiper(controller?: SwiperController)
 | displayArrow<sup>10+</sup>            | value:[ArrowStyle](#arrowstyle10) \| boolean,<br/>isHoverShow?: boolean | 设置导航点箭头样式。<br/>-value: 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。<br/>\-isHoverShow：设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
 | nextMargin<sup>10+</sup>    | <br/>[Length](ts-types.md#length)<br/> | 后边距，用于露出后一项的一小部分。<br/>默认值：0<br/>**说明：** <br/>仅当SwiperDisplayMode为STRETCH模式时生效。<br/>当主轴方向为横向布局时，nextmargin/prevmargin中任意一个大于子组件测算的宽度，nextmargin和prevmargin均不显示。<br/>当主轴方向为纵向布局时，nextmargin/prevmargin中任意一个大于子组件测算的高度，nextmargin和prevmargin均不显示。 |
 | prevMargin<sup>10+</sup>    | <br/>[Length](ts-types.md#length)<br/> | 前边距，用于露出前一项的一小部分。<br/>默认值：0<br/>**说明：** <br/>仅当SwiperDisplayMode为STRETCH模式时生效。<br/>当主轴方向为横向布局时，nextmargin/prevmargin中任意一个大于子组件测算的宽度，prevmargin和nextmargin均不显示。<br/>当主轴方向为纵向布局时，nextmargin/prevmargin中任意一个大于子组件测算的高度，nextmargin和prevmargin均不显示。 |
-| nestedScroll<sup>11+</sup>    | [SwiperNestedScrollMode](#swiperdisplaymode枚举说明) | 设置Swiper组件和父组件的嵌套滚动模式。<br/>默认值：SwiperNestedScrollMode.SELF_ONLY <br/>**说明：** <br/>loop为true时Swiper组件没有边缘，不会触发父组件嵌套滚动。|
 
 ## SwiperDisplayMode枚举说明
 
@@ -68,12 +67,6 @@ Swiper(controller?: SwiperController)
 | STRETCH<sup>10+</sup>             | Swiper滑动一页的宽度为Swiper组件自身的宽度。             |
 | AUTO_LINEAR<sup>10+</sup>         | Swiper滑动一页的宽度为视窗内最左侧子组件的宽度。              |
 
-## SwiperNestedScrollMode<sup>11+</sup>枚举说明
-
-| 名称          | 描述                                       |
-| ------------ | ---------------------------------------- |
-| SELF_ONLY    | Swiper只自身滚动，不与父组件联动。 |
-| SELF_FIRST   | Swiper自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则Swiper触发边缘效果。 |
 
 ## SwiperController
 
