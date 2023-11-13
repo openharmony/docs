@@ -59,28 +59,6 @@ zlib.zipFile(inFile, outFile, options).then((data: void) => {
 });
 ```
 
-**示例：**
-
-```typescript
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
-
-let inFile = '/xxx/xxx';
-let outFile = '/xxx/xxx.zip';
-let options: zlib.Options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
-  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
-  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
-};
-
-zlib.zipFile(inFile , outFile, options).then((data: void) => {
-    console.info('zipFile result is ' + JSON.stringify(data));
-}).catch((err: BusinessError)=>{
-    console.error('error is ' + JSON.stringify(err));
-});
-```
-
 ## zlib.unzipFile<sup>(deprecated)</sup>
 
 unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
