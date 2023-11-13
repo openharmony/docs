@@ -200,25 +200,20 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 **示例：**
 
-  ```js
-function fun(num, callback) {
-   if (typeof num === 'number') {
-      callback(null, num + 3);
-   } else {
-      callback("type err");
-   }
+```js
+async function fn() {
+  return 'hello world';
 }
-
-const addCall = util.promisify(fun);
+const addCall = util.promisify(util.callbackWrapper(fn));
 (async () => {
-   try {
-      let res = await addCall(2);
-      console.log(res);
-   } catch (err) {
-      console.log(err);
-   }
+  try {
+    let res: string = await addCall();
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+  }
 })();
-  ```
+```
 
 ## util.generateRandomUUID<sup>9+</sup>
 
@@ -1216,13 +1211,14 @@ toString(): string
 **示例：**
 
 ```js
-let pro = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 pro.get(2);
-pro.remove(20);
-let result = pro.toString();
+pro.get(3);
+console.log(pro.toString());
+// 输出结果：LRUCache[ maxSize = 64, hits = 1, misses = 1, hitRate = 50% ]
+// maxSize: 缓存区最大值 hits: 查询值匹配成功的次数 misses: 查询值匹配失败的次数 hitRate: 查询值匹配率
 ```
-
 
 ### getCapacity<sup>9+</sup>
 
@@ -1268,24 +1264,35 @@ pro.clear();
 
 getCreateCount(): number
 
-获取createDefault()返回值的次数。
+获取创建对象的次数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
-| 类型   | 说明                              |
-| ------ | --------------------------------- |
-| number | 返回createDefault()返回值的次数。 |
+| 类型   | 说明                |
+| ------ | -------------------|
+| number | 返回创建对象的次数。 |
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(1,8);
-let result = pro.getCreateCount();
-  ```
+```js
+// 创建新类ChildLruBuffer继承LRUCache，重写createDefault方法，返回一个非undefined的值。
+class ChildLruBuffer extends util.LRUCache<number, number> {
+  constructor() {
+    super();
+  }
 
+  createDefault(key: number): number {
+    return key;
+  }
+}
+let lru = new ChildLruBuffer();
+lru.put(2,10);
+lru.get(3);
+lru.get(5);
+let res = lru.getCreateCount();
+```
 
 ### getMissCount<sup>9+</sup>
 
@@ -1315,7 +1322,7 @@ let result = pro.getMissCount();
 
 getRemovalCount(): number
 
-获取从缓冲区中逐出值的次数。
+获取缓冲区键值对回收的次数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1323,7 +1330,7 @@ getRemovalCount(): number
 
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| number | 返回从缓冲区中驱逐的次数。 |
+| number | 返回缓冲区键值对回收的次数。 |
 
 **示例：**
 
@@ -1654,11 +1661,16 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
+```js
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
-let result = pro.entries();
-  ```
+pro.put(3,15);
+let pair:Iterable<Object[]> = pro.entries();
+let arrayValue = Array.from(pair);
+for (let value of arrayValue) {
+  console.log(value[0]+ ', '+ value[1]);
+}
+```
 
 ### [Symbol.iterator]<sup>9+</sup>
 
@@ -1676,11 +1688,16 @@ let result = pro.entries();
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
+```js
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
-let result = pro[Symbol.iterator]();
-  ```
+pro.put(3,15);
+let pair:Iterable<Object[]> = pro[Symbol.iterator]();
+let arrayValue = Array.from(pair);
+for (let value of arrayValue) {
+  console.log(value[0]+ ', '+ value[1]);
+}
+```
 
 ## ScopeComparable<sup>8+</sup>
 
