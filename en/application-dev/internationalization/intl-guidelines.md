@@ -39,7 +39,7 @@ Call [Locale](../reference/apis/js-apis-intl.md#locale) APIs to maximize or mini
    -  Extensions: optional. Each extension consists of two parts, key and value. Currently, the extensions listed in the following table are supported. For details, see BCP 47 Extensions. Extensions can be in any sequence and are written in the format of **-key-value**. They are appended to the language, script, and region by using **-u**. For example, **zh-u-nu-latn-ca-chinese** indicates that the Latin numbering system and Chinese calendar system are used. Extensions can also be passed via the second parameter.
       | ID| Description|
       | -------- | -------- |
-      | ca | Calendar system. |
+      | ca | Calendar system.|
       | co | Collation type.|
       | hc | Hour cycle.|
       | nu | Numbering system.|
@@ -241,7 +241,6 @@ Users in different regions have different requirements for string sorting. You c
    ```
 
      Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions8).
-
      The **sensitivity** parameter is used to specify the levels of differences that will be used for string comparison. The value **base** indicates that only characters are compared, but not the accent and capitalization. For example, 'a' != 'b'，'a' == 'á'，'a' == 'A'. The value **accent** indicates that the accent is considered, but not the capitalization. For example, 'a' != 'b'，'a' != 'á'，'a' == 'A'. The value **case** indicates that the capitalization is considered, but not the accent. For example, 'a' != 'b'，'a' == 'á'，'a' != 'A'. The value **variant** indicates that both the accent and capitalization are considered. For example, 'a' != 'b'，'a' != 'á'，'a' != 'A'.
    
    ```ts
@@ -386,3 +385,4 @@ Call [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8)
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let options = relativeTimeFormat.resolvedOptions(); // options = {"locale": "zh-CN", "style": "long", "numeric": "always", "numberingSystem": "latn"}
    ```
+
