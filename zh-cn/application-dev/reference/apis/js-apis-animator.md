@@ -106,7 +106,7 @@ let optionsNew: AnimatorOptions = {
 };
 try {
   let animatorResult:AnimatorResult|undefined = animator.create(options)
-  animatorResult.reset(options);
+  animatorResult.reset(optionsNew);
 } catch(error) {
   console.error(`Animator reset failed, error code: ${error.code}, message: ${error.message}.`);
 }
