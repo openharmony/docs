@@ -2,13 +2,12 @@
 
 ## 场景介绍
 
-> Function Flow编程模型是一种基于任务和数据驱动的并发编程模型，允许开发者通过任务及其依赖关系描述的方式进行应用开发。FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运行时库，用于调度执行开发者基于Function Flow编程模型开发的应用。通过Function Flow编程模型和FFRT，开发者可专注于应用功能开发，由FFRT在运行时根据任务依赖状态和可用执行资源自动并发调度和执行任务。
->
-> 本文用于指导开发者基于Function Flow编程模型和FFRT实现并行编程。
+Function Flow编程模型是一种基于任务和数据驱动的并发编程模型，允许开发者通过任务及其依赖关系描述的方式进行应用开发。FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运行时库，用于调度执行开发者基于Function Flow编程模型开发的应用。通过Function Flow编程模型和FFRT，开发者可专注于应用功能开发，由FFRT在运行时根据任务依赖状态和可用执行资源自动并发调度和执行任务。
+
+本文用于指导开发者基于Function Flow编程模型和FFRT实现并行编程。
 
 ### 两种编程模型
 <br/>
-<hr/>
 
 
 |                | 线程编程模型                                                 | FFRT任务编程模型                                             |
@@ -69,7 +68,7 @@ Function Flow编程模型中的任务包含以下主要特征：
 
 
 例如，如果有这么一些任务，与数据A的关系表述为：
-```{.cpp}
+```{.c}
 task1(OUT A);
 task2(IN A);
 task3(IN A);
@@ -147,7 +146,7 @@ task5(OUT A);
 
 ##### 声明
 
-```{.cpp}
+```{.c}
 const int ffrt_auto_managed_function_storage_size = 64 + sizeof(ffrt_function_header_t);
 typedef enum {
     ffrt_function_kind_general,
@@ -208,7 +207,7 @@ void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, 
 ##### 样例
 
 
-```{.cpp}
+```{.c}
 template<class T>
 struct function {
     template<class CT>
@@ -259,7 +258,7 @@ static inline void submit(std::function<void()>&& func)
 
 ##### 声明
 
-```{.cpp}
+```{.c}
 void ffrt_wait_deps(ffrt_deps_t* deps);
 void ffrt_wait();
 ```
@@ -419,7 +418,7 @@ int main(int narg, char** argv)
 
 ##### 声明
 
-```{.cpp}
+```{.c}
 typedef enum {
     ffrt_dependence_data,
     ffrt_dependence_task,
@@ -622,7 +621,7 @@ int main(int narg, char** argv)
 
 ##### 声明
 
-```{.cpp}
+```{.c}
 typedef void* ffrt_task_handle_t;
 
 ffrt_task_handle_t ffrt_submit_h_base(ffrt_function_t func, void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
@@ -817,7 +816,7 @@ uint64_t ffrt_this_task_get_id();
 
 ##### 声明
 
-```{.cpp}
+```{.c}
 int ffrt_this_task_update_qos(ffrt_qos_t qos);
 ```
 
@@ -962,7 +961,7 @@ int main(int narg, char** argv)
 
 ##### 声明
 
-```{.cpp}
+```{.c}
 typedef enum {
     ffrt_error = -1,
     ffrt_success = 0,
@@ -1395,7 +1394,7 @@ int main(int narg, char** argv)
 
 ##### 声明
 
-```{.cpp}
+```{.c}
 void ffrt_yield();
 ```
 
@@ -1646,7 +1645,7 @@ libffrt.z.so
 * 为保证较高的性能，ffrt的C API中内部不包含对对象的销毁状态的标记，用户需要合理地进行资源的释放，重复调用各个对象的destroy操作，其结果是未定义的
 * 错误示例1，重复调用destroy可能造成不可预知的数据损坏
 
-```{.cpp}
+```{.c}
 #include "ffrt.h"
 void abnormal_case_1()
 {
@@ -1659,7 +1658,7 @@ void abnormal_case_1()
 
 * 错误示例2，未调用destroy会造成内存泄漏
 
-```{.cpp}
+```{.c}
 #include "ffrt.h"
 void abnormal_case_2()
 {
@@ -1671,7 +1670,7 @@ void abnormal_case_2()
 
 * 建议示例，仅调用一次destroy，如有必要可进行置空
 
-```{.cpp}
+```{.c}
 #include "ffrt.h"
 void normal_case()
 {
