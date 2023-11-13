@@ -201,21 +201,16 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 **示例：**
 
 ```ts
-function fun(num, callback) {
-  if (typeof num === 'number') {
-      callback(null, num + 3);
-  } else {
-      callback("type err");
-  }
+async function fn() {
+  return 'hello world';
 }
-
-const addCall = util.promisify(fun);
+const addCall = util.promisify(util.callbackWrapper(fn));
 (async () => {
   try {
-      let res = await addCall(2);
-      console.log(res);
+    let res: string = await addCall();
+    console.log(res);
   } catch (err) {
-      console.log(err);
+    console.log(err);
   }
 })();
 ```
@@ -1271,10 +1266,9 @@ updateCapacity(newCapacity: number): void
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number>= new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.updateCapacity(100);
 ```
-
 
 ### toString<sup>9+</sup>
 
@@ -1293,13 +1287,14 @@ toString(): string
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 pro.get(2);
-pro.remove(20);
-let result = pro.toString();
+pro.get(3);
+console.log(pro.toString());
+// 输出结果：LRUCache[ maxSize = 64, hits = 1, misses = 1, hitRate = 50% ]
+// maxSize: 缓存区最大值 hits: 查询值匹配成功的次数 misses: 查询值匹配失败的次数 hitRate: 查询值匹配率
 ```
-
 
 ### getCapacity<sup>9+</sup>
 
@@ -1318,7 +1313,7 @@ getCapacity(): number
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 let result = pro.getCapacity();
 ```
 
@@ -1333,7 +1328,7 @@ clear(): void
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.length;
 pro.clear();
@@ -1343,22 +1338,34 @@ pro.clear();
 
 getCreateCount(): number
 
-获取createDefault()返回值的次数。
+获取创建对象的次数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
-| 类型   | 说明                              |
-| ------ | --------------------------------- |
-| number | 返回createDefault()返回值的次数。 |
+| 类型   | 说明                |
+| ------ | -------------------|
+| number | 返回创建对象的次数。 |
 
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
-pro.put(1,8);
-let result = pro.getCreateCount();
+// 创建新类ChildLruBuffer继承LRUCache，重写createDefault方法，返回一个非undefined的值。
+class ChildLruBuffer extends util.LRUCache<number, number> {
+  constructor() {
+    super();
+  }
+
+  createDefault(key: number): number {
+    return key;
+  }
+}
+let lru = new ChildLruBuffer();
+lru.put(2,10);
+lru.get(3);
+lru.get(5);
+let res = lru.getCreateCount();
 ```
 
 ### getMissCount<sup>9+</sup>
@@ -1378,7 +1385,7 @@ getMissCount(): number
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 pro.get(2);
 let result = pro.getMissCount();
@@ -1388,7 +1395,7 @@ let result = pro.getMissCount();
 
 getRemovalCount(): number
 
-获取从缓冲区中逐出值的次数。
+获取缓冲区键值对回收的次数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1396,12 +1403,12 @@ getRemovalCount(): number
 
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| number | 返回从缓冲区中驱逐的次数。 |
+| number | 返回缓冲区键值对回收的次数。 |
 
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 pro.updateCapacity(2);
 pro.put(50,22);
@@ -1425,7 +1432,7 @@ getMatchCount(): number
 **示例：**
 
   ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  let pro: util.LRUCache<number, number> = new util.LRUCache();
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMatchCount();
@@ -1448,7 +1455,7 @@ getPutCount(): number
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.getPutCount();
 ```
@@ -1470,7 +1477,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.isEmpty();
 ```
@@ -1498,7 +1505,7 @@ get(key: K): V | undefined
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result  = pro.get(2);
 ```
@@ -1527,7 +1534,7 @@ put(key: K,value: V): V
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 let result = pro.put(2,10);
 ```
 
@@ -1548,7 +1555,7 @@ values(): V[]
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number|string,number|string> = new util.LRUCache();
+let pro: util.LRUCache<number|string,number|string> = new util.LRUCache();
 pro.put(2,10);
 pro.put(2,"anhu");
 pro.put("afaf","grfb");
@@ -1572,7 +1579,7 @@ keys(): K[]
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number>= new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.keys();
 ```
@@ -1600,7 +1607,7 @@ remove(key: K): V | undefined
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number>= new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.remove(20);
 ```
@@ -1697,7 +1704,7 @@ createDefault(key: K): V
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 let result = pro.createDefault(50);
 ```
 
@@ -1718,9 +1725,14 @@ entries(): IterableIterator&lt;[K,V]&gt;
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
-let result = pro.entries();
+pro.put(3,15);
+let pair:Iterable<Object[]> = pro.entries();
+let arrayValue = Array.from(pair);
+for (let value of arrayValue) {
+  console.log(value[0]+ ', '+ value[1]);
+}
 ```
 
 ### [Symbol.iterator]<sup>9+</sup>
@@ -1740,9 +1752,14 @@ let result = pro.entries();
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
-let result = pro[Symbol.iterator]();
+pro.put(3,15);
+let pair:Iterable<Object[]> = pro[Symbol.iterator]();
+let arrayValue = Array.from(pair);
+for (let value of arrayValue) {
+  console.log(value[0]+ ', '+ value[1]);
+}
 ```
 
 ## ScopeComparable<sup>8+</sup>
