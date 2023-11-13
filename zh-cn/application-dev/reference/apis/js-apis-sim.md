@@ -1086,7 +1086,7 @@ sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountI
 
 ## sim.getActiveSimAccountInfoList<sup>10+</sup>
 
-getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
+getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>
 
 获取激活SIM卡帐户信息列表。使用Promise异步回调。
 
@@ -2088,7 +2088,7 @@ sim.alterPin(0, "1234", "0000", (err: BusinessError, data: sim.LockStatusRespons
 
 ## sim.alterPin<sup>7+</sup>
 
-alterPin\(slotId: number, newPin: string, oldPin: string\): Promise\<LockStatusResponse\>;
+alterPin\(slotId: number, newPin: string, oldPin: string\): Promise\<LockStatusResponse\>
 
 更改Pin密码。使用Promise异步回调。
 
@@ -4657,7 +4657,7 @@ SIM卡状态。
 | 名称            | 类型   | 必填 | 说明                  |
 | --------------- | ------ | ---- | --------------------- |
 | result          | number |  是  | 当前操作的结果。      |
-| remain?: number | number |  否  | 剩余次数（可以为空）。|
+| remain          | number |  否  | 剩余次数（可以为空）。|
 
 ## LockInfo<sup>8+</sup>
 
@@ -4727,7 +4727,7 @@ Icc帐户信息。
 | ------------ | ------ | ---- | ---------- |
 | alphaTag     | string |  是  | 标签。     |
 | number       | string |  是  | 号码。     |
-| recordNumber | number |  是  | 记录编号。 |
+| recordNumber | number |  否  | 记录编号。 |
 | pin2         | string |  是  | pin2密码。 |
 
 ## ContactType<sup>8+</sup>
