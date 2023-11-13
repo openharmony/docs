@@ -11,6 +11,7 @@
 
 ```ts
 import inputMethod from '@ohos.inputMethod';
+import { BusinessError } from '@ohos.base';
 ```
 
 ## 常量<sup>8+</sup>
@@ -31,10 +32,10 @@ import inputMethod from '@ohos.inputMethod';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| name<sup>9+</sup>  | string | 是 | 否 | 必填。输入法内部名称。|
+| name<sup>9+</sup>  | string | 是 | 否 | 必填。输入法包名。|
 | id<sup>9+</sup>    | string | 是 | 否 | 必填。输入法唯一标识。|
 | label<sup>9+</sup>    | string | 是 | 否 | 非必填。输入法对外显示名称。|
-| labelId<sup>10+</sup>    | string | 是 | 否 | 非必填。输入法对外显示名称资源号。|
+| labelId<sup>10+</sup>    | number | 是 | 否 | 非必填。输入法对外显示名称资源号。|
 | icon<sup>9+</sup>    | string | 是 | 否 | 非必填。输入法图标数据，可以通过iconId查询获取。预留字段，暂不支持使用。|
 | iconId<sup>9+</sup>    | number | 是 | 否 | 非必填。输入法图标资源号。 |
 | extra<sup>9+</sup>    | object | 是 | 是 | 输入法扩展信息。预留字段，当前无具体含义，暂不支持使用。<br/>- API version 10起：非必填；<br/>- API version 9：必填。|
@@ -51,9 +52,9 @@ getController(): InputMethodController
 
 **返回值：**
 
-| 类型                                            | 说明                     |
-| ----------------------------------------------- | ------------------------ |
-| [InputMethodController](#inputmethodcontroller) | 回调返回当前客户端实例。 |
+| 类型                                            | 说明                   |
+| ----------------------------------------------- | ---------------------- |
+| [InputMethodController](#inputmethodcontroller) | 返回当前客户端实例。 |
 
 **错误码：**
 
@@ -96,7 +97,7 @@ getDefaultInputMethod(): InputMethodProperty
 ```ts
 try {
   let defaultIme = inputMethod.getDefaultInputMethod();
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to getDefaultInputMethod: ${JSON.stringify(err)}`);
 }
 ```
@@ -128,7 +129,7 @@ getSystemInputMethodConfigAbility(): ElementName
 ```ts
 try {
   let inputMethodConfig = inputMethod.getSystemInputMethodConfigAbility();
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to get getSystemInputMethodConfigAbility: ${JSON.stringify(err)}`);
 }
 ```
@@ -143,9 +144,9 @@ getSetting(): InputMethodSetting
 
 **返回值：**
 
-| 类型                                      | 说明                         |
-| ----------------------------------------- | ---------------------------- |
-| [InputMethodSetting](#inputmethodsetting8) | 回调返回当前客户端设置实例。 |
+| 类型                                      | 说明                       |
+| ----------------------------------------- | -------------------------- |
+| [InputMethodSetting](#inputmethodsetting8) | 返回当前客户端设置实例。 |
 
 **错误码：**
 
@@ -203,7 +204,7 @@ try{
       console.error('Failed to switchInputMethod.');
     }
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
 }
 ```
@@ -251,7 +252,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
   })
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
 }
 ```
@@ -332,7 +333,7 @@ try {
       console.error('Failed to switchCurrentInputMethodSubtype');
     }
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to switchCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -396,7 +397,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to switchCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -469,7 +470,7 @@ try {
       console.error('Failed to switchCurrentInputMethodAndSubtype.');
     }
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to switchCurrentInputMethodAndSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -525,7 +526,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchCurrentInputMethodAndSubtype: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to switchCurrentInputMethodAndSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -568,9 +569,9 @@ getInputMethodSetting(): InputMethodSetting
 
 **返回值：**
 
-| 类型                                      | 说明                         |
-| ----------------------------------------- | ---------------------------- |
-| [InputMethodSetting](#inputmethodsetting8) | 回调返回当前客户端设置实例。 |
+| 类型                                      | 说明                       |
+| ----------------------------------------- | -------------------------- |
+| [InputMethodSetting](#inputmethodsetting8) | 返回当前客户端设置实例。 |
 
 **示例：**
 
@@ -783,7 +784,7 @@ try {
     }
     console.log('Succeeded in attaching the inputMethod.');
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to attach: ${JSON.stringify(err)}`);
 }
 ```
@@ -837,7 +838,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to attach: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to attach: ${JSON.stringify(err)}`);
 }
 ```
@@ -1111,7 +1112,7 @@ try {
     }
     console.log('Succeeded in setting callingWindow.');
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
 }
 ```
@@ -1160,7 +1161,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
 }
 ```
@@ -1169,7 +1170,7 @@ try {
 
 updateCursor(cursorInfo: CursorInfo, callback: AsyncCallback&lt;void&gt;): void
 
-更新当前编辑框内的光标信息。当光标信息发生变化时，调用该接口使输入法感知到光标变化。使用callback异步回调。
+当编辑框内的光标信息发生变化时，调用该接口使输入法感知到光标变化。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1202,7 +1203,7 @@ try {
     }
     console.log('Succeeded in updating cursorInfo.');
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
 }
 ```
@@ -1247,7 +1248,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
 }
 ```
@@ -1256,7 +1257,7 @@ try {
 
 changeSelection(text: string, start: number, end: number, callback: AsyncCallback&lt;void&gt;): void
 
-更新当前编辑框内被选中的文本信息。当选中的文本内容或文本范围发生变化时，可调用该接口更新文本信息，使输入法应用感知到变化。使用callback异步回调。
+当编辑框内被选中的文本信息内容或文本范围发生变化时，可调用该接口更新文本信息，使输入法应用感知到变化。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1290,7 +1291,7 @@ try {
     }
     console.log('Succeeded in changing selection.');
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
 }
 ```
@@ -1336,7 +1337,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
 }
 ```
@@ -1378,7 +1379,7 @@ try {
     }
     console.log('Succeeded in updating attribute.');
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
 }
 ```
@@ -1423,7 +1424,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
 }
 ```
@@ -1470,7 +1471,7 @@ try {
       console.error('Failed to stopInputSession.');
     }
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to stopInputSession: ${JSON.stringify(err)}`);
 }
 ```
@@ -1515,7 +1516,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to stopInputSession: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to stopInputSession: ${JSON.stringify(err)}`);
 }
 ```
@@ -1752,7 +1753,7 @@ inputMethodController.stopInput().then((result: boolean) => {
 
 ### on('insertText')<sup>10+</sup>
 
-on(type: 'insertText', callback: (text: string) => void): void;
+on(type: 'insertText', callback: (text: string) => void): void
 
 订阅输入法应用插入文本事件。使用callback异步回调。
 
@@ -1776,11 +1777,22 @@ on(type: 'insertText', callback: (text: string) => void): void;
 **示例：**
 
 ```ts
+function callback1(text: string) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(text));
+}
+
+function callback2(text: string) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(text));
+}
+
 try {
-  inputMethodController.on('insertText', (text: string) => {
-    console.log(`Succeeded in subscribing insertText: ${text}`);
-  });
-} catch(err) {
+  inputMethodController.on('insertText', callback1);
+  inputMethodController.on('insertText', callback2);
+  //仅取消insertText的callback1的回调
+  inputMethodController.off('insertText', callback1);
+  //取消insertText的所有回调
+  inputMethodController.off('insertText');
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe insertText: ${JSON.stringify(err)}`);
 }
 ```
@@ -1840,7 +1852,7 @@ try {
   inputMethodController.on('deleteLeft', (length: number) => {
     console.log(`Succeeded in subscribing deleteLeft, length: ${length}`);
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe deleteLeft: ${JSON.stringify(err)}`);
 }
 ```
@@ -1900,7 +1912,7 @@ try {
   inputMethodController.on('deleteRight', (length: number) => {
     console.log(`Succeeded in subscribing deleteRight, length: ${length}`);
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe deleteRight: ${JSON.stringify(err)}`);
 }
 ```
@@ -1960,7 +1972,7 @@ try {
   inputMethodController.on('sendKeyboardStatus', (keyboardStatus: inputMethod.KeyboardStatus) => {
     console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe sendKeyboardStatus: ${JSON.stringify(err)}`);
 }
 ```
@@ -2020,7 +2032,7 @@ try {
   inputMethodController.on('sendFunctionKey', (functionKey: inputMethod.FunctionKey) => {
     console.log(`Succeeded in subscribing sendFunctionKey, functionKey.enterKeyType: ${functionKey.enterKeyType}`);
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe sendFunctionKey: ${JSON.stringify(err)}`);
 }
 ```
@@ -2080,7 +2092,7 @@ try {
   inputMethodController.on('moveCursor', (direction: inputMethod.Direction) => {
     console.log(`Succeeded in subscribing moveCursor, direction: ${direction}`);
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe moveCursor: ${JSON.stringify(err)}`);
 }
 ```
@@ -2140,7 +2152,7 @@ try {
   inputMethodController.on('handleExtendAction', (action: inputMethod.ExtendAction) => {
     console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe handleExtendAction: ${JSON.stringify(err)}`);
 }
 ```
@@ -2163,11 +2175,15 @@ off(type: 'handleExtendAction', callback?: (action: ExtendAction) => void): void
 **示例：**
 
 ```ts
-let onHandleExtendActionCallback = (action: inputMethod.ExtendAction) => {
+try {
+  let onHandleExtendActionCallback = (action: inputMethod.ExtendAction) => {
     console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
-};
-inputMethodController.off('handleExtendAction', onHandleExtendActionCallback);
-inputMethodController.off('handleExtendAction');
+  };
+  inputMethodController.off('handleExtendAction', onHandleExtendActionCallback);
+  inputMethodController.off('handleExtendAction');
+} catch(err: BusinessError) {
+  console.error(`Failed to subscribe handleExtendAction: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('selectByRange')<sup>10+</sup>
@@ -2188,9 +2204,13 @@ on(type: 'selectByRange', callback: Callback&lt;Range&gt;): void
 **示例：**
 
 ```ts
-inputMethodController.on('selectByRange', (range: inputMethod.Range) => {
-  console.log(`Succeeded in subscribing selectByRange: start: ${range.start} , end: ${range.end}`);
-});
+try {
+  inputMethodController.on('selectByRange', (range: inputMethod.Range) => {
+    console.log(`Succeeded in subscribing selectByRange: start: ${range.start} , end: ${range.end}`);
+  });
+} catch(err: BusinessError) {
+  console.error(`Failed to subscribe selectByRange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('selectByRange')<sup>10+</sup>
@@ -2211,11 +2231,15 @@ off(type: 'selectByRange', callback?:  Callback&lt;Range&gt;): void
 **示例：**
 
 ```ts
-let onSelectByRangeCallback = (range: inputMethod.Range) => {
+try {
+  let onSelectByRangeCallback = (range: inputMethod.Range) => {
     console.log(`Succeeded in subscribing selectByRange, range: ${JSON.stringify(range)}`);
-};
-inputMethodController.off('selectByRange', onSelectByRangeCallback);
-inputMethodController.off('selectByRange');
+  };
+  inputMethodController.off('selectByRange', onSelectByRangeCallback);
+  inputMethodController.off('selectByRange');
+} catch(err: BusinessError) {
+  console.error(`Failed to subscribe selectByRange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('selectByMovement')<sup>10+</sup>
@@ -2236,9 +2260,13 @@ on(type: 'selectByMovement', callback: Callback&lt;Movement&gt;): void
 **示例：**
 
 ```ts
-inputMethodController.on('selectByMovement', (movement: inputMethod.Movement) => {
-  console.log('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
-});
+try {
+  inputMethodController.on('selectByMovement', (movement: inputMethod.Movement) => {
+    console.log('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
+  });
+} catch(err: BusinessError) {
+  console.error(`Failed to subscribe selectByMovement: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('selectByMovement')<sup>10+</sup>
@@ -2259,16 +2287,20 @@ off(type: 'selectByMovement', callback?: Callback&lt;Movement&gt;): void
 **示例：**
 
 ```ts
-let onSelectByMovementCallback = (movement: inputMethod.Movement) => {
+try {
+  let onSelectByMovementCallback = (movement: inputMethod.Movement) => {
     console.log(`Succeeded in subscribing selectByMovement, movement.direction: ${movement.direction}`);
-};
-inputMethodController.off('selectByMovement', onSelectByMovementCallback);
-inputMethodController.off('selectByMovement');
+  };
+  inputMethodController.off('selectByMovement', onSelectByMovementCallback);
+  inputMethodController.off('selectByMovement');
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing selectByMovement: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('getLeftTextOfCursor')<sup>10+</sup>
 
-on(type: 'getLeftTextOfCursor', callback: (length: number) => string): void;
+on(type: 'getLeftTextOfCursor', callback: (length: number) => string): void
 
 订阅输入法应用获取光标左侧指定长度文本事件。使用callback异步回调。
 
@@ -2298,14 +2330,14 @@ try {
     let text:string = "";
     return text;
   });
-} catch(err) {
-  console.error(`Failed to subscribe getLeftTextOfCursor. err: ${JSON.stringify(err)}`);
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing getLeftTextOfCursor. err: ${JSON.stringify(err)}`);
 }
 ```
 
 ### off('getLeftTextOfCursor')<sup>10+</sup>
 
-off(type: 'getLeftTextOfCursor', callback?: (length: number) => string): void;
+off(type: 'getLeftTextOfCursor', callback?: (length: number) => string): void
 
 取消订阅输入法应用获取光标左侧指定长度文本事件。使用callback异步回调。
 
@@ -2329,14 +2361,14 @@ try {
   };
   inputMethodController.off('getLeftTextOfCursor', getLeftTextOfCursorCallback);
   inputMethodController.off('getLeftTextOfCursor');
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to unsubscribing getLeftTextOfCursor. err: ${JSON.stringify(err)}`);
 }
 ```
 
 ### on('getRightTextOfCursor')<sup>10+</sup>
 
-on(type: 'getRightTextOfCursor', callback: (length: number) => string): void;
+on(type: 'getRightTextOfCursor', callback: (length: number) => string): void
 
 订阅输入法应用获取光标右侧指定长度文本事件。使用callback异步回调。
 
@@ -2366,14 +2398,14 @@ try {
     let text:string = "";
     return text;
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe getRightTextOfCursor. err: ${JSON.stringify(err)}`);
 }
 ```
 
 ### off('getRightTextOfCursor')<sup>10+</sup>
 
-off(type: 'getRightTextOfCursor', callback?: (length: number) => string): void;
+off(type: 'getRightTextOfCursor', callback?: (length: number) => string): void
 
 取消订阅输入法应用获取光标右侧指定长度文本事件。使用callback异步回调。
 
@@ -2397,14 +2429,14 @@ try {
   };
   inputMethodController.off('getRightTextOfCursor', getRightTextOfCursorCallback);
   inputMethodController.off('getRightTextOfCursor');
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to unsubscribing getRightTextOfCursor. err: ${JSON.stringify(err)}`);
 }
 ```
 
 ### on('getTextIndexAtCursor')<sup>10+</sup>
 
-on(type: 'getTextIndexAtCursor', callback: () => number): void;
+on(type: 'getTextIndexAtCursor', callback: () => number): void
 
 订阅输入法应用获取光标处文本索引事件。使用callback异步回调。
 
@@ -2434,14 +2466,14 @@ try {
     let index:number = 0;
     return index;
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe getTextIndexAtCursor. err: ${JSON.stringify(err)}`);
 }
 ```
 
 ### off('getTextIndexAtCursor')<sup>10+</sup>
 
-off(type: 'getTextIndexAtCursor', callback?: () => number): void;
+off(type: 'getTextIndexAtCursor', callback?: () => number): void
 
 取消订阅输入法应用获取光标处文本索引事件。使用callback异步回调。
 
@@ -2465,7 +2497,7 @@ try {
   };
   inputMethodController.off('getTextIndexAtCursor', getTextIndexAtCursorCallback);
   inputMethodController.off('getTextIndexAtCursor');
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to unsubscribing getTextIndexAtCursor. err: ${JSON.stringify(err)}`);
 }
 ```
@@ -2492,10 +2524,14 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 **示例：**
 
 ```ts
-import InputMethodSubtype from '@ohos.InputMethodSubtype';
-inputMethodSetting.on('imeChange', (inputMethodProperty: inputMethod.InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => {
-  console.log('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
-});
+try {
+  import InputMethodSubtype from '@ohos.InputMethodSubtype';
+  inputMethodSetting.on('imeChange', (inputMethodProperty: inputMethod.InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => {
+    console.log('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
+  });
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing inputMethodProperty. err: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('imeChange')<sup>9+</sup>
@@ -2539,9 +2575,13 @@ on(type: 'imeShow', callback: (info: Array\<InputWindowInfo>) => void): void
 **示例：**
 
 ```ts
-inputMethodSetting.on('imeShow', (info: Array<inputMethod.InputWindowInfo>) => {
+try {
+  inputMethodSetting.on('imeShow', (info: Array<inputMethod.InputWindowInfo>) => {
     console.info('Succeeded in subscribing imeShow event.');
-});
+  });
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing imeShow. err: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('imeHide')<sup>10+</sup>
@@ -2564,9 +2604,13 @@ on(type: 'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
 **示例：**
 
 ```ts
-inputMethodSetting.on('imeHide', (info: Array<inputMethod.InputWindowInfo>) => {
+try {
+  inputMethodSetting.on('imeHide', (info: Array<inputMethod.InputWindowInfo>) => {
     console.info('Succeeded in subscribing imeHide event.');
-});
+  });
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('imeShow')<sup>10+</sup>
@@ -2589,7 +2633,11 @@ off(type: 'imeShow', callback?: (info: Array\<InputWindowInfo>) => void): void
 **示例：**
 
 ```ts
-inputMethodSetting.off('imeShow');
+try {
+  inputMethodSetting.off('imeShow');
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing imeShow. err: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('imeHide')<sup>10+</sup>
@@ -2612,7 +2660,11 @@ off(type: 'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
 **示例：**
 
 ```ts
-inputMethodSetting.off('imeHide');
+try {
+  inputMethodSetting.off('imeHide');
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`);
+}
 ```
 
 ### isPanelShown<sup>11+</sup>
@@ -2656,7 +2708,7 @@ let info: panel.PanelInfo = {
 try {
   let result = inputMethodSetting.isPanelShown(info);
   console.log('Succeeded in querying isPanelShown, result: ' + result);
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to query isPanelShown: ${JSON.stringify(err)}`);
 }
 ```
@@ -2688,14 +2740,10 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 **示例：**
 
 ```ts
-import inputMethod from '@ohos.inputMethod';
 import InputMethodSubtype from '@ohos.InputMethodSubtype';
-import { BusinessError } from '@ohos.base';
 
 let inputMethodProperty: inputMethod.InputMethodProperty = {
-  packageName: 'com.example.kikakeyboard',
   name: 'InputMethodExAbility',
-  methodId: '',
   id: 'propertyId',
 }
 let inputMethodSetting = inputMethod.getSetting();
@@ -2707,7 +2755,7 @@ try {
     }
     console.log('Succeeded in listing inputMethodSubtype.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -2744,14 +2792,10 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 **示例：**
 
 ```ts
-import inputMethod from '@ohos.inputMethod';
 import InputMethodSubtype from '@ohos.InputMethodSubtype';
-import { BusinessError } from '@ohos.base';
 
 let inputMethodProperty: inputMethod.InputMethodProperty = {
-  packageName: 'com.example.kikakeyboard',
   name: 'InputMethodExAbility',
-  methodId: '',
   id: 'propertyId',
 }
 let inputMethodSetting = inputMethod.getSetting();
@@ -2761,7 +2805,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -2793,7 +2837,6 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 ```ts
 import InputMethodSubtype from '@ohos.InputMethodSubtype';
-import { BusinessError } from '@ohos.base';
 
 let inputMethodSetting = inputMethod.getSetting();
 try {
@@ -2804,7 +2847,7 @@ try {
     }
     console.log('Succeeded in listing currentInputMethodSubtype.');
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -2836,7 +2879,6 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 ```ts
 import InputMethodSubtype from '@ohos.InputMethodSubtype';
-import { BusinessError } from '@ohos.base';
 
 let inputMethodSetting = inputMethod.getSetting();
 try {
@@ -2845,7 +2887,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -2883,7 +2925,6 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 
 try {
   inputMethodSetting.getInputMethods(true, (err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
@@ -2893,7 +2934,7 @@ try {
     }
     console.log('Succeeded in getting inputMethods.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -2936,7 +2977,6 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 
 try {
   inputMethodSetting.getInputMethods(true).then((data: Array<inputMethod.InputMethodProperty>) => {
@@ -2944,7 +2984,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -2987,11 +3027,10 @@ getInputMethodsSync(enable: boolean): Array&lt;InputMethodProperty&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 
 try {
   let imeProp = inputMethodSetting.getInputMethodsSync(true);
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -3022,7 +3061,6 @@ getAllInputMethods(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&g
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 
 try {
   inputMethodSetting.getAllInputMethods((err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
@@ -3032,7 +3070,7 @@ try {
     }
     console.log('Succeeded in getting all inputMethods.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -3063,7 +3101,6 @@ getAllInputMethods(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 
 inputMethodSetting.getAllInputMethods().then((data: Array<inputMethod.InputMethodProperty>) => {
   console.log('Succeeded in getting all inputMethods.');
@@ -3098,11 +3135,10 @@ getAllInputMethodsSync(): Array&lt;InputMethodProperty&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 
 try {
   let imeProp = inputMethodSetting.getAllInputMethodsSync();
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to getAllInputMethodsSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -3140,7 +3176,7 @@ try {
     }
     console.log('Succeeded in showing optionalInputMethods.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -3157,7 +3193,7 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示输入法选择对话框显示成功，返回false表示输入法选择对话框显示失败。 |
+| Promise&lt;boolean&gt; | Promise对象。当输入法选择对话框显示成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
 
@@ -3172,7 +3208,7 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 ```ts
 inputMethodSetting.showOptionalInputMethods().then((data: boolean) => {
   console.log('Succeeded in showing optionalInputMethods.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
 })
 ```
@@ -3230,7 +3266,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 ```ts
 inputMethodSetting.listInputMethod().then((data: Array<inputMethod.InputMethodProperty>) => {
   console.log('Succeeded in listing inputMethod.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to listInputMethod: ${JSON.stringify(err)}`);
 })
 ```
@@ -3288,7 +3324,7 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 ```ts
 inputMethodSetting.displayOptionalInputMethod().then(() => {
   console.log('Succeeded in displaying optionalInputMethod.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
 })
 ```

@@ -66,7 +66,7 @@ export default class MyAbility extends UIAbility {
         // 1. Obtain an applicationContext object.
         let applicationContext = this.context.getApplicationContext();
         // 2. Register a listener for the environment changes through the applicationContext object.
-        callbackId = applicationContext.on('environmentEvent', environmentCallback);
+        callbackId = applicationContext.on('environment', environmentCallback);
         console.log(`registerEnvironmentCallback number: ${JSON.stringify(callbackId)}`);
     }
     onDestroy() {

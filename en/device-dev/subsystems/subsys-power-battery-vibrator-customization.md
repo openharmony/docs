@@ -17,13 +17,13 @@ The device must be equipped with a vibrator.
 
 - **Hardware requirements:**
 
-  Development board running the standard system, for example, the DAYU200 open source suite and connected to a vibrator
+  Development board running the standard system, for example, the DAYU200 open source suite, and connected to a vibrator
 
 - **Environment requirements:**
 
   For details about the requirements on the Linux environment, see [Quick Start](../quick-start/quickstart-overview.md).
 
-### Procedure
+### Getting Started with Development
 
 The following uses the RK3568 development board as an example to illustrate battery charging vibration customization.
 
@@ -39,9 +39,11 @@ The following uses the RK3568 development board as an example to illustrate batt
     Example configuration:
 
     ```json
-    "start_charge": {
-        "enable": true, 
-        "type": "haptic.charging"
+    {
+        "start_charge": {
+            "enable": true, 
+            "type": "haptic.charging"
+        }
     }
     ```
    - **start_charge**: name of the vibration scenario, which cannot be changed.

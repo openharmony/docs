@@ -1705,7 +1705,11 @@ netCon.register((error: BusinessError) => {
 })
 
 // Subscribe to netAvailable events. Event notifications can be received only after register is called.
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+class Value {
+    netHandle: NetHandle = connection.NetHandle
+    blocked: boolean = false
+}
+netCon.on('netBlockStatusChange', (data: Value) => {
   console.log(JSON.stringify(data))
 })
 
@@ -1789,8 +1793,13 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
+class Value {
+    netHandle: NetHandle = connection.NetHandle
+    connectionProperties: ConnectionProperties = connection.ConnectionProperties
+}
+
 // Subscribe to netAvailable events. Event notifications can be received only after register is called.
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+netCon.on('netConnectionPropertiesChange', (data: Value) => {
   console.log(JSON.stringify(data))
 })
 
@@ -1832,7 +1841,7 @@ netCon.register((error: BusinessError) => {
 })
 
 // Subscribe to netAvailable events. Event notifications can be received only after register is called.
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+netCon.on('netLost', (data: connection.NetHandle) => {
   console.log(JSON.stringify(data))
 })
 

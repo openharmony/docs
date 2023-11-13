@@ -4,11 +4,11 @@
 
 Built on the native AI framework provided by OpenHarmony, the AI subsystem consists of the following components:
 - MindSpore Lite: an AI inference framework that provides unified APIs for AI inference.
-- Neural Network Runtime (NNRt): an intermediate bridge that connects the inference framework and AI hardware.
+- Neural Network Runtime (NNRt): a bridge that connects MindSpore Lite and AI hardware.
 
 ## MindSpore Lite
 
-MindSpore Lite is a built-in AI inference framework of OpenHarmony. It provides AI model inference capabilities for different hardware devices and end-to-end AI model inference solutions for developers to empower intelligent applications in all scenarios. Currently, MindSpore Lite has been widely used in applications such as image classification, target recognition, facial recognition, and character recognition.
+MindSpore Lite is a built-in AI inference framework of OpenHarmony. It provides AI model inference capabilities for hardware devices and end-to-end solutions for developers to empower intelligent applications in all scenarios. So far, MindSpore Lite has been widely used in applications such as image classification, target recognition, facial recognition, and character recognition.
 
 **Figure 1** Development process for MindSpore Lite model inference
 ![mindspore workflow](figures/mindspore_workflow.png)
@@ -30,11 +30,11 @@ The MindSpore Lite development process consists of two phases:
 
 MindSpore Lite is built in the OpenHarmony standard system as a system component. You can develop AI applications based on MindSpore Lite in the following ways:
 
-- Method 1: [Using MindSpore Lite JavaScript APIs to develop AI applications](./mindspore-guidelines-based-js.md). You directly call MindSpore Lite JavaScript APIs in the UI code to load the AI model and perform model inference. An advantage of this method is the quick verification of the inference effect.
-- Method 2: [Using MindSpore Lite native APIs to develop AI applications](./mindspore-guidelines-based-native.md). You encapsulate the algorithm models and the code for calling MindSpore Lite native APIs into a dynamic library, and then use N-API to encapsulate the dynamic library into JavaScript APIs for the UI to call.
+- Method 1: [Using MindSpore Lite JavaScript APIs to develop AI applications](./mindspore-guidelines-based-js.md). You can directly call MindSpore Lite JavaScript APIs in the UI code to load the AI model and perform model inference. An advantage of this method is the quick verification of the inference effect.
+- Method 2: [Using MindSpore Lite native APIs to develop AI applications](./mindspore-guidelines-based-native.md). You can encapsulate the algorithm models and the code for calling MindSpore Lite native APIs into a dynamic library, and then use N-API to encapsulate the dynamic library into JavaScript APIs for the UI to call.
 
-## Neural Network Runtime
+## NNRt
 
-Neural Network Runtime (NNRt) functions as a bridge to connect the upper-layer AI inference framework and bottom-layer acceleration chip, implementing cross-chip inference computing of AI models.
+NNRt functions as a bridge to connect the upper-layer AI inference framework and underlying acceleration chip, implementing cross-chip inference computing of AI models.
 
-MindSpore Lite supports configuration of the NNRt backend, and therefore you can directly configure MindSpore Lite to use the NNRt hardware. The focus of this topic is about how to develop AI applications using MindSpore Lite. For details about how to use NNRt, see [Connecting the Neural Network Runtime to an AI Inference Framework](../napi/neural-network-runtime-guidelines.md).
+MindSpore Lite supports configuration of the NNRt backend, and therefore you can configure MindSpore Lite to use the NNRt hardware. The focus of this topic is about how to develop AI applications using MindSpore Lite. For details about how to use NNRt, see [Connecting the Neural Network Runtime to an AI Inference Framework](../napi/neural-network-runtime-guidelines.md).

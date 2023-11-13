@@ -36,7 +36,7 @@ RichEditor(value: RichEditorOptions)
 | 名称                      | 参数类型                                                     | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。 | 
-| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}<br/>**说明：**<br/>当前spanType参数设置不会生效，不区分类型。|
+| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
 | copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按组件内容，会弹出文本默认选择菜单，可选中内容并进行复制、全选操作。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。  |
 ## 事件
 
@@ -315,6 +315,7 @@ closeSelectionMenu(): void
 | ------ | -------- | ---- | -------------------------------------- |
 | offset  | number   | 否   | 添加文本的位置。省略时，添加到所有文本字符串的最后。 |
 | style  | [RichEditorTextStyle](#richeditortextstyle)   | 否   | 文本样式信息。省略时，使用系统默认文本信息。|
+| gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | 否   | 行为触发回调。省略时，仅使用系统默认行为。|
 
 ## RichEditorTextStyle
 
@@ -338,6 +339,7 @@ closeSelectionMenu(): void
 | ------ | -------- | ---- | -------------------------------------- |
 | offset  | number   | 否   | 添加图片的位置。省略时，添加到所有文本字符串的最后。 |
 | imageStyle  | [RichEditorImageSpanStyle](#richeditorimagespanstyle)   | 否   | 图片样式信息。省略时，使用系统默认图片信息。|
+| gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | 否   | 行为触发回调。省略时，仅使用系统默认行为。|
 
 ## RichEditorImageSpanStyle
 
@@ -367,6 +369,33 @@ closeSelectionMenu(): void
 | onAppear | ?(() => void) | 否 | 自定义选择菜单弹出时回调。 |
 | onDisappear | ?(() => void) | 否 | 自定义选择菜单关闭时回调。 |
 
+## RichEditorGesture<sup>11+</sup>
+
+用户行为回调。
+
+### onClick<sup>11+</sup>
+
+onClick(callback: (event?: ClickEvent) => void)
+
+点击完成时回调事件。
+
+**参数:**
+
+| 参数名   | 参数类型   | 必填   | 描述                            |
+| ----- | ------ | ---- | ---------------------------------------- |
+| event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) | 否    | 用户点击事件。 |
+
+### onLongPress<sup>11+</sup>
+
+onLongPress(callback: (event?: GestureEvent) => void )
+
+长按完成时回调事件。
+
+**参数:**
+
+| 参数名   | 参数类型   | 必填   | 描述                            |
+| ----- | ------ | ---- | ---------------------------------------- |
+| event | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明) | 否    | 用户长按事件。 |
 
 ## 示例
 
@@ -596,7 +625,7 @@ struct SelectionMenu {
   options: RichEditorOptions = { controller: this.controller }
   private iconArr: Array<Resource> =
     [$r('app.media.icon'), $r("app.media.icon"), $r('app.media.icon'),
-    $r("app.media.icon"), $r('app.media.icon')]
+      $r("app.media.icon"), $r('app.media.icon')]
   private listArr: Array<Object> =
     [{ imageSrc: $r('sys.media.ohos_ic_public_cut'), id: '剪切', label: "Ctrl+X" } as info,
       { imageSrc: $r('sys.media.ohos_ic_public_copy'), id: '复制', label: "Ctrl+C" } as info,
@@ -620,6 +649,9 @@ struct SelectionMenu {
             this.controller.addTextSpan(this.message, { style: { fontColor: Color.Orange, fontSize: 30 } })
           })
           .onSelect((value: RichEditorSelection) => {
+            if (value.selection[0] == -1 && value.selection[1] == -1) {
+              return
+            }
             this.start = value.selection[0]
             this.end = value.selection[1]
           })
@@ -630,26 +662,20 @@ struct SelectionMenu {
           .borderColor(Color.Red)
           .width(200)
           .height(200)
-          .position({ x: 150, y: 100 })
-      }.width('100').backgroundColor(Color.White)
-    }.height('100')
+      }.width('100%').backgroundColor(Color.White)
+    }.height('100%')
   }
 
   @Builder
   panel() {
     Column() {
-      Menu() {
-        MenuItem({ builder: this.iconPanel() })
-      }.shadow(ShadowStyle.OUTER_DEFAULT_MD).margin({ bottom: 8 }).height(56).width(256)
-
-      Menu() {
-        if (!this.sliderShow) {
-          MenuItem({ builder: this.listPanel() })
-        } else {
-          MenuItem({ builder: this.sliderPanel() })
-        }
-      }.width(256).shadow(ShadowStyle.OUTER_DEFAULT_MD)
-    }.width(256).backgroundColor(Color.Transparent)
+      this.iconPanel()
+      if (!this.sliderShow) {
+        this.listPanel()
+      } else {
+        this.sliderPanel()
+      }
+    }.width(256)
   }
 
   @Builder iconPanel() {
@@ -708,7 +734,7 @@ struct SelectionMenu {
             if(isHover != undefined) {
               this.iconBgColor[index as number] = $r('sys.color.ohos_id_color_hover')
             }else{
-                this.listBgColor[index as number] = this.colorTransparent
+              this.listBgColor[index as number] = this.colorTransparent
             }
           })
           .onFocus(() => {
@@ -721,10 +747,11 @@ struct SelectionMenu {
         })
       }
     }
-    .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
     .width(248)
     .height(48)
+    .margin({ bottom: 8 })
+    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
   }
 
   @Builder listPanel() {
@@ -740,7 +767,6 @@ struct SelectionMenu {
             })
               .onClick(() => {
                 let sysBoard = pasteboard.getSystemPasteboard()
-                this.controller.closeSelectionMenu()
                 let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, '')
                 this.controller.getSpans({ start: this.start, end: this.end })
                   .forEach((item, i) => {
@@ -855,6 +881,7 @@ struct SelectionMenu {
     .width(248)
     .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
   }
 
   @Builder sliderPanel() {
