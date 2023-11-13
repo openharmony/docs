@@ -155,9 +155,9 @@
             .height('15%')
             .onClick(() => {
               postCardAction(this, {
-                'action': 'message',
-                'params': {
-                  'info': 'refreshImage'
+                action: 'message',
+                params: {
+                  info: 'refreshImage'
                 }
               });
             })

@@ -24,10 +24,10 @@
           .onClick(() => {
             console.info('Jump to EntryAbility funA');
             postCardAction(this, {
-              'action': 'router',
-              'abilityName': 'EntryAbility', // 只能跳转到当前应用下的UIAbility
-              'params': {
-                'targetPage': 'funA' // 在EntryAbility中处理这个信息
+              action: 'router',
+              abilityName: 'EntryAbility', // 只能跳转到当前应用下的UIAbility
+              params: {
+                targetPage: 'funA' // 在EntryAbility中处理这个信息
               }
             });
           })
@@ -36,10 +36,10 @@
           .onClick(() => {
             console.info('Jump to EntryAbility funB');
             postCardAction(this, {
-              'action': 'router',
-              'abilityName': 'EntryAbility', // 只能跳转到当前应用下的UIAbility
-              'params': {
-                'targetPage': 'funB' // 在EntryAbility中处理这个信息
+              action: 'router',
+              abilityName: 'EntryAbility', // 只能跳转到当前应用下的UIAbility
+              params: {
+                targetPage: 'funB' // 在EntryAbility中处理这个信息
               }
             });
           })
