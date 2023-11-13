@@ -42,7 +42,6 @@
     - [组件内容模糊](ts-universal-attributes-foreground-blur-style.md)
     - [点击回弹效果](ts-universal-attributes-click-effect.md)
     - [无障碍属性](ts-universal-attributes-accessibility.md)
-    - [动态属性设置](ts-universal-attributes-attribute-modifier.md)
     - 触摸交互控制
       - [触摸热区设置](ts-universal-attributes-touch-target.md)
       - [触摸测试控制](ts-universal-attributes-hit-test-behavior.md)
