@@ -140,7 +140,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## FormExtensionContext.connectServiceExtensionAbility<sup>10+</sup>
 
-connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
+connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 将一个Ability与服务类型的Ability绑定。
 
@@ -221,7 +221,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## FormExtensionContext.disconnectServiceExtensionAbility<sup>10+</sup>
 
-disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
+disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt;void&gt;): void
 
 将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。
 
@@ -282,7 +282,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## FormExtensionContext.disconnectServiceExtensionAbility<sup>10+</sup>
 
-disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
+disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空(Promise形式返回结果)。
 
