@@ -55,7 +55,6 @@
     - [安全区域](ts-universal-attributes-expand-safe-area.md)
     - [特效绘制合并](ts-universal-attributes-use-effect.md)
     - [组件内容填充方式](ts-universal-attributes-renderfit.md)
-    - [自定义手势判定](ts-universal-attributes-customize-gesture-judge.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势
@@ -66,6 +65,7 @@
       - [RotationGesture](ts-basic-gestures-rotationgesture.md)
       - [SwipeGesture](ts-basic-gestures-swipegesture.md)
     - [组合手势](ts-combined-gestures.md)
+    - [自定义手势判定](ts-gesture-customize-judge.md)
 - 基础组件
   - [AlphabetIndexer](ts-container-alphabet-indexer.md)
   - [Blank](ts-basic-components-blank.md)

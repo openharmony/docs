@@ -27,7 +27,7 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 | onActionUpdate(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pinch手势移动过程中回调。 |
 | onActionEnd(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，手指抬起后触发回调。 |
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，接收到触摸取消事件触发回调。 |
-| tag(tag: string) | 设置Pinch手势标志。 |
+| tag(tag: string)<sup>11+</sup> | 设置Pinch手势标志，用于自定义手势判定时区分绑定的手势。 |
 
 ## 示例
 

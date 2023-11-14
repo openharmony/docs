@@ -7,11 +7,13 @@
 >  从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 接口
+## OnGestureJudgeBegin
+OnGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult)
 
-| 名称      | 参数类型                                | 描述    |
-| --------- | ---------------------------------------- | ----- |
-| onGestureJudgeBegin | callback: (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](ts-appendix-enums.md#gesturejudgeresult11) | 给组件绑定自定义手势判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。|
+**参数：**
+| 参数名        | 参数类型                    | 必填  | 参数描述                          |
+| ---------- | -------------------------- | ------- | ----------------------------- |
+| callback      | (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](ts-appendix-enums.md#gesturejudgeresult11) | 是     |  给组件绑定自定义手势判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。 |
 
 ## GestureInfo对象说明
 
@@ -77,8 +79,6 @@
 | angle         | number | 表示滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数，单位为deg。<br/>**说明：**<br/>角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。|
 | speed         | number | 滑动手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/秒。  |
 ## 示例
-
-### 示例1
 
 ```ts
 // xxx.ets
