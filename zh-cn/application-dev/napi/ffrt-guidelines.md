@@ -519,7 +519,7 @@ uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr);
 
 `qos`
 
-* qos 设定的枚举类型
+* qos 设定的枚举类型。
 * inherent 是一个qos 设定策略，代表即将ffrt_submit 的task 的qos 继承当前task 的qos。
 
 `delay_us`
@@ -532,7 +532,7 @@ uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr);
 
 ##### 描述
 * `attr`所传递的内容会在ffrt_submit内部完成取存，ffrt_submit返回后用户即可销毁。
-* 约定
+* 约定：
   * 在submit 时，如果不通过task_attr 设定qos，那么默认该提交的task的qos 为`ffrt_qos_default`。
   * 在submit 时，如果通过task_attr 设定qos 为`ffrt_qos_inherent`，表示将该提交的task 的qos 与当前task 的qos 相同，在FFRT task 外部提交的属性为`ffrt_qos_inherent` 的task，其qos 为`ffrt_qos_default`。
   * 其他情况下，该提交的task 的qos 被设定为指定的值。
@@ -635,7 +635,7 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 
 `in_deps`
 
-* 该参数是可选的
+* 该参数是可选的。
 * 该参数用于描述该任务的输入依赖，FFRT 通过数据的虚拟地址作为数据的Signature 来建立依赖。
 
 `out_deps`
@@ -655,7 +655,7 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 
 ##### 描述
 
-* **C API中的ffrt_task_handle_t需要用户调用`ffrt_task_handle_destroy`显式销毁**
+* **C API中的ffrt_task_handle_t需要用户调用`ffrt_task_handle_destroy`显式销毁。**
 * C API中的task_handle_t对象的置空和销毁由用户完成，对同一个ffrt_task_handle_t仅能调用一次。`ffrt_task_handle_destroy`，重复对同一个ffrt_task_handle_t调用`ffrt_task_handle_destroy`，其行为是未定义的。
 * 在`ffrt_task_handle_destroy`之后再对ffrt_task_handle_t进行访问，其行为是未定义的。
 
@@ -832,7 +832,7 @@ int ffrt_this_task_update_qos(ffrt_qos_t qos);
 * 该接口对当前task的qos调整会立即生效。
 * 如果新设定的qos与当前的qos不一致，则会block当前task的执行，再按照新的qos恢复执行。
 * 如果新设定的qos与当前的qos一致，则接口会立即返回0，不做任何处理。
-* **如果在非task内部调用该接口，则返回非0值，用户可以选择忽略或其他处理**
+* **如果在非task内部调用该接口，则返回非0值，用户可以选择忽略或其他处理。**
 
 ##### 样例
 
@@ -1620,7 +1620,7 @@ libffrt.z.so
 
 ### 建议3: Deadline机制
 
-* **必须用于具备周期/重复执行特征的处理流程**
+* **必须用于具备周期/重复执行特征的处理流程。**
 * 在有明确时间约束和性能关键的处理流程中使用，避免滥用。
 * 在相对大颗粒度的处理流程中使用，例如具有16.6ms时间约束的帧处理流程。
 
