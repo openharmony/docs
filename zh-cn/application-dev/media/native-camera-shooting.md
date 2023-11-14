@@ -1,4 +1,4 @@
-# 相机拍照指导(Native)
+# 拍照(Native)
 
 拍照是相机的最重要功能之一，拍照模块基于相机复杂的逻辑，为了保证用户拍出的照片质量，在中间步骤可以设置分辨率、闪光灯、焦距、照片质量及旋转角度等信息。
 
@@ -250,3 +250,8 @@
         OH_LOG_INFO(LOG_APP, "PhotoOutput errorCode = %{public}d", errorCode);
     }
   ```
+
+## 相关实例
+
+针对拍照，有以下相关实例可供参考：
+- [拍照(Native)](https://gitee.com/openharmony/multimedia_camera_framework/tree/master/frameworks/native/camera/test/ndktest/camera_ndk_demo)
