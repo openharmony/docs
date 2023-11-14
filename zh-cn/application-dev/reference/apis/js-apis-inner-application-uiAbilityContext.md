@@ -1,8 +1,6 @@
 # UIAbilityContext
 
-UIAbilityContext是UIAbility的上下文环境，继承自Context。
-
-UIAbilityContext模块提供允许访问特定UIAbility的资源的能力，包括对UIAbility的启动、停止的设置、获取caller通信接口、拉起弹窗请求用户授权等。
+UIAbilityContext是需要保存状态的[UIAbility](js-apis-app-ability-uiAbility.md)所对应的context，继承自[Context](js-apis-inner-application-context.md)，提供UIAbility的相关配置信息以及操作UIAbility和ServiceExtensionAbility的方法，如启动UIAbility，停止当前UIAbilityContext所属的UIAbility，启动、停止、连接、断开连接ServiceExtensionAbility等。
 
 > **说明：**
 >
