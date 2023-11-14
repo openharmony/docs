@@ -135,7 +135,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | END    | 视图中的最后一项将在列表末尾对齐。<br/>**说明：**<br/>当列表位移至顶端，需要将顶端的item完整显示，可能出现末尾不对齐的情况。 |
 ## CloseAllSwipeActions<sup>11+</sup>对象说明
 
-收起[EXPANDED](ts-container-listitem.md#swipeactionstate11+枚举说明)状态[ListItem](ts-container-listitem.md)回调事件集合，用于设置收起动画完成后回调事件。
+收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态[ListItem](ts-container-listitem.md)回调事件集合，用于设置收起动画完成后回调事件。
 
 **系统API：** 此接口为系统接口
 
@@ -244,15 +244,15 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 
 ### closeAllSwipeActions<sup>11+</sup>
 
-closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions<sup>11+</sup>对象说明)): void
+closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11对象说明)): void
 
-将[EXPANDED](ts-container-listitem.md#swipeactionstate11+枚举说明)状态的[ListItem](ts-container-listitem.md)收起，并设置回调事件。
+将[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)收起，并设置回调事件。
 
 **参数：**
 
-| 参数名  | 参数类型                                                     | 必填 | 参数描述                                                     |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [CloseSwipeActionOptions](#closeallswipeactions<sup>11+</sup>对象说明) | 否   | 收起[EXPANDED](ts-container-listitem.md#swipeactionstate11+枚举说明)状态的[ListItem](ts-container-listitem.md)的回调事件集合。 |
+| 参数名  | 参数类型                                                   | 必填 | 参数描述                                                     |
+| ------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [CloseSwipeActionOptions](#closeallswipeactions11对象说明) | 否   | 收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)的回调事件集合。 |
 
 > **说明：**
 >

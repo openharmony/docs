@@ -108,7 +108,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | 文本选择的位置发生变化时，触发该回调。<br />selectionStart：文本选择区域起始位置，文本框中文字的起始位置为0。<br />selectionEnd：文本选择区域结束位置。 |
 | onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | 文本内容滚动时，触发该回调。<br />totalOffsetX：文本在内容区的横坐标偏移。<br />totalOffsetY：文本在内容区的纵坐标偏移。 |
 
-## TextInputController<sup>8+</sup>
+## CaretOffset<sup>11+ </sup>对象说明TextInputController<sup>8+</sup>
 
 TextInput组件的控制器。
 
@@ -188,7 +188,7 @@ getTextContentLineCount(): number
 | number| 已编辑文本内容行数。 |
 ### getCaretOffset<sup>11+</sup>
 
-getCaretOffset(): [CaretOffset<sup>11+</sup>](#CareOffset11对象说明)
+getCaretOffset(): [CaretOffset](#caretoffset11对象说明)
 
 返回当前光标所在位置信息。
 
@@ -196,9 +196,9 @@ getCaretOffset(): [CaretOffset<sup>11+</sup>](#CareOffset11对象说明)
 
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
-| [CaretOffset<sup>11+</sup>](#CareOffset11对象说明)| 光标相对输入框的位置 |
+| [CaretOffset](#caretoffset11对象说明) | 光标相对输入框的位置 |
 
-## CareOffset<sup>11+ </sup>对象说明
+## CaretOffset<sup>11+ </sup>对象说明
 | 参数名   | 类型   | 描述              |
 | ----- | ------ | ----------------- |
 | index | number | 光标所在位置的索引值|

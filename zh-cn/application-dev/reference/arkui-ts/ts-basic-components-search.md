@@ -168,7 +168,7 @@ getTextContentLineCount(): number
 
 ### getCaretOffset<sup>11+</sup>
 
-getCaretOffset(): [CaretOffset<sup>11+</sup>](ts-basic-components-textinput.md#CareOffset11对象说明)
+getCaretOffset(): [CaretOffset](ts-basic-components-textinput.md#caretoffset11对象说明)
 
 返回当前光标所在位置信息。
 
@@ -176,7 +176,7 @@ getCaretOffset(): [CaretOffset<sup>11+</sup>](ts-basic-components-textinput.md#C
 
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
-| [CareOffset<sup>11+</sup>](ts-basic-components-textinput.md#CareOffset11对象说明) | 光标相对输入框的位置 |
+| [CaretOffset](ts-basic-components-textinput.md#caretoffset11对象说明) | 光标相对输入框的位置 |
 
 ##  示例
 
