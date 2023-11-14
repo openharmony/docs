@@ -34,7 +34,7 @@
 | [OH_NativeImage](#oh_nativeimage) | 提供OH_NativeImage结构体声明 |
 | [OHNativeWindow](#ohnativewindow) | typedef struct NativeWindow<br/>提供对NativeWindow的访问功能 |
 | [OH_OnFrameAvailable](#oh_onframeavailable) | 有buffer可获取时触发的回调函数 |
-| [OH_OnFrameAvailableListener](#oh_onframeavailablelistener) | 一个OH_NativeImage的监听者，通过[OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener)r接口注册， 该监听结构体，当有buffer可获取时，将触发回调给用户 |
+| [OH_OnFrameAvailableListener](#oh_onframeavailablelistener) | 一个OH_NativeImage的监听者，通过[OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener)接口注册， 该监听结构体，当有buffer可获取时，将触发回调给用户 |
 
 
 ### 函数
@@ -99,7 +99,7 @@ typedef struct OH_OnFrameAvailableListener OH_OnFrameAvailableListener
 
 **描述**
 
-一个OH_NativeImage的监听者，通过[OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener)r接口注册， 该监听结构体，当有buffer可获取时，将触发回调给用户
+一个OH_NativeImage的监听者，通过[OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener)接口注册， 该监听结构体，当有buffer可获取时，将触发回调给用户
 
 **起始版本：** 11
 

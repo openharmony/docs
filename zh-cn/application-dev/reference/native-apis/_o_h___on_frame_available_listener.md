@@ -18,7 +18,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [context](#context) | 用户自定义的上下文信息，会在回调触发时返回给用户 |
-| [onFrameAvailable](#onframeavailable) | 新帧可用的回调函数 |
+| [onFrameAvailable](#onframeavailable) | 有buffer可获取时触发的回调函数 |
 
 
 ## 结构体成员变量说明
@@ -43,4 +43,4 @@ OH_OnFrameAvailable OH_OnFrameAvailableListener::onFrameAvailable
 
 **描述**
 
-新帧可用的回调函数
+有buffer可获取时触发的回调函数

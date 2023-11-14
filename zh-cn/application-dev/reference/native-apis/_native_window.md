@@ -161,6 +161,8 @@ enum OHHDRMetadataKey
 
 **起始版本：** 9
 
+**弃用：** 从API version 10开始废弃，不再提供替代接口。
+
 | 枚举值 | 描述 |
 | -------- | -------- |
 | OH_METAKEY_RED_PRIMARY_X | 红基色X坐标 |
@@ -190,6 +192,8 @@ enum OHScalingMode
 缩放模式 Scaling Mode
 
 **起始版本：** 9
+
+**弃用：** 从API version 10开始废弃，不再提供替代接口。
 
 | 枚举值 | 描述 |
 | -------- | -------- |
@@ -580,6 +584,10 @@ int32_t OH_NativeWindow_NativeWindowSetMetaData (OHNativeWindow * window, uint32
 
 返回值为0表示执行成功
 
+**弃用:**
+
+从API version 10开始废弃，不再提供替代接口
+
 
 ### OH_NativeWindow_NativeWindowSetMetaDataSet()
 
@@ -609,6 +617,10 @@ int32_t OH_NativeWindow_NativeWindowSetMetaDataSet (OHNativeWindow * window, uin
 
 返回值为0表示执行成功
 
+**弃用:**
+
+从API version 10开始废弃，不再提供替代接口
+
 
 ### OH_NativeWindow_NativeWindowSetScalingMode()
 
@@ -636,6 +648,10 @@ int32_t OH_NativeWindow_NativeWindowSetScalingMode (OHNativeWindow * window, uin
 
 返回值为0表示执行成功
 
+**弃用:**
+
+从API version 10开始废弃，不再提供替代接口
+
 
 ### OH_NativeWindow_NativeWindowSetTunnelHandle()
 
@@ -661,3 +677,7 @@ int32_t OH_NativeWindow_NativeWindowSetTunnelHandle (OHNativeWindow * window, co
 **返回：**
 
 返回值为0表示执行成功
+
+**弃用:**
+
+从API version 10开始废弃，不再提供替代接口
