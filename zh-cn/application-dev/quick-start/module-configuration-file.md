@@ -82,11 +82,11 @@ module.json5配置文件包含以下标签。
 | process | 标识当前Module的进程名，取值为长度不超过31字节的字符串。如果在HAP标签下配置了process，则该应用的所有UIAbility、DataShareExtensionAbility、ServiceExtensionAbility都运行在该进程中。<br/>**说明：**<br/>仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 该标签可缺省，缺省为app.json5文件下app标签下的bundleName。 |
 | mainElement | 标识当前Module的入口UIAbility名称或者ExtensionAbility名称，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [deviceTypes](#devicetypes标签) | 标识当前Module可以运行在哪类设备上。 | 字符串数组 | 该标签不可缺省，可以为空值。 |
-| deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，即该Module对应的HAP是否跟随应用一起安装。<br/>-&nbsp;true：主动安装时安装。<br/>-&nbsp;false：主动安装时不安装。 | 布尔值 | 该标签不可缺省。 |
+| deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，即该Module对应的HAP是否跟随应用一起安装。仅支持原子化服务。<br/>-&nbsp;true：主动安装时安装。<br/>-&nbsp;false：主动安装时不安装。 | 布尔值 | 该标签不可缺省。 |
 | installationFree | 标识当前Module是否支持免安装特性。<br/>-&nbsp;true：表示支持免安装特性，且符合免安装约束。<br/>-&nbsp;false：表示不支持免安装特性。<br/>**说明：**<br/>-&nbsp;当应用的entry类型Module的该字段配置为true时，该应用的feature类型的该字段也需要配置为true。<br/>-&nbsp;当应用的entry类型Module的该字段配置为false时，该应用的feature类型的该字段可根据业务需求配置true或false。 | 布尔值 | 该标签不可缺省。 |
 | virtualMachine | 标识当前Module运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。如果目标虚拟机类型为ArkTS引擎，则其值为“ark+版本号”。 | 字符串 | 该标签由IDE构建HAP的时候自动插入。 |
 | [pages](#pages标签) | 标识当前Module的profile资源，用于列举每个页面信息，取值为长度不超过255字节的字符串。 | 字符串 | 在有UIAbility的场景下，该标签不可缺省。 |
-| [metadata](#metadata标签) | 标识当前Module的自定义元信息，只对当前Module、UIAbility、ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| [metadata](#metadata标签) | 标识当前Module的自定义元信息，可用于配置[shortcuts](#shortcuts标签)等内容。只对当前Module、UIAbility、ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [abilities](#abilities标签) | 标识当前Module中UIAbility的配置信息，只对当前UIAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [extensionAbilities](#extensionabilities标签) | 标识当前Module中ExtensionAbility的配置信息，只对当前ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [requestPermissions](#requestpermissions标签) | 标识当前应用运行时需向系统申请的权限集合。 | 对象 | 该标签可缺省，缺省值为空。 |
@@ -541,7 +541,7 @@ metadata中指定shortcut信息，其中：
 
 ## distributionFilter标签
 
-该标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。可配置的属性包括屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码四个维度。在分发应用包时，通过deviceType与这四个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下，并在metadata的resource字段中引用。
+该标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。可配置的属性包括屏幕形状、窗口分辨率、屏幕像素密度、设备所在国家与地区四个维度。在分发应用包时，通过deviceType与这四个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。并在metadata的resource字段中引用。
 
 该字段从API10及以后版本开始生效，API9及以前版本使用distroFilter字段。
 
@@ -550,9 +550,9 @@ metadata中指定shortcut信息，其中：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | [screenShape](#screenshape标签) | 标识屏幕形状的支持策略。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| [screenWindow](#screenwindow标签) | 标识应用运行时窗口的分辨率支持策略。<br/>**说明：**<br/>该字段仅支持对轻量级智能穿戴设备进行配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| [screenDensity](#screendensity标签) | 标识屏幕的像素密度（dpi：Dot&nbsp;Per&nbsp;Inch）。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| [countryCode](#countrycode标签) | 表示应用需要分发的国家地区码，具体值以ISO-3166-1标准为准。支持多个国家和地区枚举定义。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| [screenWindow](#screenwindow标签) | 标识应用运行时的窗口分辨率的支持策略。<br/>**说明：**<br/>该字段仅支持对轻量级智能穿戴设备进行配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| [screenDensity](#screendensity标签) | 标识屏幕的像素密度（dpi：Dot&nbsp;Per&nbsp;Inch）的支持策略。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| [countryCode](#countrycode标签) | 标识国家与地区的支持策略，取值参考ISO-3166-1标准。支持多个国家和地区枚举定义。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 
 ### screenShape标签
 
@@ -682,26 +682,6 @@ testRunner标签示例：
 | -------- | -------- | -------- | -------- |
 | preloads | 标识原子化服务中预加载列表。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 
-atomicService标签示例：
-
-
-```json
-{
-  "module": {
-    "atomicService": {
-      "preloads":[
-        {
-          "moduleName":"feature"
-        }
-      ]
-    }
-  }
-}
-```
-
-## preloads标签
-
-此标签标识原子化服务中预加载列表。
 
 **表19** preloads标签说明
 
@@ -709,7 +689,8 @@ atomicService标签示例：
 | -------- | -------- | -------- | -------- |
 | moduleName | 标识原子化服务中当前模块被加载时，需预加载的模块名。 | 字符串 | 该标签不可缺省。 |
 
-preloads标签示例：
+
+atomicService标签示例：
 
 ```json
 {
