@@ -78,6 +78,8 @@
 
 ### 接口说明
 
+  接口定义路径： "/base/startup/appspawn/interfaces/innerkits/include/client_socket.h"，接口说明参见表2。
+
   **表 2**  接口说明
   | 接口名 | 说明 |
   | -------- | -------- |
