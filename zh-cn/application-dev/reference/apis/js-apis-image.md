@@ -1456,7 +1456,7 @@ createImageSource(rawFileDescriptor: resourceManager.RawFileDescriptor, options:
 
 | 参数名 | 类型                             | 必填 | 说明                                 |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
-| rawFileDescriptor | [resourceManager.RawFileDescriptor](#js-apis-resource-manager.md#rawfiledescriptor8) | 是 | 图像资源文件的RawFileDescriptor。 |
+| rawFileDescriptor | [resourceManager.RawFileDescriptor](js-apis-resource-manager.md#rawfiledescriptor8) | 是 | 图像资源文件的RawFileDescriptor。 |
 | options | [SourceOptions](#sourceoptions9) | 是 | 图片属性，包括图片序号与默认属性值。 |
 
 **返回值：**
@@ -1474,17 +1474,6 @@ Stage模型
 const context : Context = getContext(this);
 // 获取resourceManager资源管理器
 const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
-const rawFileDescriptor : resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
-const imageSourceApi : image.ImageSource = image.createImageSource(rawFileDescriptor);
-```
-
-FA模型
-
-```ts
-// FA模型
-// 导入resourceManager资源管理器
-import resourceManager from '@ohos.resourceManager';
-const resourceMgr = await resourceManager.getResourceManager();
 const rawFileDescriptor : resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
 const imageSourceApi : image.ImageSource = image.createImageSource(rawFileDescriptor);
 ```
