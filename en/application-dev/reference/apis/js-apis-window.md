@@ -1638,7 +1638,9 @@ The main window and subwindow have the following size limits: [320, 2560] in wid
 
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
-The new width and height you set must meet the limits.
+The window width and height you set must meet the limits. The rules are as follows:
+- If the window width or height you set is less than the minimum width or height limit, then the minimum width or height limit takes effect.
+- If the window width or height you set is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
 
 This operation is not supported in a window in full-screen mode.
 
@@ -1687,7 +1689,9 @@ The main window and subwindow have the following size limits: [320, 2560] in wid
 
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
-The new width and height you set must meet the limits.
+The window width and height you set must meet the limits. The rules are as follows:
+- If the window width or height you set is less than the minimum width or height limit, then the minimum width or height limit takes effect.
+- If the window width or height you set is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
 
 This operation is not supported in a window in full-screen mode.
 
@@ -4534,7 +4538,9 @@ The main window and subwindow have the following size limits: [320, 2560] in wid
 
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
-The new width and height you set must meet the limits.
+The window width and height you set must meet the limits. The rules are as follows:
+- If the window width or height you set is less than the minimum width or height limit, then the minimum width or height limit takes effect.
+- If the window width or height you set is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
 
 This operation is not supported in a window in full-screen mode.
 
@@ -4574,7 +4580,9 @@ The main window and subwindow have the following size limits: [320, 2560] in wid
 
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
-The new width and height you set must meet the limits.
+The window width and height you set must meet the limits. The rules are as follows:
+- If the window width or height you set is less than the minimum width or height limit, then the minimum width or height limit takes effect.
+- If the window width or height you set is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
 
 This operation is not supported in a window in full-screen mode.
 

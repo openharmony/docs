@@ -359,7 +359,7 @@ A constructor used to create a **TextDecoder** object.
 
 ### create<sup>9+</sup>
 
-create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder;
+create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
 
 Creates a **TextDecoder** object. It provides the same function as the deprecated argument constructor.
 
@@ -683,7 +683,7 @@ Encodes the input content.
 
 ## RationalNumber<sup>8+</sup>
 
-Provides APIs to compare rational numbers and obtain numerators and denominators. For example, the **toString()** API can be used to convert a rational number into a strings.
+Provides APIs to compare rational numbers and obtain numerators and denominators. For example, the **toString()** API can be used to convert a rational number into a string.
 
 ### constructor<sup>9+</sup>
 
@@ -1622,7 +1622,7 @@ The values of the **ScopeComparable** type are used to implement the **compareTo
 
 ### compareTo<sup>8+</sup>
 
-compareTo(other: ScopeComparable): boolean;
+compareTo(other: ScopeComparable): boolean
 
 Compares two values and returns a Boolean value.
 
@@ -1744,7 +1744,7 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 
 | Type                          | Description                          |
 | ------------------------------ | ------------------------------ |
-| [ScopeHelper9+](#scopehelper9) | Intersection of this **Scope** and the given **Scope**.|
+| [ScopeHelper](#scopehelper9) | Intersection of this **Scope** and the given **Scope**.|
 
 **Example**
 
@@ -3430,7 +3430,7 @@ Changes the **LruBuffer** capacity. If the new capacity is less than or equal to
 
   ```js
   let pro = new util.LruBuffer();
-  let result = pro.updateCapacity(100);
+  pro.updateCapacity(100);
   ```
 
 ### toString<sup>(deprecated)</sup>
