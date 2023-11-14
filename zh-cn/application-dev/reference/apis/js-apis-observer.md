@@ -542,7 +542,7 @@ on\(type: 'cellularDataConnectionStateChange', callback: Callback\<DataConnectSt
 | 参数名   | 类型                               | 必填 | 说明                                                                 |
 | -------- | --------------------------------- | ---- | -------------------------------------------------------------------- |
 | type     | string                            | 是   | 蜂窝数据链路连接状态事件，参数固定为'cellularDataConnectionStateChange'。|
-| callback | Callback\<[DataConnectStateInfo](#DataConnectStateInfo11)\>  | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
+| callback | Callback\<[DataConnectStateInfo](#dataconnectstateinfo11)\>  | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **错误码：**
 
@@ -582,7 +582,7 @@ on\(type: 'cellularDataConnectionStateChange', options: ObserverOptions, callbac
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件，参数固定为'cellularDataConnectionStateChange'。|
 | options  | [ObserverOptions](#observeroptions11)                        | 是   | 监听的选项。slotId:卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2               |
-| callback | Callback\<[DataConnectStateInfo](#DataConnectStateInfo11)\> | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
+| callback | Callback\<[DataConnectStateInfo](#dataconnectstateinfo11)\> | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **错误码：**
 
@@ -628,7 +628,7 @@ off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<DataConnec
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件，参数固定为'cellularDataConnectionStateChange'。|
-| callback | Callback\<[DataConnectStateInfo](#DataConnectStateInfo11)\> | 否   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
+| callback | Callback\<[DataConnectStateInfo](#dataconnectstateinfo11)\> | 否   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **错误码：**
 
