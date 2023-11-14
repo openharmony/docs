@@ -213,10 +213,10 @@
       .height(this.FULL_HEIGHT_PERCENT)
       .onClick(() => {
         postCardAction(this, {
-          "action": this.ACTION_TYPE,
-          "abilityName": this.ABILITY_NAME,
-          "params": {
-            "message": this.MESSAGE
+          action: this.ACTION_TYPE,
+          abilityName: this.ABILITY_NAME,
+          params: {
+            message: this.MESSAGE
           }
         })
       })
