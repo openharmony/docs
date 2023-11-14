@@ -52,7 +52,7 @@ Advanced Notification Manager（通知管理工具，简称anm）是实现通知
 
 * **介绍**
 
-  设置通知参数。
+  设置通知参数（Setting相关命令只在eng版本支持）。
 
 * **用法**
 
