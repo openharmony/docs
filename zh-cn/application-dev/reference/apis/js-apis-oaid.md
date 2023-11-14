@@ -30,7 +30,7 @@ getOAID(): Promise&lt;string&gt;
 
 | 类型 | 说明 | 
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise对象。返回开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）。 | 
+| Promise&lt;string&gt; | Promise对象。返回开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）。成功返回OAID，失败返回00000000-0000-0000-0000-000000000000。| 
 
 **错误码：**
 
@@ -74,7 +74,7 @@ getOAID(callback: AsyncCallback&lt;string&gt;): void
 
 | **参数**名 | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | 是 | 异步获取开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）的回调。成功返回OAID，失败返回全0字符串 | 
+| callback | AsyncCallback&lt;string&gt; | 是 | 异步获取开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）的回调。成功返回OAID，失败返回00000000-0000-0000-0000-000000000000。| 
 
 
 **错误码：**
