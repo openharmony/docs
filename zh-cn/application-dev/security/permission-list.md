@@ -3393,3 +3393,15 @@
 **ACL使能**: TRUE
 
 **起始版本**: 11
+
+## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
+
+允许系统应用打开高级安全模式配置界面。
+
+**授权级别**: system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
