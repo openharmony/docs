@@ -239,7 +239,9 @@ int main()
     ```
 
 2. 配置屏幕录制参数。
-      创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数。
+    创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数。
+    其中，录屏存文件仅仅能够在OH_AVScreenCapture_Init时期设置是否录制麦克风音频，在录制的过程中，无法控制麦克风的开启与关闭。
+    同时，录屏存文件无需设置回调函数。
 
     ```c++
     //录屏时获取麦克风或者内录，二者选择其一，如果都设置了，优先取内录的参数设置，如果内录参数设置失败，取麦克风的参数设置
@@ -286,27 +288,19 @@ int main()
     OH_AVScreenCapture_Init(capture, config);
     ```
 
-3. 设置麦克风开关。
-     
-    录屏存文件仅仅能够在OH_AVScreenCapture_Init时期设置是否录制麦克风音频，在录制的过程中，无法控制麦克风的开启与关闭。
-
-4. 回调函数的设置。
-     
-    录屏存文件无需设置回调函数。
-
-5. 调用StartScreenCapture方法开始进行屏幕录制。
+3. 调用StartScreenCapture方法开始进行屏幕录制。
      
     ```c++
     OH_AVScreenCapture_StartScreenCapture(capture);
     ```
 
-6. 调用StopScreenCapture()方法停止录制。
+4. 调用StopScreenCapture()方法停止录制。
      
     ```c++
     OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
-7. 调用release()方法销毁实例，释放资源。
+5. 调用release()方法销毁实例，释放资源。
      
     ```c++
     OH_AVScreenCapture_Release(capture);
