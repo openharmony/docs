@@ -62,7 +62,7 @@ interface DataChangeListener {
 | ------------------------------------------------------------ | -------------------------------------- | ------------------------------------------------------------ |
 | onDataReloaded():&nbsp;void                                  | -                                      | 通知组件重新加载所有数据。<br/>键值没有变化的数据项会使用原先的子组件，键值发生变化的会重建子组件。 |
 | onDataAdd(index:&nbsp;number):&nbsp;void<sup>8+</sup>        | number                                 | 通知组件index的位置有数据添加。<br/>index：数据添加位置的索引值。 |
-| onDataMove(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void<sup>8+</sup> | from:&nbsp;number,<br/>to:&nbsp;number | 通知组件数据有移动。<br/>from:&nbsp;数据移动起始位置，to:&nbsp;数据移动目标位置。<br/>**说明：**<br/>数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。 |
+| onDataMove(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void<sup>8+</sup> | from:&nbsp;number,<br/>to:&nbsp;number | 通知组件数据有移动。<br/>from:&nbsp;数据移动起始位置，to:&nbsp;数据移动目标位置。<br/>将from和to位置的数据进行交换。<br/>**说明：**<br/>数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。 |
 | onDataDelete(index: number):void<sup>8+</sup>                | number                                 | 通知组件删除index位置的数据并刷新LazyForEach的展示内容。<br/>index：数据删除位置的索引值。<br/>**说明：** <br/>需要保证dataSource中的对应数据已经在调用onDataDelete前删除，否则页面渲染将出现未定义的行为。 |
 | onDataChange(index:&nbsp;number):&nbsp;void<sup>8+</sup>     | number                                 | 通知组件index的位置有数据有变化。<br/>index：数据变化位置的索引值。 |
 | onDataAdded(index:&nbsp;number):void<sup>(deprecated)</sup>  | number                                 | 通知组件index的位置有数据添加。<br/>从API 8开始，建议使用onDataAdd。<br/>index：数据添加位置的索引值。 |
@@ -93,7 +93,7 @@ interface DataChangeListener {
 
 ### 首次渲染
 
-#### 生成不同键值
+- ### 生成不同键值
 
 在LazyForEach首次渲染时，会根据上述键值生成规则为数据源的每个数组项生成唯一键值，并创建相应的组件。
 
@@ -221,7 +221,7 @@ struct MyComponent {
 **图1**  LazyForEach正常首次渲染  
 ![LazyForEach-Render-DifferentKey](./figures/LazyForEach-Render-DifferentKey.gif)
 
-#### 键值相同时错误渲染
+- ### 键值相同时错误渲染
 
 当不同数据项生成的键值相同时，框架的行为是不可预测的。例如，在以下代码中，`LazyForEach`渲染的数据项键值均相同，在滑动过程中，`LazyForEach`会对划入划出当前页面的子组件进行预加载，而新建的子组件和销毁的原子组件具有相同的键值，框架可能存在取用缓存错误的情况，导致子组件渲染有问题。
 
@@ -343,7 +343,7 @@ struct MyComponent {
 
 当`LazyForEach`数据源发生变化，需要再次渲染时，开发者应根据数据源的变化情况调用`listener`对应的接口，通知`LazyForEach`做相应的更新，各使用场景如下。
 
-#### 添加数据
+- ### 添加数据
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -465,7 +465,7 @@ struct MyComponent {
 **图3**  LazyForEach添加数据  
 ![LazyForEach-Add-Data](./figures/LazyForEach-Add-Data.gif)
 
-#### 删除数据
+- ### 删除数据
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -592,7 +592,7 @@ struct MyComponent {
 **图4**  LazyForEach删除数据  
 ![LazyForEach-Delete-Data](./figures/LazyForEach-Delete-Data.gif)
 
-#### 交换数据
+- ### 交换数据
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -731,7 +731,7 @@ struct MyComponent {
 **图5**  LazyForEach交换数据  
 ![LazyForEach-Exchange-Data](./figures/LazyForEach-Exchange-Data.gif)
 
-#### 改变单个数据
+- ### 改变单个数据
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -864,7 +864,7 @@ struct MyComponent {
 **图6**  LazyForEach改变单个数据  
 ![LazyForEach-Change-SingleData](./figures/LazyForEach-Change-SingleData.gif)
 
-#### 改变多个数据
+- ### 改变多个数据
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -1006,7 +1006,7 @@ struct MyComponent {
 **图7**  LazyForEach改变多个数据  
 ![LazyForEach-Reload-Data](./figures/LazyForEach-Reload-Data.gif)
 
-#### 改变数据子属性
+- ### 改变数据子属性
 
 若仅靠`LazyForEach`的刷新机制，当`item`变化时若想更新子组件，需要将原来的子组件全部销毁再重新构建，在子组件结构较为复杂的情况下，靠改变键值去刷新渲染性能较低。因此框架提供了`@Observed`与@`ObjectLink`机制进行深度观测，可以做到仅刷新使用了该属性的组件，提高渲染性能。开发者可根据其自身业务特点选择使用哪种刷新方式。
 
@@ -1146,7 +1146,7 @@ struct ChildComponent {
 
 ## 常见使用问题
 
-- #### 案例一：渲染结果非预期
+- ### 渲染结果非预期
 
   ```ts
   class BasicDataSource implements IDataSource {
@@ -1402,7 +1402,7 @@ struct ChildComponent {
   **图10**  修复LazyForEach删除数据非预期  
   ![LazyForEach-Render-Not-Expected-Repair](./figures/LazyForEach-Render-Not-Expected-Repair.gif)
 
-- #### 案例二：子组件内有Image，未更新图片但是图片会闪烁
+- ### 重渲染时图片闪烁
 
   ```ts
   class BasicDataSource implements IDataSource {
@@ -1677,7 +1677,7 @@ struct ChildComponent {
   **图12**  修复LazyForEach仅改变文字但是图片闪烁问题  
   ![LazyForEach-Image-Flush-Repair](./figures/LazyForEach-Image-Flush-Repair.gif)
 
-- #### 案例三：使用@ObjectLink成员变量其属性变化后UI未更新
+- ### @ObjectLink属性变化UI未更新
 
   ```ts
   class BasicDataSource implements IDataSource {
