@@ -34,13 +34,14 @@
     }
    ```
 
-   在应用启动时触发动态授权弹框，向用户请求授权。示例代码如下所示：
+   在应用启动时触发动态授权弹框，向用户请求授权。其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md)。示例代码如下所示：
    ```
    import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
    import hilog from '@ohos.hilog';
+   import common from '@ohos.app.ability.common';
    
-   private requestOAIDTrackingConsentPermissions2(context: common.Context): void {
+   function requestOAIDTrackingConsentPermissions(context: common.Context): void {
      // 进入页面时触发动态授权弹框，向用户请求授权广告跟踪权限
      const atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       try {
@@ -48,13 +49,13 @@
           if (data.authResults[0] == 0) {
             hilog.info(0x0000, 'testTag', '%{public}s', 'request permission success');
           } else {
-            hilog.info(0x0000, 'testTag', '%{public}s', `user rejected`);
+            hilog.info(0x0000, 'testTag', '%{public}s', 'user rejected');
           }
         }).catch((err: BusinessError) => {
-          hilog.error(0x0000, 'testTag', '%{public}s', `request permission failed, error message: ${err.message}`);
+          hilog.error(0x0000, 'testTag', '%{public}s', `request permission failed, error: ${err.code} ${err.message}`);
         })
       } catch(err) {
-        hilog.error(0x0000, 'testTag', '%{public}s', `catch err->${JSON.stringify(err)}`);
+        hilog.error(0x0000, 'testTag', '%{public}s', `catch err->${err.code}, ${err.message}`);
       }
     }
    ```
@@ -66,16 +67,16 @@
    import { BusinessError } from '@ohos.base';
     
    try {
-     identifier.getOAID((err: BusinessError, data) => {
+     identifier.getOAID((err: BusinessError, data: string) => {
        if (err.code) {
-         hilog.info(0x0000, 'testTag', '%{public}s', `get oaid failed, message: ${err.message}`);
+         hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
        } else {
          const oaid: string = data;
-         hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success`);
+         hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success, oaid: ${oaid}`);
        }
       });
    } catch (err) {
-     hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', err.code, err.message);
+     hilog.error(0x0000, 'testTag', '%{public}s', `get oaid catch error: ${err.code} ${err.message}`);
    }
    ```
    
@@ -88,6 +89,6 @@
    try {
      identifier.resetOAID();
    } catch (err) {
-     hilog.error(0x0000, 'testTag', 'reset oaid catch error: %{public}d %{public}s', err.code, err.message);
+     hilog.error(0x0000, 'testTag', '%{public}s', `reset oaid catch error: ${err.code} ${err.message}`);
    }
    ```
