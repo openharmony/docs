@@ -46,15 +46,15 @@ Called when the system memory level changes.
 **Example**
     
 ```ts
-import UIAbility from '@ohos.app.ability.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
 
-let callbackId;
+let callbackId: number;
 
 export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
-        globalThis.applicationContext = this.context.getApplicationContext();
-        let environmentCallback  =  {
+        let environmentCallback: EnvironmentCallback  =  {
             onConfigurationUpdated(config){
                 console.log(`onConfigurationUpdated config: ${JSON.stringify(config)}`);
             },
@@ -64,14 +64,14 @@ export default class MyAbility extends UIAbility {
             }
         };
         // 1. Obtain an applicationContext object.
-        let applicationContext = globalThis.applicationContext;
+        let applicationContext = this.context.getApplicationContext();
         // 2. Register a listener for the environment changes through the applicationContext object.
-        callbackId = applicationContext.registerEnvironmentCallback(environmentCallback);
-        console.log('registerEnvironmentCallback number: ${JSON.stringify(callbackId)}');
+        callbackId = applicationContext.on('environment', environmentCallback);
+        console.log(`registerEnvironmentCallback number: ${JSON.stringify(callbackId)}`);
     }
     onDestroy() {
-        let applicationContext = globalThis.applicationContext;
-        applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.off('environment', callbackId, (error, data) => {
             if (error && error.code !== 0) {
                 console.error(`unregisterEnvironmentCallback fail, error: ${JSON.stringify(error)}`);
             } else {
