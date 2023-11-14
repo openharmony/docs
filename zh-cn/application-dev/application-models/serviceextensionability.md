@@ -57,7 +57,7 @@
 
 - **替换Full SDK**：ServiceExtensionAbility相关接口都被标记为System-API，默认对开发者隐藏，因此需要手动从镜像站点获取Full SDK，并在DevEco Studio中替换，具体操作可参考[替换指南](../faqs/full-sdk-switch-guide.md)。
 
-- **申请AllowAppUsePrivilegeExtension特权**：只有具有AllowAppUsePrivilegeExtension特权的应用才允许开发ServiceExtensionAbility，具体申请方式可参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
+- **申请AllowAppUsePrivilegeExtension特权**：只有具有AllowAppUsePrivilegeExtension特权的应用才允许开发ServiceExtensionAbility，具体申请方式可参考应用特权配置指南。
 
 ### 定义IDL接口
 
