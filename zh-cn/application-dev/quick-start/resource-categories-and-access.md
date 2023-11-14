@@ -6,29 +6,11 @@
 
 - 系统资源：开发者直接使用系统预置的资源定义（即[分层参数](../key-features/multi-device-app-dev/OpenHarmony_系统资源分层设计表_V1.0.xlsm)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）。
 
-## 创建资源文件
+## 资源分类
 
-在resources目录下，可按照限定词目录和资源组目录的说明创建子目录和目录内的文件。
+应用开发中使用的各类资源文件，需要放入特定子目录中存储管理。resources目录包括三大类目录，一类为base目录，一类为限定词目录，还有一类为rawfile目录。stage模型多工程情况下共有的资源文件放到AppScope下的resources目录。
 
-同时，DevEco Studio也提供了创建资源目录和资源文件的界面。
-
-- 创建资源目录及资源文件
-
-  在resources目录右键菜单选择“New > Resource File”，此时可同时创建目录和文件。文件默认创建在base目录的对应资源组下。如果选择了限定词，则会按照命名规范自动生成限定词+资源组目录，并将文件创建在目录中。图中Avaliable qualifiers为供选择的限定词目录，通过右边的小箭头可添加或者删除。File name为需要创建的文件名，Resource type为资源组类型，默认是element。Root Element为资源类型。创建的目录名自动生成，格式固定为“限定词.资源组”，例如：创建一个限定词为dark的element目录，自动生成的目录名称为“dark.element”。
-
-  ![create-resource-file-1](figures/create-resource-file-1.png)
-
-- 创建资源目录
-
-  在resources目录右键菜单选择“New > Resource Directory”，此时可创建资源目录。资源目录创建的是base目录，也可根据需求创建其它限定词目录。确定限定词后，选择资源组类型，当前资源组类型支持Element、Media、Profile三种，创建后自动生成目录名称。
-
-  ![create-resource-file-2](figures/create-resource-file-2.png)
-
-- 创建资源文件
-
-  在资源目录的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。例如，在element目录下可新建Element Resource File。
-
-  ![create-resource-file-3](figures/create-resource-file-3.png)
+base目录默认存在，而限定词目录需要开发者自行创建。应用使用某资源时，系统会根据当前设备状态优先从相匹配的限定词目录中寻找该资源。只有当resources目录中没有与设备状态匹配的限定词目录，或者在限定词目录中找不到该资源时，才会去base目录中查找。rawfile是原始文件目录，不会根据设备状态去匹配不同的资源。
 
 资源目录示例：
 
@@ -65,11 +47,6 @@ resources
 |---rawfile // 其他类型文件，原始文件形式保存，不会被集成到resources.index文件中。文件名可自定义。
 ```
 
-## 资源分类
-
-应用开发中使用的各类资源文件，需要放入特定子目录中存储管理。resources目录包括三大类目录，一类为base目录，一类为限定词目录，还有一类为rawfile目录。stage模型多工程情况下共有的资源文件放到AppScope下的resources目录。
-
-base目录默认存在，而限定词目录需要开发者自行创建。应用使用某资源时，系统会根据当前设备状态优先从相匹配的限定词目录中寻找该资源。只有当resources目录中没有与设备状态匹配的限定词目录，或者在限定词目录中找不到该资源时，才会去base目录中查找。rawfile是原始文件目录，不会根据设备状态去匹配不同的资源。
 
 **表1** resources目录分类
 
@@ -226,6 +203,30 @@ plural.json文件的内容如下：
     ]
 }
 ```
+
+## 创建资源文件
+
+在resources目录下，可按照限定词目录和资源组目录的说明创建子目录和目录内的文件。
+
+同时，DevEco Studio也提供了创建资源目录和资源文件的界面。
+
+- 创建资源目录及资源文件
+
+  在resources目录右键菜单选择“New > Resource File”，此时可同时创建目录和文件。文件默认创建在base目录的对应资源组下。如果选择了限定词，则会按照命名规范自动生成限定词+资源组目录，并将文件创建在目录中。图中Avaliable qualifiers为供选择的限定词目录，通过右边的小箭头可添加或者删除。File name为需要创建的文件名，Resource type为资源组类型，默认是element。Root Element为资源类型。创建的目录名自动生成，格式固定为“限定词.资源组”，例如：创建一个限定词为dark的element目录，自动生成的目录名称为“dark.element”。
+
+  ![create-resource-file-1](figures/create-resource-file-1.png)
+
+- 创建资源目录
+
+  在resources目录右键菜单选择“New > Resource Directory”，此时可创建资源目录。资源目录创建的是base目录，也可根据需求创建其它限定词目录。确定限定词后，选择资源组类型，当前资源组类型支持Element、Media、Profile三种，创建后自动生成目录名称。
+
+  ![create-resource-file-2](figures/create-resource-file-2.png)
+
+- 创建资源文件
+
+  在资源目录的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。例如，在element目录下可新建Element Resource File。
+
+  ![create-resource-file-3](figures/create-resource-file-3.png)
 
 ## 资源访问
 
