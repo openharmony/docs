@@ -3095,6 +3095,21 @@ typedef struct Camera_CaptureEndInfo Camera_CaptureEndInfo;
 | captureId  | int32_t | 是      | 捕获id。  |
 | frameCount | int64_t | 是      | 帧数。 |
 
+### Camera_FrameShutterInfo
+
+```
+typedef struct Camera_FrameShutterInfo Camera_FrameShutterInfo;
+```
+
+帧快门回调信息。
+
+**系统能力**: SystemCapability.Multimedia.Camera.Core
+
+| 名称     | 类型   | 强制性| 描述  |
+| ---------- | ------  | ----     | ---------    |
+| captureId  | int32_t | 是      | 捕获id。  |
+| timestamp | int64_t | 是      | 帧的时间戳。 |
+
 ### Camera_VideoOutput
 
 实现视频录制会话中使用的输出信息。

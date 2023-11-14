@@ -125,5 +125,5 @@
 
 ## 相关实例
 
-针对预览，有以下相关实例可供参考：
+针对预览(Native)，有以下相关实例可供参考：
 - [预览(Native)](https://gitee.com/openharmony/multimedia_camera_framework/tree/master/frameworks/native/camera/test/ndktest/camera_ndk_demo)
