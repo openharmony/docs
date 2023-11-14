@@ -667,6 +667,8 @@ workerInstance.removeAllListener();
 
 ## WorkerEventTarget<sup>9+</sup>
 
+Processes worker listening events.
+
 ### addEventListener<sup>9+</sup>
 
 addEventListener(type: string, listener: WorkerEventListener): void
@@ -1489,7 +1491,7 @@ Defines the event handler to be called when the host thread receives a message s
 
 | Name| Type                              | Mandatory| Description                  |
 | ------ | ---------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent\<T>](#messageeventt) | Yes  | Message received.|
+| event  | [MessageEvent](#messageeventt) | Yes  | Message received.|
 
 **Example**
 
@@ -1518,7 +1520,7 @@ Defines the event handler to be called when the worker thread receives a message
 
 | Name| Type                              | Mandatory| Description      |
 | ------ | ---------------------------------- | ---- | ---------- |
-| event  | [MessageEvent\<T>](#messageeventt) | Yes  | Error data.|
+| event  | [MessageEvent](#messageeventt) | Yes  | Error data.|
 
 **Example**
 
@@ -1836,7 +1838,7 @@ Defines the event handler to be called when the worker thread receives a message
 | Name| Type                                                        | Mandatory| Description                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.        |
-| ev     | [MessageEvent\<T>](#messageeventt)                           | Yes  | Message received.|
+| ev     | [MessageEvent](#messageeventt)                           | Yes  | Message received.|
 
 **Example**
 
@@ -1872,7 +1874,7 @@ Defines the event handler to be called when the worker thread receives a message
 | Name| Type                                                        | Mandatory| Description            |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.|
-| ev     | [MessageEvent\<T>](#messageeventt)                           | Yes  | Error data.      |
+| ev     | [MessageEvent](#messageeventt)                           | Yes  | Error data.      |
 
 **Example**
 
