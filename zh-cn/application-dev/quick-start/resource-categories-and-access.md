@@ -12,7 +12,7 @@
 
 > **说明**
 >
-> stage模型多工程情况下共有的资源文件放到AppScope下的resources目录。 
+> stage模型多工程情况下，共有的资源文件放到AppScope下的resources目录。 
 
 资源目录示例：
 ```
